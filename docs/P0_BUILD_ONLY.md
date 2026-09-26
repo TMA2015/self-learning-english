@@ -34,3 +34,10 @@ Then present safe alternatives and remaining risks for explicit owner approval. 
 ## Gate for honest completion
 
 A passing managed preview is **not** proof that the private live URL is deployed or that the real learner's Diagnostic HTTP 400 is fixed. Real-account Assessment triage is a separate follow-up that preserves its existing draft and captures only status and safe error code/position.
+
+## Phase A checkpoint verified in GitHub
+- Branch: `sites-p0-phase-a-20260926`; commit: `2c9bcc0ccdfb0b266134613d4c268abbde3ab8c3`.
+- Source and checkpoint manifest are under `sites-p0-phase-a-20260926/`. Compared with the earlier source snapshot, shared Git blobs are unchanged; local QA fixture files are absent.
+- Reported package: `p0-phase-a-20260926.tar.gz`, SHA-256 `d60027d83f85bea2954b594763d28f7c9f814a482666ec47608351e796f1f446`. The archive itself is not in the GitHub source branch; its digest has not been independently rechecked here.
+- Managed preview lacked authenticated Sites identity; authenticated learner flows remain unverified in this run. Use the existing portable localhost-only mock sign-in for isolated testing when available; never enable it on a public server or production. Otherwise document the coverage gap rather than bypassing production authentication.
+- Live Site remains version 6. Production D1 backup, migrations and deployment remain separately gated.
