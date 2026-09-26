@@ -1,0 +1,37 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.key
+*.secret
+secrets/
+credentials/
+
+# Learner data and sensitive backups
+learner-data/
+student-data/
+private-records/
+db-dumps/
+backups/
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sql.gz
+*.dump
+recordings/
+
+# Local dependencies and build output
+node_modules/
+.next/
+dist/
+build/
+coverage/
+.cache/
+.DS_Store
+__pycache__/
+*.pyc
