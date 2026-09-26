@@ -1,0 +1,1801 @@
+[
+  {
+    "id": "v2-Grammar-tense-0",
+    "skill": "Grammar",
+    "tag": "tense-and-aspect",
+    "level": "A1",
+    "prompt": "Every morning, I ___ to school.",
+    "options": [
+      "walk",
+      "walked",
+      "walking"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-tense-1",
+    "skill": "Grammar",
+    "tag": "tense-and-aspect",
+    "level": "A1",
+    "prompt": "Look! Sara ___ a picture now.",
+    "options": [
+      "is drawing",
+      "drew",
+      "draw"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-tense-2",
+    "skill": "Grammar",
+    "tag": "tense-and-aspect",
+    "level": "A2",
+    "prompt": "We ___ the museum last Saturday.",
+    "options": [
+      "visited",
+      "visit",
+      "have visit"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-tense-3",
+    "skill": "Grammar",
+    "tag": "tense-and-aspect",
+    "level": "A2",
+    "prompt": "At eight last night, I ___ my homework when the phone rang.",
+    "options": [
+      "was doing",
+      "do",
+      "am doing"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-tense-4",
+    "skill": "Grammar",
+    "tag": "tense-and-aspect",
+    "level": "B1",
+    "prompt": "I ___ this book since Monday, and I haven't finished it.",
+    "options": [
+      "have been reading",
+      "am read",
+      "read"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-tense-5",
+    "skill": "Grammar",
+    "tag": "tense-and-aspect",
+    "level": "B1",
+    "prompt": "By the time we arrived, the film ___.",
+    "options": [
+      "had started",
+      "has started",
+      "starts"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-articles-0",
+    "skill": "Grammar",
+    "tag": "articles",
+    "level": "A1",
+    "prompt": "She has ___ orange in her bag.",
+    "options": [
+      "a",
+      "an",
+      "some"
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-articles-1",
+    "skill": "Grammar",
+    "tag": "articles",
+    "level": "A1",
+    "prompt": "I can see ___ dog outside. It is brown.",
+    "options": [
+      "an",
+      "some",
+      "a"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-articles-2",
+    "skill": "Grammar",
+    "tag": "articles",
+    "level": "A2",
+    "prompt": "I bought a book yesterday. ___ book is about space.",
+    "options": [
+      "The",
+      "A",
+      "An"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-articles-3",
+    "skill": "Grammar",
+    "tag": "articles",
+    "level": "A2",
+    "prompt": "My sister wants to be ___ engineer.",
+    "options": [
+      "an",
+      "a",
+      "the one"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-articles-4",
+    "skill": "Grammar",
+    "tag": "articles",
+    "level": "B1",
+    "prompt": "___ information you sent was very useful.",
+    "options": [
+      "The",
+      "A",
+      "An"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-articles-5",
+    "skill": "Grammar",
+    "tag": "articles",
+    "level": "B1",
+    "prompt": "Which sentence talks about dogs in general?",
+    "options": [
+      "Dogs are friendly animals.",
+      "The dog in my garden is friendly.",
+      "A dogs are friendly animals."
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-agreement-0",
+    "skill": "Grammar",
+    "tag": "subject-verb-agreement",
+    "level": "A1",
+    "prompt": "My friends ___ kind.",
+    "options": [
+      "are",
+      "am",
+      "is"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-agreement-1",
+    "skill": "Grammar",
+    "tag": "subject-verb-agreement",
+    "level": "A1",
+    "prompt": "My brother ___ football on Sundays.",
+    "options": [
+      "plays",
+      "play",
+      "playing"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-agreement-2",
+    "skill": "Grammar",
+    "tag": "subject-verb-agreement",
+    "level": "A2",
+    "prompt": "There ___ two messages on the board.",
+    "options": [
+      "are",
+      "is",
+      "was"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-agreement-3",
+    "skill": "Grammar",
+    "tag": "subject-verb-agreement",
+    "level": "A2",
+    "prompt": "Each student ___ a notebook.",
+    "options": [
+      "has",
+      "having",
+      "have"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-agreement-4",
+    "skill": "Grammar",
+    "tag": "subject-verb-agreement",
+    "level": "B1",
+    "prompt": "The list of activities ___ on the desk.",
+    "options": [
+      "is",
+      "are",
+      "were"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-agreement-5",
+    "skill": "Grammar",
+    "tag": "subject-verb-agreement",
+    "level": "B1",
+    "prompt": "Neither of the answers ___ correct.",
+    "options": [
+      "is",
+      "are being",
+      "have been"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-clauses-0",
+    "skill": "Grammar",
+    "tag": "clauses",
+    "level": "A1",
+    "prompt": "I like apples ___ I don't like pears.",
+    "options": [
+      "but",
+      "because of",
+      "or because"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-clauses-1",
+    "skill": "Grammar",
+    "tag": "clauses",
+    "level": "A1",
+    "prompt": "I stayed home ___ I was ill.",
+    "options": [
+      "because",
+      "although of",
+      "so"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-clauses-2",
+    "skill": "Grammar",
+    "tag": "clauses",
+    "level": "A2",
+    "prompt": "This is the girl ___ won the race.",
+    "options": [
+      "who",
+      "which",
+      "where"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-clauses-3",
+    "skill": "Grammar",
+    "tag": "clauses",
+    "level": "A2",
+    "prompt": "___ it was cold, we went outside.",
+    "options": [
+      "Although",
+      "Because of",
+      "Despite of"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-clauses-4",
+    "skill": "Grammar",
+    "tag": "clauses",
+    "level": "B1",
+    "prompt": "Choose the complete sentence.",
+    "options": [
+      "Because the bus was late, we walked.",
+      "The bus which was late.",
+      "Because the bus was late."
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-clauses-5",
+    "skill": "Grammar",
+    "tag": "clauses",
+    "level": "B1",
+    "prompt": "The park ___ we played has closed for repairs.",
+    "options": [
+      "where",
+      "which we",
+      "who"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-conditionals-0",
+    "skill": "Grammar",
+    "tag": "conditionals",
+    "level": "A1",
+    "prompt": "You are cold. Which suggestion makes sense?",
+    "options": [
+      "If you are cold, open all the windows.",
+      "If you are cold, put on a coat.",
+      "If you are cold, take off your coat."
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-conditionals-1",
+    "skill": "Grammar",
+    "tag": "conditionals",
+    "level": "A1",
+    "prompt": "If you are thirsty, ___ some water.",
+    "options": [
+      "drank",
+      "drink",
+      "drinking"
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-conditionals-2",
+    "skill": "Grammar",
+    "tag": "conditionals",
+    "level": "A2",
+    "prompt": "If it rains tomorrow, we ___ inside.",
+    "options": [
+      "staying",
+      "will stay",
+      "stayed"
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-conditionals-3",
+    "skill": "Grammar",
+    "tag": "conditionals",
+    "level": "A2",
+    "prompt": "If you heat ice, it ___.",
+    "options": [
+      "melting",
+      "melts",
+      "would melt yesterday"
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-conditionals-4",
+    "skill": "Grammar",
+    "tag": "conditionals",
+    "level": "B1",
+    "prompt": "If I had more time, I ___ another club.",
+    "options": [
+      "will join yesterday",
+      "would join",
+      "joined tomorrow"
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-conditionals-5",
+    "skill": "Grammar",
+    "tag": "conditionals",
+    "level": "B1",
+    "prompt": "Unless we leave now, we ___ late.",
+    "options": [
+      "would have been",
+      "will be",
+      "were"
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-prepositions-0",
+    "skill": "Grammar",
+    "tag": "prepositions",
+    "level": "A1",
+    "prompt": "School starts ___ Monday.",
+    "options": [
+      "at",
+      "in",
+      "on"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-prepositions-1",
+    "skill": "Grammar",
+    "tag": "prepositions",
+    "level": "A1",
+    "prompt": "The lesson starts ___ nine o'clock.",
+    "options": [
+      "in",
+      "on",
+      "at"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-prepositions-2",
+    "skill": "Grammar",
+    "tag": "prepositions",
+    "level": "A2",
+    "prompt": "Mia is interested ___ science.",
+    "options": [
+      "on",
+      "at",
+      "in"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-prepositions-3",
+    "skill": "Grammar",
+    "tag": "prepositions",
+    "level": "A2",
+    "prompt": "We arrived ___ the station early.",
+    "options": [
+      "on",
+      "to",
+      "at"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-prepositions-4",
+    "skill": "Grammar",
+    "tag": "prepositions",
+    "level": "B1",
+    "prompt": "Success often depends ___ careful preparation.",
+    "options": [
+      "at",
+      "of",
+      "on"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Grammar-prepositions-5",
+    "skill": "Grammar",
+    "tag": "prepositions",
+    "level": "B1",
+    "prompt": "She apologised ___ arriving late.",
+    "options": [
+      "with",
+      "to",
+      "for"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-range-0",
+    "skill": "Vocabulary",
+    "tag": "vocabulary-range",
+    "level": "A1",
+    "prompt": "Which word names a place where you borrow books?",
+    "options": [
+      "library",
+      "kitchen",
+      "factory"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-range-1",
+    "skill": "Vocabulary",
+    "tag": "vocabulary-range",
+    "level": "A1",
+    "prompt": "Which word is the opposite of expensive?",
+    "options": [
+      "cheap",
+      "quiet",
+      "heavy"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-range-2",
+    "skill": "Vocabulary",
+    "tag": "vocabulary-range",
+    "level": "A2",
+    "prompt": "Which word describes someone who waits calmly?",
+    "options": [
+      "patient",
+      "crowded",
+      "careless"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-range-3",
+    "skill": "Vocabulary",
+    "tag": "vocabulary-range",
+    "level": "A2",
+    "prompt": "Which word means to keep something safe from harm?",
+    "options": [
+      "protect",
+      "collect",
+      "repeat"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-range-4",
+    "skill": "Vocabulary",
+    "tag": "vocabulary-range",
+    "level": "B1",
+    "prompt": "Which word means able to change to suit a new situation?",
+    "options": [
+      "flexible",
+      "ordinary",
+      "permanent"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-range-5",
+    "skill": "Vocabulary",
+    "tag": "vocabulary-range",
+    "level": "B1",
+    "prompt": "Which word means a result of an action?",
+    "options": [
+      "consequence",
+      "instruction",
+      "appointment"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-meaning-in-context-0",
+    "skill": "Vocabulary",
+    "tag": "meaning-in-context",
+    "level": "A1",
+    "prompt": "The soup is hot. Wait before eating it. Hot means ___.",
+    "options": [
+      "at a high temperature",
+      "very old",
+      "full of sugar"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-meaning-in-context-1",
+    "skill": "Vocabulary",
+    "tag": "meaning-in-context",
+    "level": "A1",
+    "prompt": "The box is empty: there is nothing inside. Empty means ___.",
+    "options": [
+      "containing nothing",
+      "difficult to open",
+      "very heavy"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-meaning-in-context-2",
+    "skill": "Vocabulary",
+    "tag": "meaning-in-context",
+    "level": "A2",
+    "prompt": "The path is narrow, so we walk in a line. Narrow means ___.",
+    "options": [
+      "not wide",
+      "not clean",
+      "not long"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-meaning-in-context-3",
+    "skill": "Vocabulary",
+    "tag": "meaning-in-context",
+    "level": "A2",
+    "prompt": "The room was silent after everyone left. Silent means ___.",
+    "options": [
+      "quiet",
+      "bright",
+      "crowded"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-meaning-in-context-4",
+    "skill": "Vocabulary",
+    "tag": "meaning-in-context",
+    "level": "B1",
+    "prompt": "Ava was reluctant to speak, but finally shared her idea. Reluctant means ___.",
+    "options": [
+      "unwilling at first",
+      "unable to hear",
+      "eager"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-meaning-in-context-5",
+    "skill": "Vocabulary",
+    "tag": "meaning-in-context",
+    "level": "B1",
+    "prompt": "We need a practical solution that works with our small budget. Practical means ___.",
+    "options": [
+      "useful and realistic",
+      "expensive",
+      "imaginary"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-collocation-0",
+    "skill": "Vocabulary",
+    "tag": "collocation",
+    "level": "A1",
+    "prompt": "Please ___ your homework.",
+    "options": [
+      "make",
+      "build",
+      "do"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-collocation-1",
+    "skill": "Vocabulary",
+    "tag": "collocation",
+    "level": "A1",
+    "prompt": "I ___ breakfast at seven.",
+    "options": [
+      "take a make",
+      "do",
+      "have"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-collocation-2",
+    "skill": "Vocabulary",
+    "tag": "collocation",
+    "level": "A2",
+    "prompt": "Please ___ attention to the instructions.",
+    "options": [
+      "make",
+      "give a",
+      "pay"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-collocation-3",
+    "skill": "Vocabulary",
+    "tag": "collocation",
+    "level": "A2",
+    "prompt": "We are ___ progress in English.",
+    "options": [
+      "doing",
+      "taking",
+      "making"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-collocation-4",
+    "skill": "Vocabulary",
+    "tag": "collocation",
+    "level": "B1",
+    "prompt": "Everyone should ___ responsibility for their work.",
+    "options": [
+      "do",
+      "make",
+      "take"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-collocation-5",
+    "skill": "Vocabulary",
+    "tag": "collocation",
+    "level": "B1",
+    "prompt": "The new bus service will ___ a difference to families.",
+    "options": [
+      "do",
+      "take",
+      "make"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-word-formation-0",
+    "skill": "Vocabulary",
+    "tag": "word-formation",
+    "level": "A1",
+    "prompt": "She is a good ___. She teaches English.",
+    "options": [
+      "teach",
+      "teachingly",
+      "teacher"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-word-formation-1",
+    "skill": "Vocabulary",
+    "tag": "word-formation",
+    "level": "A1",
+    "prompt": "We need two ___ for this game.",
+    "options": [
+      "played",
+      "play",
+      "players"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-word-formation-2",
+    "skill": "Vocabulary",
+    "tag": "word-formation",
+    "level": "A2",
+    "prompt": "He answered the question ___.",
+    "options": [
+      "careful",
+      "care",
+      "carefully"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-word-formation-3",
+    "skill": "Vocabulary",
+    "tag": "word-formation",
+    "level": "A2",
+    "prompt": "It was a difficult ___.",
+    "options": [
+      "decide",
+      "decisively",
+      "decision"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-word-formation-4",
+    "skill": "Vocabulary",
+    "tag": "word-formation",
+    "level": "B1",
+    "prompt": "The instructions were ___, so we asked for help.",
+    "options": [
+      "confusion",
+      "confuse",
+      "confusing"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Vocabulary-word-formation-5",
+    "skill": "Vocabulary",
+    "tag": "word-formation",
+    "level": "B1",
+    "prompt": "The project was a success because of their ___.",
+    "options": [
+      "patient",
+      "patiently",
+      "patience"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-gist-0",
+    "skill": "Reading",
+    "tag": "gist",
+    "level": "A1",
+    "prompt": "What is this message mainly about?",
+    "options": [
+      "A changed meeting time",
+      "A lost bag",
+      "A new teacher"
+    ],
+    "correct": 0,
+    "passage": "Hi Ben. Our club will meet at four today, not three. Please tell Mia. See you there!",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-gist-1",
+    "skill": "Reading",
+    "tag": "gist",
+    "level": "A1",
+    "prompt": "What is the text about?",
+    "options": [
+      "A journey to school",
+      "A football game",
+      "Buying a bicycle"
+    ],
+    "correct": 0,
+    "passage": "Anna walks to school with her brother. They leave home at eight and reach school at twenty past eight.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-gist-2",
+    "skill": "Reading",
+    "tag": "gist",
+    "level": "A2",
+    "prompt": "What is the main idea?",
+    "options": [
+      "Growing food changed Tom's view of vegetables.",
+      "Tom dislikes all vegetables.",
+      "Tom wants a bigger classroom."
+    ],
+    "correct": 0,
+    "passage": "Tom never liked vegetables. This term his class grew carrots. After caring for the plants, he wanted to try the carrots. Now he sometimes helps cook vegetables at home.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-gist-3",
+    "skill": "Reading",
+    "tag": "gist",
+    "level": "A2",
+    "prompt": "What is the passage mainly about?",
+    "options": [
+      "How a club made reading more enjoyable",
+      "Why the library closed",
+      "How to write a very long book"
+    ],
+    "correct": 0,
+    "passage": "Our reading club used to meet in silence. Then we began sharing favourite passages and drawing scenes from books. More pupils joined, including some who rarely read before.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-gist-4",
+    "skill": "Reading",
+    "tag": "gist",
+    "level": "B1",
+    "prompt": "Which sentence best summarises the text?",
+    "options": [
+      "Choice can improve motivation, but guidance still matters.",
+      "Pupils always choose the hardest task.",
+      "All homework should be removed."
+    ],
+    "correct": 0,
+    "passage": "When pupils choose a project topic, they often work with more enthusiasm. However, unlimited choice can be confusing. Teachers can help by offering a few suitable options and discussing the demands of each one.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-gist-5",
+    "skill": "Reading",
+    "tag": "gist",
+    "level": "B1",
+    "prompt": "What is the central point?",
+    "options": [
+      "Useful technology needs thoughtful rules.",
+      "Digital tools always waste time.",
+      "Paper books must replace computers."
+    ],
+    "correct": 0,
+    "passage": "Tablets let our class find information quickly and hear unfamiliar words. Yet messages can interrupt concentration. We have agreed to turn notifications off during lessons. The devices are useful when our habits support learning.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-detail-0",
+    "skill": "Reading",
+    "tag": "detail",
+    "level": "A1",
+    "prompt": "When is the club?",
+    "options": [
+      "Thursday",
+      "Friday",
+      "Tuesday"
+    ],
+    "correct": 2,
+    "passage": "The art club meets on Tuesday at four. Bring a pencil and some paper.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-detail-1",
+    "skill": "Reading",
+    "tag": "detail",
+    "level": "A1",
+    "prompt": "How many cats does Jo have?",
+    "options": [
+      "Three",
+      "One",
+      "Two"
+    ],
+    "correct": 2,
+    "passage": "Jo has two cats and one dog. The cats sleep in the kitchen.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-detail-2",
+    "skill": "Reading",
+    "tag": "detail",
+    "level": "A2",
+    "prompt": "Why must pupils bring a bottle?",
+    "options": [
+      "To water plants",
+      "To sell at the fair",
+      "To refill it during the walk"
+    ],
+    "correct": 2,
+    "passage": "For Friday's walk, wear comfortable shoes and bring a bottle. There will be places to refill it along the route. Lunch will be provided at the visitor centre.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-detail-3",
+    "skill": "Reading",
+    "tag": "detail",
+    "level": "A2",
+    "prompt": "What did Sara spend the money on?",
+    "options": [
+      "New signs",
+      "More plants",
+      "Classroom books"
+    ],
+    "correct": 2,
+    "passage": "At the school fair, Sara sold small plants. Friends made signs for her stall. She used all the money from sales to buy books for the classroom.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-detail-4",
+    "skill": "Reading",
+    "tag": "detail",
+    "level": "B1",
+    "prompt": "Which pupils need a permission form?",
+    "options": [
+      "Only those staying at school",
+      "Every member of the class",
+      "Only those joining the museum visit"
+    ],
+    "correct": 2,
+    "passage": "Thursday's museum visit is optional. Pupils who prefer the library project can remain at school. Those choosing the visit must return a signed form by Monday, even if they attended last year's trip.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-detail-5",
+    "skill": "Reading",
+    "tag": "detail",
+    "level": "B1",
+    "prompt": "What happened after the first trial?",
+    "options": [
+      "The team abandoned the project.",
+      "The wheels were replaced.",
+      "The team reduced the model's weight."
+    ],
+    "correct": 2,
+    "passage": "The first model car was too slow. The team thought its wheels were the problem, but testing showed that they turned freely. They removed some heavy decorations, and the second trial was much faster.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-inference-0",
+    "skill": "Reading",
+    "tag": "inference",
+    "level": "A1",
+    "prompt": "How does Kim probably feel?",
+    "options": [
+      "Happy",
+      "Angry",
+      "Bored"
+    ],
+    "correct": 0,
+    "passage": "Kim opens her birthday present. She smiles and says, 'Thank you! I wanted this book!'",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-inference-1",
+    "skill": "Reading",
+    "tag": "inference",
+    "level": "A1",
+    "prompt": "What will Max probably do?",
+    "options": [
+      "Eat something",
+      "Go to sleep",
+      "Go swimming"
+    ],
+    "correct": 0,
+    "passage": "Max says, 'I haven't eaten today. Is there any bread?'",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-inference-2",
+    "skill": "Reading",
+    "tag": "inference",
+    "level": "A2",
+    "prompt": "Why did Tom pack an umbrella?",
+    "options": [
+      "He expected rain.",
+      "He needed a walking stick.",
+      "He was going to swim."
+    ],
+    "correct": 0,
+    "passage": "Tom looked at the dark clouds. Before leaving, he took an umbrella from the cupboard and put it in his bag.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-inference-3",
+    "skill": "Reading",
+    "tag": "inference",
+    "level": "A2",
+    "prompt": "What can we infer about Ella?",
+    "options": [
+      "She was unsure about her answer.",
+      "She had already left the room.",
+      "She could not see the board."
+    ],
+    "correct": 0,
+    "passage": "Ella raised her hand halfway, looked at her notebook again, and slowly lowered it while another pupil answered.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-inference-4",
+    "skill": "Reading",
+    "tag": "inference",
+    "level": "B1",
+    "prompt": "Why did the organisers move the chairs?",
+    "options": [
+      "They were preparing to hold the event indoors.",
+      "They had decided no one could attend.",
+      "They had sold all the chairs."
+    ],
+    "correct": 0,
+    "passage": "An outdoor film night was planned. After checking the evening forecast, volunteers carried chairs into the hall. They also tested the hall's projector and speakers.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-inference-5",
+    "skill": "Reading",
+    "tag": "inference",
+    "level": "B1",
+    "prompt": "What does the ending suggest?",
+    "options": [
+      "The coach valued improvement despite the loss.",
+      "The team no longer needs practice.",
+      "The coach disliked the match."
+    ],
+    "correct": 0,
+    "passage": "The team lost again, but this time every player passed the ball and supported the others. At the end, the coach smiled and said, 'That is the team I have been waiting to see.'",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-reference-0",
+    "skill": "Reading",
+    "tag": "reference",
+    "level": "A1",
+    "prompt": "What does 'it' refer to?",
+    "options": [
+      "The cat",
+      "The sofa",
+      "The afternoon"
+    ],
+    "correct": 0,
+    "passage": "Sam has a cat. It sleeps on the sofa every afternoon.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-reference-1",
+    "skill": "Reading",
+    "tag": "reference",
+    "level": "A1",
+    "prompt": "Who does 'they' refer to?",
+    "options": [
+      "Amy and Jo",
+      "The park",
+      "The books"
+    ],
+    "correct": 0,
+    "passage": "Amy and Jo take their books to the park. They read under a tree.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-reference-2",
+    "skill": "Reading",
+    "tag": "reference",
+    "level": "A2",
+    "prompt": "What does 'them' refer to?",
+    "options": [
+      "The seeds",
+      "The pots",
+      "The friends"
+    ],
+    "correct": 0,
+    "passage": "Nina found some seeds in a box. She washed them before putting them in small pots.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-reference-3",
+    "skill": "Reading",
+    "tag": "reference",
+    "level": "A2",
+    "prompt": "What does 'this' refer to?",
+    "options": [
+      "Cycling to school",
+      "Buying a car",
+      "The weather"
+    ],
+    "correct": 0,
+    "passage": "Leo began cycling to school instead of travelling by car. This saved his family money and gave him more exercise.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-reference-4",
+    "skill": "Reading",
+    "tag": "reference",
+    "level": "B1",
+    "prompt": "What does 'those' refer to?",
+    "options": [
+      "The pupils who finished early",
+      "All the books",
+      "The teachers"
+    ],
+    "correct": 0,
+    "passage": "Some pupils finished the task early, while others needed help. The teacher asked those who had finished to check a partner's work.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-reference-5",
+    "skill": "Reading",
+    "tag": "reference",
+    "level": "B1",
+    "prompt": "What does 'which' refer to here?",
+    "options": [
+      "The club doubling its membership",
+      "Only the library building",
+      "Only the posters"
+    ],
+    "correct": 0,
+    "passage": "After members put posters in the library, the club doubled its membership, which surprised even the organiser.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-vocabulary-in-context-0",
+    "skill": "Reading",
+    "tag": "vocabulary-in-context",
+    "level": "A1",
+    "prompt": "What does 'tiny' mean here?",
+    "options": [
+      "Very small",
+      "Very noisy",
+      "Very fast"
+    ],
+    "correct": 0,
+    "passage": "The puppy fits in one hand. It is tiny.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-vocabulary-in-context-1",
+    "skill": "Reading",
+    "tag": "vocabulary-in-context",
+    "level": "A1",
+    "prompt": "What does 'late' mean here?",
+    "options": [
+      "After the expected time",
+      "At the correct place",
+      "Before the expected time"
+    ],
+    "correct": 0,
+    "passage": "The lesson began at nine, but I arrived at nine fifteen. I was late.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-vocabulary-in-context-2",
+    "skill": "Reading",
+    "tag": "vocabulary-in-context",
+    "level": "A2",
+    "prompt": "What does 'shelter' mean here?",
+    "options": [
+      "Protection from bad weather",
+      "A kind of food",
+      "A loud noise"
+    ],
+    "correct": 0,
+    "passage": "As the rain became heavier, the walkers found shelter under a roof beside the path.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-vocabulary-in-context-3",
+    "skill": "Reading",
+    "tag": "vocabulary-in-context",
+    "level": "A2",
+    "prompt": "What does 'spare' mean here?",
+    "options": [
+      "Extra and available",
+      "Broken",
+      "Very expensive"
+    ],
+    "correct": 0,
+    "passage": "I forgot my pencil, but Noor had a spare one. She lent it to me for the lesson.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-vocabulary-in-context-4",
+    "skill": "Reading",
+    "tag": "vocabulary-in-context",
+    "level": "B1",
+    "prompt": "What does 'overlooked' mean here?",
+    "options": [
+      "Failed to notice",
+      "Deliberately repaired",
+      "Viewed from above"
+    ],
+    "correct": 0,
+    "passage": "Our report included the cost of paper and paint. Unfortunately, we overlooked transport, so the final cost was higher than expected.",
+    "hintVi": ""
+  },
+  {
+    "id": "v2-Reading-vocabulary-in-context-5",
+    "skill": "Reading",
+    "tag": "vocabulary-in-context",
+    "level": "B1",
+    "prompt": "What does 'raised' mean here?",
+    "options": [
+      "Brought up for discussion",
+      "Lifted physically",
+      "Made older"
+    ],
+    "correct": 0,
+    "passage": "During the meeting, Mia raised a concern about the timetable. The group then discussed whether there was enough time for lunch.",
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-pronouns-0",
+    "skill": "Grammar",
+    "tag": "pronouns",
+    "level": "A1",
+    "prompt": "This is Sara. ___ is my friend.",
+    "options": [
+      "She",
+      "He",
+      "They"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-pronouns-1",
+    "skill": "Grammar",
+    "tag": "pronouns",
+    "level": "A1",
+    "prompt": "I like Ben. I play with ___ after school.",
+    "options": [
+      "him",
+      "his",
+      "he"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-pronouns-2",
+    "skill": "Grammar",
+    "tag": "pronouns",
+    "level": "A2",
+    "prompt": "This bag belongs to me. It is ___.",
+    "options": [
+      "mine",
+      "my",
+      "me"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-pronouns-3",
+    "skill": "Grammar",
+    "tag": "pronouns",
+    "level": "A2",
+    "prompt": "The children made the model by ___.",
+    "options": [
+      "themselves",
+      "their",
+      "themself"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-pronouns-4",
+    "skill": "Grammar",
+    "tag": "pronouns",
+    "level": "B1",
+    "prompt": "There are two routes. ___ of them takes more than ten minutes.",
+    "options": [
+      "Neither",
+      "Every",
+      "None"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-pronouns-5",
+    "skill": "Grammar",
+    "tag": "pronouns",
+    "level": "B1",
+    "prompt": "We helped ___ with our projects.",
+    "options": [
+      "each other",
+      "ours",
+      "us own"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-sentence-structure-0",
+    "skill": "Grammar",
+    "tag": "sentence-structure",
+    "level": "A1",
+    "prompt": "Choose the correct sentence.",
+    "options": [
+      "She music likes is.",
+      "She likes music.",
+      "Likes she music."
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-sentence-structure-1",
+    "skill": "Grammar",
+    "tag": "sentence-structure",
+    "level": "A1",
+    "prompt": "Choose the correct question.",
+    "options": [
+      "Where you live?",
+      "Where do you live?",
+      "Where live do you?"
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-sentence-structure-2",
+    "skill": "Grammar",
+    "tag": "sentence-structure",
+    "level": "A2",
+    "prompt": "Choose the complete sentence.",
+    "options": [
+      "The students in the room.",
+      "After the lesson finished, we went home.",
+      "After the lesson finished."
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-sentence-structure-3",
+    "skill": "Grammar",
+    "tag": "sentence-structure",
+    "level": "A2",
+    "prompt": "Choose the correctly joined sentence.",
+    "options": [
+      "I was tired, because of went to bed.",
+      "I was tired, so I went to bed.",
+      "I was tired I went to bed."
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-sentence-structure-4",
+    "skill": "Grammar",
+    "tag": "sentence-structure",
+    "level": "B1",
+    "prompt": "Choose the sentence with correct parallel structure.",
+    "options": [
+      "She enjoys reading, to swim and paints.",
+      "She enjoys reading, swimming and painting.",
+      "She enjoys reading, swimming and to paint."
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-sentence-structure-5",
+    "skill": "Grammar",
+    "tag": "sentence-structure",
+    "level": "B1",
+    "prompt": "Which sentence avoids a comma splice?",
+    "options": [
+      "The rain stopped we, left.",
+      "The rain stopped, and we left.",
+      "The rain stopped, we left."
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Vocabulary-appropriate-word-choice-0",
+    "skill": "Vocabulary",
+    "tag": "appropriate-word-choice",
+    "level": "A1",
+    "prompt": "Please ___ the door. It is cold outside.",
+    "options": [
+      "eat",
+      "close",
+      "wear"
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Vocabulary-appropriate-word-choice-1",
+    "skill": "Vocabulary",
+    "tag": "appropriate-word-choice",
+    "level": "A1",
+    "prompt": "I ___ a book from the library.",
+    "options": [
+      "lent",
+      "borrowed",
+      "spent"
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Vocabulary-appropriate-word-choice-2",
+    "skill": "Vocabulary",
+    "tag": "appropriate-word-choice",
+    "level": "A2",
+    "prompt": "Can you ___ me how to get to the station?",
+    "options": [
+      "speak",
+      "tell",
+      "say"
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Vocabulary-appropriate-word-choice-3",
+    "skill": "Vocabulary",
+    "tag": "appropriate-word-choice",
+    "level": "A2",
+    "prompt": "I forgot my umbrella. Can I ___ yours?",
+    "options": [
+      "learn",
+      "borrow",
+      "lend"
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Vocabulary-appropriate-word-choice-4",
+    "skill": "Vocabulary",
+    "tag": "appropriate-word-choice",
+    "level": "B1",
+    "prompt": "The experiment provided strong ___ for our explanation.",
+    "options": [
+      "advice",
+      "evidence",
+      "permission"
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Vocabulary-appropriate-word-choice-5",
+    "skill": "Vocabulary",
+    "tag": "appropriate-word-choice",
+    "level": "B1",
+    "prompt": "The teacher asked us to ___ the two stories and explain their differences.",
+    "options": [
+      "compete",
+      "compare",
+      "complain"
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-tense-and-aspect-0",
+    "skill": "Grammar",
+    "tag": "tense-and-aspect",
+    "level": "B2",
+    "prompt": "By next June, I ___ at this school for three years.",
+    "options": [
+      "would studying",
+      "will have studied",
+      "have study"
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-subject-verb-agreement-0",
+    "skill": "Grammar",
+    "tag": "subject-verb-agreement",
+    "level": "B2",
+    "prompt": "Not only the captain but also the players ___ responsible.",
+    "options": [
+      "are",
+      "has been",
+      "is"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-articles-0",
+    "skill": "Grammar",
+    "tag": "articles",
+    "level": "B2",
+    "prompt": "Choose the natural sentence about education in general.",
+    "options": [
+      "The education is important for all children everywhere.",
+      "Education is important for all children.",
+      "An education is important for all the children everywhere."
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-pronouns-0",
+    "skill": "Grammar",
+    "tag": "pronouns",
+    "level": "B2",
+    "prompt": "The researchers compared their results with ___ of the earlier study.",
+    "options": [
+      "those",
+      "that",
+      "this"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-prepositions-0",
+    "skill": "Grammar",
+    "tag": "prepositions",
+    "level": "B2",
+    "prompt": "The proposal is consistent ___ the school's environmental aims.",
+    "options": [
+      "with",
+      "of",
+      "to"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-clauses-0",
+    "skill": "Grammar",
+    "tag": "clauses",
+    "level": "B2",
+    "prompt": "___ the limited budget, the team completed the project successfully.",
+    "options": [
+      "Despite",
+      "Although",
+      "Even though"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-conditionals-0",
+    "skill": "Grammar",
+    "tag": "conditionals",
+    "level": "B2",
+    "prompt": "If we had checked the timetable, we ___ the train.",
+    "options": [
+      "would not have missed",
+      "will not miss",
+      "do not miss"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Grammar-sentence-structure-0",
+    "skill": "Grammar",
+    "tag": "sentence-structure",
+    "level": "B2",
+    "prompt": "Which sentence clearly says that Mia was walking when she saw the bird?",
+    "options": [
+      "Mia saw a bird walking home herself.",
+      "Walking home, a bird was seen by Mia.",
+      "Walking home, Mia saw a bird."
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Vocabulary-vocabulary-range-0",
+    "skill": "Vocabulary",
+    "tag": "vocabulary-range",
+    "level": "B2",
+    "prompt": "Which word means possible to carry out successfully?",
+    "options": [
+      "temporary",
+      "feasible",
+      "reluctant"
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Vocabulary-meaning-in-context-0",
+    "skill": "Vocabulary",
+    "tag": "meaning-in-context",
+    "level": "B2",
+    "prompt": "The evidence is compelling: it makes the explanation hard to doubt. Compelling means ___.",
+    "options": [
+      "incomplete",
+      "convincing",
+      "confusing"
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Vocabulary-collocation-0",
+    "skill": "Vocabulary",
+    "tag": "collocation",
+    "level": "B2",
+    "prompt": "The committee decided to ___ the issue at its next meeting.",
+    "options": [
+      "perform",
+      "do",
+      "address"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Vocabulary-word-formation-0",
+    "skill": "Vocabulary",
+    "tag": "word-formation",
+    "level": "B2",
+    "prompt": "The report questioned the ___ of the online information.",
+    "options": [
+      "reliability",
+      "rely",
+      "reliable"
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Vocabulary-appropriate-word-choice-0",
+    "skill": "Vocabulary",
+    "tag": "appropriate-word-choice",
+    "level": "B2",
+    "prompt": "The writer ___ that the plan is too expensive, giving three reasons.",
+    "options": [
+      "tells that",
+      "argues",
+      "discusses that"
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Reading-gist-0",
+    "skill": "Reading",
+    "tag": "gist",
+    "level": "B2",
+    "prompt": "Which statement best captures the writer's position?",
+    "passage": "Repairing appliances can save materials and money. Yet telling everyone to repair rather than replace ignores the cost of skilled labour and the shortage of convenient workshops. Community repair events offer one useful response, though they cannot fix every product. A successful policy would make repair practical, instead of simply praising its benefits.",
+    "options": [
+      "Repairing goods can reduce waste, but access matters.",
+      "People lack any interest in reducing waste.",
+      "Repair workshops should replace all shops."
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Reading-detail-0",
+    "skill": "Reading",
+    "tag": "detail",
+    "level": "B2",
+    "prompt": "Which result was observed, rather than merely suggested?",
+    "passage": "A school trial replaced bottled drinks with refill stations. During the six-week trial, use of the stations rose steadily. Researchers suggested that a larger study could examine health effects, but the trial itself measured only drink purchases and station use. They cautioned against assuming the results would be identical in every school.",
+    "options": [
+      "More pupils used the refill stations.",
+      "Every pupil became healthier.",
+      "A national scheme was introduced."
+    ],
+    "correct": 0,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Reading-inference-0",
+    "skill": "Reading",
+    "tag": "inference",
+    "level": "B2",
+    "prompt": "What is implied about the new opening hours?",
+    "passage": "The library now closes later on weekdays but no longer opens on Sunday. Office workers welcomed the change. Several families, however, said Sunday had been their only opportunity to visit together. The manager promised to review attendance figures before deciding whether to keep the arrangement.",
+    "options": [
+      "They were introduced to reduce book purchases.",
+      "They suit some visitors better but disadvantage others.",
+      "They have been universally welcomed."
+    ],
+    "correct": 1,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Reading-reference-0",
+    "skill": "Reading",
+    "tag": "reference",
+    "level": "B2",
+    "prompt": "What does 'that assumption' refer to?",
+    "passage": "The organisers expected attendance to remain stable, so they booked the same venue as last year. When registrations doubled, that assumption proved costly: a larger hall and extra staff had to be arranged at short notice.",
+    "options": [
+      "The assumption that extra staff would be free",
+      "The assumption that the cost had already risen",
+      "The assumption that attendance would remain stable"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  },
+  {
+    "id": "core-Reading-vocabulary-in-context-0",
+    "skill": "Reading",
+    "tag": "vocabulary-in-context",
+    "level": "B2",
+    "prompt": "What does 'qualified' mean in this context?",
+    "passage": "The review offered qualified support for the scheme. It welcomed the aim of improving transport but warned that the promised benefits depended on reliable funding and careful consultation with residents.",
+    "options": [
+      "Passed a professional exam",
+      "Completely rejected",
+      "Limited by an important condition"
+    ],
+    "correct": 2,
+    "hintVi": ""
+  }
+]

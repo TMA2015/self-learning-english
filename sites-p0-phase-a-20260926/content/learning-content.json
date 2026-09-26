@@ -1,0 +1,708 @@
+{
+  "format": "ai-english-tutor.content",
+  "schemaVersion": 1,
+  "courses": [
+    {
+      "id": "english-writing-coach",
+      "version": "1.0.0",
+      "title": "English Writing Coach",
+      "unitIds": [
+        "writing-week-1",
+        "writing-week-2",
+        "writing-week-3",
+        "writing-week-4",
+        "writing-week-5",
+        "writing-week-6",
+        "writing-week-7",
+        "writing-week-8",
+        "writing-week-9",
+        "writing-week-10",
+        "writing-week-11",
+        "writing-week-12"
+      ],
+      "cefrTargets": [
+        "A1",
+        "A2",
+        "B1"
+      ],
+      "subskillTags": [
+        "task-understanding",
+        "idea-development",
+        "organization",
+        "grammar-accuracy",
+        "vocabulary",
+        "sentence-quality"
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "writing-week-1",
+      "title": "Read the question",
+      "lessonIds": [
+        "writing-week-1-lesson-1",
+        "writing-week-1-lesson-2",
+        "writing-week-1-lesson-3"
+      ],
+      "prerequisiteSkills": []
+    },
+    {
+      "id": "writing-week-2",
+      "title": "Stay on topic",
+      "lessonIds": [
+        "writing-week-2-lesson-1",
+        "writing-week-2-lesson-2",
+        "writing-week-2-lesson-3"
+      ],
+      "prerequisiteSkills": []
+    },
+    {
+      "id": "writing-week-3",
+      "title": "Ideas that matter",
+      "lessonIds": [
+        "writing-week-3-lesson-1",
+        "writing-week-3-lesson-2",
+        "writing-week-3-lesson-3"
+      ],
+      "prerequisiteSkills": []
+    },
+    {
+      "id": "writing-week-4",
+      "title": "Explain your ideas",
+      "lessonIds": [
+        "writing-week-4-lesson-1",
+        "writing-week-4-lesson-2",
+        "writing-week-4-lesson-3"
+      ],
+      "prerequisiteSkills": []
+    },
+    {
+      "id": "writing-week-5",
+      "title": "Examples from life",
+      "lessonIds": [
+        "writing-week-5-lesson-1",
+        "writing-week-5-lesson-2",
+        "writing-week-5-lesson-3"
+      ],
+      "prerequisiteSkills": []
+    },
+    {
+      "id": "writing-week-6",
+      "title": "Build an outline",
+      "lessonIds": [
+        "writing-week-6-lesson-1",
+        "writing-week-6-lesson-2",
+        "writing-week-6-lesson-3"
+      ],
+      "prerequisiteSkills": []
+    },
+    {
+      "id": "writing-week-7",
+      "title": "Clear sentences",
+      "lessonIds": [
+        "writing-week-7-lesson-1",
+        "writing-week-7-lesson-2",
+        "writing-week-7-lesson-3"
+      ],
+      "prerequisiteSkills": []
+    },
+    {
+      "id": "writing-week-8",
+      "title": "Accurate sentences",
+      "lessonIds": [
+        "writing-week-8-lesson-1",
+        "writing-week-8-lesson-2",
+        "writing-week-8-lesson-3"
+      ],
+      "prerequisiteSkills": []
+    },
+    {
+      "id": "writing-week-9",
+      "title": "A strong paragraph",
+      "lessonIds": [
+        "writing-week-9-lesson-1",
+        "writing-week-9-lesson-2",
+        "writing-week-9-lesson-3"
+      ],
+      "prerequisiteSkills": []
+    },
+    {
+      "id": "writing-week-10",
+      "title": "Link paragraphs",
+      "lessonIds": [
+        "writing-week-10-lesson-1",
+        "writing-week-10-lesson-2",
+        "writing-week-10-lesson-3"
+      ],
+      "prerequisiteSkills": []
+    },
+    {
+      "id": "writing-week-11",
+      "title": "Revise your draft",
+      "lessonIds": [
+        "writing-week-11-lesson-1",
+        "writing-week-11-lesson-2",
+        "writing-week-11-lesson-3"
+      ],
+      "prerequisiteSkills": []
+    },
+    {
+      "id": "writing-week-12",
+      "title": "Write independently",
+      "lessonIds": [
+        "writing-week-12-lesson-1",
+        "writing-week-12-lesson-2",
+        "writing-week-12-lesson-3"
+      ],
+      "prerequisiteSkills": []
+    }
+  ],
+  "lessons": [
+    {
+      "id": "writing-week-1-lesson-1",
+      "title": "Spot the topic & task",
+      "objectiveIds": [
+        "identify-topic-task-scope",
+        "develop-relevant-reason"
+      ],
+      "cefrTarget": "A2",
+      "subskillTags": [
+        "task-understanding",
+        "idea-development"
+      ],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "available"
+    },
+    {
+      "id": "writing-week-1-lesson-2",
+      "title": "Find key words and limits",
+      "objectiveIds": [
+        "identify-topic-task-scope",
+        "develop-relevant-reason"
+      ],
+      "cefrTarget": "A2",
+      "subskillTags": [
+        "task-understanding",
+        "idea-development"
+      ],
+      "prerequisiteSkills": [],
+      "exerciseIds": [
+        "garden-relevant-idea"
+      ],
+      "status": "available"
+    },
+    {
+      "id": "writing-week-1-lesson-3",
+      "title": "Garden writing challenge",
+      "objectiveIds": [
+        "identify-topic-task-scope",
+        "develop-relevant-reason"
+      ],
+      "cefrTarget": "A2",
+      "subskillTags": [
+        "task-understanding",
+        "idea-development"
+      ],
+      "prerequisiteSkills": [],
+      "exerciseIds": [
+        "school-garden-writing"
+      ],
+      "status": "available"
+    },
+    {
+      "id": "writing-week-2-lesson-1",
+      "title": "What belongs in an answer?",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-2-lesson-2",
+      "title": "Choose on-topic examples",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-2-lesson-3",
+      "title": "School clubs challenge",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-3-lesson-1",
+      "title": "List before choosing",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-3-lesson-2",
+      "title": "One strong idea vs many weak ideas",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-3-lesson-3",
+      "title": "Healthy lunch challenge",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-4-lesson-1",
+      "title": "Answer the question why",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-4-lesson-2",
+      "title": "Add a useful detail",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-4-lesson-3",
+      "title": "Reading time challenge",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-5-lesson-1",
+      "title": "Make an example specific",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-5-lesson-2",
+      "title": "Connect example to reason",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-5-lesson-3",
+      "title": "Helping at home challenge",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-6-lesson-1",
+      "title": "Opening, reasons, ending",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-6-lesson-2",
+      "title": "Put ideas in order",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-6-lesson-3",
+      "title": "Outdoor learning challenge",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-7-lesson-1",
+      "title": "One clear thought",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-7-lesson-2",
+      "title": "Because and so",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-7-lesson-3",
+      "title": "Favorite place challenge",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-8-lesson-1",
+      "title": "Subject and verb",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-8-lesson-2",
+      "title": "Tense and articles",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-8-lesson-3",
+      "title": "School day challenge",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-9-lesson-1",
+      "title": "Topic sentence",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-9-lesson-2",
+      "title": "Reason and example",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-9-lesson-3",
+      "title": "Pets challenge",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-10-lesson-1",
+      "title": "Simple transitions",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-10-lesson-2",
+      "title": "A clear beginning and ending",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-10-lesson-3",
+      "title": "Screen time challenge",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-11-lesson-1",
+      "title": "Check the task",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-11-lesson-2",
+      "title": "Check ideas and sentences",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-11-lesson-3",
+      "title": "Sports challenge",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-12-lesson-1",
+      "title": "Plan without hints",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-12-lesson-2",
+      "title": "Write and revise",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    },
+    {
+      "id": "writing-week-12-lesson-3",
+      "title": "My school challenge",
+      "objectiveIds": [],
+      "cefrTarget": "A2",
+      "subskillTags": [],
+      "prerequisiteSkills": [],
+      "exerciseIds": [],
+      "status": "planned"
+    }
+  ],
+  "objectives": [
+    {
+      "id": "identify-topic-task-scope",
+      "description": "Identify the topic, required response and scope of a Writing question.",
+      "cefrTarget": "A2",
+      "subskillTags": [
+        "task-understanding"
+      ],
+      "prerequisiteSkills": []
+    },
+    {
+      "id": "develop-relevant-reason",
+      "description": "Support a relevant opinion with a reason and a concrete example.",
+      "cefrTarget": "A2",
+      "subskillTags": [
+        "idea-development",
+        "organization"
+      ],
+      "prerequisiteSkills": [
+        "task-understanding"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "garden-relevant-idea",
+      "type": "multiple-choice",
+      "prompt": "Which idea answers the garden question?",
+      "objectiveIds": [
+        "identify-topic-task-scope"
+      ],
+      "subskillTags": [
+        "task-understanding"
+      ],
+      "cefrTarget": "A2",
+      "prerequisiteSkills": [],
+      "options": [
+        {
+          "id": "a",
+          "text": "My favorite food is pizza."
+        },
+        {
+          "id": "b",
+          "text": "Students can learn how plants grow."
+        }
+      ],
+      "answer": {
+        "correctOptionId": "b",
+        "explanation": "This idea is about learning in the school garden and answers the question. The pizza idea is off topic."
+      },
+      "evidence": {
+        "skill": "Writing",
+        "tag": "task-understanding",
+        "maxScore": 1,
+        "method": "deterministic",
+        "minimumObservations": 3,
+        "setsCEFRDirectly": false
+      }
+    },
+    {
+      "id": "school-garden-writing",
+      "type": "writing",
+      "prompt": "Some students think schools should have a small garden. Do you agree? Give reasons and an example.",
+      "objectiveIds": [
+        "identify-topic-task-scope",
+        "develop-relevant-reason"
+      ],
+      "subskillTags": [
+        "task-understanding",
+        "idea-development",
+        "organization",
+        "grammar-accuracy",
+        "vocabulary",
+        "sentence-quality"
+      ],
+      "cefrTarget": "A2",
+      "prerequisiteSkills": [
+        "task-understanding"
+      ],
+      "answer": {
+        "rubricId": "writing-foundation-v1",
+        "explanation": "Give your opinion, explain a relevant reason and include a concrete example. There is no single model answer; review the submitted language with the rubric."
+      },
+      "evidence": {
+        "skill": "Writing",
+        "tag": "idea-development",
+        "maxScore": 10,
+        "method": "review-required",
+        "minimumObservations": 2,
+        "setsCEFRDirectly": false
+      }
+    }
+  ],
+  "rubrics": {
+    "writing-foundation-v1": {
+      "version": "1.0",
+      "criteria": [
+        "task-understanding",
+        "idea-development",
+        "organization",
+        "grammar-accuracy",
+        "vocabulary",
+        "sentence-quality"
+      ],
+      "scale": {
+        "0": "No evidence",
+        "2": "Isolated words",
+        "4": "Simple communication with frequent errors",
+        "6": "Mostly clear simple connected writing with some errors",
+        "8": "Developed clear writing with mostly accurate sentences and varied language",
+        "10": "Consistently effective at the B2 screen ceiling"
+      },
+      "withoutAI": "Provisional – AI language evaluation unavailable",
+      "lengthDeterminesLevel": false
+    }
+  },
+  "skillTags": {
+    "Grammar": [
+      "tense-and-aspect",
+      "subject-verb-agreement",
+      "articles",
+      "pronouns",
+      "prepositions",
+      "clauses",
+      "conditionals",
+      "sentence-structure"
+    ],
+    "Vocabulary": [
+      "vocabulary-range",
+      "meaning-in-context",
+      "collocation",
+      "word-formation",
+      "appropriate-word-choice"
+    ],
+    "Reading": [
+      "gist",
+      "detail",
+      "inference",
+      "reference",
+      "vocabulary-in-context"
+    ],
+    "Writing": [
+      "task-understanding",
+      "idea-development",
+      "organization",
+      "grammar-accuracy",
+      "vocabulary",
+      "sentence-quality"
+    ],
+    "Listening": [
+      "gist",
+      "detail",
+      "speaker-intention",
+      "connected-speech-recognition",
+      "vocabulary-in-context"
+    ],
+    "Speaking": [
+      "task-response",
+      "fluency",
+      "grammar",
+      "vocabulary",
+      "pronunciation-intelligibility"
+    ]
+  }
+}
