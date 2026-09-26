@@ -1,3 +1,5 @@
+> **Current release instruction (supersedes the earlier sequence below):** A full live D1 backup is NOT available in the current Sites toolset. Separate offline build/managed-preview from production release. Build and test the P0 artifact now **without touching live D1 or publishing**. Production migration/deploy is a later explicit decision after a risk/backup review. See [P0_BUILD_ONLY.md](./P0_BUILD_ONLY.md). Do not mistake a source/version rollback for a database backup.
+
 # P0 release gate — preserve learner data
 
 Status: **source snapshot verified, live release NOT verified**.
