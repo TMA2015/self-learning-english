@@ -10,13 +10,19 @@
 - Latest P0 work stopped before verified deployment. **Do not claim the live Site is fixed.**
 - Runtime AI evaluation is not confirmed; Writing must remain provisional or in approved Assisted Review, never synthetic-scored.
 
+## Independently reviewed snapshot facts
+- `app/page.tsx` routes the seven skill groups to `FoundationDemo`; `app/api/foundation/route.ts` is present.
+- `drizzle/0005_lonely_kitty_pryde.sql` creates academic content/attempt tables and seeds Foundation content. Whether it has been applied to **live** D1 is unverified.
+- `app/api/diagnostic/route.ts` returns specific 400 errors for short Writing samples, answer-version/sequence mismatch, incomplete assessment and incomplete optional Listening. The actual learner’s 400 cause is **still unconfirmed**.
+- The snapshot commit parent is the earlier main commit, so the branch preserves the existing root files; the app source is nested within its own snapshot folder.
+
 ## Smallest next Work task
 Deploy already-written P0 recovery changes to the **existing private Site**, apply only the required approved migrations, and verify from the actual learner-facing deployed URL that Foundation lessons open. Preserve learner records. If blocked, stop and report the blocker; do not branch into unrelated work.
 
 Then address the real learner's HTTP 400 in a separate targeted task with safe server-side diagnostics. Do not put personally identifiable data or raw student submissions into logs or this repo.
 
 ## Source sync
-This repository does NOT yet contain the application's Sites source. After a stable deployment, export/commit the Site source and migration definitions to a separate snapshot branch, compare with GitHub content, and merge deliberately. Never overwrite this repository blindly from a stale Site snapshot.
+**Source snapshot is now present** on branch [`sites-source-snapshot-20260926`](https://github.com/TMA2015/ai-english-tutor/tree/sites-source-snapshot-20260926/sites-source-snapshot-20260926), commit `6e4688ab40357cf1ea2a457c7e8e33baf954a6d1`, in the nested directory `sites-source-snapshot-20260926/`. This snapshot includes unfinished P0 recovery source, Drizzle schema/migrations, static Foundation audio and technical documents; it is a backup, not a deployed fix. Main's pre-existing academic package and documents are preserved. Review against `P0_RECOVERY.md` and `SNAPSHOT.md` on that branch; merge or restructure deliberately, not by overwriting main. Keep student data/backups separate.
 
 ## Content package contract
 - Source: `content/packages/ai_english_tutor_academic_seed_v1.json`
