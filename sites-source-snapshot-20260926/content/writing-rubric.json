@@ -1,0 +1,21 @@
+{
+  "version": "1.0",
+  "criteria": [
+    "task-understanding",
+    "idea-development",
+    "organization",
+    "grammar-accuracy",
+    "vocabulary",
+    "sentence-quality"
+  ],
+  "scale": {
+    "0": "No evidence",
+    "2": "Isolated words",
+    "4": "Simple communication with frequent errors",
+    "6": "Mostly clear simple connected writing with some errors",
+    "8": "Developed clear writing with mostly accurate sentences and varied language",
+    "10": "Consistently effective at the B2 screen ceiling"
+  },
+  "withoutAI": "Provisional \u2013 AI language evaluation unavailable",
+  "lengthDeterminesLevel": false
+}

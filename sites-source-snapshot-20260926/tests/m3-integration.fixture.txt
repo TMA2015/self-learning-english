@@ -1,0 +1,23 @@
+// Local-only fixture. Never deploy this as a route.
+// TEMPORARY local-only integration harness. Remove before packaging.
+import {NextRequest,NextResponse} from 'next/server';
+import {GET as exportData} from '../admin/export/route';
+import {POST as submit,GET as history} from '../writing/route';
+import {POST as evaluate} from '../evaluate/route';
+import {saveState,readState,readEvidence} from '@/db/learning-store';
+export async function GET(){try{
+ const id=`m3-${crypto.randomUUID()}`;
+ function request(body?:unknown,other=false){return new NextRequest('http://local.test/api/writing',{method:body?'POST':'GET',headers:{'oai-authenticated-user-id':other?`${id}-other`:id,'oai-authenticated-user-email':other?'other@example.invalid':'export-check@example.invalid','Content-Type':'application/json'},body:body?JSON.stringify(body):undefined})}
+ const original={writing:'Earlier learner work remains intact',revision:'Earlier revision',profile:{goal:'Use examples'},history:[{tag:'demo',correct:18,total:25}]};await saveState(`user:${id}`,original);
+ const texts=['I agree that schools should have a garden. Children can grow plants and learn science.','I like chess and play it on Sundays. My brother is a very good chess player.','A garden is good. It is nice. I like it. It is very good.','A garden help students. He water the plants every morning.','Students can do progress when they grow plants together.','Yesterday we plant a apple tree. It need water and we was happy.','Students can observe roots and leaves while growing beans in a school garden.','We could give each group a different plant and compare their growth.','A school garden would need water, tools and a safe place for children to work.','Although a garden costs money, students could share responsibility for looking after it.'];
+ const responses=[] as any[];for(const text of texts){const response=await submit(request({text,kind:'draft'}));const result=await response.json() as any;responses.push({status:response.status,...result})}
+ const first=responses[0];const repeat=await (await submit(request({text:texts[0],kind:'draft'}))).json() as any;
+ const revision=await submit(request({text:'A garden helps students learn about plants.',kind:'sentence',parentId:first.submission.id}));
+ const crossing=await submit(request({text:'Another learner cannot revise this draft.',kind:'revision',parentId:first.submission.id},true));
+ const empty=await submit(request({text:' ',kind:'draft'}));
+ const originalRoute=await evaluate(new NextRequest('http://local.test/api/evaluate',{method:'POST',headers:request().headers,body:JSON.stringify({stage:'writing',answer:{writing:texts[0]}})}));
+ const reloaded=await (await history(request())).json() as any,other=await (await history(request(undefined,true))).json() as any;
+ const exportedResponse=await exportData(request()),exported=await exportedResponse.json() as any;
+ const anonymous=await exportData(new NextRequest('http://local.test/api/admin/export')),denied=await exportData(request(undefined,true));
+ return NextResponse.json({liveAI:false,tenSubmissionsSaved:responses.every(r=>r.status===200&&r.evaluation.status==='unavailable'),repeatReused:repeat.reused,revisionSaved:revision.status===200,emptyRejected:empty.status===400,crossAccountParentRejected:crossing.status===400,reloadCount:reloaded.submissions.length,feedbackStatusSurvivesReload:reloaded.evaluations.every((e:any)=>e.status==='unavailable'),accountIsolation:other.submissions.length===0&&other.evaluations.length===0,originalStatePreserved:JSON.stringify(await readState(`user:${id}`))===JSON.stringify(original),noInventedEvidence:(await readEvidence(`user:${id}`)).length===0,legacyWritingRoute:originalRoute.status,adminExport:exportedResponse.status,exportIncludesHistory:exported.writingRecords.submissions.length===11&&exported.writingRecords.evaluations.length===11,unauthorizedExport:anonymous.status===401&&denied.status===403});
+}catch(e){return NextResponse.json({error:String(e)},{status:500})}}

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "listen-1",
+    "tag": "detail",
+    "text": "Hello, this is a message for the science club. Tomorrow's meeting will start at half past four in room twelve. Please bring your notebook.",
+    "prompt": "When will the meeting start?",
+    "options": [
+      "4:00",
+      "4:30",
+      "12:30"
+    ],
+    "correct": 1
+  },
+  {
+    "id": "listen-2",
+    "tag": "detail",
+    "text": "The bus to the museum leaves at nine. Please wait by the school gate, not in the car park. Bring a lunch from home because the cafe is closed.",
+    "prompt": "What should pupils bring?",
+    "options": [
+      "Lunch",
+      "Money for the cafe",
+      "A bus timetable"
+    ],
+    "correct": 0
+  },
+  {
+    "id": "listen-3",
+    "tag": "gist",
+    "text": "I used to spend all Saturday indoors. Now I help at a small community garden. I meet new people, get some exercise, and learn about plants. I'm glad I tried it.",
+    "prompt": "What is the speaker mainly explaining?",
+    "options": [
+      "How to build a house",
+      "Why gardens are expensive",
+      "Why they enjoy a new activity"
+    ],
+    "correct": 2
+  },
+  {
+    "id": "listen-4",
+    "tag": "gist",
+    "text": "Please put paper in the blue bin and food waste in the green bin. Bottles go in the box near the door. These small actions help us keep our school clean and reduce waste.",
+    "prompt": "What is the main purpose of the message?",
+    "options": [
+      "To explain how to sort waste",
+      "To sell new school bags",
+      "To announce a school holiday"
+    ],
+    "correct": 0
+  },
+  {
+    "id": "listen-5",
+    "tag": "inference",
+    "text": "I wanted to play football this afternoon, but the field is covered in water. I've packed my swimming things instead. At least the pool is indoors.",
+    "prompt": "What will the speaker probably do?",
+    "options": [
+      "Play on the wet field",
+      "Go swimming",
+      "Stay at the football field"
+    ],
+    "correct": 1
+  },
+  {
+    "id": "listen-6",
+    "tag": "inference",
+    "text": "The cake smells wonderful. I wish I could taste it now, but Mum says it's for the visitors tonight. I've looked at it three times already.",
+    "prompt": "How does the speaker probably feel?",
+    "options": [
+      "Angry about the smell",
+      "Uninterested in food",
+      "Eager to eat the cake"
+    ],
+    "correct": 2
+  }
+]

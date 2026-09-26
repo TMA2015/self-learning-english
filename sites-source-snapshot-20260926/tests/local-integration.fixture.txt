@@ -1,0 +1,44 @@
+// Local-only integration fixture. Temporarily mounted for managed-preview QA; NEVER deploy as a route.
+import {exportLearner} from "@/application/export-learner";
+import {D1LearningRepository} from "@/infrastructure/storage/d1-repository";
+import {runtimeConfig} from "@/infrastructure/runtime";
+import {inspectAssessment} from "@/domain/assessment-inspector";
+import {readAssessments} from "@/db/learning-store";
+import {GET as exportData} from "../admin/export/route";
+import {NextRequest,NextResponse} from "next/server";
+import {POST as diagnostic} from "../diagnostic/route";
+import {POST as evaluate} from "../evaluate/route";
+import {POST as practice} from "../practice/route";
+import {GET as load,PUT as save} from "../state/route";
+import {GET as debug} from "../debug/route";
+import {nextQuestion,recordAnswer,type Attempt} from "@/app/learning-model";
+import {saveState,readSnapshots} from "@/db/learning-store";
+function req(user:string,path:string,body?:unknown){return new NextRequest(`https://local.test/${path}`,{method:body?"POST":"GET",headers:{"oai-authenticated-user-email":user,"Content-Type":"application/json"},body:body?JSON.stringify(body):undefined})}
+export async function GET(){try{
+ const suffix=crypto.randomUUID(),a=`test-a-${suffix}@example.invalid`,b=`test-b-${suffix}@example.invalid`;
+ const original={week:0,stage:3,analysis:{topic:"existing garden work"},writing:"Existing writing draft",revision:"Existing revision",completed:[0,1,2],history:[{tag:"demo",correct:18,total:25}],profile:{name:"Test learner",goal:"Read and write",grade:"6",minutes:"20"}};
+ await saveState(`email:${a}`,original);await load(req(a,'state'));await save(req(b,'state',{writing:"Other account draft",evidence:[{id:"forged",skill:"Grammar",score:1,max:1,tag:"articles",at:1,source:"diagnostic",level:"B2"}],learnerModel:{level:"B2"},ownerId:`email:${a}`,completed:[]}));
+ let attempts:Attempt[]=[];while(nextQuestion(attempts)){const q=nextQuestion(attempts)!;attempts=recordAnswer(attempts,q,attempts.length%3?q.correct:(q.correct+1)%3)}
+ const writing="I enjoy learning about plants because they change every week. Last month, I grew some tomatoes with my family. I watered them each morning and checked their leaves. For example, I noticed that plants near the window grew faster. This helped me understand why plants need light.";
+ const input={version:4,sessionId:suffix,attempts:attempts.map(x=>({id:x.id,answer:x.answer})),writing,writing2:writing};
+ const partial={version:4,sessionId:suffix,attempts:attempts.slice(0,17),writing:"Interrupted draft",writing2:"",startedAt:Date.now(),paused:true};
+ await save(req(a,'state',{diagnosticV2:partial}));
+ const resumed=(await (await load(req(a,'state'))).json() as any).state.diagnosticV2;
+ const resumePassed=JSON.stringify(resumed)===JSON.stringify(partial)&&nextQuestion(resumed.attempts)?.id===nextQuestion(partial.attempts)?.id;
+ const forbiddenExport=await exportData(req(a,'admin/export'));
+ const anonymousExport=await exportData(new NextRequest('https://local.test/admin/export'));
+ const response=await diagnostic(req(a,'diagnostic',input));const d=await response.json() as any;if(!d.result)throw Error(JSON.stringify(d));
+ const first=await save(req(a,'state',{...original,diagnosticV2:{...input,result:d.result,startedAt:Date.now()}}));
+ const review=await evaluate(req(a,'evaluate',{stage:'brainstorm',answer:{selected:'Students learn about science',support:'Plants change as the class observes them every week',example:'The class grows tomatoes in the garden'}}));
+ const revise=await evaluate(req(a,'evaluate',{stage:'revision',answer:{writing:'A school garden helps students learn about plants.'}}));
+ const mini=await practice(req(a,'practice',{activityId:'garden-relevant-idea',answer:'b'}));
+ await save(req(a,'state',original));
+ const aResult=await load(req(a,'state')),bResult=await load(req(b,'state'));const aState=(await aResult.json() as any).state,bState=(await bResult.json() as any).state;
+ const traceResponse=await debug(req(a,'debug'));const trace=await traceResponse.json() as any;
+ const noAuth=await debug(new NextRequest('https://local.test/debug'));
+ const invalid=await diagnostic(req(a,'diagnostic',{...input,sessionId:'invalid-'+suffix,attempts:input.attempts.slice(0,5)}));
+ const countBefore=aState.evidence.length;await diagnostic(req(a,'diagnostic',input));const afterRepeat=(await (await load(req(a,'state'))).json() as any).state;
+ const exported=await exportLearner(new D1LearningRepository(runtimeConfig().DB),{ownerId:`email:${a}`,learnerId:"primary"});const replay=inspectAssessment((await readAssessments(`email:${a}`))[0]);
+ const report={exportComplete:exported.evidence.length===aState.evidence.length&&exported.state.writing===original.writing,inspectorReplay:replay.rows.length===attempts.length,diagnostic:response.status,save:first.status,writingFeedback:review.status,revision:revise.status,mini:mini.status,questionCount:attempts.length,preserved:Object.entries(original).every(([k,v])=>JSON.stringify(aState[k])===JSON.stringify(v)),isolated:bState.writing==='Other account draft'&&bState.evidence.length===0&&aState.evidence.length>0,subskills:Object.keys(aState.learnerModel.subskills).length,writingProvisional:!aState.learnerModel.estimates.Writing.assessed,speakingUnassessed:!aState.learnerModel.estimates.Speaking.assessed,snapshots:(await readSnapshots(`email:${a}`)).length,resumePassed,inspectorRestricted:traceResponse.status===403,exportRestricted:forbiddenExport.status===403&&anonymousExport.status===401,revisionEvidence:aState.evidence.some((e:any)=>e.source==='revision'),exerciseEvidence:aState.evidence.some((e:any)=>e.source==='exercise'),idempotent:afterRepeat.evidence.length===countBefore,unauthenticatedBlocked:noAuth.status===401,tooShortRejected:invalid.status===400};
+ return NextResponse.json({report,state:aState});
+}catch(e){return NextResponse.json({error:String(e)},{status:500})}}
