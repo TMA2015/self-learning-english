@@ -28,3 +28,18 @@ Fix the specific Diagnostic failure once the response code for the existing lear
 
 ## No-go
 Do not report P0 as complete merely because source files, local tests, seed SQL or a GitHub commit exist. The deployed private URL and genuine learner flow must pass.
+
+## Release blocker update — 2026-09-26
+Work confirmed that production is still Site version 6 (`a6d5c697c423737d708452aebeed3ccf8b903bdd`), with neither migration 0004 nor 0005 applied. The available version 7/M3B package predates P0. No deployable P0 build artifact currently exists. The earlier “do not rebuild” instruction was overrestrictive: **a build of the already implemented P0 source is REQUIRED and explicitly allowed**. Do not deploy the old version 7/M3B artifact.
+
+### Correct minimal sequence
+1. Confirm that the active Sites checkout contains the complete P0 source already saved to GitHub snapshot commit `6e4688ab40357cf1ea2a457c7e8e33baf954a6d1`, including its current working changes. Do not replace a newer Sites checkout blindly with the nested GitHub archive.
+2. Preserve the current live version 6 rollback and take a restricted pre-migration data backup via the supported Sites flow. Preserve existing learner records and credentials. No learner records go to GitHub.
+3. **Build/package that exact P0 working source**, using supported Sites build tooling. This is packaging, not a feature rewrite. If build fails, report the first concrete failing command and diagnostic, then stop; do not branch into general refactoring.
+4. Run only necessary build/manifest and managed-preview checks. Verify that the artifact includes P0 route/UI changes, academic seed and audio assets.
+5. Apply only pending additive production migrations **0004 then 0005** through the supported publish/migration flow, once each, with explicit target verification. Never replay earlier migrations or clear the database. If a migration fails, stop and report the status, preserving a recovery point.
+6. Publish the new P0 artifact to the existing private Site; retain the rollback artifact/version.
+7. Verify deployment status/source version, migration presence, 13 lesson catalog and a minimal authenticated learner flow using supported checks. If the managed browser cannot open the private live URL, explicitly state that limitation and request a short manual live verification by the owner instead of claiming an automated live browser pass.
+8. Keep the real-account Assessment HTTP 400 investigation separate. On retry of the preserved real draft, collect only safe error metadata (`code`, version, question position), never response text or identity.
+
+**Prohibited:** use of stale version 7/M3B artifact; full application redesign; new features/content; assessment recalibration; arbitrary migration replay; data reset; unverifiable “deployed and tested live” claims.
