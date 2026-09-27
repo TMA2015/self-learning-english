@@ -17,264 +17,334 @@
     "cefr_target_is_not_learner_certification": true,
     "audio_evidence_required_for_listening_speaking_pronunciation": true,
     "no_generation_of_unreviewed_assessed_items": true,
-    "cross_version_evidence_reuse": "not_automatic_requires_approved_content_digest_mapping"
+    "cross_version_evidence_reuse": "not_automatic_requires_approved_content_digest_mapping",
+    "concept_identity": "module_scoped_prevents_reading_detail_listening_detail_collision"
   },
   "concept_registry": [
     {
-      "concept_id": "concept.agreement",
+      "concept_id": "concept.grammar.agreement",
+      "module": "grammar",
       "source_label": "agreement"
     },
     {
-      "concept_id": "concept.all-prompt-points",
-      "source_label": "all-prompt-points"
-    },
-    {
-      "concept_id": "concept.argument-gist",
-      "source_label": "argument-gist"
-    },
-    {
-      "concept_id": "concept.be-forms",
+      "concept_id": "concept.grammar.be-forms",
+      "module": "grammar",
       "source_label": "be-forms"
     },
     {
-      "concept_id": "concept.comparatives",
+      "concept_id": "concept.grammar.comparatives",
+      "module": "grammar",
       "source_label": "comparatives"
     },
     {
-      "concept_id": "concept.conditional-activity",
-      "source_label": "conditional-activity"
-    },
-    {
-      "concept_id": "concept.connected-sentences",
-      "source_label": "connected-sentences"
-    },
-    {
-      "concept_id": "concept.contrast",
-      "source_label": "contrast"
-    },
-    {
-      "concept_id": "concept.countability",
+      "concept_id": "concept.grammar.countability",
+      "module": "grammar",
       "source_label": "countability"
     },
     {
-      "concept_id": "concept.daily-routines",
-      "source_label": "daily-routines"
-    },
-    {
-      "concept_id": "concept.description-planning",
-      "source_label": "description-planning"
-    },
-    {
-      "concept_id": "concept.detail",
-      "source_label": "detail"
-    },
-    {
-      "concept_id": "concept.directions",
-      "source_label": "directions"
-    },
-    {
-      "concept_id": "concept.event-collocations",
-      "source_label": "event-collocations"
-    },
-    {
-      "concept_id": "concept.existential-there",
+      "concept_id": "concept.grammar.existential-there",
+      "module": "grammar",
       "source_label": "existential-there"
     },
     {
-      "concept_id": "concept.explicit-detail",
-      "source_label": "explicit-detail"
-    },
-    {
-      "concept_id": "concept.frequency",
+      "concept_id": "concept.grammar.frequency",
+      "module": "grammar",
       "source_label": "frequency"
     },
     {
-      "concept_id": "concept.frequency-expressions",
-      "source_label": "frequency-expressions"
-    },
-    {
-      "concept_id": "concept.friendly-email",
-      "source_label": "friendly-email"
-    },
-    {
-      "concept_id": "concept.friendly-invitation",
-      "source_label": "friendly-invitation"
-    },
-    {
-      "concept_id": "concept.gist",
-      "source_label": "gist"
-    },
-    {
-      "concept_id": "concept.indefinite-articles",
+      "concept_id": "concept.grammar.indefinite-articles",
+      "module": "grammar",
       "source_label": "indefinite-articles"
     },
     {
-      "concept_id": "concept.inference",
-      "source_label": "inference"
-    },
-    {
-      "concept_id": "concept.listening-time",
-      "source_label": "listening-time"
-    },
-    {
-      "concept_id": "concept.modal-ability",
+      "concept_id": "concept.grammar.modal-ability",
+      "module": "grammar",
       "source_label": "modal-ability"
     },
     {
-      "concept_id": "concept.much-many",
+      "concept_id": "concept.grammar.much-many",
+      "module": "grammar",
       "source_label": "much-many"
     },
     {
-      "concept_id": "concept.notice-gist",
-      "source_label": "notice-gist"
-    },
-    {
-      "concept_id": "concept.opinion-reason-example",
-      "source_label": "opinion-reason-example"
-    },
-    {
-      "concept_id": "concept.opinion-support",
-      "source_label": "opinion-support"
-    },
-    {
-      "concept_id": "concept.past-be",
+      "concept_id": "concept.grammar.past-be",
+      "module": "grammar",
       "source_label": "past-be"
     },
     {
-      "concept_id": "concept.past-event-email",
-      "source_label": "past-event-email"
-    },
-    {
-      "concept_id": "concept.past-simple-actions",
+      "concept_id": "concept.grammar.past-simple-actions",
+      "module": "grammar",
       "source_label": "past-simple-actions"
     },
     {
-      "concept_id": "concept.past-simple-negatives-questions",
+      "concept_id": "concept.grammar.past-simple-negatives-questions",
+      "module": "grammar",
       "source_label": "past-simple-negatives-questions"
     },
     {
-      "concept_id": "concept.past-simple-vs-present-perfect",
+      "concept_id": "concept.grammar.past-simple-vs-present-perfect",
+      "module": "grammar",
       "source_label": "past-simple-vs-present-perfect"
     },
     {
-      "concept_id": "concept.personal-message-purpose",
-      "source_label": "personal-message-purpose"
-    },
-    {
-      "concept_id": "concept.place-prepositions",
+      "concept_id": "concept.grammar.place-prepositions",
+      "module": "grammar",
       "source_label": "place-prepositions"
     },
     {
-      "concept_id": "concept.plan-change",
-      "source_label": "plan-change"
-    },
-    {
-      "concept_id": "concept.plurals",
+      "concept_id": "concept.grammar.plurals",
+      "module": "grammar",
       "source_label": "plurals"
     },
     {
-      "concept_id": "concept.polite-classroom-requests",
-      "source_label": "polite-classroom-requests"
-    },
-    {
-      "concept_id": "concept.polite-requests",
+      "concept_id": "concept.grammar.polite-requests",
+      "module": "grammar",
       "source_label": "polite-requests"
     },
     {
-      "concept_id": "concept.possessive-adjectives",
+      "concept_id": "concept.grammar.possessive-adjectives",
+      "module": "grammar",
       "source_label": "possessive-adjectives"
     },
     {
-      "concept_id": "concept.present-simple",
+      "concept_id": "concept.grammar.present-simple",
+      "module": "grammar",
       "source_label": "present-simple"
     },
     {
-      "concept_id": "concept.present-simple-vs-continuous",
+      "concept_id": "concept.grammar.present-simple-vs-continuous",
+      "module": "grammar",
       "source_label": "present-simple-vs-continuous"
     },
     {
-      "concept_id": "concept.prompt-analysis",
-      "source_label": "prompt-analysis"
-    },
-    {
-      "concept_id": "concept.reason-and-example",
-      "source_label": "reason-and-example"
-    },
-    {
-      "concept_id": "concept.revision",
-      "source_label": "revision"
-    },
-    {
-      "concept_id": "concept.routine-collocations",
-      "source_label": "routine-collocations"
-    },
-    {
-      "concept_id": "concept.routine-speech",
-      "source_label": "routine-speech"
-    },
-    {
-      "concept_id": "concept.rules-and-conditions",
-      "source_label": "rules-and-conditions"
-    },
-    {
-      "concept_id": "concept.school-words",
-      "source_label": "school-words"
-    },
-    {
-      "concept_id": "concept.self-introduction",
-      "source_label": "self-introduction"
-    },
-    {
-      "concept_id": "concept.some-any",
+      "concept_id": "concept.grammar.some-any",
+      "module": "grammar",
       "source_label": "some-any"
     },
     {
-      "concept_id": "concept.speaker-intention",
-      "source_label": "speaker-intention"
-    },
-    {
-      "concept_id": "concept.subject-pronouns",
+      "concept_id": "concept.grammar.subject-pronouns",
+      "module": "grammar",
       "source_label": "subject-pronouns"
     },
     {
-      "concept_id": "concept.subject-verb-agreement",
+      "concept_id": "concept.grammar.subject-verb-agreement",
+      "module": "grammar",
       "source_label": "subject-verb-agreement"
     },
     {
-      "concept_id": "concept.superlatives",
+      "concept_id": "concept.grammar.superlatives",
+      "module": "grammar",
       "source_label": "superlatives"
     },
     {
-      "concept_id": "concept.supplied-vs-bring",
+      "concept_id": "concept.listening.detail",
+      "module": "listening",
+      "source_label": "detail"
+    },
+    {
+      "concept_id": "concept.listening.listening-time",
+      "module": "listening",
+      "source_label": "listening-time"
+    },
+    {
+      "concept_id": "concept.listening.speaker-intention",
+      "module": "listening",
+      "source_label": "speaker-intention"
+    },
+    {
+      "concept_id": "concept.pronunciation.vowel-sound-awareness",
+      "module": "pronunciation",
+      "source_label": "vowel-sound-awareness"
+    },
+    {
+      "concept_id": "concept.reading.argument-gist",
+      "module": "reading",
+      "source_label": "argument-gist"
+    },
+    {
+      "concept_id": "concept.reading.conditional-activity",
+      "module": "reading",
+      "source_label": "conditional-activity"
+    },
+    {
+      "concept_id": "concept.reading.contrast",
+      "module": "reading",
+      "source_label": "contrast"
+    },
+    {
+      "concept_id": "concept.reading.detail",
+      "module": "reading",
+      "source_label": "detail"
+    },
+    {
+      "concept_id": "concept.reading.explicit-detail",
+      "module": "reading",
+      "source_label": "explicit-detail"
+    },
+    {
+      "concept_id": "concept.reading.gist",
+      "module": "reading",
+      "source_label": "gist"
+    },
+    {
+      "concept_id": "concept.reading.inference",
+      "module": "reading",
+      "source_label": "inference"
+    },
+    {
+      "concept_id": "concept.reading.notice-gist",
+      "module": "reading",
+      "source_label": "notice-gist"
+    },
+    {
+      "concept_id": "concept.reading.personal-message-purpose",
+      "module": "reading",
+      "source_label": "personal-message-purpose"
+    },
+    {
+      "concept_id": "concept.reading.plan-change",
+      "module": "reading",
+      "source_label": "plan-change"
+    },
+    {
+      "concept_id": "concept.reading.rules-and-conditions",
+      "module": "reading",
+      "source_label": "rules-and-conditions"
+    },
+    {
+      "concept_id": "concept.reading.supplied-vs-bring",
+      "module": "reading",
       "source_label": "supplied-vs-bring"
     },
     {
-      "concept_id": "concept.sustainable-choices",
-      "source_label": "sustainable-choices"
-    },
-    {
-      "concept_id": "concept.time-detail",
+      "concept_id": "concept.reading.time-detail",
+      "module": "reading",
       "source_label": "time-detail"
     },
     {
-      "concept_id": "concept.time-place",
-      "source_label": "time-place"
-    },
-    {
-      "concept_id": "concept.time-place-detail",
+      "concept_id": "concept.reading.time-place-detail",
+      "module": "reading",
       "source_label": "time-place-detail"
     },
     {
-      "concept_id": "concept.town-places",
+      "concept_id": "concept.speaking.opinion-support",
+      "module": "speaking",
+      "source_label": "opinion-support"
+    },
+    {
+      "concept_id": "concept.speaking.routine-speech",
+      "module": "speaking",
+      "source_label": "routine-speech"
+    },
+    {
+      "concept_id": "concept.vocabulary.daily-routines",
+      "module": "vocabulary",
+      "source_label": "daily-routines"
+    },
+    {
+      "concept_id": "concept.vocabulary.directions",
+      "module": "vocabulary",
+      "source_label": "directions"
+    },
+    {
+      "concept_id": "concept.vocabulary.event-collocations",
+      "module": "vocabulary",
+      "source_label": "event-collocations"
+    },
+    {
+      "concept_id": "concept.vocabulary.frequency-expressions",
+      "module": "vocabulary",
+      "source_label": "frequency-expressions"
+    },
+    {
+      "concept_id": "concept.vocabulary.polite-classroom-requests",
+      "module": "vocabulary",
+      "source_label": "polite-classroom-requests"
+    },
+    {
+      "concept_id": "concept.vocabulary.routine-collocations",
+      "module": "vocabulary",
+      "source_label": "routine-collocations"
+    },
+    {
+      "concept_id": "concept.vocabulary.school-words",
+      "module": "vocabulary",
+      "source_label": "school-words"
+    },
+    {
+      "concept_id": "concept.vocabulary.sustainable-choices",
+      "module": "vocabulary",
+      "source_label": "sustainable-choices"
+    },
+    {
+      "concept_id": "concept.vocabulary.town-places",
+      "module": "vocabulary",
       "source_label": "town-places"
     },
     {
-      "concept_id": "concept.travel-collocations",
+      "concept_id": "concept.vocabulary.travel-collocations",
+      "module": "vocabulary",
       "source_label": "travel-collocations"
     },
     {
-      "concept_id": "concept.vowel-sound-awareness",
-      "source_label": "vowel-sound-awareness"
+      "concept_id": "concept.writing.all-prompt-points",
+      "module": "writing",
+      "source_label": "all-prompt-points"
+    },
+    {
+      "concept_id": "concept.writing.connected-sentences",
+      "module": "writing",
+      "source_label": "connected-sentences"
+    },
+    {
+      "concept_id": "concept.writing.description-planning",
+      "module": "writing",
+      "source_label": "description-planning"
+    },
+    {
+      "concept_id": "concept.writing.friendly-email",
+      "module": "writing",
+      "source_label": "friendly-email"
+    },
+    {
+      "concept_id": "concept.writing.friendly-invitation",
+      "module": "writing",
+      "source_label": "friendly-invitation"
+    },
+    {
+      "concept_id": "concept.writing.opinion-reason-example",
+      "module": "writing",
+      "source_label": "opinion-reason-example"
+    },
+    {
+      "concept_id": "concept.writing.past-event-email",
+      "module": "writing",
+      "source_label": "past-event-email"
+    },
+    {
+      "concept_id": "concept.writing.prompt-analysis",
+      "module": "writing",
+      "source_label": "prompt-analysis"
+    },
+    {
+      "concept_id": "concept.writing.reason-and-example",
+      "module": "writing",
+      "source_label": "reason-and-example"
+    },
+    {
+      "concept_id": "concept.writing.revision",
+      "module": "writing",
+      "source_label": "revision"
+    },
+    {
+      "concept_id": "concept.writing.self-introduction",
+      "module": "writing",
+      "source_label": "self-introduction"
+    },
+    {
+      "concept_id": "concept.writing.time-place",
+      "module": "writing",
+      "source_label": "time-place"
     }
   ],
   "skill_registry": [
@@ -466,8 +536,8 @@
       "module": "grammar",
       "level_target": "A1",
       "concept_ids": [
-        "concept.be-forms",
-        "concept.subject-verb-agreement"
+        "concept.grammar.be-forms",
+        "concept.grammar.subject-verb-agreement"
       ],
       "skill_ids": [
         "grammar.be_forms",
@@ -501,8 +571,8 @@
       "module": "grammar",
       "level_target": "A1",
       "concept_ids": [
-        "concept.subject-pronouns",
-        "concept.possessive-adjectives"
+        "concept.grammar.subject-pronouns",
+        "concept.grammar.possessive-adjectives"
       ],
       "skill_ids": [
         "grammar.possessives",
@@ -536,8 +606,8 @@
       "module": "grammar",
       "level_target": "A1",
       "concept_ids": [
-        "concept.present-simple",
-        "concept.frequency"
+        "concept.grammar.present-simple",
+        "concept.grammar.frequency"
       ],
       "skill_ids": [
         "grammar.present_simple",
@@ -574,8 +644,8 @@
       "module": "vocabulary",
       "level_target": "A1",
       "concept_ids": [
-        "concept.school-words",
-        "concept.polite-classroom-requests"
+        "concept.vocabulary.school-words",
+        "concept.vocabulary.polite-classroom-requests"
       ],
       "skill_ids": [
         "vocabulary.collocations",
@@ -607,8 +677,8 @@
       "module": "vocabulary",
       "level_target": "A1",
       "concept_ids": [
-        "concept.daily-routines",
-        "concept.frequency-expressions"
+        "concept.vocabulary.daily-routines",
+        "concept.vocabulary.frequency-expressions"
       ],
       "skill_ids": [
         "vocabulary.collocations",
@@ -642,8 +712,8 @@
       "module": "reading",
       "level_target": "A1",
       "concept_ids": [
-        "concept.notice-gist",
-        "concept.explicit-detail"
+        "concept.reading.notice-gist",
+        "concept.reading.explicit-detail"
       ],
       "skill_ids": [
         "reading.detail",
@@ -679,8 +749,8 @@
       "module": "reading",
       "level_target": "A2",
       "concept_ids": [
-        "concept.rules-and-conditions",
-        "concept.contrast"
+        "concept.reading.rules-and-conditions",
+        "concept.reading.contrast"
       ],
       "skill_ids": [
         "reading.author_purpose",
@@ -716,9 +786,9 @@
       "module": "writing",
       "level_target": "A1",
       "concept_ids": [
-        "concept.prompt-analysis",
-        "concept.self-introduction",
-        "concept.revision"
+        "concept.writing.prompt-analysis",
+        "concept.writing.self-introduction",
+        "concept.writing.revision"
       ],
       "skill_ids": [
         "writing.grammar",
@@ -755,7 +825,7 @@
       "module": "grammar",
       "level_target": "A2",
       "concept_ids": [
-        "concept.present-simple-vs-continuous"
+        "concept.grammar.present-simple-vs-continuous"
       ],
       "skill_ids": [
         "grammar.present_continuous",
@@ -793,7 +863,7 @@
       "module": "grammar",
       "level_target": "B1",
       "concept_ids": [
-        "concept.past-simple-vs-present-perfect"
+        "concept.grammar.past-simple-vs-present-perfect"
       ],
       "skill_ids": [
         "grammar.past_simple",
@@ -825,7 +895,7 @@
       "module": "vocabulary",
       "level_target": "A2",
       "concept_ids": [
-        "concept.routine-collocations"
+        "concept.vocabulary.routine-collocations"
       ],
       "skill_ids": [
         "vocabulary.collocations",
@@ -856,7 +926,7 @@
       "module": "vocabulary",
       "level_target": "B1",
       "concept_ids": [
-        "concept.sustainable-choices"
+        "concept.vocabulary.sustainable-choices"
       ],
       "skill_ids": [
         "vocabulary.collocations",
@@ -888,9 +958,9 @@
       "module": "reading",
       "level_target": "A2",
       "concept_ids": [
-        "concept.gist",
-        "concept.detail",
-        "concept.inference"
+        "concept.reading.gist",
+        "concept.reading.detail",
+        "concept.reading.inference"
       ],
       "skill_ids": [
         "reading.detail",
@@ -922,8 +992,8 @@
       "module": "reading",
       "level_target": "B1",
       "concept_ids": [
-        "concept.argument-gist",
-        "concept.inference"
+        "concept.reading.argument-gist",
+        "concept.reading.inference"
       ],
       "skill_ids": [
         "reading.author_purpose",
@@ -956,8 +1026,8 @@
       "module": "listening",
       "level_target": "A2",
       "concept_ids": [
-        "concept.listening-time",
-        "concept.detail"
+        "concept.listening.listening-time",
+        "concept.listening.detail"
       ],
       "skill_ids": [
         "listening.detail",
@@ -988,8 +1058,8 @@
       "module": "listening",
       "level_target": "B1",
       "concept_ids": [
-        "concept.speaker-intention",
-        "concept.detail"
+        "concept.listening.speaker-intention",
+        "concept.listening.detail"
       ],
       "skill_ids": [
         "listening.detail",
@@ -1022,8 +1092,8 @@
       "module": "writing",
       "level_target": "A2",
       "concept_ids": [
-        "concept.friendly-email",
-        "concept.all-prompt-points"
+        "concept.writing.friendly-email",
+        "concept.writing.all-prompt-points"
       ],
       "skill_ids": [
         "writing.grammar",
@@ -1057,7 +1127,7 @@
       "module": "writing",
       "level_target": "B1",
       "concept_ids": [
-        "concept.opinion-reason-example"
+        "concept.writing.opinion-reason-example"
       ],
       "skill_ids": [
         "writing.cohesion",
@@ -1091,7 +1161,7 @@
       "module": "speaking",
       "level_target": "A2",
       "concept_ids": [
-        "concept.routine-speech"
+        "concept.speaking.routine-speech"
       ],
       "skill_ids": [
         "speaking.fluency",
@@ -1122,7 +1192,7 @@
       "module": "speaking",
       "level_target": "B1",
       "concept_ids": [
-        "concept.opinion-support"
+        "concept.speaking.opinion-support"
       ],
       "skill_ids": [
         "speaking.fluency",
@@ -1153,7 +1223,7 @@
       "module": "pronunciation",
       "level_target": "A2",
       "concept_ids": [
-        "concept.vowel-sound-awareness"
+        "concept.pronunciation.vowel-sound-awareness"
       ],
       "skill_ids": [
         "pronunciation.intelligibility",
@@ -1181,8 +1251,8 @@
       "module": "grammar",
       "level_target": "A1",
       "concept_ids": [
-        "concept.indefinite-articles",
-        "concept.plurals"
+        "concept.grammar.indefinite-articles",
+        "concept.grammar.plurals"
       ],
       "skill_ids": [
         "grammar.articles",
@@ -1218,8 +1288,8 @@
       "module": "grammar",
       "level_target": "A1",
       "concept_ids": [
-        "concept.existential-there",
-        "concept.agreement"
+        "concept.grammar.existential-there",
+        "concept.grammar.agreement"
       ],
       "skill_ids": [
         "grammar.be_forms",
@@ -1256,7 +1326,7 @@
       "module": "grammar",
       "level_target": "A1",
       "concept_ids": [
-        "concept.place-prepositions"
+        "concept.grammar.place-prepositions"
       ],
       "skill_ids": [
         "grammar.prepositions_place"
@@ -1291,8 +1361,8 @@
       "module": "vocabulary",
       "level_target": "A1",
       "concept_ids": [
-        "concept.town-places",
-        "concept.directions"
+        "concept.vocabulary.town-places",
+        "concept.vocabulary.directions"
       ],
       "skill_ids": [
         "vocabulary.collocations",
@@ -1326,8 +1396,8 @@
       "module": "reading",
       "level_target": "A1",
       "concept_ids": [
-        "concept.time-detail",
-        "concept.supplied-vs-bring"
+        "concept.reading.time-detail",
+        "concept.reading.supplied-vs-bring"
       ],
       "skill_ids": [
         "reading.detail",
@@ -1362,8 +1432,8 @@
       "module": "reading",
       "level_target": "A2",
       "concept_ids": [
-        "concept.conditional-activity",
-        "concept.plan-change"
+        "concept.reading.conditional-activity",
+        "concept.reading.plan-change"
       ],
       "skill_ids": [
         "reading.detail",
@@ -1398,9 +1468,9 @@
       "module": "writing",
       "level_target": "A1",
       "concept_ids": [
-        "concept.friendly-invitation",
-        "concept.time-place",
-        "concept.revision"
+        "concept.writing.friendly-invitation",
+        "concept.writing.time-place",
+        "concept.writing.revision"
       ],
       "skill_ids": [
         "writing.grammar",
@@ -1437,8 +1507,8 @@
       "module": "writing",
       "level_target": "A2",
       "concept_ids": [
-        "concept.past-event-email",
-        "concept.reason-and-example"
+        "concept.writing.past-event-email",
+        "concept.writing.reason-and-example"
       ],
       "skill_ids": [
         "writing.grammar",
@@ -1474,8 +1544,8 @@
       "module": "grammar",
       "level_target": "A1",
       "concept_ids": [
-        "concept.modal-ability",
-        "concept.polite-requests"
+        "concept.grammar.modal-ability",
+        "concept.grammar.polite-requests"
       ],
       "skill_ids": [
         "grammar.modals_can"
@@ -1510,9 +1580,9 @@
       "module": "grammar",
       "level_target": "A2",
       "concept_ids": [
-        "concept.past-simple-actions",
-        "concept.past-simple-negatives-questions",
-        "concept.past-be"
+        "concept.grammar.past-simple-actions",
+        "concept.grammar.past-simple-negatives-questions",
+        "concept.grammar.past-be"
       ],
       "skill_ids": [
         "grammar.be_forms",
@@ -1548,9 +1618,9 @@
       "module": "grammar",
       "level_target": "A2",
       "concept_ids": [
-        "concept.countability",
-        "concept.some-any",
-        "concept.much-many"
+        "concept.grammar.countability",
+        "concept.grammar.some-any",
+        "concept.grammar.much-many"
       ],
       "skill_ids": [
         "grammar.countability",
@@ -1587,8 +1657,8 @@
       "module": "grammar",
       "level_target": "A2",
       "concept_ids": [
-        "concept.comparatives",
-        "concept.superlatives"
+        "concept.grammar.comparatives",
+        "concept.grammar.superlatives"
       ],
       "skill_ids": [
         "grammar.comparison"
@@ -1623,8 +1693,8 @@
       "module": "vocabulary",
       "level_target": "A2",
       "concept_ids": [
-        "concept.travel-collocations",
-        "concept.event-collocations"
+        "concept.vocabulary.travel-collocations",
+        "concept.vocabulary.event-collocations"
       ],
       "skill_ids": [
         "vocabulary.collocations",
@@ -1658,9 +1728,9 @@
       "module": "reading",
       "level_target": "A1",
       "concept_ids": [
-        "concept.personal-message-purpose",
-        "concept.time-place-detail",
-        "concept.supplied-vs-bring"
+        "concept.reading.personal-message-purpose",
+        "concept.reading.time-place-detail",
+        "concept.reading.supplied-vs-bring"
       ],
       "skill_ids": [
         "reading.detail",
@@ -1694,9 +1764,9 @@
       "module": "writing",
       "level_target": "A1",
       "concept_ids": [
-        "concept.description-planning",
-        "concept.connected-sentences",
-        "concept.revision"
+        "concept.writing.description-planning",
+        "concept.writing.connected-sentences",
+        "concept.writing.revision"
       ],
       "skill_ids": [
         "writing.grammar",
