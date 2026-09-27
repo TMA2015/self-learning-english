@@ -76,7 +76,7 @@ for(const l of added){
   }
  }
 }
-assert.equal(mcq,42);assert.equal(short,18);assert.equal(open,1);assert.equal(objective,60);
+assert.equal(mcq,38);assert.equal(short,22);assert.equal(open,1);assert.equal(objective,60);
 const reading=nextById.get('REA-A1-03');
 const refs=review.lesson_evidence['REA-A1-03'];
 assert.equal(reading.reading_asset.display_to_learner,true);
