@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "status": "editorial_evidence_map_not_learner_data",
+  "lesson_evidence": {
+    "REA-A1-02": {
+      "REA-A1-02-Q1": "Class 6B is visiting the City Science Museum on Saturday.",
+      "REA-A1-02-Q2": "Everyone will meet at the school gate at eight thirty in the morning.",
+      "REA-A1-02-Q3": "The bus leaves at eight forty-five",
+      "REA-A1-02-Q4": "Bring a small bottle of water, a notebook and a pencil.",
+      "REA-A1-02-Q5": "the school will provide sandwiches and fruit.",
+      "REA-A1-02-Q6": "The museum visit begins with a short show about the planets.",
+      "REA-A1-02-Q7": "At noon, the group will eat in the museum garden.",
+      "REA-A1-02-Q8": "If you cannot join the trip, please tell your class teacher by Thursday."
+    },
+    "REA-A2-03": {
+      "REA-A2-03-Q1": "weather forecast now predicts heavy rain on Saturday morning",
+      "REA-A2-03-Q2": "move the painting activity to Sunday",
+      "REA-A2-03-Q3": "work in the covered classroom to prepare plant labels and sort seeds",
+      "REA-A2-03-Q4": "begin outdoors after lunch only if the rain has stopped",
+      "REA-A2-03-Q5": "Gloves and tools will be provided by the school.",
+      "REA-A2-03-Q6": "may choose just one shift.",
+      "REA-A2-03-Q7": "nobody should use paint or tools without an adult nearby.",
+      "REA-A2-03-Q8": "Families are welcome to contribute spare flowerpots, but buying new supplies is not necessary."
+    }
+  },
+  "review_instructions": "Check the cited span in the original passage and verify the marked option against the complete passage. A quote existing in the passage is necessary but not sufficient to prove that a question has a unique valid answer; re-check distractors independently."
+}

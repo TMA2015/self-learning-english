@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AI English Tutor",
-  description: "A family English learning platform. Begin with the 12-week Writing module.",
+  title: "Self-Learning English",
+  description: "A self-paced English learning platform with structured Grammar, Vocabulary, Reading, Writing and other skills.",
   other: {
     "codex-preview": "development",
   },
