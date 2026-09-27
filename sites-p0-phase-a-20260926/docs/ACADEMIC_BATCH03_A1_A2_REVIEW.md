@@ -37,3 +37,13 @@ C. Owner confirms once. Verify export v1.3.0, 36 lessons and 251 activities, exa
 D. Authenticated desktop/mobile learner QA: can requests, past-simple negative/question, some/any contextual examples, comparative exceptions, exact Reading evidence, Writing pending review, Previous Work, G Learning navigation and draft saving.
 
 **This PR is academic authoring only.** Do not merge merely to publish the Site, deploy, import, reset D1, re-upload historical 1.2.0 candidate or alter existing learner records. For this release, PR green means structured/source tests passed, not independent academic approval.
+
+## Round-1 independent-review reconciliation — 2026-09-27
+
+The owner supplied an independent review of the 61-item first candidate at `588e60dde5a782cbe95c1abb8fd1002cf2c43663`: **37 PASS, 18 REVISE, 6 BLOCK**. The reviewer explicitly prohibited import while BLOCK items remain uncorrected. Source content for all 24 flagged items was inspected, reconciled and amended; not every suggested literal distractor was accepted where it could introduce a new alternate correct answer.
+
+Six former BLOCK cases: `GRA-A1-07-Q4`, `GRA-A2-03-Q4/Q6/Q10`, `VOC-A2-02-Q2`, `REA-A1-03-Q4`. Ambiguous gaps now constrain the expected construction or give a bounded choice. The Reading item now tests the expressly mentioned possible lift, rather than falsely asserting that transport was confirmed or specifying a car. Directly stated paint provision `REA-A1-03-Q6` is tagged `reading.detail` alone. Revised distractors focus on plausible learner mistakes and real contrasts; explanations acknowledge legitimate alternative English when not the requested form.
+
+Artifacts: `content/reviews/batch03-round1-reconciliation.json` documents all 24 dispositions; `content/reviews/batch03-independent-retest-packet-v2.json` contains all 61 full-context items, with the changed 24 flagged for **independent retest**. Previous 29 production lessons, rubrics, reading passage, reading evidence, course sequence and integrated journey remain unchanged. Stable item IDs allow item-level reconciliation; no prior learner attempts are altered.
+
+**NOT APPROVED FOR IMPORT:** source-code and test fixes resolve identified findings provisionally; they do not substitute for independent reviewer acceptance. Confirm all 24 repaired questions and sample the unchanged 37, then repeat the 1.3.0 structural QA, build, catalog/tag compatibility checks and owner-controlled import-preview protocol. If the next review identifies a new ambiguous answer, revise and re-review again. No production deployment, import or D1 operation has occurred.
