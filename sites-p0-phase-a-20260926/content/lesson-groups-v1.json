@@ -1,9 +1,9 @@
 {
-  "taxonomy_version": "1.0.0",
+  "taxonomy_version": "1.1.0",
   "source_package_id": "ai-english-tutor-academic-seed-2026-09-v1",
-  "source_content_version": "1.2.0",
+  "source_content_version": "1.3.0",
   "purpose": "catalog_navigation_only",
-  "immutable_content_note": "This external catalog manifest does not modify curriculum 1.2.0, lesson IDs, attempt history, scores, CEFR labels, or import payload.",
+  "immutable_content_note": "Navigation groups for the reviewed 1.3.0 cumulative curriculum. Groups do not alter lesson payloads, course sequence, CEFR, existing attempts or learner evidence. Unmatched 1.2 content remains supported before import.",
   "organization_policy": {
     "skill_is_primary_nav": true,
     "cefr_is_independent_filter": true,
@@ -31,7 +31,9 @@
           "GRA-A1-01",
           "GRA-A1-02",
           "GRA-A1-04",
-          "GRA-A1-05"
+          "GRA-A1-05",
+          "GRA-A1-07",
+          "GRA-A2-03"
         ]
       },
       {
@@ -44,7 +46,8 @@
         "lesson_ids": [
           "GRA-A1-03",
           "GRA-A2-01",
-          "GRA-B1-01"
+          "GRA-B1-01",
+          "GRA-A2-02"
         ]
       },
       {
@@ -56,6 +59,17 @@
         "order": 3,
         "lesson_ids": [
           "GRA-A1-06"
+        ]
+      },
+      {
+        "id": "GRA-COMPARISON",
+        "title": {
+          "en": "Comparisons and descriptions",
+          "vi": "So sánh và miêu tả"
+        },
+        "order": 4,
+        "lesson_ids": [
+          "GRA-A2-04"
         ]
       }
     ],
@@ -93,6 +107,17 @@
         "order": 3,
         "lesson_ids": [
           "VOC-B1-01"
+        ]
+      },
+      {
+        "id": "VOC-TRAVEL",
+        "title": {
+          "en": "Travel and events",
+          "vi": "Đi lại và sự kiện"
+        },
+        "order": 4,
+        "lesson_ids": [
+          "VOC-A2-02"
         ]
       }
     ],
@@ -132,6 +157,17 @@
         "lesson_ids": [
           "REA-B1-01"
         ]
+      },
+      {
+        "id": "REA-MESSAGES",
+        "title": {
+          "en": "Personal messages",
+          "vi": "Tin nhắn cá nhân"
+        },
+        "order": 4,
+        "lesson_ids": [
+          "REA-A1-03"
+        ]
       }
     ],
     "writing": [
@@ -157,7 +193,8 @@
         "order": 2,
         "lesson_ids": [
           "WRI-A1-01",
-          "WRI-B1-01"
+          "WRI-B1-01",
+          "WRI-A1-03"
         ]
       }
     ],
