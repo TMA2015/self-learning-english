@@ -12,6 +12,8 @@ assert.equal(manifest.purpose, 'catalog_navigation_only');
 assert.equal(source.lessons.length, 29);
 const ids = new Set(source.lessons.map(l => l.id));
 const futureIds = new Set(['GRA-A1-07', 'GRA-A2-02', 'GRA-A2-03', 'GRA-A2-04', 'VOC-A2-02', 'REA-A1-03', 'WRI-A1-03']);
+const batch04Ids = new Set(['GRA-A1-08', 'GRA-A2-05', 'GRA-A2-06', 'VOC-A1-04', 'VOC-A2-03', 'REA-A1-04', 'REA-A2-04', 'WRI-A1-04', 'WRI-A2-03']);
+const allFutureIds = new Set([...futureIds, ...batch04Ids]);
 const modules = new Set(source.lessons.map(l => l.module));
 assert.deepEqual(new Set(Object.keys(manifest.groups)), modules);
 const seen = new Set();
@@ -27,7 +29,7 @@ for (const [module, groups] of Object.entries(manifest.groups)) {
     assert.ok(group.title.en?.trim() && group.title.vi?.trim(), 'bilingual group name ' + group.id);
     assert.ok(Array.isArray(group.lesson_ids) && group.lesson_ids.length, 'empty visible group ' + group.id);
     for (const id of group.lesson_ids) {
-      assert.ok(ids.has(id) || futureIds.has(id), 'unknown lesson ' + id);
+      assert.ok(ids.has(id) || allFutureIds.has(id), 'unknown lesson ' + id);
       if (ids.has(id)) assert.equal(source.lessons.find(l => l.id === id).module, module, 'wrong module ' + id);
       else assert.equal(id.slice(0, 3), ({ grammar: 'GRA', vocabulary: 'VOC', reading: 'REA', writing: 'WRI' })[module], 'wrong future module ' + id);
       assert.ok(!seen.has(id), 'duplicate assignment ' + id);
@@ -35,8 +37,8 @@ for (const [module, groups] of Object.entries(manifest.groups)) {
     }
   }
 }
-assert.equal(seen.size, ids.size + futureIds.size, 'unexpected or missing lesson group');
-for (const id of futureIds) assert.ok(seen.has(id), 'missing future lesson ' + id);
+assert.equal(seen.size, ids.size + allFutureIds.size, 'unexpected or missing lesson group');
+for (const id of allFutureIds) assert.ok(seen.has(id), 'missing future lesson ' + id);
 for (const id of ids) assert.ok(seen.has(id), 'missing existing lesson ' + id);
 assert.ok(source.course.sequence.every(id => seen.has(id)), 'course route unexpectedly altered');
 console.log('PASS: ' + ids.size + ' existing and ' + futureIds.size + ' future lessons in ' + groupCount + ' groups, seven skills; no curriculum writes.');
