@@ -1965,7 +1965,8 @@
       "reading_asset": {
         "id": "PASS-REA-A1-01",
         "title": "Art club notice",
-        "body": "Our school has a new art club. It meets in Room 12 on Wednesdays after class. The club starts at three thirty and finishes at four thirty. Ms Hoa helps students draw, paint and make posters. You do not need to bring paint because the club has art materials. Bring your own pencil and a small notebook. Last week, eight students joined. They made colourful signs for the school garden. This week, the group will design a poster about saving water. New students can join at any time. To register, write your name on the list outside the library before Wednesday lunch."
+        "body": "Our school has a new art club. It meets in Room 12 on Wednesdays after class. The club starts at three thirty and finishes at four thirty. Ms Hoa helps students draw, paint and make posters. You do not need to bring paint because the club has art materials. Bring your own pencil and a small notebook. Last week, eight students joined. They made colourful signs for the school garden. This week, the group will design a poster about saving water. New students can join at any time. To register, write your name on the list outside the library before Wednesday lunch.",
+        "display_to_learner": true
       }
     },
     {
@@ -2261,7 +2262,8 @@
       "reading_asset": {
         "id": "PASS-REA-A2-02",
         "title": "Book exchange announcement",
-        "body": "Our class is planning a small book exchange next Friday. Students may bring one or two books they have finished reading, as long as the books are in good condition. We will meet in the school hall at three o'clock. First, volunteers will put the books on tables by topic. Each student will receive a ticket for every book they bring. A ticket can be exchanged for a different book, but it cannot be used to buy food or stationery. Students who cannot bring a book can still visit the event and read in the quiet corner. The organising team considered selling the books to raise money. However, they chose an exchange because they wanted everyone to share stories without spending money. At half past four, any books left on the tables will be offered to the school library. The librarian will choose which titles are suitable for the collection. Parents are welcome to help with the tables, but students will organise the activities themselves. Please write your name on the volunteer list by Wednesday if you can help."
+        "body": "Our class is planning a small book exchange next Friday. Students may bring one or two books they have finished reading, as long as the books are in good condition. We will meet in the school hall at three o'clock. First, volunteers will put the books on tables by topic. Each student will receive a ticket for every book they bring. A ticket can be exchanged for a different book, but it cannot be used to buy food or stationery. Students who cannot bring a book can still visit the event and read in the quiet corner. The organising team considered selling the books to raise money. However, they chose an exchange because they wanted everyone to share stories without spending money. At half past four, any books left on the tables will be offered to the school library. The librarian will choose which titles are suitable for the collection. Parents are welcome to help with the tables, but students will organise the activities themselves. Please write your name on the volunteer list by Wednesday if you can help.",
+        "display_to_learner": true
       }
     },
     {
@@ -2440,7 +2442,8 @@
             "min": 35,
             "max": 55,
             "not_a_quality_score": true
-          }
+          },
+          "review_mode": "assisted_ai_or_human"
         }
       ]
     },
