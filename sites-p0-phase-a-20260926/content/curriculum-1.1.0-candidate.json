@@ -455,8 +455,7 @@
           "prompt": "Complete: I ___ excited about the trip.",
           "answer": {
             "accepted_answers": [
-              "am",
-              "'m"
+              "am"
             ],
             "normalization": [
               "trim",
@@ -466,7 +465,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "The subject I takes am (or 'm after I). Type only the missing word or contraction."
+            "explanation_en": "The subject I takes am. Type only am; writing I again would repeat the subject already printed."
           },
           "skill_tags": [
             "grammar.be_forms",
@@ -503,7 +502,7 @@
         {
           "id": "GRA-A1-02-Q1",
           "type": "single_choice",
-          "prompt": "Linh is eleven. ___ is in class six.",
+          "prompt": "Linh is my sister. ___ is in class six.",
           "options": [
             {
               "id": "A",
@@ -526,7 +525,7 @@
             "correct_option_id": "B"
           },
           "feedback": {
-            "explanation_en": "Linh is one girl in this context, so the subject pronoun is She."
+            "explanation_en": "The phrase my sister identifies one girl, so the subject pronoun is She."
           },
           "skill_tags": [
             "grammar.pronouns",
