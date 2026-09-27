@@ -34,12 +34,23 @@ Four concept tags are added to `domain/academic.ts`: `grammar.articles`, `gramma
 
 No new pre-answer hints are claimed for these lessons: the existing two-level hints remain a narrow Grammar A2 pilot. The separate teacher-loop sidecar in Draft PR #3 must not be silently imported or presented as a live feature.
 
+## Modular authoring, cumulative import
+
+The actual **authoring increment** is `content/batches/batch02.json` (eight new lessons, insertion anchors and metadata). The current Site importer still accepts a cumulative package, so `scripts/compose-curriculum.mjs` produces and verifies `content/curriculum-1.2.0-candidate.json` deterministically:
+
+```sh
+node scripts/compose-curriculum.mjs --check content/curriculum-1.1.0-candidate.json content/batches/batch02.json content/curriculum-1.2.0-candidate.json
+```
+
+The composer guards version increase, stable IDs, complete ordering, 60-lesson and 1 MB limits, and avoids touching learner records. Source-level comparison confirmed that composing Batch 02 reproduces the committed 1.2.0 package exactly. This is **not** a live import or a replacement for tests/answer review. Future batches can be authored as small increment files while the application continues using a cumulative import until a dedicated modular package API is implemented.
+
 ## QA and release order
 
 1. **Release and import Batch 01 first** using its pinned code and owner-confirmed `content 1.1.0`. If this hasn't happened, stop Batch 02 release, but content/editorial work may continue.
 2. Independently review all 64 new tasks in context. For Reading, compare every item and correct option with the entire passage; the evidence map proves quote availability, not sole correctness. Check short-answer insertion and natural variants, Writing rubric and age relevance.
 3. Run from the nested application root:
    ```sh
+   node scripts/compose-curriculum.mjs --check content/curriculum-1.1.0-candidate.json content/batches/batch02.json content/curriculum-1.2.0-candidate.json
    node tests/content-quality.cjs
    node tests/content-batch02.cjs
    node tests/foundation-coaching.cjs
