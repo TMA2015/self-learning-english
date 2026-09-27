@@ -14,7 +14,7 @@ assert.equal(listeningSubmitHint(partial),'2/3 answered · 1 question remaining.
 assert.equal(listeningSubmitHint(listeningCompletion(qs,{})),'0/3 answered · 3 questions remaining.');
 const complete=listeningCompletion(qs,{'LIS-A2-01-Q1':'A','LIS-A2-01-Q2':'B','LIS-A2-01-Q3':'C'});
 assert.deepEqual(complete.unansweredIds,[]);
-assert.equal(listeningSubmitHint(complete),'All questions answered. Submit when you are ready.');
+assert.equal(listeningSubmitHint(complete),'3/3 answered · All questions answered.');
 const player=fs.readFileSync(path.join(root,'app/foundation.tsx'),'utf8');
 const css=fs.readFileSync(path.join(root,'app/globals.css'),'utf8');
 const service=fs.readFileSync(path.join(root,'application/academic-service.ts'),'utf8');

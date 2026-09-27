@@ -1,0 +1,38 @@
+name: v17 Listening Retake Audio Readiness QA
+
+on:
+  pull_request:
+    paths:
+      - 'sites-p0-phase-a-20260926/app/foundation.tsx'
+      - 'sites-p0-phase-a-20260926/domain/listening-completeness.ts'
+      - 'sites-p0-phase-a-20260926/tests/listening-submit-feedback.cjs'
+      - 'sites-p0-phase-a-20260926/tests/listening-retake-audio-readiness.cjs'
+      - 'sites-p0-phase-a-20260926/docs/LISTENING_RETAKE_AUDIO_READINESS_V17.md'
+      - '.github/workflows/listening-retake-audio-v17-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install exact dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Listening incomplete answers and retake audio regression
+        run: node tests/listening-submit-feedback.cjs && node tests/listening-retake-audio-readiness.cjs
+      - name: Foundation and v16 historical guardrails
+        run: node tests/attempt-navigation-ui.cjs && node tests/writing-nav-save-feedback.cjs && node tests/catalog-groups.cjs && node tests/curriculum-13-compat-v15.cjs
+      - name: Production build only
+        run: pnpm run build
