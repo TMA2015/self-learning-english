@@ -6,6 +6,7 @@ on:
       - 'sites-p0-phase-a-20260926/domain/academic.ts'
       - 'sites-p0-phase-a-20260926/content/lesson-groups-v1.json'
       - 'sites-p0-phase-a-20260926/tests/curriculum-13-compat-v15.cjs'
+      - 'sites-p0-phase-a-20260926/tests/catalog-groups.cjs'
       - 'sites-p0-phase-a-20260926/docs/CURRICULUM_13_V15_INTEGRATION.md'
       - '.github/workflows/curriculum-13-v15-compat-qa.yml'
   workflow_dispatch:
@@ -30,7 +31,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Check tag compatibility and 29 old group memberships
-        run: node tests/curriculum-13-compat-v15.cjs
+        run: node tests/catalog-groups.cjs && node tests/curriculum-13-compat-v15.cjs
       - name: Guard v15 Foundation, catalog and draft-save UX
         run: node tests/catalog-taxonomy-ui.cjs && node tests/attempt-navigation-ui.cjs && node tests/writing-nav-save-feedback.cjs
       - name: Production build without data import or Site deployment
