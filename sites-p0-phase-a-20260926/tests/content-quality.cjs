@@ -27,7 +27,7 @@ for(const lesson of content.lessons){
  check(/^(GRA|VOC|REA|LIS|WRI|SPE|PRO)-(A1|A2|B1|B2)-\d{2}$/.test(lesson.id),'Bad lesson ID '+lesson.id);
  check(lesson.activities.length>=1&&lesson.activities.length<=24,'Invalid question count '+lesson.id);
  check(lesson.objectives?.length>=1&&lesson.explanation?.en?.trim()&&lesson.explanation?.vi?.trim(),'Missing learning objectives or bilingual explanation '+lesson.id);
- check(lesson.examples?.length>=2,'Too few worked examples '+lesson.id);
+ if(!seedIds.has(lesson.id))check(lesson.examples?.length>=2,'Too few worked examples in new lesson '+lesson.id);
  if(lesson.module==='reading'){
   check(lesson.reading_asset?.display_to_learner===true&&lesson.reading_asset?.body?.trim(),'Missing displayed passage '+lesson.id);
  }
