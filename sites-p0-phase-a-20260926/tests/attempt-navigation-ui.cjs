@@ -35,6 +35,7 @@ assert.ok(source.includes("screen==='practice'&&<>"),'practice should be isolate
 assert.ok(source.includes("setScreen('overview')"),'lesson selection opens overview');
 assert.ok(source.includes("setScreen('practice')"),'start or resume practice opens player');
 assert.ok(source.includes("await saveDraft()"),'unsaved draft must not be discarded');
+assert.ok(source.includes("if(attempt?.status==='started'){try{await saveDraft();await refresh()}catch(e){if(transition===skillTransition.current)"),'sidebar skill transitions must refresh Recent work after saving');
 assert.ok(source.includes("latestAttemptForLesson(catalog?.attempts??[],id)"),'lesson must use its own latest attempt');
 assert.ok(source.includes("recentSkillWork(catalog.attempts,catalog.lessons,skill)"),'recent work is skill scoped');
 assert.ok(source.includes('onClick={()=>void chooseSkill(l.module)}'),'seven cards select skills, not starter lessons');
