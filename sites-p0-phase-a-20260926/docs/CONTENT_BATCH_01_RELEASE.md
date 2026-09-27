@@ -1,3 +1,13 @@
+## Post-release status and authoritative import file (owner report, 2026-09-27)
+
+The owner reports a successful **code-only Site v10** release from deployed Sites source commit `7b29f48efbd37c51de990d43f822b7128a4c9d3f`, based on the original pinned GitHub checkpoint `d491f8f39f977657fe6e23f2dca7df3aafdf5c57`. Five test suites and a fresh build passed in Work. Authenticated learner-browser QA remains owner pending. The actual live academic package is still `1.0.2`; curriculum `1.1.0` has **not** been imported.
+
+Work reported two editorial corrections made in the deployed Sites source, but the pinned GitHub curriculum JSON had not been updated. Before any import, GitHub source was independently corrected in the same two places: `VOC-A1-02-Q6` now distinguishes an evening bedtime habit from morning activities, and `REA-A2-02-Q2` refers to books brought **to exchange**, not donated books. We cannot assert that the text is byte-identical to the separate Sites source. These two original-content edits are the ONLY lesson changes in the corrected candidate; all thirteen previously imported `1.0.2` lessons remain exactly unchanged. The latest GitHub branch's `content/curriculum-1.1.0-candidate.json` is the **file to download and upload**, not the original pinned d491 version.
+
+Source-level comparison to the GitHub `1.0.2` package: **Add 8 / Update 0 / Skip 13 / Conflict 0**. The authenticated live Parent View preview, not this local comparison, is the definitive release gate. Do not confirm if its counts differ, if it reports any validation error/conflict, or if the downloaded file version is not `1.1.0`. Only one import should be confirmed; export the stored version afterward.
+
+Do **not** redeploy the Site merely to import the corrected JSON. After a content import, v9 is not a safe unconditional rollback target because it lacks the expanded A1 importer/player; keep v10 or a schema-compatible corrective release.
+
 # English Tutor — real curriculum, Batch 01 (2026-09-27)
 
 **State:** Authored in GitHub feature branch, schema/source checks passed; NOT yet built, deployed or imported on the private Site. Current production is Site v9 with academic content v1.0.2. Owner has accepted that existing demo learner records are disposable, but no reset is needed for this release.
