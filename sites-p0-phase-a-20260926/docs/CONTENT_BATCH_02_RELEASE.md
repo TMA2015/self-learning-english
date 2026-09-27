@@ -44,6 +44,8 @@ node scripts/compose-curriculum.mjs --check content/curriculum-1.1.0-candidate.j
 
 The composer guards version increase, stable IDs, complete ordering, 60-lesson and 1 MB limits, and avoids touching learner records. Source-level comparison confirmed that composing Batch 02 reproduces the committed 1.2.0 package exactly. This is **not** a live import or a replacement for tests/answer review. Future batches can be authored as small increment files while the application continues using a cumulative import until a dedicated modular package API is implemented.
 
+**Curriculum coverage gate:** `docs/CURRICULUM_COVERAGE.md` explains what is authored and what is still missing. `content/curriculum-coverage-v1.json` maps all 29 lessons to prerequisite IDs and ten gaps. Validate with `node tests/curriculum-coverage.cjs`. These are advisory teaching metadata, not live mastery/unlock logic. Do not imply the full CEFR syllabus exists.
+
 ## QA and release order
 
 1. **Release and import Batch 01 first** using its pinned code and owner-confirmed `content 1.1.0`. If this hasn't happened, stop Batch 02 release, but content/editorial work may continue.
@@ -53,6 +55,7 @@ The composer guards version increase, stable IDs, complete ordering, 60-lesson a
    node scripts/compose-curriculum.mjs --check content/curriculum-1.1.0-candidate.json content/batches/batch02.json content/curriculum-1.2.0-candidate.json
    node tests/content-quality.cjs
    node tests/content-batch02.cjs
+   node tests/curriculum-coverage.cjs
    node tests/foundation-coaching.cjs
    node tests/curriculum.cjs
    node tests/curriculum-batch02.cjs
