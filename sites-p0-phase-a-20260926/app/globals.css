@@ -189,3 +189,11 @@ body {
 .foundation-draft-feedback.is-error{border-color:#efb4b0;background:#fff3f1;color:#953323}
 .foundation-draft-feedback:empty{display:none}
 @media(max-width:680px){.foundation-writing-coach{margin:.85rem 0 1.2rem}.foundation-draft-feedback{font-size:.82rem;padding:.6rem .7rem}}
+
+
+/* Listening submit preflight: warning stays at the action area and highlights missing questions on mobile. */
+.foundation-listening-completion{margin:.9rem 0 .6rem;padding:.7rem .85rem;border:1px solid var(--border);border-radius:.65rem;background:var(--surface,#f6f8fb);font-weight:600;line-height:1.5}
+.foundation-submit-warning{margin:.6rem 0;padding:.8rem .9rem;border:1px solid #e1a69c;border-radius:.65rem;background:#fff2ef;color:#8f2b1d;line-height:1.55}
+.foundation-question.is-unanswered{border:2px solid #cf7565;border-radius:.75rem;background:#fff8f6;padding:1.1rem .85rem;scroll-margin-top:5rem}
+.foundation-question-warning{color:#8f2b1d;font-weight:600;margin:.7rem 0 0}
+@media(max-width:600px){.foundation-question.is-unanswered{padding:.8rem .65rem;scroll-margin-top:4rem}.foundation-submit-warning{font-size:.94rem}}
