@@ -1,0 +1,777 @@
+{
+  "batch_id": "BATCH03-CORE-LEXICAL-READING-WRITING",
+  "status": "authoring_candidate_not_live",
+  "lessons": [
+    {
+      "id": "VOC-A2-02",
+      "module": "vocabulary",
+      "cefr_target": "A2",
+      "title": "Travel and event collocations in context",
+      "estimated_minutes": 22,
+      "objectives": [
+        "Recognise frequent travel and event word partnerships in context.",
+        "Distinguish book a ticket, catch/miss a bus and pack a bag.",
+        "Use take photos and attend an event naturally.",
+        "Select a collocation from the meaning of the whole situation."
+      ],
+      "explanation": {
+        "en": "A collocation is a word partnership often used together. We book a ticket to reserve a seat, pack a bag before leaving, catch a bus when we get on in time, and miss a bus if it leaves before we arrive. We arrive at a station but arrive in a city. At an event, we may attend a workshop and take photos. Read the time and purpose in each sentence, not just the nearest noun. Other phrases may be grammatical in different situations, so select the expression that fits the stated meaning.",
+        "vi": "Collocation là các từ thường đi với nhau. Book a ticket = đặt vé; pack a bag = xếp đồ; catch/miss a bus = bắt/lỡ xe. Arrive at a station nhưng arrive in a city. Attend a workshop và take photos. Xét cả ngữ cảnh trước khi chọn."
+      },
+      "examples": [
+        "BOOK · We booked two train tickets on Tuesday.",
+        "PACK · I packed my bag before the school trip.",
+        "CATCH · We left early to catch the eight o'clock bus.",
+        "MISS · The bus left without us; we missed it.",
+        "ARRIVE · Arrive at the station; arrive in the city.",
+        "EVENT · Attend a workshop and take photos afterward."
+      ],
+      "activities": [
+        {
+          "id": "VOC-A2-02-Q1",
+          "type": "single_choice",
+          "prompt": "You want to reserve a train seat in advance, not check, cancel or simply pay for a ticket at the counter. Which phrase means make a reservation?",
+          "options": [
+            {
+              "id": "A",
+              "text": "book a ticket"
+            },
+            {
+              "id": "B",
+              "text": "buy a ticket"
+            },
+            {
+              "id": "C",
+              "text": "check a ticket"
+            },
+            {
+              "id": "D",
+              "text": "cancel a ticket"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Book a ticket means reserve it in advance. Buy refers to paying, check to inspecting and cancel to ending the reservation; booking may also involve payment, but the question asks specifically about reserving."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-02-Q2",
+          "type": "short_answer",
+          "prompt": "Choose from pack or book; type one word. Before a trip, please ___ your bag tonight by putting your clothes and notebook inside.",
+          "answer": {
+            "accepted_answers": [
+              "pack"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Pack a bag means put the items needed for a trip inside it. The task limits the choice to pack or book; book is used for reserving tickets or accommodation, not filling a bag."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-02-Q3",
+          "type": "single_choice",
+          "prompt": "You planned to take the eight o'clock bus, but it had already left when you reached the stop. Which sentence best describes what happened to that bus?",
+          "options": [
+            {
+              "id": "A",
+              "text": "You caught the eight o'clock bus."
+            },
+            {
+              "id": "B",
+              "text": "You missed the eight o'clock bus."
+            },
+            {
+              "id": "C",
+              "text": "You waited at the stop for the eight o'clock bus before it left."
+            },
+            {
+              "id": "D",
+              "text": "You arrived early and got on the eight o'clock bus."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "You missed the eight o'clock bus because it departed before you arrived. The other choices would require arriving in time to catch or wait for that bus."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-02-Q4",
+          "type": "single_choice",
+          "prompt": "Which phrase gives the natural arrival expression for a station?",
+          "options": [
+            {
+              "id": "A",
+              "text": "arrive to the station"
+            },
+            {
+              "id": "B",
+              "text": "arrive at the station"
+            },
+            {
+              "id": "C",
+              "text": "arrive on the station"
+            },
+            {
+              "id": "D",
+              "text": "arrive the station"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Arrive at is the normal expression for a specific point such as a station."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-02-Q5",
+          "type": "single_choice",
+          "prompt": "At the science fair, you pointed a camera at an exhibit and pressed the shutter. Which action did you perform?",
+          "options": [
+            {
+              "id": "A",
+              "text": "look at photos"
+            },
+            {
+              "id": "B",
+              "text": "share photos"
+            },
+            {
+              "id": "C",
+              "text": "take photos"
+            },
+            {
+              "id": "D",
+              "text": "print photos"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Take photos means use the camera to create pictures. Looking, sharing and printing involve photos already taken; pressing the shutter is the taking action."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-02-Q6",
+          "type": "single_choice",
+          "prompt": "You go to a weekend workshop as a student participant, not an organiser. Which action describes your role?",
+          "options": [
+            {
+              "id": "A",
+              "text": "attend a workshop"
+            },
+            {
+              "id": "B",
+              "text": "organise a workshop"
+            },
+            {
+              "id": "C",
+              "text": "cancel a workshop"
+            },
+            {
+              "id": "D",
+              "text": "miss a workshop"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Attend a workshop means be present as a participant. Organise means plan it, cancel means call it off, and miss means not attend it."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-02-Q7",
+          "type": "short_answer",
+          "prompt": "Complete: We will ___ the bus if we do not leave now; it is already at the stop.",
+          "answer": {
+            "accepted_answers": [
+              "miss"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The bus may leave without us, so the natural phrase is miss the bus."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-02-Q8",
+          "type": "single_choice",
+          "prompt": "The organiser calls off the trip because the road is closed. The trip will not take place, and no later date is planned. Which action fits?",
+          "options": [
+            {
+              "id": "A",
+              "text": "cancel the trip"
+            },
+            {
+              "id": "B",
+              "text": "postpone the trip"
+            },
+            {
+              "id": "C",
+              "text": "book the trip"
+            },
+            {
+              "id": "D",
+              "text": "join the trip"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Cancel the trip means it will not take place. Postpone moves it to a later time; here no replacement date is planned."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "REA-A1-03",
+      "module": "reading",
+      "cefr_target": "A1",
+      "title": "A message about an art-club visit",
+      "estimated_minutes": 24,
+      "objectives": [
+        "Identify the sender's purpose in a short personal message.",
+        "Find an explicit meeting time and location.",
+        "Distinguish items the reader must bring from items supplied by the club.",
+        "Follow a simple changed plan and reply deadline."
+      ],
+      "explanation": {
+        "en": "Read the personal message and ask: Who is writing, why, where and when? Locate exact phrases for times and meeting places rather than guessing from the main event's starting time. Underline what the student must bring and what the club provides. Notice 'but' for a changed transport plan, 'if' for a condition and 'by Thursday' for the latest reply time. All answers should be supported by the message.",
+        "vi": "Đọc tin nhắn, xác định ai viết, mục đích, giờ hẹn và địa điểm. Giờ gặp có thể khác giờ hoạt động bắt đầu. Phân biệt đồ phải mang theo và đồ được cung cấp. But thể hiện thay đổi, if là điều kiện, by Thursday là hạn chót."
+      },
+      "examples": [
+        "PURPOSE · The message makes plans for an art-club activity.",
+        "TIME · The club starts at 10 a.m.; the friends meet earlier at 9:30.",
+        "PLACE · The meeting point is outside the school library.",
+        "BRING/PROVIDE · Bring a pencil and sketchbook; the club provides paints.",
+        "CONDITION · Eat in the park if dry, but in the hall if it rains.",
+        "DEADLINE · Reply by Thursday."
+      ],
+      "activities": [
+        {
+          "id": "REA-A1-03-Q1",
+          "type": "single_choice",
+          "prompt": "Why does Lan write to Minh?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To arrange their visit to an art-club activity"
+            },
+            {
+              "id": "B",
+              "text": "To arrange lunch only, not the club visit"
+            },
+            {
+              "id": "C",
+              "text": "To ask Minh to buy paints for the club"
+            },
+            {
+              "id": "D",
+              "text": "To announce that the library meeting place has changed to the park"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Lan's main purpose is to arrange an art-club visit and receive Minh's reply. Lunch and supplies are supporting details; the message says the club provides paints and the meeting place is still the library."
+          },
+          "skill_tags": [
+            "reading.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-03-Q2",
+          "type": "single_choice",
+          "prompt": "Where should Minh meet Lan?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Inside the community hall"
+            },
+            {
+              "id": "B",
+              "text": "Outside the school library"
+            },
+            {
+              "id": "C",
+              "text": "At Minh's home"
+            },
+            {
+              "id": "D",
+              "text": "In the city park"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The message explicitly gives outside the school library as their meeting point."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-03-Q3",
+          "type": "single_choice",
+          "prompt": "When should the two friends meet?",
+          "options": [
+            {
+              "id": "A",
+              "text": "At 9:30 a.m."
+            },
+            {
+              "id": "B",
+              "text": "At 10:00 a.m."
+            },
+            {
+              "id": "C",
+              "text": "At 2:00 p.m."
+            },
+            {
+              "id": "D",
+              "text": "At 8:30 a.m."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The meeting is at 9:30 a.m., before the club starts at 10 a.m."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-03-Q4",
+          "type": "single_choice",
+          "prompt": "What alternative to taking the bus does Lan mention?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Taking a train"
+            },
+            {
+              "id": "B",
+              "text": "Walking alone"
+            },
+            {
+              "id": "C",
+              "text": "Her father can give them a lift"
+            },
+            {
+              "id": "D",
+              "text": "A bus supplied by the art club"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Lan says her father can give them a lift. Can describes an available alternative; the message does not confirm a final travel decision or state a vehicle type."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-03-Q5",
+          "type": "single_choice",
+          "prompt": "Which items should Minh bring?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Paints and a chair"
+            },
+            {
+              "id": "B",
+              "text": "A pencil and sketchbook"
+            },
+            {
+              "id": "C",
+              "text": "A camera and lunch"
+            },
+            {
+              "id": "D",
+              "text": "A new uniform and shoes"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The message asks Minh to bring a pencil and his sketchbook."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-03-Q6",
+          "type": "single_choice",
+          "prompt": "Does Minh need to bring paints?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Yes, he must buy new paints."
+            },
+            {
+              "id": "B",
+              "text": "No, the club will provide them."
+            },
+            {
+              "id": "C",
+              "text": "Yes, because the club has no paints."
+            },
+            {
+              "id": "D",
+              "text": "No, because nobody will paint or draw."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The message states the club provides the paints, so bringing them is unnecessary."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-03-Q7",
+          "type": "single_choice",
+          "prompt": "What will happen if it rains after the activity?",
+          "options": [
+            {
+              "id": "A",
+              "text": "They will eat in the hall."
+            },
+            {
+              "id": "B",
+              "text": "They will eat in the park anyway."
+            },
+            {
+              "id": "C",
+              "text": "The friends must return to school immediately."
+            },
+            {
+              "id": "D",
+              "text": "The event starts two hours earlier."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The conditional plan says they will eat in the hall if it rains."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-03-Q8",
+          "type": "single_choice",
+          "prompt": "What is the latest day Lan asks Minh to reply?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Saturday"
+            },
+            {
+              "id": "B",
+              "text": "Friday"
+            },
+            {
+              "id": "C",
+              "text": "Thursday"
+            },
+            {
+              "id": "D",
+              "text": "Sunday"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The message says reply by Thursday so Lan can confirm numbers with the leader."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "PASS-REA-A1-03",
+        "title": "Lan's art-club message",
+        "body": "Hi Minh,\nOur art club is meeting at the community hall on Saturday at 10 a.m. I planned to take the bus with you, but my father can give us a lift. Please meet me outside the school library at 9:30 a.m. Bring a pencil and your sketchbook. You don't need to bring paints because the club will provide them. We will design postcards for a local exhibition. After the activity, we can have lunch in the park if it is dry. If it rains, we will eat in the hall instead. I must leave by 2 p.m. to visit my grandmother. Could you reply by Thursday so I can tell the club leader how many people are coming?\nSee you,\nLan",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-A1-03",
+      "module": "writing",
+      "cefr_target": "A1",
+      "title": "Describe a familiar person or place",
+      "estimated_minutes": 29,
+      "objectives": [
+        "Identify the reader and required points in a short description.",
+        "Select relevant facts about one familiar person or place.",
+        "Connect simple sentences in a clear order.",
+        "Check the description independently before adult review."
+      ],
+      "explanation": {
+        "en": "First read the prompt and choose ONE subject: a familiar person at school or a familiar place at school. For a person, plan who they are, what they do and why you appreciate them. For a place, plan where it is, what you can see there and why you like it. Brainstorm short facts; select details that answer the chosen task. Write a clear opening and three or four connected sentences; then check capital letters, be, there is/are, simple present forms and punctuation. Use a made-up name if needed and do not include private contact details. Your own paragraph, not your word count, is the evidence for adult review.",
+        "vi": "Đọc đề và chọn MỘT đối tượng: người quen ở trường hoặc địa điểm trong trường. Với người: họ là ai, làm gì, vì sao em quý họ. Với nơi chốn: ở đâu, có gì, vì sao em thích. Brainstorm, chọn chi tiết liên quan, viết câu mở đầu và vài câu nối tiếp, rồi tự kiểm tra. Không đưa thông tin liên hệ riêng tư; bài viết cần người lớn đánh giá."
+      },
+      "examples": [
+        "TASK · Describe a person OR a place at school, not both.",
+        "PERSON PLAN · My librarian → helps pupils → friendly → why I like her.",
+        "PLACE PLAN · School library → next to hall → books and tables → why I like it.",
+        "PLACE MODEL · My favourite place is our school library. It is next to the hall. There are many books and two large tables. I like it because I can read quietly with my friends.",
+        "PERSON MODEL · Mr Nam works in our school library. He helps students find books. He is patient and kind. I like him because he explains things clearly.",
+        "SELF-CHECK · Is every sentence about my chosen subject? Are the verbs and punctuation clear?"
+      ],
+      "activities": [
+        {
+          "id": "WRI-A1-03-Q1",
+          "type": "single_choice",
+          "prompt": "The task asks you to describe ONE familiar person or place. Which plan follows the task?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Choose one subject, select relevant facts and note why you like it."
+            },
+            {
+              "id": "B",
+              "text": "Describe both a person and a place even though the task asks for one."
+            },
+            {
+              "id": "C",
+              "text": "Choose a person but use only unrelated details about a different event."
+            },
+            {
+              "id": "D",
+              "text": "Choose a place but list names of other pupils instead of describing its features."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The task requires one chosen subject with relevant details and a personal reason. Mixing subjects or replacing its details with unrelated information does not fulfil the prompt."
+          },
+          "skill_tags": [
+            "writing.task_understanding"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A1-03-Q2",
+          "type": "single_choice",
+          "prompt": "You chose to describe the school library. Which detail is relevant?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It has two reading tables."
+            },
+            {
+              "id": "B",
+              "text": "My uncle bought a bicycle yesterday."
+            },
+            {
+              "id": "C",
+              "text": "The bus arrives in another city."
+            },
+            {
+              "id": "D",
+              "text": "I forgot my sports shoes at home."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The tables tell the reader something concrete about the chosen place."
+          },
+          "skill_tags": [
+            "writing.idea_development"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A1-03-Q3",
+          "type": "single_choice",
+          "prompt": "Which outline gives the clearest order for a short description of one school place?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Opening → location → features → why I like it"
+            },
+            {
+              "id": "B",
+              "text": "Location → one feature → opening → why I like it"
+            },
+            {
+              "id": "C",
+              "text": "Opening → personal reason → unrelated holiday event → ending"
+            },
+            {
+              "id": "D",
+              "text": "Opening → place features → unrelated person → location"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Start by introducing the same place, tell the reader where it is, develop its features and end with a reason. Other outlines delay the opening or interrupt the description with unrelated content."
+          },
+          "skill_tags": [
+            "writing.organization"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A1-03-Q4",
+          "type": "single_choice",
+          "prompt": "Choose the sentence with correct basic grammar for describing the school library.",
+          "options": [
+            {
+              "id": "A",
+              "text": "There are many books in the library."
+            },
+            {
+              "id": "B",
+              "text": "There is many books in the library."
+            },
+            {
+              "id": "C",
+              "text": "There are a books in the library."
+            },
+            {
+              "id": "D",
+              "text": "There are many book in the library."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Books is plural, so use there are and the plural noun books."
+          },
+          "skill_tags": [
+            "writing.grammar"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A1-03-Q5",
+          "type": "extended_response",
+          "prompt": "Write one paragraph about EITHER a familiar person at school OR a place at school (real or imaginary). If you choose a person, explain who they are, what they do and why you like or appreciate them. If you choose a place, explain where it is, describe two features and say why you like it. Aim for about 40–60 words. Brainstorm three facts, make a short plan, then self-check your own paragraph. Do not include a private address, phone number or other personal contact details.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-WRITING-A1",
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.idea_development",
+            "writing.organization",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Your paragraph is saved for adult review. Check the chosen subject and task details before revising; word count alone never determines your score."
+          },
+          "word_range_guidance": {
+            "min": 40,
+            "max": 60,
+            "not_a_quality_score": true
+          }
+        }
+      ]
+    }
+  ],
+  "reading_evidence": {
+    "REA-A1-03": {
+      "REA-A1-03-Q1": "Our art club is meeting at the community hall",
+      "REA-A1-03-Q2": "outside the school library",
+      "REA-A1-03-Q3": "9:30 a.m.",
+      "REA-A1-03-Q4": "my father can give us a lift",
+      "REA-A1-03-Q5": "Bring a pencil and your sketchbook",
+      "REA-A1-03-Q6": "the club will provide them",
+      "REA-A1-03-Q7": "If it rains, we will eat in the hall instead",
+      "REA-A1-03-Q8": "reply by Thursday"
+    }
+  }
+}

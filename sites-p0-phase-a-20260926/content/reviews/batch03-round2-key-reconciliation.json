@@ -1,0 +1,44 @@
+{
+  "packet_id": "BATCH03-ROUND2-KEY-RECONCILIATION",
+  "reviewed_checkpoint": "b21a08a3e2a5679ab808e3df7cd803d6edfa3835",
+  "source": "Owner-supplied batch03-round2-independent-retest(1).json",
+  "reported_counts": {
+    "PASS": 60,
+    "REVISE": 0,
+    "BLOCK": 1,
+    "total": 61
+  },
+  "round2_scope": {
+    "corrected_items_retested": 24,
+    "unchanged_items_spot_checked": 37,
+    "production_lessons_modified": 0
+  },
+  "disposition": "AUTHOR_CORRECTED_FOCUSED_INDEPENDENT_CONFIRMATION_PENDING",
+  "blocked_item": {
+    "id": "GRA-A2-03-Q7",
+    "reason": "The candidate marked B (many milk) correct, while the unique correct option is A (some milk) given recipe/liquid context.",
+    "before_correct_option_id": "B",
+    "after_correct_option_id": "A",
+    "unchanged_correct_option_text": "some milk",
+    "unchanged_wrong_option_text": "many milk",
+    "answer_explanation": "Some milk treats milk as an uncountable liquid ingredient.",
+    "changed_fields": [
+      "answer.correct_option_id"
+    ],
+    "updated_in": [
+      "content/batches/batch03-grammar.json",
+      "content/curriculum-1.3.0-candidate.json",
+      "content/reviews/batch03-independent-retest-packet-v2.json"
+    ],
+    "expected_manual_check": "Select A: correct; select B: incorrect, with explanatory feedback. No automatic score for open Writing.",
+    "independent_retest_verdict": "PENDING"
+  },
+  "remaining_60": "All other items returned PASS in independent round 2 and must remain unchanged by this targeted key correction.",
+  "restrictions": {
+    "academic_approval": false,
+    "live_import_permitted": false,
+    "production_curriculum_version": "1.2.0",
+    "existing_29_lesson_objects_unchanged": true,
+    "writing_review_required": true
+  }
+}
