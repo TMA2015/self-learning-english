@@ -21,3 +21,11 @@ Owner report: v13 lesson catalog sits above the full lesson notes and quiz, prod
 6. If save fails while returning to Catalog or switching via the seven cards, stay in the lesson and expose failure.
 
 Scope is deliberately UI/read-only selectors. The existing app's global sidebar route changes rely on its pre-existing skill transition effect to save a draft. No authenticated learner-browser QA has been performed in this repository-only pass. Do not deploy until CI, owner review and a controlled Site release are authorized.
+
+## Staged QA after v13 source reconciliation (2026-09-27)
+
+- Existing private Site remains v13, source `a0835699e878e0d41bb4fd6902848fc7e8bdea22`. This branch was staged against that source; no Site version was saved or deployed.
+- Corrected a stale Catalog cache after saving a draft: returning to lessons or switching skills now refreshes Recent work after a successful draft save. With no active draft, normal skill navigation continues to reuse the cached catalog. Updated the old Batch 02 regression assertion to recognize the focused skill navigation label.
+- Attempt navigation, branding, Catalog, Foundation results/coaching, content quality, Batch 02, curriculum coverage, application and academic checks passed. The managed Linux production build passed.
+- Desktop preview rendered the existing Site shell and skill navigation. Its Foundation API returned `Sign in to use your learning path.`; therefore lesson opening, saved attempts, read-only submitted results, draft restoration, and authenticated skill-scoped Recent work remain **OWNER PENDING**. Mobile browser interaction also remains **OWNER PENDING**. Responsive CSS and navigation structure were inspected, but this is not a substitute for learner browser QA.
+- Curriculum 1.2.0, learner records, authentication, D1 binding, Writing review, Listening audio and G Learning assets were not changed. No D1 action, import or deployment was performed.

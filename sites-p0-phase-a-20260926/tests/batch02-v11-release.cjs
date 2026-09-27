@@ -31,10 +31,10 @@ assert(ui.includes('summarizeFoundationResults(attempt?.results)'),'Keep server-
 assert(ui.includes('foundation-result-summary'),'Keep result UI');
 assert(ui.includes('previousSkill.current===skill'),'Keep fast cross-skill navigation');
 assert(ui.includes("if(attempt?.status==='started'){try{await saveDraft()}"),'Keep draft-save transition');
-assert(ui.includes('Starter learning path'),'Remove obsolete Foundation Demo aria name');
+assert(ui.includes('aria-label="Skill navigation"'),'Keep accessible skill navigation in the focused catalog');
 assert(css.includes('.foundation-result-summary'),'Keep responsive score styles');
 assert(helper.includes('const total=correct+incorrect'),'Never score an open response as objective');
 assert(page.includes('Self-Learning English')&&metadata.includes('Self-Learning English'),'Use current owner-selected display brand');
 assert(!metadata.includes('english-writing-coach.giangrr.chatgpt.site'),'Do not hardcode obsolete URL');
-assert(source('public/favicon.svg').includes('>S</text>'),'Favicon must align with renamed Site');
+assert.equal(source('public/favicon.svg'),source('public/branding/english-app-icon.svg'),'Favicon must match the approved G Learning English icon');
 console.log(JSON.stringify({result:'PASS',integratedBase:'v11 UI source checkpoint',contentVersion:'1.2.0',lessons:29,activities:190,newLessons:8,serverScorePreserved:true,tabPlayerPreserved:true,displayBrand:'Self-Learning English',noDatabaseOperation:true}));
