@@ -25,7 +25,7 @@
       "C1",
       "C2"
     ],
-    "principle": "Proficiency-based with separate age/interests/topic appropriateness; the seed only includes A2 and B1 content.",
+    "principle": "Proficiency-based with separate age and topic suitability. The first real-content batch adds A1 entry points while A2/B1 coverage is still partial; CEFR tags describe targets, not certified learner achievement.",
     "learning_modes": [
       "AI Plan",
       "Course Catalog",
@@ -45,21 +45,21 @@
       "VOC-A1-01",
       "VOC-A1-02",
       "REA-A1-01",
-      "REA-A2-02",
       "WRI-A1-01",
       "GRA-A2-01",
-      "GRA-B1-01",
       "VOC-A2-01",
-      "VOC-B1-01",
       "REA-A2-01",
-      "REA-B1-01",
+      "REA-A2-02",
       "LIS-A2-01",
-      "LIS-B1-01",
       "WRI-A2-01",
-      "WRI-B1-01",
       "SPE-A2-01",
-      "SPE-B1-01",
-      "PRO-A2-01"
+      "PRO-A2-01",
+      "GRA-B1-01",
+      "VOC-B1-01",
+      "REA-B1-01",
+      "LIS-B1-01",
+      "WRI-B1-01",
+      "SPE-B1-01"
     ],
     "prerequisites": []
   },
@@ -4593,7 +4593,7 @@
   ],
   "integrated_journey": {
     "id": "FOUNDATION-JOURNEY-A1-01",
-    "title": "Start here: school and daily life",
+    "title": "Starter route: A1 foundations and available skill samples",
     "steps": [
       "GRA-A1-01",
       "VOC-A1-01",
