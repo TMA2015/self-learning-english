@@ -1,0 +1,296 @@
+{
+  "schema": "ai-english-tutor.teacher-coaching",
+  "schema_version": 1,
+  "status": "pilot_not_imported_or_deployed",
+  "lesson_id": "GRA-A1-01",
+  "content_version": "1.1.0",
+  "source_note": "Original authored coaching for the existing ten be/am/is/are questions. Hints are unscored; incorrect-choice diagnosis is a likely misconception, not proof of the child's reasoning.",
+  "concepts": [
+    {
+      "id": "grammar.be.agreement",
+      "goal": "Choose the form of be that agrees with the printed subject.",
+      "prerequisites": [
+        "grammar.subject_pronouns"
+      ],
+      "misconception_codes": [
+        "wrong_be_agreement",
+        "omitted_be",
+        "duplicate_subject"
+      ]
+    },
+    {
+      "id": "grammar.be.negative",
+      "goal": "Use the correct negative form of be without do/does.",
+      "prerequisites": [
+        "grammar.be.agreement"
+      ],
+      "misconception_codes": [
+        "wrong_be_agreement",
+        "do_with_be",
+        "missing_not"
+      ]
+    },
+    {
+      "id": "grammar.be.question",
+      "goal": "Use be + subject order in direct questions and be in short answers.",
+      "prerequisites": [
+        "grammar.be.agreement"
+      ],
+      "misconception_codes": [
+        "statement_order",
+        "do_with_be",
+        "wrong_be_agreement"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "GRA-A1-01-Q1",
+      "concept_id": "grammar.be.agreement",
+      "mode": "guided",
+      "hints": [
+        "Look at 'My cousins'. Does this mean one person or more than one?",
+        "For a plural subject, choose the plural present form of be."
+      ],
+      "likely_distractor_errors": {
+        "A": "wrong_be_agreement",
+        "C": "wrong_be_agreement",
+        "D": "omitted_be"
+      },
+      "followup_item_id": "GRA-A1-01-R1"
+    },
+    {
+      "id": "GRA-A1-01-Q2",
+      "concept_id": "grammar.be.agreement",
+      "mode": "guided",
+      "hints": [
+        "Which subject pronoun begins the sentence?",
+        "The subject 'I' has its own present form of be."
+      ],
+      "likely_distractor_errors": {
+        "A": "wrong_be_agreement",
+        "C": "wrong_be_agreement",
+        "D": "omitted_be"
+      },
+      "followup_item_id": "GRA-A1-01-R1"
+    },
+    {
+      "id": "GRA-A1-01-Q3",
+      "concept_id": "grammar.be.agreement",
+      "mode": "independent",
+      "hints": [
+        "The library is one place, not a group of places.",
+        "Choose the singular form of be; do not repeat the printed subject."
+      ],
+      "likely_distractor_errors": {},
+      "followup_item_id": "GRA-A1-01-R1"
+    },
+    {
+      "id": "GRA-A1-01-Q4",
+      "concept_id": "grammar.be.question",
+      "mode": "guided",
+      "hints": [
+        "This is a direct question using be, not an ordinary action verb.",
+        "Put the correct form of be before the subject. Do not use does with be."
+      ],
+      "likely_distractor_errors": {
+        "A": "do_with_be",
+        "B": "statement_order",
+        "D": "wrong_be_agreement"
+      },
+      "followup_item_id": "GRA-A1-01-R3"
+    },
+    {
+      "id": "GRA-A1-01-Q5",
+      "concept_id": "grammar.be.negative",
+      "mode": "guided",
+      "hints": [
+        "Identify the subject and notice that the prompt asks for a negative.",
+        "Use the matching form of be followed by not. The subject is already printed."
+      ],
+      "likely_distractor_errors": {},
+      "followup_item_id": "GRA-A1-01-R2"
+    },
+    {
+      "id": "GRA-A1-01-Q6",
+      "concept_id": "grammar.be.question",
+      "mode": "independent",
+      "hints": [
+        "Read the question and find its subject.",
+        "Short affirmative answers reuse the form of be that agrees with the pronoun; do not end with a contraction."
+      ],
+      "likely_distractor_errors": {
+        "A": "wrong_be_agreement",
+        "C": "incomplete_short_answer",
+        "D": "wrong_be_agreement"
+      },
+      "followup_item_id": "GRA-A1-01-R4"
+    },
+    {
+      "id": "GRA-A1-01-Q7",
+      "concept_id": "grammar.be.agreement",
+      "mode": "transfer",
+      "hints": [
+        "Which word is the subject: 'books' or 'shelf'?",
+        "A plural subject needs the corresponding plural present form of be."
+      ],
+      "likely_distractor_errors": {
+        "B": "wrong_be_agreement",
+        "C": "wrong_be_agreement",
+        "D": "omitted_be"
+      },
+      "followup_item_id": "GRA-A1-01-R1"
+    },
+    {
+      "id": "GRA-A1-01-Q8",
+      "concept_id": "grammar.be.question",
+      "mode": "independent",
+      "hints": [
+        "The missing words come at the start of a question.",
+        "First use the be form for one teacher, then the full subject. The prompt already shows 'here?'."
+      ],
+      "likely_distractor_errors": {},
+      "followup_item_id": "GRA-A1-01-R3"
+    },
+    {
+      "id": "GRA-A1-01-Q9",
+      "concept_id": "grammar.be.negative",
+      "mode": "transfer",
+      "hints": [
+        "This describes a person's feeling in a negative sentence.",
+        "With be, add not to the correct be form; don't put does before be."
+      ],
+      "likely_distractor_errors": {
+        "A": "missing_not",
+        "B": "do_with_be",
+        "D": "wrong_be_agreement"
+      },
+      "followup_item_id": "GRA-A1-01-R2"
+    },
+    {
+      "id": "GRA-A1-01-Q10",
+      "concept_id": "grammar.be.agreement",
+      "mode": "retrieval",
+      "hints": [
+        "The printed subject is 'I'.",
+        "Choose its present form of be. Type only the missing word."
+      ],
+      "likely_distractor_errors": {},
+      "followup_item_id": "GRA-A1-01-R1"
+    }
+  ],
+  "remediation": [
+    {
+      "id": "GRA-A1-01-R1",
+      "concept_id": "grammar.be.agreement",
+      "mode": "independent",
+      "type": "single_choice",
+      "prompt": "Choose the complete sentence that describes two friends at school.",
+      "options": [
+        {
+          "id": "A",
+          "text": "My friends is in the library."
+        },
+        {
+          "id": "B",
+          "text": "My friends are in the library."
+        },
+        {
+          "id": "C",
+          "text": "My friends am in the library."
+        }
+      ],
+      "answer": {
+        "correct_option_id": "B"
+      },
+      "explanation_en": "Friends is plural; it agrees with are. This is a different context from the original item.",
+      "error_focus": "wrong_be_agreement"
+    },
+    {
+      "id": "GRA-A1-01-R2",
+      "concept_id": "grammar.be.negative",
+      "mode": "independent",
+      "type": "single_choice",
+      "prompt": "Choose the correct sentence about a class that is not noisy.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Our class doesn't be noisy."
+        },
+        {
+          "id": "B",
+          "text": "Our class aren't noisy."
+        },
+        {
+          "id": "C",
+          "text": "Our class isn't noisy."
+        }
+      ],
+      "answer": {
+        "correct_option_id": "C"
+      },
+      "explanation_en": "Our class is singular. Negate be itself, without a do/does auxiliary.",
+      "error_focus": "do_with_be"
+    },
+    {
+      "id": "GRA-A1-01-R3",
+      "concept_id": "grammar.be.question",
+      "mode": "independent",
+      "type": "single_choice",
+      "prompt": "Ask whether the computer room is open.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Does the computer room is open?"
+        },
+        {
+          "id": "B",
+          "text": "Is the computer room open?"
+        },
+        {
+          "id": "C",
+          "text": "The computer room is open?"
+        }
+      ],
+      "answer": {
+        "correct_option_id": "B"
+      },
+      "explanation_en": "In a standard be question, put is before the subject; do not add does.",
+      "error_focus": "statement_order"
+    },
+    {
+      "id": "GRA-A1-01-R4",
+      "concept_id": "grammar.be.question",
+      "mode": "independent",
+      "type": "single_choice",
+      "prompt": "Complete the short reply to 'Are your cousins here?'",
+      "options": [
+        {
+          "id": "A",
+          "text": "Yes, they are."
+        },
+        {
+          "id": "B",
+          "text": "Yes, they is."
+        },
+        {
+          "id": "C",
+          "text": "Yes, they're."
+        }
+      ],
+      "answer": {
+        "correct_option_id": "A"
+      },
+      "explanation_en": "A short affirmative reply normally ends with the full form are, not the contraction they're.",
+      "error_focus": "incomplete_short_answer"
+    }
+  ],
+  "fallback_when_uncertain": "I can see the response does not fit, but it may have several causes. Compare the subject and the form of be, then try the new question. I won't label your mistake more precisely without enough evidence.",
+  "evidence_policy": {
+    "hints_unscored": true,
+    "original_error_immutable": true,
+    "followup_new_observation": true,
+    "level_from_single_lesson": false,
+    "short_answer_misconception": "uncertain_until_validated"
+  }
+}
