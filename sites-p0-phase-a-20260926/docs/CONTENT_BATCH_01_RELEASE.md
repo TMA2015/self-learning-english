@@ -18,9 +18,12 @@
 - Existing Grammar A2 two-step hint pilot is enabled for content v1.1.0 as its questions are unchanged; hints in new A1 lessons are **not yet** implemented.
 - Content import accepts at most 1 MB in the browser; API caps requests at 1.2 MB. This is a bounded cumulative-package step, not a finished long-term modular package service. Split into modules before this ceiling matters.
 
+**Reusable lesson standard:** Read `docs/CONTENT_AUTHORING_STANDARD.md` before producing further batches. Run `node tests/content-quality.cjs` to catch missing examples, duplicate choices, accepted-answer formatting and missing review contracts. New lessons must meet the standard; older seed gaps are documented rather than silently declared complete.
+
 ## Required Work checks (from nested source root)
 
 ```sh
+node tests/content-quality.cjs
 node tests/foundation-coaching.cjs
 node tests/run.cjs
 node tests/academic.cjs
