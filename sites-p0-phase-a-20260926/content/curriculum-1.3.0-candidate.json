@@ -6889,7 +6889,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "The task asks for ability using can/can't. Use can't ride or cannot ride, with the base verb ride; don't doesn't describe ability in the requested form."
+            "explanation_en": "The task specifically asks for ability with can/can't. Use can't ride or cannot ride, followed by the base verb ride. 'Doesn't ride' is grammatical elsewhere, but it does not use the requested modal form."
           },
           "skill_tags": [
             "grammar.modals_can"
