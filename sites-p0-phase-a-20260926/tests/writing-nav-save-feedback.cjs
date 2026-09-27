@@ -33,6 +33,8 @@ assert.ok(player.includes('Draft restored · saved previously'),'restoration sta
 assert.ok(player.includes("draftFeedback.kind==='error'?'Retry save':'Save draft'"),'manual retry');
 assert.ok(player.includes('role="status" aria-live="polite"'),'accessible status');
 assert.ok(player.includes('aria-hidden="true">{draftSaveText}</p>'),'visible confirmation near Save draft button');
+assert.ok(player.includes('{editable?<><div className="learning-choices">'),'action and status share an editable JSX fragment');
+assert.ok(player.includes('aria-hidden="true">{draftSaveText}</p></>:<><p>{attempt.status'),'editable JSX branch closes before read-only results');
 assert.ok(css.includes('.foundation-draft-feedback.is-error'),'clear failure visual');
 
 const transitions=player.split("useEffect(()=>{if(previousSkill.current===skill)")[1]?.split("},[skill]);")[0];
