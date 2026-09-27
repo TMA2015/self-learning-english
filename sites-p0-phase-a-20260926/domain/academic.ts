@@ -36,7 +36,7 @@ function validateShape(raw:unknown):string[]{
   const matching=samples.filter(x=>Array.isArray(value)?Array.isArray(x):value===null?x===null:typeof x===typeof value&&x!==null&&!Array.isArray(x));
   if(!matching.length){errors.push(`${path}: unexpected value type.`);return}
   if(Array.isArray(value)){const items=matching.flat();for(const item of value)if(items.length)shape(item,items,path+'[]');else if(typeof item!=='string')errors.push(`${path}: unexpected array item.`)}
-  else if(value&&typeof value==='object'){for(const [key,child] of Object.entries(value)){const candidates=matching.filter(x=>Object.hasOwn(x,key)).map(x=>x[key]);if(!candidates.length)errors.push(`${path}.${key}: unknown field; content-only import.`);else shape(child,candidates,path+'.'+key)}}
+  else if(value&&typeof value==='object'){for(const [key,child] of Object.entries(value)){const explicit=matching.filter(x=>Object.hasOwn(x,key)).map(x=>x[key]);const candidates=explicit.length?explicit:path==='source.rubrics'&&/^RUBRIC-(WRITING|SPEAKING|PRONUNCIATION)-[A-Z0-9]+$/.test(key)?Object.values(seed.rubrics):[];if(!candidates.length)errors.push(`${path}.${key}: unknown field; content-only import.`);else shape(child,candidates,path+'.'+key)}}
  };
  shape(raw,[seed]);const s=raw as Seed;if(!s||typeof s!=='object'||Array.isArray(s))return ['Expected a JSON object.'];
  const rootKeys=new Set(Object.keys(seed));for(const k of Object.keys(s))if(!rootKeys.has(k))errors.push(`Unknown top-level field: ${k}. Learner state is never imported.`);
