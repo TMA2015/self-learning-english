@@ -107,10 +107,10 @@ function projectTrack(blueprint,curriculumId,attempts){
  if(!track)fail('Unknown track '+curriculumId);
  // The current attempt store is external; no migration, mutation or duplicate evidence is performed here.
  const relevant=attempts.filter(a=>a.packageId===blueprint.source.package_id&&a.version===blueprint.source.content_version);
- const byId=indexOfLessons(blueprint);
+ const trackIds=new Set(track.lesson_ids);
  const latest=new Map(),evidenceIds=new Set();
  for(const attempt of relevant){
-  if(!byId.has(attempt.lessonId)||!attempt.id)continue;
+  if(!trackIds.has(attempt.lessonId)||!attempt.id)continue;
   const prev=latest.get(attempt.lessonId);
   const at=attempt.submittedAt??attempt.createdAt??0;
   if(!prev||at>(prev.submittedAt??prev.createdAt??0))latest.set(attempt.lessonId,attempt);
