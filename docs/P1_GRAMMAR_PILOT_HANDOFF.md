@@ -1,6 +1,6 @@
 # P1 Grammar A2 content pilot — release handoff
 
-**State:** Candidate imported into live Site version 8 as Foundation content `1.0.2`, according to the owner's importer result. Learner UI regression tests are outstanding. Keep the learner's paused Diagnostic draft untouched.
+**State:** Candidate imported into live Site version 8 as Foundation content `1.0.2`, and learner screenshots confirm new-attempt rendering and reported saved completion. Reload and regression checks remain outstanding. Keep the learner's paused Diagnostic draft untouched.
 
 > **Owner-verified live import (2026-09-27):** The Parent View importer displayed `Add 0 / Update 2 / Skip 11 / Conflict 0`. After explicit confirmation it reported `Import complete: 0 added, 2 updated, 11 skipped. Learner records were not changed.` Export links appeared for both `v1.0.0` and `v1.0.2`, each listing 13 lessons. This confirms import completion as reported by the live Site, but **learner-facing 10-question playback, an old attempt and the paused Diagnostic have not yet been rechecked after import**. No Site code deployment occurred in this content-only import.
 
@@ -31,6 +31,8 @@ Open Parent View → Foundation content importer (admin account); select the can
 If any counts, IDs, digest or conflicts differ, STOP without importing and inspect the actual package state. Check that a current `1.0.1` import is not already installed; the above expected counts assume v1.0.0 is the latest.
 
 The owner confirmed the content-only import. No migration or build was requested. Next, verify the published lesson view loads v1.0.2, has ten questions and both negative/question forms. Start **a new attempt** to test the new version; old revisions remain pinned to their original package version. Confirm the old `1.0.0` Writing pending-review record and paused Diagnostic are still accessible.
+
+> **Owner-verified learner screenshots (2026-09-27):** New Grammar A2 attempt `ae1c45f4` displays `content 1.0.2 · started` and expanded explanation plus eight examples. The end of the completed lesson shows Q9 and Q10, correct grading and specific explanations, followed by `Your results are saved` and `Retake lesson`. This confirms 10-question rendering, submission and reported save. A reload check of this completed attempt and regression checks on old Writing / paused Diagnostic are still outstanding.
 
 ## Do not call the pilot a finished teaching UI
 The existing frontend renders a paragraph of explanation and a list of examples; it displays answer explanations after submission. It does not yet provide per-question pre-answer hints, distractor-specific selection feedback or automatic targeted follow-up. Those require an independently reviewed player/content schema change.
