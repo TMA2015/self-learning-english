@@ -1,0 +1,16 @@
+{
+  "batch_id": "BATCH03",
+  "status": "source_quote_map_not_independent_review",
+  "lesson_evidence": {
+    "REA-A1-03": {
+      "REA-A1-03-Q1": "Our art club is meeting at the community hall",
+      "REA-A1-03-Q2": "outside the school library",
+      "REA-A1-03-Q3": "9:30 a.m.",
+      "REA-A1-03-Q4": "my father can give us a lift",
+      "REA-A1-03-Q5": "Bring a pencil and your sketchbook",
+      "REA-A1-03-Q6": "the club will provide them",
+      "REA-A1-03-Q7": "If it rains, we will eat in the hall instead",
+      "REA-A1-03-Q8": "reply by Thursday"
+    }
+  }
+}
