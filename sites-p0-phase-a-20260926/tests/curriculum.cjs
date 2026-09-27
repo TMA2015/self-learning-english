@@ -2,7 +2,7 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const {execFileSync}=require('node:child_process');
-execFileSync(process.execPath,['node_modules/typescript/bin/tsc','domain/academic.ts','application/academic-service.ts','--outDir','.sites-runtime/curriculum-tests','--module','commonjs','--target','es2022','--resolveJsonModule','--esModuleInterop','--skipLibCheck'],{stdio:'inherit'});
+execFileSync(process.execPath,['node_modules/typescript/bin/tsc','domain/content-model.ts','domain/academic.ts','application/academic-service.ts','--outDir','.sites-runtime/curriculum-tests','--module','commonjs','--target','es2022','--resolveJsonModule','--esModuleInterop','--skipLibCheck'],{stdio:'inherit'});
 fs.mkdirSync('.sites-runtime/curriculum-tests',{recursive:true});
 fs.writeFileSync('.sites-runtime/curriculum-tests/package.json','{"type":"commonjs"}');
 const {academicService}=require('../.sites-runtime/curriculum-tests/application/academic-service.js');
