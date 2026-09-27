@@ -22,6 +22,8 @@ assert(page.includes('"pronunciation","writing"] as View[]'),'Writing shares the
 assert(page.includes('sharedCatalog={foundationCatalog} onCatalog={setFoundationCatalog}'),'Parent reuses account-scoped in-memory catalog');
 assert(ui.includes('if(!sharedCatalog)void refresh()'),'Fetch catalog only when no parent cache exists');
 assert(ui.includes('previousSkill.current===skill'),'Skill transitions preserve player instance');
+assert(ui.includes('++recordingGeneration.current;if(media.current?.state===\'recording\')media.current.stop()'),'Switching skills cancels live recordings');
+assert(ui.includes('if(capture!==recordingGeneration.current)return'),'Old recording callbacks cannot leak into a different skill');
 assert(ui.includes("if(attempt?.status==='started'){try{await saveDraft()}"),'Save draft before clearing selected lesson');
 assert(ui.includes('resultSummary=summarizeFoundationResults(attempt?.results)'),'Summary must read server-graded attempt results');
 assert(ui.includes('!editable&&attempt&&(attempt.results?.length??0)>0'),'Do not display a score before submission');
