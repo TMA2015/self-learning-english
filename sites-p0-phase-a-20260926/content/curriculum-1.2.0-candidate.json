@@ -4639,11 +4639,11 @@
             },
             {
               "id": "C",
-              "text": "the two"
+              "text": "many"
             },
             {
               "id": "D",
-              "text": "some an"
+              "text": "two"
             }
           ],
           "answer": {
@@ -4813,11 +4813,11 @@
             },
             {
               "id": "C",
-              "text": "two an"
+              "text": "many"
             },
             {
               "id": "D",
-              "text": "a few an"
+              "text": "some"
             }
           ],
           "answer": {
@@ -6688,7 +6688,7 @@
           "options": [
             {
               "id": "A",
-              "text": "I liked it because we tested the model we had built."
+              "text": "I liked it because we tested our model together."
             },
             {
               "id": "B",
@@ -6707,7 +6707,7 @@
             "correct_option_id": "A"
           },
           "feedback": {
-            "explanation_en": "A reason and concrete activity develop the idea."
+            "explanation_en": "A clear reason and a concrete activity develop the idea using language suitable for this lesson."
           },
           "skill_tags": [
             "writing.idea_development"
