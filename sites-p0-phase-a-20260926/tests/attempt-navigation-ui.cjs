@@ -35,7 +35,13 @@ assert.ok(source.includes("screen==='practice'&&<>"),'practice should be isolate
 assert.ok(source.includes("setScreen('overview')"),'lesson selection opens overview');
 assert.ok(source.includes("setScreen('practice')"),'start or resume practice opens player');
 assert.ok(source.includes("await saveDraft()"),'unsaved draft must not be discarded');
-assert.ok(source.includes("if(attempt?.status==='started'){try{await saveDraft();await refresh()}catch(e){if(transition===skillTransition.current)"),'sidebar skill transitions must refresh Recent work after saving');
+const transitionEffect=source.split("useEffect(()=>{if(previousSkill.current===skill)")[1]?.split("},[skill]);")[0];
+assert.ok(transitionEffect,'sidebar skill transition effect missing');
+assert.equal((transitionEffect.match(/await saveDraft\\(\\)/g)||[]).length,1,'sidebar transition must save a draft once');
+assert.equal((transitionEffect.match(/await refresh\\(\\)/g)||[]).length,1,'sidebar transition must refresh Recent Work exactly once');
+assert.ok(transitionEffect.includes("if(attempt?.status==='started'&&!prepared)"),'already-prepared top route must not repeat save/refresh');
+assert.ok(source.includes("if(next!==skill&&onSelectSkill)preparedSkillSwitch.current=next"),'top skill route records its completed pre-navigation save');
+assert.ok(source.includes("const prepared=preparedSkillSwitch.current===skill;preparedSkillSwitch.current=null;"),'preparation marker must be consumed on transition');
 assert.ok(source.includes("latestAttemptForLesson(catalog?.attempts??[],id)"),'lesson must use its own latest attempt');
 assert.ok(source.includes("recentSkillWork(catalog.attempts,catalog.lessons,skill)"),'recent work is skill scoped');
 assert.ok(source.includes('onClick={()=>void chooseSkill(l.module)}'),'seven cards select skills, not starter lessons');
@@ -43,4 +49,4 @@ assert.ok(!source.includes("complete?'Attempt saved'"),'ambiguous old label must
 assert.ok(source.includes('Incorrect · Review explanation'),'completed mistakes must not imply editable old results');
 assert.ok(page.includes('onSelectSkill={next=>navigate(next as View)}'),'connect child navigation to the existing app');
 assert.ok(!source.includes('primary-skill-overlay-draft'),'do not attach unrelated math assessment');
-console.log('PASS: latest per lesson, draft preference by recency, status, skill filtering, isolated views and safe navigation.');
+console.log('PASS: latest per lesson, draft preference by recency, status, skill filtering, isolated views and single-refresh skill navigation.');
