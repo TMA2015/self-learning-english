@@ -1,0 +1,19 @@
+# Controlled Curriculum 1.3.0 integration — app compatibility stage
+
+**Current production:** existing private Self-Learning English v15, deployed Sites source `d327285b0d07aefece4585c0cb279ccd99a9e5cb`; curriculum 1.2.0 with 29 lessons and 190 activities. Owner's authenticated v15 UX acceptance: 6/6. Do not recreate Site or change private access.
+
+**Approved academic source, held constant:** Academic Batch03 Draft PR #12, GitHub commit `711200fd1359b3cb02ecaf9b1f7f3da6615c045a`, file `content/curriculum-1.3.0-candidate.json`. Independent Round 2 reported 60 PASS and the only BLOCK was incorrect Q7 key; owner reports independent final focused PASS on corrected source Q7: A = some milk, B = many milk. CI passed at the approved exact academic checkpoint. Academic approval is for this pinned content, NOT authorization to import it without a production Preview Import.
+
+**This compatibility branch** derives strictly from approved v15 GitHub checkpoint `9cf04903661675315037a687e43d5245969e57f1`. It stages only (1) four new grammar tag mappings in `domain/academic.ts`, (2) bilingual v1.3.0 catalog grouping in the existing `content/lesson-groups-v1.json`, and (3) checks/docs/workflow. Do not copy the older academic branch's application shell, overwrite audio, alter auth or import content. Catalog grouping metadata references future IDs but remains safe with existing v1.2 content because empty groups are filtered; existing 29 group memberships stay identical. Route still comes from server `course.sequence` rather than taxonomy.
+
+## Integration gates
+
+1. Reconcile this code-only branch against the actual deployed v15 Sites source. Run 1.3 compatibility CI, existing v15 Foundation/Writing tests, full application tests and production build. Work should check that no Site-identity, D1, auth, audio or learner-record code is changed. Stage and report; **do not deploy or import without owner authorization**.
+2. When the owner approves a controlled code release, deploy only compatible app code to the EXISTING private Site. Report actual deployed Sites source SHA and version; authenticated learner browser QA remains owner-pending if Work has no eligible signed-in session.
+3. Only after compatible code is live, use the approved cumulative JSON from PR #12 at exact SHA `711200fd1359b3cb02ecaf9b1f7f3da6615c045a` in Parent View → **Preview Import**. Before confirm, export current live source. Check that original 29 entire lesson objects match the reconciled v1.2 production snapshot. Conditional preview expectation: **Add 7 / Update 0 / Skip 29 / Conflict 0**. STOP on any deviation, even if seven new IDs are present.
+4. The owner authorizes one actual import only after inspecting its Preview. Verify export is 36 lessons / 251 activities, package ID unchanged, source version 1.3.0, Q7 marked A = some milk, and all original 29 items/history unchanged. Preserve all drafts, attempts, Writing reviews, Listening safeguards, auth, D1 and G Learning identity.
+5. Manual learner QA on desktop/mobile: Grammar can/can't, past-simple forms, some/any, comparisons; Reading passage and evidence; Writing open paragraph pending adult review; Recent Work by skill, draft restoration and visible confirmation; no audio replacement. Do not conflate automated success with authenticated QA.
+
+**Anti-scope:** Curriculum Blueprint PR #13 is expressly deferred by the owner. Do not merge it, deploy its composer, create AI curriculum generation UI, copy named publishers' lessons or delay 1.3.0 for it. Preserve content/skill ID stability as a low-cost future compatibility hook only.
+
+**Rollback/stop:** If the deployed v15 source differs unexpectedly from this branch or code/tests fail, stop without claiming v16 readiness. On a failed import Preview, do not confirm or mutate D1. Do not migrate/reset existing learner data or re-import the obsolete unreconciled 1.2.0 candidate.
