@@ -28,8 +28,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-          cache: 'pnpm'
-          cache-dependency-path: sites-p0-phase-a-20260926/pnpm-lock.yaml
       - name: Install exact dependencies
         run: pnpm install --frozen-lockfile
       - name: Validate G Learning identity
