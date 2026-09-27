@@ -1,0 +1,37 @@
+name: Curriculum Blueprint v1 QA
+
+on:
+  pull_request:
+    paths:
+      - 'sites-p0-phase-a-20260926/content/curriculum-blueprint-v1.json'
+      - 'sites-p0-phase-a-20260926/domain/curriculum-blueprint-v1.cjs'
+      - 'sites-p0-phase-a-20260926/tests/curriculum-blueprint-v1.cjs'
+      - 'sites-p0-phase-a-20260926/docs/CURRICULUM_BLUEPRINT_V1.md'
+      - '.github/workflows/curriculum-blueprint-v1-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install exact dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Validate source-pinned curriculum prototype
+        run: node tests/curriculum-blueprint-v1.cjs
+      - name: Guard corrected Academic Batch 03 and existing Batch 02
+        run: node tests/content-batch03.cjs && node tests/content-batch02.cjs
+      - name: Production build (source-only, no import or deployment)
+        run: pnpm run build
