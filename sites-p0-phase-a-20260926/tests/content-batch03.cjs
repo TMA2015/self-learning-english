@@ -15,6 +15,7 @@ const groups=json('content/lesson-groups-1.3.0-candidate.json');
 const academic=text('domain/academic.ts');
 const reconciled=json('content/reviews/batch03-round1-reconciliation.json');
 const retest=json('content/reviews/batch03-independent-retest-packet-v2.json');
+const round2=json('content/reviews/batch03-round2-key-reconciliation.json');
 const tags=new Set([...academic.matchAll(/'([a-z]+\.[a-z_]+)'\s*:/g)].map(m=>m[1]));
 const norm=s=>s.toLowerCase().trim().replace(/[’]/g,"'").replace(/\s+/g,' ').replace(/[.!?]+$/g,'');
 const expected=['GRA-A1-07','GRA-A2-02','GRA-A2-03','GRA-A2-04','VOC-A2-02','REA-A1-03','WRI-A1-03'];
@@ -45,6 +46,12 @@ for(const l of added)for(const q of l.activities) {
 }
 assert.ok(reconciled.items.every(x=>x.current_status==='CORRECTED_AWAITING_INDEPENDENT_RETEST'));
 assert.equal(reconciled.restrictions.live_import_permitted,false);
+assert.deepEqual(round2.reported_counts,{PASS:60,REVISE:0,BLOCK:1,total:61});
+assert.equal(round2.blocked_item.id,'GRA-A2-03-Q7');
+assert.equal(round2.blocked_item.before_correct_option_id,'B');
+assert.equal(round2.blocked_item.after_correct_option_id,'A');
+assert.equal(round2.blocked_item.independent_retest_verdict,'PENDING');
+assert.equal(round2.restrictions.live_import_permitted,false);
 assert.equal(added.reduce((s,l)=>s+l.activities.length,0),61);
 assert.equal(next.lessons.flatMap(x=>x.activities).length,251);
 assert.equal(new Set(next.lessons.map(x=>x.id)).size,36);
@@ -112,6 +119,16 @@ assert.ok(item('GRA-A2-03-Q10').prompt.includes('some or any'));
 assert.ok(item('VOC-A2-02-Q2').prompt.includes('pack or book'));
 assert.ok(item('REA-A1-03-Q4').prompt.includes('alternative to taking the bus'));
 assert.deepEqual(item('REA-A1-03-Q6').skill_tags,['reading.detail']);
+// A semantic key guard, not just checking that the selected option ID exists.
+const milk= item('GRA-A2-03-Q7');
+assert.equal(milk.type,'single_choice');
+assert.equal(milk.answer.correct_option_id,'A','some milk must be the only marked correct option');
+assert.equal(milk.options.find(o=>o.id===milk.answer.correct_option_id).text,'some milk');
+assert.equal(milk.options.find(o=>o.id==='B').text,'many milk');
+assert.match(milk.prompt,/recipe.*milk as a liquid ingredient/i);
+assert.match(milk.feedback.explanation_en,/Some milk treats milk as an uncountable ingredient/i);
+assert.equal(packetById.get('GRA-A2-03-Q7').answer.correct_option_id,'A','review packet key must match lesson and cumulative curriculum');
+assert.equal(packetById.get('GRA-A2-03-Q7').options[0].text,'some milk');
 assert.ok(item('REA-A1-03-Q4').feedback.explanation_en.includes('does not confirm'));
 assert.ok(item('GRA-A2-03-Q10').feedback.explanation_en.includes('not proof'));
 assert.deepEqual(item('GRA-A2-02-Q2').answer.accepted_answers,["didn't watch","did not watch"]);
@@ -130,4 +147,4 @@ assert.deepEqual(new Set(map.nodes.map(x=>x.lesson_id)),new Set(next.lessons.map
 assert.equal(new Set(map.nodes.map(x=>x.lesson_id)).size,36);
 for(const node of map.nodes)assert.ok(node.prerequisite_lesson_ids.every(id=>nextById.has(id)),node.lesson_id+' unknown dependency');
 assert.ok(Buffer.byteLength(JSON.stringify(next),'utf8')<1000000);
-console.log(JSON.stringify({result:'PASS',version:next.schema_version,priorLessonsPreserved:29,addedLessons:7,addedActivities:61,objectiveActivities:objective,reviewRequired:open,totalLessons:36,totalActivities:251,readingEvidenceLinks:Object.keys(refs).length,groupedLessons:assigned.size,round1ResolvedPendingRetest:24,independentAcademicReview:'RETEST PENDING',liveImport:'NOT PERFORMED'}));
+console.log(JSON.stringify({result:'PASS',version:next.schema_version,priorLessonsPreserved:29,addedLessons:7,addedActivities:61,objectiveActivities:objective,reviewRequired:open,totalLessons:36,totalActivities:251,readingEvidenceLinks:Object.keys(refs).length,groupedLessons:assigned.size,round1ResolvedPendingRetest:24,round2Pass:60,round2KeyCorrected:1,independentAcademicReview:'FOCUSED KEY CONFIRMATION PENDING',liveImport:'NOT PERFORMED'}));
