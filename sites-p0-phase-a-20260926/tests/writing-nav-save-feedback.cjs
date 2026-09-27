@@ -33,7 +33,10 @@ assert.ok(player.includes('Draft restored · saved previously'),'restoration sta
 assert.ok(player.includes("draftFeedback.kind==='error'?'Retry save':'Save draft'"),'manual retry');
 assert.ok(player.includes('role="status" aria-live="polite"'),'accessible status');
 assert.ok(player.includes('aria-hidden="true">{draftSaveText}</p>'),'visible confirmation near Save draft button');
-assert.ok(player.includes('{editable?<><div className="learning-choices">'),'action and status share an editable JSX fragment');
+const editableStart=player.indexOf('{editable?<>');
+const editableEnd=player.indexOf('aria-hidden="true">{draftSaveText}</p></>:<><p>{attempt.status',editableStart);
+const editableActions=player.slice(editableStart,editableEnd);
+assert.ok(editableStart>=0&&editableEnd>editableStart&&editableActions.includes('<div className="learning-choices">')&&editableActions.includes('Save draft')&&editableActions.includes('Submit my work'),'action and draft status still share the editable JSX fragment with optional Listening validation before actions');
 assert.ok(player.includes('aria-hidden="true">{draftSaveText}</p></>:<><p>{attempt.status'),'editable JSX branch closes before read-only results');
 assert.ok(css.includes('.foundation-draft-feedback.is-error'),'clear failure visual');
 

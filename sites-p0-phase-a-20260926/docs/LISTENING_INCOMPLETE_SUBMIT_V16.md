@@ -1,0 +1,15 @@
+# v16 Listening incomplete-submit feedback — mobile UX hotfix
+
+**Owner finding:** On authenticated iPhone learner flow in live v16, one unanswered Listening question leaves Submit clickable but produces no visible explanation. Completing the missing answer then permits scoring normally.
+
+**Source diagnosis:** The existing server submission gate rejects any blank answer. The client catches the response and renders the error above the entire Foundation page, while the active player is scrolled into view lower down. Thus the error is not visible at the bottom action buttons on small screens. Audio-completion safeguard and scoring remain valid.
+
+**Scope:** code-only, source-based on approved PR #14 `d1c969842b63af9472d597017e9354869d544d0f`, which corresponds to current deployed v16 Sites source `c079c8a7f939630920a0dd532cca43f334b13b47` after Work reconciliation. No curriculum content changes, no import, schema or D1 operations.
+
+**UX contract:** for Listening, show N / total answered and how many remain. When Submit is clicked with a missing answer, do not attempt submit; announce an inline warning next to the action area, highlight missing fieldsets, and scroll/focus the first incomplete question (iPhone/desktop and keyboard). Whitespace-only answers count as incomplete. As questions are answered, the counter updates and warnings disappear once complete. On a complete attempt, retain the existing server-confirmed draft-save-then-submit sequence and result scoring. If a backend/network failure occurs, show its message beside the Submit action as well as the existing global error. The button remains available after genuine audio playback so clicking it can explain what remains; disabling it for incomplete answers would provide no actionable feedback. While audio has not completed, the previous playback restriction remains.
+
+**Safety:** the server remains the authority for complete answers, audio playback proof, immutable submitted results and evidence scoring. A client check can only prevent a pointless request; it cannot circumvent server-side requirements. No automatic Listening score is issued for unavailable/skipped audio. The draft-save queue, navigation safeguards, Recent Work and Writing coach remain untouched.
+
+**Validation:** new pure helper tests: blank, whitespace-only, partial and complete answers; source integration assertions for action-area warning, first-question focus and remaining audio/server guard. Existing v16 navigation, Writing draft, catalog and 1.3 compatibility QA plus production build. These are source tests, not authenticated iPhone Safari browser QA.
+
+**Owner-controlled workflow:** stage PR for review; preserve private Site v16 / curriculum 1.2.0. Do not deploy before owner approves controlled hotfix. After release owner tests iPhone: one Listening blank -> explicit warning and missing question focus; fill last -> normal scoring; try desktop and interrupted audio; verify drafts and previous attempts remain. Only then proceed with separate preview of approved Curriculum 1.3.0, expected conditional Add 7, Update 0, Skip 29, Conflict 0; never automatically import.
