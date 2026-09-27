@@ -13,6 +13,9 @@ assert.equal(previous.lessons.length,29);
 assert.equal(previous.lessons.flatMap(l=>l.activities).length,190);
 const previousById=new Map(previous.lessons.map(l=>[l.id,l]));
 const expectedNew=['GRA-A1-07','GRA-A2-02','GRA-A2-03','GRA-A2-04','VOC-A2-02','REA-A1-03','WRI-A1-03'];
+const batch04New=['GRA-A1-08','GRA-A2-05','GRA-A2-06','VOC-A1-04','VOC-A2-03','REA-A1-04','REA-A2-04','WRI-A1-04','WRI-A2-03'];
+const batch04Groups={'GRA-A1-08':'GRA-FOUND','GRA-A2-05':'GRA-TENSE','GRA-A2-06':'GRA-FOUND','VOC-A1-04':'VOC-DAILY','VOC-A2-03':'VOC-DAILY','REA-A1-04':'REA-NOTICES','REA-A2-04':'REA-MESSAGES','WRI-A1-04':'WRI-PARAGRAPHS','WRI-A2-03':'WRI-MESSAGES'};
+const batch03Groups={'GRA-A1-07':'GRA-FOUND','GRA-A2-02':'GRA-TENSE','GRA-A2-03':'GRA-FOUND','GRA-A2-04':'GRA-COMPARISON','VOC-A2-02':'VOC-TRAVEL','REA-A1-03':'REA-MESSAGES','WRI-A1-03':'WRI-PARAGRAPHS'};
 const assigned=new Map();
 for(const [module,rows] of Object.entries(groups)){
  assert.ok(rows.every(x=>x.title.en&&x.title.vi),'bilingual group title: '+module);
@@ -22,8 +25,8 @@ for(const [module,rows] of Object.entries(groups)){
   assigned.set(id,{module,group:row.id});
  }
 }
-assert.equal(assigned.size,36,'29 legacy and exactly 7 proposed lessons');
-assert.deepEqual([...assigned.keys()].filter(id=>!previousById.has(id)).sort(),expectedNew.slice().sort());
+assert.equal(assigned.size,45,'29 legacy + 7 Batch03 + 9 Batch04 future lessons');
+assert.deepEqual([...assigned.keys()].filter(id=>!previousById.has(id)).sort(),[...expectedNew,...batch04New].sort());
 const originalGroup=new Map([
  ['GRA-A1-01','GRA-FOUND'],['GRA-A1-02','GRA-FOUND'],['GRA-A1-04','GRA-FOUND'],['GRA-A1-05','GRA-FOUND'],
  ['GRA-A1-03','GRA-TENSE'],['GRA-A2-01','GRA-TENSE'],['GRA-B1-01','GRA-TENSE'],['GRA-A1-06','GRA-PLACE'],
@@ -36,6 +39,8 @@ const originalGroup=new Map([
 ]);
 assert.equal(originalGroup.size,29);
 for(const id of previousById.keys())assert.equal(assigned.get(id)?.group,originalGroup.get(id),'old grouping changed '+id);
+for(const [id,group] of Object.entries(batch03Groups))assert.equal(assigned.get(id)?.group,group,'1.3 group changed '+id);
+for(const [id,group] of Object.entries(batch04Groups))assert.equal(assigned.get(id)?.group,group,'Batch04 group incorrect '+id);
 const targetTagMappings={
  'grammar.modals_can':'modals-can','grammar.countability':'countability','grammar.quantifiers':'quantifiers','grammar.comparison':'comparison'
 };
@@ -50,4 +55,4 @@ assert.ok(assigned.get('REA-A1-03').group==='REA-MESSAGES');
 assert.ok(assigned.get('WRI-A1-03').group==='WRI-PARAGRAPHS');
 assert.equal(catalog.organization_policy.skill_is_primary_nav,true);
 assert.equal(catalog.organization_policy.course_sequence_is_independent_recommended_route,true);
-console.log('PASS: existing v15 code can recognize Batch03 tags and all 36 catalog IDs; all 29 legacy groups remain unchanged. This is code-only preflight, not a live import or browser QA.');
+console.log('PASS: Batch03 compatibility retained, 45 catalog IDs grouped without changes to 36 prior memberships; code-only preflight, not import or browser QA.');
