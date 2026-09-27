@@ -1,0 +1,34 @@
+// Targeted checks for server-result summary and stable cross-skill player.
+// Structural assertions do not substitute for signed-in browser QA.
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
+const root=path.resolve(__dirname,'..');
+execFileSync(process.execPath,['node_modules/typescript/bin/tsc','domain/foundation-summary.ts','--outDir','.sites-runtime/foundation-summary-tests','--module','commonjs','--target','es2022','--skipLibCheck'],{cwd:root,stdio:'inherit'});
+fs.mkdirSync(path.join(root,'.sites-runtime/foundation-summary-tests'),{recursive:true});
+fs.writeFileSync(path.join(root,'.sites-runtime/foundation-summary-tests/package.json'),'{"type":"commonjs"}');
+const {summarizeFoundationResults}=require('../.sites-runtime/foundation-summary-tests/foundation-summary.js');
+const entries=(yes,no,pending=0)=>[...Array(yes).fill({correct:true}),...Array(no).fill({correct:false}),...Array(pending).fill({correct:null})];
+assert.deepEqual(summarizeFoundationResults(entries(8,2)),{correct:8,total:10,incorrect:2,reviewOnly:0,percent:80});
+assert.deepEqual(summarizeFoundationResults(entries(10,0)),{correct:10,total:10,incorrect:0,reviewOnly:0,percent:100});
+assert.deepEqual(summarizeFoundationResults(entries(0,10)),{correct:0,total:10,incorrect:10,reviewOnly:0,percent:0});
+assert.deepEqual(summarizeFoundationResults(entries(3,1,1)),{correct:3,total:4,incorrect:1,reviewOnly:1,percent:75});
+assert.deepEqual(summarizeFoundationResults(entries(0,0,1)),{correct:0,total:0,incorrect:0,reviewOnly:1,percent:null});
+assert.deepEqual(summarizeFoundationResults(undefined),{correct:0,total:0,incorrect:0,reviewOnly:0,percent:null});
+const page=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8');
+const ui=fs.readFileSync(path.join(root,'app/foundation.tsx'),'utf8');
+const css=fs.readFileSync(path.join(root,'app/globals.css'),'utf8');
+assert.equal((page.match(/<FoundationDemo\b/g)||[]).length,1,'One player instance for all seven skills plus Writing');
+assert(!page.includes('<FoundationDemo key={view}'),'Switching skill tabs must not force remount');
+assert(page.includes('"pronunciation","writing"] as View[]'),'Writing shares the persistent player');
+assert(page.includes('sharedCatalog={foundationCatalog} onCatalog={setFoundationCatalog}'),'Parent reuses account-scoped in-memory catalog');
+assert(ui.includes('if(!sharedCatalog)void refresh()'),'Fetch catalog only when no parent cache exists');
+assert(ui.includes('previousSkill.current===skill'),'Skill transitions preserve player instance');
+assert(ui.includes('++recordingGeneration.current;if(media.current?.state===\'recording\')media.current.stop()'),'Switching skills cancels live recordings');
+assert(ui.includes('if(capture!==recordingGeneration.current)return'),'Old recording callbacks cannot leak into a different skill');
+assert(ui.includes("if(attempt?.status==='started'){try{await saveDraft()}"),'Save draft before clearing selected lesson');
+assert(ui.includes('resultSummary=summarizeFoundationResults(attempt?.results)'),'Summary must read server-graded attempt results');
+assert(ui.includes('!editable&&attempt&&(attempt.results?.length??0)>0'),'Do not display a score before submission');
+assert(ui.includes('resultSummary.correct}/{resultSummary.total} · {resultSummary.percent}%'),'Visible correct/total and percent');
+assert(ui.includes('not included in the objective score'),'Open responses are excluded');
+assert(ui.includes('not a CEFR level'),'Do not misrepresent one attempt as a CEFR assessment');
+assert(css.includes('.foundation-result-summary')&&css.includes('@media(max-width:600px){.foundation-result-summary'),'Result panel is responsive');
+console.log(JSON.stringify({result:'PASS',objectiveScores:['8/10 80%','10/10 100%','0/10 0%','3/4 75% + pending'],unassessedNoScore:true,persistentSkillPlayer:true,draftSaveGuard:true,browserQA:'OWNER PENDING'}));
