@@ -182,3 +182,10 @@ body {
 .foundation-lesson-status{font-size:.75rem;color:#315f7d;margin-top:.3rem}
 .foundation-focus .learning-choices{margin-top:1rem}
 @media(max-width:680px){.foundation-recent-grid{grid-template-columns:1fr}.foundation-player-nav .muted{margin:0;flex-basis:100%}.foundation-focus{scroll-margin-top:82px}}
+
+/* Shared Writing/skills hierarchy and a visible, server-confirmed Foundation draft state. */
+.foundation-writing-coach{margin:1rem 0 1.5rem}
+.foundation-draft-feedback{display:flex;align-items:center;gap:.45rem;margin:.75rem 0 1rem;padding:.65rem .8rem;border:1px solid #c7dced;border-radius:9px;background:#f2f8fd;color:#24537d;font-size:.86rem;font-weight:650;line-height:1.45}
+.foundation-draft-feedback.is-error{border-color:#efb4b0;background:#fff3f1;color:#953323}
+.foundation-draft-feedback:empty{display:none}
+@media(max-width:680px){.foundation-writing-coach{margin:.85rem 0 1.2rem}.foundation-draft-feedback{font-size:.82rem;padding:.6rem .7rem}}
