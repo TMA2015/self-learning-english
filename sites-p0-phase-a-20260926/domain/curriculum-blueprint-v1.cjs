@@ -42,7 +42,7 @@ function validateBlueprint(blueprint,candidate,coverage){
   if(!source||!node)continue;
   try{canonicalLessonKey(blueprint,row.id)}catch(e){errors.push(e.message)}
   check(row.module===source.module&&row.level_target===source.cefr_target,'Module/level mismatch '+row.id);
-  check(JSON.stringify(row.concept_ids)===JSON.stringify(node.concepts.map(x=>'concept.'+x)),'Concept mapping drift '+row.id);
+  check(JSON.stringify(row.concept_ids)===JSON.stringify(node.concepts.map(x=>'concept.'+source.module+'.'+x)),'Concept mapping drift '+row.id);
   check(JSON.stringify(row.prerequisite_lesson_ids)===JSON.stringify(node.prerequisite_lesson_ids),'Prerequisite drift '+row.id);
   check(JSON.stringify(row.skill_ids)===JSON.stringify(unique(source.activities.flatMap(q=>q.skill_tags)).sort()),'Skill mapping drift '+row.id);
   check(row.concept_ids.every(id=>concepts.has(id))&&row.skill_ids.every(id=>skills.has(id)),'Unknown concept/skill '+row.id);
