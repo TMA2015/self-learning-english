@@ -20,7 +20,7 @@ Owner report: v13 lesson catalog sits above the full lesson notes and quiz, prod
 5. Check version-aware history; older scores never silently become new attempts. Writing review remains pending, Listening guard and audio unchanged.
 6. If save fails while returning to Catalog or switching via the seven cards, stay in the lesson and expose failure.
 
-Scope is deliberately UI/read-only selectors. The existing app's global sidebar route changes rely on its pre-existing skill transition effect to save a draft. No authenticated learner-browser QA has been performed in this repository-only pass. Do not deploy until CI, owner review and a controlled Site release are authorized.
+Scope is deliberately UI/read-only selectors. Global sidebar skill transitions now save draft **and refresh the server-backed Catalog** before clearing the selected lesson, covering the exact Grammar → Reading/Writing → Grammar navigation reported by the owner. A failed refresh preserves the loaded lesson and shows an error; browser behavior under a denied save/refresh still needs authenticated QA. No authenticated learner-browser QA has been performed in this repository-only pass. Do not deploy until CI, owner review and a controlled Site release are authorized.
 
 ## Staged QA after v13 source reconciliation (2026-09-27)
 
