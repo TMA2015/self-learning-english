@@ -71,5 +71,9 @@ const fresh=content.lessons.filter(l=>!seedIds.has(l.id)).flatMap(l=>l.activitie
 check(fresh.length===67,'Expected 67 new tasks in Batch 01');
 check(content.lessons.find(l=>l.id==='GRA-A1-01')?.activities.find(q=>q.id==='GRA-A1-01-Q10')?.answer?.accepted_answers?.join('|')==='am','Do not repeat I in the A1 be gap');
 check(content.lessons.find(l=>l.id==='WRI-A1-01')?.activities.some(q=>q.type==='extended_response'&&q.rubric_id==='RUBRIC-WRITING-A1'),'Writing needs review-only production');
+const bedtime=content.lessons.find(l=>l.id==='VOC-A1-02')?.activities.find(q=>q.id==='VOC-A1-02-Q6');
+check(bedtime?.prompt.includes('rather than a morning routine')&&bedtime.options.find(o=>o.id===bedtime.answer.correct_option_id)?.text==='brushing your teeth before going to sleep','Bedtime item must distinguish evening from morning habits');
+const book=content.lessons.find(l=>l.id==='REA-A2-02')?.activities.find(q=>q.id==='REA-A2-02-Q2');
+check(book?.prompt.includes('bring to exchange')&&book.answer.correct_option_id==='B','Book-exchange item must not call exchanged books donated');
 if(errors.length){console.error('FAIL: '+errors.length+' content checks\n'+errors.join('\n'));process.exitCode=1}
 else console.log(JSON.stringify({result:'PASS',version:content.schema_version,lessons:lessonIds.size,newLessons:8,questions:questionIds.size,newQuestions:fresh.length,reviewOnlyOpenResponse:true}));
