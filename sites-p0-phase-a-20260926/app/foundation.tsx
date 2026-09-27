@@ -23,7 +23,7 @@ export function FoundationDemo({showVi=false,onEvidence,skill,sharedCatalog,onCa
  // A single player instance stays mounted when switching skill tabs. Save the previous
  // in-progress lesson before returning to the new skill catalog. Keep loaded catalog.
  useEffect(()=>{if(previousSkill.current===skill)return;previousSkill.current=skill;const transition=++skillTransition.current;
-  const change=async()=>{if(attempt?.status==='started'){try{await saveDraft()}catch(e){if(transition===skillTransition.current)setError('Draft was not saved. Please retry before leaving this lesson. '+(e as Error).message);return}}
+  const change=async()=>{if(attempt?.status==='started'){try{await saveDraft();await refresh()}catch(e){if(transition===skillTransition.current)setError('Draft or recent-work refresh failed. Please retry before leaving this lesson. '+(e as Error).message);return}}
    if(transition!==skillTransition.current)return;
    if(attempt?.status==='started')try{await refresh()}catch(e){if(transition===skillTransition.current){setError('Recent work could not be refreshed. Please retry. '+(e as Error).message);return}}
    if(transition!==skillTransition.current)return;
