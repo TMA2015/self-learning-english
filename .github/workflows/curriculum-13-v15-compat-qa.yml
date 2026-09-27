@@ -1,0 +1,37 @@
+name: Curriculum 1.3 v15 Compatibility QA
+
+on:
+  pull_request:
+    paths:
+      - 'sites-p0-phase-a-20260926/domain/academic.ts'
+      - 'sites-p0-phase-a-20260926/content/lesson-groups-v1.json'
+      - 'sites-p0-phase-a-20260926/tests/curriculum-13-compat-v15.cjs'
+      - 'sites-p0-phase-a-20260926/docs/CURRICULUM_13_V15_INTEGRATION.md'
+      - '.github/workflows/curriculum-13-v15-compat-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Check tag compatibility and 29 old group memberships
+        run: node tests/curriculum-13-compat-v15.cjs
+      - name: Guard v15 Foundation, catalog and draft-save UX
+        run: node tests/catalog-taxonomy-ui.cjs && node tests/attempt-navigation-ui.cjs && node tests/writing-nav-save-feedback.cjs
+      - name: Production build without data import or Site deployment
+        run: pnpm run build
