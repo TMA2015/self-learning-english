@@ -1,0 +1,38 @@
+name: Focused Foundation player QA
+
+on:
+  pull_request:
+    paths:
+      - 'sites-p0-phase-a-20260926/app/foundation.tsx'
+      - 'sites-p0-phase-a-20260926/app/page.tsx'
+      - 'sites-p0-phase-a-20260926/app/globals.css'
+      - 'sites-p0-phase-a-20260926/domain/attempt-navigation.ts'
+      - 'sites-p0-phase-a-20260926/tests/attempt-navigation-ui.cjs'
+      - '.github/workflows/foundation-focus-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install exact dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Focused navigation, attempt history and read-only status tests
+        run: node tests/attempt-navigation-ui.cjs
+      - name: Regression for existing catalog and score summary
+        run: node tests/catalog-groups.cjs && node tests/catalog-taxonomy-ui.cjs
+      - name: Build application without publishing
+        run: pnpm run build
