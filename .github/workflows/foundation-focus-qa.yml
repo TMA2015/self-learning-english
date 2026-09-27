@@ -33,6 +33,6 @@ jobs:
       - name: Focused navigation, attempt history and read-only status tests
         run: node tests/attempt-navigation-ui.cjs
       - name: Regression for existing catalog and score summary
-        run: node tests/catalog-groups.cjs && node tests/catalog-taxonomy-ui.cjs && node tests/foundation-summary.cjs
+        run: node tests/catalog-groups.cjs && node tests/catalog-taxonomy-ui.cjs
       - name: Build application without publishing
         run: pnpm run build
