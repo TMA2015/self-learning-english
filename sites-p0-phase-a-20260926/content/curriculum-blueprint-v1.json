@@ -1,0 +1,1866 @@
+{
+  "format": "g-learning.curriculum-blueprint",
+  "schema_version": 1,
+  "status": "architecture_prototype_not_live_not_importable",
+  "source": {
+    "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+    "content_version": "1.3.0",
+    "source_kind": "curriculum_1.3_candidate_pending_final_review",
+    "lesson_count": 36
+  },
+  "policy": {
+    "immutable_lesson_ref": true,
+    "tracks_reference_lessons_not_copy_payloads": true,
+    "source_only_no_learner_state": true,
+    "dependencies": "advisory_and_validated_in_blueprint_not_enforced_in_live_site",
+    "assessed_by": "objective_correctness_or_authorized_review_not_completion",
+    "cefr_target_is_not_learner_certification": true,
+    "audio_evidence_required_for_listening_speaking_pronunciation": true,
+    "no_generation_of_unreviewed_assessed_items": true,
+    "cross_version_evidence_reuse": "not_automatic_requires_approved_content_digest_mapping",
+    "concept_identity": "module_scoped_prevents_reading_detail_listening_detail_collision"
+  },
+  "concept_registry": [
+    {
+      "concept_id": "concept.grammar.agreement",
+      "module": "grammar",
+      "source_label": "agreement"
+    },
+    {
+      "concept_id": "concept.grammar.be-forms",
+      "module": "grammar",
+      "source_label": "be-forms"
+    },
+    {
+      "concept_id": "concept.grammar.comparatives",
+      "module": "grammar",
+      "source_label": "comparatives"
+    },
+    {
+      "concept_id": "concept.grammar.countability",
+      "module": "grammar",
+      "source_label": "countability"
+    },
+    {
+      "concept_id": "concept.grammar.existential-there",
+      "module": "grammar",
+      "source_label": "existential-there"
+    },
+    {
+      "concept_id": "concept.grammar.frequency",
+      "module": "grammar",
+      "source_label": "frequency"
+    },
+    {
+      "concept_id": "concept.grammar.indefinite-articles",
+      "module": "grammar",
+      "source_label": "indefinite-articles"
+    },
+    {
+      "concept_id": "concept.grammar.modal-ability",
+      "module": "grammar",
+      "source_label": "modal-ability"
+    },
+    {
+      "concept_id": "concept.grammar.much-many",
+      "module": "grammar",
+      "source_label": "much-many"
+    },
+    {
+      "concept_id": "concept.grammar.past-be",
+      "module": "grammar",
+      "source_label": "past-be"
+    },
+    {
+      "concept_id": "concept.grammar.past-simple-actions",
+      "module": "grammar",
+      "source_label": "past-simple-actions"
+    },
+    {
+      "concept_id": "concept.grammar.past-simple-negatives-questions",
+      "module": "grammar",
+      "source_label": "past-simple-negatives-questions"
+    },
+    {
+      "concept_id": "concept.grammar.past-simple-vs-present-perfect",
+      "module": "grammar",
+      "source_label": "past-simple-vs-present-perfect"
+    },
+    {
+      "concept_id": "concept.grammar.place-prepositions",
+      "module": "grammar",
+      "source_label": "place-prepositions"
+    },
+    {
+      "concept_id": "concept.grammar.plurals",
+      "module": "grammar",
+      "source_label": "plurals"
+    },
+    {
+      "concept_id": "concept.grammar.polite-requests",
+      "module": "grammar",
+      "source_label": "polite-requests"
+    },
+    {
+      "concept_id": "concept.grammar.possessive-adjectives",
+      "module": "grammar",
+      "source_label": "possessive-adjectives"
+    },
+    {
+      "concept_id": "concept.grammar.present-simple",
+      "module": "grammar",
+      "source_label": "present-simple"
+    },
+    {
+      "concept_id": "concept.grammar.present-simple-vs-continuous",
+      "module": "grammar",
+      "source_label": "present-simple-vs-continuous"
+    },
+    {
+      "concept_id": "concept.grammar.some-any",
+      "module": "grammar",
+      "source_label": "some-any"
+    },
+    {
+      "concept_id": "concept.grammar.subject-pronouns",
+      "module": "grammar",
+      "source_label": "subject-pronouns"
+    },
+    {
+      "concept_id": "concept.grammar.subject-verb-agreement",
+      "module": "grammar",
+      "source_label": "subject-verb-agreement"
+    },
+    {
+      "concept_id": "concept.grammar.superlatives",
+      "module": "grammar",
+      "source_label": "superlatives"
+    },
+    {
+      "concept_id": "concept.listening.detail",
+      "module": "listening",
+      "source_label": "detail"
+    },
+    {
+      "concept_id": "concept.listening.listening-time",
+      "module": "listening",
+      "source_label": "listening-time"
+    },
+    {
+      "concept_id": "concept.listening.speaker-intention",
+      "module": "listening",
+      "source_label": "speaker-intention"
+    },
+    {
+      "concept_id": "concept.pronunciation.vowel-sound-awareness",
+      "module": "pronunciation",
+      "source_label": "vowel-sound-awareness"
+    },
+    {
+      "concept_id": "concept.reading.argument-gist",
+      "module": "reading",
+      "source_label": "argument-gist"
+    },
+    {
+      "concept_id": "concept.reading.conditional-activity",
+      "module": "reading",
+      "source_label": "conditional-activity"
+    },
+    {
+      "concept_id": "concept.reading.contrast",
+      "module": "reading",
+      "source_label": "contrast"
+    },
+    {
+      "concept_id": "concept.reading.detail",
+      "module": "reading",
+      "source_label": "detail"
+    },
+    {
+      "concept_id": "concept.reading.explicit-detail",
+      "module": "reading",
+      "source_label": "explicit-detail"
+    },
+    {
+      "concept_id": "concept.reading.gist",
+      "module": "reading",
+      "source_label": "gist"
+    },
+    {
+      "concept_id": "concept.reading.inference",
+      "module": "reading",
+      "source_label": "inference"
+    },
+    {
+      "concept_id": "concept.reading.notice-gist",
+      "module": "reading",
+      "source_label": "notice-gist"
+    },
+    {
+      "concept_id": "concept.reading.personal-message-purpose",
+      "module": "reading",
+      "source_label": "personal-message-purpose"
+    },
+    {
+      "concept_id": "concept.reading.plan-change",
+      "module": "reading",
+      "source_label": "plan-change"
+    },
+    {
+      "concept_id": "concept.reading.rules-and-conditions",
+      "module": "reading",
+      "source_label": "rules-and-conditions"
+    },
+    {
+      "concept_id": "concept.reading.supplied-vs-bring",
+      "module": "reading",
+      "source_label": "supplied-vs-bring"
+    },
+    {
+      "concept_id": "concept.reading.time-detail",
+      "module": "reading",
+      "source_label": "time-detail"
+    },
+    {
+      "concept_id": "concept.reading.time-place-detail",
+      "module": "reading",
+      "source_label": "time-place-detail"
+    },
+    {
+      "concept_id": "concept.speaking.opinion-support",
+      "module": "speaking",
+      "source_label": "opinion-support"
+    },
+    {
+      "concept_id": "concept.speaking.routine-speech",
+      "module": "speaking",
+      "source_label": "routine-speech"
+    },
+    {
+      "concept_id": "concept.vocabulary.daily-routines",
+      "module": "vocabulary",
+      "source_label": "daily-routines"
+    },
+    {
+      "concept_id": "concept.vocabulary.directions",
+      "module": "vocabulary",
+      "source_label": "directions"
+    },
+    {
+      "concept_id": "concept.vocabulary.event-collocations",
+      "module": "vocabulary",
+      "source_label": "event-collocations"
+    },
+    {
+      "concept_id": "concept.vocabulary.frequency-expressions",
+      "module": "vocabulary",
+      "source_label": "frequency-expressions"
+    },
+    {
+      "concept_id": "concept.vocabulary.polite-classroom-requests",
+      "module": "vocabulary",
+      "source_label": "polite-classroom-requests"
+    },
+    {
+      "concept_id": "concept.vocabulary.routine-collocations",
+      "module": "vocabulary",
+      "source_label": "routine-collocations"
+    },
+    {
+      "concept_id": "concept.vocabulary.school-words",
+      "module": "vocabulary",
+      "source_label": "school-words"
+    },
+    {
+      "concept_id": "concept.vocabulary.sustainable-choices",
+      "module": "vocabulary",
+      "source_label": "sustainable-choices"
+    },
+    {
+      "concept_id": "concept.vocabulary.town-places",
+      "module": "vocabulary",
+      "source_label": "town-places"
+    },
+    {
+      "concept_id": "concept.vocabulary.travel-collocations",
+      "module": "vocabulary",
+      "source_label": "travel-collocations"
+    },
+    {
+      "concept_id": "concept.writing.all-prompt-points",
+      "module": "writing",
+      "source_label": "all-prompt-points"
+    },
+    {
+      "concept_id": "concept.writing.connected-sentences",
+      "module": "writing",
+      "source_label": "connected-sentences"
+    },
+    {
+      "concept_id": "concept.writing.description-planning",
+      "module": "writing",
+      "source_label": "description-planning"
+    },
+    {
+      "concept_id": "concept.writing.friendly-email",
+      "module": "writing",
+      "source_label": "friendly-email"
+    },
+    {
+      "concept_id": "concept.writing.friendly-invitation",
+      "module": "writing",
+      "source_label": "friendly-invitation"
+    },
+    {
+      "concept_id": "concept.writing.opinion-reason-example",
+      "module": "writing",
+      "source_label": "opinion-reason-example"
+    },
+    {
+      "concept_id": "concept.writing.past-event-email",
+      "module": "writing",
+      "source_label": "past-event-email"
+    },
+    {
+      "concept_id": "concept.writing.prompt-analysis",
+      "module": "writing",
+      "source_label": "prompt-analysis"
+    },
+    {
+      "concept_id": "concept.writing.reason-and-example",
+      "module": "writing",
+      "source_label": "reason-and-example"
+    },
+    {
+      "concept_id": "concept.writing.revision",
+      "module": "writing",
+      "source_label": "revision"
+    },
+    {
+      "concept_id": "concept.writing.self-introduction",
+      "module": "writing",
+      "source_label": "self-introduction"
+    },
+    {
+      "concept_id": "concept.writing.time-place",
+      "module": "writing",
+      "source_label": "time-place"
+    }
+  ],
+  "skill_registry": [
+    {
+      "skill_id": "grammar.articles",
+      "module": "grammar"
+    },
+    {
+      "skill_id": "grammar.be_forms",
+      "module": "grammar"
+    },
+    {
+      "skill_id": "grammar.comparison",
+      "module": "grammar"
+    },
+    {
+      "skill_id": "grammar.countability",
+      "module": "grammar"
+    },
+    {
+      "skill_id": "grammar.modals_can",
+      "module": "grammar"
+    },
+    {
+      "skill_id": "grammar.past_simple",
+      "module": "grammar"
+    },
+    {
+      "skill_id": "grammar.plural_nouns",
+      "module": "grammar"
+    },
+    {
+      "skill_id": "grammar.possessives",
+      "module": "grammar"
+    },
+    {
+      "skill_id": "grammar.prepositions_place",
+      "module": "grammar"
+    },
+    {
+      "skill_id": "grammar.present_continuous",
+      "module": "grammar"
+    },
+    {
+      "skill_id": "grammar.present_perfect",
+      "module": "grammar"
+    },
+    {
+      "skill_id": "grammar.present_simple",
+      "module": "grammar"
+    },
+    {
+      "skill_id": "grammar.pronouns",
+      "module": "grammar"
+    },
+    {
+      "skill_id": "grammar.quantifiers",
+      "module": "grammar"
+    },
+    {
+      "skill_id": "grammar.stative_verbs",
+      "module": "grammar"
+    },
+    {
+      "skill_id": "grammar.subject_verb_agreement",
+      "module": "grammar"
+    },
+    {
+      "skill_id": "grammar.there_is_are",
+      "module": "grammar"
+    },
+    {
+      "skill_id": "listening.detail",
+      "module": "listening"
+    },
+    {
+      "skill_id": "listening.gist",
+      "module": "listening"
+    },
+    {
+      "skill_id": "listening.inference",
+      "module": "listening"
+    },
+    {
+      "skill_id": "listening.speaker_intention",
+      "module": "listening"
+    },
+    {
+      "skill_id": "pronunciation.intelligibility",
+      "module": "pronunciation"
+    },
+    {
+      "skill_id": "pronunciation.sound_awareness",
+      "module": "pronunciation"
+    },
+    {
+      "skill_id": "reading.author_purpose",
+      "module": "reading"
+    },
+    {
+      "skill_id": "reading.detail",
+      "module": "reading"
+    },
+    {
+      "skill_id": "reading.gist",
+      "module": "reading"
+    },
+    {
+      "skill_id": "reading.inference",
+      "module": "reading"
+    },
+    {
+      "skill_id": "reading.vocabulary_in_context",
+      "module": "reading"
+    },
+    {
+      "skill_id": "speaking.fluency",
+      "module": "speaking"
+    },
+    {
+      "skill_id": "speaking.idea_development",
+      "module": "speaking"
+    },
+    {
+      "skill_id": "speaking.intelligibility",
+      "module": "speaking"
+    },
+    {
+      "skill_id": "speaking.organization",
+      "module": "speaking"
+    },
+    {
+      "skill_id": "speaking.task_response",
+      "module": "speaking"
+    },
+    {
+      "skill_id": "speaking.vocabulary",
+      "module": "speaking"
+    },
+    {
+      "skill_id": "vocabulary.collocations",
+      "module": "vocabulary"
+    },
+    {
+      "skill_id": "vocabulary.meaning_in_context",
+      "module": "vocabulary"
+    },
+    {
+      "skill_id": "vocabulary.word_formation",
+      "module": "vocabulary"
+    },
+    {
+      "skill_id": "writing.cohesion",
+      "module": "writing"
+    },
+    {
+      "skill_id": "writing.grammar",
+      "module": "writing"
+    },
+    {
+      "skill_id": "writing.idea_development",
+      "module": "writing"
+    },
+    {
+      "skill_id": "writing.organization",
+      "module": "writing"
+    },
+    {
+      "skill_id": "writing.register",
+      "module": "writing"
+    },
+    {
+      "skill_id": "writing.task_understanding",
+      "module": "writing"
+    },
+    {
+      "skill_id": "writing.vocabulary",
+      "module": "writing"
+    }
+  ],
+  "lesson_catalog": [
+    {
+      "id": "GRA-A1-01",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "GRA-A1-01"
+      },
+      "module": "grammar",
+      "level_target": "A1",
+      "concept_ids": [
+        "concept.grammar.be-forms",
+        "concept.grammar.subject-verb-agreement"
+      ],
+      "skill_ids": [
+        "grammar.be_forms",
+        "grammar.subject_verb_agreement"
+      ],
+      "prerequisite_lesson_ids": [],
+      "assessment": {
+        "objective_activity_ids": [
+          "GRA-A1-01-Q1",
+          "GRA-A1-01-Q2",
+          "GRA-A1-01-Q3",
+          "GRA-A1-01-Q4",
+          "GRA-A1-01-Q5",
+          "GRA-A1-01-Q6",
+          "GRA-A1-01-Q7",
+          "GRA-A1-01-Q8",
+          "GRA-A1-01-Q9",
+          "GRA-A1-01-Q10"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "GRA-A1-02",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "GRA-A1-02"
+      },
+      "module": "grammar",
+      "level_target": "A1",
+      "concept_ids": [
+        "concept.grammar.subject-pronouns",
+        "concept.grammar.possessive-adjectives"
+      ],
+      "skill_ids": [
+        "grammar.possessives",
+        "grammar.pronouns"
+      ],
+      "prerequisite_lesson_ids": [],
+      "assessment": {
+        "objective_activity_ids": [
+          "GRA-A1-02-Q1",
+          "GRA-A1-02-Q2",
+          "GRA-A1-02-Q3",
+          "GRA-A1-02-Q4",
+          "GRA-A1-02-Q5",
+          "GRA-A1-02-Q6",
+          "GRA-A1-02-Q7",
+          "GRA-A1-02-Q8",
+          "GRA-A1-02-Q9",
+          "GRA-A1-02-Q10"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "GRA-A1-03",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "GRA-A1-03"
+      },
+      "module": "grammar",
+      "level_target": "A1",
+      "concept_ids": [
+        "concept.grammar.present-simple",
+        "concept.grammar.frequency"
+      ],
+      "skill_ids": [
+        "grammar.present_simple",
+        "grammar.subject_verb_agreement"
+      ],
+      "prerequisite_lesson_ids": [
+        "GRA-A1-01",
+        "GRA-A1-02"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "GRA-A1-03-Q1",
+          "GRA-A1-03-Q2",
+          "GRA-A1-03-Q3",
+          "GRA-A1-03-Q4",
+          "GRA-A1-03-Q5",
+          "GRA-A1-03-Q6",
+          "GRA-A1-03-Q7",
+          "GRA-A1-03-Q8",
+          "GRA-A1-03-Q9",
+          "GRA-A1-03-Q10"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "VOC-A1-01",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "VOC-A1-01"
+      },
+      "module": "vocabulary",
+      "level_target": "A1",
+      "concept_ids": [
+        "concept.vocabulary.school-words",
+        "concept.vocabulary.polite-classroom-requests"
+      ],
+      "skill_ids": [
+        "vocabulary.collocations",
+        "vocabulary.meaning_in_context"
+      ],
+      "prerequisite_lesson_ids": [],
+      "assessment": {
+        "objective_activity_ids": [
+          "VOC-A1-01-Q1",
+          "VOC-A1-01-Q2",
+          "VOC-A1-01-Q3",
+          "VOC-A1-01-Q4",
+          "VOC-A1-01-Q5",
+          "VOC-A1-01-Q6",
+          "VOC-A1-01-Q7",
+          "VOC-A1-01-Q8"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "VOC-A1-02",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "VOC-A1-02"
+      },
+      "module": "vocabulary",
+      "level_target": "A1",
+      "concept_ids": [
+        "concept.vocabulary.daily-routines",
+        "concept.vocabulary.frequency-expressions"
+      ],
+      "skill_ids": [
+        "vocabulary.collocations",
+        "vocabulary.meaning_in_context"
+      ],
+      "prerequisite_lesson_ids": [
+        "VOC-A1-01"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "VOC-A1-02-Q1",
+          "VOC-A1-02-Q2",
+          "VOC-A1-02-Q3",
+          "VOC-A1-02-Q4",
+          "VOC-A1-02-Q5",
+          "VOC-A1-02-Q6",
+          "VOC-A1-02-Q7",
+          "VOC-A1-02-Q8"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "REA-A1-01",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "REA-A1-01"
+      },
+      "module": "reading",
+      "level_target": "A1",
+      "concept_ids": [
+        "concept.reading.notice-gist",
+        "concept.reading.explicit-detail"
+      ],
+      "skill_ids": [
+        "reading.detail",
+        "reading.gist",
+        "reading.inference"
+      ],
+      "prerequisite_lesson_ids": [
+        "GRA-A1-01",
+        "VOC-A1-01"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "REA-A1-01-Q1",
+          "REA-A1-01-Q2",
+          "REA-A1-01-Q3",
+          "REA-A1-01-Q4",
+          "REA-A1-01-Q5",
+          "REA-A1-01-Q6",
+          "REA-A1-01-Q7",
+          "REA-A1-01-Q8"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "REA-A2-02",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "REA-A2-02"
+      },
+      "module": "reading",
+      "level_target": "A2",
+      "concept_ids": [
+        "concept.reading.rules-and-conditions",
+        "concept.reading.contrast"
+      ],
+      "skill_ids": [
+        "reading.author_purpose",
+        "reading.detail",
+        "reading.gist",
+        "reading.inference"
+      ],
+      "prerequisite_lesson_ids": [
+        "REA-A1-01"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "REA-A2-02-Q1",
+          "REA-A2-02-Q2",
+          "REA-A2-02-Q3",
+          "REA-A2-02-Q4",
+          "REA-A2-02-Q5",
+          "REA-A2-02-Q6",
+          "REA-A2-02-Q7",
+          "REA-A2-02-Q8"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "WRI-A1-01",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "WRI-A1-01"
+      },
+      "module": "writing",
+      "level_target": "A1",
+      "concept_ids": [
+        "concept.writing.prompt-analysis",
+        "concept.writing.self-introduction",
+        "concept.writing.revision"
+      ],
+      "skill_ids": [
+        "writing.grammar",
+        "writing.idea_development",
+        "writing.organization",
+        "writing.task_understanding",
+        "writing.vocabulary"
+      ],
+      "prerequisite_lesson_ids": [
+        "GRA-A1-01",
+        "GRA-A1-02",
+        "VOC-A1-01"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "WRI-A1-01-Q1",
+          "WRI-A1-01-Q2",
+          "WRI-A1-01-Q3",
+          "WRI-A1-01-Q4"
+        ],
+        "review_required_activity_ids": [
+          "WRI-A1-01-Q5"
+        ],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "GRA-A2-01",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "GRA-A2-01"
+      },
+      "module": "grammar",
+      "level_target": "A2",
+      "concept_ids": [
+        "concept.grammar.present-simple-vs-continuous"
+      ],
+      "skill_ids": [
+        "grammar.present_continuous",
+        "grammar.present_simple",
+        "grammar.stative_verbs",
+        "grammar.subject_verb_agreement"
+      ],
+      "prerequisite_lesson_ids": [
+        "GRA-A1-03"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "GRA-A2-01-Q1",
+          "GRA-A2-01-Q2",
+          "GRA-A2-01-Q3",
+          "GRA-A2-01-Q4",
+          "GRA-A2-01-Q5",
+          "GRA-A2-01-Q6",
+          "GRA-A2-01-Q7",
+          "GRA-A2-01-Q8",
+          "GRA-A2-01-Q9",
+          "GRA-A2-01-Q10"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "GRA-B1-01",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "GRA-B1-01"
+      },
+      "module": "grammar",
+      "level_target": "B1",
+      "concept_ids": [
+        "concept.grammar.past-simple-vs-present-perfect"
+      ],
+      "skill_ids": [
+        "grammar.past_simple",
+        "grammar.present_perfect"
+      ],
+      "prerequisite_lesson_ids": [
+        "GRA-A2-01"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "GRA-B1-01-Q1",
+          "GRA-B1-01-Q2",
+          "GRA-B1-01-Q3",
+          "GRA-B1-01-Q4",
+          "GRA-B1-01-Q5",
+          "GRA-B1-01-Q6"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "VOC-A2-01",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "VOC-A2-01"
+      },
+      "module": "vocabulary",
+      "level_target": "A2",
+      "concept_ids": [
+        "concept.vocabulary.routine-collocations"
+      ],
+      "skill_ids": [
+        "vocabulary.collocations",
+        "vocabulary.meaning_in_context"
+      ],
+      "prerequisite_lesson_ids": [
+        "VOC-A1-02"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "VOC-A2-01-Q1",
+          "VOC-A2-01-Q2",
+          "VOC-A2-01-Q3",
+          "VOC-A2-01-Q4",
+          "VOC-A2-01-Q5"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "VOC-B1-01",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "VOC-B1-01"
+      },
+      "module": "vocabulary",
+      "level_target": "B1",
+      "concept_ids": [
+        "concept.vocabulary.sustainable-choices"
+      ],
+      "skill_ids": [
+        "vocabulary.collocations",
+        "vocabulary.meaning_in_context",
+        "vocabulary.word_formation"
+      ],
+      "prerequisite_lesson_ids": [
+        "VOC-A2-01"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "VOC-B1-01-Q1",
+          "VOC-B1-01-Q2",
+          "VOC-B1-01-Q3",
+          "VOC-B1-01-Q4",
+          "VOC-B1-01-Q5"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "REA-A2-01",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "REA-A2-01"
+      },
+      "module": "reading",
+      "level_target": "A2",
+      "concept_ids": [
+        "concept.reading.gist",
+        "concept.reading.detail",
+        "concept.reading.inference"
+      ],
+      "skill_ids": [
+        "reading.detail",
+        "reading.gist",
+        "reading.inference"
+      ],
+      "prerequisite_lesson_ids": [
+        "REA-A1-01"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "REA-A2-01-Q1",
+          "REA-A2-01-Q2",
+          "REA-A2-01-Q3",
+          "REA-A2-01-Q4",
+          "REA-A2-01-Q5"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "REA-B1-01",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "REA-B1-01"
+      },
+      "module": "reading",
+      "level_target": "B1",
+      "concept_ids": [
+        "concept.reading.argument-gist",
+        "concept.reading.inference"
+      ],
+      "skill_ids": [
+        "reading.author_purpose",
+        "reading.gist",
+        "reading.inference",
+        "reading.vocabulary_in_context"
+      ],
+      "prerequisite_lesson_ids": [
+        "REA-A2-02"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "REA-B1-01-Q1",
+          "REA-B1-01-Q2",
+          "REA-B1-01-Q3",
+          "REA-B1-01-Q4",
+          "REA-B1-01-Q5"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "LIS-A2-01",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "LIS-A2-01"
+      },
+      "module": "listening",
+      "level_target": "A2",
+      "concept_ids": [
+        "concept.listening.listening-time",
+        "concept.listening.detail"
+      ],
+      "skill_ids": [
+        "listening.detail",
+        "listening.gist"
+      ],
+      "prerequisite_lesson_ids": [
+        "VOC-A1-01"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "LIS-A2-01-Q1",
+          "LIS-A2-01-Q2",
+          "LIS-A2-01-Q3",
+          "LIS-A2-01-Q4",
+          "LIS-A2-01-Q5"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "LIS-B1-01",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "LIS-B1-01"
+      },
+      "module": "listening",
+      "level_target": "B1",
+      "concept_ids": [
+        "concept.listening.speaker-intention",
+        "concept.listening.detail"
+      ],
+      "skill_ids": [
+        "listening.detail",
+        "listening.gist",
+        "listening.inference",
+        "listening.speaker_intention"
+      ],
+      "prerequisite_lesson_ids": [
+        "LIS-A2-01"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "LIS-B1-01-Q1",
+          "LIS-B1-01-Q2",
+          "LIS-B1-01-Q3",
+          "LIS-B1-01-Q4",
+          "LIS-B1-01-Q5"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "WRI-A2-01",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "WRI-A2-01"
+      },
+      "module": "writing",
+      "level_target": "A2",
+      "concept_ids": [
+        "concept.writing.friendly-email",
+        "concept.writing.all-prompt-points"
+      ],
+      "skill_ids": [
+        "writing.grammar",
+        "writing.organization",
+        "writing.register",
+        "writing.task_understanding",
+        "writing.vocabulary"
+      ],
+      "prerequisite_lesson_ids": [
+        "WRI-A1-02",
+        "GRA-A2-01"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "WRI-A2-01-Q1",
+          "WRI-A2-01-Q2"
+        ],
+        "review_required_activity_ids": [
+          "WRI-A2-01-Q3"
+        ],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "WRI-B1-01",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "WRI-B1-01"
+      },
+      "module": "writing",
+      "level_target": "B1",
+      "concept_ids": [
+        "concept.writing.opinion-reason-example"
+      ],
+      "skill_ids": [
+        "writing.cohesion",
+        "writing.grammar",
+        "writing.idea_development",
+        "writing.organization",
+        "writing.task_understanding",
+        "writing.vocabulary"
+      ],
+      "prerequisite_lesson_ids": [
+        "WRI-A2-02"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "WRI-B1-01-Q1",
+          "WRI-B1-01-Q2"
+        ],
+        "review_required_activity_ids": [
+          "WRI-B1-01-Q3"
+        ],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "SPE-A2-01",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "SPE-A2-01"
+      },
+      "module": "speaking",
+      "level_target": "A2",
+      "concept_ids": [
+        "concept.speaking.routine-speech"
+      ],
+      "skill_ids": [
+        "speaking.fluency",
+        "speaking.intelligibility",
+        "speaking.organization",
+        "speaking.task_response"
+      ],
+      "prerequisite_lesson_ids": [
+        "VOC-A1-02"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "SPE-A2-01-Q1"
+        ],
+        "review_required_activity_ids": [
+          "SPE-A2-01-Q2"
+        ],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "SPE-B1-01",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "SPE-B1-01"
+      },
+      "module": "speaking",
+      "level_target": "B1",
+      "concept_ids": [
+        "concept.speaking.opinion-support"
+      ],
+      "skill_ids": [
+        "speaking.fluency",
+        "speaking.idea_development",
+        "speaking.task_response",
+        "speaking.vocabulary"
+      ],
+      "prerequisite_lesson_ids": [
+        "SPE-A2-01"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "SPE-B1-01-Q1"
+        ],
+        "review_required_activity_ids": [
+          "SPE-B1-01-Q2"
+        ],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "PRO-A2-01",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "PRO-A2-01"
+      },
+      "module": "pronunciation",
+      "level_target": "A2",
+      "concept_ids": [
+        "concept.pronunciation.vowel-sound-awareness"
+      ],
+      "skill_ids": [
+        "pronunciation.intelligibility",
+        "pronunciation.sound_awareness"
+      ],
+      "prerequisite_lesson_ids": [],
+      "assessment": {
+        "objective_activity_ids": [
+          "PRO-A2-01-Q1",
+          "PRO-A2-01-Q2"
+        ],
+        "review_required_activity_ids": [
+          "PRO-A2-01-Q3"
+        ],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "GRA-A1-04",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "GRA-A1-04"
+      },
+      "module": "grammar",
+      "level_target": "A1",
+      "concept_ids": [
+        "concept.grammar.indefinite-articles",
+        "concept.grammar.plurals"
+      ],
+      "skill_ids": [
+        "grammar.articles",
+        "grammar.plural_nouns"
+      ],
+      "prerequisite_lesson_ids": [
+        "GRA-A1-01"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "GRA-A1-04-Q1",
+          "GRA-A1-04-Q2",
+          "GRA-A1-04-Q3",
+          "GRA-A1-04-Q4",
+          "GRA-A1-04-Q5",
+          "GRA-A1-04-Q6",
+          "GRA-A1-04-Q7",
+          "GRA-A1-04-Q8",
+          "GRA-A1-04-Q9",
+          "GRA-A1-04-Q10"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "GRA-A1-05",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "GRA-A1-05"
+      },
+      "module": "grammar",
+      "level_target": "A1",
+      "concept_ids": [
+        "concept.grammar.existential-there",
+        "concept.grammar.agreement"
+      ],
+      "skill_ids": [
+        "grammar.be_forms",
+        "grammar.there_is_are"
+      ],
+      "prerequisite_lesson_ids": [
+        "GRA-A1-01",
+        "GRA-A1-04"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "GRA-A1-05-Q1",
+          "GRA-A1-05-Q2",
+          "GRA-A1-05-Q3",
+          "GRA-A1-05-Q4",
+          "GRA-A1-05-Q5",
+          "GRA-A1-05-Q6",
+          "GRA-A1-05-Q7",
+          "GRA-A1-05-Q8",
+          "GRA-A1-05-Q9",
+          "GRA-A1-05-Q10"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "GRA-A1-06",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "GRA-A1-06"
+      },
+      "module": "grammar",
+      "level_target": "A1",
+      "concept_ids": [
+        "concept.grammar.place-prepositions"
+      ],
+      "skill_ids": [
+        "grammar.prepositions_place"
+      ],
+      "prerequisite_lesson_ids": [
+        "GRA-A1-05"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "GRA-A1-06-Q1",
+          "GRA-A1-06-Q2",
+          "GRA-A1-06-Q3",
+          "GRA-A1-06-Q4",
+          "GRA-A1-06-Q5",
+          "GRA-A1-06-Q6",
+          "GRA-A1-06-Q7",
+          "GRA-A1-06-Q8",
+          "GRA-A1-06-Q9",
+          "GRA-A1-06-Q10"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "VOC-A1-03",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "VOC-A1-03"
+      },
+      "module": "vocabulary",
+      "level_target": "A1",
+      "concept_ids": [
+        "concept.vocabulary.town-places",
+        "concept.vocabulary.directions"
+      ],
+      "skill_ids": [
+        "vocabulary.collocations",
+        "vocabulary.meaning_in_context"
+      ],
+      "prerequisite_lesson_ids": [
+        "VOC-A1-01"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "VOC-A1-03-Q1",
+          "VOC-A1-03-Q2",
+          "VOC-A1-03-Q3",
+          "VOC-A1-03-Q4",
+          "VOC-A1-03-Q5",
+          "VOC-A1-03-Q6",
+          "VOC-A1-03-Q7",
+          "VOC-A1-03-Q8"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "REA-A1-02",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "REA-A1-02"
+      },
+      "module": "reading",
+      "level_target": "A1",
+      "concept_ids": [
+        "concept.reading.time-detail",
+        "concept.reading.supplied-vs-bring"
+      ],
+      "skill_ids": [
+        "reading.detail",
+        "reading.gist"
+      ],
+      "prerequisite_lesson_ids": [
+        "REA-A1-01",
+        "VOC-A1-03"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "REA-A1-02-Q1",
+          "REA-A1-02-Q2",
+          "REA-A1-02-Q3",
+          "REA-A1-02-Q4",
+          "REA-A1-02-Q5",
+          "REA-A1-02-Q6",
+          "REA-A1-02-Q7",
+          "REA-A1-02-Q8"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "REA-A2-03",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "REA-A2-03"
+      },
+      "module": "reading",
+      "level_target": "A2",
+      "concept_ids": [
+        "concept.reading.conditional-activity",
+        "concept.reading.plan-change"
+      ],
+      "skill_ids": [
+        "reading.detail",
+        "reading.gist",
+        "reading.inference"
+      ],
+      "prerequisite_lesson_ids": [
+        "REA-A1-02"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "REA-A2-03-Q1",
+          "REA-A2-03-Q2",
+          "REA-A2-03-Q3",
+          "REA-A2-03-Q4",
+          "REA-A2-03-Q5",
+          "REA-A2-03-Q6",
+          "REA-A2-03-Q7",
+          "REA-A2-03-Q8"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "WRI-A1-02",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "WRI-A1-02"
+      },
+      "module": "writing",
+      "level_target": "A1",
+      "concept_ids": [
+        "concept.writing.friendly-invitation",
+        "concept.writing.time-place",
+        "concept.writing.revision"
+      ],
+      "skill_ids": [
+        "writing.grammar",
+        "writing.idea_development",
+        "writing.organization",
+        "writing.register",
+        "writing.task_understanding",
+        "writing.vocabulary"
+      ],
+      "prerequisite_lesson_ids": [
+        "WRI-A1-01",
+        "GRA-A1-03"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "WRI-A1-02-Q1",
+          "WRI-A1-02-Q2",
+          "WRI-A1-02-Q3",
+          "WRI-A1-02-Q4"
+        ],
+        "review_required_activity_ids": [
+          "WRI-A1-02-Q5"
+        ],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "WRI-A2-02",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "WRI-A2-02"
+      },
+      "module": "writing",
+      "level_target": "A2",
+      "concept_ids": [
+        "concept.writing.past-event-email",
+        "concept.writing.reason-and-example"
+      ],
+      "skill_ids": [
+        "writing.grammar",
+        "writing.idea_development",
+        "writing.organization",
+        "writing.register",
+        "writing.task_understanding",
+        "writing.vocabulary"
+      ],
+      "prerequisite_lesson_ids": [
+        "WRI-A2-01"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "WRI-A2-02-Q1",
+          "WRI-A2-02-Q2",
+          "WRI-A2-02-Q3",
+          "WRI-A2-02-Q4"
+        ],
+        "review_required_activity_ids": [
+          "WRI-A2-02-Q5"
+        ],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "GRA-A1-07",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "GRA-A1-07"
+      },
+      "module": "grammar",
+      "level_target": "A1",
+      "concept_ids": [
+        "concept.grammar.modal-ability",
+        "concept.grammar.polite-requests"
+      ],
+      "skill_ids": [
+        "grammar.modals_can"
+      ],
+      "prerequisite_lesson_ids": [
+        "GRA-A1-02"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "GRA-A1-07-Q1",
+          "GRA-A1-07-Q2",
+          "GRA-A1-07-Q3",
+          "GRA-A1-07-Q4",
+          "GRA-A1-07-Q5",
+          "GRA-A1-07-Q6",
+          "GRA-A1-07-Q7",
+          "GRA-A1-07-Q8",
+          "GRA-A1-07-Q9",
+          "GRA-A1-07-Q10"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "GRA-A2-02",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "GRA-A2-02"
+      },
+      "module": "grammar",
+      "level_target": "A2",
+      "concept_ids": [
+        "concept.grammar.past-simple-actions",
+        "concept.grammar.past-simple-negatives-questions",
+        "concept.grammar.past-be"
+      ],
+      "skill_ids": [
+        "grammar.be_forms",
+        "grammar.past_simple"
+      ],
+      "prerequisite_lesson_ids": [
+        "GRA-A1-03"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "GRA-A2-02-Q1",
+          "GRA-A2-02-Q2",
+          "GRA-A2-02-Q3",
+          "GRA-A2-02-Q4",
+          "GRA-A2-02-Q5",
+          "GRA-A2-02-Q6",
+          "GRA-A2-02-Q7",
+          "GRA-A2-02-Q8",
+          "GRA-A2-02-Q9",
+          "GRA-A2-02-Q10"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "GRA-A2-03",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "GRA-A2-03"
+      },
+      "module": "grammar",
+      "level_target": "A2",
+      "concept_ids": [
+        "concept.grammar.countability",
+        "concept.grammar.some-any",
+        "concept.grammar.much-many"
+      ],
+      "skill_ids": [
+        "grammar.countability",
+        "grammar.quantifiers"
+      ],
+      "prerequisite_lesson_ids": [
+        "GRA-A1-04",
+        "GRA-A1-05"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "GRA-A2-03-Q1",
+          "GRA-A2-03-Q2",
+          "GRA-A2-03-Q3",
+          "GRA-A2-03-Q4",
+          "GRA-A2-03-Q5",
+          "GRA-A2-03-Q6",
+          "GRA-A2-03-Q7",
+          "GRA-A2-03-Q8",
+          "GRA-A2-03-Q9",
+          "GRA-A2-03-Q10"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "GRA-A2-04",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "GRA-A2-04"
+      },
+      "module": "grammar",
+      "level_target": "A2",
+      "concept_ids": [
+        "concept.grammar.comparatives",
+        "concept.grammar.superlatives"
+      ],
+      "skill_ids": [
+        "grammar.comparison"
+      ],
+      "prerequisite_lesson_ids": [
+        "GRA-A1-04"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "GRA-A2-04-Q1",
+          "GRA-A2-04-Q2",
+          "GRA-A2-04-Q3",
+          "GRA-A2-04-Q4",
+          "GRA-A2-04-Q5",
+          "GRA-A2-04-Q6",
+          "GRA-A2-04-Q7",
+          "GRA-A2-04-Q8",
+          "GRA-A2-04-Q9",
+          "GRA-A2-04-Q10"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "VOC-A2-02",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "VOC-A2-02"
+      },
+      "module": "vocabulary",
+      "level_target": "A2",
+      "concept_ids": [
+        "concept.vocabulary.travel-collocations",
+        "concept.vocabulary.event-collocations"
+      ],
+      "skill_ids": [
+        "vocabulary.collocations",
+        "vocabulary.meaning_in_context"
+      ],
+      "prerequisite_lesson_ids": [
+        "VOC-A1-03"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "VOC-A2-02-Q1",
+          "VOC-A2-02-Q2",
+          "VOC-A2-02-Q3",
+          "VOC-A2-02-Q4",
+          "VOC-A2-02-Q5",
+          "VOC-A2-02-Q6",
+          "VOC-A2-02-Q7",
+          "VOC-A2-02-Q8"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "REA-A1-03",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "REA-A1-03"
+      },
+      "module": "reading",
+      "level_target": "A1",
+      "concept_ids": [
+        "concept.reading.personal-message-purpose",
+        "concept.reading.time-place-detail",
+        "concept.reading.supplied-vs-bring"
+      ],
+      "skill_ids": [
+        "reading.detail",
+        "reading.gist"
+      ],
+      "prerequisite_lesson_ids": [
+        "REA-A1-01"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "REA-A1-03-Q1",
+          "REA-A1-03-Q2",
+          "REA-A1-03-Q3",
+          "REA-A1-03-Q4",
+          "REA-A1-03-Q5",
+          "REA-A1-03-Q6",
+          "REA-A1-03-Q7",
+          "REA-A1-03-Q8"
+        ],
+        "review_required_activity_ids": [],
+        "other_unassessed_activity_ids": []
+      }
+    },
+    {
+      "id": "WRI-A1-03",
+      "content_ref": {
+        "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+        "content_version": "1.3.0",
+        "lesson_id": "WRI-A1-03"
+      },
+      "module": "writing",
+      "level_target": "A1",
+      "concept_ids": [
+        "concept.writing.description-planning",
+        "concept.writing.connected-sentences",
+        "concept.writing.revision"
+      ],
+      "skill_ids": [
+        "writing.grammar",
+        "writing.idea_development",
+        "writing.organization",
+        "writing.task_understanding",
+        "writing.vocabulary"
+      ],
+      "prerequisite_lesson_ids": [
+        "WRI-A1-01",
+        "GRA-A1-05"
+      ],
+      "assessment": {
+        "objective_activity_ids": [
+          "WRI-A1-03-Q1",
+          "WRI-A1-03-Q2",
+          "WRI-A1-03-Q3",
+          "WRI-A1-03-Q4"
+        ],
+        "review_required_activity_ids": [
+          "WRI-A1-03-Q5"
+        ],
+        "other_unassessed_activity_ids": []
+      }
+    }
+  ],
+  "curriculum_manifests": [
+    {
+      "curriculum_id": "CUR-FOUNDATION-GRAMMAR-FIRST-V1",
+      "title": {
+        "en": "Foundation · Grammar first",
+        "vi": "Nền tảng · Ngữ pháp trước"
+      },
+      "prototype": true,
+      "goal": "A1 structured form-first practice",
+      "lesson_ids": [
+        "GRA-A1-01",
+        "GRA-A1-02",
+        "GRA-A1-03",
+        "GRA-A1-04",
+        "GRA-A1-05",
+        "GRA-A1-06",
+        "GRA-A1-07",
+        "VOC-A1-01",
+        "REA-A1-01",
+        "REA-A1-03",
+        "WRI-A1-01",
+        "WRI-A1-02",
+        "WRI-A1-03"
+      ],
+      "content_revision_policy": "pinned",
+      "progress_projection": "shared_lesson_attempts"
+    },
+    {
+      "curriculum_id": "CUR-FOUNDATION-COMMUNICATION-FIRST-V1",
+      "title": {
+        "en": "Foundation · Communication first",
+        "vi": "Nền tảng · Giao tiếp trước"
+      },
+      "prototype": true,
+      "goal": "A1 meaning-and-task-first practice",
+      "lesson_ids": [
+        "GRA-A1-01",
+        "GRA-A1-02",
+        "VOC-A1-01",
+        "REA-A1-01",
+        "WRI-A1-01",
+        "GRA-A1-03",
+        "REA-A1-03",
+        "WRI-A1-02",
+        "GRA-A1-04",
+        "GRA-A1-05",
+        "WRI-A1-03",
+        "GRA-A1-07",
+        "GRA-A1-06"
+      ],
+      "content_revision_policy": "pinned",
+      "progress_projection": "shared_lesson_attempts"
+    }
+  ],
+  "evidence_identity_contract": {
+    "storage_owner": "existing_authenticated_learner_store_not_blueprint",
+    "key_fields": [
+      "package_id",
+      "content_version",
+      "lesson_id",
+      "activity_id",
+      "attempt_id"
+    ],
+    "track_id_not_part_of_identity": true,
+    "same_version_same_lesson_uses_existing_attempt": true,
+    "attempt_statuses": "started and submitted states are projected, not copied",
+    "pending_review_is_not_auto_scored": true,
+    "more_than_one_track_membership_does_not_duplicate_evidence": true,
+    "different_content_version_requires_explicit_equivalence_review": true
+  }
+}
