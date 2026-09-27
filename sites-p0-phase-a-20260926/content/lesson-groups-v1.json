@@ -3,7 +3,7 @@
   "source_package_id": "ai-english-tutor-academic-seed-2026-09-v1",
   "source_content_version": "1.3.0",
   "purpose": "catalog_navigation_only",
-  "immutable_content_note": "Navigation groups for the reviewed 1.3.0 cumulative curriculum. Groups do not alter lesson payloads, course sequence, CEFR, existing attempts or learner evidence. Unmatched 1.2 content remains supported before import.",
+  "immutable_content_note": "Navigation groups for the reviewed 1.3.0 production curriculum and future Batch04 1.4.0 candidate. Groups do not alter lesson payloads, course sequence, CEFR, existing attempts or learner evidence. The source_content_version remains 1.3.0 until a separately approved curriculum import.",
   "organization_policy": {
     "skill_is_primary_nav": true,
     "cefr_is_independent_filter": true,
@@ -33,7 +33,9 @@
           "GRA-A1-04",
           "GRA-A1-05",
           "GRA-A1-07",
-          "GRA-A2-03"
+          "GRA-A2-03",
+          "GRA-A1-08",
+          "GRA-A2-06"
         ]
       },
       {
@@ -47,7 +49,8 @@
           "GRA-A1-03",
           "GRA-A2-01",
           "GRA-B1-01",
-          "GRA-A2-02"
+          "GRA-A2-02",
+          "GRA-A2-05"
         ]
       },
       {
@@ -95,7 +98,9 @@
         "order": 2,
         "lesson_ids": [
           "VOC-A1-02",
-          "VOC-A2-01"
+          "VOC-A2-01",
+          "VOC-A1-04",
+          "VOC-A2-03"
         ]
       },
       {
@@ -132,7 +137,8 @@
         "lesson_ids": [
           "REA-A1-01",
           "REA-A1-02",
-          "REA-A2-02"
+          "REA-A2-02",
+          "REA-A1-04"
         ]
       },
       {
@@ -166,7 +172,8 @@
         },
         "order": 4,
         "lesson_ids": [
-          "REA-A1-03"
+          "REA-A1-03",
+          "REA-A2-04"
         ]
       }
     ],
@@ -181,7 +188,8 @@
         "lesson_ids": [
           "WRI-A1-02",
           "WRI-A2-01",
-          "WRI-A2-02"
+          "WRI-A2-02",
+          "WRI-A2-03"
         ]
       },
       {
@@ -194,7 +202,8 @@
         "lesson_ids": [
           "WRI-A1-01",
           "WRI-B1-01",
-          "WRI-A1-03"
+          "WRI-A1-03",
+          "WRI-A1-04"
         ]
       }
     ],
