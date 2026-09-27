@@ -39,6 +39,7 @@ assert.ok(source.includes("latestAttemptForLesson(catalog?.attempts??[],id)"),'l
 assert.ok(source.includes("recentSkillWork(catalog.attempts,catalog.lessons,skill)"),'recent work is skill scoped');
 assert.ok(source.includes('onClick={()=>void chooseSkill(l.module)}'),'seven cards select skills, not starter lessons');
 assert.ok(!source.includes("complete?'Attempt saved'"),'ambiguous old label must be gone');
+assert.ok(source.includes('Incorrect · Review explanation'),'completed mistakes must not imply editable old results');
 assert.ok(page.includes('onSelectSkill={next=>navigate(next as View)}'),'connect child navigation to the existing app');
 assert.ok(!source.includes('primary-skill-overlay-draft'),'do not attach unrelated math assessment');
 console.log('PASS: latest per lesson, draft preference by recency, status, skill filtering, isolated views and safe navigation.');
