@@ -1,0 +1,2265 @@
+{
+  "format": "ai-english-tutor.curriculum-batch",
+  "schema_version": 1,
+  "batch_id": "BATCH-02-A1-A2",
+  "base_version": "1.1.0",
+  "target_version": "1.2.0",
+  "status": "candidate",
+  "metadata": {
+    "status": "curriculum_batch02_original_lessons_in_progress",
+    "course_title": "English Foundation · A1–B1 developing curriculum",
+    "course_description": "Original self-study units with A1 foundations, A2 extensions and B1 samples across seven domains. CEFR values are lesson targets, not certified learner estimates.",
+    "curriculum_principle": "An expanding, independently authored curriculum with age-appropriate contexts and CEFR-targeted language use. Coverage is partial at all levels; current labels are curricular targets, not learner certification."
+  },
+  "insert_after": [
+    {
+      "after": "GRA-A1-03",
+      "ids": [
+        "GRA-A1-04",
+        "GRA-A1-05",
+        "GRA-A1-06"
+      ]
+    },
+    {
+      "after": "VOC-A1-02",
+      "ids": [
+        "VOC-A1-03"
+      ]
+    },
+    {
+      "after": "REA-A1-01",
+      "ids": [
+        "REA-A1-02"
+      ]
+    },
+    {
+      "after": "WRI-A1-01",
+      "ids": [
+        "WRI-A1-02"
+      ]
+    },
+    {
+      "after": "REA-A2-02",
+      "ids": [
+        "REA-A2-03"
+      ]
+    },
+    {
+      "after": "WRI-A2-01",
+      "ids": [
+        "WRI-A2-02"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "GRA-A1-04",
+      "module": "grammar",
+      "cefr_target": "A1",
+      "title": "A, an and regular plurals",
+      "estimated_minutes": 23,
+      "objectives": [
+        "Choose a or an before a singular countable noun from its starting sound.",
+        "Use regular -s, -es and consonant + y → -ies plural forms.",
+        "Recognise common irregular plurals such as children.",
+        "Avoid placing a or an before an ordinary plural noun."
+      ],
+      "explanation": {
+        "en": "A and an go before a singular countable noun when you mean one: a pencil, an apple. Choose by the next sound: an orange but a uniform (its first sound is /j/). Most plurals take -s; nouns ending in -s, -sh, -ch or -x often take -es; consonant + y changes to -ies. Some common forms are irregular: one child, two children. Do not say 'a books'. These patterns do not cover every noun, so learn new words in phrases.",
+        "vi": "Dùng a/an trước danh từ đếm được số ít; chọn theo âm đầu, không chỉ chữ đầu. Số nhiều thường thêm -s/-es, phụ âm + y → -ies. Một số từ bất quy tắc: child → children. Không dùng a/an trước danh từ số nhiều."
+      },
+      "examples": [
+        "SINGULAR · I need a pencil and an eraser.",
+        "SOUND · A uniform, but an umbrella.",
+        "PLURAL -S · One desk → three desks.",
+        "PLURAL -ES · One box → two boxes.",
+        "PLURAL -IES · One city → two cities.",
+        "IRREGULAR · One child → two children.",
+        "CONTRAST · A book is on the table. Two books are on the table."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A1-04-Q1",
+          "type": "single_choice",
+          "prompt": "Complete: I have ___ orange in my lunchbox.",
+          "options": [
+            {
+              "id": "A",
+              "text": "a"
+            },
+            {
+              "id": "B",
+              "text": "an"
+            },
+            {
+              "id": "C",
+              "text": "many"
+            },
+            {
+              "id": "D",
+              "text": "two"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Orange begins with a vowel sound, so an is the appropriate indefinite article here."
+          },
+          "skill_tags": [
+            "grammar.articles",
+            "grammar.plural_nouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-04-Q2",
+          "type": "short_answer",
+          "prompt": "Complete: There are two ___ (box) under the table.",
+          "answer": {
+            "accepted_answers": [
+              "boxes"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Box ends in -x, so its regular plural is boxes. Enter only the missing word."
+          },
+          "skill_tags": [
+            "grammar.articles",
+            "grammar.plural_nouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-04-Q3",
+          "type": "single_choice",
+          "prompt": "Which phrase uses the correct article?",
+          "options": [
+            {
+              "id": "A",
+              "text": "an uniform"
+            },
+            {
+              "id": "B",
+              "text": "a umbrella"
+            },
+            {
+              "id": "C",
+              "text": "a uniform"
+            },
+            {
+              "id": "D",
+              "text": "an book"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Uniform starts with the /j/ sound, as in 'you', so a uniform is correct."
+          },
+          "skill_tags": [
+            "grammar.articles",
+            "grammar.plural_nouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-04-Q4",
+          "type": "short_answer",
+          "prompt": "Complete: Three ___ (city) are on the map.",
+          "answer": {
+            "accepted_answers": [
+              "cities"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "City ends in consonant + y, so the plural changes y to ies: cities."
+          },
+          "skill_tags": [
+            "grammar.articles",
+            "grammar.plural_nouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-04-Q5",
+          "type": "single_choice",
+          "prompt": "Which sentence uses a plural noun correctly?",
+          "options": [
+            {
+              "id": "A",
+              "text": "We have a books."
+            },
+            {
+              "id": "B",
+              "text": "We have two book."
+            },
+            {
+              "id": "C",
+              "text": "We have two books."
+            },
+            {
+              "id": "D",
+              "text": "We have an books."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Two requires the plural books without an indefinite article."
+          },
+          "skill_tags": [
+            "grammar.articles",
+            "grammar.plural_nouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-04-Q6",
+          "type": "short_answer",
+          "prompt": "Complete: Two ___ (child) are playing outside.",
+          "answer": {
+            "accepted_answers": [
+              "children"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Child has the irregular plural children, not childs."
+          },
+          "skill_tags": [
+            "grammar.articles",
+            "grammar.plural_nouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-04-Q7",
+          "type": "single_choice",
+          "prompt": "Complete: She needs ___ umbrella because it is raining.",
+          "options": [
+            {
+              "id": "A",
+              "text": "a"
+            },
+            {
+              "id": "B",
+              "text": "an"
+            },
+            {
+              "id": "C",
+              "text": "many"
+            },
+            {
+              "id": "D",
+              "text": "some"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Umbrella begins with a vowel sound and refers to one countable item: an umbrella."
+          },
+          "skill_tags": [
+            "grammar.articles",
+            "grammar.plural_nouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-04-Q8",
+          "type": "single_choice",
+          "prompt": "Choose the correct plural.",
+          "options": [
+            {
+              "id": "A",
+              "text": "three brushes"
+            },
+            {
+              "id": "B",
+              "text": "three brushs"
+            },
+            {
+              "id": "C",
+              "text": "three brushies"
+            },
+            {
+              "id": "D",
+              "text": "three brush"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Brush ends in -sh and takes -es in the plural."
+          },
+          "skill_tags": [
+            "grammar.articles",
+            "grammar.plural_nouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-04-Q9",
+          "type": "short_answer",
+          "prompt": "Complete: One watch, two ___ (watch).",
+          "answer": {
+            "accepted_answers": [
+              "watches"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Watch ends in -ch and takes -es: watches."
+          },
+          "skill_tags": [
+            "grammar.articles",
+            "grammar.plural_nouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-04-Q10",
+          "type": "single_choice",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "There are an apples in the bag."
+            },
+            {
+              "id": "B",
+              "text": "There is an apple in the bag."
+            },
+            {
+              "id": "C",
+              "text": "There is apple an in the bag."
+            },
+            {
+              "id": "D",
+              "text": "There is a apples in the bag."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "An apple is one countable item; use an with a singular noun."
+          },
+          "skill_tags": [
+            "grammar.articles",
+            "grammar.plural_nouns"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A1-05",
+      "module": "grammar",
+      "cefr_target": "A1",
+      "title": "There is and there are",
+      "estimated_minutes": 23,
+      "objectives": [
+        "Use there is for one item and there are for several items.",
+        "Make negative descriptions with there isn't and there aren't.",
+        "Ask Is there? and Are there? questions.",
+        "Distinguish a place description from a statement about an item's owner."
+      ],
+      "explanation": {
+        "en": "There is and there are introduce things in a place: There is a map on the wall. There are three chairs near the desk. Use is with one item and are with plural items. Negatives are there isn't / there aren't. Questions begin Is there...? or Are there...? In a short answer, say Yes, there is / No, there aren't. Check the noun after the verb before deciding.",
+        "vi": "Để mô tả đồ vật tồn tại ở một nơi: There is + danh từ số ít; There are + danh từ số nhiều. Phủ định: there isn't/aren't. Câu hỏi: Is there...? / Are there...? Xem danh từ đứng sau để chọn is hay are."
+      },
+      "examples": [
+        "ONE · There is a clock above the door.",
+        "MORE THAN ONE · There are four desks by the window.",
+        "NEGATIVE · There isn't a computer in this room.",
+        "PLURAL NEGATIVE · There aren't any pencils in the box.",
+        "QUESTION · Are there any posters? Yes, there are.",
+        "CONTRAST · My sister has a bag (owner); there is a bag on the chair (location)."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A1-05-Q1",
+          "type": "single_choice",
+          "prompt": "Complete: ___ a clock above the door.",
+          "options": [
+            {
+              "id": "A",
+              "text": "There are"
+            },
+            {
+              "id": "B",
+              "text": "There is"
+            },
+            {
+              "id": "C",
+              "text": "They are"
+            },
+            {
+              "id": "D",
+              "text": "It have"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "One clock takes There is."
+          },
+          "skill_tags": [
+            "grammar.there_is_are",
+            "grammar.be_forms"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-05-Q2",
+          "type": "short_answer",
+          "prompt": "Complete: There ___ three windows in the classroom.",
+          "answer": {
+            "accepted_answers": [
+              "are"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Three windows is plural, so use are. Do not repeat there."
+          },
+          "skill_tags": [
+            "grammar.there_is_are",
+            "grammar.be_forms"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-05-Q3",
+          "type": "single_choice",
+          "prompt": "Choose the correct negative sentence about one computer.",
+          "options": [
+            {
+              "id": "A",
+              "text": "There aren't a computer here."
+            },
+            {
+              "id": "B",
+              "text": "There isn't a computer here."
+            },
+            {
+              "id": "C",
+              "text": "There doesn't a computer here."
+            },
+            {
+              "id": "D",
+              "text": "There not is a computer here."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "One computer needs there isn't, the negative of there is."
+          },
+          "skill_tags": [
+            "grammar.there_is_are",
+            "grammar.be_forms"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-05-Q4",
+          "type": "short_answer",
+          "prompt": "Complete: ___ any chairs in the hall?",
+          "answer": {
+            "accepted_answers": [
+              "are there"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The plural question starts Are there. Type only the missing phrase."
+          },
+          "skill_tags": [
+            "grammar.there_is_are",
+            "grammar.be_forms"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-05-Q5",
+          "type": "single_choice",
+          "prompt": "Choose the correct short answer: Is there a library nearby?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Yes, there are."
+            },
+            {
+              "id": "B",
+              "text": "Yes, there is."
+            },
+            {
+              "id": "C",
+              "text": "Yes, it have."
+            },
+            {
+              "id": "D",
+              "text": "Yes, they is."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The question uses is, so the short answer is Yes, there is."
+          },
+          "skill_tags": [
+            "grammar.there_is_are",
+            "grammar.be_forms"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-05-Q6",
+          "type": "short_answer",
+          "prompt": "Complete: There ___ (not / be) any books on the desk.",
+          "answer": {
+            "accepted_answers": [
+              "aren't",
+              "are not"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Books is plural. Use aren't or are not after There."
+          },
+          "skill_tags": [
+            "grammar.there_is_are",
+            "grammar.be_forms"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-05-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence describes two trees correctly?",
+          "options": [
+            {
+              "id": "A",
+              "text": "There is two trees in the garden."
+            },
+            {
+              "id": "B",
+              "text": "There are two trees in the garden."
+            },
+            {
+              "id": "C",
+              "text": "There be two trees in the garden."
+            },
+            {
+              "id": "D",
+              "text": "There have two trees in the garden."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Two trees requires There are."
+          },
+          "skill_tags": [
+            "grammar.there_is_are",
+            "grammar.be_forms"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-05-Q8",
+          "type": "single_choice",
+          "prompt": "Choose the correct question for one lamp.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Are there a lamp on the desk?"
+            },
+            {
+              "id": "B",
+              "text": "Is there a lamp on the desk?"
+            },
+            {
+              "id": "C",
+              "text": "Does there a lamp on the desk?"
+            },
+            {
+              "id": "D",
+              "text": "There is a lamp on the desk?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A lamp is singular, so ask Is there a lamp...?"
+          },
+          "skill_tags": [
+            "grammar.there_is_are",
+            "grammar.be_forms"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-05-Q9",
+          "type": "short_answer",
+          "prompt": "Complete: There ___ a small garden behind our school.",
+          "answer": {
+            "accepted_answers": [
+              "is"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "A small garden is singular, so use is."
+          },
+          "skill_tags": [
+            "grammar.there_is_are",
+            "grammar.be_forms"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-05-Q10",
+          "type": "single_choice",
+          "prompt": "Which reply matches 'Are there any markers in the box?'",
+          "options": [
+            {
+              "id": "A",
+              "text": "No, there isn't."
+            },
+            {
+              "id": "B",
+              "text": "No, there aren't."
+            },
+            {
+              "id": "C",
+              "text": "No, it aren't."
+            },
+            {
+              "id": "D",
+              "text": "No, they isn't."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Plural markers take are; the negative short reply is No, there aren't."
+          },
+          "skill_tags": [
+            "grammar.there_is_are",
+            "grammar.be_forms"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A1-06",
+      "module": "grammar",
+      "cefr_target": "A1",
+      "title": "Prepositions of place",
+      "estimated_minutes": 23,
+      "objectives": [
+        "Use in, on and under to describe simple positions.",
+        "Distinguish next to, between, behind and in front of.",
+        "Choose position phrases from a clearly described context.",
+        "Write a short phrase rather than repeat printed words."
+      ],
+      "explanation": {
+        "en": "A preposition of place tells where one thing is relative to another. In means inside; on means on a surface; under means below; next to means beside. Between normally places a thing in the space separating two named things. In front of points to the nearer/front side; behind is on the back side. Read all the location clues before choosing a phrase.",
+        "vi": "Giới từ nơi chốn: in = bên trong; on = trên bề mặt; under = bên dưới; next to = bên cạnh; between = giữa hai vật; behind = phía sau; in front of = phía trước. Dựa vào mô tả vị trí rõ ràng, không đoán qua một từ đơn lẻ."
+      },
+      "examples": [
+        "IN · The coins are inside the box: in the box.",
+        "ON · The cup rests on the table surface.",
+        "UNDER · The shoes are below the bed: under the bed.",
+        "NEXT TO · The bookcase is beside the door.",
+        "BETWEEN · The small desk is between two tall shelves.",
+        "FRONT/BACK · The teacher stands in front of the board; the storage room is behind the library."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A1-06-Q1",
+          "type": "single_choice",
+          "prompt": "The ball is inside the basket. It is ___ the basket.",
+          "options": [
+            {
+              "id": "A",
+              "text": "on"
+            },
+            {
+              "id": "B",
+              "text": "in"
+            },
+            {
+              "id": "C",
+              "text": "under"
+            },
+            {
+              "id": "D",
+              "text": "behind"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Inside means in; the ball is in the basket."
+          },
+          "skill_tags": [
+            "grammar.prepositions_place"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-06-Q2",
+          "type": "short_answer",
+          "prompt": "Complete: The picture hangs ___ the wall, not inside it.",
+          "answer": {
+            "accepted_answers": [
+              "on"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "A picture hanging on a wall uses on."
+          },
+          "skill_tags": [
+            "grammar.prepositions_place"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-06-Q3",
+          "type": "single_choice",
+          "prompt": "The schoolbag is below the desk. It is ___ the desk.",
+          "options": [
+            {
+              "id": "A",
+              "text": "between"
+            },
+            {
+              "id": "B",
+              "text": "next to"
+            },
+            {
+              "id": "C",
+              "text": "under"
+            },
+            {
+              "id": "D",
+              "text": "on"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Below the desk means under it."
+          },
+          "skill_tags": [
+            "grammar.prepositions_place"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-06-Q4",
+          "type": "single_choice",
+          "prompt": "The music room is beside the library. It is ___ the library.",
+          "options": [
+            {
+              "id": "A",
+              "text": "next to"
+            },
+            {
+              "id": "B",
+              "text": "inside"
+            },
+            {
+              "id": "C",
+              "text": "above"
+            },
+            {
+              "id": "D",
+              "text": "between"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Beside and next to describe adjacent locations."
+          },
+          "skill_tags": [
+            "grammar.prepositions_place"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-06-Q5",
+          "type": "short_answer",
+          "prompt": "Complete: The chair is ___ the desk and the window. It is in the middle of them.",
+          "answer": {
+            "accepted_answers": [
+              "between"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "A location in the middle of two named things uses between."
+          },
+          "skill_tags": [
+            "grammar.prepositions_place"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-06-Q6",
+          "type": "single_choice",
+          "prompt": "The bicycle is at the back of the house, not at the front. It is ___ the house.",
+          "options": [
+            {
+              "id": "A",
+              "text": "in front of"
+            },
+            {
+              "id": "B",
+              "text": "on"
+            },
+            {
+              "id": "C",
+              "text": "behind"
+            },
+            {
+              "id": "D",
+              "text": "between"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "At the back of a house corresponds to behind the house."
+          },
+          "skill_tags": [
+            "grammar.prepositions_place"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-06-Q7",
+          "type": "single_choice",
+          "prompt": "The pupils are facing the teacher, who stands on the front side of the classroom. The teacher is ___ the pupils.",
+          "options": [
+            {
+              "id": "A",
+              "text": "behind"
+            },
+            {
+              "id": "B",
+              "text": "in front of"
+            },
+            {
+              "id": "C",
+              "text": "under"
+            },
+            {
+              "id": "D",
+              "text": "between"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "In front of describes the teacher's position relative to the pupils."
+          },
+          "skill_tags": [
+            "grammar.prepositions_place"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-06-Q8",
+          "type": "short_answer",
+          "prompt": "Complete: My phone is ___ my bag; I need to open the bag to take it out.",
+          "answer": {
+            "accepted_answers": [
+              "in"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The phone is inside the bag, so use in."
+          },
+          "skill_tags": [
+            "grammar.prepositions_place"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-06-Q9",
+          "type": "single_choice",
+          "prompt": "Which sentence describes a book resting on a desk surface?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The book is under the desk."
+            },
+            {
+              "id": "B",
+              "text": "The book is on the desk."
+            },
+            {
+              "id": "C",
+              "text": "The book is in the desk."
+            },
+            {
+              "id": "D",
+              "text": "The book is behind the desk."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A book resting on the desk's surface is on the desk."
+          },
+          "skill_tags": [
+            "grammar.prepositions_place"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-06-Q10",
+          "type": "short_answer",
+          "prompt": "Complete: The café is ___ the bank; their doors are side by side.",
+          "answer": {
+            "accepted_answers": [
+              "next to",
+              "beside"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Two places with adjacent entrances can be next to or beside each other."
+          },
+          "skill_tags": [
+            "grammar.prepositions_place"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "VOC-A1-03",
+      "module": "vocabulary",
+      "cefr_target": "A1",
+      "title": "Places in town and simple directions",
+      "estimated_minutes": 19,
+      "objectives": [
+        "Recognise familiar town places from their purpose.",
+        "Understand turn left, turn right and go straight.",
+        "Use simple direction phrases politely.",
+        "Distinguish a location from a route instruction."
+      ],
+      "explanation": {
+        "en": "Learn places with what you do there: borrow a book at the library, see a doctor at the clinic, buy stamps at the post office and catch a bus at the bus stop. Directions describe movement: go straight, turn left and turn right. To ask politely, say 'Excuse me, where is the library?' Listen for landmarks before following a route.",
+        "vi": "Học từ theo công dụng: library mượn sách, clinic khám bệnh, post office gửi thư, bus stop đón xe. Chỉ đường: go straight = đi thẳng, turn left/right = rẽ trái/phải."
+      },
+      "examples": [
+        "PLACES · A clinic is where people see a doctor.",
+        "TRANSPORT · Wait at the bus stop for a bus.",
+        "DIRECTION · Go straight, then turn left at the corner.",
+        "POLITE QUESTION · Excuse me, where is the post office?",
+        "ROUTE · Pass the park before you reach the library."
+      ],
+      "activities": [
+        {
+          "id": "VOC-A1-03-Q1",
+          "type": "single_choice",
+          "prompt": "Where can you buy stamps and send a letter?",
+          "options": [
+            {
+              "id": "A",
+              "text": "At the post office"
+            },
+            {
+              "id": "B",
+              "text": "At the sports field"
+            },
+            {
+              "id": "C",
+              "text": "At the swimming pool"
+            },
+            {
+              "id": "D",
+              "text": "At the cinema"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A post office handles letters and stamps."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context",
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A1-03-Q2",
+          "type": "single_choice",
+          "prompt": "You feel unwell and need to see a doctor. Which place do you visit?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The art room"
+            },
+            {
+              "id": "B",
+              "text": "A clinic"
+            },
+            {
+              "id": "C",
+              "text": "A bookshop"
+            },
+            {
+              "id": "D",
+              "text": "The bus stop"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A clinic is a place for medical care."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context",
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A1-03-Q3",
+          "type": "short_answer",
+          "prompt": "Complete: Please wait at the bus ___ for the number 12 bus.",
+          "answer": {
+            "accepted_answers": [
+              "stop"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "A bus stop is a designated place to wait for a bus."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context",
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A1-03-Q4",
+          "type": "single_choice",
+          "prompt": "Which instruction means continue ahead without turning?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Turn right."
+            },
+            {
+              "id": "B",
+              "text": "Go straight."
+            },
+            {
+              "id": "C",
+              "text": "Go back."
+            },
+            {
+              "id": "D",
+              "text": "Turn left."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Go straight tells you to continue ahead."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A1-03-Q5",
+          "type": "single_choice",
+          "prompt": "A person says, 'Turn left at the next corner.' What should you do?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Continue straight forever"
+            },
+            {
+              "id": "B",
+              "text": "Take the next corner on your left"
+            },
+            {
+              "id": "C",
+              "text": "Turn right now"
+            },
+            {
+              "id": "D",
+              "text": "Cross the road without looking"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Turn left at the next corner indicates a left turn at that point."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A1-03-Q6",
+          "type": "short_answer",
+          "prompt": "Complete: Excuse me, ___ is the library?",
+          "answer": {
+            "accepted_answers": [
+              "where"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Where asks for the location of a place."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A1-03-Q7",
+          "type": "single_choice",
+          "prompt": "Which phrase politely begins a request for directions?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Get out!"
+            },
+            {
+              "id": "B",
+              "text": "Excuse me, could you help me?"
+            },
+            {
+              "id": "C",
+              "text": "You must tell me."
+            },
+            {
+              "id": "D",
+              "text": "Move away."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Excuse me and could you help me make a polite request."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context",
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A1-03-Q8",
+          "type": "single_choice",
+          "prompt": "You want to borrow a novel. Which place is most suitable?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A library"
+            },
+            {
+              "id": "B",
+              "text": "A petrol station"
+            },
+            {
+              "id": "C",
+              "text": "A clinic"
+            },
+            {
+              "id": "D",
+              "text": "A post office"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A library lends books to readers."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context",
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "REA-A1-02",
+      "module": "reading",
+      "cefr_target": "A1",
+      "title": "A class visit to the science museum",
+      "estimated_minutes": 23,
+      "objectives": [
+        "Understand the main purpose of a simple trip notice.",
+        "Find departure, meeting and return times without mixing them up.",
+        "Identify what the school provides and what learners bring.",
+        "Support answers with the appropriate sentence."
+      ],
+      "explanation": {
+        "en": "Read the notice once for its overall purpose. Then mark different time expressions: meet, leave, return. Do not assume that the first number is the bus departure time. Compare bring with provided; they describe different responsibilities. Check the exact sentence for each answer.",
+        "vi": "Đọc một lượt để hiểu nội dung chính. Phân biệt giờ tập trung, giờ xe khởi hành và giờ về. Tìm các từ 'bring' và 'provide' để biết học sinh cần mang gì và nhà trường chuẩn bị gì."
+      },
+      "examples": [
+        "GIST · This notice gives details of a school museum visit.",
+        "TIME · Meet at 8:30; the bus departs at 8:45.",
+        "MATERIAL · Students bring water, a notebook and a pencil.",
+        "FOOD · The school provides lunch; students need not bring it.",
+        "EVIDENCE · Check the line with the exact action before selecting a time."
+      ],
+      "activities": [
+        {
+          "id": "REA-A1-02-Q1",
+          "type": "single_choice",
+          "prompt": "What is the notice mainly about?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A science museum class trip"
+            },
+            {
+              "id": "B",
+              "text": "A regular school lunch menu"
+            },
+            {
+              "id": "C",
+              "text": "A new sports club"
+            },
+            {
+              "id": "D",
+              "text": "A cancelled science lesson"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The first sentence introduces Class 6B's visit to the museum."
+          },
+          "skill_tags": [
+            "reading.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-02-Q2",
+          "type": "single_choice",
+          "prompt": "What time must students meet at the school gate?",
+          "options": [
+            {
+              "id": "A",
+              "text": "8:15 a.m."
+            },
+            {
+              "id": "B",
+              "text": "8:30 a.m."
+            },
+            {
+              "id": "C",
+              "text": "8:45 a.m."
+            },
+            {
+              "id": "D",
+              "text": "3:00 p.m."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The meeting time is eight thirty. Eight forty-five is when the bus leaves."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-02-Q3",
+          "type": "single_choice",
+          "prompt": "When does the bus leave for the museum?",
+          "options": [
+            {
+              "id": "A",
+              "text": "8:30 a.m."
+            },
+            {
+              "id": "B",
+              "text": "8:45 a.m."
+            },
+            {
+              "id": "C",
+              "text": "12:00 p.m."
+            },
+            {
+              "id": "D",
+              "text": "3:00 p.m."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The notice explicitly says the bus leaves at eight forty-five."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-02-Q4",
+          "type": "single_choice",
+          "prompt": "Which item should students bring?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A notebook and pencil"
+            },
+            {
+              "id": "B",
+              "text": "A full lunch box"
+            },
+            {
+              "id": "C",
+              "text": "A telescope"
+            },
+            {
+              "id": "D",
+              "text": "A school uniform for changing"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The notice asks students to bring water, a notebook and a pencil."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-02-Q5",
+          "type": "single_choice",
+          "prompt": "What will the school provide?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A camera"
+            },
+            {
+              "id": "B",
+              "text": "A notebook"
+            },
+            {
+              "id": "C",
+              "text": "Sandwiches and fruit"
+            },
+            {
+              "id": "D",
+              "text": "Museum tickets for parents"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The school provides sandwiches and fruit for lunch."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-02-Q6",
+          "type": "single_choice",
+          "prompt": "What will the group see first at the museum?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The energy room"
+            },
+            {
+              "id": "B",
+              "text": "A planet show"
+            },
+            {
+              "id": "C",
+              "text": "The museum shop"
+            },
+            {
+              "id": "D",
+              "text": "The garden"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The visit begins with a short show about the planets."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-02-Q7",
+          "type": "single_choice",
+          "prompt": "Where will the students eat at noon?",
+          "options": [
+            {
+              "id": "A",
+              "text": "At the school gate"
+            },
+            {
+              "id": "B",
+              "text": "In the bus"
+            },
+            {
+              "id": "C",
+              "text": "In the museum garden"
+            },
+            {
+              "id": "D",
+              "text": "In the energy room"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The group will eat in the museum garden at noon."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-02-Q8",
+          "type": "single_choice",
+          "prompt": "What should a student do if they cannot attend?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Tell the teacher by Thursday"
+            },
+            {
+              "id": "B",
+              "text": "Arrive at school at noon"
+            },
+            {
+              "id": "C",
+              "text": "Ask the bus driver on Saturday"
+            },
+            {
+              "id": "D",
+              "text": "Bring a separate lunch"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The final sentence asks students to tell their class teacher by Thursday."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "PASS-REA-A1-02",
+        "title": "Museum trip notice",
+        "body": "Class 6B is visiting the City Science Museum on Saturday. Everyone will meet at the school gate at eight thirty in the morning. The bus leaves at eight forty-five, so please arrive on time. Bring a small bottle of water, a notebook and a pencil. You do not need to bring lunch: the school will provide sandwiches and fruit. The museum visit begins with a short show about the planets. After that, students will explore the energy room in small groups. At noon, the group will eat in the museum garden. The bus will return to school at three o'clock. Parents can collect students at the main gate. If you cannot join the trip, please tell your class teacher by Thursday.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "REA-A2-03",
+      "module": "reading",
+      "cefr_target": "A2",
+      "title": "A garden project changes its plan",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Identify the main purpose of a school project update.",
+        "Follow revised plans and conditional activities.",
+        "Distinguish supplied materials from optional contributions.",
+        "Use contrast and condition language as evidence."
+      ],
+      "explanation": {
+        "en": "Read the update as a changed plan rather than a list of unrelated events. Mark the original plan, the reason for changing it and the new timetable. 'However' signals a contrast; 'only if' means an activity depends on a condition. Do not treat an optional contribution as a requirement.",
+        "vi": "Đây là thông báo thay đổi kế hoạch. Tìm kế hoạch ban đầu, lý do đổi và lịch mới. 'However' báo hiệu sự tương phản; 'only if' là điều kiện bắt buộc để hoạt động xảy ra."
+      },
+      "examples": [
+        "CHANGE · Saturday painting moves to Sunday because of predicted rain.",
+        "SATURDAY MORNING · Students prepare labels and seeds in a covered room.",
+        "CONDITION · Outdoor planting happens after lunch only if rain stops.",
+        "REQUIREMENT · Bring a reusable bottle; school supplies gloves and tools.",
+        "OPTIONAL · Families may give spare flowerpots but need not buy new ones."
+      ],
+      "activities": [
+        {
+          "id": "REA-A2-03-Q1",
+          "type": "single_choice",
+          "prompt": "Why did the council change the original schedule?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The school garden closed permanently."
+            },
+            {
+              "id": "B",
+              "text": "Heavy rain is forecast for Saturday morning."
+            },
+            {
+              "id": "C",
+              "text": "Nobody wanted to paint benches."
+            },
+            {
+              "id": "D",
+              "text": "There were no seeds."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The forecast of heavy rain explains the revised plan."
+          },
+          "skill_tags": [
+            "reading.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-03-Q2",
+          "type": "single_choice",
+          "prompt": "When is the bench painting now planned?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Saturday morning"
+            },
+            {
+              "id": "B",
+              "text": "Saturday at nine"
+            },
+            {
+              "id": "C",
+              "text": "Sunday"
+            },
+            {
+              "id": "D",
+              "text": "Friday evening"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Painting moves to Sunday, when conditions are expected to be drier."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-03-Q3",
+          "type": "single_choice",
+          "prompt": "What will students do on Saturday morning?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Paint outdoors"
+            },
+            {
+              "id": "B",
+              "text": "Prepare plant labels and sort seeds indoors"
+            },
+            {
+              "id": "C",
+              "text": "Buy new flowerpots"
+            },
+            {
+              "id": "D",
+              "text": "Go home immediately"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Saturday morning work moves into a covered classroom for labels and seeds."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-03-Q4",
+          "type": "single_choice",
+          "prompt": "When may the outdoor planting team begin?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Only after lunch if the rain has stopped"
+            },
+            {
+              "id": "B",
+              "text": "At nine regardless of rain"
+            },
+            {
+              "id": "C",
+              "text": "On Sunday only"
+            },
+            {
+              "id": "D",
+              "text": "Immediately after the Friday update"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The phrase 'only if the rain has stopped' makes the outdoor planting conditional."
+          },
+          "skill_tags": [
+            "reading.inference",
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-03-Q5",
+          "type": "single_choice",
+          "prompt": "Which items will the school provide?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Reusable bottles"
+            },
+            {
+              "id": "B",
+              "text": "New clothes"
+            },
+            {
+              "id": "C",
+              "text": "Gloves and tools"
+            },
+            {
+              "id": "D",
+              "text": "Flowerpots for every family"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The notice explicitly says gloves and tools will be provided by the school."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-03-Q6",
+          "type": "single_choice",
+          "prompt": "What can a student do if they cannot attend both days?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Choose one shift"
+            },
+            {
+              "id": "B",
+              "text": "They must miss the whole project"
+            },
+            {
+              "id": "C",
+              "text": "Paint alone without an adult"
+            },
+            {
+              "id": "D",
+              "text": "Buy materials instead"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The notice allows students to choose just one shift."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-03-Q7",
+          "type": "single_choice",
+          "prompt": "What does the leader say about paint and tools?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Students can use them without help."
+            },
+            {
+              "id": "B",
+              "text": "They are only for teachers."
+            },
+            {
+              "id": "C",
+              "text": "An adult must be nearby when they are used."
+            },
+            {
+              "id": "D",
+              "text": "Nobody may use tools on Sunday."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The safety reminder says nobody should use paint or tools without an adult nearby."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-03-Q8",
+          "type": "single_choice",
+          "prompt": "Which statement accurately describes family contributions?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Every family must buy flowerpots."
+            },
+            {
+              "id": "B",
+              "text": "Spare flowerpots are welcome, but buying supplies is unnecessary."
+            },
+            {
+              "id": "C",
+              "text": "Families must provide all gloves."
+            },
+            {
+              "id": "D",
+              "text": "Families should arrive before nine on Friday."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Flowerpots are optional; the text says buying new supplies is not necessary."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "PASS-REA-A2-03",
+        "title": "Student council garden update",
+        "body": "The student council is organising a weekend project to improve the small garden behind the school. The original plan was to plant flowers and paint the benches on the same day. However, the weather forecast now predicts heavy rain on Saturday morning. The council has decided to move the painting activity to Sunday, when conditions should be drier. Students will still meet on Saturday at nine, but they will work in the covered classroom to prepare plant labels and sort seeds. The planting team will begin outdoors after lunch only if the rain has stopped. Each volunteer should bring a reusable water bottle and wear clothes that may get dirty. Gloves and tools will be provided by the school. Families are welcome to contribute spare flowerpots, but buying new supplies is not necessary. The project leader, Ms Trang, reminds everyone that safety comes first: nobody should use paint or tools without an adult nearby. Students who cannot attend both days may choose just one shift. A final update will be posted on the class board on Friday evening.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-A1-02",
+      "module": "writing",
+      "cefr_target": "A1",
+      "title": "Write a friendly invitation message",
+      "estimated_minutes": 28,
+      "objectives": [
+        "Identify the recipient and the details requested in a short invitation.",
+        "Choose a day, time, place and activity relevant to the prompt.",
+        "Organise a greeting, invitation and friendly ending.",
+        "Check that each requested detail is present before sending."
+      ],
+      "explanation": {
+        "en": "Analyse the task before writing: Who is your reader? What event are you inviting them to? Which details must be included? Brainstorm two possible activities, choose one, then plan: greeting → invitation → day and time → meeting place → friendly ending. Write short complete sentences. Check the day, time and place, basic verb forms, capital letters and punctuation. Adult feedback should lead to a revision you write yourself.",
+        "vi": "Phân tích đề: mời ai, làm gì, khi nào, gặp ở đâu. Nghĩ vài ý, chọn một ý phù hợp, lập dàn ý lời chào → lời mời → ngày/giờ/địa điểm → kết thúc. Tự kiểm tra đủ thông tin rồi mới nộp."
+      },
+      "examples": [
+        "TASK · Invite a classmate to an art club event. Include a day, time and meeting place.",
+        "BRAINSTORM · Draw a poster or paint a picture; choose the activity you can explain clearly.",
+        "PLAN · Hi Anna → Would you like to...? → On Saturday at 10 → Meet outside the library → See you!",
+        "MODEL · Hi Anna! Would you like to join the art club with me on Saturday? It starts at ten. Let's meet outside the library at quarter to ten. We can draw a poster together. See you!",
+        "SELF-CHECK · Can your friend tell when, where and what to do? Is the tone friendly?"
+      ],
+      "activities": [
+        {
+          "id": "WRI-A1-02-Q1",
+          "type": "single_choice",
+          "prompt": "Your classmate asks you to invite them to an art event. What details are needed?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Only your favourite animal"
+            },
+            {
+              "id": "B",
+              "text": "The event, when it happens and where to meet"
+            },
+            {
+              "id": "C",
+              "text": "Your home address and password"
+            },
+            {
+              "id": "D",
+              "text": "Only a goodbye"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "An actionable invitation includes the event, time and meeting place."
+          },
+          "skill_tags": [
+            "writing.task_understanding"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A1-02-Q2",
+          "type": "single_choice",
+          "prompt": "Which opening is appropriate for a friendly message?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Dear Sir or Madam, I hereby request..."
+            },
+            {
+              "id": "B",
+              "text": "Hi Mia! Would you like to join me?"
+            },
+            {
+              "id": "C",
+              "text": "To whom it may concern:"
+            },
+            {
+              "id": "D",
+              "text": "You must come immediately."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A friendly greeting and invitation fit a message to a classmate."
+          },
+          "skill_tags": [
+            "writing.register"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A1-02-Q3",
+          "type": "single_choice",
+          "prompt": "Which order is easiest to follow?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Goodbye → place → greeting → activity"
+            },
+            {
+              "id": "B",
+              "text": "Greeting → invitation → day/time → meeting place → ending"
+            },
+            {
+              "id": "C",
+              "text": "Time → ending → greeting → event"
+            },
+            {
+              "id": "D",
+              "text": "Ending → event → ending → time"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The recipient first learns what they are invited to, then when and where."
+          },
+          "skill_tags": [
+            "writing.organization"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A1-02-Q4",
+          "type": "single_choice",
+          "prompt": "Which sentence gives a specific meeting place?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Let's meet somewhere."
+            },
+            {
+              "id": "B",
+              "text": "Let's meet outside the school library."
+            },
+            {
+              "id": "C",
+              "text": "Let's meet later."
+            },
+            {
+              "id": "D",
+              "text": "Let's have fun."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Outside the school library identifies where to meet clearly."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.idea_development"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A1-02-Q5",
+          "type": "extended_response",
+          "prompt": "Write a friendly message inviting a classmate to an art-club activity. Say what you will do, give the day and time, and name a clear meeting place. Aim for about 35–55 words. Make a short plan before writing; do not include private home addresses or phone numbers.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-WRITING-A1",
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.register",
+            "writing.organization",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Your writing is saved for adult review. An incomplete draft is not evidence of low proficiency; you can revise it."
+          },
+          "word_range_guidance": {
+            "min": 35,
+            "max": 55,
+            "not_a_quality_score": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "WRI-A2-02",
+      "module": "writing",
+      "cefr_target": "A2",
+      "title": "Describe a school event in an email",
+      "estimated_minutes": 32,
+      "objectives": [
+        "Identify the audience and three content requirements of an email task.",
+        "Select relevant details and expand one activity with a reason or example.",
+        "Write a clear beginning, middle and ending.",
+        "Revise based on feedback without copying a model verbatim."
+      ],
+      "explanation": {
+        "en": "Read the prompt and underline the reader, purpose and each requested detail. Brainstorm possible school events, choose one real or imaginary event, then select only details that answer the task. Plan: greeting → where/when → what happened → what you liked and why → friendly ending. Use past simple for finished events, but check each verb individually. After drafting, compare your text to the task and revise one weak sentence independently.",
+        "vi": "Phân tích đề: người đọc, mục đích và ba yêu cầu nội dung. Brainstorm một vài sự kiện, chọn một, chọn chi tiết liên quan. Dàn ý: chào → khi nào/ở đâu → đã làm gì → thích gì và vì sao → kết thư. Sửa dựa trên phản hồi, không chép lại bài mẫu."
+      },
+      "examples": [
+        "TASK · Email a friend about an event: when/where, one activity, what you enjoyed and why.",
+        "BRAINSTORM · Science fair: Friday afternoon; saw a robot; enjoyed building a model.",
+        "SELECT · Keep details that answer the three required points; remove unrelated shopping plans.",
+        "PLAN · Hi Sam → event time/place → main activity → favourite part + reason → write back soon.",
+        "MODEL · Hi Sam, Last Friday our school held a science fair in the hall. My class built a simple robot. I liked testing it because we solved a problem together. It was noisy but exciting. Have you visited a school fair? Write soon, Linh.",
+        "SELF-CHECK · Have you answered every part? Are past events expressed clearly? Does your ending fit a friend?"
+      ],
+      "activities": [
+        {
+          "id": "WRI-A2-02-Q1",
+          "type": "single_choice",
+          "prompt": "Your friend asks about a school event. Which detail belongs in the reply?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Where and when it happened"
+            },
+            {
+              "id": "B",
+              "text": "Your neighbour's phone number"
+            },
+            {
+              "id": "C",
+              "text": "An unrelated recipe"
+            },
+            {
+              "id": "D",
+              "text": "Only your favourite movie"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The task asks for information about the event, beginning with when and where."
+          },
+          "skill_tags": [
+            "writing.task_understanding"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A2-02-Q2",
+          "type": "single_choice",
+          "prompt": "Which sentence best develops 'I liked the science fair'?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I liked it because we tested our model together."
+            },
+            {
+              "id": "B",
+              "text": "I liked it. I liked it. I liked it."
+            },
+            {
+              "id": "C",
+              "text": "The bus is blue."
+            },
+            {
+              "id": "D",
+              "text": "It was in April, but I will not explain."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A clear reason and a concrete activity develop the idea using language suitable for this lesson."
+          },
+          "skill_tags": [
+            "writing.idea_development"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A2-02-Q3",
+          "type": "single_choice",
+          "prompt": "Which plan is clearest for the email?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Ending → unrelated hobby → greeting"
+            },
+            {
+              "id": "B",
+              "text": "Greeting → event time/place → activity → enjoyment/reason → ending"
+            },
+            {
+              "id": "C",
+              "text": "Only list the event name five times"
+            },
+            {
+              "id": "D",
+              "text": "A formal complaint → event name → no ending"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A clear sequence addresses the recipient and each part of the task."
+          },
+          "skill_tags": [
+            "writing.organization"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A2-02-Q4",
+          "type": "single_choice",
+          "prompt": "Which sentence correctly describes a finished event last Friday?",
+          "options": [
+            {
+              "id": "A",
+              "text": "We build a model last Friday."
+            },
+            {
+              "id": "B",
+              "text": "We are build a model last Friday."
+            },
+            {
+              "id": "C",
+              "text": "We built a model last Friday."
+            },
+            {
+              "id": "D",
+              "text": "We building a model last Friday."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "A finished past event takes past simple built."
+          },
+          "skill_tags": [
+            "writing.grammar"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A2-02-Q5",
+          "type": "extended_response",
+          "prompt": "Write an email to a friend about a school event you attended (real or imaginary). Explain when and where it happened, describe one activity, and say what you enjoyed and why. Aim for about 70–100 words. Before writing, note three relevant ideas; then draft and self-check. Do not include personal contact details.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-WRITING-A2",
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.register",
+            "writing.organization",
+            "writing.grammar",
+            "writing.vocabulary",
+            "writing.idea_development"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Your writing is saved for adult review. An incomplete draft is not evidence of low proficiency; you can revise it."
+          },
+          "word_range_guidance": {
+            "min": 70,
+            "max": 100,
+            "not_a_quality_score": true
+          }
+        }
+      ]
+    }
+  ]
+}
