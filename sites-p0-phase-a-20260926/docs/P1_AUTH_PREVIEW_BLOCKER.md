@@ -2,6 +2,8 @@
 
 **Observed in a supported Work run, per owner-supplied report:** Source checkout pinned to `1ee4202475cdc56788001d97ccb9881755b1939d`; `node tests/foundation-coaching.cjs`, `node tests/run.cjs`, `node tests/academic.cjs`, and production build passed. In managed preview, opening Foundation/Grammar returned `Sign in to use your learning path.` The browser could not obtain authenticated Sites identity; consequently UI/browser acceptance, historical records, and save/submit/reload were NOT verified. Preview stopped; no new release, migration, reset or reimport; live v8 unchanged.
 
+> **Second Work attempt (owner-reported, 2026-09-27):** The current Work environment is managed-linux only; its browser cannot access portable localhost/loopback or the local mock sign-in route. No additional build/tests were run and no data/import/deployment was changed. Both managed authenticated browser QA and portable browser QA are unavailable **inside that Work session**. Do not send another Work run with the same preview instructions. P1 remains HOLD pending a different QA environment or an explicit owner-approved, controlled live-release exception.
+
 ## Why it happens
 
 The Foundation GET endpoint calls `learnerKey(request)` and returns HTTP 401 with that message when trusted Sites identity headers are absent. The source `vite.config.ts` enables `sites({mockAuth: !managedLinux})`: managed-linux preview deliberately does not inject the local mock account, while the portable *loopback-only* development profile does. This identifies a testing-environment authentication boundary, not proof of a P1 application defect.
