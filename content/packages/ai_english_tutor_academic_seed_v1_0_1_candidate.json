@@ -1,0 +1,2173 @@
+{
+  "package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+  "schema_version": "1.0.1",
+  "created_for": "AI English Tutor - ChatGPT Sites import / portable migration",
+  "language": "en",
+  "support_language": "vi",
+  "content_note": "Newly authored instructional content. Does not reproduce copyrighted textbook exercises. CEFR tags are curricular targets, not certified difficulty calibrations.",
+  "status": "seed_content_for_end_to_end_testing_not_a_complete_cefr_curriculum",
+  "import_contract": {
+    "idempotency_key": "package_id + schema_version",
+    "on_collision": "never_overwrite_user_data; update_seed_content_only_if_matching_content_id_and_explicit_admin_confirmation",
+    "student_state": "do_not_include_in_package",
+    "grading": "grade only objective questions; open responses require approved review",
+    "audio": "do not score listening without audio playback; hide transcript until attempt submitted",
+    "versioning": "store content_id, content_version on each attempt"
+  },
+  "curriculum_outline": {
+    "framework": "CEFR",
+    "levels": [
+      "Pre-A1",
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "C1",
+      "C2"
+    ],
+    "principle": "Proficiency-based with separate age/interests/topic appropriateness; the seed only includes A2 and B1 content.",
+    "learning_modes": [
+      "AI Plan",
+      "Course Catalog",
+      "Skill Practice",
+      "Daily English",
+      "Future Exam Prep"
+    ]
+  },
+  "course": {
+    "id": "COURSE-FOUNDATION-SEED",
+    "title": "English Foundation: Complete Learning Loop",
+    "description": "A small but complete sample covering objective tasks, text/audio input, writing and speaking output, review and progress.",
+    "sequence": [
+      "GRA-A2-01",
+      "GRA-B1-01",
+      "VOC-A2-01",
+      "VOC-B1-01",
+      "REA-A2-01",
+      "REA-B1-01",
+      "LIS-A2-01",
+      "LIS-B1-01",
+      "WRI-A2-01",
+      "WRI-B1-01",
+      "SPE-A2-01",
+      "SPE-B1-01",
+      "PRO-A2-01"
+    ],
+    "prerequisites": []
+  },
+  "rubrics": {
+    "RUBRIC-WRITING-A2": {
+      "criteria": [
+        "task_coverage",
+        "idea_clarity",
+        "organisation",
+        "grammar",
+        "vocabulary"
+      ],
+      "scale": {
+        "min": 0,
+        "max": 4
+      },
+      "guidance": "Score each criterion using actual response evidence. Do not use word count as a proxy for proficiency. Give 2 strengths, 2-3 priority errors, one revision task. Do not assign formal CEFR certification."
+    },
+    "RUBRIC-WRITING-B1": {
+      "criteria": [
+        "task_coverage",
+        "idea_development",
+        "coherence",
+        "grammar",
+        "vocabulary"
+      ],
+      "scale": {
+        "min": 0,
+        "max": 4
+      },
+      "guidance": "Evaluate relevance and specific support; retain source text and versioned feedback. A pending response receives no proficiency score."
+    },
+    "RUBRIC-SPEAKING-A2": {
+      "criteria": [
+        "task_response",
+        "organisation",
+        "grammar",
+        "vocabulary",
+        "intelligibility"
+      ],
+      "scale": {
+        "min": 0,
+        "max": 4
+      },
+      "guidance": "Requires actual audio review. Do not infer fluency/pronunciation from text transcript alone."
+    },
+    "RUBRIC-SPEAKING-B1": {
+      "criteria": [
+        "task_response",
+        "idea_development",
+        "fluency",
+        "grammar",
+        "vocabulary",
+        "intelligibility"
+      ],
+      "scale": {
+        "min": 0,
+        "max": 4
+      },
+      "guidance": "Requires actual audio review. Avoid treating transcript errors as definitive evidence of pronunciation."
+    },
+    "RUBRIC-PRONUNCIATION": {
+      "criteria": [
+        "contrast_awareness",
+        "intelligibility"
+      ],
+      "scale": {
+        "min": 0,
+        "max": 4
+      },
+      "guidance": "Requires human/validated audio evaluation. Record-only is unassessed."
+    }
+  },
+  "lessons": [
+    {
+      "id": "GRA-A2-01",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Present simple or present continuous?",
+      "estimated_minutes": 15,
+      "objectives": [
+        "Distinguish habits from actions happening now",
+        "Choose the correct tense from context"
+      ],
+      "explanation": {
+        "en": "Use the present simple for routines and repeated facts. Use the present continuous (am/is/are + -ing) for actions happening now or around now. Time expressions are clues, but meaning decides the tense.",
+        "vi": "Hiện tại đơn nói về thói quen/sự thật; hiện tại tiếp diễn nói về hành động đang diễn ra hoặc tạm thời."
+      },
+      "examples": [
+        "I usually walk to the library.",
+        "Today I am taking the bus because it is raining."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-01-Q1",
+          "type": "single_choice",
+          "prompt": "Every Saturday, Maya ___ at the community garden.",
+          "options": [
+            {
+              "id": "A",
+              "text": "volunteers"
+            },
+            {
+              "id": "B",
+              "text": "is volunteering"
+            },
+            {
+              "id": "C",
+              "text": "volunteer"
+            },
+            {
+              "id": "D",
+              "text": "volunteering"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Every Saturday describes a routine; use volunteers."
+          },
+          "skill_tags": [
+            "grammar.present_simple"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-01-Q2",
+          "type": "single_choice",
+          "prompt": "Be quiet! The children ___ a story.",
+          "options": [
+            {
+              "id": "A",
+              "text": "read"
+            },
+            {
+              "id": "B",
+              "text": "reads"
+            },
+            {
+              "id": "C",
+              "text": "are reading"
+            },
+            {
+              "id": "D",
+              "text": "is reading"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The action is happening now; plural children takes are reading."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-01-Q3",
+          "type": "short_answer",
+          "prompt": "Complete: My brother usually ___ (study) after dinner.",
+          "answer": {
+            "accepted_answers": [
+              "studies"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Usually signals a habit; study becomes studies after he/she/it."
+          },
+          "skill_tags": [
+            "grammar.present_simple",
+            "grammar.subject_verb_agreement"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-01-Q4",
+          "type": "single_choice",
+          "prompt": "Which sentence expresses a temporary situation?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I live in Hanoi."
+            },
+            {
+              "id": "B",
+              "text": "I am staying with my aunt this week."
+            },
+            {
+              "id": "C",
+              "text": "Water boils at 100°C at sea level."
+            },
+            {
+              "id": "D",
+              "text": "We play chess on Sundays."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "This week describes a temporary arrangement."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-01-Q5",
+          "type": "short_answer",
+          "prompt": "Complete: Look! It ___ (rain).",
+          "answer": {
+            "accepted_answers": [
+              "is raining"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Look points to something happening now."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-01-Q6",
+          "type": "single_choice",
+          "prompt": "Choose the correct sentence.",
+          "options": [
+            {
+              "id": "A",
+              "text": "She is knowing the answer."
+            },
+            {
+              "id": "B",
+              "text": "She knows the answer."
+            },
+            {
+              "id": "C",
+              "text": "She know the answer."
+            },
+            {
+              "id": "D",
+              "text": "She knowing the answer."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Know is usually a state verb, so the present simple is natural here."
+          },
+          "skill_tags": [
+            "grammar.stative_verbs"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-B1-01",
+      "module": "grammar",
+      "cefr_target": "B1",
+      "title": "Past simple and present perfect",
+      "estimated_minutes": 18,
+      "objectives": [
+        "Use past simple with a finished past time",
+        "Use present perfect for experiences and current relevance"
+      ],
+      "explanation": {
+        "en": "The past simple places an event at a finished past time (yesterday, in 2022). The present perfect (have/has + past participle) connects a past event to the present, often for experience or a result now. Avoid present perfect with a finished-time expression.",
+        "vi": "Quá khứ đơn gắn với thời điểm quá khứ đã kết thúc; hiện tại hoàn thành liên hệ trải nghiệm/kết quả với hiện tại."
+      },
+      "examples": [
+        "I visited the museum last Saturday.",
+        "I have visited that museum twice."
+      ],
+      "activities": [
+        {
+          "id": "GRA-B1-01-Q1",
+          "type": "single_choice",
+          "prompt": "I ___ this book last month.",
+          "options": [
+            {
+              "id": "A",
+              "text": "have read"
+            },
+            {
+              "id": "B",
+              "text": "read"
+            },
+            {
+              "id": "C",
+              "text": "have reading"
+            },
+            {
+              "id": "D",
+              "text": "am reading"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Last month is a finished past time; choose past simple read."
+          },
+          "skill_tags": [
+            "grammar.past_simple"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-01-Q2",
+          "type": "single_choice",
+          "prompt": "She ___ her keys, so she cannot open the door.",
+          "options": [
+            {
+              "id": "A",
+              "text": "lost yesterday"
+            },
+            {
+              "id": "B",
+              "text": "has lost"
+            },
+            {
+              "id": "C",
+              "text": "lose"
+            },
+            {
+              "id": "D",
+              "text": "is lose"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The present result is that she cannot open the door."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-01-Q3",
+          "type": "short_answer",
+          "prompt": "Complete: We ___ (never / try) kayaking before.",
+          "answer": {
+            "accepted_answers": [
+              "have never tried"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Never before describes life experience up to now."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-01-Q4",
+          "type": "single_choice",
+          "prompt": "Which time phrase normally requires the past simple?",
+          "options": [
+            {
+              "id": "A",
+              "text": "so far"
+            },
+            {
+              "id": "B",
+              "text": "ever"
+            },
+            {
+              "id": "C",
+              "text": "in 2021"
+            },
+            {
+              "id": "D",
+              "text": "already"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "In 2021 identifies a finished past period."
+          },
+          "skill_tags": [
+            "grammar.past_simple"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-01-Q5",
+          "type": "single_choice",
+          "prompt": "Choose the correct sentence.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Have you seen her yesterday?"
+            },
+            {
+              "id": "B",
+              "text": "Did you see her yesterday?"
+            },
+            {
+              "id": "C",
+              "text": "Do you seen her yesterday?"
+            },
+            {
+              "id": "D",
+              "text": "Did you seen her yesterday?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Yesterday is finished time and did takes the base verb see."
+          },
+          "skill_tags": [
+            "grammar.past_simple"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-01-Q6",
+          "type": "short_answer",
+          "prompt": "Complete: He ___ (finish) the report, so we can send it now.",
+          "answer": {
+            "accepted_answers": [
+              "has finished"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The completed action has a result now."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "VOC-A2-01",
+      "module": "vocabulary",
+      "cefr_target": "A2",
+      "title": "Daily routines and useful phrases",
+      "estimated_minutes": 12,
+      "objectives": [
+        "Understand common routine phrases",
+        "Choose natural verb–noun combinations"
+      ],
+      "explanation": {
+        "en": "Learn phrases as chunks: make breakfast, catch a bus, do homework, take a break, go for a walk. The verb is part of the meaning.",
+        "vi": "Học từ theo cụm tự nhiên, không học từng từ đơn lẻ."
+      },
+      "examples": [
+        "I take a short break after studying.",
+        "We catch the bus at eight."
+      ],
+      "activities": [
+        {
+          "id": "VOC-A2-01-Q1",
+          "type": "single_choice",
+          "prompt": "Choose the natural phrase.",
+          "options": [
+            {
+              "id": "A",
+              "text": "do breakfast"
+            },
+            {
+              "id": "B",
+              "text": "make breakfast"
+            },
+            {
+              "id": "C",
+              "text": "take breakfast"
+            },
+            {
+              "id": "D",
+              "text": "catch breakfast"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "We normally say make breakfast."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-01-Q2",
+          "type": "single_choice",
+          "prompt": "If you catch the bus, you ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "drive it yourself"
+            },
+            {
+              "id": "B",
+              "text": "board it in time"
+            },
+            {
+              "id": "C",
+              "text": "repair it"
+            },
+            {
+              "id": "D",
+              "text": "walk next to it"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Catch a bus means get on it before it leaves."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-01-Q3",
+          "type": "short_answer",
+          "prompt": "Complete: I need to ___ a short break.",
+          "answer": {
+            "accepted_answers": [
+              "take"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Take a break is the conventional phrase."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-01-Q4",
+          "type": "single_choice",
+          "prompt": "Which phrase means exercise by walking outside?",
+          "options": [
+            {
+              "id": "A",
+              "text": "go for a walk"
+            },
+            {
+              "id": "B",
+              "text": "make a walk"
+            },
+            {
+              "id": "C",
+              "text": "do a walk"
+            },
+            {
+              "id": "D",
+              "text": "take a walking"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Go for a walk is the standard phrase."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-01-Q5",
+          "type": "single_choice",
+          "prompt": "Choose the best meaning of routine.",
+          "options": [
+            {
+              "id": "A",
+              "text": "a surprising event"
+            },
+            {
+              "id": "B",
+              "text": "a regular way of doing things"
+            },
+            {
+              "id": "C",
+              "text": "a difficult exam"
+            },
+            {
+              "id": "D",
+              "text": "a special celebration"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A routine is a regularly repeated set of actions."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "VOC-B1-01",
+      "module": "vocabulary",
+      "cefr_target": "B1",
+      "title": "Talking about sustainable choices",
+      "estimated_minutes": 14,
+      "objectives": [
+        "Use common environmental collocations",
+        "Infer meaning from context"
+      ],
+      "explanation": {
+        "en": "Useful combinations include reduce waste, reusable bottle, save energy, public transport and make a difference. Notice whether the phrase describes an action, object or result.",
+        "vi": "Luyện cụm từ thông dụng và hiểu nghĩa trong ngữ cảnh."
+      },
+      "examples": [
+        "Using a reusable bottle can reduce plastic waste.",
+        "Small changes can make a difference over time."
+      ],
+      "activities": [
+        {
+          "id": "VOC-B1-01-Q1",
+          "type": "single_choice",
+          "prompt": "Which phrase is most natural?",
+          "options": [
+            {
+              "id": "A",
+              "text": "reduce waste"
+            },
+            {
+              "id": "B",
+              "text": "lower rubbishings"
+            },
+            {
+              "id": "C",
+              "text": "cut a wasting"
+            },
+            {
+              "id": "D",
+              "text": "make less wastes"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Reduce waste is a standard collocation."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-01-Q2",
+          "type": "single_choice",
+          "prompt": "A reusable bottle is a bottle that ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "can be used again"
+            },
+            {
+              "id": "B",
+              "text": "must be thrown away"
+            },
+            {
+              "id": "C",
+              "text": "is made only of glass"
+            },
+            {
+              "id": "D",
+              "text": "is always expensive"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The prefix re- suggests again."
+          },
+          "skill_tags": [
+            "vocabulary.word_formation"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-01-Q3",
+          "type": "short_answer",
+          "prompt": "Complete: Turning off unused lights helps ___ energy.",
+          "answer": {
+            "accepted_answers": [
+              "save"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Save energy means avoid using energy unnecessarily."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-01-Q4",
+          "type": "single_choice",
+          "prompt": "In “Small choices make a difference,” the phrase means ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "they are all the same"
+            },
+            {
+              "id": "B",
+              "text": "they have an effect"
+            },
+            {
+              "id": "C",
+              "text": "they cost a lot"
+            },
+            {
+              "id": "D",
+              "text": "they are difficult to explain"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Make a difference means have an effect."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-01-Q5",
+          "type": "single_choice",
+          "prompt": "Public transport includes ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "private bicycles only"
+            },
+            {
+              "id": "B",
+              "text": "buses and trains available to the public"
+            },
+            {
+              "id": "C",
+              "text": "only airplanes"
+            },
+            {
+              "id": "D",
+              "text": "cars owned by one family"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Public transport serves shared travel needs."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "REA-A2-01",
+      "module": "reading",
+      "cefr_target": "A2",
+      "title": "A garden for everyone",
+      "estimated_minutes": 17,
+      "objectives": [
+        "Identify a text’s main idea",
+        "Find details and infer a simple purpose"
+      ],
+      "explanation": {
+        "en": "Read once for the main idea. Read again for evidence that supports each answer. Do not choose an answer just because it repeats one word from the text.",
+        "vi": "Đọc để nắm ý chính trước, sau đó tìm chi tiết và bằng chứng."
+      },
+      "examples": [],
+      "activities": [
+        {
+          "id": "REA-A2-01-Q1",
+          "type": "single_choice",
+          "prompt": "What is the main idea of the passage?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A library is closing."
+            },
+            {
+              "id": "B",
+              "text": "A community garden brings people together."
+            },
+            {
+              "id": "C",
+              "text": "The town needs more buses."
+            },
+            {
+              "id": "D",
+              "text": "Vegetables are difficult to grow."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The text discusses food, volunteering and meeting neighbours."
+          },
+          "skill_tags": [
+            "reading.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-01-Q2",
+          "type": "single_choice",
+          "prompt": "How many volunteers helped at first?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Six"
+            },
+            {
+              "id": "B",
+              "text": "Thirty"
+            },
+            {
+              "id": "C",
+              "text": "Ten"
+            },
+            {
+              "id": "D",
+              "text": "Fifty"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The first two sentences say only six volunteers worked there at first."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-01-Q3",
+          "type": "single_choice",
+          "prompt": "What happens to some of the harvest?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It is sold abroad."
+            },
+            {
+              "id": "B",
+              "text": "It is thrown away."
+            },
+            {
+              "id": "C",
+              "text": "It goes to a food bank."
+            },
+            {
+              "id": "D",
+              "text": "It is sent to the library."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The text says part of the harvest is given to a local food bank."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-01-Q4",
+          "type": "single_choice",
+          "prompt": "Why is the quiet corner mentioned?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It shows another way people use the garden."
+            },
+            {
+              "id": "B",
+              "text": "It proves vegetables need shade."
+            },
+            {
+              "id": "C",
+              "text": "It explains why the tank is near the gate."
+            },
+            {
+              "id": "D",
+              "text": "It is where all workshops happen."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Visitors can also sit and read there."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-01-Q5",
+          "type": "single_choice",
+          "prompt": "Who can join the summer workshop?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Only experienced gardeners"
+            },
+            {
+              "id": "B",
+              "text": "Only the original six volunteers"
+            },
+            {
+              "id": "C",
+              "text": "Anyone, including beginners"
+            },
+            {
+              "id": "D",
+              "text": "Only food-bank workers"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The final sentence explicitly welcomes people with no planting experience."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "TXT-GARDEN-A2",
+        "title": "A garden for everyone",
+        "body": "A small community garden opened near the library last spring. At first, only six volunteers worked there. They cleaned the space, planted vegetables, and put a water tank beside the gate. Now more than thirty people help. Some visit every Saturday; others come after work. The garden gives part of its harvest to a local food bank. It also has a quiet corner where visitors can sit and read. The volunteers do not use the garden only to grow food. They say it helps neighbours meet and learn from one another. In summer, the team plans to run a free workshop about growing herbs in small spaces. Anyone can join, even if they have never planted anything before.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "REA-B1-01",
+      "module": "reading",
+      "cefr_target": "B1",
+      "title": "What makes practice effective?",
+      "estimated_minutes": 19,
+      "objectives": [
+        "Distinguish the writer’s claim from a qualification",
+        "Make an inference based on stated evidence"
+      ],
+      "explanation": {
+        "en": "Look for the central claim, then notice qualifying words such as sometimes, may and does not mean. These prevent overgeneralisation.",
+        "vi": "Nhận diện luận điểm và các từ giới hạn mức độ khẳng định."
+      },
+      "examples": [],
+      "activities": [
+        {
+          "id": "REA-B1-01-Q1",
+          "type": "single_choice",
+          "prompt": "Which statement best represents the writer’s main argument?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Long sessions never work."
+            },
+            {
+              "id": "B",
+              "text": "Purposeful and regular practice matters more than length alone."
+            },
+            {
+              "id": "C",
+              "text": "All learners should study for exactly fifteen minutes."
+            },
+            {
+              "id": "D",
+              "text": "Review should happen only once a week."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The writer emphasises what learners do and how regularly they practise."
+          },
+          "skill_tags": [
+            "reading.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-01-Q2",
+          "type": "single_choice",
+          "prompt": "Why does the writer mention long sessions?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To reject short practice"
+            },
+            {
+              "id": "B",
+              "text": "To qualify the main argument"
+            },
+            {
+              "id": "C",
+              "text": "To recommend never taking breaks"
+            },
+            {
+              "id": "D",
+              "text": "To explain exam regulations"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The passage recognises that long sessions can help complex work."
+          },
+          "skill_tags": [
+            "reading.author_purpose"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-01-Q3",
+          "type": "single_choice",
+          "prompt": "Which activity most clearly checks understanding?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Rereading notes repeatedly"
+            },
+            {
+              "id": "B",
+              "text": "Explaining an idea from memory, then checking it"
+            },
+            {
+              "id": "C",
+              "text": "Highlighting every line"
+            },
+            {
+              "id": "D",
+              "text": "Studying while distracted"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Recall followed by checking reveals missing knowledge."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-01-Q4",
+          "type": "single_choice",
+          "prompt": "What does “sustained attention” most nearly mean?",
+          "options": [
+            {
+              "id": "A",
+              "text": "focus kept over time"
+            },
+            {
+              "id": "B",
+              "text": "a quick glance"
+            },
+            {
+              "id": "C",
+              "text": "attention from another person"
+            },
+            {
+              "id": "D",
+              "text": "a noisy study room"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The phrase describes continuous focus for a complex project."
+          },
+          "skill_tags": [
+            "reading.vocabulary_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-01-Q5",
+          "type": "single_choice",
+          "prompt": "What can be inferred about breaks?",
+          "options": [
+            {
+              "id": "A",
+              "text": "They always replace studying."
+            },
+            {
+              "id": "B",
+              "text": "They can help when concentration drops."
+            },
+            {
+              "id": "C",
+              "text": "They should last two hours."
+            },
+            {
+              "id": "D",
+              "text": "They are useful only for children."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A short break can be more useful than forcing work when attention falls."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "TXT-PRACTICE-B1",
+        "title": "What makes practice effective?",
+        "body": "People sometimes assume that learning a new skill requires long, uninterrupted periods of study. In practice, shorter sessions can be useful when they are regular and purposeful. A learner who practises for fifteen minutes every day may remember more than someone who works for two hours once a week, especially if the shorter sessions include a quick review of earlier material. This does not mean long sessions are always ineffective. They can be valuable for complex projects that demand sustained attention. The important question is not simply how long a session lasts, but what the learner does during it. For example, rereading notes can feel productive without revealing what has been forgotten. Trying to explain an idea from memory, checking the explanation and correcting errors gives clearer evidence of understanding. Rest also matters. When learners notice that attention is falling, a short break may be more useful than forcing themselves to continue. A sustainable study plan therefore combines focused practice, regular review and time to recover.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "LIS-A2-01",
+      "module": "listening",
+      "cefr_target": "A2",
+      "title": "A workshop at the library",
+      "estimated_minutes": 15,
+      "objectives": [
+        "Understand key details in a short conversation",
+        "Identify time, cost and required items"
+      ],
+      "explanation": {
+        "en": "Listen once for the situation. Listen again for details such as time and materials. The transcript is available only after submitting your answers.",
+        "vi": "Nghe lần đầu nắm tình huống, lần sau tìm chi tiết."
+      },
+      "examples": [],
+      "activities": [
+        {
+          "id": "LIS-A2-01-Q1",
+          "type": "single_choice",
+          "prompt": "What is the workshop about?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Painting"
+            },
+            {
+              "id": "B",
+              "text": "Growing herbs"
+            },
+            {
+              "id": "C",
+              "text": "Computer repair"
+            },
+            {
+              "id": "D",
+              "text": "Cooking rice"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The speakers say it is a workshop about growing herbs."
+          },
+          "skill_tags": [
+            "listening.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-01-Q2",
+          "type": "single_choice",
+          "prompt": "When does it start?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Saturday at 10:30"
+            },
+            {
+              "id": "B",
+              "text": "Friday at 10:30"
+            },
+            {
+              "id": "C",
+              "text": "Saturday at 10:20"
+            },
+            {
+              "id": "D",
+              "text": "Sunday at 11:00"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The stated start time is Saturday at ten thirty."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-01-Q3",
+          "type": "single_choice",
+          "prompt": "What should participants bring?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Seeds"
+            },
+            {
+              "id": "B",
+              "text": "Soil"
+            },
+            {
+              "id": "C",
+              "text": "A small container"
+            },
+            {
+              "id": "D",
+              "text": "A book"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The library provides seeds and soil; participants bring a container."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-01-Q4",
+          "type": "single_choice",
+          "prompt": "How much does the workshop cost?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Five pounds"
+            },
+            {
+              "id": "B",
+              "text": "Ten pounds"
+            },
+            {
+              "id": "C",
+              "text": "It is free"
+            },
+            {
+              "id": "D",
+              "text": "The price is unknown"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The man says there is no fee."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-01-Q5",
+          "type": "single_choice",
+          "prompt": "What time should she arrive?",
+          "options": [
+            {
+              "id": "A",
+              "text": "10:00"
+            },
+            {
+              "id": "B",
+              "text": "10:10"
+            },
+            {
+              "id": "C",
+              "text": "10:20"
+            },
+            {
+              "id": "D",
+              "text": "10:40"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Arrive ten minutes before the 10:30 start."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "audio_asset": {
+        "id": "AUD-LIBRARY-A2",
+        "source_text": "Woman: Hello. Is the library workshop still open for registration?\nMan: Yes. It is this Saturday at ten thirty in the morning.\nWoman: Is it the workshop about growing herbs?\nMan: That's right. Please bring a small container, but we will provide the seeds and soil.\nWoman: Great. Is there a fee?\nMan: No, it is free. Please arrive ten minutes early.\nWoman: Thank you. I'll be there at ten twenty.",
+        "language": "en",
+        "roles": [
+          "woman",
+          "man"
+        ],
+        "transcript_reveal": "after_submission",
+        "requires_real_playback": true,
+        "fallback": "If playback is unavailable, mark listening unassessed; do not show transcript first or award listening credit."
+      }
+    },
+    {
+      "id": "LIS-B1-01",
+      "module": "listening",
+      "cefr_target": "B1",
+      "title": "Choosing a reliable journey",
+      "estimated_minutes": 17,
+      "objectives": [
+        "Understand speaker attitude and comparisons",
+        "Recognise a qualified conclusion"
+      ],
+      "explanation": {
+        "en": "Listen for contrast words such as although and but. A speaker’s overall conclusion may differ from one isolated example.",
+        "vi": "Chú ý các từ chỉ tương phản và quan điểm tổng thể của người nói."
+      },
+      "examples": [],
+      "activities": [
+        {
+          "id": "LIS-B1-01-Q1",
+          "type": "single_choice",
+          "prompt": "What is the main factor discussed?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Ticket design"
+            },
+            {
+              "id": "B",
+              "text": "Reliability of a journey"
+            },
+            {
+              "id": "C",
+              "text": "Car colour"
+            },
+            {
+              "id": "D",
+              "text": "Holiday prices"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The discussion contrasts reliability with speed."
+          },
+          "skill_tags": [
+            "listening.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-01-Q2",
+          "type": "single_choice",
+          "prompt": "Why might the train be less stressful?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It is always faster."
+            },
+            {
+              "id": "B",
+              "text": "Its journey time is more predictable."
+            },
+            {
+              "id": "C",
+              "text": "It has free meals."
+            },
+            {
+              "id": "D",
+              "text": "It never stops."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The train takes the same time each day in the example."
+          },
+          "skill_tags": [
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-01-Q3",
+          "type": "single_choice",
+          "prompt": "What limits cycling as an option?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Only bicycle colour"
+            },
+            {
+              "id": "B",
+              "text": "Safe routes and weather"
+            },
+            {
+              "id": "C",
+              "text": "No one owns bicycles"
+            },
+            {
+              "id": "D",
+              "text": "Train ticket prices"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The guest mentions both safe routes and weather."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-01-Q4",
+          "type": "single_choice",
+          "prompt": "Which support from employers is mentioned?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Free cars"
+            },
+            {
+              "id": "B",
+              "text": "Secure bicycle parking"
+            },
+            {
+              "id": "C",
+              "text": "New roads"
+            },
+            {
+              "id": "D",
+              "text": "A survey prize"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The guest specifically suggests secure bicycle parking or flexible start times."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-01-Q5",
+          "type": "single_choice",
+          "prompt": "What is the guest’s final view?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Everyone must cycle."
+            },
+            {
+              "id": "B",
+              "text": "The fastest trip is always best."
+            },
+            {
+              "id": "C",
+              "text": "The practical choice depends on the person."
+            },
+            {
+              "id": "D",
+              "text": "Cars are never useful."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "There is no one best choice; personal needs and practicality matter."
+          },
+          "skill_tags": [
+            "listening.speaker_intention"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "audio_asset": {
+        "id": "AUD-COMMUTE-B1",
+        "source_text": "Host: Today we're talking about commuting. A local survey suggests that people often choose a route based on reliability, not just speed.\nGuest: Yes. A train that takes thirty minutes every day can be less stressful than a car journey that takes twenty minutes on a good day but forty-five when traffic is heavy.\nHost: What about cycling?\nGuest: It is an option for shorter journeys, although safe routes and weather matter. Employers can also help by offering secure bicycle parking or flexible start times.\nHost: So there's no single best choice for everyone?\nGuest: Exactly. The useful question is which option fits a person's needs and is practical most days.",
+        "language": "en",
+        "roles": [
+          "host",
+          "guest"
+        ],
+        "transcript_reveal": "after_submission",
+        "requires_real_playback": true,
+        "fallback": "No audio means no listening score; allow a separately labelled reading/transcript activity only."
+      }
+    },
+    {
+      "id": "WRI-A2-01",
+      "module": "writing",
+      "cefr_target": "A2",
+      "title": "Write a helpful email",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Respond to every part of a practical prompt",
+        "Organise a short email with clear sentences"
+      ],
+      "explanation": {
+        "en": "Read the task first. Underline who you are writing to, why you are writing, and every point you need to include. Draft a short plan before writing.",
+        "vi": "Phân tích người nhận, mục đích và các ý bắt buộc trước khi viết."
+      },
+      "examples": [
+        "Hello Sam, Thanks for inviting me. I can come on Saturday..."
+      ],
+      "activities": [
+        {
+          "id": "WRI-A2-01-Q1",
+          "type": "single_choice",
+          "prompt": "Your friend asks when and where to meet. What must your reply include?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Only your favourite food"
+            },
+            {
+              "id": "B",
+              "text": "A time and a place"
+            },
+            {
+              "id": "C",
+              "text": "Only a greeting"
+            },
+            {
+              "id": "D",
+              "text": "A long description of the weather"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Both requested details must be covered."
+          },
+          "skill_tags": [
+            "writing.task_understanding"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A2-01-Q2",
+          "type": "single_choice",
+          "prompt": "Which opening is suitable for an email to a friend?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Dear Sir or Madam,"
+            },
+            {
+              "id": "B",
+              "text": "Hello Sam,"
+            },
+            {
+              "id": "C",
+              "text": "To whom it may concern,"
+            },
+            {
+              "id": "D",
+              "text": "NOTICE TO ALL STAFF"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Hello Sam is appropriate for a friendly email."
+          },
+          "skill_tags": [
+            "writing.register"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A2-01-Q3",
+          "type": "extended_response",
+          "prompt": "Your friend Sam wants to visit a community garden with you. Write an email: suggest a day and time, explain how to get there, and say what you can do together. Write about 80–110 words.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-WRITING-A2",
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Submitted. This task requires reviewed feedback; no automatic CEFR score is assigned."
+          },
+          "word_range_guidance": {
+            "min": 80,
+            "max": 110,
+            "not_a_quality_score": true
+          }
+        }
+      ],
+      "writing_process": [
+        "analyse_prompt",
+        "brainstorm",
+        "outline",
+        "draft",
+        "review",
+        "revise"
+      ]
+    },
+    {
+      "id": "WRI-B1-01",
+      "module": "writing",
+      "cefr_target": "B1",
+      "title": "Develop an opinion paragraph",
+      "estimated_minutes": 30,
+      "objectives": [
+        "State a clear opinion",
+        "Support a reason with a concrete example",
+        "Use a relevant conclusion"
+      ],
+      "explanation": {
+        "en": "A useful paragraph has a clear opinion, a reason, an example and a final sentence linking back to the question. A sophisticated word cannot replace a clear idea.",
+        "vi": "Viết ý kiến rõ ràng, giải thích lý do và ví dụ cụ thể."
+      },
+      "examples": [
+        "I think regular short practice is effective because it is easier to maintain. For example,..."
+      ],
+      "activities": [
+        {
+          "id": "WRI-B1-01-Q1",
+          "type": "single_choice",
+          "prompt": "Which is the strongest supporting detail?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Learning is good."
+            },
+            {
+              "id": "B",
+              "text": "For example, reviewing new words for ten minutes each evening helps me remember them."
+            },
+            {
+              "id": "C",
+              "text": "I like learning."
+            },
+            {
+              "id": "D",
+              "text": "There are many opinions."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A concrete example supports the reason."
+          },
+          "skill_tags": [
+            "writing.idea_development"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-01-Q2",
+          "type": "single_choice",
+          "prompt": "Which linker gives contrast?",
+          "options": [
+            {
+              "id": "A",
+              "text": "because"
+            },
+            {
+              "id": "B",
+              "text": "for example"
+            },
+            {
+              "id": "C",
+              "text": "however"
+            },
+            {
+              "id": "D",
+              "text": "therefore"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "However introduces a contrast."
+          },
+          "skill_tags": [
+            "writing.cohesion"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-01-Q3",
+          "type": "extended_response",
+          "prompt": "Do you think short daily practice is more useful than one long study session each week? Give your opinion and support it with at least one specific example. Write about 120–160 words.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-WRITING-B1",
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.idea_development",
+            "writing.organization",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Submitted. This task requires reviewed feedback; no automatic CEFR score is assigned."
+          },
+          "word_range_guidance": {
+            "min": 120,
+            "max": 160,
+            "not_a_quality_score": true
+          }
+        }
+      ],
+      "writing_process": [
+        "analyse_prompt",
+        "brainstorm",
+        "outline",
+        "draft",
+        "review",
+        "revise"
+      ]
+    },
+    {
+      "id": "SPE-A2-01",
+      "module": "speaking",
+      "cefr_target": "A2",
+      "title": "Talk about your routine",
+      "estimated_minutes": 12,
+      "objectives": [
+        "Give a short connected response",
+        "Use time expressions and common verbs"
+      ],
+      "explanation": {
+        "en": "Plan three points, then speak naturally. Do not read a prepared script word for word. Recording alone is not a speaking evaluation.",
+        "vi": "Lập ba ý, nói tự nhiên; chỉ ghi âm chưa đủ để chấm kỹ năng nói."
+      },
+      "examples": [],
+      "activities": [
+        {
+          "id": "SPE-A2-01-Q1",
+          "type": "single_choice",
+          "prompt": "Which order makes a short talk easy to follow?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Finish → start → middle"
+            },
+            {
+              "id": "B",
+              "text": "Start → main details → finish"
+            },
+            {
+              "id": "C",
+              "text": "Random details only"
+            },
+            {
+              "id": "D",
+              "text": "A list of unrelated words"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A simple sequence helps your listener."
+          },
+          "skill_tags": [
+            "speaking.organization"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-A2-01-Q2",
+          "type": "extended_response",
+          "prompt": "Record 45–60 seconds: describe a normal weekday, mention one activity you enjoy and explain why. If microphone is unavailable, save a text planning note without assigning a speaking level.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-SPEAKING-A2",
+          "skill_tags": [
+            "speaking.task_response",
+            "speaking.fluency",
+            "speaking.intelligibility"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Submitted. This task requires reviewed feedback; no automatic CEFR score is assigned."
+          }
+        }
+      ],
+      "recording": {
+        "optional": true,
+        "requires_permission": true,
+        "no_auto_pronunciation_score": true,
+        "fallback": "Keep a planning note; mark speaking not assessed."
+      }
+    },
+    {
+      "id": "SPE-B1-01",
+      "module": "speaking",
+      "cefr_target": "B1",
+      "title": "Explain and support an opinion",
+      "estimated_minutes": 15,
+      "objectives": [
+        "Give an opinion with reasons",
+        "Respond to one follow-up question"
+      ],
+      "explanation": {
+        "en": "State your position, explain one or two reasons and illustrate one point. Pause briefly to organise your thoughts.",
+        "vi": "Trình bày quan điểm, lý do và ví dụ; không cần nói thật nhanh."
+      },
+      "examples": [],
+      "activities": [
+        {
+          "id": "SPE-B1-01-Q1",
+          "type": "single_choice",
+          "prompt": "Which response best develops an opinion?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Yes."
+            },
+            {
+              "id": "B",
+              "text": "I agree because practising a little each day helps me remember words."
+            },
+            {
+              "id": "C",
+              "text": "Maybe because yes."
+            },
+            {
+              "id": "D",
+              "text": "It is a question."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "It includes a position and a reason."
+          },
+          "skill_tags": [
+            "speaking.idea_development"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-B1-01-Q2",
+          "type": "extended_response",
+          "prompt": "Record 60–90 seconds: Is learning with other people more motivating than learning alone? Give your view, a reason and one example. Then answer: When might the other option be better?",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-SPEAKING-B1",
+          "skill_tags": [
+            "speaking.task_response",
+            "speaking.fluency",
+            "speaking.idea_development",
+            "speaking.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Submitted. This task requires reviewed feedback; no automatic CEFR score is assigned."
+          }
+        }
+      ],
+      "recording": {
+        "optional": true,
+        "requires_permission": true,
+        "no_auto_pronunciation_score": true,
+        "fallback": "Keep a planning note; mark speaking not assessed."
+      }
+    },
+    {
+      "id": "PRO-A2-01",
+      "module": "pronunciation",
+      "cefr_target": "A2",
+      "title": "Hear and practise /iː/ and /ɪ/",
+      "estimated_minutes": 12,
+      "objectives": [
+        "Notice a common vowel contrast",
+        "Practise word and sentence stress with audio models"
+      ],
+      "explanation": {
+        "en": "Compare sheep /ʃiːp/ with ship /ʃɪp/. Listen to an audio model, then try each word in a simple sentence. Spellings alone cannot prove pronunciation.",
+        "vi": "Luyện phân biệt âm dài/ngắn qua âm thanh mẫu, nhưng không tự gán điểm phát âm chỉ từ bản ghi."
+      },
+      "examples": [
+        "sheep /ʃiːp/ — ship /ʃɪp/",
+        "leave /liːv/ — live /lɪv/"
+      ],
+      "activities": [
+        {
+          "id": "PRO-A2-01-Q1",
+          "type": "single_choice",
+          "prompt": "Which pair differs mainly in the vowel sound?",
+          "options": [
+            {
+              "id": "A",
+              "text": "sheep / ship"
+            },
+            {
+              "id": "B",
+              "text": "cat / cats"
+            },
+            {
+              "id": "C",
+              "text": "train / trains"
+            },
+            {
+              "id": "D",
+              "text": "walk / walked"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Sheep has /iː/ and ship has /ɪ/."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-A2-01-Q2",
+          "type": "single_choice",
+          "prompt": "Which word contains /iː/?",
+          "options": [
+            {
+              "id": "A",
+              "text": "sit"
+            },
+            {
+              "id": "B",
+              "text": "ship"
+            },
+            {
+              "id": "C",
+              "text": "seat"
+            },
+            {
+              "id": "D",
+              "text": "live"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Seat is pronounced /siːt/."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-A2-01-Q3",
+          "type": "extended_response",
+          "prompt": "Listen to the word models, then record “I see a sheep” and “I see a ship.” If no audio model or recording is available, keep this as optional practice. Do not assign a pronunciation or CEFR score.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-PRONUNCIATION",
+          "skill_tags": [
+            "pronunciation.intelligibility"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Submitted. This task requires reviewed feedback; no automatic CEFR score is assigned."
+          }
+        }
+      ],
+      "audio_model": {
+        "text": [
+          "sheep",
+          "ship",
+          "leave",
+          "live",
+          "I see a sheep.",
+          "I see a ship."
+        ],
+        "requires_real_playback": true,
+        "fallback": "No playback means no audio-based skill evidence."
+      }
+    }
+  ],
+  "integrated_journey": {
+    "id": "DEMO-JOURNEY-01",
+    "title": "Study and community life",
+    "steps": [
+      "GRA-A2-01",
+      "VOC-A2-01",
+      "REA-A2-01",
+      "LIS-A2-01",
+      "WRI-A2-01",
+      "SPE-A2-01",
+      "PRO-A2-01"
+    ],
+    "end_state": "Show objective feedback immediately; writing/speaking pending review; only validated evidence updates mastery."
+  },
+  "review_policy": {
+    "objective_answers": "deterministic",
+    "open_ended": "pending_review_until_authorized_reviewer_approval",
+    "revisions": "preserve_original_and_all_versions",
+    "safety": "do_not_export_personal_identifiers_in_review_packets"
+  },
+  "migration_notes": [
+    "Map package IDs to the existing Site schema via a versioned import adapter.",
+    "Never reset existing Writing 12-week content or learner profiles.",
+    "Do not assume this JSON is supported by the current Site until importer is implemented and tested."
+  ]
+}
