@@ -1,0 +1,226 @@
+{
+  "taxonomy_version": "1.0.0",
+  "source_package_id": "ai-english-tutor-academic-seed-2026-09-v1",
+  "source_content_version": "1.2.0",
+  "purpose": "catalog_navigation_only",
+  "immutable_content_note": "This external catalog manifest does not modify curriculum 1.2.0, lesson IDs, attempt history, scores, CEFR labels, or import payload.",
+  "organization_policy": {
+    "skill_is_primary_nav": true,
+    "cefr_is_independent_filter": true,
+    "primary_group_per_lesson": 1,
+    "course_sequence_is_independent_recommended_route": true,
+    "group_order_does_not_impose_prerequisites": true,
+    "show_group_headers_only_when": {
+      "min_lessons_in_skill": 4,
+      "min_nonempty_groups": 2
+    },
+    "grammar_always_grouped": true,
+    "hide_empty_future_groups": true,
+    "bilingual_labels_follow_vietnamese_support_toggle": true
+  },
+  "groups": {
+    "grammar": [
+      {
+        "id": "GRA-FOUND",
+        "title": {
+          "en": "Grammar foundations",
+          "vi": "Nền tảng ngữ pháp"
+        },
+        "order": 1,
+        "lesson_ids": [
+          "GRA-A1-01",
+          "GRA-A1-02",
+          "GRA-A1-04",
+          "GRA-A1-05"
+        ]
+      },
+      {
+        "id": "GRA-TENSE",
+        "title": {
+          "en": "Tenses and verb forms",
+          "vi": "Thì và dạng động từ"
+        },
+        "order": 2,
+        "lesson_ids": [
+          "GRA-A1-03",
+          "GRA-A2-01",
+          "GRA-B1-01"
+        ]
+      },
+      {
+        "id": "GRA-PLACE",
+        "title": {
+          "en": "Place and location",
+          "vi": "Vị trí và địa điểm"
+        },
+        "order": 3,
+        "lesson_ids": [
+          "GRA-A1-06"
+        ]
+      }
+    ],
+    "vocabulary": [
+      {
+        "id": "VOC-SCHOOL-TOWN",
+        "title": {
+          "en": "School and places",
+          "vi": "Trường học và địa điểm"
+        },
+        "order": 1,
+        "lesson_ids": [
+          "VOC-A1-01",
+          "VOC-A1-03"
+        ]
+      },
+      {
+        "id": "VOC-DAILY",
+        "title": {
+          "en": "Daily life and useful phrases",
+          "vi": "Sinh hoạt và cụm từ thông dụng"
+        },
+        "order": 2,
+        "lesson_ids": [
+          "VOC-A1-02",
+          "VOC-A2-01"
+        ]
+      },
+      {
+        "id": "VOC-THEMES",
+        "title": {
+          "en": "Themes and ideas",
+          "vi": "Chủ đề và ý tưởng"
+        },
+        "order": 3,
+        "lesson_ids": [
+          "VOC-B1-01"
+        ]
+      }
+    ],
+    "reading": [
+      {
+        "id": "REA-NOTICES",
+        "title": {
+          "en": "Notices and event information",
+          "vi": "Thông báo và sự kiện"
+        },
+        "order": 1,
+        "lesson_ids": [
+          "REA-A1-01",
+          "REA-A1-02",
+          "REA-A2-02"
+        ]
+      },
+      {
+        "id": "REA-INFO",
+        "title": {
+          "en": "Informational texts",
+          "vi": "Văn bản cung cấp thông tin"
+        },
+        "order": 2,
+        "lesson_ids": [
+          "REA-A2-01",
+          "REA-A2-03"
+        ]
+      },
+      {
+        "id": "REA-ARGUMENT",
+        "title": {
+          "en": "Ideas and arguments",
+          "vi": "Ý kiến và lập luận"
+        },
+        "order": 3,
+        "lesson_ids": [
+          "REA-B1-01"
+        ]
+      }
+    ],
+    "writing": [
+      {
+        "id": "WRI-MESSAGES",
+        "title": {
+          "en": "Messages and emails",
+          "vi": "Tin nhắn và email"
+        },
+        "order": 1,
+        "lesson_ids": [
+          "WRI-A1-02",
+          "WRI-A2-01",
+          "WRI-A2-02"
+        ]
+      },
+      {
+        "id": "WRI-PARAGRAPHS",
+        "title": {
+          "en": "Paragraphs and opinions",
+          "vi": "Đoạn văn và ý kiến"
+        },
+        "order": 2,
+        "lesson_ids": [
+          "WRI-A1-01",
+          "WRI-B1-01"
+        ]
+      }
+    ],
+    "listening": [
+      {
+        "id": "LIS-DIALOGUE",
+        "title": {
+          "en": "Everyday dialogues",
+          "vi": "Hội thoại thường ngày"
+        },
+        "order": 1,
+        "lesson_ids": [
+          "LIS-A2-01"
+        ]
+      },
+      {
+        "id": "LIS-DISCUSSION",
+        "title": {
+          "en": "Discussions and viewpoints",
+          "vi": "Thảo luận và quan điểm"
+        },
+        "order": 2,
+        "lesson_ids": [
+          "LIS-B1-01"
+        ]
+      }
+    ],
+    "speaking": [
+      {
+        "id": "SPE-EVERYDAY",
+        "title": {
+          "en": "Everyday speaking",
+          "vi": "Giao tiếp thường ngày"
+        },
+        "order": 1,
+        "lesson_ids": [
+          "SPE-A2-01"
+        ]
+      },
+      {
+        "id": "SPE-OPINION",
+        "title": {
+          "en": "Opinions and reasons",
+          "vi": "Quan điểm và lý do"
+        },
+        "order": 2,
+        "lesson_ids": [
+          "SPE-B1-01"
+        ]
+      }
+    ],
+    "pronunciation": [
+      {
+        "id": "PRO-VOWEL",
+        "title": {
+          "en": "Vowel contrasts",
+          "vi": "Phân biệt nguyên âm"
+        },
+        "order": 1,
+        "lesson_ids": [
+          "PRO-A2-01"
+        ]
+      }
+    ]
+  }
+}
