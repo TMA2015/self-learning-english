@@ -1,0 +1,40 @@
+name: G Learning English brand QA
+
+on:
+  pull_request:
+    paths:
+      - 'sites-p0-phase-a-20260926/app/page.tsx'
+      - 'sites-p0-phase-a-20260926/app/globals.css'
+      - 'sites-p0-phase-a-20260926/public/branding/**'
+      - 'sites-p0-phase-a-20260926/public/favicon.svg'
+      - 'sites-p0-phase-a-20260926/tests/g-learning-brand.cjs'
+      - '.github/workflows/g-learning-english-brand-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+          cache-dependency-path: sites-p0-phase-a-20260926/pnpm-lock.yaml
+      - name: Install exact dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Validate G Learning identity
+        run: node tests/g-learning-brand.cjs
+      - name: Validate existing catalog grouping
+        run: node tests/catalog-groups.cjs && node tests/catalog-taxonomy-ui.cjs
+      - name: Build without deployment or D1 operations
+        run: pnpm run build
