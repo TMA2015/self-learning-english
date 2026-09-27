@@ -30,7 +30,7 @@
         {
           "id": "VOC-A2-02-Q1",
           "type": "single_choice",
-          "prompt": "You reserve a train seat online two days before travelling. Which phrase describes this?",
+          "prompt": "You want to reserve a train seat in advance, not check, cancel or simply pay for a ticket at the counter. Which phrase means make a reservation?",
           "options": [
             {
               "id": "A",
@@ -38,22 +38,22 @@
             },
             {
               "id": "B",
-              "text": "pack a ticket"
+              "text": "buy a ticket"
             },
             {
               "id": "C",
-              "text": "catch a ticket"
+              "text": "check a ticket"
             },
             {
               "id": "D",
-              "text": "miss a ticket"
+              "text": "cancel a ticket"
             }
           ],
           "answer": {
             "correct_option_id": "A"
           },
           "feedback": {
-            "explanation_en": "Book a ticket means reserve travel for a specific journey in advance."
+            "explanation_en": "Book a ticket means reserve it in advance. Buy refers to paying, check to inspecting and cancel to ending the reservation; booking may also involve payment, but the question asks specifically about reserving."
           },
           "skill_tags": [
             "vocabulary.collocations",
@@ -64,7 +64,7 @@
         {
           "id": "VOC-A2-02-Q2",
           "type": "short_answer",
-          "prompt": "Complete: Please ___ your bag tonight; put your clothes and notebook inside.",
+          "prompt": "Choose from pack or book; type one word. Before a trip, please ___ your bag tonight by putting your clothes and notebook inside.",
           "answer": {
             "accepted_answers": [
               "pack"
@@ -77,7 +77,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "Pack a bag means put the things you need inside it before travelling."
+            "explanation_en": "Pack a bag means put the items needed for a trip inside it. The task limits the choice to pack or book; book is used for reserving tickets or accommodation, not filling a bag."
           },
           "skill_tags": [
             "vocabulary.collocations",
@@ -88,30 +88,30 @@
         {
           "id": "VOC-A2-02-Q3",
           "type": "single_choice",
-          "prompt": "You arrived just after the bus left. What happened?",
+          "prompt": "You planned to take the eight o'clock bus, but it had already left when you reached the stop. Which sentence best describes what happened to that bus?",
           "options": [
             {
               "id": "A",
-              "text": "You caught the bus."
+              "text": "You caught the eight o'clock bus."
             },
             {
               "id": "B",
-              "text": "You missed the bus."
+              "text": "You missed the eight o'clock bus."
             },
             {
               "id": "C",
-              "text": "You packed the bus."
+              "text": "You waited at the stop for the eight o'clock bus before it left."
             },
             {
               "id": "D",
-              "text": "You booked the bus."
+              "text": "You arrived early and got on the eight o'clock bus."
             }
           ],
           "answer": {
             "correct_option_id": "B"
           },
           "feedback": {
-            "explanation_en": "Miss the bus means fail to catch it before it leaves."
+            "explanation_en": "You missed the eight o'clock bus because it departed before you arrived. The other choices would require arriving in time to catch or wait for that bus."
           },
           "skill_tags": [
             "vocabulary.collocations",
@@ -156,15 +156,15 @@
         {
           "id": "VOC-A2-02-Q5",
           "type": "single_choice",
-          "prompt": "During the science fair, we used a camera. Choose the common phrase.",
+          "prompt": "At the science fair, you pointed a camera at an exhibit and pressed the shutter. Which action did you perform?",
           "options": [
             {
               "id": "A",
-              "text": "make photos"
+              "text": "look at photos"
             },
             {
               "id": "B",
-              "text": "do photos"
+              "text": "share photos"
             },
             {
               "id": "C",
@@ -172,14 +172,14 @@
             },
             {
               "id": "D",
-              "text": "build photos"
+              "text": "print photos"
             }
           ],
           "answer": {
             "correct_option_id": "C"
           },
           "feedback": {
-            "explanation_en": "Take photos is the standard collocation for using a camera at an event."
+            "explanation_en": "Take photos means use the camera to create pictures. Looking, sharing and printing involve photos already taken; pressing the shutter is the taking action."
           },
           "skill_tags": [
             "vocabulary.collocations",
@@ -190,7 +190,7 @@
         {
           "id": "VOC-A2-02-Q6",
           "type": "single_choice",
-          "prompt": "Your class will be present at a weekend workshop. Which phrase fits?",
+          "prompt": "You go to a weekend workshop as a student participant, not an organiser. Which action describes your role?",
           "options": [
             {
               "id": "A",
@@ -198,22 +198,22 @@
             },
             {
               "id": "B",
-              "text": "pack a workshop"
+              "text": "organise a workshop"
             },
             {
               "id": "C",
-              "text": "miss a photo"
+              "text": "cancel a workshop"
             },
             {
               "id": "D",
-              "text": "catch a workshop bag"
+              "text": "miss a workshop"
             }
           ],
           "answer": {
             "correct_option_id": "A"
           },
           "feedback": {
-            "explanation_en": "Attend a workshop means be present and participate in the event."
+            "explanation_en": "Attend a workshop means be present as a participant. Organise means plan it, cancel means call it off, and miss means not attend it."
           },
           "skill_tags": [
             "vocabulary.collocations",
@@ -248,7 +248,7 @@
         {
           "id": "VOC-A2-02-Q8",
           "type": "single_choice",
-          "prompt": "The organiser says the trip will not happen because the road is closed. Which phrase fits?",
+          "prompt": "The organiser calls off the trip because the road is closed. The trip will not take place, and no later date is planned. Which action fits?",
           "options": [
             {
               "id": "A",
@@ -256,22 +256,22 @@
             },
             {
               "id": "B",
-              "text": "pack the trip"
+              "text": "postpone the trip"
             },
             {
               "id": "C",
-              "text": "take the trip photos"
+              "text": "book the trip"
             },
             {
               "id": "D",
-              "text": "book the trip again"
+              "text": "join the trip"
             }
           ],
           "answer": {
             "correct_option_id": "A"
           },
           "feedback": {
-            "explanation_en": "Cancel the trip means the planned journey will not take place."
+            "explanation_en": "Cancel the trip means it will not take place. Postpone moves it to a later time; here no replacement date is planned."
           },
           "skill_tags": [
             "vocabulary.collocations",
@@ -317,22 +317,22 @@
             },
             {
               "id": "B",
-              "text": "To explain a maths homework problem"
+              "text": "To arrange lunch only, not the club visit"
             },
             {
               "id": "C",
-              "text": "To announce a cancelled school year"
+              "text": "To ask Minh to buy paints for the club"
             },
             {
               "id": "D",
-              "text": "To ask Minh for his home password"
+              "text": "To announce that the library meeting place has changed to the park"
             }
           ],
           "answer": {
             "correct_option_id": "A"
           },
           "feedback": {
-            "explanation_en": "Lan shares the art-club plan and asks Minh to reply about joining."
+            "explanation_en": "Lan's main purpose is to arrange an art-club visit and receive Minh's reply. Lunch and supplies are supporting details; the message says the club provides paints and the meeting place is still the library."
           },
           "skill_tags": [
             "reading.gist"
@@ -408,30 +408,30 @@
         {
           "id": "REA-A1-03-Q4",
           "type": "single_choice",
-          "prompt": "How does Lan now plan to travel to the activity?",
+          "prompt": "What alternative to taking the bus does Lan mention?",
           "options": [
             {
               "id": "A",
-              "text": "By train"
+              "text": "Taking a train"
             },
             {
               "id": "B",
-              "text": "On a boat"
+              "text": "Walking alone"
             },
             {
               "id": "C",
-              "text": "With her father in his vehicle"
+              "text": "Her father can give them a lift"
             },
             {
               "id": "D",
-              "text": "By walking alone"
+              "text": "A bus supplied by the art club"
             }
           ],
           "answer": {
             "correct_option_id": "C"
           },
           "feedback": {
-            "explanation_en": "Lan changes from the bus plan because her father can give them a lift."
+            "explanation_en": "Lan says her father can give them a lift. Can describes an available alternative; the message does not confirm a final travel decision or state a vehicle type."
           },
           "skill_tags": [
             "reading.detail"
@@ -500,8 +500,7 @@
             "explanation_en": "The message states the club provides the paints, so bringing them is unnecessary."
           },
           "skill_tags": [
-            "reading.detail",
-            "reading.inference"
+            "reading.detail"
           ],
           "evidence_weight": 1
         },
@@ -611,26 +610,26 @@
           "options": [
             {
               "id": "A",
-              "text": "Choose one subject and select relevant details."
+              "text": "Choose one subject, select relevant facts and note why you like it."
             },
             {
               "id": "B",
-              "text": "Write about several unrelated topics."
+              "text": "Describe both a person and a place even though the task asks for one."
             },
             {
               "id": "C",
-              "text": "Give a list of private contact numbers."
+              "text": "Choose a person but use only unrelated details about a different event."
             },
             {
               "id": "D",
-              "text": "Copy the model exactly without choosing a subject."
+              "text": "Choose a place but list names of other pupils instead of describing its features."
             }
           ],
           "answer": {
             "correct_option_id": "A"
           },
           "feedback": {
-            "explanation_en": "Choose one person or one place and gather details directly related to that subject."
+            "explanation_en": "The task requires one chosen subject with relevant details and a personal reason. Mixing subjects or replacing its details with unrelated information does not fulfil the prompt."
           },
           "skill_tags": [
             "writing.task_understanding"
@@ -673,7 +672,7 @@
         {
           "id": "WRI-A1-03-Q3",
           "type": "single_choice",
-          "prompt": "Which order is clear for a short description of a place?",
+          "prompt": "Which outline gives the clearest order for a short description of one school place?",
           "options": [
             {
               "id": "A",
@@ -681,22 +680,22 @@
             },
             {
               "id": "B",
-              "text": "Goodbye → unrelated event → title"
+              "text": "Location → one feature → opening → why I like it"
             },
             {
               "id": "C",
-              "text": "Reason → random shopping list → no subject"
+              "text": "Opening → personal reason → unrelated holiday event → ending"
             },
             {
               "id": "D",
-              "text": "Four unrelated one-word answers"
+              "text": "Opening → place features → unrelated person → location"
             }
           ],
           "answer": {
             "correct_option_id": "A"
           },
           "feedback": {
-            "explanation_en": "An opening, location, relevant details and personal reason create a connected description."
+            "explanation_en": "Start by introducing the same place, tell the reader where it is, develop its features and end with a reason. Other outlines delay the opening or interrupt the description with unrelated content."
           },
           "skill_tags": [
             "writing.organization"
