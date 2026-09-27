@@ -11,7 +11,9 @@ const {canonicalLessonKey,validateBlueprint,orderWithPrerequisites,composeFromLe
 assert.deepEqual(validateBlueprint(blueprint,content,coverage),[]);
 assert.equal(blueprint.status,'architecture_prototype_not_live_not_importable');
 assert.equal(blueprint.lesson_catalog.length,36);
-assert.equal(blueprint.concept_registry.length,64);
+assert.equal(blueprint.concept_registry.length,65);
+assert.ok(blueprint.concept_registry.some(x=>x.concept_id==='concept.reading.detail'));
+assert.ok(blueprint.concept_registry.some(x=>x.concept_id==='concept.listening.detail'));
 assert.equal(blueprint.skill_registry.length,44);
 assert.equal(blueprint.curriculum_manifests.length,2);
 assert.equal(content.lessons.length,36);
@@ -78,4 +80,4 @@ assert.ok(!('attempts' in p1),'prototype must not copy private learner state int
 const keyItem=content.lessons.find(x=>x.id==='GRA-A2-03').activities.find(x=>x.id==='GRA-A2-03-Q7');
 assert.equal(keyItem.answer.correct_option_id,'A');
 assert.equal(keyItem.options.find(o=>o.id==='A').text,'some milk');
-console.log(JSON.stringify({result:'PASS',sourceVersion:blueprint.source.content_version,concepts:64,skills:44,lessonReferences:36,proofTracks:2,sharedLessons:13,progressReusedAcrossTracks:true,productionContentPreserved:29,independentFinalKeyConfirmation:'PENDING',productionDeployment:'NONE'}));
+console.log(JSON.stringify({result:'PASS',sourceVersion:blueprint.source.content_version,concepts:65,skills:44,lessonReferences:36,proofTracks:2,sharedLessons:13,progressReusedAcrossTracks:true,productionContentPreserved:29,independentFinalKeyConfirmation:'PENDING',productionDeployment:'NONE'}));
