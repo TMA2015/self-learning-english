@@ -23,7 +23,7 @@ Separate `content/curriculum-coverage-v1.json` marks known gaps and advisory pre
 
 ## User branding
 
-The owner renamed the existing Site and URL, and has requested app-level alignment with **Self-Learning English**. The candidate changes only `app/layout.tsx` metadata title/description and `app/page.tsx` visible brand, plus a legacy Foundation Demo accessibility label. **Do not modify** `.openai/hosting.json`, Site identity/project ID, URL/slug, auth, D1 binding or data. Confirm the actual renamed Site in the user's Sites dashboard; do not assume the previous URL remains canonical.
+The owner renamed the existing Site and URL, and has requested app-level alignment with **Self-Learning English**. The candidate changes `app/layout.tsx` metadata title/description, `app/page.tsx` visible brand, `public/favicon.svg` initial, and a legacy Foundation Demo accessibility label. **Do not modify** `.openai/hosting.json`, Site identity/project ID, URL/slug, auth, D1 binding or data. Confirm the actual renamed Site in the user's Sites dashboard; do not assume the previous URL remains canonical.
 
 ## Required checks BEFORE code release
 
