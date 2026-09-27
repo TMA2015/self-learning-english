@@ -1,4 +1,4 @@
-name: Curriculum 1.3 v15 Compatibility QA
+name: Curriculum 1.3 / Batch04 Compatibility QA
 
 on:
   pull_request:
@@ -6,6 +6,7 @@ on:
       - 'sites-p0-phase-a-20260926/domain/academic.ts'
       - 'sites-p0-phase-a-20260926/content/lesson-groups-v1.json'
       - 'sites-p0-phase-a-20260926/tests/curriculum-13-compat-v15.cjs'
+      - 'sites-p0-phase-a-20260926/tests/batch04-code-compat.cjs'
       - 'sites-p0-phase-a-20260926/tests/catalog-groups.cjs'
       - 'sites-p0-phase-a-20260926/docs/CURRICULUM_13_V15_INTEGRATION.md'
       - '.github/workflows/curriculum-13-v15-compat-qa.yml'
@@ -30,8 +31,8 @@ jobs:
           node-version: '24'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: Check tag compatibility and 29 old group memberships
-        run: node tests/catalog-groups.cjs && node tests/curriculum-13-compat-v15.cjs
+      - name: Check historical group memberships and Batch04 importer tags
+        run: node tests/catalog-groups.cjs && node tests/curriculum-13-compat-v15.cjs && node tests/batch04-code-compat.cjs
       - name: Guard v15 Foundation, catalog and draft-save UX
         run: node tests/catalog-taxonomy-ui.cjs && node tests/attempt-navigation-ui.cjs && node tests/writing-nav-save-feedback.cjs
       - name: Production build without data import or Site deployment
