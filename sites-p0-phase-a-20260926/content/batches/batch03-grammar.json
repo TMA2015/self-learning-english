@@ -42,18 +42,18 @@
             },
             {
               "id": "C",
-              "text": "Lina can to swim."
+              "text": "Lina is able swim."
             },
             {
               "id": "D",
-              "text": "Lina swimming can."
+              "text": "Lina can swimming."
             }
           ],
           "answer": {
             "correct_option_id": "A"
           },
           "feedback": {
-            "explanation_en": "Use can followed by the base verb swim to describe her present ability."
+            "explanation_en": "Can is followed by the base verb swim. Do not add -s after can, use swimming after can, or omit to from is able to swim."
           },
           "skill_tags": [
             "grammar.modals_can"
@@ -63,7 +63,7 @@
         {
           "id": "GRA-A1-07-Q2",
           "type": "short_answer",
-          "prompt": "Complete: My little brother is still learning; he ___ (not / ride) a bicycle yet.",
+          "prompt": "Use can/can't to describe present ability. Complete with the missing phrase only: My little brother has not learned to ride yet; he ___ (not / ride) a bicycle.",
           "answer": {
             "accepted_answers": [
               "can't ride",
@@ -77,7 +77,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "Use can't/cannot plus the base verb ride; yet makes clear he does not have the ability now."
+            "explanation_en": "The task asks for ability using can/can't. Use can't ride or cannot ride, with the base verb ride; don't doesn't describe ability in the requested form."
           },
           "skill_tags": [
             "grammar.modals_can"
@@ -87,7 +87,7 @@
         {
           "id": "GRA-A1-07-Q3",
           "type": "single_choice",
-          "prompt": "Which sentence is a polite request to a classmate?",
+          "prompt": "Which request to a classmate is the most polite?",
           "options": [
             {
               "id": "A",
@@ -95,22 +95,22 @@
             },
             {
               "id": "B",
-              "text": "You pass me pencil now!"
+              "text": "Pass me the pencil."
             },
             {
               "id": "C",
-              "text": "You can pass me the pencil yesterday."
+              "text": "Can you pass me the pencil?"
             },
             {
               "id": "D",
-              "text": "Can passing the pencil you?"
+              "text": "You must pass me the pencil."
             }
           ],
           "answer": {
             "correct_option_id": "A"
           },
           "feedback": {
-            "explanation_en": "Can you ... please? asks the classmate for help politely."
+            "explanation_en": "All the sentences ask for or demand the pencil, but Can you ... please? combines a question with please and is the most polite in this context. An imperative is more direct."
           },
           "skill_tags": [
             "grammar.modals_can"
@@ -120,7 +120,7 @@
         {
           "id": "GRA-A1-07-Q4",
           "type": "short_answer",
-          "prompt": "Complete: ___ you help me carry these books, please?",
+          "prompt": "Complete with can (write the missing word only): ___ you help me carry these books, please?",
           "answer": {
             "accepted_answers": [
               "Can"
@@ -133,7 +133,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "In a basic request, put Can before the subject you; the printed word you must not be repeated."
+            "explanation_en": "The instruction specifies can. Put Can before you to make a basic polite request. Could/would/will can be natural requests elsewhere, but this gap practises can specifically."
           },
           "skill_tags": [
             "grammar.modals_can"
@@ -288,7 +288,7 @@
         {
           "id": "GRA-A1-07-Q10",
           "type": "short_answer",
-          "prompt": "Complete: I have never learned German; I ___ (not / speak) it yet.",
+          "prompt": "Use can/can't to describe present ability. Complete with the missing phrase only: I have never learned German; I ___ (not / speak) it yet.",
           "answer": {
             "accepted_answers": [
               "can't speak",
@@ -302,7 +302,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "Use can't/cannot speak for lack of current ability; do not add to after can't."
+            "explanation_en": "This task specifically practises can/can't for ability: can't speak or cannot speak. In other contexts don't speak is grammatical, but it does not use the requested modal form."
           },
           "skill_tags": [
             "grammar.modals_can"
@@ -372,7 +372,7 @@
         {
           "id": "GRA-A2-02-Q2",
           "type": "short_answer",
-          "prompt": "Complete: I ___ (not / watch) television last night.",
+          "prompt": "Complete in the past simple; enter the missing phrase only: I ___ (not / watch) television last night.",
           "answer": {
             "accepted_answers": [
               "didn't watch",
@@ -386,7 +386,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "After didn't/did not, use the base verb watch, not watched."
+            "explanation_en": "Use didn't/did not + base verb watch for the past simple negative. Past continuous could fit a different situation, but the requested tense here is past simple."
           },
           "skill_tags": [
             "grammar.past_simple"
@@ -599,7 +599,7 @@
         {
           "id": "GRA-A2-02-Q10",
           "type": "short_answer",
-          "prompt": "Complete: She ___ (not / go) to the club last Tuesday.",
+          "prompt": "Use the past simple to complete the gap; enter the missing phrase only: She ___ (not / go) to the club last Tuesday.",
           "answer": {
             "accepted_answers": [
               "didn't go",
@@ -613,7 +613,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "A finished past action in the negative uses didn't/did not + go, not went."
+            "explanation_en": "The requested past-simple negative is didn't go or did not go. After did not, use the base verb go. Another tense needs different intended meaning."
           },
           "skill_tags": [
             "grammar.past_simple"
@@ -741,7 +741,7 @@
         {
           "id": "GRA-A2-03-Q4",
           "type": "short_answer",
-          "prompt": "Complete: There aren't ___ eggs in the fridge.",
+          "prompt": "Choose from some or any; type one word. The fridge is empty: there are zero eggs. There aren't ___ eggs in the fridge.",
           "answer": {
             "accepted_answers": [
               "any"
@@ -754,7 +754,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "Any is appropriate in a straightforward negative sentence with plural countable eggs."
+            "explanation_en": "Use any (not some) in this negative statement to express that there are zero eggs. Many/enough would express a different quantity judgement, but the given choice is some or any."
           },
           "skill_tags": [
             "grammar.countability",
@@ -799,7 +799,7 @@
         {
           "id": "GRA-A2-03-Q6",
           "type": "short_answer",
-          "prompt": "Complete: We need ___ oranges for the picnic; please add them to the shopping list.",
+          "prompt": "Choose from some or any; type one word. We need ___ oranges for the picnic; please add them to the shopping list.",
           "answer": {
             "accepted_answers": [
               "some"
@@ -812,7 +812,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "An ordinary affirmative need statement with plural oranges uses some."
+            "explanation_en": "Some fits this ordinary affirmative statement. The task limits the choice to some or any; other quantity words may work in different sentences, but they are not being tested here."
           },
           "skill_tags": [
             "grammar.countability",
@@ -823,30 +823,30 @@
         {
           "id": "GRA-A2-03-Q7",
           "type": "single_choice",
-          "prompt": "Choose the correct quantity phrase for an uncountable noun.",
+          "prompt": "A recipe needs milk as a liquid ingredient, not a café serving. Which noun phrase naturally refers to an unspecified amount?",
           "options": [
             {
               "id": "A",
-              "text": "many milk"
+              "text": "some milk"
             },
             {
               "id": "B",
-              "text": "much milk"
+              "text": "many milk"
             },
             {
               "id": "C",
-              "text": "three milks"
+              "text": "a milk"
             },
             {
               "id": "D",
-              "text": "a milk"
+              "text": "three milks"
             }
           ],
           "answer": {
             "correct_option_id": "B"
           },
           "feedback": {
-            "explanation_en": "Milk is uncountable here, and much can express its quantity."
+            "explanation_en": "Some milk treats milk as an uncountable ingredient in the recipe. A milk and three milks can name servings in a café, but not the intended uncountable quantity here."
           },
           "skill_tags": [
             "grammar.countability",
@@ -914,7 +914,7 @@
         {
           "id": "GRA-A2-03-Q10",
           "type": "short_answer",
-          "prompt": "Complete: I have ___ rice at home, so I do not need to buy more today.",
+          "prompt": "Choose from some or any; type one word. I have ___ rice at home and will use it for dinner.",
           "answer": {
             "accepted_answers": [
               "some"
@@ -927,7 +927,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "Some fits this ordinary affirmative statement with the uncountable noun rice."
+            "explanation_en": "Some fits an ordinary affirmative statement about rice. It describes an unspecified quantity, not proof that the amount is enough; this task contrasts some with any."
           },
           "skill_tags": [
             "grammar.countability",
@@ -1033,18 +1033,18 @@
             },
             {
               "id": "C",
-              "text": "This is most interestinger of the three books."
+              "text": "This is the more interesting of the three books."
             },
             {
               "id": "D",
-              "text": "This is the more interesting of the three books."
+              "text": "This is the most interesting than the other two books."
             }
           ],
           "answer": {
             "correct_option_id": "A"
           },
           "feedback": {
-            "explanation_en": "The most interesting is the superlative form for this defined group of three books."
+            "explanation_en": "A group of three calls for the superlative the most interesting of the three. The comparative more interesting needs than and a specific comparison; a superlative is not followed by than here."
           },
           "skill_tags": [
             "grammar.comparison"
@@ -1133,7 +1133,7 @@
         {
           "id": "GRA-A2-04-Q7",
           "type": "single_choice",
-          "prompt": "Which phrase is the correct comparative?",
+          "prompt": "Which phrase correctly compares how exciting two events are?",
           "options": [
             {
               "id": "A",
@@ -1141,22 +1141,22 @@
             },
             {
               "id": "B",
-              "text": "excitester than"
-            },
-            {
-              "id": "C",
               "text": "most exciting than"
             },
             {
+              "id": "C",
+              "text": "exciting than"
+            },
+            {
               "id": "D",
-              "text": "more excitingest than"
+              "text": "more excited than"
             }
           ],
           "answer": {
             "correct_option_id": "A"
           },
           "feedback": {
-            "explanation_en": "The comparative of exciting is more exciting, followed here by than."
+            "explanation_en": "Use more exciting than to compare the quality of two events. Most exciting is a superlative, while excited generally describes a person's feeling, not the event's quality."
           },
           "skill_tags": [
             "grammar.comparison"
