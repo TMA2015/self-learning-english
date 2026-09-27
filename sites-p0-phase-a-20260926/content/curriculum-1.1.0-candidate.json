@@ -1585,7 +1585,7 @@
         {
           "id": "VOC-A1-02-Q6",
           "type": "single_choice",
-          "prompt": "Which event usually comes before going to bed?",
+          "prompt": "Which activity is part of an evening bedtime routine rather than a morning routine?",
           "options": [
             {
               "id": "A",
@@ -1593,7 +1593,7 @@
             },
             {
               "id": "B",
-              "text": "brushing your teeth at night"
+              "text": "brushing your teeth before going to sleep"
             },
             {
               "id": "C",
@@ -1608,7 +1608,7 @@
             "correct_option_id": "B"
           },
           "feedback": {
-            "explanation_en": "Brushing your teeth at night naturally comes before bed."
+            "explanation_en": "Brushing your teeth before going to sleep is an evening bedtime activity. Breakfast, arriving at school and catching the morning bus belong to a morning routine."
           },
           "skill_tags": [
             "vocabulary.meaning_in_context"
@@ -2029,7 +2029,7 @@
         {
           "id": "REA-A2-02-Q2",
           "type": "single_choice",
-          "prompt": "What condition must donated books meet?",
+          "prompt": "What condition must the books students bring to exchange meet?",
           "options": [
             {
               "id": "A",
@@ -2052,7 +2052,7 @@
             "correct_option_id": "B"
           },
           "feedback": {
-            "explanation_en": "Students may bring finished books as long as they are in good condition."
+            "explanation_en": "The notice says students can bring books they have finished reading as long as those books are in good condition."
           },
           "skill_tags": [
             "reading.detail"
