@@ -37,8 +37,8 @@ assert.ok(source.includes("setScreen('practice')"),'start or resume practice ope
 assert.ok(source.includes("await saveDraft()"),'unsaved draft must not be discarded');
 const transitionEffect=source.split("useEffect(()=>{if(previousSkill.current===skill)")[1]?.split("},[skill]);")[0];
 assert.ok(transitionEffect,'sidebar skill transition effect missing');
-assert.equal((transitionEffect.match(/await saveDraft\\(\\)/g)||[]).length,1,'sidebar transition must save a draft once');
-assert.equal((transitionEffect.match(/await refresh\\(\\)/g)||[]).length,1,'sidebar transition must refresh Recent Work exactly once');
+assert.equal(transitionEffect.split('await saveDraft()').length-1,1,'sidebar transition must save a draft once');
+assert.equal(transitionEffect.split('await refresh()').length-1,1,'sidebar transition must refresh Recent Work exactly once');
 assert.ok(transitionEffect.includes("if(attempt?.status==='started'&&!prepared)"),'already-prepared top route must not repeat save/refresh');
 assert.ok(source.includes("if(next!==skill&&onSelectSkill)preparedSkillSwitch.current=next"),'top skill route records its completed pre-navigation save');
 assert.ok(source.includes("const prepared=preparedSkillSwitch.current===skill;preparedSkillSwitch.current=null;"),'preparation marker must be consumed on transition');
