@@ -79,7 +79,7 @@
       "concept_id": "grammar.be.agreement",
       "mode": "independent",
       "hints": [
-        "The library is one place, not a group of places.",
+        "The library names one place, not a group of places.",
         "Choose the singular form of be; do not repeat the printed subject."
       ],
       "likely_distractor_errors": {},
