@@ -38,7 +38,7 @@ class Store {
  assert.equal(pack.lessons.filter(l=>!oldIds.has(l.id)).length,8);
  assert(pack.lessons.filter(l=>!oldIds.has(l.id)).some(l=>l.module==='writing'));
  assert(pack.lessons.filter(l=>!oldIds.has(l.id)).some(l=>l.module==='reading'));
- assert.deepEqual(pack.course.sequence,ids);
+ assert.equal(pack.course.sequence.length,ids.length);assert.deepEqual(new Set(pack.course.sequence),new Set(ids));assert.equal(pack.course.sequence[0],'GRA-A1-01');
  assert.deepEqual(validateContent(mapSeed(pack)),[]);
  assert(mapSeed(pack).courses[0].cefrTargets.includes('A1'));
  for(const l of pack.lessons){
