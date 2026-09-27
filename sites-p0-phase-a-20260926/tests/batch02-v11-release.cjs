@@ -36,4 +36,5 @@ assert(css.includes('.foundation-result-summary'),'Keep responsive score styles'
 assert(helper.includes('const total=correct+incorrect'),'Never score an open response as objective');
 assert(page.includes('Self-Learning English')&&metadata.includes('Self-Learning English'),'Use current owner-selected display brand');
 assert(!metadata.includes('english-writing-coach.giangrr.chatgpt.site'),'Do not hardcode obsolete URL');
+assert(source('public/favicon.svg').includes('>S</text>'),'Favicon must align with renamed Site');
 console.log(JSON.stringify({result:'PASS',integratedBase:'v11 UI source checkpoint',contentVersion:'1.2.0',lessons:29,activities:190,newLessons:8,serverScorePreserved:true,tabPlayerPreserved:true,displayBrand:'Self-Learning English',noDatabaseOperation:true}));
