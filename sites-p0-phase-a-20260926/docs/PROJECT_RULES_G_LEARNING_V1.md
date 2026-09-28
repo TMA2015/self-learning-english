@@ -1,0 +1,20 @@
+# G Learning — Permanent Project Rules v1.0
+Status: proposal, 2026-09-28. These are invariants, not an implementation or release authorization.
+
+## Production safety
+Continue the EXISTING private Site, preserving URL, Site identity, auth, D1, learner records and content until separately approved. Do not create a new Site, reset learner progress, merge a PR, import content, deploy, alter production D1 or migrate data based only on a design/academic PASS. Work's cloud preview may have a different authenticated principal: do not request user cookies/tokens or bypass identity to make browser QA appear successful. A missing authenticated preview remains PENDING.
+
+## Persistence, draft and history
+All original Foundation attempts, Writing drafts/submissions/revisions/reviews, diagnostic evidence, Listening media/playback proofs, Error Bank and Skill Map survive navigation, archive, code rollback and content changes. Dirty drafts must await exact server-confirmed revision; failed writes block navigation with Retry, never false Saved. Course GET is a pure read (not legacy import or backfill). Explicit active-course selection is server scoped, atomic CAS/transactional equivalent, idempotent and isolated from broad Writing state PUT. One attempt can fulfill multiple course refs without creating duplicate global Evidence. Test v20 source-only rollback preserves any additive selection field; otherwise STOP before release. D1 schema change is an independent authorization gate.
+
+## Academic content and measurements
+Preserve immutable ID/version and past answer keys; add original material only as a new reviewed version. MCQ: one correct meaning, plausible level-appropriate distractors, correct-answer TEXT survives shuffle; double-check final key/feedback. Short answer: response format, accepted variants (e.g., UK/US and contractions where applicable), normalization or clear narrowing. Reading: full passage and exact evidence, including exceptions/negatives. Writing: pending and approved rubric separate from process completion; never infer quality from text length. CEFR lesson target, assessment estimate, practice accuracy, course progress and certification are different; unassessed spoken/audio skill stays unassessed until reliable evidence.
+
+## Learner-facing UX
+Self-learning instructions state one word/missing phrase/full sentence. Wrong response gives relevant guidance; save states are Unsaved → Saving → All changes saved or Failed/Retry. Keyboard and mobile navigation do not bypass save/recording safeguards. My Courses is an enrollment dashboard, not a link disguised as a plan; Your Journey displays only explicitly selected active course. Do not mask unfinished Writing weeks as complete.
+
+## Content review / Gemini
+One small, SELF-CONTAINED task JSON per Gemini message, including context version, exact source digest, target ID, relevant old examples, full passage/rubric, instructions and response contract. Gemini sees only directly attached source, not previous chats or GitHub. Must independently re-solve; return PASS/REVISION_REQUIRED/REVIEW_INCOMPLETE/INSUFFICIENT_EVIDENCE with evidence, exact correction and reviewed/missing IDs. Truncated or missing text never counts as PASS. Gemini cannot edit Site or approve Import. ChatGPT reconciles unique IDs and retests changed items, updates canonical digest only after actual changes.
+
+## Release records
+Every report lists exact deployed Sites source (not simply GitHub HEAD), candidate SHA, content SHA, source diffs, tests passed/failed/skipped, authenticated owner-browser QA status, rollback checks, unresolved risks and permission boundary. GitHub CI success ≠ independent academic PASS ≠ importer Preview ≠ owner production QA. Maintain dated Status separate from durable rules; do not substitute historical 13-lesson seed or coverage v1.2 planning data for 1.4/1.5 canonical packages.
