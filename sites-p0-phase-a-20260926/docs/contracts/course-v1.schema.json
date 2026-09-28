@@ -1,0 +1,513 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/TMA2015/ai-english-tutor/blob/architecture/course-v21-contract-20260928/sites-p0-phase-a-20260926/docs/contracts/course-v1.schema.json",
+  "title": "G Learning Course Architecture v21 fixture (design only; NOT importer API)",
+  "description": "Portable structural definitions. All cross-record and authorization invariants are in COURSE_ARCHITECTURE_V21.md and COURSE_V21_QA_MATRIX.md. This MUST NOT be deployed or used to import learner data.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "schemaVersion",
+    "templates",
+    "enrollments",
+    "placements",
+    "selection"
+  ],
+  "properties": {
+    "format": {
+      "const": "g-learning.course-architecture-fixture"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "templates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CourseTemplate"
+      },
+      "maxItems": 100
+    },
+    "enrollments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CourseEnrollment"
+      },
+      "maxItems": 100
+    },
+    "placements": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/PlacementRecord"
+      },
+      "maxItems": 100
+    },
+    "selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "activeEnrollmentId"
+      ],
+      "properties": {
+        "activeEnrollmentId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 120
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Skill": {
+      "type": "string",
+      "enum": [
+        "Grammar",
+        "Vocabulary",
+        "Reading",
+        "Writing",
+        "Listening",
+        "Speaking",
+        "Pronunciation"
+      ]
+    },
+    "Level": {
+      "type": "string",
+      "enum": [
+        "Pre-A1",
+        "A1",
+        "A2",
+        "B1",
+        "B2"
+      ]
+    },
+    "CourseItemRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "itemRefId",
+        "unitId",
+        "source",
+        "contentId",
+        "contentVersion",
+        "required",
+        "available",
+        "skill",
+        "completionRequirement"
+      ],
+      "properties": {
+        "itemRefId": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 120
+        },
+        "unitId": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 120
+        },
+        "source": {
+          "enum": [
+            "foundation-lesson",
+            "foundation-activity",
+            "writing-week-stage"
+          ]
+        },
+        "contentId": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 120
+        },
+        "contentVersion": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+        },
+        "packageId": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 120
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "skill": {
+          "$ref": "#/$defs/Skill"
+        },
+        "completionRequirement": {
+          "enum": [
+            "scored-submission",
+            "submitted-open",
+            "approved-review",
+            "saved-writing-stage"
+          ]
+        },
+        "estimatedMinutes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 180
+        },
+        "prerequisiteItemRefIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 120
+          },
+          "uniqueItems": true,
+          "maxItems": 100
+        }
+      }
+    },
+    "CourseUnit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "unitId",
+        "title",
+        "order",
+        "status",
+        "items"
+      ],
+      "properties": {
+        "unitId": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 120
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 180
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "status": {
+          "enum": [
+            "available",
+            "preview"
+          ]
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CourseItemRef"
+          },
+          "maxItems": 250
+        }
+      }
+    },
+    "SkillWeight": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "skill",
+        "weightPercent"
+      ],
+      "properties": {
+        "skill": {
+          "$ref": "#/$defs/Skill"
+        },
+        "weightPercent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "CourseTemplate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "templateId",
+        "templateVersion",
+        "kind",
+        "title",
+        "description",
+        "targetCEFR",
+        "availability",
+        "units"
+      ],
+      "properties": {
+        "templateId": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 120
+        },
+        "templateVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "kind": {
+          "enum": [
+            "predefined",
+            "ai_custom"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 180
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "targetCEFR": {
+          "$ref": "#/$defs/Level"
+        },
+        "availability": {
+          "enum": [
+            "preview",
+            "available"
+          ]
+        },
+        "contentPackage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "packageId",
+            "version",
+            "digest"
+          ],
+          "properties": {
+            "packageId": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 120
+            },
+            "version": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+            },
+            "digest": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "units": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CourseUnit"
+          },
+          "maxItems": 250
+        },
+        "skillAllocation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SkillWeight"
+          },
+          "maxItems": 7
+        },
+        "placementId": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 120
+        }
+      }
+    },
+    "CourseEnrollment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enrollmentId",
+        "templateId",
+        "templateVersion",
+        "kind",
+        "status",
+        "planRevision",
+        "planSnapshot",
+        "contentUpdatePolicy",
+        "createdAt",
+        "updatedAt"
+      ],
+      "properties": {
+        "enrollmentId": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 120
+        },
+        "templateId": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 120
+        },
+        "templateVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "kind": {
+          "enum": [
+            "predefined",
+            "ai_custom"
+          ]
+        },
+        "status": {
+          "enum": [
+            "active",
+            "paused",
+            "completed",
+            "archived"
+          ]
+        },
+        "planRevision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "planSnapshot": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CourseUnit"
+          },
+          "maxItems": 250
+        },
+        "contentUpdatePolicy": {
+          "enum": [
+            "suggest",
+            "append-optional-to-unstarted"
+          ]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastEngagedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "placementId": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 120
+        },
+        "priorPlanRevisionIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 120
+          },
+          "uniqueItems": true,
+          "maxItems": 100
+        }
+      }
+    },
+    "PlacementRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "placementId",
+        "assessmentId",
+        "assessmentBlueprintId",
+        "blueprintVersion",
+        "targetCEFR",
+        "status",
+        "assessedDomains",
+        "unassessedDomains",
+        "evidenceIds",
+        "limitations"
+      ],
+      "properties": {
+        "placementId": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 120
+        },
+        "assessmentId": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 120
+        },
+        "assessmentBlueprintId": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 120
+        },
+        "blueprintVersion": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+        },
+        "targetCEFR": {
+          "$ref": "#/$defs/Level"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "completed-awaiting-confirmation",
+            "confirmed-for-planning"
+          ]
+        },
+        "workingLevel": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Level"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "assessedDomains": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Skill"
+          },
+          "uniqueItems": true,
+          "maxItems": 7
+        },
+        "unassessedDomains": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Skill"
+          },
+          "uniqueItems": true,
+          "maxItems": 7
+        },
+        "evidenceIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 120
+          },
+          "uniqueItems": true,
+          "maxItems": 1000
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "maxItems": 30
+        },
+        "confirmedBy": {
+          "enum": [
+            "learner",
+            "parent"
+          ]
+        },
+        "confirmedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}
