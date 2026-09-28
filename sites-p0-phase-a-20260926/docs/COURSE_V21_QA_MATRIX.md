@@ -56,3 +56,25 @@ Status: DESIGN / TEST CASES ONLY; these are NOT claims that application tests ha
 - Work browser preview identity can differ from owner identity. Do not claim authenticated staging QA if sign-in is blocked; owner checks production only after a separately authorized controlled release.
 - Compare old and new user experience on same device/network; measure click→visible feedback and click→completed navigation rather than asserting a speedup from code review.
 - A migration, even additive, needs a separately approved plan with rollback and safe backfill. Never delete or rename existing Writing fields, attempts, content versions or reviews.
+
+
+## E. Reconciled P1 and persistence cases (additions to the original 33)
+| Test | Setup | Expected |
+|---|---|---|
+| R01 | Authenticated learner opens My Courses without a saved course selection; legacy Writing Week 1 flags exist. | Virtual Writing course appears; read performs no insert/update/import; YOUR JOURNEY asks Choose a course, while Writing details retain saved flags. |
+| R02 | Legacy `week=8`, `stage=3`, draft fields populated, `completed=[0,1]`. | Week 9 remains a preview, not completed; Week 1 shows only two saved process steps; draft fields remain byte-for-byte unchanged. |
+| R03 | Legacy `completed=[0,1,2,3,4]` and Week 1 feedback/revision history exists. | Four published process steps show complete, revision is separate; 11 preview weeks and review quality remain separate, no "12/12" or CEFR certification. |
+| R04 | Learner explicitly chooses Writing; reloads; then opens a free Foundation lesson. | Selection persists after reload, Catalog browsing does not change it, and old Foundation history stays readable. |
+| R05 | Concurrent old Writing state PUT begins before course selection, completes after selection. | A stale broad state snapshot cannot overwrite server-owned course selection; conflict or safe merge preserves both Writing edits and selection. |
+| R06 | Unauthenticated GET/set-active or client-provided owner ID. | 401 or scoped rejection; no cross-account course or Writing data returned and no write. |
+| R07 | Selected course becomes unavailable/archived in an older snapshot. | Read-only view prompts Choose a course; never silently selects another or writes on read. |
+| R08 | Existing `/api/state` GET would run legacy import/rebuild. | Dedicated course projection GET is pure read; no legacy-import flag, evidence, snapshot or Writing row changes. |
+| R09 | Simulated 503 during explicit selection followed by request retry with same idempotency key. | No false active badge before acknowledgement; one persisted selection, no duplicate enrollment/evidence. |
+| R10 | v20 code reads a state saved after P1 with a `courseV1` namespace and then saves an old Writing edit. | Unknown additive field survives or P1 release is blocked; source-only rollback does not discard selection or Writing history. |
+| R11 | Two enrolled courses reference the same scored lesson attempt and one approved Writing review. | Both course views derive eligible milestones, but `academic_attempts`, `writing_submissions` and `learning_evidence` row counts do not increase on course reads. |
+| R12 | Same lesson ID in two package versions; one old submitted attempt. | Credit only the exact package/version match; any equivalence needs an approved map; read-only old result remains pinned. |
+| R13 | Started draft, scored attempt, pending review, approved review and unassessed Listening in the same course. | Distinct statuses: started/no completion; scored objective completion; pending submission with no proficiency; approved review credit; unassessed Listening no scored credit. |
+| R14 | Learner navigates to My Courses or nested Writing from a dirty Foundation attempt, and leaves a dirty legacy Writing field. | Foundation guard confirms latest revision before unmount; Writing edit also confirms via its own save path or blocks navigation. |
+| R15 | Clean revision A acknowledged on attempt X, then another edit, recording change or attempt switch occurs during navigation. | Skip only if `{attemptId:X,revision:A}` still matches and queue is empty; otherwise await latest acknowledgement or visibly block; no duplicate POST when truly clean. |
+
+These cases are design acceptance criteria, not executed tests. P1 implements R01–R10 and R14 without a new course engine; R11–R13 define the later shared-progress service and its P1 non-regression boundary. R15 remains a separately shipped code-only optimization. Measure desktop/mobile navigation only after an authorized implementation; no synthetic browser timing claim.
