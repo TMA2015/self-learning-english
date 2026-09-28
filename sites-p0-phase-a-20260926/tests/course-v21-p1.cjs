@@ -77,7 +77,8 @@ const deferred=()=>{let resolve;const promise=new Promise(r=>resolve=r);return {
  assert.ok(route.includes('learnerKey(request)')&&route.includes('new D1LearningRepository(db).readState(')&&!route.split('export async function GET(')[1].split('export async function POST(')[0].includes('.run()'),'course GET uses authenticated pure read');
  assert.ok(!route.includes('importLegacy')&&!route.includes('rebuild(')&&!route.includes('snapshot('));
  assert.ok(stateRoute.includes('delete body.courseV1;'),'legacy broad PUT cannot accept server-owned namespace');
- const v20=execFileSync('git',['show','7ffc690ba63461322eff7d259b483531c224e053:app/api/state/route.ts'],{cwd:root,encoding:'utf8'});
+ const repoPrefix=execFileSync('git',['rev-parse','--show-prefix'],{cwd:root,encoding:'utf8'}).trim();
+ const v20=execFileSync('git',['show',`7ffc690ba63461322eff7d259b483531c224e053:${repoPrefix}app/api/state/route.ts`],{cwd:root,encoding:'utf8'});
  assert.ok(v20.includes('{...previous,...body}'),'v20 must merge and retain unknown fields during a normal Writing save');
  assert.equal(db.rows.has(selectionKey(owner)),true,'source-only rollback leaves the independent selection record intact');
  console.log('PASS: pure GET, account scope, atomic CAS/idempotency, both Writing write orders, legacy rollback, progress/previews, versioned shared attempt, draft navigation.');
