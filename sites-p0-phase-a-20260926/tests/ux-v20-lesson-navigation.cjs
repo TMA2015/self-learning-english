@@ -32,4 +32,7 @@ assert.ok(skill.includes('setBusy(!!needsSave)'),'draft save must keep player co
 assert.ok(source.includes("const task=draftSaveQueue.current.catch(()=>{}).then("),'sequential server draft persistence retained');
 assert.ok(source.includes("if(revision===draftRevision.current)setDraftFeedback({kind:'saved',at:Date.now()})"),'only server-confirmed latest draft can show saved');
 assert.ok(page.includes('onSelectSkill={next=>navigate(next as View)}'),'existing Site skill routing retained');
+assert.ok(page.includes('onNavigationGuard={registerFoundationNavigationGuard}'),'sidebar routes consult the mounted player before unmount');
+assert.ok(page.includes('disabled={navigating} onClick={()=>void navigate(n.key)}'),'every sidebar destination uses the serialized route gate');
+assert.ok(source.includes("await confirmLatestDraft(()=>draftRevision.current,()=>saveDraftRef.current())"),'route save confirms the latest edit before leaving');
 console.log('PASS: v20 IDs visible, bounded versioned lesson prefetch/reuse, nonblocking catalog refresh, safe draft gates.');

@@ -22,6 +22,13 @@ Status: Draft PR only; application code and QA, **not** Site deployment, data im
 - No unnecessary async route changes or optimistic claims that an unconfirmed save succeeded.
 - Check desktop and phone. Measure navigation time from tap to first visible feedback and to overview; compare v19 and v20 on the same session/network, including existing draft and submitted result.
 - A failed draft save must block leaving the lesson via its in-player controls. Direct sidebar transitions must not silently discard a draft.
+- All 20 sidebar destinations, including Dashboard, Parent View and the full Catalog, pass through one serialized parent route gate. The mounted player confirms the latest draft revision before the parent changes views; recording or an in-flight lesson action visibly blocks leaving. The seven skill cards use this same gate. A failed save keeps the current view and allows Retry save or a subsequent navigation retry.
+- After a lesson-fetch failure, keep the previously displayed lesson and its recording visible. A newly started attempt becomes the visible practice only once its exact versioned lesson has loaded; if that fetch fails, reload it from Recent Work.
 
 ## Release
 This is code-only. Do not merge PRs merely to deploy, change Site identity/URL/auth, import content or reset/migrate D1. No deployment until owner approval; then owner browser QA before accepting v20.
+
+## Work reconciliation and remaining gate
+- Staged from deployed Sites v19 source `49014a57a37a6ab75da7eb2fe6394affa8ab5e85`, applying only PR #18's UX delta and the focused route guard. This is not the deployed v20 source.
+- Source-level and deterministic deferred-save tests cover all sidebar destinations, rapid navigation and failed-save retry; production build must pass at the final checkpoint.
+- Authenticated desktop/mobile comparison against v19, including click-to-feedback and click-to-overview timings on the same session/network, remains owner QA when this Work browser cannot sign in. Do not infer timings from CI or local synthetic tests.

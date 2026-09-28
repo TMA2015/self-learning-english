@@ -44,5 +44,6 @@ const transitions=player.split("useEffect(()=>{if(previousSkill.current===skill)
 assert.ok(transitions,'pre-existing v14 skill guard retained');
 assert.equal(transitions.split('void refresh().catch(').length-1,1,'nonblocking single Catalog refresh retained after draft save');
 assert.equal(transitions.split('await refresh()').length-1,0,'do not block navigation on the optional catalog request');
-assert.ok(player.includes("if(next!==skill&&onSelectSkill)preparedSkillSwitch.current=next"),'top-route pre-save retained');
+assert.ok(player.includes('onSelectSkill?.(next)}'),'top skill cards use the parent draft-save gate');
+assert.ok(player.includes('routeGuardRef.current=async target=>'),'parent route guard is registered by the mounted player');
 console.log('PASS: seven skill tabs precede compact Writing Coach; save feedback shows latest server-confirmed draft state, failures and retry; v14 navigation guard retained.');

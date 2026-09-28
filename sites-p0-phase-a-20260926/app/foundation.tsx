@@ -6,13 +6,15 @@ import {summarizeFoundationResults} from '../domain/foundation-summary';
 import {listeningCompletion,listeningSubmitHint,listeningAudioHint} from '../domain/listening-completeness';
 import {catalogSections} from '../domain/catalog-taxonomy';
 import {latestAttemptForLesson,attemptStatusLabel,recentSkillWork,skillAttemptCount} from '../domain/attempt-navigation';
+import {confirmLatestDraft} from '../domain/navigation-gate';
 async function call(url:string,body?:unknown){const r=await fetch(url,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:undefined);const data:any=await r.json();if(!r.ok)throw Error(data.error??'Please retry.');return data}
 const api=(body:unknown)=>call('/api/foundation',body);
 export type Catalog={version:string;imported:boolean;course?:{sequence:string[]};journey:{steps:string[];title:string};lessons:{id:string;title:string;module:string;cefr:string;minutes:number}[];attempts:(AcademicAttempt&{hasAudio?:boolean})[]};
 type LessonView={version:string;lesson:SeedLesson;audio:{url:string;duration:number}|null};
-export function FoundationDemo({showVi=false,onEvidence,skill,sharedCatalog,onCatalog,onSelectSkill,writingIntro}:{showVi?:boolean;onEvidence?:()=>void;skill?:string;sharedCatalog?:Catalog|null;onCatalog?:(next:Catalog)=>void;onSelectSkill?:(next:string)=>void;writingIntro?:ReactNode}){
+export function FoundationDemo({showVi=false,onEvidence,skill,sharedCatalog,onCatalog,onSelectSkill,onNavigationGuard,writingIntro}:{showVi?:boolean;onEvidence?:()=>void;skill?:string;sharedCatalog?:Catalog|null;onCatalog?:(next:Catalog)=>void;onSelectSkill?:(next:string)=>void;onNavigationGuard?:(guard:((target:string)=>Promise<boolean>)|null)=>void;writingIntro?:ReactNode}){
  const [draftFeedback,setDraftFeedback]=useState<{kind:'idle'|'restored'|'unsaved'|'saving'|'saved'|'error';at?:number}>({kind:'idle'}),[screen,setScreen]=useState<'catalog'|'overview'|'practice'>('catalog'),[cefrFilter,setCefrFilter]=useState('all'),[hintSteps,setHintSteps]=useState<Record<string,number>>({}),[catalog,setCatalog]=useState<Catalog|null>(sharedCatalog??null),[selected,setSelected]=useState(''),[lesson,setLesson]=useState<SeedLesson|null>(null),[attempt,setAttempt]=useState<AcademicAttempt|null>(null),[answers,setAnswers]=useState<Record<string,string>>({}),[audioInfo,setAudioInfo]=useState<{url:string;duration:number}|null>(null),[recording,setRecording]=useState<AcademicAttempt['audio']>(),[recordingURL,setRecordingURL]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState(''),[submitError,setSubmitError]=useState(''),[showMissing,setShowMissing]=useState(false),[showAudioWarning,setShowAudioWarning]=useState(false),[saved,setSaved]=useState(''),[transcript,setTranscript]=useState(''),[recordingNow,setRecordingNow]=useState(false),[playing,setPlaying]=useState(false),[openingId,setOpeningId]=useState('');
- const playerRef=useRef<HTMLElement|null>(null),audioSectionRef=useRef<HTMLDivElement|null>(null),questionRefs=useRef<Record<string,HTMLFieldSetElement|null>>({}),draftRevision=useRef(0),draftSaveQueue=useRef<Promise<void>>(Promise.resolve()),preparedSkillSwitch=useRef<string|null>(null),media=useRef<MediaRecorder|null>(null),audio=useRef<HTMLAudioElement|null>(null),playToken=useRef(''),heard=useRef(0),lastTime=useRef(0),stopTimer=useRef<ReturnType<typeof setTimeout>|null>(null),generation=useRef(0),previousSkill=useRef(skill),skillTransition=useRef(0),recordingGeneration=useRef(0),openingRequest=useRef(0),loadedLessonVersion=useRef(''),lessonCache=useRef(new Map<string,Promise<LessonView>>());
+ const playerRef=useRef<HTMLElement|null>(null),audioSectionRef=useRef<HTMLDivElement|null>(null),questionRefs=useRef<Record<string,HTMLFieldSetElement|null>>({}),draftRevision=useRef(0),draftSaveQueue=useRef<Promise<void>>(Promise.resolve()),saveDraftRef=useRef<()=>Promise<void>>(async()=>{}),preparedSkillSwitch=useRef<string|null>(null),routeGuardRef=useRef<(target:string)=>Promise<boolean>>(async()=>true),media=useRef<MediaRecorder|null>(null),audio=useRef<HTMLAudioElement|null>(null),playToken=useRef(''),heard=useRef(0),lastTime=useRef(0),stopTimer=useRef<ReturnType<typeof setTimeout>|null>(null),generation=useRef(0),previousSkill=useRef(skill),skillTransition=useRef(0),recordingGeneration=useRef(0),openingRequest=useRef(0),loadedLessonVersion=useRef(''),lessonCache=useRef(new Map<string,Promise<LessonView>>());
+ useEffect(()=>{onNavigationGuard?.(target=>routeGuardRef.current(target));return()=>onNavigationGuard?.(null)},[onNavigationGuard]);
  useEffect(()=>{if(screen==='catalog')window.scrollTo({top:0,behavior:'auto'});else playerRef.current?.scrollIntoView({block:'start',behavior:'auto'});},[screen,selected]);
  const refresh=async()=>{const next:Catalog=await call('/api/foundation');setCatalog(next);onCatalog?.(next)};
  // Only versioned instructional views are cached in this mounted learner session.
@@ -42,12 +44,12 @@ export function FoundationDemo({showVi=false,onEvidence,skill,sharedCatalog,onCa
    }
   }
   if(request!==openingRequest.current)return;
-  setSubmitError('');setShowMissing(false);setShowAudioWarning(false);setHintSteps({});setTranscript('');setRecording(undefined);setRecordingURL('');setPlaying(false);
-  audio.current?.pause();media.current?.stream.getTracks().forEach(t=>t.stop());
   try{
    const existing=entry??latestAttemptForLesson(catalog?.attempts??[],id);
    const view=await loadLesson(id,existing?.version??catalog?.version);
    if(request!==openingRequest.current)return;
+   setSubmitError('');setShowMissing(false);setShowAudioWarning(false);setHintSteps({});setTranscript('');setRecording(undefined);setRecordingURL('');setPlaying(false);
+   audio.current?.pause();media.current?.stream.getTracks().forEach(t=>t.stop());
    draftRevision.current++;loadedLessonVersion.current=view.version;
    setDraftFeedback(existing?.status==='started'?{kind:'restored'}:{kind:'idle'});
    setSelected(id);setLesson(view.lesson);setScreen('overview');setAudioInfo(view.audio);setAttempt(existing??null);
@@ -61,15 +63,15 @@ export function FoundationDemo({showVi=false,onEvidence,skill,sharedCatalog,onCa
   if(!lesson)return;setBusy(true);setError('');setSubmitError('');setShowMissing(false);setShowAudioWarning(false);setHintSteps({});
   try{
    const a=await api({action:'start',lessonId:lesson.id,id:crypto.randomUUID?.()??'attempt-'+Array.from(crypto.getRandomValues(new Uint32Array(4)),n=>n.toString(16)).join('-'),...(revision&&attempt?{parentId:attempt.id}:{})});
-   setAttempt(a);setAnswers({});setRecording(undefined);setRecordingURL('');setTranscript('');draftRevision.current++;
-   setDraftFeedback({kind:'saved',at:Date.now()});setSaved('New attempt saved');setScreen('practice');
    // Reuse the already loaded immutable lesson if the new attempt uses the same version.
    if(loadedLessonVersion.current!==a.version){
     const v=await loadLesson(lesson.id,a.version);setLesson(v.lesson);setAudioInfo(v.audio);loadedLessonVersion.current=v.version;
    }
+   setAttempt(a);setAnswers({});setRecording(undefined);setRecordingURL('');setTranscript('');draftRevision.current++;
+   setDraftFeedback({kind:'saved',at:Date.now()});setSaved('New attempt saved');setScreen('practice');
    // A saved attempt exists independently of the recent-work list. Refresh in the background.
    void refresh().catch(e=>setError('Recent work refresh failed. The attempt was saved. '+(e as Error).message));
-  }catch(e){setError((e as Error).message)}
+  }catch(e){setError('Could not open the attempt. If it was saved, reopen it from Recent Work. '+(e as Error).message);void refresh().catch(()=>{})}
   finally{setBusy(false)}
  }
  const editable=attempt?.status==='started';
@@ -79,9 +81,30 @@ export function FoundationDemo({showVi=false,onEvidence,skill,sharedCatalog,onCa
  function markDraftChanged(){draftRevision.current++;setDraftFeedback({kind:'unsaved'})}
  const draftSaveText=draftFeedback.kind==='restored'?'Draft restored · saved previously':draftFeedback.kind==='unsaved'?'Unsaved changes · saving soon…':draftFeedback.kind==='saving'?'Saving draft…':draftFeedback.kind==='saved'?('All changes saved'+(draftFeedback.at?' · '+new Date(draftFeedback.at).toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}):'')):draftFeedback.kind==='error'?'Save failed · Retry save':'';
  async function saveDraft(){if(!attempt||!editable)return;const revision=draftRevision.current;const payload={action:'draft',id:attempt.id,answers,...(recording?{audio:recording}:{})};setDraftFeedback({kind:'saving'});const task=draftSaveQueue.current.catch(()=>{}).then(async()=>{await api(payload)});draftSaveQueue.current=task;try{await task;if(revision===draftRevision.current)setDraftFeedback({kind:'saved',at:Date.now()})}catch(e){if(revision===draftRevision.current)setDraftFeedback({kind:'error'});throw e}}
+ saveDraftRef.current=saveDraft;
+ // The parent checks this guard before changing any sidebar destination. It keeps
+ // the player mounted until the last edited revision has been confirmed by D1.
+ routeGuardRef.current=async target=>{
+  if(preparedSkillSwitch.current===target)return true;
+  if(recordingNow||media.current?.state==='recording'){
+   setError('Stop recording and wait for the draft to save before leaving this lesson.');return false;
+  }
+  if(busy){setError('Finish the current lesson action before navigating.');return false}
+  if(attempt?.status==='started'){
+   setBusy(true);setError('');
+   try{
+    await confirmLatestDraft(()=>draftRevision.current,()=>saveDraftRef.current());
+    // The saved draft is authoritative; the separate Recent Work refresh may finish later.
+    void refresh().catch(e=>setError('Recent work refresh failed after saving. '+(e as Error).message));
+   }catch(e){setError('Draft save failed. Stay on this lesson and retry. '+(e as Error).message);setBusy(false);return false}
+   setBusy(false);
+  }
+  preparedSkillSwitch.current=target;
+  return true;
+ };
  // A single player instance stays mounted when switching skill tabs. Save the previous
  // in-progress lesson before returning to the new skill catalog. Keep loaded catalog.
- useEffect(()=>{if(previousSkill.current===skill)return;previousSkill.current=skill;openingRequest.current++;setOpeningId('');const prepared=preparedSkillSwitch.current===skill;preparedSkillSwitch.current=null;const transition=++skillTransition.current;const needsSave=attempt?.status==='started'&&!prepared;setBusy(!!needsSave);
+ useEffect(()=>{if(previousSkill.current===skill)return;previousSkill.current=skill;openingRequest.current++;setOpeningId('');const prepared=preparedSkillSwitch.current===(skill??'foundation');preparedSkillSwitch.current=null;const transition=++skillTransition.current;const needsSave=attempt?.status==='started'&&!prepared;setBusy(!!needsSave);
   const change=async()=>{if(needsSave){try{await saveDraft();void refresh().catch(e=>setError('Recent work refresh failed after saving. '+(e as Error).message))}catch(e){if(transition===skillTransition.current){setBusy(false);setError('Draft save failed. Please retry before leaving this lesson. '+(e as Error).message)}return}}
    if(transition!==skillTransition.current)return;
    audio.current?.pause();++recordingGeneration.current;if(media.current?.state==='recording')media.current.stop();media.current?.stream.getTracks().forEach(t=>t.stop());media.current=null;setPlaying(false);setRecordingNow(false);
@@ -91,7 +114,7 @@ export function FoundationDemo({showVi=false,onEvidence,skill,sharedCatalog,onCa
  // Drafts remain scoped server records. Do not overwrite a completed attempt on reload.
  useEffect(()=>{if(!editable)return;const current=++generation.current;const timer=setTimeout(()=>{void saveDraft().catch(()=>{/* saveDraft exposes the error in the draft status */})},1000);return()=>clearTimeout(timer)},[answers,recording,attempt?.id,editable]);
  async function backToCatalog(){try{if(attempt?.status==='started'){await saveDraft();void refresh().catch(e=>setError('Recent work refresh failed after saving. '+(e as Error).message))}}catch(e){setError('Draft save failed. Stay on this lesson and retry. '+(e as Error).message);return}setError('');setScreen('catalog')}
- async function chooseSkill(next:string){try{if(attempt?.status==='started'){await saveDraft();void refresh().catch(e=>setError('Recent work refresh failed after saving. '+(e as Error).message));if(next!==skill&&onSelectSkill)preparedSkillSwitch.current=next}}catch(e){setError('Draft save failed. Stay on this lesson and retry. '+(e as Error).message);return}if(next===skill){setScreen('catalog');return}onSelectSkill?.(next)}
+ async function chooseSkill(next:string){if(next===skill){await backToCatalog();return}onSelectSkill?.(next)}
  async function submit(){if(!attempt||!lesson)return;
   if(lesson.module==='listening'&&listeningProgress?.unansweredIds.length){
    const firstId=listeningProgress.unansweredIds[0];setShowMissing(true);setSubmitError('');

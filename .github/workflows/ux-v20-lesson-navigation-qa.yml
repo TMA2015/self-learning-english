@@ -4,10 +4,16 @@ on:
   pull_request:
     paths:
       - 'sites-p0-phase-a-20260926/app/foundation.tsx'
+      - 'sites-p0-phase-a-20260926/app/page.tsx'
+      - 'sites-p0-phase-a-20260926/domain/navigation-gate.ts'
       - 'sites-p0-phase-a-20260926/app/globals.css'
       - 'sites-p0-phase-a-20260926/tests/ux-v20-lesson-navigation.cjs'
+      - 'sites-p0-phase-a-20260926/tests/v20-route-draft-safety.cjs'
       - 'sites-p0-phase-a-20260926/tests/attempt-navigation-ui.cjs'
       - 'sites-p0-phase-a-20260926/tests/writing-nav-save-feedback.cjs'
+      - 'sites-p0-phase-a-20260926/tests/batch02-v11-release.cjs'
+      - 'sites-p0-phase-a-20260926/tests/foundation-coaching.cjs'
+      - 'sites-p0-phase-a-20260926/tests/foundation-results-ux.cjs'
       - 'sites-p0-phase-a-20260926/docs/UX_V20_LESSON_IDS_NAVIGATION.md'
       - '.github/workflows/ux-v20-lesson-navigation-qa.yml'
   workflow_dispatch:
@@ -32,7 +38,7 @@ jobs:
       - name: Install exact dependencies
         run: pnpm install --frozen-lockfile
       - name: Verify v20 ID, cache, saved-draft and catalog navigation contracts
-        run: node tests/ux-v20-lesson-navigation.cjs && node tests/attempt-navigation-ui.cjs && node tests/writing-nav-save-feedback.cjs && node tests/catalog-taxonomy-ui.cjs
+        run: node tests/v20-route-draft-safety.cjs && node tests/ux-v20-lesson-navigation.cjs && node tests/attempt-navigation-ui.cjs && node tests/writing-nav-save-feedback.cjs && node tests/catalog-taxonomy-ui.cjs && node tests/batch02-v11-release.cjs && node tests/foundation-coaching.cjs && node tests/foundation-results-ux.cjs
       - name: Preserve listening, curriculum and Batch04 code compatibility
         run: node tests/listening-submit-feedback.cjs && node tests/listening-retake-audio-readiness.cjs && node tests/catalog-groups.cjs && node tests/curriculum-13-compat-v15.cjs && node tests/batch04-code-compat.cjs
       - name: Production build only; no Site deployment or data import
