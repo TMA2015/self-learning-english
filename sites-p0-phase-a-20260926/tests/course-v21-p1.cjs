@@ -79,7 +79,7 @@ const deferred=()=>{let resolve;const promise=new Promise(r=>resolve=r);return {
  assert.ok(stateRoute.includes('delete body.courseV1;'),'legacy broad PUT cannot accept server-owned namespace');
  // Exact v20 route blob, independently matched in both Sites and GitHub trees.
  // Embed as a fixture because Actions shallow checkout cannot read Sites Git objects.
- const v20=fs.readFileSync(path.join(root,'tests/fixtures/v20-state-route.ts'),'utf8');
+ const v20=fs.readFileSync(path.join(root,'tests/fixtures/v20-state-route.txt'),'utf8');
  const v20Blob=createHash('sha1').update(`blob ${Buffer.byteLength(v20)}\0`).update(v20).digest('hex');
  assert.equal(v20Blob,'0d45ba9b9f4f3cb5826f874314405754b285e378');
  assert.ok(v20.includes('{...previous,...body}'),'v20 must merge and retain unknown fields during a normal Writing save');
