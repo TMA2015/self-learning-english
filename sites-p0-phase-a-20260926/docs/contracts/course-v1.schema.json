@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/TMA2015/ai-english-tutor/blob/architecture/course-v21-contract-20260928/sites-p0-phase-a-20260926/docs/contracts/course-v1.schema.json",
   "title": "G Learning Course Architecture v21 fixture (design only; NOT importer API)",
-  "description": "Portable structural definitions. All cross-record and authorization invariants are in COURSE_ARCHITECTURE_V21.md and COURSE_V21_QA_MATRIX.md. This MUST NOT be deployed or used to import learner data.",
+  "description": "Portable structural definitions. All cross-record and authorization invariants are in COURSE_ARCHITECTURE_V21.md and COURSE_V21_QA_MATRIX.md. This MUST NOT be deployed or used to import learner data. Foundation refs require canonical package identity/digest; confirmed placements require explicit level/actor/time. Cross-record uniqueness, ownership, source approval and progress semantics still need server validation.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -163,8 +163,58 @@
           },
           "uniqueItems": true,
           "maxItems": 100
+        },
+        "contentDigest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "description": "Canonical approved source-package digest for a Foundation reference; checked server-side against packageId/contentVersion."
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "source": {
+                "enum": [
+                  "foundation-lesson",
+                  "foundation-activity"
+                ]
+              }
+            },
+            "required": [
+              "source"
+            ]
+          },
+          "then": {
+            "required": [
+              "packageId",
+              "contentDigest"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "source": {
+                "const": "writing-week-stage"
+              }
+            },
+            "required": [
+              "source"
+            ]
+          },
+          "then": {
+            "properties": {
+              "skill": {
+                "const": "Writing"
+              },
+              "completionRequirement": {
+                "const": "saved-writing-stage"
+              }
+            }
+          }
+        }
+      ]
     },
     "CourseUnit": {
       "type": "object",
@@ -323,7 +373,27 @@
           "minLength": 3,
           "maxLength": 120
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "ai_custom"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "placementId",
+              "skillAllocation"
+            ]
+          }
+        }
+      ]
     },
     "CourseEnrollment": {
       "type": "object",
@@ -515,7 +585,33 @@
           "type": "string",
           "format": "date-time"
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "confirmed-for-planning"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "required": [
+              "workingLevel",
+              "confirmedBy",
+              "confirmedAt"
+            ],
+            "properties": {
+              "workingLevel": {
+                "$ref": "#/$defs/Level"
+              }
+            }
+          }
+        }
+      ]
     }
   }
 }
