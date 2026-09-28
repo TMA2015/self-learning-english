@@ -264,7 +264,15 @@
           "maxLength": 2000
         },
         "targetCEFR": {
-          "$ref": "#/$defs/Level"
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Level"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Null for a non-CEFR-targeted course such as the existing Writing process programme."
         },
         "availability": {
           "enum": [
