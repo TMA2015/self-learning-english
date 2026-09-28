@@ -34,17 +34,18 @@ export default function Home(){
  const [foundationCatalog,setFoundationCatalog]=useState<FoundationCatalog|null>(null);const [view,setView]=useState<View>("dashboard");const [state,setState]=useState<State>(seed);const [loaded,setLoaded]=useState(false);const [saving,setSaving]=useState("Loading progress...");const [busy,setBusy]=useState(false);const [menu,setMenu]=useState(false);const [hint,setHint]=useState(false);const [navigating,setNavigating]=useState(false);const latestState=useRef(state);latestState.current=state;const storageReady=useRef(false);const dirty=useRef(false);const saveQueue=useRef<Promise<boolean>>(Promise.resolve(true));
  const [courseData,setCourseData]=useState<MyCoursesData|null>(null),[courseError,setCourseError]=useState(''),[courseBusy,setCourseBusy]=useState(false);
  const pendingSelection=useRef<{activeCourseId:string|null;expectedRevision:number;requestId:string}|null>(null);
+ const courseRequestGeneration=useRef(0);
  const foundationNavigationGuard=useRef<((target:string)=>Promise<boolean>)|null>(null);
  const navigationGate=useRef(createNavigationGate<View>());
  const registerFoundationNavigationGuard=useCallback((guard:((target:string)=>Promise<boolean>)|null)=>{foundationNavigationGuard.current=guard},[]);
- async function refreshCourses(){try{const response=await fetch('/api/course');const data=await response.json() as MyCoursesData&{error?:string};if(!response.ok)throw Error(data.error??'My Courses unavailable');setCourseData(data);setCourseError('')}catch(e){setCourseError(e instanceof Error?e.message:'My Courses unavailable')}}
+ async function refreshCourses(){const request=++courseRequestGeneration.current;try{const response=await fetch('/api/course');const data=await response.json() as MyCoursesData&{error?:string};if(!response.ok)throw Error(data.error??'My Courses unavailable');if(request===courseRequestGeneration.current){setCourseData(data);setCourseError('')}}catch(e){if(request===courseRequestGeneration.current)setCourseError(e instanceof Error?e.message:'My Courses unavailable')}}
  useEffect(()=>{void refreshCourses()},[]);
  async function selectCourse(activeCourseId:string|null):Promise<boolean>{
   if(!courseData||courseBusy)return false;
   if(courseData.activeCourseId===activeCourseId)return true;
   const previous=pendingSelection.current;
   const request=previous&&previous.activeCourseId===activeCourseId?previous:{activeCourseId,expectedRevision:courseData.selectionRevision,requestId:crypto.randomUUID()};
-  pendingSelection.current=request;setCourseBusy(true);setCourseError('');
+  ++courseRequestGeneration.current;pendingSelection.current=request;setCourseBusy(true);setCourseError('');
   try{const response=await fetch('/api/course',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(request)});const data=await response.json() as {selection?:{revision:number};error?:string};if(!response.ok){if(response.status===409){pendingSelection.current=null;await refreshCourses()}throw Error(data.error??'Could not select course')}
    pendingSelection.current=null;setCourseData(previous=>previous?{...previous,activeCourseId,activeCourse:activeCourseId?previous.courses[0]:null,selectionRevision:data.selection?.revision??previous.selectionRevision}:previous);await refreshCourses();return true;
   }catch(e){setCourseError((e instanceof Error?e.message:'Could not select course')+' · Retry Set active if needed.');return false}
