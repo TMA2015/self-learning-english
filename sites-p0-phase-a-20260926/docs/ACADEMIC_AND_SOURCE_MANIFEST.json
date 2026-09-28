@@ -1,0 +1,73 @@
+{
+  "project": "G Learning / Self-Learning English",
+  "manifest_version": "1.0.0",
+  "date": "2026-09-28",
+  "status": "PROPOSED_GOVERNANCE_NO_RELEASE_AUTHORIZATION",
+  "production": {
+    "last_reported_site_version": "v20",
+    "sites_source_sha_reported": "7ffc690ba63461322eff7d259b483531c224e053",
+    "requires_live_reverification_before_release": true
+  },
+  "code": {
+    "github_v20_pr18_reference": "6da694b5223581e0bc81784defd16b714c58560f",
+    "course_architecture_pr20_checkpoint": "af05a4d429647d906cb5f533294c7c5f4872c830",
+    "p1_pr21_head_last_observed": "25d5f41f4962c8913bee96a2289e7a6a4ad0a35c",
+    "p1_last_dedicated_ci": "failure_fixture_git_object_unavailable; rerun required"
+  },
+  "academics": {
+    "accepted_1_4_0": {
+      "version": "1.4.0",
+      "canonical_sha256": "70eb0d13477a647ae2ab0ca5b11bfd1f52a99772f1ca206d701718d08ffb56da",
+      "lessons": 45,
+      "activities": 323,
+      "status": "accepted_approved_curriculum"
+    },
+    "batch05_1_5_0": {
+      "version": "1.5.0",
+      "canonical_sha256": "9d8e2476f7083d94e6267d2b46e26c5ebbe210a5985b97a711d9a4d7d86b72f0",
+      "raw_file_sha256": "f34047620b65c6684a196e6b0362953fcc1f00522f6c889a5fe7602a92866d0a",
+      "lessons": 45,
+      "activities": 359,
+      "added": 36,
+      "gemini_independent_latest_pass": 36,
+      "mcq_correct_positions": {
+        "A": 6,
+        "B": 6,
+        "C": 6,
+        "D": 6
+      },
+      "status": "REVIEW_ONLY_NOT_PREVIEWED_NOT_IMPORTED"
+    }
+  },
+  "baseline_coverage": {
+    "lessons_by_module": {
+      "grammar": 15,
+      "vocabulary": 8,
+      "reading": 9,
+      "writing": 8,
+      "listening": 2,
+      "speaking": 2,
+      "pronunciation": 1
+    },
+    "lessons_by_cefr_target": {
+      "A1": 20,
+      "A2": 19,
+      "B1": 6
+    },
+    "activity_types": {
+      "single_choice": 230,
+      "short_answer": 82,
+      "extended_response": 11
+    }
+  },
+  "gates": [
+    "P1 CI/rollback proof; browser QA; owner release authorization",
+    "Batch05 independent importer compatibility and distinct owner Preview approval",
+    "Batch05 subsequent distinct owner Import approval"
+  ],
+  "notes": [
+    "GitHub doc checkpoints and Site deployed source are different.",
+    "This manifest is not a live Sites/D1 inspection or release permission.",
+    "Content digest is canonical sorted-key compact UTF-8 JSON, NOT raw file byte SHA."
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "packet_id": "GL-GEMINI-TASK-TEMPLATE-V1",
+  "context_version": "master-governance-v1.0.0",
+  "project": "G Learning / Self-Learning English",
+  "review_type": "independent_item_semantic_qa",
+  "source_manifest": {
+    "package_version": "1.5.0",
+    "canonical_sha256": "9d8e2476f7083d94e6267d2b46e26c5ebbe210a5985b97a711d9a4d7d86b72f0",
+    "status": "REVIEW_ONLY_NOT_IMPORTED"
+  },
+  "scope": {
+    "expected_item_ids": [
+      "<exact ID>"
+    ],
+    "expected_count": 1
+  },
+  "lesson_context": {
+    "lesson_id": "<exact ID>",
+    "module": "<domain>",
+    "cefr_target": "<level>",
+    "objectives": [
+      "<from exact source>"
+    ],
+    "explanation": "<verbatim or complete relevant source>"
+  },
+  "target_activities": [
+    {
+      "id": "<exact ID>",
+      "prompt": "<exact prompt>",
+      "options": "<full options if MCQ>",
+      "answer": "<supplied key is a claim to audit>",
+      "feedback": "<actual>"
+    }
+  ],
+  "relevant_existing_activities": [
+    {
+      "id": "<closest original ID>",
+      "prompt": "<exact>",
+      "answer": "<actual>"
+    }
+  ],
+  "source_text": "<FULL Reading passage if applicable; null otherwise>",
+  "rubric": "<FULL relevant Writing rubric if applicable; null otherwise>",
+  "review_instructions": [
+    "Re-solve independently without trusting supplied key.",
+    "Check ambiguity/valid variants, distractors, original-activity novelty, source text and rubric.",
+    "If incomplete or truncated, report REVIEW_INCOMPLETE; never hallucinate source.",
+    "No Site/PR/data action."
+  ],
+  "expected_output": {
+    "packet_id": "exact same",
+    "reviewed_ids": [
+      "<ID if assessed>"
+    ],
+    "missing_ids": [],
+    "item_reviews": [
+      {
+        "id": "<ID>",
+        "verdict": "PASS|REVISION_REQUIRED|REVIEW_INCOMPLETE|INSUFFICIENT_EVIDENCE",
+        "independent_answer": "<text/array/null>",
+        "rationale": "<source-grounded>",
+        "source_anchors": [
+          "<exact words or IDs>"
+        ],
+        "exact_correction": null
+      }
+    ]
+  }
+}
