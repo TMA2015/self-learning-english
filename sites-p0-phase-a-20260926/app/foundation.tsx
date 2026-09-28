@@ -61,7 +61,7 @@ export function FoundationDemo({showVi=false,onEvidence,skill,sharedCatalog,onCa
   if(!lesson)return;setBusy(true);setError('');setSubmitError('');setShowMissing(false);setShowAudioWarning(false);setHintSteps({});
   try{
    const a=await api({action:'start',lessonId:lesson.id,id:crypto.randomUUID?.()??'attempt-'+Array.from(crypto.getRandomValues(new Uint32Array(4)),n=>n.toString(16)).join('-'),...(revision&&attempt?{parentId:attempt.id}:{})});
-   setAttempt(a);setAnswers({});setRecording(undefined);setRecordingURL('');setTranscript('');draftRevision++;
+   setAttempt(a);setAnswers({});setRecording(undefined);setRecordingURL('');setTranscript('');draftRevision.current++;
    setDraftFeedback({kind:'saved',at:Date.now()});setSaved('New attempt saved');setScreen('practice');
    // Reuse the already loaded immutable lesson if the new attempt uses the same version.
    if(loadedLessonVersion.current!==a.version){
