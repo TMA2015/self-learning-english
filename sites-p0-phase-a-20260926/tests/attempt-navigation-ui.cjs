@@ -40,7 +40,7 @@ assert.ok(transitionEffect,'sidebar skill transition effect missing');
 assert.equal(transitionEffect.split('await saveDraft()').length-1,1,'sidebar transition must save a draft once');
 assert.equal(transitionEffect.split('void refresh().catch(').length-1,1,'sidebar transition refreshes Recent Work once without blocking saved navigation');
 assert.equal(transitionEffect.split('await refresh()').length-1,0,'Catalog request must not block a saved skill switch');
-assert.ok(transitionEffect.includes("if(attempt?.status==='started'&&!prepared)"),'already-prepared top route must not repeat save/refresh');
+assert.ok(transitionEffect.includes("const needsSave=attempt?.status==='started'&&!prepared"),'already-prepared top route must not repeat save/refresh');
 assert.ok(source.includes("if(next!==skill&&onSelectSkill)preparedSkillSwitch.current=next"),'top skill route records its completed pre-navigation save');
 assert.ok(source.includes("const prepared=preparedSkillSwitch.current===skill;preparedSkillSwitch.current=null;"),'preparation marker must be consumed on transition');
 assert.ok(source.includes("latestAttemptForLesson(catalog?.attempts??[],id)"),'lesson must use its own latest attempt');
