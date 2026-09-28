@@ -7,7 +7,7 @@
       "templateVersion": 1,
       "kind": "predefined",
       "title": "English Writing Coach · 12 weeks",
-      "description": "Illustrative compatibility template: Week 1 live, Weeks 2–12 still previews; not a finished CEFR course.",
+      "description": "Illustrative subset only: Week 1 live and Week 2 preview. The real legacy outline has 11 preview weeks and four Week 1 process stages; this fixture is not a complete production template.",
       "targetCEFR": null,
       "availability": "available",
       "units": [
@@ -73,7 +73,8 @@
               "skill": "Grammar",
               "completionRequirement": "scored-submission",
               "estimatedMinutes": 22,
-              "prerequisiteItemRefIds": []
+              "prerequisiteItemRefIds": [],
+              "contentDigest": "70eb0d13477a647ae2ab0ca5b11bfd1f52a99772f1ca206d701718d08ffb56da"
             }
           ]
         }
