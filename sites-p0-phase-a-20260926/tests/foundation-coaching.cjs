@@ -30,7 +30,8 @@ for (const match of matches) {
 
 assert(ui.includes("editable&&lesson.id==='GRA-A2-01'&&['1.0.2','1.1.0'].includes(attempt?.version??'')"), 'only active supported 1.0.2/1.1.0 pilot');
 assert(ui.includes('setHintSteps({});setTranscript'), 'reset on lesson change');
-assert(ui.includes("setHintSteps({});try{const a=await api({action:'start'"), 'reset on new attempt');
+const newAttempt=ui.split('async function newAttempt(')[1]?.split('const editable=')[0];
+assert(newAttempt?.includes('setHintSteps({});')&&newAttempt.includes("action:'start'"), 'reset on new attempt');
 assert(ui.includes('Hints guide your thinking; they do not check your answer or add a score.'), 'accurate unscored messaging');
 assert(ui.includes('Learning goals') && ui.includes('Understand the rule') && ui.includes('Worked examples'), 'structured teaching sections');
 assert(ui.includes('hasLabel?e.slice(divider+3):e'), 'unlabeled legacy examples supported');

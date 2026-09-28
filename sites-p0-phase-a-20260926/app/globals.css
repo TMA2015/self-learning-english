@@ -180,6 +180,10 @@ body {
 .foundation-recent-grid button{text-align:left;display:grid;justify-content:start;gap:.3rem;white-space:normal;min-height:70px}
 .foundation-recent-grid button span{font-size:.82rem;color:#52657a}
 .foundation-lesson-status{font-size:.75rem;color:#315f7d;margin-top:.3rem}
+/* v20: stable lesson identifiers across Catalog, Recent Work and the focused player. */
+.foundation-lesson-id{display:inline-block;max-width:100%;font-size:.72rem;font-weight:750;letter-spacing:.045em;line-height:1.35;color:#24557b;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.foundation-catalog .foundation-lesson-id,.foundation-recent-grid .foundation-lesson-id{margin-bottom:.12rem}
+.foundation-focus>.eyebrow .foundation-lesson-id{font-size:inherit;color:inherit}
 .foundation-focus .learning-choices{margin-top:1rem}
 @media(max-width:680px){.foundation-recent-grid{grid-template-columns:1fr}.foundation-player-nav .muted{margin:0;flex-basis:100%}.foundation-focus{scroll-margin-top:82px}}
 
