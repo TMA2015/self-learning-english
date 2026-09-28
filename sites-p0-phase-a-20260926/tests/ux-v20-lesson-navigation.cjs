@@ -27,7 +27,8 @@ const open=source.split('async function open(')[1].split('async function newAtte
 assert.ok(open.indexOf('await saveDraft()')<open.indexOf('await loadLesson('),'draft save must finish before opening another lesson');
 const skill=source.split('useEffect(()=>{if(previousSkill.current===skill)')[1].split('},[skill]);')[0];
 assert.ok(skill.indexOf('await saveDraft()')<skill.indexOf('void refresh().catch('),'draft persistence must precede background refresh');
-assert.ok(skill.includes("if(attempt?.status==='started'&&!prepared)"),'sidebar navigation continues to guard draft state');
+assert.ok(skill.includes("const needsSave=attempt?.status==='started'&&!prepared"),'sidebar navigation continues to guard draft state');
+assert.ok(skill.includes('setBusy(!!needsSave)'),'draft save must keep player controls disabled during sidebar transition');
 assert.ok(source.includes("const task=draftSaveQueue.current.catch(()=>{}).then("),'sequential server draft persistence retained');
 assert.ok(source.includes("if(revision===draftRevision.current)setDraftFeedback({kind:'saved',at:Date.now()})"),'only server-confirmed latest draft can show saved');
 assert.ok(page.includes('onSelectSkill={next=>navigate(next as View)}'),'existing Site skill routing retained');
