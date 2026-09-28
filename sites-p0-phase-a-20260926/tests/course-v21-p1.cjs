@@ -2,7 +2,7 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
-const {execFileSync}=require('node:child_process');
+const {createHash}=require('node:crypto');
 const ts=require('typescript');
 const root=path.resolve(__dirname,'..'),out='.sites-runtime/course-p1-test';
 for(const file of ['domain/course-p1.ts','infrastructure/storage/d1-course-selection.ts','infrastructure/storage/d1-repository.ts','domain/navigation-gate.ts']){
@@ -78,7 +78,10 @@ const deferred=()=>{let resolve;const promise=new Promise(r=>resolve=r);return {
  assert.ok(!route.includes('importLegacy')&&!route.includes('rebuild(')&&!route.includes('snapshot('));
  assert.ok(stateRoute.includes('delete body.courseV1;'),'legacy broad PUT cannot accept server-owned namespace');
  // Exact v20 route blob, independently matched in both Sites and GitHub trees.
- const v20=execFileSync('git',['show','0d45ba9b9f4f3cb5826f874314405754b285e378'],{cwd:root,encoding:'utf8'});
+ // Embed as a fixture because Actions shallow checkout cannot read Sites Git objects.
+ const v20=fs.readFileSync(path.join(root,'tests/fixtures/v20-state-route.ts'),'utf8');
+ const v20Blob=createHash('sha1').update(`blob ${Buffer.byteLength(v20)}\0`).update(v20).digest('hex');
+ assert.equal(v20Blob,'0d45ba9b9f4f3cb5826f874314405754b285e378');
  assert.ok(v20.includes('{...previous,...body}'),'v20 must merge and retain unknown fields during a normal Writing save');
  assert.equal(db.rows.has(selectionKey(owner)),true,'source-only rollback leaves the independent selection record intact');
  console.log('PASS: pure GET, account scope, atomic CAS/idempotency, both Writing write orders, legacy rollback, progress/previews, versioned shared attempt, draft navigation.');
