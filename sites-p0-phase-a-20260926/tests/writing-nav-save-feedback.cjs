@@ -42,6 +42,7 @@ assert.ok(css.includes('.foundation-draft-feedback.is-error'),'clear failure vis
 
 const transitions=player.split("useEffect(()=>{if(previousSkill.current===skill)")[1]?.split("},[skill]);")[0];
 assert.ok(transitions,'pre-existing v14 skill guard retained');
-assert.equal(transitions.split('await refresh()').length-1,1,'no duplicate Catalog fetch regression');
+assert.equal(transitions.split('void refresh().catch(').length-1,1,'nonblocking single Catalog refresh retained after draft save');
+assert.equal(transitions.split('await refresh()').length-1,0,'do not block navigation on the optional catalog request');
 assert.ok(player.includes("if(next!==skill&&onSelectSkill)preparedSkillSwitch.current=next"),'top-route pre-save retained');
 console.log('PASS: seven skill tabs precede compact Writing Coach; save feedback shows latest server-confirmed draft state, failures and retry; v14 navigation guard retained.');
