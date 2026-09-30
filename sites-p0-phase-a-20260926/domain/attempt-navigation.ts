@@ -25,3 +25,11 @@ export function skillAttemptCount(attempts:readonly AttemptNavigationRecord[],le
  const ids=new Set(lessons.filter(l=>l.module===skill).map(l=>l.id));
  return new Set(attempts.filter(a=>ids.has(a.lessonId)).map(a=>a.lessonId)).size;
 }
+
+/** Historical work is independent of a root attempt on the current package. */
+export function hasOlderContent(attempt:{version:string}|null|undefined,currentVersion:string|undefined):boolean{
+ return !!attempt&&!!currentVersion&&attempt.version!==currentVersion;
+}
+export function attemptHistoryLabel(attempt:{version:string;status:string;parentId?:string}):string{
+ return attempt.status.replaceAll('_',' ') +(attempt.parentId?' · revision':' · root')+' · content '+attempt.version;
+}
