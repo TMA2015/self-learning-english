@@ -139,3 +139,39 @@ Next:
 
 P2B target loop:
 **Evidence -> detect weakness -> suggest targeted practice -> learner practices -> update mastery -> refresh recommendations.**
+
+
+## P2B + Grammar parallel planning started
+
+Architecture planning branch:
+- `architecture/p2b-grammar-roadmap-20260930`
+
+Planning artifacts created from the v29 implementation reference; no production mutation:
+- `sites-p0-phase-a-20260926/content/grammar-roadmap-v1.json`
+- `sites-p0-phase-a-20260926/content/adaptive-map-v1.json`
+- `sites-p0-phase-a-20260926/docs/P2B_ADAPTIVE_GRAMMAR_PARALLEL_PLAN.md`
+
+Current Grammar audit:
+- 15 current Grammar lessons in Curriculum 1.5.0
+- A1: 8, A2: 6, B1: 1
+- approximately 158 Grammar activities
+- working roadmap target: 40 Grammar lessons (A1 12 / A2 16 / B1 12), not a CEFR coverage percentage or quota
+
+Important P2B architecture finding:
+- P2A broad reporting maps multiple tense source tags (present simple, present continuous, past simple, present perfect) into `tense-and-aspect`.
+- P2B must use a finer deterministic adaptive concept layer based on the existing granular source tags rather than changing or reinterpreting historical evidence.
+- The new adaptive map preserves immutable versioned question identity and introduces concept-to-remediation/prerequisite metadata without changing the curriculum importer schema.
+
+First proposed Grammar expansion wave after P2B metadata/code support is ready:
+- GRA-A1-09 — This, that, these and those
+- GRA-A1-10 — Object pronouns and possessive pronouns
+- GRA-A1-11 — Imperatives and everyday instructions
+- GRA-A1-12 — Prepositions of time: at, on and in
+- GRA-A2-07 — Present continuous: form and use
+- GRA-A2-09 — Present perfect: experiences with ever and never
+
+Highest structural gaps are GRA-A2-07 and GRA-A2-09 because existing A2/B1 contrast lessons currently rely on those foundations without dedicated teaching units.
+
+Next implementation gate:
+- P2B-1 deterministic recommendation engine using the adaptive map, read-only and version-safe.
+- No Grammar mass authoring/import until this mapping is proven usable.
