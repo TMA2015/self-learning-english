@@ -88,14 +88,22 @@ Observed UX behavior after creating/saving the new WRI-A2-01 root:
 - No delete path is involved in the current-practice flow. The previous started draft is saved before the new root is created.
 - All attempts for the lesson remain addressable through **Attempt & revision history**, which filters the full catalog attempt list by lesson ID and displays stored content versions.
 
-Still to confirm in owner UI:
-1. Expand **Attempt & revision history** at the bottom of WRI-A2-01.
-2. Verify both the current 1.5.0 root and historical 1.0.0 attempt/revision entries are listed.
-3. Open the historical 1.0.0 entry and confirm its old draft/answers are still intact.
-4. Confirm historical revision behavior remains bound to the original version.
-5. Repeat core control visibility on mobile/iPad if practical.
+Owner QA is now COMPLETE for the version-aware attempt flow.
 
-The disappearance from **Recent work** alone is NOT evidence of learner-data loss; that panel is a one-card-per-lesson latest-attempt view.
+Final owner confirmation:
+- **Attempt & revision history** shows:
+  - current root: content **1.5.0**
+  - historical revision: content **1.0.0**
+  - historical pending-review root: content **1.0.0**
+- Opening the historical 1.0.0 record still shows the original **3 activities**.
+- Historical records remain readable and version-bound.
+- New current root remains separate on 1.5.0 with 7 activities.
+- No evidence of historical learner-data loss.
+- The disappearance of the old card from **Recent work** is expected because that panel shows only the latest attempt per lesson.
+
+The v29 hotfix release gate is CLOSED/PASS.
+
+Optional mobile/iPad spot-check remains useful but is not a blocker for closing this checkpoint.
 
 No submission of the new Writing QA attempt is required.
 
@@ -115,12 +123,19 @@ Do not roll back curriculum or learner records as part of a code rollback.
 
 ## Next planned step
 
-Do not begin P2B or Batch06 until the remaining history check above is complete.
+The v29 owner QA gate is complete.
 
-After owner QA passes:
-1. close the v29 hotfix checkpoint;
-2. treat Curriculum 1.5.0 + Sites v29 as the new production baseline;
-3. proceed to **P2B Adaptive Learning / Suggested Practice v2** before further large content expansion.
+New official production baseline:
+- **Sites v29**
+- source `d31f43d2e4383f218697705d96a6ab1334a90798`
+- **Curriculum 1.5.0**
+- **45 lessons / 359 activities**
+- version-aware historical/current attempt UX confirmed on the real learner account.
+
+Next:
+1. preserve this baseline and rollback reference;
+2. proceed to **P2B Adaptive Learning / Suggested Practice v2** before further large content expansion;
+3. defer Batch06 until P2B has established how learner evidence should drive targeted practice.
 
 P2B target loop:
 **Evidence -> detect weakness -> suggest targeted practice -> learner practices -> update mastery -> refresh recommendations.**
