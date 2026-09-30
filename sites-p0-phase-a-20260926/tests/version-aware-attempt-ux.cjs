@@ -1,0 +1,24 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),{execFileSync}=require('node:child_process');
+execFileSync(process.execPath,['node_modules/typescript/bin/tsc','domain/attempt-navigation.ts','application/academic-service.ts','--outDir','.sites-runtime/version-aware-test','--module','commonjs','--target','es2022','--resolveJsonModule','--esModuleInterop','--skipLibCheck'],{stdio:'inherit'});
+fs.writeFileSync('.sites-runtime/version-aware-test/package.json','{"type":"commonjs"}');
+const {hasOlderContent,attemptHistoryLabel}=require('../.sites-runtime/version-aware-test/domain/attempt-navigation.js');
+const {academicService}=require('../.sites-runtime/version-aware-test/application/academic-service.js');
+const {mapSeed}=require('../.sites-runtime/version-aware-test/domain/academic.js');
+const original=require('../content/academic-seed-v1.json');
+const current=structuredClone(original);current.schema_version='1.5.0';
+const l=current.lessons.find(l=>l.id==='WRI-A2-01');for(let i=4;i<=7;i++)l.activities.push({...structuredClone(l.activities[0]),id:'WRI-A2-01-Q'+i});
+const oldDraft={id:'old-draft-test',rootId:'old-draft-test',packageId:'old',version:'1.0.0',lessonId:l.id,status:'started',answers:{'WRI-A2-01-Q3':'Keep my original draft'},createdAt:1,evidence:[]};
+const historical=['scored','pending_review','approved'].map((status,i)=>({...structuredClone(oldDraft),id:'historical-'+status,rootId:'historical-'+status,status,createdAt:2+i,results:[{id:'WRI-A2-01-Q1',correct:true}],review:status==='approved'?{feedback:'Keep feedback',scores:{}}:undefined}));
+const records=[oldDraft,...historical];const before=JSON.stringify(records);
+const packages=[{id:'old',version:'1.0.0',source:original,bundle:mapSeed(original),at:1},{id:'new',version:'1.5.0',source:current,bundle:mapSeed(current),at:2}];
+const repo={packages:async()=>structuredClone(packages),attempts:async()=>structuredClone(records),start:async(owner,a)=>records.push(structuredClone(a))};
+(async()=>{const s=academicService(repo,repo,'owner');
+ for(const a of records){assert(hasOlderContent(a,'1.5.0'));assert.equal(hasOlderContent(a,a.version),false);assert(attemptHistoryLabel(a).includes('content 1.0.0'));}
+ assert.equal(hasOlderContent(null,'1.5.0'),false);
+ const root=await s.start(l.id,'new-current-root');assert.equal(root.version,'1.5.0');assert.equal(root.parentId,undefined);assert.equal(root.rootId,root.id);
+ const revision=await s.start(l.id,'new-old-revision',historical[1].id);assert.equal(revision.version,'1.0.0');assert.equal(revision.parentId,historical[1].id);assert.equal(revision.rootId,historical[1].rootId);assert(attemptHistoryLabel(revision).includes('revision · content 1.0.0'));
+ assert.equal(JSON.stringify(records.slice(0,4)),before,'historical drafts/results must remain immutable');
+ assert.equal((await s.lesson(l.id,'1.0.0')).lesson.activities.length,3);assert.equal((await s.lesson(l.id,'1.5.0')).lesson.activities.length,7);
+ const ui=fs.readFileSync('app/foundation.tsx','utf8');assert(ui.includes('const currentPracticeAction=olderContent?'));assert(ui.includes('Start current practice · v'));assert(ui.includes('attemptHistoryLabel(a)'));assert(ui.includes('historicalVersionSuffix'));assert(ui.includes("if(attempt?.status==='started')await confirmLatestDraft"));assert(ui.includes('...(revision&&attempt?{parentId:attempt.id}:{})'));
+ console.log('PASS: old draft/results unchanged; roots current; revisions historical; same-version simplicity; versioned history; save-before-root guard.');
+})().catch(e=>{console.error(e);process.exitCode=1});
