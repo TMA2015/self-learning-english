@@ -72,23 +72,30 @@ The v29 release did NOT perform:
 
 Curriculum remains 1.5.0 and learner history remains version-bound.
 
-## Owner QA still pending
+## Owner QA status
 
-Run on the real authenticated learner account:
+Confirmed on the real authenticated learner account:
+- Historical WRI-A2-01 opens as **content 1.0.0** with **3 activities**.
+- Version notice appears.
+- **Start current practice · v1.5.0** appears.
+- Starting current practice creates a new root attempt on **content 1.5.0** with exactly **7 activities**.
+- VOC-A2-01 shows **11 activities**.
+- REA-A2-01 shows **11 activities**.
 
-1. Open historical WRI-A2-01.
-2. Confirm it still shows **content 1.0.0**.
-3. Confirm the historical path still has **3 activities** and existing answers/history remain intact.
-4. Confirm version notice appears.
-5. Confirm **Start current practice · v1.5.0** is available.
-6. Start current practice and confirm it creates a new root attempt.
-7. Confirm the new WRI-A2-01 attempt shows **content 1.5.0** and exactly **7 activities**.
-8. Confirm Attempt & revision history shows stored content versions.
-9. Confirm historical revision behavior remains on the original version.
-10. Sanity check:
-   - VOC-A2-01 = **11 activities**
-   - REA-A2-01 = **11 activities**
-11. Repeat core control visibility on mobile/iPad if practical.
+Observed UX behavior after creating/saving the new WRI-A2-01 root:
+- The old 1.0.0 card no longer appears separately in **Recent work**.
+- Code review confirms this is expected from `recentSkillWork()`, which intentionally calls `latestAttemptForLesson()` and shows only the latest attempt per lesson.
+- No delete path is involved in the current-practice flow. The previous started draft is saved before the new root is created.
+- All attempts for the lesson remain addressable through **Attempt & revision history**, which filters the full catalog attempt list by lesson ID and displays stored content versions.
+
+Still to confirm in owner UI:
+1. Expand **Attempt & revision history** at the bottom of WRI-A2-01.
+2. Verify both the current 1.5.0 root and historical 1.0.0 attempt/revision entries are listed.
+3. Open the historical 1.0.0 entry and confirm its old draft/answers are still intact.
+4. Confirm historical revision behavior remains bound to the original version.
+5. Repeat core control visibility on mobile/iPad if practical.
+
+The disappearance from **Recent work** alone is NOT evidence of learner-data loss; that panel is a one-card-per-lesson latest-attempt view.
 
 No submission of the new Writing QA attempt is required.
 
@@ -108,7 +115,7 @@ Do not roll back curriculum or learner records as part of a code rollback.
 
 ## Next planned step
 
-Do not begin P2B or Batch06 until the owner QA above is complete.
+Do not begin P2B or Batch06 until the remaining history check above is complete.
 
 After owner QA passes:
 1. close the v29 hotfix checkpoint;
