@@ -345,3 +345,8 @@ Next:
 - assemble a cumulative candidate from production Curriculum 1.5.0 + approved GRA-A2-07 + GRA-A2-09;
 - validate exact lesson/activity counts, stable IDs, course ordering, answer keys, adaptive-map compatibility and versioning;
 - run authenticated Preview before requesting import approval.
+
+
+## Curriculum 1.6.0 candidate checkpoint — 2026-10-03
+
+Draft PR #29 on `release/curriculum-1.6.0-wave1a-20261003` now contains a validated cumulative candidate built from the verified 1.5.0 production package plus approved GRA-A2-07 and GRA-A2-09. Candidate: 47 lessons / 379 activities. Existing 45 lessons / 359 activities are preserved. Expected production Preview: Add 2 / Update 0 / Skip 45 / Conflict 0. Candidate raw SHA-256 `10d171f1c703e3be13085b0f3eee4ebc76494fb69a620a65508d1b5de3a20aff`; canonical SHA-256 `1d89087e01b742936a0ed9dad73c647365df4370b86ffd1b1812bac66866a10b`. Automated candidate gate, regressions, TypeScript and production build PASS. Production remains on Sites v29 / Curriculum 1.5.0. Next gate is authenticated Preview only; stop before import.
