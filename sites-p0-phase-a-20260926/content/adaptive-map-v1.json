@@ -1,0 +1,371 @@
+{
+  "format": "self-learning-english.adaptive-concept-map",
+  "schema_version": 1,
+  "status": "planning_metadata_with_approved_a1_a2_expansion_not_runtime_yet",
+  "production_reference": {
+    "sites_version": "v29",
+    "curriculum_version": "1.5.0"
+  },
+  "design_note": "P2A intentionally collapses several Grammar source tags into broad reporting tags such as tense-and-aspect. P2B needs finer deterministic concept identities while preserving historical records and the existing tagMap.",
+  "evidence": {
+    "identity": "package_id + content_version + question_id",
+    "source": "saved submitted objective results",
+    "do_not_regrade_history": true,
+    "drafts_excluded": true,
+    "unassessed_excluded": true
+  },
+  "concepts": [
+    {
+      "id": "be-forms",
+      "source_tags": [
+        "grammar.be_forms"
+      ],
+      "primary_lesson": "GRA-A1-01",
+      "prerequisite_concepts": []
+    },
+    {
+      "id": "subject-verb-agreement",
+      "source_tags": [
+        "grammar.subject_verb_agreement"
+      ],
+      "primary_lesson": "GRA-A1-03",
+      "prerequisite_concepts": [
+        "be-forms"
+      ]
+    },
+    {
+      "id": "pronouns",
+      "source_tags": [
+        "grammar.pronouns"
+      ],
+      "primary_lesson": "GRA-A1-02",
+      "prerequisite_concepts": []
+    },
+    {
+      "id": "possessives",
+      "source_tags": [
+        "grammar.possessives"
+      ],
+      "primary_lesson": "GRA-A1-02",
+      "prerequisite_concepts": [
+        "pronouns"
+      ]
+    },
+    {
+      "id": "articles",
+      "source_tags": [
+        "grammar.articles"
+      ],
+      "primary_lesson": "GRA-A1-04",
+      "prerequisite_concepts": [
+        "be-forms"
+      ]
+    },
+    {
+      "id": "plural-nouns",
+      "source_tags": [
+        "grammar.plural_nouns"
+      ],
+      "primary_lesson": "GRA-A1-04",
+      "prerequisite_concepts": []
+    },
+    {
+      "id": "there-is-are",
+      "source_tags": [
+        "grammar.there_is_are"
+      ],
+      "primary_lesson": "GRA-A1-05",
+      "prerequisite_concepts": [
+        "be-forms",
+        "plural-nouns"
+      ]
+    },
+    {
+      "id": "place-prepositions",
+      "source_tags": [
+        "grammar.prepositions_place"
+      ],
+      "primary_lesson": "GRA-A1-06",
+      "prerequisite_concepts": [
+        "there-is-are"
+      ]
+    },
+    {
+      "id": "modals-can",
+      "source_tags": [
+        "grammar.modals_can"
+      ],
+      "primary_lesson": "GRA-A1-07",
+      "prerequisite_concepts": []
+    },
+    {
+      "id": "question-formation",
+      "source_tags": [
+        "grammar.question_formation"
+      ],
+      "primary_lesson": "GRA-A1-08",
+      "prerequisite_concepts": [
+        "be-forms",
+        "present-simple"
+      ]
+    },
+    {
+      "id": "present-simple",
+      "source_tags": [
+        "grammar.present_simple"
+      ],
+      "primary_lesson": "GRA-A1-03",
+      "prerequisite_concepts": [
+        "be-forms",
+        "pronouns"
+      ]
+    },
+    {
+      "id": "present-continuous",
+      "source_tags": [
+        "grammar.present_continuous"
+      ],
+      "primary_lesson": "GRA-A2-01",
+      "planned_primary_lesson": "GRA-A2-07",
+      "prerequisite_concepts": [
+        "be-forms"
+      ],
+      "approved_primary_lesson": "GRA-A2-07"
+    },
+    {
+      "id": "stative-verbs",
+      "source_tags": [
+        "grammar.stative_verbs"
+      ],
+      "primary_lesson": "GRA-A2-01",
+      "prerequisite_concepts": [
+        "present-simple",
+        "present-continuous"
+      ]
+    },
+    {
+      "id": "past-simple",
+      "source_tags": [
+        "grammar.past_simple"
+      ],
+      "primary_lesson": "GRA-A2-02",
+      "prerequisite_concepts": [
+        "present-simple"
+      ]
+    },
+    {
+      "id": "countability",
+      "source_tags": [
+        "grammar.countability"
+      ],
+      "primary_lesson": "GRA-A2-03",
+      "prerequisite_concepts": [
+        "plural-nouns"
+      ]
+    },
+    {
+      "id": "quantifiers",
+      "source_tags": [
+        "grammar.quantifiers"
+      ],
+      "primary_lesson": "GRA-A2-03",
+      "prerequisite_concepts": [
+        "countability"
+      ]
+    },
+    {
+      "id": "comparison",
+      "source_tags": [
+        "grammar.comparison"
+      ],
+      "primary_lesson": "GRA-A2-04",
+      "prerequisite_concepts": [
+        "be-forms"
+      ]
+    },
+    {
+      "id": "future-plans",
+      "source_tags": [
+        "grammar.future_plans"
+      ],
+      "primary_lesson": "GRA-A2-05",
+      "prerequisite_concepts": [
+        "be-forms",
+        "present-simple"
+      ]
+    },
+    {
+      "id": "modals-obligation",
+      "source_tags": [
+        "grammar.modals_obligation"
+      ],
+      "primary_lesson": "GRA-A2-06",
+      "prerequisite_concepts": [
+        "modals-can"
+      ]
+    },
+    {
+      "id": "present-perfect",
+      "source_tags": [
+        "grammar.present_perfect"
+      ],
+      "primary_lesson": "GRA-B1-01",
+      "planned_primary_lesson": "GRA-A2-09",
+      "prerequisite_concepts": [
+        "past-simple"
+      ],
+      "approved_primary_lesson": "GRA-A2-09"
+    },
+    {
+      "id": "demonstratives",
+      "source_tags": [
+        "grammar.demonstratives"
+      ],
+      "approved_primary_lesson": "GRA-A1-09",
+      "prerequisite_concepts": [
+        "plural-nouns"
+      ]
+    },
+    {
+      "id": "object-pronouns",
+      "source_tags": [
+        "grammar.object_pronouns"
+      ],
+      "approved_primary_lesson": "GRA-A1-10",
+      "prerequisite_concepts": [
+        "pronouns"
+      ]
+    },
+    {
+      "id": "possessive-pronouns",
+      "source_tags": [
+        "grammar.possessive_pronouns"
+      ],
+      "approved_primary_lesson": "GRA-A1-10",
+      "prerequisite_concepts": [
+        "possessives"
+      ]
+    },
+    {
+      "id": "imperatives",
+      "source_tags": [
+        "grammar.imperatives"
+      ],
+      "approved_primary_lesson": "GRA-A1-11",
+      "prerequisite_concepts": [
+        "be-forms"
+      ]
+    },
+    {
+      "id": "instructions",
+      "source_tags": [
+        "grammar.instructions"
+      ],
+      "approved_primary_lesson": "GRA-A1-11",
+      "prerequisite_concepts": [
+        "imperatives"
+      ]
+    },
+    {
+      "id": "time-prepositions",
+      "source_tags": [
+        "grammar.prepositions_time"
+      ],
+      "approved_primary_lesson": "GRA-A1-12",
+      "prerequisite_concepts": [
+        "present-simple"
+      ]
+    },
+    {
+      "id": "past-continuous",
+      "source_tags": [
+        "grammar.past_continuous"
+      ],
+      "approved_primary_lesson": "GRA-A2-08",
+      "prerequisite_concepts": [
+        "past-simple",
+        "present-continuous"
+      ]
+    },
+    {
+      "id": "will-future",
+      "source_tags": [
+        "grammar.will_future"
+      ],
+      "approved_primary_lesson": "GRA-A2-11",
+      "prerequisite_concepts": [
+        "future-plans",
+        "present-continuous"
+      ]
+    },
+    {
+      "id": "should-advice",
+      "source_tags": [
+        "grammar.should_advice"
+      ],
+      "approved_primary_lesson": "GRA-A2-12",
+      "prerequisite_concepts": [
+        "modals-can"
+      ]
+    },
+    {
+      "id": "modal-possibility",
+      "source_tags": [
+        "grammar.modal_possibility"
+      ],
+      "approved_primary_lesson": "GRA-A2-13",
+      "prerequisite_concepts": [
+        "modals-can"
+      ]
+    },
+    {
+      "id": "conditionals",
+      "source_tags": [
+        "grammar.conditionals"
+      ],
+      "approved_primary_lesson": "GRA-A2-14",
+      "prerequisite_concepts": [
+        "present-simple",
+        "will-future"
+      ]
+    },
+    {
+      "id": "verb-patterns",
+      "source_tags": [
+        "grammar.verb_patterns"
+      ],
+      "approved_primary_lesson": "GRA-A2-15",
+      "prerequisite_concepts": [
+        "present-simple"
+      ]
+    },
+    {
+      "id": "relative-clauses",
+      "source_tags": [
+        "grammar.relative_clauses"
+      ],
+      "approved_primary_lesson": "GRA-A2-16",
+      "prerequisite_concepts": [
+        "question-formation"
+      ]
+    }
+  ],
+  "recommendation_defaults": {
+    "minimum_submitted_observations": 3,
+    "minimum_distinct_questions": 2,
+    "needs_practice_below_percent": 70,
+    "developing_below_percent": 85,
+    "stable_for_now_minimum_percent": 85,
+    "stable_for_now_minimum_distinct_questions": 5,
+    "stable_for_now_minimum_attempts": 2,
+    "max_suggestions": 3,
+    "prerequisites_are_advisory": true,
+    "unobserved_is_not_failure": true
+  },
+  "approved_expansion_reference": {
+    "wave": "Grammar Wave 1A + Wave 1B",
+    "lessons": 14,
+    "activities": 140,
+    "production_imported": false
+  }
+}
