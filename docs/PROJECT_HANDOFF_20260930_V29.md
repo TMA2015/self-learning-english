@@ -625,3 +625,14 @@ Defect: GRA-A2-16-Q5, prompt `The coach ___ works with our team is from Da Nang.
 No content was silently changed and no historical result was regraded. No D1 reset/migration occurred. PR #31 remains unmerged.
 
 Hotfix strategy: keep imported 1.6.0 immutable; create Curriculum 1.6.1 candidate changing only GRA-A2-16. Draft PR #32: `hotfix/curriculum-1.6.1-relative-that-20261003`. Proposed correction: teach who or that for people in defining clauses, update Q5 accepted answers to [who, that], and clarify feedback/explanation. Require targeted academic review plus Preview before import.
+
+
+## 2026-10-03 — Curriculum 1.6.1 relative-clause hotfix candidate prepared
+
+Draft PR #32: `hotfix/curriculum-1.6.1-relative-that-20261003`. Production remains Curriculum 1.6.0 / 59 / 499 on Sites v30.
+
+Hotfix candidate 1.6.1 changes exactly one lesson: GRA-A2-16. It corrects the lesson objective/explanation to state that defining clauses about people may use who or that, adds a person + that example, and changes GRA-A2-16-Q5 accepted answers from [who] to [who, that]. No other activity changes.
+
+Technical gate PASS. Expected Preview from live 1.6.0: Add 0 / Update 1 / Skip 58 / Conflict 0. Candidate raw SHA-256 `0767455e886a819c3f42b3b9e6bb1dec8222345ea8559192cb0dee1d66ddc7ef`; canonical SHA-256 `2760b5395d9a9ca822f27bd06f36a6bcde790996467cdaa8a82044b683650339`.
+
+Next gate: targeted independent NotebookLM review using `GRAMMAR_1601_RELATIVE_THAT_HOTFIX.txt`. Do not Preview/import the hotfix until that targeted academic review is PASS.
