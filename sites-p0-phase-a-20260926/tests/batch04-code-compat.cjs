@@ -56,22 +56,45 @@ const previous={
   "pronunciation.sound_awareness": "sound-awareness",
   "pronunciation.intelligibility": "intelligibility"
 };
-const additions={
+const batch04Additions={
   "grammar.question_formation": "question-formation",
   "grammar.future_plans": "future-plans",
   "grammar.modals_obligation": "modals-obligation"
 };
+// Independently reviewed Grammar A1/A2 milestone mappings. These are additive only.
+const grammarA1A2Additions={
+  "grammar.demonstratives": "demonstratives",
+  "grammar.object_pronouns": "object-pronouns",
+  "grammar.possessive_pronouns": "possessive-pronouns",
+  "grammar.imperatives": "imperatives",
+  "grammar.instructions": "instructions",
+  "grammar.prepositions_time": "time-prepositions",
+  "grammar.past_continuous": "past-continuous",
+  "grammar.will_future": "will-future",
+  "grammar.should_advice": "should-advice",
+  "grammar.modal_possibility": "modal-possibility",
+  "grammar.conditionals": "conditionals",
+  "grammar.verb_patterns": "verb-patterns",
+  "grammar.relative_clauses": "relative-clauses"
+};
+const reviewedAdditions={...batch04Additions,...grammarA1A2Additions};
+
 for(const [tag,slug] of Object.entries(previous))assert.equal(tagMap[tag],slug,'historical tag mapping changed: '+tag);
-assert.equal(Object.keys(tagMap).length,Object.keys(previous).length+Object.keys(additions).length,'unreviewed tag addition/removal');
+for(const [tag,slug] of Object.entries(reviewedAdditions))assert.equal(tagMap[tag],slug,'reviewed exact mapping missing/changed: '+tag);
+
+// Preserve the closed-world guard: every runtime tag must be either historical or explicitly reviewed.
+const expectedTags=[...Object.keys(previous),...Object.keys(reviewedAdditions)].sort();
+assert.deepEqual(Object.keys(tagMap).sort(),expectedTags,'unreviewed tag addition/removal');
+
 assert.deepEqual(validateSeed(seed),[],'baseline importer must remain valid');
-for(const [tag,slug] of Object.entries(additions)){
- assert.equal(tagMap[tag],slug,'new exact mapping missing: '+tag);
+for(const [tag,slug] of Object.entries(reviewedAdditions)){
  const candidate=structuredClone(seed),original=candidate.lessons.find(l=>l.module==='grammar');
  original.activities[0].skill_tags=[tag];
- assert.deepEqual(validateSeed(candidate),[],'importer rejected valid Batch04 tag '+tag);
+ assert.deepEqual(validateSeed(candidate),[],'importer rejected reviewed tag '+tag);
  const mapped=mapSeed(candidate).exercises.find(e=>e.id===original.activities[0].id);
  assert.deepEqual(mapped.subskillTags,[slug],'content map changed subskill '+tag);
 }
-const unknown=structuredClone(seed);unknown.lessons.find(l=>l.module==='grammar').activities[0].skill_tags=['grammar.unknown_batch04'];
+
+const unknown=structuredClone(seed);unknown.lessons.find(l=>l.module==='grammar').activities[0].skill_tags=['grammar.unknown_unreviewed'];
 assert.ok(validateSeed(unknown).some(x=>x.includes('invalid prompt/tags')),'unknown tag must be rejected');
-console.log('PASS: historical tag map unchanged; three Batch04 tags accepted/mapped; unknown tag rejected; no learner-state writes.');
+console.log('PASS: historical mappings unchanged; all 16 reviewed additive mappings accepted/mapped; closed-world tag guard intact; unknown tag rejected; no learner-state writes.');
