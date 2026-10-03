@@ -1,7 +1,7 @@
 {
   "format": "self-learning-english.adaptive-concept-map",
   "schema_version": 1,
-  "status": "planning_metadata_not_runtime_yet",
+  "status": "planning_metadata_with_approved_a1_a2_expansion_not_runtime_yet",
   "production_reference": {
     "sites_version": "v29",
     "curriculum_version": "1.5.0"
@@ -129,7 +129,8 @@
       "planned_primary_lesson": "GRA-A2-07",
       "prerequisite_concepts": [
         "be-forms"
-      ]
+      ],
+      "approved_primary_lesson": "GRA-A2-07"
     },
     {
       "id": "stative-verbs",
@@ -212,6 +213,140 @@
       "planned_primary_lesson": "GRA-A2-09",
       "prerequisite_concepts": [
         "past-simple"
+      ],
+      "approved_primary_lesson": "GRA-A2-09"
+    },
+    {
+      "id": "demonstratives",
+      "source_tags": [
+        "grammar.demonstratives"
+      ],
+      "approved_primary_lesson": "GRA-A1-09",
+      "prerequisite_concepts": [
+        "plural-nouns"
+      ]
+    },
+    {
+      "id": "object-pronouns",
+      "source_tags": [
+        "grammar.object_pronouns"
+      ],
+      "approved_primary_lesson": "GRA-A1-10",
+      "prerequisite_concepts": [
+        "pronouns"
+      ]
+    },
+    {
+      "id": "possessive-pronouns",
+      "source_tags": [
+        "grammar.possessive_pronouns"
+      ],
+      "approved_primary_lesson": "GRA-A1-10",
+      "prerequisite_concepts": [
+        "possessives"
+      ]
+    },
+    {
+      "id": "imperatives",
+      "source_tags": [
+        "grammar.imperatives"
+      ],
+      "approved_primary_lesson": "GRA-A1-11",
+      "prerequisite_concepts": [
+        "be-forms"
+      ]
+    },
+    {
+      "id": "instructions",
+      "source_tags": [
+        "grammar.instructions"
+      ],
+      "approved_primary_lesson": "GRA-A1-11",
+      "prerequisite_concepts": [
+        "imperatives"
+      ]
+    },
+    {
+      "id": "time-prepositions",
+      "source_tags": [
+        "grammar.prepositions_time"
+      ],
+      "approved_primary_lesson": "GRA-A1-12",
+      "prerequisite_concepts": [
+        "present-simple"
+      ]
+    },
+    {
+      "id": "past-continuous",
+      "source_tags": [
+        "grammar.past_continuous"
+      ],
+      "approved_primary_lesson": "GRA-A2-08",
+      "prerequisite_concepts": [
+        "past-simple",
+        "present-continuous"
+      ]
+    },
+    {
+      "id": "will-future",
+      "source_tags": [
+        "grammar.will_future"
+      ],
+      "approved_primary_lesson": "GRA-A2-11",
+      "prerequisite_concepts": [
+        "future-plans",
+        "present-continuous"
+      ]
+    },
+    {
+      "id": "should-advice",
+      "source_tags": [
+        "grammar.should_advice"
+      ],
+      "approved_primary_lesson": "GRA-A2-12",
+      "prerequisite_concepts": [
+        "modals-can"
+      ]
+    },
+    {
+      "id": "modal-possibility",
+      "source_tags": [
+        "grammar.modal_possibility"
+      ],
+      "approved_primary_lesson": "GRA-A2-13",
+      "prerequisite_concepts": [
+        "modals-can"
+      ]
+    },
+    {
+      "id": "conditionals",
+      "source_tags": [
+        "grammar.conditionals"
+      ],
+      "approved_primary_lesson": "GRA-A2-14",
+      "prerequisite_concepts": [
+        "present-simple",
+        "will-future"
+      ]
+    },
+    {
+      "id": "verb-patterns",
+      "source_tags": [
+        "grammar.verb_patterns"
+      ],
+      "approved_primary_lesson": "GRA-A2-15",
+      "prerequisite_concepts": [
+        "present-simple"
+      ]
+    },
+    {
+      "id": "relative-clauses",
+      "source_tags": [
+        "grammar.relative_clauses"
+      ],
+      "approved_primary_lesson": "GRA-A2-16",
+      "prerequisite_concepts": [
+        "question-formation"
       ]
     }
   ],
@@ -226,5 +361,11 @@
     "max_suggestions": 3,
     "prerequisites_are_advisory": true,
     "unobserved_is_not_failure": true
+  },
+  "approved_expansion_reference": {
+    "wave": "Grammar Wave 1A + Wave 1B",
+    "lessons": 14,
+    "activities": 140,
+    "production_imported": false
   }
 }
