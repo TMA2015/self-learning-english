@@ -901,6 +901,7 @@
           "answer": {
             "accepted_answers": [
               "don't",
+              "don’t",
               "do not"
             ],
             "normalization": [
@@ -911,7 +912,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "Don't/Do not + touch gives a correct negative instruction."
+            "explanation_en": "Don't, don’t and do not are accepted forms of the negative imperative before the base verb touch."
           },
           "skill_tags": [
             "grammar.imperatives"
