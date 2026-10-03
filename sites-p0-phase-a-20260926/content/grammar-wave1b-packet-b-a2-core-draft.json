@@ -445,23 +445,23 @@
           "options": [
             {
               "id": "A",
-              "text": "I already have finished the task yesterday."
-            },
-            {
-              "id": "B",
               "text": "I have already finished the task."
             },
             {
+              "id": "B",
+              "text": "I have already finish the task."
+            },
+            {
               "id": "C",
-              "text": "I have finished already the task yesterday."
+              "text": "I already has finished the task."
             },
             {
               "id": "D",
-              "text": "I already finished have the task."
+              "text": "I have finish already the task."
             }
           ],
           "answer": {
-            "correct_option_id": "B"
+            "correct_option_id": "A"
           },
           "feedback": {
             "explanation_en": "Have already finished is a standard present-perfect order, with no finished past-time expression."
@@ -543,9 +543,7 @@
           "prompt": "Write only the missing phrase: The bus ___ (just / leave), so we need to wait for the next one.",
           "answer": {
             "accepted_answers": [
-              "has just left",
-              "'s just left",
-              "’s just left"
+              "has just left"
             ],
             "normalization": [
               "trim",
@@ -920,12 +918,10 @@
         {
           "id": "GRA-A2-11-Q6",
           "type": "short_answer",
-          "prompt": "Write only the missing phrase: “I can't carry both boxes.” “I ___ you.” Use will + help.",
+          "prompt": "Write only the missing phrase: “I can't carry both boxes.” “I ___ you.” Use the full form will + help.",
           "answer": {
             "accepted_answers": [
-              "will help",
-              "'ll help",
-              "’ll help"
+              "will help"
             ],
             "normalization": [
               "trim",
@@ -935,7 +931,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "The reply is an immediate offer/decision, so will help is appropriate."
+            "explanation_en": "The reply is an immediate offer/decision, so the full form will help is appropriate."
           },
           "skill_tags": [
             "grammar.will_future"
@@ -945,12 +941,10 @@
         {
           "id": "GRA-A2-11-Q7",
           "type": "short_answer",
-          "prompt": "Write only the missing phrase: We ___ our cousins at the station at 6 p.m. tomorrow. Use the arranged present continuous form of meet.",
+          "prompt": "Write only the missing phrase: We ___ our cousins at the station at 6 p.m. tomorrow. Use are + meeting.",
           "answer": {
             "accepted_answers": [
-              "are meeting",
-              "'re meeting",
-              "’re meeting"
+              "are meeting"
             ],
             "normalization": [
               "trim",
