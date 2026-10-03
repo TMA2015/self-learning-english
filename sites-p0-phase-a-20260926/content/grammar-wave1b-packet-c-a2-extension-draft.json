@@ -403,26 +403,26 @@
           "options": [
             {
               "id": "A",
-              "text": "If water reaches 100°C, it boils."
+              "text": "If water freezes, it becomes ice."
             },
             {
               "id": "B",
-              "text": "If water will reach 100°C, it will boiled."
+              "text": "If water will freeze, it will became ice."
             },
             {
               "id": "C",
-              "text": "If water reached 100°C tomorrow, it boils now."
+              "text": "If water froze tomorrow, it becomes ice now."
             },
             {
               "id": "D",
-              "text": "If water reaching 100°C, boil."
+              "text": "If water freezing, become ice."
             }
           ],
           "answer": {
             "correct_option_id": "A"
           },
           "feedback": {
-            "explanation_en": "A general result uses present simple in both clauses: reaches, boils."
+            "explanation_en": "A general result uses present simple in both clauses: freezes, becomes."
           },
           "skill_tags": [
             "grammar.conditionals"
@@ -498,12 +498,10 @@
         {
           "id": "GRA-A2-14-Q4",
           "type": "short_answer",
-          "prompt": "Write only the missing phrase: If I arrive before six, I ___ you. Use will + call.",
+          "prompt": "Write only the missing phrase: If I arrive before six, I ___ you. Use the full form will + call.",
           "answer": {
             "accepted_answers": [
-              "will call",
-              "'ll call",
-              "’ll call"
+              "will call"
             ],
             "normalization": [
               "trim",
@@ -513,7 +511,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "The result clause of this first conditional uses will call."
+            "explanation_en": "The result clause of this first conditional uses the full form will call."
           },
           "skill_tags": [
             "grammar.conditionals"
@@ -750,11 +748,11 @@
             },
             {
               "id": "B",
-              "text": "joining only"
+              "text": "joining"
             },
             {
               "id": "C",
-              "text": "join to"
+              "text": "join"
             },
             {
               "id": "D",
@@ -779,7 +777,7 @@
           "options": [
             {
               "id": "A",
-              "text": "to read only"
+              "text": "to read"
             },
             {
               "id": "B",
@@ -787,7 +785,7 @@
             },
             {
               "id": "C",
-              "text": "read to"
+              "text": "read"
             },
             {
               "id": "D",
@@ -816,11 +814,11 @@
             },
             {
               "id": "B",
-              "text": "visiting after plan here"
+              "text": "visiting"
             },
             {
               "id": "C",
-              "text": "visit to"
+              "text": "visit"
             },
             {
               "id": "D",
@@ -853,7 +851,7 @@
             },
             {
               "id": "C",
-              "text": "clean to"
+              "text": "clean"
             },
             {
               "id": "D",
@@ -928,7 +926,7 @@
             },
             {
               "id": "B",
-              "text": "I'd like ordering only a sandwich in this target pattern."
+              "text": "I'd like ordering a sandwich."
             },
             {
               "id": "C",
@@ -936,7 +934,7 @@
             },
             {
               "id": "D",
-              "text": "I'd like order to a sandwich."
+              "text": "I'd like order a sandwich."
             }
           ],
           "answer": {
@@ -961,11 +959,11 @@
             },
             {
               "id": "B",
-              "text": "walking after decided in this target pattern"
+              "text": "walking"
             },
             {
               "id": "C",
-              "text": "walk to"
+              "text": "walk"
             },
             {
               "id": "D",
