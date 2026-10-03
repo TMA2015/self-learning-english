@@ -495,3 +495,18 @@ Packet A approved lessons:
 Final Packet A review record: `sites-p0-phase-a-20260926/docs/GRAMMAR_WAVE1B_PACKET_A_FINAL_REVIEW.md` on PR #30 branch. Latest PR #30 head: `bc0a6c5cc6ea61cb693793997070591456561a82`. Grammar Wave 1B Authoring QA on the latest head PASS: packet structure, existing academic/content regressions, TypeScript and production build all PASS.
 
 Next gate: independent NotebookLM review of Packet B (GRA-A2-08, A2-10, A2-11, A2-12), 40 activities. Production remains unchanged and no cumulative candidate should be assembled until Packets B and C also PASS.
+
+
+## 2026-10-03 — Grammar Wave 1B Packet B CLOSED / PASS
+
+NotebookLM independently reviewed all 40 Packet B activities and all 4 lesson explanations/examples. Initial result: 37 PASS / 3 REVISE / 0 BLOCK. Revision items: GRA-A2-08-Q9, GRA-A2-10-Q6 and GRA-A2-12-Q6. All three issues were identical mechanical accepted-answer compatibility gaps: missing U+2019 smart-apostrophe variants for correct negative contractions. Exact reviewer-prescribed variants were added; no learning objective, semantic content, answer key, prerequisite, source tag or lesson order changed.
+
+Packet B approved lessons:
+- GRA-A2-08 — Past continuous and interrupted actions
+- GRA-A2-10 — Present perfect: just, already and yet
+- GRA-A2-11 — Choosing future forms: will, going to and present continuous
+- GRA-A2-12 — Advice with should and shouldn't
+
+Final Packet B review record: `sites-p0-phase-a-20260926/docs/GRAMMAR_WAVE1B_PACKET_B_FINAL_REVIEW.md`. Latest PR #30 head: `b984db84d9e14a596aa391f6f9601137cc0255b1`. Grammar Wave 1B Authoring QA on the latest head PASS: packet structure, existing academic/content regressions, TypeScript and production build all PASS.
+
+Next gate: independent NotebookLM review of Packet C (GRA-A2-13, A2-14, A2-15, A2-16), 40 activities. Production remains unchanged and no cumulative candidate should be assembled until Packet C also PASS.
