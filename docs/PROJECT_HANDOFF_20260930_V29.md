@@ -480,3 +480,18 @@ Total: 12 lessons / 120 activities. Combined with approved Wave 1A, the planned 
 Grammar Wave 1B Authoring QA PASS on the latest head: packet structure, exact counts, unique IDs, MCQ keys, short-answer literal-gap guard, planned tags, existing academic/content regressions, TypeScript and production build all PASS. One malformed conditional key and two short feedback strings were caught by the first QA attempt and corrected; distractor quality was also tightened before final PASS.
 
 NotebookLM review strategy: one packet at a time, 40 activities + 4 lesson explanations/examples per round. Seven permanent Notebook sources remain unchanged. Temporary sources for each round are the selected packet TXT mirror plus `GRAMMAR_WAVE1B_NOTEBOOKLM_REVIEW.md`. No production import or cumulative candidate assembly until all three packets independently PASS.
+
+
+## 2026-10-03 — Grammar Wave 1B Packet A CLOSED / PASS
+
+NotebookLM independently reviewed all 40 Packet A activities and all 4 lesson explanations/examples. Initial result: 39 PASS / 1 REVISE / 0 BLOCK. The only revision was GRA-A1-11-Q6, where the reviewer required the smart-apostrophe variant `don’t` in addition to `don't` and `do not`. The exact prescribed correction was applied with no semantic or learning-objective change. Reviewer explicitly stated that this patch yields full PASS, so no redundant second NotebookLM round was required.
+
+Packet A approved lessons:
+- GRA-A1-09 — This, that, these and those
+- GRA-A1-10 — Object pronouns and possessive pronouns
+- GRA-A1-11 — Imperatives and everyday instructions
+- GRA-A1-12 — Prepositions of time: at, on and in
+
+Final Packet A review record: `sites-p0-phase-a-20260926/docs/GRAMMAR_WAVE1B_PACKET_A_FINAL_REVIEW.md` on PR #30 branch. Latest PR #30 head: `bc0a6c5cc6ea61cb693793997070591456561a82`. Grammar Wave 1B Authoring QA on the latest head PASS: packet structure, existing academic/content regressions, TypeScript and production build all PASS.
+
+Next gate: independent NotebookLM review of Packet B (GRA-A2-08, A2-10, A2-11, A2-12), 40 activities. Production remains unchanged and no cumulative candidate should be assembled until Packets B and C also PASS.
