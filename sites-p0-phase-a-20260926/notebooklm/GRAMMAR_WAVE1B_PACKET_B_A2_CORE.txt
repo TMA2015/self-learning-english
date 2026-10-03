@@ -70,7 +70,7 @@
             },
             {
               "id": "B",
-              "text": "read now"
+              "text": "read"
             },
             {
               "id": "C",
@@ -111,7 +111,7 @@
             },
             {
               "id": "D",
-              "text": "played at now"
+              "text": "played"
             }
           ],
           "answer": {
@@ -259,15 +259,15 @@
             },
             {
               "id": "B",
-              "text": "While I studied every day, my brother listens now."
+              "text": "While I studied, my brother was listening to music."
             },
             {
               "id": "C",
-              "text": "While I am studying, my brother was listening."
+              "text": "While I was studying, my brother listened to music."
             },
             {
               "id": "D",
-              "text": "While I was study, my brother listened now."
+              "text": "While I was study, my brother was listen to music."
             }
           ],
           "answer": {
@@ -976,11 +976,11 @@
             },
             {
               "id": "C",
-              "text": "I will to join yesterday."
+              "text": "I've planned it for weeks: I going to join the art club next term."
             },
             {
               "id": "D",
-              "text": "I'm joining the doorbell."
+              "text": "I've planned it for weeks: I will to join the art club next term."
             }
           ],
           "answer": {
