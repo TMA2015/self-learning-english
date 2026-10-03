@@ -362,3 +362,105 @@ Production verified before Preview: Sites v29, Curriculum 1.5.0, 45 lessons / 35
 Owner clarified the near-term goal: this is a private family/friends learning tool first, not a public product. Current learner data is considered test data and must not slow content development. Preserve the good version-aware architecture, but do not over-optimize for historical test-data retention during the content-build phase.
 
 Primary milestone before treating the app as a real learning program: Grammar must become a coherent curriculum rather than scattered exercises. Use the existing roadmap target of about 40 Grammar lessons (A1 12 / A2 16 / B1 12) as the working minimum-complete Grammar program. Prefer larger authoring waves (roughly 8–12 lessons each), review them in smaller NotebookLM packets, and release/import only after a substantial wave is complete rather than after every 2 lessons. Content depth and coherent progression now take priority over frequent production imports.
+
+
+## 2026-10-03 — MASTER GOAL RESET / durable project direction
+
+### Near-term purpose of Self-Learning English
+
+The project is first and foremost a practical English-learning tool for the owner's daughter, family members and close friends. It is NOT currently being optimized as a public product, commercial service, or large-scale multi-user platform.
+
+The immediate success criterion is not user count, public reach, or preservation of prototype learner records. The immediate success criterion is that the Site contains enough coherent, well-sequenced learning content that a learner can actually follow it as a program rather than encounter scattered exercises.
+
+### Content-first priority
+
+For the current development phase, CONTENT DEPTH and LEARNING PATH COHERENCE take priority over production-like release conservatism.
+
+The first major curriculum milestone is Grammar:
+- turn the existing scattered Grammar coverage into a coherent A1 -> A2 -> B1 learning path;
+- use the existing working roadmap of about 40 Grammar lessons (A1 12 / A2 16 / B1 12) as the current planning target, not a rigid quota or CEFR-completeness claim;
+- each lesson should function as a real self-study unit with explanation/examples, guided practice, independent practice and transfer/review rather than only a few isolated questions;
+- the Grammar program should be substantial enough that the owner can reasonably regard it as a minimum viable learning program.
+
+Only after the Grammar core is sufficiently complete should Reading/Writing/Listening/Speaking expansion and broader platform concerns become equally important.
+
+### Development-mode learner data policy
+
+Current learner records/attempts are test data. They are not yet valuable production learner history and must not slow curriculum construction.
+
+Keep the good version-aware architecture and safe-import concepts because they will matter later, but during this CONTENT BUILD phase:
+- prototype/test learner data may be reset or migrated when technically justified;
+- do not spend disproportionate effort preserving every historical test attempt;
+- do not let test-data preservation block schema, importer, curriculum or UX improvements;
+- switch to strict real-learner data preservation only when the owner explicitly declares that the curriculum is mature enough for real ongoing study.
+
+### Release cadence
+
+Do not repeat a full production release workflow for every 1-2 lessons.
+
+Preferred pattern:
+- author larger waves, roughly 8-12 lessons at a time (or another sensible substantial batch);
+- split academic review into smaller NotebookLM packets, typically 3-4 lessons per packet;
+- reconcile each packet independently;
+- assemble and import only after a meaningful content wave is complete;
+- use production Preview/import less frequently, for substantial curriculum milestones.
+
+The completed two-lesson Grammar Wave 1A (GRA-A2-07 and GRA-A2-09) is treated as a PILOT that validated the authoring/review/import pipeline, not the intended ongoing batch size.
+
+### NotebookLM durable workflow
+
+Notebook English uses exactly 7 permanent sources:
+1. 00_NOTEBOOK_ENGLISH_PERMANENT_v1.md
+2. 01_ENGLISH_MASTER_PLAN_v1.md
+3. 01_CONTENT_AUTHORING_STANDARD.md
+4. 02_CURRICULUM_COVERAGE.md
+5. 03_P2B_ADAPTIVE_GRAMMAR_PARALLEL_PLAN.md
+6. 04_GRAMMAR_ROADMAP_v1.txt
+7. 05_ADAPTIVE_MAP_v1.txt
+
+Temporary review sources are replaced for each review round.
+NotebookLM does not accept JSON source uploads in the current UI, so JSON source-of-truth files must be mirrored losslessly to TXT/MD for review.
+Few review files -> direct links. Many -> one ZIP. Short prompt -> chat. Long structured rubric -> MD source. Long audit output may be exported as an artifact file.
+
+### Current release state
+
+Production remains:
+- Sites v29
+- Curriculum 1.5.0
+- 45 lessons / 359 activities
+
+Curriculum 1.6.0 candidate exists but is NOT imported:
+- 47 lessons / 379 activities
+- adds GRA-A2-07 and GRA-A2-09
+- academic review PASS
+- automated release gate PASS
+- authenticated Preview PASS
+- Preview result: Add 2 / Update 0 / Skip 45 / Conflict 0
+- production remains unchanged
+
+Do NOT import 1.6.0 merely because it is ready. Keep it as a validated checkpoint while building a larger Grammar wave unless the owner explicitly changes direction.
+
+### Importer/scaling policy
+
+The current 60-lesson importer ceiling and ~1 MB cumulative-package guardrails are application-level limits written by this project, not GitHub limits and not established ChatGPT Sites platform limits.
+
+Before substantial Grammar expansion reaches those limits:
+- raise/test the importer capacity deliberately;
+- stress-test preview, validation, hashing, storage, catalog loading and historical-version handling;
+- longer term, consider a manifest/module/batch architecture instead of one ever-growing cumulative JSON package.
+
+This scaling work is secondary to the main goal: produce enough coherent learning content for the Site to be genuinely useful.
+
+### Next recommended milestone
+
+Do not import the two-lesson 1.6.0 candidate yet.
+
+Next work should be:
+1. define the next substantial Grammar build wave from the existing roadmap;
+2. author roughly 8-12 lessons with adequate practice depth;
+3. review them through multiple small NotebookLM packets;
+4. reconcile and validate;
+5. in parallel or before the next large release, raise the importer capacity safely;
+6. assemble one larger cumulative curriculum release and Preview/import once.
+
+The project should be judged first by whether the learner can open Grammar and follow a meaningful learning path from foundations upward.
