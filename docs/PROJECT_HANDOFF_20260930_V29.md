@@ -733,3 +733,32 @@ Owner confirmed the next phase after Curriculum 1.6.1:
 4. Earlier project planning for the Grammar module, inspired by English Grammar in Use coverage but not copying it unit-for-unit, envisioned roughly 80–120 original Grammar topics/lessons across broader levels. Therefore the 40-lesson roadmap should be treated as the first complete A1→B1 spine, with room for later expansion.
 5. If importer/content scaling remains stable, increase not only Grammar lesson count but also the depth and quantity of Reading and Writing practice. The owner explicitly wants Reading and Writing to become richer learning modules rather than remain relatively thin compared with Grammar.
 6. Continue the content-first principle: prefer larger academically coherent waves and fewer imports; use NotebookLM proportionally to academic risk rather than mechanically for every small correction.
+
+
+## 2026-10-03 — Importer capacity raised to 150 in validated PR #33
+
+Owner authorized removal of temporary content-development ceilings. Draft PR #33 branch `architecture/importer-capacity-150-20261003`, validated head `9aab70a982513f5bcd2659d34cb294fa3558868a`.
+
+Changes:
+- cumulative curriculum lesson ceiling 60 -> 150;
+- course sequence ceiling 100 -> 150;
+- lesson numeric suffix accepts 2–3 digits (future module IDs may pass 99);
+- cumulative curriculum package ceiling 1 MB -> 5 MB;
+- admin import request envelope -> 6 MB;
+- browser curriculum file selector 1 MB -> 5 MB.
+
+Safeguards deliberately retained: content-only importer, forbidden learner/account/state payload checks, immutable version/digest conflicts, Preview token, explicit administrator confirmation, stable/unique IDs, module/schema/answer/rubric validation, historical version-aware attempts. The 24-activities-per-lesson ceiling is retained for now because current Reading/Writing designs are well below it and it protects learner UX; revisit only if a concrete lesson design actually needs more.
+
+Stress QA PASS at 150 lessons: generated TEST-ONLY curriculum with 150 lessons / 1,409 activities / 1,452,578 bytes (> old 1 MB limit), included three-digit ID GRA-B2-107, validated full content mapping, Preview Add 91 / Update 0 / Skip 59 / Conflict 0, in-memory import, 150-lesson catalog load and three-digit lesson retrieval. Fixture Preview completed in 134 ms. All eight triggered workflows PASS at the exact PR head. No production deployment/import or D1 operation occurred.
+
+## Writing scoring / AI architecture finding
+
+Current Writing is split into two paths and does not yet deliver the originally intended unified on-site AI experience:
+
+1. Shared curriculum WRI-* lessons: objective questions score deterministically; each extended_response has answer=null/evidence_weight=0/rubric_id and becomes pending_review. academicService does NOT call the AI tutor. Parent View adult review manually supplies feedback plus every rubric score on a 0–4 scale; approved scores then become Writing evidence.
+2. Separate 12-week Writing Coach: writingTutor can call a live AI provider and score six canonical Writing dimensions 0–10 with provisional CEFR feedback. Runtime currently instantiates OpenAIHTTPProvider and needs server-side OPENAI_API_KEY. If no provider is available, work is saved but no automatic language evaluation is produced.
+3. Assisted AI Review is a manual fallback: adult anonymizes -> copies packet to external assistant -> pastes JSON back -> validates -> approves.
+
+This split is a product gap. Before mass Writing expansion, target one provider-independent Writing evaluator used by BOTH curriculum WRI lessons and the 12-week Writing Coach. Normal learner flow should be Write -> Submit -> automatic grounded AI feedback/scores -> Revise -> comparison feedback -> learner-model update. Manual assisted review should remain fallback, not the primary path. Preserve historical 0–4 adult reviews without regrading them. Add a second provider adapter such as Gemini behind server-side configuration so provider choice does not change content/domain code. Never commit provider keys or expose them client-side.
+
+OpenAI/ChatGPT subscription usage does not automatically supply API inference to a deployed app; API billing/authentication is separate. Gemini Developer API currently has free-tier options for some models, but provider data-use terms must be reviewed before sending learner writing; minimize/anonymize learner context where possible.
