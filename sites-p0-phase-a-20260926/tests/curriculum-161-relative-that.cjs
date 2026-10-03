@@ -73,6 +73,10 @@ class Repo{
  assert.deepEqual(preview.errors,[]);
  assert.deepEqual(preview.counts,{add:0,update:1,skip:58,conflict:0});
  const text=fs.readFileSync(candidatePath,'utf8');
+ const rawSha256=sha(text);
+ const canonicalSha256=canonicalHash(candidate);
+ assert.equal(rawSha256,'0767455e886a819c3f42b3b9e6bb1dec8222345ea8559192cb0dee1d66ddc7ef');
+ assert.equal(canonicalSha256,'2760b5395d9a9ca822f27bd06f36a6bcde790996467cdaa8a82044b683650339');
  console.log(JSON.stringify({
    result:'PASS',
    version:'1.6.1',
@@ -80,7 +84,7 @@ class Repo{
    activities:499,
    changedLessons:changed,
    preview:preview.counts,
-   rawSha256:sha(text),
-   canonicalSha256:canonicalHash(candidate)
+   rawSha256,
+   canonicalSha256
  }));
 })().catch(e=>{console.error(e);process.exitCode=1});
