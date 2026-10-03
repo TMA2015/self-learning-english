@@ -322,6 +322,7 @@
           "answer": {
             "accepted_answers": [
               "weren't watching",
+              "weren’t watching",
               "were not watching"
             ],
             "normalization": [
@@ -332,7 +333,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "The plural negative past continuous is weren't/were not + watching."
+            "explanation_en": "The plural negative past continuous accepts weren't/weren’t watching and the full form were not watching."
           },
           "skill_tags": [
             "grammar.past_continuous"
@@ -567,6 +568,7 @@
           "answer": {
             "accepted_answers": [
               "haven't finished",
+              "haven’t finished",
               "have not finished"
             ],
             "normalization": [
@@ -577,7 +579,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "A present-perfect negative with we uses haven't/have not + finished; yet stays at the end."
+            "explanation_en": "The present-perfect negative accepts haven't/haven’t finished and the full form have not finished; yet remains at the end."
           },
           "skill_tags": [
             "grammar.present_perfect"
@@ -1252,6 +1254,7 @@
           "answer": {
             "accepted_answers": [
               "shouldn't carry",
+              "shouldn’t carry",
               "should not carry"
             ],
             "normalization": [
@@ -1262,7 +1265,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "Negative advice is shouldn't/should not + base verb carry."
+            "explanation_en": "Negative advice accepts shouldn't/shouldn’t carry and the full form should not carry."
           },
           "skill_tags": [
             "grammar.should_advice"
