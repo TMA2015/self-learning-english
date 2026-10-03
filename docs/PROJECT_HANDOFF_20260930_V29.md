@@ -464,3 +464,19 @@ Next work should be:
 6. assemble one larger cumulative curriculum release and Preview/import once.
 
 The project should be judged first by whether the learner can open Grammar and follow a meaningful learning path from foundations upward.
+
+
+## 2026-10-03 — Grammar Wave 1B authored: 12 lessons / 120 activities
+
+Content-first expansion is active in Draft PR #30, branch `academic/grammar-wave1b-a1-a2-completion-20261003`, head `a39f4415ff2474d54c9c1bcd15a7e102519b1cd1`.
+
+Wave 1B is fully authored before independent academic review:
+- Packet A / A1 completion: GRA-A1-09, A1-10, A1-11, A1-12 — 40 activities.
+- Packet B / A2 core: GRA-A2-08, A2-10, A2-11, A2-12 — 40 activities.
+- Packet C / A2 completion: GRA-A2-13, A2-14, A2-15, A2-16 — 40 activities.
+
+Total: 12 lessons / 120 activities. Combined with approved Wave 1A, the planned next cumulative milestone would have 29 Grammar lessons: A1 12/12 roadmap, A2 16/16 roadmap, B1 1/12. If assembled from still-live production 1.5.0 after review, whole curriculum would be 59 lessons / about 499 activities, still inside the current 60-lesson guardrail.
+
+Grammar Wave 1B Authoring QA PASS on the latest head: packet structure, exact counts, unique IDs, MCQ keys, short-answer literal-gap guard, planned tags, existing academic/content regressions, TypeScript and production build all PASS. One malformed conditional key and two short feedback strings were caught by the first QA attempt and corrected; distractor quality was also tightened before final PASS.
+
+NotebookLM review strategy: one packet at a time, 40 activities + 4 lesson explanations/examples per round. Seven permanent Notebook sources remain unchanged. Temporary sources for each round are the selected packet TXT mirror plus `GRAMMAR_WAVE1B_NOTEBOOKLM_REVIEW.md`. No production import or cumulative candidate assembly until all three packets independently PASS.
