@@ -245,3 +245,32 @@ Next parallel step:
 - begin Grammar Wave 1 academic authoring;
 - prioritize the structural gaps GRA-A2-07 Present continuous foundation and GRA-A2-09 Present perfect foundation first;
 - keep the wider six-lesson Wave 1 roadmap, but do not mass-author/import before independent academic review.
+
+
+## 2026-10-03 — Grammar Wave 1A ready for NotebookLM review
+
+Draft PR #28:
+- Branch: `academic/grammar-wave1a-a2-foundations-20261003`
+- Structural-review checkpoint: `d8c542367a53c368b91825a87bb5a1aa8265de16`
+
+Scope:
+- `GRA-A2-07` — Present continuous: form and use
+- `GRA-A2-09` — Present perfect: experiences with ever and never
+- 2 lessons / 20 activities
+- review-only fragment, deliberately not an importable curriculum package
+
+Files:
+- `sites-p0-phase-a-20260926/content/grammar-wave1a-a2-foundations-draft.json`
+- `sites-p0-phase-a-20260926/docs/GRAMMAR_WAVE1A_NOTEBOOKLM_REVIEW.md`
+- `sites-p0-phase-a-20260926/tests/grammar-wave1a-authoring.cjs`
+
+Technical gate:
+- initial run correctly caught three prompts that did not explicitly state the answer format;
+- corrected items: GRA-A2-07-Q7, GRA-A2-09-Q6, GRA-A2-09-Q8;
+- Grammar Wave 1A Authoring QA: PASS;
+- existing academic/content regressions in the same gate: PASS.
+
+Next mandatory gate:
+- independent NotebookLM academic review of all 20 items with per-item PASS / REVISE / BLOCK;
+- reconcile any corrections before assembling any cumulative curriculum candidate;
+- no import/deploy authorization yet.
