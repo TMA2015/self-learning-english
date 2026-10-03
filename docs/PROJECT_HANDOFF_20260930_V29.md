@@ -510,3 +510,18 @@ Packet B approved lessons:
 Final Packet B review record: `sites-p0-phase-a-20260926/docs/GRAMMAR_WAVE1B_PACKET_B_FINAL_REVIEW.md`. Latest PR #30 head: `b984db84d9e14a596aa391f6f9601137cc0255b1`. Grammar Wave 1B Authoring QA on the latest head PASS: packet structure, existing academic/content regressions, TypeScript and production build all PASS.
 
 Next gate: independent NotebookLM review of Packet C (GRA-A2-13, A2-14, A2-15, A2-16), 40 activities. Production remains unchanged and no cumulative candidate should be assembled until Packet C also PASS.
+
+
+## 2026-10-03 — Grammar Wave 1B COMPLETE / all three packets PASS
+
+Packet C independent NotebookLM audit: 40/40 activities PASS, 4/4 lesson explanations/examples reviewed, 0 REVISE, 0 BLOCK. Approved Packet C lessons: GRA-A2-13, GRA-A2-14, GRA-A2-15, GRA-A2-16.
+
+Wave 1B consolidated academic status:
+- Packet A: PASS after exact accepted-answer typography reconciliation
+- Packet B: PASS after exact accepted-answer typography reconciliation
+- Packet C: PASS directly
+- Total: 12 lessons / 120 activities academically approved
+
+Together with previously approved Wave 1A (GRA-A2-07 and GRA-A2-09), 14 new Grammar lessons / 140 activities are now approved-not-imported. Grammar roadmap/adaptive metadata was updated accordingly on PR #30.
+
+A substantial Curriculum 1.6.0 release candidate is now being assembled on Draft PR #31, branch `release/curriculum-1.6.0-grammar-a1a2-20261003`, from the still-live production Curriculum 1.5.0 baseline. Target candidate: 59 total lessons / 499 total activities / 29 Grammar lessons (A1 12, A2 16, B1 1). Expected future authenticated Preview: Add 14 / Update 0 / Skip 45 / Conflict 0. Production remains unchanged until an explicit later import approval.
