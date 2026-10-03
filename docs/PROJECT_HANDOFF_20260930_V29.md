@@ -355,3 +355,10 @@ Draft PR #29 on `release/curriculum-1.6.0-wave1a-20261003` now contains a valida
 ## 2026-10-03 — Curriculum 1.6.0 authenticated Preview PASS
 
 Production verified before Preview: Sites v29, Curriculum 1.5.0, 45 lessons / 359 activities. Candidate raw and canonical hashes both MATCH the approved 1.6.0 candidate. Authenticated Parent View Preview result: Add 2 / Update 0 / Skip 45 / Conflict 0. Add rows exactly GRA-A2-07 and GRA-A2-09. Course order verified: GRA-A2-07 immediately before GRA-A2-01; GRA-A2-09 immediately after GRA-A2-02. No deletions, unexpected updates, ID conflicts, schema warnings, D1 migration/reset, learner-data operation, historical regrading, Site deployment or import occurred. Confirmation remained unchecked and Import disabled. Production remains unchanged. Next gate requires separate owner authorization for a controlled Curriculum 1.6.0 import.
+
+
+## 2026-10-03 — Project priority reset: content-first Grammar program
+
+Owner clarified the near-term goal: this is a private family/friends learning tool first, not a public product. Current learner data is considered test data and must not slow content development. Preserve the good version-aware architecture, but do not over-optimize for historical test-data retention during the content-build phase.
+
+Primary milestone before treating the app as a real learning program: Grammar must become a coherent curriculum rather than scattered exercises. Use the existing roadmap target of about 40 Grammar lessons (A1 12 / A2 16 / B1 12) as the working minimum-complete Grammar program. Prefer larger authoring waves (roughly 8–12 lessons each), review them in smaller NotebookLM packets, and release/import only after a substantial wave is complete rather than after every 2 lessons. Content depth and coherent progression now take priority over frequent production imports.
