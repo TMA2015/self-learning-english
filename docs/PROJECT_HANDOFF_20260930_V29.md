@@ -569,3 +569,32 @@ Both production-build steps PASS.
 No Site deployment, Curriculum import, D1 migration/reset or learner-data operation occurred. Production remains Sites v29 / Curriculum 1.5.0 / 45 lessons / 359 activities.
 
 Use this new checkpoint, not `16c504e27588f6bd6d375c1ad803e0773d6e1c89`, for the next controlled Work run: code-only compatibility deployment first, then authenticated Preview only, then STOP before Import.
+
+
+## 2026-10-03 — Sites v30 compatibility deployment PASS / Curriculum 1.6.0 authenticated Preview PASS
+
+Code-only compatibility deployment completed successfully to the same private Site:
+- Sites v30
+- source `03f642124e3d84ee584649430e4ba4c446f6b07b`
+- reconciled from approved GitHub checkpoint `281fcedbb9d059282187ac5dce5f133d3885c6e0`
+- both required CI workflows, 11 local regression suites, TypeScript and production build PASS
+
+Production curriculum remained unchanged after code deployment:
+- Curriculum 1.5.0
+- 45 lessons / 359 activities
+- exact production digest unchanged
+
+Authenticated Preview of the exact Curriculum 1.6.0 Grammar A1/A2 milestone candidate PASS:
+- raw SHA-256 MATCH
+- canonical SHA-256 MATCH
+- Add 14 / Update 0 / Skip 45 / Conflict 0
+- exact Add IDs: GRA-A1-09, GRA-A1-10, GRA-A1-11, GRA-A1-12, GRA-A2-07, GRA-A2-08, GRA-A2-09, GRA-A2-10, GRA-A2-11, GRA-A2-12, GRA-A2-13, GRA-A2-14, GRA-A2-15, GRA-A2-16
+- both required Grammar learning sequences MATCH
+- all existing 45 lesson objects and 359 activities preserved
+- no deletions, unexpected updates, conflicts or schema warnings
+
+No curriculum import, D1 reset/migration, learner-data edit or PR merge occurred. Import confirmation remained unchecked.
+
+Code-only rollback remains available at Sites v29 source `d31f43d2e4383f218697705d96a6ab1334a90798`.
+
+Next gate: separate owner-authorized controlled Curriculum 1.6.0 import. After import require production to report 1.6.0 / 59 lessons / 499 activities and verify the 14 new Grammar lessons are available. Then perform owner QA; do not merge PR #31 merely because import succeeds.
