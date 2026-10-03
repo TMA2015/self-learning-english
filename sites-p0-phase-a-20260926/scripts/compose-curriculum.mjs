@@ -12,7 +12,9 @@ import {pathToFileURL} from 'node:url';
 import {resolve} from 'node:path';
 
 const semver=/^\d+\.\d+\.\d+$/;
-const lessonId=/^(GRA|VOC|REA|LIS|WRI|SPE|PRO)-(A1|A2|B1|B2)-\d{2}$/;
+const lessonId=/^(GRA|VOC|REA|LIS|WRI|SPE|PRO)-(A1|A2|B1|B2)-\d{2,3}$/;
+const MAX_CURRICULUM_LESSONS=150;
+const MAX_CURRICULUM_BYTES=5_000_000;
 const prefix={GRA:'grammar',VOC:'vocabulary',REA:'reading',LIS:'listening',WRI:'writing',SPE:'speaking',PRO:'pronunciation'};
 const versionCompare=(a,b)=>{const aa=a.split('.').map(Number),bb=b.split('.').map(Number);for(let i=0;i<3;i++)if(aa[i]!==bb[i])return aa[i]-bb[i];return 0};
 
@@ -64,9 +66,9 @@ export function composeCurriculum(previous,batch){
  assert.equal(placed.size,newIds.size,'Every new lesson must be placed in course sequence');
  assert.equal(next.course.sequence.length,next.lessons.length,'Course sequence is incomplete');
  assert.equal(new Set(next.course.sequence).size,next.lessons.length,'Course sequence duplicates IDs');
- assert(next.lessons.length<=60,'Current importer supports at most 60 cumulative lessons');
+ assert(next.lessons.length<=MAX_CURRICULUM_LESSONS,`Current importer supports at most ${MAX_CURRICULUM_LESSONS} cumulative lessons`);
  const text=JSON.stringify(next,null,2)+'\n';
- assert(Buffer.byteLength(text,'utf8')<=1000000,'Current admin importer has 1 MB content limit');
+ assert(Buffer.byteLength(text,'utf8')<=MAX_CURRICULUM_BYTES,'Current admin importer has a 5 MB content-package limit');
  return next;
 }
 
