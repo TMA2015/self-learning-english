@@ -719,3 +719,17 @@ Post-import browser/server QA:
 No additional Site deployment, D1 reset/migration, learner-data reset or historical regrading occurred. Two authorized QA attempts were created/submitted and now contribute to practice metrics. PR #32 remains unmerged.
 
 The relative-clause hotfix is closed. Next major project direction is B1 Grammar expansion. Production is already at 59 lessons while the current application importer guard is 60, so importer capacity must be raised and stress-tested before any B1 release can be imported. Content authoring/review can proceed in parallel because authoring packets are not importer packages.
+
+
+## 2026-10-03 — Post-1.6.1 direction confirmed: scale content, not micro-releases
+
+Owner confirmed the next phase after Curriculum 1.6.1:
+
+1. Preserve Curriculum 1.6.1 as the current production baseline: Sites v30, 59 lessons / 499 activities, Grammar A1 12 / A2 16 / B1 1.
+2. Run two workstreams in parallel:
+   - technical: raise the current 60-lesson importer/application guard to a substantially larger tested capacity (target range around 120–150 lessons), with stress tests for Preview, validation, hashing, storage, catalog loading and version-aware historical behavior;
+   - academic/content: author the remaining B1 Grammar roadmap as one substantial wave, reviewed in several smaller NotebookLM packets rather than micro-releases.
+3. The current 40-lesson Grammar roadmap (A1 12 / A2 16 / B1 12) is a near-term coherent milestone, not the original maximum scope of the Grammar module.
+4. Earlier project planning for the Grammar module, inspired by English Grammar in Use coverage but not copying it unit-for-unit, envisioned roughly 80–120 original Grammar topics/lessons across broader levels. Therefore the 40-lesson roadmap should be treated as the first complete A1→B1 spine, with room for later expansion.
+5. If importer/content scaling remains stable, increase not only Grammar lesson count but also the depth and quantity of Reading and Writing practice. The owner explicitly wants Reading and Writing to become richer learning modules rather than remain relatively thin compared with Grammar.
+6. Continue the content-first principle: prefer larger academically coherent waves and fewer imports; use NotebookLM proportionally to academic risk rather than mechanically for every small correction.
