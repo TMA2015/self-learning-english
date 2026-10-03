@@ -90,10 +90,12 @@
         {
           "id": "GRA-A2-07-Q2",
           "type": "short_answer",
-          "prompt": "Write only the missing phrase: We ___ (study) for the science test at the moment.",
+          "prompt": "Write only the missing phrase, including the subject: ___ for the science test at the moment. Use we + study.",
           "answer": {
             "accepted_answers": [
-              "are studying"
+              "we are studying",
+              "we're studying",
+              "we’re studying"
             ],
             "normalization": [
               "trim",
@@ -103,7 +105,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "We takes are, and study becomes studying: We are studying."
+            "explanation_en": "Use we + are + studying. Both We are studying and We're studying are valid."
           },
           "skill_tags": [
             "grammar.present_continuous",
@@ -565,10 +567,12 @@
         {
           "id": "GRA-A2-09-Q7",
           "type": "short_answer",
-          "prompt": "Write only the missing phrase: He ___ (never / eat) octopus.",
+          "prompt": "Write only the missing phrase, including the subject: ___ octopus. Use he + never + eat.",
           "answer": {
             "accepted_answers": [
-              "has never eaten"
+              "he has never eaten",
+              "he's never eaten",
+              "he’s never eaten"
             ],
             "normalization": [
               "trim",
@@ -578,7 +582,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "He takes has, never follows has, and the past participle of eat is eaten."
+            "explanation_en": "Use he + has + never + eaten. Both He has never eaten and He's never eaten are valid."
           },
           "skill_tags": [
             "grammar.present_perfect"
