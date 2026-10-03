@@ -135,7 +135,7 @@
     {
       "id": "GRA-A1-09",
       "cefr": "A1",
-      "status": "planned",
+      "status": "approved_not_imported",
       "title": "This, that, these and those",
       "prerequisites": [
         "GRA-A1-04"
@@ -143,12 +143,13 @@
       "concepts": [
         "demonstratives",
         "singular-plural-reference"
-      ]
+      ],
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-A1-10",
       "cefr": "A1",
-      "status": "planned",
+      "status": "approved_not_imported",
       "title": "Object pronouns and possessive pronouns",
       "prerequisites": [
         "GRA-A1-02"
@@ -156,12 +157,13 @@
       "concepts": [
         "object-pronouns",
         "possessive-pronouns"
-      ]
+      ],
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-A1-11",
       "cefr": "A1",
-      "status": "planned",
+      "status": "approved_not_imported",
       "title": "Imperatives and everyday instructions",
       "prerequisites": [
         "GRA-A1-01"
@@ -169,19 +171,21 @@
       "concepts": [
         "imperatives",
         "instructions"
-      ]
+      ],
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-A1-12",
       "cefr": "A1",
-      "status": "planned",
+      "status": "approved_not_imported",
       "title": "Prepositions of time: at, on and in",
       "prerequisites": [
         "GRA-A1-03"
       ],
       "concepts": [
         "time-prepositions"
-      ]
+      ],
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-A2-01",
@@ -271,7 +275,7 @@
     {
       "id": "GRA-A2-07",
       "cefr": "A2",
-      "status": "planned",
+      "status": "approved_not_imported",
       "priority": "foundation_gap",
       "title": "Present continuous: form and use",
       "prerequisites": [
@@ -281,12 +285,13 @@
         "present-continuous",
         "verb-ing-spelling",
         "temporary-actions"
-      ]
+      ],
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-A2-08",
       "cefr": "A2",
-      "status": "planned",
+      "status": "approved_not_imported",
       "title": "Past continuous and interrupted actions",
       "prerequisites": [
         "GRA-A2-02",
@@ -295,12 +300,13 @@
       "concepts": [
         "past-continuous",
         "past-simple-vs-continuous"
-      ]
+      ],
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-A2-09",
       "cefr": "A2",
-      "status": "planned",
+      "status": "approved_not_imported",
       "priority": "foundation_gap",
       "title": "Present perfect: experiences with ever and never",
       "prerequisites": [
@@ -310,12 +316,13 @@
         "present-perfect",
         "ever-never",
         "past-participles"
-      ]
+      ],
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-A2-10",
       "cefr": "A2",
-      "status": "planned",
+      "status": "approved_not_imported",
       "title": "Present perfect: just, already and yet",
       "prerequisites": [
         "GRA-A2-09"
@@ -324,12 +331,13 @@
         "present-perfect",
         "just-already-yet",
         "unfinished-time"
-      ]
+      ],
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-A2-11",
       "cefr": "A2",
-      "status": "planned",
+      "status": "approved_not_imported",
       "title": "Choosing future forms: will, going to and present continuous",
       "prerequisites": [
         "GRA-A2-05",
@@ -339,36 +347,39 @@
         "will-future",
         "going-to-future",
         "present-continuous-future"
-      ]
+      ],
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-A2-12",
       "cefr": "A2",
-      "status": "planned",
+      "status": "approved_not_imported",
       "title": "Advice with should and shouldn't",
       "prerequisites": [
         "GRA-A1-07"
       ],
       "concepts": [
         "should-advice"
-      ]
+      ],
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-A2-13",
       "cefr": "A2",
-      "status": "planned",
+      "status": "approved_not_imported",
       "title": "Possibility with may, might and could",
       "prerequisites": [
         "GRA-A1-07"
       ],
       "concepts": [
         "modal-possibility"
-      ]
+      ],
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-A2-14",
       "cefr": "A2",
-      "status": "planned",
+      "status": "approved_not_imported",
       "title": "Zero and first conditionals",
       "prerequisites": [
         "GRA-A1-03",
@@ -377,12 +388,13 @@
       "concepts": [
         "zero-conditional",
         "first-conditional"
-      ]
+      ],
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-A2-15",
       "cefr": "A2",
-      "status": "planned",
+      "status": "approved_not_imported",
       "title": "Common verb patterns: to-infinitive and -ing",
       "prerequisites": [
         "GRA-A1-03"
@@ -391,19 +403,21 @@
         "verb-patterns",
         "to-infinitive",
         "gerund-basic"
-      ]
+      ],
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-A2-16",
       "cefr": "A2",
-      "status": "planned",
+      "status": "approved_not_imported",
       "title": "Defining relative clauses: who, which and that",
       "prerequisites": [
         "GRA-A1-08"
       ],
       "concepts": [
         "defining-relative-clauses"
-      ]
+      ],
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-B1-01",
@@ -571,15 +585,24 @@
     }
   ],
   "first_expansion_wave": {
-    "size": 6,
+    "status": "completed_academic_review",
+    "approved_lessons": 14,
     "lesson_ids": [
       "GRA-A1-09",
       "GRA-A1-10",
       "GRA-A1-11",
       "GRA-A1-12",
       "GRA-A2-07",
-      "GRA-A2-09"
+      "GRA-A2-08",
+      "GRA-A2-09",
+      "GRA-A2-10",
+      "GRA-A2-11",
+      "GRA-A2-12",
+      "GRA-A2-13",
+      "GRA-A2-14",
+      "GRA-A2-15",
+      "GRA-A2-16"
     ],
-    "rationale": "Fill high-value foundation gaps and explicit prerequisites before broadening the B1 bank. P2B should be able to route learners into these as soon as they are reviewed and imported."
+    "note": "Wave 1A (2 lessons) plus Wave 1B (12 lessons) are academically approved. Production remains Curriculum 1.5.0 until a cumulative release is previewed and explicitly imported."
   }
 }
