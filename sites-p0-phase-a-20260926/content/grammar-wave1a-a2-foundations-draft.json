@@ -1,0 +1,702 @@
+{
+  "format": "self-learning-english.grammar-authoring-packet",
+  "schema_version": 1,
+  "packet_id": "GRAMMAR-WAVE1A-A2-FOUNDATIONS-20261003",
+  "status": "DRAFT_FOR_INDEPENDENT_ACADEMIC_REVIEW_NOT_IMPORTABLE",
+  "production_reference": {
+    "sites_version": "v29",
+    "curriculum_version": "1.5.0",
+    "lessons": 45,
+    "activities": 359
+  },
+  "purpose": "Fill two explicit Grammar dependency gaps before larger expansion and make the new units usable by the P2B adaptive concept map.",
+  "release_note": "These are lesson fragments only. Do not upload to the curriculum importer. A cumulative immutable curriculum package may be assembled only after independent review, reconciliation and owner approval.",
+  "authoring_rules": [
+    "English-first lesson content with optional concise Vietnamese explanation support.",
+    "Age-appropriate A2 contexts for a 12-year-old learner; no copied commercial textbook material.",
+    "Guided to independent to transfer progression; avoid ten near-duplicate drills.",
+    "Objective items have one defensible key or explicit accepted-answer variants.",
+    "Short-answer prompts tell the learner to write only the missing word or phrase.",
+    "Every explanation states why the answer works and, where useful, why a common distractor fails.",
+    "CEFR A2 is a curricular target, not a learner proficiency certification."
+  ],
+  "lessons": [
+    {
+      "id": "GRA-A2-07",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Present continuous: form and use",
+      "estimated_minutes": 24,
+      "prerequisite_lesson_ids": [
+        "GRA-A1-01",
+        "GRA-A1-03"
+      ],
+      "adaptive_concepts": [
+        "present-continuous",
+        "subject-verb-agreement"
+      ],
+      "objectives": [
+        "Build present-continuous statements with am, is or are plus verb-ing.",
+        "Make present-continuous negatives and questions with correct word order.",
+        "Apply common -ing spelling changes in familiar verbs.",
+        "Use the present continuous for actions happening now or around the present time."
+      ],
+      "explanation": {
+        "en": "Use the present continuous for an action happening now or around now. Build it with am/is/are + verb-ing: I am reading; she is drawing; they are waiting. Put not after am/is/are for a negative: He isn't sleeping. For a question, move am/is/are before the subject: Are you listening? Common spelling changes include make → making, write → writing, run → running and swim → swimming. Use the present simple for a usual routine, but the present continuous for an action in progress now.",
+        "vi": "Dùng hiện tại tiếp diễn cho hành động đang xảy ra ngay lúc nói hoặc quanh thời điểm hiện tại. Công thức: am/is/are + động từ-ing. Phủ định thêm not sau am/is/are; câu hỏi đưa am/is/are lên trước chủ ngữ. Một số động từ đổi chính tả khi thêm -ing: make → making, run → running."
+      },
+      "examples": [
+        "NOW · Mia is making a poster right now.",
+        "NEGATIVE · We aren't waiting outside.",
+        "QUESTION · Is your brother doing his homework?",
+        "SPELLING · write → writing; make → making; run → running.",
+        "ROUTINE vs NOW · I usually walk to school, but today I am taking the bus."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-07-Q1",
+          "type": "single_choice",
+          "prompt": "Select one option to complete the sentence: Mina ___ a poster right now.",
+          "options": [
+            {
+              "id": "A",
+              "text": "makes"
+            },
+            {
+              "id": "B",
+              "text": "is making"
+            },
+            {
+              "id": "C",
+              "text": "making"
+            },
+            {
+              "id": "D",
+              "text": "is make"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Right now signals an action in progress. Use is + making with the singular subject Mina."
+          },
+          "skill_tags": [
+            "grammar.present_continuous",
+            "grammar.subject_verb_agreement"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-07-Q2",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: We ___ (study) for the science test at the moment.",
+          "answer": {
+            "accepted_answers": [
+              "are studying"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "We takes are, and study becomes studying: We are studying."
+          },
+          "skill_tags": [
+            "grammar.present_continuous",
+            "grammar.subject_verb_agreement"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-07-Q3",
+          "type": "single_choice",
+          "prompt": "Select the correct negative sentence.",
+          "options": [
+            {
+              "id": "A",
+              "text": "He doesn't wearing his jacket."
+            },
+            {
+              "id": "B",
+              "text": "He isn't wear his jacket."
+            },
+            {
+              "id": "C",
+              "text": "He isn't wearing his jacket."
+            },
+            {
+              "id": "D",
+              "text": "He not is wearing his jacket."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The negative keeps the verb-ing form and adds not to is: He is not/isn't wearing."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-07-Q4",
+          "type": "single_choice",
+          "prompt": "Select the correctly formed question.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Are they waiting for the bus?"
+            },
+            {
+              "id": "B",
+              "text": "Do they waiting for the bus?"
+            },
+            {
+              "id": "C",
+              "text": "They are waiting for the bus?"
+            },
+            {
+              "id": "D",
+              "text": "Are waiting they for the bus?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "For a present-continuous question, put are before the subject: Are they waiting...?"
+          },
+          "skill_tags": [
+            "grammar.present_continuous",
+            "grammar.subject_verb_agreement"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-07-Q5",
+          "type": "short_answer",
+          "prompt": "Write only the -ing form of the verb: write → ___",
+          "answer": {
+            "accepted_answers": [
+              "writing"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Drop the final silent e before adding -ing: write → writing."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-07-Q6",
+          "type": "short_answer",
+          "prompt": "Write only the -ing form of the verb: swim → ___",
+          "answer": {
+            "accepted_answers": [
+              "swimming"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "With this short stressed vowel pattern, double the final consonant before -ing: swim → swimming."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-07-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence describes a temporary situation around now?",
+          "options": [
+            {
+              "id": "A",
+              "text": "My cousin lives in Hue every year."
+            },
+            {
+              "id": "B",
+              "text": "My cousin is staying with us this week."
+            },
+            {
+              "id": "C",
+              "text": "My cousin stayed with us last summer."
+            },
+            {
+              "id": "D",
+              "text": "My cousin has a room at home."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "This week describes a temporary situation around the present, so is staying is appropriate."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-07-Q8",
+          "type": "single_choice",
+          "prompt": "Select the best sentence for this situation: Usually Lan cycles to school. Today her bike is broken, so she is on a bus now.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Lan takes the bus to school every day."
+            },
+            {
+              "id": "B",
+              "text": "Lan is taking the bus to school today."
+            },
+            {
+              "id": "C",
+              "text": "Lan take the bus to school today."
+            },
+            {
+              "id": "D",
+              "text": "Lan taking the bus to school today."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Today and the situation 'now' make this a current temporary action: Lan is taking the bus."
+          },
+          "skill_tags": [
+            "grammar.present_continuous",
+            "grammar.subject_verb_agreement"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-07-Q9",
+          "type": "single_choice",
+          "prompt": "A friend asks, “What are you doing?” Select the most natural reply.",
+          "options": [
+            {
+              "id": "A",
+              "text": "I finish my homework now."
+            },
+            {
+              "id": "B",
+              "text": "I am finishing my homework."
+            },
+            {
+              "id": "C",
+              "text": "I finishing my homework."
+            },
+            {
+              "id": "D",
+              "text": "I do finish my homework yesterday."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The question asks about the action in progress now, so use am + finishing."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-07-Q10",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: Look! The dogs ___ (run) across the field.",
+          "answer": {
+            "accepted_answers": [
+              "are running"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Look! points to an action happening now. Dogs is plural, so use are running."
+          },
+          "skill_tags": [
+            "grammar.present_continuous",
+            "grammar.subject_verb_agreement"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A2-09",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Present perfect: experiences with ever and never",
+      "estimated_minutes": 25,
+      "prerequisite_lesson_ids": [
+        "GRA-A2-02"
+      ],
+      "adaptive_concepts": [
+        "present-perfect",
+        "past-simple"
+      ],
+      "objectives": [
+        "Build present-perfect experience statements with have or has plus a past participle.",
+        "Use ever in questions and never in negative-experience statements.",
+        "Use common irregular past participles in familiar experience contexts.",
+        "Distinguish an unspecified life experience from a finished past event with a stated time."
+      ],
+      "explanation": {
+        "en": "Use the present perfect to talk about life experience when the exact finished time is not important: I have visited Da Nang; She has tried sushi. Build it with have/has + past participle. Ask about experience with ever: Have you ever seen snow? Use never after have/has: I have never flown on a plane. Common participles include be → been, see → seen, eat → eaten, do → done, go → gone, fly → flown. If you say a finished past time such as last summer, yesterday or in 2025, use the past simple instead: I visited Da Nang last summer.",
+        "vi": "Dùng hiện tại hoàn thành để nói về trải nghiệm khi không nêu một thời điểm quá khứ đã kết thúc cụ thể: have/has + quá khứ phân từ. Ever thường dùng trong câu hỏi; never đứng sau have/has. Nếu câu có thời điểm quá khứ đã kết thúc như yesterday, last summer hoặc in 2025 thì dùng quá khứ đơn."
+      },
+      "examples": [
+        "EXPERIENCE · I have visited Da Nang.",
+        "EVER · Have you ever seen snow?",
+        "NEVER · She has never ridden a horse.",
+        "PARTICIPLES · be → been; see → seen; eat → eaten; fly → flown.",
+        "FINISHED TIME · I visited Da Nang last summer, not I have visited Da Nang last summer."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-09-Q1",
+          "type": "single_choice",
+          "prompt": "Select one option to complete the experience question: ___ you ever visited another country?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Did"
+            },
+            {
+              "id": "B",
+              "text": "Have"
+            },
+            {
+              "id": "C",
+              "text": "Has"
+            },
+            {
+              "id": "D",
+              "text": "Are"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "With you, the present perfect uses have: Have you ever visited...?"
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-09-Q2",
+          "type": "single_choice",
+          "prompt": "Select the correct sentence about an experience that has not happened at any time.",
+          "options": [
+            {
+              "id": "A",
+              "text": "She has never ridden a horse."
+            },
+            {
+              "id": "B",
+              "text": "She never has ride a horse."
+            },
+            {
+              "id": "C",
+              "text": "She has never rode a horse."
+            },
+            {
+              "id": "D",
+              "text": "She did never ridden a horse."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Use has + never + past participle. The past participle of ride is ridden."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-09-Q3",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: I ___ (try) sushi before.",
+          "answer": {
+            "accepted_answers": [
+              "have tried",
+              "'ve tried",
+              "’ve tried"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "This is an unspecified experience before now: I have tried sushi before."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-09-Q4",
+          "type": "single_choice",
+          "prompt": "Select the correctly formed question.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Has Mai ever seen snow?"
+            },
+            {
+              "id": "B",
+              "text": "Have Mai ever saw snow?"
+            },
+            {
+              "id": "C",
+              "text": "Did Mai ever seen snow?"
+            },
+            {
+              "id": "D",
+              "text": "Has ever Mai see snow?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Mai is singular, so use has; the past participle of see is seen."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-09-Q5",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: We have ___ to Hue twice.",
+          "answer": {
+            "accepted_answers": [
+              "been"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "For the experience of visiting a place and returning, have been to is the natural form."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-09-Q6",
+          "type": "single_choice",
+          "prompt": "Which sentence correctly uses the past simple because it includes a finished past time?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I have visited Da Nang last summer."
+            },
+            {
+              "id": "B",
+              "text": "I visited Da Nang last summer."
+            },
+            {
+              "id": "C",
+              "text": "I have ever visited Da Nang last summer."
+            },
+            {
+              "id": "D",
+              "text": "I has visited Da Nang last summer."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Last summer is a finished past time, so use the past simple: visited."
+          },
+          "skill_tags": [
+            "grammar.present_perfect",
+            "grammar.past_simple"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-09-Q7",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: He ___ (never / eat) octopus.",
+          "answer": {
+            "accepted_answers": [
+              "has never eaten"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "He takes has, never follows has, and the past participle of eat is eaten."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-09-Q8",
+          "type": "single_choice",
+          "prompt": "Where does ever normally go in this question?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Have ever you tried kayaking?"
+            },
+            {
+              "id": "B",
+              "text": "Ever have you tried kayaking?"
+            },
+            {
+              "id": "C",
+              "text": "Have you ever tried kayaking?"
+            },
+            {
+              "id": "D",
+              "text": "Have you tried ever kayaking?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "In an experience question, ever normally comes after the subject: Have you ever tried...?"
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-09-Q9",
+          "type": "single_choice",
+          "prompt": "Select the correct short answer: Have you ever made a cake by yourself?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Yes, I did."
+            },
+            {
+              "id": "B",
+              "text": "Yes, I have."
+            },
+            {
+              "id": "C",
+              "text": "Yes, I has."
+            },
+            {
+              "id": "D",
+              "text": "Yes, I am."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The question uses have, so the short affirmative answer is Yes, I have."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-09-Q10",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: My brother ___ (never / fly) on a plane.",
+          "answer": {
+            "accepted_answers": [
+              "has never flown"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "My brother is singular, so use has; fly has the past participle flown: has never flown."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    }
+  ],
+  "review_requirements": {
+    "item_count": 20,
+    "lesson_count": 2,
+    "reviewer_must_check": [
+      "CEFR-target appropriateness and progression",
+      "grammar accuracy",
+      "single defensible key for every MCQ",
+      "accepted-answer completeness for short answers",
+      "prompt-format clarity",
+      "distractor plausibility without ambiguity",
+      "feedback correctness",
+      "tag accuracy",
+      "dependency logic",
+      "age-appropriate contexts",
+      "unintended overlap with existing GRA-A2-01 and GRA-B1-01"
+    ],
+    "verdicts": [
+      "PASS",
+      "REVISE",
+      "BLOCK"
+    ]
+  }
+}
