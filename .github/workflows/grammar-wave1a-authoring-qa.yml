@@ -1,0 +1,30 @@
+name: Grammar Wave 1A Authoring QA
+on:
+  pull_request:
+    paths:
+      - 'sites-p0-phase-a-20260926/content/grammar-wave1a-a2-foundations-draft.json'
+      - 'sites-p0-phase-a-20260926/docs/GRAMMAR_WAVE1A_NOTEBOOKLM_REVIEW.md'
+      - 'sites-p0-phase-a-20260926/tests/grammar-wave1a-authoring.cjs'
+      - '.github/workflows/grammar-wave1a-authoring-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: pnpm install --frozen-lockfile
+      - name: Grammar Wave 1A packet structure
+        run: node tests/grammar-wave1a-authoring.cjs
+      - name: Existing academic/content regressions
+        run: node tests/academic.cjs && node tests/content-quality.cjs && node tests/curriculum.cjs
