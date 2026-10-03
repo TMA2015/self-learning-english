@@ -274,3 +274,13 @@ Next mandatory gate:
 - independent NotebookLM academic review of all 20 items with per-item PASS / REVISE / BLOCK;
 - reconcile any corrections before assembling any cumulative curriculum candidate;
 - no import/deploy authorization yet.
+
+
+## NotebookLM handoff packaging rule — owner workflow preference
+
+For future NotebookLM review rounds:
+- when the temporary review batch has only a few source files, provide direct download links in chat instead of a ZIP;
+- when the review batch has many source files, package the temporary review sources into one ZIP for the owner to upload;
+- when the NotebookLM prompt is short, provide it directly in the chat for copy/paste;
+- use a separate prompt/instruction file only when the prompt is long or needs durable structured detail;
+- continue separating permanent baseline Notebook sources from temporary per-batch review sources.
