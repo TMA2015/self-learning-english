@@ -1,0 +1,1429 @@
+{
+  "format": "self-learning-english.grammar-authoring-packet",
+  "schema_version": 1,
+  "packet_id": "GRAMMAR-WAVE1B-PACKET-B-A2-CORE-20261003",
+  "status": "DRAFT_FOR_INDEPENDENT_ACADEMIC_REVIEW_NOT_IMPORTABLE",
+  "production_reference": {
+    "sites_version": "v29",
+    "curriculum_version": "1.5.0",
+    "lessons": 45,
+    "activities": 359
+  },
+  "purpose": "Add four high-value A2 Grammar lessons covering past background actions, recent present-perfect use, future-form choices and advice.",
+  "authoring_rules": [
+    "English-first lesson content with concise optional Vietnamese support.",
+    "Age-appropriate contexts for a 12-year-old learner; original content only.",
+    "Each lesson progresses from form/meaning recognition to independent use and transfer.",
+    "Every MCQ has one defensible key; every short answer lists all intended valid variants.",
+    "For a short-answer gap, every accepted answer must produce a complete grammatical sentence when inserted literally.",
+    "CEFR labels are curricular targets, not learner certification.",
+    "This packet is review-only and must not be uploaded directly to the curriculum importer."
+  ],
+  "planned_source_tags": [
+    "grammar.past_continuous",
+    "grammar.past_simple",
+    "grammar.present_perfect",
+    "grammar.will_future",
+    "grammar.future_plans",
+    "grammar.present_continuous",
+    "grammar.should_advice"
+  ],
+  "lessons": [
+    {
+      "id": "GRA-A2-08",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Past continuous and interrupted actions",
+      "estimated_minutes": 25,
+      "prerequisite_lesson_ids": [
+        "GRA-A2-02",
+        "GRA-A2-07"
+      ],
+      "adaptive_concepts": [
+        "past-continuous",
+        "past-simple-vs-continuous"
+      ],
+      "objectives": [
+        "Build past-continuous statements with was/were + verb-ing.",
+        "Form past-continuous negatives and questions.",
+        "Use past continuous for an action in progress around a past moment and past simple for a shorter interrupting event."
+      ],
+      "explanation": {
+        "en": "Use the past continuous for an action that was in progress at a past time: At eight, I was studying. Build it with was/were + verb-ing. Use wasn't/weren't for negatives and move was/were before the subject in questions. When one action was already in progress and a shorter event interrupted it, the longer background action often uses past continuous and the interrupting event uses past simple: I was walking home when it started to rain.",
+        "vi": "Dùng quá khứ tiếp diễn cho hành động đang diễn ra tại một thời điểm trong quá khứ: was/were + V-ing. Khi một hành động đang diễn ra bị một sự việc ngắn chen vào, hành động nền thường dùng quá khứ tiếp diễn, sự việc chen vào dùng quá khứ đơn."
+      },
+      "examples": [
+        "BACKGROUND · At 8:00, I was studying.",
+        "PLURAL · They were playing outside.",
+        "QUESTION · Were you waiting for the bus?",
+        "INTERRUPTION · I was walking home when it started to rain."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-08-Q1",
+          "type": "single_choice",
+          "prompt": "Complete: At nine last night, Minh ___ a book.",
+          "options": [
+            {
+              "id": "A",
+              "text": "was reading"
+            },
+            {
+              "id": "B",
+              "text": "read"
+            },
+            {
+              "id": "C",
+              "text": "were reading"
+            },
+            {
+              "id": "D",
+              "text": "is reading"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Minh is singular and the action was in progress at a past time, so use was reading."
+          },
+          "skill_tags": [
+            "grammar.past_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-08-Q2",
+          "type": "single_choice",
+          "prompt": "Complete: The children ___ football at 4 p.m. yesterday.",
+          "options": [
+            {
+              "id": "A",
+              "text": "was playing"
+            },
+            {
+              "id": "B",
+              "text": "were playing"
+            },
+            {
+              "id": "C",
+              "text": "are playing"
+            },
+            {
+              "id": "D",
+              "text": "played"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Children is plural, so the past continuous uses were playing."
+          },
+          "skill_tags": [
+            "grammar.past_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-08-Q3",
+          "type": "single_choice",
+          "prompt": "Which negative sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "She wasn't sleeping."
+            },
+            {
+              "id": "B",
+              "text": "She didn't sleeping."
+            },
+            {
+              "id": "C",
+              "text": "She weren't sleeping."
+            },
+            {
+              "id": "D",
+              "text": "She wasn't sleep."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The negative past continuous is wasn't + verb-ing."
+          },
+          "skill_tags": [
+            "grammar.past_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-08-Q4",
+          "type": "single_choice",
+          "prompt": "Which question is correctly formed?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Did you waiting outside?"
+            },
+            {
+              "id": "B",
+              "text": "Were you waiting outside?"
+            },
+            {
+              "id": "C",
+              "text": "You were waiting outside?"
+            },
+            {
+              "id": "D",
+              "text": "Were waiting you outside?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Move were before the subject for a past-continuous question."
+          },
+          "skill_tags": [
+            "grammar.past_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-08-Q5",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: Dad ___ (cook) dinner at 6:30 yesterday.",
+          "answer": {
+            "accepted_answers": [
+              "was cooking"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Dad is singular, so use was + cooking."
+          },
+          "skill_tags": [
+            "grammar.past_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-08-Q6",
+          "type": "single_choice",
+          "prompt": "Select the best sentence: I ___ home when it suddenly started to rain.",
+          "options": [
+            {
+              "id": "A",
+              "text": "walked all day every day"
+            },
+            {
+              "id": "B",
+              "text": "was walking"
+            },
+            {
+              "id": "C",
+              "text": "am walking"
+            },
+            {
+              "id": "D",
+              "text": "were walking"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The walking was already in progress when the shorter rain event began."
+          },
+          "skill_tags": [
+            "grammar.past_continuous",
+            "grammar.past_simple"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-08-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence shows two actions in progress at the same past time?",
+          "options": [
+            {
+              "id": "A",
+              "text": "While I was studying, my brother was listening to music."
+            },
+            {
+              "id": "B",
+              "text": "While I studied, my brother was listening to music."
+            },
+            {
+              "id": "C",
+              "text": "While I was studying, my brother listened to music."
+            },
+            {
+              "id": "D",
+              "text": "While I was study, my brother was listen to music."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Both actions are presented as ongoing at the same past time."
+          },
+          "skill_tags": [
+            "grammar.past_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-08-Q8",
+          "type": "single_choice",
+          "prompt": "Complete: We were having lunch when the phone ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "was ringing"
+            },
+            {
+              "id": "B",
+              "text": "rang"
+            },
+            {
+              "id": "C",
+              "text": "rings"
+            },
+            {
+              "id": "D",
+              "text": "is ringing"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The lunch was in progress; the shorter interrupting event uses past simple rang."
+          },
+          "skill_tags": [
+            "grammar.past_continuous",
+            "grammar.past_simple"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-08-Q9",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: They ___ (not / watch) TV at ten; they were doing homework.",
+          "answer": {
+            "accepted_answers": [
+              "weren't watching",
+              "weren’t watching",
+              "were not watching"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The plural negative past continuous accepts weren't/weren’t watching and the full form were not watching."
+          },
+          "skill_tags": [
+            "grammar.past_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-08-Q10",
+          "type": "single_choice",
+          "prompt": "A cyclist was riding past the school when a dog ran into the road. Which event is the background action?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The dog ran into the road."
+            },
+            {
+              "id": "B",
+              "text": "The cyclist was riding past the school."
+            },
+            {
+              "id": "C",
+              "text": "Both verbs must be present simple."
+            },
+            {
+              "id": "D",
+              "text": "Neither action happened in the past."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Was riding describes the action already in progress; ran describes the shorter event."
+          },
+          "skill_tags": [
+            "grammar.past_continuous",
+            "grammar.past_simple"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A2-10",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Present perfect: just, already and yet",
+      "estimated_minutes": 25,
+      "prerequisite_lesson_ids": [
+        "GRA-A2-09"
+      ],
+      "adaptive_concepts": [
+        "present-perfect",
+        "just-already-yet",
+        "unfinished-time"
+      ],
+      "objectives": [
+        "Use just and already with the present perfect in common positions.",
+        "Use yet in present-perfect questions and negatives.",
+        "Choose have/has + past participle for recent or completed events connected to the present when no finished past time is given."
+      ],
+      "explanation": {
+        "en": "Use have/has + past participle. Just means a very short time ago and normally goes after have/has: She has just arrived. Already means sooner than expected or before now and commonly goes after have/has: We have already finished. Yet is common at the end of questions and negatives: Have you finished yet? I haven't finished yet. Do not combine these present-perfect patterns with a stated finished time such as yesterday.",
+        "vi": "Dùng just và already sau have/has trong hiện tại hoàn thành. Yet thường ở cuối câu hỏi hoặc câu phủ định. Không dùng các mẫu này với thời điểm quá khứ đã kết thúc rõ ràng như yesterday."
+      },
+      "examples": [
+        "JUST · She has just arrived.",
+        "ALREADY · We have already finished.",
+        "QUESTION · Have you eaten yet?",
+        "NEGATIVE · I haven't finished yet."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-10-Q1",
+          "type": "single_choice",
+          "prompt": "Complete: Mia has ___ arrived, so she is still taking off her coat.",
+          "options": [
+            {
+              "id": "A",
+              "text": "just"
+            },
+            {
+              "id": "B",
+              "text": "yesterday"
+            },
+            {
+              "id": "C",
+              "text": "last year"
+            },
+            {
+              "id": "D",
+              "text": "ago"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Just fits a very recent event connected to the present."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-10-Q2",
+          "type": "single_choice",
+          "prompt": "Which sentence places already naturally?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I have already finished the task."
+            },
+            {
+              "id": "B",
+              "text": "I have already finish the task."
+            },
+            {
+              "id": "C",
+              "text": "I already has finished the task."
+            },
+            {
+              "id": "D",
+              "text": "I have finish already the task."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Have already finished is a standard present-perfect order, with no finished past-time expression."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-10-Q3",
+          "type": "single_choice",
+          "prompt": "Complete: We haven't chosen a team name ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "already"
+            },
+            {
+              "id": "B",
+              "text": "just"
+            },
+            {
+              "id": "C",
+              "text": "yet"
+            },
+            {
+              "id": "D",
+              "text": "last night"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Yet commonly appears at the end of a present-perfect negative."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-10-Q4",
+          "type": "single_choice",
+          "prompt": "Which question is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Have you finished yet?"
+            },
+            {
+              "id": "B",
+              "text": "Did you finished yet?"
+            },
+            {
+              "id": "C",
+              "text": "Have you yet finish?"
+            },
+            {
+              "id": "D",
+              "text": "Has you finished yet?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Have you finished yet? has the correct auxiliary, participle and yet position."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-10-Q5",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: The bus ___ (just / leave), so we need to wait for the next one.",
+          "answer": {
+            "accepted_answers": [
+              "has just left"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The singular subject takes has; just follows has; the past participle of leave is left."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-10-Q6",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: We ___ the project yet. Use not + finish.",
+          "answer": {
+            "accepted_answers": [
+              "haven't finished",
+              "haven’t finished",
+              "have not finished"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The present-perfect negative accepts haven't/haven’t finished and the full form have not finished; yet remains at the end."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-10-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I have already seen that film."
+            },
+            {
+              "id": "B",
+              "text": "I have seen that film yesterday already."
+            },
+            {
+              "id": "C",
+              "text": "I already have saw that film."
+            },
+            {
+              "id": "D",
+              "text": "I has already seen that film."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Have already seen correctly expresses a completed experience before now without a finished past time."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-10-Q8",
+          "type": "single_choice",
+          "prompt": "Your friend expected you to start later, but you completed your homework early. Which sentence fits best?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I have already finished my homework."
+            },
+            {
+              "id": "B",
+              "text": "I have yet finished my homework."
+            },
+            {
+              "id": "C",
+              "text": "I finished my homework tomorrow."
+            },
+            {
+              "id": "D",
+              "text": "I has just finish my homework."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Already highlights that the homework was completed earlier than expected."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-10-Q9",
+          "type": "single_choice",
+          "prompt": "Complete the phone message: ___ Mai called you yet?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Did"
+            },
+            {
+              "id": "B",
+              "text": "Has"
+            },
+            {
+              "id": "C",
+              "text": "Is"
+            },
+            {
+              "id": "D",
+              "text": "Does"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The present-perfect question with singular Mai begins Has Mai...?"
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-10-Q10",
+          "type": "single_choice",
+          "prompt": "Which sentence should use the past simple instead of the present perfect?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I have just found my keys."
+            },
+            {
+              "id": "B",
+              "text": "We have already eaten."
+            },
+            {
+              "id": "C",
+              "text": "She hasn't replied yet."
+            },
+            {
+              "id": "D",
+              "text": "I visited the museum yesterday."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Yesterday is a finished past time, so the past simple visited is appropriate."
+          },
+          "skill_tags": [
+            "grammar.present_perfect",
+            "grammar.past_simple"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A2-11",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Choosing future forms: will, going to and present continuous",
+      "estimated_minutes": 28,
+      "prerequisite_lesson_ids": [
+        "GRA-A2-05",
+        "GRA-A2-07"
+      ],
+      "adaptive_concepts": [
+        "will-future",
+        "going-to-future",
+        "present-continuous-future"
+      ],
+      "objectives": [
+        "Use will for spontaneous decisions and simple predictions.",
+        "Use be going to for prior intentions and predictions based on present evidence.",
+        "Use the present continuous for arranged future plans with a clear time or other arrangement detail."
+      ],
+      "explanation": {
+        "en": "English uses several future forms. Use will for a decision made at the moment of speaking: The phone is ringing — I'll answer it. Use be going to for an intention decided before now or a prediction based on clear present evidence: I'm going to save for a bike; Look at those clouds — it's going to rain. Use the present continuous for a future arrangement that is already organised: I'm meeting Mai at four. Context matters, so this lesson uses clear cues rather than claiming only one form is possible in every real conversation.",
+        "vi": "Will thường dùng cho quyết định ngay lúc nói hoặc dự đoán đơn giản; be going to cho dự định đã có hoặc dự đoán dựa trên dấu hiệu hiện tại; hiện tại tiếp diễn cho kế hoạch đã sắp xếp cụ thể."
+      },
+      "examples": [
+        "NOW DECISION · The phone is ringing. I'll answer it.",
+        "PRIOR INTENTION · I'm going to save for a new bike.",
+        "EVIDENCE · Look at those clouds. It's going to rain.",
+        "ARRANGEMENT · I'm meeting Mai at four."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-11-Q1",
+          "type": "single_choice",
+          "prompt": "The phone starts ringing now. You decide at that moment to answer it. What do you say?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I'll answer it."
+            },
+            {
+              "id": "B",
+              "text": "I'm going to answered it."
+            },
+            {
+              "id": "C",
+              "text": "I answering it."
+            },
+            {
+              "id": "D",
+              "text": "I will answering it."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Will is natural for a spontaneous decision made at the moment of speaking."
+          },
+          "skill_tags": [
+            "grammar.will_future"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-11-Q2",
+          "type": "single_choice",
+          "prompt": "You decided last week to save money for a new bike. Complete: I ___ save for a new bike.",
+          "options": [
+            {
+              "id": "A",
+              "text": "am going to"
+            },
+            {
+              "id": "B",
+              "text": "will to"
+            },
+            {
+              "id": "C",
+              "text": "am go to"
+            },
+            {
+              "id": "D",
+              "text": "going"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The intention was decided before now, so be going to fits."
+          },
+          "skill_tags": [
+            "grammar.future_plans"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-11-Q3",
+          "type": "single_choice",
+          "prompt": "You and Mai have arranged a meeting at 4 p.m. tomorrow. Which sentence clearly expresses the arrangement?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I'm meeting Mai at 4 p.m. tomorrow."
+            },
+            {
+              "id": "B",
+              "text": "I meet Mai yesterday."
+            },
+            {
+              "id": "C",
+              "text": "I will meeting Mai tomorrow."
+            },
+            {
+              "id": "D",
+              "text": "I am meet Mai tomorrow."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The present continuous can express an already arranged future meeting."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-11-Q4",
+          "type": "single_choice",
+          "prompt": "Look at the very dark clouds. Which prediction best uses the visible evidence?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It is going to rain."
+            },
+            {
+              "id": "B",
+              "text": "It going rain."
+            },
+            {
+              "id": "C",
+              "text": "It will to rain."
+            },
+            {
+              "id": "D",
+              "text": "It is rain yesterday."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Be going to is commonly used for a prediction based on clear present evidence."
+          },
+          "skill_tags": [
+            "grammar.future_plans"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-11-Q5",
+          "type": "single_choice",
+          "prompt": "Which sentence has the correct form after will?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I will help you."
+            },
+            {
+              "id": "B",
+              "text": "I will to help you."
+            },
+            {
+              "id": "C",
+              "text": "I will helping you."
+            },
+            {
+              "id": "D",
+              "text": "I will helped you."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Will is followed by the base verb help."
+          },
+          "skill_tags": [
+            "grammar.will_future"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-11-Q6",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: “I can't carry both boxes.” “I ___ you.” Use the full form will + help.",
+          "answer": {
+            "accepted_answers": [
+              "will help"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The reply is an immediate offer/decision, so the full form will help is appropriate."
+          },
+          "skill_tags": [
+            "grammar.will_future"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-11-Q7",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: We ___ our cousins at the station at 6 p.m. tomorrow. Use are + meeting.",
+          "answer": {
+            "accepted_answers": [
+              "are meeting"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "A fixed meeting at a stated time can use the present continuous: We are meeting..."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-11-Q8",
+          "type": "single_choice",
+          "prompt": "Which sentence describes a prior plan rather than a decision made this second?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I've planned it for weeks: I'm going to join the art club next term."
+            },
+            {
+              "id": "B",
+              "text": "The doorbell rang: I'll open the door."
+            },
+            {
+              "id": "C",
+              "text": "I've planned it for weeks: I going to join the art club next term."
+            },
+            {
+              "id": "D",
+              "text": "I've planned it for weeks: I will to join the art club next term."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The phrase planned it for weeks clearly signals an intention formed before now."
+          },
+          "skill_tags": [
+            "grammar.future_plans"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-11-Q9",
+          "type": "single_choice",
+          "prompt": "Which future sentence is grammatically correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "She is going to practise tonight."
+            },
+            {
+              "id": "B",
+              "text": "She going to practise tonight."
+            },
+            {
+              "id": "C",
+              "text": "She will practises tonight."
+            },
+            {
+              "id": "D",
+              "text": "She is going practise tonight."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Be going to requires the correct form of be plus going to + base verb."
+          },
+          "skill_tags": [
+            "grammar.future_plans"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-11-Q10",
+          "type": "single_choice",
+          "prompt": "You have tickets and agreed to go with your friend at 7 p.m. Which sentence best highlights the arrangement?",
+          "options": [
+            {
+              "id": "A",
+              "text": "We're seeing the film at 7 p.m."
+            },
+            {
+              "id": "B",
+              "text": "We saw the film tomorrow."
+            },
+            {
+              "id": "C",
+              "text": "We will seeing the film at 7."
+            },
+            {
+              "id": "D",
+              "text": "We are see the film at 7."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Tickets, an agreed companion and a stated time make this a clear arrangement, so the present continuous fits well."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A2-12",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Advice with should and shouldn't",
+      "estimated_minutes": 22,
+      "prerequisite_lesson_ids": [
+        "GRA-A1-07"
+      ],
+      "adaptive_concepts": [
+        "should-advice"
+      ],
+      "objectives": [
+        "Give simple advice with should + base verb.",
+        "Give negative advice with shouldn't + base verb.",
+        "Form questions with should and distinguish advice from stronger rules or obligations."
+      ],
+      "explanation": {
+        "en": "Use should + base verb to give advice: You should rest. Use shouldn't + base verb for advice against an action: You shouldn't stay up so late. Questions begin Should + subject + base verb?: Should I tell the teacher? Should expresses advice or a good idea, not the same strength as a rule with must.",
+        "vi": "Dùng should + động từ nguyên mẫu để đưa lời khuyên; shouldn't để khuyên không nên làm. Câu hỏi: Should + chủ ngữ + động từ nguyên mẫu? Should nhẹ hơn must."
+      },
+      "examples": [
+        "ADVICE · You should drink some water.",
+        "NEGATIVE · You shouldn't stay up so late.",
+        "QUESTION · Should I tell the teacher?",
+        "CONTRAST · You must wear a helmet here (rule); you should take a jacket (advice)."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-12-Q1",
+          "type": "single_choice",
+          "prompt": "Your friend has a headache after a long day. Which advice is grammatically correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "You should rest for a while."
+            },
+            {
+              "id": "B",
+              "text": "You should to rest for a while."
+            },
+            {
+              "id": "C",
+              "text": "You should resting for a while."
+            },
+            {
+              "id": "D",
+              "text": "You should rested for a while."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Should is followed by the base verb rest."
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-12-Q2",
+          "type": "single_choice",
+          "prompt": "Complete the advice: You ___ stay up until 2 a.m. before an exam.",
+          "options": [
+            {
+              "id": "A",
+              "text": "shouldn't"
+            },
+            {
+              "id": "B",
+              "text": "should to not"
+            },
+            {
+              "id": "C",
+              "text": "don't should"
+            },
+            {
+              "id": "D",
+              "text": "shouldn't to"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Negative advice uses shouldn't + base verb."
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-12-Q3",
+          "type": "single_choice",
+          "prompt": "Which question is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Should I tell the teacher?"
+            },
+            {
+              "id": "B",
+              "text": "Do should I tell the teacher?"
+            },
+            {
+              "id": "C",
+              "text": "Should I to tell the teacher?"
+            },
+            {
+              "id": "D",
+              "text": "I should tell the teacher?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Advice questions use Should + subject + base verb."
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-12-Q4",
+          "type": "single_choice",
+          "prompt": "Which form correctly follows should?",
+          "options": [
+            {
+              "id": "A",
+              "text": "should practise"
+            },
+            {
+              "id": "B",
+              "text": "should practises"
+            },
+            {
+              "id": "C",
+              "text": "should to practise"
+            },
+            {
+              "id": "D",
+              "text": "should practising"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A modal verb such as should takes the base form practise."
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-12-Q5",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: You ___ more water on hot days. Use should + drink.",
+          "answer": {
+            "accepted_answers": [
+              "should drink"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Should drink gives clear positive advice."
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-12-Q6",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: You ___ that heavy bag alone. Use shouldn't + carry.",
+          "answer": {
+            "accepted_answers": [
+              "shouldn't carry",
+              "shouldn’t carry",
+              "should not carry"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Negative advice accepts shouldn't/shouldn’t carry and the full form should not carry."
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-12-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence is advice rather than a school rule?",
+          "options": [
+            {
+              "id": "A",
+              "text": "You should take an umbrella; it may rain."
+            },
+            {
+              "id": "B",
+              "text": "Students must wear their ID cards in the exam room."
+            },
+            {
+              "id": "C",
+              "text": "You must not use your phone during the test."
+            },
+            {
+              "id": "D",
+              "text": "Visitors have to sign in at reception."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Should presents a recommendation; the other sentences express rules or obligations."
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-12-Q8",
+          "type": "single_choice",
+          "prompt": "Complete: “I feel nervous about the presentation.” “What ___ I do?”",
+          "options": [
+            {
+              "id": "A",
+              "text": "should"
+            },
+            {
+              "id": "B",
+              "text": "should to"
+            },
+            {
+              "id": "C",
+              "text": "am should"
+            },
+            {
+              "id": "D",
+              "text": "do should"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The question pattern is What should I do?"
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-12-Q9",
+          "type": "single_choice",
+          "prompt": "Which reply gives useful advice in the correct form?",
+          "options": [
+            {
+              "id": "A",
+              "text": "You should practise once with a friend."
+            },
+            {
+              "id": "B",
+              "text": "You should practised with a friend."
+            },
+            {
+              "id": "C",
+              "text": "You should to practising with a friend."
+            },
+            {
+              "id": "D",
+              "text": "You shouldn't to practise."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Should + base verb practise is grammatically correct advice."
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-12-Q10",
+          "type": "single_choice",
+          "prompt": "A friend says, “I keep forgetting my homework.” Which response is the best advice?",
+          "options": [
+            {
+              "id": "A",
+              "text": "You should put a reminder in your school bag."
+            },
+            {
+              "id": "B",
+              "text": "You should forgetting it again."
+            },
+            {
+              "id": "C",
+              "text": "You must forgot it."
+            },
+            {
+              "id": "D",
+              "text": "You should to put a reminder."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The sentence gives practical advice and uses should + base verb correctly."
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    }
+  ],
+  "review_requirements": {
+    "reviewer_must_check": [
+      "grammar and semantic accuracy",
+      "age and CEFR-target appropriateness",
+      "lesson progression and prerequisite logic",
+      "unique defensible key for each MCQ",
+      "accepted-answer completeness and literal-gap validity",
+      "distractor plausibility without unintended second answers",
+      "feedback correctness",
+      "source-tag accuracy",
+      "unintended overlap with existing lessons",
+      "cultural safety and originality"
+    ],
+    "verdicts": [
+      "PASS",
+      "REVISE",
+      "BLOCK"
+    ]
+  }
+}

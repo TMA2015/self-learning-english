@@ -1,0 +1,1414 @@
+{
+  "format": "self-learning-english.grammar-authoring-packet",
+  "schema_version": 1,
+  "packet_id": "GRAMMAR-WAVE1B-PACKET-C-A2-EXTENSION-20261003",
+  "status": "DRAFT_FOR_INDEPENDENT_ACADEMIC_REVIEW_NOT_IMPORTABLE",
+  "production_reference": {
+    "sites_version": "v29",
+    "curriculum_version": "1.5.0",
+    "lessons": 45,
+    "activities": 359
+  },
+  "purpose": "Complete the remaining planned A2 Grammar roadmap with possibility, conditionals, common verb patterns and defining relative clauses.",
+  "authoring_rules": [
+    "English-first lesson content with concise optional Vietnamese support.",
+    "Age-appropriate contexts for a 12-year-old learner; original content only.",
+    "Each lesson progresses from form/meaning recognition to independent use and transfer.",
+    "Every MCQ has one defensible key; every short answer lists all intended valid variants.",
+    "For a short-answer gap, every accepted answer must produce a complete grammatical sentence when inserted literally.",
+    "CEFR labels are curricular targets, not learner certification.",
+    "This packet is review-only and must not be uploaded directly to the curriculum importer."
+  ],
+  "planned_source_tags": [
+    "grammar.modal_possibility",
+    "grammar.conditionals",
+    "grammar.verb_patterns",
+    "grammar.relative_clauses"
+  ],
+  "lessons": [
+    {
+      "id": "GRA-A2-13",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Possibility with may, might and could",
+      "estimated_minutes": 22,
+      "prerequisite_lesson_ids": [
+        "GRA-A1-07"
+      ],
+      "adaptive_concepts": [
+        "modal-possibility"
+      ],
+      "objectives": [
+        "Use may/might/could + base verb to express present or future possibility.",
+        "Form negative possibility with may not/might not.",
+        "Avoid adding to or -s after these modal verbs."
+      ],
+      "explanation": {
+        "en": "Use may, might or could + base verb when something is possible but not certain: It might rain later; The bus may be late; We could arrive after six. In many real contexts more than one of these modals is possible, so this lesson does not pretend there is always one unique choice between them. The key grammar pattern is modal + base verb. For negative possibility, may not and might not are common.",
+        "vi": "Dùng may/might/could + động từ nguyên mẫu để nói khả năng có thể xảy ra nhưng chưa chắc chắn. Nhiều tình huống có thể dùng hơn một modal; trọng tâm là cấu trúc modal + động từ nguyên mẫu."
+      },
+      "examples": [
+        "POSSIBILITY · It might rain later.",
+        "POSSIBILITY · The bus may be late.",
+        "POSSIBILITY · We could arrive after six.",
+        "NEGATIVE · She might not come today."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-13-Q1",
+          "type": "single_choice",
+          "prompt": "Which sentence is grammatically correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It might rain later."
+            },
+            {
+              "id": "B",
+              "text": "It might rains later."
+            },
+            {
+              "id": "C",
+              "text": "It might to rain later."
+            },
+            {
+              "id": "D",
+              "text": "It might raining later."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Might is followed by the base verb rain."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-13-Q2",
+          "type": "single_choice",
+          "prompt": "Which sentence correctly expresses possibility?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The bus may be late."
+            },
+            {
+              "id": "B",
+              "text": "The bus may is late."
+            },
+            {
+              "id": "C",
+              "text": "The bus may to be late."
+            },
+            {
+              "id": "D",
+              "text": "The bus mays be late."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "May is followed by the base verb be."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-13-Q3",
+          "type": "single_choice",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "We could arrive after six."
+            },
+            {
+              "id": "B",
+              "text": "We could arrives after six."
+            },
+            {
+              "id": "C",
+              "text": "We could to arrive after six."
+            },
+            {
+              "id": "D",
+              "text": "We could arriving after six."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Could takes the base verb arrive."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-13-Q4",
+          "type": "single_choice",
+          "prompt": "Which negative possibility is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "She might not come today."
+            },
+            {
+              "id": "B",
+              "text": "She doesn't might come today."
+            },
+            {
+              "id": "C",
+              "text": "She might not comes today."
+            },
+            {
+              "id": "D",
+              "text": "She might to not come today."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Might not + base verb correctly expresses negative possibility."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-13-Q5",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: We ___ home because the weather is getting worse. Use may + stay.",
+          "answer": {
+            "accepted_answers": [
+              "may stay"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "May + base verb stay expresses a possible action."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-13-Q6",
+          "type": "single_choice",
+          "prompt": "Which sentence contains an incorrect modal pattern?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It may change."
+            },
+            {
+              "id": "B",
+              "text": "They might arrive."
+            },
+            {
+              "id": "C",
+              "text": "She could help."
+            },
+            {
+              "id": "D",
+              "text": "He might to leave."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Modal verbs such as might are followed directly by the base verb, not to + verb."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-13-Q7",
+          "type": "single_choice",
+          "prompt": "You are not sure whether it will snow. Which sentence clearly shows uncertainty?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It might snow tonight."
+            },
+            {
+              "id": "B",
+              "text": "It might snows tonight."
+            },
+            {
+              "id": "C",
+              "text": "It might to snow tonight."
+            },
+            {
+              "id": "D",
+              "text": "It is might snow tonight."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Might marks the event as possible rather than certain."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-13-Q8",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: The keys ___ in Dad's bag, but I'm not sure. Use could + be.",
+          "answer": {
+            "accepted_answers": [
+              "could be"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Could be expresses one possible location."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-13-Q9",
+          "type": "single_choice",
+          "prompt": "Which sentence is grammatically correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Mia may join us later."
+            },
+            {
+              "id": "B",
+              "text": "Mia may joins us later."
+            },
+            {
+              "id": "C",
+              "text": "Mia may joining us later."
+            },
+            {
+              "id": "D",
+              "text": "Mia may to join us later."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "May takes the base form join."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-13-Q10",
+          "type": "single_choice",
+          "prompt": "A friend asks whether the outdoor event will happen. The forecast is uncertain. Which reply is appropriate?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It might happen if the weather improves."
+            },
+            {
+              "id": "B",
+              "text": "It might happens if the weather improves."
+            },
+            {
+              "id": "C",
+              "text": "It might to happen if the weather improves."
+            },
+            {
+              "id": "D",
+              "text": "It happening might if weather."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Might + base verb correctly expresses uncertainty."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A2-14",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Zero and first conditionals",
+      "estimated_minutes": 27,
+      "prerequisite_lesson_ids": [
+        "GRA-A1-03",
+        "GRA-A2-11"
+      ],
+      "adaptive_concepts": [
+        "zero-conditional",
+        "first-conditional"
+      ],
+      "objectives": [
+        "Use the zero conditional for general results with present simple in both clauses.",
+        "Use the first conditional for a realistic future possibility with if + present simple and will + base verb.",
+        "Avoid will in the if-clause in the basic first-conditional pattern."
+      ],
+      "explanation": {
+        "en": "Use the zero conditional for facts or regular results: If I don't sleep enough, I feel tired. Both clauses normally use the present simple. Use the first conditional for a real future possibility: If it rains tomorrow, we will stay inside. In the basic pattern, the if-clause uses present simple, not will. The result clause can come first or second: We will stay inside if it rains.",
+        "vi": "Zero conditional nói sự thật/kết quả thường xuyên: if + hiện tại đơn, hiện tại đơn. First conditional nói khả năng thực tế trong tương lai: if + hiện tại đơn, will + động từ nguyên mẫu."
+      },
+      "examples": [
+        "ZERO · If you heat ice, it melts.",
+        "ZERO · If I don't sleep enough, I feel tired.",
+        "FIRST · If it rains tomorrow, we will stay inside.",
+        "FIRST · We will call you if the bus is late."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-14-Q1",
+          "type": "single_choice",
+          "prompt": "Choose the zero conditional sentence about a general fact.",
+          "options": [
+            {
+              "id": "A",
+              "text": "If water freezes, it becomes ice."
+            },
+            {
+              "id": "B",
+              "text": "If water will freeze, it becomes ice."
+            },
+            {
+              "id": "C",
+              "text": "If water freezes, it will becomes ice."
+            },
+            {
+              "id": "D",
+              "text": "If water freeze, it becomes ice."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A general result uses present simple in both clauses: freezes, becomes."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-14-Q2",
+          "type": "single_choice",
+          "prompt": "Choose the correct first conditional sentence.",
+          "options": [
+            {
+              "id": "A",
+              "text": "If it rains tomorrow, we will stay inside."
+            },
+            {
+              "id": "B",
+              "text": "If it will rain tomorrow, we will stay inside."
+            },
+            {
+              "id": "C",
+              "text": "If it rains tomorrow, we will stayed inside."
+            },
+            {
+              "id": "D",
+              "text": "If it rain tomorrow, we will stay inside."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The basic first conditional uses if + present simple, then will + base verb."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-14-Q3",
+          "type": "single_choice",
+          "prompt": "Which sentence uses the if-clause correctly?",
+          "options": [
+            {
+              "id": "A",
+              "text": "If I will finish early, I will call you."
+            },
+            {
+              "id": "B",
+              "text": "If I finish early, I will call you."
+            },
+            {
+              "id": "C",
+              "text": "If I finishes early, I will call you."
+            },
+            {
+              "id": "D",
+              "text": "If I finish early, I will calling you."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "In the basic first conditional, the if-clause uses present simple finish, not will finish."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-14-Q4",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: If I arrive before six, I ___ you. Use the full form will + call.",
+          "answer": {
+            "accepted_answers": [
+              "will call"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The result clause of this first conditional uses the full form will call."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-14-Q5",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: If I don't sleep enough, I ___ tired. Use the zero conditional form of feel.",
+          "answer": {
+            "accepted_answers": [
+              "feel"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "A regular result in the zero conditional uses present simple feel."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-14-Q6",
+          "type": "single_choice",
+          "prompt": "Complete: If the shop is closed, we ___ back tomorrow.",
+          "options": [
+            {
+              "id": "A",
+              "text": "will come"
+            },
+            {
+              "id": "B",
+              "text": "will came"
+            },
+            {
+              "id": "C",
+              "text": "will coming"
+            },
+            {
+              "id": "D",
+              "text": "will to come"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A realistic future result can use will + the base verb come."
+          },
+          "evidence_weight": 1,
+          "skill_tags": [
+            "grammar.conditionals"
+          ]
+        },
+        {
+          "id": "GRA-A2-14-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence describes a regular result rather than one future event?",
+          "options": [
+            {
+              "id": "A",
+              "text": "If I drink coffee late, I sleep badly."
+            },
+            {
+              "id": "B",
+              "text": "If the bus is late tomorrow, I will text you."
+            },
+            {
+              "id": "C",
+              "text": "If it rains this afternoon, we will cancel the game."
+            },
+            {
+              "id": "D",
+              "text": "If Mia arrives early tomorrow, she will wait inside."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The sentence describes what regularly happens, so it is a zero conditional."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-14-Q8",
+          "type": "single_choice",
+          "prompt": "Which reversed-order first conditional is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "We will go to the park if the weather is good."
+            },
+            {
+              "id": "B",
+              "text": "We will go to the park if the weather will be good."
+            },
+            {
+              "id": "C",
+              "text": "We went tomorrow if weather is good."
+            },
+            {
+              "id": "D",
+              "text": "We will going if the weather good."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The result can come first; the if-clause still uses present simple is."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-14-Q9",
+          "type": "single_choice",
+          "prompt": "Complete the general rule: If plants don't get enough light, they ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "grow badly"
+            },
+            {
+              "id": "B",
+              "text": "will grew badly yesterday"
+            },
+            {
+              "id": "C",
+              "text": "grows badly"
+            },
+            {
+              "id": "D",
+              "text": "growing badly"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "For a general result with plural they, use present simple grow."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-14-Q10",
+          "type": "single_choice",
+          "prompt": "You may miss the last bus tonight. Which sentence gives a realistic future plan?",
+          "options": [
+            {
+              "id": "A",
+              "text": "If we miss the last bus, we will call a taxi."
+            },
+            {
+              "id": "B",
+              "text": "If we will miss the last bus, we call a taxi yesterday."
+            },
+            {
+              "id": "C",
+              "text": "If we missed every bus, we are call a taxi."
+            },
+            {
+              "id": "D",
+              "text": "If miss bus, calling taxi."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "This is a realistic future possibility using if + present simple and will + base verb."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A2-15",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Common verb patterns: to-infinitive and -ing",
+      "estimated_minutes": 25,
+      "prerequisite_lesson_ids": [
+        "GRA-A1-03"
+      ],
+      "adaptive_concepts": [
+        "verb-patterns",
+        "to-infinitive",
+        "gerund-basic"
+      ],
+      "objectives": [
+        "Use to-infinitive after common verbs such as want, plan, hope and decide.",
+        "Use -ing after common verbs such as enjoy and finish.",
+        "Recognise that verb patterns depend on the first verb and should be learned as useful chunks."
+      ],
+      "explanation": {
+        "en": "Some verbs are commonly followed by to + base verb: want to learn, plan to visit, hope to win, decide to walk. Other verbs are commonly followed by verb-ing: enjoy reading, finish cleaning. Learn the pattern with the first verb rather than adding to or -ing freely. This lesson avoids verbs such as like that can allow more than one pattern in many contexts.",
+        "vi": "Một số động từ thường đi với to + động từ nguyên mẫu: want to, plan to, hope to, decide to. Một số khác đi với V-ing: enjoy reading, finish cleaning. Nên học theo cụm."
+      },
+      "examples": [
+        "TO-INFINITIVE · I want to learn Spanish.",
+        "TO-INFINITIVE · We plan to visit Hue.",
+        "-ING · She enjoys reading comics.",
+        "-ING · He finished cleaning his desk."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-15-Q1",
+          "type": "single_choice",
+          "prompt": "Complete: I want ___ the photography club.",
+          "options": [
+            {
+              "id": "A",
+              "text": "to join"
+            },
+            {
+              "id": "B",
+              "text": "joining"
+            },
+            {
+              "id": "C",
+              "text": "join"
+            },
+            {
+              "id": "D",
+              "text": "to joining"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Want is commonly followed by to + base verb: want to join."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-15-Q2",
+          "type": "single_choice",
+          "prompt": "Complete: She enjoys ___ graphic novels.",
+          "options": [
+            {
+              "id": "A",
+              "text": "to read"
+            },
+            {
+              "id": "B",
+              "text": "reading"
+            },
+            {
+              "id": "C",
+              "text": "read"
+            },
+            {
+              "id": "D",
+              "text": "to reading"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Enjoy is commonly followed by verb-ing: enjoys reading."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-15-Q3",
+          "type": "single_choice",
+          "prompt": "Complete: We plan ___ Hue during the school holiday.",
+          "options": [
+            {
+              "id": "A",
+              "text": "to visit"
+            },
+            {
+              "id": "B",
+              "text": "visiting"
+            },
+            {
+              "id": "C",
+              "text": "visit"
+            },
+            {
+              "id": "D",
+              "text": "to visiting"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Plan is commonly followed by to + base verb."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-15-Q4",
+          "type": "single_choice",
+          "prompt": "Complete: He finished ___ his desk before dinner.",
+          "options": [
+            {
+              "id": "A",
+              "text": "to clean"
+            },
+            {
+              "id": "B",
+              "text": "cleaning"
+            },
+            {
+              "id": "C",
+              "text": "clean"
+            },
+            {
+              "id": "D",
+              "text": "to cleaning"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Finish is commonly followed by verb-ing."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-15-Q5",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: I hope ___ French next year. Use learn.",
+          "answer": {
+            "accepted_answers": [
+              "to learn"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Hope is commonly followed by to + base verb: hope to learn."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-15-Q6",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: They enjoy ___ basketball after school. Use play.",
+          "answer": {
+            "accepted_answers": [
+              "playing"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Enjoy is followed by an -ing form: playing."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-15-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I'd like to order a sandwich."
+            },
+            {
+              "id": "B",
+              "text": "I'd like ordering a sandwich."
+            },
+            {
+              "id": "C",
+              "text": "I'd like to ordering a sandwich."
+            },
+            {
+              "id": "D",
+              "text": "I'd like order a sandwich."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Would like is commonly followed by to + base verb."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-15-Q8",
+          "type": "single_choice",
+          "prompt": "Complete: We decided ___ home because it was getting late.",
+          "options": [
+            {
+              "id": "A",
+              "text": "to walk"
+            },
+            {
+              "id": "B",
+              "text": "walking"
+            },
+            {
+              "id": "C",
+              "text": "walk"
+            },
+            {
+              "id": "D",
+              "text": "to walking"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Decide is commonly followed by to + base verb."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-15-Q9",
+          "type": "single_choice",
+          "prompt": "Complete: Mia finished ___ her email before class.",
+          "options": [
+            {
+              "id": "A",
+              "text": "to write"
+            },
+            {
+              "id": "B",
+              "text": "writing"
+            },
+            {
+              "id": "C",
+              "text": "write to"
+            },
+            {
+              "id": "D",
+              "text": "to writing"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Finish is followed by an -ing form: finished writing."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-15-Q10",
+          "type": "single_choice",
+          "prompt": "Which pair shows the correct patterns?",
+          "options": [
+            {
+              "id": "A",
+              "text": "want to practise / enjoy practising"
+            },
+            {
+              "id": "B",
+              "text": "want practising / enjoy to practise"
+            },
+            {
+              "id": "C",
+              "text": "want to practising / enjoy practise to"
+            },
+            {
+              "id": "D",
+              "text": "want practise to / enjoy to practising"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Want takes to + base verb, while enjoy takes verb-ing."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A2-16",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Defining relative clauses: who, which and that",
+      "estimated_minutes": 26,
+      "prerequisite_lesson_ids": [
+        "GRA-A1-08"
+      ],
+      "adaptive_concepts": [
+        "defining-relative-clauses"
+      ],
+      "objectives": [
+        "Use who to identify a person with a defining relative clause.",
+        "Use which or that to identify a thing with a defining relative clause.",
+        "Avoid repeating a subject pronoun inside a simple subject relative clause."
+      ],
+      "explanation": {
+        "en": "A defining relative clause tells us exactly which person or thing we mean. Use who for people: The student who sits by the window is my cousin. Use which or that for things: The book which is on the desk is mine; The book that is on the desk is mine. In these simple subject relative clauses, do not repeat the subject with he/she/it: the girl who sings, not the girl who she sings.",
+        "vi": "Mệnh đề quan hệ xác định giúp nói rõ người/vật nào. Dùng who cho người; which hoặc that cho vật. Trong dạng chủ ngữ đơn giản, không lặp lại he/she/it sau who/which/that."
+      },
+      "examples": [
+        "PERSON · The teacher who helps us is Mr Long.",
+        "THING · The app which tracks my reading is useful.",
+        "THING · The bag that is under the chair is mine.",
+        "NO REPEATED SUBJECT · the girl who sings, not the girl who she sings."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-16-Q1",
+          "type": "single_choice",
+          "prompt": "Complete: The student ___ sits next to me is very kind.",
+          "options": [
+            {
+              "id": "A",
+              "text": "who"
+            },
+            {
+              "id": "B",
+              "text": "which"
+            },
+            {
+              "id": "C",
+              "text": "where"
+            },
+            {
+              "id": "D",
+              "text": "what"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Who introduces a defining relative clause about a person."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-16-Q2",
+          "type": "single_choice",
+          "prompt": "Complete: The tablet ___ is on the desk belongs to our class.",
+          "options": [
+            {
+              "id": "A",
+              "text": "who"
+            },
+            {
+              "id": "B",
+              "text": "that"
+            },
+            {
+              "id": "C",
+              "text": "where"
+            },
+            {
+              "id": "D",
+              "text": "whose is"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "That can introduce a defining relative clause about a thing."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-16-Q3",
+          "type": "single_choice",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The bike which is outside is mine."
+            },
+            {
+              "id": "B",
+              "text": "The bike who is outside is mine."
+            },
+            {
+              "id": "C",
+              "text": "The bike which it is outside is mine."
+            },
+            {
+              "id": "D",
+              "text": "The bike what is outside is mine."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Which can refer to a thing, and no extra subject pronoun is needed."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-16-Q4",
+          "type": "single_choice",
+          "prompt": "Complete: I know a girl ___ draws excellent comics.",
+          "options": [
+            {
+              "id": "A",
+              "text": "who"
+            },
+            {
+              "id": "B",
+              "text": "which"
+            },
+            {
+              "id": "C",
+              "text": "what"
+            },
+            {
+              "id": "D",
+              "text": "it"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A person can be identified with who + verb."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-16-Q5",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: The coach ___ works with our team is from Da Nang.",
+          "answer": {
+            "accepted_answers": [
+              "who"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Coach is a person, so who is the target relative word."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-16-Q6",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: The book ___ is on the top shelf is mine. Use a relative word for a thing.",
+          "answer": {
+            "accepted_answers": [
+              "which",
+              "that"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Both which and that can introduce this defining relative clause about a thing."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-16-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence correctly identifies a person?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The boy who won the race is my cousin."
+            },
+            {
+              "id": "B",
+              "text": "The boy which won the race is my cousin."
+            },
+            {
+              "id": "C",
+              "text": "The boy who he won the race is my cousin."
+            },
+            {
+              "id": "D",
+              "text": "The boy what won the race is my cousin."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Who refers to the person and acts as the subject of won; no he is added."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-16-Q8",
+          "type": "single_choice",
+          "prompt": "Combine the ideas correctly: “I use an app. The app records my study time.”",
+          "options": [
+            {
+              "id": "A",
+              "text": "I use an app that records my study time."
+            },
+            {
+              "id": "B",
+              "text": "I use an app who records my study time."
+            },
+            {
+              "id": "C",
+              "text": "I use an app that it records my study time."
+            },
+            {
+              "id": "D",
+              "text": "I use an app records that my study time."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "That introduces the defining clause about the app without repeating it."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-16-Q9",
+          "type": "single_choice",
+          "prompt": "Which sentence avoids an unnecessary repeated subject?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The girl who sits near the door is Mai."
+            },
+            {
+              "id": "B",
+              "text": "The girl who she sits near the door is Mai."
+            },
+            {
+              "id": "C",
+              "text": "The girl which she sits near the door is Mai."
+            },
+            {
+              "id": "D",
+              "text": "The girl who her sits near the door is Mai."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Who already acts as the subject of sits, so no extra she/her is needed."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-16-Q10",
+          "type": "single_choice",
+          "prompt": "Choose the best sentence to identify one specific bag.",
+          "options": [
+            {
+              "id": "A",
+              "text": "The bag that has a yellow star is mine."
+            },
+            {
+              "id": "B",
+              "text": "The bag who has a yellow star is mine."
+            },
+            {
+              "id": "C",
+              "text": "The bag that it has a yellow star is mine."
+            },
+            {
+              "id": "D",
+              "text": "The bag what has yellow star is mine."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "That correctly introduces a defining clause about the thing and does not repeat it."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    }
+  ],
+  "review_requirements": {
+    "reviewer_must_check": [
+      "grammar and semantic accuracy",
+      "age and CEFR-target appropriateness",
+      "lesson progression and prerequisite logic",
+      "unique defensible key for each MCQ",
+      "accepted-answer completeness and literal-gap validity",
+      "distractor plausibility without unintended second answers",
+      "feedback correctness",
+      "source-tag accuracy",
+      "unintended overlap with existing lessons",
+      "cultural safety and originality"
+    ],
+    "verdicts": [
+      "PASS",
+      "REVISE",
+      "BLOCK"
+    ]
+  }
+}
