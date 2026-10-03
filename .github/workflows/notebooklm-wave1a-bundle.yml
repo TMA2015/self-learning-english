@@ -1,0 +1,50 @@
+name: NotebookLM Grammar Wave 1A Bundle
+on:
+  push:
+    branches:
+      - academic/grammar-wave1a-a2-foundations-20261003
+    paths:
+      - 'sites-p0-phase-a-20260926/notebooklm/**'
+      - 'sites-p0-phase-a-20260926/docs/CONTENT_AUTHORING_STANDARD.md'
+      - 'sites-p0-phase-a-20260926/docs/CURRICULUM_COVERAGE.md'
+      - 'sites-p0-phase-a-20260926/docs/P2B_ADAPTIVE_GRAMMAR_PARALLEL_PLAN.md'
+      - 'sites-p0-phase-a-20260926/docs/GRAMMAR_WAVE1A_NOTEBOOKLM_REVIEW.md'
+      - '.github/workflows/notebooklm-wave1a-bundle.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build NotebookLM source bundle
+        run: |
+          mkdir -p notebooklm-wave1a
+          cp sites-p0-phase-a-20260926/docs/CONTENT_AUTHORING_STANDARD.md notebooklm-wave1a/01_CONTENT_AUTHORING_STANDARD.md
+          cp sites-p0-phase-a-20260926/docs/CURRICULUM_COVERAGE.md notebooklm-wave1a/02_CURRICULUM_COVERAGE.md
+          cp sites-p0-phase-a-20260926/docs/P2B_ADAPTIVE_GRAMMAR_PARALLEL_PLAN.md notebooklm-wave1a/03_P2B_ADAPTIVE_GRAMMAR_PARALLEL_PLAN.md
+          cp sites-p0-phase-a-20260926/notebooklm/GRAMMAR_ROADMAP_v1.txt notebooklm-wave1a/04_GRAMMAR_ROADMAP_v1.txt
+          cp sites-p0-phase-a-20260926/notebooklm/ADAPTIVE_MAP_v1.txt notebooklm-wave1a/05_ADAPTIVE_MAP_v1.txt
+          cp sites-p0-phase-a-20260926/notebooklm/GRAMMAR_WAVE1A_A2_FOUNDATIONS_DRAFT.txt notebooklm-wave1a/10_GRAMMAR_WAVE1A_A2_FOUNDATIONS_DRAFT.txt
+          cp sites-p0-phase-a-20260926/docs/GRAMMAR_WAVE1A_NOTEBOOKLM_REVIEW.md notebooklm-wave1a/11_GRAMMAR_WAVE1A_NOTEBOOKLM_REVIEW.md
+          cat > notebooklm-wave1a/00_README.md <<'EOF'
+          # NotebookLM source bundle — Grammar Wave 1A
+          
+          Keep the existing permanent notebook sources already in the Notebook.
+          
+          Add files 01–05 as permanent/reference sources for the current P2B + Grammar roadmap.
+          Add files 10–11 as temporary sources for this Grammar Wave 1A review round.
+          
+          JSON originals were mirrored as .txt because NotebookLM source upload does not accept .json.
+          The text mirrors preserve the exact JSON text and are review sources only.
+          
+          Production is unchanged: Sites v29, Curriculum 1.5.0, 45 lessons / 359 activities.
+          This bundle does not authorize import or deployment.
+          EOF
+      - uses: actions/upload-artifact@v4
+        with:
+          name: notebooklm-grammar-wave1a-sources
+          path: notebooklm-wave1a/
+          if-no-files-found: error
+          compression-level: 9
