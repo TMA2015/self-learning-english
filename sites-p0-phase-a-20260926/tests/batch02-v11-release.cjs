@@ -22,7 +22,7 @@ for(const id of next.course.sequence)assert(byId.has(id),'Missing course node '+
 assert(Buffer.byteLength(source('content/curriculum-1.2.0-candidate.json'),'utf8')<1_000_000,'Cumulative import limit');
 const academic=source('domain/academic.ts');
 for(const tag of ['grammar.articles','grammar.plural_nouns','grammar.there_is_are','grammar.prepositions_place'])assert(academic.includes("'"+tag+"'"),'Missing skill tag '+tag);
-assert(academic.includes('MAX_CURRICULUM_LESSONS=60'),'Generalized curriculum importer must be retained');
+assert(academic.includes('MAX_CURRICULUM_LESSONS=150'),'Scaled generalized curriculum importer must be retained');
 const page=source('app/page.tsx'),ui=source('app/foundation.tsx'),helper=source('domain/foundation-summary.ts'),css=source('app/globals.css'),metadata=source('app/layout.tsx');
 assert.equal((page.match(/<FoundationDemo\b/g)||[]).length,1,'Keep one v11 Foundation player');
 assert(!page.includes('<FoundationDemo key={view}'),'Do not reintroduce forced player remount');
