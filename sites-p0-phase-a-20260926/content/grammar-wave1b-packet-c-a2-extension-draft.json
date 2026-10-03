@@ -253,15 +253,15 @@
             },
             {
               "id": "B",
-              "text": "It definitely snowed tomorrow."
+              "text": "It might snows tonight."
             },
             {
               "id": "C",
-              "text": "It snowing sure tonight."
+              "text": "It might to snow tonight."
             },
             {
               "id": "D",
-              "text": "It must to snow maybe."
+              "text": "It is might snow tonight."
             }
           ],
           "answer": {
@@ -407,15 +407,15 @@
             },
             {
               "id": "B",
-              "text": "If water will freeze, it will became ice."
+              "text": "If water will freeze, it becomes ice."
             },
             {
               "id": "C",
-              "text": "If water froze tomorrow, it becomes ice now."
+              "text": "If water freezes, it will becomes ice."
             },
             {
               "id": "D",
-              "text": "If water freezing, become ice."
+              "text": "If water freeze, it becomes ice."
             }
           ],
           "answer": {
@@ -440,15 +440,15 @@
             },
             {
               "id": "B",
-              "text": "If it will rain tomorrow, we stay inside yesterday."
+              "text": "If it will rain tomorrow, we will stay inside."
             },
             {
               "id": "C",
-              "text": "If it rains tomorrow, we stayed inside."
+              "text": "If it rains tomorrow, we will stayed inside."
             },
             {
               "id": "D",
-              "text": "If it raining tomorrow, we will stayed inside."
+              "text": "If it rain tomorrow, we will stay inside."
             }
           ],
           "answer": {
@@ -477,11 +477,11 @@
             },
             {
               "id": "C",
-              "text": "If I finished early tomorrow, I will calling you."
+              "text": "If I finishes early, I will call you."
             },
             {
               "id": "D",
-              "text": "If I finishing early, I call you yesterday."
+              "text": "If I finish early, I will calling you."
             }
           ],
           "answer": {
@@ -556,11 +556,11 @@
             },
             {
               "id": "C",
-              "text": "come yesterday"
+              "text": "will coming"
             },
             {
               "id": "D",
-              "text": "are came"
+              "text": "will to come"
             }
           ],
           "answer": {
