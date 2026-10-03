@@ -175,3 +175,73 @@ Highest structural gaps are GRA-A2-07 and GRA-A2-09 because existing A2/B1 contr
 Next implementation gate:
 - P2B-1 deterministic recommendation engine using the adaptive map, read-only and version-safe.
 - No Grammar mass authoring/import until this mapping is proven usable.
+
+
+## 2026-10-03 — P2B core + Suggested Practice staging
+
+Production remains unchanged:
+- Sites v29
+- source `d31f43d2e4383f218697705d96a6ab1334a90798`
+- Curriculum 1.5.0
+- 45 lessons / 359 activities
+
+### P2B-1 core
+
+Draft PR #26:
+- Branch: `feature/p2b-core-recommendations-20261003`
+- Validated checkpoint: `b2744e7aa90065ebbe862d57ca48d61fc0b0a3a5`
+
+Implemented:
+- fine-grained Grammar concepts from existing granular source tags;
+- exact package/version/question evidence identity;
+- drafts/unassessed work excluded;
+- states: not enough evidence / needs practice / developing / stable for now;
+- prerequisite-first remediation only when the prerequisite itself has weak evidence;
+- unobserved prerequisites are unknown, not failed;
+- recommendations route only to lessons present in the current package;
+- read-only projection; no regrading or learner-data write.
+
+Validation:
+- P2B Adaptive Core QA PASS.
+- P2A regression PASS.
+- TypeScript/build and academic/course/draft/Writing/content regressions PASS.
+
+### P2B-2 learner UI
+
+Draft PR #27, stacked on #26:
+- Branch: `feature/p2b-suggested-practice-ui-20261003`
+- Validated checkpoint: `d3341289fc855c3870341eb94660f26daaf1d1c3`
+
+Implemented:
+- explainable Grammar Suggested Practice cards;
+- visibly distinguishes insufficient evidence from weak evidence;
+- Foundation-first label for prerequisite remediation;
+- suppresses broad legacy Grammar suggestions when they would conflict with conservative P2B;
+- preserves non-Grammar legacy suggestions;
+- direct **Practice this lesson** action;
+- direct action opens CURRENT curriculum content only;
+- current-version attempt may resume; historical navigation remains immutable/version-bound.
+
+Validation at the checkpoint:
+- P2B Suggested Practice UI QA PASS.
+- Learning Evidence P2A QA PASS.
+- Course v21 P1 QA PASS.
+- UX v20 Lesson IDs and Navigation QA PASS.
+- Focused Foundation player QA PASS.
+- Writing navigation and draft feedback QA PASS.
+- v16 Listening Submit Feedback QA PASS.
+- v17 Listening Retake Audio Readiness QA PASS.
+- G Learning English brand QA PASS.
+- TypeScript and production build passed inside the P2B UI gate.
+
+Release status:
+- staging/code only;
+- no Site deployment;
+- no curriculum import;
+- no D1 migration/reset;
+- no learner-state mutation.
+
+Next parallel step:
+- begin Grammar Wave 1 academic authoring;
+- prioritize the structural gaps GRA-A2-07 Present continuous foundation and GRA-A2-09 Present perfect foundation first;
+- keep the wider six-lesson Wave 1 roadmap, but do not mass-author/import before independent academic review.
