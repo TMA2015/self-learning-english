@@ -314,3 +314,34 @@ Next mandatory academic gate:
 - targeted NotebookLM recheck of only GRA-A2-07-Q2 and GRA-A2-09-Q7;
 - if both PASS, close Wave 1A academic review and proceed to cumulative candidate assembly planning;
 - no import/deploy authorization yet.
+
+
+## 2026-10-03 — Grammar Wave 1A academic review CLOSED / PASS
+
+Independent NotebookLM audit:
+- 20/20 activities reviewed.
+- Initial result: 18 PASS / 2 REVISION_REQUIRED / 0 BLOCK.
+- Revision items: GRA-A2-07-Q2 and GRA-A2-09-Q7.
+
+Reconciliation:
+- both prompts were changed so the subject is inside the blank;
+- accepted full and contracted forms are now literal-gap safe.
+
+Targeted NotebookLM recheck:
+- GRA-A2-07-Q2: PASS
+- GRA-A2-09-Q7: PASS
+- WAVE1A_FINAL_VERDICT: PASS
+
+Final academic record:
+- `sites-p0-phase-a-20260926/docs/GRAMMAR_WAVE1A_FINAL_ACADEMIC_REVIEW.md`
+- academic branch commit: `ca08fb149b256d3d4de6104eaeca25d5dce88732`
+
+Status:
+- Grammar Wave 1A is academically approved.
+- It is eligible for cumulative immutable curriculum candidate assembly.
+- No curriculum import, Site deployment, D1 change or learner-data mutation is authorized yet.
+
+Next:
+- assemble a cumulative candidate from production Curriculum 1.5.0 + approved GRA-A2-07 + GRA-A2-09;
+- validate exact lesson/activity counts, stable IDs, course ordering, answer keys, adaptive-map compatibility and versioning;
+- run authenticated Preview before requesting import approval.
