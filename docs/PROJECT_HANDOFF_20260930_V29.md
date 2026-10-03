@@ -636,3 +636,25 @@ Hotfix candidate 1.6.1 changes exactly one lesson: GRA-A2-16. It corrects the le
 Technical gate PASS. Expected Preview from live 1.6.0: Add 0 / Update 1 / Skip 58 / Conflict 0. Candidate raw SHA-256 `0767455e886a819c3f42b3b9e6bb1dec8222345ea8559192cb0dee1d66ddc7ef`; canonical SHA-256 `2760b5395d9a9ca822f27bd06f36a6bcde790996467cdaa8a82044b683650339`.
 
 Next gate: targeted independent NotebookLM review using `GRAMMAR_1601_RELATIVE_THAT_HOTFIX.txt`. Do not Preview/import the hotfix until that targeted academic review is PASS.
+
+
+## 2026-10-03 — Academic review proportionality rule
+
+Owner clarified that the academic-review process must not become mechanical overhead. NotebookLM is NOT required for every tiny correction.
+
+Use NotebookLM when a change involves meaningful academic judgment, ambiguity, new lesson/content authoring, answer-key uncertainty, level/sequence decisions, broad explanation changes, or possible knock-on effects across multiple items.
+
+A small hotfix may be handled directly without NotebookLM when ALL are true:
+- the issue is narrow and objectively identifiable;
+- the correction is supported by an authoritative reference or an already-established project rule;
+- the correction does not materially change the construct, lesson objective, dependency, CEFR scope or broader pedagogy;
+- the change can be tightly bounded to one/few fields or accepted-answer variants;
+- targeted automated validation/regression can prove no unrelated content changed.
+
+Examples that normally do NOT require a new NotebookLM round:
+- adding an equivalent smart-apostrophe input variant;
+- correcting a typo/punctuation/spacing issue;
+- adding a clearly valid accepted-answer variant already confirmed by an authoritative grammar source;
+- repairing an obviously stale test guard without changing runtime semantics.
+
+For such hotfixes, document the source/reason, apply the minimal change, run targeted regression/Preview, and proceed without unnecessary external academic review. Escalate to NotebookLM whenever there is real ambiguity or pedagogical judgment.
