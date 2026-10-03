@@ -693,3 +693,29 @@ Authenticated Preview of the exact approved 1.6.1 hotfix candidate PASS:
 Import confirmation remained unticked. No import, Site deployment, learner-data mutation, historical regrading or D1 migration/reset occurred. PR #32 remains unmerged.
 
 Next gate: separate owner-authorized controlled Curriculum 1.6.1 import. No new Site code deployment is required. After import verify production 1.6.1 / 59 / 499 and retest GRA-A2-16-Q5 with both who and that.
+
+
+## 2026-10-03 — Curriculum 1.6.1 IMPORT PASS / GRA-A2-16 HOTFIX CLOSED
+
+Controlled hotfix import completed successfully.
+
+Production now:
+- Sites v30
+- source `03f642124e3d84ee584649430e4ba4c446f6b07b`
+- Curriculum 1.6.1
+- 59 lessons / 499 activities
+- Grammar: A1 12 / A2 16 / B1 1 = 29 lessons
+
+Final candidate hashes matched exactly. Final Preview/import result: Add 0 / Update 1 / Skip 58 / Conflict 0. Sole update: GRA-A2-16.
+
+Post-import browser/server QA:
+- GRA-A2-16-Q5 answer `who` -> Correct, attempt scored 10/10
+- GRA-A2-16-Q5 answer `that` -> Correct, attempt scored 10/10
+- Q1-Q4 and Q6-Q10 passed in both attempts
+- no lesson/activity disappeared
+- Reading, Writing and Parent View load normally
+- existing Writing drafts and pending review remain visible
+
+No additional Site deployment, D1 reset/migration, learner-data reset or historical regrading occurred. Two authorized QA attempts were created/submitted and now contribute to practice metrics. PR #32 remains unmerged.
+
+The relative-clause hotfix is closed. Next major project direction is B1 Grammar expansion. Production is already at 59 lessons while the current application importer guard is 60, so importer capacity must be raised and stress-tested before any B1 release can be imported. Content authoring/review can proceed in parallel because authoring packets are not importer packages.
