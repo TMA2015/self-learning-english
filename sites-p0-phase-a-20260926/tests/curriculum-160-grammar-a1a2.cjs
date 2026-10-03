@@ -67,6 +67,8 @@ const text=fs.readFileSync(candidatePath,'utf8');
 assert(Buffer.byteLength(text,'utf8')<=1000000,'candidate exceeds current 1 MB composer guard');
 const rawSha256=sha(text);
 const canonicalSha256=canonicalHash(candidate);
+assert.equal(rawSha256,'555ea690f51066ae47365bcb25cafd9c7aa4fa4b126be70db0a6847120787d48');
+assert.equal(canonicalSha256,'2227598673d682ec9fe6b8f4b64b403343d2c491edd3f7381695304572965cb5');
 
 class Repo{
  constructor(){this.p=[]}
