@@ -598,3 +598,30 @@ No curriculum import, D1 reset/migration, learner-data edit or PR merge occurred
 Code-only rollback remains available at Sites v29 source `d31f43d2e4383f218697705d96a6ab1334a90798`.
 
 Next gate: separate owner-authorized controlled Curriculum 1.6.0 import. After import require production to report 1.6.0 / 59 lessons / 499 activities and verify the 14 new Grammar lessons are available. Then perform owner QA; do not merge PR #31 merely because import succeeds.
+
+
+## 2026-10-03 — Curriculum 1.6.0 IMPORT PASS / one academic QA hotfix required
+
+Controlled import completed successfully on Sites v30 source `03f642124e3d84ee584649430e4ba4c446f6b07b`.
+
+Production is now:
+- Curriculum 1.6.0
+- 59 lessons / 499 activities
+- Grammar: A1 12 / A2 16 / B1 1 = 29 lessons
+- live exported package exactly matches the approved candidate
+- import result Add 14 / Update 0 / Skip 45 / Conflict 0
+- all 14 new Grammar IDs visible
+- both requested Grammar sequences verified
+- all prior 45 lessons / 359 activities preserved
+
+Representative browser QA:
+- GRA-A1-09: 10/10 PASS
+- GRA-A1-12: 10/10 PASS
+- GRA-A2-08: 10/10 PASS
+- GRA-A2-16: 9/10; one academic grading defect found
+
+Defect: GRA-A2-16-Q5, prompt `The coach ___ works with our team is from Da Nang.`, accepts only `who`. In a defining relative clause referring to a person, `that` is also grammatically valid. The lesson explanation also overstates the simplified rule by saying who for people and which/that for things.
+
+No content was silently changed and no historical result was regraded. No D1 reset/migration occurred. PR #31 remains unmerged.
+
+Hotfix strategy: keep imported 1.6.0 immutable; create Curriculum 1.6.1 candidate changing only GRA-A2-16. Draft PR #32: `hotfix/curriculum-1.6.1-relative-that-20261003`. Proposed correction: teach who or that for people in defining clauses, update Q5 accepted answers to [who, that], and clarify feedback/explanation. Require targeted academic review plus Preview before import.
