@@ -350,3 +350,8 @@ Next:
 ## Curriculum 1.6.0 candidate checkpoint — 2026-10-03
 
 Draft PR #29 on `release/curriculum-1.6.0-wave1a-20261003` now contains a validated cumulative candidate built from the verified 1.5.0 production package plus approved GRA-A2-07 and GRA-A2-09. Candidate: 47 lessons / 379 activities. Existing 45 lessons / 359 activities are preserved. Expected production Preview: Add 2 / Update 0 / Skip 45 / Conflict 0. Candidate raw SHA-256 `10d171f1c703e3be13085b0f3eee4ebc76494fb69a620a65508d1b5de3a20aff`; canonical SHA-256 `1d89087e01b742936a0ed9dad73c647365df4370b86ffd1b1812bac66866a10b`. Automated candidate gate, regressions, TypeScript and production build PASS. Production remains on Sites v29 / Curriculum 1.5.0. Next gate is authenticated Preview only; stop before import.
+
+
+## 2026-10-03 — Curriculum 1.6.0 authenticated Preview PASS
+
+Production verified before Preview: Sites v29, Curriculum 1.5.0, 45 lessons / 359 activities. Candidate raw and canonical hashes both MATCH the approved 1.6.0 candidate. Authenticated Parent View Preview result: Add 2 / Update 0 / Skip 45 / Conflict 0. Add rows exactly GRA-A2-07 and GRA-A2-09. Course order verified: GRA-A2-07 immediately before GRA-A2-01; GRA-A2-09 immediately after GRA-A2-02. No deletions, unexpected updates, ID conflicts, schema warnings, D1 migration/reset, learner-data operation, historical regrading, Site deployment or import occurred. Confirmation remained unchecked and Import disabled. Production remains unchanged. Next gate requires separate owner authorization for a controlled Curriculum 1.6.0 import.
