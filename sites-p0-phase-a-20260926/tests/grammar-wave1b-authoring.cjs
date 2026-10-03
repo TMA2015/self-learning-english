@@ -72,6 +72,7 @@ assert.equal(totalActivities,120);
 // Lock known ambiguity/literal-gap fixes.
 const packets=files.map(f=>JSON.parse(fs.readFileSync(f,'utf8')));
 const find=id=>packets.flatMap(p=>p.lessons).flatMap(l=>l.activities).find(q=>q.id===id);
+assert.deepEqual(find('GRA-A1-11-Q6').answer.accepted_answers,["don't",'don’t','do not']);
 assert.deepEqual(find('GRA-A2-10-Q5').answer.accepted_answers,['has just left']);
 assert.deepEqual(find('GRA-A2-11-Q6').answer.accepted_answers,['will help']);
 assert.deepEqual(find('GRA-A2-11-Q7').answer.accepted_answers,['are meeting']);
