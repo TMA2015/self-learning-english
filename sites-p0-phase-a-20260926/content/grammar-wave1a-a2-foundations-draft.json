@@ -227,7 +227,7 @@
         {
           "id": "GRA-A2-07-Q7",
           "type": "single_choice",
-          "prompt": "Which sentence describes a temporary situation around now?",
+          "prompt": "Select one option: Which sentence describes a temporary situation around now?",
           "options": [
             {
               "id": "A",
@@ -531,7 +531,7 @@
         {
           "id": "GRA-A2-09-Q6",
           "type": "single_choice",
-          "prompt": "Which sentence correctly uses the past simple because it includes a finished past time?",
+          "prompt": "Select one option: Which sentence correctly uses the past simple because it includes a finished past time?",
           "options": [
             {
               "id": "A",
@@ -588,7 +588,7 @@
         {
           "id": "GRA-A2-09-Q8",
           "type": "single_choice",
-          "prompt": "Where does ever normally go in this question?",
+          "prompt": "Select one option: Where does ever normally go in this question?",
           "options": [
             {
               "id": "A",
