@@ -1,0 +1,37 @@
+name: P2B Adaptive Core QA
+on:
+  pull_request:
+    paths:
+      - 'sites-p0-phase-a-20260926/content/adaptive-map-v1.json'
+      - 'sites-p0-phase-a-20260926/content/grammar-roadmap-v1.json'
+      - 'sites-p0-phase-a-20260926/domain/adaptive-recommendations.ts'
+      - 'sites-p0-phase-a-20260926/domain/practice-progress.ts'
+      - 'sites-p0-phase-a-20260926/tests/p2b-adaptive-recommendations.cjs'
+      - 'sites-p0-phase-a-20260926/tests/practice-progress-p2a.cjs'
+      - '.github/workflows/p2b-adaptive-core-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: pnpm install --frozen-lockfile
+      - name: P2B adaptive projection
+        run: node tests/p2b-adaptive-recommendations.cjs && node tests/practice-progress-p2a.cjs
+      - name: Versioning and learner-data regressions
+        run: node tests/academic.cjs && node tests/course-v21-p1.cjs && node tests/v20-route-draft-safety.cjs && node tests/writing-nav-save-feedback.cjs
+      - name: Content regressions
+        run: node tests/content-quality.cjs && node tests/curriculum.cjs && node tests/run.cjs
+      - name: TypeScript and production build
+        run: pnpm exec tsc --noEmit --incremental false && pnpm run build

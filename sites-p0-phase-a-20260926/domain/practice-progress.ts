@@ -1,5 +1,6 @@
 import {tagMap,type AcademicAttempt,type AcademicPackage} from './academic';
 import type {WritingSubmission,WritingEvaluation} from './writing';
+import {deriveAdaptiveGrammarProgress} from './adaptive-recommendations';
 
 type Tally={correct:number;total:number;uniqueQuestions:number;accuracyPercent:number|null};
 type Bucket={correct:number;total:number;questions:Set<string>};
@@ -47,10 +48,11 @@ export function derivePracticeProgress(attempts:AcademicAttempt[],packages:Acade
  for(const evaluation of [...evaluations].sort((a,b)=>a.at-b.at))latestEvaluation.set(evaluation.submissionId,evaluation);
  const writingLegacy={submitted:submissions.length,approved:0,pending:0};
  for(const submission of submissions){const status=latestEvaluation.get(submission.id)?.status;if(status==='approved')writingLegacy.approved++;else writingLegacy.pending++}
+ const adaptiveGrammar=deriveAdaptiveGrammarProgress(attempts,packages);
  return {scope:'Saved Foundation objective answers across all attempts and immutable package versions',overall:view(overall),
   skills:[...skills].map(([skill,b])=>({skill,...view(b)})).sort((a,b)=>a.skill.localeCompare(b.skill)),
   tags:[...tags].map(([key,b])=>{const [skill,tag]=key.split(':');return {skill,tag,...view(b)}}).sort((a,b)=>a.skill.localeCompare(b.skill)||a.tag.localeCompare(b.tag)),
   repeatedMistakes:[...byQuestion].filter(([,v])=>v.incorrect>=2).map(([question,v])=>({questionId:question.split('\u001f')[2],lessonId:v.lessonId,version:v.version,incorrect:v.incorrect,total:v.total,skill:v.skill})).sort((a,b)=>b.incorrect-a.incorrect||a.questionId.localeCompare(b.questionId)).slice(0,10),
   writing:{foundation:{pending:pendingFoundation,approved:approvedFoundation},legacy:writingLegacy},
-  suggestions,diagnosticNote:'Practice answers are not diagnostic evidence, a provisional working level, or formal CEFR certification.'};
+  adaptiveGrammar,suggestions,diagnosticNote:'Practice answers are not diagnostic evidence, a provisional working level, or formal CEFR certification.'};
 }
