@@ -1,0 +1,1416 @@
+{
+  "format": "self-learning-english.grammar-authoring-packet",
+  "schema_version": 1,
+  "packet_id": "GRAMMAR-WAVE1B-PACKET-A-A1-COMPLETION-20261003",
+  "status": "DRAFT_FOR_INDEPENDENT_ACADEMIC_REVIEW_NOT_IMPORTABLE",
+  "production_reference": {
+    "sites_version": "v29",
+    "curriculum_version": "1.5.0",
+    "lessons": 45,
+    "activities": 359
+  },
+  "purpose": "Complete the four planned A1 Grammar gaps so the A1 Grammar roadmap reaches 12 lessons before the larger A2 completion wave.",
+  "authoring_rules": [
+    "English-first lesson content with concise optional Vietnamese support.",
+    "Age-appropriate contexts for a 12-year-old learner; original content only.",
+    "Each lesson progresses from form/meaning recognition to independent use and transfer.",
+    "Every MCQ has one defensible key; every short answer lists all intended valid variants.",
+    "For a short-answer gap, every accepted answer must produce a complete grammatical sentence when inserted literally.",
+    "CEFR labels are curricular targets, not learner certification.",
+    "This packet is review-only and must not be uploaded directly to the curriculum importer."
+  ],
+  "planned_source_tags": [
+    "grammar.demonstratives",
+    "grammar.object_pronouns",
+    "grammar.possessive_pronouns",
+    "grammar.imperatives",
+    "grammar.instructions",
+    "grammar.prepositions_time"
+  ],
+  "lessons": [
+    {
+      "id": "GRA-A1-09",
+      "module": "grammar",
+      "cefr_target": "A1",
+      "title": "This, that, these and those",
+      "estimated_minutes": 22,
+      "prerequisite_lesson_ids": [
+        "GRA-A1-04"
+      ],
+      "adaptive_concepts": [
+        "demonstratives",
+        "singular-plural-reference"
+      ],
+      "objectives": [
+        "Choose this/that for one thing and these/those for more than one thing.",
+        "Use near/far context to select an appropriate demonstrative.",
+        "Match demonstratives with singular or plural nouns."
+      ],
+      "explanation": {
+        "en": "Use this and these for things near the speaker; use that and those for things farther away. This/that are singular: this book, that chair. These/those are plural: these books, those chairs. A demonstrative can stand before a noun or replace the noun when the meaning is clear: These are mine. Distance depends on the situation, so look for clues such as here, in my hand, over there or across the room.",
+        "vi": "Dùng this/these cho vật ở gần; that/those cho vật ở xa hơn. This/that đi với số ít; these/those đi với số nhiều. Chú ý các dấu hiệu như here, in my hand, over there."
+      },
+      "examples": [
+        "NEAR ONE · This pencil in my hand is blue.",
+        "FAR ONE · That bus over there is ours.",
+        "NEAR MANY · These books here are new.",
+        "FAR MANY · Those lights across the street are bright."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A1-09-Q1",
+          "type": "single_choice",
+          "prompt": "Select one option: ___ pencil in my hand is blue.",
+          "options": [
+            {
+              "id": "A",
+              "text": "This"
+            },
+            {
+              "id": "B",
+              "text": "That"
+            },
+            {
+              "id": "C",
+              "text": "These"
+            },
+            {
+              "id": "D",
+              "text": "Those"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The pencil is singular and in the speaker's hand, so this is appropriate."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-09-Q2",
+          "type": "single_choice",
+          "prompt": "Select one option: Look at ___ mountains in the distance.",
+          "options": [
+            {
+              "id": "A",
+              "text": "this"
+            },
+            {
+              "id": "B",
+              "text": "that"
+            },
+            {
+              "id": "C",
+              "text": "these"
+            },
+            {
+              "id": "D",
+              "text": "those"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Mountains is plural and the mountains are far away, so use those."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-09-Q3",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: ___ shoes here by my feet are wet.",
+          "answer": {
+            "accepted_answers": [
+              "these"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Shoes is plural and the shoes are near the speaker, so use these."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-09-Q4",
+          "type": "single_choice",
+          "prompt": "Select one option: Is ___ your bag over there by the door?",
+          "options": [
+            {
+              "id": "A",
+              "text": "this"
+            },
+            {
+              "id": "B",
+              "text": "that"
+            },
+            {
+              "id": "C",
+              "text": "these"
+            },
+            {
+              "id": "D",
+              "text": "those"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Bag is singular and over there signals distance, so that fits."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-09-Q5",
+          "type": "single_choice",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "These is my key."
+            },
+            {
+              "id": "B",
+              "text": "This are my keys."
+            },
+            {
+              "id": "C",
+              "text": "These are my keys."
+            },
+            {
+              "id": "D",
+              "text": "Those is my keys."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "These is plural and correctly matches are and keys."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-09-Q6",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: Can you see ___ bird on the roof across the street?",
+          "answer": {
+            "accepted_answers": [
+              "that"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Bird is singular and across the street makes it distant, so that is appropriate."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-09-Q7",
+          "type": "single_choice",
+          "prompt": "You are holding one photo. Which sentence is most natural?",
+          "options": [
+            {
+              "id": "A",
+              "text": "This is my class photo."
+            },
+            {
+              "id": "B",
+              "text": "These are my class photo."
+            },
+            {
+              "id": "C",
+              "text": "That are my class photo."
+            },
+            {
+              "id": "D",
+              "text": "Those is my class photo."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "One item held near the speaker takes this and singular is."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-09-Q8",
+          "type": "single_choice",
+          "prompt": "Two cups are on a table across the room. Choose the best sentence.",
+          "options": [
+            {
+              "id": "A",
+              "text": "This cup is clean."
+            },
+            {
+              "id": "B",
+              "text": "That cups are clean."
+            },
+            {
+              "id": "C",
+              "text": "These cups is clean."
+            },
+            {
+              "id": "D",
+              "text": "Those cups are clean."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Two distant cups take the plural demonstrative those."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-09-Q9",
+          "type": "single_choice",
+          "prompt": "Which noun phrase has correct number agreement?",
+          "options": [
+            {
+              "id": "A",
+              "text": "this notebooks"
+            },
+            {
+              "id": "B",
+              "text": "these notebook"
+            },
+            {
+              "id": "C",
+              "text": "that chair"
+            },
+            {
+              "id": "D",
+              "text": "those chair"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "That is singular and correctly matches the singular noun chair."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-09-Q10",
+          "type": "single_choice",
+          "prompt": "Your friend puts two pens beside you and asks which ones are yours. Choose the best reply.",
+          "options": [
+            {
+              "id": "A",
+              "text": "This are mine."
+            },
+            {
+              "id": "B",
+              "text": "These are mine."
+            },
+            {
+              "id": "C",
+              "text": "That are mine."
+            },
+            {
+              "id": "D",
+              "text": "Those is mine."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The two pens are plural and near the speaker, so These are mine is correct."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A1-10",
+      "module": "grammar",
+      "cefr_target": "A1",
+      "title": "Object pronouns and possessive pronouns",
+      "estimated_minutes": 24,
+      "prerequisite_lesson_ids": [
+        "GRA-A1-02"
+      ],
+      "adaptive_concepts": [
+        "object-pronouns",
+        "possessive-pronouns"
+      ],
+      "objectives": [
+        "Use me/you/him/her/it/us/them after verbs and prepositions.",
+        "Use mine/yours/his/hers/ours/theirs without a following noun.",
+        "Distinguish possessive adjectives such as my/your from possessive pronouns such as mine/yours."
+      ],
+      "explanation": {
+        "en": "Object pronouns receive the action or follow a preposition: Please help me; I sit next to her; The teacher gives us homework. Possessive pronouns show ownership without a following noun: This book is mine; Those bags are theirs. Do not put a noun after mine/yours/hers/ours/theirs. Compare: This is my pen. The pen is mine.",
+        "vi": "Đại từ tân ngữ đứng sau động từ hoặc giới từ: help me, sit next to her. Đại từ sở hữu đứng độc lập, không có danh từ theo sau: mine, yours, his, hers, ours, theirs."
+      },
+      "examples": [
+        "OBJECT · I know Mia. I sit next to her.",
+        "OBJECT · The coach calls us.",
+        "POSSESSION · This notebook is mine.",
+        "CONTRAST · That is your bag. The bag is yours."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A1-10-Q1",
+          "type": "single_choice",
+          "prompt": "Complete: Mia is my friend. I sit next to ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "she"
+            },
+            {
+              "id": "B",
+              "text": "her"
+            },
+            {
+              "id": "C",
+              "text": "hers"
+            },
+            {
+              "id": "D",
+              "text": "her's"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "After the preposition next to, use the object pronoun her."
+          },
+          "skill_tags": [
+            "grammar.object_pronouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-10-Q2",
+          "type": "single_choice",
+          "prompt": "Complete: This notebook belongs to me. It is ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "my"
+            },
+            {
+              "id": "B",
+              "text": "me"
+            },
+            {
+              "id": "C",
+              "text": "mine"
+            },
+            {
+              "id": "D",
+              "text": "I"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Mine is a possessive pronoun and can stand without a noun after it."
+          },
+          "skill_tags": [
+            "grammar.possessive_pronouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-10-Q3",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: Can you help ___ with this box? Use the pronoun for we.",
+          "answer": {
+            "accepted_answers": [
+              "us"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The object form of we is us: help us."
+          },
+          "skill_tags": [
+            "grammar.object_pronouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-10-Q4",
+          "type": "single_choice",
+          "prompt": "Tom owns the blue trainers. Which sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The blue trainers are him."
+            },
+            {
+              "id": "B",
+              "text": "The blue trainers are his."
+            },
+            {
+              "id": "C",
+              "text": "The blue trainers are he."
+            },
+            {
+              "id": "D",
+              "text": "The blue trainers are he's."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "His can be a possessive pronoun: The trainers are his."
+          },
+          "skill_tags": [
+            "grammar.possessive_pronouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-10-Q5",
+          "type": "single_choice",
+          "prompt": "Complete: I know Ben and Anna. I see ___ at school every day.",
+          "options": [
+            {
+              "id": "A",
+              "text": "they"
+            },
+            {
+              "id": "B",
+              "text": "their"
+            },
+            {
+              "id": "C",
+              "text": "them"
+            },
+            {
+              "id": "D",
+              "text": "theirs"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The people receive the action of see, so use the object pronoun them."
+          },
+          "skill_tags": [
+            "grammar.object_pronouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-10-Q6",
+          "type": "short_answer",
+          "prompt": "Lan says, “That red bike belongs to me. It is ___.”",
+          "answer": {
+            "accepted_answers": [
+              "mine"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Mine replaces my bike and shows that the bike belongs to the speaker."
+          },
+          "skill_tags": [
+            "grammar.possessive_pronouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-10-Q7",
+          "type": "single_choice",
+          "prompt": "Which pair is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Is this yours pen? / Yes, it is my."
+            },
+            {
+              "id": "B",
+              "text": "Is this your pen? / Yes, it is mine."
+            },
+            {
+              "id": "C",
+              "text": "Is this you pen? / Yes, it is me."
+            },
+            {
+              "id": "D",
+              "text": "Is this mine pen? / Yes, it is my."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Your goes before the noun pen; mine stands alone in the reply."
+          },
+          "skill_tags": [
+            "grammar.possessive_pronouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-10-Q8",
+          "type": "single_choice",
+          "prompt": "Complete: Our teacher gives ___ a short quiz on Fridays.",
+          "options": [
+            {
+              "id": "A",
+              "text": "we"
+            },
+            {
+              "id": "B",
+              "text": "our"
+            },
+            {
+              "id": "C",
+              "text": "us"
+            },
+            {
+              "id": "D",
+              "text": "ours"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "After gives, use the object pronoun us."
+          },
+          "skill_tags": [
+            "grammar.object_pronouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-10-Q9",
+          "type": "single_choice",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I called she after class."
+            },
+            {
+              "id": "B",
+              "text": "I called her after class."
+            },
+            {
+              "id": "C",
+              "text": "I called hers after class."
+            },
+            {
+              "id": "D",
+              "text": "I called she’s after class."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Call takes an object, so her is correct."
+          },
+          "skill_tags": [
+            "grammar.object_pronouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-10-Q10",
+          "type": "single_choice",
+          "prompt": "Your family has two umbrellas; another family has three. Choose the correct sentence.",
+          "options": [
+            {
+              "id": "A",
+              "text": "These two are ours, and those three are theirs."
+            },
+            {
+              "id": "B",
+              "text": "These two are our, and those three are their."
+            },
+            {
+              "id": "C",
+              "text": "These two are us, and those three are them."
+            },
+            {
+              "id": "D",
+              "text": "These two are ours umbrellas, and those three are theirs umbrellas."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Ours and theirs are possessive pronouns and correctly stand without nouns."
+          },
+          "skill_tags": [
+            "grammar.possessive_pronouns"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A1-11",
+      "module": "grammar",
+      "cefr_target": "A1",
+      "title": "Imperatives and everyday instructions",
+      "estimated_minutes": 22,
+      "prerequisite_lesson_ids": [
+        "GRA-A1-01"
+      ],
+      "adaptive_concepts": [
+        "imperatives",
+        "instructions"
+      ],
+      "objectives": [
+        "Use the base verb for positive instructions.",
+        "Form negative instructions with don't + base verb.",
+        "Recognise polite and clearly ordered everyday instructions."
+      ],
+      "explanation": {
+        "en": "Use the base form of a verb to give an instruction: Open the window. Add please to make a request sound more polite: Please sit down. For a negative instruction, use don't + base verb: Don't touch the screen. The subject you is normally understood and not written. For steps, words such as first, then and finally can make the order clear.",
+        "vi": "Dùng động từ nguyên mẫu để ra hướng dẫn: Open the book. Phủ định dùng don't + động từ nguyên mẫu: Don't run. Có thể thêm please để lịch sự hơn và first/then/finally để sắp xếp các bước."
+      },
+      "examples": [
+        "POSITIVE · Turn left at the corner.",
+        "POLITE · Please close the door.",
+        "NEGATIVE · Don't run in the hallway.",
+        "SEQUENCE · First wash the fruit. Then cut it."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A1-11-Q1",
+          "type": "single_choice",
+          "prompt": "Which sentence is a correct instruction?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Opens your book to page ten."
+            },
+            {
+              "id": "B",
+              "text": "Open your book to page ten."
+            },
+            {
+              "id": "C",
+              "text": "You opening your book to page ten."
+            },
+            {
+              "id": "D",
+              "text": "To open your book to page ten."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A positive imperative uses the base verb: Open."
+          },
+          "skill_tags": [
+            "grammar.imperatives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-11-Q2",
+          "type": "single_choice",
+          "prompt": "Complete the school instruction: ___ run in the hallway.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Doesn't"
+            },
+            {
+              "id": "B",
+              "text": "Don't"
+            },
+            {
+              "id": "C",
+              "text": "Not"
+            },
+            {
+              "id": "D",
+              "text": "Aren't"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A negative imperative uses don't + base verb: Don't run."
+          },
+          "skill_tags": [
+            "grammar.imperatives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-11-Q3",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: ___ the green button to start. Use the verb press.",
+          "answer": {
+            "accepted_answers": [
+              "press"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "A positive instruction begins with the base verb press."
+          },
+          "skill_tags": [
+            "grammar.imperatives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-11-Q4",
+          "type": "single_choice",
+          "prompt": "Which instruction is polite and grammatically correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Please sit down."
+            },
+            {
+              "id": "B",
+              "text": "Please sits down."
+            },
+            {
+              "id": "C",
+              "text": "Please to sit down."
+            },
+            {
+              "id": "D",
+              "text": "Please sitting down."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Please can be followed by the base imperative sit."
+          },
+          "skill_tags": [
+            "grammar.imperatives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-11-Q5",
+          "type": "single_choice",
+          "prompt": "Which order is clearest for two steps?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Then wash your hands. First eat."
+            },
+            {
+              "id": "B",
+              "text": "First wash your hands. Then eat."
+            },
+            {
+              "id": "C",
+              "text": "Wash first your hands. Eat first then."
+            },
+            {
+              "id": "D",
+              "text": "First you washing. Then you eating."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "First and then correctly mark the order, and both instructions use base verbs."
+          },
+          "skill_tags": [
+            "grammar.instructions"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-11-Q6",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: ___ touch the hot pan. Use the negative imperative.",
+          "answer": {
+            "accepted_answers": [
+              "don't",
+              "do not"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Don't/Do not + touch gives a correct negative instruction."
+          },
+          "skill_tags": [
+            "grammar.imperatives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-11-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence is NOT a correct imperative?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Wait here."
+            },
+            {
+              "id": "B",
+              "text": "Don't open the box."
+            },
+            {
+              "id": "C",
+              "text": "Please listen carefully."
+            },
+            {
+              "id": "D",
+              "text": "You waits here."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "You waits here is an ordinary sentence with incorrect agreement, not a standard imperative."
+          },
+          "skill_tags": [
+            "grammar.imperatives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-11-Q8",
+          "type": "single_choice",
+          "prompt": "You are giving directions. Which sentence is best?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Turn left at the library."
+            },
+            {
+              "id": "B",
+              "text": "Turns left at the library."
+            },
+            {
+              "id": "C",
+              "text": "Turning left at the library."
+            },
+            {
+              "id": "D",
+              "text": "You to turn left at the library."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Directions commonly use the base-verb imperative Turn."
+          },
+          "skill_tags": [
+            "grammar.instructions"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-11-Q9",
+          "type": "single_choice",
+          "prompt": "Which notice is grammatically correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Don't feeds the animals."
+            },
+            {
+              "id": "B",
+              "text": "Not feed the animals."
+            },
+            {
+              "id": "C",
+              "text": "Don't feed the animals."
+            },
+            {
+              "id": "D",
+              "text": "Doesn't feed the animals."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The negative imperative is don't + base verb feed."
+          },
+          "skill_tags": [
+            "grammar.imperatives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-11-Q10",
+          "type": "single_choice",
+          "prompt": "Choose the clearest recipe instruction.",
+          "options": [
+            {
+              "id": "A",
+              "text": "First cut the banana. Then put it in the bowl."
+            },
+            {
+              "id": "B",
+              "text": "First cutting the banana. Then putting it in the bowl."
+            },
+            {
+              "id": "C",
+              "text": "First cuts the banana. Then puts it in the bowl."
+            },
+            {
+              "id": "D",
+              "text": "You first to cut banana. Then bowl."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Both steps use clear base-verb imperatives and sequencing words."
+          },
+          "skill_tags": [
+            "grammar.instructions"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A1-12",
+      "module": "grammar",
+      "cefr_target": "A1",
+      "title": "Prepositions of time: at, on and in",
+      "estimated_minutes": 23,
+      "prerequisite_lesson_ids": [
+        "GRA-A1-03"
+      ],
+      "adaptive_concepts": [
+        "time-prepositions"
+      ],
+      "objectives": [
+        "Use at with clock times and selected fixed times such as night.",
+        "Use on with days and dates.",
+        "Use in with months, years and broad parts of the day."
+      ],
+      "explanation": {
+        "en": "Use at for precise clock times: at 7:30, and in the expression at night. Use on for days and dates: on Monday, on 15 March. Use in for months, years and broad parts of the day: in August, in 2026, in the morning. A phrase can combine them: on Friday afternoon at 4:00.",
+        "vi": "Dùng at với giờ cụ thể và at night; on với ngày/thứ và ngày tháng; in với tháng, năm và các buổi trong ngày như in the morning."
+      },
+      "examples": [
+        "TIME · The lesson starts at 8:00.",
+        "DAY · We practise on Tuesday.",
+        "MONTH · My birthday is in August.",
+        "DATE · The event is on 15 March.",
+        "PART OF DAY · I read in the evening; I sleep at night."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A1-12-Q1",
+          "type": "single_choice",
+          "prompt": "Complete: The lesson starts ___ 7:30.",
+          "options": [
+            {
+              "id": "A",
+              "text": "at"
+            },
+            {
+              "id": "B",
+              "text": "on"
+            },
+            {
+              "id": "C",
+              "text": "in"
+            },
+            {
+              "id": "D",
+              "text": "from"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Use at with a precise clock time."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-12-Q2",
+          "type": "single_choice",
+          "prompt": "Complete: We have art club ___ Tuesday.",
+          "options": [
+            {
+              "id": "A",
+              "text": "at"
+            },
+            {
+              "id": "B",
+              "text": "on"
+            },
+            {
+              "id": "C",
+              "text": "in"
+            },
+            {
+              "id": "D",
+              "text": "by"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Use on with a day of the week."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-12-Q3",
+          "type": "single_choice",
+          "prompt": "Complete: My birthday is ___ August.",
+          "options": [
+            {
+              "id": "A",
+              "text": "at"
+            },
+            {
+              "id": "B",
+              "text": "on"
+            },
+            {
+              "id": "C",
+              "text": "in"
+            },
+            {
+              "id": "D",
+              "text": "to"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Use in with a month."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-12-Q4",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: Our school opened ___ 2026.",
+          "answer": {
+            "accepted_answers": [
+              "in"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Use in with a year."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-12-Q5",
+          "type": "single_choice",
+          "prompt": "Complete: I usually go to bed early ___ night.",
+          "options": [
+            {
+              "id": "A",
+              "text": "at"
+            },
+            {
+              "id": "B",
+              "text": "on"
+            },
+            {
+              "id": "C",
+              "text": "in"
+            },
+            {
+              "id": "D",
+              "text": "for"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The fixed expression is at night."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-12-Q6",
+          "type": "single_choice",
+          "prompt": "Complete: The school concert is ___ 15 March.",
+          "options": [
+            {
+              "id": "A",
+              "text": "at"
+            },
+            {
+              "id": "B",
+              "text": "on"
+            },
+            {
+              "id": "C",
+              "text": "in"
+            },
+            {
+              "id": "D",
+              "text": "from"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Use on with a calendar date."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-12-Q7",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: I often study ___ the morning.",
+          "answer": {
+            "accepted_answers": [
+              "in"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Use in with the broad part of the day: in the morning."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-12-Q8",
+          "type": "single_choice",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "We meet in Monday."
+            },
+            {
+              "id": "B",
+              "text": "We meet at Monday."
+            },
+            {
+              "id": "C",
+              "text": "We meet on Monday."
+            },
+            {
+              "id": "D",
+              "text": "We meet Monday at on."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "A day of the week takes on."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-12-Q9",
+          "type": "single_choice",
+          "prompt": "Complete: The match is ___ Friday afternoon ___ 4:00.",
+          "options": [
+            {
+              "id": "A",
+              "text": "in / on"
+            },
+            {
+              "id": "B",
+              "text": "on / at"
+            },
+            {
+              "id": "C",
+              "text": "at / in"
+            },
+            {
+              "id": "D",
+              "text": "on / in"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Use on with Friday afternoon and at with the clock time 4:00."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-12-Q10",
+          "type": "single_choice",
+          "prompt": "Which schedule sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The course begins at September in 2027."
+            },
+            {
+              "id": "B",
+              "text": "The course begins on September at 2027."
+            },
+            {
+              "id": "C",
+              "text": "The course begins in September 2027."
+            },
+            {
+              "id": "D",
+              "text": "The course begins on September in 2027."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Use in with a month and year: in September 2027."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    }
+  ],
+  "review_requirements": {
+    "reviewer_must_check": [
+      "grammar and semantic accuracy",
+      "age and CEFR-target appropriateness",
+      "lesson progression and prerequisite logic",
+      "unique defensible key for each MCQ",
+      "accepted-answer completeness and literal-gap validity",
+      "distractor plausibility without unintended second answers",
+      "feedback correctness",
+      "source-tag accuracy",
+      "unintended overlap with existing lessons",
+      "cultural safety and originality"
+    ],
+    "verdicts": [
+      "PASS",
+      "REVISE",
+      "BLOCK"
+    ]
+  }
+}
