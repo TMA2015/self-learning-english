@@ -658,3 +658,16 @@ Examples that normally do NOT require a new NotebookLM round:
 - repairing an obviously stale test guard without changing runtime semantics.
 
 For such hotfixes, document the source/reason, apply the minimal change, run targeted regression/Preview, and proceed without unnecessary external academic review. Escalate to NotebookLM whenever there is real ambiguity or pedagogical judgment.
+
+
+## 2026-10-03 — Curriculum 1.6.1 hotfix FINAL ACADEMIC + TECHNICAL PASS
+
+Targeted NotebookLM audit completed for GRA-A2-16: lesson objectives/explanations/examples and all 10 activities reviewed; 10 PASS / 0 REVISE / 0 BLOCK. Reviewer confirms both who and that are valid in GRA-A2-16-Q5, the revised A2 explanation is appropriate, and no other item becomes ambiguous.
+
+Final PR #32 candidate checkpoint: `78589a80a74956a787490bf9c0010da50247a312`.
+
+Candidate remains Curriculum 1.6.1 / 59 lessons / 499 activities and changes exactly one lesson: GRA-A2-16. Raw SHA-256 `0767455e886a819c3f42b3b9e6bb1dec8222345ea8559192cb0dee1d66ddc7ef`; canonical SHA-256 `2760b5395d9a9ca822f27bd06f36a6bcde790996467cdaa8a82044b683650339`.
+
+Final CI at the exact checkpoint PASS: hotfix validation, existing academic/content regressions, TypeScript and production build.
+
+Next gate: authenticated Preview against live Curriculum 1.6.0. Require Add 0 / Update 1 / Skip 58 / Conflict 0 and the single Update row exactly GRA-A2-16. No Site code deployment is needed. Stop before Import for owner authorization.
