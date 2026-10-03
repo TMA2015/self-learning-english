@@ -525,3 +525,23 @@ Wave 1B consolidated academic status:
 Together with previously approved Wave 1A (GRA-A2-07 and GRA-A2-09), 14 new Grammar lessons / 140 activities are now approved-not-imported. Grammar roadmap/adaptive metadata was updated accordingly on PR #30.
 
 A substantial Curriculum 1.6.0 release candidate is now being assembled on Draft PR #31, branch `release/curriculum-1.6.0-grammar-a1a2-20261003`, from the still-live production Curriculum 1.5.0 baseline. Target candidate: 59 total lessons / 499 total activities / 29 Grammar lessons (A1 12, A2 16, B1 1). Expected future authenticated Preview: Add 14 / Update 0 / Skip 45 / Conflict 0. Production remains unchanged until an explicit later import approval.
+
+
+## 2026-10-03 — Curriculum 1.6.0 Grammar A1/A2 milestone candidate VALIDATED
+
+Draft PR #31: `release/curriculum-1.6.0-grammar-a1a2-20261003`, final validated head `16c504e27588f6bd6d375c1ad803e0773d6e1c89`.
+
+Candidate: Curriculum 1.6.0 / 59 lessons / 499 activities / 29 Grammar lessons. Adds 14 academically approved Grammar lessons / 140 activities to the verified production Curriculum 1.5.0 base. Grammar milestone after import would be A1 12 lessons, A2 16 lessons, B1 1 lesson. Existing 45 lessons / 359 activities are preserved.
+
+Candidate hashes locked and CI-verified:
+- raw SHA-256: `555ea690f51066ae47365bcb25cafd9c7aa4fa4b126be70db0a6847120787d48`
+- canonical SHA-256: `2227598673d682ec9fe6b8f4b64b403343d2c491edd3f7381695304572965cb5`
+- size: 544500 bytes
+
+Final release gate PASS: deterministic compose, importer/content validation, exact production-base digest, preservation checks, approved new tag compatibility, academic/content regressions, version-aware attempt regressions, P2A/P1 regressions, TypeScript and production build.
+
+Expected future authenticated Preview: Add 14 / Update 0 / Skip 45 / Conflict 0.
+
+Important: production Site v29 still lacks the newly approved fine-grained Grammar source tags. Therefore the next gate is a controlled CODE-ONLY content-compatibility deployment that extends tagMap while keeping Curriculum 1.5.0 / 45 / 359 unchanged. Only after that deployment should Work run authenticated Preview of the exact PR #31 candidate. Stop before Import.
+
+The earlier Draft PR #29 two-lesson 1.6.0 pilot candidate has been marked superseded and closed to prevent accidental import.
