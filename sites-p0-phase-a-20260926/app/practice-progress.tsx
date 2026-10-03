@@ -1,7 +1,14 @@
 'use client';
 import type {PracticeProgress} from '../domain/practice-progress';
 
-export function PracticeSummary({data,error,onRefresh,onSkill}:{data:PracticeProgress|null;error:string;onRefresh:()=>void;onSkill:(skill:string)=>void}){
+const conceptLabel=(id:string)=>id.split('-').map(word=>word?word[0].toUpperCase()+word.slice(1):word).join(' ');
+
+export function PracticeSummary({data,error,onRefresh,onSkill,onLesson}:{data:PracticeProgress|null;error:string;onRefresh:()=>void;onSkill:(skill:string)=>void;onLesson?:(skill:string,lessonId:string)=>void}){
+ const adaptive=data?.adaptiveGrammar.recommendations??[];
+ const observedGrammar=data?.adaptiveGrammar.concepts.filter(row=>row.total>0)??[];
+ const grammarStates=observedGrammar.reduce((counts,row)=>({...counts,[row.state]:(counts[row.state]??0)+1}),{} as Record<string,number>);
+ const otherSuggestions=(data?.suggestions??[]).filter(row=>row.skill!=='Grammar').slice(0,Math.max(0,3-adaptive.length));
+ const hasSuggestions=adaptive.length>0||otherSuggestions.length>0;
  return <section className="panel" aria-label="Practice performance"><div className="section-head"><div><span className="eyebrow">SAVED ANSWERS</span><h2>Practice performance</h2></div><button className="secondary-button" onClick={onRefresh}>Refresh</button></div>
   {error&&<p role="alert">{error}</p>}
   {!data?<p>Loading saved practice answers…</p>:<>
@@ -20,11 +27,15 @@ export function PracticeSummary({data,error,onRefresh,onSkill}:{data:PracticePro
      <p className="practice-footnote">Drafts and pending reviews receive no quality score.</p>
     </section>
     <section className="practice-block" aria-labelledby="practice-suggestions-heading">
-     <div className="practice-block-heading"><h3 id="practice-suggestions-heading">Suggested practice</h3><p>Based on saved answers. You choose which lesson to open.</p></div>
-     {data.suggestions.length?<div className="practice-suggestion-list">{data.suggestions.map(row=><div key={row.skill+':'+row.tag} className="practice-suggestion"><div><strong>{row.skill} · {row.tag}</strong><p>{row.reason}{row.lessonId?<> Try {row.lessonId} · {row.lessonTitle}.</>:null}</p></div><button className="secondary-button" onClick={()=>onSkill(row.skill)}>Choose {row.skill} lessons</button></div>)}</div>:<p className="practice-empty">Not enough repeated, documented weak answers for a specific suggestion. You can choose any lesson in the Course Catalog.</p>}
+     <div className="practice-block-heading"><h3 id="practice-suggestions-heading">Suggested practice</h3><p>Based on saved answers. Recommendations open the current lesson; old results stay on their original content versions.</p></div>
+     {observedGrammar.length?<p className="practice-footnote">Observed Grammar concepts: {grammarStates.needs_practice??0} need practice · {grammarStates.developing??0} developing · {grammarStates.stable_for_now??0} stable for now · {grammarStates.not_enough_evidence??0} need more evidence.</p>:<p className="practice-footnote">No submitted Grammar evidence yet. Unobserved concepts are not treated as weak.</p>}
+     {hasSuggestions?<div className="practice-suggestion-list">
+      {adaptive.map(row=><div key={`adaptive:${row.targetConceptId}:${row.recommendedConceptId}`} className="practice-suggestion"><div><strong>Grammar · {conceptLabel(row.recommendedConceptId)}</strong>{row.prerequisiteFirst&&<span className="practice-pill practice-pill-warning">Foundation first</span>}<p>{row.prerequisiteFirst?`${conceptLabel(row.recommendedConceptId)} is a prerequisite for ${conceptLabel(row.prerequisiteFor??row.targetConceptId)}. `:''}Saved evidence: {row.correct}/{row.total} correct across {row.distinctQuestions} distinct question(s){row.repeatedQuestions?` · ${row.repeatedQuestions} repeated mistake question(s)`:''}.</p><p><strong>{row.lessonId}</strong> · {row.lessonTitle}</p></div><button className="secondary-button" onClick={()=>onLesson?onLesson('Grammar',row.lessonId):onSkill('Grammar')}>Practice this lesson</button></div>)}
+      {otherSuggestions.map(row=><div key={`legacy:${row.skill}:${row.tag}`} className="practice-suggestion"><div><strong>{row.skill} · {row.tag}</strong><p>{row.reason}{row.lessonId?<> Try {row.lessonId} · {row.lessonTitle}.</>:null}</p></div><button className="secondary-button" onClick={()=>onSkill(row.skill)}>Choose {row.skill} lessons</button></div>)}
+     </div>:<p className="practice-empty">{observedGrammar.length?'No targeted Grammar recommendation yet. More distinct saved questions may be needed, or current evidence is not weak enough for remediation.':'Not enough documented evidence for a specific suggestion yet.'} You can still choose any lesson in the Course Catalog.</p>}
     </section>
    </div>
-   <p className="muted">{data.diagnosticNote} Diagnostic results and any working-level estimate belong to the separate assessment view; this page does not issue a CEFR certificate.</p>
+   <p className="muted">{data.adaptiveGrammar.note} {data.diagnosticNote} Diagnostic results and any working-level estimate belong to the separate assessment view; this page does not issue a CEFR certificate.</p>
   </>}
  </section>
 }

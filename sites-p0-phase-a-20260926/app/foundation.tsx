@@ -11,9 +11,9 @@ async function call(url:string,body?:unknown){const r=await fetch(url,body?{meth
 const api=(body:unknown)=>call('/api/foundation',body);
 export type Catalog={version:string;imported:boolean;course?:{sequence:string[]};journey:{steps:string[];title:string};lessons:{id:string;title:string;module:string;cefr:string;minutes:number}[];attempts:(AcademicAttempt&{hasAudio?:boolean})[]};
 type LessonView={version:string;lesson:SeedLesson;audio:{url:string;duration:number}|null};
-export function FoundationDemo({showVi=false,onEvidence,skill,sharedCatalog,onCatalog,onSelectSkill,onNavigationGuard,writingIntro}:{showVi?:boolean;onEvidence?:()=>void;skill?:string;sharedCatalog?:Catalog|null;onCatalog?:(next:Catalog)=>void;onSelectSkill?:(next:string)=>void;onNavigationGuard?:(guard:((target:string)=>Promise<boolean>)|null)=>void;writingIntro?:ReactNode}){
+export function FoundationDemo({showVi=false,onEvidence,skill,sharedCatalog,onCatalog,onSelectSkill,onNavigationGuard,writingIntro,requestedLesson,onRequestedLessonHandled}:{showVi?:boolean;onEvidence?:()=>void;skill?:string;sharedCatalog?:Catalog|null;onCatalog?:(next:Catalog)=>void;onSelectSkill?:(next:string)=>void;onNavigationGuard?:(guard:((target:string)=>Promise<boolean>)|null)=>void;writingIntro?:ReactNode;requestedLesson?:{lessonId:string;requestId:string}|null;onRequestedLessonHandled?:(requestId:string)=>void}){
  const [draftFeedback,setDraftFeedback]=useState<{kind:'idle'|'restored'|'unsaved'|'saving'|'saved'|'error';at?:number}>({kind:'idle'}),[screen,setScreen]=useState<'catalog'|'overview'|'practice'>('catalog'),[cefrFilter,setCefrFilter]=useState('all'),[hintSteps,setHintSteps]=useState<Record<string,number>>({}),[catalog,setCatalog]=useState<Catalog|null>(sharedCatalog??null),[selected,setSelected]=useState(''),[lesson,setLesson]=useState<SeedLesson|null>(null),[attempt,setAttempt]=useState<AcademicAttempt|null>(null),[answers,setAnswers]=useState<Record<string,string>>({}),[audioInfo,setAudioInfo]=useState<{url:string;duration:number}|null>(null),[recording,setRecording]=useState<AcademicAttempt['audio']>(),[recordingURL,setRecordingURL]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState(''),[submitError,setSubmitError]=useState(''),[showMissing,setShowMissing]=useState(false),[showAudioWarning,setShowAudioWarning]=useState(false),[saved,setSaved]=useState(''),[transcript,setTranscript]=useState(''),[recordingNow,setRecordingNow]=useState(false),[playing,setPlaying]=useState(false),[openingId,setOpeningId]=useState('');
- const playerRef=useRef<HTMLElement|null>(null),audioSectionRef=useRef<HTMLDivElement|null>(null),questionRefs=useRef<Record<string,HTMLFieldSetElement|null>>({}),draftRevision=useRef(0),draftSaveQueue=useRef<Promise<void>>(Promise.resolve()),saveDraftRef=useRef<()=>Promise<void>>(async()=>{}),preparedSkillSwitch=useRef<string|null>(null),routeGuardRef=useRef<(target:string)=>Promise<boolean>>(async()=>true),media=useRef<MediaRecorder|null>(null),audio=useRef<HTMLAudioElement|null>(null),playToken=useRef(''),heard=useRef(0),lastTime=useRef(0),stopTimer=useRef<ReturnType<typeof setTimeout>|null>(null),generation=useRef(0),previousSkill=useRef(skill),skillTransition=useRef(0),recordingGeneration=useRef(0),openingRequest=useRef(0),loadedLessonVersion=useRef(''),lessonCache=useRef(new Map<string,Promise<LessonView>>());
+ const playerRef=useRef<HTMLElement|null>(null),audioSectionRef=useRef<HTMLDivElement|null>(null),questionRefs=useRef<Record<string,HTMLFieldSetElement|null>>({}),draftRevision=useRef(0),draftSaveQueue=useRef<Promise<void>>(Promise.resolve()),saveDraftRef=useRef<()=>Promise<void>>(async()=>{}),preparedSkillSwitch=useRef<string|null>(null),routeGuardRef=useRef<(target:string)=>Promise<boolean>>(async()=>true),media=useRef<MediaRecorder|null>(null),audio=useRef<HTMLAudioElement|null>(null),playToken=useRef(''),heard=useRef(0),lastTime=useRef(0),stopTimer=useRef<ReturnType<typeof setTimeout>|null>(null),generation=useRef(0),previousSkill=useRef(skill),skillTransition=useRef(0),recordingGeneration=useRef(0),openingRequest=useRef(0),loadedLessonVersion=useRef(''),lessonCache=useRef(new Map<string,Promise<LessonView>>()),requestedLessonRef=useRef('');
  useEffect(()=>{onNavigationGuard?.(target=>routeGuardRef.current(target));return()=>onNavigationGuard?.(null)},[onNavigationGuard]);
  useEffect(()=>{if(screen==='catalog')window.scrollTo({top:0,behavior:'auto'});else playerRef.current?.scrollIntoView({block:'start',behavior:'auto'});},[screen,selected]);
  const refresh=async()=>{const next:Catalog=await call('/api/foundation');setCatalog(next);onCatalog?.(next)};
@@ -34,7 +34,7 @@ export function FoundationDemo({showVi=false,onEvidence,skill,sharedCatalog,onCa
  }
  useEffect(()=>{if(!sharedCatalog)void refresh().catch(e=>setError(e.message));return()=>{media.current?.stream.getTracks().forEach(t=>t.stop());if(stopTimer.current)clearTimeout(stopTimer.current)}},[]);
  useEffect(()=>()=>{if(recordingURL.startsWith('blob:'))URL.revokeObjectURL(recordingURL)},[recordingURL]);
- async function open(id:string,entry?:AcademicAttempt){
+ async function open(id:string,entry?:AcademicAttempt,currentOnly=false){
   const request=++openingRequest.current;
   setBusy(true);setOpeningId(id);setError('');
   if(attempt?.status==='started'){
@@ -45,8 +45,8 @@ export function FoundationDemo({showVi=false,onEvidence,skill,sharedCatalog,onCa
   }
   if(request!==openingRequest.current)return;
   try{
-   const existing=entry??latestAttemptForLesson(catalog?.attempts??[],id);
-   const view=await loadLesson(id,existing?.version??catalog?.version);
+   const existing=currentOnly?latestAttemptForLesson((catalog?.attempts??[]).filter(a=>a.version===catalog?.version),id):entry??latestAttemptForLesson(catalog?.attempts??[],id);
+   const view=await loadLesson(id,currentOnly?catalog?.version:existing?.version??catalog?.version);
    if(request!==openingRequest.current)return;
    setSubmitError('');setShowMissing(false);setShowAudioWarning(false);setHintSteps({});setTranscript('');setRecording(undefined);setRecordingURL('');setPlaying(false);
    audio.current?.pause();media.current?.stream.getTracks().forEach(t=>t.stop());
@@ -59,6 +59,13 @@ export function FoundationDemo({showVi=false,onEvidence,skill,sharedCatalog,onCa
   }catch(e){if(request===openingRequest.current)setError((e as Error).message)}
   finally{if(request===openingRequest.current){setBusy(false);setOpeningId('')}}
  }
+ useEffect(()=>{
+  if(!requestedLesson||!catalog||requestedLessonRef.current===requestedLesson.requestId)return;
+  requestedLessonRef.current=requestedLesson.requestId;
+  const target=catalog.lessons.find(l=>l.id===requestedLesson.lessonId);
+  if(!target){setError('Suggested lesson is unavailable in the current curriculum.');onRequestedLessonHandled?.(requestedLesson.requestId);return}
+  void open(target.id,undefined,true).finally(()=>onRequestedLessonHandled?.(requestedLesson.requestId));
+ },[requestedLesson?.requestId,catalog?.version]);
  async function newAttempt(revision=false){
   if(!lesson)return;setBusy(true);setError('');setSubmitError('');setShowMissing(false);setShowAudioWarning(false);setHintSteps({});
   try{
