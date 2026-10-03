@@ -671,3 +671,25 @@ Candidate remains Curriculum 1.6.1 / 59 lessons / 499 activities and changes exa
 Final CI at the exact checkpoint PASS: hotfix validation, existing academic/content regressions, TypeScript and production build.
 
 Next gate: authenticated Preview against live Curriculum 1.6.0. Require Add 0 / Update 1 / Skip 58 / Conflict 0 and the single Update row exactly GRA-A2-16. No Site code deployment is needed. Stop before Import for owner authorization.
+
+
+## 2026-10-03 — Curriculum 1.6.1 authenticated Preview PASS
+
+Production remains Sites v30 source `03f642124e3d84ee584649430e4ba4c446f6b07b`, Curriculum 1.6.0 / 59 lessons / 499 activities.
+
+Authenticated Preview of the exact approved 1.6.1 hotfix candidate PASS:
+- raw SHA-256 MATCH
+- canonical SHA-256 MATCH
+- Add 0 / Update 1 / Skip 58 / Conflict 0
+- sole Update exactly GRA-A2-16
+- objective and EN/VI explanations consistently allow who or that for people in defining clauses
+- person + that example present
+- GRA-A2-16-Q5 accepted answers exactly [who, that]
+- Q5 feedback explains both are valid
+- Q1-Q4 and Q6-Q10 unchanged
+- all lesson/activity IDs and activity order preserved
+- no deletions, conflicts or schema warnings
+
+Import confirmation remained unticked. No import, Site deployment, learner-data mutation, historical regrading or D1 migration/reset occurred. PR #32 remains unmerged.
+
+Next gate: separate owner-authorized controlled Curriculum 1.6.1 import. No new Site code deployment is required. After import verify production 1.6.1 / 59 / 499 and retest GRA-A2-16-Q5 with both who and that.
