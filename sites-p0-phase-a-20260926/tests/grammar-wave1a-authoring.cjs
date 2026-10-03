@@ -40,6 +40,12 @@ for(const lesson of packet.lessons){
   }
  }
 }
+const q207=packet.lessons.find(l=>l.id==='GRA-A2-07').activities.find(q=>q.id==='GRA-A2-07-Q2');
+assert.ok(q207.prompt.includes('including the subject'));
+assert.deepEqual(q207.answer.accepted_answers,['we are studying',"we're studying",'we’re studying']);
+const q209=packet.lessons.find(l=>l.id==='GRA-A2-09').activities.find(q=>q.id==='GRA-A2-09-Q7');
+assert.ok(q209.prompt.includes('including the subject'));
+assert.deepEqual(q209.answer.accepted_answers,['he has never eaten',"he's never eaten",'he’s never eaten']);
 assert.equal(ids.size,20);
 assert.deepEqual(packet.review_requirements.verdicts,['PASS','REVISE','BLOCK']);
 assert.equal(packet.review_requirements.item_count,20);
