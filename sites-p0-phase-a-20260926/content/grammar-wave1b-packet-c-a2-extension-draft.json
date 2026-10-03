@@ -564,14 +564,15 @@
             }
           ],
           "answer": {
-            "correct_option_id": "A realistic future result can use will + base verb come."
+            "correct_option_id": "A"
           },
           "feedback": {
-            "explanation_en": [
-              "grammar.conditionals"
-            ]
+            "explanation_en": "A realistic future result can use will + the base verb come."
           },
-          "evidence_weight": 1
+          "evidence_weight": 1,
+          "skill_tags": [
+            "grammar.conditionals"
+          ]
         },
         {
           "id": "GRA-A2-14-Q7",
