@@ -5,8 +5,9 @@ const path=require('node:path');
 const ts=require('typescript');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'.sites-runtime/practice-progress-test');
 fs.mkdirSync(path.join(out,'domain'),{recursive:true});fs.mkdirSync(path.join(out,'content'),{recursive:true});
-for(const name of ['academic','practice-progress'])fs.writeFileSync(path.join(out,'domain',name+'.js'),ts.transpileModule(fs.readFileSync(path.join(root,'domain',name+'.ts'),'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,esModuleInterop:true}}).outputText);
+for(const name of ['academic','adaptive-recommendations','practice-progress'])fs.writeFileSync(path.join(out,'domain',name+'.js'),ts.transpileModule(fs.readFileSync(path.join(root,'domain',name+'.ts'),'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,esModuleInterop:true}}).outputText);
 fs.copyFileSync(path.join(root,'content/academic-seed-v1.json'),path.join(out,'content/academic-seed-v1.json'));
+fs.copyFileSync(path.join(root,'content/adaptive-map-v1.json'),path.join(out,'content/adaptive-map-v1.json'));
 fs.writeFileSync(path.join(out,'package.json'),'{}');
 const {derivePracticeProgress}=require(path.join(out,'domain/practice-progress.js'));
 const pkg={id:'approved-package',version:'1.4.0',at:100,source:{lessons:[{id:'GRA-A1-01',module:'grammar',title:'Be and there is',activities:[{id:'GRA-A1-01-Q1',skill_tags:['grammar.be_forms','grammar.there_is_are']},{id:'GRA-A1-01-Q2',skill_tags:['grammar.be_forms']}]}]}};
@@ -21,6 +22,7 @@ assert.deepEqual(value.tags.map(x=>[x.tag,x.correct,x.total,x.uniqueQuestions]),
 assert.deepEqual(value.repeatedMistakes.map(x=>[x.questionId,x.version,x.incorrect]),[['GRA-A1-01-Q1','1.4.0',2]]);
 assert.deepEqual(value.writing,{foundation:{pending:1,approved:0},legacy:{submitted:2,approved:1,pending:1}});
 assert.equal(value.suggestions[0].lessonId,'GRA-A1-01');assert.match(value.suggestions[0].reason,/2\/4 correct/);
+assert.equal(value.adaptiveGrammar.currentContentVersion,'1.4.0');assert.equal(value.adaptiveGrammar.concepts.find(x=>x.conceptId==='be-forms').state,'needs_practice');
 assert.equal(JSON.stringify({attempts,submissions,evaluations}),snapshot,'projection must preserve saved records');
 const none=derivePracticeProgress([],[],[],[]);assert.equal(none.overall.accuracyPercent,null);assert.deepEqual(none.suggestions,[]);assert.deepEqual(none.tags,[]);
 const onlyWriting=derivePracticeProgress([{...attempt('a8','1.4.0',false),status:'approved',results:[{id:'WRI-A1-01-Q1',correct:null,tags:['writing.task_understanding']}]}],[],[],[]);
