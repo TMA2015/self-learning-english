@@ -284,3 +284,33 @@ For future NotebookLM review rounds:
 - when the NotebookLM prompt is short, provide it directly in the chat for copy/paste;
 - use a separate prompt/instruction file only when the prompt is long or needs durable structured detail;
 - continue separating permanent baseline Notebook sources from temporary per-batch review sources.
+
+
+## 2026-10-03 — Grammar Wave 1A independent review reconciliation
+
+NotebookLM audit result:
+- 20/20 activities reviewed.
+- Overall verdict: REVISIONS_REQUIRED.
+- 18 PASS / 2 REVISION_REQUIRED / 0 BLOCK.
+- Revision items: GRA-A2-07-Q2 and GRA-A2-09-Q7, both for missing contracted variants.
+
+Reconciliation decision:
+- Do not add bare contracted fragments after a printed subject, because literal insertion would yield invalid spacing such as `We 're...` or `He 's...`.
+- Instead move the subject into the missing phrase and accept both full and contracted forms:
+  - GRA-A2-07-Q2: `we are studying`, `we're studying`, `we’re studying`
+  - GRA-A2-09-Q7: `he has never eaten`, `he's never eaten`, `he’s never eaten`
+- Feedback text updated accordingly.
+- NotebookLM TXT mirror refreshed.
+- Regression assertions added to lock these variants.
+
+GitHub:
+- Academic branch: `academic/grammar-wave1a-a2-foundations-20261003`
+- Reconciled code/test checkpoint: `68403275611a58ffe0594ad0cb00d22229bdfa81`
+- Grammar Wave 1A Authoring QA: PASS.
+- Existing academic/content regressions in the same gate: PASS.
+- Draft PR #28 remains review-only and unmerged.
+
+Next mandatory academic gate:
+- targeted NotebookLM recheck of only GRA-A2-07-Q2 and GRA-A2-09-Q7;
+- if both PASS, close Wave 1A academic review and proceed to cumulative candidate assembly planning;
+- no import/deploy authorization yet.
