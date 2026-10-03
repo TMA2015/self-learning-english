@@ -30,8 +30,8 @@ export const tagMap:Record<string,string>={
 };
 export const skillFor=(module:string)=>module[0].toUpperCase()+module.slice(1) as Skill;
 const nonempty=(s:unknown,max=12000)=>typeof s==='string'&&s.trim().length>0&&s.length<=max;
-const strings=(a:unknown)=>Array.isArray(a)&&a.length<=100&&a.every(x=>nonempty(x));
-const MAX_CURRICULUM_LESSONS=60;
+const strings=(a:unknown,maxItems=100)=>Array.isArray(a)&&a.length<=maxItems&&a.every(x=>nonempty(x));
+export const MAX_CURRICULUM_LESSONS=150;
 const moduleForPrefix:Record<string,string>={GRA:'grammar',VOC:'vocabulary',REA:'reading',LIS:'listening',WRI:'writing',SPE:'speaking',PRO:'pronunciation'};
 export function validateSeed(raw:unknown):string[]{try{return validateShape(raw)}catch{return ['Malformed nested content fields. No changes made.']}}
 function validateShape(raw:unknown):string[]{
@@ -47,11 +47,11 @@ function validateShape(raw:unknown):string[]{
  if(s.package_id!==seed.package_id)errors.push('This bounded importer accepts only the Foundation seed package ID.');
  if(!/^\d+\.\d+\.\d+$/.test(s.schema_version??''))errors.push('Use a numeric major.minor.patch content version.');
  if(s.language!=='en')errors.push('Default learning content must be English.');
- if(s.course?.id!==seed.course.id||!strings(s.course?.sequence)||s.course.sequence.length!==(s.lessons?.length??0))errors.push('Course sequence must list each imported lesson once.');
+ if(s.course?.id!==seed.course.id||!strings(s.course?.sequence,MAX_CURRICULUM_LESSONS)||s.course.sequence.length!==(s.lessons?.length??0))errors.push('Course sequence must list each imported lesson once.');
  if(!Array.isArray(s.lessons)||s.lessons.length<seed.lessons.length||s.lessons.length>MAX_CURRICULUM_LESSONS)return [...errors,`Expected between ${seed.lessons.length} and ${MAX_CURRICULUM_LESSONS} lessons.`];
  const ids=new Set<string>(),activityIds=new Set<string>();
  for(const l of s.lessons){
-  if(!l||typeof l.id!=='string'||!/^(GRA|VOC|REA|LIS|WRI|SPE|PRO)-(A1|A2|B1|B2)-\d{2}$/.test(l.id)||moduleForPrefix[l.id.slice(0,3)]!==l.module||ids.has(l.id)){errors.push('Invalid/duplicate lesson ID or mismatched domain.');continue}ids.add(l.id);
+  if(!l||typeof l.id!=='string'||!/^(GRA|VOC|REA|LIS|WRI|SPE|PRO)-(A1|A2|B1|B2)-\d{2,3}$/.test(l.id)||moduleForPrefix[l.id.slice(0,3)]!==l.module||ids.has(l.id)){errors.push('Invalid/duplicate lesson ID or mismatched domain.');continue}ids.add(l.id);
   if(!['A1','A2','B1','B2'].includes(l.cefr_target)||!nonempty(l.title,180)||!strings(l.objectives)||!nonempty(l.explanation?.en)||!Array.isArray(l.examples)||!l.examples.every(x=>nonempty(x)))errors.push(`${l.id}: invalid lesson metadata.`);
   if(!Array.isArray(l.activities)||!l.activities.length||l.activities.length>24){errors.push(`${l.id}: invalid activities.`);continue}
   for(const q of l.activities){
