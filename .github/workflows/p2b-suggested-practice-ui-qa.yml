@@ -30,6 +30,6 @@ jobs:
       - name: Version-aware navigation regressions
         run: node tests/version-aware-attempt-ux.cjs && node tests/attempt-navigation-ui.cjs && node tests/ux-v20-lesson-navigation.cjs && node tests/v20-route-draft-safety.cjs
       - name: Writing and course regressions
-        run: node tests/writing-nav-save-feedback.cjs && node tests/writing-tutor.cjs && node tests/course-v21-p1.cjs
+        run: node tests/writing-nav-save-feedback.cjs && node tests/run.cjs && node tests/course-v21-p1.cjs
       - name: TypeScript and production build
         run: pnpm exec tsc --noEmit --incremental false && pnpm run build
