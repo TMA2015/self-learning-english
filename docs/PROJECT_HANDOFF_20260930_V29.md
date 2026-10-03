@@ -545,3 +545,27 @@ Expected future authenticated Preview: Add 14 / Update 0 / Skip 45 / Conflict 0.
 Important: production Site v29 still lacks the newly approved fine-grained Grammar source tags. Therefore the next gate is a controlled CODE-ONLY content-compatibility deployment that extends tagMap while keeping Curriculum 1.5.0 / 45 / 359 unchanged. Only after that deployment should Work run authenticated Preview of the exact PR #31 candidate. Stop before Import.
 
 The earlier Draft PR #29 two-lesson 1.6.0 pilot candidate has been marked superseded and closed to prevent accidental import.
+
+
+## 2026-10-03 — PR #31 compatibility guard corrected / ALL CI GREEN
+
+Work correctly stopped because the old Batch04 compatibility test expected exactly 47 runtime tag mappings. That count guard was outdated after the academically approved Grammar A1/A2 expansion added 13 new mappings.
+
+Fix applied on PR #31 without weakening protection:
+- all 44 frozen historical mappings are still checked for exact tag -> slug equality;
+- all original 3 Batch04 additions are still checked exactly;
+- all 13 approved Grammar A1/A2 additions are checked exactly;
+- the obsolete fixed-count check was replaced by a closed-world exact-key-set assertion, so any unreviewed addition/removal still fails;
+- importer validation exercises every reviewed additive mapping;
+- an unknown/unreviewed tag is still explicitly rejected.
+
+New approved checkpoint: `281fcedbb9d059282187ac5dce5f133d3885c6e0`.
+
+At this exact checkpoint both required workflows PASS:
+- Curriculum 1.3 / Batch04 Compatibility QA — PASS
+- Curriculum 1.6.0 Grammar A1/A2 Milestone QA — PASS
+Both production-build steps PASS.
+
+No Site deployment, Curriculum import, D1 migration/reset or learner-data operation occurred. Production remains Sites v29 / Curriculum 1.5.0 / 45 lessons / 359 activities.
+
+Use this new checkpoint, not `16c504e27588f6bd6d375c1ad803e0773d6e1c89`, for the next controlled Work run: code-only compatibility deployment first, then authenticated Preview only, then STOP before Import.
