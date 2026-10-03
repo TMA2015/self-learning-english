@@ -556,7 +556,7 @@
         {
           "id": "GRA-A1-10-Q6",
           "type": "short_answer",
-          "prompt": "Lan says, “That red bike belongs to me. It is ___.”",
+          "prompt": "Write only the missing word: Lan says, “That red bike belongs to me. It is ___.”",
           "answer": {
             "accepted_answers": [
               "mine"
@@ -1173,7 +1173,7 @@
             "correct_option_id": "C"
           },
           "feedback": {
-            "explanation_en": "Use in with a month."
+            "explanation_en": "Use in with a month name such as August."
           },
           "skill_tags": [
             "grammar.prepositions_time"
@@ -1196,7 +1196,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "Use in with a year."
+            "explanation_en": "Use in with a year such as 2026."
           },
           "skill_tags": [
             "grammar.prepositions_time"
