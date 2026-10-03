@@ -22,7 +22,7 @@ assert.deepEqual(value.tags.map(x=>[x.tag,x.correct,x.total,x.uniqueQuestions]),
 assert.deepEqual(value.repeatedMistakes.map(x=>[x.questionId,x.version,x.incorrect]),[['GRA-A1-01-Q1','1.4.0',2]]);
 assert.deepEqual(value.writing,{foundation:{pending:1,approved:0},legacy:{submitted:2,approved:1,pending:1}});
 assert.equal(value.suggestions[0].lessonId,'GRA-A1-01');assert.match(value.suggestions[0].reason,/2\/4 correct/);
-assert.equal(value.adaptiveGrammar.currentContentVersion,'1.4.0');assert.equal(value.adaptiveGrammar.concepts.find(x=>x.conceptId==='be-forms').state,'needs_practice');
+assert.equal(value.adaptiveGrammar.currentContentVersion,'1.4.0');assert.equal(value.adaptiveGrammar.concepts.find(x=>x.conceptId==='be-forms').state,'not_enough_evidence','P2B must not infer weakness from one distinct current-version question');
 assert.equal(JSON.stringify({attempts,submissions,evaluations}),snapshot,'projection must preserve saved records');
 const none=derivePracticeProgress([],[],[],[]);assert.equal(none.overall.accuracyPercent,null);assert.deepEqual(none.suggestions,[]);assert.deepEqual(none.tags,[]);
 const onlyWriting=derivePracticeProgress([{...attempt('a8','1.4.0',false),status:'approved',results:[{id:'WRI-A1-01-Q1',correct:null,tags:['writing.task_understanding']}]}],[],[],[]);
