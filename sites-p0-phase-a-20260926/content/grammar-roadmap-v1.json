@@ -1,0 +1,608 @@
+{
+  "format": "self-learning-english.grammar-roadmap",
+  "schema_version": 1,
+  "status": "planning_metadata_not_imported",
+  "production_reference": {
+    "sites_version": "v29",
+    "curriculum_version": "1.5.0",
+    "total_lessons": 45,
+    "total_activities": 359,
+    "grammar_lessons_current": 15,
+    "grammar_activities_current_approx": 158,
+    "note": "Grammar activity count is reconstructed from reviewed cumulative releases: 116 through 1.3.0, 30 in the three Batch04 Grammar lessons, plus 12 Batch05 appended activities."
+  },
+  "target": {
+    "grammar_lessons": 40,
+    "distribution": {
+      "A1": 12,
+      "A2": 16,
+      "B1": 12
+    },
+    "principle": "Working architecture target, not a quota or CEFR-completion percentage. Add lessons only when they fill a real concept/dependency gap and can be used by the adaptive layer."
+  },
+  "rules": {
+    "stable_ids": true,
+    "old_versions_immutable": true,
+    "prerequisite_graph_advisory": true,
+    "cefr_targets_not_learner_certification": true,
+    "runtime_ai_generation_required": false,
+    "independent_academic_review_required": true
+  },
+  "lessons": [
+    {
+      "id": "GRA-A1-01",
+      "cefr": "A1",
+      "status": "current",
+      "title": "Be: am, is and are",
+      "prerequisites": [],
+      "concepts": [
+        "be-forms",
+        "subject-verb-agreement"
+      ]
+    },
+    {
+      "id": "GRA-A1-02",
+      "cefr": "A1",
+      "status": "current",
+      "title": "Pronouns and possessive adjectives",
+      "prerequisites": [],
+      "concepts": [
+        "subject-pronouns",
+        "possessive-adjectives"
+      ]
+    },
+    {
+      "id": "GRA-A1-03",
+      "cefr": "A1",
+      "status": "current",
+      "title": "Present simple: everyday routines",
+      "prerequisites": [
+        "GRA-A1-01",
+        "GRA-A1-02"
+      ],
+      "concepts": [
+        "present-simple",
+        "frequency",
+        "subject-verb-agreement"
+      ]
+    },
+    {
+      "id": "GRA-A1-04",
+      "cefr": "A1",
+      "status": "current",
+      "title": "A, an and regular plurals",
+      "prerequisites": [
+        "GRA-A1-01"
+      ],
+      "concepts": [
+        "indefinite-articles",
+        "regular-plurals"
+      ]
+    },
+    {
+      "id": "GRA-A1-05",
+      "cefr": "A1",
+      "status": "current",
+      "title": "There is and there are",
+      "prerequisites": [
+        "GRA-A1-01",
+        "GRA-A1-04"
+      ],
+      "concepts": [
+        "existential-there",
+        "agreement"
+      ]
+    },
+    {
+      "id": "GRA-A1-06",
+      "cefr": "A1",
+      "status": "current",
+      "title": "Prepositions of place",
+      "prerequisites": [
+        "GRA-A1-05"
+      ],
+      "concepts": [
+        "place-prepositions"
+      ]
+    },
+    {
+      "id": "GRA-A1-07",
+      "cefr": "A1",
+      "status": "current",
+      "title": "Can, can't and basic requests",
+      "prerequisites": [
+        "GRA-A1-01"
+      ],
+      "concepts": [
+        "can-ability",
+        "can-requests"
+      ]
+    },
+    {
+      "id": "GRA-A1-08",
+      "cefr": "A1",
+      "status": "current",
+      "title": "Question words and basic question order",
+      "prerequisites": [
+        "GRA-A1-01",
+        "GRA-A1-03"
+      ],
+      "concepts": [
+        "question-words",
+        "question-formation"
+      ]
+    },
+    {
+      "id": "GRA-A1-09",
+      "cefr": "A1",
+      "status": "approved_not_imported",
+      "title": "This, that, these and those",
+      "prerequisites": [
+        "GRA-A1-04"
+      ],
+      "concepts": [
+        "demonstratives",
+        "singular-plural-reference"
+      ],
+      "academic_review": "PASS"
+    },
+    {
+      "id": "GRA-A1-10",
+      "cefr": "A1",
+      "status": "approved_not_imported",
+      "title": "Object pronouns and possessive pronouns",
+      "prerequisites": [
+        "GRA-A1-02"
+      ],
+      "concepts": [
+        "object-pronouns",
+        "possessive-pronouns"
+      ],
+      "academic_review": "PASS"
+    },
+    {
+      "id": "GRA-A1-11",
+      "cefr": "A1",
+      "status": "approved_not_imported",
+      "title": "Imperatives and everyday instructions",
+      "prerequisites": [
+        "GRA-A1-01"
+      ],
+      "concepts": [
+        "imperatives",
+        "instructions"
+      ],
+      "academic_review": "PASS"
+    },
+    {
+      "id": "GRA-A1-12",
+      "cefr": "A1",
+      "status": "approved_not_imported",
+      "title": "Prepositions of time: at, on and in",
+      "prerequisites": [
+        "GRA-A1-03"
+      ],
+      "concepts": [
+        "time-prepositions"
+      ],
+      "academic_review": "PASS"
+    },
+    {
+      "id": "GRA-A2-01",
+      "cefr": "A2",
+      "status": "current",
+      "title": "Present simple or present continuous?",
+      "prerequisites": [
+        "GRA-A1-03",
+        "GRA-A2-07"
+      ],
+      "concepts": [
+        "present-simple",
+        "present-continuous",
+        "stative-verbs"
+      ]
+    },
+    {
+      "id": "GRA-A2-02",
+      "cefr": "A2",
+      "status": "current",
+      "title": "Past simple forms, negatives and questions",
+      "prerequisites": [
+        "GRA-A1-01",
+        "GRA-A1-03"
+      ],
+      "concepts": [
+        "past-simple",
+        "past-be",
+        "past-questions"
+      ]
+    },
+    {
+      "id": "GRA-A2-03",
+      "cefr": "A2",
+      "status": "current",
+      "title": "Countability, some/any, much/many",
+      "prerequisites": [
+        "GRA-A1-04"
+      ],
+      "concepts": [
+        "countability",
+        "quantifiers"
+      ]
+    },
+    {
+      "id": "GRA-A2-04",
+      "cefr": "A2",
+      "status": "current",
+      "title": "Comparatives and superlatives",
+      "prerequisites": [
+        "GRA-A1-01"
+      ],
+      "concepts": [
+        "comparatives",
+        "superlatives"
+      ]
+    },
+    {
+      "id": "GRA-A2-05",
+      "cefr": "A2",
+      "status": "current",
+      "title": "Future intentions with be going to",
+      "prerequisites": [
+        "GRA-A1-01",
+        "GRA-A1-03"
+      ],
+      "concepts": [
+        "going-to-future",
+        "future-intentions"
+      ]
+    },
+    {
+      "id": "GRA-A2-06",
+      "cefr": "A2",
+      "status": "current",
+      "title": "Rules: must, must not and have to",
+      "prerequisites": [
+        "GRA-A1-07"
+      ],
+      "concepts": [
+        "must",
+        "have-to",
+        "prohibition",
+        "lack-of-obligation"
+      ]
+    },
+    {
+      "id": "GRA-A2-07",
+      "cefr": "A2",
+      "status": "approved_not_imported",
+      "priority": "foundation_gap",
+      "title": "Present continuous: form and use",
+      "prerequisites": [
+        "GRA-A1-01"
+      ],
+      "concepts": [
+        "present-continuous",
+        "verb-ing-spelling",
+        "temporary-actions"
+      ],
+      "academic_review": "PASS"
+    },
+    {
+      "id": "GRA-A2-08",
+      "cefr": "A2",
+      "status": "approved_not_imported",
+      "title": "Past continuous and interrupted actions",
+      "prerequisites": [
+        "GRA-A2-02",
+        "GRA-A2-07"
+      ],
+      "concepts": [
+        "past-continuous",
+        "past-simple-vs-continuous"
+      ],
+      "academic_review": "PASS"
+    },
+    {
+      "id": "GRA-A2-09",
+      "cefr": "A2",
+      "status": "approved_not_imported",
+      "priority": "foundation_gap",
+      "title": "Present perfect: experiences with ever and never",
+      "prerequisites": [
+        "GRA-A2-02"
+      ],
+      "concepts": [
+        "present-perfect",
+        "ever-never",
+        "past-participles"
+      ],
+      "academic_review": "PASS"
+    },
+    {
+      "id": "GRA-A2-10",
+      "cefr": "A2",
+      "status": "approved_not_imported",
+      "title": "Present perfect: just, already and yet",
+      "prerequisites": [
+        "GRA-A2-09"
+      ],
+      "concepts": [
+        "present-perfect",
+        "just-already-yet",
+        "unfinished-time"
+      ],
+      "academic_review": "PASS"
+    },
+    {
+      "id": "GRA-A2-11",
+      "cefr": "A2",
+      "status": "approved_not_imported",
+      "title": "Choosing future forms: will, going to and present continuous",
+      "prerequisites": [
+        "GRA-A2-05",
+        "GRA-A2-07"
+      ],
+      "concepts": [
+        "will-future",
+        "going-to-future",
+        "present-continuous-future"
+      ],
+      "academic_review": "PASS"
+    },
+    {
+      "id": "GRA-A2-12",
+      "cefr": "A2",
+      "status": "approved_not_imported",
+      "title": "Advice with should and shouldn't",
+      "prerequisites": [
+        "GRA-A1-07"
+      ],
+      "concepts": [
+        "should-advice"
+      ],
+      "academic_review": "PASS"
+    },
+    {
+      "id": "GRA-A2-13",
+      "cefr": "A2",
+      "status": "approved_not_imported",
+      "title": "Possibility with may, might and could",
+      "prerequisites": [
+        "GRA-A1-07"
+      ],
+      "concepts": [
+        "modal-possibility"
+      ],
+      "academic_review": "PASS"
+    },
+    {
+      "id": "GRA-A2-14",
+      "cefr": "A2",
+      "status": "approved_not_imported",
+      "title": "Zero and first conditionals",
+      "prerequisites": [
+        "GRA-A1-03",
+        "GRA-A2-11"
+      ],
+      "concepts": [
+        "zero-conditional",
+        "first-conditional"
+      ],
+      "academic_review": "PASS"
+    },
+    {
+      "id": "GRA-A2-15",
+      "cefr": "A2",
+      "status": "approved_not_imported",
+      "title": "Common verb patterns: to-infinitive and -ing",
+      "prerequisites": [
+        "GRA-A1-03"
+      ],
+      "concepts": [
+        "verb-patterns",
+        "to-infinitive",
+        "gerund-basic"
+      ],
+      "academic_review": "PASS"
+    },
+    {
+      "id": "GRA-A2-16",
+      "cefr": "A2",
+      "status": "approved_not_imported",
+      "title": "Defining relative clauses: who, which and that",
+      "prerequisites": [
+        "GRA-A1-08"
+      ],
+      "concepts": [
+        "defining-relative-clauses"
+      ],
+      "academic_review": "PASS"
+    },
+    {
+      "id": "GRA-B1-01",
+      "cefr": "B1",
+      "status": "current",
+      "title": "Past simple and present perfect",
+      "prerequisites": [
+        "GRA-A2-02",
+        "GRA-A2-09",
+        "GRA-A2-10"
+      ],
+      "concepts": [
+        "past-simple",
+        "present-perfect",
+        "finished-vs-unfinished-time"
+      ]
+    },
+    {
+      "id": "GRA-B1-02",
+      "cefr": "B1",
+      "status": "planned",
+      "title": "Present perfect simple or continuous?",
+      "prerequisites": [
+        "GRA-A2-09",
+        "GRA-A2-10",
+        "GRA-A2-07"
+      ],
+      "concepts": [
+        "present-perfect-simple",
+        "present-perfect-continuous"
+      ]
+    },
+    {
+      "id": "GRA-B1-03",
+      "cefr": "B1",
+      "status": "planned",
+      "title": "Past perfect and narrative order",
+      "prerequisites": [
+        "GRA-A2-02",
+        "GRA-A2-08"
+      ],
+      "concepts": [
+        "past-perfect",
+        "narrative-order"
+      ]
+    },
+    {
+      "id": "GRA-B1-04",
+      "cefr": "B1",
+      "status": "planned",
+      "title": "Past habits with used to and would",
+      "prerequisites": [
+        "GRA-A2-02"
+      ],
+      "concepts": [
+        "used-to",
+        "past-habits"
+      ]
+    },
+    {
+      "id": "GRA-B1-05",
+      "cefr": "B1",
+      "status": "planned",
+      "title": "Modal deduction: must, might and can't",
+      "prerequisites": [
+        "GRA-A2-13",
+        "GRA-A2-06"
+      ],
+      "concepts": [
+        "modal-deduction"
+      ]
+    },
+    {
+      "id": "GRA-B1-06",
+      "cefr": "B1",
+      "status": "planned",
+      "title": "Second conditional",
+      "prerequisites": [
+        "GRA-A2-14"
+      ],
+      "concepts": [
+        "second-conditional",
+        "hypothetical-situations"
+      ]
+    },
+    {
+      "id": "GRA-B1-07",
+      "cefr": "B1",
+      "status": "planned",
+      "title": "Wish and if only for present situations",
+      "prerequisites": [
+        "GRA-B1-06"
+      ],
+      "concepts": [
+        "wish-present",
+        "if-only"
+      ]
+    },
+    {
+      "id": "GRA-B1-08",
+      "cefr": "B1",
+      "status": "planned",
+      "title": "Passive voice in present and past",
+      "prerequisites": [
+        "GRA-A2-02",
+        "GRA-A1-01"
+      ],
+      "concepts": [
+        "passive-present",
+        "passive-past"
+      ]
+    },
+    {
+      "id": "GRA-B1-09",
+      "cefr": "B1",
+      "status": "planned",
+      "title": "Reported statements and questions",
+      "prerequisites": [
+        "GRA-A2-02",
+        "GRA-A1-08"
+      ],
+      "concepts": [
+        "reported-speech",
+        "reported-questions"
+      ]
+    },
+    {
+      "id": "GRA-B1-10",
+      "cefr": "B1",
+      "status": "planned",
+      "title": "Defining and non-defining relative clauses",
+      "prerequisites": [
+        "GRA-A2-16"
+      ],
+      "concepts": [
+        "relative-clauses",
+        "non-defining-relative-clauses"
+      ]
+    },
+    {
+      "id": "GRA-B1-11",
+      "cefr": "B1",
+      "status": "planned",
+      "title": "Gerunds and infinitives after common verbs",
+      "prerequisites": [
+        "GRA-A2-15"
+      ],
+      "concepts": [
+        "gerund-vs-infinitive",
+        "verb-patterns"
+      ]
+    },
+    {
+      "id": "GRA-B1-12",
+      "cefr": "B1",
+      "status": "planned",
+      "title": "Indirect questions and question tags",
+      "prerequisites": [
+        "GRA-A1-08"
+      ],
+      "concepts": [
+        "indirect-questions",
+        "question-tags"
+      ]
+    }
+  ],
+  "first_expansion_wave": {
+    "status": "completed_academic_review",
+    "approved_lessons": 14,
+    "lesson_ids": [
+      "GRA-A1-09",
+      "GRA-A1-10",
+      "GRA-A1-11",
+      "GRA-A1-12",
+      "GRA-A2-07",
+      "GRA-A2-08",
+      "GRA-A2-09",
+      "GRA-A2-10",
+      "GRA-A2-11",
+      "GRA-A2-12",
+      "GRA-A2-13",
+      "GRA-A2-14",
+      "GRA-A2-15",
+      "GRA-A2-16"
+    ],
+    "note": "Wave 1A (2 lessons) plus Wave 1B (12 lessons) are academically approved. Production remains Curriculum 1.5.0 until a cumulative release is previewed and explicitly imported."
+  }
+}

@@ -1,0 +1,38 @@
+name: Curriculum 1.6.0 Grammar A1/A2 Milestone QA
+on:
+  pull_request:
+    paths:
+      - 'sites-p0-phase-a-20260926/domain/academic.ts'
+      - 'sites-p0-phase-a-20260926/content/releases/curriculum-1.5.0-production-import.json'
+      - 'sites-p0-phase-a-20260926/content/batches/grammar-a1-a2-milestone.json'
+      - 'sites-p0-phase-a-20260926/content/curriculum-1.6.0-candidate.json'
+      - 'sites-p0-phase-a-20260926/content/grammar-roadmap-v1.json'
+      - 'sites-p0-phase-a-20260926/content/adaptive-map-v1.json'
+      - 'sites-p0-phase-a-20260926/tests/curriculum-160-grammar-a1a2.cjs'
+      - '.github/workflows/curriculum-160-grammar-a1a2-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: pnpm install --frozen-lockfile
+      - name: Curriculum 1.6.0 Grammar A1/A2 candidate
+        run: node tests/curriculum-160-grammar-a1a2.cjs
+      - name: Existing academic/content regressions
+        run: node tests/academic.cjs && node tests/content-quality.cjs && node tests/curriculum.cjs && node tests/run.cjs
+      - name: Version-aware and learning-evidence regressions
+        run: node tests/version-aware-attempt-ux.cjs && node tests/practice-progress-p2a.cjs && node tests/course-v21-p1.cjs
+      - name: TypeScript and production build
+        run: pnpm exec tsc --noEmit --incremental false && pnpm run build

@@ -18,6 +18,8 @@ export const tagMap:Record<string,string>={
  'grammar.be_forms':'be-forms','grammar.pronouns':'pronouns','grammar.possessives':'possessives','grammar.articles':'articles','grammar.plural_nouns':'plural-nouns','grammar.there_is_are':'there-is-are','grammar.prepositions_place':'place-prepositions',
  'grammar.modals_can':'modals-can','grammar.countability':'countability','grammar.quantifiers':'quantifiers','grammar.comparison':'comparison',
  'grammar.question_formation':'question-formation','grammar.future_plans':'future-plans','grammar.modals_obligation':'modals-obligation',
+ 'grammar.demonstratives':'demonstratives','grammar.object_pronouns':'object-pronouns','grammar.possessive_pronouns':'possessive-pronouns','grammar.imperatives':'imperatives','grammar.instructions':'instructions','grammar.prepositions_time':'time-prepositions',
+ 'grammar.past_continuous':'past-continuous','grammar.will_future':'will-future','grammar.should_advice':'should-advice','grammar.modal_possibility':'modal-possibility','grammar.conditionals':'conditionals','grammar.verb_patterns':'verb-patterns','grammar.relative_clauses':'relative-clauses',
  'grammar.present_simple':'tense-and-aspect','grammar.present_continuous':'tense-and-aspect','grammar.subject_verb_agreement':'subject-verb-agreement','grammar.stative_verbs':'tense-and-aspect','grammar.past_simple':'tense-and-aspect','grammar.present_perfect':'tense-and-aspect',
  'vocabulary.collocations':'collocation','vocabulary.meaning_in_context':'meaning-in-context','vocabulary.word_formation':'word-formation',
  'reading.gist':'gist','reading.detail':'detail','reading.inference':'inference','reading.author_purpose':'inference','reading.vocabulary_in_context':'vocabulary-in-context',

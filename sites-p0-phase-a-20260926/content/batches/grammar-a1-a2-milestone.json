@@ -1,0 +1,4723 @@
+{
+  "format": "ai-english-tutor.curriculum-batch",
+  "schema_version": 1,
+  "batch_id": "GRAMMAR-A1-A2-MILESTONE-20261003",
+  "base_version": "1.5.0",
+  "target_version": "1.6.0",
+  "status": "academically_reviewed_candidate",
+  "metadata": {
+    "status": "grammar_a1_a2_milestone_candidate_pending_authenticated_preview_and_import_approval",
+    "course_title": "English Foundation · A1–B1 developing curriculum",
+    "course_description": "Original self-study units with A1 foundations, A2 extensions and B1 samples across seven domains. CEFR values are lesson targets, not certified learner estimates.",
+    "curriculum_principle": "An expanding, independently authored curriculum with age-appropriate contexts and CEFR-targeted language use. Coverage is partial at all levels; current labels are curricular targets, not learner certification."
+  },
+  "insert_after": [
+    {
+      "after": "GRA-A1-08",
+      "ids": [
+        "GRA-A1-09",
+        "GRA-A1-10",
+        "GRA-A1-11",
+        "GRA-A1-12"
+      ]
+    },
+    {
+      "after": "WRI-A1-04",
+      "ids": [
+        "GRA-A2-07"
+      ]
+    },
+    {
+      "after": "GRA-A2-02",
+      "ids": [
+        "GRA-A2-08",
+        "GRA-A2-09",
+        "GRA-A2-10"
+      ]
+    },
+    {
+      "after": "GRA-A2-05",
+      "ids": [
+        "GRA-A2-11"
+      ]
+    },
+    {
+      "after": "GRA-A2-06",
+      "ids": [
+        "GRA-A2-12",
+        "GRA-A2-13",
+        "GRA-A2-14",
+        "GRA-A2-15",
+        "GRA-A2-16"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "GRA-A1-09",
+      "module": "grammar",
+      "cefr_target": "A1",
+      "title": "This, that, these and those",
+      "estimated_minutes": 22,
+      "objectives": [
+        "Choose this/that for one thing and these/those for more than one thing.",
+        "Use near/far context to select an appropriate demonstrative.",
+        "Match demonstratives with singular or plural nouns."
+      ],
+      "explanation": {
+        "en": "Use this and these for things near the speaker; use that and those for things farther away. This/that are singular: this book, that chair. These/those are plural: these books, those chairs. A demonstrative can stand before a noun or replace the noun when the meaning is clear: These are mine. Distance depends on the situation, so look for clues such as here, in my hand, over there or across the room.",
+        "vi": "Dùng this/these cho vật ở gần; that/those cho vật ở xa hơn. This/that đi với số ít; these/those đi với số nhiều. Chú ý các dấu hiệu như here, in my hand, over there."
+      },
+      "examples": [
+        "NEAR ONE · This pencil in my hand is blue.",
+        "FAR ONE · That bus over there is ours.",
+        "NEAR MANY · These books here are new.",
+        "FAR MANY · Those lights across the street are bright."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A1-09-Q1",
+          "type": "single_choice",
+          "prompt": "Select one option: ___ pencil in my hand is blue.",
+          "options": [
+            {
+              "id": "A",
+              "text": "This"
+            },
+            {
+              "id": "B",
+              "text": "That"
+            },
+            {
+              "id": "C",
+              "text": "These"
+            },
+            {
+              "id": "D",
+              "text": "Those"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The pencil is singular and in the speaker's hand, so this is appropriate."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-09-Q2",
+          "type": "single_choice",
+          "prompt": "Select one option: Look at ___ mountains in the distance.",
+          "options": [
+            {
+              "id": "A",
+              "text": "this"
+            },
+            {
+              "id": "B",
+              "text": "that"
+            },
+            {
+              "id": "C",
+              "text": "these"
+            },
+            {
+              "id": "D",
+              "text": "those"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Mountains is plural and the mountains are far away, so use those."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-09-Q3",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: ___ shoes here by my feet are wet.",
+          "answer": {
+            "accepted_answers": [
+              "these"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Shoes is plural and the shoes are near the speaker, so use these."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-09-Q4",
+          "type": "single_choice",
+          "prompt": "Select one option: Is ___ your bag over there by the door?",
+          "options": [
+            {
+              "id": "A",
+              "text": "this"
+            },
+            {
+              "id": "B",
+              "text": "that"
+            },
+            {
+              "id": "C",
+              "text": "these"
+            },
+            {
+              "id": "D",
+              "text": "those"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Bag is singular and over there signals distance, so that fits."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-09-Q5",
+          "type": "single_choice",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "These is my key."
+            },
+            {
+              "id": "B",
+              "text": "This are my keys."
+            },
+            {
+              "id": "C",
+              "text": "These are my keys."
+            },
+            {
+              "id": "D",
+              "text": "Those is my keys."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "These is plural and correctly matches are and keys."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-09-Q6",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: Can you see ___ bird on the roof across the street?",
+          "answer": {
+            "accepted_answers": [
+              "that"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Bird is singular and across the street makes it distant, so that is appropriate."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-09-Q7",
+          "type": "single_choice",
+          "prompt": "You are holding one photo. Which sentence is most natural?",
+          "options": [
+            {
+              "id": "A",
+              "text": "This is my class photo."
+            },
+            {
+              "id": "B",
+              "text": "These are my class photo."
+            },
+            {
+              "id": "C",
+              "text": "That are my class photo."
+            },
+            {
+              "id": "D",
+              "text": "Those is my class photo."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "One item held near the speaker takes this and singular is."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-09-Q8",
+          "type": "single_choice",
+          "prompt": "Two cups are on a table across the room. Choose the best sentence.",
+          "options": [
+            {
+              "id": "A",
+              "text": "This cup is clean."
+            },
+            {
+              "id": "B",
+              "text": "That cups are clean."
+            },
+            {
+              "id": "C",
+              "text": "These cups is clean."
+            },
+            {
+              "id": "D",
+              "text": "Those cups are clean."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Two distant cups take the plural demonstrative those."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-09-Q9",
+          "type": "single_choice",
+          "prompt": "Which noun phrase has correct number agreement?",
+          "options": [
+            {
+              "id": "A",
+              "text": "this notebooks"
+            },
+            {
+              "id": "B",
+              "text": "these notebook"
+            },
+            {
+              "id": "C",
+              "text": "that chair"
+            },
+            {
+              "id": "D",
+              "text": "those chair"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "That is singular and correctly matches the singular noun chair."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-09-Q10",
+          "type": "single_choice",
+          "prompt": "Your friend puts two pens beside you and asks which ones are yours. Choose the best reply.",
+          "options": [
+            {
+              "id": "A",
+              "text": "This are mine."
+            },
+            {
+              "id": "B",
+              "text": "These are mine."
+            },
+            {
+              "id": "C",
+              "text": "That are mine."
+            },
+            {
+              "id": "D",
+              "text": "Those is mine."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The two pens are plural and near the speaker, so These are mine is correct."
+          },
+          "skill_tags": [
+            "grammar.demonstratives"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A1-10",
+      "module": "grammar",
+      "cefr_target": "A1",
+      "title": "Object pronouns and possessive pronouns",
+      "estimated_minutes": 24,
+      "objectives": [
+        "Use me/you/him/her/it/us/them after verbs and prepositions.",
+        "Use mine/yours/his/hers/ours/theirs without a following noun.",
+        "Distinguish possessive adjectives such as my/your from possessive pronouns such as mine/yours."
+      ],
+      "explanation": {
+        "en": "Object pronouns receive the action or follow a preposition: Please help me; I sit next to her; The teacher gives us homework. Possessive pronouns show ownership without a following noun: This book is mine; Those bags are theirs. Do not put a noun after mine/yours/hers/ours/theirs. Compare: This is my pen. The pen is mine.",
+        "vi": "Đại từ tân ngữ đứng sau động từ hoặc giới từ: help me, sit next to her. Đại từ sở hữu đứng độc lập, không có danh từ theo sau: mine, yours, his, hers, ours, theirs."
+      },
+      "examples": [
+        "OBJECT · I know Mia. I sit next to her.",
+        "OBJECT · The coach calls us.",
+        "POSSESSION · This notebook is mine.",
+        "CONTRAST · That is your bag. The bag is yours."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A1-10-Q1",
+          "type": "single_choice",
+          "prompt": "Complete: Mia is my friend. I sit next to ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "she"
+            },
+            {
+              "id": "B",
+              "text": "her"
+            },
+            {
+              "id": "C",
+              "text": "hers"
+            },
+            {
+              "id": "D",
+              "text": "her's"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "After the preposition next to, use the object pronoun her."
+          },
+          "skill_tags": [
+            "grammar.object_pronouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-10-Q2",
+          "type": "single_choice",
+          "prompt": "Complete: This notebook belongs to me. It is ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "my"
+            },
+            {
+              "id": "B",
+              "text": "me"
+            },
+            {
+              "id": "C",
+              "text": "mine"
+            },
+            {
+              "id": "D",
+              "text": "I"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Mine is a possessive pronoun and can stand without a noun after it."
+          },
+          "skill_tags": [
+            "grammar.possessive_pronouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-10-Q3",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: Can you help ___ with this box? Use the pronoun for we.",
+          "answer": {
+            "accepted_answers": [
+              "us"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The object form of we is us: help us."
+          },
+          "skill_tags": [
+            "grammar.object_pronouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-10-Q4",
+          "type": "single_choice",
+          "prompt": "Tom owns the blue trainers. Which sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The blue trainers are him."
+            },
+            {
+              "id": "B",
+              "text": "The blue trainers are his."
+            },
+            {
+              "id": "C",
+              "text": "The blue trainers are he."
+            },
+            {
+              "id": "D",
+              "text": "The blue trainers are he's."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "His can be a possessive pronoun: The trainers are his."
+          },
+          "skill_tags": [
+            "grammar.possessive_pronouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-10-Q5",
+          "type": "single_choice",
+          "prompt": "Complete: I know Ben and Anna. I see ___ at school every day.",
+          "options": [
+            {
+              "id": "A",
+              "text": "they"
+            },
+            {
+              "id": "B",
+              "text": "their"
+            },
+            {
+              "id": "C",
+              "text": "them"
+            },
+            {
+              "id": "D",
+              "text": "theirs"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The people receive the action of see, so use the object pronoun them."
+          },
+          "skill_tags": [
+            "grammar.object_pronouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-10-Q6",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: Lan says, “That red bike belongs to me. It is ___.”",
+          "answer": {
+            "accepted_answers": [
+              "mine"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Mine replaces my bike and shows that the bike belongs to the speaker."
+          },
+          "skill_tags": [
+            "grammar.possessive_pronouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-10-Q7",
+          "type": "single_choice",
+          "prompt": "Which pair is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Is this yours pen? / Yes, it is my."
+            },
+            {
+              "id": "B",
+              "text": "Is this your pen? / Yes, it is mine."
+            },
+            {
+              "id": "C",
+              "text": "Is this you pen? / Yes, it is me."
+            },
+            {
+              "id": "D",
+              "text": "Is this mine pen? / Yes, it is my."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Your goes before the noun pen; mine stands alone in the reply."
+          },
+          "skill_tags": [
+            "grammar.possessive_pronouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-10-Q8",
+          "type": "single_choice",
+          "prompt": "Complete: Our teacher gives ___ a short quiz on Fridays.",
+          "options": [
+            {
+              "id": "A",
+              "text": "we"
+            },
+            {
+              "id": "B",
+              "text": "our"
+            },
+            {
+              "id": "C",
+              "text": "us"
+            },
+            {
+              "id": "D",
+              "text": "ours"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "After gives, use the object pronoun us."
+          },
+          "skill_tags": [
+            "grammar.object_pronouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-10-Q9",
+          "type": "single_choice",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I called she after class."
+            },
+            {
+              "id": "B",
+              "text": "I called her after class."
+            },
+            {
+              "id": "C",
+              "text": "I called hers after class."
+            },
+            {
+              "id": "D",
+              "text": "I called she’s after class."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Call takes an object, so her is correct."
+          },
+          "skill_tags": [
+            "grammar.object_pronouns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-10-Q10",
+          "type": "single_choice",
+          "prompt": "Your family has two umbrellas; another family has three. Choose the correct sentence.",
+          "options": [
+            {
+              "id": "A",
+              "text": "These two are ours, and those three are theirs."
+            },
+            {
+              "id": "B",
+              "text": "These two are our, and those three are their."
+            },
+            {
+              "id": "C",
+              "text": "These two are us, and those three are them."
+            },
+            {
+              "id": "D",
+              "text": "These two are ours umbrellas, and those three are theirs umbrellas."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Ours and theirs are possessive pronouns and correctly stand without nouns."
+          },
+          "skill_tags": [
+            "grammar.possessive_pronouns"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A1-11",
+      "module": "grammar",
+      "cefr_target": "A1",
+      "title": "Imperatives and everyday instructions",
+      "estimated_minutes": 22,
+      "objectives": [
+        "Use the base verb for positive instructions.",
+        "Form negative instructions with don't + base verb.",
+        "Recognise polite and clearly ordered everyday instructions."
+      ],
+      "explanation": {
+        "en": "Use the base form of a verb to give an instruction: Open the window. Add please to make a request sound more polite: Please sit down. For a negative instruction, use don't + base verb: Don't touch the screen. The subject you is normally understood and not written. For steps, words such as first, then and finally can make the order clear.",
+        "vi": "Dùng động từ nguyên mẫu để ra hướng dẫn: Open the book. Phủ định dùng don't + động từ nguyên mẫu: Don't run. Có thể thêm please để lịch sự hơn và first/then/finally để sắp xếp các bước."
+      },
+      "examples": [
+        "POSITIVE · Turn left at the corner.",
+        "POLITE · Please close the door.",
+        "NEGATIVE · Don't run in the hallway.",
+        "SEQUENCE · First wash the fruit. Then cut it."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A1-11-Q1",
+          "type": "single_choice",
+          "prompt": "Which sentence is a correct instruction?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Opens your book to page ten."
+            },
+            {
+              "id": "B",
+              "text": "Open your book to page ten."
+            },
+            {
+              "id": "C",
+              "text": "You opening your book to page ten."
+            },
+            {
+              "id": "D",
+              "text": "To open your book to page ten."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A positive imperative uses the base verb: Open."
+          },
+          "skill_tags": [
+            "grammar.imperatives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-11-Q2",
+          "type": "single_choice",
+          "prompt": "Complete the school instruction: ___ run in the hallway.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Doesn't"
+            },
+            {
+              "id": "B",
+              "text": "Don't"
+            },
+            {
+              "id": "C",
+              "text": "Not"
+            },
+            {
+              "id": "D",
+              "text": "Aren't"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A negative imperative uses don't + base verb: Don't run."
+          },
+          "skill_tags": [
+            "grammar.imperatives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-11-Q3",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: ___ the green button to start. Use the verb press.",
+          "answer": {
+            "accepted_answers": [
+              "press"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "A positive instruction begins with the base verb press."
+          },
+          "skill_tags": [
+            "grammar.imperatives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-11-Q4",
+          "type": "single_choice",
+          "prompt": "Which instruction is polite and grammatically correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Please sit down."
+            },
+            {
+              "id": "B",
+              "text": "Please sits down."
+            },
+            {
+              "id": "C",
+              "text": "Please to sit down."
+            },
+            {
+              "id": "D",
+              "text": "Please sitting down."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Please can be followed by the base imperative sit."
+          },
+          "skill_tags": [
+            "grammar.imperatives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-11-Q5",
+          "type": "single_choice",
+          "prompt": "Which order is clearest for two steps?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Then wash your hands. First eat."
+            },
+            {
+              "id": "B",
+              "text": "First wash your hands. Then eat."
+            },
+            {
+              "id": "C",
+              "text": "Wash first your hands. Eat first then."
+            },
+            {
+              "id": "D",
+              "text": "First you washing. Then you eating."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "First and then correctly mark the order, and both instructions use base verbs."
+          },
+          "skill_tags": [
+            "grammar.instructions"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-11-Q6",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: ___ touch the hot pan. Use the negative imperative.",
+          "answer": {
+            "accepted_answers": [
+              "don't",
+              "don’t",
+              "do not"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Don't, don’t and do not are accepted forms of the negative imperative before the base verb touch."
+          },
+          "skill_tags": [
+            "grammar.imperatives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-11-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence is NOT a correct imperative?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Wait here."
+            },
+            {
+              "id": "B",
+              "text": "Don't open the box."
+            },
+            {
+              "id": "C",
+              "text": "Please listen carefully."
+            },
+            {
+              "id": "D",
+              "text": "You waits here."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "You waits here is an ordinary sentence with incorrect agreement, not a standard imperative."
+          },
+          "skill_tags": [
+            "grammar.imperatives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-11-Q8",
+          "type": "single_choice",
+          "prompt": "You are giving directions. Which sentence is best?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Turn left at the library."
+            },
+            {
+              "id": "B",
+              "text": "Turns left at the library."
+            },
+            {
+              "id": "C",
+              "text": "Turning left at the library."
+            },
+            {
+              "id": "D",
+              "text": "You to turn left at the library."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Directions commonly use the base-verb imperative Turn."
+          },
+          "skill_tags": [
+            "grammar.instructions"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-11-Q9",
+          "type": "single_choice",
+          "prompt": "Which notice is grammatically correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Don't feeds the animals."
+            },
+            {
+              "id": "B",
+              "text": "Not feed the animals."
+            },
+            {
+              "id": "C",
+              "text": "Don't feed the animals."
+            },
+            {
+              "id": "D",
+              "text": "Doesn't feed the animals."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The negative imperative is don't + base verb feed."
+          },
+          "skill_tags": [
+            "grammar.imperatives"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-11-Q10",
+          "type": "single_choice",
+          "prompt": "Choose the clearest recipe instruction.",
+          "options": [
+            {
+              "id": "A",
+              "text": "First cut the banana. Then put it in the bowl."
+            },
+            {
+              "id": "B",
+              "text": "First cutting the banana. Then putting it in the bowl."
+            },
+            {
+              "id": "C",
+              "text": "First cuts the banana. Then puts it in the bowl."
+            },
+            {
+              "id": "D",
+              "text": "You first to cut banana. Then bowl."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Both steps use clear base-verb imperatives and sequencing words."
+          },
+          "skill_tags": [
+            "grammar.instructions"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A1-12",
+      "module": "grammar",
+      "cefr_target": "A1",
+      "title": "Prepositions of time: at, on and in",
+      "estimated_minutes": 23,
+      "objectives": [
+        "Use at with clock times and selected fixed times such as night.",
+        "Use on with days and dates.",
+        "Use in with months, years and broad parts of the day."
+      ],
+      "explanation": {
+        "en": "Use at for precise clock times: at 7:30, and in the expression at night. Use on for days and dates: on Monday, on 15 March. Use in for months, years and broad parts of the day: in August, in 2026, in the morning. A phrase can combine them: on Friday afternoon at 4:00.",
+        "vi": "Dùng at với giờ cụ thể và at night; on với ngày/thứ và ngày tháng; in với tháng, năm và các buổi trong ngày như in the morning."
+      },
+      "examples": [
+        "TIME · The lesson starts at 8:00.",
+        "DAY · We practise on Tuesday.",
+        "MONTH · My birthday is in August.",
+        "DATE · The event is on 15 March.",
+        "PART OF DAY · I read in the evening; I sleep at night."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A1-12-Q1",
+          "type": "single_choice",
+          "prompt": "Complete: The lesson starts ___ 7:30.",
+          "options": [
+            {
+              "id": "A",
+              "text": "at"
+            },
+            {
+              "id": "B",
+              "text": "on"
+            },
+            {
+              "id": "C",
+              "text": "in"
+            },
+            {
+              "id": "D",
+              "text": "from"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Use at with a precise clock time."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-12-Q2",
+          "type": "single_choice",
+          "prompt": "Complete: We have art club ___ Tuesday.",
+          "options": [
+            {
+              "id": "A",
+              "text": "at"
+            },
+            {
+              "id": "B",
+              "text": "on"
+            },
+            {
+              "id": "C",
+              "text": "in"
+            },
+            {
+              "id": "D",
+              "text": "by"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Use on with a day of the week."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-12-Q3",
+          "type": "single_choice",
+          "prompt": "Complete: My birthday is ___ August.",
+          "options": [
+            {
+              "id": "A",
+              "text": "at"
+            },
+            {
+              "id": "B",
+              "text": "on"
+            },
+            {
+              "id": "C",
+              "text": "in"
+            },
+            {
+              "id": "D",
+              "text": "to"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Use in with a month name such as August."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-12-Q4",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: Our school opened ___ 2026.",
+          "answer": {
+            "accepted_answers": [
+              "in"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Use in with a year such as 2026."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-12-Q5",
+          "type": "single_choice",
+          "prompt": "Complete: I usually go to bed early ___ night.",
+          "options": [
+            {
+              "id": "A",
+              "text": "at"
+            },
+            {
+              "id": "B",
+              "text": "on"
+            },
+            {
+              "id": "C",
+              "text": "in"
+            },
+            {
+              "id": "D",
+              "text": "for"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The fixed expression is at night."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-12-Q6",
+          "type": "single_choice",
+          "prompt": "Complete: The school concert is ___ 15 March.",
+          "options": [
+            {
+              "id": "A",
+              "text": "at"
+            },
+            {
+              "id": "B",
+              "text": "on"
+            },
+            {
+              "id": "C",
+              "text": "in"
+            },
+            {
+              "id": "D",
+              "text": "from"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Use on with a calendar date."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-12-Q7",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: I often study ___ the morning.",
+          "answer": {
+            "accepted_answers": [
+              "in"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Use in with the broad part of the day: in the morning."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-12-Q8",
+          "type": "single_choice",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "We meet in Monday."
+            },
+            {
+              "id": "B",
+              "text": "We meet at Monday."
+            },
+            {
+              "id": "C",
+              "text": "We meet on Monday."
+            },
+            {
+              "id": "D",
+              "text": "We meet Monday at on."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "A day of the week takes on."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-12-Q9",
+          "type": "single_choice",
+          "prompt": "Complete: The match is ___ Friday afternoon ___ 4:00.",
+          "options": [
+            {
+              "id": "A",
+              "text": "in / on"
+            },
+            {
+              "id": "B",
+              "text": "on / at"
+            },
+            {
+              "id": "C",
+              "text": "at / in"
+            },
+            {
+              "id": "D",
+              "text": "on / in"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Use on with Friday afternoon and at with the clock time 4:00."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A1-12-Q10",
+          "type": "single_choice",
+          "prompt": "Which schedule sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The course begins at September in 2027."
+            },
+            {
+              "id": "B",
+              "text": "The course begins on September at 2027."
+            },
+            {
+              "id": "C",
+              "text": "The course begins in September 2027."
+            },
+            {
+              "id": "D",
+              "text": "The course begins on September in 2027."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Use in with a month and year: in September 2027."
+          },
+          "skill_tags": [
+            "grammar.prepositions_time"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A2-07",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Present continuous: form and use",
+      "estimated_minutes": 24,
+      "objectives": [
+        "Build present-continuous statements with am, is or are plus verb-ing.",
+        "Make present-continuous negatives and questions with correct word order.",
+        "Apply common -ing spelling changes in familiar verbs.",
+        "Use the present continuous for actions happening now or around the present time."
+      ],
+      "explanation": {
+        "en": "Use the present continuous for an action happening now or around now. Build it with am/is/are + verb-ing: I am reading; she is drawing; they are waiting. Put not after am/is/are for a negative: He isn't sleeping. For a question, move am/is/are before the subject: Are you listening? Common spelling changes include make → making, write → writing, run → running and swim → swimming. Use the present simple for a usual routine, but the present continuous for an action in progress now.",
+        "vi": "Dùng hiện tại tiếp diễn cho hành động đang xảy ra ngay lúc nói hoặc quanh thời điểm hiện tại. Công thức: am/is/are + động từ-ing. Phủ định thêm not sau am/is/are; câu hỏi đưa am/is/are lên trước chủ ngữ. Một số động từ đổi chính tả khi thêm -ing: make → making, run → running."
+      },
+      "examples": [
+        "NOW · Mia is making a poster right now.",
+        "NEGATIVE · We aren't waiting outside.",
+        "QUESTION · Is your brother doing his homework?",
+        "SPELLING · write → writing; make → making; run → running.",
+        "ROUTINE vs NOW · I usually walk to school, but today I am taking the bus."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-07-Q1",
+          "type": "single_choice",
+          "prompt": "Select one option to complete the sentence: Mina ___ a poster right now.",
+          "options": [
+            {
+              "id": "A",
+              "text": "makes"
+            },
+            {
+              "id": "B",
+              "text": "is making"
+            },
+            {
+              "id": "C",
+              "text": "making"
+            },
+            {
+              "id": "D",
+              "text": "is make"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Right now signals an action in progress. Use is + making with the singular subject Mina."
+          },
+          "skill_tags": [
+            "grammar.present_continuous",
+            "grammar.subject_verb_agreement"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-07-Q2",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase, including the subject: ___ for the science test at the moment. Use we + study.",
+          "answer": {
+            "accepted_answers": [
+              "we are studying",
+              "we're studying",
+              "we’re studying"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Use we + are + studying. Both We are studying and We're studying are valid."
+          },
+          "skill_tags": [
+            "grammar.present_continuous",
+            "grammar.subject_verb_agreement"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-07-Q3",
+          "type": "single_choice",
+          "prompt": "Select the correct negative sentence.",
+          "options": [
+            {
+              "id": "A",
+              "text": "He doesn't wearing his jacket."
+            },
+            {
+              "id": "B",
+              "text": "He isn't wear his jacket."
+            },
+            {
+              "id": "C",
+              "text": "He isn't wearing his jacket."
+            },
+            {
+              "id": "D",
+              "text": "He not is wearing his jacket."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The negative keeps the verb-ing form and adds not to is: He is not/isn't wearing."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-07-Q4",
+          "type": "single_choice",
+          "prompt": "Select the correctly formed question.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Are they waiting for the bus?"
+            },
+            {
+              "id": "B",
+              "text": "Do they waiting for the bus?"
+            },
+            {
+              "id": "C",
+              "text": "They are waiting for the bus?"
+            },
+            {
+              "id": "D",
+              "text": "Are waiting they for the bus?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "For a present-continuous question, put are before the subject: Are they waiting...?"
+          },
+          "skill_tags": [
+            "grammar.present_continuous",
+            "grammar.subject_verb_agreement"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-07-Q5",
+          "type": "short_answer",
+          "prompt": "Write only the -ing form of the verb: write → ___",
+          "answer": {
+            "accepted_answers": [
+              "writing"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Drop the final silent e before adding -ing: write → writing."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-07-Q6",
+          "type": "short_answer",
+          "prompt": "Write only the -ing form of the verb: swim → ___",
+          "answer": {
+            "accepted_answers": [
+              "swimming"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "With this short stressed vowel pattern, double the final consonant before -ing: swim → swimming."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-07-Q7",
+          "type": "single_choice",
+          "prompt": "Select one option: Which sentence describes a temporary situation around now?",
+          "options": [
+            {
+              "id": "A",
+              "text": "My cousin lives in Hue every year."
+            },
+            {
+              "id": "B",
+              "text": "My cousin is staying with us this week."
+            },
+            {
+              "id": "C",
+              "text": "My cousin stayed with us last summer."
+            },
+            {
+              "id": "D",
+              "text": "My cousin has a room at home."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "This week describes a temporary situation around the present, so is staying is appropriate."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-07-Q8",
+          "type": "single_choice",
+          "prompt": "Select the best sentence for this situation: Usually Lan cycles to school. Today her bike is broken, so she is on a bus now.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Lan takes the bus to school every day."
+            },
+            {
+              "id": "B",
+              "text": "Lan is taking the bus to school today."
+            },
+            {
+              "id": "C",
+              "text": "Lan take the bus to school today."
+            },
+            {
+              "id": "D",
+              "text": "Lan taking the bus to school today."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Today and the situation 'now' make this a current temporary action: Lan is taking the bus."
+          },
+          "skill_tags": [
+            "grammar.present_continuous",
+            "grammar.subject_verb_agreement"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-07-Q9",
+          "type": "single_choice",
+          "prompt": "A friend asks, “What are you doing?” Select the most natural reply.",
+          "options": [
+            {
+              "id": "A",
+              "text": "I finish my homework now."
+            },
+            {
+              "id": "B",
+              "text": "I am finishing my homework."
+            },
+            {
+              "id": "C",
+              "text": "I finishing my homework."
+            },
+            {
+              "id": "D",
+              "text": "I do finish my homework yesterday."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The question asks about the action in progress now, so use am + finishing."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-07-Q10",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: Look! The dogs ___ (run) across the field.",
+          "answer": {
+            "accepted_answers": [
+              "are running"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Look! points to an action happening now. Dogs is plural, so use are running."
+          },
+          "skill_tags": [
+            "grammar.present_continuous",
+            "grammar.subject_verb_agreement"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A2-08",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Past continuous and interrupted actions",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Build past-continuous statements with was/were + verb-ing.",
+        "Form past-continuous negatives and questions.",
+        "Use past continuous for an action in progress around a past moment and past simple for a shorter interrupting event."
+      ],
+      "explanation": {
+        "en": "Use the past continuous for an action that was in progress at a past time: At eight, I was studying. Build it with was/were + verb-ing. Use wasn't/weren't for negatives and move was/were before the subject in questions. When one action was already in progress and a shorter event interrupted it, the longer background action often uses past continuous and the interrupting event uses past simple: I was walking home when it started to rain.",
+        "vi": "Dùng quá khứ tiếp diễn cho hành động đang diễn ra tại một thời điểm trong quá khứ: was/were + V-ing. Khi một hành động đang diễn ra bị một sự việc ngắn chen vào, hành động nền thường dùng quá khứ tiếp diễn, sự việc chen vào dùng quá khứ đơn."
+      },
+      "examples": [
+        "BACKGROUND · At 8:00, I was studying.",
+        "PLURAL · They were playing outside.",
+        "QUESTION · Were you waiting for the bus?",
+        "INTERRUPTION · I was walking home when it started to rain."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-08-Q1",
+          "type": "single_choice",
+          "prompt": "Complete: At nine last night, Minh ___ a book.",
+          "options": [
+            {
+              "id": "A",
+              "text": "was reading"
+            },
+            {
+              "id": "B",
+              "text": "read"
+            },
+            {
+              "id": "C",
+              "text": "were reading"
+            },
+            {
+              "id": "D",
+              "text": "is reading"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Minh is singular and the action was in progress at a past time, so use was reading."
+          },
+          "skill_tags": [
+            "grammar.past_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-08-Q2",
+          "type": "single_choice",
+          "prompt": "Complete: The children ___ football at 4 p.m. yesterday.",
+          "options": [
+            {
+              "id": "A",
+              "text": "was playing"
+            },
+            {
+              "id": "B",
+              "text": "were playing"
+            },
+            {
+              "id": "C",
+              "text": "are playing"
+            },
+            {
+              "id": "D",
+              "text": "played"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Children is plural, so the past continuous uses were playing."
+          },
+          "skill_tags": [
+            "grammar.past_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-08-Q3",
+          "type": "single_choice",
+          "prompt": "Which negative sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "She wasn't sleeping."
+            },
+            {
+              "id": "B",
+              "text": "She didn't sleeping."
+            },
+            {
+              "id": "C",
+              "text": "She weren't sleeping."
+            },
+            {
+              "id": "D",
+              "text": "She wasn't sleep."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The negative past continuous is wasn't + verb-ing."
+          },
+          "skill_tags": [
+            "grammar.past_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-08-Q4",
+          "type": "single_choice",
+          "prompt": "Which question is correctly formed?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Did you waiting outside?"
+            },
+            {
+              "id": "B",
+              "text": "Were you waiting outside?"
+            },
+            {
+              "id": "C",
+              "text": "You were waiting outside?"
+            },
+            {
+              "id": "D",
+              "text": "Were waiting you outside?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Move were before the subject for a past-continuous question."
+          },
+          "skill_tags": [
+            "grammar.past_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-08-Q5",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: Dad ___ (cook) dinner at 6:30 yesterday.",
+          "answer": {
+            "accepted_answers": [
+              "was cooking"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Dad is singular, so use was + cooking."
+          },
+          "skill_tags": [
+            "grammar.past_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-08-Q6",
+          "type": "single_choice",
+          "prompt": "Select the best sentence: I ___ home when it suddenly started to rain.",
+          "options": [
+            {
+              "id": "A",
+              "text": "walked all day every day"
+            },
+            {
+              "id": "B",
+              "text": "was walking"
+            },
+            {
+              "id": "C",
+              "text": "am walking"
+            },
+            {
+              "id": "D",
+              "text": "were walking"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The walking was already in progress when the shorter rain event began."
+          },
+          "skill_tags": [
+            "grammar.past_continuous",
+            "grammar.past_simple"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-08-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence shows two actions in progress at the same past time?",
+          "options": [
+            {
+              "id": "A",
+              "text": "While I was studying, my brother was listening to music."
+            },
+            {
+              "id": "B",
+              "text": "While I studied, my brother was listening to music."
+            },
+            {
+              "id": "C",
+              "text": "While I was studying, my brother listened to music."
+            },
+            {
+              "id": "D",
+              "text": "While I was study, my brother was listen to music."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Both actions are presented as ongoing at the same past time."
+          },
+          "skill_tags": [
+            "grammar.past_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-08-Q8",
+          "type": "single_choice",
+          "prompt": "Complete: We were having lunch when the phone ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "was ringing"
+            },
+            {
+              "id": "B",
+              "text": "rang"
+            },
+            {
+              "id": "C",
+              "text": "rings"
+            },
+            {
+              "id": "D",
+              "text": "is ringing"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The lunch was in progress; the shorter interrupting event uses past simple rang."
+          },
+          "skill_tags": [
+            "grammar.past_continuous",
+            "grammar.past_simple"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-08-Q9",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: They ___ (not / watch) TV at ten; they were doing homework.",
+          "answer": {
+            "accepted_answers": [
+              "weren't watching",
+              "weren’t watching",
+              "were not watching"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The plural negative past continuous accepts weren't/weren’t watching and the full form were not watching."
+          },
+          "skill_tags": [
+            "grammar.past_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-08-Q10",
+          "type": "single_choice",
+          "prompt": "A cyclist was riding past the school when a dog ran into the road. Which event is the background action?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The dog ran into the road."
+            },
+            {
+              "id": "B",
+              "text": "The cyclist was riding past the school."
+            },
+            {
+              "id": "C",
+              "text": "Both verbs must be present simple."
+            },
+            {
+              "id": "D",
+              "text": "Neither action happened in the past."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Was riding describes the action already in progress; ran describes the shorter event."
+          },
+          "skill_tags": [
+            "grammar.past_continuous",
+            "grammar.past_simple"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A2-09",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Present perfect: experiences with ever and never",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Build present-perfect experience statements with have or has plus a past participle.",
+        "Use ever in questions and never in negative-experience statements.",
+        "Use common irregular past participles in familiar experience contexts.",
+        "Distinguish an unspecified life experience from a finished past event with a stated time."
+      ],
+      "explanation": {
+        "en": "Use the present perfect to talk about life experience when the exact finished time is not important: I have visited Da Nang; She has tried sushi. Build it with have/has + past participle. Ask about experience with ever: Have you ever seen snow? Use never after have/has: I have never flown on a plane. Common participles include be → been, see → seen, eat → eaten, do → done, go → gone, fly → flown. If you say a finished past time such as last summer, yesterday or in 2025, use the past simple instead: I visited Da Nang last summer.",
+        "vi": "Dùng hiện tại hoàn thành để nói về trải nghiệm khi không nêu một thời điểm quá khứ đã kết thúc cụ thể: have/has + quá khứ phân từ. Ever thường dùng trong câu hỏi; never đứng sau have/has. Nếu câu có thời điểm quá khứ đã kết thúc như yesterday, last summer hoặc in 2025 thì dùng quá khứ đơn."
+      },
+      "examples": [
+        "EXPERIENCE · I have visited Da Nang.",
+        "EVER · Have you ever seen snow?",
+        "NEVER · She has never ridden a horse.",
+        "PARTICIPLES · be → been; see → seen; eat → eaten; fly → flown.",
+        "FINISHED TIME · I visited Da Nang last summer, not I have visited Da Nang last summer."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-09-Q1",
+          "type": "single_choice",
+          "prompt": "Select one option to complete the experience question: ___ you ever visited another country?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Did"
+            },
+            {
+              "id": "B",
+              "text": "Have"
+            },
+            {
+              "id": "C",
+              "text": "Has"
+            },
+            {
+              "id": "D",
+              "text": "Are"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "With you, the present perfect uses have: Have you ever visited...?"
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-09-Q2",
+          "type": "single_choice",
+          "prompt": "Select the correct sentence about an experience that has not happened at any time.",
+          "options": [
+            {
+              "id": "A",
+              "text": "She has never ridden a horse."
+            },
+            {
+              "id": "B",
+              "text": "She never has ride a horse."
+            },
+            {
+              "id": "C",
+              "text": "She has never rode a horse."
+            },
+            {
+              "id": "D",
+              "text": "She did never ridden a horse."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Use has + never + past participle. The past participle of ride is ridden."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-09-Q3",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: I ___ (try) sushi before.",
+          "answer": {
+            "accepted_answers": [
+              "have tried",
+              "'ve tried",
+              "’ve tried"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "This is an unspecified experience before now: I have tried sushi before."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-09-Q4",
+          "type": "single_choice",
+          "prompt": "Select the correctly formed question.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Has Mai ever seen snow?"
+            },
+            {
+              "id": "B",
+              "text": "Have Mai ever saw snow?"
+            },
+            {
+              "id": "C",
+              "text": "Did Mai ever seen snow?"
+            },
+            {
+              "id": "D",
+              "text": "Has ever Mai see snow?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Mai is singular, so use has; the past participle of see is seen."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-09-Q5",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: We have ___ to Hue twice.",
+          "answer": {
+            "accepted_answers": [
+              "been"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "For the experience of visiting a place and returning, have been to is the natural form."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-09-Q6",
+          "type": "single_choice",
+          "prompt": "Select one option: Which sentence correctly uses the past simple because it includes a finished past time?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I have visited Da Nang last summer."
+            },
+            {
+              "id": "B",
+              "text": "I visited Da Nang last summer."
+            },
+            {
+              "id": "C",
+              "text": "I have ever visited Da Nang last summer."
+            },
+            {
+              "id": "D",
+              "text": "I has visited Da Nang last summer."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Last summer is a finished past time, so use the past simple: visited."
+          },
+          "skill_tags": [
+            "grammar.present_perfect",
+            "grammar.past_simple"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-09-Q7",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase, including the subject: ___ octopus. Use he + never + eat.",
+          "answer": {
+            "accepted_answers": [
+              "he has never eaten",
+              "he's never eaten",
+              "he’s never eaten"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Use he + has + never + eaten. Both He has never eaten and He's never eaten are valid."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-09-Q8",
+          "type": "single_choice",
+          "prompt": "Select one option: Where does ever normally go in this question?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Have ever you tried kayaking?"
+            },
+            {
+              "id": "B",
+              "text": "Ever have you tried kayaking?"
+            },
+            {
+              "id": "C",
+              "text": "Have you ever tried kayaking?"
+            },
+            {
+              "id": "D",
+              "text": "Have you tried ever kayaking?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "In an experience question, ever normally comes after the subject: Have you ever tried...?"
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-09-Q9",
+          "type": "single_choice",
+          "prompt": "Select the correct short answer: Have you ever made a cake by yourself?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Yes, I did."
+            },
+            {
+              "id": "B",
+              "text": "Yes, I have."
+            },
+            {
+              "id": "C",
+              "text": "Yes, I has."
+            },
+            {
+              "id": "D",
+              "text": "Yes, I am."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The question uses have, so the short affirmative answer is Yes, I have."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-09-Q10",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: My brother ___ (never / fly) on a plane.",
+          "answer": {
+            "accepted_answers": [
+              "has never flown"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "My brother is singular, so use has; fly has the past participle flown: has never flown."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A2-10",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Present perfect: just, already and yet",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Use just and already with the present perfect in common positions.",
+        "Use yet in present-perfect questions and negatives.",
+        "Choose have/has + past participle for recent or completed events connected to the present when no finished past time is given."
+      ],
+      "explanation": {
+        "en": "Use have/has + past participle. Just means a very short time ago and normally goes after have/has: She has just arrived. Already means sooner than expected or before now and commonly goes after have/has: We have already finished. Yet is common at the end of questions and negatives: Have you finished yet? I haven't finished yet. Do not combine these present-perfect patterns with a stated finished time such as yesterday.",
+        "vi": "Dùng just và already sau have/has trong hiện tại hoàn thành. Yet thường ở cuối câu hỏi hoặc câu phủ định. Không dùng các mẫu này với thời điểm quá khứ đã kết thúc rõ ràng như yesterday."
+      },
+      "examples": [
+        "JUST · She has just arrived.",
+        "ALREADY · We have already finished.",
+        "QUESTION · Have you eaten yet?",
+        "NEGATIVE · I haven't finished yet."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-10-Q1",
+          "type": "single_choice",
+          "prompt": "Complete: Mia has ___ arrived, so she is still taking off her coat.",
+          "options": [
+            {
+              "id": "A",
+              "text": "just"
+            },
+            {
+              "id": "B",
+              "text": "yesterday"
+            },
+            {
+              "id": "C",
+              "text": "last year"
+            },
+            {
+              "id": "D",
+              "text": "ago"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Just fits a very recent event connected to the present."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-10-Q2",
+          "type": "single_choice",
+          "prompt": "Which sentence places already naturally?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I have already finished the task."
+            },
+            {
+              "id": "B",
+              "text": "I have already finish the task."
+            },
+            {
+              "id": "C",
+              "text": "I already has finished the task."
+            },
+            {
+              "id": "D",
+              "text": "I have finish already the task."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Have already finished is a standard present-perfect order, with no finished past-time expression."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-10-Q3",
+          "type": "single_choice",
+          "prompt": "Complete: We haven't chosen a team name ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "already"
+            },
+            {
+              "id": "B",
+              "text": "just"
+            },
+            {
+              "id": "C",
+              "text": "yet"
+            },
+            {
+              "id": "D",
+              "text": "last night"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Yet commonly appears at the end of a present-perfect negative."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-10-Q4",
+          "type": "single_choice",
+          "prompt": "Which question is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Have you finished yet?"
+            },
+            {
+              "id": "B",
+              "text": "Did you finished yet?"
+            },
+            {
+              "id": "C",
+              "text": "Have you yet finish?"
+            },
+            {
+              "id": "D",
+              "text": "Has you finished yet?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Have you finished yet? has the correct auxiliary, participle and yet position."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-10-Q5",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: The bus ___ (just / leave), so we need to wait for the next one.",
+          "answer": {
+            "accepted_answers": [
+              "has just left"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The singular subject takes has; just follows has; the past participle of leave is left."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-10-Q6",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: We ___ the project yet. Use not + finish.",
+          "answer": {
+            "accepted_answers": [
+              "haven't finished",
+              "haven’t finished",
+              "have not finished"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The present-perfect negative accepts haven't/haven’t finished and the full form have not finished; yet remains at the end."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-10-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I have already seen that film."
+            },
+            {
+              "id": "B",
+              "text": "I have seen that film yesterday already."
+            },
+            {
+              "id": "C",
+              "text": "I already have saw that film."
+            },
+            {
+              "id": "D",
+              "text": "I has already seen that film."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Have already seen correctly expresses a completed experience before now without a finished past time."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-10-Q8",
+          "type": "single_choice",
+          "prompt": "Your friend expected you to start later, but you completed your homework early. Which sentence fits best?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I have already finished my homework."
+            },
+            {
+              "id": "B",
+              "text": "I have yet finished my homework."
+            },
+            {
+              "id": "C",
+              "text": "I finished my homework tomorrow."
+            },
+            {
+              "id": "D",
+              "text": "I has just finish my homework."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Already highlights that the homework was completed earlier than expected."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-10-Q9",
+          "type": "single_choice",
+          "prompt": "Complete the phone message: ___ Mai called you yet?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Did"
+            },
+            {
+              "id": "B",
+              "text": "Has"
+            },
+            {
+              "id": "C",
+              "text": "Is"
+            },
+            {
+              "id": "D",
+              "text": "Does"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The present-perfect question with singular Mai begins Has Mai...?"
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-10-Q10",
+          "type": "single_choice",
+          "prompt": "Which sentence should use the past simple instead of the present perfect?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I have just found my keys."
+            },
+            {
+              "id": "B",
+              "text": "We have already eaten."
+            },
+            {
+              "id": "C",
+              "text": "She hasn't replied yet."
+            },
+            {
+              "id": "D",
+              "text": "I visited the museum yesterday."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Yesterday is a finished past time, so the past simple visited is appropriate."
+          },
+          "skill_tags": [
+            "grammar.present_perfect",
+            "grammar.past_simple"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A2-11",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Choosing future forms: will, going to and present continuous",
+      "estimated_minutes": 28,
+      "objectives": [
+        "Use will for spontaneous decisions and simple predictions.",
+        "Use be going to for prior intentions and predictions based on present evidence.",
+        "Use the present continuous for arranged future plans with a clear time or other arrangement detail."
+      ],
+      "explanation": {
+        "en": "English uses several future forms. Use will for a decision made at the moment of speaking: The phone is ringing — I'll answer it. Use be going to for an intention decided before now or a prediction based on clear present evidence: I'm going to save for a bike; Look at those clouds — it's going to rain. Use the present continuous for a future arrangement that is already organised: I'm meeting Mai at four. Context matters, so this lesson uses clear cues rather than claiming only one form is possible in every real conversation.",
+        "vi": "Will thường dùng cho quyết định ngay lúc nói hoặc dự đoán đơn giản; be going to cho dự định đã có hoặc dự đoán dựa trên dấu hiệu hiện tại; hiện tại tiếp diễn cho kế hoạch đã sắp xếp cụ thể."
+      },
+      "examples": [
+        "NOW DECISION · The phone is ringing. I'll answer it.",
+        "PRIOR INTENTION · I'm going to save for a new bike.",
+        "EVIDENCE · Look at those clouds. It's going to rain.",
+        "ARRANGEMENT · I'm meeting Mai at four."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-11-Q1",
+          "type": "single_choice",
+          "prompt": "The phone starts ringing now. You decide at that moment to answer it. What do you say?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I'll answer it."
+            },
+            {
+              "id": "B",
+              "text": "I'm going to answered it."
+            },
+            {
+              "id": "C",
+              "text": "I answering it."
+            },
+            {
+              "id": "D",
+              "text": "I will answering it."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Will is natural for a spontaneous decision made at the moment of speaking."
+          },
+          "skill_tags": [
+            "grammar.will_future"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-11-Q2",
+          "type": "single_choice",
+          "prompt": "You decided last week to save money for a new bike. Complete: I ___ save for a new bike.",
+          "options": [
+            {
+              "id": "A",
+              "text": "am going to"
+            },
+            {
+              "id": "B",
+              "text": "will to"
+            },
+            {
+              "id": "C",
+              "text": "am go to"
+            },
+            {
+              "id": "D",
+              "text": "going"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The intention was decided before now, so be going to fits."
+          },
+          "skill_tags": [
+            "grammar.future_plans"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-11-Q3",
+          "type": "single_choice",
+          "prompt": "You and Mai have arranged a meeting at 4 p.m. tomorrow. Which sentence clearly expresses the arrangement?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I'm meeting Mai at 4 p.m. tomorrow."
+            },
+            {
+              "id": "B",
+              "text": "I meet Mai yesterday."
+            },
+            {
+              "id": "C",
+              "text": "I will meeting Mai tomorrow."
+            },
+            {
+              "id": "D",
+              "text": "I am meet Mai tomorrow."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The present continuous can express an already arranged future meeting."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-11-Q4",
+          "type": "single_choice",
+          "prompt": "Look at the very dark clouds. Which prediction best uses the visible evidence?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It is going to rain."
+            },
+            {
+              "id": "B",
+              "text": "It going rain."
+            },
+            {
+              "id": "C",
+              "text": "It will to rain."
+            },
+            {
+              "id": "D",
+              "text": "It is rain yesterday."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Be going to is commonly used for a prediction based on clear present evidence."
+          },
+          "skill_tags": [
+            "grammar.future_plans"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-11-Q5",
+          "type": "single_choice",
+          "prompt": "Which sentence has the correct form after will?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I will help you."
+            },
+            {
+              "id": "B",
+              "text": "I will to help you."
+            },
+            {
+              "id": "C",
+              "text": "I will helping you."
+            },
+            {
+              "id": "D",
+              "text": "I will helped you."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Will is followed by the base verb help."
+          },
+          "skill_tags": [
+            "grammar.will_future"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-11-Q6",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: “I can't carry both boxes.” “I ___ you.” Use the full form will + help.",
+          "answer": {
+            "accepted_answers": [
+              "will help"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The reply is an immediate offer/decision, so the full form will help is appropriate."
+          },
+          "skill_tags": [
+            "grammar.will_future"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-11-Q7",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: We ___ our cousins at the station at 6 p.m. tomorrow. Use are + meeting.",
+          "answer": {
+            "accepted_answers": [
+              "are meeting"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "A fixed meeting at a stated time can use the present continuous: We are meeting..."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-11-Q8",
+          "type": "single_choice",
+          "prompt": "Which sentence describes a prior plan rather than a decision made this second?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I've planned it for weeks: I'm going to join the art club next term."
+            },
+            {
+              "id": "B",
+              "text": "The doorbell rang: I'll open the door."
+            },
+            {
+              "id": "C",
+              "text": "I've planned it for weeks: I going to join the art club next term."
+            },
+            {
+              "id": "D",
+              "text": "I've planned it for weeks: I will to join the art club next term."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The phrase planned it for weeks clearly signals an intention formed before now."
+          },
+          "skill_tags": [
+            "grammar.future_plans"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-11-Q9",
+          "type": "single_choice",
+          "prompt": "Which future sentence is grammatically correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "She is going to practise tonight."
+            },
+            {
+              "id": "B",
+              "text": "She going to practise tonight."
+            },
+            {
+              "id": "C",
+              "text": "She will practises tonight."
+            },
+            {
+              "id": "D",
+              "text": "She is going practise tonight."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Be going to requires the correct form of be plus going to + base verb."
+          },
+          "skill_tags": [
+            "grammar.future_plans"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-11-Q10",
+          "type": "single_choice",
+          "prompt": "You have tickets and agreed to go with your friend at 7 p.m. Which sentence best highlights the arrangement?",
+          "options": [
+            {
+              "id": "A",
+              "text": "We're seeing the film at 7 p.m."
+            },
+            {
+              "id": "B",
+              "text": "We saw the film tomorrow."
+            },
+            {
+              "id": "C",
+              "text": "We will seeing the film at 7."
+            },
+            {
+              "id": "D",
+              "text": "We are see the film at 7."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Tickets, an agreed companion and a stated time make this a clear arrangement, so the present continuous fits well."
+          },
+          "skill_tags": [
+            "grammar.present_continuous"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A2-12",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Advice with should and shouldn't",
+      "estimated_minutes": 22,
+      "objectives": [
+        "Give simple advice with should + base verb.",
+        "Give negative advice with shouldn't + base verb.",
+        "Form questions with should and distinguish advice from stronger rules or obligations."
+      ],
+      "explanation": {
+        "en": "Use should + base verb to give advice: You should rest. Use shouldn't + base verb for advice against an action: You shouldn't stay up so late. Questions begin Should + subject + base verb?: Should I tell the teacher? Should expresses advice or a good idea, not the same strength as a rule with must.",
+        "vi": "Dùng should + động từ nguyên mẫu để đưa lời khuyên; shouldn't để khuyên không nên làm. Câu hỏi: Should + chủ ngữ + động từ nguyên mẫu? Should nhẹ hơn must."
+      },
+      "examples": [
+        "ADVICE · You should drink some water.",
+        "NEGATIVE · You shouldn't stay up so late.",
+        "QUESTION · Should I tell the teacher?",
+        "CONTRAST · You must wear a helmet here (rule); you should take a jacket (advice)."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-12-Q1",
+          "type": "single_choice",
+          "prompt": "Your friend has a headache after a long day. Which advice is grammatically correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "You should rest for a while."
+            },
+            {
+              "id": "B",
+              "text": "You should to rest for a while."
+            },
+            {
+              "id": "C",
+              "text": "You should resting for a while."
+            },
+            {
+              "id": "D",
+              "text": "You should rested for a while."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Should is followed by the base verb rest."
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-12-Q2",
+          "type": "single_choice",
+          "prompt": "Complete the advice: You ___ stay up until 2 a.m. before an exam.",
+          "options": [
+            {
+              "id": "A",
+              "text": "shouldn't"
+            },
+            {
+              "id": "B",
+              "text": "should to not"
+            },
+            {
+              "id": "C",
+              "text": "don't should"
+            },
+            {
+              "id": "D",
+              "text": "shouldn't to"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Negative advice uses shouldn't + base verb."
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-12-Q3",
+          "type": "single_choice",
+          "prompt": "Which question is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Should I tell the teacher?"
+            },
+            {
+              "id": "B",
+              "text": "Do should I tell the teacher?"
+            },
+            {
+              "id": "C",
+              "text": "Should I to tell the teacher?"
+            },
+            {
+              "id": "D",
+              "text": "I should tell the teacher?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Advice questions use Should + subject + base verb."
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-12-Q4",
+          "type": "single_choice",
+          "prompt": "Which form correctly follows should?",
+          "options": [
+            {
+              "id": "A",
+              "text": "should practise"
+            },
+            {
+              "id": "B",
+              "text": "should practises"
+            },
+            {
+              "id": "C",
+              "text": "should to practise"
+            },
+            {
+              "id": "D",
+              "text": "should practising"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A modal verb such as should takes the base form practise."
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-12-Q5",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: You ___ more water on hot days. Use should + drink.",
+          "answer": {
+            "accepted_answers": [
+              "should drink"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Should drink gives clear positive advice."
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-12-Q6",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: You ___ that heavy bag alone. Use shouldn't + carry.",
+          "answer": {
+            "accepted_answers": [
+              "shouldn't carry",
+              "shouldn’t carry",
+              "should not carry"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Negative advice accepts shouldn't/shouldn’t carry and the full form should not carry."
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-12-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence is advice rather than a school rule?",
+          "options": [
+            {
+              "id": "A",
+              "text": "You should take an umbrella; it may rain."
+            },
+            {
+              "id": "B",
+              "text": "Students must wear their ID cards in the exam room."
+            },
+            {
+              "id": "C",
+              "text": "You must not use your phone during the test."
+            },
+            {
+              "id": "D",
+              "text": "Visitors have to sign in at reception."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Should presents a recommendation; the other sentences express rules or obligations."
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-12-Q8",
+          "type": "single_choice",
+          "prompt": "Complete: “I feel nervous about the presentation.” “What ___ I do?”",
+          "options": [
+            {
+              "id": "A",
+              "text": "should"
+            },
+            {
+              "id": "B",
+              "text": "should to"
+            },
+            {
+              "id": "C",
+              "text": "am should"
+            },
+            {
+              "id": "D",
+              "text": "do should"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The question pattern is What should I do?"
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-12-Q9",
+          "type": "single_choice",
+          "prompt": "Which reply gives useful advice in the correct form?",
+          "options": [
+            {
+              "id": "A",
+              "text": "You should practise once with a friend."
+            },
+            {
+              "id": "B",
+              "text": "You should practised with a friend."
+            },
+            {
+              "id": "C",
+              "text": "You should to practising with a friend."
+            },
+            {
+              "id": "D",
+              "text": "You shouldn't to practise."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Should + base verb practise is grammatically correct advice."
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-12-Q10",
+          "type": "single_choice",
+          "prompt": "A friend says, “I keep forgetting my homework.” Which response is the best advice?",
+          "options": [
+            {
+              "id": "A",
+              "text": "You should put a reminder in your school bag."
+            },
+            {
+              "id": "B",
+              "text": "You should forgetting it again."
+            },
+            {
+              "id": "C",
+              "text": "You must forgot it."
+            },
+            {
+              "id": "D",
+              "text": "You should to put a reminder."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The sentence gives practical advice and uses should + base verb correctly."
+          },
+          "skill_tags": [
+            "grammar.should_advice"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A2-13",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Possibility with may, might and could",
+      "estimated_minutes": 22,
+      "objectives": [
+        "Use may/might/could + base verb to express present or future possibility.",
+        "Form negative possibility with may not/might not.",
+        "Avoid adding to or -s after these modal verbs."
+      ],
+      "explanation": {
+        "en": "Use may, might or could + base verb when something is possible but not certain: It might rain later; The bus may be late; We could arrive after six. In many real contexts more than one of these modals is possible, so this lesson does not pretend there is always one unique choice between them. The key grammar pattern is modal + base verb. For negative possibility, may not and might not are common.",
+        "vi": "Dùng may/might/could + động từ nguyên mẫu để nói khả năng có thể xảy ra nhưng chưa chắc chắn. Nhiều tình huống có thể dùng hơn một modal; trọng tâm là cấu trúc modal + động từ nguyên mẫu."
+      },
+      "examples": [
+        "POSSIBILITY · It might rain later.",
+        "POSSIBILITY · The bus may be late.",
+        "POSSIBILITY · We could arrive after six.",
+        "NEGATIVE · She might not come today."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-13-Q1",
+          "type": "single_choice",
+          "prompt": "Which sentence is grammatically correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It might rain later."
+            },
+            {
+              "id": "B",
+              "text": "It might rains later."
+            },
+            {
+              "id": "C",
+              "text": "It might to rain later."
+            },
+            {
+              "id": "D",
+              "text": "It might raining later."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Might is followed by the base verb rain."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-13-Q2",
+          "type": "single_choice",
+          "prompt": "Which sentence correctly expresses possibility?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The bus may be late."
+            },
+            {
+              "id": "B",
+              "text": "The bus may is late."
+            },
+            {
+              "id": "C",
+              "text": "The bus may to be late."
+            },
+            {
+              "id": "D",
+              "text": "The bus mays be late."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "May is followed by the base verb be."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-13-Q3",
+          "type": "single_choice",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "We could arrive after six."
+            },
+            {
+              "id": "B",
+              "text": "We could arrives after six."
+            },
+            {
+              "id": "C",
+              "text": "We could to arrive after six."
+            },
+            {
+              "id": "D",
+              "text": "We could arriving after six."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Could takes the base verb arrive."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-13-Q4",
+          "type": "single_choice",
+          "prompt": "Which negative possibility is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "She might not come today."
+            },
+            {
+              "id": "B",
+              "text": "She doesn't might come today."
+            },
+            {
+              "id": "C",
+              "text": "She might not comes today."
+            },
+            {
+              "id": "D",
+              "text": "She might to not come today."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Might not + base verb correctly expresses negative possibility."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-13-Q5",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: We ___ home because the weather is getting worse. Use may + stay.",
+          "answer": {
+            "accepted_answers": [
+              "may stay"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "May + base verb stay expresses a possible action."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-13-Q6",
+          "type": "single_choice",
+          "prompt": "Which sentence contains an incorrect modal pattern?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It may change."
+            },
+            {
+              "id": "B",
+              "text": "They might arrive."
+            },
+            {
+              "id": "C",
+              "text": "She could help."
+            },
+            {
+              "id": "D",
+              "text": "He might to leave."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Modal verbs such as might are followed directly by the base verb, not to + verb."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-13-Q7",
+          "type": "single_choice",
+          "prompt": "You are not sure whether it will snow. Which sentence clearly shows uncertainty?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It might snow tonight."
+            },
+            {
+              "id": "B",
+              "text": "It might snows tonight."
+            },
+            {
+              "id": "C",
+              "text": "It might to snow tonight."
+            },
+            {
+              "id": "D",
+              "text": "It is might snow tonight."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Might marks the event as possible rather than certain."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-13-Q8",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: The keys ___ in Dad's bag, but I'm not sure. Use could + be.",
+          "answer": {
+            "accepted_answers": [
+              "could be"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Could be expresses one possible location."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-13-Q9",
+          "type": "single_choice",
+          "prompt": "Which sentence is grammatically correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Mia may join us later."
+            },
+            {
+              "id": "B",
+              "text": "Mia may joins us later."
+            },
+            {
+              "id": "C",
+              "text": "Mia may joining us later."
+            },
+            {
+              "id": "D",
+              "text": "Mia may to join us later."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "May takes the base form join."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-13-Q10",
+          "type": "single_choice",
+          "prompt": "A friend asks whether the outdoor event will happen. The forecast is uncertain. Which reply is appropriate?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It might happen if the weather improves."
+            },
+            {
+              "id": "B",
+              "text": "It might happens if the weather improves."
+            },
+            {
+              "id": "C",
+              "text": "It might to happen if the weather improves."
+            },
+            {
+              "id": "D",
+              "text": "It happening might if weather."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Might + base verb correctly expresses uncertainty."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A2-14",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Zero and first conditionals",
+      "estimated_minutes": 27,
+      "objectives": [
+        "Use the zero conditional for general results with present simple in both clauses.",
+        "Use the first conditional for a realistic future possibility with if + present simple and will + base verb.",
+        "Avoid will in the if-clause in the basic first-conditional pattern."
+      ],
+      "explanation": {
+        "en": "Use the zero conditional for facts or regular results: If I don't sleep enough, I feel tired. Both clauses normally use the present simple. Use the first conditional for a real future possibility: If it rains tomorrow, we will stay inside. In the basic pattern, the if-clause uses present simple, not will. The result clause can come first or second: We will stay inside if it rains.",
+        "vi": "Zero conditional nói sự thật/kết quả thường xuyên: if + hiện tại đơn, hiện tại đơn. First conditional nói khả năng thực tế trong tương lai: if + hiện tại đơn, will + động từ nguyên mẫu."
+      },
+      "examples": [
+        "ZERO · If you heat ice, it melts.",
+        "ZERO · If I don't sleep enough, I feel tired.",
+        "FIRST · If it rains tomorrow, we will stay inside.",
+        "FIRST · We will call you if the bus is late."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-14-Q1",
+          "type": "single_choice",
+          "prompt": "Choose the zero conditional sentence about a general fact.",
+          "options": [
+            {
+              "id": "A",
+              "text": "If water freezes, it becomes ice."
+            },
+            {
+              "id": "B",
+              "text": "If water will freeze, it becomes ice."
+            },
+            {
+              "id": "C",
+              "text": "If water freezes, it will becomes ice."
+            },
+            {
+              "id": "D",
+              "text": "If water freeze, it becomes ice."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A general result uses present simple in both clauses: freezes, becomes."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-14-Q2",
+          "type": "single_choice",
+          "prompt": "Choose the correct first conditional sentence.",
+          "options": [
+            {
+              "id": "A",
+              "text": "If it rains tomorrow, we will stay inside."
+            },
+            {
+              "id": "B",
+              "text": "If it will rain tomorrow, we will stay inside."
+            },
+            {
+              "id": "C",
+              "text": "If it rains tomorrow, we will stayed inside."
+            },
+            {
+              "id": "D",
+              "text": "If it rain tomorrow, we will stay inside."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The basic first conditional uses if + present simple, then will + base verb."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-14-Q3",
+          "type": "single_choice",
+          "prompt": "Which sentence uses the if-clause correctly?",
+          "options": [
+            {
+              "id": "A",
+              "text": "If I will finish early, I will call you."
+            },
+            {
+              "id": "B",
+              "text": "If I finish early, I will call you."
+            },
+            {
+              "id": "C",
+              "text": "If I finishes early, I will call you."
+            },
+            {
+              "id": "D",
+              "text": "If I finish early, I will calling you."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "In the basic first conditional, the if-clause uses present simple finish, not will finish."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-14-Q4",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: If I arrive before six, I ___ you. Use the full form will + call.",
+          "answer": {
+            "accepted_answers": [
+              "will call"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The result clause of this first conditional uses the full form will call."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-14-Q5",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: If I don't sleep enough, I ___ tired. Use the zero conditional form of feel.",
+          "answer": {
+            "accepted_answers": [
+              "feel"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "A regular result in the zero conditional uses present simple feel."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-14-Q6",
+          "type": "single_choice",
+          "prompt": "Complete: If the shop is closed, we ___ back tomorrow.",
+          "options": [
+            {
+              "id": "A",
+              "text": "will come"
+            },
+            {
+              "id": "B",
+              "text": "will came"
+            },
+            {
+              "id": "C",
+              "text": "will coming"
+            },
+            {
+              "id": "D",
+              "text": "will to come"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A realistic future result can use will + the base verb come."
+          },
+          "evidence_weight": 1,
+          "skill_tags": [
+            "grammar.conditionals"
+          ]
+        },
+        {
+          "id": "GRA-A2-14-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence describes a regular result rather than one future event?",
+          "options": [
+            {
+              "id": "A",
+              "text": "If I drink coffee late, I sleep badly."
+            },
+            {
+              "id": "B",
+              "text": "If the bus is late tomorrow, I will text you."
+            },
+            {
+              "id": "C",
+              "text": "If it rains this afternoon, we will cancel the game."
+            },
+            {
+              "id": "D",
+              "text": "If Mia arrives early tomorrow, she will wait inside."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The sentence describes what regularly happens, so it is a zero conditional."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-14-Q8",
+          "type": "single_choice",
+          "prompt": "Which reversed-order first conditional is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "We will go to the park if the weather is good."
+            },
+            {
+              "id": "B",
+              "text": "We will go to the park if the weather will be good."
+            },
+            {
+              "id": "C",
+              "text": "We went tomorrow if weather is good."
+            },
+            {
+              "id": "D",
+              "text": "We will going if the weather good."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The result can come first; the if-clause still uses present simple is."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-14-Q9",
+          "type": "single_choice",
+          "prompt": "Complete the general rule: If plants don't get enough light, they ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "grow badly"
+            },
+            {
+              "id": "B",
+              "text": "will grew badly yesterday"
+            },
+            {
+              "id": "C",
+              "text": "grows badly"
+            },
+            {
+              "id": "D",
+              "text": "growing badly"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "For a general result with plural they, use present simple grow."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-14-Q10",
+          "type": "single_choice",
+          "prompt": "You may miss the last bus tonight. Which sentence gives a realistic future plan?",
+          "options": [
+            {
+              "id": "A",
+              "text": "If we miss the last bus, we will call a taxi."
+            },
+            {
+              "id": "B",
+              "text": "If we will miss the last bus, we call a taxi yesterday."
+            },
+            {
+              "id": "C",
+              "text": "If we missed every bus, we are call a taxi."
+            },
+            {
+              "id": "D",
+              "text": "If miss bus, calling taxi."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "This is a realistic future possibility using if + present simple and will + base verb."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A2-15",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Common verb patterns: to-infinitive and -ing",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Use to-infinitive after common verbs such as want, plan, hope and decide.",
+        "Use -ing after common verbs such as enjoy and finish.",
+        "Recognise that verb patterns depend on the first verb and should be learned as useful chunks."
+      ],
+      "explanation": {
+        "en": "Some verbs are commonly followed by to + base verb: want to learn, plan to visit, hope to win, decide to walk. Other verbs are commonly followed by verb-ing: enjoy reading, finish cleaning. Learn the pattern with the first verb rather than adding to or -ing freely. This lesson avoids verbs such as like that can allow more than one pattern in many contexts.",
+        "vi": "Một số động từ thường đi với to + động từ nguyên mẫu: want to, plan to, hope to, decide to. Một số khác đi với V-ing: enjoy reading, finish cleaning. Nên học theo cụm."
+      },
+      "examples": [
+        "TO-INFINITIVE · I want to learn Spanish.",
+        "TO-INFINITIVE · We plan to visit Hue.",
+        "-ING · She enjoys reading comics.",
+        "-ING · He finished cleaning his desk."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-15-Q1",
+          "type": "single_choice",
+          "prompt": "Complete: I want ___ the photography club.",
+          "options": [
+            {
+              "id": "A",
+              "text": "to join"
+            },
+            {
+              "id": "B",
+              "text": "joining"
+            },
+            {
+              "id": "C",
+              "text": "join"
+            },
+            {
+              "id": "D",
+              "text": "to joining"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Want is commonly followed by to + base verb: want to join."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-15-Q2",
+          "type": "single_choice",
+          "prompt": "Complete: She enjoys ___ graphic novels.",
+          "options": [
+            {
+              "id": "A",
+              "text": "to read"
+            },
+            {
+              "id": "B",
+              "text": "reading"
+            },
+            {
+              "id": "C",
+              "text": "read"
+            },
+            {
+              "id": "D",
+              "text": "to reading"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Enjoy is commonly followed by verb-ing: enjoys reading."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-15-Q3",
+          "type": "single_choice",
+          "prompt": "Complete: We plan ___ Hue during the school holiday.",
+          "options": [
+            {
+              "id": "A",
+              "text": "to visit"
+            },
+            {
+              "id": "B",
+              "text": "visiting"
+            },
+            {
+              "id": "C",
+              "text": "visit"
+            },
+            {
+              "id": "D",
+              "text": "to visiting"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Plan is commonly followed by to + base verb."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-15-Q4",
+          "type": "single_choice",
+          "prompt": "Complete: He finished ___ his desk before dinner.",
+          "options": [
+            {
+              "id": "A",
+              "text": "to clean"
+            },
+            {
+              "id": "B",
+              "text": "cleaning"
+            },
+            {
+              "id": "C",
+              "text": "clean"
+            },
+            {
+              "id": "D",
+              "text": "to cleaning"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Finish is commonly followed by verb-ing."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-15-Q5",
+          "type": "short_answer",
+          "prompt": "Write only the missing phrase: I hope ___ French next year. Use learn.",
+          "answer": {
+            "accepted_answers": [
+              "to learn"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Hope is commonly followed by to + base verb: hope to learn."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-15-Q6",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: They enjoy ___ basketball after school. Use play.",
+          "answer": {
+            "accepted_answers": [
+              "playing"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Enjoy is followed by an -ing form: playing."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-15-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I'd like to order a sandwich."
+            },
+            {
+              "id": "B",
+              "text": "I'd like ordering a sandwich."
+            },
+            {
+              "id": "C",
+              "text": "I'd like to ordering a sandwich."
+            },
+            {
+              "id": "D",
+              "text": "I'd like order a sandwich."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Would like is commonly followed by to + base verb."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-15-Q8",
+          "type": "single_choice",
+          "prompt": "Complete: We decided ___ home because it was getting late.",
+          "options": [
+            {
+              "id": "A",
+              "text": "to walk"
+            },
+            {
+              "id": "B",
+              "text": "walking"
+            },
+            {
+              "id": "C",
+              "text": "walk"
+            },
+            {
+              "id": "D",
+              "text": "to walking"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Decide is commonly followed by to + base verb."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-15-Q9",
+          "type": "single_choice",
+          "prompt": "Complete: Mia finished ___ her email before class.",
+          "options": [
+            {
+              "id": "A",
+              "text": "to write"
+            },
+            {
+              "id": "B",
+              "text": "writing"
+            },
+            {
+              "id": "C",
+              "text": "write to"
+            },
+            {
+              "id": "D",
+              "text": "to writing"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Finish is followed by an -ing form: finished writing."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-15-Q10",
+          "type": "single_choice",
+          "prompt": "Which pair shows the correct patterns?",
+          "options": [
+            {
+              "id": "A",
+              "text": "want to practise / enjoy practising"
+            },
+            {
+              "id": "B",
+              "text": "want practising / enjoy to practise"
+            },
+            {
+              "id": "C",
+              "text": "want to practising / enjoy practise to"
+            },
+            {
+              "id": "D",
+              "text": "want practise to / enjoy to practising"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Want takes to + base verb, while enjoy takes verb-ing."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-A2-16",
+      "module": "grammar",
+      "cefr_target": "A2",
+      "title": "Defining relative clauses: who, which and that",
+      "estimated_minutes": 26,
+      "objectives": [
+        "Use who to identify a person with a defining relative clause.",
+        "Use which or that to identify a thing with a defining relative clause.",
+        "Avoid repeating a subject pronoun inside a simple subject relative clause."
+      ],
+      "explanation": {
+        "en": "A defining relative clause tells us exactly which person or thing we mean. Use who for people: The student who sits by the window is my cousin. Use which or that for things: The book which is on the desk is mine; The book that is on the desk is mine. In these simple subject relative clauses, do not repeat the subject with he/she/it: the girl who sings, not the girl who she sings.",
+        "vi": "Mệnh đề quan hệ xác định giúp nói rõ người/vật nào. Dùng who cho người; which hoặc that cho vật. Trong dạng chủ ngữ đơn giản, không lặp lại he/she/it sau who/which/that."
+      },
+      "examples": [
+        "PERSON · The teacher who helps us is Mr Long.",
+        "THING · The app which tracks my reading is useful.",
+        "THING · The bag that is under the chair is mine.",
+        "NO REPEATED SUBJECT · the girl who sings, not the girl who she sings."
+      ],
+      "activities": [
+        {
+          "id": "GRA-A2-16-Q1",
+          "type": "single_choice",
+          "prompt": "Complete: The student ___ sits next to me is very kind.",
+          "options": [
+            {
+              "id": "A",
+              "text": "who"
+            },
+            {
+              "id": "B",
+              "text": "which"
+            },
+            {
+              "id": "C",
+              "text": "where"
+            },
+            {
+              "id": "D",
+              "text": "what"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Who introduces a defining relative clause about a person."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-16-Q2",
+          "type": "single_choice",
+          "prompt": "Complete: The tablet ___ is on the desk belongs to our class.",
+          "options": [
+            {
+              "id": "A",
+              "text": "who"
+            },
+            {
+              "id": "B",
+              "text": "that"
+            },
+            {
+              "id": "C",
+              "text": "where"
+            },
+            {
+              "id": "D",
+              "text": "whose is"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "That can introduce a defining relative clause about a thing."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-16-Q3",
+          "type": "single_choice",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The bike which is outside is mine."
+            },
+            {
+              "id": "B",
+              "text": "The bike who is outside is mine."
+            },
+            {
+              "id": "C",
+              "text": "The bike which it is outside is mine."
+            },
+            {
+              "id": "D",
+              "text": "The bike what is outside is mine."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Which can refer to a thing, and no extra subject pronoun is needed."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-16-Q4",
+          "type": "single_choice",
+          "prompt": "Complete: I know a girl ___ draws excellent comics.",
+          "options": [
+            {
+              "id": "A",
+              "text": "who"
+            },
+            {
+              "id": "B",
+              "text": "which"
+            },
+            {
+              "id": "C",
+              "text": "what"
+            },
+            {
+              "id": "D",
+              "text": "it"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A person can be identified with who + verb."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-16-Q5",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: The coach ___ works with our team is from Da Nang.",
+          "answer": {
+            "accepted_answers": [
+              "who"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Coach is a person, so who is the target relative word."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-16-Q6",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: The book ___ is on the top shelf is mine. Use a relative word for a thing.",
+          "answer": {
+            "accepted_answers": [
+              "which",
+              "that"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Both which and that can introduce this defining relative clause about a thing."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-16-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence correctly identifies a person?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The boy who won the race is my cousin."
+            },
+            {
+              "id": "B",
+              "text": "The boy which won the race is my cousin."
+            },
+            {
+              "id": "C",
+              "text": "The boy who he won the race is my cousin."
+            },
+            {
+              "id": "D",
+              "text": "The boy what won the race is my cousin."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Who refers to the person and acts as the subject of won; no he is added."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-16-Q8",
+          "type": "single_choice",
+          "prompt": "Combine the ideas correctly: “I use an app. The app records my study time.”",
+          "options": [
+            {
+              "id": "A",
+              "text": "I use an app that records my study time."
+            },
+            {
+              "id": "B",
+              "text": "I use an app who records my study time."
+            },
+            {
+              "id": "C",
+              "text": "I use an app that it records my study time."
+            },
+            {
+              "id": "D",
+              "text": "I use an app records that my study time."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "That introduces the defining clause about the app without repeating it."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-16-Q9",
+          "type": "single_choice",
+          "prompt": "Which sentence avoids an unnecessary repeated subject?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The girl who sits near the door is Mai."
+            },
+            {
+              "id": "B",
+              "text": "The girl who she sits near the door is Mai."
+            },
+            {
+              "id": "C",
+              "text": "The girl which she sits near the door is Mai."
+            },
+            {
+              "id": "D",
+              "text": "The girl who her sits near the door is Mai."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Who already acts as the subject of sits, so no extra she/her is needed."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-A2-16-Q10",
+          "type": "single_choice",
+          "prompt": "Choose the best sentence to identify one specific bag.",
+          "options": [
+            {
+              "id": "A",
+              "text": "The bag that has a yellow star is mine."
+            },
+            {
+              "id": "B",
+              "text": "The bag who has a yellow star is mine."
+            },
+            {
+              "id": "C",
+              "text": "The bag that it has a yellow star is mine."
+            },
+            {
+              "id": "D",
+              "text": "The bag what has yellow star is mine."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "That correctly introduces a defining clause about the thing and does not repeat it."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    }
+  ]
+}
