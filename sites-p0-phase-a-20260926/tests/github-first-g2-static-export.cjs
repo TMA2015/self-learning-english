@@ -6,6 +6,9 @@ const path=require('node:path');
 const root=path.join(__dirname,'..');
 const raw=path.join(root,'dist','client');
 const out=path.join(root,'dist','pages-artifact');
+const basePath=(process.env.NEXT_PUBLIC_BASE_PATH??'').replace(/^\\/+|\\/+$/g,'');
+assert(basePath,'NEXT_PUBLIC_BASE_PATH is required for static export QA');
+const baseUrl='/'+basePath+'/';
 assert(fs.existsSync(raw),'Vinext static export must emit dist/client');
 assert(fs.existsSync(out),'Pages staging must emit dist/pages-artifact');
 for(const relative of [
@@ -23,18 +26,18 @@ for(const relative of [
 }
 
 const rawPageCandidates=[
-  path.join(raw,'self-learning-english','index.html'),
-  path.join(raw,'self-learning-english.html'),
+  path.join(raw,basePath,'index.html'),
+  path.join(raw,basePath+'.html'),
   path.join(raw,'index.html'),
 ];
 assert(rawPageCandidates.some(fs.existsSync),'Vinext static export must contain one recognized page layout');
-assert(!fs.existsSync(path.join(out,'self-learning-english','index.html')),'Pages artifact must not double-nest the project path');
+assert(!fs.existsSync(path.join(out,basePath,'index.html')),'Pages artifact must not double-nest the project path');
 assert(fs.existsSync(path.join(out,'.nojekyll')),'.nojekyll missing from Pages artifact');
 const html=fs.readFileSync(path.join(out,'index.html'),'utf8');
-assert(html.includes('/self-learning-english/'),'exported HTML must use GitHub Pages base path');
+assert(html.includes(baseUrl),'exported HTML must use configured GitHub Pages base path');
 assert(!html.includes('"/branding/'),'brand assets must not point at domain root');
 assert(!html.includes('"/favicon.svg"'),'favicon must not point at domain root');
-assert(!html.includes('/self-learning-english/self-learning-english/'),'project path must not be duplicated');
+assert(!html.includes(baseUrl+basePath+'/'),'project path must not be duplicated');
 
 const routePage=fs.readFileSync(path.join(root,'app','page.tsx'),'utf8');
 const sourcePage=fs.readFileSync(path.join(root,'app','home-client.tsx'),'utf8');
@@ -66,7 +69,7 @@ console.log(JSON.stringify({
   result:'PASS',
   rawOutput:'dist/client',
   output:'dist/pages-artifact',
-  basePath:'/self-learning-english',
+  basePath:baseUrl,
   curriculum:'1.11.0',
   staticAudioFiles:5,
   criticalBrowserWritingServerFree:true,
