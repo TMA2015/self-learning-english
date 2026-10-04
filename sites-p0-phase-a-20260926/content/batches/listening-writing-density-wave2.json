@@ -13,6 +13,12 @@
   },
   "insert_after": [
     {
+      "after": "WRI-A1-04",
+      "ids": [
+        "LIS-A1-01"
+      ]
+    },
+    {
       "after": "LIS-A2-01",
       "ids": [
         "LIS-A2-02"
@@ -28,14 +34,6 @@
       "after": "WRI-B1-01",
       "ids": [
         "WRI-B1-02"
-      ]
-    }
-  ],
-  "append_before_first_module": [
-    {
-      "module": "listening",
-      "ids": [
-        "LIS-A1-01"
       ]
     }
   ],
