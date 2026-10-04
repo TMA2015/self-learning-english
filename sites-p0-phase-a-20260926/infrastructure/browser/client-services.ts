@@ -1,7 +1,9 @@
 import {AcademicError} from '../../domain/academic';
 import type {LearnerState} from '../../domain/repository';
+import type {DiagnosticResult,DiagnosticV2,WritingRating} from '../../domain/learning-model';
 import {localAcademicRuntime,localCourseRuntime,localLearningRuntime,localPracticeProgress} from './local-runtime';
 import type {myCourses,CourseSelection} from '../../domain/course-p1';
+import {finishLocalDiagnostic} from './local-diagnostic';
 
 export function browserLearningEnabled(){
   return process.env.NEXT_PUBLIC_LEARNING_RUNTIME==='browser';
@@ -105,4 +107,29 @@ export async function selectMyCourse(
   }
   const runtime=await localCourseRuntime();
   return {selection:await runtime.select(activeCourseId,expectedRevision,requestId)};
+}
+
+export async function loadCapabilities():Promise<{isAdmin:boolean;writingAI:boolean;runtime:'browser'|'server'}>{
+  if(browserLearningEnabled())return {isAdmin:false,writingAI:false,runtime:'browser'};
+  const response=await fetch('/api/capabilities');
+  if(!response.ok)return {isAdmin:false,writingAI:false,runtime:'server'};
+  const value=await response.json() as {isAdmin?:boolean;writingAI?:boolean};
+  return {isAdmin:value.isAdmin===true,writingAI:value.writingAI===true,runtime:'server'};
+}
+
+export async function finishDiagnosticAssessment(value:DiagnosticV2):Promise<{
+  result:DiagnosticResult;
+  attempts:DiagnosticV2['attempts'];
+  writingReviews:(WritingRating|null)[];
+  writingAI:boolean;
+}>{
+  if(browserLearningEnabled())return finishLocalDiagnostic(value);
+  return jsonFetch('/api/diagnostic',{
+    version:value.version,
+    sessionId:value.sessionId??String(value.startedAt),
+    writing2:value.writing2,
+    listening:value.listeningSkipped?[]:value.listening,
+    attempts:value.attempts.map(answer=>({id:answer.id,answer:answer.answer})),
+    writing:value.writing,
+  });
 }
