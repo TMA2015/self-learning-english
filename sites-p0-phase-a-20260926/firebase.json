@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "g-learning-english",
+    "target": "english",
     "public": "dist/client",
     "ignore": [
       "firebase.json",
