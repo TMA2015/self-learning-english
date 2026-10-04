@@ -14,6 +14,7 @@ export async function POST(request: NextRequest) {
   const stage = String(input.stage||"");
   if (!["analysis","brainstorm","outline","writing","revision"].includes(stage)) return NextResponse.json({error:"Invalid learning step."},{status:400});
   const answer=JSON.stringify(input.answer ?? {}).slice(0,12000);
+  const guidedAnswer=input.answer&&typeof input.answer==="object"&&!Array.isArray(input.answer)?input.answer as Record<string,string>:{};
   async function respond(payload:any){
     const raw=input.answer as Record<string,string>;
     if(!raw||typeof raw!=="object"||Object.values(raw).some(v=>typeof v!=="string"))return NextResponse.json({error:"Invalid answer fields."},{status:400});
@@ -22,7 +23,7 @@ export async function POST(request: NextRequest) {
     try{await recordEvidence(owner!,evidence)}catch{return NextResponse.json({error:"Evidence could not be saved. Your text is still here; retry."},{status:503})}
     return NextResponse.json({...payload,evidence});
   }
-  if(stage==="revision")return respond({mode:"guided",feedback:{...guidedWritingFeedback("writing",input.answer as Record<string,string>),summary:"Revision saved as new evidence. A sentence alone is not a full Writing proficiency assessment."}});
+  if(stage==="revision")return respond({mode:"guided",feedback:{...guidedWritingFeedback("writing",guidedAnswer),summary:"Revision saved as new evidence. A sentence alone is not a full Writing proficiency assessment."}});
   if(stage==="writing"){
     const text=(input.answer as {writing?:unknown})?.writing;
     const response=await submitWriting(new NextRequest(request.url,{method:"POST",headers:request.headers,body:JSON.stringify({text,kind:"draft"})}));
@@ -33,5 +34,5 @@ export async function POST(request: NextRequest) {
   let learnerContext:Record<string,unknown>|undefined;
   if(tutorService().available){try{const saved=await readState(owner);const current=await rebuild(owner,saved??{});learnerContext={estimatedCEFR:current.learnerModel?.displayLevel??"insufficient evidence",subskills:current.learnerModel?.subskills??{},previousErrors:current.learnerModel?.errorTags??[],goals:current.profile?.goal??"Develop independent writing"}}catch{return NextResponse.json({error:"Learner context could not be loaded. Your text is still here; retry."},{status:503})}}
   const evaluation=await tutorService().coach(stage,task,input.answer,learnerContext);
-  return evaluation?respond({mode:"ai",feedback:evaluation.structuredResult,evaluation}):respond({mode:"guided",feedback:guidedWritingFeedback(stage,input.answer as Record<string,string>)});
+  return evaluation?respond({mode:"ai",feedback:evaluation.structuredResult,evaluation}):respond({mode:"guided",feedback:guidedWritingFeedback(stage,guidedAnswer)});
 }
