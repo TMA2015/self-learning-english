@@ -20,7 +20,6 @@ export type FirebaseAIModelFactory=(config:{
   model:string;
   systemInstruction:string;
   generationConfig:{
-    temperature:number;
     responseMimeType:'application/json';
   };
 })=>FirebaseAIModelLike;
@@ -59,7 +58,6 @@ export class FirebaseAILogicProvider implements AITutorProvider{
         model:this.config.model,
         systemInstruction:request.instructions,
         generationConfig:{
-          temperature:request.temperature,
           responseMimeType:'application/json',
         },
       });
