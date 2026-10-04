@@ -1,9 +1,13 @@
-name: Grammar B1 Wave 2A Draft QA
+name: Grammar B1 Wave 2A QA
 on:
   pull_request:
     paths:
       - 'sites-p0-phase-a-20260926/content/batches/grammar-b1-wave2a.json'
       - 'sites-p0-phase-a-20260926/content/grammar-roadmap-v1.json'
+      - 'sites-p0-phase-a-20260926/content/adaptive-map-v1.json'
+      - 'sites-p0-phase-a-20260926/content/curriculum-1.7.0-candidate.json'
+      - 'sites-p0-phase-a-20260926/content/reviews/EN-GRA-B1-W2A-20261004-academic-review-v1.0.json'
+      - 'sites-p0-phase-a-20260926/tests/curriculum-170-grammar-b1-wave2a.cjs'
       - 'sites-p0-phase-a-20260926/content/review-packets/EN-GRA-B1-W2A-20261004.md'
       - 'sites-p0-phase-a-20260926/scripts/render-notebooklm-review.mjs'
       - 'sites-p0-phase-a-20260926/domain/academic.ts'
@@ -28,8 +32,10 @@ jobs:
         with:
           node-version: '24'
       - run: pnpm install --frozen-lockfile
-      - name: Draft academic/package gate
+      - name: Reviewed batch gate
         run: node tests/grammar-b1-wave2a-draft.cjs
+      - name: Curriculum 1.7.0 candidate and import preview
+        run: node tests/curriculum-170-grammar-b1-wave2a.cjs
       - name: Existing content regressions
         run: node tests/content-quality.cjs && node tests/curriculum-161-relative-that.cjs && node tests/importer-capacity-150.cjs
       - name: TypeScript
