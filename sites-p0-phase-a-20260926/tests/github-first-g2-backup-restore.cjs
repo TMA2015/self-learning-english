@@ -48,6 +48,8 @@ function useStorage(storage){
     profile:{goal:'Build balanced English skills'},
     customLegacyField:{keep:true},
   });
+  const sourceCourses=await runtime.localCourseRuntime();
+  await sourceCourses.select('COURSE-WRITING-12W',0,'backup_course_0001');
   const academic=await runtime.localAcademicRuntime();
   const view=await academic.service.lesson('VOC-B1-02');
   const attemptId='g2-backup-attempt-0001';
@@ -72,6 +74,7 @@ function useStorage(storage){
   assert.equal(raw.schemaVersion,1);
   assert.equal(raw.state.writing,'Portable local draft');
   assert.equal(raw.academicRecords[0].id,attemptId);
+  assert.equal(raw.courseSelection.activeCourseId,'COURSE-WRITING-12W');
 
   // The source identity is informational only in local mode. Tamper it and prove
   // the restore still targets the explicitly selected local browser profile.
@@ -96,6 +99,7 @@ function useStorage(storage){
   assert.equal(preview.state,'add');
   assert.equal(preview.academic.add,1);
   assert.equal(preview.academic.conflict,0);
+  assert.equal(preview.courseSelection,'add');
 
   const restored=await backup.restoreLocalBackup(portableText,preview.token,true);
   assert.equal(restored.ok,true);
@@ -105,6 +109,8 @@ function useStorage(storage){
   const restoredState=await targetLearning.service.readState();
   assert.equal(restoredState.writing,'Portable local draft');
   assert.deepEqual(restoredState.customLegacyField,{keep:true});
+  const restoredCourses=await runtime.localCourseRuntime();
+  assert.equal((await restoredCourses.load()).activeCourseId,'COURSE-WRITING-12W');
   const targetAttempts=await targetAcademic.academic.attempts('local-family');
   assert.equal(targetAttempts.length,1);
   assert.equal(targetAttempts[0].id,attemptId);
@@ -116,6 +122,7 @@ function useStorage(storage){
   assert.equal(second.state,'same');
   assert.equal(second.academic.add,0);
   assert.equal(second.academic.skip,1);
+  assert.equal(second.courseSelection,'same');
   await backup.restoreLocalBackup(portableText,second.token,true);
   assert.equal((await targetAcademic.academic.attempts('local-family')).length,1);
 
@@ -153,6 +160,7 @@ function useStorage(storage){
     exactRepeatIdempotent:true,
     conflictNoOverwrite:true,
     malformedRejected:true,
+    activeCourseRoundTrip:true,
     maxBytes:backup.LOCAL_BACKUP_MAX_BYTES,
     curriculum:'1.11.0'
   }));
