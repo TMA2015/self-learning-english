@@ -14,13 +14,14 @@ const compilerOptions={
   esModuleInterop:true,
 };
 for(const [sourcePath,outPath] of [
-  ['../domain/course-p1.ts','domain/course-p1.cjs'],
+  ['../domain/course-p1.ts','domain/course-p1.js'],
   ['../infrastructure/storage/browser-local-repositories.ts','infrastructure/storage/browser-local-repositories.cjs'],
 ]){
   const source=fs.readFileSync(path.join(__dirname,sourcePath),'utf8');
   const built=ts.transpileModule(source,{compilerOptions}).outputText;
   fs.writeFileSync(path.join(outDir,outPath),built);
 }
+fs.writeFileSync(path.join(outDir,'package.json'),'{"type":"commonjs"}\n');
 const outFile=path.join(outDir,'infrastructure/storage/browser-local-repositories.cjs');
 const {BrowserLocalLearningRepository,BrowserLocalAcademicRepository,browserLocalRepositories}=require(outFile);
 
