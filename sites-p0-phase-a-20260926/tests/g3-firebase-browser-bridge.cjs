@@ -11,6 +11,7 @@ const bridge=read('infrastructure/browser/firebase-ai-browser.ts');
 const provider=read('infrastructure/ai/firebase-ai-logic-provider.ts');
 const services=read('infrastructure/browser/client-services.ts');
 const hosting=JSON.parse(read('firebase.json'));
+const firebaserc=JSON.parse(read('.firebaserc'));
 
 assert(config.includes("projectId:'roadmap-toan-ai'"));
 assert(config.includes("geminiModel:'gemini-3.8-flash'"));
@@ -29,7 +30,9 @@ assert(provider.includes('MAX_INSTRUCTION_CHARS'));
 assert(services.indexOf('recordEvidence(provisionalEvidence)')<services.indexOf('browserTutorService()'));
 assert(services.includes("evaluationStatus:'validated'"));
 assert(services.includes("evaluationStatus:'pending_review'"));
-assert.equal(hosting.hosting.site,'g-learning-english');
+assert.equal(hosting.hosting.target,'english');
+assert.equal(firebaserc.projects.default,'roadmap-toan-ai');
+assert.deepEqual(firebaserc.targets['roadmap-toan-ai'].hosting.english,['g-learning-english']);
 assert.equal(hosting.hosting.public,'dist/client');
 
 console.log(JSON.stringify({
