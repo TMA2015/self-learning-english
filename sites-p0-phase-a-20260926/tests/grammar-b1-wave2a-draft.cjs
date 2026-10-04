@@ -12,14 +12,13 @@ fs.mkdirSync(path.dirname(tempPath),{recursive:true});
 execFileSync(process.execPath,['scripts/compose-curriculum.mjs','--write',basePath,batchPath,tempPath],{stdio:'inherit'});
 
 execFileSync(process.execPath,[
-  'node_modules/typescript/bin/tsc','domain/content-model.ts','domain/academic.ts',
+  'node_modules/typescript/bin/tsc','domain/academic.ts',
   '--outDir','.sites-runtime/grammar-b1-wave2a-compiled',
   '--module','commonjs','--target','es2022','--resolveJsonModule','--esModuleInterop','--skipLibCheck'
 ],{stdio:'inherit'});
 fs.writeFileSync('.sites-runtime/grammar-b1-wave2a-compiled/package.json','{"type":"commonjs"}\n');
 
-const {validateSeed,mapSeed,tagMap}=require('../.sites-runtime/grammar-b1-wave2a-compiled/domain/academic.js');
-const {validateContent}=require('../.sites-runtime/grammar-b1-wave2a-compiled/domain/content-model.js');
+const {validateSeed,tagMap}=require('../.sites-runtime/grammar-b1-wave2a-compiled/domain/academic.js');
 const base=require('../'+basePath);
 const batch=require('../'+batchPath);
 const candidate=JSON.parse(fs.readFileSync(tempPath,'utf8'));
@@ -47,8 +46,11 @@ assert.equal(candidate.schema_version,'1.7.0');
 assert.equal(candidate.lessons.length,63);
 assert.equal(candidate.lessons.flatMap(l=>l.activities).length,539);
 assert.equal(candidate.lessons.filter(l=>l.module==='grammar').length,33);
-assert.deepEqual(validateSeed(candidate),[]);
-assert.deepEqual(validateContent(mapSeed(candidate)),[]);
+const proposedTags=['grammar.present_perfect_continuous','grammar.past_perfect','grammar.narrative_order','grammar.used_to','grammar.would_past_habit','grammar.modal_deduction'];
+for(const tag of proposedTags)assert.equal(tagMap[tag],undefined,'draft tag must stay closed until academic review: '+tag);
+const preReviewErrors=validateSeed(candidate);
+assert(preReviewErrors.length>0,'draft candidate must not become importer-valid before tag review');
+for(const lesson of batch.lessons)for(const q of lesson.activities)assert(preReviewErrors.some(e=>e.startsWith(q.id+': invalid prompt/tags.')),'expected closed-world tag block for '+q.id);
 
 for(const old of base.lessons){
   assert.deepEqual(candidate.lessons.find(l=>l.id===old.id),old,'base lesson changed: '+old.id);
@@ -58,12 +60,6 @@ const seq=candidate.course.sequence;
 assert.deepEqual(seq.slice(seq.indexOf('GRA-B1-01'),seq.indexOf('GRA-B1-01')+5),[
   'GRA-B1-01','GRA-B1-02','GRA-B1-03','GRA-B1-04','GRA-B1-05'
 ]);
-
-assert.equal(tagMap['grammar.present_perfect_continuous'],'tense-and-aspect');
-assert.equal(tagMap['grammar.past_perfect'],'tense-and-aspect');
-assert.equal(tagMap['grammar.used_to'],'tense-and-aspect');
-assert.equal(tagMap['grammar.would_past_habit'],'tense-and-aspect');
-assert.equal(tagMap['grammar.modal_deduction'],'modal-deduction');
 
 const modal=batch.lessons.find(l=>l.id==='GRA-B1-05');
 const possible=modal.activities.find(q=>q.id==='GRA-B1-05-Q6');
@@ -85,5 +81,6 @@ console.log(JSON.stringify({
   cumulativeLessons:63,
   cumulativeActivities:539,
   grammarLessons:33,
+  importerBlockedPendingReview:true,
   importAuthorized:false
 }));
