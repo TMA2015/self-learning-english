@@ -32,7 +32,7 @@ assert.ok(academicRepo.includes('WHERE owner_id=? AND learner_id=\'primary\' ORD
 assert.ok(writingRepo.includes('WHERE owner_id=? AND learner_id=? ORDER BY at,id')&&writingRepo.includes('.bind(s.ownerId,s.learnerId)'));
 assert.equal(derivePracticeProgress([],[],[],[]).overall.total,0,'another account with no attempts cannot inherit the first account results');
 assert.ok(!route.includes('.run()')&&!route.includes('.batch(')&&!route.includes('importLegacy')&&!route.includes('rebuild('),'GET cannot write or regrade');
-const page=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8');
+const page=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8')+fs.readFileSync(path.join(root,'app/home-client.tsx'),'utf8');
 assert.ok(page.includes('PracticeSummary')&&page.includes('onSkill={skill=>void navigate(skill.toLowerCase() as View)}'));
 assert.ok(!page.includes('confirmLatestDraftSkip'),'P2B clean-draft optimization excluded');
 console.log('PASS: four saved objective answers, two exact-version questions, correlated tags, repeats, review gates, no-data denominators, pure authenticated GET and manual practice choice.');
