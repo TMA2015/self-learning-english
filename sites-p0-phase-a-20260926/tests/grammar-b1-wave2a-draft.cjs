@@ -7,9 +7,13 @@ const {execFileSync}=require('node:child_process');
 const basePath='content/curriculum-1.6.1-candidate.json';
 const batchPath='content/batches/grammar-b1-wave2a.json';
 const tempPath='.sites-runtime/grammar-b1-wave2a/curriculum-1.7.0-preview.json';
+const reviewPath='content/review-packets/EN-GRA-B1-W2A-20261004.md';
+const generatedReviewPath='.sites-runtime/grammar-b1-wave2a/EN-GRA-B1-W2A-20261004.generated.md';
 
 fs.mkdirSync(path.dirname(tempPath),{recursive:true});
 execFileSync(process.execPath,['scripts/compose-curriculum.mjs','--write',basePath,batchPath,tempPath],{stdio:'inherit'});
+execFileSync(process.execPath,['scripts/render-notebooklm-review.mjs',batchPath,generatedReviewPath,'EN-GRA-B1-W2A-20261004'],{stdio:'inherit'});
+assert.equal(fs.readFileSync(reviewPath,'utf8'),fs.readFileSync(generatedReviewPath,'utf8'),'NotebookLM Markdown must be generated exactly from the batch JSON');
 
 execFileSync(process.execPath,[
   'node_modules/typescript/bin/tsc','domain/academic.ts',
@@ -23,7 +27,7 @@ const base=require('../'+basePath);
 const batch=require('../'+batchPath);
 const candidate=JSON.parse(fs.readFileSync(tempPath,'utf8'));
 
-assert.equal(batch.status,'draft_pending_independent_notebooklm_review');
+assert.equal(batch.status,'revised_pending_targeted_notebooklm_recheck');
 assert.equal(batch.base_version,'1.6.1');
 assert.equal(batch.target_version,'1.7.0');
 assert.deepEqual(batch.lessons.map(l=>l.id),['GRA-B1-02','GRA-B1-03','GRA-B1-04','GRA-B1-05']);
@@ -71,9 +75,26 @@ for(const q of modal.activities.filter(q=>q.type==='single_choice')){
 const habits=batch.lessons.find(l=>l.id==='GRA-B1-04');
 assert.equal(habits.activities.find(q=>q.id==='GRA-B1-04-Q3').options.find(o=>o.id==='A').text,"didn't use to like");
 
+const presentPerfect=batch.lessons.find(l=>l.id==='GRA-B1-02');
+const ppBy=new Map(presentPerfect.activities.map(q=>[q.id,q]));
+assert.deepEqual(ppBy.get('GRA-B1-02-Q5').answer.accepted_answers,['has been working',"'s been working",'’s been working']);
+assert.equal(ppBy.get('GRA-B1-02-Q7').prompt,'Write the missing words: How long ___ English? (you / learn)');
+assert.deepEqual(ppBy.get('GRA-B1-02-Q7').answer.accepted_answers,['have you been learning']);
+assert(!ppBy.get('GRA-B1-02-Q7').answer.accepted_answers.some(x=>x.includes("'ve you")||x.includes('’ve you')),'invalid interrogative contraction fragment must not be accepted');
+assert.deepEqual(ppBy.get('GRA-B1-02-Q9').answer.accepted_answers,['have been waiting',"'ve been waiting",'’ve been waiting']);
+
+const pastPerfect=batch.lessons.find(l=>l.id==='GRA-B1-03');
+const pastBy=new Map(pastPerfect.activities.map(q=>[q.id,q]));
+assert.deepEqual(pastBy.get('GRA-B1-03-Q3').answer.accepted_answers,['had left',"'d left",'’d left']);
+assert.equal(pastBy.get('GRA-B1-03-Q8').prompt,'Complete the sentence: She ___ snow before she visited Korea. (never / see)');
+assert.deepEqual(pastBy.get('GRA-B1-03-Q8').answer.accepted_answers,['had never seen',"'d never seen",'’d never seen']);
+
+
 console.log(JSON.stringify({
   result:'PASS',
   reviewStatus:batch.status,
+  notebookReviewSourceMatchesBatch:true,
+  notebookCorrectionsApplied:5,
   base:'1.6.1',
   previewVersion:'1.7.0',
   newLessons:4,
