@@ -27,7 +27,7 @@ const base=require('../'+basePath);
 const batch=require('../'+batchPath);
 const candidate=JSON.parse(fs.readFileSync(tempPath,'utf8'));
 
-assert.equal(batch.status,'revised_pending_targeted_notebooklm_recheck');
+assert.equal(batch.status,'academic_pass_ready_for_1.7.0_composition');
 assert.equal(batch.base_version,'1.6.1');
 assert.equal(batch.target_version,'1.7.0');
 assert.deepEqual(batch.lessons.map(l=>l.id),['GRA-B1-02','GRA-B1-03','GRA-B1-04','GRA-B1-05']);
@@ -50,11 +50,16 @@ assert.equal(candidate.schema_version,'1.7.0');
 assert.equal(candidate.lessons.length,63);
 assert.equal(candidate.lessons.flatMap(l=>l.activities).length,539);
 assert.equal(candidate.lessons.filter(l=>l.module==='grammar').length,33);
-const proposedTags=['grammar.present_perfect_continuous','grammar.past_perfect','grammar.narrative_order','grammar.used_to','grammar.would_past_habit','grammar.modal_deduction'];
-for(const tag of proposedTags)assert.equal(tagMap[tag],undefined,'draft tag must stay closed until academic review: '+tag);
-const preReviewErrors=validateSeed(candidate);
-assert(preReviewErrors.length>0,'draft candidate must not become importer-valid before tag review');
-for(const lesson of batch.lessons)for(const q of lesson.activities){const hasProposed=q.skill_tags.some(tag=>proposedTags.includes(tag));if(hasProposed)assert(preReviewErrors.some(e=>e.startsWith(q.id+': invalid prompt/tags.')),'expected closed-world tag block for '+q.id);}
+const approvedTags={
+  'grammar.present_perfect_continuous':'tense-and-aspect',
+  'grammar.past_perfect':'tense-and-aspect',
+  'grammar.narrative_order':'tense-and-aspect',
+  'grammar.used_to':'tense-and-aspect',
+  'grammar.would_past_habit':'tense-and-aspect',
+  'grammar.modal_deduction':'modal-deduction'
+};
+for(const [tag,mapped] of Object.entries(approvedTags))assert.equal(tagMap[tag],mapped,'reviewed B1 tag mapping missing: '+tag);
+assert.deepEqual(validateSeed(candidate),[],'academic-PASS candidate must be importer-valid');
 
 for(const old of base.lessons){
   assert.deepEqual(candidate.lessons.find(l=>l.id===old.id),old,'base lesson changed: '+old.id);
@@ -102,6 +107,7 @@ console.log(JSON.stringify({
   cumulativeLessons:63,
   cumulativeActivities:539,
   grammarLessons:33,
-  importerBlockedPendingReview:true,
+  importerBlockedPendingReview:false,
+  academicPass:true,
   importAuthorized:false
 }));
