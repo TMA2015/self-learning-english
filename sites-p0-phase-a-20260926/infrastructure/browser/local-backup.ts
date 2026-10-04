@@ -30,9 +30,10 @@ function byteLength(text:string){
 }
 
 export function parseLocalBackup(text:string):LearnerExport{
-  if(typeof text!=='string'||!text.trim())throw new Error('Choose a G Learning English backup JSON file.');
+  if(typeof text!=='string')throw new Error('Choose a G Learning English backup JSON file.');
   const bytes=byteLength(text);
   if(bytes>LOCAL_BACKUP_MAX_BYTES)throw new Error('Backup is too large. Maximum supported size is 5 MB.');
+  if(!text.trim())throw new Error('Choose a G Learning English backup JSON file.');
   let value:unknown;
   try{value=JSON.parse(text)}
   catch{throw new Error('Backup is not valid JSON.')}
