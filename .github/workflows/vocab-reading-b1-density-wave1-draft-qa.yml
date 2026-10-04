@@ -1,9 +1,12 @@
-name: B1 Vocabulary Reading Density Wave 1 Draft QA
+name: B1 Vocabulary Reading Density Wave 1 QA
 on:
   pull_request:
     paths:
       - 'sites-p0-phase-a-20260926/content/batches/vocab-reading-b1-density-wave1.json'
       - 'sites-p0-phase-a-20260926/content/review-packets/EN-VOC-REA-B1-DENSITY-W1-20261004.md'
+      - 'sites-p0-phase-a-20260926/content/curriculum-1.10.0-candidate.json'
+      - 'sites-p0-phase-a-20260926/content/reviews/EN-VOC-REA-B1-DENSITY-W1-20261004-academic-review-v1.0.json'
+      - 'sites-p0-phase-a-20260926/tests/curriculum-1100-vocab-reading-b1-density-wave1.cjs'
       - 'sites-p0-phase-a-20260926/scripts/render-notebooklm-review.mjs'
       - 'sites-p0-phase-a-20260926/tests/vocab-reading-b1-density-wave1-draft.cjs'
       - 'sites-p0-phase-a-20260926/docs/VOCAB_READING_DENSITY_AUDIT_20261004.md'
@@ -27,9 +30,15 @@ jobs:
         with:
           node-version: '24'
       - run: pnpm install --frozen-lockfile
-      - name: Density Wave 1 draft and NotebookLM-source gate
+      - name: Reviewed Density Wave 1 gate
         run: node tests/vocab-reading-b1-density-wave1-draft.cjs
+      - name: Curriculum 1.10.0 candidate and import preview
+        run: node tests/curriculum-1100-vocab-reading-b1-density-wave1.cjs
       - name: Completed Grammar and closed-world regressions
-        run: node tests/curriculum-190-grammar-b1-wave2c.cjs && node tests/batch04-code-compat.cjs
+        run: node tests/curriculum-190-grammar-b1-wave2c.cjs && node tests/curriculum-180-grammar-b1-wave2b.cjs && node tests/curriculum-170-grammar-b1-wave2a.cjs && node tests/batch04-code-compat.cjs && node tests/content-quality.cjs
+      - name: Learner-history and progress regressions
+        run: node tests/academic.cjs && node tests/version-aware-attempt-ux.cjs && node tests/practice-progress-p2a.cjs && node tests/run.cjs
       - name: TypeScript
         run: pnpm exec tsc --noEmit --incremental false
+      - name: Production build compatibility
+        run: pnpm run build
