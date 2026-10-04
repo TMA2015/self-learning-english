@@ -1,0 +1,43 @@
+name: Gemini Provider Foundation QA
+on:
+  pull_request:
+    paths:
+      - 'README.md'
+      - 'sites-p0-phase-a-20260926/.env.example'
+      - 'sites-p0-phase-a-20260926/ai/**'
+      - 'sites-p0-phase-a-20260926/infrastructure/runtime.ts'
+      - 'sites-p0-phase-a-20260926/infrastructure/ai/**'
+      - 'sites-p0-phase-a-20260926/tests/gemini-provider.cjs'
+      - 'sites-p0-phase-a-20260926/tests/run.cjs'
+      - 'sites-p0-phase-a-20260926/docs/GEMINI_PROVIDER_FOUNDATION_20261004.md'
+      - '.github/workflows/gemini-provider-foundation-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: pnpm install --frozen-lockfile
+      - name: Portable provider and learning regressions
+        run: node tests/run.cjs
+      - name: GitHub-first deterministic core remains AI-independent
+        run: node tests/github-first-g1-local-runtime.cjs
+      - name: Secret exposure guard
+        run: |
+          ! grep -R "NEXT_PUBLIC_GEMINI\|NEXT_PUBLIC_.*API_KEY" app components ai infrastructure .env.example
+          ! grep -R "AIza[0-9A-Za-z_-]\{20,\}" app components ai infrastructure .env.example
+      - name: TypeScript
+        run: pnpm exec tsc --noEmit --incremental false
+      - name: Production build compatibility
+        run: pnpm run build

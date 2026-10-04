@@ -1,5 +1,6 @@
 import {runtimeConfig} from '../runtime';
-import {OpenAIHTTPProvider} from './openai-http';
 import {createTutorService} from '../../ai/service';
-// Provider selection belongs here, never in domain, content, data or components.
-export function tutorService(){const config=runtimeConfig();return createTutorService(new OpenAIHTTPProvider(config.OPENAI_API_KEY,config.AI_MODEL))}
+import {createAIProvider} from './provider-factory';
+
+// Hosting composition only. Provider selection itself is portable and reusable by a future shared proxy.
+export function tutorService(){return createTutorService(createAIProvider(runtimeConfig()))}

@@ -50,9 +50,9 @@ Initial migration order:
 
 ## AI boundary
 
-The project keeps the existing provider-independent `AITutorProvider` contract.
+The project keeps the provider-independent `AITutorProvider` contract. A server-side Gemini HTTP adapter and portable provider factory are now available as a code foundation; no live Gemini credential is committed or enabled.
 
-A public static site must **not** embed a Gemini/OpenAI API key in client JavaScript. If automatic AI is enabled, both Self-Learning English and Self-Learning Math should use one small shared server-side proxy with per-app routing, validation and quota controls. Manual assisted review remains a no-secret fallback.
+A public static site must **not** embed a Gemini/OpenAI API key in client JavaScript. If automatic AI is enabled, both Self-Learning English and Self-Learning Math should use one small shared server-side proxy with per-app routing, validation and quota controls. Manual assisted review remains a no-secret fallback. See `sites-p0-phase-a-20260926/docs/GEMINI_PROVIDER_FOUNDATION_20261004.md`.
 
 ## Source-of-truth policy
 
