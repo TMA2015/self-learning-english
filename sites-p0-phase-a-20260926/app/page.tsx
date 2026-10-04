@@ -11,7 +11,7 @@ import {type DiagnosticV2,type Evidence,type LearnerModel,type LearningPlanModel
 import {DeveloperView,type LearningChoice} from "./core-panels";
 import {Progress} from "@/components/ui/progress";
 import {createNavigationGate} from "../domain/navigation-gate";
-import {loadLearnerState,saveLearnerState,loadPracticeProgress} from "../infrastructure/browser/client-services";
+import {loadLearnerState,saveLearnerState,loadPracticeProgress,loadMyCourses,selectMyCourse} from "../infrastructure/browser/client-services";
 import {MyCourses,type MyCoursesData} from './my-courses';
 import {WRITING_COURSE_ID} from '../domain/course-p1';
 import {PracticeSummary} from './practice-progress';
@@ -43,7 +43,7 @@ export default function Home(){
  const foundationNavigationGuard=useRef<((target:string)=>Promise<boolean>)|null>(null);
  const navigationGate=useRef(createNavigationGate<View>());
  const registerFoundationNavigationGuard=useCallback((guard:((target:string)=>Promise<boolean>)|null)=>{foundationNavigationGuard.current=guard},[]);
- async function refreshCourses(){const request=++courseRequestGeneration.current;try{const response=await fetch('/api/course');const data=await response.json() as MyCoursesData&{error?:string};if(!response.ok)throw Error(data.error??'My Courses unavailable');if(request===courseRequestGeneration.current){setCourseData(data);setCourseError('')}}catch(e){if(request===courseRequestGeneration.current)setCourseError(e instanceof Error?e.message:'My Courses unavailable')}}
+ async function refreshCourses(){const request=++courseRequestGeneration.current;try{const data=await loadMyCourses() as MyCoursesData;if(request===courseRequestGeneration.current){setCourseData(data);setCourseError('')}}catch(e){if(request===courseRequestGeneration.current)setCourseError(e instanceof Error?e.message:'My Courses unavailable')}}
  useEffect(()=>{void refreshCourses()},[]);
  async function refreshPractice(){try{const data=await loadPracticeProgress() as PracticeProgress;setPracticeData(data);setPracticeError('')}catch(e){setPracticeError(e instanceof Error?e.message:'Practice progress unavailable')}}
  useEffect(()=>{void refreshPractice()},[]);
@@ -53,9 +53,9 @@ export default function Home(){
   const previous=pendingSelection.current;
   const request=previous&&previous.activeCourseId===activeCourseId?previous:{activeCourseId,expectedRevision:courseData.selectionRevision,requestId:crypto.randomUUID()};
   ++courseRequestGeneration.current;pendingSelection.current=request;setCourseBusy(true);setCourseError('');
-  try{const response=await fetch('/api/course',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(request)});const data=await response.json() as {selection?:{revision:number};error?:string};if(!response.ok){if(response.status===409){pendingSelection.current=null;await refreshCourses()}throw Error(data.error??'Could not select course')}
-   pendingSelection.current=null;setCourseData(previous=>previous?{...previous,activeCourseId,activeCourse:activeCourseId?previous.courses[0]:null,selectionRevision:data.selection?.revision??previous.selectionRevision}:previous);await refreshCourses();return true;
-  }catch(e){setCourseError((e instanceof Error?e.message:'Could not select course')+' · Retry Set active if needed.');return false}
+  try{const data=await selectMyCourse(request.activeCourseId,request.expectedRevision,request.requestId);
+   pendingSelection.current=null;setCourseData(previous=>previous?{...previous,activeCourseId,activeCourse:activeCourseId?previous.courses[0]:null,selectionRevision:data.selection.revision}:previous);await refreshCourses();return true;
+  }catch(e){pendingSelection.current=null;await refreshCourses();setCourseError((e instanceof Error?e.message:'Could not select course')+' · Retry Set active if needed.');return false}
   finally{setCourseBusy(false)}
  }
  useEffect(()=>{loadLearnerState().then(d=>{storageReady.current=true;if(d.state){const restored=d.state as State;const baseline=restored.diagnosticV2?.result??restored.diagnosticArchive?.slice().reverse().find(a=>a.result)?.result;const model=baseline?deriveLearner(baseline,restored.evidence??[],restored.profile?.goal??initialProfile.goal):restored.learnerModel;setState({...seed,...restored,learnerModel:model,learningPlan:model?derivePlan(model):restored.learningPlan,profile:{...initialProfile,...restored.profile},diagnostic:{...initialDiagnostic,...restored.diagnostic},evidence:restored.evidence??[],vietnameseSupport:restored.vietnameseSupport??false})};setSaving(d.storage==="local-browser"?"Saved on this device":"Saved across devices")}).catch(e=>setSaving(e instanceof Error?e.message:"Storage unavailable — do not close this page")).finally(()=>setLoaded(true))},[]);
