@@ -1,6 +1,7 @@
 import {AcademicError} from '../../domain/academic';
 import type {LearnerState} from '../../domain/repository';
-import {localAcademicRuntime,localLearningRuntime,localPracticeProgress} from './local-runtime';
+import {localAcademicRuntime,localCourseRuntime,localLearningRuntime,localPracticeProgress} from './local-runtime';
+import type {myCourses,CourseSelection} from '../../domain/course-p1';
 
 export function browserLearningEnabled(){
   return process.env.NEXT_PUBLIC_LEARNING_RUNTIME==='browser';
@@ -86,4 +87,22 @@ export async function loadPracticeProgress(){
     return data;
   }
   return localPracticeProgress();
+}
+
+export async function loadMyCourses():Promise<ReturnType<typeof myCourses>>{
+  if(!browserLearningEnabled())return jsonFetch<ReturnType<typeof myCourses>>('/api/course');
+  const runtime=await localCourseRuntime();
+  return runtime.load();
+}
+
+export async function selectMyCourse(
+  activeCourseId:string|null,
+  expectedRevision:number,
+  requestId:string,
+):Promise<{selection:CourseSelection}>{
+  if(!browserLearningEnabled()){
+    return jsonFetch<{selection:CourseSelection}>('/api/course',{activeCourseId,expectedRevision,requestId});
+  }
+  const runtime=await localCourseRuntime();
+  return {selection:await runtime.select(activeCourseId,expectedRevision,requestId)};
 }
