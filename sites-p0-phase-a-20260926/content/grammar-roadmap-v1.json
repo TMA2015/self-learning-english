@@ -497,7 +497,7 @@
     {
       "id": "GRA-B1-06",
       "cefr": "B1",
-      "status": "draft_pending_notebooklm_review",
+      "status": "academic_pass_pending_curriculum_1.8.0_import",
       "title": "Second conditional",
       "prerequisites": [
         "GRA-A2-14"
@@ -506,12 +506,12 @@
         "second-conditional",
         "hypothetical-situations"
       ],
-      "academic_review": "PENDING"
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-B1-07",
       "cefr": "B1",
-      "status": "draft_pending_notebooklm_review",
+      "status": "academic_pass_pending_curriculum_1.8.0_import",
       "title": "Wish and if only for present situations",
       "prerequisites": [
         "GRA-B1-06"
@@ -520,12 +520,12 @@
         "wish-present",
         "if-only"
       ],
-      "academic_review": "PENDING"
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-B1-08",
       "cefr": "B1",
-      "status": "draft_pending_notebooklm_review",
+      "status": "academic_pass_pending_curriculum_1.8.0_import",
       "title": "Passive voice in present and past",
       "prerequisites": [
         "GRA-A2-02",
@@ -535,12 +535,12 @@
         "passive-present",
         "passive-past"
       ],
-      "academic_review": "PENDING"
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-B1-09",
       "cefr": "B1",
-      "status": "draft_pending_notebooklm_review",
+      "status": "academic_pass_pending_curriculum_1.8.0_import",
       "title": "Reported statements and questions",
       "prerequisites": [
         "GRA-A2-02",
@@ -550,7 +550,7 @@
         "reported-speech",
         "reported-questions"
       ],
-      "academic_review": "PENDING"
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-B1-10",
@@ -614,7 +614,7 @@
     "note": "Wave 1A + 1B are academically approved and present in the imported Curriculum 1.6.1 baseline."
   },
   "second_expansion_wave": {
-    "status": "wave2a_pass_wave2b_drafting",
+    "status": "wave2a_and_2b_academic_pass",
     "target_level": "B1",
     "target_lessons": 11,
     "packets": [
@@ -636,7 +636,7 @@
           "GRA-B1-08",
           "GRA-B1-09"
         ],
-        "review_status": "PENDING"
+        "review_status": "PASS"
       },
       {
         "packet": "2C",
