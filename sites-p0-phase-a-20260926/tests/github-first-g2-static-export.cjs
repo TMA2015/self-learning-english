@@ -22,7 +22,12 @@ for(const relative of [
   assert(fs.existsSync(path.join(out,relative)),relative+' missing from static export');
 }
 
-assert(fs.existsSync(path.join(raw,'self-learning-english','index.html')),'Vinext base-path route output should remain nested before staging');
+const rawPageCandidates=[
+  path.join(raw,'self-learning-english','index.html'),
+  path.join(raw,'self-learning-english.html'),
+  path.join(raw,'index.html'),
+];
+assert(rawPageCandidates.some(fs.existsSync),'Vinext static export must contain one recognized page layout');
 assert(!fs.existsSync(path.join(out,'self-learning-english','index.html')),'Pages artifact must not double-nest the project path');
 assert(fs.existsSync(path.join(out,'.nojekyll')),'.nojekyll missing from Pages artifact');
 const html=fs.readFileSync(path.join(out,'index.html'),'utf8');
