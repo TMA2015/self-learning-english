@@ -11,7 +11,7 @@ import {type DiagnosticV2,type Evidence,type LearnerModel,type LearningPlanModel
 import {DeveloperView,type LearningChoice} from "./core-panels";
 import {Progress} from "@/components/ui/progress";
 import {createNavigationGate} from "../domain/navigation-gate";
-import {loadLearnerState,saveLearnerState,loadPracticeProgress,loadMyCourses,selectMyCourse} from "../infrastructure/browser/client-services";
+import {loadLearnerState,saveLearnerState,loadPracticeProgress,loadMyCourses,selectMyCourse,loadCapabilities,finishDiagnosticAssessment} from "../infrastructure/browser/client-services";
 import {MyCourses,type MyCoursesData} from './my-courses';
 import {WRITING_COURSE_ID} from '../domain/course-p1';
 import {PracticeSummary} from './practice-progress';
@@ -33,7 +33,7 @@ const navGroups=[
 const {fieldNames,analysisLabels,brainLabels,outlineLabels}=lessonContent;
 function countWords(s:string){return s.trim()?s.trim().split(/\s+/).length:0}
 export default function Home(){
- const [isAdmin,setIsAdmin]=useState(false);useEffect(()=>{void fetch("/api/capabilities").then(r=>r.ok?r.json():null).then(d=>setIsAdmin((d as {isAdmin?:boolean}|null)?.isAdmin===true)).catch(()=>setIsAdmin(false))},[]);
+ const [isAdmin,setIsAdmin]=useState(false);useEffect(()=>{void loadCapabilities().then(d=>setIsAdmin(d.isAdmin)).catch(()=>setIsAdmin(false))},[]);
 
  const [foundationCatalog,setFoundationCatalog]=useState<FoundationCatalog|null>(null);const [view,setView]=useState<View>("dashboard");const [state,setState]=useState<State>(seed);const [loaded,setLoaded]=useState(false);const [saving,setSaving]=useState("Loading progress...");const [busy,setBusy]=useState(false);const [menu,setMenu]=useState(false);const [hint,setHint]=useState(false);const [navigating,setNavigating]=useState(false);const latestState=useRef(state);latestState.current=state;const storageReady=useRef(false);const dirty=useRef(false);const saveQueue=useRef<Promise<boolean>>(Promise.resolve(true));
  const [courseData,setCourseData]=useState<MyCoursesData|null>(null),[courseError,setCourseError]=useState(''),[courseBusy,setCourseBusy]=useState(false);
@@ -63,7 +63,18 @@ export default function Home(){
  function saveNow(next:State):Promise<boolean>{if(!storageReady.current){setSaving("Progress was not loaded — reload before saving");return Promise.resolve(false)}setSaving("Saving...");const operation=saveQueue.current.catch(()=>false).then(async()=>{try{const result=await saveLearnerState(next);if(latestState.current===next)dirty.current=false;setSaving(result.storage==="local-browser"?"Saved on this device":"Saved across devices");void refreshCourses();return true}catch{setSaving("Save failed — retry before closing");return false}});saveQueue.current=operation;return operation}
  function update(p:Partial<State>){dirty.current=true;const next={...latestState.current,...p};latestState.current=next;setState(next)}
  function patch(group:"analysis"|"brainstorm"|"outline",key:string,value:string){dirty.current=true;const previous=latestState.current;const next={...previous,[group]:{...previous[group],[key]:value}};latestState.current=next;setState(next)}
- async function finishDiagnostic(diagnosticV2:DiagnosticV2){const response=await fetch("/api/diagnostic",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({version:diagnosticV2.version,sessionId:diagnosticV2.sessionId??String(diagnosticV2.startedAt),writing2:diagnosticV2.writing2,listening:diagnosticV2.listeningSkipped?[]:diagnosticV2.listening,attempts:diagnosticV2.attempts.map(a=>({id:a.id,answer:a.answer})),writing:diagnosticV2.writing})});const data=await response.json() as {result?:DiagnosticResult;attempts?:DiagnosticV2["attempts"];writingReviews?:(WritingRating|null)[];error?:string};if(!response.ok||!data.result||!data.attempts)throw new Error(data.error??"Assessment could not be checked.");const result=data.result;const currentState=latestState.current;const completedDiagnostic={...diagnosticV2,attempts:data.attempts,result,writingReviews:data.writingReviews,finishedAt:result.at};const evidence=[...(currentState.evidence??[]),...result.evidence];const learnerModel=deriveLearner(result,evidence,currentState.profile?.goal??initialProfile.goal);const learningPlan=derivePlan(learnerModel);const next={...currentState,diagnosticV2:completedDiagnostic,evidence,learnerModel,learningPlan};dirty.current=true;setState(next);if(!await saveNow(next))throw new Error("Result is on this page but saving failed. Retry before closing.")}
+ async function finishDiagnostic(diagnosticV2:DiagnosticV2){
+  const data=await finishDiagnosticAssessment(diagnosticV2);
+  const result=data.result;
+  const currentState=latestState.current;
+  const completedDiagnostic={...diagnosticV2,attempts:data.attempts,result,writingReviews:data.writingReviews,finishedAt:result.at};
+  const evidence=[...(currentState.evidence??[]),...result.evidence];
+  const learnerModel=deriveLearner(result,evidence,currentState.profile?.goal??initialProfile.goal);
+  const learningPlan=derivePlan(learnerModel);
+  const next={...currentState,diagnosticV2:completedDiagnostic,evidence,learnerModel,learningPlan};
+  dirty.current=true;setState(next);
+  if(!await saveNow(next))throw new Error("Result is on this page but saving failed. Retry before closing.");
+ }
  function receiveWriting(result:WritingReply){const current=latestState.current;const evidence=[...new Map([...(current.evidence??[]),...result.evidence].map(e=>[e.id,e])).values()];update({evidence,learnerModel:result.learnerModel??current.learnerModel,learningPlan:result.learningPlan??current.learningPlan,completed:[...new Set([...current.completed,4])]})}
  function updateProfile(profile:Profile){const learnerModel=state.learnerModel?{...state.learnerModel,goals:profile.goal,updatedAt:Date.now()}:undefined;const learningPlan=learnerModel?derivePlan(learnerModel):state.learningPlan;update({profile,learnerModel,learningPlan})}
  async function navigate(v:View):Promise<boolean>{
