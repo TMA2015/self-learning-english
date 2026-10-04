@@ -1,0 +1,51 @@
+name: G3-D Promote Tested Preview to Live
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - github-first/g3-shared-gemini-20261004
+    paths:
+      - '.github/workflows/g3-d-promote-preview-live.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    env:
+      FIREBASE_SA_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Prepare Firebase credential
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$FIREBASE_SA_JSON"
+          CRED="$RUNNER_TEMP/firebase-service-account.json"
+          printf '%s' "$FIREBASE_SA_JSON" > "$CRED"
+          chmod 600 "$CRED"
+          echo "GOOGLE_APPLICATION_CREDENTIALS=$CRED" >> "$GITHUB_ENV"
+
+      - name: Clone owner-tested preview exactly to live
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes firebase-tools@15.32.1 hosting:clone \
+            g-learning-english:g3-d-first-release \
+            g-learning-english:live \
+            --project roadmap-toan-ai
+
+      - name: Live smoke check
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 6 --retry-delay 3 \
+            https://g-learning-english.web.app/ \
+            --output "$RUNNER_TEMP/live-index.html"
+          grep -qi "Self-Learning English" "$RUNNER_TEMP/live-index.html"
+          echo "Live smoke check PASS: https://g-learning-english.web.app/"
