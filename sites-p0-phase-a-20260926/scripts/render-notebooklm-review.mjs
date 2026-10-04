@@ -52,6 +52,10 @@ for(const lesson of batch.lessons){
   if(lesson.reading_asset?.body){
     md+=`\n### Reading text\n\n**${lesson.reading_asset.title??lesson.title}**\n\n${lesson.reading_asset.body}\n\n`;
   }
+  if(lesson.audio_asset?.source_text){
+    md+=`\n### Listening source text\n\n${lesson.audio_asset.source_text}\n\n`;
+    md+=`**Transcript reveal:** ${lesson.audio_asset.transcript_reveal??'unspecified'}  \n**Requires real playback:** ${Boolean(lesson.audio_asset.requires_real_playback)}\n\n`;
+  }
   md+='\n### Activities\n\n';
 
   for(const q of lesson.activities??[]){

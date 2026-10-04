@@ -1,0 +1,49 @@
+name: Generate Listening Audio Wave 2
+
+on:
+  push:
+    branches:
+      - academic/listening-writing-density-wave2-20261004
+    paths:
+      - 'sites-p0-phase-a-20260926/scripts/generate-foundation-audio.py'
+      - 'sites-p0-phase-a-20260926/content/curriculum-1.11.0-candidate.json'
+      - '.github/workflows/generate-listening-audio-wave2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: academic/listening-writing-density-wave2-20261004
+          fetch-depth: 0
+      - name: Install free local audio tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq espeak ffmpeg
+      - name: Generate reviewed Listening MP3 assets
+        working-directory: sites-p0-phase-a-20260926
+        run: |
+          python3 scripts/generate-foundation-audio.py \
+            --curriculum content/curriculum-1.11.0-candidate.json \
+            --manifest content/foundation-audio.json \
+            --out public/foundation-audio \
+            --ids LIS-A1-01 LIS-A2-02 LIS-B1-02
+      - name: Verify audio coverage
+        working-directory: sites-p0-phase-a-20260926
+        run: node tests/listening-audio-manifest-coverage.cjs
+      - name: Commit generated binary assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sites-p0-phase-a-20260926/content/foundation-audio.json
+          git add sites-p0-phase-a-20260926/public/foundation-audio/LIS-A1-01-v1.mp3
+          git add sites-p0-phase-a-20260926/public/foundation-audio/LIS-A2-02-v1.mp3
+          git add sites-p0-phase-a-20260926/public/foundation-audio/LIS-B1-02-v1.mp3
+          if git diff --cached --quiet; then
+            echo "Audio already matches the reviewed source."
+          else
+            git commit -m "audio: generate reviewed Listening Wave 2 MP3 assets"
+            git push origin HEAD:academic/listening-writing-density-wave2-20261004
+          fi
