@@ -1,5 +1,6 @@
 import vinext from "vinext";
 import { defineConfig } from "vite";
+import { fileURLToPath } from "node:url";
 import nextConfig from "./next.config";
 import hostingConfig from "./.openai/hosting.json";
 import { readExecutionProfile } from "./scripts/execution-profile.mjs";
@@ -42,6 +43,11 @@ export default defineConfig(async () => {
   // client/server bundle rather than the output:'export' prerender artifact.
   if (process.env.GITHUB_PAGES_EXPORT === "1") {
     return {
+      resolve:{
+        alias:{
+          "cloudflare:workers":fileURLToPath(new URL("./build/static-cloudflare-workers-stub.ts",import.meta.url)),
+        },
+      },
       plugins: [vinext({ nextConfig })],
     };
   }
