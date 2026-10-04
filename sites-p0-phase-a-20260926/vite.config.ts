@@ -42,7 +42,9 @@ export default defineConfig(async () => {
   // Cloudflare Worker plugin here: both intentionally produce a Worker-oriented
   // client/server bundle rather than the output:'export' prerender artifact.
   if (process.env.GITHUB_PAGES_EXPORT === "1") {
+    const pagesBase=(process.env.NEXT_PUBLIC_BASE_PATH??"").replace(/^\/+|\/+$/g,"");
     return {
+      base:pagesBase?`/${pagesBase}/`:"/",
       resolve:{
         alias:{
           "cloudflare:workers":fileURLToPath(new URL("./build/static-cloudflare-workers-stub.ts",import.meta.url)),
