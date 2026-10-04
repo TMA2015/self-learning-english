@@ -2,7 +2,7 @@
 
 Packet ID: `EN-GRA-B1-W2B-20261004`
 
-Status: **PENDING INDEPENDENT ACADEMIC REVIEW**
+Status: **ACADEMIC PASS — RELEASE CANDIDATE QA IN PROGRESS**
 
 ## Sources
 
@@ -52,6 +52,29 @@ Base curriculum: 1.7.0. Proposed next version after PASS: 1.8.0.
 - if/whether for yes/no questions;
 - backshift examples must be contextualized so optional non-backshift does not create an unintended second answer;
 - pronoun/time-reference changes must be natural.
+
+## Review result — 2026-10-04
+
+Verdict: **PASS**
+
+NotebookLM reviewed all 4 lessons / 40 activities against the five permanent Self-Learning English v2 sources.
+
+Confirmed PASS:
+- grammar accuracy and naturalness;
+- ambiguity and deterministic scoring;
+- CEFR B1 appropriateness;
+- English explanations;
+- Vietnamese support;
+- distractor quality;
+- all 5 proposed skill tags;
+- lesson-contract alignment;
+- originality and safety.
+
+No academic correction was required.
+
+The 5 reviewed source tags may now enter the runtime only through explicit tag mapping, adaptive-map update and regression tests.
+
+Production import/deploy remains unauthorized until the Curriculum 1.8.0 release-candidate gate passes and the owner explicitly authorizes a controlled import.
 
 ## Required verdict
 
