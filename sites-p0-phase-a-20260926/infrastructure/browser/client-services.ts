@@ -7,6 +7,9 @@ import {finishLocalDiagnostic} from './local-diagnostic';
 import {publicPath} from './public-path';
 import {guidedWritingFeedback} from '../../application/guided-writing';
 import {gardenRelevantIdeaResult} from '../../application/writing-practice';
+import {browserTutorConfigured,browserTutorService} from './firebase-ai-browser';
+import writingCourse from '../../content/writing-course.json';
+import type {TeachingRating,WritingContext} from '../../domain/writing';
 
 export function browserLearningEnabled(){
   return process.env.NEXT_PUBLIC_LEARNING_RUNTIME==='browser';
@@ -116,7 +119,7 @@ export async function selectMyCourse(
 }
 
 export async function loadCapabilities():Promise<{isAdmin:boolean;writingAI:boolean;runtime:'browser'|'server'}>{
-  if(browserLearningEnabled())return {isAdmin:false,writingAI:false,runtime:'browser'};
+  if(browserLearningEnabled())return {isAdmin:false,writingAI:browserTutorConfigured(),runtime:'browser'};
   const response=await fetch('/api/capabilities');
   if(!response.ok)return {isAdmin:false,writingAI:false,runtime:'server'};
   const value=await response.json() as {isAdmin?:boolean;writingAI?:boolean};
@@ -141,6 +144,36 @@ export async function finishDiagnosticAssessment(value:DiagnosticV2):Promise<{
 }
 
 
+async function browserWritingContext():Promise<WritingContext>{
+  const {service}=await localLearningRuntime();
+  const saved=await service.readState();
+  const current=await service.rebuild(saved??{});
+  const model=current.learnerModel;
+  const evidence=await service.readEvidence();
+  return {
+    ageGroup:'11–12',
+    estimatedCEFR:model?.displayLevel??'insufficient evidence',
+    goals:String(current.profile?.goal??'Develop clear independent English writing').slice(0,500),
+    subskills:Object.fromEntries(Object.entries(model?.subskills??{}).filter(([tag])=>tag.startsWith('Writing: '))) as WritingContext['subskills'],
+    previousErrors:(model?.errorTags??[]).slice(0,12),
+    recentPerformance:evidence.filter(row=>row.skill==='Writing'&&!row.provisional).slice(-12).map(row=>({tag:row.tag,score:row.score,max:row.max})),
+    priorRevisions:[],
+    revisionScope:'draft',
+  };
+}
+
+function teachingFeedbackPayload(rating:TeachingRating):ReturnType<typeof guidedWritingFeedback>{
+  return {
+    summary:rating.summary,
+    strengths:rating.strengths,
+    improvements:rating.improvements,
+    exercise:rating.exercise,
+    scores:null,
+    corrections:rating.corrections.map(({original,revised,why,tag})=>({original,revised,why,tag})),
+    tags:rating.tags,
+  };
+}
+
 export async function evaluateWritingProcess(
   stage:'analysis'|'brainstorm'|'outline'|'writing'|'revision',
   answer:Record<string,string>,
@@ -149,13 +182,16 @@ export async function evaluateWritingProcess(
   feedback:ReturnType<typeof guidedWritingFeedback>;
   evidence:Evidence[];
   evaluationStatus?:string;
+  rating?:TeachingRating;
+  evaluation?:unknown;
 }>{
   if(!browserLearningEnabled())return jsonFetch('/api/evaluate',{stage,answer});
   if(!answer||typeof answer!=='object'||Array.isArray(answer)||Object.values(answer).some(value=>typeof value!=='string'))
     throw new Error('Invalid answer fields.');
+
   const index=['analysis','brainstorm','outline','writing','revision'].indexOf(stage);
   const now=Date.now();
-  const evidence=writingEvidence(Math.min(index,3),answer,now).map(row=>({
+  const provisionalEvidence=writingEvidence(Math.min(index,3),answer,now).map(row=>({
     ...row,
     raw:{stage,answer},
     ...(stage==='revision'?{
@@ -165,15 +201,55 @@ export async function evaluateWritingProcess(
       provisional:true,
     }:{}),
   }));
+
   const {service}=await localLearningRuntime();
-  await service.recordEvidence(evidence);
-  const feedback=stage==='revision'
-    ?{...guidedWritingFeedback('writing',answer),summary:'Revision saved as new evidence. A sentence alone is not a full Writing proficiency assessment.'}
-    :guidedWritingFeedback(stage,answer);
+  await service.recordEvidence(provisionalEvidence);
+
+  if(stage==='revision'){
+    return {
+      mode:'guided',
+      feedback:{...guidedWritingFeedback('writing',answer),summary:'Revision saved as new evidence. A sentence alone is not a full Writing proficiency assessment.'},
+      evidence:provisionalEvidence,
+    };
+  }
+
+  const tutor=browserTutorService();
+
+  if(stage==='writing'&&tutor.available){
+    const text=(answer.writing??'').trim();
+    if(text){
+      const rating=await tutor.teachWriting(text,writingCourse.task,await browserWritingContext());
+      if(rating){
+        const ratedEvidence=writingEvidence(3,answer,now,rating).map(row=>({...row,raw:{stage,answer},evaluation:rating.evaluation}));
+        await service.recordEvidence(ratedEvidence);
+        return {
+          mode:'ai',
+          feedback:teachingFeedbackPayload(rating),
+          evidence:[...provisionalEvidence,...ratedEvidence],
+          evaluationStatus:'validated',
+          rating,
+        };
+      }
+    }
+  }
+
+  if(stage!=='writing'&&tutor.available){
+    const context=await browserWritingContext();
+    const evaluation=await tutor.coach(stage,writingCourse.task,answer,{estimatedCEFR:context.estimatedCEFR});
+    if(evaluation){
+      return {
+        mode:'ai',
+        feedback:evaluation.structuredResult as ReturnType<typeof guidedWritingFeedback>,
+        evidence:provisionalEvidence,
+        evaluation,
+      };
+    }
+  }
+
   return {
     mode:'guided',
-    feedback,
-    evidence,
+    feedback:guidedWritingFeedback(stage==='writing'?'writing':stage,answer),
+    evidence:provisionalEvidence,
     ...(stage==='writing'?{evaluationStatus:'pending_review'}:{}),
   };
 }
