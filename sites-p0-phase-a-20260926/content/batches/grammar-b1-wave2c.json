@@ -4,9 +4,9 @@
   "batch_id": "GRAMMAR-B1-WAVE2C-20261004",
   "base_version": "1.8.0",
   "target_version": "1.9.0",
-  "status": "draft_pending_independent_notebooklm_review",
+  "status": "academic_pass_ready_for_1.9.0_composition",
   "metadata": {
-    "status": "grammar_b1_wave2c_candidate_pending_notebooklm_review_no_import",
+    "status": "grammar_b1_wave2c_academic_pass_ready_for_candidate_no_import",
     "course_title": "English Foundation · A1–B1 developing curriculum",
     "course_description": "Original self-study units with A1 foundations, A2 extensions and a complete current B1 Grammar roadmap across seven domains. CEFR values are lesson targets, not certified learner estimates.",
     "curriculum_principle": "An expanding, independently authored curriculum with age-appropriate contexts and CEFR-targeted language use. Lesson counts support coverage planning, not learner certification; evidence and adaptive recommendations remain separate from CEFR claims."
