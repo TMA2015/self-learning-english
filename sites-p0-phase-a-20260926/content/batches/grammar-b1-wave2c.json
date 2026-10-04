@@ -1,0 +1,1038 @@
+{
+  "format": "ai-english-tutor.curriculum-batch",
+  "schema_version": 1,
+  "batch_id": "GRAMMAR-B1-WAVE2C-20261004",
+  "base_version": "1.8.0",
+  "target_version": "1.9.0",
+  "status": "draft_pending_independent_notebooklm_review",
+  "metadata": {
+    "status": "grammar_b1_wave2c_candidate_pending_notebooklm_review_no_import",
+    "course_title": "English Foundation · A1–B1 developing curriculum",
+    "course_description": "Original self-study units with A1 foundations, A2 extensions and a complete current B1 Grammar roadmap across seven domains. CEFR values are lesson targets, not certified learner estimates.",
+    "curriculum_principle": "An expanding, independently authored curriculum with age-appropriate contexts and CEFR-targeted language use. Lesson counts support coverage planning, not learner certification; evidence and adaptive recommendations remain separate from CEFR claims."
+  },
+  "insert_after": [
+    {
+      "after": "GRA-B1-09",
+      "ids": [
+        "GRA-B1-10",
+        "GRA-B1-11",
+        "GRA-B1-12"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "GRA-B1-10",
+      "module": "grammar",
+      "cefr_target": "B1",
+      "title": "Defining and non-defining relative clauses",
+      "estimated_minutes": 27,
+      "objectives": [
+        "Distinguish defining relative clauses from non-defining clauses that add extra information.",
+        "Use commas and who/which correctly in non-defining relative clauses.",
+        "Recognize when an object relative pronoun can be omitted in a defining clause."
+      ],
+      "explanation": {
+        "en": "A defining relative clause identifies exactly which person or thing we mean, so it is necessary to the main meaning and normally has no commas: The student who won the prize is in my class. A non-defining relative clause adds extra information about a person or thing that is already identified, so it is separated by commas: My aunt, who lives in Hue, is visiting us. Use who for people and which for things in non-defining clauses; do not use that there. In a defining clause, an object relative pronoun can sometimes be omitted: The film (that) we watched was excellent. A subject relative pronoun cannot be omitted: the student who won, not the student won.",
+        "vi": "Mệnh đề quan hệ xác định cho biết chính xác người/vật nào nên cần thiết cho ý nghĩa chính và thường không có dấu phẩy. Mệnh đề quan hệ không xác định chỉ bổ sung thông tin về người/vật đã được xác định và được ngăn bằng dấu phẩy. Trong mệnh đề không xác định, dùng who cho người và which cho vật; không dùng that. Trong mệnh đề xác định, đại từ quan hệ làm tân ngữ đôi khi có thể lược bỏ, nhưng đại từ quan hệ làm chủ ngữ thì không."
+      },
+      "examples": [
+        "DEFINING · The student who won the prize is in my class.",
+        "NON-DEFINING · My aunt, who lives in Hue, is visiting us.",
+        "THING · This camera, which I bought last year, still works well.",
+        "OBJECT OMITTED · The film we watched was excellent."
+      ],
+      "activities": [
+        {
+          "id": "GRA-B1-10-Q1",
+          "type": "single_choice",
+          "prompt": "Which sentence correctly uses a non-defining relative clause?",
+          "options": [
+            {
+              "id": "A",
+              "text": "My uncle, who lives in Hue, is visiting us."
+            },
+            {
+              "id": "B",
+              "text": "My uncle that lives in Hue is visiting us,"
+            },
+            {
+              "id": "C",
+              "text": "My uncle who, lives in Hue is visiting us."
+            },
+            {
+              "id": "D",
+              "text": "My uncle, that lives in Hue, is visiting us."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The person is already identified as my uncle, so the extra information is set off by commas and who is used rather than that."
+          },
+          "skill_tags": [
+            "grammar.non_defining_relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-10-Q2",
+          "type": "single_choice",
+          "prompt": "Choose the sentence in which the relative clause identifies which student we mean.",
+          "options": [
+            {
+              "id": "A",
+              "text": "The student who borrowed my pen is waiting outside."
+            },
+            {
+              "id": "B",
+              "text": "Lan, who borrowed my pen, is waiting outside."
+            },
+            {
+              "id": "C",
+              "text": "My teacher, who borrowed my pen, is waiting outside."
+            },
+            {
+              "id": "D",
+              "text": "Mr Nam, who borrowed my pen, is waiting outside."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The defining clause who borrowed my pen identifies which student; it is essential information and has no commas."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-10-Q3",
+          "type": "single_choice",
+          "prompt": "Which relative word is standard in this non-defining clause? My tablet, ___ I use for homework, is three years old.",
+          "options": [
+            {
+              "id": "A",
+              "text": "which"
+            },
+            {
+              "id": "B",
+              "text": "that"
+            },
+            {
+              "id": "C",
+              "text": "what"
+            },
+            {
+              "id": "D",
+              "text": "where"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Which is standard for a thing in a non-defining relative clause; that is not used in this pattern."
+          },
+          "skill_tags": [
+            "grammar.non_defining_relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-10-Q4",
+          "type": "short_answer",
+          "prompt": "Write the missing relative word: Mai, ___ won the science prize, is in my class.",
+          "answer": {
+            "accepted_answers": [
+              "who"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Mai is already identified, so who introduces the non-defining clause about a person."
+          },
+          "skill_tags": [
+            "grammar.non_defining_relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-10-Q5",
+          "type": "single_choice",
+          "prompt": "Which defining relative clause correctly omits an object relative pronoun?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The book I borrowed was excellent."
+            },
+            {
+              "id": "B",
+              "text": "The student won the prize is my friend."
+            },
+            {
+              "id": "C",
+              "text": "The phone belongs to me is on the desk."
+            },
+            {
+              "id": "D",
+              "text": "The teacher helps us is absent today."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "In The book I borrowed, the omitted relative pronoun would be the object of borrowed. Subject relative pronouns cannot be omitted in the other examples."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-10-Q6",
+          "type": "single_choice",
+          "prompt": "Which sentence needs the relative pronoun because it is the subject of the relative clause?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The girl who designed the poster is twelve."
+            },
+            {
+              "id": "B",
+              "text": "The film that we watched was funny."
+            },
+            {
+              "id": "C",
+              "text": "The book I bought is useful."
+            },
+            {
+              "id": "D",
+              "text": "The game we played was difficult."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Who is the subject of designed and cannot be omitted."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-10-Q7",
+          "type": "single_choice",
+          "prompt": "Choose the correctly punctuated sentence.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Our school library, which reopened in September, is much brighter now."
+            },
+            {
+              "id": "B",
+              "text": "Our school library which, reopened in September is much brighter now."
+            },
+            {
+              "id": "C",
+              "text": "Our school library, that reopened in September, is much brighter now."
+            },
+            {
+              "id": "D",
+              "text": "Our school library which reopened, in September is much brighter now."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The extra information is a non-defining clause, so it is enclosed by commas and uses which."
+          },
+          "skill_tags": [
+            "grammar.non_defining_relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-10-Q8",
+          "type": "short_answer",
+          "prompt": "Write only the missing word: My laptop, ___ I bought last year, still works well.",
+          "answer": {
+            "accepted_answers": [
+              "which"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The laptop is already identified and the clause is non-defining, so which is used; that is not standard here."
+          },
+          "skill_tags": [
+            "grammar.non_defining_relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-10-Q9",
+          "type": "single_choice",
+          "prompt": "What is the usual meaning of “The students who finished early left the room”?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Only the students who finished early are identified as leaving."
+            },
+            {
+              "id": "B",
+              "text": "All the students finished early, and all left."
+            },
+            {
+              "id": "C",
+              "text": "No student finished early."
+            },
+            {
+              "id": "D",
+              "text": "The sentence means exactly the same as one with commas."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Without commas, the defining clause identifies a particular group: the students who finished early."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-10-Q10",
+          "type": "single_choice",
+          "prompt": "Combine the ideas as a non-defining clause: “Our art teacher is Ms Hoa. She studied in Paris.”",
+          "options": [
+            {
+              "id": "A",
+              "text": "Our art teacher, who studied in Paris, is Ms Hoa."
+            },
+            {
+              "id": "B",
+              "text": "Our art teacher that studied in Paris is Ms Hoa."
+            },
+            {
+              "id": "C",
+              "text": "Our art teacher who, studied in Paris, is Ms Hoa."
+            },
+            {
+              "id": "D",
+              "text": "Our art teacher, which studied in Paris, is Ms Hoa."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Who with commas correctly adds extra information about the already identified person."
+          },
+          "skill_tags": [
+            "grammar.non_defining_relative_clauses"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-B1-11",
+      "module": "grammar",
+      "cefr_target": "B1",
+      "title": "Gerunds and infinitives after common verbs",
+      "estimated_minutes": 26,
+      "objectives": [
+        "Use -ing forms after common verbs such as enjoy, avoid, finish and suggest.",
+        "Use to + infinitive after common verbs such as want, plan, decide and hope.",
+        "Choose the correct verb pattern without adding an unnecessary preposition or auxiliary."
+      ],
+      "explanation": {
+        "en": "Some verbs are followed by an -ing form, while others are followed by to + infinitive. Common -ing verbs include enjoy, avoid, finish and suggest: I enjoy reading; She suggested taking the bus. Common to-infinitive verbs include want, plan, decide and hope: We plan to leave early; He decided to study more. Learn these as verb patterns rather than trying to translate word by word. This lesson uses verbs whose pattern is clear in the given meaning and avoids verbs that commonly allow both patterns with little or no change in meaning.",
+        "vi": "Một số động từ đi với dạng -ing, còn một số động từ khác đi với to + động từ nguyên mẫu. Các động từ thường đi với -ing gồm enjoy, avoid, finish, suggest. Các động từ thường đi với to-infinitive gồm want, plan, decide, hope. Nên học theo cụm mẫu động từ thay vì dịch từng từ. Bài này dùng các động từ có mẫu rõ ràng trong nghĩa đang xét và tránh các động từ thường chấp nhận cả hai dạng."
+      },
+      "examples": [
+        "I enjoy reading graphic novels.",
+        "Try to avoid using your phone during study time.",
+        "We plan to visit the museum on Saturday.",
+        "She decided to join the school club."
+      ],
+      "activities": [
+        {
+          "id": "GRA-B1-11-Q1",
+          "type": "single_choice",
+          "prompt": "I really enjoy ___ graphic novels.",
+          "options": [
+            {
+              "id": "A",
+              "text": "reading"
+            },
+            {
+              "id": "B",
+              "text": "to read"
+            },
+            {
+              "id": "C",
+              "text": "read"
+            },
+            {
+              "id": "D",
+              "text": "to reading"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Enjoy is followed by an -ing form: enjoy reading."
+          },
+          "skill_tags": [
+            "grammar.gerund_infinitive"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-11-Q2",
+          "type": "single_choice",
+          "prompt": "We decided ___ the earlier bus.",
+          "options": [
+            {
+              "id": "A",
+              "text": "to take"
+            },
+            {
+              "id": "B",
+              "text": "taking"
+            },
+            {
+              "id": "C",
+              "text": "take"
+            },
+            {
+              "id": "D",
+              "text": "to taking"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Decide is followed by to + infinitive: decided to take."
+          },
+          "skill_tags": [
+            "grammar.gerund_infinitive"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-11-Q3",
+          "type": "single_choice",
+          "prompt": "Try to avoid ___ your phone while you are studying.",
+          "options": [
+            {
+              "id": "A",
+              "text": "using"
+            },
+            {
+              "id": "B",
+              "text": "to use"
+            },
+            {
+              "id": "C",
+              "text": "use"
+            },
+            {
+              "id": "D",
+              "text": "to using"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Avoid is followed by an -ing form: avoid using."
+          },
+          "skill_tags": [
+            "grammar.gerund_infinitive"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-11-Q4",
+          "type": "short_answer",
+          "prompt": "Complete the sentence with the correct form of study: I plan ___ harder before the exam.",
+          "answer": {
+            "accepted_answers": [
+              "to study"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Plan is followed by to + infinitive: plan to study."
+          },
+          "skill_tags": [
+            "grammar.gerund_infinitive"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-11-Q5",
+          "type": "single_choice",
+          "prompt": "She finished ___ her presentation just before lunch.",
+          "options": [
+            {
+              "id": "A",
+              "text": "preparing"
+            },
+            {
+              "id": "B",
+              "text": "to prepare"
+            },
+            {
+              "id": "C",
+              "text": "prepare"
+            },
+            {
+              "id": "D",
+              "text": "to preparing"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Finish is followed by an -ing form: finished preparing."
+          },
+          "skill_tags": [
+            "grammar.gerund_infinitive"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-11-Q6",
+          "type": "single_choice",
+          "prompt": "They hope ___ the final next week.",
+          "options": [
+            {
+              "id": "A",
+              "text": "to reach"
+            },
+            {
+              "id": "B",
+              "text": "reaching"
+            },
+            {
+              "id": "C",
+              "text": "reach"
+            },
+            {
+              "id": "D",
+              "text": "to reaching"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Hope is followed by to + infinitive in this pattern: hope to reach."
+          },
+          "skill_tags": [
+            "grammar.gerund_infinitive"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-11-Q7",
+          "type": "short_answer",
+          "prompt": "Complete with the correct form of write: He enjoys ___ short stories.",
+          "answer": {
+            "accepted_answers": [
+              "writing"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Enjoy is followed by the -ing form writing."
+          },
+          "skill_tags": [
+            "grammar.gerund_infinitive"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-11-Q8",
+          "type": "single_choice",
+          "prompt": "Which sentence uses the correct verb pattern?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The teacher suggested taking a short break."
+            },
+            {
+              "id": "B",
+              "text": "The teacher suggested to take a short break."
+            },
+            {
+              "id": "C",
+              "text": "The teacher suggested take a short break."
+            },
+            {
+              "id": "D",
+              "text": "The teacher suggested to taking a short break."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Suggest is normally followed by an -ing form in this pattern: suggested taking."
+          },
+          "skill_tags": [
+            "grammar.gerund_infinitive"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-11-Q9",
+          "type": "single_choice",
+          "prompt": "Which pair is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "avoid making · decide to change"
+            },
+            {
+              "id": "B",
+              "text": "avoid to make · decide changing"
+            },
+            {
+              "id": "C",
+              "text": "avoid make · decide to changing"
+            },
+            {
+              "id": "D",
+              "text": "avoid to making · decide change"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Avoid takes -ing and decide takes to + infinitive."
+          },
+          "skill_tags": [
+            "grammar.gerund_infinitive"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-11-Q10",
+          "type": "single_choice",
+          "prompt": "Mina wants ___ her pronunciation before the presentation.",
+          "options": [
+            {
+              "id": "A",
+              "text": "to improve"
+            },
+            {
+              "id": "B",
+              "text": "improving"
+            },
+            {
+              "id": "C",
+              "text": "improve"
+            },
+            {
+              "id": "D",
+              "text": "to improving"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Want is followed by to + infinitive: wants to improve."
+          },
+          "skill_tags": [
+            "grammar.gerund_infinitive"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-B1-12",
+      "module": "grammar",
+      "cefr_target": "B1",
+      "title": "Indirect questions and question tags",
+      "estimated_minutes": 27,
+      "objectives": [
+        "Use statement word order after an indirect-question opener.",
+        "Use if or whether to introduce indirect yes/no questions.",
+        "Form common question tags by matching the auxiliary and reversing positive/negative polarity."
+      ],
+      "explanation": {
+        "en": "Indirect questions sound less direct and use statement word order after the question word: Where is the station? → Could you tell me where the station is? Do not keep direct-question inversion or add do/does/did inside the indirect clause. For yes/no questions, use if or whether: Do you know if the shop is open? Question tags are short checks added to statements. A positive statement usually takes a negative tag, and a negative statement takes a positive tag: She is here, isn't she? You don't live nearby, do you? Match the auxiliary and use the correct pronoun.",
+        "vi": "Câu hỏi gián tiếp thường lịch sự hơn và dùng trật tự câu kể sau từ để hỏi: Where is the station? → Could you tell me where the station is? Không giữ đảo ngữ của câu hỏi trực tiếp và không thêm do/does/did trong mệnh đề gián tiếp. Với câu hỏi yes/no, dùng if hoặc whether. Question tag là câu hỏi ngắn ở cuối câu: câu khẳng định thường đi với tag phủ định, câu phủ định đi với tag khẳng định; trợ động từ và đại từ phải phù hợp."
+      },
+      "examples": [
+        "Could you tell me where the station is?",
+        "Do you know what time the shop closes?",
+        "Do you know if the library is open?",
+        "She is your cousin, isn't she? · You don't live here, do you?"
+      ],
+      "activities": [
+        {
+          "id": "GRA-B1-12-Q1",
+          "type": "single_choice",
+          "prompt": "Choose the correct indirect question.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Could you tell me where the library is?"
+            },
+            {
+              "id": "B",
+              "text": "Could you tell me where is the library?"
+            },
+            {
+              "id": "C",
+              "text": "Could you tell me where does the library be?"
+            },
+            {
+              "id": "D",
+              "text": "Could you tell me where the library does is?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "After the indirect-question opener, use statement word order: where the library is."
+          },
+          "skill_tags": [
+            "grammar.indirect_questions"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-12-Q2",
+          "type": "single_choice",
+          "prompt": "Do you know ___ the shop closes?",
+          "options": [
+            {
+              "id": "A",
+              "text": "what time"
+            },
+            {
+              "id": "B",
+              "text": "what time does"
+            },
+            {
+              "id": "C",
+              "text": "does what time"
+            },
+            {
+              "id": "D",
+              "text": "what time is"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The indirect clause uses statement order: what time the shop closes."
+          },
+          "skill_tags": [
+            "grammar.indirect_questions"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-12-Q3",
+          "type": "single_choice",
+          "prompt": "Choose the correct indirect yes/no question.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Do you know if the library is open?"
+            },
+            {
+              "id": "B",
+              "text": "Do you know is the library open?"
+            },
+            {
+              "id": "C",
+              "text": "Do you know does the library open?"
+            },
+            {
+              "id": "D",
+              "text": "Do you know if is the library open?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Use if or whether plus statement word order for an indirect yes/no question."
+          },
+          "skill_tags": [
+            "grammar.indirect_questions"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-12-Q4",
+          "type": "short_answer",
+          "prompt": "Complete the indirect question: Could you tell me ___? (where / the station / be)",
+          "answer": {
+            "accepted_answers": [
+              "where the station is"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The indirect clause uses statement order: where the station is."
+          },
+          "skill_tags": [
+            "grammar.indirect_questions"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-12-Q5",
+          "type": "single_choice",
+          "prompt": "Which sentence correctly removes direct-question inversion?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I'd like to know why the lesson ended early."
+            },
+            {
+              "id": "B",
+              "text": "I'd like to know why did the lesson end early."
+            },
+            {
+              "id": "C",
+              "text": "I'd like to know why ended the lesson early."
+            },
+            {
+              "id": "D",
+              "text": "I'd like to know why does the lesson ended early."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "An indirect wh-question uses statement word order and no do/did inversion."
+          },
+          "skill_tags": [
+            "grammar.indirect_questions"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-12-Q6",
+          "type": "single_choice",
+          "prompt": "She is your cousin, ___?",
+          "options": [
+            {
+              "id": "A",
+              "text": "isn't she"
+            },
+            {
+              "id": "B",
+              "text": "is she"
+            },
+            {
+              "id": "C",
+              "text": "doesn't she"
+            },
+            {
+              "id": "D",
+              "text": "wasn't she"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A positive statement with is takes the negative matching tag isn't she."
+          },
+          "skill_tags": [
+            "grammar.question_tags"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-12-Q7",
+          "type": "single_choice",
+          "prompt": "You don't live near here, ___?",
+          "options": [
+            {
+              "id": "A",
+              "text": "do you"
+            },
+            {
+              "id": "B",
+              "text": "don't you"
+            },
+            {
+              "id": "C",
+              "text": "are you"
+            },
+            {
+              "id": "D",
+              "text": "did you"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A negative present-simple statement with don't takes the positive tag do you."
+          },
+          "skill_tags": [
+            "grammar.question_tags"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-12-Q8",
+          "type": "single_choice",
+          "prompt": "He can swim well, ___?",
+          "options": [
+            {
+              "id": "A",
+              "text": "can't he"
+            },
+            {
+              "id": "B",
+              "text": "can he"
+            },
+            {
+              "id": "C",
+              "text": "doesn't he"
+            },
+            {
+              "id": "D",
+              "text": "isn't he"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A positive statement with can takes the negative matching tag can't he."
+          },
+          "skill_tags": [
+            "grammar.question_tags"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-12-Q9",
+          "type": "single_choice",
+          "prompt": "They arrived early, ___?",
+          "options": [
+            {
+              "id": "A",
+              "text": "didn't they"
+            },
+            {
+              "id": "B",
+              "text": "did they"
+            },
+            {
+              "id": "C",
+              "text": "weren't they"
+            },
+            {
+              "id": "D",
+              "text": "don't they"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A positive past-simple statement takes the negative tag with did: didn't they."
+          },
+          "skill_tags": [
+            "grammar.question_tags"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-12-Q10",
+          "type": "single_choice",
+          "prompt": "We'll meet at six, ___?",
+          "options": [
+            {
+              "id": "A",
+              "text": "won't we"
+            },
+            {
+              "id": "B",
+              "text": "will we"
+            },
+            {
+              "id": "C",
+              "text": "don't we"
+            },
+            {
+              "id": "D",
+              "text": "aren't we"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A positive statement with will takes the negative matching tag won't we."
+          },
+          "skill_tags": [
+            "grammar.question_tags"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    }
+  ]
+}
