@@ -1,10 +1,12 @@
 import {AcademicError} from '../../domain/academic';
 import type {LearnerState} from '../../domain/repository';
-import type {DiagnosticResult,DiagnosticV2,WritingRating} from '../../domain/learning-model';
+import {writingEvidence,type DiagnosticResult,type DiagnosticV2,type Evidence,type WritingRating} from '../../domain/learning-model';
 import {localAcademicRuntime,localCourseRuntime,localLearningRuntime,localPracticeProgress} from './local-runtime';
 import type {myCourses,CourseSelection} from '../../domain/course-p1';
 import {finishLocalDiagnostic} from './local-diagnostic';
 import {publicPath} from './public-path';
+import {guidedWritingFeedback} from '../../application/guided-writing';
+import {gardenRelevantIdeaResult} from '../../application/writing-practice';
 
 export function browserLearningEnabled(){
   return process.env.NEXT_PUBLIC_LEARNING_RUNTIME==='browser';
@@ -136,4 +138,50 @@ export async function finishDiagnosticAssessment(value:DiagnosticV2):Promise<{
     attempts:value.attempts.map(answer=>({id:answer.id,answer:answer.answer})),
     writing:value.writing,
   });
+}
+
+
+export async function evaluateWritingProcess(
+  stage:'analysis'|'brainstorm'|'outline'|'writing'|'revision',
+  answer:Record<string,string>,
+):Promise<{
+  mode:'guided'|'ai';
+  feedback:ReturnType<typeof guidedWritingFeedback>;
+  evidence:Evidence[];
+  evaluationStatus?:string;
+}>{
+  if(!browserLearningEnabled())return jsonFetch('/api/evaluate',{stage,answer});
+  if(!answer||typeof answer!=='object'||Array.isArray(answer)||Object.values(answer).some(value=>typeof value!=='string'))
+    throw new Error('Invalid answer fields.');
+  const index=['analysis','brainstorm','outline','writing','revision'].indexOf(stage);
+  const now=Date.now();
+  const evidence=writingEvidence(Math.min(index,3),answer,now).map(row=>({
+    ...row,
+    raw:{stage,answer},
+    ...(stage==='revision'?{
+      id:`revision-${row.id}`,
+      source:'revision' as const,
+      activityId:'school-garden-revision',
+      provisional:true,
+    }:{}),
+  }));
+  const {service}=await localLearningRuntime();
+  await service.recordEvidence(evidence);
+  const feedback=stage==='revision'
+    ?{...guidedWritingFeedback('writing',answer),summary:'Revision saved as new evidence. A sentence alone is not a full Writing proficiency assessment.'}
+    :guidedWritingFeedback(stage,answer);
+  return {
+    mode:'guided',
+    feedback,
+    evidence,
+    ...(stage==='writing'?{evaluationStatus:'pending_review'}:{}),
+  };
+}
+
+export async function saveGardenRelevantIdea(answer:string):Promise<{evidence:Evidence[];correct:boolean}>{
+  if(!browserLearningEnabled())return jsonFetch('/api/practice',{activityId:'garden-relevant-idea',answer});
+  const result=gardenRelevantIdeaResult(answer);
+  const {service}=await localLearningRuntime();
+  await service.recordEvidence(result.evidence);
+  return result;
 }
