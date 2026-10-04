@@ -1,7 +1,16 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const staticExport=process.env.GITHUB_PAGES_EXPORT==="1";
+const basePath=staticExport?(process.env.NEXT_PUBLIC_BASE_PATH??"").replace(/\/$/,""):"";
+
+const nextConfig: NextConfig = staticExport ? {
+  output:"export",
+  basePath,
+  assetPrefix:basePath,
+  trailingSlash:true,
+  images:{unoptimized:true},
+} : {
+  /* Sites / Cloudflare runtime remains unchanged outside GitHub Pages export. */
 };
 
 export default nextConfig;
