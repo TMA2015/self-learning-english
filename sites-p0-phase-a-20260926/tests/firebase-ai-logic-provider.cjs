@@ -2,21 +2,25 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
-const {execFileSync}=require('node:child_process');
+const ts=require('typescript');
 
 const root=path.join(__dirname,'..');
 const out=path.join(root,'.sites-runtime','firebase-ai-provider');
 fs.rmSync(out,{recursive:true,force:true});
-execFileSync(process.execPath,[
-  path.join(root,'node_modules/typescript/bin/tsc'),
-  'infrastructure/ai/firebase-ai-logic.ts',
-  'ai/contracts.ts',
-  '--outDir','.sites-runtime/firebase-ai-provider',
-  '--module','commonjs','--target','es2022','--skipLibCheck'
-],{cwd:root,stdio:'inherit'});
+fs.mkdirSync(path.join(out,'infrastructure','ai'),{recursive:true});
 fs.writeFileSync(path.join(out,'package.json'),'{"type":"commonjs"}\n');
 
-const {FirebaseAILogicProvider}=require(path.join(out,'infrastructure/ai/firebase-ai-logic.js'));
+const source=fs.readFileSync(path.join(root,'infrastructure/ai/firebase-ai-logic.ts'),'utf8');
+const compiled=ts.transpileModule(source,{
+  compilerOptions:{
+    module:ts.ModuleKind.CommonJS,
+    target:ts.ScriptTarget.ES2022,
+    esModuleInterop:true,
+  },
+}).outputText;
+const built=path.join(out,'infrastructure','ai','firebase-ai-logic.cjs');
+fs.writeFileSync(built,compiled);
+const {FirebaseAILogicProvider}=require(built);
 
 const calls=[];
 const factory=config=>({
