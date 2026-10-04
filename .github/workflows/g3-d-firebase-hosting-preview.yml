@@ -2,6 +2,11 @@ name: G3-D Firebase Hosting Preview
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - github-first/g3-shared-gemini-20261004
+    paths:
+      - '.github/workflows/g3-d-firebase-hosting-preview.yml'
 
 permissions:
   contents: read
