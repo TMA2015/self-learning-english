@@ -1,4 +1,4 @@
-import curriculum170 from '../../content/curriculum-1.7.0-candidate.json';
+import curriculum180 from '../../content/curriculum-1.8.0-candidate.json';
 import {academicService,sourceDigest} from '../../application/academic-service';
 import {learningService} from '../../application/learning-service';
 import {mapSeed,validateSeed,type Seed} from '../../domain/academic';
@@ -33,7 +33,7 @@ function repositories(){
 
 async function ensureCurriculum(){
   const {academic}=repositories();
-  const source=curriculum170 as unknown as Seed;
+  const source=curriculum180 as unknown as Seed;
   const errors=validateSeed(source);
   if(errors.length)throw new Error('Bundled curriculum is invalid: '+errors.join(' '));
   const current=(await academic.packages()).find(row=>row.version===source.schema_version);
