@@ -1,10 +1,8 @@
-import type { NextConfig } from "next";
-
 const staticExport=process.env.GITHUB_PAGES_EXPORT==="1";
 const basePath=staticExport?(process.env.NEXT_PUBLIC_BASE_PATH??"").replace(/\/$/,""):"";
 
-const nextConfig: NextConfig = staticExport ? {
-  output:"export",
+const nextConfig = staticExport ? {
+  output:"export" as const,
   basePath,
   assetPrefix:basePath,
   trailingSlash:true,
