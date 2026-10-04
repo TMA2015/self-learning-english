@@ -94,6 +94,7 @@ export function LocalBackupPanel(){
         State: {preview.state} · Evidence: +{preview.evidence.add} / skip {preview.evidence.skip} / conflict {preview.evidence.conflict}
         {' · '}Assessments: +{preview.assessments.add} / skip {preview.assessments.skip} / conflict {preview.assessments.conflict}
         {' · '}Lesson attempts: +{preview.academic.add} / skip {preview.academic.skip} / conflict {preview.academic.conflict}
+        {' · '}Active course: {preview.courseSelection}
       </p>
       <p className="muted">Backup identity never selects the target learner; restore always targets this local browser profile.</p>
       {preview.errors.length>0&&<p>{preview.errors.join(' ')}</p>}
