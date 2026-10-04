@@ -1,97 +1,116 @@
-# GitHub-first G2 — Backup / Restore before Static Pages
+# GitHub-first G2 — Local Data Portability + Static Pages Parity
 
-Status: **BACKUP/RESTORE IMPLEMENTED — STATIC PARITY NEXT**
+Status: **TECHNICAL CHECKPOINT PASS — PUBLICATION NOT YET AUTHORIZED**
 
 Date: 2026-10-04  
-Baseline curriculum: **1.11.0**
+Baseline curriculum: **1.11.0**  
+PR: **#42**  
+Validated head before publication decision: `3f7cb5bbcb02fe2e8961ed5cdf40bf257b4e02a8`
 
-## Why backup comes before GitHub Pages
+## Acceptance result
 
-Browser-local progress is useful only if the learner can carry and recover it.
+All ten PR workflows pass:
+- GitHub-first G2 Backup QA;
+- GitHub-first G2 Static Export QA;
+- GitHub-first G1 Local Runtime QA;
+- GitHub-first Free Platform QA;
+- Writing navigation and draft feedback;
+- Learning Evidence v21 P2A;
+- Course v21 P1;
+- Focused Foundation player;
+- UX v20 Lesson IDs/navigation;
+- G Learning English branding.
 
-Before enabling a static GitHub Pages build, browser mode must provide:
-- learner-controlled export;
-- validated restore preview;
-- no silent overwrite;
-- explicit target identity;
-- automatic pre-restore safety backup;
-- deterministic round-trip tests.
+## Browser-local capabilities now working
 
-## Reused portability core
+The GitHub-first browser runtime can operate without Sites/D1 for the core learner path:
 
-G2 does not create a second learner-data format.
+- Curriculum 1.11.0;
+- deterministic Grammar/Vocabulary/Reading;
+- real MP3 Listening with playback-before-score safeguards;
+- learner evidence and progress ledger;
+- My Courses selection with isolated revision/idempotency state;
+- adaptive Diagnostic objective scoring;
+- Diagnostic Writing remains **Not assessed** without AI;
+- 12-week Writing analysis/brainstorm/outline/draft/revision guided path;
+- deterministic Writing mini-practice;
+- Parent View;
+- learner JSON backup/restore.
 
-It reuses:
-- `application/export-learner.ts`;
-- `application/restore-learner.ts`;
-- `domain/portable-data.ts`;
-- existing repository contracts;
-- browser-local Learning and Academic repositories.
+## Backup / restore contract
 
-Current file name:
+File:
 `g-learning-english-backup-v1.json`
 
-The underlying schema remains backward-compatible:
-`ai-english-tutor.learner / schemaVersion 1`.
+The historical internal envelope remains:
+`ai-english-tutor.learner / schemaVersion 1`
 
-The historical schema identifier is intentionally not renamed because it is a data compatibility contract, not product branding.
+This identifier is retained for backward compatibility; it is not product branding.
 
-## Browser restore rules
-
-Local restore:
-1. accepts at most 5 MB of JSON;
+Browser restore:
+1. limits JSON to 5 MB;
 2. validates the portable envelope;
 3. previews state/evidence/assessment/snapshot/academic-attempt changes;
-4. never uses `learnerId` from the file to choose the target profile;
-5. targets the explicit local browser scope `local-family / primary`;
-6. refuses different existing learner state;
-7. refuses conflicting immutable evidence, assessment or attempt IDs;
+4. never trusts source `learnerId` to choose the target profile;
+5. preserves active-course selection;
+6. blocks different target learner state;
+7. blocks conflicting immutable record IDs;
 8. requires the exact preview token plus explicit confirmation;
-9. creates a complete pre-restore backup before mutation;
-10. exact repeated restore is idempotent.
+9. creates a pre-restore safety backup before mutation;
+10. makes exact repeat restore idempotent.
 
-Server/admin restore keeps its stricter historical learner-ID check by default. The identity bypass exists only when the caller explicitly requests local target-owned mapping.
+Server/admin restore keeps its stricter historical learner-ID rule by default.
 
-## UI
+## Static export
 
-Browser mode exposes **Backup & restore** in Parent View.
+The app now has a dedicated static build profile:
 
-The learner/family can:
-- Export backup;
-- choose a JSON backup;
-- inspect a non-mutating restore preview;
-- restore only when the preview is conflict-free.
+- `GITHUB_PAGES_EXPORT=1`
+- `NEXT_PUBLIC_LEARNING_RUNTIME=browser`
+- `NEXT_PUBLIC_BASE_PATH=/<pages-project>`
 
-After a successful restore, the automatically created pre-restore safety backup is downloaded and the app reloads.
+The static profile:
+- avoids Sites/Cloudflare Worker runtime;
+- prerenders the root learning route;
+- skips server-only API routes;
+- prefixes framework/public/audio/brand assets with the configured project path;
+- stages one flattened GitHub Pages artifact;
+- includes `.nojekyll`;
+- includes all 5 current Listening MP3 files;
+- scans staged text assets for Google/OpenAI key-shaped secrets;
+- verifies no duplicated project path.
 
-## G2 backup acceptance gate
+The base path is parameterized. It can target either:
+- the current repository name, if private GitHub Pages is available for the account; or
+- a separate public artifact-only repository, if free Pages requires public visibility.
 
-Automated QA proves:
-- state and unknown legacy fields round-trip;
-- academic attempts round-trip;
-- source learner identity cannot redirect the target;
-- default/server identity validation remains strict;
-- exact second restore is safe/idempotent;
-- conflicting local state is rejected before mutation;
-- malformed/unsupported/oversized backups are rejected;
-- production build and all G1 browser-runtime regressions still pass.
+## Security / data boundary
 
-## Static parity remaining work
+Static publication contains curriculum, UI code and public audio assets only.
 
-Do **not** turn on `output: "export"` yet.
+It does **not** publish:
+- learner localStorage data;
+- learner backups;
+- D1 data;
+- API keys;
+- Firebase/Gemini secrets;
+- authenticated Sites data.
 
-Current direct server dependencies still to reconcile for browser mode:
-- My Courses selection (`/api/course`);
-- Diagnostic submission (`/api/diagnostic`);
-- capabilities/admin-only routes;
-- server-only admin/review utilities.
+No Sites/D1 production mutation is part of G2.
 
-Next order:
-1. move My Courses selection to browser-local state;
-2. move deterministic Diagnostic objective path to browser services;
-3. hide/replace server-only admin functions in static mode;
-4. add a dedicated static-build configuration;
-5. add GitHub Pages build/deploy workflow;
-6. run mobile/offline/static parity QA.
+## Publication boundary
 
-No Sites/D1 data is mutated by G2 browser backup QA.
+No public repository has been created and no GitHub Pages site has been published by this checkpoint.
+
+GitHub documentation states:
+- public repositories can use Pages on GitHub Free;
+- private repositories require GitHub Pro/Team/Enterprise for Pages.
+
+Therefore publication is intentionally a separate owner-visible decision because a public artifact repository would make the static learning site publicly reachable even though the source repository remains private.
+
+## Next work after publication choice
+
+1. publish the validated static artifact using the chosen Pages target;
+2. perform owner QA on desktop + iPad/iPhone;
+3. add optional shared Gemini gateway for Writing/Speaking assistance;
+4. keep deterministic learning functional when AI is unavailable.
