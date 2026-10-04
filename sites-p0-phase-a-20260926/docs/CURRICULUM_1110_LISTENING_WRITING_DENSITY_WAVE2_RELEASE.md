@@ -1,6 +1,6 @@
 # Curriculum 1.11.0 — Listening + B1 Writing Density Wave 2
 
-Status: **ACADEMIC PASS / TECHNICAL RELEASE-CANDIDATE PASS**
+Status: **ACADEMIC PASS / TECHNICAL PASS / AUDIO READY / GITHUB-FIRST RUNTIME PASS**
 
 Date: 2026-10-04
 
@@ -69,6 +69,31 @@ Dry-run 1.10.0 -> 1.11.0:
 - Skip: **74**
 - Conflict: **0**
 
+## Audio assets
+
+Curriculum 1.11.0 now has real MP3 playback assets for **5/5 Listening lessons**.
+
+Wave 2 assets were generated reproducibly inside GitHub Actions using free local tools (`espeak` + `ffmpeg`), with no external TTS account or paid service:
+
+- LIS-A1-01 — 32.758 s — SHA-256 `7f7b514e30f1239d29cde08fe4e7b2ee2a448460dc392b4d4f390690adb9ae34`
+- LIS-A2-02 — 49.058 s — SHA-256 `3cbe8e37ab59d454f97852eb45e6db8a60cd5bc61aad47ce732a1eecbc898b14`
+- LIS-B1-02 — 70.975 s — SHA-256 `24c0c59ba28b1b87a4cba4a6f862a197f3f9d7cafd96b1516f734ac531b7dbe0`
+
+The manifest source text must match the reviewed `audio_asset.source_text` exactly.
+
+## GitHub-first runtime proof
+
+The browser-local runtime is bundled with Curriculum 1.11.0.
+
+QA now proves:
+- the three new Listening lessons expose real manifest-backed audio;
+- submission before verified playback is rejected;
+- transcript access before a played/submitted attempt is rejected;
+- after full playback, objective Listening evidence enters the local ledger with `playbackCompleted=true`;
+- WRI-B1-02 submits as `pending_review` with no Writing evidence before review;
+- after adult review, Writing rubric evidence enters the local ledger;
+- both Listening and Writing progress survive local runtime recreation.
+
 ## Automated gates
 
 PASS:
@@ -89,4 +114,4 @@ PASS:
 
 This checkpoint does not authorize Sites/D1 production import or deployment.
 
-GitHub-first browser runtime may advance to 1.11.0 after local-runtime QA passes.
+GitHub-first browser runtime is now on **1.11.0** and local-runtime QA passes. Sites/D1 production import and deployment remain separately unauthorized.
