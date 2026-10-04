@@ -555,7 +555,7 @@
     {
       "id": "GRA-B1-10",
       "cefr": "B1",
-      "status": "draft_pending_notebooklm_review",
+      "status": "academic_pass_pending_curriculum_1.9.0_import",
       "title": "Defining and non-defining relative clauses",
       "prerequisites": [
         "GRA-A2-16"
@@ -564,12 +564,12 @@
         "relative-clauses",
         "non-defining-relative-clauses"
       ],
-      "academic_review": "PENDING"
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-B1-11",
       "cefr": "B1",
-      "status": "draft_pending_notebooklm_review",
+      "status": "academic_pass_pending_curriculum_1.9.0_import",
       "title": "Gerunds and infinitives after common verbs",
       "prerequisites": [
         "GRA-A2-15"
@@ -578,12 +578,12 @@
         "gerund-vs-infinitive",
         "verb-patterns"
       ],
-      "academic_review": "PENDING"
+      "academic_review": "PASS"
     },
     {
       "id": "GRA-B1-12",
       "cefr": "B1",
-      "status": "draft_pending_notebooklm_review",
+      "status": "academic_pass_pending_curriculum_1.9.0_import",
       "title": "Indirect questions and question tags",
       "prerequisites": [
         "GRA-A1-08"
@@ -592,7 +592,7 @@
         "indirect-questions",
         "question-tags"
       ],
-      "academic_review": "PENDING"
+      "academic_review": "PASS"
     }
   ],
   "first_expansion_wave": {
@@ -617,7 +617,7 @@
     "note": "Wave 1A + 1B are academically approved and present in the imported Curriculum 1.6.1 baseline."
   },
   "second_expansion_wave": {
-    "status": "wave2a_and_2b_pass_wave2c_drafting",
+    "status": "complete_academic_pass_40_lesson_roadmap",
     "target_level": "B1",
     "target_lessons": 11,
     "packets": [
@@ -648,9 +648,11 @@
           "GRA-B1-11",
           "GRA-B1-12"
         ],
-        "review_status": "PENDING"
+        "review_status": "PASS"
       }
     ],
-    "principle": "Review each 3–4 lesson packet independently in NotebookLM. Only compose/import an immutable curriculum version after the packet is PASS and repository QA passes."
+    "principle": "Review each 3–4 lesson packet independently in NotebookLM. Only compose/import an immutable curriculum version after the packet is PASS and repository QA passes.",
+    "completed_lessons": 11,
+    "grammar_roadmap_total": 40
   }
 }
