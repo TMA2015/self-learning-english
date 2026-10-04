@@ -1,7 +1,7 @@
 {
   "format": "self-learning-english.adaptive-concept-map",
   "schema_version": 1,
-  "status": "planning_metadata_with_approved_a1_a2_and_b1_wave2a_wave2b_expansion",
+  "status": "planning_metadata_with_complete_reviewed_grammar_40_lesson_roadmap",
   "production_reference": {
     "sites_version": "v30",
     "curriculum_version": "1.6.1"
@@ -464,6 +464,48 @@
         "question-formation",
         "reported-speech"
       ]
+    },
+    {
+      "id": "non-defining-relative-clauses",
+      "source_tags": [
+        "grammar.non_defining_relative_clauses"
+      ],
+      "approved_primary_lesson": "GRA-B1-10",
+      "prerequisite_concepts": [
+        "relative-clauses"
+      ]
+    },
+    {
+      "id": "gerund-infinitive",
+      "source_tags": [
+        "grammar.gerund_infinitive"
+      ],
+      "approved_primary_lesson": "GRA-B1-11",
+      "prerequisite_concepts": [
+        "verb-patterns"
+      ]
+    },
+    {
+      "id": "indirect-questions",
+      "source_tags": [
+        "grammar.indirect_questions"
+      ],
+      "approved_primary_lesson": "GRA-B1-12",
+      "prerequisite_concepts": [
+        "question-formation",
+        "reported-questions"
+      ]
+    },
+    {
+      "id": "question-tags",
+      "source_tags": [
+        "grammar.question_tags"
+      ],
+      "approved_primary_lesson": "GRA-B1-12",
+      "prerequisite_concepts": [
+        "question-formation",
+        "be-forms"
+      ]
     }
   ],
   "recommendation_defaults": {
@@ -479,11 +521,13 @@
     "unobserved_is_not_failure": true
   },
   "approved_expansion_reference": {
-    "wave": "Grammar Wave 1A + Wave 1B + B1 Wave 2A + Wave 2B",
-    "lessons": 22,
-    "activities": 220,
+    "wave": "Grammar Wave 1A + Wave 1B + B1 Wave 2A + Wave 2B + Wave 2C",
+    "lessons": 25,
+    "activities": 250,
+    "grammar_roadmap_total": 40,
+    "grammar_roadmap_complete": true,
     "production_imported": false,
-    "latest_academic_packet": "EN-GRA-B1-W2B-20261004",
+    "latest_academic_packet": "EN-GRA-B1-W2C-20261004",
     "latest_academic_verdict": "PASS"
   }
 }
