@@ -41,7 +41,7 @@ export default defineConfig(async () => {
   // GitHub Pages is a pure static target. Do not initialize the Sites shim or
   // Cloudflare Worker plugin here: both intentionally produce a Worker-oriented
   // client/server bundle rather than the output:'export' prerender artifact.
-  if (process.env.GITHUB_PAGES_EXPORT === "1") {
+  if (process.env.STATIC_EXPORT === "1" || process.env.GITHUB_PAGES_EXPORT === "1") {
     const pagesBase=(process.env.NEXT_PUBLIC_BASE_PATH??"").replace(/^\/+|\/+$/g,"");
     return {
       base:pagesBase?`/${pagesBase}/`:"/",

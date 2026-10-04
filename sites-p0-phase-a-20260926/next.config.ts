@@ -1,4 +1,4 @@
-const staticExport=process.env.GITHUB_PAGES_EXPORT==="1";
+const staticExport=process.env.STATIC_EXPORT==="1"||process.env.GITHUB_PAGES_EXPORT==="1";
 
 const nextConfig = staticExport ? {
   output:"export" as const,
