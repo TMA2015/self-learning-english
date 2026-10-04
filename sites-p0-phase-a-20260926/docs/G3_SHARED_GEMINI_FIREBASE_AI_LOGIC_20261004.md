@@ -1,6 +1,6 @@
 # G3 — Shared Gemini via Firebase AI Logic
 
-Status: **PROVIDER CONTRACT / NO LIVE FIREBASE PROJECT YET**
+Status: **G3-A PROVIDER CONTRACT PASS / NO LIVE FIREBASE PROJECT YET**
 
 Date: 2026-10-04  
 Parent checkpoint: G2 / Curriculum 1.11.0
@@ -93,11 +93,13 @@ Adding live SDK wiring before those exist would create untestable configuration 
 
 Therefore G3 is staged:
 
-### G3-A — provider contract
-- add Firebase AI Logic provider adapter;
-- prove it works with existing tutor service using a fake transport;
-- keep current OpenAI server provider unchanged;
-- no dependency or account change.
+### G3-A — provider contract — PASS
+- Firebase AI Logic provider adapter added;
+- existing tutor service compatibility proven with a fake transport;
+- unavailable-provider fallback proven;
+- malformed structured output rejection proven;
+- current OpenAI server provider unchanged;
+- no Firebase SDK dependency or account change.
 
 ### G3-B — owner creates Firebase projects
 For each of English and Math:
