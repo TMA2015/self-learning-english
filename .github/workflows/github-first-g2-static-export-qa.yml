@@ -10,6 +10,7 @@ on:
       - 'sites-p0-phase-a-20260926/next.config.ts'
       - 'sites-p0-phase-a-20260926/public/**'
       - 'sites-p0-phase-a-20260926/tests/github-first-g2-static-export.cjs'
+      - 'sites-p0-phase-a-20260926/scripts/stage-github-pages.mjs'
       - '.github/workflows/github-first-g2-static-export-qa.yml'
   workflow_dispatch:
 
@@ -39,5 +40,7 @@ jobs:
         run: pnpm exec tsc --noEmit --incremental false
       - name: Build static GitHub Pages artifact
         run: pnpm run build
+      - name: Stage GitHub Pages project-site artifact
+        run: node scripts/stage-github-pages.mjs
       - name: Verify artifact, base path, static audio and secret safety
         run: node tests/github-first-g2-static-export.cjs
