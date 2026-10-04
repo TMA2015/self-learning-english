@@ -27,7 +27,7 @@ const base=require('../'+basePath);
 const batch=require('../'+batchPath);
 const candidate=JSON.parse(fs.readFileSync(tempPath,'utf8'));
 
-assert.equal(batch.status,'draft_pending_independent_notebooklm_review');
+assert.equal(batch.status,'academic_pass_ready_for_1.9.0_composition');
 assert.equal(batch.base_version,'1.8.0');
 assert.equal(batch.target_version,'1.9.0');
 assert.deepEqual(batch.lessons.map(l=>l.id),['GRA-B1-10','GRA-B1-11','GRA-B1-12']);
@@ -52,21 +52,14 @@ assert.equal(candidate.lessons.length,70);
 assert.equal(candidate.lessons.flatMap(l=>l.activities).length,609);
 assert.equal(candidate.lessons.filter(l=>l.module==='grammar').length,40);
 
-const proposedTags=[
-  'grammar.non_defining_relative_clauses',
-  'grammar.gerund_infinitive',
-  'grammar.indirect_questions',
-  'grammar.question_tags'
-];
-for(const tag of proposedTags)assert.equal(tagMap[tag],undefined,'draft tag must stay blocked until academic review: '+tag);
-
-const preReviewErrors=validateSeed(candidate);
-assert(preReviewErrors.length>0,'draft candidate must not become importer-valid before tag review');
-for(const lesson of batch.lessons)for(const q of lesson.activities){
-  if(q.skill_tags.some(tag=>proposedTags.includes(tag))){
-    assert(preReviewErrors.some(e=>e.startsWith(q.id+': invalid prompt/tags.')),'expected closed-world block for '+q.id);
-  }
-}
+const approvedTags={
+  'grammar.non_defining_relative_clauses':'non-defining-relative-clauses',
+  'grammar.gerund_infinitive':'gerund-infinitive',
+  'grammar.indirect_questions':'indirect-questions',
+  'grammar.question_tags':'question-tags'
+};
+for(const [tag,mapped] of Object.entries(approvedTags))assert.equal(tagMap[tag],mapped,'reviewed Wave 2C mapping missing: '+tag);
+assert.deepEqual(validateSeed(candidate),[],'academic-PASS Wave 2C candidate must be importer-valid');
 
 for(const old of base.lessons){
   assert.deepEqual(candidate.lessons.find(l=>l.id===old.id),old,'1.8.0 base lesson changed: '+old.id);
@@ -96,6 +89,7 @@ console.log(JSON.stringify({
   cumulativeActivities:609,
   grammarLessons:40,
   roadmapTargetReachedOnPass:true,
-  importerBlockedPendingReview:true,
+  importerBlockedPendingReview:false,
+  academicPass:true,
   importAuthorized:false
 }));
