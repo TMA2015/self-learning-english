@@ -37,7 +37,7 @@ Check:
 - duplication/redundancy;
 - originality.
 
-New skill tags remain blocked from runtime until independent review passes.
+${String(batch.status??'').startsWith('academic_pass')?'This packet has passed independent review. Reviewed skill tags may be admitted only through explicit runtime mapping plus regression tests.':'New skill tags remain blocked from runtime until independent review passes.'}
 `;
 
 for(const lesson of batch.lessons){
