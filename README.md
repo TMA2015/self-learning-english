@@ -1,30 +1,74 @@
-# AI English Tutor
+# Self-Learning English
 
-Portable academic content and source-backup home for the existing **AI English Tutor** ChatGPT Site.
+GitHub-first, free-to-run learning platform for the G Learning family project.
 
-> **Status:** This repository currently contains the academic seed and coordination documents only. The live Site's application source, database migrations and learner data have **not** been synced here yet. Do not treat this repository as a deployable copy of the Site.
+> **Direction changed on 2026-10-04.** GitHub is now the durable source of truth and the target home for a self-contained learning application. The existing private ChatGPT Site remains a valuable production reference and migration source, but it is no longer the architectural center of the project.
 
-## Existing Site
-- Private Site: https://english-writing-coach.giangrr.chatgpt.site
-- Preserve the existing Site, learner accounts, assessment evidence, the 12-week Writing course, Assisted Review, and cross-device storage.
-- Continue development on the existing Site; do not create a replacement Site.
+## Product goal
 
-## Source of truth
-- GitHub: authored content packages, curriculum, schemas, test fixtures, documentation, and reviewed source snapshots.
-- Sites: deployed application and learner records.
-- Learner data: export and back up separately using restricted access. Never commit personal learner records.
+Build a platform that the family can actually learn with at zero required hosting cost:
 
-## First content package
-`content/packages/ai_english_tutor_academic_seed_v1.json` is a proposed **portable seed schema**, not a Site-native format. It contains 13 sample lessons at A2–B1 across 7 skill groups. Import requires the existing Site's versioned, idempotent admin importer. The seed must not overwrite user data or the existing 12-week Writing course.
+- Grammar, Vocabulary, Reading and suitably designed Listening work without AI.
+- Deterministic exercises are scored from versioned content and answer keys.
+- Learner progress can be stored in the browser without an account or server.
+- Export/import backup remains possible so browser-only data is not trapped on one device.
+- AI is optional. Writing and future Speaking can use a provider when configured, but core study must remain usable when AI is unavailable.
+- No API key, learner record, recording or personal response is committed to GitHub.
 
-## Development workflow
-1. Author, review and version content on GitHub.
-2. Import only approved versions into the **existing** Site; run dry-run and a single end-to-end learner test.
-3. After a Sites change, sync Site source into a dedicated branch or snapshot; review the diff before merging.
-4. Keep environment secrets, database credentials and learner records outside Git.
-5. Do not overwrite the latest GitHub content with an older Sites snapshot.
+## Current repository shape
 
-See `docs/SITE_HANDOFF.md` for the current blocker and minimal next Work tasks.
+The most complete application source currently lives under:
+
+`sites-p0-phase-a-20260926/`
+
+The source already has useful portability boundaries:
+
+- `domain/` — scoring, learning model and repository contracts.
+- `application/` — use cases independent of D1/OpenAI.
+- `content/` — versioned curriculum and academic assets.
+- `infrastructure/` — replaceable storage/auth/AI adapters.
+- `app/` — current UI and HTTP controllers.
+- `tests/` — portable academic/application regression gates.
+
+The current Sites runtime uses D1 plus trusted Sites identity. The GitHub-first path replaces those hosting adapters rather than rewriting the academic core.
+
+## GitHub-first migration
+
+The canonical architecture decision is documented in:
+
+`sites-p0-phase-a-20260926/docs/GITHUB_FIRST_FREE_PLATFORM_20261004.md`
+
+Initial migration order:
+
+1. Preserve the current curriculum, IDs, attempts and learner-model contracts.
+2. Add browser persistence adapters and test them independently.
+3. Route deterministic learning flows to browser services instead of server API routes.
+4. Produce a static build suitable for GitHub Pages.
+5. Add JSON backup/restore for browser data.
+6. Add AI only through a server-side proxy; never expose provider secrets in GitHub Pages.
+7. Reconcile the parallel P2B adaptive-learning branch after the storage/static-host boundary is stable.
+
+## AI boundary
+
+The project keeps the existing provider-independent `AITutorProvider` contract.
+
+A public static site must **not** embed a Gemini/OpenAI API key in client JavaScript. If automatic AI is enabled, both Self-Learning English and Self-Learning Math should use one small shared server-side proxy with per-app routing, validation and quota controls. Manual assisted review remains a no-secret fallback.
+
+## Source-of-truth policy
+
+- GitHub: application source, curriculum, schemas, tests, prompts, release docs and migration decisions.
+- Browser storage: learner-local attempts/progress when using the free static mode.
+- Optional backend: only for features that truly require a secret, shared sync or server trust.
+- Existing Sites/D1: migration reference until the GitHub-first app passes parity gates.
+- Never rewrite immutable content versions or historical learner evidence in place.
 
 ## Security
-Repository is private. No `.env`, tokens, database dumps containing personal information, learner responses or real recordings belong here.
+
+Repository is private. Do not commit:
+
+- `.env` files or API keys;
+- database dumps with learner data;
+- learner writing, recordings or personal profile data;
+- production auth tokens.
+
+Provider keys belong only in server-side secret storage.

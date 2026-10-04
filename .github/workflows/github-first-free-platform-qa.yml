@@ -1,0 +1,33 @@
+name: GitHub-first Free Platform QA
+on:
+  pull_request:
+    paths:
+      - 'README.md'
+      - 'sites-p0-phase-a-20260926/docs/GITHUB_FIRST_FREE_PLATFORM_20261004.md'
+      - 'sites-p0-phase-a-20260926/infrastructure/storage/browser-local-repositories.ts'
+      - 'sites-p0-phase-a-20260926/tests/github-first-browser-storage.cjs'
+      - '.github/workflows/github-first-free-platform-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: pnpm install --frozen-lockfile
+      - name: Browser-local repository contract
+        run: node tests/github-first-browser-storage.cjs
+      - name: Existing portable core regressions
+        run: node tests/run.cjs && node tests/academic.cjs && node tests/version-aware-attempt-ux.cjs && node tests/practice-progress-p2a.cjs
+      - name: TypeScript
+        run: pnpm exec tsc --noEmit --incremental false
