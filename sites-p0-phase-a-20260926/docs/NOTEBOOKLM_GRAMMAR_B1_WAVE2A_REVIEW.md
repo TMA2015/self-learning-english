@@ -2,7 +2,7 @@
 
 Packet ID: `EN-GRA-B1-W2A-20261004`
 
-Status: **REVISIONS APPLIED — TARGETED NOTEBOOKLM RECHECK PENDING**
+Status: **ACADEMIC PASS — RELEASE CANDIDATE QA IN PROGRESS**
 
 ## Temporary source to upload
 
@@ -123,6 +123,21 @@ The machine-readable batch and NotebookLM Markdown source are now locked by CI: 
 ### Targeted recheck only
 
 For the second NotebookLM pass, recheck only these five activity IDs and confirm that the corrections remove the original issues without introducing a new ambiguity. A full 40-item review is not required.
+
+## Targeted recheck result — 2026-10-04
+
+Verdict: **PASS**
+
+NotebookLM rechecked exactly the five revised short-answer activities and confirmed that the original gap/scoring issues are resolved with no new ambiguity.
+
+Final packet status:
+
+- 4 lessons / 40 activities reviewed.
+- Academic quality: PASS.
+- Deterministic short-answer safety: PASS.
+- New B1 skill-tag meanings: PASS.
+- Runtime tag admission is now permitted through explicit mapping and regression tests.
+- Production import/deploy remains unauthorized until the 1.7.0 candidate gate and owner release decision.
 
 ## Release boundary
 
