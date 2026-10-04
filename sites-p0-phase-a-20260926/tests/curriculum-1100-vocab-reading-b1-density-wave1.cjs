@@ -72,6 +72,8 @@ class Repo{
  const text=fs.readFileSync(candidatePath,'utf8');
  const rawSha256=sha(text),canonicalSha256=canonicalHash(candidate);
  assert.equal(preview.digest,canonicalSha256);
+ assert.equal(rawSha256,'f64bddd5dcaf46f7f98bba8b1155fbb1342f5fc4b4238d76e1fb4ed418d9af62');
+ assert.equal(canonicalSha256,'fd5a71b0cfe623437026d7d420022f9b41cb724d378f54bdfc980ed614d4b773');
  console.log(JSON.stringify({
    result:'PASS',version:'1.10.0',lessons:74,activities:649,
    grammarLessons:40,vocabularyLessons:10,readingLessons:11,
