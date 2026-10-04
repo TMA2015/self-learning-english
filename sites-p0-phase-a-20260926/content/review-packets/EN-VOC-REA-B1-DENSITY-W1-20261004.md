@@ -8,34 +8,25 @@ Base curriculum: **1.9.0**
 Proposed next curriculum after PASS: **1.10.0**  
 Scope: **4 lessons / 40 activities**
 
-This Markdown file is generated from the repository batch JSON for NotebookLM review. JSON remains repository-internal.
-
-## Why this packet exists
-
-Curriculum 1.9.0 completed the current 40-lesson Grammar roadmap. Evidence-density audit found that B1 Vocabulary and B1 Reading each had only one lesson / five activities.
-
-Specific gaps:
-- B1 Vocabulary: only one word-formation activity;
-- B1 Reading: zero detail activities;
-- Reading vocabulary-in-context evidence is thin.
-
-This packet expands those gaps using existing reviewed skill tags only.
+This Markdown file is generated from the repository batch JSON for NotebookLM review. The JSON stays inside GitHub as the machine-readable source; NotebookLM reviews this Markdown representation.
 
 ## Review boundary
 
-Check:
-- academic accuracy and naturalness;
-- B1 appropriateness;
-- answer determinism and distractors;
-- word-formation correctness;
-- collocation naturalness;
-- reading passage originality and coherence;
-- whether every reading answer is supported by the passage;
-- gist/detail/inference/author-purpose/vocabulary-in-context tag accuracy;
-- Vietnamese support;
-- duplication with existing lessons.
+Review academic correctness only. This file does not authorize import or deployment.
 
-This review does not authorize import or deployment.
+Check:
+- grammar accuracy and naturalness;
+- ambiguity / multiple acceptable answers;
+- CEFR appropriateness;
+- explanation accuracy;
+- Vietnamese support accuracy;
+- distractor quality;
+- skill-tag meaning;
+- lesson-objective alignment;
+- duplication/redundancy;
+- originality.
+
+New skill tags remain blocked from runtime until independent review passes.
 
 ---
 
@@ -65,6 +56,7 @@ At B1, useful vocabulary growth includes noticing how one base can form several 
 - IMPROVE → I can see a clear improvement.
 - COMMUNICATE → Good communication helps a team.
 - EFFECTIVE → The group worked effectively.
+
 ### Activities
 
 #### VOC-B1-02-Q1
@@ -268,6 +260,7 @@ Dùng từ tự nhiên phụ thuộc nhiều vào các từ thường đi cùng 
 - Both groups finally reached an agreement.
 - The team solved the problem before lunch.
 - She raised a concern about the new schedule.
+
 ### Activities
 
 #### VOC-B1-03-Q1
@@ -477,6 +470,7 @@ Với văn bản thông tin B1, cần tách mục đích chung khỏi các chi t
 **A repair café comes to school**
 
 Next Wednesday, Green Street Repair Café will run a two-hour session in our school library. The group normally meets once a month at the community centre, where volunteers help people repair small household objects instead of throwing them away. For this school visit, students may bring one broken item such as a desk lamp, a simple toy or a backpack with a damaged zip. Electrical items must be small enough to carry safely, and phones or tablets will not be accepted. The session begins at 3:30 p.m., but students with an item to repair should arrive at 3:15 so a volunteer can check it first. There are only twenty repair places because each volunteer will work with a small group. Students without a broken object may still attend and observe. The organisers will also demonstrate how to sew on a button and replace a bicycle reflector. No previous repair experience is necessary. The aim is not simply to fix objects; the volunteers want students to understand how basic repairs can reduce waste and make useful items last longer. Anyone who wants a repair place must complete the online form by Monday evening. Observers do not need to register.
+
 
 ### Activities
 
@@ -696,6 +690,7 @@ Văn bản nêu quan điểm B1 có thể ủng hộ một ý nhưng vẫn nêu 
 
 Study apps can make it easier to organise homework. A learner can record a deadline, divide a large task into smaller steps and receive reminders before work is due. Some apps also show how much time has been spent on different subjects. These features can be useful, especially when several assignments have to be managed at once. However, an app cannot always decide what a learner should do next. A difficult maths problem may need more time than the original plan allowed, while a familiar vocabulary exercise may take less. Learners also differ: one person may work well with frequent reminders, while another may find them distracting. For this reason, a study plan should be treated as a guide rather than a set of fixed instructions. Checking progress is still valuable, but learners need to adjust the plan when the evidence changes. An app can support that process by making deadlines and study patterns visible. The final decision, though, still belongs to the learner.
 
+
 ### Activities
 
 #### REA-B1-03-Q1
@@ -881,6 +876,8 @@ Study apps can make it easier to organise homework. A learner can record a deadl
 
 ---
 
-## Required verdict
+## Required NotebookLM verdict
 
-Return exactly `PASS` or `REVISIONS_REQUIRED`. For every issue, name the exact lesson/activity ID and provide a concrete correction. Silence does not mean PASS.
+Return exactly one packet verdict: `PASS` or `REVISIONS_REQUIRED`.
+
+For every issue, name the exact lesson/activity ID and give a concrete correction. Silence does not mean PASS.
