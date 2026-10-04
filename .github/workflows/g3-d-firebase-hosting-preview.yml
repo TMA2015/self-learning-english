@@ -2,6 +2,11 @@ name: G3-D Firebase Hosting Preview
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - github-first/g3-shared-gemini-20261004
+    paths:
+      - '.github/workflows/g3-d-firebase-hosting-preview.yml'
 
 permissions:
   contents: read
@@ -52,3 +57,24 @@ jobs:
           entryPoint: sites-p0-phase-a-20260926
           channelId: g3-d-first-release
           expires: 7d
+
+      - name: Verify deployed Writing step feedback UX
+        shell: bash
+        run: |
+          set -euo pipefail
+          ORIGIN="https://g-learning-english--g3-d-first-release-0blb9qy3.web.app"
+          HTML="$RUNNER_TEMP/preview.html"
+          curl --fail --location --retry 6 --retry-delay 3 "$ORIGIN/" -o "$HTML"
+          grep -oE 'src="[^"]+\.js[^"]*"' "$HTML" | sed -E 's/^src="//;s/"$//' > "$RUNNER_TEMP/js-paths.txt"
+          : > "$RUNNER_TEMP/all.js"
+          while IFS= read -r src; do
+            case "$src" in
+              http*) url="$src" ;;
+              /*) url="$ORIGIN$src" ;;
+              *) url="$ORIGIN/$src" ;;
+            esac
+            curl --fail --location "$url" >> "$RUNNER_TEMP/all.js"
+          done < "$RUNNER_TEMP/js-paths.txt"
+          grep -q "Continue to Brainstorm" "$RUNNER_TEMP/all.js"
+          grep -q "REVIEW BEFORE CONTINUING" "$RUNNER_TEMP/all.js"
+          echo "Deployed preview contains immediate Writing step feedback UX."
