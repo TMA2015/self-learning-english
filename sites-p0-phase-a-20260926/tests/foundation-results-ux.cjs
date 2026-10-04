@@ -13,7 +13,7 @@ assert.deepEqual(summarizeFoundationResults(entries(0,10)),{correct:0,total:10,i
 assert.deepEqual(summarizeFoundationResults(entries(3,1,1)),{correct:3,total:4,incorrect:1,reviewOnly:1,percent:75});
 assert.deepEqual(summarizeFoundationResults(entries(0,0,1)),{correct:0,total:0,incorrect:0,reviewOnly:1,percent:null});
 assert.deepEqual(summarizeFoundationResults(undefined),{correct:0,total:0,incorrect:0,reviewOnly:0,percent:null});
-const page=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8');
+const page=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8')+fs.readFileSync(path.join(root,'app/home-client.tsx'),'utf8');
 const ui=fs.readFileSync(path.join(root,'app/foundation.tsx'),'utf8');
 const css=fs.readFileSync(path.join(root,'app/globals.css'),'utf8');
 assert.equal((page.match(/<FoundationDemo\b/g)||[]).length,1,'One player instance for all seven skills plus Writing');
