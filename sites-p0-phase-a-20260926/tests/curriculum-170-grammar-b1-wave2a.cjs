@@ -114,6 +114,8 @@ class Repo{
  const rawSha256=sha(text);
  const canonicalSha256=canonicalHash(candidate);
  assert.equal(preview.digest,canonicalSha256);
+ assert.equal(rawSha256,'322361db1fcc529891679367861e772605b02c8860e3d758d9699d6763868a57');
+ assert.equal(canonicalSha256,'be2f904d9694a93bc323edb9566f26450067c64f6faba16ea200463c496e36c9');
 
  console.log(JSON.stringify({
    result:'PASS',
