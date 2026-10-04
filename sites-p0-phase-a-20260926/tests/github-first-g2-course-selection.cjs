@@ -64,7 +64,9 @@ global.window={localStorage:storage,location:{origin:'https://example.test'}};
   const coursesAgain=await runtime.localCourseRuntime();
   assert.equal((await coursesAgain.load()).selectionRevision,2);
 
-  const page=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8');
+  const routePage=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8');
+  const page=fs.readFileSync(path.join(root,'app/home-client.tsx'),'utf8');
+  assert(routePage.includes('<HomeClient/>'),'root route must delegate interactive UI to HomeClient');
   const clients=fs.readFileSync(path.join(root,'infrastructure/browser/client-services.ts'),'utf8');
   assert(!page.includes("fetch('/api/course'"),'page must not directly depend on /api/course');
   assert(page.includes('loadMyCourses()')&&page.includes('selectMyCourse('));
