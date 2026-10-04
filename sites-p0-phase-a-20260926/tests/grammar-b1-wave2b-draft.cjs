@@ -27,7 +27,7 @@ const base=require('../'+basePath);
 const batch=require('../'+batchPath);
 const candidate=JSON.parse(fs.readFileSync(tempPath,'utf8'));
 
-assert.equal(batch.status,'draft_pending_independent_notebooklm_review');
+assert.equal(batch.status,'academic_pass_ready_for_1.8.0_composition');
 assert.equal(batch.base_version,'1.7.0');
 assert.equal(batch.target_version,'1.8.0');
 assert.deepEqual(batch.lessons.map(l=>l.id),['GRA-B1-06','GRA-B1-07','GRA-B1-08','GRA-B1-09']);
@@ -51,21 +51,15 @@ assert.equal(candidate.lessons.length,67);
 assert.equal(candidate.lessons.flatMap(l=>l.activities).length,579);
 assert.equal(candidate.lessons.filter(l=>l.module==='grammar').length,37);
 
-const proposedTags=[
-  'grammar.second_conditional',
-  'grammar.wish_present',
-  'grammar.passive_voice',
-  'grammar.reported_speech',
-  'grammar.reported_questions'
-];
-for(const tag of proposedTags)assert.equal(tagMap[tag],undefined,'draft tag must stay blocked until academic review: '+tag);
-const preReviewErrors=validateSeed(candidate);
-assert(preReviewErrors.length>0,'draft candidate must not become importer-valid before tag review');
-for(const lesson of batch.lessons)for(const q of lesson.activities){
-  if(q.skill_tags.some(tag=>proposedTags.includes(tag))){
-    assert(preReviewErrors.some(e=>e.startsWith(q.id+': invalid prompt/tags.')),'expected closed-world block for '+q.id);
-  }
-}
+const approvedTags={
+  'grammar.second_conditional':'second-conditional',
+  'grammar.wish_present':'wish-present',
+  'grammar.passive_voice':'passive-voice',
+  'grammar.reported_speech':'reported-speech',
+  'grammar.reported_questions':'reported-questions'
+};
+for(const [tag,mapped] of Object.entries(approvedTags))assert.equal(tagMap[tag],mapped,'reviewed B1 Wave 2B mapping missing: '+tag);
+assert.deepEqual(validateSeed(candidate),[],'academic-PASS Wave 2B candidate must be importer-valid');
 
 for(const old of base.lessons){
   assert.deepEqual(candidate.lessons.find(l=>l.id===old.id),old,'1.7.0 base lesson changed: '+old.id);
@@ -92,6 +86,7 @@ console.log(JSON.stringify({
   cumulativeLessons:67,
   cumulativeActivities:579,
   grammarLessons:37,
-  importerBlockedPendingReview:true,
+  importerBlockedPendingReview:false,
+  academicPass:true,
   importAuthorized:false
 }));
