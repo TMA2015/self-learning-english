@@ -11,6 +11,7 @@ on:
       - 'sites-p0-phase-a-20260926/public/**'
       - 'sites-p0-phase-a-20260926/tests/github-first-g2-static-export.cjs'
       - 'sites-p0-phase-a-20260926/scripts/stage-github-pages.mjs'
+      - 'sites-p0-phase-a-20260926/scripts/hash-pages-artifact.mjs'
       - '.github/workflows/github-first-g2-static-export-qa.yml'
   workflow_dispatch:
 
@@ -50,3 +51,12 @@ jobs:
         run: node scripts/stage-github-pages.mjs
       - name: Verify artifact, base path, static audio and secret safety
         run: node tests/github-first-g2-static-export.cjs
+      - name: Generate deterministic artifact manifest
+        run: node scripts/hash-pages-artifact.mjs
+      - name: Upload private static artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: self-learning-english-static-1.11.0
+          path: sites-p0-phase-a-20260926/dist/pages-artifact
+          if-no-files-found: error
+          retention-days: 30
