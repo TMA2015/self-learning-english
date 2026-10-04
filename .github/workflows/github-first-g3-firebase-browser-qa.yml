@@ -3,6 +3,8 @@ name: GitHub-first G3 Firebase Browser QA
 on:
   pull_request:
     paths:
+      - 'sites-p0-phase-a-20260926/tests/writing-step-feedback-ux.cjs'
+      - 'sites-p0-phase-a-20260926/app/home-client.tsx'
       - 'sites-p0-phase-a-20260926/package.json'
       - 'sites-p0-phase-a-20260926/pnpm-lock.yaml'
       - 'sites-p0-phase-a-20260926/infrastructure/ai/**'
