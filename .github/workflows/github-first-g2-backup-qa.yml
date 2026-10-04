@@ -9,6 +9,9 @@ on:
       - 'sites-p0-phase-a-20260926/app/page.tsx'
       - 'sites-p0-phase-a-20260926/tests/github-first-g2-backup-restore.cjs'
       - 'sites-p0-phase-a-20260926/tests/github-first-g2-course-selection.cjs'
+      - 'sites-p0-phase-a-20260926/tests/github-first-g2-local-diagnostic.cjs'
+      - 'sites-p0-phase-a-20260926/infrastructure/browser/local-diagnostic.ts'
+      - 'sites-p0-phase-a-20260926/app/diagnostic-assessment.tsx'
       - 'sites-p0-phase-a-20260926/domain/course-p1.ts'
       - 'sites-p0-phase-a-20260926/infrastructure/browser/client-services.ts'
       - 'sites-p0-phase-a-20260926/infrastructure/browser/local-runtime.ts'
@@ -37,6 +40,8 @@ jobs:
         run: node tests/github-first-g2-backup-restore.cjs
       - name: Browser-local My Courses
         run: node tests/github-first-g2-course-selection.cjs
+      - name: Browser-local Diagnostic
+        run: node tests/github-first-g2-local-diagnostic.cjs
       - name: G1 browser runtime regressions
         run: node tests/github-first-browser-storage.cjs && node tests/github-first-g1-local-runtime.cjs
       - name: Portable learner regressions
