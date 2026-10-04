@@ -37,6 +37,15 @@ const localBindingConfig = {
 };
 
 export default defineConfig(async () => {
+  // GitHub Pages is a pure static target. Do not initialize the Sites shim or
+  // Cloudflare Worker plugin here: both intentionally produce a Worker-oriented
+  // client/server bundle rather than the output:'export' prerender artifact.
+  if (process.env.GITHUB_PAGES_EXPORT === "1") {
+    return {
+      plugins: [vinext({ nextConfig })],
+    };
+  }
+
   // Use Miniflare's local Request.cf placeholder unless fetching is requested.
   process.env.CLOUDFLARE_CF_FETCH_ENABLED ??= "false";
   process.env.WRANGLER_SEND_METRICS ??= "false";
