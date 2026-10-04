@@ -567,19 +567,19 @@ Next Wednesday, Green Street Repair Café will run a two-hour session in our sch
 #### REA-B1-02-Q6
 
 **Type:** single_choice  
-**Prompt:** What can a student do without bringing a broken object?
+**Prompt:** In the sentence 'Students without a broken object may still attend and observe,' what does 'observe' most nearly mean?
 
 **Options:**
-- A. Attend and observe
-- B. Repair a phone
-- C. Skip the safety rules
-- D. Register a second repair item
+- A. watch what happens without taking a repair place
+- B. register two broken objects
+- C. leave before the session begins
+- D. teach the volunteers how to repair
 
 **Correct option:** A
 
-**Feedback:** The text says students without a broken object may still attend and observe.
+**Feedback:** The contrast with students who bring repair items shows that observers can attend and watch without using a repair place.
 
-**Skill tag(s):** reading.detail  
+**Skill tag(s):** reading.vocabulary_in_context  
 **Evidence weight:** 1
 
 #### REA-B1-02-Q7
