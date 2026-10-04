@@ -40,6 +40,13 @@ Security changed in mid-2026:
 - Google-managed service-account authorization is handled by Firebase;
 - App Check should be enforced before a public web app uses AI.
 
+For new web App Check integrations, prefer **reCAPTCHA Enterprise**:
+- it is invisible/score-based for normal users;
+- Firebase documents up to 10,000 assessments/month at no cost;
+- Spark/no-cost projects can use the reduced score set needed for App Check;
+- the default 0.5 risk threshold remains appropriate for most cases;
+- local/CI development must use App Check's debug provider rather than adding localhost to the production key.
+
 ## Project layout decision
 
 Recommended account layout:
