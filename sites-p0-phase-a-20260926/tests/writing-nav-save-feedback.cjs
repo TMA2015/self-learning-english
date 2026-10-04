@@ -4,7 +4,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
-const page=read('app/page.tsx'), player=read('app/foundation.tsx'), platform=read('app/platform.tsx'), css=read('app/globals.css');
+const page=read('app/page.tsx')+read('app/home-client.tsx'), player=read('app/foundation.tsx'), platform=read('app/platform.tsx'), css=read('app/globals.css');
 
 assert.equal((page.match(/<WritingHome\b/g)||[]).length,1,'Writing Coach renders once');
 assert.ok(page.includes('writingIntro={view==="writing"?<WritingHome compact'),'shared writing intro slot');
