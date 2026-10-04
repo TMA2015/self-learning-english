@@ -49,6 +49,9 @@ for(const lesson of batch.lessons){
   if(lesson.explanation?.vi)md+=`### Vietnamese support\n\n${lesson.explanation.vi}\n\n`;
   md+='### Examples\n\n';
   for(const example of lesson.examples??[])md+=`- ${example}\n`;
+  if(lesson.reading_asset?.body){
+    md+=`\n### Reading text\n\n**${lesson.reading_asset.title??lesson.title}**\n\n${lesson.reading_asset.body}\n\n`;
+  }
   md+='\n### Activities\n\n';
 
   for(const q of lesson.activities??[]){
