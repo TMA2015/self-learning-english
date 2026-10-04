@@ -89,7 +89,9 @@ global.window={localStorage:new MemoryStorage(),location:{origin:'https://exampl
   await assert.rejects(()=>finishLocalDiagnostic(notPlayed),/Finish all Listening questions/);
   assert.equal((await local.service.readAssessments()).length,1);
 
-  const page=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8');
+  const routePage=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8');
+  const page=fs.readFileSync(path.join(root,'app/home-client.tsx'),'utf8');
+  assert(routePage.includes('<HomeClient/>'),'root route must delegate Diagnostic UI to HomeClient');
   const component=fs.readFileSync(path.join(root,'app/diagnostic-assessment.tsx'),'utf8');
   const clients=fs.readFileSync(path.join(root,'infrastructure/browser/client-services.ts'),'utf8');
   assert(!page.includes('fetch("/api/diagnostic"'),'main page must not call Diagnostic route directly');
