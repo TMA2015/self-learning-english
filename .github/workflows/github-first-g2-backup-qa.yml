@@ -8,6 +8,11 @@ on:
       - 'sites-p0-phase-a-20260926/app/local-backup-panel.tsx'
       - 'sites-p0-phase-a-20260926/app/page.tsx'
       - 'sites-p0-phase-a-20260926/tests/github-first-g2-backup-restore.cjs'
+      - 'sites-p0-phase-a-20260926/tests/github-first-g2-course-selection.cjs'
+      - 'sites-p0-phase-a-20260926/domain/course-p1.ts'
+      - 'sites-p0-phase-a-20260926/infrastructure/browser/client-services.ts'
+      - 'sites-p0-phase-a-20260926/infrastructure/browser/local-runtime.ts'
+      - 'sites-p0-phase-a-20260926/infrastructure/storage/browser-local-repositories.ts'
       - 'sites-p0-phase-a-20260926/docs/G2_BACKUP_STATIC_20261004.md'
       - '.github/workflows/github-first-g2-backup-qa.yml'
   workflow_dispatch:
@@ -30,6 +35,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: Browser backup and restore round trip
         run: node tests/github-first-g2-backup-restore.cjs
+      - name: Browser-local My Courses
+        run: node tests/github-first-g2-course-selection.cjs
       - name: G1 browser runtime regressions
         run: node tests/github-first-browser-storage.cjs && node tests/github-first-g1-local-runtime.cjs
       - name: Portable learner regressions
