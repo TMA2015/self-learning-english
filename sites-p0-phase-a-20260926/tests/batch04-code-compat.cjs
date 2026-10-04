@@ -102,7 +102,16 @@ const grammarB1Wave2BAdditions={
   "grammar.reported_speech": "reported-speech",
   "grammar.reported_questions": "reported-questions"
 };
-const reviewedAdditions={...batch04Additions,...grammarA1A2Additions,...grammarB1Wave2AAdditions,...grammarB1Wave2BAdditions};
+const b1Wave2CReview=require('../content/reviews/EN-GRA-B1-W2C-20261004-academic-review-v1.0.json');
+assert.equal(b1Wave2CReview.final_verdict,'PASS','B1 Wave 2C tags require an explicit academic PASS record');
+assert.equal(b1Wave2CReview.packet_id,'EN-GRA-B1-W2C-20261004');
+const grammarB1Wave2CAdditions={
+  "grammar.non_defining_relative_clauses": "non-defining-relative-clauses",
+  "grammar.gerund_infinitive": "gerund-infinitive",
+  "grammar.indirect_questions": "indirect-questions",
+  "grammar.question_tags": "question-tags"
+};
+const reviewedAdditions={...batch04Additions,...grammarA1A2Additions,...grammarB1Wave2AAdditions,...grammarB1Wave2BAdditions,...grammarB1Wave2CAdditions};
 
 for(const [tag,slug] of Object.entries(previous))assert.equal(tagMap[tag],slug,'historical tag mapping changed: '+tag);
 for(const [tag,slug] of Object.entries(reviewedAdditions))assert.equal(tagMap[tag],slug,'reviewed exact mapping missing/changed: '+tag);
@@ -122,4 +131,4 @@ for(const [tag,slug] of Object.entries(reviewedAdditions)){
 
 const unknown=structuredClone(seed);unknown.lessons.find(l=>l.module==='grammar').activities[0].skill_tags=['grammar.unknown_unreviewed'];
 assert.ok(validateSeed(unknown).some(x=>x.includes('invalid prompt/tags')),'unknown tag must be rejected');
-console.log('PASS: historical mappings unchanged; all 27 reviewed additive mappings accepted/mapped; closed-world tag guard intact; unknown tag rejected; no learner-state writes.');
+console.log('PASS: historical mappings unchanged; all 31 reviewed additive mappings accepted/mapped; closed-world tag guard intact; unknown tag rejected; no learner-state writes.');
