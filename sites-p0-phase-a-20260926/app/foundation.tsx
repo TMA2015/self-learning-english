@@ -7,7 +7,8 @@ import {listeningCompletion,listeningSubmitHint,listeningAudioHint} from '../dom
 import {catalogSections} from '../domain/catalog-taxonomy';
 import {latestAttemptForLesson,attemptStatusLabel,recentSkillWork,skillAttemptCount,hasOlderContent,attemptHistoryLabel} from '../domain/attempt-navigation';
 import {confirmLatestDraft} from '../domain/navigation-gate';
-async function call(url:string,body?:unknown){const r=await fetch(url,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:undefined);const data:any=await r.json();if(!r.ok)throw Error(data.error??'Please retry.');return data}
+import {foundationRequest} from '../infrastructure/browser/client-services';
+async function call(url:string,body?:unknown){return foundationRequest(url,body)}
 const api=(body:unknown)=>call('/api/foundation',body);
 export type Catalog={version:string;imported:boolean;course?:{sequence:string[]};journey:{steps:string[];title:string};lessons:{id:string;title:string;module:string;cefr:string;minutes:number}[];attempts:(AcademicAttempt&{hasAudio?:boolean})[]};
 type LessonView={version:string;lesson:SeedLesson;audio:{url:string;duration:number}|null};
