@@ -36,7 +36,9 @@ assert(!html.includes('"/branding/'),'brand assets must not point at domain root
 assert(!html.includes('"/favicon.svg"'),'favicon must not point at domain root');
 assert(!html.includes('/self-learning-english/self-learning-english/'),'project path must not be duplicated');
 
-const sourcePage=fs.readFileSync(path.join(root,'app','page.tsx'),'utf8');
+const routePage=fs.readFileSync(path.join(root,'app','page.tsx'),'utf8');
+const sourcePage=fs.readFileSync(path.join(root,'app','home-client.tsx'),'utf8');
+assert(routePage.includes('export const dynamic = "force-static"'),'root learning route must remain explicitly static');
 assert(!sourcePage.includes('fetch("/api/evaluate"'),'browser Writing flow must not call /api/evaluate directly');
 assert(!sourcePage.includes('"/api/practice"'),'browser Writing flow must not call /api/practice directly');
 assert(sourcePage.includes('evaluateWritingProcess('));
