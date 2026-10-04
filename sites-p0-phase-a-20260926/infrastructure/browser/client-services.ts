@@ -1,6 +1,12 @@
 import {AcademicError} from '../../domain/academic';
 import type {LearnerState} from '../../domain/repository';
-import {localAcademicRuntime,localLearningRuntime,localPracticeProgress} from './local-runtime';
+import {writingEvidence,type DiagnosticResult,type DiagnosticV2,type Evidence,type WritingRating} from '../../domain/learning-model';
+import {localAcademicRuntime,localCourseRuntime,localLearningRuntime,localPracticeProgress} from './local-runtime';
+import type {myCourses,CourseSelection} from '../../domain/course-p1';
+import {finishLocalDiagnostic} from './local-diagnostic';
+import {publicPath} from './public-path';
+import {guidedWritingFeedback} from '../../application/guided-writing';
+import {gardenRelevantIdeaResult} from '../../application/writing-practice';
 
 export function browserLearningEnabled(){
   return process.env.NEXT_PUBLIC_LEARNING_RUNTIME==='browser';
@@ -70,7 +76,10 @@ export async function foundationRequest<T=any>(url:string,body?:unknown):Promise
     }
     const parsed=new URL(url,window.location.origin);
     if(parsed.searchParams.has('transcript'))return await service.transcript(parsed.searchParams.get('transcript')!) as T;
-    if(parsed.searchParams.has('lesson'))return await service.lesson(parsed.searchParams.get('lesson')!,parsed.searchParams.get('version')??undefined) as T;
+    if(parsed.searchParams.has('lesson')){
+      const view=await service.lesson(parsed.searchParams.get('lesson')!,parsed.searchParams.get('version')??undefined);
+      return {...view,audio:view.audio?{...view.audio,url:publicPath(view.audio.url)}:null} as T;
+    }
     if(parsed.searchParams.has('audio'))throw new AcademicError('Browser-local recording playback is not enabled yet.',501);
     return await service.catalog() as T;
   }catch(error){
@@ -86,4 +95,93 @@ export async function loadPracticeProgress(){
     return data;
   }
   return localPracticeProgress();
+}
+
+export async function loadMyCourses():Promise<ReturnType<typeof myCourses>>{
+  if(!browserLearningEnabled())return jsonFetch<ReturnType<typeof myCourses>>('/api/course');
+  const runtime=await localCourseRuntime();
+  return runtime.load();
+}
+
+export async function selectMyCourse(
+  activeCourseId:string|null,
+  expectedRevision:number,
+  requestId:string,
+):Promise<{selection:CourseSelection}>{
+  if(!browserLearningEnabled()){
+    return jsonFetch<{selection:CourseSelection}>('/api/course',{activeCourseId,expectedRevision,requestId});
+  }
+  const runtime=await localCourseRuntime();
+  return {selection:await runtime.select(activeCourseId,expectedRevision,requestId)};
+}
+
+export async function loadCapabilities():Promise<{isAdmin:boolean;writingAI:boolean;runtime:'browser'|'server'}>{
+  if(browserLearningEnabled())return {isAdmin:false,writingAI:false,runtime:'browser'};
+  const response=await fetch('/api/capabilities');
+  if(!response.ok)return {isAdmin:false,writingAI:false,runtime:'server'};
+  const value=await response.json() as {isAdmin?:boolean;writingAI?:boolean};
+  return {isAdmin:value.isAdmin===true,writingAI:value.writingAI===true,runtime:'server'};
+}
+
+export async function finishDiagnosticAssessment(value:DiagnosticV2):Promise<{
+  result:DiagnosticResult;
+  attempts:DiagnosticV2['attempts'];
+  writingReviews:(WritingRating|null)[];
+  writingAI:boolean;
+}>{
+  if(browserLearningEnabled())return finishLocalDiagnostic(value);
+  return jsonFetch('/api/diagnostic',{
+    version:value.version,
+    sessionId:value.sessionId??String(value.startedAt),
+    writing2:value.writing2,
+    listening:value.listeningSkipped?[]:value.listening,
+    attempts:value.attempts.map(answer=>({id:answer.id,answer:answer.answer})),
+    writing:value.writing,
+  });
+}
+
+
+export async function evaluateWritingProcess(
+  stage:'analysis'|'brainstorm'|'outline'|'writing'|'revision',
+  answer:Record<string,string>,
+):Promise<{
+  mode:'guided'|'ai';
+  feedback:ReturnType<typeof guidedWritingFeedback>;
+  evidence:Evidence[];
+  evaluationStatus?:string;
+}>{
+  if(!browserLearningEnabled())return jsonFetch('/api/evaluate',{stage,answer});
+  if(!answer||typeof answer!=='object'||Array.isArray(answer)||Object.values(answer).some(value=>typeof value!=='string'))
+    throw new Error('Invalid answer fields.');
+  const index=['analysis','brainstorm','outline','writing','revision'].indexOf(stage);
+  const now=Date.now();
+  const evidence=writingEvidence(Math.min(index,3),answer,now).map(row=>({
+    ...row,
+    raw:{stage,answer},
+    ...(stage==='revision'?{
+      id:`revision-${row.id}`,
+      source:'revision' as const,
+      activityId:'school-garden-revision',
+      provisional:true,
+    }:{}),
+  }));
+  const {service}=await localLearningRuntime();
+  await service.recordEvidence(evidence);
+  const feedback=stage==='revision'
+    ?{...guidedWritingFeedback('writing',answer),summary:'Revision saved as new evidence. A sentence alone is not a full Writing proficiency assessment.'}
+    :guidedWritingFeedback(stage,answer);
+  return {
+    mode:'guided',
+    feedback,
+    evidence,
+    ...(stage==='writing'?{evaluationStatus:'pending_review'}:{}),
+  };
+}
+
+export async function saveGardenRelevantIdea(answer:string):Promise<{evidence:Evidence[];correct:boolean}>{
+  if(!browserLearningEnabled())return jsonFetch('/api/practice',{activityId:'garden-relevant-idea',answer});
+  const result=gardenRelevantIdeaResult(answer);
+  const {service}=await localLearningRuntime();
+  await service.recordEvidence(result.evidence);
+  return result;
 }

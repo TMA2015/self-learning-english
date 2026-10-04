@@ -1,5 +1,7 @@
 import vinext from "vinext";
 import { defineConfig } from "vite";
+import { fileURLToPath } from "node:url";
+import nextConfig from "./next.config";
 import hostingConfig from "./.openai/hosting.json";
 import { readExecutionProfile } from "./scripts/execution-profile.mjs";
 import { sites } from "./build/sites-vite-plugin";
@@ -36,6 +38,22 @@ const localBindingConfig = {
 };
 
 export default defineConfig(async () => {
+  // GitHub Pages is a pure static target. Do not initialize the Sites shim or
+  // Cloudflare Worker plugin here: both intentionally produce a Worker-oriented
+  // client/server bundle rather than the output:'export' prerender artifact.
+  if (process.env.GITHUB_PAGES_EXPORT === "1") {
+    const pagesBase=(process.env.NEXT_PUBLIC_BASE_PATH??"").replace(/^\/+|\/+$/g,"");
+    return {
+      base:pagesBase?`/${pagesBase}/`:"/",
+      resolve:{
+        alias:{
+          "cloudflare:workers":fileURLToPath(new URL("./build/static-cloudflare-workers-stub.ts",import.meta.url)),
+        },
+      },
+      plugins: [vinext({ nextConfig })],
+    };
+  }
+
   // Use Miniflare's local Request.cf placeholder unless fetching is requested.
   process.env.CLOUDFLARE_CF_FETCH_ENABLED ??= "false";
   process.env.WRANGLER_SEND_METRICS ??= "false";
@@ -56,7 +74,7 @@ export default defineConfig(async () => {
       ...(isCodexSeatbeltSandbox ? { watch: { useFsEvents: false, usePolling: true } } : {}),
     },
     plugins: [
-      vinext(),
+      vinext({ nextConfig }),
       sites({ mockAuth: !managedLinux }),
       cloudflare({
         viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },

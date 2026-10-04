@@ -28,7 +28,7 @@ assert.deepEqual(recentSkillWork(attempts,lessons,'reading').map(x=>x.attempt.id
 assert.equal(skillAttemptCount(attempts,lessons,'grammar'),2);
 assert.equal(skillAttemptCount(attempts,lessons,'reading'),1);
 const source=fs.readFileSync(path.join(root,'app/foundation.tsx'),'utf8');
-const page=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8');
+const page=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8')+fs.readFileSync(path.join(root,'app/home-client.tsx'),'utf8');
 assert.ok(source.includes("screen==='catalog'&&<>"),'catalog should be isolated');
 assert.ok(source.includes("screen==='overview'&&<>"),'overview should be isolated');
 assert.ok(source.includes("screen==='practice'&&<>"),'practice should be isolated');

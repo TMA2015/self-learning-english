@@ -5,6 +5,7 @@ import {validateImportEnvelope,type LearnerExport} from '../domain/portable-data
 import {hash} from './learning-service';
 
 type RowCounts={add:number;skip:number;conflict:number};
+export type LearnerRestoreOptions={ignoreSourceLearnerId?:boolean};
 export type LearnerRestorePreview={
   valid:boolean;
   errors:string[];
@@ -61,6 +62,7 @@ export async function previewLearnerRestore(
   learning:LearningRepository,
   scope:Scope,
   academic?:AcademicRepository,
+  options:LearnerRestoreOptions={},
 ):Promise<LearnerRestorePreview>{
   if(!validateImportEnvelope(value)){
     return {valid:false,errors:['Invalid learner backup envelope.'],state:'conflict',evidence:{add:0,skip:0,conflict:0},assessments:{add:0,skip:0,conflict:0},snapshots:{add:0,skip:0},academic:{add:0,skip:0,conflict:0},token:''};
@@ -79,7 +81,7 @@ export async function previewLearnerRestore(
   const academicCounts=countById(source.academicRecords??[],academicRows,row=>row.id);
   const snapshotsCounts=await snapshotPlan(source.snapshots,snapshots);
   const errors:string[]=[];
-  if(source.learnerId!==scope.learnerId)errors.push('Backup learner ID does not match the selected target learner.');
+  if(!options.ignoreSourceLearnerId&&source.learnerId!==scope.learnerId)errors.push('Backup learner ID does not match the selected target learner.');
   if(stateAction==='conflict')errors.push('Target already has different learner state. Restore into a fresh profile or export/merge explicitly.');
   if(evidenceCounts.conflict)errors.push('Conflicting evidence IDs found.');
   if(assessmentCounts.conflict)errors.push('Conflicting assessment session IDs found.');
@@ -131,10 +133,11 @@ export async function restoreLearnerBackup(
   token:string,
   confirmed:boolean,
   academic?:AcademicRepository,
+  options:LearnerRestoreOptions={},
 ){
   if(!confirmed)throw new Error('Restore requires explicit confirmation.');
   const source=value as LearnerExport;
-  const preview=await previewLearnerRestore(source,learning,scope,academic);
+  const preview=await previewLearnerRestore(source,learning,scope,academic,options);
   if(!preview.valid)throw new Error(preview.errors.join(' '));
   if(!token||token!==preview.token)throw new Error('Backup or target data changed since preview. Preview again before restoring.');
 

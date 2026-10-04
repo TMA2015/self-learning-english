@@ -3,20 +3,26 @@ const fs=require('node:fs');
 const path=require('node:path');
 const ts=require('typescript');
 
-const source=fs.readFileSync(path.join(__dirname,'../infrastructure/storage/browser-local-repositories.ts'),'utf8');
-const built=ts.transpileModule(source,{
-  compilerOptions:{
-    module:ts.ModuleKind.CommonJS,
-    target:ts.ScriptTarget.ES2022,
-    esModuleInterop:true,
-  },
-}).outputText;
-
 const outDir=path.join(__dirname,'../.sites-runtime/github-first-browser-storage');
 fs.rmSync(outDir,{recursive:true,force:true});
-fs.mkdirSync(outDir,{recursive:true});
-const outFile=path.join(outDir,'browser-local-repositories.cjs');
-fs.writeFileSync(outFile,built);
+fs.mkdirSync(path.join(outDir,'infrastructure/storage'),{recursive:true});
+fs.mkdirSync(path.join(outDir,'domain'),{recursive:true});
+
+const compilerOptions={
+  module:ts.ModuleKind.CommonJS,
+  target:ts.ScriptTarget.ES2022,
+  esModuleInterop:true,
+};
+for(const [sourcePath,outPath] of [
+  ['../domain/course-p1.ts','domain/course-p1.js'],
+  ['../infrastructure/storage/browser-local-repositories.ts','infrastructure/storage/browser-local-repositories.cjs'],
+]){
+  const source=fs.readFileSync(path.join(__dirname,sourcePath),'utf8');
+  const built=ts.transpileModule(source,{compilerOptions}).outputText;
+  fs.writeFileSync(path.join(outDir,outPath),built);
+}
+fs.writeFileSync(path.join(outDir,'package.json'),'{"type":"commonjs"}\n');
+const outFile=path.join(outDir,'infrastructure/storage/browser-local-repositories.cjs');
 const {BrowserLocalLearningRepository,BrowserLocalAcademicRepository,browserLocalRepositories}=require(outFile);
 
 class MemoryStorage{

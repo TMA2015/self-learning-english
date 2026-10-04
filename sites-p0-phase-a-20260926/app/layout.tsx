@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const basePath=(process.env.NEXT_PUBLIC_BASE_PATH??'').replace(/\/$/,'');
+
 export const metadata: Metadata = {
   title: "Self-Learning English",
   description: "A self-paced English learning platform with structured Grammar, Vocabulary, Reading, Writing and other skills.",
@@ -8,8 +10,8 @@ export const metadata: Metadata = {
     "codex-preview": "development",
   },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: `${basePath}/favicon.svg`,
+    shortcut: `${basePath}/favicon.svg`,
   },
 };
 

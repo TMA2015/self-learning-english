@@ -3,7 +3,8 @@ import {academicService,sourceDigest} from '../../application/academic-service';
 import {learningService} from '../../application/learning-service';
 import {mapSeed,validateSeed,type Seed} from '../../domain/academic';
 import {derivePracticeProgress} from '../../domain/practice-progress';
-import {BrowserLocalAcademicRepository,BrowserLocalLearningRepository,type BrowserKeyValueStorage} from '../storage/browser-local-repositories';
+import {myCourses} from '../../domain/course-p1';
+import {BrowserLocalAcademicRepository,BrowserLocalCourseSelectionRepository,BrowserLocalLearningRepository,type BrowserKeyValueStorage} from '../storage/browser-local-repositories';
 
 export const LOCAL_OWNER_ID='local-family';
 export const LOCAL_LEARNER_ID='primary';
@@ -13,6 +14,7 @@ let cached:{
   storage:BrowserKeyValueStorage;
   learning:BrowserLocalLearningRepository;
   academic:BrowserLocalAcademicRepository;
+  courses:BrowserLocalCourseSelectionRepository;
 }|null=null;
 
 function browserStorage():BrowserKeyValueStorage{
@@ -27,6 +29,7 @@ function repositories(){
     storage,
     learning:new BrowserLocalLearningRepository(storage),
     academic:new BrowserLocalAcademicRepository(storage),
+    courses:new BrowserLocalCourseSelectionRepository(storage),
   };
   return cached;
 }
@@ -76,4 +79,20 @@ export async function localPracticeProgress(){
     academic.packages(),
   ]);
   return derivePracticeProgress(attempts,packages);
+}
+
+export async function localCourseRuntime(){
+  const {learning,courses}=repositories();
+  const scope={ownerId:LOCAL_OWNER_ID,learnerId:LOCAL_LEARNER_ID};
+  async function load(){
+    const [state,selection]=await Promise.all([
+      learning.readState(scope),
+      courses.read(LOCAL_OWNER_ID),
+    ]);
+    return myCourses(state,selection);
+  }
+  async function select(activeCourseId:string|null,expectedRevision:number,requestId:string){
+    return courses.select(LOCAL_OWNER_ID,activeCourseId,expectedRevision,requestId);
+  }
+  return {courses,scope,load,select};
 }
