@@ -1,6 +1,7 @@
 import type {AcademicAttempt,AcademicPackage,AcademicRepository} from '../../domain/academic';
 import type {LearningRepository,LearnerState,Scope,Snapshot} from '../../domain/repository';
 import type {DiagnosticV2,Evidence} from '../../domain/learning-model';
+import {emptySelection,WRITING_COURSE_ID,type CourseSelection} from '../../domain/course-p1';
 
 /**
  * Minimal Web Storage contract so the adapter can be tested without a browser.
@@ -194,6 +195,62 @@ export class BrowserLocalAcademicRepository implements AcademicRepository {
   }
 }
 
+export class BrowserCourseSelectionConflict extends Error{
+  constructor(public current:CourseSelection){super('Course selection changed. Reload and try again.')}
+}
+
+export class BrowserLocalCourseSelectionRepository{
+  constructor(
+    private readonly storage:BrowserKeyValueStorage,
+    private readonly prefix=DEFAULT_PREFIX,
+  ){}
+
+  private key(ownerId:string){return ownerKey(this.prefix,ownerId,'course-selection')}
+
+  private decode(raw:string|null):CourseSelection{
+    if(raw===null)return emptySelection();
+    let value:CourseSelection;
+    try{value=JSON.parse(raw) as CourseSelection}
+    catch{throw new Error('Local course selection is corrupted. Restore a known-good backup.')}
+    if(
+      value.courseV1!==1||
+      !Number.isSafeInteger(value.revision)||value.revision<1||
+      ![null,WRITING_COURSE_ID].includes(value.activeCourseId)||
+      typeof value.lastRequestId!=='string'
+    )throw new Error('Invalid local course selection.');
+    return value;
+  }
+
+  async read(ownerId:string):Promise<CourseSelection>{
+    return this.decode(this.storage.getItem(this.key(ownerId)));
+  }
+
+  async select(ownerId:string,activeCourseId:string|null,expectedRevision:number,requestId:string):Promise<CourseSelection>{
+    if(activeCourseId!==null&&activeCourseId!==WRITING_COURSE_ID)throw new Error('Course is unavailable');
+    if(!Number.isSafeInteger(expectedRevision)||expectedRevision<0||!/^[A-Za-z0-9_-]{8,120}$/.test(requestId))
+      throw new Error('Invalid selection request');
+
+    // All operations before this method returns are synchronous localStorage operations.
+    // expectedRevision still protects stale UI writes; the dedicated key prevents broad
+    // learner-state autosave from overwriting course selection.
+    const previous=this.decode(this.storage.getItem(this.key(ownerId)));
+    if(previous.lastRequestId===requestId){
+      if(previous.activeCourseId===activeCourseId)return clone(previous);
+      throw new BrowserCourseSelectionConflict(previous);
+    }
+    if(previous.revision!==expectedRevision)throw new BrowserCourseSelectionConflict(previous);
+
+    const next:CourseSelection={
+      courseV1:1,
+      activeCourseId,
+      revision:previous.revision+1,
+      lastRequestId:requestId,
+    };
+    writeJSON(this.storage,this.key(ownerId),next);
+    return clone(next);
+  }
+}
+
 export function browserLocalRepositories(ownerId='local-family',learnerId='primary',storage?:BrowserKeyValueStorage){
   const selected=storage??(typeof window!=='undefined'?window.localStorage:undefined);
   if(!selected)throw new Error('Browser local storage is unavailable.');
@@ -201,5 +258,6 @@ export function browserLocalRepositories(ownerId='local-family',learnerId='prima
     scope:{ownerId,learnerId} as Scope,
     learning:new BrowserLocalLearningRepository(selected),
     academic:new BrowserLocalAcademicRepository(selected),
+    courses:new BrowserLocalCourseSelectionRepository(selected),
   };
 }
