@@ -3,6 +3,8 @@ name: GitHub-first G3 Firebase Build QA
 on:
   pull_request:
     paths:
+      - 'sites-p0-phase-a-20260926/package.json'
+      - 'sites-p0-phase-a-20260926/pnpm-lock.yaml'
       - 'sites-p0-phase-a-20260926/app/**'
       - 'sites-p0-phase-a-20260926/application/**'
       - 'sites-p0-phase-a-20260926/ai/**'
