@@ -4,7 +4,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
 const root=path.resolve(__dirname,'..');
 const source=fs.readFileSync(path.join(root,'app/foundation.tsx'),'utf8');
 const css=fs.readFileSync(path.join(root,'app/globals.css'),'utf8');
-const page=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8');
+const page=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8')+fs.readFileSync(path.join(root,'app/home-client.tsx'),'utf8');
 assert.equal((source.match(/className="foundation-lesson-id"/g)||[]).length,4,'IDs must appear in Recent Work, both Catalog layouts and lesson overview/practice');
 assert.ok(source.includes('<span className="foundation-lesson-id">{l.id}</span><strong>{l.title}</strong>'),'catalog titles preserve names and expose IDs');
 assert.ok(source.includes('<span className="foundation-lesson-id">{lesson.id}</span> · {lesson.module}'),'focused player displays source ID');
