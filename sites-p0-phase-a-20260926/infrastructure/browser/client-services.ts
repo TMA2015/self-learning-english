@@ -81,7 +81,7 @@ export async function foundationRequest<T=any>(url:string,body?:unknown):Promise
 export async function loadPracticeProgress(){
   if(!browserLearningEnabled()){
     const response=await fetch('/api/practice-progress');
-    const data=await response.json();
+    const data=await response.json() as {error?:string}&Record<string,unknown>;
     if(!response.ok)throw new Error(data.error??'Practice progress unavailable');
     return data;
   }
