@@ -2,7 +2,7 @@
 
 Packet ID: `EN-VOC-REA-B1-DENSITY-W1-20261004`
 
-Status: **PENDING INDEPENDENT ACADEMIC REVIEW**
+Status: **ACADEMIC PASS — CURRICULUM 1.10.0 RELEASE-CANDIDATE QA**
 
 ## Sources
 
@@ -52,6 +52,24 @@ Reading:
 - author-purpose items must truly test purpose;
 - vocabulary-in-context answers must be recoverable from context;
 - skill tags must match the actual reading operation.
+
+## Review result — 2026-10-04
+
+Verdict: **PASS**
+
+NotebookLM reviewed all 4 lessons / 40 activities against the five permanent Self-Learning English v2 sources. No academic correction was required.
+
+Confirmed PASS:
+- B1 word formation and natural collocations;
+- deterministic short answers and distractors;
+- both original reading passages;
+- textual support for every answer;
+- gist/detail/inference/author-purpose/vocabulary-in-context tag alignment;
+- B1 appropriateness, explanations, Vietnamese support and originality.
+
+No new runtime tag is introduced by this wave.
+
+Production import/deploy remains unauthorized pending release-candidate QA and owner authorization.
 
 ## Required verdict
 
