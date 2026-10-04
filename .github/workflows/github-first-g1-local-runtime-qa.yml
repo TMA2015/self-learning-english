@@ -2,6 +2,8 @@ name: GitHub-first G1 Local Runtime QA
 on:
   pull_request:
     paths:
+      - 'sites-p0-phase-a-20260926/tests/writing-step-feedback-ux.cjs'
+      - 'sites-p0-phase-a-20260926/app/home-client.tsx'
       - 'sites-p0-phase-a-20260926/app/page.tsx'
       - 'sites-p0-phase-a-20260926/app/foundation.tsx'
       - 'sites-p0-phase-a-20260926/infrastructure/browser/**'
