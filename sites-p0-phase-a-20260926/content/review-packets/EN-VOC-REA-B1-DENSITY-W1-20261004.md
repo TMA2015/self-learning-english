@@ -2,7 +2,7 @@
 
 Packet ID: `EN-VOC-REA-B1-DENSITY-W1-20261004`
 
-Status: **DRAFT_PENDING_INDEPENDENT_NOTEBOOKLM_REVIEW**
+Status: **ACADEMIC_PASS_READY_FOR_1.10.0_COMPOSITION**
 
 Base curriculum: **1.9.0**  
 Proposed next curriculum after PASS: **1.10.0**  
@@ -26,7 +26,7 @@ Check:
 - duplication/redundancy;
 - originality.
 
-New skill tags remain blocked from runtime until independent review passes.
+This packet has passed independent review. Reviewed skill tags may be admitted only through explicit runtime mapping plus regression tests.
 
 ---
 
