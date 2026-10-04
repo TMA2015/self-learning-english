@@ -38,5 +38,9 @@ jobs:
         run: node tests/curriculum-170-grammar-b1-wave2a.cjs
       - name: Existing content regressions
         run: node tests/content-quality.cjs && node tests/curriculum-161-relative-that.cjs && node tests/importer-capacity-150.cjs
+      - name: Learner-history and progress regressions
+        run: node tests/academic.cjs && node tests/version-aware-attempt-ux.cjs && node tests/practice-progress-p2a.cjs && node tests/run.cjs
       - name: TypeScript
         run: pnpm exec tsc --noEmit --incremental false
+      - name: Production build compatibility
+        run: pnpm run build
