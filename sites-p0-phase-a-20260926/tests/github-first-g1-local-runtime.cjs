@@ -44,33 +44,34 @@ global.window={localStorage:storage,location:{origin:'https://example.test'}};
 
   const academic=await runtime.localAcademicRuntime();
   const catalog=await academic.service.catalog();
-  assert.equal(catalog.version,'1.9.0');
-  assert.equal(catalog.lessons.length,70,'bundled GitHub-first curriculum should be 1.9.0 / 70 lessons');
+  assert.equal(catalog.version,'1.10.0');
+  assert.equal(catalog.lessons.length,74,'bundled GitHub-first curriculum should be 1.10.0 / 74 lessons');
   const packages=await academic.academic.packages();
-  assert(packages.some(row=>row.version==='1.9.0'),'1.9.0 package must exist in local browser storage');
+  assert(packages.some(row=>row.version==='1.10.0'),'1.10.0 package must exist in local browser storage');
 
-  const grammar=catalog.lessons.find(row=>row.id==='GRA-B1-12');
-  assert(grammar,'expected reviewed B1 Wave 2C lesson GRA-B1-12');
-  const view=await academic.service.lesson(grammar.id);
-  assert.equal(view.version,'1.9.0');
+  const target=catalog.lessons.find(row=>row.id==='VOC-B1-02');
+  assert(target,'expected reviewed B1 Vocabulary density lesson VOC-B1-02');
+  const view=await academic.service.lesson(target.id);
+  assert.equal(view.version,'1.10.0');
   assert.equal(view.lesson.activities.length,10);
 
   const id='g1-local-attempt-0001';
-  await academic.service.start(grammar.id,id);
+  await academic.service.start(target.id,id);
   const answers={};
   for(const q of view.lesson.activities){
     if(q.type==='single_choice')answers[q.id]=q.options?.[0]?.id??'';
-    else if(q.id==='GRA-B1-12-Q4')answers[q.id]='where the station is';
+    else if(q.id==='VOC-B1-02-Q6')answers[q.id]='development';
+    else if(q.id==='VOC-B1-02-Q9')answers[q.id]='carefully';
     else answers[q.id]='test answer';
   }
   await academic.service.draft(id,answers);
   const submitted=await academic.service.submit(id);
   assert.equal(submitted.status,'scored');
-  assert(submitted.evidence.some(row=>row.tag==='question-tags'),'reviewed B1 question-tag evidence should enter the local ledger');
+  assert(submitted.evidence.some(row=>row.tag==='word-formation'),'reviewed B1 word-formation evidence should enter the local ledger');
 
   const progress=await runtime.localPracticeProgress();
-  assert(progress.overall.total>0,'objective Grammar attempt should appear in local progress');
-  assert(progress.skills.some(row=>row.skill==='Grammar'));
+  assert(progress.overall.total>0,'objective Vocabulary attempt should appear in local progress');
+  assert(progress.skills.some(row=>row.skill==='Vocabulary'));
 
   const academicAgain=await runtime.localAcademicRuntime();
   const catalogAgain=await academicAgain.service.catalog();
@@ -84,7 +85,8 @@ global.window={localStorage:storage,location:{origin:'https://example.test'}};
     b1Wave2B:true,
     b1Wave2C:true,
     grammarRoadmapComplete:true,
-    reviewedSkillEvidence:'question-tags',
+    b1VocabularyReadingDensityWave1:true,
+    reviewedSkillEvidence:'word-formation',
     localState:true,
     deterministicAttempt:true,
     localProgress:true,
