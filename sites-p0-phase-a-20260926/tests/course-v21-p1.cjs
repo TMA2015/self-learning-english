@@ -70,7 +70,7 @@ const deferred=()=>{let resolve;const promise=new Promise(r=>resolve=r);return {
  assert.equal(await gate('writing-course',async()=>true,target=>commit.push(target)),false);
  assert.deepEqual(commit,[]);pending.resolve(false);assert.equal(await navigation,false);assert.deepEqual(commit,[]);
  assert.equal(await gate('writing-course',async()=>true,target=>commit.push(target)),true);
- const page=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8'),route=fs.readFileSync(path.join(root,'app/api/course/route.ts'),'utf8'),stateRoute=fs.readFileSync(path.join(root,'app/api/state/route.ts'),'utf8');
+ const page=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8')+fs.readFileSync(path.join(root,'app/home-client.tsx'),'utf8'),route=fs.readFileSync(path.join(root,'app/api/course/route.ts'),'utf8'),stateRoute=fs.readFileSync(path.join(root,'app/api/state/route.ts'),'utf8');
  assert.ok(page.includes('foundationNavigationGuard.current?.(target)')&&page.includes('if(dirty.current){let snapshot:State;do{snapshot=latestState.current;'), 'both Foundation and legacy Writing guards must protect new routes');
  assert.ok(page.includes('navigate("writing-course")')&&page.includes('navigate("courses")'));
  assert.ok(!page.includes('heading:"WRITING · 12 WEEKS"'));
