@@ -5,6 +5,6 @@ for(const file of ["public/branding/g-learning-mark.svg","public/branding/g-lear
  const v=read(file);assert.match(v,/<svg[\s>]/);assert.match(v,/<path\s/);assert.ok(!/<script\b|<image\b|https?:\/\//i.test(v.replace(/xmlns="http:\/\/www.w3.org\/2000\/svg"/,"")),file+" unsafe SVG");
 }
 assert.equal(read("public/branding/english-app-icon.svg"),read("public/favicon.svg"),"favicon out of sync");
-const app=read("app/page.tsx");assert.ok(app.includes('Self-Learning English'));assert.ok(app.includes('/branding/english-app-icon.svg'));assert.ok(app.includes('g-learning-credit'));assert.ok(app.includes('Learn · Grow · Go'));
+const app=read("app/page.tsx")+read("app/home-client.tsx");assert.ok(app.includes('Self-Learning English'));assert.ok(app.includes('/branding/english-app-icon.svg'));assert.ok(app.includes('g-learning-credit'));assert.ok(app.includes('Learn · Grow · Go'));
 assert.ok(read("app/globals.css").includes(".g-learning-credit"));
 console.log("PASS G Learning English branding assets and presentation-only wiring.");
