@@ -44,25 +44,30 @@ global.window={localStorage:storage,location:{origin:'https://example.test'}};
 
   const academic=await runtime.localAcademicRuntime();
   const catalog=await academic.service.catalog();
-  assert.equal(catalog.version,'1.6.1');
-  assert(catalog.lessons.length>=59,'bundled curriculum should contain the current 59+ lesson foundation');
+  assert.equal(catalog.version,'1.7.0');
+  assert.equal(catalog.lessons.length,63,'bundled GitHub-first curriculum should be 1.7.0 / 63 lessons');
+  const packages=await academic.academic.packages();
+  assert(packages.some(row=>row.version==='1.7.0'),'1.7.0 package must exist in local browser storage');
 
-  const grammar=catalog.lessons.find(row=>row.module==='grammar');
-  assert(grammar,'expected at least one Grammar lesson');
+  const grammar=catalog.lessons.find(row=>row.id==='GRA-B1-05');
+  assert(grammar,'expected reviewed B1 Wave 2A lesson GRA-B1-05');
   const view=await academic.service.lesson(grammar.id);
-  assert.equal(view.version,'1.6.1');
-  assert(view.lesson.activities.length>0);
+  assert.equal(view.version,'1.7.0');
+  assert.equal(view.lesson.activities.length,10);
 
   const id='g1-local-attempt-0001';
   await academic.service.start(grammar.id,id);
   const answers={};
   for(const q of view.lesson.activities){
     if(q.type==='single_choice')answers[q.id]=q.options?.[0]?.id??'';
+    else if(q.id==='GRA-B1-05-Q5')answers[q.id]='must';
+    else if(q.id==='GRA-B1-05-Q6')answers[q.id]='might';
     else answers[q.id]='test answer';
   }
   await academic.service.draft(id,answers);
   const submitted=await academic.service.submit(id);
-  assert(['scored','pending_review'].includes(submitted.status));
+  assert.equal(submitted.status,'scored');
+  assert(submitted.evidence.some(row=>row.tag==='modal-deduction'),'reviewed B1 modal-deduction evidence should enter the local ledger');
 
   const progress=await runtime.localPracticeProgress();
   assert(progress.overall.total>0,'objective Grammar attempt should appear in local progress');
@@ -76,6 +81,8 @@ global.window={localStorage:storage,location:{origin:'https://example.test'}};
     githubFirstG1:true,
     curriculum:catalog.version,
     lessons:catalog.lessons.length,
+    b1Wave2A:true,
+    reviewedSkillEvidence:'modal-deduction',
     localState:true,
     deterministicAttempt:true,
     localProgress:true,
