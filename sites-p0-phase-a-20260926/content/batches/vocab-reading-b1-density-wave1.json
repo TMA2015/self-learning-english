@@ -898,33 +898,33 @@
         {
           "id": "REA-B1-02-Q6",
           "type": "single_choice",
-          "prompt": "What can a student do without bringing a broken object?",
+          "prompt": "In the sentence 'Students without a broken object may still attend and observe,' what does 'observe' most nearly mean?",
           "options": [
             {
               "id": "A",
-              "text": "Attend and observe"
+              "text": "watch what happens without taking a repair place"
             },
             {
               "id": "B",
-              "text": "Repair a phone"
+              "text": "register two broken objects"
             },
             {
               "id": "C",
-              "text": "Skip the safety rules"
+              "text": "leave before the session begins"
             },
             {
               "id": "D",
-              "text": "Register a second repair item"
+              "text": "teach the volunteers how to repair"
             }
           ],
           "answer": {
             "correct_option_id": "A"
           },
           "feedback": {
-            "explanation_en": "The text says students without a broken object may still attend and observe."
+            "explanation_en": "The contrast with students who bring repair items shows that observers can attend and watch without using a repair place."
           },
           "skill_tags": [
-            "reading.detail"
+            "reading.vocabulary_in_context"
           ],
           "evidence_weight": 1
         },
