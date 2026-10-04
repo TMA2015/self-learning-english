@@ -2,7 +2,7 @@
 
 Packet ID: `EN-LIS-WRI-DENSITY-W2-20261004`
 
-Status: **PENDING INDEPENDENT ACADEMIC REVIEW**
+Status: **ACADEMIC PASS — CURRICULUM 1.11.0 RELEASE-CANDIDATE QA**
 
 ## Sources
 
@@ -55,6 +55,25 @@ Writing:
 - the final extended response must remain AI/human-reviewed only;
 - evidence weight for the extended response must remain 0;
 - no automatic CEFR score.
+
+## Review result — 2026-10-04
+
+Verdict: **PASS**
+
+NotebookLM reviewed all 4 lessons / 40 activities against the five permanent Self-Learning English v2 sources. No academic correction was required.
+
+Confirmed PASS:
+- all 30 Listening keys are grounded in the exact audio source text;
+- A1/A2/B1 progression and gist/detail/inference/speaker-intention tags;
+- real playback required and transcript revealed only after submission;
+- transcript-only work never earns Listening credit;
+- B1 Writing scaffold from task analysis through cohesion, organization, register, grammar and vocabulary;
+- final extended response remains AI/human-reviewed with evidence weight 0;
+- CEFR appropriateness, Vietnamese support, originality and safety.
+
+No new runtime tag is introduced.
+
+Production import/deploy remains unauthorized pending release-candidate QA and owner authorization.
 
 ## Required verdict
 
