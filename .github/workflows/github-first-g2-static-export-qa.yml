@@ -42,8 +42,10 @@ jobs:
         run: pnpm run build
       - name: Inspect static output layout
         run: |
-          echo "=== dist/client ==="
-          find dist/client -maxdepth 4 -type f | sort | sed -n '1,240p'
+          echo "=== dist tree ==="
+          find dist -maxdepth 8 -type f | sort | sed -n '1,480p'
+          echo "=== prerender manifests ==="
+          find dist -type f \( -name 'vinext-prerender.json' -o -name 'prerender-paths.json' \) -print -exec sh -c 'echo "--- $1"; sed -n "1,260p" "$1"' _ {} \;
       - name: Stage GitHub Pages project-site artifact
         run: node scripts/stage-github-pages.mjs
       - name: Verify artifact, base path, static audio and secret safety
