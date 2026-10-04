@@ -7,6 +7,9 @@ on:
       - 'sites-p0-phase-a-20260926/content/curriculum-1.11.0-candidate.json'
       - 'sites-p0-phase-a-20260926/content/reviews/EN-LIS-WRI-DENSITY-W2-20261004-academic-review-v1.0.json'
       - 'sites-p0-phase-a-20260926/tests/curriculum-1110-listening-writing-density-wave2.cjs'
+      - 'sites-p0-phase-a-20260926/content/foundation-audio.json'
+      - 'sites-p0-phase-a-20260926/public/foundation-audio/**'
+      - 'sites-p0-phase-a-20260926/tests/listening-audio-manifest-coverage.cjs'
       - 'sites-p0-phase-a-20260926/scripts/render-notebooklm-review.mjs'
       - 'sites-p0-phase-a-20260926/tests/listening-writing-density-wave2-draft.cjs'
       - 'sites-p0-phase-a-20260926/docs/WRITING_LISTENING_SPEAKING_PRONUNCIATION_DENSITY_AUDIT_20261004.md'
@@ -36,7 +39,9 @@ jobs:
         run: node tests/curriculum-1110-listening-writing-density-wave2.cjs
       - name: Prior curriculum and closed-world regressions
         run: node tests/curriculum-1100-vocab-reading-b1-density-wave1.cjs && node tests/curriculum-190-grammar-b1-wave2c.cjs && node tests/curriculum-180-grammar-b1-wave2b.cjs && node tests/curriculum-170-grammar-b1-wave2a.cjs && node tests/batch04-code-compat.cjs && node tests/content-quality.cjs
-      - name: Listening safeguards and learner regressions
+      - name: Real Listening audio and playback safeguards
+        run: node tests/listening-audio-manifest-coverage.cjs && node tests/listening-retake-audio-readiness.cjs && node tests/listening-submit-feedback.cjs
+      - name: Learner-history and progress regressions
         run: node tests/academic.cjs && node tests/version-aware-attempt-ux.cjs && node tests/practice-progress-p2a.cjs && node tests/run.cjs
       - name: TypeScript
         run: pnpm exec tsc --noEmit --incremental false
