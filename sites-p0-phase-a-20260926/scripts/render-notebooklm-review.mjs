@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync} from 'node:fs';
 
-const [batchPath,destination,packetId]=process.argv.slice(2);
+const [batchPath,destination,packetId,displayTitle]=process.argv.slice(2);
 assert(batchPath&&destination,'Usage: node scripts/render-notebooklm-review.mjs <batch.json> <output.md> [packet-id]');
 
 const batch=JSON.parse(readFileSync(batchPath,'utf8'));
@@ -9,7 +9,7 @@ assert(Array.isArray(batch.lessons)&&batch.lessons.length,'Batch must contain le
 
 const id=packetId||batch.batch_id;
 const activityCount=batch.lessons.flatMap(l=>l.activities??[]).length;
-let md=`# Self-Learning English — Grammar B1 Wave 2A Review Source
+let md=`# Self-Learning English — ${displayTitle??'Grammar B1 Wave 2A'} Review Source
 
 Packet ID: \`${id}\`
 

@@ -1,7 +1,7 @@
 {
   "format": "self-learning-english.adaptive-concept-map",
   "schema_version": 1,
-  "status": "planning_metadata_with_approved_a1_a2_and_b1_wave2a_expansion",
+  "status": "planning_metadata_with_approved_a1_a2_and_b1_wave2a_wave2b_expansion",
   "production_reference": {
     "sites_version": "v30",
     "curriculum_version": "1.6.1"
@@ -411,6 +411,59 @@
         "modal-possibility",
         "modals-obligation"
       ]
+    },
+    {
+      "id": "second-conditional",
+      "source_tags": [
+        "grammar.second_conditional"
+      ],
+      "approved_primary_lesson": "GRA-B1-06",
+      "prerequisite_concepts": [
+        "conditionals",
+        "past-simple"
+      ]
+    },
+    {
+      "id": "wish-present",
+      "source_tags": [
+        "grammar.wish_present"
+      ],
+      "approved_primary_lesson": "GRA-B1-07",
+      "prerequisite_concepts": [
+        "second-conditional"
+      ]
+    },
+    {
+      "id": "passive-voice",
+      "source_tags": [
+        "grammar.passive_voice"
+      ],
+      "approved_primary_lesson": "GRA-B1-08",
+      "prerequisite_concepts": [
+        "be-forms",
+        "past-simple"
+      ]
+    },
+    {
+      "id": "reported-speech",
+      "source_tags": [
+        "grammar.reported_speech"
+      ],
+      "approved_primary_lesson": "GRA-B1-09",
+      "prerequisite_concepts": [
+        "past-simple"
+      ]
+    },
+    {
+      "id": "reported-questions",
+      "source_tags": [
+        "grammar.reported_questions"
+      ],
+      "approved_primary_lesson": "GRA-B1-09",
+      "prerequisite_concepts": [
+        "question-formation",
+        "reported-speech"
+      ]
     }
   ],
   "recommendation_defaults": {
@@ -426,11 +479,11 @@
     "unobserved_is_not_failure": true
   },
   "approved_expansion_reference": {
-    "wave": "Grammar Wave 1A + Wave 1B + B1 Wave 2A",
-    "lessons": 18,
-    "activities": 180,
+    "wave": "Grammar Wave 1A + Wave 1B + B1 Wave 2A + Wave 2B",
+    "lessons": 22,
+    "activities": 220,
     "production_imported": false,
-    "latest_academic_packet": "EN-GRA-B1-W2A-20261004",
+    "latest_academic_packet": "EN-GRA-B1-W2B-20261004",
     "latest_academic_verdict": "PASS"
   }
 }
