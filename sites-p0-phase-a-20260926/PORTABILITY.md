@@ -112,13 +112,14 @@ sharing one sign-in share its role; separate parent/child accounts are future wo
 `AITutor.coach(stage, task, answer)` returns normalized evaluation metadata or null.
 `AITutorProvider.generate(TutorRequest)` accepts schemaVersion, purpose, promptVersion,
 instructions, structured input and temperature; returns provider/model/result JSON.
-The service validates before any proficiency contribution is generated. The current
-adapter uses OpenAI HTTP; no provider SDK is required.
+The service validates before any proficiency contribution is generated. Server HTTP
+adapters now exist for OpenAI and Gemini; neither requires a provider SDK. Provider
+selection is isolated in a reusable factory plus the hosting composition root.
 
-To add Gemini or another HTTP provider:
+To add another HTTP provider:
 1. Implement `AITutorProvider` in a new server adapter, translating the neutral
    request to that provider's HTTP format and normalizing its response to `result`.
-2. Inject it in `infrastructure/ai/runtime.ts`. Keep prompts and scoring contracts.
+2. Add it to `infrastructure/ai/provider-factory.ts`; keep prompts and scoring contracts.
 3. Run the shared validation/fixture tests and provider-specific HTTP failure tests.
 4. Configure its key through server secrets, then validate real samples. No changes
    to learner records, content, profile calculation or components are required.
@@ -132,13 +133,17 @@ untouched; the application does not invent historical provider information.
 | Server value | Purpose |
 | --- | --- |
 | `DB` | D1 binding supplied by Sites; replace with another repository's connection |
-| `OPENAI_API_KEY` | Optional server secret; absent/failed call means provisional Writing |
-| `AI_MODEL` | Optional model configuration, defaults to existing `gpt-4.1-mini` |
+| `AI_PROVIDER` | Optional `openai` / `gemini` selector; legacy fallback remains supported |
+| `GEMINI_API_KEY` | Optional Gemini server secret; never expose to browser code |
+| `GEMINI_MODEL` | Optional Gemini model configuration |
+| `OPENAI_API_KEY` | Optional OpenAI server secret; absent/failed call means provisional Writing |
+| `AI_MODEL` | Legacy OpenAI model configuration, defaults to existing `gpt-4.1-mini` |
 | `ADMIN_EMAILS` | Comma-separated trusted administrator emails; empty disables admin tools |
 
 `.env.example` has empty keys; real local `.env` is ignored. Production values use
-Sites runtime settings. Never use a `NEXT_PUBLIC_` provider key or send secrets to
-components. No live AI credential is configured or required for guided Writing.
+trusted runtime settings. Never use a `NEXT_PUBLIC_` provider key or send secrets to
+components. The Gemini foundation is code-only: no live Gemini credential is configured
+or required for guided Writing or the GitHub-first deterministic core.
 
 ## Export/import format and procedure
 
