@@ -2,7 +2,7 @@
 
 Packet ID: `EN-GRA-B1-W2A-20261004`
 
-Status: **PENDING INDEPENDENT ACADEMIC REVIEW**
+Status: **REVISIONS APPLIED — TARGETED NOTEBOOKLM RECHECK PENDING**
 
 ## Temporary source to upload
 
@@ -105,6 +105,24 @@ Suggested result structure:
   ]
 }
 ```
+
+## First review result — 2026-10-04
+
+Verdict: **REVISIONS_REQUIRED**
+
+NotebookLM reviewed all 4 lessons / 40 activities and found no lesson-level grammar, CEFR, explanation, distractor, skill-tag or originality problem. Five short-answer items required deterministic-scoring fixes:
+
+- GRA-B1-02-Q5 — add straight/smart apostrophe contractions for `has been working`.
+- GRA-B1-02-Q7 — repair the gap structure. The accepted answer remains `have you been learning`; the suggested fragment `'ve you been learning` is intentionally **not** accepted because it is not a standard standalone interrogative completion after `How long`.
+- GRA-B1-02-Q9 — add straight/smart apostrophe contractions for `have been waiting`.
+- GRA-B1-03-Q3 — add straight/smart apostrophe contractions for `had left`.
+- GRA-B1-03-Q8 — repair the gap structure and add straight/smart apostrophe contractions for `had never seen`.
+
+The machine-readable batch and NotebookLM Markdown source are now locked by CI: the Markdown is regenerated from the JSON and must match exactly.
+
+### Targeted recheck only
+
+For the second NotebookLM pass, recheck only these five activity IDs and confirm that the corrections remove the original issues without introducing a new ambiguity. A full 40-item review is not required.
 
 ## Release boundary
 
