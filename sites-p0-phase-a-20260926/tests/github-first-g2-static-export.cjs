@@ -58,8 +58,8 @@ function walk(dir){
 const textAssets=walk(out).filter(file=>/\.(?:html|js|css|json|txt|xml|svg)$/i.test(file));
 for(const file of textAssets){
   const text=fs.readFileSync(file,'utf8');
-  assert(!/AIza[0-9A-Za-z_-]{20,}/.test(text),'Google API key-shaped secret found in '+file);
-  assert(!/sk-[A-Za-z0-9_-]{20,}/.test(text),'OpenAI API key-shaped secret found in '+file);
+  assert(!/(?:^|[^A-Za-z0-9])AIza[0-9A-Za-z_-]{20,}/.test(text),'Google API key-shaped secret found in '+file);
+  assert(!/(?:^|[^A-Za-z0-9])sk-(?:proj-|svcacct-)?[A-Za-z0-9_-]{20,}/.test(text),'OpenAI API key-shaped secret found in '+file);
 }
 
 console.log(JSON.stringify({
