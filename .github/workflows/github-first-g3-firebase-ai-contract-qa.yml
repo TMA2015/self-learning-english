@@ -31,6 +31,6 @@ jobs:
       - name: Firebase AI Logic provider contract
         run: node tests/g3-firebase-ai-provider-contract.cjs
       - name: Existing Writing tutor regressions
-        run: node tests/writing-tutor.cjs
+        run: node tests/run.cjs
       - name: TypeScript
         run: pnpm exec tsc --noEmit --incremental false
