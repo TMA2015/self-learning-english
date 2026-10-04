@@ -4,6 +4,8 @@ on:
     paths:
       - 'sites-p0-phase-a-20260926/content/batches/grammar-b1-wave2a.json'
       - 'sites-p0-phase-a-20260926/content/grammar-roadmap-v1.json'
+      - 'sites-p0-phase-a-20260926/content/review-packets/EN-GRA-B1-W2A-20261004.md'
+      - 'sites-p0-phase-a-20260926/scripts/render-notebooklm-review.mjs'
       - 'sites-p0-phase-a-20260926/domain/academic.ts'
       - 'sites-p0-phase-a-20260926/tests/grammar-b1-wave2a-draft.cjs'
       - 'sites-p0-phase-a-20260926/docs/NOTEBOOKLM_GRAMMAR_B1_WAVE2A_REVIEW.md'
