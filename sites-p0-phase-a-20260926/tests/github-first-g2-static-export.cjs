@@ -4,8 +4,10 @@ const fs=require('node:fs');
 const path=require('node:path');
 
 const root=path.join(__dirname,'..');
-const out=path.join(root,'dist','client');
-assert(fs.existsSync(out),'Vinext static export must emit dist/client');
+const raw=path.join(root,'dist','client');
+const out=path.join(root,'dist','pages-artifact');
+assert(fs.existsSync(raw),'Vinext static export must emit dist/client');
+assert(fs.existsSync(out),'Pages staging must emit dist/pages-artifact');
 for(const relative of [
   'index.html',
   'favicon.svg',
@@ -20,10 +22,14 @@ for(const relative of [
   assert(fs.existsSync(path.join(out,relative)),relative+' missing from static export');
 }
 
+assert(fs.existsSync(path.join(raw,'self-learning-english','index.html')),'Vinext base-path route output should remain nested before staging');
+assert(!fs.existsSync(path.join(out,'self-learning-english','index.html')),'Pages artifact must not double-nest the project path');
+assert(fs.existsSync(path.join(out,'.nojekyll')),'.nojekyll missing from Pages artifact');
 const html=fs.readFileSync(path.join(out,'index.html'),'utf8');
 assert(html.includes('/self-learning-english/'),'exported HTML must use GitHub Pages base path');
 assert(!html.includes('"/branding/'),'brand assets must not point at domain root');
 assert(!html.includes('"/favicon.svg"'),'favicon must not point at domain root');
+assert(!html.includes('/self-learning-english/self-learning-english/'),'project path must not be duplicated');
 
 const sourcePage=fs.readFileSync(path.join(root,'app','page.tsx'),'utf8');
 assert(!sourcePage.includes('fetch("/api/evaluate"'),'browser Writing flow must not call /api/evaluate directly');
@@ -51,7 +57,8 @@ for(const file of textAssets){
 
 console.log(JSON.stringify({
   result:'PASS',
-  output:'dist/client',
+  rawOutput:'dist/client',
+  output:'dist/pages-artifact',
   basePath:'/self-learning-english',
   curriculum:'1.11.0',
   staticAudioFiles:5,
