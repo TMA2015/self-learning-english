@@ -2,7 +2,7 @@
 
 Packet ID: `EN-GRA-B1-W2C-20261004`
 
-Status: **PENDING INDEPENDENT ACADEMIC REVIEW**
+Status: **ACADEMIC PASS — CURRICULUM 1.9.0 RELEASE-CANDIDATE QA**
 
 ## Sources
 
@@ -57,6 +57,23 @@ If PASS, the current Grammar roadmap reaches 40 lessons: A1 12 + A2 16 + B1 12.
 - `grammar.question_tags`
 
 These remain blocked from runtime until PASS.
+
+## Review result — 2026-10-04
+
+Verdict: **PASS**
+
+NotebookLM reviewed all 3 lessons / 30 activities against the five permanent Self-Learning English v2 sources. No academic correction was required.
+
+Confirmed PASS:
+- defining vs non-defining relative clauses and comma use;
+- gerund/to-infinitive patterns and answer determinism;
+- indirect-question word order and yes/no forms;
+- question-tag auxiliary, pronoun and polarity matching;
+- CEFR B1 appropriateness, explanations, Vietnamese support, distractors, tags and originality.
+
+This completes the current Grammar roadmap target: A1 12 + A2 16 + B1 12 = 40 lessons.
+
+Production import/deploy remains unauthorized pending release-candidate QA and owner authorization.
 
 ## Required verdict
 
