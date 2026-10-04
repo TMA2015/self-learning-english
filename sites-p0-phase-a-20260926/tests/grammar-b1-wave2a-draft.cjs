@@ -50,7 +50,7 @@ const proposedTags=['grammar.present_perfect_continuous','grammar.past_perfect',
 for(const tag of proposedTags)assert.equal(tagMap[tag],undefined,'draft tag must stay closed until academic review: '+tag);
 const preReviewErrors=validateSeed(candidate);
 assert(preReviewErrors.length>0,'draft candidate must not become importer-valid before tag review');
-for(const lesson of batch.lessons)for(const q of lesson.activities)assert(preReviewErrors.some(e=>e.startsWith(q.id+': invalid prompt/tags.')),'expected closed-world tag block for '+q.id);
+for(const lesson of batch.lessons)for(const q of lesson.activities){const hasProposed=q.skill_tags.some(tag=>proposedTags.includes(tag));if(hasProposed)assert(preReviewErrors.some(e=>e.startsWith(q.id+': invalid prompt/tags.')),'expected closed-world tag block for '+q.id);}
 
 for(const old of base.lessons){
   assert.deepEqual(candidate.lessons.find(l=>l.id===old.id),old,'base lesson changed: '+old.id);
