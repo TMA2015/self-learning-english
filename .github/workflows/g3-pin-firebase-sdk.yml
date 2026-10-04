@@ -25,7 +25,7 @@ jobs:
           node-version: '24'
       - name: Pin official Firebase JavaScript SDK
         working-directory: sites-p0-phase-a-20260926
-        run: pnpm add firebase@12.19.0 --save-exact
+        run: pnpm add firebase@12.19.0 --save-exact --ignore-scripts
       - name: Commit package and lock file
         run: |
           git config user.name "github-actions[bot]"
