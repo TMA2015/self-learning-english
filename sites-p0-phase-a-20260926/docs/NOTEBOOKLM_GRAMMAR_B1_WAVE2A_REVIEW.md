@@ -8,9 +8,11 @@ Status: **PENDING INDEPENDENT ACADEMIC REVIEW**
 
 Replace the previous temporary English-project review source with:
 
-`content/batches/grammar-b1-wave2a.json`
+`content/review-packets/EN-GRA-B1-W2A-20261004.md`
 
 The permanent English-project baseline/rules/reference sources remain unchanged.
+
+NotebookLM source format for this review is Markdown. The JSON batch stays inside GitHub as the machine-readable source and is not uploaded to NotebookLM.
 
 Do not upload learner data, attempts, recordings or exports.
 
