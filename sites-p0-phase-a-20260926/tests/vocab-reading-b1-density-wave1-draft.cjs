@@ -27,7 +27,7 @@ const base=require('../'+basePath);
 const batch=require('../'+batchPath);
 const candidate=JSON.parse(fs.readFileSync(tempPath,'utf8'));
 
-assert.equal(batch.status,'draft_pending_independent_notebooklm_review');
+assert.equal(batch.status,'academic_pass_ready_for_1.10.0_composition');
 assert.equal(batch.base_version,'1.9.0');
 assert.equal(batch.target_version,'1.10.0');
 assert.deepEqual(batch.lessons.map(l=>l.id),['VOC-B1-02','VOC-B1-03','REA-B1-02','REA-B1-03']);
@@ -87,6 +87,7 @@ console.log(JSON.stringify({
   newReadingDetailEvidence:count('reading.detail'),
   newReadingVocabularyEvidence:count('reading.vocabulary_in_context'),
   newRuntimeTags:0,
-  academicReviewPending:true,
+  academicReviewPending:false,
+  academicPass:true,
   importAuthorized:false
 }));
