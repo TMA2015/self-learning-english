@@ -48,30 +48,30 @@
         {
           "id": "GRA-B1-02-Q1",
           "type": "single_choice",
-          "prompt": "Mia ___ for the exam for three hours, and she is still studying.",
+          "prompt": "Which sentence most clearly emphasizes the duration of an activity that is still continuing?",
           "options": [
             {
               "id": "A",
-              "text": "has studied"
+              "text": "Mia has studied for three hours."
             },
             {
               "id": "B",
-              "text": "has been studying"
+              "text": "Mia has been studying for three hours."
             },
             {
               "id": "C",
-              "text": "studied"
+              "text": "Mia studied for three hours yesterday."
             },
             {
               "id": "D",
-              "text": "studies"
+              "text": "Mia studies for three hours each day."
             }
           ],
           "answer": {
             "correct_option_id": "B"
           },
           "feedback": {
-            "explanation_en": "The activity began earlier and is still continuing, so the continuous form highlights duration."
+            "explanation_en": "Has been studying most clearly emphasizes the duration of an activity that began earlier and is still continuing."
           },
           "skill_tags": [
             "grammar.present_perfect_continuous"
@@ -147,30 +147,30 @@
         {
           "id": "GRA-B1-02-Q4",
           "type": "single_choice",
-          "prompt": "Your hands are covered in paint. ___ the kitchen?",
+          "prompt": "The kitchen is still unfinished, and your hands are covered in paint. Which question focuses on the recent activity that caused this evidence?",
           "options": [
             {
               "id": "A",
-              "text": "Have you painted"
+              "text": "Have you painted the kitchen?"
             },
             {
               "id": "B",
-              "text": "Have you been painting"
+              "text": "Have you been painting the kitchen?"
             },
             {
               "id": "C",
-              "text": "Did you paint"
+              "text": "Did you paint the kitchen yesterday?"
             },
             {
               "id": "D",
-              "text": "Do you paint"
+              "text": "Do you paint the kitchen?"
             }
           ],
           "answer": {
             "correct_option_id": "B"
           },
           "feedback": {
-            "explanation_en": "The visible evidence points to a recent activity, so present perfect continuous is natural."
+            "explanation_en": "Have you been painting focuses on the recent ongoing activity suggested by the paint on the speaker's hands and the unfinished kitchen."
           },
           "skill_tags": [
             "grammar.present_perfect_continuous"
@@ -292,7 +292,7 @@
         {
           "id": "GRA-B1-02-Q9",
           "type": "short_answer",
-          "prompt": "Complete the sentence: They ___ (wait) for the bus for forty minutes, and it still hasn't arrived.",
+          "prompt": "Complete with the present perfect continuous form of wait: They ___ for the bus for forty minutes, and it still hasn't arrived.",
           "answer": {
             "accepted_answers": [
               "have been waiting"
@@ -305,7 +305,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "The sentence emphasizes how long the unfinished activity has continued."
+            "explanation_en": "The requested present perfect continuous form is have been waiting; it highlights the duration of the unfinished wait."
           },
           "skill_tags": [
             "grammar.present_perfect_continuous"
