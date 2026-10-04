@@ -44,15 +44,20 @@ global.window={localStorage:storage,location:{origin:'https://example.test'}};
 
   const academic=await runtime.localAcademicRuntime();
   const catalog=await academic.service.catalog();
-  assert.equal(catalog.version,'1.10.0');
-  assert.equal(catalog.lessons.length,74,'bundled GitHub-first curriculum should be 1.10.0 / 74 lessons');
+  assert.equal(catalog.version,'1.11.0');
+  assert.equal(catalog.lessons.length,78,'bundled GitHub-first curriculum should be 1.11.0 / 78 lessons');
   const packages=await academic.academic.packages();
-  assert(packages.some(row=>row.version==='1.10.0'),'1.10.0 package must exist in local browser storage');
+  assert(packages.some(row=>row.version==='1.11.0'),'1.11.0 package must exist in local browser storage');
+
+  assert(catalog.lessons.some(row=>row.id==='LIS-A1-01'),'1.11.0 must expose new A1 Listening lesson');
+  assert(catalog.lessons.some(row=>row.id==='LIS-A2-02'),'1.11.0 must expose new A2 Listening lesson');
+  assert(catalog.lessons.some(row=>row.id==='LIS-B1-02'),'1.11.0 must expose new B1 Listening lesson');
+  assert(catalog.lessons.some(row=>row.id==='WRI-B1-02'),'1.11.0 must expose new B1 Writing lesson');
 
   const target=catalog.lessons.find(row=>row.id==='VOC-B1-02');
   assert(target,'expected reviewed B1 Vocabulary density lesson VOC-B1-02');
   const view=await academic.service.lesson(target.id);
-  assert.equal(view.version,'1.10.0');
+  assert.equal(view.version,'1.11.0');
   assert.equal(view.lesson.activities.length,10);
 
   const id='g1-local-attempt-0001';
@@ -86,6 +91,7 @@ global.window={localStorage:storage,location:{origin:'https://example.test'}};
     b1Wave2C:true,
     grammarRoadmapComplete:true,
     b1VocabularyReadingDensityWave1:true,
+    listeningWritingDensityWave2:true,
     reviewedSkillEvidence:'word-formation',
     localState:true,
     deterministicAttempt:true,
