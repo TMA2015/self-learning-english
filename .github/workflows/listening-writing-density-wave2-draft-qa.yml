@@ -1,0 +1,35 @@
+name: Listening Writing Density Wave 2 Draft QA
+on:
+  pull_request:
+    paths:
+      - 'sites-p0-phase-a-20260926/content/batches/listening-writing-density-wave2.json'
+      - 'sites-p0-phase-a-20260926/content/review-packets/EN-LIS-WRI-DENSITY-W2-20261004.md'
+      - 'sites-p0-phase-a-20260926/scripts/render-notebooklm-review.mjs'
+      - 'sites-p0-phase-a-20260926/tests/listening-writing-density-wave2-draft.cjs'
+      - 'sites-p0-phase-a-20260926/docs/WRITING_LISTENING_SPEAKING_PRONUNCIATION_DENSITY_AUDIT_20261004.md'
+      - 'sites-p0-phase-a-20260926/docs/NOTEBOOKLM_LISTENING_WRITING_DENSITY_WAVE2_REVIEW.md'
+      - '.github/workflows/listening-writing-density-wave2-draft-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: pnpm install --frozen-lockfile
+      - name: Wave 2 draft and NotebookLM-source gate
+        run: node tests/listening-writing-density-wave2-draft.cjs
+      - name: Curriculum 1.10.0 and prior milestone regressions
+        run: node tests/curriculum-1100-vocab-reading-b1-density-wave1.cjs && node tests/curriculum-190-grammar-b1-wave2c.cjs && node tests/batch04-code-compat.cjs
+      - name: TypeScript
+        run: pnpm exec tsc --noEmit --incremental false
