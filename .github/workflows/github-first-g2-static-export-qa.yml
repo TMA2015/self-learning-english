@@ -40,6 +40,10 @@ jobs:
         run: pnpm exec tsc --noEmit --incremental false
       - name: Build static GitHub Pages artifact
         run: pnpm run build
+      - name: Inspect static output layout
+        run: |
+          echo "=== dist/client ==="
+          find dist/client -maxdepth 4 -type f | sort | sed -n '1,240p'
       - name: Stage GitHub Pages project-site artifact
         run: node scripts/stage-github-pages.mjs
       - name: Verify artifact, base path, static audio and secret safety
