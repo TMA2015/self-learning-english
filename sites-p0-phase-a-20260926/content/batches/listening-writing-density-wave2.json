@@ -1,0 +1,1475 @@
+{
+  "format": "ai-english-tutor.curriculum-batch",
+  "schema_version": 1,
+  "batch_id": "LISTENING-WRITING-DENSITY-WAVE2-20261004",
+  "base_version": "1.10.0",
+  "target_version": "1.11.0",
+  "status": "draft_pending_independent_notebooklm_review",
+  "metadata": {
+    "status": "listening_writing_density_wave2_pending_notebooklm_review_no_import",
+    "course_title": "English Foundation · A1–B1 developing curriculum",
+    "course_description": "Original self-study curriculum with a completed current Grammar roadmap and evidence-driven expansion across receptive and productive skills.",
+    "curriculum_principle": "Expand content according to evidence density and skill coverage. Listening credit requires real playback; extended Writing responses require AI or human review. Historical reviewed content remains immutable."
+  },
+  "insert_after": [
+    {
+      "after": "LIS-A2-01",
+      "ids": [
+        "LIS-A2-02"
+      ]
+    },
+    {
+      "after": "LIS-B1-01",
+      "ids": [
+        "LIS-B1-02"
+      ]
+    },
+    {
+      "after": "WRI-B1-01",
+      "ids": [
+        "WRI-B1-02"
+      ]
+    }
+  ],
+  "append_before_first_module": [
+    {
+      "module": "listening",
+      "ids": [
+        "LIS-A1-01"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "LIS-A1-01",
+      "module": "listening",
+      "cefr_target": "A1",
+      "title": "A school club announcement",
+      "estimated_minutes": 14,
+      "objectives": [
+        "Understand the main purpose of a short school announcement.",
+        "Identify simple details such as day, room, time and things to bring.",
+        "Follow a simple instruction for new club members."
+      ],
+      "explanation": {
+        "en": "Listen once to understand the situation. Listen again for simple details such as the day, room number, start time and what students should bring. Do not use the transcript before answering.",
+        "vi": "Nghe lần đầu để hiểu tình huống chung. Nghe lại để tìm các chi tiết đơn giản như ngày, phòng, giờ bắt đầu và đồ cần mang theo. Không xem transcript trước khi trả lời."
+      },
+      "examples": [],
+      "audio_asset": {
+        "id": "AUD-SCHOOL-CLUB-A1",
+        "source_text": "Teacher: Hello, students. Here is a message about the photography club. The club meets this Thursday in Room 12. The meeting starts at four o'clock and finishes at five. Please bring a pencil and your phone or camera if you have one. You do not need to bring money. The club will provide paper and photo cards. New students should arrive ten minutes early to write their names on the club list. If you cannot come this week, the next meeting is on Thursday the fourteenth.",
+        "language": "en",
+        "roles": [
+          "teacher"
+        ],
+        "transcript_reveal": "after_submission",
+        "requires_real_playback": true,
+        "fallback": "If playback is unavailable, mark listening unassessed; do not reveal the transcript first or award listening credit."
+      },
+      "activities": [
+        {
+          "id": "LIS-A1-01-Q1",
+          "type": "single_choice",
+          "prompt": "What is the announcement mainly about?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A photography club meeting"
+            },
+            {
+              "id": "B",
+              "text": "A school lunch menu"
+            },
+            {
+              "id": "C",
+              "text": "A football match"
+            },
+            {
+              "id": "D",
+              "text": "A maths test"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The speaker is giving information about a photography club meeting."
+          },
+          "skill_tags": [
+            "listening.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-01-Q2",
+          "type": "single_choice",
+          "prompt": "Which day does the club meet this week?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Thursday"
+            },
+            {
+              "id": "B",
+              "text": "Monday"
+            },
+            {
+              "id": "C",
+              "text": "Wednesday"
+            },
+            {
+              "id": "D",
+              "text": "Saturday"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The announcement says the club meets this Thursday."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-01-Q3",
+          "type": "single_choice",
+          "prompt": "Where is the meeting?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Room 12"
+            },
+            {
+              "id": "B",
+              "text": "Room 2"
+            },
+            {
+              "id": "C",
+              "text": "The library"
+            },
+            {
+              "id": "D",
+              "text": "The sports hall"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The speaker says the meeting is in Room 12."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-01-Q4",
+          "type": "single_choice",
+          "prompt": "What time does the meeting start?",
+          "options": [
+            {
+              "id": "A",
+              "text": "4:00"
+            },
+            {
+              "id": "B",
+              "text": "4:10"
+            },
+            {
+              "id": "C",
+              "text": "5:00"
+            },
+            {
+              "id": "D",
+              "text": "5:10"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The announcement says the meeting starts at four o'clock."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-01-Q5",
+          "type": "single_choice",
+          "prompt": "What time does the meeting finish?",
+          "options": [
+            {
+              "id": "A",
+              "text": "5:00"
+            },
+            {
+              "id": "B",
+              "text": "4:00"
+            },
+            {
+              "id": "C",
+              "text": "4:50"
+            },
+            {
+              "id": "D",
+              "text": "5:30"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The speaker says the meeting finishes at five."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-01-Q6",
+          "type": "single_choice",
+          "prompt": "What should students bring?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A pencil and a phone or camera if they have one"
+            },
+            {
+              "id": "B",
+              "text": "Money and a notebook"
+            },
+            {
+              "id": "C",
+              "text": "Paper and photo cards"
+            },
+            {
+              "id": "D",
+              "text": "A packed lunch"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Students are asked to bring a pencil and a phone or camera if available."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-01-Q7",
+          "type": "single_choice",
+          "prompt": "Do students need to bring money?",
+          "options": [
+            {
+              "id": "A",
+              "text": "No"
+            },
+            {
+              "id": "B",
+              "text": "Yes, five pounds"
+            },
+            {
+              "id": "C",
+              "text": "Yes, ten pounds"
+            },
+            {
+              "id": "D",
+              "text": "Only new students do"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The speaker clearly says students do not need to bring money."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-01-Q8",
+          "type": "single_choice",
+          "prompt": "What will the club provide?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Paper and photo cards"
+            },
+            {
+              "id": "B",
+              "text": "Phones and cameras"
+            },
+            {
+              "id": "C",
+              "text": "Pencils and money"
+            },
+            {
+              "id": "D",
+              "text": "Lunch and water"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The club will provide paper and photo cards."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-01-Q9",
+          "type": "single_choice",
+          "prompt": "When should new students arrive?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Ten minutes early"
+            },
+            {
+              "id": "B",
+              "text": "At five o'clock"
+            },
+            {
+              "id": "C",
+              "text": "Thirty minutes late"
+            },
+            {
+              "id": "D",
+              "text": "The next day"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "New students are asked to arrive ten minutes early."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-01-Q10",
+          "type": "single_choice",
+          "prompt": "What should a student do if they cannot come this week?",
+          "options": [
+            {
+              "id": "A",
+              "text": "They can come to the next meeting on Thursday the 14th."
+            },
+            {
+              "id": "B",
+              "text": "They must leave the club."
+            },
+            {
+              "id": "C",
+              "text": "They should bring money next time."
+            },
+            {
+              "id": "D",
+              "text": "They must go to Room 14 today."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The announcement gives the next meeting date for students who cannot attend this week."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "LIS-A2-02",
+      "module": "listening",
+      "cefr_target": "A2",
+      "title": "A changed plan for Saturday",
+      "estimated_minutes": 17,
+      "objectives": [
+        "Understand the purpose of a short conversation about a changed plan.",
+        "Identify revised times, meeting points and things to bring.",
+        "Make simple inferences from reasons and conditions in the conversation."
+      ],
+      "explanation": {
+        "en": "When a plan changes, listen for contrast between the old plan and the new one. Separate the meeting time from the departure time, and notice reasons such as because or so. Listen twice before answering if needed.",
+        "vi": "Khi kế hoạch thay đổi, hãy phân biệt thông tin cũ và mới. Tách giờ gặp khỏi giờ khởi hành, và chú ý lý do với các từ như because hoặc so."
+      },
+      "examples": [],
+      "audio_asset": {
+        "id": "AUD-SATURDAY-PLAN-A2",
+        "source_text": "Emma: Hi Ben. I'm calling about our science museum trip on Saturday. The bus was going to leave school at nine, but the driver has changed the time. It will leave at nine thirty now, so please meet at the school gate at nine fifteen. Ben: Okay. Do we still need to bring lunch? Emma: Yes. The museum café is closed for repairs, so bring a packed lunch. The school will provide water. Ben: Do we need money for the ticket? Emma: No, the teacher has already paid for the tickets. You only need money if you want to buy something in the gift shop. Ben: What time will we get back? Emma: Around three forty-five. Also, if your plans change and you cannot come, tell Ms Brown by Friday at twelve.",
+        "language": "en",
+        "roles": [
+          "Emma",
+          "Ben"
+        ],
+        "transcript_reveal": "after_submission",
+        "requires_real_playback": true,
+        "fallback": "No real playback means no listening score. A transcript may be shown only later as a separately labelled reading support."
+      },
+      "activities": [
+        {
+          "id": "LIS-A2-02-Q1",
+          "type": "single_choice",
+          "prompt": "Why is Emma calling Ben?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To explain changes to Saturday's museum trip"
+            },
+            {
+              "id": "B",
+              "text": "To invite him to a football match"
+            },
+            {
+              "id": "C",
+              "text": "To cancel the school year"
+            },
+            {
+              "id": "D",
+              "text": "To ask him to buy a bus ticket"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Emma is updating Ben about changes to the Saturday museum trip."
+          },
+          "skill_tags": [
+            "listening.speaker_intention"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-02-Q2",
+          "type": "single_choice",
+          "prompt": "What was the original bus departure time?",
+          "options": [
+            {
+              "id": "A",
+              "text": "9:00"
+            },
+            {
+              "id": "B",
+              "text": "9:15"
+            },
+            {
+              "id": "C",
+              "text": "9:30"
+            },
+            {
+              "id": "D",
+              "text": "3:45"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Emma says the bus was going to leave at nine."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-02-Q3",
+          "type": "single_choice",
+          "prompt": "What is the NEW bus departure time?",
+          "options": [
+            {
+              "id": "A",
+              "text": "9:30"
+            },
+            {
+              "id": "B",
+              "text": "9:00"
+            },
+            {
+              "id": "C",
+              "text": "9:15"
+            },
+            {
+              "id": "D",
+              "text": "10:00"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The new departure time is nine thirty."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-02-Q4",
+          "type": "single_choice",
+          "prompt": "When should students meet at the school gate?",
+          "options": [
+            {
+              "id": "A",
+              "text": "9:15"
+            },
+            {
+              "id": "B",
+              "text": "9:30"
+            },
+            {
+              "id": "C",
+              "text": "9:00"
+            },
+            {
+              "id": "D",
+              "text": "8:45"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Students should meet at the gate at nine fifteen."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-02-Q5",
+          "type": "single_choice",
+          "prompt": "Why should students bring a packed lunch?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The museum café is closed for repairs."
+            },
+            {
+              "id": "B",
+              "text": "The bus does not allow food."
+            },
+            {
+              "id": "C",
+              "text": "The school has no water."
+            },
+            {
+              "id": "D",
+              "text": "The museum ticket includes lunch."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Emma explains that the museum café is closed for repairs."
+          },
+          "skill_tags": [
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-02-Q6",
+          "type": "single_choice",
+          "prompt": "What will the school provide?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Water"
+            },
+            {
+              "id": "B",
+              "text": "Packed lunches"
+            },
+            {
+              "id": "C",
+              "text": "Gift-shop money"
+            },
+            {
+              "id": "D",
+              "text": "Cameras"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Emma says the school will provide water."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-02-Q7",
+          "type": "single_choice",
+          "prompt": "Why might a student need money?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To buy something in the gift shop"
+            },
+            {
+              "id": "B",
+              "text": "To pay for the museum ticket"
+            },
+            {
+              "id": "C",
+              "text": "To pay the bus driver"
+            },
+            {
+              "id": "D",
+              "text": "To buy water"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Tickets are already paid; money is needed only for an optional gift-shop purchase."
+          },
+          "skill_tags": [
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-02-Q8",
+          "type": "single_choice",
+          "prompt": "What time will the group return?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Around 3:45"
+            },
+            {
+              "id": "B",
+              "text": "Around 9:45"
+            },
+            {
+              "id": "C",
+              "text": "At 12:00"
+            },
+            {
+              "id": "D",
+              "text": "At 4:45"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Emma says they will get back around three forty-five."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-02-Q9",
+          "type": "single_choice",
+          "prompt": "Who has already paid for the museum tickets?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The teacher"
+            },
+            {
+              "id": "B",
+              "text": "Ben"
+            },
+            {
+              "id": "C",
+              "text": "The bus driver"
+            },
+            {
+              "id": "D",
+              "text": "The museum café"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Emma says the teacher has already paid for the tickets."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-02-Q10",
+          "type": "single_choice",
+          "prompt": "If Ben can no longer go, when should he tell Ms Brown?",
+          "options": [
+            {
+              "id": "A",
+              "text": "By Friday at 12:00"
+            },
+            {
+              "id": "B",
+              "text": "Saturday at 9:15"
+            },
+            {
+              "id": "C",
+              "text": "After the trip"
+            },
+            {
+              "id": "D",
+              "text": "Thursday at 3:45"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Emma says students whose plans change should tell Ms Brown by Friday at twelve."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "LIS-B1-02",
+      "module": "listening",
+      "cefr_target": "B1",
+      "title": "Discussing a group-project problem",
+      "estimated_minutes": 20,
+      "objectives": [
+        "Identify the main problem and proposed solution in a planning conversation.",
+        "Understand details about deadlines, roles and constraints.",
+        "Infer why speakers prefer one solution or explanation over another."
+      ],
+      "explanation": {
+        "en": "At B1, listen for the problem, the options speakers consider and the reason they finally prefer one option. Contrast words and practical constraints often reveal attitude and intention. Exact details such as deadlines still matter.",
+        "vi": "Ở mức B1, hãy nghe để xác định vấn đề, các phương án được cân nhắc và lý do người nói chọn một phương án. Các từ chỉ tương phản và hạn chế thực tế thường thể hiện thái độ hoặc ý định."
+      },
+      "examples": [],
+      "audio_asset": {
+        "id": "AUD-GROUP-PROJECT-B1",
+        "source_text": "Maya: We need to finish our presentation by Friday. The slides are almost done, but the survey chart is hard to read because I tried to show all sixty responses at once. Leo: Why don't we group similar responses into three categories? We can keep the full data in our notes in case the teacher asks about it. Maya: Good idea. I was also going to print colour copies for everyone, but that will be expensive. Leo: Let's make one large poster and share the full file online. The school printer can produce an A3 poster for free, but we have to send the file before four o'clock on Wednesday. Maya: Then I'll revise the chart tonight and send you a draft on Tuesday. Could you check it before lunch on Wednesday? Leo: Yes. I have football after school, so morning is better for me. Maya: One more thing. Twelve students skipped one survey question, and I'm worried people will think our data is incomplete. Leo: Add a note explaining that the question was optional. That makes the missing answers clear. Maya: Right. And during the presentation, let's focus on two main findings instead of reading every number.",
+        "language": "en",
+        "roles": [
+          "Maya",
+          "Leo"
+        ],
+        "transcript_reveal": "after_submission",
+        "requires_real_playback": true,
+        "fallback": "No real playback means no listening score; transcript support must remain a separate post-listening reading activity."
+      },
+      "activities": [
+        {
+          "id": "LIS-B1-02-Q1",
+          "type": "single_choice",
+          "prompt": "What is the main problem with the survey chart?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It is difficult to read because it shows too much information at once."
+            },
+            {
+              "id": "B",
+              "text": "It contains only three responses."
+            },
+            {
+              "id": "C",
+              "text": "The teacher has deleted it."
+            },
+            {
+              "id": "D",
+              "text": "It uses the wrong language."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Maya says the chart is hard to read because she tried to show all sixty responses at once."
+          },
+          "skill_tags": [
+            "listening.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-02-Q2",
+          "type": "single_choice",
+          "prompt": "What does Leo suggest doing with the responses?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Group similar responses into three categories"
+            },
+            {
+              "id": "B",
+              "text": "Delete most of the survey"
+            },
+            {
+              "id": "C",
+              "text": "Ask sixty new students"
+            },
+            {
+              "id": "D",
+              "text": "Print each response on a separate page"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Leo suggests grouping similar responses into three categories."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-02-Q3",
+          "type": "single_choice",
+          "prompt": "Why do they want to keep the full data in their notes?",
+          "options": [
+            {
+              "id": "A",
+              "text": "In case the teacher asks about it"
+            },
+            {
+              "id": "B",
+              "text": "Because the poster must include every number"
+            },
+            {
+              "id": "C",
+              "text": "Because they cannot save a digital file"
+            },
+            {
+              "id": "D",
+              "text": "So the survey can be repeated"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Leo says they can keep the full data in their notes in case the teacher asks."
+          },
+          "skill_tags": [
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-02-Q4",
+          "type": "single_choice",
+          "prompt": "Why does Maya decide not to print colour copies for everyone?",
+          "options": [
+            {
+              "id": "A",
+              "text": "They would be expensive."
+            },
+            {
+              "id": "B",
+              "text": "The printer cannot use colour."
+            },
+            {
+              "id": "C",
+              "text": "The teacher banned paper."
+            },
+            {
+              "id": "D",
+              "text": "There are no survey results."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Maya explicitly says printing colour copies for everyone would be expensive."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-02-Q5",
+          "type": "single_choice",
+          "prompt": "What alternative do they choose instead of many colour copies?",
+          "options": [
+            {
+              "id": "A",
+              "text": "One large poster plus a shared digital file"
+            },
+            {
+              "id": "B",
+              "text": "No visual material at all"
+            },
+            {
+              "id": "C",
+              "text": "Sixty small posters"
+            },
+            {
+              "id": "D",
+              "text": "Only handwritten notes"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Leo proposes one large poster and sharing the full file online."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-02-Q6",
+          "type": "single_choice",
+          "prompt": "What is the printer deadline?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Before 4:00 p.m. on Wednesday"
+            },
+            {
+              "id": "B",
+              "text": "Before lunch on Tuesday"
+            },
+            {
+              "id": "C",
+              "text": "Friday morning"
+            },
+            {
+              "id": "D",
+              "text": "After the presentation"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The file must reach the school printer before four o'clock on Wednesday."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-02-Q7",
+          "type": "single_choice",
+          "prompt": "Why does Leo prefer to check the draft before lunch on Wednesday?",
+          "options": [
+            {
+              "id": "A",
+              "text": "He has football after school."
+            },
+            {
+              "id": "B",
+              "text": "He is absent on Tuesday."
+            },
+            {
+              "id": "C",
+              "text": "The printer closes at lunch."
+            },
+            {
+              "id": "D",
+              "text": "He does not understand the chart."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Leo explains that he has football after school, so morning is better."
+          },
+          "skill_tags": [
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-02-Q8",
+          "type": "single_choice",
+          "prompt": "Why will they add a note about the optional survey question?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To explain why twelve answers are missing"
+            },
+            {
+              "id": "B",
+              "text": "To ask students to answer it again"
+            },
+            {
+              "id": "C",
+              "text": "To make the presentation longer"
+            },
+            {
+              "id": "D",
+              "text": "To remove the survey chart"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The note prevents the missing answers from looking like an error in the data."
+          },
+          "skill_tags": [
+            "listening.speaker_intention"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-02-Q9",
+          "type": "single_choice",
+          "prompt": "When will Maya send Leo the revised draft?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Tuesday"
+            },
+            {
+              "id": "B",
+              "text": "Friday"
+            },
+            {
+              "id": "C",
+              "text": "Wednesday after 4:00"
+            },
+            {
+              "id": "D",
+              "text": "After the presentation"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Maya says she will revise the chart tonight and send Leo a draft on Tuesday."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-02-Q10",
+          "type": "single_choice",
+          "prompt": "What is their final plan for presenting the survey?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Focus on two main findings rather than read every number"
+            },
+            {
+              "id": "B",
+              "text": "Read every response aloud"
+            },
+            {
+              "id": "C",
+              "text": "Show only the optional question"
+            },
+            {
+              "id": "D",
+              "text": "Remove all survey information"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Maya proposes focusing on two main findings instead of reading every number."
+          },
+          "skill_tags": [
+            "listening.speaker_intention"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "WRI-B1-02",
+      "module": "writing",
+      "cefr_target": "B1",
+      "title": "Build a clear opinion paragraph",
+      "estimated_minutes": 30,
+      "objectives": [
+        "Analyse an opinion prompt and choose relevant ideas.",
+        "Organise an opinion, reason, example and conclusion into a coherent paragraph.",
+        "Use suitable linkers, register and language choices before drafting a longer response."
+      ],
+      "explanation": {
+        "en": "Before writing, identify the exact question and decide your position. Build one clear line of support: opinion → reason → specific example → concluding link. Cohesive words such as because, for example, however and therefore should show a real relationship between ideas, not simply decorate the paragraph. Clear, relevant language is more important than unnecessarily difficult vocabulary.",
+        "vi": "Trước khi viết, hãy xác định đúng yêu cầu đề và chọn quan điểm. Xây dựng một mạch rõ ràng: ý kiến → lý do → ví dụ cụ thể → câu kết. Từ nối phải thể hiện quan hệ thật giữa các ý, không chỉ được thêm vào cho có."
+      },
+      "examples": [
+        "OPINION · I think schools should give students one homework-free evening each week.",
+        "REASON · This can help students recover and manage other responsibilities.",
+        "EXAMPLE · For example, they could use that evening for sport, family time or reading.",
+        "CONCLUSION · Therefore, one planned break can support a healthier weekly routine."
+      ],
+      "activities": [
+        {
+          "id": "WRI-B1-02-Q1",
+          "type": "single_choice",
+          "prompt": "Prompt: 'Should schools give students one homework-free evening each week?' What must the writer do?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Give an opinion and support it"
+            },
+            {
+              "id": "B",
+              "text": "Describe every school subject"
+            },
+            {
+              "id": "C",
+              "text": "Write only a list of homework tasks"
+            },
+            {
+              "id": "D",
+              "text": "Explain how to become a teacher"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The task asks for a position on the idea and support for that position."
+          },
+          "skill_tags": [
+            "writing.task_understanding"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-02-Q2",
+          "type": "single_choice",
+          "prompt": "Which opening states a clear opinion?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I think one homework-free evening each week can be useful for students."
+            },
+            {
+              "id": "B",
+              "text": "Homework is a word with eight letters."
+            },
+            {
+              "id": "C",
+              "text": "There are many days in a week."
+            },
+            {
+              "id": "D",
+              "text": "This topic has different words."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The first sentence gives a direct position on the question."
+          },
+          "skill_tags": [
+            "writing.idea_development"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-02-Q3",
+          "type": "single_choice",
+          "prompt": "Which reason most directly supports the opinion that one free evening can help students?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It can give students time to recover and manage other responsibilities."
+            },
+            {
+              "id": "B",
+              "text": "Some classrooms have blue chairs."
+            },
+            {
+              "id": "C",
+              "text": "Maths books can be heavy."
+            },
+            {
+              "id": "D",
+              "text": "Teachers use different pens."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The first reason is directly relevant to the proposed homework-free evening."
+          },
+          "skill_tags": [
+            "writing.idea_development"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-02-Q4",
+          "type": "single_choice",
+          "prompt": "Which example best develops the reason in Q3?",
+          "options": [
+            {
+              "id": "A",
+              "text": "For example, a student could use that evening for sport, family time or reading."
+            },
+            {
+              "id": "B",
+              "text": "For example, homework has many pages."
+            },
+            {
+              "id": "C",
+              "text": "For example, schools have doors."
+            },
+            {
+              "id": "D",
+              "text": "For example, Tuesday comes after Monday."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The example gives concrete ways a free evening could support recovery and balance."
+          },
+          "skill_tags": [
+            "writing.idea_development"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-02-Q5",
+          "type": "single_choice",
+          "prompt": "Choose the best linker: 'A free evening may help students rest. ___, it should not mean that important work is ignored.'",
+          "options": [
+            {
+              "id": "A",
+              "text": "However"
+            },
+            {
+              "id": "B",
+              "text": "For example"
+            },
+            {
+              "id": "C",
+              "text": "Because"
+            },
+            {
+              "id": "D",
+              "text": "Therefore"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "However correctly introduces a contrast or limitation."
+          },
+          "skill_tags": [
+            "writing.cohesion"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-02-Q6",
+          "type": "single_choice",
+          "prompt": "Choose the best linker: 'Students often have schoolwork, clubs and family responsibilities. ___, one planned break can make the week easier to manage.'",
+          "options": [
+            {
+              "id": "A",
+              "text": "Therefore"
+            },
+            {
+              "id": "B",
+              "text": "However"
+            },
+            {
+              "id": "C",
+              "text": "For example"
+            },
+            {
+              "id": "D",
+              "text": "Although"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Therefore introduces a result or conclusion from the previous idea."
+          },
+          "skill_tags": [
+            "writing.cohesion"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-02-Q7",
+          "type": "single_choice",
+          "prompt": "Which order makes the clearest paragraph plan?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Opinion → reason → example → conclusion"
+            },
+            {
+              "id": "B",
+              "text": "Example → unrelated fact → title → opinion"
+            },
+            {
+              "id": "C",
+              "text": "Conclusion → question → example → no reason"
+            },
+            {
+              "id": "D",
+              "text": "Reason → new topic → opinion → different topic"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A clear B1 opinion paragraph can follow opinion, reason, example and conclusion."
+          },
+          "skill_tags": [
+            "writing.organization"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-02-Q8",
+          "type": "single_choice",
+          "prompt": "Which sentence has the most suitable neutral school-writing register?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Students may benefit from having one evening without assigned homework."
+            },
+            {
+              "id": "B",
+              "text": "Kids totally need a night with zero annoying stuff."
+            },
+            {
+              "id": "C",
+              "text": "Homework is, like, super bad sometimes."
+            },
+            {
+              "id": "D",
+              "text": "No homework night is awesome!!!"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The first sentence is clear, neutral and appropriate for a school opinion paragraph."
+          },
+          "skill_tags": [
+            "writing.register",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-02-Q9",
+          "type": "single_choice",
+          "prompt": "Which sentence is grammatically correct and clear?",
+          "options": [
+            {
+              "id": "A",
+              "text": "One planned break can help students manage their time more effectively."
+            },
+            {
+              "id": "B",
+              "text": "One planned break can helps students manages their time."
+            },
+            {
+              "id": "C",
+              "text": "One planned break helping students to managed their time."
+            },
+            {
+              "id": "D",
+              "text": "One planned break can helped students manage time more effective."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Can is followed by the base verb help, and effectively is the correct adverb form."
+          },
+          "skill_tags": [
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-02-Q10",
+          "type": "extended_response",
+          "prompt": "Should schools give students one homework-free evening each week? Give your opinion, at least one clear reason and one specific example. Write about 120–160 words.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-WRITING-B1",
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.idea_development",
+            "writing.organization",
+            "writing.cohesion",
+            "writing.register",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Submitted. This response needs AI or human review; the platform does not assign an automatic CEFR score."
+          },
+          "word_range_guidance": {
+            "min": 120,
+            "max": 160,
+            "not_a_quality_score": true
+          }
+        }
+      ]
+    }
+  ]
+}
