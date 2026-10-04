@@ -4,9 +4,9 @@
   "batch_id": "LISTENING-WRITING-DENSITY-WAVE2-20261004",
   "base_version": "1.10.0",
   "target_version": "1.11.0",
-  "status": "draft_pending_independent_notebooklm_review",
+  "status": "academic_pass_ready_for_1.11.0_composition",
   "metadata": {
-    "status": "listening_writing_density_wave2_pending_notebooklm_review_no_import",
+    "status": "listening_writing_density_wave2_academic_pass_ready_for_candidate_no_import",
     "course_title": "English Foundation · A1–B1 developing curriculum",
     "course_description": "Original self-study curriculum with a completed current Grammar roadmap and evidence-driven expansion across receptive and productive skills.",
     "curriculum_principle": "Expand content according to evidence density and skill coverage. Listening credit requires real playback; extended Writing responses require AI or human review. Historical reviewed content remains immutable."
