@@ -4,9 +4,9 @@
   "batch_id": "VOCAB-READING-B1-DENSITY-WAVE1-20261004",
   "base_version": "1.9.0",
   "target_version": "1.10.0",
-  "status": "draft_pending_independent_notebooklm_review",
+  "status": "academic_pass_ready_for_1.10.0_composition",
   "metadata": {
-    "status": "vocab_reading_b1_density_wave1_pending_notebooklm_review_no_import",
+    "status": "vocab_reading_b1_density_wave1_academic_pass_ready_for_candidate_no_import",
     "course_title": "English Foundation · A1–B1 developing curriculum",
     "course_description": "Original self-study curriculum with completed current Grammar roadmap and evidence-driven expansion of Vocabulary and Reading.",
     "curriculum_principle": "Expand content according to evidence density and skill coverage. Lesson counts are not learner certification; existing reviewed tags and historical lesson objects remain stable."
