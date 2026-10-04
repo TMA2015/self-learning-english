@@ -1,0 +1,60 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+
+const root=path.join(__dirname,'..');
+const out=path.join(root,'dist','client');
+assert(fs.existsSync(out),'Vinext static export must emit dist/client');
+for(const relative of [
+  'index.html',
+  'favicon.svg',
+  'branding/english-app-icon.svg',
+  'branding/g-learning-mark.svg',
+  'foundation-audio/LIS-A1-01-v1.mp3',
+  'foundation-audio/LIS-A2-01-v1.mp3',
+  'foundation-audio/LIS-A2-02-v1.mp3',
+  'foundation-audio/LIS-B1-01-v1.mp3',
+  'foundation-audio/LIS-B1-02-v1.mp3',
+]){
+  assert(fs.existsSync(path.join(out,relative)),relative+' missing from static export');
+}
+
+const html=fs.readFileSync(path.join(out,'index.html'),'utf8');
+assert(html.includes('/self-learning-english/'),'exported HTML must use GitHub Pages base path');
+assert(!html.includes('"/branding/'),'brand assets must not point at domain root');
+assert(!html.includes('"/favicon.svg"'),'favicon must not point at domain root');
+
+const sourcePage=fs.readFileSync(path.join(root,'app','page.tsx'),'utf8');
+assert(!sourcePage.includes('fetch("/api/evaluate"'),'browser Writing flow must not call /api/evaluate directly');
+assert(!sourcePage.includes('"/api/practice"'),'browser Writing flow must not call /api/practice directly');
+assert(sourcePage.includes('evaluateWritingProcess('));
+assert(sourcePage.includes('saveGardenRelevantIdea('));
+
+const client=fs.readFileSync(path.join(root,'infrastructure','browser','client-services.ts'),'utf8');
+assert(client.includes("if(!browserLearningEnabled())return jsonFetch('/api/evaluate'"),'Sites Writing API fallback must remain');
+assert(client.includes("if(!browserLearningEnabled())return jsonFetch('/api/practice'"),'Sites mini-practice API fallback must remain');
+assert(client.includes('publicPath(view.audio.url)'),'Listening audio must pass through static base-path helper');
+
+function walk(dir){
+  return fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry=>{
+    const full=path.join(dir,entry.name);
+    return entry.isDirectory()?walk(full):[full];
+  });
+}
+const textAssets=walk(out).filter(file=>/\.(?:html|js|css|json|txt|xml|svg)$/i.test(file));
+for(const file of textAssets){
+  const text=fs.readFileSync(file,'utf8');
+  assert(!/AIza[0-9A-Za-z_-]{20,}/.test(text),'Google API key-shaped secret found in '+file);
+  assert(!/sk-[A-Za-z0-9_-]{20,}/.test(text),'OpenAI API key-shaped secret found in '+file);
+}
+
+console.log(JSON.stringify({
+  result:'PASS',
+  output:'dist/client',
+  basePath:'/self-learning-english',
+  curriculum:'1.11.0',
+  staticAudioFiles:5,
+  criticalBrowserWritingServerFree:true,
+  secretShapeScan:true
+}));
