@@ -438,7 +438,7 @@
     {
       "id": "GRA-B1-02",
       "cefr": "B1",
-      "status": "draft_pending_notebooklm_review",
+      "status": "revised_pending_targeted_notebooklm_recheck",
       "title": "Present perfect simple or continuous?",
       "prerequisites": [
         "GRA-A2-09",
@@ -449,12 +449,12 @@
         "present-perfect-simple",
         "present-perfect-continuous"
       ],
-      "academic_review": "PENDING"
+      "academic_review": "REVISIONS_APPLIED_RECHECK_PENDING"
     },
     {
       "id": "GRA-B1-03",
       "cefr": "B1",
-      "status": "draft_pending_notebooklm_review",
+      "status": "revised_pending_targeted_notebooklm_recheck",
       "title": "Past perfect and narrative order",
       "prerequisites": [
         "GRA-A2-02",
@@ -464,12 +464,12 @@
         "past-perfect",
         "narrative-order"
       ],
-      "academic_review": "PENDING"
+      "academic_review": "REVISIONS_APPLIED_RECHECK_PENDING"
     },
     {
       "id": "GRA-B1-04",
       "cefr": "B1",
-      "status": "draft_pending_notebooklm_review",
+      "status": "revised_pending_targeted_notebooklm_recheck",
       "title": "Past habits with used to and would",
       "prerequisites": [
         "GRA-A2-02"
@@ -478,12 +478,12 @@
         "used-to",
         "past-habits"
       ],
-      "academic_review": "PENDING"
+      "academic_review": "REVISIONS_APPLIED_RECHECK_PENDING"
     },
     {
       "id": "GRA-B1-05",
       "cefr": "B1",
-      "status": "draft_pending_notebooklm_review",
+      "status": "revised_pending_targeted_notebooklm_recheck",
       "title": "Modal deduction: must, might and can't",
       "prerequisites": [
         "GRA-A2-13",
@@ -492,7 +492,7 @@
       "concepts": [
         "modal-deduction"
       ],
-      "academic_review": "PENDING"
+      "academic_review": "REVISIONS_APPLIED_RECHECK_PENDING"
     },
     {
       "id": "GRA-B1-06",
@@ -610,7 +610,7 @@
     "note": "Wave 1A + 1B are academically approved and present in the imported Curriculum 1.6.1 baseline."
   },
   "second_expansion_wave": {
-    "status": "wave2a_drafting",
+    "status": "wave2a_revisions_applied",
     "target_level": "B1",
     "target_lessons": 11,
     "packets": [
@@ -622,7 +622,7 @@
           "GRA-B1-04",
           "GRA-B1-05"
         ],
-        "review_status": "PENDING"
+        "review_status": "REVISIONS_APPLIED_RECHECK_PENDING"
       },
       {
         "packet": "2B",
