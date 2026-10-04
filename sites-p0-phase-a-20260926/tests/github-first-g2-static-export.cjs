@@ -6,7 +6,7 @@ const path=require('node:path');
 const root=path.join(__dirname,'..');
 const raw=path.join(root,'dist','client');
 const out=path.join(root,'dist','pages-artifact');
-const basePath=(process.env.NEXT_PUBLIC_BASE_PATH??'').replace(/^\\/+|\\/+$/g,'');
+const basePath=(process.env.NEXT_PUBLIC_BASE_PATH??'').replace(/^\/+|\/+$/g,'');
 assert(basePath,'NEXT_PUBLIC_BASE_PATH is required for static export QA');
 const baseUrl='/'+basePath+'/';
 assert(fs.existsSync(raw),'Vinext static export must emit dist/client');
