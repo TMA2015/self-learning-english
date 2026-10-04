@@ -60,7 +60,6 @@ const factory=config=>({
   assert.equal(calls.length,1);
   assert.equal(calls[0].config.systemInstruction,'Give grounded feedback only.');
   assert.equal(calls[0].config.generationConfig.responseMimeType,'application/json');
-  assert.equal(calls[0].config.generationConfig.temperature,.3);
   assert.equal(calls[0].input.contents[0].role,'user');
   assert.deepEqual(JSON.parse(calls[0].input.contents[0].parts[0].text),{
     stage:'writing',
@@ -89,6 +88,7 @@ const factory=config=>({
     provider:'firebase-ai-logic-gemini',
     providerIndependentContract:true,
     jsonOnly:true,
+    temperatureNotForwardedToModernGemini:true,
     invalidJsonFailsClosed:true,
     inputBounded:true,
     noDirectGeminiApiKey:true
