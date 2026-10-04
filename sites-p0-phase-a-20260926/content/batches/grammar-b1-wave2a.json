@@ -1,0 +1,1360 @@
+{
+  "format": "ai-english-tutor.curriculum-batch",
+  "schema_version": 1,
+  "batch_id": "GRAMMAR-B1-WAVE2A-20261004",
+  "base_version": "1.6.1",
+  "target_version": "1.7.0",
+  "status": "draft_pending_independent_notebooklm_review",
+  "metadata": {
+    "status": "grammar_b1_wave2a_candidate_pending_notebooklm_review_no_import",
+    "course_title": "English Foundation · A1–B1 developing curriculum",
+    "course_description": "Original self-study units with A1 foundations, A2 extensions and expanding B1 grammar across seven domains. CEFR values are lesson targets, not certified learner estimates.",
+    "curriculum_principle": "An expanding, independently authored curriculum with age-appropriate contexts and CEFR-targeted language use. Coverage is partial at all levels; current labels are curricular targets, not learner certification."
+  },
+  "insert_after": [
+    {
+      "after": "GRA-B1-01",
+      "ids": [
+        "GRA-B1-02",
+        "GRA-B1-03",
+        "GRA-B1-04",
+        "GRA-B1-05"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "GRA-B1-02",
+      "module": "grammar",
+      "cefr_target": "B1",
+      "title": "Present perfect simple or continuous?",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Choose present perfect simple when a completed result or number is important.",
+        "Choose present perfect continuous when duration or an ongoing/recent activity is important.",
+        "Avoid continuous forms with common stative verbs such as know, own and believe."
+      ],
+      "explanation": {
+        "en": "Both forms connect the past with the present. Use the present perfect simple to focus on a result, a completed amount or a state: I've written five emails; We've owned this house since 2018. Use the present perfect continuous to focus on an activity, its duration, or visible recent activity: I've been studying for three hours; Your hands are dirty—have you been gardening? Some verbs, especially stative verbs such as know, own and believe, are normally not used in the continuous form.",
+        "vi": "Cả hai thì đều nối quá khứ với hiện tại. Dùng present perfect simple khi nhấn mạnh kết quả, số lượng đã hoàn thành hoặc trạng thái. Dùng present perfect continuous khi nhấn mạnh hoạt động, thời lượng hoặc dấu hiệu của hoạt động vừa diễn ra. Các động từ trạng thái như know, own, believe thường không dùng ở dạng tiếp diễn."
+      },
+      "examples": [
+        "RESULT · I have written five emails since lunch.",
+        "DURATION · I have been writing emails for two hours.",
+        "STATE · We have known each other for years.",
+        "RECENT ACTIVITY · Your shoes are muddy. Have you been walking in the rain?"
+      ],
+      "activities": [
+        {
+          "id": "GRA-B1-02-Q1",
+          "type": "single_choice",
+          "prompt": "Mia ___ for the exam for three hours, and she is still studying.",
+          "options": [
+            {
+              "id": "A",
+              "text": "has studied"
+            },
+            {
+              "id": "B",
+              "text": "has been studying"
+            },
+            {
+              "id": "C",
+              "text": "studied"
+            },
+            {
+              "id": "D",
+              "text": "studies"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The activity began earlier and is still continuing, so the continuous form highlights duration."
+          },
+          "skill_tags": [
+            "grammar.present_perfect_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-02-Q2",
+          "type": "single_choice",
+          "prompt": "I ___ five emails since lunch, so that task is finished.",
+          "options": [
+            {
+              "id": "A",
+              "text": "have written"
+            },
+            {
+              "id": "B",
+              "text": "have been writing"
+            },
+            {
+              "id": "C",
+              "text": "wrote"
+            },
+            {
+              "id": "D",
+              "text": "write"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A completed number and finished result are important here, so present perfect simple is the clearest choice."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-02-Q3",
+          "type": "single_choice",
+          "prompt": "We ___ this house since 2018.",
+          "options": [
+            {
+              "id": "A",
+              "text": "have owned"
+            },
+            {
+              "id": "B",
+              "text": "have been owning"
+            },
+            {
+              "id": "C",
+              "text": "owned"
+            },
+            {
+              "id": "D",
+              "text": "are owning"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Own is a stative verb, so present perfect simple is normally used for a state continuing to the present."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-02-Q4",
+          "type": "single_choice",
+          "prompt": "Your hands are covered in paint. ___ the kitchen?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Have you painted"
+            },
+            {
+              "id": "B",
+              "text": "Have you been painting"
+            },
+            {
+              "id": "C",
+              "text": "Did you paint"
+            },
+            {
+              "id": "D",
+              "text": "Do you paint"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The visible evidence points to a recent activity, so present perfect continuous is natural."
+          },
+          "skill_tags": [
+            "grammar.present_perfect_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-02-Q5",
+          "type": "short_answer",
+          "prompt": "Complete the sentence with the correct verb form: She ___ (work) on this project since 9 a.m., and she is still working.",
+          "answer": {
+            "accepted_answers": [
+              "has been working"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The work started earlier and continues now, so use has been working."
+          },
+          "skill_tags": [
+            "grammar.present_perfect_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-02-Q6",
+          "type": "single_choice",
+          "prompt": "The mechanic ___ my bike, so I can ride it now.",
+          "options": [
+            {
+              "id": "A",
+              "text": "has repaired"
+            },
+            {
+              "id": "B",
+              "text": "has been repairing"
+            },
+            {
+              "id": "C",
+              "text": "repairs"
+            },
+            {
+              "id": "D",
+              "text": "was repairing"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The present result—an usable repaired bike—is the focus, so present perfect simple fits best."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-02-Q7",
+          "type": "short_answer",
+          "prompt": "Write the missing words: How long ___ you ___ English? (learn)",
+          "answer": {
+            "accepted_answers": [
+              "have you been learning"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "How long asks about the duration of an activity continuing to the present."
+          },
+          "skill_tags": [
+            "grammar.present_perfect_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-02-Q8",
+          "type": "single_choice",
+          "prompt": "Which sentence best focuses on a completed amount?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I've been reading three chapters today."
+            },
+            {
+              "id": "B",
+              "text": "I've read three chapters today."
+            },
+            {
+              "id": "C",
+              "text": "I read three chapters every day."
+            },
+            {
+              "id": "D",
+              "text": "I was reading three chapters."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "I've read three chapters focuses on the number completed."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-02-Q9",
+          "type": "short_answer",
+          "prompt": "Complete the sentence: They ___ (wait) for the bus for forty minutes, and it still hasn't arrived.",
+          "answer": {
+            "accepted_answers": [
+              "have been waiting"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The sentence emphasizes how long the unfinished activity has continued."
+          },
+          "skill_tags": [
+            "grammar.present_perfect_continuous"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-02-Q10",
+          "type": "single_choice",
+          "prompt": "Which sentence is standard English?",
+          "options": [
+            {
+              "id": "A",
+              "text": "He has been knowing Ana for years."
+            },
+            {
+              "id": "B",
+              "text": "He has known Ana for years."
+            },
+            {
+              "id": "C",
+              "text": "He is knowing Ana for years."
+            },
+            {
+              "id": "D",
+              "text": "He knew Ana since years."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Know is a stative verb, so present perfect simple is used for the continuing state."
+          },
+          "skill_tags": [
+            "grammar.present_perfect"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-B1-03",
+      "module": "grammar",
+      "cefr_target": "B1",
+      "title": "Past perfect and narrative order",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Use had + past participle for an action completed before another past time or action.",
+        "Combine past perfect and past simple to make narrative order clear.",
+        "Recognize common past participles used in past-perfect sentences."
+      ],
+      "explanation": {
+        "en": "Use the past perfect (had + past participle) when you need to look back from one past moment to an earlier past event. The later event is often in the past simple: When we arrived, the film had started. The form is especially useful when the order is not otherwise obvious, and with ideas such as already, never and by the time. Do not use the past perfect simply because two actions are in the past; use it when the earlier-before-later relationship matters.",
+        "vi": "Dùng past perfect (had + past participle) khi từ một thời điểm trong quá khứ nhìn lùi về một sự việc đã xảy ra trước đó. Sự việc xảy ra sau thường dùng past simple. Thì này hữu ích với already, never, by the time và khi cần làm rõ thứ tự trước–sau."
+      },
+      "examples": [
+        "When we arrived, the film had already started.",
+        "I realized that I had left my wallet at home.",
+        "By the time the bus came, we had waited for nearly an hour.",
+        "She had never seen snow before she visited Korea."
+      ],
+      "activities": [
+        {
+          "id": "GRA-B1-03-Q1",
+          "type": "single_choice",
+          "prompt": "When we arrived at the cinema, the film ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "had already started"
+            },
+            {
+              "id": "B",
+              "text": "already starts"
+            },
+            {
+              "id": "C",
+              "text": "has already started"
+            },
+            {
+              "id": "D",
+              "text": "was start"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The film started before the later past action arrived, so past perfect shows the earlier event."
+          },
+          "skill_tags": [
+            "grammar.past_perfect",
+            "grammar.narrative_order"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-03-Q2",
+          "type": "single_choice",
+          "prompt": "Lina was exhausted because she ___ well the night before.",
+          "options": [
+            {
+              "id": "A",
+              "text": "hadn't slept"
+            },
+            {
+              "id": "B",
+              "text": "doesn't sleep"
+            },
+            {
+              "id": "C",
+              "text": "hasn't slept"
+            },
+            {
+              "id": "D",
+              "text": "wasn't sleep"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The poor sleep happened before Lina was exhausted, so hadn't slept is appropriate."
+          },
+          "skill_tags": [
+            "grammar.past_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-03-Q3",
+          "type": "short_answer",
+          "prompt": "Complete the sentence: By the time I got to the station, the train ___ (leave).",
+          "answer": {
+            "accepted_answers": [
+              "had left"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The train left before the speaker got to the station."
+          },
+          "skill_tags": [
+            "grammar.past_perfect",
+            "grammar.narrative_order"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-03-Q4",
+          "type": "single_choice",
+          "prompt": "I opened my bag and realized that I ___ my wallet at home.",
+          "options": [
+            {
+              "id": "A",
+              "text": "had left"
+            },
+            {
+              "id": "B",
+              "text": "leave"
+            },
+            {
+              "id": "C",
+              "text": "have left"
+            },
+            {
+              "id": "D",
+              "text": "was leaving"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Leaving the wallet happened before the later realization."
+          },
+          "skill_tags": [
+            "grammar.past_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-03-Q5",
+          "type": "single_choice",
+          "prompt": "In the sentence 'When Noor arrived, Sam had cooked dinner,' which action happened first?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Noor arrived."
+            },
+            {
+              "id": "B",
+              "text": "Sam cooked dinner."
+            },
+            {
+              "id": "C",
+              "text": "They happened at exactly the same time."
+            },
+            {
+              "id": "D",
+              "text": "The sentence does not show the order."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Had cooked marks Sam's cooking as the earlier action."
+          },
+          "skill_tags": [
+            "grammar.narrative_order"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-03-Q6",
+          "type": "single_choice",
+          "prompt": "They couldn't enter the room because someone ___ the door.",
+          "options": [
+            {
+              "id": "A",
+              "text": "had locked"
+            },
+            {
+              "id": "B",
+              "text": "locks"
+            },
+            {
+              "id": "C",
+              "text": "has locked"
+            },
+            {
+              "id": "D",
+              "text": "would lock"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The locking happened before they tried to enter."
+          },
+          "skill_tags": [
+            "grammar.past_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-03-Q7",
+          "type": "single_choice",
+          "prompt": "When the teacher asked for our work, I ___ the exercise already.",
+          "options": [
+            {
+              "id": "A",
+              "text": "had finished"
+            },
+            {
+              "id": "B",
+              "text": "finish"
+            },
+            {
+              "id": "C",
+              "text": "have finished"
+            },
+            {
+              "id": "D",
+              "text": "am finishing"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Already emphasizes that the exercise was complete before the teacher asked."
+          },
+          "skill_tags": [
+            "grammar.past_perfect",
+            "grammar.narrative_order"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-03-Q8",
+          "type": "short_answer",
+          "prompt": "Complete the sentence: She ___ never ___ snow before she visited Korea. (see)",
+          "answer": {
+            "accepted_answers": [
+              "had never seen"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The experience of not seeing snow refers to the time before the later visit."
+          },
+          "skill_tags": [
+            "grammar.past_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-03-Q9",
+          "type": "single_choice",
+          "prompt": "Which sentence correctly uses a past participle after had?",
+          "options": [
+            {
+              "id": "A",
+              "text": "They had ate before we arrived."
+            },
+            {
+              "id": "B",
+              "text": "They had eaten before we arrived."
+            },
+            {
+              "id": "C",
+              "text": "They had eating before we arrived."
+            },
+            {
+              "id": "D",
+              "text": "They had eat before we arrived."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The past participle of eat is eaten: had eaten."
+          },
+          "skill_tags": [
+            "grammar.past_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-03-Q10",
+          "type": "single_choice",
+          "prompt": "Choose the sentence that clearly shows the earlier event with past perfect.",
+          "options": [
+            {
+              "id": "A",
+              "text": "I reached the gate, but the bus had gone."
+            },
+            {
+              "id": "B",
+              "text": "I had reach the gate, but the bus went."
+            },
+            {
+              "id": "C",
+              "text": "I reach the gate, but the bus had went."
+            },
+            {
+              "id": "D",
+              "text": "I have reached the gate, but the bus went."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Had gone correctly marks the bus leaving as earlier than reaching the gate."
+          },
+          "skill_tags": [
+            "grammar.past_perfect",
+            "grammar.narrative_order"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-B1-04",
+      "module": "grammar",
+      "cefr_target": "B1",
+      "title": "Past habits with used to and would",
+      "estimated_minutes": 24,
+      "objectives": [
+        "Use used to for past states or repeated actions that are no longer true.",
+        "Use would for repeated past actions when the past-time context is clear.",
+        "Form questions and negatives with did + use to."
+      ],
+      "explanation": {
+        "en": "Use used to + base verb for past states or repeated actions that are different now: I used to live near school; We used to play outside every evening. Would + base verb can describe repeated past actions when the past context is already clear: Every summer, my grandfather would take us fishing. In this meaning, would is normally not used for past states such as own, know or be. Questions and negatives use did: Did you use to walk to school? I didn't use to like coffee.",
+        "vi": "Dùng used to + động từ nguyên mẫu cho trạng thái hoặc hành động lặp lại trong quá khứ nhưng nay đã khác. Would + động từ nguyên mẫu có thể nói về hành động lặp lại khi bối cảnh quá khứ đã rõ, nhưng thường không dùng would cho trạng thái như own, know, be. Câu hỏi/phủ định dùng did + use to."
+      },
+      "examples": [
+        "STATE · I used to live near the river.",
+        "HABIT · We used to play football after school.",
+        "REPEATED ACTION · Every Sunday, Dad would make pancakes.",
+        "QUESTION · Did you use to walk to school?"
+      ],
+      "activities": [
+        {
+          "id": "GRA-B1-04-Q1",
+          "type": "single_choice",
+          "prompt": "I ___ near the river, but now I live in the city centre.",
+          "options": [
+            {
+              "id": "A",
+              "text": "used to live"
+            },
+            {
+              "id": "B",
+              "text": "would living"
+            },
+            {
+              "id": "C",
+              "text": "use to lived"
+            },
+            {
+              "id": "D",
+              "text": "was use to live"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Used to can describe a past state that is no longer true."
+          },
+          "skill_tags": [
+            "grammar.used_to"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-04-Q2",
+          "type": "single_choice",
+          "prompt": "Every summer when we were children, Grandpa ___ us fishing.",
+          "options": [
+            {
+              "id": "A",
+              "text": "would take"
+            },
+            {
+              "id": "B",
+              "text": "would took"
+            },
+            {
+              "id": "C",
+              "text": "used taking"
+            },
+            {
+              "id": "D",
+              "text": "has taken"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Would + base verb is correct for a repeated past action in a clear past-time context."
+          },
+          "skill_tags": [
+            "grammar.would_past_habit"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-04-Q3",
+          "type": "single_choice",
+          "prompt": "I ___ coffee, but now I drink it every morning.",
+          "options": [
+            {
+              "id": "A",
+              "text": "didn't use to like"
+            },
+            {
+              "id": "B",
+              "text": "didn't used to like"
+            },
+            {
+              "id": "C",
+              "text": "wouldn't liking"
+            },
+            {
+              "id": "D",
+              "text": "don't used to like"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "After didn't, use the base form use: didn't use to like."
+          },
+          "skill_tags": [
+            "grammar.used_to"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-04-Q4",
+          "type": "single_choice",
+          "prompt": "Which question is correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Did you used to walk to school?"
+            },
+            {
+              "id": "B",
+              "text": "Did you use to walk to school?"
+            },
+            {
+              "id": "C",
+              "text": "Were you use to walk to school?"
+            },
+            {
+              "id": "D",
+              "text": "Do you used to walk to school?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "After did, use the base form use: Did you use to...?"
+          },
+          "skill_tags": [
+            "grammar.used_to"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-04-Q5",
+          "type": "short_answer",
+          "prompt": "Complete the sentence: This building ___ (be) a library, but now it is a café.",
+          "answer": {
+            "accepted_answers": [
+              "used to be"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Be describes a past state, so used to is appropriate."
+          },
+          "skill_tags": [
+            "grammar.used_to"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-04-Q6",
+          "type": "single_choice",
+          "prompt": "When we were children, we ___ in the park until it got dark.",
+          "options": [
+            {
+              "id": "A",
+              "text": "would play"
+            },
+            {
+              "id": "B",
+              "text": "would played"
+            },
+            {
+              "id": "C",
+              "text": "were play"
+            },
+            {
+              "id": "D",
+              "text": "have played"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Would play is correct for a repeated action in a clearly established past context."
+          },
+          "skill_tags": [
+            "grammar.would_past_habit"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-04-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence does NOT use would naturally for a past habit/state?",
+          "options": [
+            {
+              "id": "A",
+              "text": "On winter evenings, we would sit by the fire."
+            },
+            {
+              "id": "B",
+              "text": "Every Friday, our teacher would give us a quiz."
+            },
+            {
+              "id": "C",
+              "text": "She would own a small red bicycle."
+            },
+            {
+              "id": "D",
+              "text": "During holidays, Dad would cook breakfast."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Own describes a state; used to own is the normal form for a past state."
+          },
+          "skill_tags": [
+            "grammar.used_to",
+            "grammar.would_past_habit"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-04-Q8",
+          "type": "single_choice",
+          "prompt": "I ___ long hair when I was younger, but it is short now.",
+          "options": [
+            {
+              "id": "A",
+              "text": "used to have"
+            },
+            {
+              "id": "B",
+              "text": "would having"
+            },
+            {
+              "id": "C",
+              "text": "use to had"
+            },
+            {
+              "id": "D",
+              "text": "had use to"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Have here describes a past state/possession, so used to have is appropriate."
+          },
+          "skill_tags": [
+            "grammar.used_to"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-04-Q9",
+          "type": "single_choice",
+          "prompt": "On Fridays, our teacher ___ us choose a game for the last ten minutes.",
+          "options": [
+            {
+              "id": "A",
+              "text": "would let"
+            },
+            {
+              "id": "B",
+              "text": "would lets"
+            },
+            {
+              "id": "C",
+              "text": "used let"
+            },
+            {
+              "id": "D",
+              "text": "has let"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Would let correctly describes a repeated action in a past routine."
+          },
+          "skill_tags": [
+            "grammar.would_past_habit"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-04-Q10",
+          "type": "short_answer",
+          "prompt": "Complete the sentence: There ___ a small shop here, but it closed years ago.",
+          "answer": {
+            "accepted_answers": [
+              "used to be"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Used to be describes a past state/existence that is no longer true."
+          },
+          "skill_tags": [
+            "grammar.used_to"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-B1-05",
+      "module": "grammar",
+      "cefr_target": "B1",
+      "title": "Modal deduction: must, might and can't",
+      "estimated_minutes": 24,
+      "objectives": [
+        "Use must for a strong positive deduction based on present evidence.",
+        "Use might, may or could for a possible but uncertain conclusion.",
+        "Use can't for a strong negative deduction when evidence makes something impossible."
+      ],
+      "explanation": {
+        "en": "Modal verbs can express how sure we are about a present situation. Use must when the evidence makes a conclusion very likely: The lights are on and their car is outside; they must be home. Use might, may or could when something is possible but uncertain. Use can't when evidence makes a conclusion impossible: He is in Tokyo today, so he can't be in Hanoi. For negative deduction, don't use mustn't to mean 'I am sure it is not true'; use can't.",
+        "vi": "Modal verbs có thể diễn tả mức độ chắc chắn khi suy luận về hiện tại. Dùng must khi bằng chứng khiến kết luận rất có khả năng đúng; might/may/could khi chỉ là khả năng; can't khi bằng chứng cho thấy điều đó không thể đúng. Không dùng mustn't với nghĩa suy luận 'chắc chắn không'; dùng can't."
+      },
+      "examples": [
+        "STRONG POSITIVE · Their car is outside. They must be home.",
+        "POSSIBLE · I don't know where Mia is. She might be in the library.",
+        "STRONG NEGATIVE · That can't be Ben; Ben is much taller.",
+        "POSSIBLE · This could be the correct bus, but let's check the number."
+      ],
+      "activities": [
+        {
+          "id": "GRA-B1-05-Q1",
+          "type": "single_choice",
+          "prompt": "The lights are on and their car is outside. They ___ be home.",
+          "options": [
+            {
+              "id": "A",
+              "text": "must"
+            },
+            {
+              "id": "B",
+              "text": "might not"
+            },
+            {
+              "id": "C",
+              "text": "can't"
+            },
+            {
+              "id": "D",
+              "text": "mustn't"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The evidence strongly supports the conclusion, so must expresses a strong positive deduction."
+          },
+          "skill_tags": [
+            "grammar.modal_deduction"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-05-Q2",
+          "type": "single_choice",
+          "prompt": "Ken is in Tokyo today, so he ___ be in Hanoi right now.",
+          "options": [
+            {
+              "id": "A",
+              "text": "must"
+            },
+            {
+              "id": "B",
+              "text": "can't"
+            },
+            {
+              "id": "C",
+              "text": "might"
+            },
+            {
+              "id": "D",
+              "text": "could"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The known evidence makes being in Hanoi impossible, so use can't."
+          },
+          "skill_tags": [
+            "grammar.modal_deduction"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-05-Q3",
+          "type": "single_choice",
+          "prompt": "I'm not sure where Lena is. She ___ be in the library.",
+          "options": [
+            {
+              "id": "A",
+              "text": "must"
+            },
+            {
+              "id": "B",
+              "text": "might"
+            },
+            {
+              "id": "C",
+              "text": "can't"
+            },
+            {
+              "id": "D",
+              "text": "has to"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Might expresses a possible but uncertain conclusion."
+          },
+          "skill_tags": [
+            "grammar.modal_deduction"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-05-Q4",
+          "type": "single_choice",
+          "prompt": "This key doesn't fit the lock. It ___ be the right key.",
+          "options": [
+            {
+              "id": "A",
+              "text": "must"
+            },
+            {
+              "id": "B",
+              "text": "can't"
+            },
+            {
+              "id": "C",
+              "text": "might"
+            },
+            {
+              "id": "D",
+              "text": "should"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The failed fit is strong evidence that it is not the right key, so can't is appropriate."
+          },
+          "skill_tags": [
+            "grammar.modal_deduction"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-05-Q5",
+          "type": "short_answer",
+          "prompt": "Write the missing modal: Someone is knocking and we are expecting Lan. It ___ be Lan.",
+          "answer": {
+            "accepted_answers": [
+              "must"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Because Lan is expected and someone has arrived, must expresses a strong deduction."
+          },
+          "skill_tags": [
+            "grammar.modal_deduction"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-05-Q6",
+          "type": "short_answer",
+          "prompt": "Write ONE possible modal: I don't know whose bag this is. It ___ belong to Mai.",
+          "answer": {
+            "accepted_answers": [
+              "might",
+              "may",
+              "could"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Might, may and could can all express an uncertain possibility here."
+          },
+          "skill_tags": [
+            "grammar.modal_deduction"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-05-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence shows a strong negative deduction?",
+          "options": [
+            {
+              "id": "A",
+              "text": "She might be at home."
+            },
+            {
+              "id": "B",
+              "text": "She must be at home."
+            },
+            {
+              "id": "C",
+              "text": "She can't be at home; I just saw her at school."
+            },
+            {
+              "id": "D",
+              "text": "She may be at home."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Can't be expresses that the conclusion is impossible based on evidence."
+          },
+          "skill_tags": [
+            "grammar.modal_deduction"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-05-Q8",
+          "type": "single_choice",
+          "prompt": "That ___ be Tom. Tom is much taller than that person.",
+          "options": [
+            {
+              "id": "A",
+              "text": "must"
+            },
+            {
+              "id": "B",
+              "text": "can't"
+            },
+            {
+              "id": "C",
+              "text": "may"
+            },
+            {
+              "id": "D",
+              "text": "should"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The height difference is evidence that the person is not Tom."
+          },
+          "skill_tags": [
+            "grammar.modal_deduction"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-05-Q9",
+          "type": "single_choice",
+          "prompt": "I'm not certain, but this ___ be the street we need.",
+          "options": [
+            {
+              "id": "A",
+              "text": "might"
+            },
+            {
+              "id": "B",
+              "text": "must"
+            },
+            {
+              "id": "C",
+              "text": "can't"
+            },
+            {
+              "id": "D",
+              "text": "mustn't"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Might matches the speaker's uncertainty."
+          },
+          "skill_tags": [
+            "grammar.modal_deduction"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-05-Q10",
+          "type": "single_choice",
+          "prompt": "The roads are wet, but I didn't see the weather earlier. It ___ be raining somewhere nearby.",
+          "options": [
+            {
+              "id": "A",
+              "text": "may"
+            },
+            {
+              "id": "B",
+              "text": "can't"
+            },
+            {
+              "id": "C",
+              "text": "mustn't"
+            },
+            {
+              "id": "D",
+              "text": "does"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "May expresses a reasonable possibility without claiming certainty."
+          },
+          "skill_tags": [
+            "grammar.modal_deduction"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    }
+  ]
+}
