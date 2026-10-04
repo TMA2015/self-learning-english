@@ -1,0 +1,36 @@
+name: GitHub-first G3 Firebase AI Contract QA
+
+on:
+  pull_request:
+    paths:
+      - 'sites-p0-phase-a-20260926/ai/**'
+      - 'sites-p0-phase-a-20260926/infrastructure/ai/firebase-ai-logic-provider.ts'
+      - 'sites-p0-phase-a-20260926/tests/g3-firebase-ai-provider-contract.cjs'
+      - 'sites-p0-phase-a-20260926/docs/G3_SHARED_GEMINI_FIREBASE_AI_LOGIC_20261004.md'
+      - '.github/workflows/github-first-g3-firebase-ai-contract-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  provider-contract:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: pnpm install --frozen-lockfile
+      - name: Firebase AI Logic provider contract
+        run: node tests/g3-firebase-ai-provider-contract.cjs
+      - name: Existing Writing tutor regressions
+        run: node tests/writing-tutor.cjs
+      - name: TypeScript
+        run: pnpm exec tsc --noEmit --incremental false
