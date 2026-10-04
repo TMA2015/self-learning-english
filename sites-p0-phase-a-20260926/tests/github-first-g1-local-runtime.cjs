@@ -56,7 +56,7 @@ global.window={localStorage:storage,location:{origin:'https://example.test'}};
   assert.equal(view.lesson.activities.length,10);
 
   const id='g1-local-attempt-0001';
-  await academic.service.start(grammar.id,id);
+  await academic.service.start(target.id,id);
   const answers={};
   for(const q of view.lesson.activities){
     if(q.type==='single_choice')answers[q.id]=q.options?.[0]?.id??'';
@@ -70,7 +70,7 @@ global.window={localStorage:storage,location:{origin:'https://example.test'}};
   assert(submitted.evidence.some(row=>row.tag==='word-formation'),'reviewed B1 word-formation evidence should enter the local ledger');
 
   const progress=await runtime.localPracticeProgress();
-  assert(progress.overall.total>0,'objective Grammar attempt should appear in local progress');
+  assert(progress.overall.total>0,'objective Vocabulary attempt should appear in local progress');
   assert(progress.skills.some(row=>row.skill==='Vocabulary'));
 
   const academicAgain=await runtime.localAcademicRuntime();
