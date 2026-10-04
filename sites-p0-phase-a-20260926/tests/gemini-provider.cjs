@@ -1,5 +1,7 @@
 const assert=require('node:assert/strict');
 const {GeminiHTTPProvider}=require('../.sites-runtime/portable-tests/infrastructure/ai/gemini-http.js');
+const {OpenAIHTTPProvider}=require('../.sites-runtime/portable-tests/infrastructure/ai/openai-http.js');
+const {createAIProvider}=require('../.sites-runtime/portable-tests/infrastructure/ai/provider-factory.js');
 
 (async()=>{
   let seenUrl='',seenInit;
@@ -47,11 +49,31 @@ const {GeminiHTTPProvider}=require('../.sites-runtime/portable-tests/infrastruct
   const malformed=new GeminiHTTPProvider('key','gemini-test-model',async()=>({ok:true,json:async()=>({candidates:[{content:{parts:[{text:'not-json'}]}}]})}));
   assert.equal(await malformed.generate(request),null);
 
+  const explicitGemini=createAIProvider({AI_PROVIDER:'gemini',GEMINI_API_KEY:'g-key',GEMINI_MODEL:'g-model'});
+  assert(explicitGemini instanceof GeminiHTTPProvider);
+  assert.equal(explicitGemini.available,true);
+
+  const explicitOpenAI=createAIProvider({AI_PROVIDER:'openai',OPENAI_API_KEY:'o-key',AI_MODEL:'o-model'});
+  assert(explicitOpenAI instanceof OpenAIHTTPProvider);
+  assert.equal(explicitOpenAI.available,true);
+
+  const geminiOnly=createAIProvider({GEMINI_API_KEY:'g-key'});
+  assert(geminiOnly instanceof GeminiHTTPProvider);
+
+  const legacyDefault=createAIProvider({OPENAI_API_KEY:'o-key'});
+  assert(legacyDefault instanceof OpenAIHTTPProvider);
+
+  const disabledDefault=createAIProvider({});
+  assert(disabledDefault instanceof OpenAIHTTPProvider);
+  assert.equal(disabledDefault.available,false);
+
   console.log(JSON.stringify({
     geminiProvider:true,
     serverSecretOnly:true,
     structuredJson:true,
     providerContractUnchanged:true,
+    explicitProviderSelection:true,
+    legacyOpenAIFallbackPreserved:true,
     liveNetworkCall:false
   }));
 })().catch(e=>{console.error(e);process.exitCode=1});
