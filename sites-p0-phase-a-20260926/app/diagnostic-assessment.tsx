@@ -6,12 +6,13 @@ import {adaptiveStatus} from "./adaptive-engine";
 import {coreListening} from "./core-listening";
 import { TOTAL_QUESTIONS } from "./diagnostic-bank";
 import { listeningTasks } from "./listening-bank";
+import {loadCapabilities} from "../infrastructure/browser/client-services";
 function words(s:string){return s.trim().split(/\s+/).filter(Boolean).length}
 export function DiagnosticAssessment({value,onChange,onFinish,showVi,archive=[]}:{value?:DiagnosticV2;onChange:(d:DiagnosticV2)=>void;onFinish:(d:DiagnosticV2)=>Promise<void>;showVi:boolean;archive?:DiagnosticV2[]}){
  const initial=React.useRef<DiagnosticV2>({version:4,attempts:[],writing:"",writing2:"",startedAt:Date.now()});const d=value??initial.current;
  const [choice,setChoice]=React.useState<number|null>(null),[busy,setBusy]=React.useState(false),[error,setError]=React.useState(""),[help,setHelp]=React.useState(false);
  const [ai,setAi]=React.useState<boolean|null>(null);
- React.useEffect(()=>{fetch("/api/capabilities").then(r=>r.ok?r.json() as Promise<{writingAI:boolean}>:null).then(r=>setAi(r?!!r.writingAI:null)).catch(()=>setAi(null))},[]);
+ React.useEffect(()=>{void loadCapabilities().then(r=>setAi(r.writingAI)).catch(()=>setAi(null))},[]);
  const q=nextQuestion(d.attempts,d.version);const statuses=d.version===4?adaptiveStatus(d.attempts):[];const maxQuestions=d.version===4?90:TOTAL_QUESTIONS;const audioCount=d.version===4?coreListening.length:listeningTasks.length;
  function restart(){onChange({version:4,attempts:[],writing:"",writing2:"",startedAt:Date.now()});setChoice(null);setError("")}
  async function finish(){setBusy(true);setError("");try{await onFinish(d)}catch(e){setError(e instanceof Error?e.message:"Please try again.")}finally{setBusy(false)}}
