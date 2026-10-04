@@ -1,0 +1,57 @@
+{
+  "format": "self-learning-english.academic-review-v1",
+  "schema_version": "1.0",
+  "packet_id": "EN-GRA-B1-W2C-20261004",
+  "batch_id": "GRAMMAR-B1-WAVE2C-20261004",
+  "base_curriculum": "1.8.0",
+  "proposed_curriculum": "1.9.0",
+  "reviewer": "NotebookLM independent academic review",
+  "review_rounds": 1,
+  "final_verdict": "PASS",
+  "scope": {
+    "lessons": 3,
+    "activities": 30,
+    "lesson_ids": [
+      "GRA-B1-10",
+      "GRA-B1-11",
+      "GRA-B1-12"
+    ]
+  },
+  "academic_summary": {
+    "grammar_accuracy": "PASS",
+    "naturalness": "PASS",
+    "ambiguity_and_determinism": "PASS",
+    "cefr_targeting": "PASS",
+    "explanations": "PASS",
+    "vietnamese_support": "PASS",
+    "distractors": "PASS",
+    "skill_tags": "PASS",
+    "lesson_contract": "PASS",
+    "originality_and_safety": "PASS"
+  },
+  "focus_checks": {
+    "defining_vs_non_defining_relative_clauses": "PASS",
+    "gerund_infinitive_patterns": "PASS",
+    "indirect_questions": "PASS",
+    "question_tags": "PASS"
+  },
+  "approved_source_tags": [
+    "grammar.relative_clauses",
+    "grammar.non_defining_relative_clauses",
+    "grammar.gerund_infinitive",
+    "grammar.indirect_questions",
+    "grammar.question_tags"
+  ],
+  "note": "grammar.relative_clauses was already admitted by the reviewed A2 milestone; the four other tags are newly admitted by this review.",
+  "release_boundary": {
+    "import_authorized": false,
+    "deploy_authorized": false,
+    "next_steps": [
+      "admit four newly reviewed tag mappings",
+      "compose immutable 1.9.0 candidate",
+      "verify all 1.8.0 lessons preserved",
+      "run regression and import-preview gates",
+      "advance GitHub-first browser runtime after technical PASS"
+    ]
+  }
+}
