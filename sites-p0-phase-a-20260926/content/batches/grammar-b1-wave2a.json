@@ -4,9 +4,9 @@
   "batch_id": "GRAMMAR-B1-WAVE2A-20261004",
   "base_version": "1.6.1",
   "target_version": "1.7.0",
-  "status": "draft_pending_independent_notebooklm_review",
+  "status": "revised_pending_targeted_notebooklm_recheck",
   "metadata": {
-    "status": "grammar_b1_wave2a_candidate_pending_notebooklm_review_no_import",
+    "status": "grammar_b1_wave2a_revised_after_notebooklm_review_pending_targeted_recheck_no_import",
     "course_title": "English Foundation · A1–B1 developing curriculum",
     "course_description": "Original self-study units with A1 foundations, A2 extensions and expanding B1 grammar across seven domains. CEFR values are lesson targets, not certified learner estimates.",
     "curriculum_principle": "An expanding, independently authored curriculum with age-appropriate contexts and CEFR-targeted language use. Coverage is partial at all levels; current labels are curricular targets, not learner certification."
@@ -183,7 +183,9 @@
           "prompt": "Complete the sentence with the correct verb form: She ___ (work) on this project since 9 a.m., and she is still working.",
           "answer": {
             "accepted_answers": [
-              "has been working"
+              "has been working",
+              "'s been working",
+              "’s been working"
             ],
             "normalization": [
               "trim",
@@ -236,7 +238,7 @@
         {
           "id": "GRA-B1-02-Q7",
           "type": "short_answer",
-          "prompt": "Write the missing words: How long ___ you ___ English? (learn)",
+          "prompt": "Write the missing words: How long ___ English? (you / learn)",
           "answer": {
             "accepted_answers": [
               "have you been learning"
@@ -249,7 +251,7 @@
             ]
           },
           "feedback": {
-            "explanation_en": "How long asks about the duration of an activity continuing to the present."
+            "explanation_en": "The missing phrase is have you been learning. In this question, have comes before the subject you, so the full auxiliary form is used."
           },
           "skill_tags": [
             "grammar.present_perfect_continuous"
@@ -295,7 +297,9 @@
           "prompt": "Complete with the present perfect continuous form of wait: They ___ for the bus for forty minutes, and it still hasn't arrived.",
           "answer": {
             "accepted_answers": [
-              "have been waiting"
+              "have been waiting",
+              "'ve been waiting",
+              "’ve been waiting"
             ],
             "normalization": [
               "trim",
@@ -442,7 +446,9 @@
           "prompt": "Complete the sentence: By the time I got to the station, the train ___ (leave).",
           "answer": {
             "accepted_answers": [
-              "had left"
+              "had left",
+              "'d left",
+              "’d left"
             ],
             "normalization": [
               "trim",
@@ -596,10 +602,12 @@
         {
           "id": "GRA-B1-03-Q8",
           "type": "short_answer",
-          "prompt": "Complete the sentence: She ___ never ___ snow before she visited Korea. (see)",
+          "prompt": "Complete the sentence: She ___ snow before she visited Korea. (never / see)",
           "answer": {
             "accepted_answers": [
-              "had never seen"
+              "had never seen",
+              "'d never seen",
+              "’d never seen"
             ],
             "normalization": [
               "trim",
