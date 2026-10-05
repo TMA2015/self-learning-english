@@ -1,14 +1,6 @@
 name: v16 Listening Submit Feedback QA
 
 on:
-  pull_request:
-    paths:
-      - 'sites-p0-phase-a-20260926/app/foundation.tsx'
-      - 'sites-p0-phase-a-20260926/app/globals.css'
-      - 'sites-p0-phase-a-20260926/domain/listening-completeness.ts'
-      - 'sites-p0-phase-a-20260926/tests/listening-submit-feedback.cjs'
-      - 'sites-p0-phase-a-20260926/docs/LISTENING_INCOMPLETE_SUBMIT_V16.md'
-      - '.github/workflows/listening-submit-feedback-v16-qa.yml'
   workflow_dispatch:
 
 permissions:
