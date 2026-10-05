@@ -1,16 +1,6 @@
 name: Course v21 P1 QA
 
 on:
-  pull_request:
-    paths:
-      - 'sites-p0-phase-a-20260926/app/api/course/**'
-      - 'sites-p0-phase-a-20260926/app/api/state/route.ts'
-      - 'sites-p0-phase-a-20260926/app/my-courses.tsx'
-      - 'sites-p0-phase-a-20260926/app/page.tsx'
-      - 'sites-p0-phase-a-20260926/domain/course-p1.ts'
-      - 'sites-p0-phase-a-20260926/infrastructure/storage/d1-course-selection.ts'
-      - 'sites-p0-phase-a-20260926/tests/course-v21-p1.cjs'
-      - '.github/workflows/course-v21-p1-qa.yml'
   workflow_dispatch:
 
 permissions:
