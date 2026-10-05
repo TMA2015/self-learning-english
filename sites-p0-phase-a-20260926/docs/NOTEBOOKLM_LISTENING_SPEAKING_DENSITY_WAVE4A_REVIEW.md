@@ -2,7 +2,7 @@
 
 Packet ID: `EN-LIS-SPE-DENSITY-W4A-20261005`
 
-Status: **DRAFT — REVIEW REQUIRED, NO IMPORT**
+Status: **NOTEBOOKLM PASS — REVIEW COMPLETE, NO IMPORT YET**
 
 ## Sources
 
@@ -42,3 +42,44 @@ Base curriculum: 1.12.0. Proposed next version after both Wave 4 review gates PA
 Return exactly `PASS` or `REVISIONS_REQUIRED`.
 
 For every issue, give the exact lesson/activity ID, the precise issue and a concrete correction. Silence does not mean PASS.
+
+
+## Independent review result — 2026-10-05
+
+Verdict: **PASS**
+
+Reviewed against the five permanent Self-Learning English v2 baseline sources.
+
+Confirmed scope:
+- 4 lessons
+- 29 activities
+- Listening: LIS-A1-02, LIS-B1-03
+- Speaking: SPE-A2-02, SPE-B1-02
+
+Reviewer found no required academic corrections across:
+- academic accuracy and naturalness;
+- ambiguity and answer determinism;
+- CEFR appropriateness;
+- Vietnamese support;
+- distractor quality;
+- canonical skill-tag alignment;
+- listening source grounding;
+- playback safeguards;
+- speaking review safeguards;
+- originality and safety.
+
+Listening safeguards were explicitly confirmed:
+- real playback is required;
+- transcript reveal remains after submission;
+- transcript-only completion does not earn listening evidence.
+
+Speaking safeguards were explicitly confirmed:
+- extended responses remain review-required;
+- evidence_weight remains 0;
+- planning-note fallback does not become Speaking evidence;
+- no automatic CEFR or pronunciation score is assigned.
+
+Release implication:
+- Wave 4A is academically approved for inclusion in the cumulative 1.13.0 candidate.
+- This PASS does not authorize import, merge or production deployment.
+- Wave 4B still requires independent NotebookLM review before cumulative 1.13.0 composition.
