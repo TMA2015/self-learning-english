@@ -1,0 +1,37 @@
+name: Account Profiles P0 QA
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  profile-isolation:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: pnpm install --frozen-lockfile
+      - name: Local profile isolation
+        run: node tests/account-profile-isolation-p0.cjs
+      - name: Browser storage regression
+        run: node tests/github-first-browser-storage.cjs
+      - name: Course selection regression
+        run: node tests/github-first-g2-course-selection.cjs
+      - name: Backup restore regression
+        run: node tests/github-first-g2-backup-restore.cjs
+      - name: Academic service regression
+        run: node tests/academic.cjs
+      - name: Practice progress regression
+        run: node tests/practice-progress-p2a.cjs
+      - name: TypeScript
+        run: pnpm exec tsc --noEmit --incremental false
