@@ -4,9 +4,9 @@
   "batch_id": "VOCAB-READING-WRITING-DENSITY-WAVE3-20261005",
   "base_version": "1.11.0",
   "target_version": "1.12.0",
-  "status": "draft_for_notebooklm_review_no_import",
+  "status": "academic_pass_ready_for_1.12.0_composition",
   "metadata": {
-    "status": "vocab_reading_writing_density_wave3_draft_no_import",
+    "status": "vocab_reading_writing_density_wave3_academic_pass_ready_for_candidate_no_import",
     "course_title": "English Foundation · A1–B1 developing curriculum",
     "course_description": "Original self-study curriculum with density expansion across Vocabulary, Reading and Writing.",
     "curriculum_principle": "Expand thinner skill areas without changing reviewed historical lessons. Reuse reviewed skill tags only. Extended Writing remains review-required."
