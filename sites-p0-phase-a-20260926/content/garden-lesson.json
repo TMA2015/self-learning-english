@@ -94,7 +94,7 @@
           "label": "Task",
           "shape": "a short action list",
           "example": "state my opinion + give reasons + give an example",
-          "why": "List every thing the writer must do."
+          "why": "List everything the writer must do."
         },
         {
           "field": "keywords",
