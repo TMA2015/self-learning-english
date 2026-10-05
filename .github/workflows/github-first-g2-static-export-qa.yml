@@ -1,18 +1,6 @@
 name: GitHub-first G2 Static Export QA
 
 on:
-  pull_request:
-    paths:
-      - 'sites-p0-phase-a-20260926/app/**'
-      - 'sites-p0-phase-a-20260926/application/guided-writing.ts'
-      - 'sites-p0-phase-a-20260926/application/writing-practice.ts'
-      - 'sites-p0-phase-a-20260926/infrastructure/browser/**'
-      - 'sites-p0-phase-a-20260926/next.config.ts'
-      - 'sites-p0-phase-a-20260926/public/**'
-      - 'sites-p0-phase-a-20260926/tests/github-first-g2-static-export.cjs'
-      - 'sites-p0-phase-a-20260926/scripts/stage-github-pages.mjs'
-      - 'sites-p0-phase-a-20260926/scripts/hash-pages-artifact.mjs'
-      - '.github/workflows/github-first-g2-static-export-qa.yml'
   workflow_dispatch:
 
 permissions:
