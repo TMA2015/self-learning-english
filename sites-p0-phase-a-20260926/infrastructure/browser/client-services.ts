@@ -284,6 +284,16 @@ export async function evaluateWritingProcess(
   };
 }
 
+export async function askLearningTutor(request:string,context:string,supportLanguage:'en'|'vi'='en'){
+  if(!browserLearningEnabled())throw new Error('Contextual AI Tutor is available in the browser learning runtime.');
+  const tutor=browserTutorService();
+  if(!tutor.available)return null;
+  const cleanRequest=String(request??'').trim().slice(0,800);
+  const cleanContext=String(context??'').trim().slice(0,5000);
+  if(!cleanRequest||!cleanContext)return null;
+  return tutor.helpLearning(cleanRequest,cleanContext,supportLanguage);
+}
+
 export async function saveGardenRelevantIdea(answer:string):Promise<{evidence:Evidence[];correct:boolean}>{
   if(!browserLearningEnabled())return jsonFetch('/api/practice',{activityId:'garden-relevant-idea',answer});
   const result=gardenRelevantIdeaResult(answer);
