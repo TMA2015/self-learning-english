@@ -79,11 +79,11 @@ class MemoryStorage{
   };
   await academic.start(scopeA,attempt);
   await academic.start(scopeA,attempt);
-  assert.equal((await academic.attempts('family-a')).length,1,'attempt start must be idempotent');
-  assert.equal((await academic.attempts('family-b')).length,0,'academic attempts must be owner-isolated');
+  assert.equal((await academic.attempts(scopeA)).length,1,'attempt start must be idempotent');
+  assert.equal((await academic.attempts(scopeB)).length,0,'academic attempts must be owner-isolated');
 
-  await academic.saveDraft('family-a',attempt.id,{answers:{q1:'A'}});
-  assert.equal((await academic.attempts('family-a'))[0].answers.q1,'A');
+  await academic.saveDraft(scopeA,attempt.id,{answers:{q1:'A'}});
+  assert.equal((await academic.attempts(scopeA))[0].answers.q1,'A');
 
   const finished={...(await academic.attempts(scopeA))[0],status:'scored',submittedAt:2};
   await academic.finish(scopeA,finished);
