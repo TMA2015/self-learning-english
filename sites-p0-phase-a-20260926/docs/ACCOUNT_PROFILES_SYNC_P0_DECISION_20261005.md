@@ -145,6 +145,68 @@ The existing repository `Scope { ownerId, learnerId }` already matches this mode
 7. Sign-out does not delete local data automatically.
 8. Deleting an account/profile requires an explicit confirmation and is a later feature.
 
+
+## Repository readiness audit — before P0-A coding
+
+The current code already contains part of the right abstraction, but it is **not yet safe to add a profile switcher**.
+
+### Ready
+
+`LearningRepository` already accepts:
+
+```ts
+type Scope = { ownerId: string; learnerId: string }
+```
+
+Browser-local learner state, evidence, assessments and snapshots already use both values in their storage keys.
+
+### Must be changed before multiple profiles are exposed
+
+1. **Academic attempts are owner-only**
+   - `AcademicRepository.attempts/start/saveDraft/finish/approve` currently take only `owner`.
+   - Browser-local academic attempt keys are owner-scoped.
+   - D1 academic SQL currently hard-codes `learner_id='primary'`.
+   - If a profile switcher were added now, two learners in the same family could see the same Foundation attempts.
+
+2. **Academic service hard-codes the primary learner**
+   - `academicService(..., owner)` creates its learning store with `learnerId:'primary'`.
+   - It must accept a full `Scope`.
+
+3. **Course selection is owner-only**
+   - Browser and D1 course-selection repositories key by owner only.
+   - Different learner profiles would therefore share the same active course.
+   - Course selection must become learner-scoped.
+
+4. **Local runtime is fixed to one learner**
+   - `LOCAL_OWNER_ID='local-family'`
+   - `LOCAL_LEARNER_ID='primary'`
+   - P0-A needs a local profile index plus a selected profile ID.
+
+5. **Backup/restore currently assumes the primary local learner**
+   - local backup reads the fixed local owner/learner constants;
+   - academic records are exported by owner only;
+   - course selection is exported by owner only.
+   - P0-A must make backup/restore target an explicitly selected profile and preserve profile isolation.
+
+6. **Legacy D1 learner state is primary-only**
+   - `D1LearningRepository.readState/writeState` explicitly reject non-primary learner IDs.
+   - This does not block a browser-local P0-A prototype, but server/account mode must not claim multi-profile support until this is migrated or replaced by the Firestore sync repository.
+
+### Required implementation order
+
+Do not begin with UI.
+
+1. Make academic attempt storage learner-scoped.
+2. Make course selection learner-scoped.
+3. Make academic service accept full `Scope`.
+4. Make backup/restore profile-aware.
+5. Add local profile index + migration of existing `primary`.
+6. Add profile switcher UI.
+7. Run isolation tests with two profiles.
+8. Only then add Firebase Authentication and Firestore sync.
+
+This order prevents a UI that appears to switch learners while silently mixing their work.
+
 ## First sign-in / migration
 
 When a guest signs in for the first time:
