@@ -75,5 +75,129 @@
     "Supporting detail",
     "Example",
     "Ending"
-  ]
+  ],
+  "guides": {
+    "analysis": {
+      "title": "See the answer shape before you try",
+      "note": "Use short phrases here. You are analysing the question, not writing the paragraph yet.",
+      "samplePrompt": "Some students think schools should have a weekly reading hour. Do you agree? Give reasons and an example.",
+      "rows": [
+        {
+          "field": "topic",
+          "label": "Topic",
+          "shape": "2–7 words · a noun phrase",
+          "example": "a weekly reading hour at school",
+          "why": "Name what the question is about. Do not copy the whole prompt."
+        },
+        {
+          "field": "task",
+          "label": "Task",
+          "shape": "a short action list",
+          "example": "state my opinion + give reasons + give an example",
+          "why": "List every thing the writer must do."
+        },
+        {
+          "field": "keywords",
+          "label": "Important words",
+          "shape": "keywords only",
+          "example": "schools, reading hour, agree, reasons, example",
+          "why": "Keep the words that control the answer."
+        },
+        {
+          "field": "limits",
+          "label": "Limit / scope",
+          "shape": "one short phrase",
+          "example": "reading at school and its value for students",
+          "why": "Say what must stay inside the answer."
+        },
+        {
+          "field": "offtopic",
+          "label": "Avoid",
+          "shape": "one or two off-topic ideas",
+          "example": "home reading habits or an unrelated book review",
+          "why": "Notice what would take the answer away from the prompt."
+        }
+      ],
+      "noteVi": "Ở bước này chỉ cần cụm từ ngắn. Đây là phân tích đề, chưa phải viết đoạn văn."
+    },
+    "brainstorm": {
+      "title": "Turn the question into useful ideas",
+      "note": "Notes are enough. You do not need perfect grammar yet; focus on relevant ideas and one concrete example.",
+      "samplePrompt": "Should schools have a weekly reading hour?",
+      "rows": [
+        {
+          "field": "ideas",
+          "label": "My ideas",
+          "shape": "2–4 short notes",
+          "example": "quiet reading; learn new words; share books",
+          "why": "Generate several possible reasons before choosing."
+        },
+        {
+          "field": "selected",
+          "label": "Best main idea",
+          "shape": "one clear reason",
+          "example": "Students can build a regular reading habit.",
+          "why": "Choose the idea you can explain most clearly."
+        },
+        {
+          "field": "support",
+          "label": "Why is it true?",
+          "shape": "one because-style explanation",
+          "example": "They get protected time to read every week.",
+          "why": "Explain the reason instead of only naming it."
+        },
+        {
+          "field": "example",
+          "label": "A real example",
+          "shape": "one specific school situation",
+          "example": "For example, a class could read for 20 minutes every Friday.",
+          "why": "Make the idea concrete and easy to understand."
+        }
+      ],
+      "noteVi": "Ghi ý ngắn là đủ. Chưa cần ngữ pháp hoàn hảo; hãy tập trung vào ý liên quan và một ví dụ cụ thể."
+    },
+    "outline": {
+      "title": "Build the paragraph before writing it",
+      "note": "An outline is a map. Full sentences are helpful for the opening and ending; the middle can still be short notes.",
+      "samplePrompt": "Should schools have a weekly reading hour?",
+      "rows": [
+        {
+          "field": "opening",
+          "label": "Opening",
+          "shape": "one full opinion sentence",
+          "example": "I think schools should have a weekly reading hour.",
+          "why": "Answer the question immediately."
+        },
+        {
+          "field": "reason1",
+          "label": "Reason",
+          "shape": "one clear reason",
+          "example": "It helps students build a reading habit.",
+          "why": "Give the main support for your opinion."
+        },
+        {
+          "field": "detail",
+          "label": "Supporting detail",
+          "shape": "one explanation",
+          "example": "Regular practice can make reading feel easier.",
+          "why": "Show why the reason matters."
+        },
+        {
+          "field": "example",
+          "label": "Example",
+          "shape": "one concrete example",
+          "example": "For example, each class could read for 20 minutes on Friday.",
+          "why": "Connect the reason to a real situation."
+        },
+        {
+          "field": "ending",
+          "label": "Ending",
+          "shape": "one short final sentence",
+          "example": "A regular reading hour would make reading part of school life.",
+          "why": "Finish by returning to the main point."
+        }
+      ],
+      "noteVi": "Dàn ý là bản đồ của đoạn văn. Mở bài và kết bài nên là câu hoàn chỉnh; các ý giữa có thể vẫn là ghi chú ngắn."
+    }
+  }
 }
