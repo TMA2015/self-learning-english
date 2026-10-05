@@ -86,6 +86,13 @@ jobs:
           node tests/content-quality.cjs
           node tests/curriculum.cjs
           node tests/curriculum-13-compat-v15.cjs
+          node tests/curriculum-160-grammar-a1a2.cjs
+          node tests/curriculum-161-relative-that.cjs
+          node tests/curriculum-170-grammar-b1-wave2a.cjs
+          node tests/curriculum-180-grammar-b1-wave2b.cjs
+          node tests/curriculum-190-grammar-b1-wave2c.cjs
+          node tests/curriculum-1100-vocab-reading-b1-density-wave1.cjs
+          node tests/curriculum-1110-listening-writing-density-wave2.cjs
           node tests/batch04-code-compat.cjs
           node tests/batch02-v11-release.cjs
           node tests/version-aware-attempt-ux.cjs
