@@ -5,7 +5,10 @@ import {hash,learningService} from './learning-service';
 import audioManifest from '../content/foundation-audio.json';
 export const canonicalJSON=(v:any):any=>Array.isArray(v)?v.map(canonicalJSON):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,canonicalJSON(v[k])])):v;
 export async function sourceDigest(s:unknown){return hash(canonicalJSON(s))}
-export function academicService(repo:AcademicRepository,learning:LearningRepository,scope:Scope){
+export function academicService(repo:AcademicRepository,learning:LearningRepository,scopeOrOwner:Scope|string){
+ // String owner input remains as a compatibility bridge for historical tests/routes only.
+ // New multi-profile code must pass an explicit Scope.
+ const scope:Scope=typeof scopeOrOwner==='string'?{ownerId:scopeOrOwner,learnerId:'primary'}:scopeOrOwner;
  const store=learningService(learning,scope);
  const packages=()=>repo.packages();
  async function current(){return (await packages()).sort((a,b)=>compareVersions(b.version,a.version))[0]}
