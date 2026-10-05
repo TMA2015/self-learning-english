@@ -34,7 +34,7 @@ function readIndex(storage:BrowserKeyValueStorage):LocalLearnerProfile[]|null{
   for(const row of rows){
     if(!row||typeof row!=='object'||Array.isArray(row))throw new Error('Local learner profiles are corrupted. Restore a known-good backup before changing profiles.');
     const value=row as Record<string,unknown>;
-    if(typeof value.id!=='string'||!validId(value.id)||seen.has(value.id)||typeof value.preferredName!=='string'||!value.preferredName.trim()||value.preferredName.length>40||!Number.isFinite(value.createdAt)||!Number.isFinite(value.updatedAt))
+    if(typeof value.id!=='string'||!validId(value.id)||seen.has(value.id)||typeof value.preferredName!=='string'||!value.preferredName.trim()||value.preferredName.length>40||typeof value.createdAt!=='number'||!Number.isFinite(value.createdAt)||typeof value.updatedAt!=='number'||!Number.isFinite(value.updatedAt))
       throw new Error('Local learner profiles are corrupted. Restore a known-good backup before changing profiles.');
     seen.add(value.id);
     parsed.push({
