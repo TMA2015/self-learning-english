@@ -43,6 +43,13 @@
       "when": 1790398414963,
       "tag": "0005_lonely_kitty_pryde",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1791237600000,
+      "tag": "0006_learner_profile_states",
+      "breakpoints": true
     }
   ]
 }
