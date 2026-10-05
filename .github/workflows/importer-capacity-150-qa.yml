@@ -1,13 +1,5 @@
 name: Importer Capacity 150 QA
 on:
-  pull_request:
-    paths:
-      - 'sites-p0-phase-a-20260926/domain/academic.ts'
-      - 'sites-p0-phase-a-20260926/scripts/compose-curriculum.mjs'
-      - 'sites-p0-phase-a-20260926/app/api/admin/content-import/route.ts'
-      - 'sites-p0-phase-a-20260926/app/foundation.tsx'
-      - 'sites-p0-phase-a-20260926/tests/importer-capacity-150.cjs'
-      - '.github/workflows/importer-capacity-150-qa.yml'
   workflow_dispatch:
 permissions:
   contents: read
