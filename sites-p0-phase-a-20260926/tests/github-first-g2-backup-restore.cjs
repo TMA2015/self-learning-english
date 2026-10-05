@@ -111,7 +111,7 @@ function useStorage(storage){
   assert.deepEqual(restoredState.customLegacyField,{keep:true});
   const restoredCourses=await runtime.localCourseRuntime();
   assert.equal((await restoredCourses.load()).activeCourseId,'COURSE-WRITING-12W');
-  const targetAttempts=await targetAcademic.academic.attempts('local-family');
+  const targetAttempts=await targetAcademic.academic.attempts(targetAcademic.scope);
   assert.equal(targetAttempts.length,1);
   assert.equal(targetAttempts[0].id,attemptId);
   assert.equal(targetAttempts[0].status,'scored');
@@ -124,7 +124,7 @@ function useStorage(storage){
   assert.equal(second.academic.skip,1);
   assert.equal(second.courseSelection,'same');
   await backup.restoreLocalBackup(portableText,second.token,true);
-  assert.equal((await targetAcademic.academic.attempts('local-family')).length,1);
+  assert.equal((await targetAcademic.academic.attempts(targetAcademic.scope)).length,1);
 
   // Different local learner state is never silently overwritten.
   const conflictStorage=new MemoryStorage();
