@@ -1,0 +1,422 @@
+{
+  "format": "ai-english-tutor.curriculum-batch",
+  "schema_version": 1,
+  "batch_id": "PRONUNCIATION-DENSITY-WAVE4B-20261005",
+  "base_version": "1.12.0",
+  "target_version": "1.13.0",
+  "status": "draft_for_notebooklm_review_no_import",
+  "metadata": {
+    "status": "pronunciation_density_wave4b_draft_no_import",
+    "course_title": "English Foundation · A1–B1 developing curriculum",
+    "course_description": "Original self-study curriculum with balanced expansion across receptive and productive skills.",
+    "curriculum_principle": "Expand thin Listening, Speaking and Pronunciation coverage while preserving reviewed historical lessons. Real playback is required for audio-based credit; speaking/pronunciation recordings remain review-gated."
+  },
+  "insert_after": [
+    {
+      "after": "PRO-A2-01",
+      "ids": [
+        "PRO-A2-02",
+        "PRO-B1-01"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "PRO-A2-02",
+      "module": "pronunciation",
+      "cefr_target": "A2",
+      "title": "Hear stress in common two-syllable words",
+      "estimated_minutes": 14,
+      "objectives": [
+        "Notice which syllable is stronger in common two-syllable words.",
+        "Distinguish first-syllable and second-syllable stress in familiar vocabulary.",
+        "Practise stressed words with an audio model before recording."
+      ],
+      "explanation": {
+        "en": "In a two-syllable word, one syllable is usually stronger. It may be a little louder, longer or clearer. For example, TAble has first-syllable stress, while hoTEL has second-syllable stress. Listen to a real audio model before practising; spelling alone cannot show stress reliably.",
+        "vi": "Trong từ hai âm tiết, thường có một âm tiết được nhấn mạnh hơn: có thể to hơn, dài hơn hoặc rõ hơn. Ví dụ TAble nhấn âm đầu, còn hoTEL nhấn âm sau. Cần nghe âm thanh mẫu thật trước khi luyện."
+      },
+      "examples": [
+        "FIRST STRESS · TAble, WINdow, DOCtor",
+        "SECOND STRESS · hoTEL, beGIN, reLAX"
+      ],
+      "activities": [
+        {
+          "id": "PRO-A2-02-Q1",
+          "type": "single_choice",
+          "prompt": "Which word has first-syllable stress in standard pronunciation?",
+          "options": [
+            {
+              "id": "A",
+              "text": "TAble"
+            },
+            {
+              "id": "B",
+              "text": "hoTEL"
+            },
+            {
+              "id": "C",
+              "text": "beGIN"
+            },
+            {
+              "id": "D",
+              "text": "reLAX"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Table normally has stress on the first syllable."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-A2-02-Q2",
+          "type": "single_choice",
+          "prompt": "Which word has second-syllable stress?",
+          "options": [
+            {
+              "id": "A",
+              "text": "hoTEL"
+            },
+            {
+              "id": "B",
+              "text": "WINdow"
+            },
+            {
+              "id": "C",
+              "text": "DOCtor"
+            },
+            {
+              "id": "D",
+              "text": "TAble"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Hotel normally has stress on the second syllable."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-A2-02-Q3",
+          "type": "single_choice",
+          "prompt": "What does the capitalised part show in reLAX?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The stressed syllable"
+            },
+            {
+              "id": "B",
+              "text": "A silent syllable"
+            },
+            {
+              "id": "C",
+              "text": "The spelling that must be removed"
+            },
+            {
+              "id": "D",
+              "text": "The plural ending"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The capitalised syllable marks the stronger, stressed syllable."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-A2-02-Q4",
+          "type": "single_choice",
+          "prompt": "Which pair has the same first-syllable stress pattern?",
+          "options": [
+            {
+              "id": "A",
+              "text": "TAble and WINdow"
+            },
+            {
+              "id": "B",
+              "text": "hoTEL and TAble"
+            },
+            {
+              "id": "C",
+              "text": "beGIN and DOCtor"
+            },
+            {
+              "id": "D",
+              "text": "reLAX and WINdow"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Both table and window normally have first-syllable stress."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-A2-02-Q5",
+          "type": "extended_response",
+          "prompt": "Listen to the audio models, then record these words in short phrases: TAble, WINdow, hoTEL, reLAX. Try to make the stressed syllable clearer without shouting. If no real audio model or recording is available, keep this as optional awareness practice and do not assign a pronunciation or CEFR score.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-PRONUNCIATION",
+          "skill_tags": [
+            "pronunciation.intelligibility"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Submitted. This task requires reviewed feedback; no automatic CEFR or pronunciation score is assigned."
+          }
+        }
+      ],
+      "audio_model": {
+        "text": [
+          "table",
+          "window",
+          "hotel",
+          "relax",
+          "a small table",
+          "open the window",
+          "a quiet hotel",
+          "relax after school"
+        ],
+        "requires_real_playback": true,
+        "fallback": "No playback means no audio-based skill evidence."
+      }
+    },
+    {
+      "id": "PRO-B1-01",
+      "module": "pronunciation",
+      "cefr_target": "B1",
+      "title": "Use sentence stress to show the important idea",
+      "estimated_minutes": 16,
+      "objectives": [
+        "Notice that content words often carry stronger sentence stress.",
+        "Use contrastive stress to highlight one corrected or important idea.",
+        "Practise short thought groups with an audio model."
+      ],
+      "explanation": {
+        "en": "English sentence stress helps a listener hear the important information. Content words such as main nouns, verbs, adjectives and adverbs often receive stronger stress, while many short grammar words are weaker. A speaker can also move strong stress to correct or contrast one idea: I wanted the BLUE notebook, not the red one. Meaning depends on context, so listen to the full model before copying the pattern.",
+        "vi": "Trọng âm câu giúp người nghe nhận ra thông tin quan trọng. Danh từ, động từ chính, tính từ và trạng từ thường được nhấn rõ hơn; nhiều từ ngữ pháp ngắn thường nhẹ hơn. Người nói cũng có thể chuyển trọng âm để sửa hoặc đối lập một ý, ví dụ BLUE để đối lập với red."
+      },
+      "examples": [
+        "NEW INFORMATION · I BOUGHT a NEW NOTEBOOK.",
+        "CONTRAST · I wanted the BLUE notebook, not the red one.",
+        "WHO? · SHE sent the file, not Minh.",
+        "THOUGHT GROUP · After lunch / we met in the library."
+      ],
+      "activities": [
+        {
+          "id": "PRO-B1-01-Q1",
+          "type": "single_choice",
+          "prompt": "In “I wanted the BLUE notebook, not the red one,” why is BLUE strongly stressed?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To contrast blue with red"
+            },
+            {
+              "id": "B",
+              "text": "Because blue is always the loudest English word"
+            },
+            {
+              "id": "C",
+              "text": "To mark a question"
+            },
+            {
+              "id": "D",
+              "text": "Because notebook is silent"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Strong stress on BLUE highlights the contrast with red."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-B1-01-Q2",
+          "type": "single_choice",
+          "prompt": "Which type of word often carries important sentence stress?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A main noun or verb"
+            },
+            {
+              "id": "B",
+              "text": "Every article such as a or the"
+            },
+            {
+              "id": "C",
+              "text": "Every preposition equally"
+            },
+            {
+              "id": "D",
+              "text": "Only punctuation"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Main content words such as nouns and verbs often carry stronger stress."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-B1-01-Q3",
+          "type": "single_choice",
+          "prompt": "If the meaning is “Mai sent the file, not Minh,” which word should receive the strongest contrastive stress?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Mai"
+            },
+            {
+              "id": "B",
+              "text": "sent"
+            },
+            {
+              "id": "C",
+              "text": "the"
+            },
+            {
+              "id": "D",
+              "text": "file"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Stressing Mai highlights who did the action."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-B1-01-Q4",
+          "type": "single_choice",
+          "prompt": "What is a useful purpose of a short thought-group pause?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To divide a longer message into meaningful chunks"
+            },
+            {
+              "id": "B",
+              "text": "To make every sentence sound uncertain"
+            },
+            {
+              "id": "C",
+              "text": "To replace all word stress"
+            },
+            {
+              "id": "D",
+              "text": "To remove important information"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A brief pause can help organise a longer message into meaningful chunks."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-B1-01-Q5",
+          "type": "single_choice",
+          "prompt": "Which version best highlights that the meeting was after lunch, not before lunch?",
+          "options": [
+            {
+              "id": "A",
+              "text": "AFTER LUNCH, we met in the library."
+            },
+            {
+              "id": "B",
+              "text": "After lunch, WE met in the library."
+            },
+            {
+              "id": "C",
+              "text": "After lunch, we MET in the library."
+            },
+            {
+              "id": "D",
+              "text": "After lunch, we met in the LIBRARY."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Strong stress on AFTER LUNCH highlights the corrected time."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-B1-01-Q6",
+          "type": "extended_response",
+          "prompt": "Listen to the model, then record three short versions of the same sentence with a different important word each time: “We need the blue folder today.” Make the stress show (1) who needs it, (2) which folder, and (3) when it is needed. If no real audio model or recording is available, do not assign pronunciation or CEFR evidence.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-PRONUNCIATION",
+          "skill_tags": [
+            "pronunciation.intelligibility"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Submitted. This task requires reviewed feedback; no automatic CEFR or pronunciation score is assigned."
+          }
+        }
+      ],
+      "audio_model": {
+        "text": [
+          "We need the blue folder today.",
+          "WE need the blue folder today.",
+          "We need the BLUE folder today.",
+          "We need the blue folder TODAY."
+        ],
+        "requires_real_playback": true,
+        "fallback": "No playback means no audio-based skill evidence."
+      }
+    }
+  ]
+}
