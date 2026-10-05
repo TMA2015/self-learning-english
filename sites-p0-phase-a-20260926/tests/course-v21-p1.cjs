@@ -15,10 +15,16 @@ const {D1CourseSelectionRepository,CourseSelectionConflict,selectionKey}=require
 const {D1LearningRepository}=require(path.join(root,out,'infrastructure/storage/d1-repository.js'));
 const {createNavigationGate}=require(path.join(root,out,'domain/navigation-gate.js'));
 class FakeD1{
- constructor(){this.rows=new Map();this.writes=0}
+ constructor(){this.rows=new Map();this.profileRows=new Map();this.writes=0}
  prepare(sql){const db=this;return {bind(...values){return {
-  async first(){assert.match(sql,/^SELECT payload FROM learner_states/);const payload=db.rows.get(values[0]);return payload===undefined?null:{payload}},
-  async run(){let changes=0;if(sql.includes('ON CONFLICT(user_id) DO UPDATE')){db.rows.set(values[0],values[1]);changes=1}
+  async first(){
+   if(sql.startsWith('SELECT payload FROM learner_profile_states')){const payload=db.profileRows.get(values[0]+':'+values[1]);return payload===undefined?null:{payload}}
+   if(sql.startsWith('SELECT payload FROM learner_states')){const payload=db.rows.get(values[0]);return payload===undefined?null:{payload}}
+   throw Error('Unexpected first SQL: '+sql)
+  },
+  async run(){let changes=0;
+   if(sql.startsWith('INSERT INTO learner_profile_states')){db.profileRows.set(values[0]+':'+values[1],values[2]);changes=1}
+   else if(sql.includes('ON CONFLICT(user_id) DO UPDATE')){db.rows.set(values[0],values[1]);changes=1}
    else if(sql.startsWith('INSERT INTO learner_states')){if(!db.rows.has(values[0])){db.rows.set(values[0],values[1]);changes=1}}
    else if(sql.startsWith('UPDATE learner_states SET payload=?,updated_at=? WHERE user_id=? AND payload=?')){if(db.rows.get(values[2])===values[3]){db.rows.set(values[2],values[0]);changes=1}}
    else throw Error('Unexpected SQL: '+sql);db.writes+=changes;return {meta:{changes}}}
@@ -45,6 +51,10 @@ const deferred=()=>{let resolve;const promise=new Promise(r=>resolve=r);return {
  await assert.rejects(courses.select(otherScope,'ARCHIVED',0,'request-0003'),/unavailable/);
  assert.equal((await courses.read(otherScope)).activeCourseId,null,'isolate accounts');
  assert.equal((await courses.read(secondScope)).activeCourseId,null,'isolate learner profiles in one account');
+ assert.equal(await learning.readState(secondScope),null,'second learner must not inherit primary state');
+ await learning.writeState(secondScope,{writing:'Second learner'});
+ assert.equal((await learning.readState(secondScope)).writing,'Second learner');
+ assert.equal((await learning.readState(scope)).writing,'Old draft','primary learner state must remain isolated');
  const current=await learning.readState(scope);
  await learning.writeState(scope,{...current,writing:'New Writing text'});
  assert.equal((await courses.read(scope)).activeCourseId,WRITING_COURSE_ID,'Writing PUT after selection cannot overwrite it');
