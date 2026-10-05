@@ -130,6 +130,7 @@ export class BrowserLocalAcademicRepository implements AcademicRepository {
 
   private packagesKey(){return `${this.prefix}:academic:packages`}
   private attemptsKey(scope:Scope){return scopeKey(this.prefix,scope,'academic-attempts')}
+  private legacyAttemptsKey(scope:Scope){return ownerKey(this.prefix,scope.ownerId,'academic-attempts')}
 
   async packages():Promise<AcademicPackage[]>{
     return readJSON<AcademicPackage[]>(this.storage,this.packagesKey(),[]);
@@ -147,7 +148,13 @@ export class BrowserLocalAcademicRepository implements AcademicRepository {
   }
 
   async attempts(scope:Scope):Promise<AcademicAttempt[]>{
-    return readJSON<AcademicAttempt[]>(this.storage,this.attemptsKey(scope),[]);
+    const key=this.attemptsKey(scope);
+    if(this.storage.getItem(key)!==null)return readJSON<AcademicAttempt[]>(this.storage,key,[]);
+    if(scope.learnerId==='primary'){
+      const legacy=this.legacyAttemptsKey(scope);
+      if(this.storage.getItem(legacy)!==null)return readJSON<AcademicAttempt[]>(this.storage,legacy,[]);
+    }
+    return [];
   }
 
   async start(scope:Scope,value:AcademicAttempt):Promise<void>{
@@ -206,6 +213,8 @@ export class BrowserLocalCourseSelectionRepository{
   ){}
 
   private key(scope:Scope){return scopeKey(this.prefix,scope,'course-selection')}
+  private legacyKey(scope:Scope){return ownerKey(this.prefix,scope.ownerId,'course-selection')}
+  private raw(scope:Scope){const scoped=this.storage.getItem(this.key(scope));if(scoped!==null)return scoped;return scope.learnerId==='primary'?this.storage.getItem(this.legacyKey(scope)):null}
 
   private decode(raw:string|null):CourseSelection{
     if(raw===null)return emptySelection();
@@ -222,7 +231,7 @@ export class BrowserLocalCourseSelectionRepository{
   }
 
   async read(scope:Scope):Promise<CourseSelection>{
-    return this.decode(this.storage.getItem(this.key(scope)));
+    return this.decode(this.raw(scope));
   }
 
   async select(scope:Scope,activeCourseId:string|null,expectedRevision:number,requestId:string):Promise<CourseSelection>{
@@ -233,7 +242,7 @@ export class BrowserLocalCourseSelectionRepository{
     // All operations before this method returns are synchronous localStorage operations.
     // expectedRevision still protects stale UI writes; the dedicated key prevents broad
     // learner-state autosave from overwriting course selection.
-    const previous=this.decode(this.storage.getItem(this.key(scope)));
+    const previous=this.decode(this.raw(scope));
     if(previous.lastRequestId===requestId){
       if(previous.activeCourseId===activeCourseId)return clone(previous);
       throw new BrowserCourseSelectionConflict(previous);
