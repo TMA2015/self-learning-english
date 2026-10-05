@@ -23,6 +23,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: Local profile isolation
         run: node tests/account-profile-isolation-p0.cjs
+      - name: Profile UI contract
+        run: node tests/account-profile-ui-p0.cjs
       - name: Browser storage regression
         run: node tests/github-first-browser-storage.cjs
       - name: D1 profile isolation
