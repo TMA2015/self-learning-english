@@ -1,4 +1,5 @@
 name: UX Teaching Polish P1 QA
+# retry marker after GitHub runner startup failures
 
 on:
   push:
