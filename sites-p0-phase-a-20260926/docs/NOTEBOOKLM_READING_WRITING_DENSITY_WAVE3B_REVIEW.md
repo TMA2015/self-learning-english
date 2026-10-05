@@ -2,7 +2,7 @@
 
 Packet ID: `EN-REA-WRI-DENSITY-W3B-20261005`
 
-Status: **DRAFT — REVIEW REQUIRED, NO IMPORT**
+Status: **NOTEBOOKLM PASS — REVIEW COMPLETE, NO IMPORT YET**
 
 ## Sources
 
@@ -54,3 +54,36 @@ Reading and Writing density expansion; extended Writing remains assisted-AI-or-h
 Return exactly `PASS` or `REVISIONS_REQUIRED`.
 
 For every issue, give the exact lesson/activity ID, the precise issue and a concrete correction. Silence does not mean PASS.
+
+
+## Independent review result — 2026-10-05
+
+Verdict: **PASS**
+
+Reviewed against the five permanent Self-Learning English v2 baseline sources.
+
+Confirmed scope:
+- 3 lessons
+- 26 activities
+- Reading: REA-B1-04
+- Writing: WRI-A2-04, WRI-B1-03
+
+Reviewer found no required academic corrections across:
+- grammar accuracy and naturalness;
+- ambiguity and answer determinism;
+- CEFR appropriateness;
+- explanations and Vietnamese support;
+- distractor quality;
+- canonical skill-tag alignment;
+- lesson-contract alignment;
+- originality and safety.
+
+Extended-response safeguards were explicitly confirmed:
+- WRI-A2-04-Q7 and WRI-B1-03-Q9 remain review-required;
+- evidence_weight remains 0;
+- no deterministic CEFR/proficiency credit is awarded before qualified review.
+
+Release implication:
+- Wave 3B is academically approved for inclusion in the cumulative 1.12.0 candidate.
+- Wave 3A and Wave 3B have both independently passed.
+- This PASS does **not** by itself authorize import, merge or production deployment.
