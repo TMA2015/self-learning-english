@@ -118,7 +118,7 @@ export class BrowserLocalLearningRepository implements LearningRepository {
 /**
  * Phase G1 browser persistence for deterministic curriculum attempts.
  *
- * Curriculum packages are shared inside the browser profile; attempts are owner-scoped.
+ * Curriculum packages are shared inside the browser profile; attempts are owner + learner scoped.
  * Large learner recordings are deliberately rejected in this localStorage adapter.
  * Speaking/audio blobs belong in the Phase G2 IndexedDB adapter.
  */
@@ -129,7 +129,7 @@ export class BrowserLocalAcademicRepository implements AcademicRepository {
   ){}
 
   private packagesKey(){return `${this.prefix}:academic:packages`}
-  private attemptsKey(owner:string){return ownerKey(this.prefix,owner,'academic-attempts')}
+  private attemptsKey(scope:Scope){return scopeKey(this.prefix,scope,'academic-attempts')}
 
   async packages():Promise<AcademicPackage[]>{
     return readJSON<AcademicPackage[]>(this.storage,this.packagesKey(),[]);
@@ -146,13 +146,13 @@ export class BrowserLocalAcademicRepository implements AcademicRepository {
     writeJSON(this.storage,this.packagesKey(),rows);
   }
 
-  async attempts(owner:string):Promise<AcademicAttempt[]>{
-    return readJSON<AcademicAttempt[]>(this.storage,this.attemptsKey(owner),[]);
+  async attempts(scope:Scope):Promise<AcademicAttempt[]>{
+    return readJSON<AcademicAttempt[]>(this.storage,this.attemptsKey(scope),[]);
   }
 
-  async start(owner:string,value:AcademicAttempt):Promise<void>{
+  async start(scope:Scope,value:AcademicAttempt):Promise<void>{
     this.assertNoRecording(value);
-    const rows=await this.attempts(owner);
+    const rows=await this.attempts(scope);
     const same=rows.find(row=>row.id===value.id);
     if(same){
       if(same.lessonId!==value.lessonId||same.version!==value.version||same.parentId!==value.parentId)
@@ -160,33 +160,33 @@ export class BrowserLocalAcademicRepository implements AcademicRepository {
       return;
     }
     rows.push(clone(value));
-    writeJSON(this.storage,this.attemptsKey(owner),rows);
+    writeJSON(this.storage,this.attemptsKey(scope),rows);
   }
 
-  async saveDraft(owner:string,id:string,patch:Partial<AcademicAttempt>):Promise<void>{
+  async saveDraft(scope:Scope,id:string,patch:Partial<AcademicAttempt>):Promise<void>{
     this.assertNoRecording(patch);
-    const rows=await this.attempts(owner);
+    const rows=await this.attempts(scope);
     const index=rows.findIndex(row=>row.id===id);
     if(index<0)throw new Error('Attempt not found in local storage.');
     rows[index]={...rows[index],...clone(patch)};
-    writeJSON(this.storage,this.attemptsKey(owner),rows);
+    writeJSON(this.storage,this.attemptsKey(scope),rows);
   }
 
-  async finish(owner:string,value:AcademicAttempt):Promise<AcademicAttempt>{
-    return this.replace(owner,value);
+  async finish(scope:Scope,value:AcademicAttempt):Promise<AcademicAttempt>{
+    return this.replace(scope,value);
   }
 
-  async approve(owner:string,value:AcademicAttempt):Promise<AcademicAttempt>{
-    return this.replace(owner,value);
+  async approve(scope:Scope,value:AcademicAttempt):Promise<AcademicAttempt>{
+    return this.replace(scope,value);
   }
 
-  private async replace(owner:string,value:AcademicAttempt):Promise<AcademicAttempt>{
+  private async replace(scope:Scope,value:AcademicAttempt):Promise<AcademicAttempt>{
     this.assertNoRecording(value);
-    const rows=await this.attempts(owner);
+    const rows=await this.attempts(scope);
     const index=rows.findIndex(row=>row.id===value.id);
     if(index<0)throw new Error('Attempt not found in local storage.');
     rows[index]=clone(value);
-    writeJSON(this.storage,this.attemptsKey(owner),rows);
+    writeJSON(this.storage,this.attemptsKey(scope),rows);
     return clone(value);
   }
 
@@ -205,7 +205,7 @@ export class BrowserLocalCourseSelectionRepository{
     private readonly prefix=DEFAULT_PREFIX,
   ){}
 
-  private key(ownerId:string){return ownerKey(this.prefix,ownerId,'course-selection')}
+  private key(scope:Scope){return scopeKey(this.prefix,scope,'course-selection')}
 
   private decode(raw:string|null):CourseSelection{
     if(raw===null)return emptySelection();
@@ -221,11 +221,11 @@ export class BrowserLocalCourseSelectionRepository{
     return value;
   }
 
-  async read(ownerId:string):Promise<CourseSelection>{
-    return this.decode(this.storage.getItem(this.key(ownerId)));
+  async read(scope:Scope):Promise<CourseSelection>{
+    return this.decode(this.storage.getItem(this.key(scope)));
   }
 
-  async select(ownerId:string,activeCourseId:string|null,expectedRevision:number,requestId:string):Promise<CourseSelection>{
+  async select(scope:Scope,activeCourseId:string|null,expectedRevision:number,requestId:string):Promise<CourseSelection>{
     if(activeCourseId!==null&&activeCourseId!==WRITING_COURSE_ID)throw new Error('Course is unavailable');
     if(!Number.isSafeInteger(expectedRevision)||expectedRevision<0||!/^[A-Za-z0-9_-]{8,120}$/.test(requestId))
       throw new Error('Invalid selection request');
@@ -233,7 +233,7 @@ export class BrowserLocalCourseSelectionRepository{
     // All operations before this method returns are synchronous localStorage operations.
     // expectedRevision still protects stale UI writes; the dedicated key prevents broad
     // learner-state autosave from overwriting course selection.
-    const previous=this.decode(this.storage.getItem(this.key(ownerId)));
+    const previous=this.decode(this.storage.getItem(this.key(scope)));
     if(previous.lastRequestId===requestId){
       if(previous.activeCourseId===activeCourseId)return clone(previous);
       throw new BrowserCourseSelectionConflict(previous);
@@ -246,7 +246,7 @@ export class BrowserLocalCourseSelectionRepository{
       revision:previous.revision+1,
       lastRequestId:requestId,
     };
-    writeJSON(this.storage,this.key(ownerId),next);
+    writeJSON(this.storage,this.key(scope),next);
     return clone(next);
   }
 }
