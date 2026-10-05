@@ -1,0 +1,868 @@
+{
+  "format": "ai-english-tutor.curriculum-batch",
+  "schema_version": 1,
+  "batch_id": "SPEAKING-PRONUNCIATION-DENSITY-WAVE5-20261005",
+  "base_version": "1.13.0",
+  "target_version": "1.14.0",
+  "status": "draft_for_notebooklm_review_no_import",
+  "metadata": {
+    "status": "speaking_pronunciation_density_wave5_draft_no_import",
+    "course_title": "English Foundation · A1–B1 developing curriculum",
+    "course_description": "Original self-study curriculum expanding spoken interaction and pronunciation awareness.",
+    "curriculum_principle": "Fill thin Speaking and Pronunciation coverage with scaffolded, privacy-safe tasks. Text planning is not speaking evidence; pronunciation evidence requires real audio models and reviewed production."
+  },
+  "insert_after": [
+    {
+      "after": "SPE-A2-02",
+      "ids": [
+        "SPE-A1-01"
+      ]
+    },
+    {
+      "after": "SPE-B1-02",
+      "ids": [
+        "SPE-B1-03"
+      ]
+    },
+    {
+      "after": "PRO-A2-02",
+      "ids": [
+        "PRO-A2-03"
+      ]
+    },
+    {
+      "after": "PRO-B1-01",
+      "ids": [
+        "PRO-B1-02"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "SPE-A1-01",
+      "module": "speaking",
+      "cefr_target": "A1",
+      "title": "Introduce yourself and ask a simple question",
+      "estimated_minutes": 14,
+      "objectives": [
+        "Give a short introduction using basic personal information chosen by the learner.",
+        "Use a simple greeting and closing.",
+        "Ask one clear everyday question.",
+        "Speak from keywords instead of reading a full script."
+      ],
+      "explanation": {
+        "en": "A simple introduction can be short: greeting, your preferred name, one safe detail such as a hobby or favourite school subject, then one question for the other person. You do not need to share private information such as your address, phone number or full legal name. Plan a few keywords and speak naturally.",
+        "vi": "Một phần giới thiệu đơn giản có thể rất ngắn: chào hỏi, tên muốn được gọi, một thông tin an toàn như sở thích hoặc môn học yêu thích, rồi hỏi người kia một câu. Không cần chia sẻ địa chỉ, số điện thoại hay họ tên đầy đủ. Chỉ ghi vài từ khóa rồi nói tự nhiên."
+      },
+      "examples": [
+        "GREETING · Hi! I'm Linh.",
+        "SAFE DETAIL · I like drawing.",
+        "QUESTION · What do you like doing after school?",
+        "CLOSING · Nice to meet you."
+      ],
+      "activities": [
+        {
+          "id": "SPE-A1-01-Q1",
+          "type": "single_choice",
+          "prompt": "Which opening is suitable for a simple introduction?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Hi! I'm Linh."
+            },
+            {
+              "id": "B",
+              "text": "My address is 25 Green Street."
+            },
+            {
+              "id": "C",
+              "text": "Telephone: 0123456789."
+            },
+            {
+              "id": "D",
+              "text": "Password: hello123"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A preferred name is enough for a simple introduction; private contact details are unnecessary."
+          },
+          "skill_tags": [
+            "speaking.task_response"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-A1-01-Q2",
+          "type": "single_choice",
+          "prompt": "Which sentence gives a safe everyday detail?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I like drawing after school."
+            },
+            {
+              "id": "B",
+              "text": "My bank number is..."
+            },
+            {
+              "id": "C",
+              "text": "My home door code is..."
+            },
+            {
+              "id": "D",
+              "text": "My parent's password is..."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A hobby is appropriate everyday information for this speaking task."
+          },
+          "skill_tags": [
+            "speaking.vocabulary"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-A1-01-Q3",
+          "type": "single_choice",
+          "prompt": "Which question is clear and natural?",
+          "options": [
+            {
+              "id": "A",
+              "text": "What do you like doing after school?"
+            },
+            {
+              "id": "B",
+              "text": "What like you after school doing?"
+            },
+            {
+              "id": "C",
+              "text": "After school what doing you?"
+            },
+            {
+              "id": "D",
+              "text": "You like what after school doing?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The first option has natural English question order."
+          },
+          "skill_tags": [
+            "speaking.task_response"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-A1-01-Q4",
+          "type": "single_choice",
+          "prompt": "Which order is easiest to follow?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Greeting → name → safe detail → question"
+            },
+            {
+              "id": "B",
+              "text": "Question → password → address → name"
+            },
+            {
+              "id": "C",
+              "text": "Random words → greeting → number"
+            },
+            {
+              "id": "D",
+              "text": "Only your name repeated four times"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "This order gives a short, clear introduction and invites the other person to respond."
+          },
+          "skill_tags": [
+            "speaking.organization"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-A1-01-Q5",
+          "type": "extended_response",
+          "prompt": "Record about 30–45 seconds. Say hello, give your preferred name, mention one safe detail such as a hobby or favourite subject, and ask one simple question. Do not give an address, phone number, password or other private information. If microphone access is unavailable, keep keywords only and mark Speaking unassessed.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-SPEAKING-A2",
+          "skill_tags": [
+            "speaking.task_response",
+            "speaking.organization",
+            "speaking.fluency",
+            "speaking.intelligibility"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Submitted. This task requires reviewed audio feedback; no automatic CEFR or pronunciation score is assigned."
+          }
+        }
+      ],
+      "recording": {
+        "optional": true,
+        "requires_permission": true,
+        "no_auto_pronunciation_score": true,
+        "fallback": "Keep keywords only; mark speaking not assessed."
+      }
+    },
+    {
+      "id": "SPE-B1-03",
+      "module": "speaking",
+      "cefr_target": "B1",
+      "title": "Explain a problem and propose a practical solution",
+      "estimated_minutes": 19,
+      "objectives": [
+        "Describe a practical problem clearly.",
+        "Explain why the problem matters.",
+        "Propose a realistic solution and support it with a reason.",
+        "Respond to one concern or follow-up question."
+      ],
+      "explanation": {
+        "en": "For a B1 problem-solution response, make the situation easy to follow: state the problem, explain its effect, suggest a practical solution and give a reason. Then respond directly to one possible concern. You do not need a long speech; clear organisation and specific support matter more.",
+        "vi": "Với bài nói B1 dạng vấn đề–giải pháp, hãy nêu vấn đề, giải thích ảnh hưởng, đề xuất một giải pháp thực tế và nêu lý do. Sau đó trả lời trực tiếp một mối lo hoặc câu hỏi phụ. Không cần nói quá dài; bố cục rõ và lý do cụ thể quan trọng hơn."
+      },
+      "examples": [
+        "PROBLEM · The study room is often too noisy after lunch.",
+        "EFFECT · It is difficult to concentrate.",
+        "SOLUTION · We could create one quiet table near the back.",
+        "CONCERN · If space is limited, the quiet table could be available only during busy hours."
+      ],
+      "activities": [
+        {
+          "id": "SPE-B1-03-Q1",
+          "type": "single_choice",
+          "prompt": "Which sentence states a practical problem clearly?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The library study room is often too noisy after lunch."
+            },
+            {
+              "id": "B",
+              "text": "Libraries are buildings."
+            },
+            {
+              "id": "C",
+              "text": "Noise exists."
+            },
+            {
+              "id": "D",
+              "text": "I have many thoughts."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The first sentence identifies a specific place, problem and time."
+          },
+          "skill_tags": [
+            "speaking.task_response"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-B1-03-Q2",
+          "type": "single_choice",
+          "prompt": "Which sentence explains why the problem matters?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It makes it hard to concentrate on homework."
+            },
+            {
+              "id": "B",
+              "text": "It is a sentence about noise."
+            },
+            {
+              "id": "C",
+              "text": "There are many rooms."
+            },
+            {
+              "id": "D",
+              "text": "I know the word library."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The sentence explains the effect of the problem."
+          },
+          "skill_tags": [
+            "speaking.idea_development"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-B1-03-Q3",
+          "type": "single_choice",
+          "prompt": "Which proposal is practical and specific?",
+          "options": [
+            {
+              "id": "A",
+              "text": "We could mark one table as a quiet study area during busy hours."
+            },
+            {
+              "id": "B",
+              "text": "Everyone should stop making any sound forever."
+            },
+            {
+              "id": "C",
+              "text": "The building should become twice as large tomorrow."
+            },
+            {
+              "id": "D",
+              "text": "There should be a solution somehow."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The first proposal is realistic, specific and connected to the problem."
+          },
+          "skill_tags": [
+            "speaking.idea_development"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-B1-03-Q4",
+          "type": "single_choice",
+          "prompt": "Which linker best introduces the reason for a suggestion?",
+          "options": [
+            {
+              "id": "A",
+              "text": "because"
+            },
+            {
+              "id": "B",
+              "text": "however"
+            },
+            {
+              "id": "C",
+              "text": "although"
+            },
+            {
+              "id": "D",
+              "text": "meanwhile"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Because directly introduces a reason."
+          },
+          "skill_tags": [
+            "speaking.vocabulary"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-B1-03-Q5",
+          "type": "single_choice",
+          "prompt": "A listener asks, “What if all the tables are needed?” Which response is strongest?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Then the quiet table could be limited to the busiest study period."
+            },
+            {
+              "id": "B",
+              "text": "No problem ever has a difficulty."
+            },
+            {
+              "id": "C",
+              "text": "I already said my idea."
+            },
+            {
+              "id": "D",
+              "text": "Tables are furniture."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "It addresses the concern directly and adjusts the proposal realistically."
+          },
+          "skill_tags": [
+            "speaking.task_response",
+            "speaking.idea_development"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-B1-03-Q6",
+          "type": "extended_response",
+          "prompt": "Record 60–90 seconds. Imagine a shared school study space is often too noisy. Explain the problem and its effect, propose one practical solution, and give a reason. Then answer this follow-up: What could you change if other students need the same space? If microphone access is unavailable, keep planning notes only and mark Speaking unassessed.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-SPEAKING-B1",
+          "skill_tags": [
+            "speaking.task_response",
+            "speaking.idea_development",
+            "speaking.fluency",
+            "speaking.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Submitted. This task requires reviewed audio feedback; no automatic CEFR or pronunciation score is assigned."
+          }
+        }
+      ],
+      "recording": {
+        "optional": true,
+        "requires_permission": true,
+        "no_auto_pronunciation_score": true,
+        "fallback": "Keep a planning note; mark speaking not assessed."
+      }
+    },
+    {
+      "id": "PRO-A2-03",
+      "module": "pronunciation",
+      "cefr_target": "A2",
+      "title": "Hear the three common -ed endings",
+      "estimated_minutes": 16,
+      "objectives": [
+        "Recognise the common /t/, /d/ and /ɪd/ pronunciations of regular past-tense -ed.",
+        "Match familiar regular verbs to the correct ending pattern.",
+        "Practise the ending after listening to a real audio model."
+      ],
+      "explanation": {
+        "en": "Regular past-tense -ed is not always pronounced as a separate syllable. In common standard pronunciation, it can sound like /t/ as in worked, /d/ as in played, or /ɪd/ as in wanted. The spelling stays -ed, but the sound changes according to the final sound of the base verb. Listen to a model before practising.",
+        "vi": "Đuôi -ed của động từ quá khứ có ba cách phát âm phổ biến: /t/ như worked, /d/ như played, và /ɪd/ như wanted. Cách viết vẫn là -ed nhưng âm thay đổi theo âm cuối của động từ gốc. Hãy nghe âm thanh mẫu trước khi luyện."
+      },
+      "examples": [
+        "/t/ · worked, watched",
+        "/d/ · played, cleaned",
+        "/ɪd/ · wanted, needed"
+      ],
+      "activities": [
+        {
+          "id": "PRO-A2-03-Q1",
+          "type": "single_choice",
+          "prompt": "Which word normally ends with the /t/ sound?",
+          "options": [
+            {
+              "id": "A",
+              "text": "worked"
+            },
+            {
+              "id": "B",
+              "text": "played"
+            },
+            {
+              "id": "C",
+              "text": "needed"
+            },
+            {
+              "id": "D",
+              "text": "wanted"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Worked normally ends with /t/."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-A2-03-Q2",
+          "type": "single_choice",
+          "prompt": "Which word normally ends with the /d/ sound?",
+          "options": [
+            {
+              "id": "A",
+              "text": "played"
+            },
+            {
+              "id": "B",
+              "text": "watched"
+            },
+            {
+              "id": "C",
+              "text": "wanted"
+            },
+            {
+              "id": "D",
+              "text": "needed"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Played normally ends with /d/."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-A2-03-Q3",
+          "type": "single_choice",
+          "prompt": "Which word normally has an extra syllable /ɪd/ at the end?",
+          "options": [
+            {
+              "id": "A",
+              "text": "wanted"
+            },
+            {
+              "id": "B",
+              "text": "worked"
+            },
+            {
+              "id": "C",
+              "text": "played"
+            },
+            {
+              "id": "D",
+              "text": "cleaned"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Wanted is normally pronounced with /ɪd/ as the final syllable."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-A2-03-Q4",
+          "type": "single_choice",
+          "prompt": "Which pair has the same final -ed sound?",
+          "options": [
+            {
+              "id": "A",
+              "text": "wanted / needed"
+            },
+            {
+              "id": "B",
+              "text": "worked / played"
+            },
+            {
+              "id": "C",
+              "text": "played / wanted"
+            },
+            {
+              "id": "D",
+              "text": "needed / watched"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Wanted and needed both normally end with /ɪd/."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-A2-03-Q5",
+          "type": "single_choice",
+          "prompt": "Why can -ed sound different in worked, played and wanted?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Its pronunciation depends on the final sound of the base verb."
+            },
+            {
+              "id": "B",
+              "text": "The spelling changes in each word."
+            },
+            {
+              "id": "C",
+              "text": "Every speaker chooses randomly."
+            },
+            {
+              "id": "D",
+              "text": "The meaning of past tense disappears."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The ending is pronounced differently according to the sound before it."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-A2-03-Q6",
+          "type": "extended_response",
+          "prompt": "Listen to the audio model, then record these short phrases: worked late, played outside, wanted help, needed time. Focus on the final -ed sound. If no real audio model or recording is available, keep this as optional awareness practice and assign no pronunciation or CEFR score.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-PRONUNCIATION",
+          "skill_tags": [
+            "pronunciation.intelligibility"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Submitted. This task requires reviewed audio feedback; no automatic CEFR or pronunciation score is assigned."
+          }
+        }
+      ],
+      "audio_model": {
+        "text": [
+          "worked",
+          "played",
+          "wanted",
+          "needed",
+          "worked late",
+          "played outside",
+          "wanted help",
+          "needed time"
+        ],
+        "requires_real_playback": true,
+        "fallback": "No playback means no audio-based skill evidence."
+      }
+    },
+    {
+      "id": "PRO-B1-02",
+      "module": "pronunciation",
+      "cefr_target": "B1",
+      "title": "Use intonation to ask, check and confirm",
+      "estimated_minutes": 17,
+      "objectives": [
+        "Notice common rising and falling intonation patterns in short questions.",
+        "Distinguish a normal information question from a checking or confirming question.",
+        "Use intonation to make a short spoken question easier to interpret."
+      ],
+      "explanation": {
+        "en": "Intonation is the movement of the voice across a phrase. Many ordinary wh- questions use a falling pattern, while yes/no questions often rise. A speaker can also use a rise to check or confirm information. These are common patterns, not rigid rules: context and speaker intention matter. Listen to the full model before copying the pattern.",
+        "vi": "Ngữ điệu là sự lên xuống của giọng trong một cụm nói. Nhiều câu hỏi wh- thông thường có xu hướng xuống giọng, còn câu hỏi yes/no thường lên giọng. Người nói cũng có thể lên giọng để kiểm tra hoặc xác nhận thông tin. Đây là xu hướng phổ biến chứ không phải luật tuyệt đối; ngữ cảnh và ý định người nói rất quan trọng."
+      },
+      "examples": [
+        "FALLING · Where is the meeting room?",
+        "RISING · Is the meeting at three?",
+        "CHECKING · Room fourteen?",
+        "CONTEXT · The same words can sound different when the speaker's intention changes."
+      ],
+      "activities": [
+        {
+          "id": "PRO-B1-02-Q1",
+          "type": "single_choice",
+          "prompt": "Which question commonly uses rising intonation in neutral speech?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Is the meeting at three?"
+            },
+            {
+              "id": "B",
+              "text": "Where is the meeting room?"
+            },
+            {
+              "id": "C",
+              "text": "Why did it change?"
+            },
+            {
+              "id": "D",
+              "text": "What time does it finish?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Yes/no questions commonly use a rising pattern in neutral speech."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-B1-02-Q2",
+          "type": "single_choice",
+          "prompt": "Which question commonly uses falling intonation in neutral speech?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Where is the meeting room?"
+            },
+            {
+              "id": "B",
+              "text": "Is this your notebook?"
+            },
+            {
+              "id": "C",
+              "text": "Are we early?"
+            },
+            {
+              "id": "D",
+              "text": "Room fourteen?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A neutral wh- information question commonly has falling intonation."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-B1-02-Q3",
+          "type": "single_choice",
+          "prompt": "A speaker says “Room fourteen?” with a rise. What are they most likely doing?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Checking or confirming the room number"
+            },
+            {
+              "id": "B",
+              "text": "Giving a long formal speech"
+            },
+            {
+              "id": "C",
+              "text": "Ending the conversation with certainty"
+            },
+            {
+              "id": "D",
+              "text": "Reading a password aloud"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A short rising phrase often signals checking or confirmation."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-B1-02-Q4",
+          "type": "single_choice",
+          "prompt": "Which statement about English intonation is most accurate?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Patterns are common tendencies, but context and speaker intention can change them."
+            },
+            {
+              "id": "B",
+              "text": "Every yes/no question must rise in exactly the same way."
+            },
+            {
+              "id": "C",
+              "text": "Every wh- question must always fall."
+            },
+            {
+              "id": "D",
+              "text": "Intonation never changes meaning."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Intonation patterns are useful tendencies rather than absolute rules."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-B1-02-Q5",
+          "type": "single_choice",
+          "prompt": "Why should a learner listen to the full phrase rather than only read punctuation?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Intonation depends on how the speaker delivers the phrase and what they mean."
+            },
+            {
+              "id": "B",
+              "text": "Punctuation always contains an audio recording."
+            },
+            {
+              "id": "C",
+              "text": "Written English has no questions."
+            },
+            {
+              "id": "D",
+              "text": "The words do not matter."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Intonation is an auditory feature shaped by the phrase and speaker intention."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-B1-02-Q6",
+          "type": "extended_response",
+          "prompt": "Listen to the audio model, then record: (1) “Where is the meeting room?” as a normal information question, (2) “Is the meeting at three?” as a yes/no question, and (3) “Room fourteen?” as a checking question. If no real model or recording is available, assign no pronunciation or CEFR evidence.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-PRONUNCIATION",
+          "skill_tags": [
+            "pronunciation.intelligibility"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Submitted. This task requires reviewed audio feedback; no automatic CEFR or pronunciation score is assigned."
+          }
+        }
+      ],
+      "audio_model": {
+        "text": [
+          "Where is the meeting room?",
+          "Is the meeting at three?",
+          "Room fourteen?"
+        ],
+        "requires_real_playback": true,
+        "fallback": "No playback means no audio-based skill evidence."
+      }
+    }
+  ]
+}
