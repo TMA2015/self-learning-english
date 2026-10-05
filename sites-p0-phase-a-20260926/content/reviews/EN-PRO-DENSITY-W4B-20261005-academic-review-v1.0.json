@@ -1,0 +1,53 @@
+{
+  "format": "self-learning-english.academic-review-v1",
+  "schema_version": "1.0",
+  "packet_id": "EN-PRO-DENSITY-W4B-20261005",
+  "batch_id": "PRONUNCIATION-DENSITY-WAVE4B-20261005",
+  "base_curriculum": "1.12.0",
+  "proposed_curriculum": "1.13.0",
+  "reviewer": "NotebookLM independent academic review",
+  "review_rounds": 1,
+  "final_verdict": "PASS",
+  "scope": {
+    "lessons": 2,
+    "activities": 11,
+    "lesson_ids": [
+      "PRO-A2-02",
+      "PRO-B1-01"
+    ]
+  },
+  "academic_summary": {
+    "academic_accuracy": "PASS",
+    "naturalness": "PASS",
+    "ambiguity_and_determinism": "PASS",
+    "cefr_targeting": "PASS",
+    "vietnamese_support": "PASS",
+    "distractors": "PASS",
+    "skill_tags": "PASS",
+    "lesson_contract": "PASS",
+    "originality_and_safety": "PASS"
+  },
+  "focus_checks": {
+    "word_stress_accuracy": "PASS",
+    "sentence_stress_and_contrastive_focus": "PASS",
+    "audio_playback_safeguards": "PASS",
+    "pronunciation_review_safeguards": "PASS"
+  },
+  "new_runtime_tags": [],
+  "safeguards": {
+    "pronunciation_requires_real_audio_model": true,
+    "pronunciation_extended_response_evidence_weight": 0,
+    "pronunciation_review_mode": "assisted_ai_or_human",
+    "text_only_fallback_is_not_pronunciation_evidence": true,
+    "automatic_cefr_or_pronunciation_claim": false
+  },
+  "release_boundary": {
+    "import_authorized": false,
+    "deploy_authorized": false,
+    "next_steps": [
+      "mark combined Wave 4 academic PASS",
+      "compose cumulative 1.13.0 candidate",
+      "run technical release gate"
+    ]
+  }
+}
