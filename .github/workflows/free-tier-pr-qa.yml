@@ -1,0 +1,100 @@
+name: Free-tier PR QA
+
+on:
+  pull_request:
+    paths:
+      - 'sites-p0-phase-a-20260926/app/**'
+      - 'sites-p0-phase-a-20260926/application/**'
+      - 'sites-p0-phase-a-20260926/domain/**'
+      - 'sites-p0-phase-a-20260926/infrastructure/**'
+      - 'sites-p0-phase-a-20260926/ai/**'
+      - 'sites-p0-phase-a-20260926/public/**'
+      - 'sites-p0-phase-a-20260926/content/curriculum-*.json'
+      - 'sites-p0-phase-a-20260926/content/foundation-audio.json'
+      - 'sites-p0-phase-a-20260926/tests/**'
+      - 'sites-p0-phase-a-20260926/scripts/**'
+      - 'sites-p0-phase-a-20260926/package.json'
+      - 'sites-p0-phase-a-20260926/pnpm-lock.yaml'
+      - 'sites-p0-phase-a-20260926/next.config.ts'
+      - 'sites-p0-phase-a-20260926/vite.config.ts'
+      - 'sites-p0-phase-a-20260926/firebase.json'
+      - '.github/workflows/free-tier-pr-qa.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: free-tier-pr-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    env:
+      STATIC_EXPORT: '1'
+      NEXT_PUBLIC_LEARNING_RUNTIME: browser
+      NEXT_PUBLIC_BASE_PATH: ''
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install exact dependencies once
+        run: pnpm install --frozen-lockfile
+
+      - name: Browser-local storage, backup and course isolation
+        run: |
+          node tests/github-first-browser-storage.cjs
+          node tests/github-first-g1-local-runtime.cjs
+          node tests/github-first-g2-backup-restore.cjs
+          node tests/github-first-g2-course-selection.cjs
+          node tests/github-first-g2-local-diagnostic.cjs
+
+      - name: Firebase AI and Writing contracts
+        run: |
+          node tests/g3-firebase-ai-provider-contract.cjs
+          node tests/g3-firebase-browser-bridge.cjs
+          node tests/writing-step-feedback-ux.cjs
+          node tests/run.cjs
+
+      - name: Foundation UX, Listening and navigation regressions
+        run: |
+          node tests/v20-route-draft-safety.cjs
+          node tests/ux-v20-lesson-navigation.cjs
+          node tests/attempt-navigation-ui.cjs
+          node tests/writing-nav-save-feedback.cjs
+          node tests/listening-submit-feedback.cjs
+          node tests/listening-retake-audio-readiness.cjs
+          node tests/foundation-coaching.cjs
+          node tests/foundation-results-ux.cjs
+          node tests/catalog-groups.cjs
+          node tests/catalog-taxonomy-ui.cjs
+          node tests/g-learning-brand.cjs
+
+      - name: Academic, curriculum and progress regressions
+        run: |
+          node tests/academic.cjs
+          node tests/content-quality.cjs
+          node tests/curriculum.cjs
+          node tests/curriculum-13-compat-v15.cjs
+          node tests/batch04-code-compat.cjs
+          node tests/batch02-v11-release.cjs
+          node tests/version-aware-attempt-ux.cjs
+          node tests/practice-progress-p2a.cjs
+          node tests/course-v21-p1.cjs
+          node tests/importer-capacity-150.cjs
+
+      - name: TypeScript
+        run: pnpm exec tsc --noEmit --incremental false
+
+      - name: One production-equivalent static build
+        run: pnpm run build
