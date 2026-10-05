@@ -4,9 +4,9 @@
   "batch_id": "VOCAB-READING-DENSITY-WAVE3A-20261005",
   "base_version": "1.11.0",
   "target_version": "1.12.0",
-  "status": "draft_for_notebooklm_review_no_import",
+  "status": "academic_pass_ready_for_1.12.0_composition",
   "metadata": {
-    "status": "density_wave3a_draft_no_import",
+    "status": "vocab_reading_density_wave3a_academic_pass_ready_for_candidate_no_import",
     "course_title": "English Foundation · A1–B1 developing curriculum",
     "curriculum_principle": "Expand thinner skills using reviewed runtime tags only; do not modify historical reviewed lessons."
   },
