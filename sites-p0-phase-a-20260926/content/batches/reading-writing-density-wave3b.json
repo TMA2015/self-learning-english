@@ -4,9 +4,9 @@
   "batch_id": "READING-WRITING-DENSITY-WAVE3B-20261005",
   "base_version": "1.11.0",
   "target_version": "1.12.0",
-  "status": "draft_for_notebooklm_review_no_import",
+  "status": "academic_pass_ready_for_1.12.0_composition",
   "metadata": {
-    "status": "density_wave3b_draft_no_import",
+    "status": "reading_writing_density_wave3b_academic_pass_ready_for_candidate_no_import",
     "course_title": "English Foundation · A1–B1 developing curriculum",
     "curriculum_principle": "Expand Reading and Writing density using reviewed runtime tags only; extended Writing stays review-required."
   },
