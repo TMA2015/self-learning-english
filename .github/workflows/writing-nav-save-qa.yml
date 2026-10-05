@@ -1,14 +1,6 @@
 name: Writing navigation and draft feedback QA
 
 on:
-  pull_request:
-    paths:
-      - 'sites-p0-phase-a-20260926/app/page.tsx'
-      - 'sites-p0-phase-a-20260926/app/platform.tsx'
-      - 'sites-p0-phase-a-20260926/app/foundation.tsx'
-      - 'sites-p0-phase-a-20260926/app/globals.css'
-      - 'sites-p0-phase-a-20260926/tests/writing-nav-save-feedback.cjs'
-      - '.github/workflows/writing-nav-save-qa.yml'
   workflow_dispatch:
 
 permissions:
