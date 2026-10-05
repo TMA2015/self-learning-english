@@ -1,14 +1,6 @@
 name: v17 Listening Retake Audio Readiness QA
 
 on:
-  pull_request:
-    paths:
-      - 'sites-p0-phase-a-20260926/app/foundation.tsx'
-      - 'sites-p0-phase-a-20260926/domain/listening-completeness.ts'
-      - 'sites-p0-phase-a-20260926/tests/listening-submit-feedback.cjs'
-      - 'sites-p0-phase-a-20260926/tests/listening-retake-audio-readiness.cjs'
-      - 'sites-p0-phase-a-20260926/docs/LISTENING_RETAKE_AUDIO_READINESS_V17.md'
-      - '.github/workflows/listening-retake-audio-v17-qa.yml'
   workflow_dispatch:
 
 permissions:
