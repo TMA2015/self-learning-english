@@ -5,9 +5,10 @@ import {mapSeed,validateSeed,type Seed} from '../../domain/academic';
 import {derivePracticeProgress} from '../../domain/practice-progress';
 import {myCourses} from '../../domain/course-p1';
 import {BrowserLocalAcademicRepository,BrowserLocalCourseSelectionRepository,BrowserLocalLearningRepository,type BrowserKeyValueStorage} from '../storage/browser-local-repositories';
+import {LEGACY_PRIMARY_LEARNER_ID,LOCAL_OWNER_ID,localScope} from './local-profiles';
 
-export const LOCAL_OWNER_ID='local-family';
-export const LOCAL_LEARNER_ID='primary';
+export {LOCAL_OWNER_ID};
+export const LOCAL_LEARNER_ID=LEGACY_PRIMARY_LEARNER_ID;
 const CURRICULUM_IMPORTED_AT=Date.parse('2026-10-04T00:00:00.000Z');
 
 let cached:{
@@ -56,35 +57,37 @@ async function ensureCurriculum(){
 }
 
 export async function localLearningRuntime(){
-  const {learning}=repositories();
-  const scope={ownerId:LOCAL_OWNER_ID,learnerId:LOCAL_LEARNER_ID};
+  const {learning,storage}=repositories();
+  const scope=localScope(storage);
   return {learning,scope,service:learningService(learning,scope)};
 }
 
 export async function localAcademicRuntime(){
   await ensureCurriculum();
-  const {learning,academic}=repositories();
+  const {learning,academic,storage}=repositories();
+  const scope=localScope(storage);
   return {
     learning,
     academic,
-    scope:{ownerId:LOCAL_OWNER_ID,learnerId:LOCAL_LEARNER_ID},
-    service:academicService(academic,learning,{ownerId:LOCAL_OWNER_ID,learnerId:LOCAL_LEARNER_ID}),
+    scope,
+    service:academicService(academic,learning,scope),
   };
 }
 
 export async function localPracticeProgress(){
   await ensureCurriculum();
-  const {academic}=repositories();
+  const {academic,storage}=repositories();
+  const scope=localScope(storage);
   const [attempts,packages]=await Promise.all([
-    academic.attempts({ownerId:LOCAL_OWNER_ID,learnerId:LOCAL_LEARNER_ID}),
+    academic.attempts(scope),
     academic.packages(),
   ]);
   return derivePracticeProgress(attempts,packages);
 }
 
 export async function localCourseRuntime(){
-  const {learning,courses}=repositories();
-  const scope={ownerId:LOCAL_OWNER_ID,learnerId:LOCAL_LEARNER_ID};
+  const {learning,courses,storage}=repositories();
+  const scope=localScope(storage);
   async function load(){
     const [state,selection]=await Promise.all([
       learning.readState(scope),
