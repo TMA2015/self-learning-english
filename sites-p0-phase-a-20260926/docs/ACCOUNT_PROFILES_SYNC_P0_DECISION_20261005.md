@@ -188,9 +188,12 @@ Browser-local learner state, evidence, assessments and snapshots already use bot
    - course selection is exported by owner only.
    - P0-A must make backup/restore target an explicitly selected profile and preserve profile isolation.
 
-6. **Legacy D1 learner state is primary-only**
-   - `D1LearningRepository.readState/writeState` explicitly reject non-primary learner IDs.
-   - This does not block a browser-local P0-A prototype, but server/account mode must not claim multi-profile support until this is migrated or replaced by the Firestore sync repository.
+6. **D1 learner state required a learner-scoped replacement**
+   - Historical `learner_states` is keyed only by `user_id` and cannot safely hold several learner profiles.
+   - P0-A now adds `learner_profile_states(owner_id, learner_id)`.
+   - Reads prefer the learner-scoped table; the historical `learner_states` row is a read-only fallback for the `primary` learner.
+   - First scoped write uses copy-on-write and leaves the historical row intact, so migration is reversible.
+   - A non-primary learner never reads the historical owner-only row.
 
 ### Required implementation order
 
@@ -297,3 +300,24 @@ Test:
 ## Gate
 
 Do not enable Firestore or Authentication in production until P0-A local profile isolation is implemented and verified first.
+
+
+## P0-A implementation checkpoint
+
+Implemented on branch `account-profiles-p0-20261005`:
+
+- learner-scoped browser state;
+- learner-scoped browser academic attempts;
+- learner-scoped browser course selection;
+- learner-scoped D1 academic attempts;
+- learner-scoped D1 course selection with primary legacy fallback;
+- learner-scoped D1 learner state via `learner_profile_states`;
+- migration `0006_learner_profile_states` plus Drizzle snapshot/journal metadata;
+- local profile index with create/select/rename;
+- local runtime resolves the selected learner profile;
+- export/restore and local backup target the selected learner;
+- browser and D1 two-profile isolation gates.
+
+Source-level repository audit: **PASS**.
+
+Executable QA remains pending because GitHub-hosted Actions is currently failing before runner assignment. Profile-switcher UI remains intentionally unexposed until that gate executes successfully.
