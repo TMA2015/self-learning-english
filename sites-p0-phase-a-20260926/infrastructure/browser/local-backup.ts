@@ -55,7 +55,7 @@ export async function exportLocalBackup():Promise<LocalBackupFile>{
   const scope={ownerId:LOCAL_OWNER_ID,learnerId:LOCAL_LEARNER_ID};
   const value=await exportLearner(learning,scope,undefined,undefined,academic);
   const courseRuntime=await localCourseRuntime();
-  value.courseSelection=await courseRuntime.courses.read(LOCAL_OWNER_ID);
+  value.courseSelection=await courseRuntime.courses.read(scope);
   const text=JSON.stringify(value,null,2)+'\n';
   const bytes=byteLength(text);
   if(bytes>LOCAL_BACKUP_MAX_BYTES)throw new Error('Current learner data exceeds the 5 MB JSON backup limit.');
@@ -76,7 +76,7 @@ export async function previewLocalBackup(text:string):Promise<LocalBackupPreview
   const courseRuntime=await localCourseRuntime();
   const scope={ownerId:LOCAL_OWNER_ID,learnerId:LOCAL_LEARNER_ID};
   const application=await previewLearnerRestore(value,learning,scope,academic,{ignoreSourceLearnerId:true});
-  const targetCourse=await courseRuntime.courses.read(LOCAL_OWNER_ID);
+  const targetCourse=await courseRuntime.courses.read(scope);
   const sourceCourse=value.courseSelection;
   const courseSelection:LocalBackupPreview['courseSelection']=
     sourceCourse===undefined?'absent':
@@ -129,9 +129,9 @@ export async function restoreLocalBackup(text:string,token:string,confirmed:bool
 
   if(current.courseSelection==='add'&&value.courseSelection?.activeCourseId){
     const courseRuntime=await localCourseRuntime();
-    const target=await courseRuntime.courses.read(LOCAL_OWNER_ID);
+    const target=await courseRuntime.courses.read(scope);
     await courseRuntime.courses.select(
-      LOCAL_OWNER_ID,
+      scope,
       value.courseSelection.activeCourseId,
       target.revision,
       `restore_${Date.now()}`,
