@@ -1,13 +1,5 @@
 name: Learning Evidence v21 P2A QA
 on:
-  pull_request:
-    paths:
-      - 'sites-p0-phase-a-20260926/app/api/practice-progress/**'
-      - 'sites-p0-phase-a-20260926/app/practice-progress.tsx'
-      - 'sites-p0-phase-a-20260926/app/page.tsx'
-      - 'sites-p0-phase-a-20260926/domain/practice-progress.ts'
-      - 'sites-p0-phase-a-20260926/tests/practice-progress-p2a.cjs'
-      - '.github/workflows/learning-evidence-p2a-qa.yml'
   workflow_dispatch:
 permissions:
   contents: read
