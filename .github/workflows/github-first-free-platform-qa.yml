@@ -1,12 +1,5 @@
 name: GitHub-first Free Platform QA
 on:
-  pull_request:
-    paths:
-      - 'README.md'
-      - 'sites-p0-phase-a-20260926/docs/GITHUB_FIRST_FREE_PLATFORM_20261004.md'
-      - 'sites-p0-phase-a-20260926/infrastructure/storage/browser-local-repositories.ts'
-      - 'sites-p0-phase-a-20260926/tests/github-first-browser-storage.cjs'
-      - '.github/workflows/github-first-free-platform-qa.yml'
   workflow_dispatch:
 permissions:
   contents: read
