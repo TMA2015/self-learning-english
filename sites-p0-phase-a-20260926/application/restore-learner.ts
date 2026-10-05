@@ -73,7 +73,7 @@ export async function previewLearnerRestore(
     learning.readEvidence(scope),
     learning.readAssessments(scope),
     learning.readSnapshots(scope),
-    academic?academic.attempts(scope.ownerId):Promise.resolve([] as AcademicAttempt[]),
+    academic?academic.attempts(scope):Promise.resolve([] as AcademicAttempt[]),
   ]);
   const stateAction=state===null?'add':same(state,source.state)?'same':'conflict';
   const evidenceCounts=countById(source.evidence,evidence,row=>row.id);
@@ -93,7 +93,7 @@ export async function previewLearnerRestore(
   return {valid:errors.length===0,errors,state:stateAction,evidence:evidenceCounts,assessments:assessmentCounts,snapshots:snapshotsCounts,academic:academicCounts,token};
 }
 
-async function restoreAcademicAttempt(repo:AcademicRepository,ownerId:string,row:AcademicAttempt){
+async function restoreAcademicAttempt(repo:AcademicRepository,scope:Scope,row:AcademicAttempt){
   const started:AcademicAttempt={
     ...row,
     status:'started',
@@ -102,8 +102,8 @@ async function restoreAcademicAttempt(repo:AcademicRepository,ownerId:string,row
     evidence:[],
     review:undefined,
   };
-  await repo.start(ownerId,started);
-  await repo.saveDraft(ownerId,row.id,{
+  await repo.start(scope,started);
+  await repo.saveDraft(scope,row.id,{
     answers:row.answers,
     audio:row.audio,
     playStartedAt:row.playStartedAt,
@@ -112,11 +112,11 @@ async function restoreAcademicAttempt(repo:AcademicRepository,ownerId:string,row
   });
   if(row.status==='started')return;
   if(row.status==='approved'){
-    await repo.finish(ownerId,{...row,status:'pending_review',review:undefined});
-    await repo.approve(ownerId,row);
+    await repo.finish(scope,{...row,status:'pending_review',review:undefined});
+    await repo.approve(scope,row);
     return;
   }
-  await repo.finish(ownerId,row);
+  await repo.finish(scope,row);
 }
 
 /**
@@ -147,9 +147,9 @@ export async function restoreLearnerBackup(
   for(const row of source.snapshots)await learning.appendSnapshot(scope,await snapshotId(row),row);
 
   if(academic){
-    const existing=new Map((await academic.attempts(scope.ownerId)).map(row=>[row.id,row]));
+    const existing=new Map((await academic.attempts(scope)).map(row=>[row.id,row]));
     for(const row of source.academicRecords??[]){
-      if(!existing.has(row.id))await restoreAcademicAttempt(academic,scope.ownerId,row);
+      if(!existing.has(row.id))await restoreAcademicAttempt(academic,scope,row);
     }
   }
   return {ok:true,preview};
