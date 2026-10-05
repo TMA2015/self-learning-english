@@ -19,7 +19,7 @@ let lessons=0,activities=0;
 for(const batch of batches){
   assert.equal(batch.base_version,'1.11.0');
   assert.equal(batch.target_version,'1.12.0');
-  assert.equal(batch.status,'draft_for_notebooklm_review_no_import');
+  assert.equal(batch.status,'academic_pass_ready_for_1.12.0_composition');
   for(const lesson of batch.lessons){
     assert(!lessonIds.has(lesson.id),'duplicate lesson '+lesson.id);
     lessonIds.add(lesson.id);lessons++;
@@ -45,4 +45,4 @@ for(const batch of batches){
 }
 assert.equal(lessons,6);
 assert.equal(activities,50);
-console.log(JSON.stringify({result:'PASS',lessons,activities,newRuntimeTags:0,target:'1.12.0',importAuthorized:false}));
+console.log(JSON.stringify({result:'PASS',lessons,activities,newRuntimeTags:0,target:'1.12.0',academicReview:'PASS',importAuthorized:false,deployAuthorized:false}));
