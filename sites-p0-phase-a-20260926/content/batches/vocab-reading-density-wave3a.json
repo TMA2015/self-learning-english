@@ -1,0 +1,887 @@
+{
+  "format": "ai-english-tutor.curriculum-batch",
+  "schema_version": 1,
+  "batch_id": "VOCAB-READING-DENSITY-WAVE3A-20261005",
+  "base_version": "1.11.0",
+  "target_version": "1.12.0",
+  "status": "draft_for_notebooklm_review_no_import",
+  "metadata": {
+    "status": "density_wave3a_draft_no_import",
+    "course_title": "English Foundation · A1–B1 developing curriculum",
+    "curriculum_principle": "Expand thinner skills using reviewed runtime tags only; do not modify historical reviewed lessons."
+  },
+  "insert_after": [
+    {
+      "after": "VOC-A2-03",
+      "ids": [
+        "VOC-A2-04"
+      ]
+    },
+    {
+      "after": "VOC-B1-03",
+      "ids": [
+        "VOC-B1-04"
+      ]
+    },
+    {
+      "after": "REA-A2-04",
+      "ids": [
+        "REA-A2-05"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "VOC-A2-04",
+      "module": "vocabulary",
+      "cefr_target": "A2",
+      "title": "Feelings, reactions and useful adjective pairs",
+      "estimated_minutes": 21,
+      "objectives": [
+        "Use common adjective–preposition combinations for feelings and reactions.",
+        "Distinguish natural combinations such as interested in, worried about and proud of.",
+        "Choose vocabulary from sentence meaning as well as grammar."
+      ],
+      "explanation": {
+        "en": "Many common adjectives are usually followed by a particular preposition. Useful A2 combinations include interested in, worried about, excited about, proud of, good at, afraid of, ready for and responsible for. Learn the whole phrase, not only the adjective. Check the meaning of the sentence before choosing the preposition.",
+        "vi": "Nhiều tính từ thường đi với một giới từ cố định. Một số cụm A2 hữu ích: interested in, worried about, excited about, proud of, good at, afraid of, ready for, responsible for. Nên học theo cả cụm."
+      },
+      "examples": [
+        "INTERESTED IN · I am interested in photography.",
+        "WORRIED ABOUT · She is worried about the test.",
+        "GOOD AT · Minh is good at drawing.",
+        "READY FOR · We are ready for the trip."
+      ],
+      "activities": [
+        {
+          "id": "VOC-A2-04-Q1",
+          "type": "single_choice",
+          "prompt": "Choose the natural phrase: I am interested ___ joining the art club.",
+          "options": [
+            {
+              "id": "A",
+              "text": "in"
+            },
+            {
+              "id": "B",
+              "text": "on"
+            },
+            {
+              "id": "C",
+              "text": "at"
+            },
+            {
+              "id": "D",
+              "text": "for"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Interested in is the standard adjective–preposition combination."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-04-Q2",
+          "type": "single_choice",
+          "prompt": "Lan is worried ___ tomorrow's science test.",
+          "options": [
+            {
+              "id": "A",
+              "text": "about"
+            },
+            {
+              "id": "B",
+              "text": "of"
+            },
+            {
+              "id": "C",
+              "text": "in"
+            },
+            {
+              "id": "D",
+              "text": "for"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Worried about introduces the thing that causes concern."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-04-Q3",
+          "type": "single_choice",
+          "prompt": "Which sentence is natural?",
+          "options": [
+            {
+              "id": "A",
+              "text": "My brother is good at chess."
+            },
+            {
+              "id": "B",
+              "text": "My brother is good in chess."
+            },
+            {
+              "id": "C",
+              "text": "My brother is good for chess."
+            },
+            {
+              "id": "D",
+              "text": "My brother is good about chess."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Good at is used for an activity or skill."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-04-Q4",
+          "type": "single_choice",
+          "prompt": "The students were proud ___ the poster they made together.",
+          "options": [
+            {
+              "id": "A",
+              "text": "of"
+            },
+            {
+              "id": "B",
+              "text": "at"
+            },
+            {
+              "id": "C",
+              "text": "in"
+            },
+            {
+              "id": "D",
+              "text": "with"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Proud of is the natural combination."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-04-Q5",
+          "type": "single_choice",
+          "prompt": "In 'I'm excited about the school trip,' what does excited most nearly mean?",
+          "options": [
+            {
+              "id": "A",
+              "text": "very happy and looking forward to it"
+            },
+            {
+              "id": "B",
+              "text": "angry because it is late"
+            },
+            {
+              "id": "C",
+              "text": "unable to understand it"
+            },
+            {
+              "id": "D",
+              "text": "responsible for planning it"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Excited describes strong positive anticipation."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-04-Q6",
+          "type": "single_choice",
+          "prompt": "Choose the natural phrase: Are you ready ___ the presentation?",
+          "options": [
+            {
+              "id": "A",
+              "text": "for"
+            },
+            {
+              "id": "B",
+              "text": "of"
+            },
+            {
+              "id": "C",
+              "text": "at"
+            },
+            {
+              "id": "D",
+              "text": "about"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Ready for introduces the event or thing you are prepared for."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-04-Q7",
+          "type": "short_answer",
+          "prompt": "Complete the phrase with one preposition: My little cousin is afraid ___ dogs.",
+          "answer": {
+            "accepted_answers": [
+              "of"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Afraid of is the standard combination."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-04-Q8",
+          "type": "single_choice",
+          "prompt": "Which sentence uses responsible for correctly?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Mai is responsible for bringing the class list."
+            },
+            {
+              "id": "B",
+              "text": "Mai is responsible about bringing the class list."
+            },
+            {
+              "id": "C",
+              "text": "Mai is responsible at bringing the class list."
+            },
+            {
+              "id": "D",
+              "text": "Mai is responsible to bringing the class list."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Responsible for is followed by the duty or task."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "VOC-B1-04",
+      "module": "vocabulary",
+      "cefr_target": "B1",
+      "title": "Verbs for explaining evidence and change",
+      "estimated_minutes": 24,
+      "objectives": [
+        "Use common B1 verbs for describing evidence, causes and changes.",
+        "Distinguish show, suggest and prove according to strength of evidence.",
+        "Use cause, lead to, result in, increase, decrease and remain in clear contexts."
+      ],
+      "explanation": {
+        "en": "When explaining information, choose verbs that match the strength and direction of the evidence. Show can introduce a clear pattern; suggest is more cautious; prove is much stronger and should not be used when the evidence is limited. For change, useful patterns include lead to + noun, result in + noun, cause + noun, increase/decrease, and remain + adjective or noun phrase.",
+        "vi": "Khi mô tả bằng chứng, cần chọn động từ đúng mức độ chắc chắn. show có thể nêu một xu hướng rõ; suggest thận trọng hơn; prove rất mạnh. Với thay đổi có thể dùng lead to, result in, cause, increase, decrease, remain."
+      },
+      "examples": [
+        "EVIDENCE · The survey suggests that students prefer shorter meetings.",
+        "CAUSE · Heavy rain caused a delay.",
+        "RESULT · Better signs led to fewer mistakes.",
+        "STABILITY · Attendance remained stable."
+      ],
+      "activities": [
+        {
+          "id": "VOC-B1-04-Q1",
+          "type": "single_choice",
+          "prompt": "A small survey of one class found that many students like quiet study rooms. Which verb is most cautious?",
+          "options": [
+            {
+              "id": "A",
+              "text": "suggests"
+            },
+            {
+              "id": "B",
+              "text": "proves"
+            },
+            {
+              "id": "C",
+              "text": "guarantees"
+            },
+            {
+              "id": "D",
+              "text": "commands"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Suggests reports limited evidence without claiming certainty."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-04-Q2",
+          "type": "single_choice",
+          "prompt": "Choose the natural phrase: Clearer instructions can ___ fewer mistakes.",
+          "options": [
+            {
+              "id": "A",
+              "text": "lead to"
+            },
+            {
+              "id": "B",
+              "text": "lead at"
+            },
+            {
+              "id": "C",
+              "text": "result from into"
+            },
+            {
+              "id": "D",
+              "text": "cause to"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Lead to + noun is a standard pattern for describing a result."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-04-Q3",
+          "type": "single_choice",
+          "prompt": "The number of late arrivals fell from 20 to 8. Which verb best describes the change?",
+          "options": [
+            {
+              "id": "A",
+              "text": "decreased"
+            },
+            {
+              "id": "B",
+              "text": "remained"
+            },
+            {
+              "id": "C",
+              "text": "proved"
+            },
+            {
+              "id": "D",
+              "text": "caused"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Decreased means became smaller in number or amount."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-04-Q4",
+          "type": "single_choice",
+          "prompt": "Choose the best word: Attendance stayed at about 90% for three months; it ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "remained stable"
+            },
+            {
+              "id": "B",
+              "text": "increased sharply"
+            },
+            {
+              "id": "C",
+              "text": "resulted in"
+            },
+            {
+              "id": "D",
+              "text": "proved"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Remained stable means it stayed at roughly the same level."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-04-Q5",
+          "type": "single_choice",
+          "prompt": "Which sentence uses result in naturally?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The room change resulted in a shorter walk."
+            },
+            {
+              "id": "B",
+              "text": "The room change resulted to a shorter walk."
+            },
+            {
+              "id": "C",
+              "text": "The room change resulted a shorter walk."
+            },
+            {
+              "id": "D",
+              "text": "The room change was result in a shorter walk."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Result in is followed by the consequence."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-04-Q6",
+          "type": "single_choice",
+          "prompt": "Which statement uses prove too strongly?",
+          "options": [
+            {
+              "id": "A",
+              "text": "One short survey proves that all teenagers dislike homework."
+            },
+            {
+              "id": "B",
+              "text": "The survey suggests that this class prefers shorter tasks."
+            },
+            {
+              "id": "C",
+              "text": "The results show a difference between the two groups."
+            },
+            {
+              "id": "D",
+              "text": "The data indicate that attendance improved."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A single small survey cannot justify a universal claim about all teenagers."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-04-Q7",
+          "type": "short_answer",
+          "prompt": "Complete with one verb: Better lighting may ___ concentration by making text easier to read.",
+          "answer": {
+            "accepted_answers": [
+              "improve",
+              "increase"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Improve or increase can fit this context by describing a positive change in concentration."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-04-Q8",
+          "type": "single_choice",
+          "prompt": "What does 'indicate' mean here? 'The results indicate that students need more practice with inference questions.'",
+          "options": [
+            {
+              "id": "A",
+              "text": "give evidence or signs that something is likely"
+            },
+            {
+              "id": "B",
+              "text": "make the students practise immediately"
+            },
+            {
+              "id": "C",
+              "text": "remove uncertainty completely"
+            },
+            {
+              "id": "D",
+              "text": "change the test result"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Indicate means point to or provide evidence for a conclusion."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "REA-A2-05",
+      "module": "reading",
+      "cefr_target": "A2",
+      "title": "Two club updates: compare practical details",
+      "estimated_minutes": 20,
+      "objectives": [
+        "Find practical details in two short school notices.",
+        "Compare times, places and requirements across the notices.",
+        "Choose the best option for a simple learner need using textual evidence."
+      ],
+      "explanation": {
+        "en": "When two notices are presented together, first identify which details belong to each option. Make a small mental table: day, time, place, what to bring and whether registration is needed. For a comparison question, use only information that appears in the text.",
+        "vi": "Khi có hai thông báo, hãy tách thông tin của từng lựa chọn: ngày, giờ, địa điểm, đồ cần mang và có cần đăng ký hay không. Câu so sánh phải dựa trên dữ kiện trong bài."
+      },
+      "examples": [
+        "DETAIL · Which club is on Tuesday?",
+        "COMPARE · Which club finishes later?",
+        "REQUIREMENT · Which club needs registration?",
+        "CHOICE · Which option fits a student who is free only on Tuesday?"
+      ],
+      "reading_asset": {
+        "id": "TXT-CLUB-UPDATES-A2",
+        "title": "Club updates for next week",
+        "display_to_learner": true,
+        "body": "Two clubs have changed their plans for next week. The Photography Club will now meet on Tuesday in Room 18 from 3:30 to 4:30. Students should bring a phone or camera if possible, but the club will provide paper for notes. New members are welcome and do not need to register before the meeting. The Cooking Club will meet on Wednesday in the school kitchen from 4:00 to 5:30. Students must register by Monday because the kitchen has only twelve places. They do not need to bring ingredients, but they should bring a notebook. Both clubs are free this month."
+      },
+      "activities": [
+        {
+          "id": "REA-A2-05-Q1",
+          "type": "single_choice",
+          "prompt": "Why was this text written?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To give updated information about two clubs"
+            },
+            {
+              "id": "B",
+              "text": "To explain how to cook a meal"
+            },
+            {
+              "id": "C",
+              "text": "To describe a photography competition"
+            },
+            {
+              "id": "D",
+              "text": "To compare two school subjects"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The text gives changed times, places and requirements for two clubs."
+          },
+          "skill_tags": [
+            "reading.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-05-Q2",
+          "type": "single_choice",
+          "prompt": "When does the Photography Club meet?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Tuesday, 3:30–4:30"
+            },
+            {
+              "id": "B",
+              "text": "Wednesday, 4:00–5:30"
+            },
+            {
+              "id": "C",
+              "text": "Monday, 3:30–4:30"
+            },
+            {
+              "id": "D",
+              "text": "Tuesday, 4:00–5:30"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The Photography Club meets on Tuesday from 3:30 to 4:30."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-05-Q3",
+          "type": "single_choice",
+          "prompt": "Where does the Cooking Club meet?",
+          "options": [
+            {
+              "id": "A",
+              "text": "In the school kitchen"
+            },
+            {
+              "id": "B",
+              "text": "In Room 18"
+            },
+            {
+              "id": "C",
+              "text": "In the library"
+            },
+            {
+              "id": "D",
+              "text": "In the sports hall"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The Cooking Club meets in the school kitchen."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-05-Q4",
+          "type": "single_choice",
+          "prompt": "Which club requires students to register before attending?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Cooking Club"
+            },
+            {
+              "id": "B",
+              "text": "Photography Club"
+            },
+            {
+              "id": "C",
+              "text": "Both clubs"
+            },
+            {
+              "id": "D",
+              "text": "Neither club"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Cooking Club students must register by Monday."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-05-Q5",
+          "type": "single_choice",
+          "prompt": "What should Cooking Club students bring?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A notebook"
+            },
+            {
+              "id": "B",
+              "text": "Ingredients"
+            },
+            {
+              "id": "C",
+              "text": "A camera"
+            },
+            {
+              "id": "D",
+              "text": "Paper for notes"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The notice says ingredients are provided, but students should bring a notebook."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-05-Q6",
+          "type": "single_choice",
+          "prompt": "Which club finishes later?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Cooking Club"
+            },
+            {
+              "id": "B",
+              "text": "Photography Club"
+            },
+            {
+              "id": "C",
+              "text": "They finish at the same time"
+            },
+            {
+              "id": "D",
+              "text": "The text does not say"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Cooking Club finishes at 5:30; Photography Club finishes at 4:30."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-05-Q7",
+          "type": "single_choice",
+          "prompt": "A student is free only on Tuesday and does not want to register in advance. Which club fits best?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Photography Club"
+            },
+            {
+              "id": "B",
+              "text": "Cooking Club"
+            },
+            {
+              "id": "C",
+              "text": "Both clubs"
+            },
+            {
+              "id": "D",
+              "text": "Neither club"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Photography Club is on Tuesday and new members do not need to register first."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-05-Q8",
+          "type": "single_choice",
+          "prompt": "What does 'provide' mean in 'the club will provide paper for notes'?",
+          "options": [
+            {
+              "id": "A",
+              "text": "give or make available"
+            },
+            {
+              "id": "B",
+              "text": "ask students to buy"
+            },
+            {
+              "id": "C",
+              "text": "remove"
+            },
+            {
+              "id": "D",
+              "text": "write on"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Provide means give or make something available for use."
+          },
+          "skill_tags": [
+            "reading.vocabulary_in_context"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    }
+  ]
+}
