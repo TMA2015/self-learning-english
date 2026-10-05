@@ -1,15 +1,5 @@
 name: Curriculum 1.6.0 Grammar A1/A2 Milestone QA
 on:
-  pull_request:
-    paths:
-      - 'sites-p0-phase-a-20260926/domain/academic.ts'
-      - 'sites-p0-phase-a-20260926/content/releases/curriculum-1.5.0-production-import.json'
-      - 'sites-p0-phase-a-20260926/content/batches/grammar-a1-a2-milestone.json'
-      - 'sites-p0-phase-a-20260926/content/curriculum-1.6.0-candidate.json'
-      - 'sites-p0-phase-a-20260926/content/grammar-roadmap-v1.json'
-      - 'sites-p0-phase-a-20260926/content/adaptive-map-v1.json'
-      - 'sites-p0-phase-a-20260926/tests/curriculum-160-grammar-a1a2.cjs'
-      - '.github/workflows/curriculum-160-grammar-a1a2-qa.yml'
   workflow_dispatch:
 permissions:
   contents: read
