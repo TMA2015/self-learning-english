@@ -67,7 +67,8 @@ export async function localAcademicRuntime(){
   return {
     learning,
     academic,
-    service:academicService(academic,learning,LOCAL_OWNER_ID),
+    scope:{ownerId:LOCAL_OWNER_ID,learnerId:LOCAL_LEARNER_ID},
+    service:academicService(academic,learning,{ownerId:LOCAL_OWNER_ID,learnerId:LOCAL_LEARNER_ID}),
   };
 }
 
@@ -75,7 +76,7 @@ export async function localPracticeProgress(){
   await ensureCurriculum();
   const {academic}=repositories();
   const [attempts,packages]=await Promise.all([
-    academic.attempts(LOCAL_OWNER_ID),
+    academic.attempts({ownerId:LOCAL_OWNER_ID,learnerId:LOCAL_LEARNER_ID}),
     academic.packages(),
   ]);
   return derivePracticeProgress(attempts,packages);
@@ -87,12 +88,12 @@ export async function localCourseRuntime(){
   async function load(){
     const [state,selection]=await Promise.all([
       learning.readState(scope),
-      courses.read(LOCAL_OWNER_ID),
+      courses.read(scope),
     ]);
     return myCourses(state,selection);
   }
   async function select(activeCourseId:string|null,expectedRevision:number,requestId:string){
-    return courses.select(LOCAL_OWNER_ID,activeCourseId,expectedRevision,requestId);
+    return courses.select(scope,activeCourseId,expectedRevision,requestId);
   }
   return {courses,scope,load,select};
 }
