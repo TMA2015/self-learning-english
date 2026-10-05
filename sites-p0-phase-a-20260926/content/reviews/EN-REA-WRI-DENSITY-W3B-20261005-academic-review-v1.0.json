@@ -1,0 +1,68 @@
+{
+  "format": "self-learning-english.academic-review-v1",
+  "schema_version": "1.0",
+  "packet_id": "EN-REA-WRI-DENSITY-W3B-20261005",
+  "batch_id": "READING-WRITING-DENSITY-WAVE3B-20261005",
+  "base_curriculum": "1.11.0",
+  "proposed_curriculum": "1.12.0",
+  "reviewer": "NotebookLM independent academic review",
+  "review_rounds": 1,
+  "final_verdict": "PASS",
+  "scope": {
+    "lessons": 3,
+    "activities": 26,
+    "lesson_ids": [
+      "REA-B1-04",
+      "WRI-A2-04",
+      "WRI-B1-03"
+    ]
+  },
+  "academic_summary": {
+    "grammar_accuracy": "PASS",
+    "naturalness": "PASS",
+    "ambiguity_and_determinism": "PASS",
+    "cefr_targeting": "PASS",
+    "explanations": "PASS",
+    "vietnamese_support": "PASS",
+    "distractors": "PASS",
+    "skill_tags": "PASS",
+    "lesson_contract": "PASS",
+    "originality_and_safety": "PASS"
+  },
+  "focus_checks": {
+    "reading_text_grounding": "PASS",
+    "reading_cognitive_tag_alignment": "PASS",
+    "writing_scaffold_progression": "PASS",
+    "extended_response_controls": "PASS"
+  },
+  "reviewed_existing_tags": [
+    "reading.gist",
+    "reading.detail",
+    "reading.inference",
+    "reading.author_purpose",
+    "reading.vocabulary_in_context",
+    "writing.task_understanding",
+    "writing.vocabulary",
+    "writing.organization",
+    "writing.grammar",
+    "writing.register",
+    "writing.idea_development",
+    "writing.cohesion"
+  ],
+  "new_runtime_tags": [],
+  "safeguards": {
+    "writing_extended_response_evidence_weight": 0,
+    "writing_extended_response_review_mode": "assisted_ai_or_human",
+    "automatic_cefr_claim": false,
+    "unnecessary_personal_data_requested": false
+  },
+  "release_boundary": {
+    "import_authorized": false,
+    "deploy_authorized": false,
+    "next_steps": [
+      "compose immutable 1.12.0 candidate",
+      "verify all 1.11.0 lesson objects preserved",
+      "run schema/content/regression/import-preview gates"
+    ]
+  }
+}
