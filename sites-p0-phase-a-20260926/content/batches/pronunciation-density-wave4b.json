@@ -4,9 +4,9 @@
   "batch_id": "PRONUNCIATION-DENSITY-WAVE4B-20261005",
   "base_version": "1.12.0",
   "target_version": "1.13.0",
-  "status": "draft_for_notebooklm_review_no_import",
+  "status": "academic_pass_ready_for_1.13.0_composition",
   "metadata": {
-    "status": "pronunciation_density_wave4b_draft_no_import",
+    "status": "pronunciation_density_wave4b_academic_pass_ready_for_candidate_no_import",
     "course_title": "English Foundation · A1–B1 developing curriculum",
     "course_description": "Original self-study curriculum with balanced expansion across receptive and productive skills.",
     "curriculum_principle": "Expand thin Listening, Speaking and Pronunciation coverage while preserving reviewed historical lessons. Real playback is required for audio-based credit; speaking/pronunciation recordings remain review-gated."
