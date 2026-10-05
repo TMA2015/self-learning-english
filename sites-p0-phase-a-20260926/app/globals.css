@@ -231,3 +231,34 @@ body {
 .practice-suggestion .secondary-button{flex-shrink:0}
 .practice-empty{margin:0;color:#536981}
 @media(max-width:750px){.practice-block{padding:15px}.practice-suggestion{align-items:stretch;flex-direction:column}.practice-suggestion .secondary-button{align-self:flex-start}.practice-pill{margin-left:0}.practice-writing-rows>div{align-items:flex-start;flex-direction:column;gap:3px}}
+
+
+/* UX teaching polish P1 */
+@media (min-width:1350px){
+  .foundation-catalog{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:520px){
+  .foundation-catalog{grid-template-columns:1fr}
+}
+.demo-pill.live{background:#e7f7ee;color:#1c805d;border-color:#bee6cf}
+.step-guide{margin:16px 0 20px;border:1px solid #cfe0f4;border-radius:14px;background:#f6faff;overflow:hidden}
+.step-guide-head{padding:17px 18px 10px}
+.step-guide-head h3{margin:6px 0 7px;font-size:18px;color:#173d68}
+.step-guide-head p{margin:0;line-height:1.65;color:#526d89}
+.step-guide-example{margin:0 18px 12px;padding:12px 14px;border-left:3px solid #5c8fd2;background:#fff;color:#244d78}
+.step-guide-example strong{display:block;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.step-guide-example p{margin:5px 0 0;line-height:1.55}
+.step-guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:0 18px 18px}
+.step-guide-grid article{background:#fff;border:1px solid #dce7f3;border-radius:10px;padding:12px 13px;min-width:0}
+.step-guide-grid article>div{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.step-guide-grid article strong{color:#1f568f}
+.step-guide-grid article span{font-size:11px;color:#71869c;text-align:right}
+.step-guide-answer{margin:9px 0 6px;font-weight:700;color:#183f6a;line-height:1.5}
+.step-guide-grid small{display:block;color:#60788f;line-height:1.5}
+.checked-step-feedback{border-color:#bdd7ef;background:#fbfdff}
+.checked-step-feedback .feedback{margin-top:8px}
+@media(max-width:760px){
+  .step-guide-grid{grid-template-columns:1fr}
+  .step-guide-grid article>div{align-items:flex-start;flex-direction:column;gap:3px}
+  .step-guide-grid article span{text-align:left}
+}
