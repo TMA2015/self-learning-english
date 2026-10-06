@@ -59,10 +59,17 @@ function walk(dir){
   });
 }
 const textAssets=walk(out).filter(file=>/\.(?:html|js|css|json|txt|xml|svg)$/i.test(file));
+const allowedPublicFirebaseWebApiKeys=new Set([
+  'AIzaSyAnCa-t04dmwFHLARYN77o866tomq4RUBg',
+]);
 for(const file of textAssets){
   const text=fs.readFileSync(file,'utf8');
-  assert(!/(?:^|[^A-Za-z0-9])AIza[0-9A-Za-z_-]{20,}/.test(text),'Google API key-shaped secret found in '+file);
+  for(const key of text.match(/AIza[0-9A-Za-z_-]{20,}/g)??[]){
+    assert(allowedPublicFirebaseWebApiKeys.has(key),'Unexpected Google API key-shaped value found in '+file);
+  }
   assert(!/(?:^|[^A-Za-z0-9])sk-(?:proj-|svcacct-)?[A-Za-z0-9_-]{20,}/.test(text),'OpenAI API key-shaped secret found in '+file);
+  assert(!/GEMINI_API_KEY\s*[=:]/.test(text),'Direct Gemini API key configuration found in '+file);
+  assert(!/generativelanguage\.googleapis\.com/.test(text),'Browser must not call Gemini Developer API directly: '+file);
 }
 
 console.log(JSON.stringify({
@@ -73,5 +80,7 @@ console.log(JSON.stringify({
   curriculum:'1.11.0',
   staticAudioFiles:5,
   criticalBrowserWritingServerFree:true,
-  secretShapeScan:true
+  secretShapeScan:true,
+  publicFirebaseWebApiKeyAllowlisted:true,
+  directGeminiApiKey:false
 }));

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "roadmap-toan-ai"
+  },
+  "targets": {
+    "roadmap-toan-ai": {
+      "hosting": {
+        "english": [
+          "g-learning-english"
+        ]
+      }
+    }
+  }
+}

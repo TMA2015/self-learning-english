@@ -1,0 +1,12 @@
+{
+  "hosting": {
+    "target": "english",
+    "public": "dist/client",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "trailingSlash": true
+  }
+}

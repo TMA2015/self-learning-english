@@ -1,0 +1,47 @@
+name: Firebase Hosting Preview (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: english-firebase-preview
+  cancel-in-progress: true
+
+jobs:
+  build_and_preview:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+          cache-dependency-path: sites-p0-phase-a-20260926/pnpm-lock.yaml
+
+      - name: Install exact dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Release QA before preview
+        run: pnpm qa:release
+
+      - name: Deploy English preview channel
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}'
+          projectId: roadmap-toan-ai
+          target: english
+          entryPoint: sites-p0-phase-a-20260926
+          channelId: g3-d-first-release
+          expires: 7d
