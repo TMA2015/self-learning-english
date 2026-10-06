@@ -1,4 +1,8 @@
 import {getApps,initializeApp} from 'firebase/app';
+import {getRemoteConfig,fetchAndActivate,getString,isSupported} from 'firebase/remote-config';
+import {FirebaseRequestLifecycle} from '../ai/firebase-request-lifecycle';
+import {SafeProviderError,type ProviderDiagnostic} from '../../ai/provider-diagnostics';
+import {CachedWritingModel,WRITING_AI_MODEL_KEY,REMOTE_MODEL_FETCH_INTERVAL_MS} from './firebase-model-selection';
 import {initializeAppCheck,ReCaptchaEnterpriseProvider} from 'firebase/app-check';
 import {getAI,getGenerativeModel,GoogleAIBackend} from 'firebase/ai';
 import {createTutorService} from '../../ai/service';
@@ -15,12 +19,12 @@ import {
 } from './firebase-public-config';
 
 const APP_NAME='self-learning-english-ai';
-const REQUEST_TIMEOUT_MS=20_000;
-const MIN_REQUEST_GAP_MS=1_200;
+function safeDiagnostic(event:ProviderDiagnostic){console.info('[English AI]',event)}
 
 let aiInstance:ReturnType<typeof getAI>|null=null;
 let appCheckReady=false;
 let cachedTutor:AITutor|null=null;
+let modelSelection:CachedWritingModel|null=null;
 
 function localDebugAllowed(){
   if(typeof location==='undefined')return false;
@@ -47,43 +51,34 @@ function ensureAI(config:FirebasePublicAIConfig){
     appCheckReady=true;
   }
 
+  modelSelection??=new CachedWritingModel(config.geminiModel);
+  modelSelection.refreshOnce(async()=>{
+    if(!await isSupported())return config.geminiModel;
+    const remote=getRemoteConfig(app);
+    remote.settings.minimumFetchIntervalMillis=REMOTE_MODEL_FETCH_INTERVAL_MS;
+    remote.settings.fetchTimeoutMillis=5_000;
+    remote.defaultConfig={[WRITING_AI_MODEL_KEY]:config.geminiModel};
+    await fetchAndActivate(remote);
+    return getString(remote,WRITING_AI_MODEL_KEY);
+  });
   aiInstance??=getAI(app,{backend:new GoogleAIBackend()});
   return aiInstance;
 }
 
-async function withTimeout<T>(promise:Promise<T>):Promise<T>{
-  let timer:ReturnType<typeof setTimeout>|undefined;
-  try{
-    return await Promise.race([
-      promise,
-      new Promise<never>((_,reject)=>{
-        timer=setTimeout(()=>reject(new Error('AI request timed out.')),REQUEST_TIMEOUT_MS);
-      }),
-    ]);
-  }finally{
-    if(timer)clearTimeout(timer);
-  }
-}
-
 class FirebaseBrowserAILogicTransport implements FirebaseAILogicTransport{
   readonly available=true;
-  readonly model:string;
-  private inFlight=false;
-  private lastStartedAt=0;
+  private readonly lifecycle=new FirebaseRequestLifecycle(safeDiagnostic);
+  private selectedModel:string;
+  get model(){return this.selectedModel}
 
   constructor(private readonly config:FirebasePublicAIConfig){
-    this.model=config.geminiModel;
+    this.selectedModel=config.geminiModel;
   }
 
   async generateJSON(input:FirebaseAILogicGenerateInput):Promise<unknown>{
-    if(this.inFlight)throw new Error('AI request already in progress.');
-    const elapsed=Date.now()-this.lastStartedAt;
-    if(this.lastStartedAt&&elapsed<MIN_REQUEST_GAP_MS)throw new Error('AI cooldown active.');
-
-    this.inFlight=true;
-    this.lastStartedAt=Date.now();
-    try{
+    return this.lifecycle.run(async()=>{
       const ai=ensureAI(this.config);
+      this.selectedModel=modelSelection?.model??this.config.geminiModel;
       const model=getGenerativeModel(ai,{
         model:this.model,
         systemInstruction:input.systemInstruction,
@@ -92,11 +87,9 @@ class FirebaseBrowserAILogicTransport implements FirebaseAILogicTransport{
           maxOutputTokens:1200,
         },
       });
-      const generated=await withTimeout(model.generateContent(JSON.stringify(input.userPayload)));
-      return JSON.parse(generated.response.text());
-    }finally{
-      this.inFlight=false;
-    }
+      const generated=await model.generateContent(JSON.stringify(input.userPayload));
+      try{return JSON.parse(generated.response.text())}catch{throw new SafeProviderError('invalid-response')}
+    });
   }
 }
 
@@ -116,7 +109,7 @@ export function browserTutorService():AITutor{
     return cachedTutor;
   }
   cachedTutor=createTutorService(
-    new FirebaseAILogicProvider(new FirebaseBrowserAILogicTransport(config)),
+    new FirebaseAILogicProvider(new FirebaseBrowserAILogicTransport(config),safeDiagnostic),
   );
   return cachedTutor;
 }

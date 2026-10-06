@@ -17,6 +17,7 @@ const coreTests=[
   "github-first-g2-local-diagnostic.cjs",
   "g3-firebase-ai-provider-contract.cjs",
   "g3-firebase-browser-bridge.cjs",
+  "g3e-firebase-reliability.cjs",
   "listening-audio-manifest-coverage.cjs",
   "writing-step-feedback-ux.cjs",
 ];
