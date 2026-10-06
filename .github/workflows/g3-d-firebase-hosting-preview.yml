@@ -1,15 +1,14 @@
-name: G3-D Firebase Hosting Preview
+name: Firebase Hosting Preview (manual)
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - github-first/g3-shared-gemini-20261004
-    paths:
-      - '.github/workflows/g3-d-firebase-hosting-preview.yml'
 
 permissions:
   contents: read
+
+concurrency:
+  group: english-firebase-preview
+  cancel-in-progress: true
 
 jobs:
   build_and_preview:
@@ -17,10 +16,6 @@ jobs:
     defaults:
       run:
         working-directory: sites-p0-phase-a-20260926
-    env:
-      STATIC_EXPORT: '1'
-      NEXT_PUBLIC_LEARNING_RUNTIME: browser
-      NEXT_PUBLIC_BASE_PATH: ''
     steps:
       - uses: actions/checkout@v4
 
@@ -31,21 +26,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+          cache: 'pnpm'
+          cache-dependency-path: sites-p0-phase-a-20260926/pnpm-lock.yaml
 
-      - name: Install dependencies
+      - name: Install exact dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run G3 Firebase browser contract
-        run: node tests/g3-firebase-browser-bridge.cjs
-
-      - name: Run regression suite
-        run: node tests/run.cjs
-
-      - name: TypeScript
-        run: pnpm exec tsc --noEmit --incremental false
-
-      - name: Build static Hosting artifact
-        run: pnpm run build
+      - name: Release QA before preview
+        run: pnpm qa:release
 
       - name: Deploy English preview channel
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -57,11 +45,3 @@ jobs:
           entryPoint: sites-p0-phase-a-20260926
           channelId: g3-d-first-release
           expires: 7d
-
-      - name: Verify built Writing step feedback UX
-        shell: bash
-        run: |
-          set -euo pipefail
-          grep -R -q "Continue to Brainstorm" dist/client
-          grep -R -q "REVIEW BEFORE CONTINUING" dist/client
-          echo "Static Hosting artifact contains immediate Writing step feedback UX."
