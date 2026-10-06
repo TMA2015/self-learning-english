@@ -1,10 +1,14 @@
-name: G3-D Promote Tested Preview to Live
+name: Promote Tested Firebase Preview to Live (manual)
 
 on:
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: english-firebase-live
+  cancel-in-progress: false
 
 jobs:
   promote:
