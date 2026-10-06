@@ -1,0 +1,41 @@
+name: UX Teaching Polish P1 QA
+# retry marker after GitHub runner startup failures
+
+on:
+  push:
+    branches:
+      - ux-teaching-polish-p1-20261005
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    env:
+      STATIC_EXPORT: '1'
+      NEXT_PUBLIC_LEARNING_RUNTIME: browser
+      NEXT_PUBLIC_BASE_PATH: ''
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: pnpm install --frozen-lockfile
+      - name: UX teaching polish contract
+        run: node tests/ux-teaching-polish-p1.cjs
+      - name: Existing regression suite
+        run: node tests/run.cjs
+      - name: G3 Firebase browser contract
+        run: node tests/g3-firebase-browser-bridge.cjs
+      - name: TypeScript
+        run: pnpm exec tsc --noEmit --incremental false
+      - name: Static browser build
+        run: pnpm run build

@@ -174,6 +174,36 @@ function teachingFeedbackPayload(rating:TeachingRating):ReturnType<typeof guided
   };
 }
 
+export async function quickCheckWritingProcess(
+  stage:'analysis'|'brainstorm'|'outline',
+  answer:Record<string,string>,
+):Promise<{mode:'guided';feedback:ReturnType<typeof guidedWritingFeedback>;evidence:Evidence[]}>{
+  if(!answer||typeof answer!=='object'||Array.isArray(answer)||Object.values(answer).some(value=>typeof value!=='string'))
+    throw new Error('Invalid answer fields.');
+  const index=['analysis','brainstorm','outline'].indexOf(stage);
+  const now=Date.now();
+  const evidence=writingEvidence(index,answer,now).map(row=>({...row,raw:{stage,answer}}));
+  if(browserLearningEnabled()){
+    const {service}=await localLearningRuntime();
+    await service.recordEvidence(evidence);
+  }
+  return {mode:'guided',feedback:guidedWritingFeedback(stage,answer),evidence};
+}
+
+export async function coachWritingStep(
+  stage:'analysis'|'brainstorm'|'outline',
+  answer:Record<string,string>,
+):Promise<{mode:'ai';feedback:ReturnType<typeof guidedWritingFeedback>;evaluation:unknown}|null>{
+  if(!browserLearningEnabled())return jsonFetch('/api/evaluate',{stage,answer});
+  if(!answer||typeof answer!=='object'||Array.isArray(answer)||Object.values(answer).some(value=>typeof value!=='string'))
+    throw new Error('Invalid answer fields.');
+  const tutor=browserTutorService();
+  if(!tutor.available)return null;
+  const context=await browserWritingContext();
+  const evaluation=await tutor.coach(stage,writingCourse.task,answer,{estimatedCEFR:context.estimatedCEFR});
+  if(!evaluation)return null;
+  return {mode:'ai',feedback:evaluation.structuredResult as ReturnType<typeof guidedWritingFeedback>,evaluation};
+}
 export async function evaluateWritingProcess(
   stage:'analysis'|'brainstorm'|'outline'|'writing'|'revision',
   answer:Record<string,string>,
@@ -252,6 +282,16 @@ export async function evaluateWritingProcess(
     evidence:provisionalEvidence,
     ...(stage==='writing'?{evaluationStatus:'pending_review'}:{}),
   };
+}
+
+export async function askLearningTutor(request:string,context:string,supportLanguage:'en'|'vi'='en'){
+  if(!browserLearningEnabled())throw new Error('Contextual AI Tutor is available in the browser learning runtime.');
+  const tutor=browserTutorService();
+  if(!tutor.available)return null;
+  const cleanRequest=String(request??'').trim().slice(0,800);
+  const cleanContext=String(context??'').trim().slice(0,5000);
+  if(!cleanRequest||!cleanContext)return null;
+  return tutor.helpLearning(cleanRequest,cleanContext,supportLanguage);
 }
 
 export async function saveGardenRelevantIdea(answer:string):Promise<{evidence:Evidence[];correct:boolean}>{
