@@ -26,9 +26,9 @@ const none=derivePracticeProgress([],[],[],[]);assert.equal(none.overall.accurac
 const onlyWriting=derivePracticeProgress([{...attempt('a8','1.4.0',false),status:'approved',results:[{id:'WRI-A1-01-Q1',correct:null,tags:['writing.task_understanding']}]}],[],[],[]);
 assert.equal(onlyWriting.overall.total,0);assert.equal(onlyWriting.writing.foundation.approved,1);
 const route=fs.readFileSync(path.join(root,'app/api/practice-progress/route.ts'),'utf8');
-assert.ok(route.includes('learnerKey(request)')&&route.includes('academic.attempts(owner)')&&route.includes('writing.readSubmissions(scope)')&&route.includes('writing.readEvaluations(scope)'));
+assert.ok(route.includes('learnerKey(request)')&&route.includes('academic.attempts(scope)')&&route.includes('writing.readSubmissions(scope)')&&route.includes('writing.readEvaluations(scope)'));
 const academicRepo=fs.readFileSync(path.join(root,'infrastructure/storage/d1-academic.ts'),'utf8'),writingRepo=fs.readFileSync(path.join(root,'infrastructure/storage/d1-writing-repository.ts'),'utf8');
-assert.ok(academicRepo.includes('WHERE owner_id=? AND learner_id=\'primary\' ORDER BY at,id')&&academicRepo.includes('.bind(owner)'));
+assert.ok(academicRepo.includes('WHERE owner_id=? AND learner_id=? ORDER BY at,id')&&academicRepo.includes('.bind(scope.ownerId,scope.learnerId)'));
 assert.ok(writingRepo.includes('WHERE owner_id=? AND learner_id=? ORDER BY at,id')&&writingRepo.includes('.bind(s.ownerId,s.learnerId)'));
 assert.equal(derivePracticeProgress([],[],[],[]).overall.total,0,'another account with no attempts cannot inherit the first account results');
 assert.ok(!route.includes('.run()')&&!route.includes('.batch(')&&!route.includes('importLegacy')&&!route.includes('rebuild('),'GET cannot write or regrade');

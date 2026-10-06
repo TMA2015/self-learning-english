@@ -231,3 +231,25 @@ body {
 .practice-suggestion .secondary-button{flex-shrink:0}
 .practice-empty{margin:0;color:#536981}
 @media(max-width:750px){.practice-block{padding:15px}.practice-suggestion{align-items:stretch;flex-direction:column}.practice-suggestion .secondary-button{align-self:flex-start}.practice-pill{margin-left:0}.practice-writing-rows>div{align-items:flex-start;flex-direction:column;gap:3px}}
+
+
+/* P0 local learner profile switcher — prepared but not mounted until isolation QA passes. */
+.local-profile-switcher{position:relative;min-width:190px}
+.profile-trigger{display:flex;align-items:center;gap:9px;width:100%;padding:8px 10px;border:1px solid #d9e5f4;border-radius:12px;background:#fff;color:#173b64;text-align:left;cursor:pointer}
+.profile-trigger>span{display:flex;flex:1;min-width:0;flex-direction:column}
+.profile-trigger small{font-size:10px;line-height:1.2;letter-spacing:.08em;color:#6b7f96}
+.profile-trigger strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px}
+.profile-menu{position:absolute;z-index:50;right:0;top:calc(100% + 8px);width:min(320px,calc(100vw - 24px));padding:10px;border:1px solid #d9e5f4;border-radius:14px;background:#fff;box-shadow:0 14px 38px rgba(28,57,92,.16)}
+.profile-menu-list{display:grid;gap:5px}
+.profile-choice{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:9px 10px;border:0;border-radius:9px;background:transparent;color:#173b64;text-align:left;cursor:pointer}
+.profile-choice:hover,.profile-choice.active{background:#f1f6fc}
+.profile-choice small{color:#56708d;font-size:11px}
+.profile-menu-actions{display:flex;gap:7px;margin-top:8px;padding-top:8px;border-top:1px solid #e5edf7}
+.profile-menu-actions button{display:flex;align-items:center;gap:5px;padding:7px 9px;border:1px solid #dbe6f4;border-radius:9px;background:#fff;color:#264d77;cursor:pointer}
+.profile-create{margin-top:10px;padding:10px;border-radius:10px;background:#f7faff}
+.profile-create label{display:grid;gap:5px;color:#365774;font-size:12px;font-weight:700}
+.profile-create input{width:100%;padding:8px 9px;border:1px solid #cfdaea;border-radius:8px;background:#fff;color:#173b64}
+.profile-create>div{display:flex;justify-content:flex-end;gap:7px;margin-top:8px}
+.profile-error{margin:8px 0 0;color:#9b3025;font-size:12px}
+.profile-note{margin:10px 2px 2px;color:#657991;font-size:11px;line-height:1.45}
+@media(max-width:680px){.local-profile-switcher{min-width:0}.profile-trigger small{display:none}.profile-menu{right:-8px}}

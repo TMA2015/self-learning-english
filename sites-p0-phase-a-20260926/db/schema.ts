@@ -5,6 +5,15 @@ export const learnerStates = sqliteTable("learner_states", {
   updatedAt: integer("updated_at").notNull(),
 });
 
+// Learner-scoped state for multi-profile accounts. learner_states stays as a
+// compatibility source for the historical primary learner and course v1/v2 keys.
+export const learnerProfileStates = sqliteTable("learner_profile_states", {
+  ownerId: text("owner_id").notNull(),
+  learnerId: text("learner_id").notNull(),
+  payload: text("payload").notNull(),
+  updatedAt: integer("updated_at").notNull(),
+},t=>[primaryKey({columns:[t.ownerId,t.learnerId]})]);
+
 // The owner scope is always supplied by trusted Site identity, never by client JSON.
 export const learners = sqliteTable("learners", {
  ownerId:text("owner_id").notNull(), learnerId:text("learner_id").notNull(), legacyImported:integer("legacy_imported").notNull().default(0), createdAt:integer("created_at").notNull(),

@@ -15,10 +15,16 @@ const {D1CourseSelectionRepository,CourseSelectionConflict,selectionKey}=require
 const {D1LearningRepository}=require(path.join(root,out,'infrastructure/storage/d1-repository.js'));
 const {createNavigationGate}=require(path.join(root,out,'domain/navigation-gate.js'));
 class FakeD1{
- constructor(){this.rows=new Map();this.writes=0}
+ constructor(){this.rows=new Map();this.profileRows=new Map();this.writes=0}
  prepare(sql){const db=this;return {bind(...values){return {
-  async first(){assert.match(sql,/^SELECT payload FROM learner_states/);const payload=db.rows.get(values[0]);return payload===undefined?null:{payload}},
-  async run(){let changes=0;if(sql.includes('ON CONFLICT(user_id) DO UPDATE')){db.rows.set(values[0],values[1]);changes=1}
+  async first(){
+   if(sql.startsWith('SELECT payload FROM learner_profile_states')){const payload=db.profileRows.get(values[0]+':'+values[1]);return payload===undefined?null:{payload}}
+   if(sql.startsWith('SELECT payload FROM learner_states')){const payload=db.rows.get(values[0]);return payload===undefined?null:{payload}}
+   throw Error('Unexpected first SQL: '+sql)
+  },
+  async run(){let changes=0;
+   if(sql.startsWith('INSERT INTO learner_profile_states')){db.profileRows.set(values[0]+':'+values[1],values[2]);changes=1}
+   else if(sql.includes('ON CONFLICT(user_id) DO UPDATE')){db.rows.set(values[0],values[1]);changes=1}
    else if(sql.startsWith('INSERT INTO learner_states')){if(!db.rows.has(values[0])){db.rows.set(values[0],values[1]);changes=1}}
    else if(sql.startsWith('UPDATE learner_states SET payload=?,updated_at=? WHERE user_id=? AND payload=?')){if(db.rows.get(values[2])===values[3]){db.rows.set(values[2],values[0]);changes=1}}
    else throw Error('Unexpected SQL: '+sql);db.writes+=changes;return {meta:{changes}}}
@@ -27,10 +33,10 @@ class FakeD1{
 const deferred=()=>{let resolve;const promise=new Promise(r=>resolve=r);return {promise,resolve}};
 (async()=>{
  const db=new FakeD1(),owner='user:account-1',other='user:account-2';
- const scope={ownerId:owner,learnerId:'primary'},learning=new D1LearningRepository(db),courses=new D1CourseSelectionRepository(db);
+ const scope={ownerId:owner,learnerId:'primary'},secondScope={ownerId:owner,learnerId:'second'},otherScope={ownerId:other,learnerId:'primary'},learning=new D1LearningRepository(db),courses=new D1CourseSelectionRepository(db);
  const legacy={week:8,stage:3,completed:[0,1,4],analysis:{topic:'Saved'},writing:'Old draft',feedbacks:{0:{summary:'Good'}},revision:'My revision',courseV1:{legacyUnknown:true}};
  await learning.writeState(scope,legacy);const before=db.writes;
- const [state,selection]=await Promise.all([learning.readState(scope),courses.read(owner)]);
+ const [state,selection]=await Promise.all([learning.readState(scope),courses.read(scope)]);
  assert.equal(db.writes,before,'pure course GET must not write/import/backfill');
  assert.equal(selection.activeCourseId,null,'read must not auto-select');
  assert.equal(myCourses(state,selection).activeCourse,null);
@@ -38,27 +44,32 @@ const deferred=()=>{let resolve;const promise=new Promise(r=>resolve=r);return {
  assert.equal(writingCourse(state).previewWeeks,11);
  assert.equal(writingCourse(state).nextActivity,'Outline');
  assert.equal(state.writing,'Old draft');assert.deepEqual(state.feedbacks,legacy.feedbacks);
- const first=await courses.select(owner,WRITING_COURSE_ID,0,'request-0001');
- assert.equal(first.revision,1);assert.equal((await courses.read(owner)).activeCourseId,WRITING_COURSE_ID);
- assert.deepEqual(await courses.select(owner,WRITING_COURSE_ID,0,'request-0001'),first,'retry is idempotent');
- await assert.rejects(courses.select(owner,null,0,'request-0002'),CourseSelectionConflict);
- await assert.rejects(courses.select(other,'ARCHIVED',0,'request-0003'),/unavailable/);
- assert.equal((await courses.read(other)).activeCourseId,null,'isolate accounts');
+ const first=await courses.select(scope,WRITING_COURSE_ID,0,'request-0001');
+ assert.equal(first.revision,1);assert.equal((await courses.read(scope)).activeCourseId,WRITING_COURSE_ID);
+ assert.deepEqual(await courses.select(scope,WRITING_COURSE_ID,0,'request-0001'),first,'retry is idempotent');
+ await assert.rejects(courses.select(scope,null,0,'request-0002'),CourseSelectionConflict);
+ await assert.rejects(courses.select(otherScope,'ARCHIVED',0,'request-0003'),/unavailable/);
+ assert.equal((await courses.read(otherScope)).activeCourseId,null,'isolate accounts');
+ assert.equal((await courses.read(secondScope)).activeCourseId,null,'isolate learner profiles in one account');
+ assert.equal(await learning.readState(secondScope),null,'second learner must not inherit primary state');
+ await learning.writeState(secondScope,{writing:'Second learner'});
+ assert.equal((await learning.readState(secondScope)).writing,'Second learner');
+ assert.equal((await learning.readState(scope)).writing,'Old draft','primary learner state must remain isolated');
  const current=await learning.readState(scope);
  await learning.writeState(scope,{...current,writing:'New Writing text'});
- assert.equal((await courses.read(owner)).activeCourseId,WRITING_COURSE_ID,'Writing PUT after selection cannot overwrite it');
+ assert.equal((await courses.read(scope)).activeCourseId,WRITING_COURSE_ID,'Writing PUT after selection cannot overwrite it');
  assert.deepEqual((await learning.readState(scope)).courseV1,legacy.courseV1,'v20 unknown state fields survive legacy Writing save');
  // Reverse order: an old snapshot is written after the selection CAS.
  const oldSnapshot=await learning.readState(scope);
- const cleared=await courses.select(owner,null,1,'request-0004');assert.equal(cleared.revision,2);
+ const cleared=await courses.select(scope,null,1,'request-0004');assert.equal(cleared.revision,2);
  await learning.writeState(scope,{...oldSnapshot,writing:'Late legacy save'});
- assert.equal((await courses.read(owner)).activeCourseId,null,'late Writing PUT cannot overwrite selection');
+ assert.equal((await courses.read(scope)).activeCourseId,null,'late Writing PUT cannot overwrite selection');
  assert.equal((await learning.readState(scope)).writing,'Late legacy save');
  assert.deepEqual((await learning.readState(scope)).feedbacks,legacy.feedbacks);
- const concurrent=await Promise.allSettled([courses.select(owner,WRITING_COURSE_ID,2,'request-0005'),courses.select(owner,null,2,'request-0006')]);
+ const concurrent=await Promise.allSettled([courses.select(scope,WRITING_COURSE_ID,2,'request-0005'),courses.select(scope,null,2,'request-0006')]);
  assert.equal(concurrent.filter(x=>x.status==='fulfilled').length,1,'CAS must allow exactly one concurrent winner');
  assert.equal(concurrent.filter(x=>x.status==='rejected'&&x.reason instanceof CourseSelectionConflict).length,1);
- assert.ok(selectionKey(owner)!==owner,'selection row must be disjoint from v20 state key');
+ assert.ok(selectionKey(scope)!==owner,'selection row must be disjoint from v20 state key');
  const attempt={packageId:'approved',version:'1.4.0',lessonId:'GRA-A1-01',status:'scored',results:[{id:'GRA-A1-01-Q1'}]};
  const ref={packageId:'approved',contentVersion:'1.4.0',contentId:'GRA-A1-01',source:'foundation-lesson'};
  assert.equal(attemptMatchesReference(attempt,ref),true);
@@ -83,6 +94,6 @@ const deferred=()=>{let resolve;const promise=new Promise(r=>resolve=r);return {
  const v20Blob=createHash('sha1').update(`blob ${Buffer.byteLength(v20)}\0`).update(v20).digest('hex');
  assert.equal(v20Blob,'0d45ba9b9f4f3cb5826f874314405754b285e378');
  assert.ok(v20.includes('{...previous,...body}'),'v20 must merge and retain unknown fields during a normal Writing save');
- assert.equal(db.rows.has(selectionKey(owner)),true,'source-only rollback leaves the independent selection record intact');
+ assert.equal(db.rows.has(selectionKey(scope)),true,'source-only rollback leaves the independent selection record intact');
  console.log('PASS: pure GET, account scope, atomic CAS/idempotency, both Writing write orders, legacy rollback, progress/previews, versioned shared attempt, draft navigation.');
 })().catch(e=>{console.error(e);process.exitCode=1});

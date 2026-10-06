@@ -2,7 +2,7 @@ import {exportLearner} from '../../application/export-learner';
 import {previewLearnerRestore,restoreLearnerBackup,type LearnerRestorePreview} from '../../application/restore-learner';
 import {validateImportEnvelope,type LearnerExport} from '../../domain/portable-data';
 import {hash} from '../../application/learning-service';
-import {LOCAL_LEARNER_ID,LOCAL_OWNER_ID,localAcademicRuntime,localCourseRuntime} from './local-runtime';
+import {localAcademicRuntime,localCourseRuntime} from './local-runtime';
 
 export const LOCAL_BACKUP_FILENAME='g-learning-english-backup-v1.json';
 export const LOCAL_BACKUP_MAX_BYTES=5_000_000;
@@ -51,11 +51,10 @@ function counts(value:LearnerExport){
 }
 
 export async function exportLocalBackup():Promise<LocalBackupFile>{
-  const {learning,academic}=await localAcademicRuntime();
-  const scope={ownerId:LOCAL_OWNER_ID,learnerId:LOCAL_LEARNER_ID};
+  const {learning,academic,scope}=await localAcademicRuntime();
   const value=await exportLearner(learning,scope,undefined,undefined,academic);
   const courseRuntime=await localCourseRuntime();
-  value.courseSelection=await courseRuntime.courses.read(LOCAL_OWNER_ID);
+  value.courseSelection=await courseRuntime.courses.read(scope);
   const text=JSON.stringify(value,null,2)+'\n';
   const bytes=byteLength(text);
   if(bytes>LOCAL_BACKUP_MAX_BYTES)throw new Error('Current learner data exceeds the 5 MB JSON backup limit.');
@@ -74,9 +73,8 @@ export async function previewLocalBackup(text:string):Promise<LocalBackupPreview
   const value=parseLocalBackup(text);
   const {learning,academic}=await localAcademicRuntime();
   const courseRuntime=await localCourseRuntime();
-  const scope={ownerId:LOCAL_OWNER_ID,learnerId:LOCAL_LEARNER_ID};
   const application=await previewLearnerRestore(value,learning,scope,academic,{ignoreSourceLearnerId:true});
-  const targetCourse=await courseRuntime.courses.read(LOCAL_OWNER_ID);
+  const targetCourse=await courseRuntime.courses.read(scope);
   const sourceCourse=value.courseSelection;
   const courseSelection:LocalBackupPreview['courseSelection']=
     sourceCourse===undefined?'absent':
@@ -116,7 +114,6 @@ export async function restoreLocalBackup(text:string,token:string,confirmed:bool
   // Captured before the first mutation. The UI downloads this file after success.
   const before=await exportLocalBackup();
   const {learning,academic}=await localAcademicRuntime();
-  const scope={ownerId:LOCAL_OWNER_ID,learnerId:LOCAL_LEARNER_ID};
   await restoreLearnerBackup(
     value,
     learning,
@@ -129,9 +126,9 @@ export async function restoreLocalBackup(text:string,token:string,confirmed:bool
 
   if(current.courseSelection==='add'&&value.courseSelection?.activeCourseId){
     const courseRuntime=await localCourseRuntime();
-    const target=await courseRuntime.courses.read(LOCAL_OWNER_ID);
+    const target=await courseRuntime.courses.read(scope);
     await courseRuntime.courses.select(
-      LOCAL_OWNER_ID,
+      scope,
       value.courseSelection.activeCourseId,
       target.revision,
       `restore_${Date.now()}`,

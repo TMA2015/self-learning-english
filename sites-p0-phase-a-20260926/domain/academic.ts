@@ -1,6 +1,7 @@
 import seed from '../content/academic-seed-v1.json';
 import type {ContentBundle,CEFRTarget} from './content-model';
 import type {Evidence,Skill} from './learning-model';
+import type {Scope} from './repository';
 export type SeedActivity={id:string;type:string;prompt:string;options?:{id:string;text:string}[];answer:{correct_option_id?:string;accepted_answers?:string[];normalization?:string[]}|null;feedback:{explanation_en?:string;pending_message?:string};skill_tags:string[];evidence_weight:number;rubric_id?:string;word_range_guidance?:{min:number;max:number;not_a_quality_score:boolean}};
 export type SeedLesson=Omit<(typeof seed)['lessons'][number],'activities'>&{activities:SeedActivity[]};
 export type Seed=Omit<typeof seed,'lessons'>&{lessons:SeedLesson[]};
@@ -8,10 +9,10 @@ export type AcademicPackage={id:string;version:string;digest:string;source:Seed;
 export type AcademicAttempt={id:string;packageId:string;version:string;lessonId:string;parentId?:string;rootId:string;status:'started'|'scored'|'pending_review'|'approved'|'unassessed';answers:Record<string,string>;audio?:{type:string;data:string};createdAt:number;submittedAt?:number;playStartedAt?:number;playToken?:string;playbackCompleted?:boolean;results?:{id:string;correct:boolean|null;explanation:string;answer?:string;tags:string[]}[];evidence:Evidence[];review?:{feedback:string;scores:Record<string,number>;reviewedAt:number;source:'adult-review'}};
 export interface AcademicRepository{
  packages():Promise<AcademicPackage[]>; addPackage(value:AcademicPackage):Promise<void>;
- attempts(owner:string):Promise<AcademicAttempt[]>; start(owner:string,value:AcademicAttempt):Promise<void>;
- saveDraft(owner:string,id:string,patch:Partial<AcademicAttempt>):Promise<void>;
- finish(owner:string,value:AcademicAttempt):Promise<AcademicAttempt>;
- approve(owner:string,value:AcademicAttempt):Promise<AcademicAttempt>;
+ attempts(scope:Scope):Promise<AcademicAttempt[]>; start(scope:Scope,value:AcademicAttempt):Promise<void>;
+ saveDraft(scope:Scope,id:string,patch:Partial<AcademicAttempt>):Promise<void>;
+ finish(scope:Scope,value:AcademicAttempt):Promise<AcademicAttempt>;
+ approve(scope:Scope,value:AcademicAttempt):Promise<AcademicAttempt>;
 }
 export class AcademicError extends Error{constructor(message:string,public status=400){super(message)}}
 export const tagMap:Record<string,string>={

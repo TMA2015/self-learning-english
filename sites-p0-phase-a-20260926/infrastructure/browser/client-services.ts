@@ -10,9 +10,42 @@ import {gardenRelevantIdeaResult} from '../../application/writing-practice';
 import {browserTutorConfigured,browserTutorService} from './firebase-ai-browser';
 import writingCourse from '../../content/writing-course.json';
 import type {TeachingRating,WritingContext} from '../../domain/writing';
+import {createLocalProfile,listLocalProfiles,renameLocalProfile,selectLocalProfile,selectedLocalProfile,type LocalLearnerProfile} from './local-profiles';
 
 export function browserLearningEnabled(){
   return process.env.NEXT_PUBLIC_LEARNING_RUNTIME==='browser';
+}
+
+
+
+export type LearnerProfileSummary=Pick<LocalLearnerProfile,'id'|'preferredName'|'createdAt'|'updatedAt'>;
+
+function browserStorage(){
+  if(typeof window==='undefined')throw new Error('Learner profiles are available only in the browser.');
+  return window.localStorage;
+}
+
+export function loadLocalLearnerProfiles():{profiles:LearnerProfileSummary[];selected:LearnerProfileSummary}{
+  if(!browserLearningEnabled())throw new Error('Local learner profiles are unavailable in account runtime.');
+  const storage=browserStorage();
+  const profiles=listLocalProfiles(storage).filter(profile=>!profile.archived);
+  const selected=selectedLocalProfile(storage);
+  return {profiles,selected};
+}
+
+export function createLocalLearnerProfile(preferredName:string):LearnerProfileSummary{
+  if(!browserLearningEnabled())throw new Error('Local learner profiles are unavailable in account runtime.');
+  return createLocalProfile(browserStorage(),preferredName);
+}
+
+export function renameLocalLearnerProfile(id:string,preferredName:string):LearnerProfileSummary{
+  if(!browserLearningEnabled())throw new Error('Local learner profiles are unavailable in account runtime.');
+  return renameLocalProfile(browserStorage(),id,preferredName);
+}
+
+export function selectLocalLearnerProfile(id:string):LearnerProfileSummary{
+  if(!browserLearningEnabled())throw new Error('Local learner profiles are unavailable in account runtime.');
+  return selectLocalProfile(browserStorage(),id);
 }
 
 async function jsonFetch<T>(url:string,body?:unknown):Promise<T>{

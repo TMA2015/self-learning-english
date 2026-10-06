@@ -37,6 +37,7 @@ class MemoryStorage{
   const learning=new BrowserLocalLearningRepository(storage);
   const scopeA={ownerId:'family-a',learnerId:'primary'};
   const scopeB={ownerId:'family-b',learnerId:'primary'};
+  const scopeA2={ownerId:'family-a',learnerId:'second'};
 
   assert.equal(await learning.readState(scopeA),null);
   await learning.writeState(scopeA,{draft:'hello',unknownLegacyField:{kept:true}});
@@ -76,20 +77,21 @@ class MemoryStorage{
     id:'attempt-0001',packageId:'pkg',version:'1.0.0',lessonId:'GRA-A1-01',rootId:'attempt-0001',
     status:'started',answers:{},createdAt:1,evidence:[]
   };
-  await academic.start('family-a',attempt);
-  await academic.start('family-a',attempt);
-  assert.equal((await academic.attempts('family-a')).length,1,'attempt start must be idempotent');
-  assert.equal((await academic.attempts('family-b')).length,0,'academic attempts must be owner-isolated');
+  await academic.start(scopeA,attempt);
+  await academic.start(scopeA,attempt);
+  assert.equal((await academic.attempts(scopeA)).length,1,'attempt start must be idempotent');
+  assert.equal((await academic.attempts(scopeB)).length,0,'academic attempts must be owner-isolated');
 
-  await academic.saveDraft('family-a',attempt.id,{answers:{q1:'A'}});
-  assert.equal((await academic.attempts('family-a'))[0].answers.q1,'A');
+  await academic.saveDraft(scopeA,attempt.id,{answers:{q1:'A'}});
+  assert.equal((await academic.attempts(scopeA))[0].answers.q1,'A');
 
-  const finished={...(await academic.attempts('family-a'))[0],status:'scored',submittedAt:2};
-  await academic.finish('family-a',finished);
-  assert.equal((await academic.attempts('family-a'))[0].status,'scored');
+  const finished={...(await academic.attempts(scopeA))[0],status:'scored',submittedAt:2};
+  await academic.finish(scopeA,finished);
+  assert.equal((await academic.attempts(scopeA))[0].status,'scored');
+  assert.equal((await academic.attempts(scopeA2)).length,0,'academic attempts must be isolated between learners in one family');
 
   await assert.rejects(
-    ()=>academic.saveDraft('family-a',attempt.id,{audio:{type:'audio/webm',data:'AAAA'}}),
+    ()=>academic.saveDraft(scopeA,attempt.id,{audio:{type:'audio/webm',data:'AAAA'}}),
     /IndexedDB/
   );
 
