@@ -1,11 +1,17 @@
 # Writing Course v2 — Design Handoff
 
-This branch contains design/review material only.
+Academic review verdict: **PASS-WITH-CHANGES**
 
-Files:
+Implementation source of truth:
+- `docs/WRITING_COURSE_V2_RECONCILED_20261006.md`
+
+Historical inputs:
 - `docs/WRITING_COURSE_V2_DESIGN_20261006.md`
 - `docs/reviews/WRITING_COURSE_V2_NOTEBOOKLM_PACKET_20261006.md`
 
-Do not implement course UI/content from this branch until the NotebookLM packet has been independently reviewed and the owner approves the reconciled design.
+Reconciliation record:
+- `docs/reviews/WRITING_COURSE_V2_NOTEBOOKLM_RECONCILIATION_20261006.md`
 
-Technical G3-E reliability work remains on the parent G3 branch and is a separate gate.
+WCV2-A is academically cleared for implementation using the reconciled specification.
+
+Technical G3-E reliability remains a separate workstream and must not be changed by WCV2-A.
