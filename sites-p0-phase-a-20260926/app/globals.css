@@ -231,3 +231,16 @@ body {
 .practice-suggestion .secondary-button{flex-shrink:0}
 .practice-empty{margin:0;color:#536981}
 @media(max-width:750px){.practice-block{padding:15px}.practice-suggestion{align-items:stretch;flex-direction:column}.practice-suggestion .secondary-button{align-self:flex-start}.practice-pill{margin-left:0}.practice-writing-rows>div{align-items:flex-start;flex-direction:column;gap:3px}}
+
+/* WCV2-A: reference cards and objective practice stay readable on narrow screens. */
+.wcv2 {overflow-wrap:anywhere;min-width:0}
+.wcv2-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:16px 0}
+.wcv2-card {border:1px solid var(--border,#dce5eb);border-radius:14px;padding:18px;margin:14px 0;min-width:0;background:var(--panel,#fff)}
+.wcv2-card h2,.wcv2-card h4 {margin-top:0}
+.wcv2-card legend {font-weight:700;padding:0 6px}
+.wcv2-option {display:flex;align-items:flex-start;gap:10px;margin:12px 0;line-height:1.5}
+.wcv2-option input {flex:none;margin-top:5px}
+.wcv2 .learning-choices {flex-wrap:wrap}
+.wcv2 button {max-width:100%;white-space:normal;text-align:left}
+.wcv2 .field textarea {box-sizing:border-box;width:100%;min-width:0}
+@media(max-width:640px){.wcv2-grid {grid-template-columns:minmax(0,1fr)}.wcv2-card {padding:14px}.wcv2 .learning-choices button {width:100%}}
