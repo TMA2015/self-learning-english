@@ -1,14 +1,20 @@
 # WCV2-B Design Handoff
 
-Design-only branch.
+NotebookLM verdict: **PASS-WITH-CHANGES**
 
-Source of truth:
+Implementation source of truth:
+- `docs/WRITING_COURSE_V2_B_RECONCILED_20261007.md`
+
+Historical design:
 - `docs/WRITING_COURSE_V2_B_DESIGN_20261007.md`
 
-NotebookLM packet:
+Review packet:
 - `docs/reviews/WRITING_COURSE_V2_B_NOTEBOOKLM_PACKET_20261007.md`
 
-Base:
-`2c1b615c68eac03702b6745f1860f413f10e8964`
+Reconciliation:
+- `docs/reviews/WRITING_COURSE_V2_B_NOTEBOOKLM_RECONCILIATION_20261007.md`
 
-Do not implement Weeks 2–6 until NotebookLM review has been reconciled.
+WCV2-B is academically cleared for implementation after this reconciliation.
+
+Base WCV2-A owner-QA-passed checkpoint:
+`2c1b615c68eac03702b6745f1860f413f10e8964`
