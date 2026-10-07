@@ -54,11 +54,11 @@ export function pilotProgressEvidence(stage:number,answer:Record<string,string>,
 
 export const PILOT_WEEKS=[
  {title:'Prompt Analysis',goal:'Identify Topic, Task, Must Include and Boundary.',learn:'Read the four prompt parts',guided:'Identify parts of a new prompt',main:'Garden challenge',vi:'Phân tích đề',scaffold:'Full planning support'},
- {title:'Brainstorming & Relevance',goal:'Generate ideas and choose ones that answer the task.',learn:'Ideas and relevance',guided:'Off-Topic Spotter',main:'Select ideas for a response',vi:'Tìm ý và bám sát đề',scaffold:'Full planning support'},
- {title:'Idea Development & Reasons',goal:'Explain why an idea matters.',learn:'Opinion and reason',guided:'Add a reason',main:'Develop your own reason',vi:'Phát triển ý và lý do',scaffold:'Guided planning'},
- {title:'Examples & Details',goal:'Support a reason with a specific example.',learn:'Specific supporting details',guided:'Connect example to reason',main:'Develop a supporting example',vi:'Ví dụ và chi tiết',scaffold:'Guided planning'},
- {title:'Sentence Clarity & Linkers',goal:'Connect clear thoughts with simple linkers.',learn:'Because, so, but and although',guided:'Join two ideas',main:'Write connected sentences',vi:'Câu rõ nghĩa và từ nối',scaffold:'Guided planning'},
- {title:'Outlining & Response Structure',goal:'Plan an opening, support and ending.',learn:'Response structure',guided:'Order an outline',main:'Plan your own response',vi:'Dàn ý và cấu trúc',scaffold:'Optional planning prompts'},
+ {title:'Brainstorming & Relevance',goal:'Generate ideas and choose ones that answer the task.',learn:'Ideas and relevance',guided:'Off-Topic Spotter',main:'Select ideas for a response',vi:'Tìm ý và bám sát đề',scaffold:'High support · generate, filter, select'},
+ {title:'Idea Development & Reasons',goal:'Explain why an idea matters.',learn:'Opinion and reason',guided:'Add a reason',main:'Develop your own reason',vi:'Phát triển ý và lý do',scaffold:'High-medium support'},
+ {title:'Examples & Details',goal:'Support a reason with a specific example.',learn:'Specific supporting details',guided:'Connect example to reason',main:'Develop a supporting example',vi:'Ví dụ và chi tiết',scaffold:'Medium support · flexible evidence'},
+ {title:'Sentence Clarity & Linkers',goal:'Connect clear thoughts with simple linkers.',learn:'Because, so and but; optional although challenge',guided:'Join two ideas',main:'Write connected sentences',vi:'Câu rõ nghĩa và từ nối',scaffold:'Medium-low support · optional starters'},
+ {title:'Outlining & Response Structure',goal:'Plan an opening, support and ending.',learn:'Response structure',guided:'Order an outline',main:'Plan your own response',vi:'Dàn ý và cấu trúc',scaffold:'Compact structural support · notes only'},
  {title:'Paragraph Construction',goal:'Build one connected paragraph.',learn:'Topic sentence and support',guided:'Build a paragraph',main:'Write a supported paragraph',vi:'Xây dựng đoạn văn',scaffold:'Optional planning prompts'},
  {title:'Connecting Ideas & Paragraphs',goal:'Help readers follow ideas across paragraphs.',learn:'Transitions and flow',guided:'Choose a useful transition',main:'Connect two short paragraphs',vi:'Nối ý và đoạn văn',scaffold:'Optional planning prompts'},
  {title:'Applied Grammar & Self-Editing',goal:'Check agreement, tense and articles in a draft.',learn:'Grammar inside your writing',guided:'Edit selected draft sentences',main:'Self-edit your own draft',vi:'Ngữ pháp và tự chỉnh sửa',scaffold:'Checklist support'},
@@ -74,4 +74,4 @@ export const FOUNDATIONS=[
  {id:'sentences',title:'Write Clear Sentences',concept:'Express one main thought, then connect it when helpful.',example:'We shared a book, so everyone could join the discussion.',mistake:'Joining many ideas without punctuation or a useful linker.',week:4},
  {id:'revise',title:'Revise & Self-Edit',concept:'Check the task and ideas before fixing individual words.',example:'First check: “Did I give the reason requested?” Then edit one sentence.',mistake:'Changing words while leaving a required part missing.',week:9},
 ] as const;
-export type PilotRoute='overview'|'foundations'|'learn'|'guided'|'main'|'review'|'course';
+export type PilotRoute='overview'|'foundations'|'learn'|'guided'|'main'|'review'|'course'|'writing';
