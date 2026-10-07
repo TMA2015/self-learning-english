@@ -5,6 +5,7 @@ import {localAcademicRuntime,localCourseRuntime,localLearningRuntime,localPracti
 import type {myCourses,CourseSelection} from '../../domain/course-p1';
 import {finishLocalDiagnostic} from './local-diagnostic';
 import {publicPath} from './public-path';
+import {pilotProgressEvidence} from '../../domain/writing-course-v2';
 import {guidedWritingFeedback} from '../../application/guided-writing';
 import {gardenRelevantIdeaResult} from '../../application/writing-practice';
 import {browserTutorConfigured,browserTutorService} from './firebase-ai-browser';
@@ -191,15 +192,9 @@ export async function evaluateWritingProcess(
 
   const index=['analysis','brainstorm','outline','writing','revision'].indexOf(stage);
   const now=Date.now();
-  const provisionalEvidence=writingEvidence(Math.min(index,3),answer,now).map(row=>({
+  const provisionalEvidence=pilotProgressEvidence(Math.min(index,3),answer,now).map(row=>({
     ...row,
-    raw:{stage,answer},
-    ...(stage==='revision'?{
-      id:`revision-${row.id}`,
-      source:'revision' as const,
-      activityId:'school-garden-revision',
-      provisional:true,
-    }:{}),
+    ...(stage==='revision'?{id:`revision-${row.id}`,source:'revision' as const,activityId:'school-garden-revision'}:{}),
   }));
 
   const {service}=await localLearningRuntime();
@@ -208,7 +203,7 @@ export async function evaluateWritingProcess(
   if(stage==='revision'){
     return {
       mode:'guided',
-      feedback:{...guidedWritingFeedback('writing',answer),summary:'Revision saved as new evidence. A sentence alone is not a full Writing proficiency assessment.'},
+      feedback:{...guidedWritingFeedback('writing',answer),summary:'Basic structure: your revision is saved as progress, not a language proficiency assessment.'},
       evidence:provisionalEvidence,
     };
   }

@@ -20,6 +20,7 @@ const coreTests=[
   "g3e-firebase-reliability.cjs",
   "listening-audio-manifest-coverage.cjs",
   "writing-step-feedback-ux.cjs",
+  "writing-course-v2-a.cjs",
 ];
 
 const fullRegressionTests=[

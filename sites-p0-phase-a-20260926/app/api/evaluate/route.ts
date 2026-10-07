@@ -5,6 +5,7 @@ import {tutorService} from "@/infrastructure/ai/runtime";
 import {task} from "@/app/content";
 import {POST as submitWriting} from "../writing/route";
 import { learnerKey } from "../identity";
+import {pilotProgressEvidence} from "@/domain/writing-course-v2";
 import {guidedWritingFeedback} from "@/application/guided-writing";
 export const dynamic = "force-dynamic";
 export async function POST(request: NextRequest) {
@@ -19,11 +20,11 @@ export async function POST(request: NextRequest) {
     const raw=input.answer as Record<string,string>;
     if(!raw||typeof raw!=="object"||Object.values(raw).some(v=>typeof v!=="string"))return NextResponse.json({error:"Invalid answer fields."},{status:400});
     const index=["analysis","brainstorm","outline","writing","revision"].indexOf(stage);
-    const evidence=writingEvidence(Math.min(index,3),raw,Date.now(),payload.rating as WritingRating|undefined).map(e=>({...e,raw:{stage,answer:raw},evaluation:payload.evaluation??payload.rating?.evaluation,...(stage==="revision"?{id:`revision-${e.id}`,source:"revision" as const,activityId:"school-garden-revision",provisional:true}:{} )}));
+    const evidence=(payload.rating?writingEvidence(Math.min(index,3),raw,Date.now(),payload.rating as WritingRating):pilotProgressEvidence(Math.min(index,3),raw)).map(e=>({...e,raw:{...(e.raw&&typeof e.raw==="object"?e.raw:{}),stage,answer:raw},evaluation:payload.evaluation??payload.rating?.evaluation,...(stage==="revision"?{id:`revision-${e.id}`,source:"revision" as const,activityId:"school-garden-revision",provisional:true}:{} )}));
     try{await recordEvidence(owner!,evidence)}catch{return NextResponse.json({error:"Evidence could not be saved. Your text is still here; retry."},{status:503})}
     return NextResponse.json({...payload,evidence});
   }
-  if(stage==="revision")return respond({mode:"guided",feedback:{...guidedWritingFeedback("writing",guidedAnswer),summary:"Revision saved as new evidence. A sentence alone is not a full Writing proficiency assessment."}});
+  if(stage==="revision")return respond({mode:"guided",feedback:{...guidedWritingFeedback("writing",guidedAnswer),summary:"Basic structure: your revision is saved as progress, not a language proficiency assessment."}});
   if(stage==="writing"){
     const text=(input.answer as {writing?:unknown})?.writing;
     const response=await submitWriting(new NextRequest(request.url,{method:"POST",headers:request.headers,body:JSON.stringify({text,kind:"draft"})}));
