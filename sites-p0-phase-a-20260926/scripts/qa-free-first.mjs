@@ -21,6 +21,7 @@ const coreTests=[
   "listening-audio-manifest-coverage.cjs",
   "writing-step-feedback-ux.cjs",
   "writing-course-v2-a.cjs",
+  "writing-course-v2-b.cjs",
 ];
 
 const fullRegressionTests=[

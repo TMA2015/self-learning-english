@@ -244,3 +244,8 @@ body {
 .wcv2 button {max-width:100%;white-space:normal;text-align:left}
 .wcv2 .field textarea {box-sizing:border-box;width:100%;min-width:0}
 @media(max-width:640px){.wcv2-grid {grid-template-columns:minmax(0,1fr)}.wcv2-card {padding:14px}.wcv2 .learning-choices button {width:100%}}
+
+.wcv2-b .stage-nav {flex-wrap:wrap;overflow:visible}
+.wcv2-b .stage-nav button {min-width:0;flex:1 1 140px;white-space:normal}
+.wcv2-outline {white-space:pre-line}
+.wcv2-b details summary {cursor:pointer;font-weight:700}
