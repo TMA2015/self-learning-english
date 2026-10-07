@@ -53,3 +53,16 @@ Commands: frozen pnpm install; focused WCV2-B; `pnpm qa:core`; `pnpm qa:full`; `
 7. Confirm Weeks 7–12 remain previews, existing Week 1 four-field/step-feedback behavior remains intact, and course selection does not change when browsing.
 
 No Work browser QA, real AI request, Hosting preview/live deploy, Firebase/security/model/billing change, GitHub Actions or PR merge is authorized/performed in this implementation run.
+
+
+## Owner browser QA navigation follow-up — 2026-10-07
+
+Owner smoke-tested all ten requested WCV2-B areas and reported overall PASS/improvement, but identified a concrete navigation issue: lesson subpages returned to the broad Writing home instead of the English Writing Coach 12-week course overview.
+
+Patch rule:
+- About this course and Writing Foundations keep `← Back to Writing`.
+- Week lesson subpages (Week 1 Learn/Guided/Review and Weeks 2–6 Learn/Guided/Main/Feedback/Review) use `← English Writing Coach · 12 Weeks`.
+- Week 1 Main Practice uses the same course-back label.
+- All navigation continues through the existing save-before-leave guard.
+
+This is a UX-only routing/label correction. It does not alter academic content, evidence rules, AI, Firebase, learner-data schema, curriculum or Hosting configuration.

@@ -12,7 +12,7 @@ export function WritingWeekPage({week,screen,work,actions,busy,error,showVi}:{we
  const w=writingWeek(week),[choices,setChoices]=useState<Record<string,number>>({});
  const p=weekGuidedProgress(week,work.guided),saved=work.submission?.signature===weekSignature(work);
  return <section className="panel wcv2 wcv2-b">
-  <button className="text-button" disabled={busy} onClick={actions.back}>← Back to Writing</button>
+  <button className="text-button" disabled={busy} onClick={actions.back}>← English Writing Coach · 12 Weeks</button>
   <h1>Week {week} · {w.title}</h1><p>{w.goal}</p><p>{w.scaffold} · 25–35 minutes; two short sessions are welcome.</p>
   {showVi&&<p className="vi-help">{w.gloss}</p>}
   <nav className="stage-nav" aria-label={`Week ${week} learning steps`}>{(['learn','guided','main','feedback','review'] as const).map((s,i)=><button key={s} disabled={busy} className={screen===s?'on':''} aria-current={screen===s?'step':undefined} onClick={()=>actions.go(s)}>{['Learn','Guided Practice','Main Practice','Feedback & Revision','Review'][i]}</button>)}</nav>
