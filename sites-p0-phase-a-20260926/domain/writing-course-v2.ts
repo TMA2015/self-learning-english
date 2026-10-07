@@ -2,9 +2,13 @@ import type {Evidence} from './learning-model';
 
 export const GUIDED_CHECK_LABEL='Guided Check (Basic Structure)';
 export const GUIDED_CHECK_DISCLAIMER='This check verifies required parts and words. It does not evaluate full meaning or grammar accuracy.';
-export const ANALYSIS_LABELS=['Topic','Task / Action','Must Include','Boundary / Stay on Target','Off-topic idea to avoid'] as const;
-// Retain legacy storage keys; labels are an additive presentation adapter.
-export const ANALYSIS_FIELDS=['topic','task','keywords','limits','offtopic'] as const;
+export const ANALYSIS_LABELS=['Topic','Task / Action','Must Include','Boundary / Stay on Target'] as const;
+// Visible Week 1 contract. Legacy offtopic stays in stored state but is not an input or requirement.
+export const ANALYSIS_FIELDS=['topic','task','keywords','limits'] as const;
+// Project inputs for checking; never replace or mutate the saved legacy analysis object.
+export function currentAnalysis(answer:Record<string,string>){
+ return Object.fromEntries(ANALYSIS_FIELDS.map(key=>[key,answer[key]??''])) as Record<typeof ANALYSIS_FIELDS[number],string>;
+}
 export type HelperItem={status:'good'|'needs-work'|'missing';label:string;evidence:string;explanation:string;nextAction:string;hint?:string;starter?:string};
 export function analysisHelper(answer:Record<string,string>):HelperItem[]{
  const rules=[
@@ -40,7 +44,7 @@ export type PilotState={guided:GuidedRecord[];reflections:{topic:string;task:str
 export const emptyPilot=():PilotState=>({guided:[],reflections:{topic:'',task:'',boundary:''}});
 export type ProcessWork={analysis:Record<string,string>;brainstorm:Record<string,string>;outline:Record<string,string>;writing:string;completed:number[]};
 export function workSignature(work:ProcessWork){return JSON.stringify([work.analysis,work.brainstorm,work.outline,work.writing]);}
-export function completeOwnAttempt(work:ProcessWork){return [0,1,2,3].every(i=>work.completed.includes(i))&&[work.analysis,work.brainstorm,work.outline].every(g=>Object.values(g).every(s=>typeof s==='string'&&!!s.trim()))&&work.writing.trim().split(/\s+/).filter(Boolean).length>=35;}
+export function completeOwnAttempt(work:ProcessWork){return [0,1,2,3].every(i=>work.completed.includes(i))&&ANALYSIS_FIELDS.every(key=>typeof work.analysis[key]==='string'&&!!work.analysis[key].trim())&&[work.brainstorm,work.outline].every(g=>Object.values(g).every(s=>typeof s==='string'&&!!s.trim()))&&work.writing.trim().split(/\s+/).filter(Boolean).length>=35;}
 export function canCompareModel(work:ProcessWork,pilot:PilotState,screen:string){return screen==='review'&&completeOwnAttempt(work)&&pilot.submission?.signature===workSignature(work);}
 // New pilot process events measure saved activity only; never grade free-form language.
 export function pilotProgressEvidence(stage:number,answer:Record<string,string>,at=Date.now()):Evidence[]{

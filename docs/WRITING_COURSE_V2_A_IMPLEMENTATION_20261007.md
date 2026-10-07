@@ -15,7 +15,7 @@ Implementation follows `WRITING_COURSE_V2_RECONCILED_20261006.md`, not the origi
 
 ## Evidence and persistence
 
-`writingCourseV2` is an additive field in existing learner state; there is no new storage schema or migration. Legacy analysis keys (`keywords`, `limits`, `offtopic`), drafts, revisions and previous evidence are retained.
+`writingCourseV2` is an additive field in existing learner state; there is no new storage schema or migration. Legacy analysis keys (`keywords`, `limits`, `offtopic`), drafts, revisions and previous evidence are retained. Main Practice renders only `topic`, `task`, `keywords`, and `limits`; its checking payload and Basic Structure denominator use the same four fields. Stored `offtopic` is neither rendered nor required for completion or Review/model unlock, and edits preserve it through the existing nested-state merge. Off-topic ideas remain taught in Learn and Guided Practice.
 
 Guided answer records have versioned question IDs, weight 1, tag `writing.task_understanding`, `kind: practice` and proficiency weight 0. First answer and the permitted retry both count in the displayed correct/total denominator; duplicate record IDs do not count twice. This pilot practice ledger is shown separately in Skill Map and Guided Practice; it is not injected into CEFR inference or the Foundation/P2A historical attempt bank.
 
@@ -27,14 +27,14 @@ All new route changes reuse the existing Foundation and Writing save-before-leav
 
 The four-card Step-by-Step Helper explicitly checks fields and listed words, never semantics. A missing keyword is not treated as proof that alternative wording is wrong. Guided Check (Basic Structure) includes the required meaning/grammar limitation. No deterministic quality scores are produced.
 
-During active work, generated full corrections/examples are not exposed. Validated review observations retain their scores and point to the learner's own quoted text, with a guiding question; providers, prompts, Firebase transport and stored reviews are unchanged. The previous complete-answer fill shortcut is removed.
+During active work, generated full corrections/examples are not exposed. Validated review observations retain their scores and show the learner's original text, the specific `why` explanation and optional `hint`, followed by an explicit self-revision instruction. They never render `revised` or a correction-reveal control during active work. A presentation-only duplicate-answer guard also suppresses an explanation/hint that repeats the full corrected sentence/paragraph; ordinary explanations remain visible without truncation. Providers, prompts, Firebase transport and stored reviews are unchanged. The previous complete-answer fill shortcut is removed.
 
-The complete comparison response lives only in final Review. It requires all four saved/submitted Main Practice stages, nonempty planning fields, a draft of at least 35 words and an exact matching saved submission signature. It stays hidden until Compare with a model is explicitly clicked. Editing work locks it; a new submission remounts Review with reveal reset. Reflection does not produce proficiency evidence.
+The complete comparison response lives only in final Review. It requires all four saved/submitted Main Practice stages, the four nonempty current analysis fields plus nonempty Brainstorm/Outline fields (not legacy `offtopic`), a draft of at least 35 words and an exact matching saved submission signature. It stays hidden until Compare with a model is explicitly clicked. Editing work locks it; a new submission remounts Review with reveal reset. Reflection does not produce proficiency evidence.
 
 ## Local release gate
 
 - `pnpm install --frozen-lockfile`
-- `node tests/writing-course-v2-a.cjs` (19 cases)
+- `node tests/writing-course-v2-a.cjs` (27 cases)
 - `pnpm qa:core` (16 commands, including the pilot and G3-E reliability)
 - `pnpm qa:full` (50 commands)
 - `pnpm qa:release` (full suite, TypeScript, Firebase static production build and static/security QA)
@@ -50,7 +50,7 @@ When a separate preview is authorized, check desktop and mobile:
 3. Guided answers show explanations, exactly one retry and restored correct/total counts after reload.
 4. Existing Garden work and feedback remain saved; checks stay on their step until Continue.
 5. Editing clears stale completion; failed saves prevent leaving for every new route.
-6. Basic checks disclose their limitation and four separate helper fields.
+6. Main Practice has exactly four analysis inputs, each with a helper card; legacy `offtopic` remains saved but hidden and optional. Active AI corrections display explanation/hint and the original learner text, but no revised answer or reveal control.
 7. No complete answer appears in active work or AI feedback. Final Review comparison is locked until a complete saved submission and an explicit click; an edited or newly submitted draft resets the reveal.
 8. Reflection restores after reload; Skill Map practice accuracy remains separate from proficiency, active course selection and Foundation progress.
 

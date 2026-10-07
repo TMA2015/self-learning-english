@@ -39,7 +39,44 @@ function walk(element,predicate){if(!element||typeof element!=='object')return n
   const s=render(ui.WeekCards,{progress:'0/4 saved',onGo:go,showVi:false});assert.equal((s.match(/Planned outline only/g)||[]).length,11);assert.equal((s.match(/<strong>Goal:/g)||[]).length,12);assert.equal((s.match(/25–35 minutes/g)||[]).length,12);assert(s.includes('Reduced scaffolding')&&s.includes('Minimal scaffolding'));
  });
  await test('Week 1 annotated garden Learn uses four simple terms and no Scope/Limit',()=>{
-  const s=render(ui.WeekLearn,{onGo:go,showVi:true});for(const label of d.ANALYSIS_LABELS.slice(0,4))assert(s.includes(label));assert(!/Scope|Limit/i.test(s));assert.equal((s.match(/Annotated example:/g)||[]).length,4);assert(s.includes('home garden')&&s.includes('crosses the Boundary'));assert(s.includes('Understand the Task'));assert(home.includes('const analysisLabels=ANALYSIS_LABELS'));
+  const s=render(ui.WeekLearn,{onGo:go,showVi:true});for(const label of d.ANALYSIS_LABELS.slice(0,4))assert(s.includes(label));assert(!/Scope|Limit/i.test(s));assert.equal((s.match(/Annotated example:/g)||[]).length,4);assert(s.includes('home garden')&&s.includes('crosses the Boundary'));assert(s.includes('Understand the Task'));assert(home.includes('<QuestionAnalysisFields values={state.analysis}'));
+ });
+ await test('Main Practice renders exactly four named inputs and the reconciled labels',()=>{
+  const labels=['Topic','Task / Action','Must Include','Boundary / Stay on Target'];
+  assert.deepEqual(d.ANALYSIS_FIELDS,['topic','task','keywords','limits']);assert.deepEqual(d.ANALYSIS_LABELS,labels);
+  const s=render(ui.QuestionAnalysisFields,{values:{...work.analysis,offtopic:'HIDDEN LEGACY ANSWER'},onChange:go});
+  assert.equal((s.match(/<textarea\b/g)||[]).length,4);
+  assert.deepEqual([...s.matchAll(/<textarea[^>]*name="([^"]+)"/g)].map(m=>m[1]),d.ANALYSIS_FIELDS);
+  assert.deepEqual([...s.matchAll(/<span>([^<]+)<\/span>/g)].map(m=>m[1]),labels);
+  assert(!s.includes('offtopic'));assert(!s.includes('Off-topic idea to avoid'));assert(!s.includes('HIDDEN LEGACY ANSWER'));
+  assert(!home.includes('<FieldGroup group="analysis"'));assert(home.includes('stage===0?currentAnalysis(state.analysis)'));
+ });
+ await test('Editing a visible analysis input retains the hidden legacy value and projects only four checking fields',()=>{
+  let saved={...work.analysis,offtopic:'Preserve this historical value'};
+  const tree=ui.QuestionAnalysisFields({values:saved,onChange:(key,value)=>{saved={...saved,[key]:value}}});
+  const textarea=walk(tree,e=>e.type==='textarea'&&e.props.name==='topic');assert(textarea);textarea.props.onChange({target:{value:'my school garden topic'}});
+  assert.equal(saved.topic,'my school garden topic');assert.equal(saved.offtopic,'Preserve this historical value');
+  const before=JSON.stringify(saved),input=d.currentAnalysis(saved);assert.deepEqual(Object.keys(input),d.ANALYSIS_FIELDS);assert(!('offtopic' in input));assert.equal(JSON.stringify(saved),before);
+  assert(home.includes('[group]:{...previous[group],[key]:value}'));
+ });
+ await test('Completion ignores empty, absent and populated legacy offtopic but requires every current field',()=>{
+  for(const analysis of [{...work.analysis,offtopic:''},d.currentAnalysis(work.analysis),work.analysis])assert(d.completeOwnAttempt({...work,analysis}));
+  for(const key of d.ANALYSIS_FIELDS){assert(!d.completeOwnAttempt({...work,analysis:{...work.analysis,[key]:''}}));const analysis=d.currentAnalysis(work.analysis);delete analysis[key];assert(!d.completeOwnAttempt({...work,analysis}));}
+ });
+ await test('Empty legacy offtopic permits final Review/model action while reveal and submission gates remain',()=>{
+  const current={...work,analysis:{...work.analysis,offtopic:''}},pilot={...d.emptyPilot(),submission:{signature:d.workSignature(current),at:1}};
+  assert(d.canCompareModel(current,pilot,'review'));
+  const s=render(ui.WeekReview,{work:current,pilot,onReflection:go,onDone:go,onGo:go});assert(s.includes('Compare with a model'));assert(!s.includes('Compare, do not copy'));
+  assert(!d.canCompareModel(current,d.emptyPilot(),'review'));assert(!d.canCompareModel(current,pilot,'main'));
+ });
+ await test('Every visible Question Analysis field has exactly one matching helper card',()=>{
+  const items=d.analysisHelper({...work.analysis,offtopic:'hidden old answer'});
+  assert.equal(items.length,4);assert.deepEqual(items.map(i=>i.label),d.ANALYSIS_LABELS);
+  const s=render(ui.StepByStepHelper,{items});assert.equal((s.match(/<h4>/g)||[]).length,4);assert.equal((s.match(/Next action:/g)||[]).length,4);
+ });
+ await test('Basic analysis feedback counts four fields even when legacy offtopic is empty or present',()=>{
+  for(const offtopic of ['', 'keep my old off-topic note']){const feedback=guidedWritingFeedback('analysis',{...work.analysis,offtopic});assert(feedback.summary.includes('4/4 fields filled'));assert(!feedback.summary.includes('5 fields'));}
+  assert(guidedWritingFeedback('analysis',{offtopic:'many old words do not fill the current fields'}).summary.includes('0/4 fields filled; 0 words'));
  });
  await test('Four objective checks use a different prompt and one defensible answer each',()=>{
   assert.equal(d.GUIDED_ITEMS.length,4);assert(!d.GUIDED_PROMPT.includes('garden'));for(const q of d.GUIDED_ITEMS){assert.equal(new Set(q.options).size,q.options.length);assert(q.options[q.correct]);assert(q.explanation)}
@@ -74,6 +111,16 @@ function walk(element,predicate){if(!element||typeof element!=='object')return n
   // Keyword hits are explicitly limited to word presence, even when a phrase has no sensible meaning.
   assert(d.analysisHelper({topic:'garden school nonsense'})[0].explanation.includes('words'));
  });
+ await test('Active AI correction displays original, specific explanation and hint without revealing revised text',()=>{
+  const correction={original:'students learns',revised:'Students learn about plants in the garden.',why:'The subject students is plural, so the present-simple verb does not take the singular ending.',hint:'Look at the ending of the verb after the plural subject.',tag:'grammar-accuracy'};
+  const rating={summary:'review',strengths:[],improvements:[],scores:{grammar:6},corrections:[correction],exercise:'review'};
+  const s=render(TeachingFeedback,{rating,activeWork:true});for(const part of [correction.original,correction.why,correction.hint,'Now rewrite this part in your own words.'])assert(s.includes(part));
+  assert(!s.includes(correction.revised));assert(!s.includes('Show a possible correction'));assert(!s.includes('What could you change yourself?'));
+ });
+ await test('Active AI correction with no hint retains explanation without an empty hint control',()=>{
+  const correction={original:'a plants',revised:'a plant',why:'A describes one item. Check the number of your noun.',tag:'grammar-accuracy'};
+  const s=render(TeachingFeedback,{rating:{scores:{grammar:6},corrections:[correction]},activeWork:true});assert(s.includes(correction.why));assert(!s.includes('Hint:'));assert(!s.includes('<details>'));assert(!s.includes('a plant<'));
+ });
  await test('No full model in Learn, Guided Practice or active AI Feedback/Revision',()=>{
   const full='For these reasons, a small school garden can make learning practical.';
   for(const [Component,props] of [[ui.WeekLearn,{onGo:go,showVi:false}],[ui.GuidedPractice,{pilot:d.emptyPilot(),onCheck:go,onGo:go,busy:false,error:''}]])assert(!render(Component,props).includes(full));
@@ -97,7 +144,7 @@ function walk(element,predicate){if(!element||typeof element!=='object')return n
   const repo=new BrowserLocalLearningRepository(storage),scope={ownerId:'fixture',learnerId:'primary'};
   const legacy={...work,revision:'my previous revision',feedbacks:{3:{summary:'previous saved review'}},courseV1:{activeCourseId:'keep-existing-selection'}};
   await repo.writeState(scope,legacy);const next={...await repo.readState(scope),writingCourseV2:{...d.emptyPilot(),guided:[d.checkGuided([],d.GUIDED_ITEMS[0].id,0,1)],reflections:{topic:'school garden',task:'give my view',boundary:'school context'}}};await repo.writeState(scope,next);
-  const restored=await new BrowserLocalLearningRepository(storage).readState(scope);assert.deepEqual(restored,next);assert.equal(restored.writing,legacy.writing);assert.deepEqual(restored.feedbacks,legacy.feedbacks);assert.deepEqual(restored.courseV1,legacy.courseV1);
+  const restored=await new BrowserLocalLearningRepository(storage).readState(scope);assert.deepEqual(restored,next);assert.equal(restored.writing,legacy.writing);assert.deepEqual(restored.feedbacks,legacy.feedbacks);assert.deepEqual(restored.analysis,legacy.analysis);assert.deepEqual(restored.courseV1,legacy.courseV1);
  });
  await test('Every pilot route saves before leaving; failure blocks and preserves unsaved work',async()=>{
   for(const route of ['writing-overview','writing-foundations','writing-course','writing-learn','writing-guided','lesson','writing-review']){

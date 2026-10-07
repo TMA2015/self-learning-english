@@ -1,9 +1,9 @@
-import {analysisHelper} from '../domain/writing-course-v2';
+import {analysisHelper,currentAnalysis} from '../domain/writing-course-v2';
 export type GuidedWritingFeedback={summary:string;strengths:string[];improvements:string[];exercise:string;scores:null;corrections:{original:string;revised:string;why:string;tag:string}[];tags:string[]};
 
 // Counts and explicit words are structure checks, never semantic or grammar judgments.
 export function guidedWritingFeedback(stage:string,answer:Record<string,string>):GuidedWritingFeedback{
- const values=Object.values(answer),all=values.join(' ').trim();
+ const values=Object.values(stage==='analysis'?currentAnalysis(answer):answer),all=values.join(' ').trim();
  const words=all.split(/\s+/).filter(Boolean).length;
  const feedback:GuidedWritingFeedback={summary:`Basic structure: ${values.filter(s=>s.trim()).length}/${values.length} fields filled; ${words} words saved.`,strengths:[],improvements:[],exercise:'Check one required part against the prompt.',scores:null,corrections:[],tags:[]};
  if(stage==='analysis'){
