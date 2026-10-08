@@ -1,16 +1,20 @@
 # WCV2-C Design Handoff
 
-Design-only branch.
+NotebookLM verdict: **PASS-WITH-CHANGES**
 
-Base owner-QA-passed WCV2-B checkpoint:
-`9a99f73eda9102fd69caa5b0fee869a012975175`
+Implementation source of truth:
+- `docs/WRITING_COURSE_V2_C_RECONCILED_20261008.md`
 
-Source of truth before academic review:
+Historical design:
 - `docs/WRITING_COURSE_V2_C_DESIGN_20261008.md`
 
-NotebookLM review packet:
+Review packet:
 - `docs/reviews/WRITING_COURSE_V2_C_NOTEBOOKLM_PACKET_20261008.md`
 
-Do not implement Weeks 7–12 until NotebookLM review has been reconciled.
+Reconciliation:
+- `docs/reviews/WRITING_COURSE_V2_C_NOTEBOOKLM_RECONCILIATION_20261008.md`
 
-PR #55 remains Draft/unmerged; this design phase is stacked on top of its exact tested head.
+Base WCV2-B owner-QA-passed checkpoint:
+`9a99f73eda9102fd69caa5b0fee869a012975175`
+
+WCV2-C is academically cleared for implementation only from the reconciled source.
