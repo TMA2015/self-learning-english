@@ -9,9 +9,16 @@ const batch=require('../content/batches/speaking-pronunciation-density-wave5.jso
 assert.equal(base.schema_version,'1.13.0');
 assert.equal(batch.base_version,'1.13.0');
 assert.equal(batch.target_version,'1.14.0');
-assert.equal(batch.status,'draft_for_notebooklm_review_no_import');
+assert.equal(batch.status,'academic_pass_audio_qa_pending_no_import');
 assert.equal(batch.lessons.length,4);
 assert.equal(batch.lessons.flatMap(l=>l.activities).length,23);
+
+const activities=batch.lessons.flatMap(l=>l.activities);
+assert.equal(activities.filter(q=>q.type==='single_choice').length,19);
+assert.equal(activities.filter(q=>q.type==='extended_response').length,4);
+assert.equal(new Set(batch.lessons.map(l=>l.id)).size,4);
+assert.equal(new Set(activities.map(q=>q.id)).size,23);
+assert.equal(require('node:crypto').createHash('sha256').update(JSON.stringify(batch.lessons)).digest('hex'),'217d05b47fe4c83199987df2b23e6ec05e6d68c28d7781fe652beb388d096b14','Reviewed lesson content must remain byte-equivalent after JSON serialization');
 
 const oldLessonIds=new Set(base.lessons.map(l=>l.id));
 const oldActivityIds=new Set(base.lessons.flatMap(l=>l.activities??[]).map(q=>q.id));
@@ -37,7 +44,8 @@ for(const lesson of batch.lessons){
     for(const tag of q.skill_tags??[])assert(reviewedTags.has(tag),'unreviewed runtime tag '+tag+' in '+q.id);
     if(q.type==='single_choice'){
       assert.equal(q.options?.length,4);
-      assert(q.options.some(o=>o.id===q.answer?.correct_option_id),'invalid answer '+q.id);
+      assert.equal(new Set(q.options.map(o=>o.id)).size,4);
+      assert.equal(q.options.filter(o=>o.id===q.answer?.correct_option_id).length,1,'invalid answer '+q.id);
       assert.equal(q.evidence_weight,1);
     }
     if(q.type==='extended_response'){

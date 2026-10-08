@@ -4,9 +4,9 @@
   "batch_id": "SPEAKING-PRONUNCIATION-DENSITY-WAVE5-20261005",
   "base_version": "1.13.0",
   "target_version": "1.14.0",
-  "status": "draft_for_notebooklm_review_no_import",
+  "status": "academic_pass_audio_qa_pending_no_import",
   "metadata": {
-    "status": "speaking_pronunciation_density_wave5_draft_no_import",
+    "status": "speaking_pronunciation_density_wave5_academic_pass_audio_pending_no_import",
     "course_title": "English Foundation · A1–B1 developing curriculum",
     "course_description": "Original self-study curriculum expanding spoken interaction and pronunciation awareness.",
     "curriculum_principle": "Fill thin Speaking and Pronunciation coverage with scaffolded, privacy-safe tasks. Text planning is not speaking evidence; pronunciation evidence requires real audio models and reviewed production."
