@@ -73,10 +73,12 @@ export function learnerSources(block:LaterBlock|undefined,week:9|10):DraftSource
  return weeks.flatMap(w=>(block?.weeks[w]?.history??[]).filter(h=>h.ownership==='learner'&&h.fields.draft?.trim()).map((h,i)=>({text:h.fields.draft,prompt:h.source?.prompt??laterDefinition(w).prompts[0],ownership:'learner' as const,reference:`Week ${w} · saved version ${i+1}`,at:h.at}))).reverse();
 }
 export const EDIT_CHECKLIST=['Subject + verb','Time / tense','a / an / the','Capitals + punctuation'];
+export const REVISION_GOALS=['Task','Ideas','Sentences','Words'] as const;
+export const WEEK12_SELF_CHECK=['Task','Ideas','Organization','Sentences','Words'] as const;
 export function completeLater(week:LaterWeek,work:LaterWork){
  if(!work.confirmed||!work.fields.draft?.trim())return false;
  if(week===9)return !!work.source&&EDIT_CHECKLIST.every((_,i)=>work.fields[`check${i}`]==='yes')&&(work.fields.draft!==work.source.text||work.fields.noChange==='yes');
- if(week===10)return !!work.source&&!!work.fields.goal?.trim()&&!!work.fields.note?.trim();
+ if(week===10)return !!work.source&&REVISION_GOALS.includes(work.fields.goal as typeof REVISION_GOALS[number])&&!!work.fields.note?.trim();
  if(week===12)return work.fields.prompt==='A'||work.fields.prompt==='B';
  return true;
 }

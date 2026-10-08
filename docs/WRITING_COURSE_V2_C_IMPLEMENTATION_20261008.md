@@ -58,3 +58,21 @@ Owner browser QA after a separately authorized preview:
 11. Regression-smoke Week 1 four analysis fields, explicit Continue feedback, Weeks 2–6, independent Foundation content, saved course selection and G3-E mocked fallback. Do not send a real AI request during this QA task.
 
 No GitHub Actions, preview/live deployment, PR merge, Firebase/App Check/Fraud Defense/Remote Config/model/billing change, learner-data migration or production data operation is authorized in this implementation run. Browser QA remains owner-pending; SSR/local fixtures are not authenticated browser QA.
+
+
+## Owner-side static review patch — 2026-10-08
+
+Two implementation gaps were found before preview packaging and patched on the existing WCV2-C branch:
+
+1. **Week 10 revision goal**
+   - changed from unrestricted free text to one required choice from the academically approved lenses:
+     `Task / Ideas / Sentences / Words`;
+   - completion now validates one of these exact choices.
+
+2. **Week 12 Feedback & Revision self-check**
+   - adds the approved optional, unscored checklist:
+     `Task / Ideas / Organization / Sentences / Words`;
+   - checklist state is reflection/self-check metadata, not proficiency evidence;
+   - it does not block Review and does not change the saved learner-draft signature.
+
+No academic prompt, AI/Firebase configuration, evidence weighting, learner-data schema, curriculum bank, or live deployment behavior is changed by this patch.
