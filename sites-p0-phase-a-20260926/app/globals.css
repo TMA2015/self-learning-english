@@ -248,4 +248,6 @@ body {
 .wcv2-b .stage-nav {flex-wrap:wrap;overflow:visible}
 .wcv2-b .stage-nav button {min-width:0;flex:1 1 140px;white-space:normal}
 .wcv2-outline {white-space:pre-line}
+.wcv2-c pre.wcv2-outline {font:inherit;overflow-wrap:anywhere;max-width:100%}
+.wcv2-c .stage-nav {flex-wrap:wrap}
 .wcv2-b details summary {cursor:pointer;font-weight:700}
