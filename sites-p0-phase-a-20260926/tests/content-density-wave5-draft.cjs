@@ -9,7 +9,7 @@ const batch=require('../content/batches/speaking-pronunciation-density-wave5.jso
 assert.equal(base.schema_version,'1.13.0');
 assert.equal(batch.base_version,'1.13.0');
 assert.equal(batch.target_version,'1.14.0');
-assert.equal(batch.status,'academic_pass_audio_qa_pending_no_import');
+assert.equal(batch.status,'academic_pass_audio_pass_candidate_only_no_import');
 assert.equal(batch.lessons.length,4);
 assert.equal(batch.lessons.flatMap(l=>l.activities).length,23);
 
