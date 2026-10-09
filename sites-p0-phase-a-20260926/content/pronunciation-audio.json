@@ -1,0 +1,96 @@
+{
+  "PRO-A2-03": {
+    "lesson_id": "PRO-A2-03",
+    "source_text": [
+      "worked",
+      "played",
+      "wanted",
+      "needed",
+      "worked late",
+      "played outside",
+      "wanted help",
+      "needed time"
+    ],
+    "url": "/pronunciation-audio/PRO-A2-03-v1.mp3",
+    "duration": 13.536,
+    "sha256": "4047089c8461ed41d7ff0cd57632940ad57e9ce64713304a55b67d49ec4d9e00",
+    "sample_rate": 24000,
+    "bitrate": 160000,
+    "local_inference": true,
+    "owner_sample_qa": "PASS",
+    "owner_final_qa": "PASS",
+    "runtime_integration": "staged asset only; no player changes in this commit",
+    "model": "Kokoro-82M v1.0",
+    "runtime": "kokoro 0.9.4",
+    "voice": "bf_emma",
+    "settings": {
+      "speed": 0.95,
+      "language": "British English",
+      "inter_example_pause_seconds": 0.5,
+      "device": "cpu",
+      "artifact": "byte-identical approved complete sample"
+    },
+    "owner_final_qa_basis": "Inherited from owner-approved complete review file: byte-identical SHA-256",
+    "owner_approved_review_sha256": "4047089c8461ed41d7ff0cd57632940ad57e9ce64713304a55b67d49ec4d9e00"
+  },
+  "PRO-B1-02": {
+    "lesson_id": "PRO-B1-02",
+    "source_text": [
+      "Where is the meeting room?",
+      "Is the meeting at three?",
+      "Room fourteen?"
+    ],
+    "url": "/pronunciation-audio/PRO-B1-02-v1.mp3",
+    "duration": 4.597551,
+    "sha256": "f5c75299bb8772fa0240e5b218a1110e7eb8192f3bb8acb8eeb5a1c324656c7c",
+    "sample_rate": 44100,
+    "bitrate": 192000,
+    "local_inference": true,
+    "owner_sample_qa": "PASS",
+    "owner_final_qa": "PASS",
+    "runtime_integration": "staged asset only; no player changes in this commit",
+    "model": "parler-tts/parler-tts-mini-v1",
+    "model_revision": "0392b9451a601e528fd863bbb0598431fee810d9",
+    "runtime": "parler_tts 0.2.2; Praat/Parselmouth 0.4.7",
+    "speaker": "Laura",
+    "settings": {
+      "seeds": [
+        11,
+        33,
+        11
+      ],
+      "device": "cpu",
+      "inter_utterance_pause_seconds": 0.4,
+      "artifact": "byte-identical owner-approved combined PSOLA sample"
+    },
+    "psola": {
+      "sentence": 2,
+      "pitch_tier_region_seconds": [
+        1.04,
+        1.2
+      ],
+      "waveform_blend_region_seconds": [
+        1.03,
+        1.25
+      ],
+      "boundary_fade_seconds": 0.01,
+      "maximum_added_semitones": 1.8,
+      "ramp": "smoothstep",
+      "method": "Praat Manipulation / PitchTier / overlap-add PSOLA",
+      "original_ending_semitones": 0.6860219781,
+      "final_ending_semitones": 2.0835720848
+    },
+    "utterance_durations_seconds": [
+      1.3699773242630386,
+      1.3235374149659864,
+      1.0681179138321995
+    ],
+    "ending_semitones": [
+      -5.1696576723,
+      2.0835720848,
+      2.0099500884
+    ],
+    "owner_final_qa_basis": "Inherited from owner-approved complete review file: byte-identical SHA-256",
+    "owner_approved_review_sha256": "f5c75299bb8772fa0240e5b218a1110e7eb8192f3bb8acb8eeb5a1c324656c7c"
+  }
+}
