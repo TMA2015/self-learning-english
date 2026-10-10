@@ -30,5 +30,5 @@ let checks=0;const check=(label,f)=>{f();checks++;console.log('PASS '+label)};
  check('full playback before scoring',()=>{assert.match(service,/Date\.now\(\)-a\.playStartedAt<view\.audio\.duration\*900/);assert.match(service,/l\.module==='listening'&&!a\.playbackCompleted/)});
  check('transcript blocked before submission',()=>assert.match(service,/a\.status==='started'\|\|a\.status==='unassessed'.*Transcript is available only after/s));
  execFileSync(process.execPath,['tests/content-density-wave6-audio.cjs'],{cwd:root,stdio:'inherit'});
- console.log(JSON.stringify({result:'PASS',checks,additionalAudioChecks:11,lessons:6,activities:48,newRuntimeTags:0,audioFiles:'TECHNICAL PASS',humanListeningQA:'OWNER PENDING',cumulativeComposition:false,liveAI:false}));
+ console.log(JSON.stringify({result:'PASS',checks,additionalAudioChecks:11,lessons:6,activities:48,newRuntimeTags:0,audioFiles:'TECHNICAL PASS',humanListeningQA:'OWNER PASS',cumulativeComposition:false,liveAI:false}));
 })().catch(e=>{console.error(e);process.exitCode=1});

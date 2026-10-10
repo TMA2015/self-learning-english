@@ -4,9 +4,9 @@
   "batch_id": "VOCAB-READING-LISTENING-DENSITY-WAVE6-20261008",
   "base_version": "1.14.0",
   "target_version": "1.15.0",
-  "status": "academic_pass_audio_pending_no_composition_no_import",
+  "status": "academic_pass_audio_pass_candidate_only_no_import",
   "metadata": {
-    "status": "academic_pass_audio_pending_no_import",
+    "status": "academic_pass_audio_pass_no_import",
     "course_title": "English Foundation · A1–B1 developing curriculum",
     "course_description": "Expand underrepresented A2→B1 content while GitHub Actions remain intentionally unused.",
     "curriculum_principle": "A lesson target is not a CEFR certification.",
@@ -24,7 +24,7 @@
       "listening.speaker_preference": "listening.speaker_intention",
       "listening.qualification": "listening.inference"
     },
-    "audio_qa": "OWNER PENDING"
+    "audio_qa": "OWNER PASS"
   },
   "insert_after": [
     {

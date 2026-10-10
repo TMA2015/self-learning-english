@@ -45,7 +45,7 @@ export function buildBatch(packet){
   }
   return lesson;
  });
- return {format:'ai-english-tutor.curriculum-batch',schema_version:1,batch_id:'VOCAB-READING-LISTENING-DENSITY-WAVE6-20261008',base_version:'1.14.0',target_version:'1.15.0',status:'academic_pass_audio_pending_no_composition_no_import',metadata:{status:'academic_pass_audio_pending_no_import',course_title:'English Foundation · A1–B1 developing curriculum',course_description:'Expand underrepresented A2→B1 content while GitHub Actions remain intentionally unused.',curriculum_principle:'A lesson target is not a CEFR certification.',evidence_weight:1,proficiency_weight:0,tag_mappings:tagMappings,audio_qa:'OWNER PENDING'},insert_after:['VOC-A2-04','VOC-B1-04','REA-A2-05','REA-B1-04','LIS-A2-02','LIS-B1-03'].map((after,i)=>({after,ids:[lessons[i].id]})),lessons};
+ return {format:'ai-english-tutor.curriculum-batch',schema_version:1,batch_id:'VOCAB-READING-LISTENING-DENSITY-WAVE6-20261008',base_version:'1.14.0',target_version:'1.15.0',status:'academic_pass_audio_pass_candidate_only_no_import',metadata:{status:'academic_pass_audio_pass_no_import',course_title:'English Foundation · A1–B1 developing curriculum',course_description:'Expand underrepresented A2→B1 content while GitHub Actions remain intentionally unused.',curriculum_principle:'A lesson target is not a CEFR certification.',evidence_weight:1,proficiency_weight:0,tag_mappings:tagMappings,audio_qa:'OWNER PASS'},insert_after:['VOC-A2-04','VOC-B1-04','REA-A2-05','REA-B1-04','LIS-A2-02','LIS-B1-03'].map((after,i)=>({after,ids:[lessons[i].id]})),lessons};
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){
  const packet=readFileSync('content/review-packets/EN-VOC-REA-LIS-DENSITY-W6-20261008.md','utf8');
