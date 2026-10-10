@@ -20,3 +20,12 @@ Canonical SHA-256: 66663bb61cf60b266d25e8abd890e81ad27398d3ebee9b7cd5cd211de878b
 Browser QA pending: open PRO-A2-03 and PRO-B1-02 in practice, play/pause/seek model audio; verify recording still works and requires review; verify missing model fallback; confirm Listening still requires full verified playback. Native audio carries no automatic proficiency evidence.
 
 No deployment, import, merge, audio regeneration, AI request, GitHub Actions, Firebase/security/billing change authorized or performed.
+
+## Browser bundled curriculum upgrade
+
+Starting checkpoint: 8bd593cf2ffa3f0c1dcdb058ea119be1d684700b.
+The browser-local bundle now uses the approved 1.15.0 candidate (100 lessons / 850 activities). No remote import is performed. The existing immutable package repository appends 1.15.0 and retains stored 1.11.0; current content is selected by semantic version. No storage namespace or learner-data schema changes.
+
+The focused browser-curriculum-upgrade test seeds real 1.11.0 package data, a scored attempt with evidence, a Writing draft, saved Writing state and course selection. It checks that upgrade writes only the package storage key, preserves every other existing key byte-for-byte, retains the complete old package, reads old results/content unchanged, remains idempotent after reload, binds revisions to 1.11.0 and new roots to 1.15.0. It also verifies exact domain totals and new Listening/Pronunciation IDs and model audio resolution. All operations use isolated in-memory storage.
+
+Upgrade validation: frozen install PASS; focused upgrade and pronunciation runtime PASS; Listening token/full-playback/transcript regressions PASS; qa:core 16/16 PASS; qa:full 52/52 PASS; qa:release PASS including TypeScript, Firebase static build and static/security QA. Candidate raw/canonical hashes and all nine committed MP3 bytes are unchanged. Build reports non-blocking large-chunk and duplicate configuration-source warnings; no build configuration change made. Owner browser QA remains pending; no deployment/import performed.
