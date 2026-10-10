@@ -13,7 +13,10 @@ for(const [id,m] of Object.entries(manifest)){
  for(const q of l.activities.filter(q=>q.type==='extended_response')){assert.equal(q.evidence_weight,0);assert.equal(q.review_mode,'assisted_ai_or_human');assert.equal(q.answer,null);}
 }
 const originalListening={"content/foundation-audio.json": "952978209d6c5e0ff6b1ec8b63d242ba6440ad60", "public/foundation-audio/LIS-A1-01-v1.mp3": "50e06a68c158f45a2f7a3e66380836ed50b3857a", "public/foundation-audio/LIS-A2-01-v1.mp3": "f807fdb98df8052fa4a7b0fbd330926235cc715b", "public/foundation-audio/LIS-A2-02-v1.mp3": "ca7c2131a9dac3ac9365fa8e1f08e1e24a740347", "public/foundation-audio/LIS-B1-01-v1.mp3": "9181ef4d347ddc3682559442ce401c068f664da8", "public/foundation-audio/LIS-B1-02-v1.mp3": "a92c5b6075758457d1c718ffeba4b9f60cd00f29"};
-for(const [p,sha] of Object.entries(originalListening)){const b=fs.readFileSync(path.join(root,p));assert.equal(crypto.createHash('sha1').update(Buffer.from(`blob ${b.length}\0`)).update(b).digest('hex'),sha,`Existing Listening file changed: ${p}`);}
+const listeningAudit=require('../content/reviews/wave6-kokoro-audio-production.json');
+const listeningManifest=require('../content/foundation-audio.json');
+for(const [id,old] of Object.entries(listeningAudit.existing))assert.deepEqual(listeningManifest[id],old.manifest);
+for(const [p,sha] of Object.entries(originalListening).filter(([p])=>p!=='content/foundation-audio.json')){const b=fs.readFileSync(path.join(root,p));assert.equal(crypto.createHash('sha1').update(Buffer.from(`blob ${b.length}\0`)).update(b).digest('hex'),sha,`Existing Listening file changed: ${p}`);}
 const service=fs.readFileSync(path.join(root,'application/academic-service.ts'),'utf8');assert.match(service,/Planning notes are not audio evidence/);assert.match(service,/l.module==='writing'\?Object.entries\(scores\)/);
 cp.execFileSync(process.env.PRAAT_PYTHON||'python3',[path.join(__dirname,'pronunciation-audio-wave5.py')],{stdio:'inherit'});
 console.log('PASS: Wave 5 pronunciation files, source parity, hash/duration, decoded audio/F0, review-only safeguards; 4 lessons / 23 activities.');

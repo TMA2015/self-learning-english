@@ -81,7 +81,7 @@ export async function foundationRequest<T=any>(url:string,body?:unknown):Promise
     if(parsed.searchParams.has('transcript'))return await service.transcript(parsed.searchParams.get('transcript')!) as T;
     if(parsed.searchParams.has('lesson')){
       const view=await service.lesson(parsed.searchParams.get('lesson')!,parsed.searchParams.get('version')??undefined);
-      return {...view,audio:view.audio?{...view.audio,url:publicPath(view.audio.url)}:null} as T;
+      return {...view,audio:view.audio?{...view.audio,url:publicPath(view.audio.url)}:null,pronunciationAudio:view.pronunciationAudio?{...view.pronunciationAudio,url:publicPath(view.pronunciationAudio.url)}:null} as T;
     }
     if(parsed.searchParams.has('audio'))throw new AcademicError('Browser-local recording playback is not enabled yet.',501);
     return await service.catalog() as T;
