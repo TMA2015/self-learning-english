@@ -8,7 +8,9 @@ Foundation practice displays native model-audio controls without play-token, com
 
 Local QA: frozen install PASS; pronunciation-runtime-audio PASS; pronunciation-audio-wave5 PASS; listening-submit-feedback and listening-retake-audio-readiness PASS; content-quality, curriculum, academic PASS; TypeScript noEmit PASS; pnpm build PASS.
 
-qa:core, qa:full and qa:release were attempted and failed because the exact content checkpoint has no such package scripts. They were not substituted or added from another branch. Full requested release gate remains BLOCKED pending separately scoped QA orchestration reconciliation.
+Local QA orchestration reconciled from 5d23e23fa7dba57f3a7c1db27cc51026bac5e35d without replaying workflows or unrelated application changes. Restored qa:core, qa:full, qa:release and their two runner scripts; adapted Firebase static/security checks to all seven Listening and two Pronunciation assets and pinned Curriculum 1.15.0 raw/canonical hashes. qa:core PASS (15 commands); qa:full PASS (51 commands); qa:release PASS (full suite, TypeScript, Firebase static production build and static/security QA). The existing public Firebase browser-key allowlist is unchanged.
+
+The static-path check exposed one runtime defect: pronunciation model URLs did not use publicPath in the browser service adapter. They now use the same base-path helper as Listening URLs; the separate pronunciation response, non-scoring playback and Listening token/completion paths remain unchanged. No GitHub workflow changes.
 
 The prior pronunciation asset test pinned the entire pre-Wave-6 Listening manifest. It now checks each of the five original manifest entries against the committed audit and retains byte-hash checks for all five original MP3s, allowing the already-approved Wave 6 additions. No content/audio edits.
 
