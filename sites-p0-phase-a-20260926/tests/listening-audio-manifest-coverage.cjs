@@ -6,9 +6,12 @@ const path=require('node:path');
 const root=path.join(__dirname,'..');
 const curriculum=require('../content/curriculum-1.11.0-candidate.json');
 const manifest=require('../content/foundation-audio.json');
-const listening=curriculum.lessons.filter(l=>l.module==='listening');
+const existing=curriculum.lessons.filter(l=>l.module==='listening');
+const wave6=require('../content/batches/vocab-reading-listening-density-wave6.json');
+const listening=[...existing,...wave6.lessons.filter(l=>l.module==='listening')];
 
-assert.equal(listening.length,5,'Curriculum 1.11.0 should contain five Listening lessons');
+assert.equal(existing.length,5,'Curriculum 1.11.0 should retain its five Listening lessons');
+assert.equal(listening.length,7,'Five existing plus two staged Wave 6 audio entries');
 for(const lesson of listening){
   const entry=manifest[lesson.id];
   assert(entry,lesson.id+' must have a real audio manifest entry');
@@ -30,6 +33,7 @@ for(const id of ['LIS-A1-01','LIS-A2-02','LIS-B1-02'])assert(manifest[id],id+' n
 console.log(JSON.stringify({
   result:'PASS',
   curriculum:'1.11.0',
+  stagedWave6Audio:2,
   listeningLessons:listening.length,
   manifestEntries:listening.map(l=>({id:l.id,duration:manifest[l.id].duration,url:manifest[l.id].url})),
   realPlaybackRequired:true,

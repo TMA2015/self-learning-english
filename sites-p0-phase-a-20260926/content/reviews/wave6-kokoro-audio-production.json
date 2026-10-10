@@ -1,0 +1,208 @@
+{
+  "starting_sha": "5a361d53d089d299bfea16850aa4ae2b3c7fe44d",
+  "existing": {
+    "LIS-A2-01": {
+      "manifest": {
+        "source": "Woman: Hello. Is the library workshop still open for registration?\nMan: Yes. It is this Saturday at ten thirty in the morning.\nWoman: Is it the workshop about growing herbs?\nMan: That's right. Please bring a small container, but we will provide the seeds and soil.\nWoman: Great. Is there a fee?\nMan: No, it is free. Please arrive ten minutes early.\nWoman: Thank you. I'll be there at ten twenty.",
+        "url": "/foundation-audio/LIS-A2-01-v1.mp3",
+        "duration": 24.804
+      },
+      "sha256": "c99b3e3c56ab3290e6c03447e1ca2c5a2f71f8339c752fc4b25726d9774d10ed"
+    },
+    "LIS-B1-01": {
+      "manifest": {
+        "source": "Host: Today we're talking about commuting. A local survey suggests that people often choose a route based on reliability, not just speed.\nGuest: Yes. A train that takes thirty minutes every day can be less stressful than a car journey that takes twenty minutes on a good day but forty-five when traffic is heavy.\nHost: What about cycling?\nGuest: It is an option for shorter journeys, although safe routes and weather matter. Employers can also help by offering secure bicycle parking or flexible start times.\nHost: So there's no single best choice for everyone?\nGuest: Exactly. The useful question is which option fits a person's needs and is practical most days.",
+        "url": "/foundation-audio/LIS-B1-01-v1.mp3",
+        "duration": 40.032
+      },
+      "sha256": "c9347e33a3e1a51bbbaa76b71b65ed6521c85d1f87a79767e810fc25565bb402"
+    },
+    "LIS-A1-01": {
+      "manifest": {
+        "source": "Teacher: Hello, students. Here is a message about the photography club. The club meets this Thursday in Room 12. The meeting starts at four o'clock and finishes at five. Please bring a pencil and your phone or camera if you have one. You do not need to bring money. The club will provide paper and photo cards. New students should arrive ten minutes early to write their names on the club list. If you cannot come this week, the next meeting is on Thursday the fourteenth.",
+        "url": "/foundation-audio/LIS-A1-01-v1.mp3",
+        "duration": 32.758
+      },
+      "sha256": "7f7b514e30f1239d29cde08fe4e7b2ee2a448460dc392b4d4f390690adb9ae34"
+    },
+    "LIS-A2-02": {
+      "manifest": {
+        "source": "Emma: Hi Ben. I'm calling about our science museum trip on Saturday. The bus was going to leave school at nine, but the driver has changed the time. It will leave at nine thirty now, so please meet at the school gate at nine fifteen. Ben: Okay. Do we still need to bring lunch? Emma: Yes. The museum café is closed for repairs, so bring a packed lunch. The school will provide water. Ben: Do we need money for the ticket? Emma: No, the teacher has already paid for the tickets. You only need money if you want to buy something in the gift shop. Ben: What time will we get back? Emma: Around three forty-five. Also, if your plans change and you cannot come, tell Ms Brown by Friday at twelve.",
+        "url": "/foundation-audio/LIS-A2-02-v1.mp3",
+        "duration": 49.058
+      },
+      "sha256": "3cbe8e37ab59d454f97852eb45e6db8a60cd5bc61aad47ce732a1eecbc898b14"
+    },
+    "LIS-B1-02": {
+      "manifest": {
+        "source": "Maya: We need to finish our presentation by Friday. The slides are almost done, but the survey chart is hard to read because I tried to show all sixty responses at once. Leo: Why don't we group similar responses into three categories? We can keep the full data in our notes in case the teacher asks about it. Maya: Good idea. I was also going to print colour copies for everyone, but that will be expensive. Leo: Let's make one large poster and share the full file online. The school printer can produce an A3 poster for free, but we have to send the file before four o'clock on Wednesday. Maya: Then I'll revise the chart tonight and send you a draft on Tuesday. Could you check it before lunch on Wednesday? Leo: Yes. I have football after school, so morning is better for me. Maya: One more thing. Twelve students skipped one survey question, and I'm worried people will think our data is incomplete. Leo: Add a note explaining that the question was optional. That makes the missing answers clear. Maya: Right. And during the presentation, let's focus on two main findings instead of reading every number.",
+        "url": "/foundation-audio/LIS-B1-02-v1.mp3",
+        "duration": 70.975
+      },
+      "sha256": "24c0c59ba28b1b87a4cba4a6f862a197f3f9d7cafd96b1516f734ac531b7dbe0"
+    }
+  },
+  "generated": {
+    "LIS-A2-03": {
+      "model": "Kokoro-82M v1.0",
+      "model_weight_sha256": "496dba118d1a58f5f3db2efc88dbdc216e0483fc89fe6e47ee1f2c53f18ad1e4",
+      "package_version": "0.9.4",
+      "inference": "local CPU, offline model cache",
+      "voices": [
+        "bf_emma",
+        "bm_george"
+      ],
+      "speed": 0.87,
+      "pause_seconds": 0.28,
+      "native_sample_rate": 24000,
+      "mp3_sample_rate": 44100,
+      "bitrate": 192000,
+      "duration": 58.566531,
+      "sha256": "9142946715f6108c8b8ea7bca13f0d253cbe4f4770d87edad9d0905b2f17aaef",
+      "script_sha256": "017696534dc9096cdc312f88e032e71b7e67e4b6a59fdb90db7ddde04e2de73b",
+      "turns": [
+        {
+          "speaker": "Maya",
+          "voice": "bf_emma",
+          "text": "Dad, I want to join one class at the sports centre this term. Badminton is on Tuesday at half past four, and climbing is on Thursday at five.",
+          "duration": 9.625
+        },
+        {
+          "speaker": "Dad",
+          "voice": "bm_george",
+          "text": "Which one costs less?",
+          "duration": 2.725
+        },
+        {
+          "speaker": "Maya",
+          "voice": "bf_emma",
+          "text": "Badminton is twenty-four pounds for six weeks. Climbing is thirty pounds, but the centre provides the climbing shoes and safety equipment.",
+          "duration": 9.275
+        },
+        {
+          "speaker": "Dad",
+          "voice": "bm_george",
+          "text": "Do you need anything for badminton?",
+          "duration": 3.4
+        },
+        {
+          "speaker": "Maya",
+          "voice": "bf_emma",
+          "text": "I need indoor sports shoes. I can borrow a racket for the first two lessons, but after that I should bring my own.",
+          "duration": 7.875
+        },
+        {
+          "speaker": "Dad",
+          "voice": "bm_george",
+          "text": "Tuesday is the day you have music club, isn’t it?",
+          "duration": 4.325
+        },
+        {
+          "speaker": "Maya",
+          "voice": "bf_emma",
+          "text": "Yes. Music finishes at four fifteen, so getting to badminton by four thirty would be difficult.",
+          "duration": 7.05
+        },
+        {
+          "speaker": "Dad",
+          "voice": "bm_george",
+          "text": "Then climbing may be easier, even though it costs more.",
+          "duration": 4.6
+        },
+        {
+          "speaker": "Maya",
+          "voice": "bf_emma",
+          "text": "I think so. Thursday is free, and I don’t need to buy special equipment at the start. I’ll choose climbing.",
+          "duration": 7.425
+        }
+      ],
+      "human_sample_qa": "OWNER PASS",
+      "human_final_qa": "OWNER PASS"
+    },
+    "LIS-B1-04": {
+      "model": "Kokoro-82M v1.0",
+      "model_weight_sha256": "496dba118d1a58f5f3db2efc88dbdc216e0483fc89fe6e47ee1f2c53f18ad1e4",
+      "package_version": "0.9.4",
+      "inference": "local CPU, offline model cache",
+      "voices": [
+        "bf_isabella",
+        "bm_lewis"
+      ],
+      "speed": 0.94,
+      "pause_seconds": 0.28,
+      "native_sample_rate": 24000,
+      "mp3_sample_rate": 44100,
+      "bitrate": 192000,
+      "duration": 80.457143,
+      "sha256": "4f515a56283db80d5342f4b6ce408b65d7a1888db6dad5b39d6c046d1c28511d",
+      "script_sha256": "3521b4f3cfd438b9a94a42f0ba81aaf754f4783f1ea8c02a2b1a4421d44b2d99",
+      "turns": [
+        {
+          "speaker": "Nina",
+          "voice": "bf_isabella",
+          "text": "We need to decide the plan for our next school podcast. I still think we should interview Ms Patel about the community garden. She can explain how students helped design it.",
+          "duration": 10.575
+        },
+        {
+          "speaker": "Omar",
+          "voice": "bm_lewis",
+          "text": "I like the topic, but she can only meet us on Wednesday after school. Our edited episode is due Friday morning.",
+          "duration": 8.675
+        },
+        {
+          "speaker": "Nina",
+          "voice": "bf_isabella",
+          "text": "That gives us Thursday to edit. It’s tight, but possible if we keep the interview short.",
+          "duration": 5.85
+        },
+        {
+          "speaker": "Omar",
+          "voice": "bm_lewis",
+          "text": "My bigger worry is the recording room. The drama club has booked it on Wednesday. We could record in the library, but there may be people walking past.",
+          "duration": 10.275
+        },
+        {
+          "speaker": "Nina",
+          "voice": "bf_isabella",
+          "text": "What if we use the small study room at the back? It isn’t completely silent, but we can put a sign on the door and sit close to the microphone.",
+          "duration": 8.675
+        },
+        {
+          "speaker": "Omar",
+          "voice": "bm_lewis",
+          "text": "That could work. I was going to suggest changing the topic, but I’d rather keep the garden interview if the sound is clear enough.",
+          "duration": 8.775
+        },
+        {
+          "speaker": "Nina",
+          "voice": "bf_isabella",
+          "text": "Let’s prepare five questions instead of eight. Then the interview should take about ten minutes, and we can start editing the same evening.",
+          "duration": 8.4
+        },
+        {
+          "speaker": "Omar",
+          "voice": "bm_lewis",
+          "text": "Okay. So we keep Ms Patel, use the study room, and make a shorter interview. If the room is too noisy when we arrive, we’ll record her answers on Thursday lunchtime instead.",
+          "duration": 12.85
+        },
+        {
+          "speaker": "Nina",
+          "voice": "bf_isabella",
+          "text": "Good. It’s not our perfect plan, but it gives us a backup.",
+          "duration": 4.1
+        }
+      ],
+      "human_sample_qa": "OWNER PASS",
+      "human_final_qa": "OWNER PASS"
+    }
+  },
+  "owner_final_qa": {
+    "status": "PASS",
+    "date": "2026-10-08",
+    "lessons": [
+      "LIS-A2-03",
+      "LIS-B1-04"
+    ],
+    "note": "Owner listened to both complete Kokoro MP3 files and passed both."
+  }
+}
