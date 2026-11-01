@@ -1,10 +1,11 @@
 name: ONE-TIME 1.18 release QA after FFmpeg fix
 on:
-  push:
-    branches:
-      - release/nov2026-content-v1.18.0
-    paths:
-      - .github/workflows/one-time-release-final-qa-20261101.yml
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Enter RUN to repeat after explicit review"
+        required: true
+        type: string
 permissions:
   contents: read
 concurrency:
@@ -12,6 +13,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   release:
+    if: ${{ github.event.inputs.confirm == 'RUN' && github.ref_name == 'release/nov2026-content-v1.18.0' }}
     runs-on: ubuntu-latest
     timeout-minutes: 25
     defaults:
