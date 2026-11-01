@@ -283,7 +283,7 @@ const aiFailureMessage=(code:string|null)=>{
   switch(code){
     case 'app-check-permission':return 'Firebase App Check or API permission rejected the request. A site administrator must check the approved domain and App Check configuration.';
     case 'quota-rate-limit':return 'The free AI request quota or rate limit was reached. Your work is saved; try again later.';
-    case 'client-timeout':case 'deadline-exceeded':return 'The AI request timed out. Your work remains saved; try again.';
+    case 'client-timeout':case 'deadline-exceeded':return 'Gemini did not respond within 60 seconds. Your work is saved. A previous request may still be finishing; avoid repeated clicks.';
     case 'backend-overload':return 'The AI service is busy. Try again later.';
     case 'invalid-response':return 'The AI response did not pass validation, so no score was assigned.';
     default:return 'The AI service did not return verified feedback. Your work remains saved for review.';
