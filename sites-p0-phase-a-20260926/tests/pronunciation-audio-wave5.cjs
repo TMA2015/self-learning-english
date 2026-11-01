@@ -1,10 +1,12 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),cp=require('node:child_process');
 const root=path.join(__dirname,'..'),batch=require('../content/batches/speaking-pronunciation-density-wave5.json'),manifest=require('../content/pronunciation-audio.json');
-assert.deepEqual(Object.keys(manifest),['PRO-A2-03','PRO-B1-02']);
+const wave5Ids=['PRO-A2-03','PRO-B1-02'];
+assert.equal(Object.keys(manifest).length,5,'Expanded pronunciation manifest must contain all five model audio files');
+for(const id of wave5Ids)assert(manifest[id],id+' missing from expanded manifest');
 assert.equal(batch.lessons.length,4);assert.equal(batch.lessons.flatMap(l=>l.activities).length,23);
 assert.equal(crypto.createHash('sha256').update(JSON.stringify(batch.lessons)).digest('hex'),'217d05b47fe4c83199987df2b23e6ec05e6d68c28d7781fe652beb388d096b14');
-for(const [id,m] of Object.entries(manifest)){
+for(const [id,m] of Object.entries(manifest).filter(([id])=>wave5Ids.includes(id))){
  const l=batch.lessons.find(l=>l.id===id);assert.equal(m.lesson_id,id);assert.deepEqual(m.source_text,l.audio_model.text);assert.equal(l.audio_model.requires_real_playback,true);assert.match(l.audio_model.fallback,/no playback means no audio-based skill evidence/i);
  assert.equal(m.url,`/pronunciation-audio/${id}-v1.mp3`);assert.equal(m.owner_sample_qa,'PASS');assert.equal(m.owner_final_qa,'PASS');assert.equal(m.owner_approved_review_sha256,m.sha256);assert.equal(m.local_inference,true);
  const file=path.join(root,'public',m.url),bytes=fs.readFileSync(file);assert(bytes.length>10000);assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),m.sha256);
