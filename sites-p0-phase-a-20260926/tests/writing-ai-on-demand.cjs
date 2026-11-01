@@ -23,6 +23,7 @@ assert(services.includes("tutor.teachWriting(draft,task")&&services.includes("tu
 assert(services.includes("status:'unavailable'")&&services.includes("scores:null,level:null"));
 assert(browser.includes("resetAIFailure")&&browser.includes("readAIFailure"));
 assert(browser.includes('await getToken(appCheckInstance)'));
+assert(read('infrastructure/ai/firebase-request-lifecycle.ts').includes('timeoutMs=60_000'),'Slow Gemini requests need sixty-second deadline');
 assert(browser.includes("SafeProviderError('app-check-permission')"));
 assert(browser.includes("maxOutputTokens:2400")&&!/generationConfig:\s*\{[^}]*temperature\s*:/s.test(browser));
 assert(!home.includes('>Private preview</span>'));
