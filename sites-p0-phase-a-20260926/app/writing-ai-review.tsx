@@ -1,5 +1,5 @@
 'use client';
-import {useEffect,useState} from 'react';
+import {useEffect,useRef,useState} from 'react';
 import {requestWritingAI,type OnDemandWritingFeedback} from '../infrastructure/browser/client-services';
 
 /** Independent learner-local feedback cache: never changes the underlying attempt grade.
@@ -14,6 +14,8 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
  kind:'draft'|'planning';enabled:boolean;sourceSample?:boolean;
 }){
  const signature=JSON.stringify([task,fields,kind]);
+ const latestSignature=useRef(signature);
+ latestSignature.current=signature;
  const storageKey='g-learning:english:ai-feedback:v1:'+reviewId.replace(/[^a-z0-9-]/gi,'')+':'+fingerprint(signature);
  const [feedback,setFeedback]=useState<OnDemandWritingFeedback|null>(null);
  const [reason,setReason]=useState('');
@@ -31,13 +33,17 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
  async function request(){
    if(busy||!enabled)return;
    setBusy(true);setReason('');
+   const requestedSignature=signature;
    try{
      const result=await requestWritingAI(task,fields,kind);
+     // The learner may edit or navigate while a request is in flight. Never
+     // display an old response as an assessment of a newer draft.
+     if(latestSignature.current!==requestedSignature)return;
      if(result.status==='validated'){
        setFeedback(result.feedback);
        try{localStorage.setItem(storageKey,JSON.stringify(result.feedback))}catch{/* storage optional */}
      }else{setFeedback(null);setReason(result.reason)}
-   }catch{setReason('AI feedback could not be completed. Your saved work is unchanged.')}
+   }catch{if(latestSignature.current===requestedSignature)setReason('AI feedback could not be completed. Your saved work is unchanged.')}
    finally{setBusy(false)}
  }
  return <section className="writing-ai-review" aria-label="Optional Gemini writing feedback">
