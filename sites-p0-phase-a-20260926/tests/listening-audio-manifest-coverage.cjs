@@ -5,11 +5,11 @@ const fs=require('node:fs');
 const path=require('node:path');
 const crypto=require('node:crypto');
 const root=path.join(__dirname,'..');
-const pkg=require('../content/curriculum-1.15.0-candidate.json');
+const pkg=require('../content/curriculum-1.18.0-candidate.json');
 const manifest=require('../content/foundation-audio.json');
 const lessons=pkg.lessons.filter(l=>l.module==='listening');
-assert.equal(lessons.length,9,'Current curriculum requires nine Listening lessons');
-assert.equal(Object.keys(manifest).length,9,'Listening manifest must cover exactly current lessons');
+assert.equal(lessons.length,18,'Current curriculum requires eighteen Listening lessons');
+assert.equal(Object.keys(manifest).length,18,'Listening manifest must cover exactly current lessons');
 for(const lesson of lessons){
  const entry=manifest[lesson.id];
  assert(entry,lesson.id+' missing manifest entry');
@@ -25,4 +25,4 @@ for(const lesson of lessons){
  assert(bytes.subarray(0,3).toString('ascii')==='ID3'||(bytes[0]===0xff&&(bytes[1]&0xe0)===0xe0),lesson.id+' invalid MP3 header');
  if(entry.sha256)assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),entry.sha256,lesson.id+' MP3 integrity');
 }
-console.log(JSON.stringify({result:'PASS',curriculum:'1.15.0',listeningLessons:lessons.length,fullCoverage:true}));
+console.log(JSON.stringify({result:'PASS',curriculum:'1.18.0',listeningLessons:lessons.length,fullCoverage:true}));
