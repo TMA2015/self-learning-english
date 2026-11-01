@@ -44,10 +44,10 @@ global.window={localStorage:storage,location:{origin:'https://example.test'}};
 
   const academic=await runtime.localAcademicRuntime();
   const catalog=await academic.service.catalog();
-  assert.equal(catalog.version,'1.15.0');
-  assert.equal(catalog.lessons.length,100,'bundled GitHub-first curriculum should be 1.15.0 / 100 lessons');
+  assert.equal(catalog.version,'1.18.0');
+  assert.equal(catalog.lessons.length,109,'bundled GitHub-first curriculum should be 1.18.0 / 109 lessons');
   const packages=await academic.academic.packages();
-  assert(packages.some(row=>row.version==='1.15.0'),'1.15.0 package must exist in local browser storage');
+  assert(packages.some(row=>row.version==='1.18.0'),'1.18.0 package must exist in local browser storage');
 
   assert(catalog.lessons.some(row=>row.id==='LIS-A1-01'),'1.11.0 must expose new A1 Listening lesson');
   assert(catalog.lessons.some(row=>row.id==='LIS-A2-02'),'1.11.0 must expose new A2 Listening lesson');
@@ -59,7 +59,7 @@ global.window={localStorage:storage,location:{origin:'https://example.test'}};
   const listening=catalog.lessons.find(row=>row.id==='LIS-A1-01');
   assert(listening,'expected reviewed A1 Listening lesson LIS-A1-01');
   const listenView=await academic.service.lesson(listening.id);
-  assert.equal(listenView.version,'1.15.0');
+  assert.equal(listenView.version,'1.18.0');
   assert.equal(listenView.lesson.activities.length,10);
   assert(listenView.audio&&listenView.audio.duration>5,'new Listening lesson must expose real audio');
 
@@ -94,7 +94,7 @@ global.window={localStorage:storage,location:{origin:'https://example.test'}};
   const writing=catalog.lessons.find(row=>row.id==='WRI-B1-02');
   assert(writing,'expected reviewed B1 Writing lesson WRI-B1-02');
   const writingView=await academic.service.lesson(writing.id);
-  assert.equal(writingView.version,'1.15.0');
+  assert.equal(writingView.version,'1.18.0');
   assert.equal(writingView.lesson.activities.length,10);
   const writingId='g1-writing-0001';
   await academic.service.start(writing.id,writingId);
