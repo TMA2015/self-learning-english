@@ -11,16 +11,18 @@ const c=read('app/writing-course-v2-c.tsx');
 const home=read('app/home-client.tsx');
 assert(component.includes("status==='validated'")&&!component.includes('Automatically graded'));
 assert(component.includes('Only clicking this button sends'));
-assert(component.includes('get AI feedback')===false); // no unintended lower-case duplicate
+assert(!component.includes('GEMINI_API_KEY')&&!component.includes('serviceAccount')); // no credential path
 assert(component.includes('Get AI feedback'));
 assert(component.includes('sourceSample')&&component.includes('provisional'));
 assert(component.includes('localStorage.setItem')&&component.includes('fingerprint(signature)'));
+assert(component.includes("latestSignature.current!==requestedSignature"),'Stale Gemini response must not grade edited text');
 assert(b.includes("<WritingAIReview")&&b.includes("week===5?'draft':'planning'"));
 assert(c.includes("<WritingAIReview")&&c.includes("sourceSample={work.source?.ownership==='sample'}"));
 assert(foundation.includes("<WritingAIReview")&&foundation.includes("attempt.status==='pending_review'"));
 assert(services.includes("tutor.teachWriting(draft,task")&&services.includes("tutor.coach('analysis',task"));
 assert(services.includes("status:'unavailable'")&&services.includes("scores:null,level:null"));
 assert(browser.includes("resetAIFailure")&&browser.includes("readAIFailure"));
+assert(browser.includes("maxOutputTokens:2400")&&browser.includes("temperature:input.temperature"));
 assert(!home.includes('>Private preview</span>'));
 assert(home.includes('✦ AI Writing · optional'));
 console.log(JSON.stringify({status:'PASS',suite:'writing-ai-on-demand',weeklyCoaching:'weeks 2–12',foundationWriting:'optional',statusTruthful:true,liveGeminiCalls:0}));
