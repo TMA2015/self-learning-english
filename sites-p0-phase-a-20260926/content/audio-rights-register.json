@@ -6,14 +6,14 @@
     {
       "asset_path": "public/foundation-audio/LIS-A1-01-v1.mp3",
       "sha256": "7f7b514e30f1239d29cde08fe4e7b2ee2a448460dc392b4d4f390690adb9ae34",
-      "model_or_engine": "NOT CONFIRMED",
-      "voice_or_processing": "NOT CONFIRMED",
-      "provenance_evidence": "Existing MP3 & manifest only; archived generation script is not proof",
+      "model_or_engine": "eSpeak+FFmpeg (identical decoded PCM reproduced with project's historical generation script; original command log unavailable)",
+      "voice_or_processing": "Project script voice/pipeline en+f3/en+m3; FFmpeg 44.1kHz mono MP3; decoded PCM reproduced exactly",
+      "provenance_evidence": "Complete sample-buffer identity after FFmpeg decode vs generated sample; verified SHA in docs/releases/2026-11-old5-listening-reproducibility.json",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Identify actual tool/voice/source creation history"
+      "remaining_rights_gate": "Original script authorship and owner approval still needed; source tool versions not independently established"
     },
     {
       "asset_path": "public/foundation-audio/LIS-A1-02-v1.mp3",
@@ -78,14 +78,14 @@
     {
       "asset_path": "public/foundation-audio/LIS-A2-02-v1.mp3",
       "sha256": "3cbe8e37ab59d454f97852eb45e6db8a60cd5bc61aad47ce732a1eecbc898b14",
-      "model_or_engine": "NOT CONFIRMED",
-      "voice_or_processing": "NOT CONFIRMED",
-      "provenance_evidence": "Existing MP3 & manifest only; archived generation script is not proof",
+      "model_or_engine": "eSpeak+FFmpeg (identical decoded PCM reproduced with project's historical generation script; original command log unavailable)",
+      "voice_or_processing": "Project script voice/pipeline en+f3/en+m3; FFmpeg 44.1kHz mono MP3; decoded PCM reproduced exactly",
+      "provenance_evidence": "Complete sample-buffer identity after FFmpeg decode vs generated sample; verified SHA in docs/releases/2026-11-old5-listening-reproducibility.json",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Identify actual tool/voice/source creation history"
+      "remaining_rights_gate": "Original script authorship and owner approval still needed; source tool versions not independently established"
     },
     {
       "asset_path": "public/foundation-audio/LIS-A2-03-v1.mp3",
@@ -150,14 +150,14 @@
     {
       "asset_path": "public/foundation-audio/LIS-B1-02-v1.mp3",
       "sha256": "24c0c59ba28b1b87a4cba4a6f862a197f3f9d7cafd96b1516f734ac531b7dbe0",
-      "model_or_engine": "NOT CONFIRMED",
-      "voice_or_processing": "NOT CONFIRMED",
-      "provenance_evidence": "Existing MP3 & manifest only; archived generation script is not proof",
+      "model_or_engine": "eSpeak+FFmpeg (identical decoded PCM reproduced with project's historical generation script; original command log unavailable)",
+      "voice_or_processing": "Project script voice/pipeline en+f3/en+m3; FFmpeg 44.1kHz mono MP3; decoded PCM reproduced exactly",
+      "provenance_evidence": "Complete sample-buffer identity after FFmpeg decode vs generated sample; verified SHA in docs/releases/2026-11-old5-listening-reproducibility.json",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Identify actual tool/voice/source creation history"
+      "remaining_rights_gate": "Original script authorship and owner approval still needed; source tool versions not independently established"
     },
     {
       "asset_path": "public/foundation-audio/LIS-B1-03-v1.mp3",
