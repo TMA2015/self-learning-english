@@ -8,7 +8,7 @@ const source=fs.readFileSync(path.join(root,'scripts/qa-free-first.mjs'),'utf8')
 function list(name){
   const m=source.match(new RegExp('const '+name+'=\\[([\\s\\S]*?)\\];'));
   if(!m)throw Error('Cannot parse '+name+' from QA runner');
-  return JSON.parse('['+m[1]+']');
+  return JSON.parse('['+m[1].replace(/,\s*$/, '')+']');
 }
 const tests=[...new Set([...list('coreTests'),...list('fullRegressionTests')])];
 const results=[];
