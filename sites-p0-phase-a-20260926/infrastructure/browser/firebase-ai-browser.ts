@@ -78,7 +78,10 @@ class FirebaseBrowserAILogicTransport implements FirebaseAILogicTransport{
         systemInstruction:input.systemInstruction,
         generationConfig:{
           responseMimeType:input.responseMimeType,
-          maxOutputTokens:1200,
+          // Structured Writing ratings need more than 1,200 tokens when
+          // including six rubric criteria and concise correction hints.
+          maxOutputTokens:2400,
+          temperature:input.temperature,
         },
       });
       const generated=await model.generateContent(JSON.stringify(input.userPayload));
