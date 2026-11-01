@@ -19,7 +19,7 @@ let tests=0;
 async function test(name,run){await run();tests++;console.log('PASS '+name)}
 const flush=async()=>{for(let i=0;i<8;i++)await Promise.resolve()};
 function deferred(){let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b});return {promise,resolve,reject}}
-function fakeClock(){let time=0,cb=null;return {now:()=>time,set:(f,ms)=>{assert.equal(ms,20000);cb=f;return 1},clear:()=>{cb=null},timeout:()=>{time+=20000;cb?.()},advance:()=>{time+=2000}}}
+function fakeClock(){let time=0,cb=null;return {now:()=>time,set:(f,ms)=>{assert.equal(ms,60000);cb=f;return 1},clear:()=>{cb=null},timeout:()=>{time+=60000;cb?.()},advance:()=>{time+=2000}}}
 const request={schemaVersion:1,purpose:'feedback',promptVersion:'1',instructions:'test',input:{studentAnswer:'private learner writing'},temperature:0};
 const valid={summary:'Clear idea',strengths:['Relevant'],improvements:['Add an example'],exercise:'Add an example.',tags:[]};
 (async()=>{
@@ -33,7 +33,7 @@ const valid={summary:'Clear idea',strengths:['Relevant'],improvements:['Add an e
   assert.deepEqual(events,[{provider:'firebase-ai-logic',classification:'backend-overload',phase:'fallback'}]);
   assert(!/SECRET|PRIVATE|writing|token=|key=/.test(JSON.stringify(events)));
  });
- for(const settles of ['resolve','reject'])await test('20s fallback holds lock until late '+settles,async()=>{
+ for(const settles of ['resolve','reject'])await test('60s fallback holds lock until late '+settles,async()=>{
   const timer=fakeClock(),events=[],d=deferred();let calls=0;
   const lifecycle=new FirebaseRequestLifecycle(e=>events.push(e),timer);
   const provider=new FirebaseAILogicProvider({available:true,model:'mock',generateJSON:()=>lifecycle.run(()=>{calls++;return d.promise})},e=>events.push(e));
