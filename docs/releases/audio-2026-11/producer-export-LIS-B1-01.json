@@ -1,0 +1,69 @@
+{
+  "schema": "g-learning-audio-production-v1",
+  "application_version": "1.2",
+  "lesson_id": "LIS-B1-01",
+  "filename": "LIS-B1-01-v1.mp3",
+  "audio_format": "mp3",
+  "sample_rate": 24000,
+  "duration_seconds": 47.6,
+  "sha256": "e14ebf40777dd8bc24ffde008c06ec1053089b9f7919c78c999be2a15e11de1e",
+  "generator": {
+    "engine": "Kokoro",
+    "package": "0.9.4",
+    "inference": "local",
+    "preset": "Listening A2",
+    "mode": "Dialogue A/B",
+    "voice_a": "bf_emma",
+    "voice_b": "bm_lewis",
+    "speed": 0.9,
+    "pause_seconds": 0.35,
+    "balance_dialogue_loudness": true
+  },
+  "turns": [
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "Today we're talking about commuting. A local survey suggests that people often choose a route based on reliability, not just speed.",
+      "duration_seconds": 8.975,
+      "applied_gain": 0.915
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_lewis",
+      "text": "Yes. A train that takes thirty minutes every day can be less stressful than a car journey that takes twenty minutes on a good day but forty-five when traffic is heavy.",
+      "duration_seconds": 11.725,
+      "applied_gain": 1.0929
+    },
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "What about cycling?",
+      "duration_seconds": 2.15,
+      "applied_gain": 0.915
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_lewis",
+      "text": "It is an option for shorter journeys, although safe routes and weather matter. Employers can also help by offering secure bicycle parking or flexible start times.",
+      "duration_seconds": 12.075,
+      "applied_gain": 1.0929
+    },
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "So there's no single best choice for everyone?",
+      "duration_seconds": 3.6,
+      "applied_gain": 0.915
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_lewis",
+      "text": "Exactly. The useful question is which option fits a person's needs and is practical most days.",
+      "duration_seconds": 7.325,
+      "applied_gain": 1.0929
+    }
+  ],
+  "source_text": "A: Today we're talking about commuting. A local survey suggests that people often choose a route based on reliability, not just speed.\nB: Yes. A train that takes thirty minutes every day can be less stressful than a car journey that takes twenty minutes on a good day but forty-five when traffic is heavy.\nA: What about cycling?\nB: It is an option for shorter journeys, although safe routes and weather matter. Employers can also help by offering secure bicycle parking or flexible start times.\nA: So there's no single best choice for everyone?\nB: Exactly. The useful question is which option fits a person's needs and is practical most days.",
+  "created_local": "2026-11-01T12:20:17",
+  "owner_audio_qa": "PENDING"
+}
