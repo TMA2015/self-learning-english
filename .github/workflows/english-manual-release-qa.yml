@@ -7,6 +7,11 @@ on:
         description: "Enter RUN to run a single bounded release test"
         required: true
         type: string
+      deploy_preview:
+        description: "After QA PASS, deploy ONLY to nov2026-v1180 Firebase preview (never live)"
+        required: true
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -49,3 +54,25 @@ jobs:
         run: node tests/nov-2026-content-preflight.cjs
       - name: Run consolidated release QA (one job only)
         run: pnpm qa:release
+
+      - name: Verify Firebase preview credential is configured
+        if: ${{ inputs.deploy_preview == true }}
+        env:
+          FIREBASE_PREVIEW_CREDENTIAL: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
+        run: |
+          if [ -z "$FIREBASE_PREVIEW_CREDENTIAL" ]; then
+            echo "Firebase Hosting service-account secret missing; no preview deployed"
+            exit 1
+          fi
+      - name: Deploy QA-passed build to Firebase preview only
+        if: ${{ inputs.deploy_preview == true }}
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
+          projectId: roadmap-toan-ai
+          target: english
+          entryPoint: sites-p0-phase-a-20260926
+          channelId: nov2026-v1180
+          expires: 7d
+          disableComment: true
+          firebaseToolsVersion: '15.32.1'
