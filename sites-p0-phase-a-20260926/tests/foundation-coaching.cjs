@@ -5,6 +5,7 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 const ui = read('app/foundation.tsx');
+const structured = read('app/structured-grammar.tsx');
 const hints = read('app/foundation-pilot-hints.ts');
 const css = read('app/globals.css');
 
@@ -33,7 +34,7 @@ assert(ui.includes('setHintSteps({});setTranscript'), 'reset on lesson change');
 const newAttempt=ui.split('async function newAttempt(')[1]?.split('const editable=')[0];
 assert(newAttempt?.includes('setHintSteps({});')&&newAttempt.includes("action:'start'"), 'reset on new attempt');
 assert(ui.includes('Hints guide your thinking; they do not check your answer or add a score.'), 'accurate unscored messaging');
-assert(ui.includes('Learning goals') && ui.includes('Understand the rule') && ui.includes('Worked examples'), 'structured teaching sections');
+assert(ui.includes('Learning goals') && ui.includes('Worked examples') && ui.includes('<StructuredGrammarNotes') && structured.includes('Learning goals') && structured.includes('TeachingBlocks') && structured.includes("s.title==='Worked examples'"), 'structured teaching sections');
 assert(ui.includes('hasLabel?e.slice(divider+3):e'), 'unlabeled legacy examples supported');
 assert(css.includes('@media(max-width:760px){.foundation-example-grid{grid-template-columns:1fr}'), 'responsive example cards');
 assert(css.includes('.foundation-hint-content'), 'hint panel styles');
