@@ -1,0 +1,93 @@
+name: ONE-TIME English lesson tutor and optional hints release
+on:
+  push:
+    branches:
+      - ops/english-tutor-hints-release-once-20261101
+    paths:
+      - .github/workflows/english-tutor-hints-release-once-20261101.yml
+permissions:
+  contents: read
+concurrency:
+  group: english-tutor-knowledge-live-20261101
+  cancel-in-progress: false
+jobs:
+  verify-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - name: Checkout one-time release
+        uses: actions/checkout@v4
+      - name: Verify immutable source, no application changes in ops commit
+        run: |
+          set -euo pipefail
+          git fetch --no-tags --depth=1 origin 29b9895803ff19372610faae2f542719f5c37067
+          test "$(git diff --name-only 29b9895803ff19372610faae2f542719f5c37067 HEAD)" = ".github/workflows/english-tutor-hints-release-once-20261101.yml"
+          echo "SOURCE_LOCK_PASS 29b9895803ff19372610faae2f542719f5c37067"
+      - name: Verify English Hosting target only
+        run: |
+          node --input-type=commonjs - <<'NODE'
+          const a=require('node:assert/strict'),fs=require('node:fs');
+          const f=JSON.parse(fs.readFileSync('firebase.json','utf8'));
+          const rc=JSON.parse(fs.readFileSync('.firebaserc','utf8'));
+          a.equal(f.hosting.target,'english');
+          a.equal(f.hosting.public,'dist/client');
+          a.equal(rc.projects.default,'roadmap-toan-ai');
+          a.deepEqual(rc.targets['roadmap-toan-ai'].hosting.english,['g-learning-english']);
+          console.log('ENGLISH_ONLY_PASS');
+          NODE
+      - name: Confirm current authorized deploy credential
+        env:
+          FIREBASE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
+        run: test -n "$FIREBASE_ACCOUNT"
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install frozen package versions
+        run: pnpm install --frozen-lockfile
+      - name: Audio QA tooling
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg
+      - name: Strict academic, app and AI QA and TypeScript production build
+        run: pnpm qa:release
+      - name: Prove default-closed helper and knowledge-only AI
+        run: |
+          node tests/writing-course-v2-a.cjs
+          node tests/english-tutor-knowledge-only.cjs
+          test -s dist/client/index.html
+          test -s dist/client/foundation-audio/LIS-A2-01-v2.mp3
+          test -s dist/client/foundation-audio/LIS-B1-01-v2.mp3
+      - name: Publish verified English build to Firebase LIVE only
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
+          projectId: roadmap-toan-ai
+          target: english
+          entryPoint: sites-p0-phase-a-20260926
+          channelId: live
+          disableComment: true
+          firebaseToolsVersion: '15.32.1'
+      - name: Validate English live homepage and sound assets
+        run: |
+          set -euo pipefail
+          sleep 15
+          root="https://g-learning-english.web.app"
+          for asset in / /foundation-audio/LIS-A2-01-v2.mp3 /foundation-audio/LIS-B1-01-v2.mp3; do
+            curl --fail --silent --show-error --location --retry 10 --retry-all-errors --retry-delay 6 --retry-max-time 100 --output /dev/null "$root$asset"
+          done
+          echo 'TUTOR_HINTS_LIVE_HTTP_PASS'
+      - name: Record release evidence
+        if: ${{ success() }}
+        run: |
+          echo "## English knowledge-only tutor and optional hints" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Immutable app commit: 29b9895803ff19372610faae2f542719f5c37067" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Full QA + build: PASS" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Live English Hosting: https://g-learning-english.web.app/" >> "$GITHUB_STEP_SUMMARY"
+          echo "- No Math, Firebase Auth, Rules or billing changes" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Teacher note: genuine response quality must be validated separately" >> "$GITHUB_STEP_SUMMARY"
