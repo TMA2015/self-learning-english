@@ -10,6 +10,9 @@ function run(command,args,env=process.env){
   if(result.status!==0)process.exit(result.status??1);
 }
 
+// Keep local pnpm qa:release self-contained, not dependent on GitHub workflow gates.
+run(process.execPath,["tests/nov-2026-content-preflight.cjs"]);
+run(process.execPath,["tests/audio-rights-release-gate.cjs"]);
 run(pnpm,["run","qa:full"]);
 run(pnpm,["exec","tsc","--noEmit","--incremental","false"]);
 
