@@ -3,7 +3,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
 const root=path.resolve(__dirname,'..'),batch=require('../content/batches/vocab-reading-listening-density-wave6.json'),manifest=require('../content/foundation-audio.json'),audit=require('../content/reviews/wave6-kokoro-audio-production.json');
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 let checks=0;const check=(name,f)=>{f();checks++;console.log('PASS '+name)};
-check('exactly nine entries: original five, Wave 6 two, approved Issue 65 two',()=>assert.deepEqual(Object.keys(manifest).sort(),[...Object.keys(audit.existing), 'LIS-A2-03','LIS-B1-04','LIS-A1-02','LIS-B1-03'].sort()));
+check('Wave 6 historical nine assets preserved in current 18-lesson manifest',()=>{const old=[...Object.keys(audit.existing), 'LIS-A2-03','LIS-B1-04','LIS-A1-02','LIS-B1-03'];assert.equal(Object.keys(manifest).length,18);for(const id of old)assert(manifest[id],id+' missing from expanded manifest')});
 check('existing five manifest entries and audio bytes unchanged',()=>{assert.equal(Object.keys(audit.existing).length,5);for(const [id,old] of Object.entries(audit.existing)){assert.deepEqual(manifest[id],old.manifest);assert.equal(hash(fs.readFileSync(path.join(root,'public',old.manifest.url))),old.sha256)}});
 for(const l of batch.lessons.filter(l=>l.module==='listening')){
  const m=manifest[l.id],a=audit.generated[l.id],file=path.join(root,'public',m.url);
