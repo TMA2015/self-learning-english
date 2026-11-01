@@ -38,6 +38,17 @@ jobs:
           test -f package.json
           test -f content/curriculum-1.18.0-candidate.json
           test -f tests/nov-2026-content-preflight.cjs
+      - name: Validate audio and content before build
+        run: node tests/nov-2026-content-preflight.cjs
+      - name: Verify Firebase preview credential is configured
+        if: ${{ inputs.deploy_preview == true }}
+        env:
+          FIREBASE_PREVIEW_CREDENTIAL: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
+        run: |
+          if [ -z "$FIREBASE_PREVIEW_CREDENTIAL" ]; then
+            echo "Firebase Hosting service-account secret missing; no preview deployed"
+            exit 1
+          fi
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -50,20 +61,9 @@ jobs:
           cache-dependency-path: sites-p0-phase-a-20260926/pnpm-lock.yaml
       - name: Install frozen dependencies exactly once
         run: pnpm install --frozen-lockfile
-      - name: Validate audio and content before build
-        run: node tests/nov-2026-content-preflight.cjs
       - name: Run consolidated release QA (one job only)
         run: pnpm qa:release
 
-      - name: Verify Firebase preview credential is configured
-        if: ${{ inputs.deploy_preview == true }}
-        env:
-          FIREBASE_PREVIEW_CREDENTIAL: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
-        run: |
-          if [ -z "$FIREBASE_PREVIEW_CREDENTIAL" ]; then
-            echo "Firebase Hosting service-account secret missing; no preview deployed"
-            exit 1
-          fi
       - name: Deploy QA-passed build to Firebase preview only
         if: ${{ inputs.deploy_preview == true }}
         uses: FirebaseExtended/action-hosting-deploy@v0
