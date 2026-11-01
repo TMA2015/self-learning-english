@@ -14,6 +14,14 @@ assert(source.includes('label={state.feedbacks[0]?"Check again":"Check my work"}
 assert(source.includes('delete feedbacks[String(stageIndex)]'),'editing a checked response must clear stale feedback');
 assert(source.includes('completed:previous.completed.filter(item=>item!==stageIndex)'),'editing a checked response must clear stale completion');
 
+const teaching=fs.readFileSync(path.join(__dirname,'..','app','writing-coach.tsx'),'utf8');
+const client=fs.readFileSync(path.join(__dirname,'..','infrastructure','browser','client-services.ts'),'utf8');
+assert(!source.includes('AI checked this step. Use your own words'),'Valid AI process guidance must not be replaced by canned feedback');
+assert(source.includes('verified?{...entry.feedback,scores:null,corrections:[]}'),'Planning feedback shows substantive Gemini guidance without fabricated grades');
+assert(source.includes('entry.evaluation?.provider==="firebase-ai-logic"'),'AI label needs actual provider provenance');
+assert(teaching.includes('<h3>Overall assessment</h3>')&&teaching.includes('<h3>What you did well</h3>')&&teaching.includes('<h3>What to improve next</h3>'),'Writing feedback must display rich model assessment');
+assert(teaching.includes('rating.revisionSummary')&&teaching.includes('rating.exerciseTag'),'Show targeted revision and practice');
+assert(client.includes('scoreNeedsReview=rating.corrections.length>0'),'Do not auto-award mastery from inconsistent perfect scores');
 console.log(JSON.stringify({
   result:'PASS',
   immediateStepFeedback:true,
