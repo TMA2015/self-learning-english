@@ -22,7 +22,7 @@ assert(foundation.includes("<WritingAIReview")&&foundation.includes("attempt.sta
 assert(services.includes("tutor.teachWriting(draft,task")&&services.includes("tutor.coach('analysis',task"));
 assert(services.includes("status:'unavailable'")&&services.includes("scores:null,level:null"));
 assert(browser.includes("resetAIFailure")&&browser.includes("readAIFailure"));
-assert(browser.includes("maxOutputTokens:2400")&&browser.includes("temperature:input.temperature"));
+assert(browser.includes("maxOutputTokens:2400")&&!/generationConfig:\\s*\\{[^}]*temperature\\s*:/s.test(browser));
 assert(!home.includes('>Private preview</span>'));
 assert(home.includes('✦ AI Writing · optional'));
 console.log(JSON.stringify({status:'PASS',suite:'writing-ai-on-demand',weeklyCoaching:'weeks 2–12',foundationWriting:'optional',statusTruthful:true,liveGeminiCalls:0}));
