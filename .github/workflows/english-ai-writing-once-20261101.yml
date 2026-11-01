@@ -27,15 +27,15 @@ jobs:
       - name: Checkout one-time branch
         uses: actions/checkout@v4
 
-      - name: Verify exact reviewed source and single-use event
+      - name: Verify exact reviewed app tree and single-use event
         env:
           EXPECTED_PARENT: 2c339a3c5df458c8c603b33fe87ff2035ad79791
         run: |
           set -euo pipefail
           test "$GITHUB_EVENT_NAME" = "push"
           test "$GITHUB_REF" = "refs/heads/ops/english-ai-writing-release-once-20261101"
-          test "$(git rev-parse HEAD^)" = "$EXPECTED_PARENT"
-          git diff --name-only HEAD^ HEAD | grep -Fx ".github/workflows/english-ai-writing-once-20261101.yml"
+          git fetch --no-tags --depth=1 origin "$EXPECTED_PARENT"
+          test "$(git diff --name-only "$EXPECTED_PARENT" HEAD)" = ".github/workflows/english-ai-writing-once-20261101.yml"
           echo "ONE_TIME_SCOPE_PASS: only CI dispatch file changed; app source matches approved candidate $EXPECTED_PARENT"
 
       - name: Verify sole target is G Learning English Hosting
