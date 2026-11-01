@@ -21,6 +21,7 @@ assert(source.includes('verified?{...entry.feedback,scores:null,corrections:[]}'
 assert(source.includes('entry.evaluation?.provider==="firebase-ai-logic"'),'AI label needs actual provider provenance');
 assert(teaching.includes('<h3>Overall assessment</h3>')&&teaching.includes('<h3>What you did well</h3>')&&teaching.includes('<h3>What to improve next</h3>'),'Writing feedback must display rich model assessment');
 assert(teaching.includes('rating.revisionSummary')&&teaching.includes('rating.exerciseTag'),'Show targeted revision and practice');
+assert(teaching.includes('safeActiveFeedback')&&teaching.includes('activeCorrectionGuidance'),'Full-model response must remain hidden');
 assert(client.includes('scoreNeedsReview=rating.corrections.length>0'),'Do not auto-award mastery from inconsistent perfect scores');
 console.log(JSON.stringify({
   result:'PASS',
