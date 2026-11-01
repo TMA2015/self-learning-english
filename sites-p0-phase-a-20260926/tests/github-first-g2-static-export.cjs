@@ -17,9 +17,9 @@ for(const relative of [
   'branding/english-app-icon.svg',
   'branding/g-learning-mark.svg',
   'foundation-audio/LIS-A1-01-v1.mp3',
-  'foundation-audio/LIS-A2-01-v1.mp3',
+  'foundation-audio/LIS-A2-01-v2.mp3',
   'foundation-audio/LIS-A2-02-v1.mp3',
-  'foundation-audio/LIS-B1-01-v1.mp3',
+  'foundation-audio/LIS-B1-01-v2.mp3',
   'foundation-audio/LIS-B1-02-v1.mp3',
 ]){
   assert(fs.existsSync(path.join(out,relative)),relative+' missing from static export');
