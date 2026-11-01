@@ -301,7 +301,7 @@ export async function requestWritingAI(task:string,fields:Record<string,string>,
     if(kind==='draft'){
       const draft=fields.draft??fields.writing??answer;
       const rating=await tutor.teachWriting(draft,task,await browserWritingContext());
-      if(rating){
+      if(rating?.evaluation?.model&&rating.evaluation.provider==='firebase-ai-logic'){
         return {status:'validated',feedback:{
           model:rating.evaluation.model,provider:'firebase-ai-logic',reviewedAt:Date.now(),
           kind,summary:rating.summary,strengths:rating.strengths.slice(0,3),
