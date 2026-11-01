@@ -66,6 +66,11 @@ jobs:
           cache-dependency-path: sites-p0-phase-a-20260926/pnpm-lock.yaml
       - name: Install frozen dependencies exactly once
         run: pnpm install --frozen-lockfile
+      - name: Install FFmpeg tools for mandatory codec checks
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg
+          ffprobe -version | head -1
       - name: Run consolidated release QA (one job only)
         run: pnpm qa:release
 
