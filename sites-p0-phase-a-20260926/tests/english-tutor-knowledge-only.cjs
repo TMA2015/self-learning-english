@@ -11,6 +11,7 @@ assert(tutor.includes("result.status==='answered'"));
 assert(bridge.includes("await getToken(appCheckInstance)"));
 assert(bridge.includes("model:config.geminiModel"));
 assert(bridge.includes("maxOutputTokens:850"));
+assert(bridge.includes("lessonLifecycle.run("));
 assert(!tutor.includes("innerHTML"));
 assert(css.includes(".english-lesson-ai-panel"));
 console.log(JSON.stringify({result:'PASS',suite:'english-tutor-knowledge-only',hasLiveGeminiProof:false,noAssessmentLeak:true}));
