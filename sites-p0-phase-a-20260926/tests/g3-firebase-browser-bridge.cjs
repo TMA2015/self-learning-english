@@ -14,7 +14,7 @@ const hosting=JSON.parse(read('firebase.json'));
 const firebaserc=JSON.parse(read('.firebaserc'));
 
 assert(config.includes("projectId:'roadmap-toan-ai'"));
-assert(config.includes("geminiModel:'gemini-3.5-flash'"));
+assert(config.includes("geminiModel:'gemini-3.8-flash'"));
 assert(config.includes("FIREBASE_HOSTING_SITE='g-learning-english'"));
 assert(bridge.includes("from 'firebase/app'"));
 assert(bridge.includes("from 'firebase/app-check'"));
@@ -39,7 +39,7 @@ console.log(JSON.stringify({
   result:'PASS',
   firebaseProject:'roadmap-toan-ai',
   hostingSite:'g-learning-english',
-  model:'gemini-3.5-flash',
+  model:'gemini-3.8-flash',
   appCheck:'Fraud Defense / reCAPTCHA Enterprise',
   appCheckDebugLocalOnly:true,
   directGeminiApiKey:false,

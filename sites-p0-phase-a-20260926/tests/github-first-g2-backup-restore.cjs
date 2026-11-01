@@ -76,92 +76,13 @@ function useStorage(storage){
   assert.equal(raw.academicRecords[0].id,attemptId);
   assert.equal(raw.courseSelection.activeCourseId,'COURSE-WRITING-12W');
 
-  // The source identity is informational only in local mode. Tamper it and prove
-  // the restore still targets the explicitly selected local browser profile.
-  raw.learnerId='untrusted-source-profile';
-  const portableText=JSON.stringify(raw);
-
-  const targetStorage=new MemoryStorage();
-  useStorage(targetStorage);
-  const targetAcademic=await runtime.localAcademicRuntime();
-  const targetLearning=await runtime.localLearningRuntime();
-
-  // Default/server restore semantics remain strict if identity bypass is not explicit.
-  const strictPreview=await restoreApp.previewLearnerRestore(
-    raw,targetLearning.learning,targetLearning.scope,targetAcademic.academic
-  );
-  assert.equal(strictPreview.valid,false);
-  assert(strictPreview.errors.some(x=>/learner ID/i.test(x)));
-
-  const preview=await backup.previewLocalBackup(portableText);
-  assert.equal(preview.valid,true);
-  assert.equal(preview.sourceLearnerIdIgnored,true);
-  assert.equal(preview.state,'add');
-  assert.equal(preview.academic.add,1);
-  assert.equal(preview.academic.conflict,0);
-  assert.equal(preview.courseSelection,'add');
-
-  const restored=await backup.restoreLocalBackup(portableText,preview.token,true);
-  assert.equal(restored.ok,true);
-  const safety=JSON.parse(restored.preRestoreBackup.text);
-  assert.deepEqual(safety.state,{},'automatic pre-restore backup must capture target before mutation');
-
-  const restoredState=await targetLearning.service.readState();
-  assert.equal(restoredState.writing,'Portable local draft');
-  assert.deepEqual(restoredState.customLegacyField,{keep:true});
-  const restoredCourses=await runtime.localCourseRuntime();
-  assert.equal((await restoredCourses.load()).activeCourseId,'COURSE-WRITING-12W');
-  const targetAttempts=await targetAcademic.academic.attempts('local-family');
-  assert.equal(targetAttempts.length,1);
-  assert.equal(targetAttempts[0].id,attemptId);
-  assert.equal(targetAttempts[0].status,'scored');
-
-  // Exact repeat is safe and idempotent.
-  const second=await backup.previewLocalBackup(portableText);
-  assert.equal(second.valid,true);
-  assert.equal(second.state,'same');
-  assert.equal(second.academic.add,0);
-  assert.equal(second.academic.skip,1);
-  assert.equal(second.courseSelection,'same');
-  await backup.restoreLocalBackup(portableText,second.token,true);
-  assert.equal((await targetAcademic.academic.attempts('local-family')).length,1);
-
-  // Different local learner state is never silently overwritten.
-  const conflictStorage=new MemoryStorage();
-  useStorage(conflictStorage);
-  const conflictLearning=await runtime.localLearningRuntime();
-  await conflictLearning.service.saveState({writing:'Newer local work'});
-  const beforeConflict=await conflictLearning.service.readState();
-  const conflict=await backup.previewLocalBackup(portableText);
-  assert.equal(conflict.valid,false);
-  assert.equal(conflict.state,'conflict');
-  assert(conflict.errors.some(x=>/different learner state/i.test(x)));
-  await assert.rejects(
-    ()=>backup.restoreLocalBackup(portableText,conflict.token,true),
-    /different learner state/i
-  );
-  assert.deepEqual(await conflictLearning.service.readState(),beforeConflict,'blocked restore must not mutate target state');
-
+  // MVP restore is deliberately disabled, including otherwise valid current-version exports.
+  const before=new Map(sourceStorage.map);
+  await assert.rejects(()=>backup.previewLocalBackup(exported.text),/temporarily unavailable/);
+  await assert.rejects(()=>backup.restoreLocalBackup(exported.text,'unused',true),/temporarily unavailable/);
+  assert.deepEqual(sourceStorage.map,before);
   assert.throws(()=>backup.parseLocalBackup('{not json'),/valid JSON/);
   assert.throws(()=>backup.parseLocalBackup('{}'),/not a supported/);
-  assert.throws(
-    ()=>backup.parseLocalBackup(' '.repeat(backup.LOCAL_BACKUP_MAX_BYTES+1)),
-    /too large/
-  );
-
-  console.log(JSON.stringify({
-    result:'PASS',
-    format:'g-learning-english-backup-v1.json',
-    export:true,
-    preview:true,
-    sourceIdentityIgnoredOnlyInLocalMode:true,
-    strictIdentityDefaultPreserved:true,
-    preRestoreBackup:true,
-    exactRepeatIdempotent:true,
-    conflictNoOverwrite:true,
-    malformedRejected:true,
-    activeCourseRoundTrip:true,
-    maxBytes:backup.LOCAL_BACKUP_MAX_BYTES,
-    curriculum:'1.11.0'
-  }));
+  assert.throws(()=>backup.parseLocalBackup(' '.repeat(backup.LOCAL_BACKUP_MAX_BYTES+1)),/too large/);
+  console.log('PASS: current local export preserved; restore disabled before mutation; malformed/oversize input validation retained.');
 })().catch(error=>{console.error(error);process.exit(1)});

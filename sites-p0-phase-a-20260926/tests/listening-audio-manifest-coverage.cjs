@@ -1,37 +1,28 @@
 'use strict';
+// Issue #65: validate the current curriculum, never a historical Listening subset.
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
-
+const crypto=require('node:crypto');
 const root=path.join(__dirname,'..');
-const curriculum=require('../content/curriculum-1.11.0-candidate.json');
+const pkg=require('../content/curriculum-1.15.0-candidate.json');
 const manifest=require('../content/foundation-audio.json');
-const listening=curriculum.lessons.filter(l=>l.module==='listening');
-
-assert.equal(listening.length,5,'Curriculum 1.11.0 should contain five Listening lessons');
-for(const lesson of listening){
-  const entry=manifest[lesson.id];
-  assert(entry,lesson.id+' must have a real audio manifest entry');
-  assert.equal(entry.source,lesson.audio_asset?.source_text,lesson.id+' manifest source must match reviewed source text exactly');
-  assert.equal(lesson.audio_asset?.requires_real_playback,true,lesson.id+' must require real playback');
-  assert.equal(lesson.audio_asset?.transcript_reveal,'after_submission',lesson.id+' transcript must remain hidden until submission');
-  assert.equal(typeof entry.duration,'number');
-  assert(entry.duration>5,lesson.id+' duration must be plausible');
-  assert.match(entry.url,/^\/foundation-audio\/[A-Z0-9-]+-v\d+\.mp3$/);
-  const file=path.join(root,'public',entry.url.replace(/^\//,''));
-  assert(fs.existsSync(file),lesson.id+' MP3 is missing: '+file);
-  const bytes=fs.readFileSync(file);
-  assert(bytes.length>10000,lesson.id+' MP3 is unexpectedly small');
-  const hasId3=bytes.subarray(0,3).toString('ascii')==='ID3';
-  const frameSync=bytes[0]===0xff&&(bytes[1]&0xe0)===0xe0;
-  assert(hasId3||frameSync,lesson.id+' does not look like an MP3');
+const lessons=pkg.lessons.filter(l=>l.module==='listening');
+assert.equal(lessons.length,9,'Current curriculum requires nine Listening lessons');
+assert.equal(Object.keys(manifest).length,9,'Listening manifest must cover exactly current lessons');
+for(const lesson of lessons){
+ const entry=manifest[lesson.id];
+ assert(entry,lesson.id+' missing manifest entry');
+ assert.equal(entry.source,lesson.audio_asset?.source_text,lesson.id+' source-text parity');
+ assert.equal(lesson.audio_asset?.requires_real_playback,true);
+ assert.equal(lesson.audio_asset?.transcript_reveal,'after_submission');
+ assert(Number.isFinite(entry.duration)&&entry.duration>5,lesson.id+' invalid duration');
+ assert.equal(entry.url,'/foundation-audio/'+lesson.id+'-v1.mp3');
+ const file=path.join(root,'public',entry.url.slice(1));
+ assert(fs.existsSync(file),lesson.id+' missing real MP3');
+ const bytes=fs.readFileSync(file);
+ assert(bytes.length>10000,lesson.id+' MP3 unexpectedly small');
+ assert(bytes.subarray(0,3).toString('ascii')==='ID3'||(bytes[0]===0xff&&(bytes[1]&0xe0)===0xe0),lesson.id+' invalid MP3 header');
+ if(entry.sha256)assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),entry.sha256,lesson.id+' MP3 integrity');
 }
-for(const id of ['LIS-A1-01','LIS-A2-02','LIS-B1-02'])assert(manifest[id],id+' new Wave 2 audio must exist');
-console.log(JSON.stringify({
-  result:'PASS',
-  curriculum:'1.11.0',
-  listeningLessons:listening.length,
-  manifestEntries:listening.map(l=>({id:l.id,duration:manifest[l.id].duration,url:manifest[l.id].url})),
-  realPlaybackRequired:true,
-  transcriptAfterSubmission:true
-}));
+console.log(JSON.stringify({result:'PASS',curriculum:'1.15.0',listeningLessons:lessons.length,fullCoverage:true}));

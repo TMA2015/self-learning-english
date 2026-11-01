@@ -1,0 +1,927 @@
+{
+  "activities": 153,
+  "variants": 205,
+  "exactContextActivities": 143,
+  "ordinaryOnlyActivities": 10,
+  "negativeChecks": 1312,
+  "coverage": [
+    {
+      "id": "GRA-A1-01-Q3",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-01-Q5",
+      "module": "grammar",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-01-Q8",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-01-Q10",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-02-Q3",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-02-Q5",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-02-Q8",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-02-Q10",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-03-Q2",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-03-Q4",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-03-Q7",
+      "module": "grammar",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-03-Q9",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A1-01-Q3",
+      "module": "vocabulary",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A1-01-Q6",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A1-02-Q2",
+      "module": "vocabulary",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A1-02-Q5",
+      "module": "vocabulary",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A1-02-Q8",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-01-Q3",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-01-Q5",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-01-Q8",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-01-Q10",
+      "module": "grammar",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-01-Q3",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-01-Q6",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A2-01-Q3",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A2-01-Q9",
+      "module": "vocabulary",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A2-01-Q10",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A2-01-Q11",
+      "module": "vocabulary",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-B1-01-Q3",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-04-Q2",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-04-Q4",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-04-Q6",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-04-Q9",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-05-Q2",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-05-Q4",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-05-Q6",
+      "module": "grammar",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-05-Q9",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-06-Q2",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-06-Q5",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-06-Q8",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-06-Q10",
+      "module": "grammar",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A1-03-Q3",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A1-03-Q6",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-07-Q2",
+      "module": "grammar",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-07-Q4",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-07-Q6",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-07-Q8",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-07-Q10",
+      "module": "grammar",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-02-Q2",
+      "module": "grammar",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-02-Q4",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-02-Q6",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-02-Q8",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-02-Q10",
+      "module": "grammar",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-03-Q2",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-03-Q4",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": false
+    },
+    {
+      "id": "GRA-A2-03-Q6",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": false
+    },
+    {
+      "id": "GRA-A2-03-Q8",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-03-Q10",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": false
+    },
+    {
+      "id": "GRA-A2-04-Q2",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-04-Q4",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-04-Q6",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-04-Q8",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-04-Q10",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A2-02-Q2",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": false
+    },
+    {
+      "id": "VOC-A2-02-Q7",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-08-Q2",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": false
+    },
+    {
+      "id": "GRA-A1-08-Q4",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-08-Q6",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-08-Q8",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-08-Q10",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-08-Q12",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-08-Q14",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-05-Q2",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-05-Q4",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-05-Q6",
+      "module": "grammar",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-05-Q8",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-05-Q10",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-05-Q12",
+      "module": "grammar",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-05-Q14",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-06-Q2",
+      "module": "grammar",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-06-Q4",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-06-Q6",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-06-Q8",
+      "module": "grammar",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-06-Q10",
+      "module": "grammar",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-06-Q12",
+      "module": "grammar",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-06-Q14",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A1-04-Q2",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A1-04-Q5",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A1-04-Q8",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A2-03-Q2",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A2-03-Q5",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A2-03-Q8",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A2-03-Q11",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A2-03-Q12",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-09-Q3",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-09-Q6",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-10-Q3",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-10-Q6",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-11-Q3",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-11-Q6",
+      "module": "grammar",
+      "variants": 3,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-12-Q4",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A1-12-Q7",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-07-Q2",
+      "module": "grammar",
+      "variants": 3,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-07-Q5",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": false
+    },
+    {
+      "id": "GRA-A2-07-Q6",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": false
+    },
+    {
+      "id": "GRA-A2-07-Q10",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-08-Q5",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-08-Q9",
+      "module": "grammar",
+      "variants": 3,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-09-Q3",
+      "module": "grammar",
+      "variants": 3,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-09-Q5",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-09-Q7",
+      "module": "grammar",
+      "variants": 3,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-09-Q10",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-10-Q5",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-10-Q6",
+      "module": "grammar",
+      "variants": 3,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-11-Q6",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-11-Q7",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-12-Q5",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-12-Q6",
+      "module": "grammar",
+      "variants": 3,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-13-Q5",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-13-Q8",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-14-Q4",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-14-Q5",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-15-Q5",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-15-Q6",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-16-Q5",
+      "module": "grammar",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-A2-16-Q6",
+      "module": "grammar",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-02-Q5",
+      "module": "grammar",
+      "variants": 3,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-02-Q7",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-02-Q9",
+      "module": "grammar",
+      "variants": 3,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-03-Q3",
+      "module": "grammar",
+      "variants": 3,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-03-Q8",
+      "module": "grammar",
+      "variants": 3,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-04-Q5",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-04-Q10",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-05-Q5",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-05-Q6",
+      "module": "grammar",
+      "variants": 3,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-06-Q2",
+      "module": "grammar",
+      "variants": 3,
+      "exactContext": false
+    },
+    {
+      "id": "GRA-B1-06-Q7",
+      "module": "grammar",
+      "variants": 3,
+      "exactContext": false
+    },
+    {
+      "id": "GRA-B1-07-Q4",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-07-Q7",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": false
+    },
+    {
+      "id": "GRA-B1-08-Q3",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-08-Q7",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-09-Q2",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-09-Q9",
+      "module": "grammar",
+      "variants": 2,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-10-Q4",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-10-Q8",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-11-Q4",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-11-Q7",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "GRA-B1-12-Q4",
+      "module": "grammar",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-B1-02-Q6",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-B1-02-Q9",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-B1-03-Q4",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-B1-03-Q10",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-A2-04-Q7",
+      "module": "vocabulary",
+      "variants": 1,
+      "exactContext": true
+    },
+    {
+      "id": "VOC-B1-04-Q7",
+      "module": "vocabulary",
+      "variants": 2,
+      "exactContext": true
+    }
+  ]
+}

@@ -23,11 +23,15 @@ function readJSON<T>(storage:BrowserKeyValueStorage,key:string,fallback:T):T {
   const raw=storage.getItem(key);
   if(raw===null)return clone(fallback);
   try{return JSON.parse(raw) as T}
-  catch{throw new Error('Local learning data is corrupted. Restore a known-good backup instead of overwriting it.')}
+  catch{throw new Error('Local learning data is corrupted. Preserve this browser data and contact the project owner; do not clear or overwrite it.')}
 }
 
 function writeJSON(storage:BrowserKeyValueStorage,key:string,value:unknown){
-  storage.setItem(key,JSON.stringify(value));
+  try{storage.setItem(key,JSON.stringify(value))}
+  catch(error){
+    if(error instanceof Error&&error.name==='QuotaExceededError')throw new Error('Could not save: this browser has no storage space available. This write did not complete. Keep your current work open and copy it before leaving.');
+    throw error;
+  }
 }
 
 function scopeKey(prefix:string,scope:Scope,bucket:string){
@@ -211,7 +215,7 @@ export class BrowserLocalCourseSelectionRepository{
     if(raw===null)return emptySelection();
     let value:CourseSelection;
     try{value=JSON.parse(raw) as CourseSelection}
-    catch{throw new Error('Local course selection is corrupted. Restore a known-good backup.')}
+    catch{throw new Error('Local course selection is corrupted. Preserve this browser data and contact the project owner; do not clear or overwrite it.')}
     if(
       value.courseV1!==1||
       !Number.isSafeInteger(value.revision)||value.revision<1||

@@ -13,14 +13,40 @@ for(const relative of [
   'branding/english-app-icon.svg',
   'branding/g-learning-mark.svg',
   'foundation-audio/LIS-A1-01-v1.mp3',
+  'foundation-audio/LIS-A1-02-v1.mp3',
+  'foundation-audio/LIS-B1-03-v1.mp3',
   'foundation-audio/LIS-A2-01-v1.mp3',
   'foundation-audio/LIS-A2-02-v1.mp3',
   'foundation-audio/LIS-B1-01-v1.mp3',
   'foundation-audio/LIS-B1-02-v1.mp3',
+  'foundation-audio/LIS-A2-03-v1.mp3',
+  'foundation-audio/LIS-B1-04-v1.mp3',
+  'pronunciation-audio/PRO-A2-01-v1.mp3',
+  'pronunciation-audio/PRO-A2-02-v1.mp3',
+  'pronunciation-audio/PRO-A2-03-v1.mp3',
+  'pronunciation-audio/PRO-B1-01-v1.mp3',
+  'pronunciation-audio/PRO-B1-02-v1.mp3',
 ]){
   assert(fs.existsSync(path.join(out,relative)),relative+' missing from Firebase Hosting build');
 }
 
+for(const [name,manifest] of Object.entries({listening:require('../content/foundation-audio.json'),pronunciation:require('../content/pronunciation-audio.json')})){
+ for(const m of Object.values(manifest)){const relative=m.url.replace(/^\//,'');assert(fs.readFileSync(path.join(out,relative)).equals(fs.readFileSync(path.join(root,'public',relative))),name+' built asset must be byte-identical');}
+}
+const crypto=require('node:crypto');
+const diagnosticManifest=require('../content/diagnostic-audio-manifest.json');
+assert.equal(Object.keys(diagnosticManifest).length,15,'Diagnostic must have 15 MP3 mappings');
+for(const [taskId,m] of Object.entries(diagnosticManifest)){
+ const relative=m.url.replace(/^\//,'');
+ const sourceFile=path.join(root,'public',relative),builtFile=path.join(out,relative);
+ assert(fs.existsSync(sourceFile)&&fs.existsSync(builtFile),taskId+': diagnostic MP3 missing from build');
+ const bytes=fs.readFileSync(builtFile);
+ assert(bytes.equals(fs.readFileSync(sourceFile)),taskId+': diagnostic MP3 changed during build');
+ assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),m.sha256,taskId+': diagnostic audio SHA-256 mismatch');
+}
+const future=require('../content/curriculum-1.18.0-candidate.json');
+assert.equal(future.lessons.length,109);assert.equal(future.lessons.flatMap(l=>l.activities).length,913);
+const raw=fs.readFileSync(path.join(root,'content/curriculum-1.15.0-candidate.json'));const canonical=v=>Array.isArray(v)?v.map(canonical):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,canonical(v[k])])):v;const sha=v=>crypto.createHash('sha256').update(v).digest('hex');assert.equal(sha(raw),'981a7273a9158c9e53a0e3336de1a88892024f617330d797d534f9e293dc4426');assert.equal(sha(JSON.stringify(canonical(JSON.parse(raw)))),'66663bb61cf60b266d25e8abd890e81ad27398d3ebee9b7cd5cd211de878b1e8');
 const html=fs.readFileSync(path.join(out,'index.html'),'utf8');
 assert(!html.includes('/self-learning-english/self-learning-english/'),'Firebase build must not duplicate a GitHub Pages base path');
 
@@ -37,6 +63,7 @@ assert(client.includes("if(!browserLearningEnabled())return jsonFetch('/api/eval
 assert(client.includes("if(!browserLearningEnabled())return jsonFetch('/api/practice'"),'Sites mini-practice API fallback must remain');
 assert(client.includes('publicPath(view.audio.url)'),'Listening audio must pass through the static public-path helper');
 
+assert(client.includes('publicPath(view.pronunciationAudio.url)'),'Pronunciation audio must use publicPath');
 const firebaseConfig=fs.readFileSync(path.join(root,'firebase.json'),'utf8');
 const firebase=JSON.parse(firebaseConfig);
 assert.equal(firebase.hosting?.target,'english');
@@ -58,6 +85,7 @@ for(const file of textAssets){
     assert(allowedPublicFirebaseWebApiKeys.has(key),'Unexpected Google API key-shaped value found in '+file);
   }
   assert(!/(?:^|[^A-Za-z0-9])sk-(?:proj-|svcacct-)?[A-Za-z0-9_-]{20,}/.test(text),'OpenAI API key-shaped secret found in '+file);
+  assert(!/-----BEGIN (?:RSA |EC )?PRIVATE KEY-----|\"type\"\s*:\s*\"service_account\"/.test(text),'Service-account/private-key material found in '+file);
   assert(!/GEMINI_API_KEY\s*[=:]/.test(text),'Direct Gemini API key configuration found in '+file);
   assert(!/generativelanguage\.googleapis\.com/.test(text),'Browser must not call Gemini Developer API directly: '+file);
 }
@@ -66,8 +94,8 @@ console.log(JSON.stringify({
   result:'PASS',
   output:'dist/client',
   hosting:'g-learning-english',
-  curriculum:'1.11.0',
-  staticAudioFiles:5,
+  curriculum:'1.18.0',
+  staticAudioFiles:38,
   criticalBrowserWritingServerFree:true,
   secretShapeScan:true,
   publicFirebaseWebApiKeyAllowlisted:true,

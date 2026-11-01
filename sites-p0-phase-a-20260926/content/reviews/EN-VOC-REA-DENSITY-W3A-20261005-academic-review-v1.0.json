@@ -1,0 +1,60 @@
+{
+  "format": "self-learning-english.academic-review-v1",
+  "schema_version": "1.0",
+  "packet_id": "EN-VOC-REA-DENSITY-W3A-20261005",
+  "batch_id": "VOCAB-READING-DENSITY-WAVE3A-20261005",
+  "base_curriculum": "1.11.0",
+  "proposed_curriculum": "1.12.0",
+  "reviewer": "NotebookLM independent academic review",
+  "review_rounds": 1,
+  "final_verdict": "PASS",
+  "scope": {
+    "lessons": 3,
+    "activities": 24,
+    "lesson_ids": [
+      "VOC-A2-04",
+      "VOC-B1-04",
+      "REA-A2-05"
+    ]
+  },
+  "academic_summary": {
+    "grammar_accuracy": "PASS",
+    "naturalness": "PASS",
+    "ambiguity_and_determinism": "PASS",
+    "cefr_targeting": "PASS",
+    "explanations": "PASS",
+    "vietnamese_support": "PASS",
+    "distractors": "PASS",
+    "skill_tags": "PASS",
+    "lesson_contract": "PASS",
+    "originality_and_safety": "PASS"
+  },
+  "focus_checks": {
+    "adjective_preposition_collocations": "PASS",
+    "evidence_change_verbs": "PASS",
+    "reading_factual_grounding": "PASS",
+    "reading_cognitive_tag_alignment": "PASS"
+  },
+  "reviewed_existing_tags": [
+    "vocabulary.collocations",
+    "vocabulary.meaning_in_context",
+    "reading.gist",
+    "reading.detail",
+    "reading.inference",
+    "reading.vocabulary_in_context"
+  ],
+  "new_runtime_tags": [],
+  "safeguards": {
+    "objective_answer_determinism": true,
+    "automatic_cefr_claim": false
+  },
+  "release_boundary": {
+    "import_authorized": false,
+    "deploy_authorized": false,
+    "next_steps": [
+      "combine with independently passed Wave 3B",
+      "compose immutable 1.12.0 candidate",
+      "run schema/content/regression/import-preview gates"
+    ]
+  }
+}

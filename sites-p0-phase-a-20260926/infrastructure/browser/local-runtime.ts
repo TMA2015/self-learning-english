@@ -1,4 +1,4 @@
-import curriculum1110 from '../../content/curriculum-1.11.0-candidate.json';
+import curriculum1180 from '../../content/curriculum-1.18.0-candidate.json';
 import {academicService,sourceDigest} from '../../application/academic-service';
 import {learningService} from '../../application/learning-service';
 import {mapSeed,validateSeed,type Seed} from '../../domain/academic';
@@ -8,7 +8,7 @@ import {BrowserLocalAcademicRepository,BrowserLocalCourseSelectionRepository,Bro
 
 export const LOCAL_OWNER_ID='local-family';
 export const LOCAL_LEARNER_ID='primary';
-const CURRICULUM_IMPORTED_AT=Date.parse('2026-10-04T00:00:00.000Z');
+const CURRICULUM_IMPORTED_AT=Date.parse('2026-10-13T00:00:00.000Z');
 
 let cached:{
   storage:BrowserKeyValueStorage;
@@ -36,7 +36,7 @@ function repositories(){
 
 async function ensureCurriculum(){
   const {academic}=repositories();
-  const source=curriculum1110 as unknown as Seed;
+  const source=curriculum1180 as unknown as Seed;
   const errors=validateSeed(source);
   if(errors.length)throw new Error('Bundled curriculum is invalid: '+errors.join(' '));
   const current=(await academic.packages()).find(row=>row.version===source.schema_version);

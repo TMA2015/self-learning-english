@@ -1,0 +1,92 @@
+{
+  "listen-1": {
+    "url": "/diagnostic-audio/DIAG-LIS-01-v1.mp3",
+    "duration": 8.675,
+    "sha256": "5bbb1a2765671524e511a04495ec78ddb62ffda37b8c50f723ca7f4d87ece3e3",
+    "version": "DIAG-LIS-KOKORO-v1"
+  },
+  "listen-2": {
+    "url": "/diagnostic-audio/DIAG-LIS-02-v1.mp3",
+    "duration": 9.025,
+    "sha256": "9089df5528e2751e1e0a243180b45f564755e2cb4bacd4d977d3319a84428a6d",
+    "version": "DIAG-LIS-KOKORO-v1"
+  },
+  "listen-3": {
+    "url": "/diagnostic-audio/DIAG-LIS-03-v1.mp3",
+    "duration": 11.125,
+    "sha256": "d4ce29e4b339a2889c9f01f61dbe9cea1e3530bef553c135e96806e94dc7f791",
+    "version": "DIAG-LIS-KOKORO-v1"
+  },
+  "listen-4": {
+    "url": "/diagnostic-audio/DIAG-LIS-04-v1.mp3",
+    "duration": 10.925,
+    "sha256": "61ae474f0f69d3dcf244462abe49dfbd141fad071f534b11dddc7de9dd5f1889",
+    "version": "DIAG-LIS-KOKORO-v1"
+  },
+  "core-listen-gist": {
+    "url": "/diagnostic-audio/DIAG-LIS-05-v1.mp3",
+    "duration": 16.225,
+    "sha256": "8767372e2b413430bddcf612435091740ba61c89d79cbf2a9795c30b8d35f52f",
+    "version": "DIAG-LIS-KOKORO-v1"
+  },
+  "core-listen-detail": {
+    "url": "/diagnostic-audio/DIAG-LIS-06-v1.mp3",
+    "duration": 6.9,
+    "sha256": "c3159ae2fc08cc45a2b6979f626adb7ed4ef998583ea7fe76dd0d141a247110a",
+    "version": "DIAG-LIS-KOKORO-v1"
+  },
+  "core-listen-intent-1": {
+    "url": "/diagnostic-audio/DIAG-LIS-07-v1.mp3",
+    "duration": 3.025,
+    "sha256": "f13af239abb3fd6e4f969bd9b0f718517611e4cd8dcf4f3392f8d69340d8ef48",
+    "version": "DIAG-LIS-KOKORO-v1"
+  },
+  "core-listen-intent-2": {
+    "url": "/diagnostic-audio/DIAG-LIS-08-v1.mp3",
+    "duration": 5.575,
+    "sha256": "7cc8c8e197aa441f3046952d9681633d75faf2ead36573216a42bf03bc65acd3",
+    "version": "DIAG-LIS-KOKORO-v1"
+  },
+  "core-listen-intent-3": {
+    "url": "/diagnostic-audio/DIAG-LIS-09-v1.mp3",
+    "duration": 10.775,
+    "sha256": "87047a3a60943ec0c64cfcddc1ce330dae562b8e0d0282314c18e4103aa14c78",
+    "version": "DIAG-LIS-KOKORO-v1"
+  },
+  "core-listen-speech-1": {
+    "url": "/diagnostic-audio/DIAG-LIS-10-v1.mp3",
+    "duration": 2.275,
+    "sha256": "cdc6313befc3a7f43a958eb6852e5e97b3c09fd61d180f0ae0f8ffd0a4584837",
+    "version": "DIAG-LIS-KOKORO-v1"
+  },
+  "core-listen-speech-2": {
+    "url": "/diagnostic-audio/DIAG-LIS-11-v1.mp3",
+    "duration": 2.85,
+    "sha256": "7053e1e3b8bbaac6a9afb9d495e431307eec6af4a254e13071ca9df861c924e0",
+    "version": "DIAG-LIS-KOKORO-v1"
+  },
+  "core-listen-speech-3": {
+    "url": "/diagnostic-audio/DIAG-LIS-12-v1.mp3",
+    "duration": 3.4,
+    "sha256": "aa481eaf8f5eec27946b31af42be20a579245acd888417a3d05d300e0abb29b4",
+    "version": "DIAG-LIS-KOKORO-v1"
+  },
+  "core-listen-vocab-1": {
+    "url": "/diagnostic-audio/DIAG-LIS-13-v1.mp3",
+    "duration": 3.75,
+    "sha256": "e517f70ff9d4420ae0abc8d62aa7e1686779b2bb01b2b335faabd8342f085e8f",
+    "version": "DIAG-LIS-KOKORO-v1"
+  },
+  "core-listen-vocab-2": {
+    "url": "/diagnostic-audio/DIAG-LIS-14-v1.mp3",
+    "duration": 4.825,
+    "sha256": "6b2c326c7b28b98c18ab61a16343b23d0b7d17f7af204bf69def8778e3d30146",
+    "version": "DIAG-LIS-KOKORO-v1"
+  },
+  "core-listen-vocab-3": {
+    "url": "/diagnostic-audio/DIAG-LIS-15-v1.mp3",
+    "duration": 9.05,
+    "sha256": "e316426de8fac9a873b1a6e9379d54ad3a5b5f99bc8eed31040998d611fc9682",
+    "version": "DIAG-LIS-KOKORO-v1"
+  }
+}

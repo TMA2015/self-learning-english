@@ -1,0 +1,36 @@
+{
+  "result": "PASS",
+  "mc": 674,
+  "permutations": 16176,
+  "attempts": 100,
+  "distribution": [
+    16761,
+    16998,
+    16789,
+    16852
+  ],
+  "preview": {
+    "add": 0,
+    "update": 12,
+    "skip": 88,
+    "conflict": 0
+  },
+  "changedLessons": [
+    "GRA-A2-05",
+    "GRA-A2-06",
+    "GRA-A2-11",
+    "GRA-A2-14",
+    "GRA-B1-03",
+    "WRI-B1-02",
+    "WRI-A2-04",
+    "WRI-B1-03",
+    "SPE-A2-02",
+    "SPE-B1-02",
+    "SPE-A1-01",
+    "SPE-B1-03"
+  ],
+  "version": "1.17.0",
+  "legacy": true,
+  "quota": true,
+  "canonicalGrading": true
+}

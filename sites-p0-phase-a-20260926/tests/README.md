@@ -1,22 +1,17 @@
 # Checks
 
-Self-Learning English uses a **CI-free-first** QA model for the private repository.
-
-Run from `sites-p0-phase-a-20260926/`:
+Run from the repository root:
 
 ```sh
-pnpm qa:core
-pnpm qa:full
-pnpm qa:release
+node tests/run.cjs
+node node_modules/typescript/bin/tsc --noEmit
 ```
 
-- `qa:core` runs the high-value daily regression set without building.
-- `qa:full` runs the preserved historical/current regression set without GitHub-hosted Actions.
-- `qa:release` runs full QA, TypeScript, a Firebase Hosting static build, audio/static-asset checks, and browser-bundle secret/direct-Gemini-call checks.
-
-Individual tests remain available under `tests/`. Retiring a historical workflow does **not** retire its underlying tests.
-
-`run.cjs` still compiles domain/application/provider contracts into ignored local test output and runs adaptive simulations and portability contracts without the Sites runtime.
+`run.cjs` compiles domain/application/provider contracts into ignored local test output
+and runs adaptive simulations and portability contracts without the Sites runtime.
+See `VALIDATION.md` for real API/D1 integration results and limitations, and
+`PORTABILITY.md` for storage, authentication, provider and export/import boundaries.
 
 Administrator tools: Parent View → Administrator / developer tools.
-Missing `ADMIN_EMAILS` grants no administrator access. The production owner is configured separately in server environment settings; no role is granted by UI state.
+Missing `ADMIN_EMAILS` grants no administrator access. The production owner is
+configured separately in server environment settings; no role is granted by UI state.

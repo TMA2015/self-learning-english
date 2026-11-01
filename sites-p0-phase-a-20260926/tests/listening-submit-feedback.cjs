@@ -18,7 +18,7 @@ assert.equal(listeningSubmitHint(complete),'3/3 answered · All questions answer
 const player=fs.readFileSync(path.join(root,'app/foundation.tsx'),'utf8');
 const css=fs.readFileSync(path.join(root,'app/globals.css'),'utf8');
 const service=fs.readFileSync(path.join(root,'application/academic-service.ts'),'utf8');
-const action=player.slice(player.indexOf('async function submit()'),player.indexOf('async function play()'));
+const action=player.slice(player.indexOf('async function submit('),player.indexOf('async function play()'));
 assert.ok(action.includes("lesson.module==='listening'&&listeningProgress?.unansweredIds.length"),'client preflight scoped to Listening');
 assert.ok(action.indexOf('unansweredIds.length')<action.indexOf('await saveDraft()'),'incomplete submit blocked before any submission call');
 assert.ok(action.includes('setShowMissing(true)'),'unanswered items highlighted');

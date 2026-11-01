@@ -42,7 +42,7 @@ export function nextQuestion(attempts:Attempt[],version:2|3|4=4):Question|null{r
 export const assessmentQuestions=bank;
 const levels:Exclude<Level,"Not assessed">[]=["Pre-A1","A1","A2","B1","B2"];
 export function inference(rows:Evidence[],skill:Skill):SkillEstimate{
- const valid=rows.filter(e=>e.level&&levels.includes(e.level as typeof levels[number])&&!e.provisional).map(e=>({...e,tag:canonicalTag(e.skill,e.tag)}));
+ const valid=rows.filter(isKnowledgeEvidence).filter(e=>e.level&&levels.includes(e.level as typeof levels[number])&&!e.provisional).map(e=>({...e,tag:canonicalTag(e.skill,e.tag)}));
  const tags=subskillCatalog[skill];const scored=estimateEvidence(valid,tags);
  const enough=valid.length>=tags.length*2&&scored.coverage===100;
  const listening=skill==="Listening";
@@ -70,7 +70,7 @@ export function makeDiagnostic(attempts:Attempt[],writing:string,at=Date.now(),r
 function canonicalTag(skill:Skill,tag:string){const aliases:Record<string,string>={"past-tense":"tense","present-continuous":"tense","subject-verb-agreement":"agreement","be-verb":"agreement",article:"articles",preposition:"prepositions","first-conditional":"conditionals","relative-clause":"clauses","context-meaning":"meaning-in-context","word-choice":"collocation","word-family":"word-formation","basic-meaning":"range","main-idea":"gist","question-analysis":"task-understanding"};return canonical(aliases[tag]??tag);}
 export function deriveLearner(result:DiagnosticResult,evidence:Evidence[],goals:string):LearnerModel{
  // Keep stored history intact. Use latest diagnostic plus subsequent activities, deduped by id.
- const all=[...new Map([...result.evidence,...evidence].map(e=>[e.id,e])).values()].filter(e=>e.at>=result.at).sort((a,b)=>a.at-b.at);
+ const all=[...new Map([...result.evidence,...evidence].map(e=>[e.id,e])).values()].filter(e=>e.at>=result.at&&isKnowledgeEvidence(e)).sort((a,b)=>a.at-b.at);
  const unique=[...new Map(all.map(e=>[(e.source==="writing"||e.source==="revision"||e.source==="exercise")&&e.activityId?`${e.activityId}:${e.questionId??""}:${e.tag}`:e.id,e])).values()];
  const estimates={...result.estimates};for(const skill of skills){const rows=unique.filter(e=>e.skill===skill&&!e.provisional);if(rows.length){const baseline=rows.filter(e=>e.source==="diagnostic");const later=rows.filter(e=>e.source!=="diagnostic");const ready=later.slice(0,Math.floor(later.length/3)*3);estimates[skill]=inference([...baseline,...ready].slice(-120),skill);}}
  estimates.Writing=writingEstimate(unique);estimates.Listening=inference(unique.filter(e=>e.skill==="Listening"),"Listening");estimates.Speaking={level:"Not assessed",displayLevel:"insufficient evidence",percent:0,confidence:"low",confidencePercent:0,evidenceCount:0,assessed:false,note:"Speaking level: insufficient evidence. No reliable audio evaluator connected."};
@@ -101,3 +101,6 @@ export function writingEvidence(stage:number,answer:Record<string,string>,at=Dat
  const rows=legacyWritingEvidence(stage,answer,at);
  return rows.map((e,i)=>({...e,id:`${id}-${i}`,activityId:`school-garden-step-${stage}`,tag:canonicalTag("Writing",e.tag),level:undefined,provisional:stage===3,detail:stage===3?"Draft saved. Language quality has not been assessed.":"Guided process check; does not set a CEFR level."}));
 }
+
+/** Explicit future format-only evidence is excluded; legacy evidence is never reclassified. */
+export function isKnowledgeEvidence(e:Evidence){return !e.raw||typeof e.raw!=='object'||(e.raw as {answerOutcome?:string}).answerOutcome!=='format-only'}

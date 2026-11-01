@@ -16,7 +16,7 @@ assert.match(listeningAudioHint(false,false,false),/Audio unavailable/);
 const player=fs.readFileSync(path.join(root,'app/foundation.tsx'),'utf8');
 const server=fs.readFileSync(path.join(root,'application/academic-service.ts'),'utf8');
 const start=player.slice(player.indexOf('async function newAttempt('),player.indexOf('const editable='));
-const submit=player.slice(player.indexOf('async function submit()'),player.indexOf('async function play()'));
+const submit=player.slice(player.indexOf('async function submit('),player.indexOf('async function play()'));
 const playback=player.slice(player.indexOf('async function play()'),player.indexOf('async function startRecording()'));
 assert.ok(start.includes("setAttempt(a);setAnswers({})"),'retake starts a new server attempt and resets answers');
 assert.ok(start.includes('setShowAudioWarning(false)'),'new attempt clears old warning');

@@ -14,7 +14,7 @@ export function derivePracticeProgress(attempts:AcademicAttempt[],packages:Acade
  const byQuestion=new Map<string,{incorrect:number;total:number;skill:string;tag:string;lessonId:string;version:string}>();
  const byPackage=new Map(packages.map(p=>[`${p.id}\u001f${p.version}`,p]));
  const sorted=[...attempts].sort((a,b)=>(a.submittedAt??a.createdAt)-(b.submittedAt??b.createdAt)||a.id.localeCompare(b.id));
- let pendingFoundation=0,approvedFoundation=0;
+ let pendingFoundation=0,approvedFoundation=0,formatOnly=0;
  for(const attempt of sorted){
   if(attempt.status==='pending_review')pendingFoundation++;
   if(attempt.status==='approved')approvedFoundation++;
@@ -24,6 +24,7 @@ export function derivePracticeProgress(attempts:AcademicAttempt[],packages:Acade
   const skill=lesson?.module ? lesson.module[0].toUpperCase()+lesson.module.slice(1) : ({GRA:'Grammar',VOC:'Vocabulary',REA:'Reading',LIS:'Listening',WRI:'Writing',SPE:'Speaking',PRO:'Pronunciation'} as Record<string,string>)[attempt.lessonId.split('-')[0]]??'Other';
   const seen=new Set<string>();
   for(const result of attempt.results??[]){
+   if(result.outcome==='format-only'){if(!seen.has(result.id)){formatOnly++;seen.add(result.id)}continue;}
    if(result.correct===null||typeof result.correct!=='boolean'||seen.has(result.id))continue;
    seen.add(result.id);
    const question=identity(attempt,result.id),answer=Number(result.correct);
@@ -47,7 +48,7 @@ export function derivePracticeProgress(attempts:AcademicAttempt[],packages:Acade
  for(const evaluation of [...evaluations].sort((a,b)=>a.at-b.at))latestEvaluation.set(evaluation.submissionId,evaluation);
  const writingLegacy={submitted:submissions.length,approved:0,pending:0};
  for(const submission of submissions){const status=latestEvaluation.get(submission.id)?.status;if(status==='approved')writingLegacy.approved++;else writingLegacy.pending++}
- return {scope:'Saved Foundation objective answers across all attempts and immutable package versions',overall:view(overall),
+ return {formatOnly,scope:'Saved Foundation objective answers across all attempts and immutable package versions',overall:view(overall),
   skills:[...skills].map(([skill,b])=>({skill,...view(b)})).sort((a,b)=>a.skill.localeCompare(b.skill)),
   tags:[...tags].map(([key,b])=>{const [skill,tag]=key.split(':');return {skill,tag,...view(b)}}).sort((a,b)=>a.skill.localeCompare(b.skill)||a.tag.localeCompare(b.tag)),
   repeatedMistakes:[...byQuestion].filter(([,v])=>v.incorrect>=2).map(([question,v])=>({questionId:question.split('\u001f')[2],lessonId:v.lessonId,version:v.version,incorrect:v.incorrect,total:v.total,skill:v.skill})).sort((a,b)=>b.incorrect-a.incorrect||a.questionId.localeCompare(b.questionId)).slice(0,10),

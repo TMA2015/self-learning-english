@@ -1,0 +1,99 @@
+{
+  "approvedZipSHA256": "2b9a710670ed8d652991b8274ef4b3512f07477c45bde46d946fc36e352ec97f",
+  "approvedJSONSHA256": "268162eff542b731663384378b671d3b391103e1628661dc835e2d301ca4f110",
+  "verifiedLessonIds": [
+    "GRA-A1-01",
+    "GRA-A1-02",
+    "GRA-A1-03",
+    "GRA-A1-04",
+    "GRA-A1-05",
+    "GRA-A1-06",
+    "GRA-A1-07",
+    "GRA-A1-08",
+    "GRA-A1-09",
+    "GRA-A1-10",
+    "GRA-A1-11",
+    "GRA-A1-12",
+    "GRA-A2-01",
+    "GRA-A2-02",
+    "GRA-A2-03",
+    "GRA-A2-04",
+    "GRA-A2-05",
+    "GRA-A2-06",
+    "GRA-A2-07",
+    "GRA-A2-08",
+    "GRA-A2-09",
+    "GRA-A2-10",
+    "GRA-A2-11",
+    "GRA-A2-12",
+    "GRA-A2-13",
+    "GRA-A2-14",
+    "GRA-A2-15",
+    "GRA-A2-16",
+    "GRA-B1-01",
+    "GRA-B1-02",
+    "GRA-B1-03",
+    "GRA-B1-04",
+    "GRA-B1-05",
+    "GRA-B1-06",
+    "GRA-B1-07",
+    "GRA-B1-08",
+    "GRA-B1-09",
+    "GRA-B1-10",
+    "GRA-B1-11",
+    "GRA-B1-12"
+  ],
+  "academicVerdicts": [
+    {
+      "batch": "PILOT_R2",
+      "lessons": 3,
+      "verdict": "PASS",
+      "packet_filename": "EN_GRAMMAR_LESSON_DESIGN_NOTEBOOKLM_PILOT_01_R2.md"
+    },
+    {
+      "batch": "A1_BATCH_01_R2",
+      "lessons": 11,
+      "verdict": "PASS",
+      "packet_filename": "EN_GRAMMAR_LESSON_DESIGN_A1_BATCH_01_NOTEBOOKLM_R2.md"
+    },
+    {
+      "batch": "A2_BATCH_02",
+      "lessons": 8,
+      "verdict": "PASS",
+      "packet_filename": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_02_NOTEBOOKLM.md"
+    },
+    {
+      "batch": "A2_BATCH_03",
+      "lessons": 7,
+      "verdict": "PASS",
+      "packet_filename": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_03_NOTEBOOKLM.md"
+    },
+    {
+      "batch": "B1_BATCH_04_R2",
+      "lessons": 11,
+      "verdict": "PASS",
+      "packet_filename": "EN_GRAMMAR_LESSON_DESIGN_B1_BATCH_04_NOTEBOOKLM_R2.md"
+    }
+  ],
+  "baselineHashesVerified": 40,
+  "originalReviewPacketsSupplied": false,
+  "pilotIds": [
+    "GRA-A1-01",
+    "GRA-A2-11",
+    "GRA-B1-10"
+  ],
+  "projectionOmissions": [
+    {
+      "lessonId": "GRA-A2-11",
+      "editorialFragmentOmitted": " (an existing source worked example; not the assessed gap-fill item)"
+    },
+    {
+      "lessonId": "GRA-A2-11",
+      "editorialFragmentOmitted": " The grading policy will be decided separately."
+    },
+    {
+      "lessonId": "GRA-B1-10",
+      "editorialFragmentOmitted": "; assess which examples need to be included for B1 learners"
+    }
+  ]
+}

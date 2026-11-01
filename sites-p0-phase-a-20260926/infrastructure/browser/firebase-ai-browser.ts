@@ -1,8 +1,6 @@
 import {getApps,initializeApp} from 'firebase/app';
-import {getRemoteConfig,fetchAndActivate,getString,isSupported} from 'firebase/remote-config';
 import {FirebaseRequestLifecycle} from '../ai/firebase-request-lifecycle';
 import {SafeProviderError,type ProviderDiagnostic} from '../../ai/provider-diagnostics';
-import {CachedWritingModel,WRITING_AI_MODEL_KEY,REMOTE_MODEL_FETCH_INTERVAL_MS} from './firebase-model-selection';
 import {initializeAppCheck,ReCaptchaEnterpriseProvider} from 'firebase/app-check';
 import {getAI,getGenerativeModel,GoogleAIBackend} from 'firebase/ai';
 import {createTutorService} from '../../ai/service';
@@ -24,7 +22,6 @@ function safeDiagnostic(event:ProviderDiagnostic){console.info('[English AI]',ev
 let aiInstance:ReturnType<typeof getAI>|null=null;
 let appCheckReady=false;
 let cachedTutor:AITutor|null=null;
-let modelSelection:CachedWritingModel|null=null;
 
 function localDebugAllowed(){
   if(typeof location==='undefined')return false;
@@ -51,16 +48,6 @@ function ensureAI(config:FirebasePublicAIConfig){
     appCheckReady=true;
   }
 
-  modelSelection??=new CachedWritingModel(config.geminiModel);
-  modelSelection.refreshOnce(async()=>{
-    if(!await isSupported())return config.geminiModel;
-    const remote=getRemoteConfig(app);
-    remote.settings.minimumFetchIntervalMillis=REMOTE_MODEL_FETCH_INTERVAL_MS;
-    remote.settings.fetchTimeoutMillis=5_000;
-    remote.defaultConfig={[WRITING_AI_MODEL_KEY]:config.geminiModel};
-    await fetchAndActivate(remote);
-    return getString(remote,WRITING_AI_MODEL_KEY);
-  });
   aiInstance??=getAI(app,{backend:new GoogleAIBackend()});
   return aiInstance;
 }
@@ -78,7 +65,7 @@ class FirebaseBrowserAILogicTransport implements FirebaseAILogicTransport{
   async generateJSON(input:FirebaseAILogicGenerateInput):Promise<unknown>{
     return this.lifecycle.run(async()=>{
       const ai=ensureAI(this.config);
-      this.selectedModel=modelSelection?.model??this.config.geminiModel;
+      this.selectedModel=this.config.geminiModel;
       const model=getGenerativeModel(ai,{
         model:this.model,
         systemInstruction:input.systemInstruction,
@@ -113,3 +100,4 @@ export function browserTutorService():AITutor{
   );
   return cachedTutor;
 }
+

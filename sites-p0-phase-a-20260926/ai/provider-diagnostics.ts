@@ -22,3 +22,4 @@ export type DiagnosticSink=(diagnostic:ProviderDiagnostic)=>void;
 export function emitSafeDiagnostic(sink:DiagnosticSink|undefined,classification:ProviderFailure,phase:ProviderDiagnostic['phase']='fallback'){
   try{sink?.({provider:'firebase-ai-logic',classification,phase})}catch{/* observability cannot break fallback */}
 }
+

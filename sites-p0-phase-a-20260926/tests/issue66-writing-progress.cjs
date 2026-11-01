@@ -1,0 +1,11 @@
+const assert=require('node:assert/strict'),fs=require('node:fs');
+const read=p=>fs.readFileSync(p,'utf8');
+const h=read('app/home-client.tsx'),m=read('app/my-courses.tsx'),d=read('domain/course-p1.ts');
+assert(!h.includes('Published Week 1 · 11 preview weeks'));
+assert(h.includes('Week 1 process summary only'));
+assert(m.includes('not whole-course completion'));
+assert(m.includes('Weeks 2–12 show their own saved progress'));
+assert(d.includes('/4 Week 1 steps saved'));
+assert(h.includes('Weeks 1–12 available'));
+assert(!h.includes('Weeks 7–12 preview')); 
+console.log('PASS: Week 1 denominator explicitly scoped; later-week progress separate; Weeks 1–12 available.');

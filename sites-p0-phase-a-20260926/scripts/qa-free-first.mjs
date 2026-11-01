@@ -12,20 +12,28 @@ const coreTests=[
   "practice-progress-p2a.cjs",
   "github-first-browser-storage.cjs",
   "github-first-g1-local-runtime.cjs",
+  "browser-curriculum-upgrade.cjs",
   "github-first-g2-backup-restore.cjs",
   "github-first-g2-course-selection.cjs",
   "github-first-g2-local-diagnostic.cjs",
   "g3-firebase-ai-provider-contract.cjs",
   "g3-firebase-browser-bridge.cjs",
-  "g3e-firebase-reliability.cjs",
   "listening-audio-manifest-coverage.cjs",
   "writing-step-feedback-ux.cjs",
-  "writing-course-v2-a.cjs",
-  "writing-course-v2-b.cjs",
-  "writing-course-v2-c.cjs",
+  "pronunciation-runtime-audio.cjs",
 ];
 
 const fullRegressionTests=[
+  "writing-course-v2-a.cjs",
+  "writing-course-v2-b.cjs",
+  "writing-course-v2-c.cjs",
+  "g3e-firebase-reliability.cjs",
+  "issue64-task-b.cjs",
+  "current-curriculum-audio-readiness.cjs",
+  "issue66-writing-progress.cjs",
+  "content-density-wave6-draft.cjs",
+  "content-density-wave6-audio.cjs",
+  "curriculum-1150-density-wave6.cjs",
   "assisted-review.cjs",
   "attempt-navigation-ui.cjs",
   "batch02-v11-release.cjs",
@@ -62,9 +70,7 @@ const fullRegressionTests=[
   "writing-tutor.cjs",
 ];
 
-const selected=mode==="core"
-  ? coreTests
-  : [...coreTests,...fullRegressionTests.filter(test=>!coreTests.includes(test))];
+const selected=[...new Set(mode==="core" ? coreTests : [...coreTests,...fullRegressionTests])];
 
 for(const test of selected){
   const relative=path.join("tests",test);
@@ -72,7 +78,7 @@ for(const test of selected){
   const result=spawnSync(process.execPath,[relative],{
     cwd:root,
     stdio:"inherit",
-    env:process.env,
+    env:{...process.env,QA_AGGREGATE:"1"},
   });
   if(result.error)throw result.error;
   if(result.status!==0)process.exit(result.status??1);

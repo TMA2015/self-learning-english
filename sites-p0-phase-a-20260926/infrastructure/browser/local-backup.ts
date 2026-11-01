@@ -1,7 +1,6 @@
 import {exportLearner} from '../../application/export-learner';
-import {previewLearnerRestore,restoreLearnerBackup,type LearnerRestorePreview} from '../../application/restore-learner';
+import {type LearnerRestorePreview} from '../../application/restore-learner';
 import {validateImportEnvelope,type LearnerExport} from '../../domain/portable-data';
-import {hash} from '../../application/learning-service';
 import {LOCAL_LEARNER_ID,LOCAL_OWNER_ID,localAcademicRuntime,localCourseRuntime} from './local-runtime';
 
 export const LOCAL_BACKUP_FILENAME='g-learning-english-backup-v1.json';
@@ -70,72 +69,12 @@ export async function exportLocalBackup():Promise<LocalBackupFile>{
   };
 }
 
-export async function previewLocalBackup(text:string):Promise<LocalBackupPreview>{
-  const value=parseLocalBackup(text);
-  const {learning,academic}=await localAcademicRuntime();
-  const courseRuntime=await localCourseRuntime();
-  const scope={ownerId:LOCAL_OWNER_ID,learnerId:LOCAL_LEARNER_ID};
-  const application=await previewLearnerRestore(value,learning,scope,academic,{ignoreSourceLearnerId:true});
-  const targetCourse=await courseRuntime.courses.read(LOCAL_OWNER_ID);
-  const sourceCourse=value.courseSelection;
-  const courseSelection:LocalBackupPreview['courseSelection']=
-    sourceCourse===undefined?'absent':
-    sourceCourse.activeCourseId===targetCourse.activeCourseId?'same':
-    targetCourse.activeCourseId===null&&sourceCourse.activeCourseId!==null?'add':
-    'conflict';
-  const errors=[
-    ...application.errors,
-    ...(courseSelection==='conflict'?['Target already has a different active course selection. Clear it explicitly before restoring.']:[]),
-  ];
-  const token=errors.length?'':await hash({
-    applicationToken:application.token,
-    sourceCourse:sourceCourse?.activeCourseId??'absent',
-    targetCourse:targetCourse.activeCourseId,
-    targetRevision:targetCourse.revision,
-  });
-  return {
-    ...application,
-    valid:errors.length===0,
-    errors,
-    token,
-    applicationToken:application.token,
-    courseSelection,
-    sourceExportedAt:value.exportedAt,
-    sourceLearnerIdIgnored:true,
-    counts:counts(value),
-  };
+export const LOCAL_RESTORE_LIMITATION='Restore is temporarily unavailable in this early version. Backups do not include historical lesson content, and a failed restore could leave incomplete records. Existing data is not deleted. Export is for reference only; cross-device recovery is not supported yet.';
+
+// Fail before parsing, bootstrapping curriculum or touching any storage key.
+export async function previewLocalBackup(_text:string):Promise<LocalBackupPreview>{
+  throw new Error(LOCAL_RESTORE_LIMITATION);
 }
-
-export async function restoreLocalBackup(text:string,token:string,confirmed:boolean){
-  if(!confirmed)throw new Error('Restore requires explicit confirmation.');
-  const value=parseLocalBackup(text);
-  const current=await previewLocalBackup(text);
-  if(!current.valid)throw new Error(current.errors.join(' '));
-  if(!token||token!==current.token)throw new Error('Backup or target data changed since preview. Preview again before restoring.');
-
-  // Captured before the first mutation. The UI downloads this file after success.
-  const before=await exportLocalBackup();
-  const {learning,academic}=await localAcademicRuntime();
-  const scope={ownerId:LOCAL_OWNER_ID,learnerId:LOCAL_LEARNER_ID};
-  await restoreLearnerBackup(
-    value,
-    learning,
-    scope,
-    current.applicationToken,
-    true,
-    academic,
-    {ignoreSourceLearnerId:true},
-  );
-
-  if(current.courseSelection==='add'&&value.courseSelection?.activeCourseId){
-    const courseRuntime=await localCourseRuntime();
-    const target=await courseRuntime.courses.read(LOCAL_OWNER_ID);
-    await courseRuntime.courses.select(
-      LOCAL_OWNER_ID,
-      value.courseSelection.activeCourseId,
-      target.revision,
-      `restore_${Date.now()}`,
-    );
-  }
-  return {ok:true as const,preview:current,preRestoreBackup:before};
+export async function restoreLocalBackup(_text:string,_token:string,_confirmed:boolean):Promise<never>{
+  throw new Error(LOCAL_RESTORE_LIMITATION);
 }
