@@ -217,8 +217,12 @@ export async function evaluateWritingProcess(
     if(text){
       const rating=await tutor.teachWriting(text,writingCourse.task,await browserWritingContext());
       if(rating){
-        const ratedEvidence=writingEvidence(3,answer,now,rating).map(row=>({...row,raw:{stage,answer},evaluation:rating.evaluation}));
-        await service.recordEvidence(ratedEvidence);
+        // An almost-perfect set of scores alongside actual corrections is
+        // insufficiently calibrated for automatic mastery updates. Show the
+        // provisional feedback, but keep proficiency evidence pending review.
+        const scoreNeedsReview=rating.corrections.length>0&&Object.values(rating.scores).every(score=>score>=9);
+        const ratedEvidence=scoreNeedsReview?[]:writingEvidence(3,answer,now,rating).map(row=>({...row,raw:{stage,answer},evaluation:rating.evaluation}));
+        if(ratedEvidence.length)await service.recordEvidence(ratedEvidence);
         return {
           mode:'ai',
           feedback:teachingFeedbackPayload(rating),
