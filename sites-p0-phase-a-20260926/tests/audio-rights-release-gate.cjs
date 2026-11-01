@@ -7,6 +7,11 @@ const assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
 const register=require('../content/audio-rights-register.json');
 const strict=process.argv.includes('--require-clearance');
+// Do not treat a nonempty placeholder as verified tool/voice provenance.
+const hasVerifiedDescriptor=value=>{
+  if(typeof value!=='string'||!value.trim())return false;
+  return !/(?:\bUNVERIFIED\b|\bNOT CONFIRMED\b|\bNOT VERIFIED\b|\bUNKNOWN\b|\bPENDING\b|\bTBD\b|^\s*(?:N\/A|NONE)\s*$)/i.test(value);
+};
 const folders=['foundation-audio','diagnostic-audio','pronunciation-audio'];
 const actual=[];
 for(const folder of folders){
@@ -30,8 +35,8 @@ for(const entry of register.entries){
   if(entry.release_clearance!=='APPROVED'||entry.source_originality!=='VERIFIED'||
      !entry.approved_by?.trim()||!/^\d{4}-\d{2}-\d{2}$/.test(entry.approved_on||'')||
      !entry.provenance_evidence?.trim()||
-     !entry.model_or_engine?.trim()||entry.model_or_engine==='UNVERIFIED'||
-     !entry.voice_or_processing?.trim()||entry.voice_or_processing==='UNVERIFIED'){
+     !hasVerifiedDescriptor(entry.model_or_engine)||
+     !hasVerifiedDescriptor(entry.voice_or_processing)){
     missing.push(entry.asset_path);
   }
 }
