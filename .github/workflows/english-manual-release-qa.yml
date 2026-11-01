@@ -40,10 +40,7 @@ jobs:
           test -f tests/nov-2026-content-preflight.cjs
       - name: Validate audio and content before build
         run: node tests/nov-2026-content-preflight.cjs
-      - name: Verify 38 audio fingerprints and rights inventory (no dependencies)
-        run: node tests/audio-rights-release-gate.cjs
-      - name: Block preview when audio provenance or approval is incomplete
-        if: ${{ inputs.deploy_preview == true }}
+      - name: Verify all 38 audio fingerprints and release rights before dependencies
         run: node tests/audio-rights-release-gate.cjs --require-clearance
       - name: Verify Firebase preview credential is configured
         if: ${{ inputs.deploy_preview == true }}
