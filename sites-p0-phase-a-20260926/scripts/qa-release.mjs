@@ -12,7 +12,7 @@ function run(command,args,env=process.env){
 
 // Keep local pnpm qa:release self-contained, not dependent on GitHub workflow gates.
 run(process.execPath,["tests/nov-2026-content-preflight.cjs"]);
-run(process.execPath,["tests/audio-rights-release-gate.cjs"]);
+run(process.execPath,["tests/audio-rights-release-gate.cjs","--require-clearance"]);
 run(pnpm,["run","qa:full"]);
 run(pnpm,["exec","tsc","--noEmit","--incremental","false"]);
 
