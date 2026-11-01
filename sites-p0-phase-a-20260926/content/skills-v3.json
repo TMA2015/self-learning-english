@@ -1,0 +1,31 @@
+{
+  "Grammar": [
+    "tense",
+    "articles",
+    "agreement",
+    "clauses",
+    "conditionals",
+    "prepositions"
+  ],
+  "Vocabulary": [
+    "range",
+    "meaning-in-context",
+    "collocation",
+    "word-formation"
+  ],
+  "Reading": [
+    "gist",
+    "detail",
+    "inference",
+    "reference",
+    "vocabulary-in-context"
+  ],
+  "Writing": [
+    "task-understanding",
+    "idea-development",
+    "organization",
+    "grammar-accuracy",
+    "vocabulary",
+    "sentence-quality"
+  ]
+}

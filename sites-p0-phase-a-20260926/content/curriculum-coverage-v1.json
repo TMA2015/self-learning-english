@@ -1,0 +1,472 @@
+{
+  "format": "ai-english-tutor.curriculum-coverage",
+  "schema_version": 1,
+  "content_candidate_version": "1.2.0",
+  "status": "planning_metadata_not_imported_not_learner_placement",
+  "purpose": "Dependency and curriculum coverage map for original lesson authoring; target levels are not learner CEFR certification.",
+  "nodes": [
+    {
+      "lesson_id": "GRA-A1-01",
+      "prerequisite_lesson_ids": [],
+      "concepts": [
+        "be-forms",
+        "subject-verb-agreement"
+      ],
+      "origin": "batch01",
+      "review_status": "authored_candidate"
+    },
+    {
+      "lesson_id": "GRA-A1-02",
+      "prerequisite_lesson_ids": [],
+      "concepts": [
+        "subject-pronouns",
+        "possessive-adjectives"
+      ],
+      "origin": "batch01",
+      "review_status": "authored_candidate"
+    },
+    {
+      "lesson_id": "GRA-A1-03",
+      "prerequisite_lesson_ids": [
+        "GRA-A1-01",
+        "GRA-A1-02"
+      ],
+      "concepts": [
+        "present-simple",
+        "frequency"
+      ],
+      "origin": "batch01",
+      "review_status": "authored_candidate"
+    },
+    {
+      "lesson_id": "GRA-A1-04",
+      "prerequisite_lesson_ids": [
+        "GRA-A1-01"
+      ],
+      "concepts": [
+        "indefinite-articles",
+        "plurals"
+      ],
+      "origin": "batch02",
+      "review_status": "authored_candidate"
+    },
+    {
+      "lesson_id": "GRA-A1-05",
+      "prerequisite_lesson_ids": [
+        "GRA-A1-01",
+        "GRA-A1-04"
+      ],
+      "concepts": [
+        "existential-there",
+        "agreement"
+      ],
+      "origin": "batch02",
+      "review_status": "authored_candidate"
+    },
+    {
+      "lesson_id": "GRA-A1-06",
+      "prerequisite_lesson_ids": [
+        "GRA-A1-05"
+      ],
+      "concepts": [
+        "place-prepositions"
+      ],
+      "origin": "batch02",
+      "review_status": "authored_candidate"
+    },
+    {
+      "lesson_id": "VOC-A1-01",
+      "prerequisite_lesson_ids": [],
+      "concepts": [
+        "school-words",
+        "polite-classroom-requests"
+      ],
+      "origin": "batch01",
+      "review_status": "authored_candidate"
+    },
+    {
+      "lesson_id": "VOC-A1-02",
+      "prerequisite_lesson_ids": [
+        "VOC-A1-01"
+      ],
+      "concepts": [
+        "daily-routines",
+        "frequency-expressions"
+      ],
+      "origin": "batch01",
+      "review_status": "authored_candidate"
+    },
+    {
+      "lesson_id": "VOC-A1-03",
+      "prerequisite_lesson_ids": [
+        "VOC-A1-01"
+      ],
+      "concepts": [
+        "town-places",
+        "directions"
+      ],
+      "origin": "batch02",
+      "review_status": "authored_candidate"
+    },
+    {
+      "lesson_id": "REA-A1-01",
+      "prerequisite_lesson_ids": [
+        "GRA-A1-01",
+        "VOC-A1-01"
+      ],
+      "concepts": [
+        "notice-gist",
+        "explicit-detail"
+      ],
+      "origin": "batch01",
+      "review_status": "authored_candidate"
+    },
+    {
+      "lesson_id": "REA-A1-02",
+      "prerequisite_lesson_ids": [
+        "REA-A1-01",
+        "VOC-A1-03"
+      ],
+      "concepts": [
+        "time-detail",
+        "supplied-vs-bring"
+      ],
+      "origin": "batch02",
+      "review_status": "authored_candidate"
+    },
+    {
+      "lesson_id": "WRI-A1-01",
+      "prerequisite_lesson_ids": [
+        "GRA-A1-01",
+        "GRA-A1-02",
+        "VOC-A1-01"
+      ],
+      "concepts": [
+        "prompt-analysis",
+        "self-introduction",
+        "revision"
+      ],
+      "origin": "batch01",
+      "review_status": "authored_candidate"
+    },
+    {
+      "lesson_id": "WRI-A1-02",
+      "prerequisite_lesson_ids": [
+        "WRI-A1-01",
+        "GRA-A1-03"
+      ],
+      "concepts": [
+        "friendly-invitation",
+        "time-place",
+        "revision"
+      ],
+      "origin": "batch02",
+      "review_status": "authored_candidate"
+    },
+    {
+      "lesson_id": "GRA-A2-01",
+      "prerequisite_lesson_ids": [
+        "GRA-A1-03"
+      ],
+      "concepts": [
+        "present-simple-vs-continuous"
+      ],
+      "origin": "demo-upgraded",
+      "review_status": "authored_candidate"
+    },
+    {
+      "lesson_id": "VOC-A2-01",
+      "prerequisite_lesson_ids": [
+        "VOC-A1-02"
+      ],
+      "concepts": [
+        "routine-collocations"
+      ],
+      "origin": "seed-demo",
+      "review_status": "seed_demo_needs_expansion"
+    },
+    {
+      "lesson_id": "REA-A2-01",
+      "prerequisite_lesson_ids": [
+        "REA-A1-01"
+      ],
+      "concepts": [
+        "gist",
+        "detail",
+        "inference"
+      ],
+      "origin": "seed-demo",
+      "review_status": "seed_demo_needs_expansion"
+    },
+    {
+      "lesson_id": "REA-A2-02",
+      "prerequisite_lesson_ids": [
+        "REA-A1-01"
+      ],
+      "concepts": [
+        "rules-and-conditions",
+        "contrast"
+      ],
+      "origin": "batch01",
+      "review_status": "authored_candidate"
+    },
+    {
+      "lesson_id": "REA-A2-03",
+      "prerequisite_lesson_ids": [
+        "REA-A1-02"
+      ],
+      "concepts": [
+        "conditional-activity",
+        "plan-change"
+      ],
+      "origin": "batch02",
+      "review_status": "authored_candidate"
+    },
+    {
+      "lesson_id": "LIS-A2-01",
+      "prerequisite_lesson_ids": [
+        "VOC-A1-01"
+      ],
+      "concepts": [
+        "listening-time",
+        "detail"
+      ],
+      "origin": "seed-demo",
+      "review_status": "seed_demo_needs_expansion"
+    },
+    {
+      "lesson_id": "WRI-A2-01",
+      "prerequisite_lesson_ids": [
+        "WRI-A1-02",
+        "GRA-A2-01"
+      ],
+      "concepts": [
+        "friendly-email",
+        "all-prompt-points"
+      ],
+      "origin": "seed-demo",
+      "review_status": "seed_demo_needs_expansion"
+    },
+    {
+      "lesson_id": "WRI-A2-02",
+      "prerequisite_lesson_ids": [
+        "WRI-A2-01"
+      ],
+      "concepts": [
+        "past-event-email",
+        "reason-and-example"
+      ],
+      "origin": "batch02",
+      "review_status": "authored_candidate"
+    },
+    {
+      "lesson_id": "SPE-A2-01",
+      "prerequisite_lesson_ids": [
+        "VOC-A1-02"
+      ],
+      "concepts": [
+        "routine-speech"
+      ],
+      "origin": "seed-demo",
+      "review_status": "seed_demo_needs_expansion"
+    },
+    {
+      "lesson_id": "PRO-A2-01",
+      "prerequisite_lesson_ids": [],
+      "concepts": [
+        "vowel-sound-awareness"
+      ],
+      "origin": "seed-demo",
+      "review_status": "seed_demo_needs_expansion"
+    },
+    {
+      "lesson_id": "GRA-B1-01",
+      "prerequisite_lesson_ids": [
+        "GRA-A2-01"
+      ],
+      "concepts": [
+        "past-simple-vs-present-perfect"
+      ],
+      "origin": "seed-demo",
+      "review_status": "seed_demo_needs_expansion"
+    },
+    {
+      "lesson_id": "VOC-B1-01",
+      "prerequisite_lesson_ids": [
+        "VOC-A2-01"
+      ],
+      "concepts": [
+        "sustainable-choices"
+      ],
+      "origin": "seed-demo",
+      "review_status": "seed_demo_needs_expansion"
+    },
+    {
+      "lesson_id": "REA-B1-01",
+      "prerequisite_lesson_ids": [
+        "REA-A2-02"
+      ],
+      "concepts": [
+        "argument-gist",
+        "inference"
+      ],
+      "origin": "seed-demo",
+      "review_status": "seed_demo_needs_expansion"
+    },
+    {
+      "lesson_id": "LIS-B1-01",
+      "prerequisite_lesson_ids": [
+        "LIS-A2-01"
+      ],
+      "concepts": [
+        "speaker-intention",
+        "detail"
+      ],
+      "origin": "seed-demo",
+      "review_status": "seed_demo_needs_expansion"
+    },
+    {
+      "lesson_id": "WRI-B1-01",
+      "prerequisite_lesson_ids": [
+        "WRI-A2-02"
+      ],
+      "concepts": [
+        "opinion-reason-example"
+      ],
+      "origin": "seed-demo",
+      "review_status": "seed_demo_needs_expansion"
+    },
+    {
+      "lesson_id": "SPE-B1-01",
+      "prerequisite_lesson_ids": [
+        "SPE-A2-01"
+      ],
+      "concepts": [
+        "opinion-support"
+      ],
+      "origin": "seed-demo",
+      "review_status": "seed_demo_needs_expansion"
+    }
+  ],
+  "known_gaps": [
+    {
+      "id": "GRA-A2-02",
+      "module": "grammar",
+      "target": "A2",
+      "name": "Past simple forms, negatives and questions",
+      "priority": "next_core",
+      "precedes": [
+        "WRI-A2-02",
+        "GRA-B1-01"
+      ],
+      "reason": "A2 event writing and B1 tense contrast currently lack an explicit foundational past-simple lesson."
+    },
+    {
+      "id": "GRA-A2-03",
+      "module": "grammar",
+      "target": "A2",
+      "name": "Countability, some/any, much/many",
+      "priority": "next_core",
+      "precedes": [
+        "WRI-A2-01"
+      ],
+      "reason": "A1 plurals need a progression into countability and functional quantity language."
+    },
+    {
+      "id": "GRA-A2-04",
+      "module": "grammar",
+      "target": "A2",
+      "name": "Comparatives and superlatives",
+      "priority": "next_core",
+      "precedes": [
+        "WRI-B1-01"
+      ],
+      "reason": "Useful grammar for choices, comparisons and supported opinion tasks."
+    },
+    {
+      "id": "GRA-A1-07",
+      "module": "grammar",
+      "target": "A1",
+      "name": "Can/can't and basic requests",
+      "priority": "next_core",
+      "precedes": [
+        "VOC-A1-03"
+      ],
+      "reason": "Functional ability and simple requests are needed across daily contexts."
+    },
+    {
+      "id": "REA-A1-03",
+      "module": "reading",
+      "target": "A1",
+      "name": "Short personal messages with factual detail",
+      "priority": "next_core",
+      "precedes": [
+        "WRI-A1-02"
+      ],
+      "reason": "Genre-matched model for invitation writing, not only notices."
+    },
+    {
+      "id": "WRI-A1-03",
+      "module": "writing",
+      "target": "A1",
+      "name": "Describe a person/place with connected sentences",
+      "priority": "next_core",
+      "precedes": [
+        "WRI-A2-02"
+      ],
+      "reason": "Increase independent writing production beyond single invitations."
+    },
+    {
+      "id": "LIS-A1-01",
+      "module": "listening",
+      "target": "A1",
+      "name": "Classroom instructions with playable audio",
+      "priority": "audio_dependency",
+      "precedes": [
+        "LIS-A2-01"
+      ],
+      "reason": "A1 listening is missing; cannot release a scored listening task without a real model track."
+    },
+    {
+      "id": "SPE-A1-01",
+      "module": "speaking",
+      "target": "A1",
+      "name": "Short self-introduction with recording",
+      "priority": "audio_dependency",
+      "precedes": [
+        "SPE-A2-01"
+      ],
+      "reason": "No A1 spoken-production path; text planning alone must remain unassessed."
+    },
+    {
+      "id": "PRO-A1-01",
+      "module": "pronunciation",
+      "target": "A1",
+      "name": "Word stress and basic vowel contrast with playable models",
+      "priority": "audio_dependency",
+      "precedes": [
+        "PRO-A2-01"
+      ],
+      "reason": "Current pronunciation demo lacks playable word models and audio review."
+    },
+    {
+      "id": "VOC-A2-02",
+      "module": "vocabulary",
+      "target": "A2",
+      "name": "Travel and event collocations in context",
+      "priority": "next_core",
+      "precedes": [
+        "REA-A2-03",
+        "WRI-A2-02"
+      ],
+      "reason": "Expand retrieval and production across event/travel topics."
+    }
+  ],
+  "rules": {
+    "do_not_infer_proficiency_from_node_completion": true,
+    "dependencies_are_advisory_not_enforced_in_live_player": true,
+    "content_status_not_live_deployment": true,
+    "manual_course_entry_allowed": true,
+    "new_items_require_authoring_standard_and_independent_review": true
+  }
+}

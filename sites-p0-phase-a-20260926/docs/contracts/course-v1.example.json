@@ -1,0 +1,132 @@
+{
+  "format": "g-learning.course-architecture-fixture",
+  "schemaVersion": 1,
+  "templates": [
+    {
+      "templateId": "COURSE-WRITING-12W",
+      "templateVersion": 1,
+      "kind": "predefined",
+      "title": "English Writing Coach · 12 weeks",
+      "description": "Illustrative subset only: Week 1 live and Week 2 preview. The real legacy outline has 11 preview weeks and four Week 1 process stages; this fixture is not a complete production template.",
+      "targetCEFR": null,
+      "availability": "available",
+      "units": [
+        {
+          "unitId": "WR12-W01",
+          "title": "Read the question",
+          "order": 0,
+          "status": "available",
+          "items": [
+            {
+              "itemRefId": "WR12-W01-STEP-01",
+              "unitId": "WR12-W01",
+              "source": "writing-week-stage",
+              "contentId": "legacy-writing-week01-stage0",
+              "contentVersion": "writing-legacy-v1",
+              "required": true,
+              "available": true,
+              "skill": "Writing",
+              "completionRequirement": "saved-writing-stage",
+              "estimatedMinutes": 10,
+              "prerequisiteItemRefIds": []
+            }
+          ]
+        },
+        {
+          "unitId": "WR12-W02",
+          "title": "Stay on topic (preview)",
+          "order": 1,
+          "status": "preview",
+          "items": []
+        }
+      ]
+    },
+    {
+      "templateId": "COURSE-A1-FOUNDATION-DRAFT",
+      "templateVersion": 1,
+      "kind": "predefined",
+      "title": "A1 Foundation — developing (sample only)",
+      "description": "Illustrative partial A1 reference, not an enrolled or certified CEFR course.",
+      "targetCEFR": "A1",
+      "availability": "preview",
+      "contentPackage": {
+        "packageId": "ai-english-tutor-academic-seed-2026-09-v1",
+        "version": "1.4.0",
+        "digest": "70eb0d13477a647ae2ab0ca5b11bfd1f52a99772f1ca206d701718d08ffb56da"
+      },
+      "units": [
+        {
+          "unitId": "A1-GRAMMAR-01",
+          "title": "Forms of be",
+          "order": 0,
+          "status": "available",
+          "items": [
+            {
+              "itemRefId": "A1-GRA-A1-01",
+              "unitId": "A1-GRAMMAR-01",
+              "source": "foundation-lesson",
+              "contentId": "GRA-A1-01",
+              "contentVersion": "1.4.0",
+              "packageId": "ai-english-tutor-academic-seed-2026-09-v1",
+              "required": true,
+              "available": true,
+              "skill": "Grammar",
+              "completionRequirement": "scored-submission",
+              "estimatedMinutes": 22,
+              "prerequisiteItemRefIds": [],
+              "contentDigest": "70eb0d13477a647ae2ab0ca5b11bfd1f52a99772f1ca206d701718d08ffb56da"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "enrollments": [
+    {
+      "enrollmentId": "fixture-writing-enrollment-01",
+      "templateId": "COURSE-WRITING-12W",
+      "templateVersion": 1,
+      "kind": "predefined",
+      "status": "active",
+      "planRevision": 1,
+      "planSnapshot": [
+        {
+          "unitId": "WR12-W01",
+          "title": "Read the question",
+          "order": 0,
+          "status": "available",
+          "items": [
+            {
+              "itemRefId": "WR12-W01-STEP-01",
+              "unitId": "WR12-W01",
+              "source": "writing-week-stage",
+              "contentId": "legacy-writing-week01-stage0",
+              "contentVersion": "writing-legacy-v1",
+              "required": true,
+              "available": true,
+              "skill": "Writing",
+              "completionRequirement": "saved-writing-stage",
+              "estimatedMinutes": 10,
+              "prerequisiteItemRefIds": []
+            }
+          ]
+        },
+        {
+          "unitId": "WR12-W02",
+          "title": "Stay on topic (preview)",
+          "order": 1,
+          "status": "preview",
+          "items": []
+        }
+      ],
+      "contentUpdatePolicy": "suggest",
+      "createdAt": "2026-09-28T00:00:00Z",
+      "updatedAt": "2026-09-28T00:00:00Z",
+      "lastEngagedAt": "2026-09-28T00:00:00Z"
+    }
+  ],
+  "placements": [],
+  "selection": {
+    "activeEnrollmentId": "fixture-writing-enrollment-01"
+  }
+}

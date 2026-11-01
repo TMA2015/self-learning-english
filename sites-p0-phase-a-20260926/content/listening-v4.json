@@ -1,0 +1,197 @@
+[
+  {
+    "id": "listen-1",
+    "tag": "detail",
+    "text": "Hello, this is a message for the science club. Tomorrow's meeting will start at half past four in room twelve. Please bring your notebook.",
+    "prompt": "When will the meeting start?",
+    "options": [
+      "4:00",
+      "4:30",
+      "12:30"
+    ],
+    "correct": 1,
+    "level": "A2"
+  },
+  {
+    "id": "listen-2",
+    "tag": "detail",
+    "text": "The bus to the museum leaves at nine. Please wait by the school gate, not in the car park. Bring a lunch from home because the cafe is closed.",
+    "prompt": "What should pupils bring?",
+    "options": [
+      "Lunch",
+      "Money for the cafe",
+      "A bus timetable"
+    ],
+    "correct": 0,
+    "level": "A2"
+  },
+  {
+    "id": "listen-3",
+    "tag": "gist",
+    "text": "I used to spend all Saturday indoors. Now I help at a small community garden. I meet new people, get some exercise, and learn about plants. I'm glad I tried it.",
+    "prompt": "What is the speaker mainly explaining?",
+    "options": [
+      "How to build a house",
+      "Why gardens are expensive",
+      "Why they enjoy a new activity"
+    ],
+    "correct": 2,
+    "level": "A2"
+  },
+  {
+    "id": "listen-4",
+    "tag": "gist",
+    "text": "Please put paper in the blue bin and food waste in the green bin. Bottles go in the box near the door. These small actions help us keep our school clean and reduce waste.",
+    "prompt": "What is the main purpose of the message?",
+    "options": [
+      "To explain how to sort waste",
+      "To sell new school bags",
+      "To announce a school holiday"
+    ],
+    "correct": 0,
+    "level": "A2"
+  },
+  {
+    "id": "core-listen-gist",
+    "tag": "gist",
+    "level": "B1",
+    "text": "Our class tried a week without buying anything wrapped in plastic. It was harder than we expected, especially at lunchtime. We did not manage it perfectly, but we discovered several habits we could change. Next month we want to invite another class to join us.",
+    "prompt": "What is the speaker mainly doing?",
+    "options": [
+      "Describing lessons from an environmental challenge",
+      "Explaining how plastic is manufactured",
+      "Announcing that lunch is cancelled"
+    ],
+    "correct": 0
+  },
+  {
+    "id": "core-listen-detail",
+    "tag": "detail",
+    "level": "A1",
+    "text": "My name is Lily. I live near the park with my parents and my little brother. We have a dog called Max.",
+    "prompt": "Who is Max?",
+    "options": [
+      "Lily's brother",
+      "The family's dog",
+      "Lily's father"
+    ],
+    "correct": 1
+  },
+  {
+    "id": "core-listen-intent-1",
+    "tag": "speaker-intention",
+    "level": "A1",
+    "text": "Please close the window. I'm cold.",
+    "prompt": "What does the speaker want?",
+    "options": [
+      "To open a door",
+      "To go outside",
+      "Someone to close the window"
+    ],
+    "correct": 2
+  },
+  {
+    "id": "core-listen-intent-2",
+    "tag": "speaker-intention",
+    "level": "A2",
+    "text": "You look tired. Why don't you leave the last exercise until tomorrow and get some rest?",
+    "prompt": "What is the speaker doing?",
+    "options": [
+      "Giving advice",
+      "Explaining a calculation",
+      "Asking for directions"
+    ],
+    "correct": 0
+  },
+  {
+    "id": "core-listen-intent-3",
+    "tag": "speaker-intention",
+    "level": "B1",
+    "text": "I can see why you prefer the first plan. However, before we decide, could we look at how much each option will cost? We may find that the cheaper one still meets most of our needs.",
+    "prompt": "What is the speaker's intention?",
+    "options": [
+      "To reject every suggestion",
+      "To encourage a more careful comparison",
+      "To end the discussion immediately"
+    ],
+    "correct": 1
+  },
+  {
+    "id": "core-listen-speech-1",
+    "tag": "connected-speech-recognition",
+    "level": "A1",
+    "text": "She's at school today.",
+    "prompt": "Which words did you hear?",
+    "options": [
+      "She was at school today.",
+      "She is at home today.",
+      "She's at school today."
+    ],
+    "correct": 2
+  },
+  {
+    "id": "core-listen-speech-2",
+    "tag": "connected-speech-recognition",
+    "level": "A2",
+    "text": "We've already finished our lunch.",
+    "prompt": "Which words did you hear?",
+    "options": [
+      "We've already finished our lunch.",
+      "We'll finish lunch later.",
+      "We never finish our lunch."
+    ],
+    "correct": 0
+  },
+  {
+    "id": "core-listen-speech-3",
+    "tag": "connected-speech-recognition",
+    "level": "B1",
+    "text": "I would've called you if I'd known you were waiting.",
+    "prompt": "Which meaning matches what you heard?",
+    "options": [
+      "I called because I knew.",
+      "I would have called if I had known.",
+      "I will call when I know."
+    ],
+    "correct": 1
+  },
+  {
+    "id": "core-listen-vocab-1",
+    "tag": "vocabulary-in-context",
+    "level": "A1",
+    "text": "The bag is empty. There is nothing inside it.",
+    "prompt": "What does empty mean here?",
+    "options": [
+      "Heavy",
+      "Expensive",
+      "Containing nothing"
+    ],
+    "correct": 2
+  },
+  {
+    "id": "core-listen-vocab-2",
+    "tag": "vocabulary-in-context",
+    "level": "A2",
+    "text": "The instructions were clear, so everyone knew exactly what to do.",
+    "prompt": "What does clear mean here?",
+    "options": [
+      "Easy to understand",
+      "Made of glass",
+      "Very loud"
+    ],
+    "correct": 0
+  },
+  {
+    "id": "core-listen-vocab-3",
+    "tag": "vocabulary-in-context",
+    "level": "B1",
+    "text": "I was reluctant to join the debate at first because I didn't know anyone. My friend encouraged me, and in the end I enjoyed taking part.",
+    "prompt": "What does reluctant mean here?",
+    "options": [
+      "Extremely eager",
+      "Not willing at first",
+      "Unable to speak English"
+    ],
+    "correct": 1
+  }
+]

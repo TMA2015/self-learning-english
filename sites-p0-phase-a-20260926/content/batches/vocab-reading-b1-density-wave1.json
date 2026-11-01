@@ -1,0 +1,1426 @@
+{
+  "format": "ai-english-tutor.curriculum-batch",
+  "schema_version": 1,
+  "batch_id": "VOCAB-READING-B1-DENSITY-WAVE1-20261004",
+  "base_version": "1.9.0",
+  "target_version": "1.10.0",
+  "status": "academic_pass_ready_for_1.10.0_composition",
+  "metadata": {
+    "status": "vocab_reading_b1_density_wave1_academic_pass_ready_for_candidate_no_import",
+    "course_title": "English Foundation · A1–B1 developing curriculum",
+    "course_description": "Original self-study curriculum with completed current Grammar roadmap and evidence-driven expansion of Vocabulary and Reading.",
+    "curriculum_principle": "Expand content according to evidence density and skill coverage. Lesson counts are not learner certification; existing reviewed tags and historical lesson objects remain stable."
+  },
+  "insert_after": [
+    {
+      "after": "VOC-B1-01",
+      "ids": [
+        "VOC-B1-02",
+        "VOC-B1-03"
+      ]
+    },
+    {
+      "after": "REA-B1-01",
+      "ids": [
+        "REA-B1-02",
+        "REA-B1-03"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "VOC-B1-02",
+      "module": "vocabulary",
+      "cefr_target": "B1",
+      "title": "Word families for study and communication",
+      "estimated_minutes": 23,
+      "objectives": [
+        "Recognize common noun, verb, adjective and adverb forms in familiar word families.",
+        "Use suffix clues such as -tion, -ment, -ive and -ly to choose a form that fits a sentence.",
+        "Use word-family knowledge together with sentence meaning rather than relying on spelling alone."
+      ],
+      "explanation": {
+        "en": "At B1, useful vocabulary growth includes noticing how one base can form several related words: decide → decision, improve → improvement, communicate → communication, effective → effectively. The correct form depends on the grammar and meaning of the sentence. A noun may follow an article, an adjective may describe a noun, and an adverb may describe how an action happens. Suffixes are helpful clues, but always check the whole context.",
+        "vi": "Ở mức B1, học từ vựng hiệu quả bằng cách nhận ra các từ cùng họ: decide → decision, improve → improvement, communicate → communication, effective → effectively. Dạng đúng phụ thuộc vào ngữ pháp và nghĩa của cả câu. Hậu tố là gợi ý hữu ích nhưng phải luôn kiểm tra ngữ cảnh."
+      },
+      "examples": [
+        "DECIDE → We made a difficult decision.",
+        "IMPROVE → I can see a clear improvement.",
+        "COMMUNICATE → Good communication helps a team.",
+        "EFFECTIVE → The group worked effectively."
+      ],
+      "activities": [
+        {
+          "id": "VOC-B1-02-Q1",
+          "type": "single_choice",
+          "prompt": "Choose the correct form: The team made an important ___ before the meeting ended.",
+          "options": [
+            {
+              "id": "A",
+              "text": "decision"
+            },
+            {
+              "id": "B",
+              "text": "decide"
+            },
+            {
+              "id": "C",
+              "text": "decisive"
+            },
+            {
+              "id": "D",
+              "text": "deciding"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "After an important, a noun is needed; decision is the noun in this word family."
+          },
+          "skill_tags": [
+            "vocabulary.word_formation"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-02-Q2",
+          "type": "single_choice",
+          "prompt": "Choose the correct form: Regular feedback can lead to a clear ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "improvement"
+            },
+            {
+              "id": "B",
+              "text": "improve"
+            },
+            {
+              "id": "C",
+              "text": "improved"
+            },
+            {
+              "id": "D",
+              "text": "improvingly"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A clear requires a noun; improvement names the positive change."
+          },
+          "skill_tags": [
+            "vocabulary.word_formation"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-02-Q3",
+          "type": "single_choice",
+          "prompt": "Which word best completes the sentence? Good ___ is especially important when a group works online.",
+          "options": [
+            {
+              "id": "A",
+              "text": "communication"
+            },
+            {
+              "id": "B",
+              "text": "communicate"
+            },
+            {
+              "id": "C",
+              "text": "communicative"
+            },
+            {
+              "id": "D",
+              "text": "communicatingly"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The sentence needs a noun naming the process of sharing information."
+          },
+          "skill_tags": [
+            "vocabulary.word_formation",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-02-Q4",
+          "type": "single_choice",
+          "prompt": "Choose the best form: The students divided the work ___ and finished on time.",
+          "options": [
+            {
+              "id": "A",
+              "text": "effectively"
+            },
+            {
+              "id": "B",
+              "text": "effective"
+            },
+            {
+              "id": "C",
+              "text": "effect"
+            },
+            {
+              "id": "D",
+              "text": "effectiveness"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The blank describes how they divided the work, so the adverb effectively fits."
+          },
+          "skill_tags": [
+            "vocabulary.word_formation"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-02-Q5",
+          "type": "single_choice",
+          "prompt": "In this sentence, what does 'reliable' most nearly mean? 'We need a reliable source before we include the fact in our report.'",
+          "options": [
+            {
+              "id": "A",
+              "text": "able to be trusted"
+            },
+            {
+              "id": "B",
+              "text": "very entertaining"
+            },
+            {
+              "id": "C",
+              "text": "difficult to read"
+            },
+            {
+              "id": "D",
+              "text": "recently invented"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A reliable source is one that can be trusted."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-02-Q6",
+          "type": "short_answer",
+          "prompt": "Complete with the noun form of develop: The project showed steady ___ over three months.",
+          "answer": {
+            "accepted_answers": [
+              "development"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Development is the noun form that fits after steady."
+          },
+          "skill_tags": [
+            "vocabulary.word_formation"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-02-Q7",
+          "type": "single_choice",
+          "prompt": "Choose the correct form: Her explanation was clear and ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "informative"
+            },
+            {
+              "id": "B",
+              "text": "information"
+            },
+            {
+              "id": "C",
+              "text": "inform"
+            },
+            {
+              "id": "D",
+              "text": "informatively"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The sentence coordinates two adjectives after was: clear and informative."
+          },
+          "skill_tags": [
+            "vocabulary.word_formation"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-02-Q8",
+          "type": "single_choice",
+          "prompt": "Which word best fits? The instructions were so ___ that everyone completed the task correctly.",
+          "options": [
+            {
+              "id": "A",
+              "text": "helpful"
+            },
+            {
+              "id": "B",
+              "text": "help"
+            },
+            {
+              "id": "C",
+              "text": "helpfully"
+            },
+            {
+              "id": "D",
+              "text": "helpfulness"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "An adjective is needed after were so; helpful describes the instructions."
+          },
+          "skill_tags": [
+            "vocabulary.word_formation",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-02-Q9",
+          "type": "short_answer",
+          "prompt": "Complete with the adverb form of careful: Please read the final paragraph ___.",
+          "answer": {
+            "accepted_answers": [
+              "carefully"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Carefully is the adverb that describes how to read."
+          },
+          "skill_tags": [
+            "vocabulary.word_formation"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-02-Q10",
+          "type": "single_choice",
+          "prompt": "Which pair belongs to the same word family and is used correctly?",
+          "options": [
+            {
+              "id": "A",
+              "text": "success · successful"
+            },
+            {
+              "id": "B",
+              "text": "success · succeedly"
+            },
+            {
+              "id": "C",
+              "text": "successful · successment"
+            },
+            {
+              "id": "D",
+              "text": "succeed · successfulnessly"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Success is a noun and successful is the related adjective."
+          },
+          "skill_tags": [
+            "vocabulary.word_formation"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "VOC-B1-03",
+      "module": "vocabulary",
+      "cefr_target": "B1",
+      "title": "Collocations for plans, problems and decisions",
+      "estimated_minutes": 23,
+      "objectives": [
+        "Use common B1 collocations connected with plans, decisions and problem solving.",
+        "Distinguish natural verb–noun combinations from grammatically possible but unnatural combinations.",
+        "Infer the meaning of a collocation from a realistic sentence."
+      ],
+      "explanation": {
+        "en": "Fluent vocabulary use depends on combinations that commonly occur together. Useful B1 examples include make a decision, reach an agreement, solve a problem, meet a deadline, take responsibility, raise a concern and consider an option. Learning these as complete chunks helps both comprehension and production. When more than one verb seems possible, use the combination that is conventional in standard English.",
+        "vi": "Dùng từ tự nhiên phụ thuộc nhiều vào các từ thường đi cùng nhau. Một số cụm B1 hữu ích là make a decision, reach an agreement, solve a problem, meet a deadline, take responsibility, raise a concern và consider an option. Nên học theo cả cụm thay vì từng từ riêng lẻ."
+      },
+      "examples": [
+        "We need to make a decision by Friday.",
+        "Both groups finally reached an agreement.",
+        "The team solved the problem before lunch.",
+        "She raised a concern about the new schedule."
+      ],
+      "activities": [
+        {
+          "id": "VOC-B1-03-Q1",
+          "type": "single_choice",
+          "prompt": "Which phrase is most natural?",
+          "options": [
+            {
+              "id": "A",
+              "text": "make a decision"
+            },
+            {
+              "id": "B",
+              "text": "do a decision"
+            },
+            {
+              "id": "C",
+              "text": "build a decision"
+            },
+            {
+              "id": "D",
+              "text": "perform a decision"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Make a decision is the standard collocation."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-03-Q2",
+          "type": "single_choice",
+          "prompt": "The two groups discussed the issue and finally ___ an agreement.",
+          "options": [
+            {
+              "id": "A",
+              "text": "reached"
+            },
+            {
+              "id": "B",
+              "text": "caught"
+            },
+            {
+              "id": "C",
+              "text": "arrived"
+            },
+            {
+              "id": "D",
+              "text": "made to"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Reach an agreement is a standard collocation meaning come to a shared decision."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-03-Q3",
+          "type": "single_choice",
+          "prompt": "We have only two days left, so everyone must work carefully to ___ the deadline.",
+          "options": [
+            {
+              "id": "A",
+              "text": "meet"
+            },
+            {
+              "id": "B",
+              "text": "touch"
+            },
+            {
+              "id": "C",
+              "text": "win"
+            },
+            {
+              "id": "D",
+              "text": "arrive"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Meet a deadline means complete the required work by the required time."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-03-Q4",
+          "type": "short_answer",
+          "prompt": "Complete the collocation: We need to ___ this problem before the next lesson.",
+          "answer": {
+            "accepted_answers": [
+              "solve"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Solve a problem is the natural verb–noun combination."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-03-Q5",
+          "type": "single_choice",
+          "prompt": "In 'Linh raised a concern about the cost,' what did Linh do?",
+          "options": [
+            {
+              "id": "A",
+              "text": "mentioned a possible problem"
+            },
+            {
+              "id": "B",
+              "text": "increased the price"
+            },
+            {
+              "id": "C",
+              "text": "made the room louder"
+            },
+            {
+              "id": "D",
+              "text": "cancelled the project"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Raise a concern means bring a worry or possible problem to attention."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context",
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-03-Q6",
+          "type": "single_choice",
+          "prompt": "Which sentence uses take responsibility naturally?",
+          "options": [
+            {
+              "id": "A",
+              "text": "He took responsibility for checking the final file."
+            },
+            {
+              "id": "B",
+              "text": "He made responsibility for checking the final file."
+            },
+            {
+              "id": "C",
+              "text": "He did responsibility to the final file."
+            },
+            {
+              "id": "D",
+              "text": "He reached responsibility for the final file."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Take responsibility for something means accept that it is your duty."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-03-Q7",
+          "type": "single_choice",
+          "prompt": "Before choosing a new club activity, the class should ___ all the available options.",
+          "options": [
+            {
+              "id": "A",
+              "text": "consider"
+            },
+            {
+              "id": "B",
+              "text": "solve"
+            },
+            {
+              "id": "C",
+              "text": "meet"
+            },
+            {
+              "id": "D",
+              "text": "raise"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Consider an option means think carefully about a possible choice."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-03-Q8",
+          "type": "single_choice",
+          "prompt": "What does 'a practical solution' mean in this context? 'Moving the meeting online was a practical solution when the room became unavailable.'",
+          "options": [
+            {
+              "id": "A",
+              "text": "a workable way to solve the problem"
+            },
+            {
+              "id": "B",
+              "text": "an interesting question"
+            },
+            {
+              "id": "C",
+              "text": "a formal complaint"
+            },
+            {
+              "id": "D",
+              "text": "a difficult deadline"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A practical solution is a workable answer to a problem."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-03-Q9",
+          "type": "single_choice",
+          "prompt": "Which pair of collocations is natural?",
+          "options": [
+            {
+              "id": "A",
+              "text": "set a goal · meet a deadline"
+            },
+            {
+              "id": "B",
+              "text": "do a goal · catch a deadline"
+            },
+            {
+              "id": "C",
+              "text": "make a goal · arrive a deadline"
+            },
+            {
+              "id": "D",
+              "text": "set a deadline · meet a goal to"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Set a goal and meet a deadline are both standard combinations."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-03-Q10",
+          "type": "short_answer",
+          "prompt": "Complete: After discussing three possible routes, we finally made a ___.",
+          "answer": {
+            "accepted_answers": [
+              "decision"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Make a decision is the standard collocation."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "REA-B1-02",
+      "module": "reading",
+      "cefr_target": "B1",
+      "title": "A repair café comes to school",
+      "estimated_minutes": 24,
+      "objectives": [
+        "Identify the main purpose of an informative school text.",
+        "Retrieve exact details about arrangements, roles and conditions.",
+        "Infer meaning and vocabulary from surrounding evidence."
+      ],
+      "explanation": {
+        "en": "For a B1 information text, separate the overall purpose from exact details. Names, times, limits and conditions often answer detail questions directly. For inference and vocabulary-in-context, combine nearby clues rather than choosing an answer only because it sounds generally reasonable.",
+        "vi": "Với văn bản thông tin B1, cần tách mục đích chung khỏi các chi tiết chính xác như thời gian, vai trò và điều kiện. Với câu suy luận hoặc từ vựng trong ngữ cảnh, hãy kết hợp các dấu hiệu gần đó thay vì chọn đáp án chỉ vì nghe có vẻ hợp lý."
+      },
+      "examples": [
+        "GIST · Why was the notice written?",
+        "DETAIL · What must students bring?",
+        "INFERENCE · Why is the number of places limited?",
+        "VOCABULARY · Use nearby words to infer an unfamiliar phrase."
+      ],
+      "reading_asset": {
+        "id": "TXT-REPAIR-CAFE-B1",
+        "title": "A repair café comes to school",
+        "display_to_learner": true,
+        "body": "Next Wednesday, Green Street Repair Café will run a two-hour session in our school library. The group normally meets once a month at the community centre, where volunteers help people repair small household objects instead of throwing them away. For this school visit, students may bring one broken item such as a desk lamp, a simple toy or a backpack with a damaged zip. Electrical items must be small enough to carry safely, and phones or tablets will not be accepted. The session begins at 3:30 p.m., but students with an item to repair should arrive at 3:15 so a volunteer can check it first. There are only twenty repair places because each volunteer will work with a small group. Students without a broken object may still attend and observe. The organisers will also demonstrate how to sew on a button and replace a bicycle reflector. No previous repair experience is necessary. The aim is not simply to fix objects; the volunteers want students to understand how basic repairs can reduce waste and make useful items last longer. Anyone who wants a repair place must complete the online form by Monday evening. Observers do not need to register."
+      },
+      "activities": [
+        {
+          "id": "REA-B1-02-Q1",
+          "type": "single_choice",
+          "prompt": "What is the main purpose of the text?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To explain how students can take part in a school repair-café session"
+            },
+            {
+              "id": "B",
+              "text": "To advertise a shop selling new electronic devices"
+            },
+            {
+              "id": "C",
+              "text": "To report the results of a repair competition"
+            },
+            {
+              "id": "D",
+              "text": "To teach students how to repair every household object"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The text explains the event, participation rules, schedule and purpose."
+          },
+          "skill_tags": [
+            "reading.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-02-Q2",
+          "type": "single_choice",
+          "prompt": "Where will the school session take place?",
+          "options": [
+            {
+              "id": "A",
+              "text": "In the school library"
+            },
+            {
+              "id": "B",
+              "text": "At the community centre"
+            },
+            {
+              "id": "C",
+              "text": "In a bicycle shop"
+            },
+            {
+              "id": "D",
+              "text": "In the science laboratory"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The first sentence states that the school session will be in the school library."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-02-Q3",
+          "type": "single_choice",
+          "prompt": "Which item will NOT be accepted for repair?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A tablet"
+            },
+            {
+              "id": "B",
+              "text": "A desk lamp"
+            },
+            {
+              "id": "C",
+              "text": "A simple toy"
+            },
+            {
+              "id": "D",
+              "text": "A backpack with a damaged zip"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The text explicitly says that phones or tablets will not be accepted."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-02-Q4",
+          "type": "single_choice",
+          "prompt": "What time should a student with a repair item arrive?",
+          "options": [
+            {
+              "id": "A",
+              "text": "3:15 p.m."
+            },
+            {
+              "id": "B",
+              "text": "3:30 p.m."
+            },
+            {
+              "id": "C",
+              "text": "Monday evening"
+            },
+            {
+              "id": "D",
+              "text": "Two hours early"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Students with an item should arrive at 3:15 for the safety check."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-02-Q5",
+          "type": "single_choice",
+          "prompt": "Why are there only twenty repair places?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Each volunteer will work with a small group."
+            },
+            {
+              "id": "B",
+              "text": "The library has only twenty chairs."
+            },
+            {
+              "id": "C",
+              "text": "Only twenty students own broken objects."
+            },
+            {
+              "id": "D",
+              "text": "The session lasts only twenty minutes."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The passage gives the small-group volunteer arrangement as the reason for the limit."
+          },
+          "skill_tags": [
+            "reading.detail",
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-02-Q6",
+          "type": "single_choice",
+          "prompt": "In the sentence 'Students without a broken object may still attend and observe,' what does 'observe' most nearly mean?",
+          "options": [
+            {
+              "id": "A",
+              "text": "watch what happens without taking a repair place"
+            },
+            {
+              "id": "B",
+              "text": "register two broken objects"
+            },
+            {
+              "id": "C",
+              "text": "leave before the session begins"
+            },
+            {
+              "id": "D",
+              "text": "teach the volunteers how to repair"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The contrast with students who bring repair items shows that observers can attend and watch without using a repair place."
+          },
+          "skill_tags": [
+            "reading.vocabulary_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-02-Q7",
+          "type": "single_choice",
+          "prompt": "In the phrase 'make useful items last longer', what does 'last longer' mean?",
+          "options": [
+            {
+              "id": "A",
+              "text": "remain usable for more time"
+            },
+            {
+              "id": "B",
+              "text": "become physically longer"
+            },
+            {
+              "id": "C",
+              "text": "cost more money"
+            },
+            {
+              "id": "D",
+              "text": "take longer to carry"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The surrounding idea of repair and reducing waste shows that last longer means remain useful for more time."
+          },
+          "skill_tags": [
+            "reading.vocabulary_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-02-Q8",
+          "type": "single_choice",
+          "prompt": "What can be inferred about the volunteers' goal?",
+          "options": [
+            {
+              "id": "A",
+              "text": "They want students to learn ideas they can use beyond this single event."
+            },
+            {
+              "id": "B",
+              "text": "They mainly want students to buy replacement parts."
+            },
+            {
+              "id": "C",
+              "text": "They expect every student to have repair experience."
+            },
+            {
+              "id": "D",
+              "text": "They want all students to repair phones and tablets."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The text says the aim is not simply to fix objects but to understand repair and waste reduction."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-02-Q9",
+          "type": "single_choice",
+          "prompt": "Who must complete the online form?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Students who want a repair place"
+            },
+            {
+              "id": "B",
+              "text": "Every observer"
+            },
+            {
+              "id": "C",
+              "text": "Only the volunteers"
+            },
+            {
+              "id": "D",
+              "text": "Everyone in the school"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The final lines say anyone wanting a repair place must register, while observers do not need to."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-02-Q10",
+          "type": "single_choice",
+          "prompt": "Why does the writer mention sewing on a button and replacing a bicycle reflector?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To give examples of skills the organisers will demonstrate"
+            },
+            {
+              "id": "B",
+              "text": "To list items students must buy"
+            },
+            {
+              "id": "C",
+              "text": "To explain why the library is closed"
+            },
+            {
+              "id": "D",
+              "text": "To show that only clothing and bicycles can be repaired"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The examples show additional simple repair skills that will be demonstrated."
+          },
+          "skill_tags": [
+            "reading.author_purpose"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "REA-B1-03",
+      "module": "reading",
+      "cefr_target": "B1",
+      "title": "Should study apps plan every session?",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Identify the writer's balanced main claim in a viewpoint text.",
+        "Distinguish supporting details from qualifications and limitations.",
+        "Infer the meaning and purpose of language used to qualify a claim."
+      ],
+      "explanation": {
+        "en": "A B1 viewpoint text may support an idea without presenting it as true in every situation. Look for balancing words such as however, can, may and depends on. Exact detail questions should be answered from the text, while inference questions require combining more than one clue.",
+        "vi": "Văn bản nêu quan điểm B1 có thể ủng hộ một ý nhưng vẫn nêu giới hạn. Hãy chú ý các từ như however, can, may và depends on. Câu hỏi chi tiết cần bám sát văn bản; câu suy luận thường phải kết hợp nhiều dấu hiệu."
+      },
+      "examples": [
+        "CLAIM · A tool can help without replacing learner decisions.",
+        "QUALIFICATION · However, one plan does not suit every task.",
+        "DETAIL · Find what the writer says the app can record.",
+        "INFERENCE · Combine examples to understand the writer's attitude."
+      ],
+      "reading_asset": {
+        "id": "TXT-STUDY-APPS-B1",
+        "title": "Should study apps plan every session?",
+        "display_to_learner": true,
+        "body": "Study apps can make it easier to organise homework. A learner can record a deadline, divide a large task into smaller steps and receive reminders before work is due. Some apps also show how much time has been spent on different subjects. These features can be useful, especially when several assignments have to be managed at once. However, an app cannot always decide what a learner should do next. A difficult maths problem may need more time than the original plan allowed, while a familiar vocabulary exercise may take less. Learners also differ: one person may work well with frequent reminders, while another may find them distracting. For this reason, a study plan should be treated as a guide rather than a set of fixed instructions. Checking progress is still valuable, but learners need to adjust the plan when the evidence changes. An app can support that process by making deadlines and study patterns visible. The final decision, though, still belongs to the learner."
+      },
+      "activities": [
+        {
+          "id": "REA-B1-03-Q1",
+          "type": "single_choice",
+          "prompt": "Which statement best represents the writer's main view?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Study apps are useful planning tools, but learners still need to adjust their own plans."
+            },
+            {
+              "id": "B",
+              "text": "Study apps should make every decision for the learner."
+            },
+            {
+              "id": "C",
+              "text": "Reminders are harmful for every learner."
+            },
+            {
+              "id": "D",
+              "text": "Paper plans are always better than digital tools."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The writer supports study apps as tools but repeatedly limits what they should decide."
+          },
+          "skill_tags": [
+            "reading.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-03-Q2",
+          "type": "single_choice",
+          "prompt": "Which feature does the writer say some apps provide?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A record of time spent on different subjects"
+            },
+            {
+              "id": "B",
+              "text": "Automatic answers to difficult maths questions"
+            },
+            {
+              "id": "C",
+              "text": "A guarantee that homework will be easy"
+            },
+            {
+              "id": "D",
+              "text": "A teacher for every subject"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The first paragraph states that some apps show time spent on different subjects."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-03-Q3",
+          "type": "single_choice",
+          "prompt": "Why might a difficult maths problem change the original plan?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It may need more time than expected."
+            },
+            {
+              "id": "B",
+              "text": "Maths deadlines cannot be recorded."
+            },
+            {
+              "id": "C",
+              "text": "Apps do not allow maths homework."
+            },
+            {
+              "id": "D",
+              "text": "Every learner finishes maths at the same speed."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The writer directly says a difficult maths problem may need more time than planned."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-03-Q4",
+          "type": "single_choice",
+          "prompt": "What does the text say about reminders?",
+          "options": [
+            {
+              "id": "A",
+              "text": "They may help one learner but distract another."
+            },
+            {
+              "id": "B",
+              "text": "They always improve concentration."
+            },
+            {
+              "id": "C",
+              "text": "They should be sent every five minutes."
+            },
+            {
+              "id": "D",
+              "text": "They are useful only for vocabulary."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The passage contrasts learners who benefit from frequent reminders with learners who find them distracting."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-03-Q5",
+          "type": "single_choice",
+          "prompt": "In 'a guide rather than a set of fixed instructions', what does 'fixed' most nearly mean?",
+          "options": [
+            {
+              "id": "A",
+              "text": "not intended to change"
+            },
+            {
+              "id": "B",
+              "text": "clearly printed"
+            },
+            {
+              "id": "C",
+              "text": "repaired"
+            },
+            {
+              "id": "D",
+              "text": "short and simple"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The following sentence says learners need to adjust the plan, so fixed means not changing."
+          },
+          "skill_tags": [
+            "reading.vocabulary_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-03-Q6",
+          "type": "single_choice",
+          "prompt": "What can be inferred from the examples of maths and vocabulary tasks?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Useful plans need to respond to the actual difficulty and time a task requires."
+            },
+            {
+              "id": "B",
+              "text": "Every subject should receive exactly the same study time."
+            },
+            {
+              "id": "C",
+              "text": "Vocabulary is always easy and maths is always difficult."
+            },
+            {
+              "id": "D",
+              "text": "Learners should stop planning before they begin."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The examples show that actual task demands can differ from an initial estimate."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-03-Q7",
+          "type": "single_choice",
+          "prompt": "Why does the writer use the word 'However' at the start of the second paragraph?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To introduce a limitation to the benefits described earlier"
+            },
+            {
+              "id": "B",
+              "text": "To repeat the same list of app features"
+            },
+            {
+              "id": "C",
+              "text": "To change the topic to school rules"
+            },
+            {
+              "id": "D",
+              "text": "To prove that apps are useless"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "However signals a contrast between the useful features and the limits of automated planning."
+          },
+          "skill_tags": [
+            "reading.author_purpose"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-03-Q8",
+          "type": "single_choice",
+          "prompt": "According to the text, what evidence can an app make visible?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Deadlines and study patterns"
+            },
+            {
+              "id": "B",
+              "text": "A learner's future exam score with certainty"
+            },
+            {
+              "id": "C",
+              "text": "The correct answer to every task"
+            },
+            {
+              "id": "D",
+              "text": "Whether a teacher likes the learner"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The final paragraph says an app can make deadlines and study patterns visible."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-03-Q9",
+          "type": "single_choice",
+          "prompt": "What can be inferred about the writer's attitude toward learner independence?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The writer believes learners should keep responsibility for final decisions."
+            },
+            {
+              "id": "B",
+              "text": "The writer thinks learners should obey the app without question."
+            },
+            {
+              "id": "C",
+              "text": "The writer believes planning has no value."
+            },
+            {
+              "id": "D",
+              "text": "The writer wants apps to remove all learner choices."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The final sentence explicitly keeps the final decision with the learner, supported by the earlier discussion of adjustment."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-03-Q10",
+          "type": "single_choice",
+          "prompt": "In this text, what does 'adjust the plan' mean?",
+          "options": [
+            {
+              "id": "A",
+              "text": "change the plan when new information shows it is needed"
+            },
+            {
+              "id": "B",
+              "text": "delete every deadline"
+            },
+            {
+              "id": "C",
+              "text": "follow the original plan more strictly"
+            },
+            {
+              "id": "D",
+              "text": "replace study with reminders"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The surrounding sentences describe changing a plan when task time or learner needs differ from the original expectation."
+          },
+          "skill_tags": [
+            "reading.vocabulary_in_context"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    }
+  ]
+}

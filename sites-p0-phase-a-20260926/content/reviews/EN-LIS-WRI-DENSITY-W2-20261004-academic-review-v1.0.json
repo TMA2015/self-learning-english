@@ -1,0 +1,72 @@
+{
+  "format": "self-learning-english.academic-review-v1",
+  "schema_version": "1.0",
+  "packet_id": "EN-LIS-WRI-DENSITY-W2-20261004",
+  "batch_id": "LISTENING-WRITING-DENSITY-WAVE2-20261004",
+  "base_curriculum": "1.10.0",
+  "proposed_curriculum": "1.11.0",
+  "reviewer": "NotebookLM independent academic review",
+  "review_rounds": 1,
+  "final_verdict": "PASS",
+  "scope": {
+    "lessons": 4,
+    "activities": 40,
+    "lesson_ids": [
+      "LIS-A1-01",
+      "LIS-A2-02",
+      "LIS-B1-02",
+      "WRI-B1-02"
+    ]
+  },
+  "academic_summary": {
+    "grammar_accuracy": "PASS",
+    "naturalness": "PASS",
+    "ambiguity_and_determinism": "PASS",
+    "cefr_targeting": "PASS",
+    "explanations": "PASS",
+    "vietnamese_support": "PASS",
+    "distractors": "PASS",
+    "skill_tags": "PASS",
+    "lesson_contract": "PASS",
+    "originality_and_safety": "PASS"
+  },
+  "focus_checks": {
+    "audio_text_answer_grounding": "PASS",
+    "listening_playback_safeguards": "PASS",
+    "listening_cognitive_tag_alignment": "PASS",
+    "writing_scaffold_progression": "PASS",
+    "extended_response_controls": "PASS"
+  },
+  "reviewed_existing_tags": [
+    "listening.gist",
+    "listening.detail",
+    "listening.inference",
+    "listening.speaker_intention",
+    "writing.task_understanding",
+    "writing.idea_development",
+    "writing.cohesion",
+    "writing.organization",
+    "writing.register",
+    "writing.grammar",
+    "writing.vocabulary"
+  ],
+  "new_runtime_tags": [],
+  "safeguards": {
+    "listening_requires_real_playback": true,
+    "transcript_reveal": "after_submission",
+    "transcript_only_listening_credit": false,
+    "writing_extended_response_evidence_weight": 0,
+    "writing_extended_response_review_mode": "assisted_ai_or_human",
+    "automatic_cefr_claim": false
+  },
+  "release_boundary": {
+    "import_authorized": false,
+    "deploy_authorized": false,
+    "next_steps": [
+      "compose immutable 1.11.0 candidate",
+      "verify all 1.10.0 lessons preserved",
+      "run regression and import-preview gates",
+      "advance GitHub-first browser runtime after technical PASS"
+    ]
+  }
+}

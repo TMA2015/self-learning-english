@@ -1,0 +1,266 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI English Tutor learner export v1",
+  "type": "object",
+  "required": [
+    "format",
+    "schemaVersion",
+    "exportedAt",
+    "learnerId",
+    "engineVersion",
+    "state",
+    "assessments",
+    "evidence",
+    "snapshots",
+    "profile",
+    "skillMastery",
+    "attempts",
+    "writingSubmissions",
+    "errorHistory",
+    "vocabulary",
+    "learningPlans",
+    "courseProgress",
+    "notes"
+  ],
+  "properties": {
+    "format": {
+      "const": "ai-english-tutor.learner"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "exportedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "learnerId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "engineVersion": {
+      "type": "string"
+    },
+    "state": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "profile": {},
+    "skillMastery": {},
+    "vocabulary": {},
+    "courseProgress": {},
+    "assessments": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "source",
+          "skill",
+          "tag",
+          "score",
+          "max",
+          "at"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "string"
+          },
+          "tag": {
+            "type": "string"
+          },
+          "score": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "at": {
+            "type": "number"
+          },
+          "evaluation": {
+            "type": "object",
+            "required": [
+              "provider",
+              "model",
+              "promptVersion",
+              "promptId",
+              "timestamp",
+              "structuredResult"
+            ],
+            "properties": {
+              "provider": {
+                "type": "string"
+              },
+              "model": {
+                "type": "string"
+              },
+              "promptVersion": {
+                "type": "string"
+              },
+              "promptId": {
+                "type": "string"
+              },
+              "timestamp": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "structuredResult": {}
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "snapshots": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "attempts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "writingSubmissions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "errorHistory": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "learningPlans": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "writingRecords": {
+      "type": "object",
+      "required": [
+        "submissions",
+        "evaluations"
+      ],
+      "properties": {
+        "submissions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "learnerId",
+              "taskId",
+              "text",
+              "kind",
+              "rootId",
+              "createdAt"
+            ]
+          }
+        },
+        "evaluations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "submissionId",
+              "status",
+              "at",
+              "evidence"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "pending",
+                  "validated",
+                  "unavailable",
+                  "failed",
+                  "awaiting_approval",
+                  "approved"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "assistedRecords": {
+      "type": "object",
+      "required": [
+        "packets",
+        "approvals"
+      ],
+      "properties": {
+        "packets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "submissionId",
+              "responseDigest",
+              "anonymizedText",
+              "at",
+              "packet"
+            ]
+          }
+        },
+        "approvals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "submissionId",
+              "evaluationId",
+              "reviewedBy",
+              "at"
+            ]
+          }
+        }
+      }
+    },
+    "academicRecords": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "packageId",
+          "version",
+          "lessonId",
+          "rootId",
+          "status",
+          "answers",
+          "evidence",
+          "createdAt"
+        ]
+      }
+    }
+  },
+  "additionalProperties": true
+}

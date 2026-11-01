@@ -1,0 +1,1368 @@
+{
+  "format": "ai-english-tutor.curriculum-batch",
+  "schema_version": 1,
+  "batch_id": "GRAMMAR-B1-WAVE2B-20261004",
+  "base_version": "1.7.0",
+  "target_version": "1.8.0",
+  "status": "academic_pass_ready_for_1.8.0_composition",
+  "metadata": {
+    "status": "grammar_b1_wave2b_academic_pass_ready_for_candidate_no_import",
+    "course_title": "English Foundation · A1–B1 developing curriculum",
+    "course_description": "Original self-study units with A1 foundations, A2 extensions and expanding B1 grammar across seven domains. CEFR values are lesson targets, not certified learner estimates.",
+    "curriculum_principle": "An expanding, independently authored curriculum with age-appropriate contexts and CEFR-targeted language use. Coverage is partial at all levels; current labels are curricular targets, not learner certification."
+  },
+  "insert_after": [
+    {
+      "after": "GRA-B1-05",
+      "ids": [
+        "GRA-B1-06",
+        "GRA-B1-07",
+        "GRA-B1-08",
+        "GRA-B1-09"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "GRA-B1-06",
+      "module": "grammar",
+      "cefr_target": "B1",
+      "title": "Second conditional: imaginary situations",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Use if + past simple and would + base verb for imaginary or unlikely present/future situations.",
+        "Keep would in the result clause rather than the if-clause in standard second-conditionals.",
+        "Use the common hypothetical form If I were you to give advice."
+      ],
+      "explanation": {
+        "en": "Use the second conditional for imaginary, unlikely or hypothetical situations in the present or future. The usual pattern is if + past simple, would + base verb: If I had more time, I would learn another language. The past form does not mean past time here; it shows distance from reality. In standard second-conditionals, do not put would in the if-clause. The fixed advice pattern If I were you is especially common.",
+        "vi": "Dùng câu điều kiện loại hai cho tình huống tưởng tượng, ít có khả năng hoặc giả định ở hiện tại/tương lai. Mẫu thường dùng là if + past simple, would + động từ nguyên mẫu. Dạng quá khứ ở đây không nói về thời gian quá khứ mà thể hiện khoảng cách với thực tế. Thông thường không dùng would trong mệnh đề if. Mẫu If I were you rất phổ biến khi đưa lời khuyên."
+      },
+      "examples": [
+        "If I had more free time, I would join the art club.",
+        "If she lived closer, we would see her more often.",
+        "If it didn't rain so much, we would walk to school.",
+        "If I were you, I would ask the teacher."
+      ],
+      "activities": [
+        {
+          "id": "GRA-B1-06-Q1",
+          "type": "single_choice",
+          "prompt": "If I ___ more free time, I would join the art club.",
+          "options": [
+            {
+              "id": "A",
+              "text": "had"
+            },
+            {
+              "id": "B",
+              "text": "have"
+            },
+            {
+              "id": "C",
+              "text": "would have"
+            },
+            {
+              "id": "D",
+              "text": "will have"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The if-clause of a standard second conditional uses the past simple: if I had."
+          },
+          "skill_tags": [
+            "grammar.second_conditional"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-06-Q2",
+          "type": "short_answer",
+          "prompt": "If she lived closer, we ___ her more often. (see)",
+          "answer": {
+            "accepted_answers": [
+              "would see",
+              "'d see",
+              "’d see"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The result clause uses would + base verb; after we, both full and contracted forms are valid."
+          },
+          "skill_tags": [
+            "grammar.second_conditional"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-06-Q3",
+          "type": "single_choice",
+          "prompt": "Which sentence describes an imaginary present or future situation?",
+          "options": [
+            {
+              "id": "A",
+              "text": "If I had a bike, I would cycle to school."
+            },
+            {
+              "id": "B",
+              "text": "If I have breakfast, I feel better."
+            },
+            {
+              "id": "C",
+              "text": "If it rains tomorrow, we'll stay inside."
+            },
+            {
+              "id": "D",
+              "text": "I cycled to school yesterday."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "If I had a bike, I would cycle to school uses the second conditional for an unreal or hypothetical situation."
+          },
+          "skill_tags": [
+            "grammar.second_conditional"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-06-Q4",
+          "type": "single_choice",
+          "prompt": "If it ___ so much, we would walk to school more often.",
+          "options": [
+            {
+              "id": "A",
+              "text": "didn't rain"
+            },
+            {
+              "id": "B",
+              "text": "doesn't rain"
+            },
+            {
+              "id": "C",
+              "text": "wouldn't rain"
+            },
+            {
+              "id": "D",
+              "text": "won't rain"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The hypothetical if-clause uses the past simple negative: didn't rain."
+          },
+          "skill_tags": [
+            "grammar.second_conditional"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-06-Q5",
+          "type": "single_choice",
+          "prompt": "What ___ you do if you found a wallet on the bus?",
+          "options": [
+            {
+              "id": "A",
+              "text": "would"
+            },
+            {
+              "id": "B",
+              "text": "will"
+            },
+            {
+              "id": "C",
+              "text": "did"
+            },
+            {
+              "id": "D",
+              "text": "do"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The result question in a second conditional uses would + subject + base verb."
+          },
+          "skill_tags": [
+            "grammar.second_conditional"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-06-Q6",
+          "type": "single_choice",
+          "prompt": "Choose the standard advice expression.",
+          "options": [
+            {
+              "id": "A",
+              "text": "If I were you, I'd talk to the teacher."
+            },
+            {
+              "id": "B",
+              "text": "If I would be you, I talk to the teacher."
+            },
+            {
+              "id": "C",
+              "text": "If I am you, I'd talked to the teacher."
+            },
+            {
+              "id": "D",
+              "text": "If I were you, I will talked to the teacher."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "If I were you is the common hypothetical advice pattern, followed here by would in the result clause."
+          },
+          "skill_tags": [
+            "grammar.second_conditional"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-06-Q7",
+          "type": "short_answer",
+          "prompt": "If they had a car, they ___ to the coast more often. (drive)",
+          "answer": {
+            "accepted_answers": [
+              "would drive",
+              "'d drive",
+              "’d drive"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The result clause uses would drive; the contraction 'd/’d is also standard after they."
+          },
+          "skill_tags": [
+            "grammar.second_conditional"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-06-Q8",
+          "type": "single_choice",
+          "prompt": "Which sentence has the standard second-conditional form?",
+          "options": [
+            {
+              "id": "A",
+              "text": "If I knew the answer, I would tell you."
+            },
+            {
+              "id": "B",
+              "text": "If I would know the answer, I told you."
+            },
+            {
+              "id": "C",
+              "text": "If I know the answer, I would told you."
+            },
+            {
+              "id": "D",
+              "text": "If I knew the answer, I will tell you."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The standard pattern is if + past simple, then would + base verb."
+          },
+          "skill_tags": [
+            "grammar.second_conditional"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-06-Q9",
+          "type": "single_choice",
+          "prompt": "If the school ___ a bigger library, students would have more places to study.",
+          "options": [
+            {
+              "id": "A",
+              "text": "had"
+            },
+            {
+              "id": "B",
+              "text": "has"
+            },
+            {
+              "id": "C",
+              "text": "would have"
+            },
+            {
+              "id": "D",
+              "text": "will have"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Had is the past-simple form used in the hypothetical if-clause."
+          },
+          "skill_tags": [
+            "grammar.second_conditional"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-06-Q10",
+          "type": "single_choice",
+          "prompt": "Which sentence is a second conditional rather than a first conditional?",
+          "options": [
+            {
+              "id": "A",
+              "text": "If we leave now, we'll catch the bus."
+            },
+            {
+              "id": "B",
+              "text": "If we left now, we would catch the bus."
+            },
+            {
+              "id": "C",
+              "text": "If water reaches 100°C, it boils."
+            },
+            {
+              "id": "D",
+              "text": "If you press this button, the light turns on."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "If we left now, we would catch the bus uses past simple + would for a hypothetical situation."
+          },
+          "skill_tags": [
+            "grammar.second_conditional"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-B1-07",
+      "module": "grammar",
+      "cefr_target": "B1",
+      "title": "Wish and if only for present situations",
+      "estimated_minutes": 24,
+      "objectives": [
+        "Use wish + past form to express that a present situation is different from what you want.",
+        "Use if only for the same present-regret meaning with stronger emphasis.",
+        "Use could after wish when the missing ability or possibility is the focus."
+      ],
+      "explanation": {
+        "en": "Use wish + a past form when you want a present situation to be different: I wish I knew the answer means I do not know it now. If only has a similar meaning but often sounds stronger: If only we lived closer! For ability or possibility, could is common: I wish I could play the guitar. These forms describe an unreal present, not a past event.",
+        "vi": "Dùng wish + dạng quá khứ khi muốn một tình huống hiện tại khác đi: I wish I knew the answer nghĩa là hiện tại tôi không biết câu trả lời. If only có ý nghĩa tương tự nhưng thường nhấn mạnh hơn. Khi nói về khả năng hoặc điều có thể làm, thường dùng could: I wish I could play the guitar. Các cấu trúc này diễn tả hiện tại không như mong muốn, không phải sự việc quá khứ."
+      },
+      "examples": [
+        "I wish I knew the answer.",
+        "If only we lived closer!",
+        "She wishes she had more free time.",
+        "I wish I could play the guitar."
+      ],
+      "activities": [
+        {
+          "id": "GRA-B1-07-Q1",
+          "type": "single_choice",
+          "prompt": "I don't know the answer. I wish I ___ it.",
+          "options": [
+            {
+              "id": "A",
+              "text": "knew"
+            },
+            {
+              "id": "B",
+              "text": "know"
+            },
+            {
+              "id": "C",
+              "text": "would know"
+            },
+            {
+              "id": "D",
+              "text": "have known"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Wish about an unreal present situation commonly uses a past form: I wish I knew it."
+          },
+          "skill_tags": [
+            "grammar.wish_present"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-07-Q2",
+          "type": "single_choice",
+          "prompt": "We live far from our grandparents. If only we ___ closer.",
+          "options": [
+            {
+              "id": "A",
+              "text": "lived"
+            },
+            {
+              "id": "B",
+              "text": "live"
+            },
+            {
+              "id": "C",
+              "text": "would live"
+            },
+            {
+              "id": "D",
+              "text": "have lived"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "If only + past form expresses that the present situation is different from what the speaker wants."
+          },
+          "skill_tags": [
+            "grammar.wish_present"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-07-Q3",
+          "type": "single_choice",
+          "prompt": "I can't play the guitar, but I want to. Which sentence fits?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I wish I could play the guitar."
+            },
+            {
+              "id": "B",
+              "text": "I wish I can play the guitar."
+            },
+            {
+              "id": "C",
+              "text": "I wish I played the guitar yesterday."
+            },
+            {
+              "id": "D",
+              "text": "I hope I could play the guitar now."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Could is natural after wish when the missing present ability is the focus."
+          },
+          "skill_tags": [
+            "grammar.wish_present"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-07-Q4",
+          "type": "short_answer",
+          "prompt": "Complete the sentence: I don't have enough free time. I wish I ___ more. (have)",
+          "answer": {
+            "accepted_answers": [
+              "had"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Wish about the present uses the past form had: I wish I had more."
+          },
+          "skill_tags": [
+            "grammar.wish_present"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-07-Q5",
+          "type": "single_choice",
+          "prompt": "The buses come only once an hour. I wish they ___ more often.",
+          "options": [
+            {
+              "id": "A",
+              "text": "came"
+            },
+            {
+              "id": "B",
+              "text": "come"
+            },
+            {
+              "id": "C",
+              "text": "would came"
+            },
+            {
+              "id": "D",
+              "text": "have come"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Came is the past form used after wish to describe a present situation the speaker wants to be different."
+          },
+          "skill_tags": [
+            "grammar.wish_present"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-07-Q6",
+          "type": "single_choice",
+          "prompt": "What does 'If only I spoke Spanish' imply?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I do not speak Spanish now, and I wish I did."
+            },
+            {
+              "id": "B",
+              "text": "I spoke Spanish yesterday."
+            },
+            {
+              "id": "C",
+              "text": "I will definitely speak Spanish tomorrow."
+            },
+            {
+              "id": "D",
+              "text": "I am asking someone to speak Spanish."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The sentence expresses regret or desire about a present unreal situation."
+          },
+          "skill_tags": [
+            "grammar.wish_present"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-07-Q7",
+          "type": "short_answer",
+          "prompt": "We don't live near the park. If only we ___ nearer. (live)",
+          "answer": {
+            "accepted_answers": [
+              "lived"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "If only + lived expresses a wish that the present living situation were different."
+          },
+          "skill_tags": [
+            "grammar.wish_present"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-07-Q8",
+          "type": "single_choice",
+          "prompt": "Which sentence correctly expresses a present wish about ability?",
+          "options": [
+            {
+              "id": "A",
+              "text": "She wishes she could swim better."
+            },
+            {
+              "id": "B",
+              "text": "She wishes she can swim better."
+            },
+            {
+              "id": "C",
+              "text": "She wishes she could swam better."
+            },
+            {
+              "id": "D",
+              "text": "She wishes she can swimming better."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Wish + could + base verb is correct for a desired present ability."
+          },
+          "skill_tags": [
+            "grammar.wish_present"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-07-Q9",
+          "type": "single_choice",
+          "prompt": "Which sentence is about a present situation the speaker wants to change?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I wish my room had more light."
+            },
+            {
+              "id": "B",
+              "text": "I hope the concert starts on time tomorrow."
+            },
+            {
+              "id": "C",
+              "text": "I enjoyed the concert last night."
+            },
+            {
+              "id": "D",
+              "text": "I will paint my room next week."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "I wish my room had more light describes a present reality the speaker wants to be different."
+          },
+          "skill_tags": [
+            "grammar.wish_present"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-07-Q10",
+          "type": "single_choice",
+          "prompt": "Choose the best pair.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Present regret: I wish it wasn't so noisy here. · Future hope: I hope the weather is good tomorrow."
+            },
+            {
+              "id": "B",
+              "text": "Present regret: I hope it wasn't so noisy here. · Future hope: I wish the weather will be good tomorrow."
+            },
+            {
+              "id": "C",
+              "text": "Present regret: I wish it isn't noisy here. · Future hope: I hoped the weather good tomorrow."
+            },
+            {
+              "id": "D",
+              "text": "Present regret: I wish it not noisy. · Future hope: I hope will good weather."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Wish commonly describes an unreal or unwanted present; hope is natural for a possible future outcome."
+          },
+          "skill_tags": [
+            "grammar.wish_present"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-B1-08",
+      "module": "grammar",
+      "cefr_target": "B1",
+      "title": "Passive voice in the present and past",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Form the present simple passive with am/is/are + past participle.",
+        "Form the past simple passive with was/were + past participle.",
+        "Choose the passive when the action or receiver is more important than the doer."
+      ],
+      "explanation": {
+        "en": "Use the passive when the action or the receiver is the main focus, or when the doer is unknown or unimportant. Form the present simple passive with am/is/are + past participle: Rice is grown in many countries. Form the past simple passive with was/were + past participle: The bridge was built in 1998. Add by + agent only when the doer is useful information.",
+        "vi": "Dùng câu bị động khi hành động hoặc đối tượng nhận hành động quan trọng hơn người thực hiện, hoặc khi người thực hiện không rõ/không quan trọng. Hiện tại đơn bị động: am/is/are + past participle. Quá khứ đơn bị động: was/were + past participle. Chỉ thêm by + người thực hiện khi thông tin đó cần thiết."
+      },
+      "examples": [
+        "Rice is grown in many countries.",
+        "The classrooms are cleaned every evening.",
+        "The bridge was built in 1998.",
+        "The picture was painted by a local artist."
+      ],
+      "activities": [
+        {
+          "id": "GRA-B1-08-Q1",
+          "type": "single_choice",
+          "prompt": "These phones ___ in several countries.",
+          "options": [
+            {
+              "id": "A",
+              "text": "are made"
+            },
+            {
+              "id": "B",
+              "text": "make"
+            },
+            {
+              "id": "C",
+              "text": "are make"
+            },
+            {
+              "id": "D",
+              "text": "made"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The present simple passive uses are + past participle: are made."
+          },
+          "skill_tags": [
+            "grammar.passive_voice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-08-Q2",
+          "type": "single_choice",
+          "prompt": "The old bridge ___ in 1998.",
+          "options": [
+            {
+              "id": "A",
+              "text": "was built"
+            },
+            {
+              "id": "B",
+              "text": "built"
+            },
+            {
+              "id": "C",
+              "text": "was build"
+            },
+            {
+              "id": "D",
+              "text": "is built"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The past simple passive uses was + past participle: was built."
+          },
+          "skill_tags": [
+            "grammar.passive_voice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-08-Q3",
+          "type": "short_answer",
+          "prompt": "Complete the passive sentence: The classrooms ___ every evening. (clean)",
+          "answer": {
+            "accepted_answers": [
+              "are cleaned"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The plural subject classrooms takes are + the past participle cleaned."
+          },
+          "skill_tags": [
+            "grammar.passive_voice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-08-Q4",
+          "type": "single_choice",
+          "prompt": "The match ___ because of heavy rain yesterday.",
+          "options": [
+            {
+              "id": "A",
+              "text": "was cancelled"
+            },
+            {
+              "id": "B",
+              "text": "cancelled"
+            },
+            {
+              "id": "C",
+              "text": "is cancel"
+            },
+            {
+              "id": "D",
+              "text": "was cancelling"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Yesterday signals past time, and the match receives the action, so was cancelled is correct."
+          },
+          "skill_tags": [
+            "grammar.passive_voice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-08-Q5",
+          "type": "single_choice",
+          "prompt": "Which sentence focuses on the receiver of the action?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The school library was opened in 2010."
+            },
+            {
+              "id": "B",
+              "text": "The principal opened the school library in 2010."
+            },
+            {
+              "id": "C",
+              "text": "Students visit the library every day."
+            },
+            {
+              "id": "D",
+              "text": "The librarian is opening a box."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The passive sentence makes the school library, the receiver of the action, the grammatical focus."
+          },
+          "skill_tags": [
+            "grammar.passive_voice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-08-Q6",
+          "type": "single_choice",
+          "prompt": "Coffee ___ in this region.",
+          "options": [
+            {
+              "id": "A",
+              "text": "is grown"
+            },
+            {
+              "id": "B",
+              "text": "grows by farmers"
+            },
+            {
+              "id": "C",
+              "text": "is grow"
+            },
+            {
+              "id": "D",
+              "text": "was growing every year"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "For a general present fact in the passive, use is + past participle: is grown."
+          },
+          "skill_tags": [
+            "grammar.passive_voice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-08-Q7",
+          "type": "short_answer",
+          "prompt": "Complete the passive sentence: The letters ___ yesterday. (send)",
+          "answer": {
+            "accepted_answers": [
+              "were sent"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The plural subject letters in a past passive sentence takes were + sent."
+          },
+          "skill_tags": [
+            "grammar.passive_voice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-08-Q8",
+          "type": "single_choice",
+          "prompt": "Which sentence uses by + agent correctly?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The mural was painted by local students."
+            },
+            {
+              "id": "B",
+              "text": "The mural painted by local students yesterday was."
+            },
+            {
+              "id": "C",
+              "text": "The mural was paint by local students."
+            },
+            {
+              "id": "D",
+              "text": "The mural was by local students painted."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "By + agent follows a correctly formed passive verb: was painted by local students."
+          },
+          "skill_tags": [
+            "grammar.passive_voice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-08-Q9",
+          "type": "single_choice",
+          "prompt": "Choose the correct past participle in the passive sentence: 'The windows were ___ last week.'",
+          "options": [
+            {
+              "id": "A",
+              "text": "replaced"
+            },
+            {
+              "id": "B",
+              "text": "replace"
+            },
+            {
+              "id": "C",
+              "text": "replacing"
+            },
+            {
+              "id": "D",
+              "text": "replaces"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A passive verb uses be + past participle; the past participle is replaced."
+          },
+          "skill_tags": [
+            "grammar.passive_voice"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-08-Q10",
+          "type": "single_choice",
+          "prompt": "The doer is unknown and the result matters. Which sentence is most suitable?",
+          "options": [
+            {
+              "id": "A",
+              "text": "My bike was stolen last night."
+            },
+            {
+              "id": "B",
+              "text": "Someone stole my bike, but I know exactly who."
+            },
+            {
+              "id": "C",
+              "text": "My bike stole last night."
+            },
+            {
+              "id": "D",
+              "text": "My bike was stealing last night."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The passive is useful because the bike/result is the focus and the doer is unknown."
+          },
+          "skill_tags": [
+            "grammar.passive_voice"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-B1-09",
+      "module": "grammar",
+      "cefr_target": "B1",
+      "title": "Reported statements and questions",
+      "estimated_minutes": 27,
+      "objectives": [
+        "Report basic statements after a past reporting verb using an appropriate backshift.",
+        "Use statement word order in reported wh-questions.",
+        "Use if or whether for basic reported yes/no questions."
+      ],
+      "explanation": {
+        "en": "Reported speech tells another person what someone said without repeating the exact words. After a past reporting verb, a present form often moves back: 'I am tired' → Mia said (that) she was tired; 'I need help' → Leo said that he needed help. Reported questions use statement word order, not direct-question order: 'Where do you live?' → She asked where I lived. For yes/no questions, use if or whether: 'Are you ready?' → He asked if I was ready. This lesson practices clear basic backshift examples where the earlier speech is being reported from a later past viewpoint.",
+        "vi": "Reported speech dùng để kể lại lời người khác mà không lặp nguyên văn. Sau động từ tường thuật ở quá khứ, dạng hiện tại thường lùi thì: 'I am tired' → Mia said (that) she was tired. Câu hỏi tường thuật dùng trật tự câu kể, không dùng trật tự đảo của câu hỏi trực tiếp: 'Where do you live?' → She asked where I lived. Với câu hỏi yes/no, dùng if hoặc whether."
+      },
+      "examples": [
+        "Mia said, 'I am tired.' → Mia said (that) she was tired.",
+        "Leo said, 'I need help.' → Leo said that he needed help.",
+        "She asked, 'Where do you live?' → She asked where I lived.",
+        "He asked, 'Are you ready?' → He asked if I was ready."
+      ],
+      "activities": [
+        {
+          "id": "GRA-B1-09-Q1",
+          "type": "single_choice",
+          "prompt": "Mia said, 'I am tired.' Choose the basic reported form.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Mia said that she was tired."
+            },
+            {
+              "id": "B",
+              "text": "Mia said that I am tired."
+            },
+            {
+              "id": "C",
+              "text": "Mia asked that she was tired."
+            },
+            {
+              "id": "D",
+              "text": "Mia said was she tired."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "With a past reporting verb, am commonly backshifts to was, and the pronoun changes to she."
+          },
+          "skill_tags": [
+            "grammar.reported_speech"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-09-Q2",
+          "type": "short_answer",
+          "prompt": "Leo said, 'I need help.' Complete: Leo said that he ___ help.",
+          "answer": {
+            "accepted_answers": [
+              "needed"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Need backshifts to needed in this basic reported-statement context."
+          },
+          "skill_tags": [
+            "grammar.reported_speech"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-09-Q3",
+          "type": "single_choice",
+          "prompt": "She asked, 'Where do you live?' Choose the reported question.",
+          "options": [
+            {
+              "id": "A",
+              "text": "She asked where I lived."
+            },
+            {
+              "id": "B",
+              "text": "She asked where did I live."
+            },
+            {
+              "id": "C",
+              "text": "She asked where do I live."
+            },
+            {
+              "id": "D",
+              "text": "She said where I lived?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Reported wh-questions use statement word order: where I lived, without do/did inversion."
+          },
+          "skill_tags": [
+            "grammar.reported_questions"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-09-Q4",
+          "type": "single_choice",
+          "prompt": "He asked, 'Are you ready?' Choose the reported yes/no question.",
+          "options": [
+            {
+              "id": "A",
+              "text": "He asked if I was ready."
+            },
+            {
+              "id": "B",
+              "text": "He asked was I ready."
+            },
+            {
+              "id": "C",
+              "text": "He asked that I was ready."
+            },
+            {
+              "id": "D",
+              "text": "He said if was I ready."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A reported yes/no question uses if/whether plus statement word order."
+          },
+          "skill_tags": [
+            "grammar.reported_questions"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-09-Q5",
+          "type": "single_choice",
+          "prompt": "Which reported question has correct word order?",
+          "options": [
+            {
+              "id": "A",
+              "text": "She asked where the station was."
+            },
+            {
+              "id": "B",
+              "text": "She asked where was the station."
+            },
+            {
+              "id": "C",
+              "text": "She asked where did the station be."
+            },
+            {
+              "id": "D",
+              "text": "She asked where the station did was."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Reported questions use statement word order: the station was."
+          },
+          "skill_tags": [
+            "grammar.reported_questions"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-09-Q6",
+          "type": "single_choice",
+          "prompt": "Nora asked, 'Where is your bag?' Choose the reported form.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Nora asked where my bag was."
+            },
+            {
+              "id": "B",
+              "text": "Nora asked where was my bag."
+            },
+            {
+              "id": "C",
+              "text": "Nora said where my bag is?"
+            },
+            {
+              "id": "D",
+              "text": "Nora asked where is your bag."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The reported question uses statement order and adjusts the pronoun: where my bag was."
+          },
+          "skill_tags": [
+            "grammar.reported_questions"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-09-Q7",
+          "type": "single_choice",
+          "prompt": "Ben said, 'I like this book.' Choose the basic reported statement.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Ben said that he liked that book."
+            },
+            {
+              "id": "B",
+              "text": "Ben asked that he liked this book."
+            },
+            {
+              "id": "C",
+              "text": "Ben said did he like that book."
+            },
+            {
+              "id": "D",
+              "text": "Ben said that I like this book."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The basic reported form changes I to he, like to liked, and this to that in the later reporting context."
+          },
+          "skill_tags": [
+            "grammar.reported_speech"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-09-Q8",
+          "type": "single_choice",
+          "prompt": "Lina said, 'I will call you tomorrow.' Choose the later reported form.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Lina said that she would call me the next day."
+            },
+            {
+              "id": "B",
+              "text": "Lina said that I will call her tomorrow."
+            },
+            {
+              "id": "C",
+              "text": "Lina asked she would call me next day."
+            },
+            {
+              "id": "D",
+              "text": "Lina said would she call me tomorrow."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "In this later reported context, will becomes would, pronouns change, and tomorrow becomes the next day."
+          },
+          "skill_tags": [
+            "grammar.reported_speech"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-09-Q9",
+          "type": "short_answer",
+          "prompt": "Nina asked, 'Do you like chess?' Complete: Nina asked ___ I liked chess.",
+          "answer": {
+            "accepted_answers": [
+              "if",
+              "whether"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Reported yes/no questions can use either if or whether."
+          },
+          "skill_tags": [
+            "grammar.reported_questions"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B1-09-Q10",
+          "type": "single_choice",
+          "prompt": "Which sentence correctly removes direct-question inversion?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Tom asked why the shop was closed."
+            },
+            {
+              "id": "B",
+              "text": "Tom asked why was the shop closed."
+            },
+            {
+              "id": "C",
+              "text": "Tom asked why did the shop close was."
+            },
+            {
+              "id": "D",
+              "text": "Tom asked why the shop did closed."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A reported wh-question uses statement word order: why the shop was closed."
+          },
+          "skill_tags": [
+            "grammar.reported_questions"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    }
+  ]
+}

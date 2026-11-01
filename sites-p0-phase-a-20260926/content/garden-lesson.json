@@ -1,0 +1,79 @@
+{
+  "id": "school-garden",
+  "title": "First, understand the question",
+  "skillTags": [
+    "task-understanding",
+    "idea-development",
+    "organization",
+    "grammar-accuracy",
+    "vocabulary",
+    "sentence-quality"
+  ],
+  "stages": [
+    "Question Analysis",
+    "Brainstorm",
+    "Outline",
+    "Writing",
+    "Feedback"
+  ],
+  "intro": "A good answer begins with the right question. Find the",
+  "concepts": [
+    {
+      "term": "topic",
+      "meaning": "what it is about"
+    },
+    {
+      "term": "task",
+      "meaning": "what you must do"
+    },
+    {
+      "term": "limit",
+      "meaning": "what stays in scope"
+    }
+  ],
+  "onTopic": "A school garden helps students learn about plants.",
+  "offTopic": "My grandmother has a beautiful garden at home.",
+  "helpVi": "Đề yêu cầu nêu quan điểm và giải thích về khu vườn nhỏ ở trường.",
+  "fieldNames": {
+    "analysis": [
+      "topic",
+      "task",
+      "keywords",
+      "limits",
+      "offtopic"
+    ],
+    "brainstorm": [
+      "ideas",
+      "selected",
+      "support",
+      "example"
+    ],
+    "outline": [
+      "opening",
+      "reason1",
+      "detail",
+      "example",
+      "ending"
+    ]
+  },
+  "analysisLabels": [
+    "What is the topic?",
+    "What must you do?",
+    "Important words",
+    "What is the limit?",
+    "What should you avoid writing?"
+  ],
+  "brainLabels": [
+    "My ideas",
+    "Best main idea",
+    "Why is it true?",
+    "A real example"
+  ],
+  "outlineLabels": [
+    "Opening: my opinion",
+    "Reason",
+    "Supporting detail",
+    "Example",
+    "Ending"
+  ]
+}
