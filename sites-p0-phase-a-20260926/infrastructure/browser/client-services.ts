@@ -8,7 +8,7 @@ import {publicPath} from './public-path';
 import {pilotProgressEvidence} from '../../domain/writing-course-v2';
 import {guidedWritingFeedback} from '../../application/guided-writing';
 import {gardenRelevantIdeaResult} from '../../application/writing-practice';
-import {browserTutorConfigured,browserTutorService} from './firebase-ai-browser';
+import {browserTutorConfigured,browserTutorService,readAIFailure,resetAIFailure} from './firebase-ai-browser';
 import writingCourse from '../../content/writing-course.json';
 import type {TeachingRating,WritingContext} from '../../domain/writing';
 
@@ -256,4 +256,73 @@ export async function saveGardenRelevantIdea(answer:string):Promise<{evidence:Ev
   const {service}=await localLearningRuntime();
   await service.recordEvidence(result.evidence);
   return result;
+}
+
+/** Optional, explicit-click AI coaching for saved Writing exercises.
+ * Does not alter official scores, CEFR estimates or adult review status. */
+export type OnDemandWritingFeedback={
+  model:string;
+  provider:'firebase-ai-logic';
+  reviewedAt:number;
+  kind:'draft'|'planning';
+  summary:string;
+  strengths:string[];
+  improvements:string[];
+  exercise:string;
+  scores:Record<string,number>|null;
+  level:string|null;
+  corrections:{original:string;why:string;hint:string}[];
+};
+export type OnDemandWritingResult=
+  |{status:'validated';feedback:OnDemandWritingFeedback}
+  |{status:'unavailable';reason:string};
+
+const aiFailureMessage=(code:string|null)=>{
+  switch(code){
+    case 'app-check-permission':return 'Firebase App Check or API permission rejected the request. A site administrator must check the approved domain and App Check configuration.';
+    case 'quota-rate-limit':return 'The free AI request quota or rate limit was reached. Your work is saved; try again later.';
+    case 'client-timeout':case 'deadline-exceeded':return 'The AI request timed out. Your work remains saved; try again.';
+    case 'backend-overload':return 'The AI service is busy. Try again later.';
+    case 'invalid-response':return 'The AI response did not pass validation, so no score was assigned.';
+    default:return 'The AI service did not return verified feedback. Your work remains saved for review.';
+  }
+};
+export async function requestWritingAI(task:string,fields:Record<string,string>,kind:'draft'|'planning'):Promise<OnDemandWritingResult>{
+  if(!browserLearningEnabled())return {status:'unavailable',reason:'AI feedback is only available in the browser learning runtime.'};
+  if(!task.trim()||Object.values(fields).some(v=>typeof v!=='string'))return {status:'unavailable',reason:'The writing task is incomplete.'};
+  const answer=Object.entries(fields).filter(([,v])=>v.trim()).map(([k,v])=>k+': '+v.trim()).join('\n');
+  if(answer.trim().length<8||answer.length>7000)return {status:'unavailable',reason:'Write your own response (maximum 7,000 characters) before requesting feedback.'};
+  const tutor=browserTutorService();
+  if(!tutor.available)return {status:'unavailable',reason:'Gemini is not configured in this browser.'};
+  resetAIFailure();
+  try{
+    if(kind==='draft'){
+      const draft=fields.draft??fields.writing??answer;
+      const rating=await tutor.teachWriting(draft,task,await browserWritingContext());
+      if(rating){
+        return {status:'validated',feedback:{
+          model:rating.evaluation.model,provider:'firebase-ai-logic',reviewedAt:Date.now(),
+          kind,summary:rating.summary,strengths:rating.strengths.slice(0,3),
+          improvements:rating.improvements.slice(0,3),exercise:rating.exercise,
+          scores:rating.scores,level:rating.canEstimateLevel?rating.level:null,
+          corrections:rating.corrections.slice(0,3).map(c=>({original:c.original,why:c.why,hint:c.hint})),
+        }};
+      }
+    }else{
+      const context=await browserWritingContext();
+      const evaluation=await tutor.coach('analysis',task,fields,{estimatedCEFR:context.estimatedCEFR,goals:context.goals});
+      if(evaluation){
+        const raw=evaluation.structuredResult as {summary:string;strengths:string[];improvements:string[];exercise:string};
+        return {status:'validated',feedback:{
+          model:evaluation.model,provider:'firebase-ai-logic',reviewedAt:Date.now(),
+          kind,summary:raw.summary,strengths:raw.strengths.slice(0,3),
+          improvements:raw.improvements.slice(0,3),exercise:raw.exercise,
+          scores:null,level:null,corrections:[],
+        }};
+      }
+    }
+  }catch{
+    // No private error or learner response is logged or displayed.
+  }
+  return {status:'unavailable',reason:aiFailureMessage(readAIFailure())};
 }

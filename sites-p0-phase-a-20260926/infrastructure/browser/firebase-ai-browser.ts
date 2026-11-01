@@ -17,7 +17,14 @@ import {
 } from './firebase-public-config';
 
 const APP_NAME='self-learning-english-ai';
-function safeDiagnostic(event:ProviderDiagnostic){console.info('[English AI]',event)}
+let lastAIFailure:ProviderDiagnostic['classification']|null=null;
+function safeDiagnostic(event:ProviderDiagnostic){
+  // Never retain the student's answer, provider exception, or any token.
+  if(event.phase==='fallback')lastAIFailure=event.classification;
+  console.info('[English AI]',event);
+}
+export function resetAIFailure(){lastAIFailure=null}
+export function readAIFailure(){return lastAIFailure}
 
 let aiInstance:ReturnType<typeof getAI>|null=null;
 let appCheckReady=false;

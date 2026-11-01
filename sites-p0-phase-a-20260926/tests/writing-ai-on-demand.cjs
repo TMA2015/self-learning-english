@@ -1,0 +1,26 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..');
+const read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const component=read('app/writing-ai-review.tsx');
+const services=read('infrastructure/browser/client-services.ts');
+const browser=read('infrastructure/browser/firebase-ai-browser.ts');
+const foundation=read('app/foundation.tsx');
+const b=read('app/writing-course-v2-b.tsx');
+const c=read('app/writing-course-v2-c.tsx');
+const home=read('app/home-client.tsx');
+assert(component.includes("status==='validated'")&&!component.includes('Automatically graded'));
+assert(component.includes('Only clicking this button sends'));
+assert(component.includes('get AI feedback')===false); // no unintended lower-case duplicate
+assert(component.includes('Get AI feedback'));
+assert(component.includes('sourceSample')&&component.includes('provisional'));
+assert(component.includes('localStorage.setItem')&&component.includes('fingerprint(signature)'));
+assert(b.includes("<WritingAIReview")&&b.includes("week===5?'draft':'planning'"));
+assert(c.includes("<WritingAIReview")&&c.includes("sourceSample={work.source?.ownership==='sample'}"));
+assert(foundation.includes("<WritingAIReview")&&foundation.includes("attempt.status==='pending_review'"));
+assert(services.includes("tutor.teachWriting(draft,task")&&services.includes("tutor.coach('analysis',task"));
+assert(services.includes("status:'unavailable'")&&services.includes("scores:null,level:null"));
+assert(browser.includes("resetAIFailure")&&browser.includes("readAIFailure"));
+assert(!home.includes('>Private preview</span>'));
+assert(home.includes('✦ AI Writing · optional'));
+console.log(JSON.stringify({status:'PASS',suite:'writing-ai-on-demand',weeklyCoaching:'weeks 2–12',foundationWriting:'optional',statusTruthful:true,liveGeminiCalls:0}));

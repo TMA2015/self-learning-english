@@ -274,3 +274,12 @@ body {
 .gdp-integrated p,.gdp-integrated li,.gdp-integrated td{overflow-wrap:anywhere}
 .gdp-integrated .gdp-card:not(.gdp-goals):not(.gdp-mistakes):not(.gdp-vi){border-left:0;border-right:0;border-radius:0}
 @media(max-width:700px){.gdp-integrated .gdp-card{padding:16px 12px}.gdp-integrated h3{font-size:18px}}
+
+/* Distinguish verified AI output from deterministic Guided Check, without claiming AI is online. */
+.writing-ai-review{margin:18px 0;padding:17px 20px;border:1px solid #bfd3ea;border-radius:12px;background:#f6f9ff;color:#172f4e;max-width:100%;overflow-wrap:anywhere}
+.writing-ai-review-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.writing-ai-review-heading strong{color:#214c88}
+.writing-ai-review-heading span{color:#496683;font-size:13px}
+.writing-ai-review li{margin:7px 0}
+.writing-ai-review button{margin-top:10px}
+.writing-ai-review p{line-height:1.6}
