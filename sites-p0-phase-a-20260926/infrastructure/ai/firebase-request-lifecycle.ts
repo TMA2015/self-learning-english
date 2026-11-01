@@ -7,7 +7,7 @@ const clock:RequestClock={now:()=>Date.now(),set:(callback,ms)=>setTimeout(callb
 export class FirebaseRequestLifecycle{
   private pending=false;
   private lastStartedAt:number|null=null;
-  constructor(private readonly sink?:DiagnosticSink,private readonly timer:RequestClock=clock,private readonly timeoutMs=20_000,private readonly gapMs=1_200){}
+  constructor(private readonly sink?:DiagnosticSink,private readonly timer:RequestClock=clock,private readonly timeoutMs=60_000,private readonly gapMs=1_200){}
   get inFlight(){return this.pending}
   async run<T>(start:()=>Promise<T>):Promise<T>{
     if(this.pending)throw new SafeProviderError('request-pending');
