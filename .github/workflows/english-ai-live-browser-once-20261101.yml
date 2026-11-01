@@ -99,3 +99,32 @@ jobs:
           })().catch(()=>{console.log('AI_LIVE_AUDIT_HARNESS_FAIL UNKNOWN');process.exitCode=3});
           SCRIPT
           node /tmp/english-ai-browser/check.cjs
+
+      - name: Read-only App Check registration and site-key audit
+        if: always()
+        env:
+          FIREBASE_CREDENTIAL: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
+        run: |
+          node <<'NODE'
+          const crypto=require('node:crypto');
+          const to64=x=>Buffer.from(typeof x==='string'?x:JSON.stringify(x)).toString('base64url');
+          (async()=>{
+            if(!process.env.FIREBASE_CREDENTIAL){console.log('APP_CHECK_REGISTRATION_AUDIT unavailable-no-service-account');return}
+            const account=JSON.parse(process.env.FIREBASE_CREDENTIAL);
+            const now=Math.floor(Date.now()/1000);
+            const header=to64({alg:'RS256',typ:'JWT'});
+            const payload=to64({iss:account.client_email,scope:'https://www.googleapis.com/auth/cloud-platform',aud:account.token_uri,iat:now,exp:now+1800});
+            const signing=header+'.'+payload;
+            const sig=crypto.sign('RSA-SHA256',Buffer.from(signing),account.private_key).toString('base64url');
+            const jwt=signing+'.'+sig;
+            const token=await fetch(account.token_uri,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({grant_type:'urn:ietf:params:oauth:grant-type:jwt-bearer',assertion:jwt})});
+            if(!token.ok){console.log('APP_CHECK_REGISTRATION_AUDIT oauth-http-'+token.status);return}
+            const auth=await token.json();
+            const resource='projects/789845564404/apps/'+encodeURIComponent('1:789845564404:web:26cfae781851ee7758b7a1')+'/recaptchaEnterpriseConfig';
+            const result=await fetch('https://firebaseappcheck.googleapis.com/v1/'+resource,{headers:{Authorization:'Bearer '+auth.access_token}});
+            if(!result.ok){console.log('APP_CHECK_REGISTRATION_AUDIT config-http-'+result.status);return}
+            const config=await result.json();
+            const expected='6Ldewt4tAAAAAJFi38svQlInntj2htUFqJg690aD';
+            console.log('APP_CHECK_REGISTRATION_AUDIT '+JSON.stringify({registered:true,siteKeyMatches:config.siteKey===expected,minValidScore:config.riskAnalysis?.minValidScore??'default',tokenTtl:config.tokenTtl??'default'}));
+          })().catch(()=>console.log('APP_CHECK_REGISTRATION_AUDIT audit-error-no-secrets-disclosed'));
+          NODE
