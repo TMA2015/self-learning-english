@@ -184,6 +184,7 @@ export async function evaluateWritingProcess(
   feedback:ReturnType<typeof guidedWritingFeedback>;
   evidence:Evidence[];
   evaluationStatus?:string;
+  aiFailureReason?:string;
   rating?:TeachingRating;
   evaluation?:unknown;
 }>{
@@ -247,6 +248,7 @@ export async function evaluateWritingProcess(
     feedback:guidedWritingFeedback(stage==='writing'?'writing':stage,answer),
     evidence:provisionalEvidence,
     ...(stage==='writing'?{evaluationStatus:'pending_review'}:{}),
+    aiFailureReason:tutor.available?aiFailureMessage(readAIFailure()):'Gemini is not configured for this browser.',
   };
 }
 
