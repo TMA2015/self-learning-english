@@ -64,16 +64,16 @@
       "remaining_rights_gate": "Verify model/voice rights, notices and final per-asset release approval"
     },
     {
-      "asset_path": "public/foundation-audio/LIS-A2-01-v1.mp3",
-      "sha256": "c99b3e3c56ab3290e6c03447e1ca2c5a2f71f8339c752fc4b25726d9774d10ed",
-      "model_or_engine": "NOT CONFIRMED",
-      "voice_or_processing": "NOT CONFIRMED",
-      "provenance_evidence": "Existing MP3 & manifest only; archived generation script is not proof",
+      "asset_path": "public/foundation-audio/LIS-A2-01-v2.mp3",
+      "sha256": "3f2bfa2166dd3e1386e41b4337ae7526adc13c13a3207114aa35e2439bdc1478",
+      "model_or_engine": "Kokoro 0.9.4 (G Learning Audio Production v1.2; local inference; verified actual MP3 SHA)",
+      "voice_or_processing": "British English voices bf_emma (A) / bm_lewis (B); speed 0.90; 0.35 s pause; balanced A/B loudness",
+      "provenance_evidence": "Owner generated via local G Learning Audio Production v1.2 on 2026-11-01; owner export docs/releases/audio-2026-11/producer-export-LIS-A2-01.json; MP3 SHA-256 verified against user upload and GitHub blob; source turns parity with curriculum 1.18.0; owner hearing QA PASS.",
       "source_originality": "OWNER_ATTESTED",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Historical MP3 remains BLOCKED; replacement Kokoro candidate has owner listening QA PASS. Await actual v2 binary upload on release branch, model/voice rights verification, integration and final per-asset clearance."
+      "remaining_rights_gate": "Owner hearing QA PASS; project script attested original. Final release clearance remains PENDING pending Kokoro model/voice rights evidence, asset notice/similarity checks and authorized per-asset approval."
     },
     {
       "asset_path": "public/foundation-audio/LIS-A2-02-v1.mp3",
@@ -136,16 +136,16 @@
       "remaining_rights_gate": "Verify model/voice rights, notices and final per-asset release approval"
     },
     {
-      "asset_path": "public/foundation-audio/LIS-B1-01-v1.mp3",
-      "sha256": "c9347e33a3e1a51bbbaa76b71b65ed6521c85d1f87a79767e810fc25565bb402",
-      "model_or_engine": "NOT CONFIRMED",
-      "voice_or_processing": "NOT CONFIRMED",
-      "provenance_evidence": "Existing MP3 & manifest only; archived generation script is not proof",
+      "asset_path": "public/foundation-audio/LIS-B1-01-v2.mp3",
+      "sha256": "e14ebf40777dd8bc24ffde008c06ec1053089b9f7919c78c999be2a15e11de1e",
+      "model_or_engine": "Kokoro 0.9.4 (G Learning Audio Production v1.2; local inference; verified actual MP3 SHA)",
+      "voice_or_processing": "British English voices bf_emma (A) / bm_lewis (B); speed 0.90; 0.35 s pause; balanced A/B loudness",
+      "provenance_evidence": "Owner generated via local G Learning Audio Production v1.2 on 2026-11-01; owner export docs/releases/audio-2026-11/producer-export-LIS-B1-01.json; MP3 SHA-256 verified against user upload and GitHub blob; source turns parity with curriculum 1.18.0; owner hearing QA PASS.",
       "source_originality": "OWNER_ATTESTED",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Historical MP3 remains BLOCKED; replacement Kokoro candidate has owner listening QA PASS. Await actual v2 binary upload on release branch, model/voice rights verification, integration and final per-asset clearance."
+      "remaining_rights_gate": "Owner hearing QA PASS; project script attested original. Final release clearance remains PENDING pending Kokoro model/voice rights evidence, asset notice/similarity checks and authorized per-asset approval."
     },
     {
       "asset_path": "public/foundation-audio/LIS-B1-02-v1.mp3",
@@ -475,7 +475,7 @@
   },
   "owner_generated_replacement_candidates": {
     "received_on": "2026-11-01",
-    "status": "TECHNICAL_CHECKS_PASS__OWNER_LISTENING_QA_PASS__BINARY_NOT_YET_IN_GITHUB",
+    "status": "GITHUB_BINARY_INTEGRATED__SHA_PASS__TRANSCRIPT_PARITY_PASS__OWNER_LISTENING_QA_PASS__RIGHTS_CLEARANCE_PENDING",
     "source": "G Learning Audio Production v1.2 owner-uploaded MP3 + original JSON producer metadata",
     "name_policy": "Uploaded file labeled v1; release replacement will use v2 filename without changing MP3 bytes",
     "engine": "Kokoro 0.9.4 local",
@@ -495,9 +495,7 @@
     ],
     "limitations": [
       "No model-weight or voice-weight exact hashes in owner export",
-      "B1 export uses Listening A2 preset label, although ID and script are B1",
-      "No MP3 binary committed to GitHub by this documentation update",
-      "Do not change release_clearance or public audio links until actual replacement binaries are imported and review gates pass"
+      "B1 export uses Listening A2 preset label, although ID and script are B1"
     ],
     "files": [
       {
@@ -524,6 +522,15 @@
         "LIS-B1-01"
       ],
       "scope": "Audible quality only; not model rights clearance, deployment QA, or proof of binary presence in GitHub."
+    },
+    "integration": {
+      "commit_parent": "b35f72f675c52c457beda4fdcbb7be5d6795c567",
+      "release_filename_policy": "v2 MP3 replaces historical v1 in public tree",
+      "source_text_unchanged": true,
+      "manifests_updated": true,
+      "old_public_mp3_removed": true,
+      "verification": "GitHub blob SHA matches uploaded MP3 byte-for-byte; manifest SHA and duration consistent",
+      "rights_gate": "PENDING"
     }
   }
 }

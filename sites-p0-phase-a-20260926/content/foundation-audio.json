@@ -1,13 +1,15 @@
 {
   "LIS-A2-01": {
     "source": "Woman: Hello. Is the library workshop still open for registration?\nMan: Yes. It is this Saturday at ten thirty in the morning.\nWoman: Is it the workshop about growing herbs?\nMan: That's right. Please bring a small container, but we will provide the seeds and soil.\nWoman: Great. Is there a fee?\nMan: No, it is free. Please arrive ten minutes early.\nWoman: Thank you. I'll be there at ten twenty.",
-    "url": "/foundation-audio/LIS-A2-01-v1.mp3",
-    "duration": 24.804
+    "url": "/foundation-audio/LIS-A2-01-v2.mp3",
+    "duration": 30.575,
+    "sha256": "3f2bfa2166dd3e1386e41b4337ae7526adc13c13a3207114aa35e2439bdc1478"
   },
   "LIS-B1-01": {
     "source": "Host: Today we're talking about commuting. A local survey suggests that people often choose a route based on reliability, not just speed.\nGuest: Yes. A train that takes thirty minutes every day can be less stressful than a car journey that takes twenty minutes on a good day but forty-five when traffic is heavy.\nHost: What about cycling?\nGuest: It is an option for shorter journeys, although safe routes and weather matter. Employers can also help by offering secure bicycle parking or flexible start times.\nHost: So there's no single best choice for everyone?\nGuest: Exactly. The useful question is which option fits a person's needs and is practical most days.",
-    "url": "/foundation-audio/LIS-B1-01-v1.mp3",
-    "duration": 40.032
+    "url": "/foundation-audio/LIS-B1-01-v2.mp3",
+    "duration": 47.6,
+    "sha256": "e14ebf40777dd8bc24ffde008c06ec1053089b9f7919c78c999be2a15e11de1e"
   },
   "LIS-A1-01": {
     "source": "Teacher: Hello, students. Here is a message about the photography club. The club meets this Thursday in Room 12. The meeting starts at four o'clock and finishes at five. Please bring a pencil and your phone or camera if you have one. You do not need to bring money. The club will provide paper and photo cards. New students should arrive ten minutes early to write their names on the club list. If you cannot come this week, the next meeting is on Thursday the fourteenth.",

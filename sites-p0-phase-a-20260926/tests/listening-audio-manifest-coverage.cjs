@@ -17,7 +17,8 @@ for(const lesson of lessons){
  assert.equal(lesson.audio_asset?.requires_real_playback,true);
  assert.equal(lesson.audio_asset?.transcript_reveal,'after_submission');
  assert(Number.isFinite(entry.duration)&&entry.duration>5,lesson.id+' invalid duration');
- assert.equal(entry.url,'/foundation-audio/'+lesson.id+'-v1.mp3');
+ const audioVersion=['LIS-A2-01','LIS-B1-01'].includes(lesson.id)?'v2':'v1';
+ assert.equal(entry.url,'/foundation-audio/'+lesson.id+'-'+audioVersion+'.mp3');
  const file=path.join(root,'public',entry.url.slice(1));
  assert(fs.existsSync(file),lesson.id+' missing real MP3');
  const bytes=fs.readFileSync(file);

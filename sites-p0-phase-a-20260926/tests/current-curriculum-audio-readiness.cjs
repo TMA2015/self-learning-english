@@ -23,8 +23,9 @@ function validateAudio(lesson, entry, family, expectedSource) {
   assert(Number.isFinite(entry.duration) && entry.duration > 0, `${lesson.id} missing duration`);
   assert.equal(lesson.module, family.toLowerCase());
   const expectedPrefix = family === 'Listening' ? 'foundation-audio' : 'pronunciation-audio';
-  assert.equal(entry.url, `/${expectedPrefix}/${lesson.id}-v1.mp3`, `${lesson.id} wrong path`);
-  const asset = path.join(root, 'public', expectedPrefix, `${lesson.id}-v1.mp3`);
+  const audioVersion = family === 'Listening' && ['LIS-A2-01','LIS-B1-01'].includes(lesson.id) ? 'v2' : 'v1';
+  assert.equal(entry.url, `/${expectedPrefix}/${lesson.id}-${audioVersion}.mp3`, `${lesson.id} wrong path`);
+  const asset = path.join(root, 'public', entry.url.slice(1));
   assert(fs.existsSync(asset), `${lesson.id} MP3 not found`);
   const bytes = fs.readFileSync(asset);
   assert(bytes.length >= 4000, `${lesson.id} MP3 too short`);
