@@ -14,6 +14,7 @@ function run(command,args,env=process.env){
 run(process.execPath,["tests/nov-2026-content-preflight.cjs"]);
 run(process.execPath,["tests/audio-rights-release-gate.cjs","--require-clearance"]);
 run(process.execPath,["tests/writing-ai-on-demand.cjs"]);
+run(process.execPath,["tests/english-tutor-knowledge-only.cjs"]);
 run(pnpm,["run","qa:full"]);
 run(pnpm,["exec","tsc","--noEmit","--incremental","false"]);
 

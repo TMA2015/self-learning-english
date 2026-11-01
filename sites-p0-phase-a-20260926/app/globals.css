@@ -283,3 +283,18 @@ body {
 .writing-ai-review li{margin:7px 0}
 .writing-ai-review button{margin-top:10px}
 .writing-ai-review p{line-height:1.6}
+
+/* Knowledge-only floating English Tutor, visually consistent with the Math app. */
+.english-lesson-ai{position:fixed;right:20px;bottom:20px;z-index:70;font-size:14px}
+.english-lesson-ai-launch{display:flex;align-items:center;gap:8px;border:1px solid #a3c5fa;background:#2456ae;color:white;border-radius:999px;padding:12px 17px;box-shadow:0 6px 18px #102f6440;cursor:pointer}
+.english-lesson-ai-panel{position:absolute;right:0;bottom:58px;width:min(420px,calc(100vw - 25px));max-height:min(74vh,600px);overflow:auto;box-sizing:border-box;background:#fff;border:1px solid #bed0e9;box-shadow:0 10px 35px #0a32653b;border-radius:15px;padding:17px}
+.english-lesson-ai-panel header{display:flex;align-items:start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.english-lesson-ai-panel header small{display:block;margin-top:3px;color:#5e7189}
+.english-lesson-ai-panel header button{border:none;background:transparent;cursor:pointer;padding:5px}
+.english-lesson-ai-quick{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0 14px}
+.english-lesson-ai-quick button{background:#f4f7fc;border:1px solid #d6e2f2;border-radius:7px;padding:9px;cursor:pointer}
+.english-lesson-ai-panel textarea{display:block;width:100%;box-sizing:border-box;min-height:75px;margin:8px 0;resize:vertical;border:1px solid #aac0de;border-radius:8px;padding:10px;font:inherit}
+.english-lesson-ai-panel article{background:#f5f8fc;border-radius:9px;padding:12px;margin-top:15px;white-space:pre-wrap;overflow-wrap:anywhere}
+.english-lesson-ai-panel small{display:block;margin-top:10px;line-height:1.5;color:#596983}
+.english-lesson-ai-panel .primary-button{margin-top:4px}
+@media(max-width:500px){.english-lesson-ai{right:10px;bottom:10px}.english-lesson-ai-panel{right:-1px;bottom:55px}}

@@ -1,0 +1,16 @@
+'use strict';
+const fs=require('node:fs'),assert=require('node:assert/strict');
+const read=p=>fs.readFileSync(p,'utf8');
+const home=read('app/home-client.tsx'),tutor=read('app/english-lesson-tutor.tsx'),bridge=read('infrastructure/browser/firebase-ai-browser.ts'),css=read('app/globals.css');
+assert(home.includes("<EnglishLessonTutor")&&home.includes('writing-foundations'));
+assert(!home.includes('view==="diagnostic"&&<EnglishLessonTutor'));
+assert(tutor.includes('window.getSelection()'));
+assert(tutor.includes('setQuestion(e.target.value.slice(0,300))'));
+assert(tutor.includes('Your question is sent only when you ask'));
+assert(tutor.includes("result.status==='answered'"));
+assert(bridge.includes("await getToken(appCheckInstance)"));
+assert(bridge.includes("model:config.geminiModel"));
+assert(bridge.includes("maxOutputTokens:850"));
+assert(!tutor.includes("innerHTML"));
+assert(css.includes(".english-lesson-ai-panel"));
+console.log(JSON.stringify({result:'PASS',suite:'english-tutor-knowledge-only',hasLiveGeminiProof:false,noAssessmentLeak:true}));
