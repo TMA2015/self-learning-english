@@ -73,7 +73,7 @@
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Historical MP3 BLOCKED; new owner-created Kokoro candidate received and technical integrity checked, but new v2 binary not yet on branch, owner listening QA and model/voice rights evidence pending"
+      "remaining_rights_gate": "Historical MP3 remains BLOCKED; replacement Kokoro candidate has owner listening QA PASS. Await actual v2 binary upload on release branch, model/voice rights verification, integration and final per-asset clearance."
     },
     {
       "asset_path": "public/foundation-audio/LIS-A2-02-v1.mp3",
@@ -145,7 +145,7 @@
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Historical MP3 BLOCKED; new owner-created Kokoro candidate received and technical integrity checked, but new v2 binary not yet on branch, owner listening QA and model/voice rights evidence pending"
+      "remaining_rights_gate": "Historical MP3 remains BLOCKED; replacement Kokoro candidate has owner listening QA PASS. Await actual v2 binary upload on release branch, model/voice rights verification, integration and final per-asset clearance."
     },
     {
       "asset_path": "public/foundation-audio/LIS-B1-02-v1.mp3",
@@ -475,7 +475,7 @@
   },
   "owner_generated_replacement_candidates": {
     "received_on": "2026-11-01",
-    "status": "TECHNICAL_CHECKS_PASS__BINARY_NOT_IN_GITHUB__OWNER_LISTENING_PENDING",
+    "status": "TECHNICAL_CHECKS_PASS__OWNER_LISTENING_QA_PASS__BINARY_NOT_YET_IN_GITHUB",
     "source": "G Learning Audio Production v1.2 owner-uploaded MP3 + original JSON producer metadata",
     "name_policy": "Uploaded file labeled v1; release replacement will use v2 filename without changing MP3 bytes",
     "engine": "Kokoro 0.9.4 local",
@@ -490,10 +490,10 @@
       "MP3 decodes successfully at 24000Hz mono",
       "turns and transcript identical to approved curriculum after A/B role mapping",
       "decoded duration equals producer metadata",
-      "signal non-silent and no hard clipping"
+      "signal non-silent and no hard clipping",
+      "Owner listened to both exported MP3s; OWNER AUDIO QA PASS, clear and usable"
     ],
     "limitations": [
-      "Not a human-audited speech transcript: owner must approve actual hearing",
       "No model-weight or voice-weight exact hashes in owner export",
       "B1 export uses Listening A2 preset label, although ID and script are B1",
       "No MP3 binary committed to GitHub by this documentation update",
@@ -514,6 +514,16 @@
         "duration_seconds": 47.6,
         "source_sha256": "96d961c76f06fba48b73892c3e8eb1607194f6e8afcbf2eddd8ac727094b2fb1"
       }
-    ]
+    ],
+    "owner_listening_qa": {
+      "verdict": "PASS",
+      "confirmed_on": "2026-11-01",
+      "confirmation_source": "Owner explicitly confirmed listening to both files before sending them to ChatGPT; audio clear, quality good, suitable for use.",
+      "lesson_ids": [
+        "LIS-A2-01",
+        "LIS-B1-01"
+      ],
+      "scope": "Audible quality only; not model rights clearance, deployment QA, or proof of binary presence in GitHub."
+    }
   }
 }
