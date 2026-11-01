@@ -1,0 +1,51 @@
+name: English Manual Release QA (bounded)
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Enter RUN to run a single bounded release test"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: english-release-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release-qa:
+    if: ${{ github.event.inputs.confirm == 'RUN' && github.ref_name == 'release/nov2026-content-v1.18.0' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - name: Checkout exact selected branch
+        uses: actions/checkout@v4
+      - name: Reject automatic/duplicated workflows before costly QA
+        run: node ../scripts/verify-actions-policy.cjs
+      - name: Ensure release source is actually present
+        run: |
+          test -f package.json
+          test -f content/curriculum-1.18.0-candidate.json
+          test -f tests/nov-2026-content-preflight.cjs
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+          cache-dependency-path: sites-p0-phase-a-20260926/pnpm-lock.yaml
+      - name: Install frozen dependencies exactly once
+        run: pnpm install --frozen-lockfile
+      - name: Validate audio and content before build
+        run: node tests/nov-2026-content-preflight.cjs
+      - name: Run consolidated release QA (one job only)
+        run: pnpm qa:release
