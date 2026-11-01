@@ -30,38 +30,38 @@
     {
       "asset_path": "public/foundation-audio/LIS-A1-03-v1.mp3",
       "sha256": "7659ec83a5c67a483333304f59730c8061583051311d8fd7ac3e1145e9722f02",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: am_puck, bf_emma",
+      "provenance_evidence": "Original production sidecar EXPANSION_9_LESSONS/audio-metadata-original/LIS-NEW-A1-01-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 c6526d382dd92ea7496097aae898118e159e4f5f04c4d7b1f7ccf7daa985f7dd; MP3 SHA256 verified; created locally 2026-10-21T14:22:42",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/foundation-audio/LIS-A1-04-v1.mp3",
       "sha256": "dd339af00334eb78d6474b6f83a839830d0afa646e86eaeb4cfa21a8e042c59f",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_lily",
+      "provenance_evidence": "Original production sidecar EXPANSION_9_LESSONS/audio-metadata-original/LIS-NEW-A1-02-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 496ff3e0b2c8c637b1dd5f2f4ac5f2f26f92f85326661a5858862f25af11ccbf; MP3 SHA256 verified; created locally 2026-10-21T14:25:33",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/foundation-audio/LIS-A1-05-v1.mp3",
       "sha256": "f97d2a280d3800b70f45fd99e32de2d0a5a01c0cb541f48d9cfc5443ea75f109",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_isabella, bm_lewis",
+      "provenance_evidence": "Original production sidecar EXPANSION_9_LESSONS/audio-metadata-original/LIS-NEW-A1-03-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 ed494fd0cc45fb0e7078ab17b8054f88b5a0d611b929ed253407b3bff8272bdf; MP3 SHA256 verified; created locally 2026-10-21T14:27:38",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/foundation-audio/LIS-A2-01-v1.mp3",
@@ -102,38 +102,38 @@
     {
       "asset_path": "public/foundation-audio/LIS-A2-04-v1.mp3",
       "sha256": "7bdc3f53e355e3bb5d2c630277a90fe8c8a2d8ec0d93ee23dd851e42e81795b9",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_emma, bm_lewis",
+      "provenance_evidence": "Original production sidecar EXPANSION_9_LESSONS/audio-metadata-original/LIS-NEW-A2-01-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 13e21e1aa957f4c99c27bcd90f995f4084c7946edae371f049e6dd9b7776191b; MP3 SHA256 verified; created locally 2026-10-21T14:28:40",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/foundation-audio/LIS-A2-05-v1.mp3",
       "sha256": "efa886aaa4e9b952e318d35b34035436a4fb2787a017333773472733f43cf894",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_isabella",
+      "provenance_evidence": "Original production sidecar EXPANSION_9_LESSONS/audio-metadata-original/LIS-NEW-A2-02-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 c9b124fb1cc06e2baf78ef84a9a61a97aa1a94458d74f1bbf56af2fdc0f1c008; MP3 SHA256 verified; created locally 2026-10-21T14:30:29",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/foundation-audio/LIS-A2-06-v1.mp3",
       "sha256": "3196ce810efbaf5d15e2472e2eac41e2d87ba6ba25ee607713fcb12b94485494",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_lily, bm_fable",
+      "provenance_evidence": "Original production sidecar EXPANSION_9_LESSONS/audio-metadata-original/LIS-NEW-A2-03-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 924b95876fc5fcea27423cc0e8fd3e239b08a852a4f4367a6ec7e29449406554; MP3 SHA256 verified; created locally 2026-10-21T14:32:46",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/foundation-audio/LIS-B1-01-v1.mp3",
@@ -186,218 +186,218 @@
     {
       "asset_path": "public/foundation-audio/LIS-B1-05-v1.mp3",
       "sha256": "104a38b181fa7588ccab4619e0655cdbc513494f7c0e925e52b6bfaf8ae2eea1",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_emma, bm_lewis",
+      "provenance_evidence": "Original production sidecar EXPANSION_9_LESSONS/audio-metadata-original/LIS-NEW-B1-01-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 9d4e32e39d87f40f29880f560ae7475f719c6bfc8878f2bdcc4b0548a2b0daad; MP3 SHA256 verified; created locally 2026-10-21T14:34:19",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/foundation-audio/LIS-B1-06-v1.mp3",
       "sha256": "5a94108f77bbebb7f196daf3c6a89cb91fbaf5ea101a9f84a525d1ce87a4517d",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bm_lewis",
+      "provenance_evidence": "Original production sidecar EXPANSION_9_LESSONS/audio-metadata-original/LIS-NEW-B1-02-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 0afe7936f85bb1c9a9bd2c51b982fadc4d257f3793c56673aff0b2aa808a77a3; MP3 SHA256 verified; created locally 2026-10-21T14:36:34",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/foundation-audio/LIS-B1-07-v1.mp3",
       "sha256": "e601704b3e7579a4880b490f4b07b6b10092415cdd25fa238384cec37e89b435",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_isabella, bm_george",
+      "provenance_evidence": "Original production sidecar EXPANSION_9_LESSONS/audio-metadata-original/LIS-NEW-B1-03-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 0c5b626f7c26510d91d556159851de6e7bf67a270d4952bdd71f33f1b3ff9bb5; MP3 SHA256 verified; created locally 2026-10-21T14:37:43",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/diagnostic-audio/DIAG-LIS-01-v1.mp3",
       "sha256": "5bbb1a2765671524e511a04495ec78ddb62ffda37b8c50f723ca7f4d87ece3e3",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_emma",
+      "provenance_evidence": "Original production sidecar DIAGNOSTIC/producer-metadata-original/DIAG-LIS-01-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 15a8cbbfbc93cdd6bf87888243326f438bfe512adc09198b8ad63e63e974b599; MP3 SHA256 verified; created locally 2026-10-21T09:09:37",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/diagnostic-audio/DIAG-LIS-02-v1.mp3",
       "sha256": "9089df5528e2751e1e0a243180b45f564755e2cb4bacd4d977d3319a84428a6d",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_emma",
+      "provenance_evidence": "Original production sidecar DIAGNOSTIC/producer-metadata-original/DIAG-LIS-02-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 e1e439a00055b9a010a20ea84e4613b4190ded96c1e71ba8202dcf297be84ce7; MP3 SHA256 verified; created locally 2026-10-21T09:10:35",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/diagnostic-audio/DIAG-LIS-03-v1.mp3",
       "sha256": "d4ce29e4b339a2889c9f01f61dbe9cea1e3530bef553c135e96806e94dc7f791",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_isabella",
+      "provenance_evidence": "Original production sidecar DIAGNOSTIC/producer-metadata-original/DIAG-LIS-03-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 35224d4f807809f603f80b495d25f1d93831cab0347def63f6d51c42af8f9c22; MP3 SHA256 verified; created locally 2026-10-21T09:13:14",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/diagnostic-audio/DIAG-LIS-04-v1.mp3",
       "sha256": "61ae474f0f69d3dcf244462abe49dfbd141fad071f534b11dddc7de9dd5f1889",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_lily",
+      "provenance_evidence": "Original production sidecar DIAGNOSTIC/producer-metadata-original/DIAG-LIS-04-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 074bcdda02d3ff2f619d7ad4dd7a02d9ba9d75982c6d38268b4da082daa32de8; MP3 SHA256 verified; created locally 2026-10-21T09:14:40",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/diagnostic-audio/DIAG-LIS-05-v1.mp3",
       "sha256": "8767372e2b413430bddcf612435091740ba61c89d79cbf2a9795c30b8d35f52f",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_alice",
+      "provenance_evidence": "Original production sidecar DIAGNOSTIC/producer-metadata-original/DIAG-LIS-05-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 91d489f32cff43e5ff7b9f5301eaf21d8fac0325a71c677c42e9d9fd587f18bd; MP3 SHA256 verified; created locally 2026-10-21T09:16:37",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/diagnostic-audio/DIAG-LIS-06-v1.mp3",
       "sha256": "c3159ae2fc08cc45a2b6979f626adb7ed4ef998583ea7fe76dd0d141a247110a",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_lily",
+      "provenance_evidence": "Original production sidecar DIAGNOSTIC/producer-metadata-original/DIAG-LIS-06-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 bb1ceb64cc922914dd4d4dda1f30f0391e976218c3021b0c4dd3f966565ed647; MP3 SHA256 verified; created locally 2026-10-21T09:20:42",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/diagnostic-audio/DIAG-LIS-07-v1.mp3",
       "sha256": "f13af239abb3fd6e4f969bd9b0f718517611e4cd8dcf4f3392f8d69340d8ef48",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_emma",
+      "provenance_evidence": "Original production sidecar DIAGNOSTIC/producer-metadata-original/DIAG-LIS-07-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 9a376be3ce95b9fb0bb1cf0c10ccbdf62f13dee28a5180b41d764a0caae90381; MP3 SHA256 verified; created locally 2026-10-21T09:24:53",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/diagnostic-audio/DIAG-LIS-08-v1.mp3",
       "sha256": "7cc8c8e197aa441f3046952d9681633d75faf2ead36573216a42bf03bc65acd3",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_emma",
+      "provenance_evidence": "Original production sidecar DIAGNOSTIC/producer-metadata-original/DIAG-LIS-08-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 275877972291f8c41ce7cd45915793b331e038108eb36e48c54a09a4d6576d90; MP3 SHA256 verified; created locally 2026-10-21T09:35:56",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/diagnostic-audio/DIAG-LIS-09-v1.mp3",
       "sha256": "87047a3a60943ec0c64cfcddc1ce330dae562b8e0d0282314c18e4103aa14c78",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_emma",
+      "provenance_evidence": "Original production sidecar DIAGNOSTIC/producer-metadata-original/DIAG-LIS-09-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 c424238161cbc36f4d161775a3364b758611934aad3af7f68dd1b359b6480385; MP3 SHA256 verified; created locally 2026-10-21T09:48:08",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/diagnostic-audio/DIAG-LIS-10-v1.mp3",
       "sha256": "cdc6313befc3a7f43a958eb6852e5e97b3c09fd61d180f0ae0f8ffd0a4584837",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_emma",
+      "provenance_evidence": "Original production sidecar DIAGNOSTIC/producer-metadata-original/DIAG-LIS-10-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 cab874834003f8fe4962436b2fa40a25a899eca1038d29ffc0e8762d7cdb7cdf; MP3 SHA256 verified; created locally 2026-10-21T09:48:51",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/diagnostic-audio/DIAG-LIS-11-v1.mp3",
       "sha256": "7053e1e3b8bbaac6a9afb9d495e431307eec6af4a254e13071ca9df861c924e0",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_isabella",
+      "provenance_evidence": "Original production sidecar DIAGNOSTIC/producer-metadata-original/DIAG-LIS-11-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 8d2119f3b16bdea49fb969d85a17ee7610e20e4d593194a4146bb2b3b28c0f39; MP3 SHA256 verified; created locally 2026-10-21T09:56:47",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/diagnostic-audio/DIAG-LIS-12-v1.mp3",
       "sha256": "aa481eaf8f5eec27946b31af42be20a579245acd888417a3d05d300e0abb29b4",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_emma",
+      "provenance_evidence": "Original production sidecar DIAGNOSTIC/producer-metadata-original/DIAG-LIS-12-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 4940fb1fb029420f4b8b51c47c65367ea63700690a8a7b099b41c22b25048d7a; MP3 SHA256 verified; created locally 2026-10-21T09:50:48",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/diagnostic-audio/DIAG-LIS-13-v1.mp3",
       "sha256": "e517f70ff9d4420ae0abc8d62aa7e1686779b2bb01b2b335faabd8342f085e8f",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_emma",
+      "provenance_evidence": "Original production sidecar DIAGNOSTIC/producer-metadata-original/DIAG-LIS-13-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 f4a5a668406fd01a28d3502f444407133a2072577ec766ed7b74a19ba91cfae5; MP3 SHA256 verified; created locally 2026-10-21T09:51:41",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/diagnostic-audio/DIAG-LIS-14-v1.mp3",
       "sha256": "6b2c326c7b28b98c18ab61a16343b23d0b7d17f7af204bf69def8778e3d30146",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_isabella",
+      "provenance_evidence": "Original production sidecar DIAGNOSTIC/producer-metadata-original/DIAG-LIS-14-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 f286f22eb120f489bd89db8c53082025682b08f71a6b04e1896af14d0534ccf5; MP3 SHA256 verified; created locally 2026-10-21T09:52:30",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/diagnostic-audio/DIAG-LIS-15-v1.mp3",
       "sha256": "e316426de8fac9a873b1a6e9379d54ad3a5b5f99bc8eed31040998d611fc9682",
-      "model_or_engine": "UNVERIFIED",
-      "voice_or_processing": "UNVERIFIED",
-      "provenance_evidence": "",
+      "model_or_engine": "Kokoro (Python package 0.9.4, local TTS inference)",
+      "voice_or_processing": "Recorded sidecar voices: bf_isabella",
+      "provenance_evidence": "Original production sidecar DIAGNOSTIC/producer-metadata-original/DIAG-LIS-15-v1.json in SELF_LEARNING_ENGLISH_LISTENING_24_AUDIO_ACADEMIC_PASS_OFFLINE_20261021.zip SHA256 5335f31fd1ccddd0d85a84e1e5569acb338e9ecbfafa48faab23f0a75eaa2692; MP3 SHA256 verified; created locally 2026-10-21T09:54:15",
       "source_originality": "PENDING",
       "release_clearance": "PENDING",
       "approved_by": "",
       "approved_on": "",
-      "remaining_rights_gate": "Verify script originality, TTS model/voice rights, production provenance and owner sign-off"
+      "remaining_rights_gate": "Verify original script, model/voice rights, notices and owner approval"
     },
     {
       "asset_path": "public/pronunciation-audio/PRO-A2-01-v1.mp3",
