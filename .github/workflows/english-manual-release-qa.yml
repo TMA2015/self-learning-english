@@ -1,86 +1,148 @@
-name: English Manual Release QA (bounded)
+name: English v1.18.0 - Manual QA or Production Deploy
 
+# Only manually triggered. Zero push/PR/schedule triggers; no automatic billed runs.
 on:
   workflow_dispatch:
     inputs:
       confirm:
-        description: "Enter RUN to run a single bounded release test"
+        description: "QA = QA only; DEPLOY_ENGLISH_V1180 = QA then LIVE English release"
         required: true
         type: string
-      deploy_preview:
-        description: "After QA PASS, deploy ONLY to nov2026-v1180 Firebase preview (never live)"
-        required: true
-        type: boolean
-        default: false
 
 permissions:
   contents: read
 
 concurrency:
-  group: english-release-qa-${{ github.ref }}
-  cancel-in-progress: true
+  group: english-v1180-release-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-  release-qa:
-    if: ${{ github.event.inputs.confirm == 'RUN' && github.ref_name == 'release/nov2026-content-v1.18.0' }}
+  release:
+    if: ${{ github.ref_name == 'release/nov2026-content-v1.18.0' }}
     runs-on: ubuntu-latest
     timeout-minutes: 25
     defaults:
       run:
         working-directory: sites-p0-phase-a-20260926
     steps:
-      - name: Checkout exact selected branch
+      - name: Checkout release branch (NOT main)
         uses: actions/checkout@v4
-      - name: Reject automatic/duplicated workflows before costly QA
-        run: node ../scripts/verify-actions-policy.cjs
-      - name: Ensure release source is actually present
-        run: |
-          test -f package.json
-          test -f content/curriculum-1.18.0-candidate.json
-          test -f tests/nov-2026-content-preflight.cjs
-      - name: Validate audio and content before build
-        run: node tests/nov-2026-content-preflight.cjs
-      - name: Verify Firebase preview credential is configured
-        if: ${{ inputs.deploy_preview == true }}
+
+      - name: Require exact manual instruction
         env:
-          FIREBASE_PREVIEW_CREDENTIAL: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
+          RELEASE_CONFIRM: ${{ inputs.confirm }}
         run: |
-          if [ -z "$FIREBASE_PREVIEW_CREDENTIAL" ]; then
-            echo "Firebase Hosting service-account secret missing; no preview deployed"
+          case "$RELEASE_CONFIRM" in
+            QA|DEPLOY_ENGLISH_V1180) ;;
+            *) echo "::error::Enter QA or DEPLOY_ENGLISH_V1180 exactly"; exit 1 ;;
+          esac
+          echo "Release source commit: $GITHUB_SHA"
+
+      - name: Enforce manual-only Actions policy
+        run: node ../scripts/verify-actions-policy.cjs
+
+      - name: Verify app, project, English-only Hosting target
+        run: |
+          node --input-type=commonjs - <<'NODE'
+          const assert = require('node:assert/strict');
+          const fs = require('node:fs');
+          for (const p of ['package.json','pnpm-lock.yaml','content/curriculum-1.18.0-candidate.json','tests/nov-2026-content-preflight.cjs','firebase.json','.firebaserc']) assert(fs.existsSync(p), 'Missing '+p);
+          const cfg = JSON.parse(fs.readFileSync('firebase.json','utf8'));
+          const rc = JSON.parse(fs.readFileSync('.firebaserc','utf8'));
+          assert.equal(cfg.hosting.target, 'english');
+          assert.equal(cfg.hosting.public, 'dist/client');
+          assert.deepEqual(rc.targets?.['roadmap-toan-ai']?.hosting?.english, ['g-learning-english']);
+          assert.equal(rc.projects.default, 'roadmap-toan-ai');
+          console.log('FIREBASE_TARGET_PASS: roadmap-toan-ai / english / g-learning-english (not Math)');
+          NODE
+
+      - name: Verify all original-content rights and audio hashes
+        run: |
+          node tests/nov-2026-content-preflight.cjs
+          node tests/audio-rights-release-gate.cjs --require-clearance
+
+      # Fail early if there is no GitHub secret; never ask for keys/tokens in ChatGPT.
+      - name: Check Firebase production credential (before expensive CI)
+        if: ${{ inputs.confirm == 'DEPLOY_ENGLISH_V1180' }}
+        env:
+          FIREBASE_CREDENTIAL: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
+        run: |
+          if [ -z "$FIREBASE_CREDENTIAL" ]; then
+            echo "::error::Missing FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI in this repository's GitHub Actions secrets. Production NOT deployed."
             exit 1
           fi
-      - name: Verify 38 audio fingerprints and rights inventory
-        run: node tests/audio-rights-release-gate.cjs
-      - name: Block preview without complete audio rights approval
-        if: ${{ inputs.deploy_preview == true }}
-        run: node tests/audio-rights-release-gate.cjs --require-clearance
+          echo "Firebase credential secret configured (contents not displayed)"
+
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 11.25.0
-      - name: Use Node.js
+
+      - name: Use Node.js 24
         uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Install frozen dependencies exactly once
+
+      - name: Frozen dependency installation
         run: pnpm install --frozen-lockfile
-      - name: Install FFmpeg tools for mandatory codec checks
+
+      - name: Install FFmpeg for mandatory audio checks
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends ffmpeg
-          ffprobe -version | head -1
-      - name: Run consolidated release QA (one job only)
+
+      - name: Full QA, TypeScript and Firebase static production build
         run: pnpm qa:release
 
-      - name: Deploy QA-passed build to Firebase preview only
-        if: ${{ inputs.deploy_preview == true }}
+      - name: Verify exact release artifacts and prevent Math deployment
+        run: |
+          test -s dist/client/index.html
+          test -s dist/client/foundation-audio/LIS-A2-01-v2.mp3
+          test -s dist/client/foundation-audio/LIS-B1-01-v2.mp3
+          test -s dist/client/diagnostic-audio/DIAG-LIS-01-v1.mp3
+          test ! -e dist/client/foundation-audio/LIS-A2-01-v1.mp3
+          test ! -e dist/client/foundation-audio/LIS-B1-01-v1.mp3
+          echo "BUILD_ARTIFACTS_PASS: Only English build; 1.18.0 assets present"
+
+      - name: Deploy LIVE Firebase Hosting — ENGLISH ONLY (no preview)
+        id: english_live
+        if: ${{ inputs.confirm == 'DEPLOY_ENGLISH_V1180' }}
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
           projectId: roadmap-toan-ai
           target: english
           entryPoint: sites-p0-phase-a-20260926
-          channelId: nov2026-v1180
-          expires: 7d
+          channelId: live
           disableComment: true
           firebaseToolsVersion: '15.32.1'
+
+      - name: Production HTTP smoke test — English URL and both new audio files
+        if: ${{ inputs.confirm == 'DEPLOY_ENGLISH_V1180' }}
+        run: |
+          set -euo pipefail
+          base="https://g-learning-english.web.app"
+          for path in / /foundation-audio/LIS-A2-01-v2.mp3 /foundation-audio/LIS-B1-01-v2.mp3 /diagnostic-audio/DIAG-LIS-01-v1.mp3; do
+            echo "Check: $base$path"
+            curl --fail --silent --show-error --location --retry 6 --retry-delay 5 --output /dev/null "$base$path"
+          done
+          echo "PRODUCTION_SMOKE_PASS — English only; interactive Writing AI not verified"
+
+      - name: Release evidence
+        if: ${{ success() }}
+        env:
+          LIVE_URL: ${{ steps.english_live.outputs.details_url }}
+          RELEASE_CONFIRM: ${{ inputs.confirm }}
+        run: |
+          echo "## Self-Learning English v1.18.0" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Source commit: \`$GITHUB_SHA\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Full QA / strict rights / Firebase static build: PASS" >> "$GITHUB_STEP_SUMMARY"
+          if [ "$RELEASE_CONFIRM" = "DEPLOY_ENGLISH_V1180" ]; then
+            echo "- Deployed: Firebase Hosting **live**, English target only" >> "$GITHUB_STEP_SUMMARY"
+            echo "- Site: https://g-learning-english.web.app/" >> "$GITHUB_STEP_SUMMARY"
+            echo "- Deployment link: $LIVE_URL" >> "$GITHUB_STEP_SUMMARY"
+            echo "- Writing AI live feedback: NOT VERIFIED (deterministic fallback retained)" >> "$GITHUB_STEP_SUMMARY"
+            echo "- Rollback: Firebase Console > Hosting > g-learning-english > release history > previous release" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "- Mode: QA only — NO DEPLOY" >> "$GITHUB_STEP_SUMMARY"
+          fi
