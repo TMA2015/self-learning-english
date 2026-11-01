@@ -1,0 +1,76 @@
+{
+  "schema": "g-learning-audio-production-v1",
+  "application_version": "1.2",
+  "lesson_id": "LIS-A2-01",
+  "filename": "LIS-A2-01-v1.mp3",
+  "audio_format": "mp3",
+  "sample_rate": 24000,
+  "duration_seconds": 30.575,
+  "sha256": "3f2bfa2166dd3e1386e41b4337ae7526adc13c13a3207114aa35e2439bdc1478",
+  "generator": {
+    "engine": "Kokoro",
+    "package": "0.9.4",
+    "inference": "local",
+    "preset": "Listening A2",
+    "mode": "Dialogue A/B",
+    "voice_a": "bf_emma",
+    "voice_b": "bm_lewis",
+    "speed": 0.9,
+    "pause_seconds": 0.35,
+    "balance_dialogue_loudness": true
+  },
+  "turns": [
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "Hello. Is the library workshop still open for registration?",
+      "duration_seconds": 4.5,
+      "applied_gain": 0.9324
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_lewis",
+      "text": "Yes. It is this Saturday at ten thirty in the morning.",
+      "duration_seconds": 4.475,
+      "applied_gain": 1.0724
+    },
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "Is it the workshop about growing herbs?",
+      "duration_seconds": 3.175,
+      "applied_gain": 0.9324
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_lewis",
+      "text": "That's right. Please bring a small container, but we will provide the seeds and soil.",
+      "duration_seconds": 6.525,
+      "applied_gain": 1.0724
+    },
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "Great. Is there a fee?",
+      "duration_seconds": 2.325,
+      "applied_gain": 0.9324
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_lewis",
+      "text": "No, it is free. Please arrive ten minutes early.",
+      "duration_seconds": 4.4,
+      "applied_gain": 1.0724
+    },
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "Thank you. I'll be there at ten twenty.",
+      "duration_seconds": 3.075,
+      "applied_gain": 0.9324
+    }
+  ],
+  "source_text": "A: Hello. Is the library workshop still open for registration?\nB: Yes. It is this Saturday at ten thirty in the morning.\nA: Is it the workshop about growing herbs?\nB: That's right. Please bring a small container, but we will provide the seeds and soil.\nA: Great. Is there a fee?\nB: No, it is free. Please arrive ten minutes early.\nA: Thank you. I'll be there at ten twenty.",
+  "created_local": "2026-11-01T12:19:06",
+  "owner_audio_qa": "PENDING"
+}
