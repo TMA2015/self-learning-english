@@ -72,7 +72,7 @@ function walk(element,predicate){if(!element||typeof element!=='object')return n
  await test('Every visible Question Analysis field has exactly one matching helper card',()=>{
   const items=d.analysisHelper({...work.analysis,offtopic:'hidden old answer'});
   assert.equal(items.length,4);assert.deepEqual(items.map(i=>i.label),d.ANALYSIS_LABELS);
-  const s=render(ui.StepByStepHelper,{items});assert.equal((s.match(/<h4>/g)||[]).length,4);assert.equal((s.match(/Next action:/g)||[]).length,4);
+  const s=render(ui.StepByStepHelper,{items});assert.equal((s.match(/<h4>/g)||[]).length,4);assert.equal((s.match(/Next action:/g)||[]).length,4);assert(s.startsWith('<details'),'Helper must be an expandable panel');assert(!s.includes('<details open'),'Helper must be closed by default');
  });
  await test('Basic analysis feedback counts four fields even when legacy offtopic is empty or present',()=>{
   for(const offtopic of ['', 'keep my old off-topic note']){const feedback=guidedWritingFeedback('analysis',{...work.analysis,offtopic});assert(feedback.summary.includes('4/4 fields filled'));assert(!feedback.summary.includes('5 fields'));}

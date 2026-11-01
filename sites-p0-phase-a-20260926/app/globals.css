@@ -298,3 +298,16 @@ body {
 .english-lesson-ai-panel small{display:block;margin-top:10px;line-height:1.5;color:#596983}
 .english-lesson-ai-panel .primary-button{margin-top:4px}
 @media(max-width:500px){.english-lesson-ai{right:10px;bottom:10px}.english-lesson-ai-panel{right:-1px;bottom:55px}}
+
+/* Optional learning hints — closed by default, accessible by keyboard. */
+.wcv2-optional-helper{margin:16px 0;border:1px solid #d0ddef;border-radius:12px;background:#f8faff;padding:0;overflow:hidden}
+.wcv2-optional-helper>summary{display:flex;align-items:center;justify-content:space-between;gap:15px;cursor:pointer;padding:14px 17px;color:#21436e;list-style:none}
+.wcv2-optional-helper>summary::-webkit-details-marker{display:none}
+.wcv2-optional-helper>summary:focus-visible{outline:3px solid #528fe3;outline-offset:-3px;border-radius:9px}
+.wcv2-helper-label{font-weight:700;display:flex;flex-direction:column;gap:4px}
+.wcv2-helper-label small{font-size:12px;font-weight:400;color:#536f92}
+.wcv2-helper-toggle{white-space:nowrap;font-size:13px;font-weight:650;border:1px solid #b8cee9;border-radius:8px;padding:7px 11px;background:#fff}
+.wcv2-optional-helper[open] .wcv2-helper-toggle{font-size:0}
+.wcv2-optional-helper[open] .wcv2-helper-toggle::after{content:"Hide hints";font-size:13px}
+.wcv2-optional-helper-body{padding:0 17px 17px}
+.wcv2-optional-helper-body>.wcv2-grid{margin-top:12px}

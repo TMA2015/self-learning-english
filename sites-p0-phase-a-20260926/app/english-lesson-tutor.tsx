@@ -12,7 +12,7 @@ const starters=[
 
 /* Mirrors the Math tutor's knowledge-page-only policy: no assessment,
  * quiz, Diagnostic or unsubmitted learner answers are sent to Gemini. */
-export function EnglishLessonTutor({lesson}:{lesson:string}){
+export function EnglishLessonTutor({lesson,focus}:{lesson:string;focus?:string}){
  const [open,setOpen]=useState(false),[question,setQuestion]=useState('');
  const [answer,setAnswer]=useState(''),[error,setError]=useState('');
  const [model,setModel]=useState(''),[pending,setPending]=useState(false);
@@ -20,11 +20,10 @@ export function EnglishLessonTutor({lesson}:{lesson:string}){
  async function ask(prompt:string){
    if(!prompt.trim()||pending)return;
    setPending(true);setAnswer('');setError('');
-   const selection=window.getSelection();
-   const selected=selection&&!selection.isCollapsed?selection.toString().trim().slice(0,1800):'';
-   const heading=document.querySelector('.main-content h1')?.textContent?.trim()??lesson;
-   const focus=selected||heading;
-   const result=await explainEnglishLessonAI({lesson,focus,question:prompt});
+   // Lesson notes are passed explicitly from knowledge-only screens.
+   // Never read arbitrary DOM selection, draft text or a hidden quiz answer.
+   const safeFocus=(focus?.trim()||lesson).slice(0,1800);
+   const result=await explainEnglishLessonAI({lesson,focus:safeFocus,question:prompt});
    if(result.status==='answered'){setAnswer(result.text);setModel(result.model)}
    else{setError(result.reason)}
    setPending(false);
