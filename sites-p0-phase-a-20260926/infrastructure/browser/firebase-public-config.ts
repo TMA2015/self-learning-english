@@ -15,7 +15,7 @@ const defaults:FirebasePublicAIConfig={
   projectId:'roadmap-toan-ai',
   appId:'1:789845564404:web:26cfae781851ee7758b7a1',
   appCheckSiteKey:'6Ldewt4tAAAAAJFi38svQlInntj2htUFqJg690aD',
-  geminiModel:'gemini-3.8-flash',
+  geminiModel:'gemini-3.5-flash-lite',
 };
 
 function clean(value:string|undefined){return (value??'').trim()}

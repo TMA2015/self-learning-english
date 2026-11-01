@@ -70,9 +70,9 @@ const valid={summary:'Clear idea',strengths:['Relevant'],improvements:['Add an e
   global.window={};global.location={hostname:'g-learning-english.web.app'};
   const mocks={
    'firebase/app':{getApps:()=>[],initializeApp:(config,name)=>{calls.init.push({config,name});return app}},
-   'firebase/app-check':{ReCaptchaEnterpriseProvider:class {constructor(key){this.key=key}},initializeAppCheck:(a,config)=>{assert.equal(a,app);calls.appCheck.push(config)}},
+   'firebase/app-check':{ReCaptchaEnterpriseProvider:class {constructor(key){this.key=key}},initializeAppCheck:(a,config)=>{assert.equal(a,app);calls.appCheck.push(config);return {valid:true}},getToken:async check=>{assert(check.valid);calls.appCheckTokens=(calls.appCheckTokens||0)+1;return {token:'fake-firebase-app-check-token'}}},
    'firebase/ai':{GoogleAIBackend:class {},getAI:a=>{assert.equal(a,app);return {}},getGenerativeModel:(ai,config)=>{calls.models.push(config.model);return {generateContent:async()=>{calls.ai++;return {response:{text:()=>JSON.stringify(valid)}}}}}},
-   'firebase/remote-config':{isSupported:async()=>true,getRemoteConfig:a=>{assert.equal(a,app);return remote},fetchAndActivate:async()=>{calls.remote++},getString:()=> 'gemini-3.8-flash'},
+   'firebase/remote-config':{isSupported:async()=>true,getRemoteConfig:a=>{assert.equal(a,app);return remote},fetchAndActivate:async()=>{calls.remote++},getString:()=> 'gemini-3.5-flash-lite'},
   };
   Module._load=function(name,...args){return mocks[name]??original.call(this,name,...args)};
   try{
@@ -80,9 +80,10 @@ const valid={summary:'Clear idea',strengths:['Relevant'],improvements:['Add an e
    const tutor=bridge.browserTutorService();assert(await tutor.coach('analysis','task',{}));await flush();
    assert.equal(calls.init[0].config.appId,'1:789845564404:web:26cfae781851ee7758b7a1');
    assert.equal(calls.init[0].config.projectId,'roadmap-toan-ai');
-   assert.equal(calls.models[0],'gemini-3.8-flash');assert.equal(calls.remote,0);assert.equal(calls.ai,1);
+   assert.equal(calls.models[0],'gemini-3.5-flash-lite');assert.equal(calls.remote,0);assert.equal(calls.ai,1);
    assert.deepEqual(remote.settings,{});
    assert.equal(calls.appCheck[0].isTokenAutoRefreshEnabled,true);
+   assert.equal(calls.appCheckTokens,1,'AI must await App Check attestation');
    assert.equal(global.FIREBASE_APPCHECK_DEBUG_TOKEN,undefined);
   }finally{Module._load=original;global.window=priorWindow;global.location=priorLocation}
  });
@@ -95,7 +96,7 @@ const valid={summary:'Clear idea',strengths:['Relevant'],improvements:['Add an e
   assert(bridge.includes('isTokenAutoRefreshEnabled:true'));
   assert(!bridge.includes('modelSelection.refreshOnce'));
   assert(!bridge.includes("from 'firebase/remote-config'"));
-  assert(read('infrastructure/browser/firebase-public-config.ts').includes("geminiModel:'gemini-3.8-flash'"));
+  assert(read('infrastructure/browser/firebase-public-config.ts').includes("geminiModel:'gemini-3.5-flash-lite'"));
   assert(!bridge.includes('console.error'));assert(!bridge.includes('console.log(input'));
  });
  console.log(JSON.stringify({result:'PASS',tests,liveAICalls:0,realRemoteConfigCalls:0}));

@@ -14,10 +14,13 @@ const hosting=JSON.parse(read('firebase.json'));
 const firebaserc=JSON.parse(read('.firebaserc'));
 
 assert(config.includes("projectId:'roadmap-toan-ai'"));
-assert(config.includes("geminiModel:'gemini-3.8-flash'"));
+assert(config.includes("geminiModel:'gemini-3.5-flash-lite'"));
 assert(config.includes("FIREBASE_HOSTING_SITE='g-learning-english'"));
 assert(bridge.includes("from 'firebase/app'"));
 assert(bridge.includes("from 'firebase/app-check'"));
+assert(bridge.includes('await getToken(appCheckInstance)'),'App Check token must be retrieved before AI generation');
+assert(config.includes("appId:'1:789845564404:web:26cfae781851ee7758b7a1'"));
+assert(!config.includes('a066df0deed80d2d58b7a1'),'Do not reuse Math Firebase Web App');
 assert(bridge.includes("from 'firebase/ai'"));
 assert(bridge.includes('new ReCaptchaEnterpriseProvider(config.appCheckSiteKey)'));
 assert(bridge.includes('new GoogleAIBackend()'));
@@ -39,7 +42,7 @@ console.log(JSON.stringify({
   result:'PASS',
   firebaseProject:'roadmap-toan-ai',
   hostingSite:'g-learning-english',
-  model:'gemini-3.8-flash',
+  model:'gemini-3.5-flash-lite',
   appCheck:'Fraud Defense / reCAPTCHA Enterprise',
   appCheckDebugLocalOnly:true,
   directGeminiApiKey:false,

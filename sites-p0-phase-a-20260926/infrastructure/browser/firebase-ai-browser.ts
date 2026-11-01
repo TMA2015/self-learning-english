@@ -1,7 +1,7 @@
 import {getApps,initializeApp} from 'firebase/app';
 import {FirebaseRequestLifecycle} from '../ai/firebase-request-lifecycle';
 import {SafeProviderError,type ProviderDiagnostic} from '../../ai/provider-diagnostics';
-import {initializeAppCheck,ReCaptchaEnterpriseProvider} from 'firebase/app-check';
+import {getToken,initializeAppCheck,ReCaptchaEnterpriseProvider} from 'firebase/app-check';
 import {getAI,getGenerativeModel,GoogleAIBackend} from 'firebase/ai';
 import {createTutorService} from '../../ai/service';
 import type {AITutor} from '../../ai/contracts';
@@ -28,6 +28,7 @@ export function readAIFailure(){return lastAIFailure}
 
 let aiInstance:ReturnType<typeof getAI>|null=null;
 let appCheckReady=false;
+let appCheckInstance:ReturnType<typeof initializeAppCheck>|null=null;
 let cachedTutor:AITutor|null=null;
 
 function localDebugAllowed(){
@@ -48,7 +49,7 @@ function ensureAI(config:FirebasePublicAIConfig){
     if(firebaseAppCheckDebugEnabled()&&localDebugAllowed()){
       (globalThis as typeof globalThis&{FIREBASE_APPCHECK_DEBUG_TOKEN?:boolean|string}).FIREBASE_APPCHECK_DEBUG_TOKEN=true;
     }
-    initializeAppCheck(app,{
+    appCheckInstance=initializeAppCheck(app,{
       provider:new ReCaptchaEnterpriseProvider(config.appCheckSiteKey),
       isTokenAutoRefreshEnabled:true,
     });
@@ -72,6 +73,16 @@ class FirebaseBrowserAILogicTransport implements FirebaseAILogicTransport{
   async generateJSON(input:FirebaseAILogicGenerateInput):Promise<unknown>{
     return this.lifecycle.run(async()=>{
       const ai=ensureAI(this.config);
+      // Math has a verified real-world pattern: obtain Firebase App Check
+      // attestation BEFORE asking Gemini. An initialized SDK is not proof
+      // that the English Web App is registered/allowed by reCAPTCHA.
+      if(!appCheckInstance)throw new SafeProviderError('app-check-permission');
+      try{
+        const verified=await getToken(appCheckInstance);
+        if(!verified.token)throw new Error('app-check-empty');
+      }catch{
+        throw new SafeProviderError('app-check-permission');
+      }
       this.selectedModel=this.config.geminiModel;
       const model=getGenerativeModel(ai,{
         model:this.model,
