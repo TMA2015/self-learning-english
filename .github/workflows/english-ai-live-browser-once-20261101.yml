@@ -1,0 +1,101 @@
+name: ONE-TIME Live Gemini AI Logic Browser Audit (English Only)
+
+on:
+  push:
+    branches:
+      - ops/english-ai-writing-release-once-20261101
+    paths:
+      - .github/workflows/english-ai-live-browser-once-20261101.yml
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Confirm no application code changed since release QA
+        run: |
+          set -euo pipefail
+          git fetch --no-tags --depth=1 origin 2c339a3c5df458c8c603b33fe87ff2035ad79791
+          changed="$(git diff --name-only 2c339a3c5df458c8c603b33fe87ff2035ad79791 HEAD)"
+          echo "$changed" | grep -Fq '.github/workflows/english-ai-live-browser-once-20261101.yml'
+          if echo "$changed" | grep -vE '^\.github/workflows/english-ai-(writing|live-browser)-once-20261101\.yml$'; then
+            echo "::error::App tree was modified after release QA"; exit 1
+          fi
+          echo 'AUDIT_SOURCE_PASS'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install lightweight headless Chrome driver
+        run: |
+          command -v google-chrome || command -v google-chrome-stable
+          mkdir -p /tmp/english-ai-browser
+          npm install --prefix /tmp/english-ai-browser --no-audit --no-fund --no-package-lock playwright-core@1.56.1
+      - name: Test real Gemini request from published English origin
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: |
+          cat > /tmp/english-ai-browser/check.cjs <<'SCRIPT'
+          'use strict';
+          const {chromium}=require('/tmp/english-ai-browser/node_modules/playwright-core');
+          (async()=>{
+           const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_PATH,args:['--no-sandbox','--disable-dev-shm-usage']});
+           const page=await browser.newPage({locale:'en-US'});
+           const result={};
+           try{
+            const loaded=await page.goto('https://g-learning-english.web.app/',{waitUntil:'domcontentloaded',timeout:45000});
+            result.homeHttp=loaded?.status();
+            await page.waitForTimeout(2500);
+            result.aiHeader=await page.getByText('AI Writing · optional',{exact:false}).count()>0;
+            if(result.homeHttp!==200||!result.aiHeader)throw new Error('Production page or AI Writing navigation missing');
+            // The same publicly configured Firebase model and App Check provider,
+            // executed under the real English Hosting origin; synthetic test text only.
+            const resultFromBrowser=await page.evaluate(async()=>{
+             const appLib=await import('https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js');
+             const checkLib=await import('https://www.gstatic.com/firebasejs/12.19.0/firebase-app-check.js');
+             const aiLib=await import('https://www.gstatic.com/firebasejs/12.19.0/firebase-ai.js');
+             const app=appLib.initializeApp({
+               apiKey:'AIzaSyAnCa-t04dmwFHLARYN77o866tomq4RUBg',
+               authDomain:'roadmap-toan-ai.firebaseapp.com',
+               projectId:'roadmap-toan-ai',
+               appId:'1:789845564404:web:26cfae781851ee7758b7a1'
+             },'one-shot-live-audit');
+             checkLib.initializeAppCheck(app,{
+              provider:new checkLib.ReCaptchaEnterpriseProvider('6Ldewt4tAAAAAJFi38svQlInntj2htUFqJg690aD'),
+              isTokenAutoRefreshEnabled:true
+             });
+             const model=aiLib.getGenerativeModel(aiLib.getAI(app,{backend:new aiLib.GoogleAIBackend()}),{
+                model:'gemini-3.8-flash',
+                systemInstruction:'Assess only the provided original synthetic student English. Return JSON with a one-sentence summary and one specific improvement. No personal data. Respond only in JSON.',
+                generationConfig:{responseMimeType:'application/json',maxOutputTokens:300}
+             });
+             const synthetic={task:'Write a friendly invitation to a school club meeting.',studentWriting:'Hi Maya! Our art club meets at 4 PM on Thursday in Room 204. Would you like to join us?'};
+             try{
+               const reply=await model.generateContent(JSON.stringify(synthetic));
+               const parsed=JSON.parse(reply.response.text());
+               if(typeof parsed.summary!=='string'||parsed.summary.length<5)throw Error('INVALID_JSON');
+               return {status:'VALID_GEMINI_RESPONSE',summaryLength:parsed.summary.length,model:'gemini-3.8-flash'};
+             }catch(e){
+               // Don't leak provider payload, request content, token, or credential to logs.
+               const code=String(e?.code||'').slice(0,65);
+               const message=String(e?.message||'').toLowerCase();
+               let category=/app.?check|re.?captcha|403|permission|unauthenticated/.test(code+' '+message)?'APP_CHECK_OR_PERMISSION':
+                 /429|quota|rate.limit|resource.exhausted/.test(code+' '+message)?'QUOTA':
+                 /404|model.?not.?found/.test(code+' '+message)?'MODEL_NOT_AVAILABLE':
+                 /400|invalid|bad.?request/.test(code+' '+message)?'INVALID_REQUEST':'OTHER_OR_CI_BROWSER_ATTESTATION';
+               return {status:'NO_VERIFIED_GEMINI_RESPONSE',category};
+             }
+            });
+            Object.assign(result,resultFromBrowser);
+            console.log('AI_LIVE_AUDIT_RESULT '+JSON.stringify(result));
+            // Under CI, reCAPTCHA scores may reject bot environments. Never falsely
+            // certify AI on failure, but classify it as unresolved live-browser QA.
+            if(result.status!=='VALID_GEMINI_RESPONSE')process.exitCode=2;
+           }catch(e){console.log('AI_LIVE_AUDIT_HARNESS_FAIL '+JSON.stringify({homeHttp:result.homeHttp||null,aiHeader:result.aiHeader||false,category:String(e?.name||'UNKNOWN')}));process.exitCode=3;}
+           finally{await browser.close();}
+          })().catch(()=>{console.log('AI_LIVE_AUDIT_HARNESS_FAIL UNKNOWN');process.exitCode=3});
+          SCRIPT
+          node /tmp/english-ai-browser/check.cjs
