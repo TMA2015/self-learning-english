@@ -49,6 +49,11 @@ jobs:
             echo "Firebase Hosting service-account secret missing; no preview deployed"
             exit 1
           fi
+      - name: Verify 38 audio fingerprints and rights inventory
+        run: node tests/audio-rights-release-gate.cjs
+      - name: Block preview without complete audio rights approval
+        if: ${{ inputs.deploy_preview == true }}
+        run: node tests/audio-rights-release-gate.cjs --require-clearance
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
