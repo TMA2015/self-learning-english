@@ -10,7 +10,9 @@ const entries = fs.existsSync(workflows)
   : [];
 
 const violations = [];
-if (entries.length > 3) violations.push('More than three active GitHub Actions workflow files');
+if (entries.length !== 1 || entries[0] !== 'english-manual-release-qa.yml') {
+  violations.push('Exactly one approved workflow is allowed: english-manual-release-qa.yml');
+}
 for (const file of entries) {
   const src = fs.readFileSync(path.join(workflows, file), 'utf8');
   const lines = src.split(/\r?\n/).map(line => line.replace(/\s+#.*$/, ''));
