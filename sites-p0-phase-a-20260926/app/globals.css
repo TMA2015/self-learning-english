@@ -297,6 +297,12 @@ body {
 .english-lesson-ai-panel article{background:#f5f8fc;border-radius:9px;padding:12px;margin-top:15px;white-space:pre-wrap;overflow-wrap:anywhere}
 .english-lesson-ai-panel small{display:block;margin-top:10px;line-height:1.5;color:#596983}
 .english-lesson-ai-panel .primary-button{margin-top:4px}
+.english-lesson-ai-markdown{overflow-wrap:anywhere;white-space:normal}
+.english-lesson-ai-markdown p{margin:8px 0;line-height:1.55}
+.english-lesson-ai-markdown ul,.english-lesson-ai-markdown ol{padding-left:22px;margin:8px 0;line-height:1.55}
+.english-lesson-ai-markdown ul{list-style:disc}
+.english-lesson-ai-markdown ol{list-style:decimal}
+.english-lesson-ai-markdown li{margin:3px 0}
 @media(max-width:500px){.english-lesson-ai{right:10px;bottom:10px}.english-lesson-ai-panel{right:-1px;bottom:55px}}
 
 /* Optional learning hints — closed by default, accessible by keyboard. */
