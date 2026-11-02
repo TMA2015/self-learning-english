@@ -34,4 +34,10 @@ assert(hostile.includes('&lt;script&gt;'),'Literal user-supplied HTML must be es
 assert(!hostile.includes('<script>'),'Untrusted HTML must never execute');
 const table=render('| Context | Phrase |\n| --- | --- |\n| Class | hand in a form |');
 assert(table.includes('<table>')&&table.includes('hand in a form'));
+const steps=render('1. First **read** the question\n2. Choose a useful example');
+assert(steps.includes('<ol')&&steps.includes('<li>First <strong>read</strong> the question</li>'),'Numbered lists must render with real list semantics');
+const stars=render('* **Important** point\n* Another point');
+assert(stars.includes('<ul')&&stars.includes('<li><strong>Important</strong> point</li>'),'Asterisk bullets must render as list items');
+const newlines=render('Line one\r\nLine **two**');
+assert(newlines.includes('<br/>')&&newlines.includes('Line <strong>two</strong>'),'Soft line breaks must be preserved and escaped');
 console.log(JSON.stringify({result:'PASS',scope:'real TeachingBlocks React SSR markdown output and escaped HTML',aiProviderCalls:0}));
