@@ -10,6 +10,7 @@ const coreTests=[
   "pedagogy-v1181.cjs",
   "speaking-prep-stage3.cjs",
   "ai-tutor-stage3.cjs",
+  "listening-option-order-stage3.cjs",
   "content-quality.cjs",
   "version-aware-attempt-ux.cjs",
   "practice-progress-p2a.cjs",
