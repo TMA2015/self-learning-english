@@ -1,0 +1,15 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const foundation=fs.readFileSync(path.join(__dirname,'../app/foundation.tsx'),'utf8');
+const guide=fs.readFileSync(path.join(__dirname,'../app/speaking-preparation-guide.tsx'),'utf8');
+assert(foundation.includes("lesson.id==='SPE-A2-02'&&loadedLessonVersion.current==='1.18.1'&&<SpeakingPreparationGuide/>"));
+assert(foundation.includes("lesson.module==='speaking'?'Language preparation knowledge · Objective practice'"));
+assert(foundation.includes("These choices check language preparation knowledge."));
+assert(guide.includes('Self-Reported Practice (this screen only)'));
+assert(guide.includes('not</strong> a speaking score'));
+assert(guide.includes('not saved, submitted or scored'));
+assert(guide.includes('lost your library card'));
+assert(guide.includes('forgot your sports shoes'));
+assert(!/fetch\(|localStorage|indexedDB|Gemini|score\s*=|evidence_weight\s*=/.test(guide),'Unreviewed data/scoring integration');
+console.log(JSON.stringify({result:'PASS',scope:'speaking-stage3-preparation-presentational-only'}));
