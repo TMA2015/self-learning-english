@@ -1,7 +1,8 @@
 "use client";
-import {useEffect,useState} from 'react';
+import {useEffect,useRef,useState} from 'react';
 import {Sparkles,X} from 'lucide-react';
 import {TeachingBlocks} from './teaching-blocks';
+import {LatestTutorRequest} from '../domain/tutor-request-gate';
 import {explainEnglishLessonAI} from '../infrastructure/browser/firebase-ai-browser';
 
 const starters=[
@@ -17,17 +18,29 @@ export function EnglishLessonTutor({lesson,focus}:{lesson:string;focus?:string})
  const [open,setOpen]=useState(false),[question,setQuestion]=useState('');
  const [answer,setAnswer]=useState(''),[error,setError]=useState('');
  const [model,setModel]=useState(''),[pending,setPending]=useState(false);
- useEffect(()=>{setOpen(false);setQuestion('');setAnswer('');setError('')},[lesson]);
+ const requestGate=useRef(new LatestTutorRequest());
+ useEffect(()=>{
+   requestGate.current.invalidate();
+   setOpen(false);setQuestion('');setAnswer('');setError('');setModel('');setPending(false);
+   return ()=>{requestGate.current.invalidate()};
+ },[lesson]);
  async function ask(prompt:string){
    if(!prompt.trim()||pending)return;
-   setPending(true);setAnswer('');setError('');
+   const ticket=requestGate.current.begin();
+   setPending(true);setAnswer('');setError('');setModel('');
    // Lesson notes are passed explicitly from knowledge-only screens.
    // Never read arbitrary DOM selection, draft text or a hidden quiz answer.
    const safeFocus=(focus?.trim()||lesson).slice(0,1800);
-   const result=await explainEnglishLessonAI({lesson,focus:safeFocus,question:prompt});
-   if(result.status==='answered'){setAnswer(result.text);setModel(result.model)}
-   else{setError(result.reason)}
-   setPending(false);
+   try{
+     const result=await explainEnglishLessonAI({lesson,focus:safeFocus,question:prompt});
+     if(!requestGate.current.isCurrent(ticket))return;
+     if(result.status==='answered'){setAnswer(result.text);setModel(result.model)}
+     else{setError(result.reason)}
+   }catch{
+     if(requestGate.current.isCurrent(ticket))setError('Gemini could not complete this request. Please try again.');
+   }finally{
+     if(requestGate.current.isCurrent(ticket))setPending(false);
+   }
  }
  return <div className="english-lesson-ai">
   <button type="button" className="english-lesson-ai-launch" aria-expanded={open}
