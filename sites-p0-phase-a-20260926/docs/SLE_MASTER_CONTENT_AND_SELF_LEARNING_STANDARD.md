@@ -2,7 +2,7 @@
 
 **Standard ID:** SLE-MASTER-001  
 **Document version:** 1.0.0  
-**Status:** DRAFT — pending independent NotebookLM review and owner approval; NOT YET NORMATIVE  
+**Status:** DRAFT — academic GO reported by independent NotebookLM after four mandatory amendments incorporated; owner adoption/merge still pending; NOT YET NORMATIVE  
 **Prepared:** 2026-11-02  
 **Canonical target path:** `docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md` in the English website repository `TMA2015/self-learning-english`  
 **Scope:** One unified Self-Learning English (SLE) GitHub + Firebase website/app. This is **not** the independent ChatGPT-in-chat English Tutor project.  
@@ -30,6 +30,8 @@
 | NotebookLM lesson/batch verdicts and Stage 1–3 pedagogy verdicts | Traceable academic decisions | Required corrections must be reconciled here before they become permanent policy |
 | `domain/academic.ts`, current curriculum JSON and runtime tests | Actual implementation contracts and evidence | They constrain what can be shipped today; a normative change requiring code work does not magically make that work complete |
 | `content/audio-rights-register.json` and release audit records | Per-asset provenance and authorization evidence | Keep as factual records; they are not a separate pedagogical standard |
+
+**Permanent academic baseline and single local authority:** Upon adoption, `SLE-MASTER-001` unifies and supersedes historical **local** authoring and QA documents (`docs/CONTENT_AUTHORING_STANDARD.md`, `docs/LEARNER_ACTION_FEEDBACK_STANDARD.md`, `docs/CROSS_SKILL_QUALITY_STANDARD.md`). It remains subject to the five permanent English-project academic baseline sources (`00_NOTEBOOK_ENGLISH_PERMANENT_v2.md` through `04_GRAMMAR_ADAPTIVE_ROADMAP_v2.md`), and its compatibility with those sources MUST be checked whenever substantive rules change. NotebookLM baseline documents provide review evidence and academic constraints, not a second active repository authoring checklist. Conflicts require documented reconciliation; never claim compliance from document naming alone.
 
 When legacy prose differs from validated current runtime behavior, **do not assume either is safe**: record the discrepancy, apply the more conservative learner-data/evidence guard, and require a versioned resolution before deployment. Avoid deleting historical documentation; mark it archival in a later explicitly reviewed documentation-only task. Maintain one canonical version of this file, with Git history providing earlier versions; do not create `MASTER_v1`, `MASTER_v2` etc. as competing active files.
 
@@ -66,7 +68,7 @@ The four functions do **not** have to occupy four large screens. One compact ove
 
 **ADAPTIVE / OPTIONAL** and closed or lightweight by default: (a) prerequisite links, (b) graduated hints or guided attempts, (c) a simple reflection/self-check, (d) suggestions for spaced review. A hint MUST not reveal the active answer before submit. Review intervals are recommendations, not guarantees of memory retention. Guided activities are useful but MUST not delay motivated students who can proceed independently.
 
-**Suggested time/pace** is advisory, not a universal 30-minute requirement; longer learning units MAY be split into a “Learn + Demonstrate” visit and a “Practise + Feedback” visit if progress and next action remain clear.
+**Suggested time/pace** is advisory, not a universal 30-minute requirement; a roughly 25–30-minute unit MAY be divided into two optional ~15-minute visits (A: Learn + Demonstrate; B: Independent Practice + Feedback) if the current platform can resume reliably. Do not claim that pause/resume exists unless tested; progress and next action must remain clear.
 
 ## 3. Learner experience, feedback and recovery (MUST)
 
@@ -76,7 +78,7 @@ The four functions do **not** have to occupy four large screens. One compact ove
 - Present explicit actions (Start, Next, Save, Submit, Retry, Resume, More Practice, Finish) only when actually supported. No inert or misleading controls.
 - Saving, submitting, failed save, restored attempt, pending review, unassessed and scored states MUST truthfully reflect committed state. Never claim save or assessment succeeded before confirmation.
 - Preserve draft work during failures, navigation, delayed writes, refresh, retakes and route transitions as supported by the validated store. Offer a safe retry and do not double-submit. A read-only old result stays read-only.
-- Feedback should distinguish the targeted misconception, a useful explanation, a narrowly scoped remedial hint/task, and next progression. If the learner repeats the same error, recommend a smaller prerequisite review; never manufacture an adaptive score.
+- Feedback should distinguish the targeted misconception, a useful explanation, a narrowly scoped remedial hint/task, and next progression. If the learner repeats the same error, SHOULD link the Error Bank misconception to one compact, clearly identified prerequisite review card before a retake, **only when that feature has been implemented and verified**. Otherwise give a text-based prerequisite recommendation; never invent a functioning link or adaptive score.
 - **Accessibility gate:** usable with keyboard, readable on narrow mobile screens, focusable next/submit controls, visible error/status text, legible tables and sufficient contrast. Do not encode success/failure only by color.
 - **Content gate:** Markdown/formatting must render safely using supported text/React components; do not execute untrusted HTML or leak active assessment answer keys by sending quiz data to a helper.
 
@@ -132,7 +134,7 @@ Require the **four-part task model**: Topic / Task / Must Include / Boundary (au
 
 The current core self-learning offering is **“Speaking · Prepare & Practise”**: Situation -> Idea Bank -> Functional Language Toolkit -> Independent Annotated Model -> Keyword Planning -> Unassisted Speak-Aloud -> Self-Check. It should teach how to build a communicative response, not pretend to measure live speech without validated acoustic/human feedback. Phrase-choice multiple-choice tasks check **language-preparation knowledge**, not fluency, intelligibility or oral proficiency. Keyword notes, checkboxes and “I spoke aloud” are **Self-Reported Practice** and oral proficiency **weight 0**. Do not mandate a microphone, upload a private recording or assign a CEFR speaking level. An optional future reviewed recording requires separate consent, privacy, retention, playback and rubric QA.
 
-**Historical safeguard:** v1.18.0 `SPE-A2-02` Q1–Q4 have legacy MCQ weights of 1 in source data; the Foundation ingestion path checked in Stage 3 does not automatically treat these as oral Skill Map evidence. Preserve historical scores and attempt packages. Any new display category `language_preparation_knowledge` must be a **version-aware read-only projection**, not a historical rewrite or new unvalidated schema field.
+**Historical safeguard / required forward-only runtime projection:** v1.18.0 `SPE-A2-02` Q1–Q4 have legacy objective MCQ weights of 1 in source data; the inspected Foundation evidence-ingestion path does not treat them as oral Skill Map evidence. MUST preserve all immutable historical attempt records, version-pinned objective scores, results and package digests. At runtime, the learner-facing result and any dashboard/Skill Map aggregation MUST use a **version-aware, read-only semantic projection** for those historical question IDs: `language_preparation_knowledge` with projected `oral_proficiency_weight: 0`. Keep the original correctness score visible *only as language-preparation practice*; never inflate oral Speaking evidence or alter persisted evidence/snapshots. Projection metadata is a presentation/derived-view contract, **not** permission to insert unknown fields into the current curriculum schema. Until the UI projection is implemented and tested, mark its implementation gate NOT TESTED rather than claiming it already works.
 
 **SPE acceptance:** communicative scenario, useful phrase functions, independent model, short keyword plan, unsupervised rehearsal, explicit self-report and non-scoring status, historical preservation.
 
@@ -145,7 +147,7 @@ Treat three types of task distinctly:
 
 Teach clear word/sentence models, contrasting sounds, stress cues and simple mouth-placement guidance without pretending every spoken voice follows an absolute rule. Different stimuli in demonstrations and scored trials prevent leakage. No filename/alt text/tooltip may reveal a test stimulus before its answer.
 
-**PRO example gate:** planned `feet/fit` and `beat/bit` MP3 trials in Stage 3 are not scored merely because an owner listening checklist was ticked; asset provenance, blind-listening QA, browser mapping and player safeguards must pass first. Keep an independently inspectable asset manifest (actual SHA-256 and measured duration only after files exist).
+**PRO example gate:** planned `feet/fit` and `beat/bit` MP3 trials in Stage 3 are not scored merely because an owner listening checklist was ticked. **All audio-discrimination tasks lacking verified physical audio files, aligned manifests and verified playback MUST default to `UNASSESSED` (`evidence_weight: 0`)**, not a zero score or a synthetic written answer. Before audio playback, their multiple-choice options and stimulus controls MUST NOT expose any IPA symbols, text labels, spelling cues, filenames or accessibility metadata that identify the correct heard word or otherwise leak the hidden audio key. After verified playback, answer choices may be displayed if they do not identify the correct choice before the learner responds. This gate applies to *heard-word discrimination*, not separate explicitly labeled unassessed/knowledge-only written IPA awareness exercises. Asset provenance, blind-listening QA, browser mapping, rights and player safeguards must pass before any audio-based score. Keep an independently inspectable asset manifest (actual SHA-256 and measured duration only after files exist).
 
 **PRO acceptance:** phonetic accuracy, authentic differentiated audio if tested, clear ear-training vs speech labels, no unsupported pronunciation/CEFR score.
 
@@ -167,7 +169,7 @@ Teach clear word/sentence models, contrasting sounds, stress cues and simple mou
 ## 7. AI, affordability, privacy and honesty (MUST)
 
 - **Free-first, static/deterministic teaching core:** learner should be able to read lessons, practise objective items and receive pre-authored feedback **without paid AI or a live Gemini call**. AI can enrich explanations or help review writing when explicitly requested; it must not become a mandatory dependency for ordinary study.
-- AI Tutor is **opt-in**, limited to learner-visible knowledge/overview context. Do not transmit unsubmitted graded answers, secret keys, arbitrary private drive files, credentials, or unrelated learner data to Gemini. Answer the **question's language** when feasible (Vietnamese query -> Vietnamese explanation with English teaching examples; English query -> English), with safe React text/Markdown rendering and an honest uncertainty/fallback message.
+- **AI Tutor language, rendering and privacy contract:** AI Tutor is **opt-in** and limited to learner-visible knowledge/overview context. Do not send unsubmitted assessment items or answers, secret keys, arbitrary private Drive files, credentials, or unrelated learner data to Gemini. When an opt-in question is asked in **Vietnamese (accented or unaccented)**, the response MUST be in **Vietnamese**, retaining English target examples and phrases; a question in English receives a clear English explanation. AI output MUST be rendered with **safe React text/Markdown components** so supported `**bold**` and lists display as formatting, never as raw unrendered markers, and untrusted HTML/scripts never execute. Treat the question and lesson text as untrusted content. Preserve concise age-appropriate guidance and honest uncertainty/fallback messaging.
 - AI grading and natural-language feedback are not automatically reliable or certified. A model's high score, unsupported factual correction or invented quote MUST not be promoted to durable mastery evidence without the applicable validation/review rule.
 - Collect minimum learner data required; no public personal details or private credentials embedded in content, GitHub, prompts or logs. Use learner-safe, age-appropriate examples; do not solicit real addresses, phone numbers, secrets or legal identity to complete speaking/writing exercises.
 - **AI independence and full offline are different requirements.** A free static site that still needs a network is not “100% offline.” Only claim offline support after real pre-cached bundle/audio, local attempt persistence, reload and reconnection testing, including mobile. Until proven, report **OFFLINE NOT VERIFIED / NOT READY**. Do not invent a paid backend requirement.
@@ -213,7 +215,7 @@ A candidate is **not releasable** unless applicable gates below have recorded **
 | **ACA-02 CEFR & evidence honesty** | target level and evidence type separated; no unearned ability | CEFR “certified”, speech score from text |
 | **MOD-01 Domain guard** | skill-specific checks from Section 5 | e.g. Reading literal-match-only, Listening without audio |
 | **DAT-01 Immutability & scope** | version diff, stable IDs, preserved old attempts, count comparison | old keys/attempts silently rewritten |
-| **MED-01 Media integrity (if applicable)** | real asset, aligned manifest, playback and rights checks | absent/unverified audio scored |
+| **MED-01 Media integrity (if applicable)** | real file, aligned manifest, rights and verified playback; audio-discrimination task defaults to `UNASSESSED` / weight 0 until verified; no pre-playback visible/accessible spelling or IPA key cue | absent/unverified audio scored; stimulus exposed before listening |
 | **UX-01 Accessibility & resilience** | real mobile/keyboard QA, correct save/error/retake states | unsaved work lost, user blocked without guidance |
 | **AI-01 Optional and safe (if applicable)** | deterministic fallback, context-only prompt, safe rendering, no answer leak | mandatory AI, private content sent, unsafe rendering |
 | **OFF-01 Honest offline disclosure** | tested real offline paths or explicit “not verified” | unsupported offline marketing claim |
@@ -239,7 +241,11 @@ Use `major.minor.patch`: **major** for a policy redesign or changed evidence mea
 
 | Standard version | Date | Status | Summary | Approval / effective commit |
 | --- | --- | --- | --- | --- |
-| 1.0.0 | 2026-11-02 | DRAFT / REVIEW REQUESTED | Unified rules drawn from current authoring, learner feedback, cross-skill technical safeguards and approved Stage 1–3 pedagogy; first proposed canonical standard | PENDING NotebookLM + owner |
+| 1.0.0 | 2026-11-02 | DRAFT / ACADEMIC GO WITH CORRECTIONS INCORPORATED | Unified existing authoring/UX/evidence standards; integrated NotebookLM mandatory amendments C1–C4 (permanent-baseline relationship, historical Speaking projection, audio gate/masking, bilingual safe AI rendering). No curriculum/code release implied | NotebookLM `PASS_WITH_REQUIRED_CHANGES`; owner adoption/effective commit PENDING |
+
+### Independent academic review record (2026-11-02)
+
+NotebookLM returned `PASS_WITH_REQUIRED_CHANGES`, `ACADEMIC ADOPTION GO`, and `PRODUCTION NO-GO` for standard draft 1.0.0. Required corrections were incorporated in Sections 0.1, 5.6, 5.7, 7 and MED-01. The existing independently approved pedagogical baseline is retained; a standards approval must not be misread as final QA or authorization to merge/deploy pending website PRs #68–#70. Optional one-screen prerequisite Error Bank repair and split study visits are guidance, not required new runtime features. The owner's effective adoption decision and commit will be recorded after approval.
 
 ## 12. Current evidence and open matters — NOT an implicit approval
 
