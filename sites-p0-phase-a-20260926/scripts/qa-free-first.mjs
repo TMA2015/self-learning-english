@@ -7,6 +7,7 @@ const root=process.cwd();
 const coreTests=[
   "run.cjs",
   "academic.cjs",
+  "speaking-prep-stage3.cjs",
   "content-quality.cjs",
   "version-aware-attempt-ux.cjs",
   "practice-progress-p2a.cjs",
