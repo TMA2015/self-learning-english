@@ -1,0 +1,1050 @@
+{
+  "artifact_id": "SLE-P01-AUTHORING-UNITS-R1-20261102",
+  "authoring_schema": "self-learning-english.topic-authoring.v0.1",
+  "importer_compatible": false,
+  "created_at": "2026-11-02",
+  "status": "CONTENT_DRAFT",
+  "source_curriculum_version": "1.18.0",
+  "topic_id": "P01",
+  "theme": "School & Everyday Communication",
+  "academic_review": "NOT_RUN",
+  "technical_qa": "AUTHORING_ONLY",
+  "qa_summary": {
+    "units": 7,
+    "questions": 34,
+    "objective": 30,
+    "unassessed": 4,
+    "qa_errors": []
+  },
+  "units": [
+    {
+      "id": "P01-U01",
+      "level": "Pre-A1",
+      "module": "vocabulary",
+      "title": "My classroom: words for everyday things",
+      "prerequisites": "None; optional Vietnamese labels for new learners",
+      "minutes": 12,
+      "goal": "Recognise five common school words in short everyday contexts and match each word to its use; no CEFR level awarded.",
+      "concept": "Use a word together with a simple action. bag = carry books; door = enter or leave; chair = sit; desk = work or write; teacher = help learners in class. Say the words, then cover the bank before practice. Written text and optional Vietnamese support are available; pictures/audio are not required to answer.",
+      "support_vi": "Ghép từ với hành động: bag = cặp, door = cửa ra vào, chair = ghế, desk = bàn học, teacher = giáo viên. Có thể xem từ gợi ý lúc đầu, sau đó che lại khi làm bài.",
+      "model": "Different model words (not scored): The board is at the front of the room. A window lets light in. Notice how each word is connected to a useful description.",
+      "strategy": [
+        "Read the short sentence and imagine the action.",
+        "Decide whether you need a person, place or object.",
+        "Try to remember the word before looking at the choices."
+      ],
+      "hint": "Is the sentence about carrying, closing, sitting, writing or helping learners?",
+      "feedback_strategy": "After Submit, reread the whole sentence, name the action and compare the meanings of the wrong options. Try one new sentence without looking at the word bank.",
+      "practice": [
+        {
+          "id": "P01-U01-Q1",
+          "type": "single_choice",
+          "prompt": "I carry my books to school in my ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "bag"
+            },
+            {
+              "id": "B",
+              "text": "chair"
+            },
+            {
+              "id": "C",
+              "text": "door"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A bag is something you can carry books in."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "vocabulary.meaning_in_context"
+        },
+        {
+          "id": "P01-U01-Q2",
+          "type": "single_choice",
+          "prompt": "Please close the ___ when you leave the room.",
+          "options": [
+            {
+              "id": "A",
+              "text": "pencil"
+            },
+            {
+              "id": "B",
+              "text": "door"
+            },
+            {
+              "id": "C",
+              "text": "teacher"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A door can be closed when someone leaves a room."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "vocabulary.meaning_in_context"
+        },
+        {
+          "id": "P01-U01-Q3",
+          "type": "single_choice",
+          "prompt": "We sit on a ___ in class.",
+          "options": [
+            {
+              "id": "A",
+              "text": "bag"
+            },
+            {
+              "id": "B",
+              "text": "book"
+            },
+            {
+              "id": "C",
+              "text": "chair"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "A chair is for sitting on."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "vocabulary.meaning_in_context"
+        },
+        {
+          "id": "P01-U01-Q4",
+          "type": "single_choice",
+          "prompt": "We put our notebooks on the ___ to write.",
+          "options": [
+            {
+              "id": "A",
+              "text": "desk"
+            },
+            {
+              "id": "B",
+              "text": "door"
+            },
+            {
+              "id": "C",
+              "text": "window"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A desk is a surface for writing."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "vocabulary.meaning_in_context"
+        },
+        {
+          "id": "P01-U01-Q5",
+          "type": "single_choice",
+          "prompt": "The ___ helps us learn new words.",
+          "options": [
+            {
+              "id": "A",
+              "text": "teacher"
+            },
+            {
+              "id": "B",
+              "text": "pencil"
+            },
+            {
+              "id": "C",
+              "text": "chair"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A teacher is a person who helps learners."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "vocabulary.meaning_in_context"
+        }
+      ]
+    },
+    {
+      "id": "P01-U02",
+      "level": "Pre-A1",
+      "module": "grammar_vocabulary",
+      "title": "Can I have it, please?",
+      "prerequisites": "P01-U01 or equivalent classroom vocabulary",
+      "minutes": 12,
+      "goal": "Use a memorised polite request, response and thanks in a familiar classroom situation.",
+      "concept": "A simple polite request has a useful pattern: Can I have + thing + please? A person may reply Here you are. Then say Thank you. This is supported formula practice, not proof of independent conversation skill.",
+      "support_vi": "Mẫu câu lịch sự: Can I have ... , please? = Cho mình xin ... được không? Here you are = Đây nhé. Thank you = Cảm ơn.",
+      "model": "Different model: Kim asks, 'Can I have the green crayon, please?' Jo gives it and says, 'Here you are.' Kim replies, 'Thank you!'",
+      "strategy": [
+        "Identify what you need.",
+        "Choose a short polite request rather than a command.",
+        "When someone helps, reply with thanks."
+      ],
+      "hint": "Look for Can I ... please? and a friendly reply.",
+      "feedback_strategy": "If you selected a command, compare how it sounds with a polite request. Repeat the three-part exchange using a different classroom object.",
+      "practice": [
+        {
+          "id": "P01-U02-Q1",
+          "type": "single_choice",
+          "prompt": "You need a ruler. Which request is polite?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Can I have a ruler, please?"
+            },
+            {
+              "id": "B",
+              "text": "Ruler now!"
+            },
+            {
+              "id": "C",
+              "text": "You give ruler!"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Can I have ... please? is a polite way to ask."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "language.preparation"
+        },
+        {
+          "id": "P01-U02-Q2",
+          "type": "single_choice",
+          "prompt": "A friend gives you a pencil. What can you say?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Thank you."
+            },
+            {
+              "id": "B",
+              "text": "Go away."
+            },
+            {
+              "id": "C",
+              "text": "No, you must."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Thank you acknowledges help politely."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "language.preparation"
+        },
+        {
+          "id": "P01-U02-Q3",
+          "type": "single_choice",
+          "prompt": "A friend asks for the eraser and you give it. What can you say?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Here you are."
+            },
+            {
+              "id": "B",
+              "text": "Where are you?"
+            },
+            {
+              "id": "C",
+              "text": "See you yesterday."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Here you are is a natural reply when handing something over."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "language.preparation"
+        },
+        {
+          "id": "P01-U02-Q4",
+          "type": "short_answer",
+          "prompt": "Complete the polite request with ONE word: Can I ___ the blue pen, please?",
+          "answer": {
+            "accepted_answers": [
+              "have"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Can I have ... please? asks for an object politely."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "language.formula_recall"
+        },
+        {
+          "id": "P01-U02-Q5",
+          "type": "single_choice",
+          "prompt": "Which is a polite way to ask for the paper?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Please pass me the paper."
+            },
+            {
+              "id": "B",
+              "text": "Give it!"
+            },
+            {
+              "id": "C",
+              "text": "Paper!"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Please makes the request more courteous."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "language.preparation"
+        }
+      ]
+    },
+    {
+      "id": "P01-U05",
+      "level": "A1",
+      "module": "writing",
+      "title": "Write a short friendly invitation",
+      "prerequisites": "P01-U02; optionally WRI-A1-02",
+      "minutes": 20,
+      "goal": "Plan and write a friendly invitation containing an activity, day/time, clear meeting point and ending.",
+      "concept": "Before writing, check who will read the message and what they need to know. Use greeting → invitation → day/time → meeting place → friendly ending. Do not include private addresses, phone numbers or passwords. A checklist helps but does not automatically grade the writing.",
+      "support_vi": "Xác định người nhận, hoạt động, ngày giờ và địa điểm gặp. Viết lời chào → lời mời → thời gian → điểm hẹn → kết thúc. Không ghi thông tin cá nhân.",
+      "model": "Different task model: Hi Ben! Would you like to help me plant flowers on Sunday? Let's meet at the park entrance at nine. See you there! — This example is not the board-game task below.",
+      "strategy": [
+        "List the four details the reader needs.",
+        "Choose a friendly greeting and clear order.",
+        "Write short complete sentences; check time and place.",
+        "Reread for missing information and privacy."
+      ],
+      "hint": "Who, what activity, when, where, and a friendly closing?",
+      "feedback_strategy": "Objective planning questions have explanations after Submit. The message itself is saved for authorised human feedback and revision; no automatic CEFR/writing score.",
+      "practice": [
+        {
+          "id": "P01-U05-Q1",
+          "type": "single_choice",
+          "prompt": "What information helps a friend act on an invitation?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Activity, day/time and meeting place"
+            },
+            {
+              "id": "B",
+              "text": "Your favourite colour only"
+            },
+            {
+              "id": "C",
+              "text": "Your home address and password"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "An invitation needs enough practical details to plan a visit."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "writing.task_understanding"
+        },
+        {
+          "id": "P01-U05-Q2",
+          "type": "single_choice",
+          "prompt": "Which opening suits a friendly message to a classmate?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Hi Noor! Would you like to come?"
+            },
+            {
+              "id": "B",
+              "text": "To whom it may concern"
+            },
+            {
+              "id": "C",
+              "text": "Come or else!"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A classmate needs a friendly and clear invitation."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "writing.register"
+        },
+        {
+          "id": "P01-U05-Q3",
+          "type": "single_choice",
+          "prompt": "Which sentence gives a specific meeting time?",
+          "options": [
+            {
+              "id": "A",
+              "text": "See you sometime."
+            },
+            {
+              "id": "B",
+              "text": "Let's meet at 4:30 p.m."
+            },
+            {
+              "id": "C",
+              "text": "Let's meet soon."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "4:30 p.m. is a specific time rather than a vague suggestion."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "writing.task_understanding"
+        },
+        {
+          "id": "P01-U05-Q4",
+          "type": "extended_response",
+          "prompt": "Write 35–55 words to invite a classmate to play a board game at the community centre on Friday at 4:30 p.m. Include a clear meeting point and a friendly closing. Use an invented first name; do not share private contact details.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for authorised adult review. Revise after feedback; completion alone is not proof of writing level."
+          },
+          "assessment_status": "UNASSESSED_HUMAN_REVIEW_OR_SELF_REPORT",
+          "proposed_evidence_weight": 0,
+          "skill_tag_proposed": "writing.original_message"
+        }
+      ]
+    },
+    {
+      "id": "P01-U07",
+      "level": "A1",
+      "module": "speaking_preparation",
+      "title": "Plan a polite classroom request",
+      "prerequisites": "P01-U02; no microphone required",
+      "minutes": 12,
+      "goal": "Prepare keywords for a simple request, choose a polite sentence and optionally practise aloud without claiming observed speech.",
+      "concept": "A useful plan is: greeting or excuse me → request → short reason (optional) → thank you. Keep 3–4 keywords, not a full script. Speaking aloud and self-checking are voluntary practice; no oral fluency, pronunciation or CEFR score is produced.",
+      "support_vi": "Chỉ chuẩn bị 3–4 từ khóa cho lời đề nghị lịch sự, không bắt buộc ghi âm. Tự luyện nói không được tính là điểm năng lực nói.",
+      "model": "Different model: 'Excuse me. Could I borrow the green marker for my poster, please? Thank you.' Keywords: marker → poster → please → thanks.",
+      "strategy": [
+        "Choose the item or help you need.",
+        "Make a polite request using Could I ...? or Could you ...?",
+        "Use keywords, then practise once aloud if comfortable.",
+        "Mark self-report honestly; this is not an evaluated recording."
+      ],
+      "hint": "A polite request asks for help and avoids commands.",
+      "feedback_strategy": "Objective selections can show language-knowledge explanations, but all oral competence evidence remains weight 0. A self-report is labelled Self-Reported Practice, not a passed speaking test.",
+      "practice": [
+        {
+          "id": "P01-U07-Q1",
+          "type": "single_choice",
+          "prompt": "You need to borrow a ruler. Which request is polite?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Could I borrow a ruler, please?"
+            },
+            {
+              "id": "B",
+              "text": "Give me it now."
+            },
+            {
+              "id": "C",
+              "text": "Ruler!"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Could I borrow ... please? asks politely."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 0,
+          "skill_tag_proposed": "language_preparation_knowledge"
+        },
+        {
+          "id": "P01-U07-Q2",
+          "type": "single_choice",
+          "prompt": "You did not hear the instruction. What could you say?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Could you say that again, please?"
+            },
+            {
+              "id": "B",
+              "text": "Never mind. Go away."
+            },
+            {
+              "id": "C",
+              "text": "I know everything."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A polite clarification request is useful when you did not hear."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 0,
+          "skill_tag_proposed": "language_preparation_knowledge"
+        },
+        {
+          "id": "P01-U07-Q3",
+          "type": "single_choice",
+          "prompt": "Which plan helps you speak naturally?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Keywords: item → reason → please → thanks"
+            },
+            {
+              "id": "B",
+              "text": "Write your password first"
+            },
+            {
+              "id": "C",
+              "text": "Read a long paragraph without looking up"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A short keyword plan supports an understandable request."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 0,
+          "skill_tag_proposed": "language_preparation_knowledge"
+        },
+        {
+          "id": "P01-U07-Q4",
+          "type": "extended_response",
+          "prompt": "Write up to four safe keywords for asking to borrow a ruler for class. If you wish, say your request aloud once, then mark whether you practised. No microphone, recording or personal information is required.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Self-Reported Practice only. No automated pronunciation, fluency or CEFR score."
+          },
+          "assessment_status": "UNASSESSED_HUMAN_REVIEW_OR_SELF_REPORT",
+          "proposed_evidence_weight": 0,
+          "skill_tag_proposed": "speaking.preparation_self_report"
+        }
+      ]
+    },
+    {
+      "id": "P01-U08",
+      "level": "A2",
+      "module": "reading",
+      "title": "Two updates: which rule applies now?",
+      "prerequisites": "A1 reading of dates, places and simple conditions; P01-U03 helpful",
+      "minutes": 20,
+      "goal": "Compare an original notice with an update and apply the newest instructions to a new learner case.",
+      "concept": "Read each notice for its date and purpose. The newest update may replace only some details. Make two columns: old plan and current plan. Words such as instead, now, extended and already tell you what changed and who is affected.",
+      "support_vi": "Đọc hai thông báo theo thứ tự thời gian, so sánh kế hoạch cũ và mới. Chú ý instead, now, extended, already để hiểu thay đổi và ngoại lệ.",
+      "model": "Independent mini-update: Book Swap was planned for Table 5 at 2:30. A later message says it will be at Table 8 at 3:00 because the hall is busy. The new place and time replace the old ones; nothing else is stated to change.",
+      "strategy": [
+        "Read the original notice for the basic plan.",
+        "Read the update and mark each changed field.",
+        "Keep unchanged details from the original.",
+        "Apply any rule about people who already registered."
+      ],
+      "hint": "Which notice is later? Does the update replace this detail or leave it unchanged?",
+      "feedback_strategy": "After Submit, identify the exact update sentence. For an error, make a two-column old/new table and explain which rule applies to a learner who already signed up.",
+      "assessed_text": "NOTICE — Monday: The Makers Club meets on Wednesday in Studio 2 at 3:30 p.m. Bring a clean jar for the project. Registration closes on Monday at 6 p.m. UPDATE — Tuesday morning: Studio 2 is being painted. This Wednesday the club will meet in Workshop 4 at 4:00 p.m. Bring old newspapers instead of a jar. Registration is now open until Tuesday at 7 p.m. Anyone who registered before the update does not need to register again.",
+      "practice": [
+        {
+          "id": "P01-U08-Q1",
+          "type": "single_choice",
+          "prompt": "Where should students go this Wednesday?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Studio 2"
+            },
+            {
+              "id": "B",
+              "text": "Workshop 4"
+            },
+            {
+              "id": "C",
+              "text": "The school library"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The Tuesday update changes the location to Workshop 4."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "reading.detail"
+        },
+        {
+          "id": "P01-U08-Q2",
+          "type": "single_choice",
+          "prompt": "What time does the updated meeting start?",
+          "options": [
+            {
+              "id": "A",
+              "text": "3:30 p.m."
+            },
+            {
+              "id": "B",
+              "text": "4:00 p.m."
+            },
+            {
+              "id": "C",
+              "text": "7:00 p.m."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The update gives 4:00 p.m. as the new start time."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "reading.detail"
+        },
+        {
+          "id": "P01-U08-Q3",
+          "type": "single_choice",
+          "prompt": "What should students bring after the update?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A clean jar"
+            },
+            {
+              "id": "B",
+              "text": "Old newspapers"
+            },
+            {
+              "id": "C",
+              "text": "A sports uniform"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The words instead of replace the jar with newspapers."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "reading.detail"
+        },
+        {
+          "id": "P01-U08-Q4",
+          "type": "single_choice",
+          "prompt": "What is the new registration deadline?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Monday at 6 p.m."
+            },
+            {
+              "id": "B",
+              "text": "Tuesday at 7 p.m."
+            },
+            {
+              "id": "C",
+              "text": "Wednesday at 4 p.m."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The update extends registration until Tuesday at 7 p.m."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "reading.detail"
+        },
+        {
+          "id": "P01-U08-Q5",
+          "type": "single_choice",
+          "prompt": "Why is the meeting place different?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Studio 2 is being painted"
+            },
+            {
+              "id": "B",
+              "text": "The teacher is away"
+            },
+            {
+              "id": "C",
+              "text": "The club is cancelled"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The updated notice states Studio 2 is being painted."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "reading.detail"
+        },
+        {
+          "id": "P01-U08-Q6",
+          "type": "single_choice",
+          "prompt": "Sam registered on Monday. Must Sam register again?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Yes, because the time changed"
+            },
+            {
+              "id": "B",
+              "text": "No, earlier registrations still count"
+            },
+            {
+              "id": "C",
+              "text": "Yes, only new students may attend"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The update explicitly exempts people who already registered."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "reading.rule_application"
+        }
+      ]
+    },
+    {
+      "id": "P01-U10",
+      "level": "A2",
+      "module": "vocabulary",
+      "title": "Suggest, disagree and clarify in a group",
+      "prerequisites": "Simple polite requests and A1 school collaboration vocabulary",
+      "minutes": 18,
+      "goal": "Choose natural phrases to suggest an idea, disagree politely, ask for clarification and agree in a group task.",
+      "concept": "Useful collaboration chunks: Could we ...? (suggest); I see your point, but ... (polite difference); What do you mean by ...? (clarify); Shall we ...? (suggest shared action); That works for me. (agree). Identify the communication purpose before choosing a phrase.",
+      "support_vi": "Phân biệt chức năng giao tiếp: đề xuất, bất đồng lịch sự, hỏi lại cho rõ và đồng ý. Học cả cụm từ thay vì từng từ đơn lẻ.",
+      "model": "Different model: 'We could design a garden sign.' — 'I see your point, but we have no paint. Could we use coloured paper instead?' — 'That works for me.' This is not the assessed poster/science-project situation.",
+      "strategy": [
+        "Identify the speaker's intention.",
+        "Select a complete natural chunk for that intention.",
+        "Check that the phrase is polite and fits the previous sentence."
+      ],
+      "hint": "Is the speaker proposing an idea, gently disagreeing, asking what something means, or agreeing?",
+      "feedback_strategy": "After Submit, label each wrong option with the communication action it actually expresses; practise a new context without looking at the toolkit.",
+      "practice": [
+        {
+          "id": "P01-U10-Q1",
+          "type": "single_choice",
+          "prompt": "Your team has no plan for a science poster. Which phrase makes a suggestion?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Could we draw a diagram first?"
+            },
+            {
+              "id": "B",
+              "text": "I finished yesterday."
+            },
+            {
+              "id": "C",
+              "text": "I do not know where my shoes are."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Could we ...? is a polite way to propose a plan."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "vocabulary.functions"
+        },
+        {
+          "id": "P01-U10-Q2",
+          "type": "single_choice",
+          "prompt": "A friend suggests a very large model, but the table is small. Which reply disagrees politely?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I see your point, but the table is too small."
+            },
+            {
+              "id": "B",
+              "text": "That is stupid."
+            },
+            {
+              "id": "C",
+              "text": "Never speak again."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "I see your point, but ... acknowledges the idea and gives a reason."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "vocabulary.functions"
+        },
+        {
+          "id": "P01-U10-Q3",
+          "type": "single_choice",
+          "prompt": "You do not understand 'sort the cards by theme'. What should you ask?",
+          "options": [
+            {
+              "id": "A",
+              "text": "What do you mean by 'theme'?"
+            },
+            {
+              "id": "B",
+              "text": "I will not do anything."
+            },
+            {
+              "id": "C",
+              "text": "This is mine."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "What do you mean by ...? requests clarification."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "vocabulary.functions"
+        },
+        {
+          "id": "P01-U10-Q4",
+          "type": "single_choice",
+          "prompt": "A classmate suggests a sensible order and you agree. What can you say?",
+          "options": [
+            {
+              "id": "A",
+              "text": "That works for me."
+            },
+            {
+              "id": "B",
+              "text": "You must be wrong."
+            },
+            {
+              "id": "C",
+              "text": "What does blue mean?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "That works for me expresses agreement."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "vocabulary.functions"
+        },
+        {
+          "id": "P01-U10-Q5",
+          "type": "short_answer",
+          "prompt": "Complete with ONE word: ___ we try a smaller model?",
+          "answer": {
+            "accepted_answers": [
+              "could",
+              "shall"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Could we ...? and Shall we ...? both make a suggestion."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "vocabulary.collocations"
+        },
+        {
+          "id": "P01-U10-Q6",
+          "type": "extended_response",
+          "prompt": "Write one original polite suggestion for your own group project and one polite response. This is optional free use and is NOT auto-scored for meaning.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved as optional unassessed transfer; request human feedback for naturalness."
+          },
+          "assessment_status": "UNASSESSED_HUMAN_REVIEW_OR_SELF_REPORT",
+          "proposed_evidence_weight": 0,
+          "skill_tag_proposed": "vocabulary.free_transfer"
+        }
+      ]
+    },
+    {
+      "id": "P01-U12",
+      "level": "A2",
+      "module": "writing",
+      "title": "Ask for help with a project problem",
+      "prerequisites": "A1 invitation structure and A2 reason-giving phrases",
+      "minutes": 24,
+      "goal": "Write a short polite message explaining a practical problem, why it matters and one clear request.",
+      "concept": "A useful help request has: greeting → problem → why it matters → specific request → thanks. State facts you know; avoid blaming people or inventing details. Check that your reader knows what action to take. The message itself requires human review, not automatic proficiency scoring.",
+      "support_vi": "Viết lời chào → nêu vấn đề → giải thích ảnh hưởng → đề nghị giúp đỡ cụ thể → cảm ơn. Không tự bịa thông tin và không ghi dữ liệu cá nhân.",
+      "model": "Different model: 'Hello Mr Kim, I cannot find the history worksheet for Tuesday. I checked our class folder. Could you tell me where I can get a copy? Thank you, Mai.' The assessed task below is about a science-fair display board.",
+      "strategy": [
+        "Write one factual sentence about the problem.",
+        "Explain why it affects the planned activity.",
+        "Ask for one realistic action using Could you ...?",
+        "Check friendly tone, clarity, grammar and privacy."
+      ],
+      "hint": "What went wrong? Why does it matter? What exactly should the reader do?",
+      "feedback_strategy": "Objective planning checks explain errors. The original message is stored as a draft for authorised adult review using task response, clarity, polite tone and language accuracy; no automatic CEFR/writing score.",
+      "practice": [
+        {
+          "id": "P01-U12-Q1",
+          "type": "single_choice",
+          "prompt": "Which order makes a help request easy to follow?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Problem → reason → specific request → thanks"
+            },
+            {
+              "id": "B",
+              "text": "Thanks → unrelated story → no request"
+            },
+            {
+              "id": "C",
+              "text": "Only a greeting"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The reader needs to know what happened and what help is requested."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "writing.organization"
+        },
+        {
+          "id": "P01-U12-Q2",
+          "type": "single_choice",
+          "prompt": "Which sentence is a polite request?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Could you check when the board will arrive?"
+            },
+            {
+              "id": "B",
+              "text": "Fix this now!"
+            },
+            {
+              "id": "C",
+              "text": "It is all your fault."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Could you ...? asks for a specific action politely."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "writing.register"
+        },
+        {
+          "id": "P01-U12-Q3",
+          "type": "single_choice",
+          "prompt": "Which detail explains why a missing display board matters?",
+          "options": [
+            {
+              "id": "A",
+              "text": "We need it to show our project at the fair."
+            },
+            {
+              "id": "B",
+              "text": "My favourite colour is blue."
+            },
+            {
+              "id": "C",
+              "text": "I had soup yesterday."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The fair display connects the problem to the task."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "writing.idea_development"
+        },
+        {
+          "id": "P01-U12-Q4",
+          "type": "extended_response",
+          "prompt": "Write 55–80 words to your science-club leader. Your group is preparing for a science fair, but the display board has not arrived. Explain the problem, why it matters and one reasonable request. Use an invented first name and no private contact details.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for authorised adult review. Revise after specific feedback; no automated CEFR or original-writing score."
+          },
+          "assessment_status": "UNASSESSED_HUMAN_REVIEW_OR_SELF_REPORT",
+          "proposed_evidence_weight": 0,
+          "skill_tag_proposed": "writing.original_message"
+        }
+      ]
+    }
+  ]
+}
