@@ -1,7 +1,8 @@
 "use client";
-import {useEffect,useState} from 'react';
+import {Fragment,useEffect,useState} from 'react';
 import {Sparkles,X} from 'lucide-react';
 import {explainEnglishLessonAI} from '../infrastructure/browser/firebase-ai-browser';
+import {parseTutorMarkdown,splitTutorBold} from './english-ai-markdown';
 
 const starters=[
  ['Explain simply','Explain this idea more simply. Use a short example.'],
@@ -9,6 +10,21 @@ const starters=[
  ['Why is it useful?','Why is this English skill useful in real life?'],
  ['Key points','What are the three key things I should remember?'],
 ] as const;
+
+function renderTutorInline(text:string){
+ return splitTutorBold(text).map((part,i)=>part.bold
+  ?<strong key={i}>{part.text}</strong>
+  :<Fragment key={i}>{part.text}</Fragment>);
+}
+function TutorAnswer({answer}:{answer:string}){
+ return <div className="english-lesson-ai-markdown">{parseTutorMarkdown(answer).map((block,i)=>
+  block.kind==='paragraph'
+   ?<p key={i}>{block.lines.map((line,j)=><Fragment key={j}>{j>0&&<br/>}{renderTutorInline(line)}</Fragment>)}</p>
+   :block.ordered
+    ?<ol key={i}>{block.items.map((item,j)=><li key={j}>{renderTutorInline(item)}</li>)}</ol>
+    :<ul key={i}>{block.items.map((item,j)=><li key={j}>{renderTutorInline(item)}</li>)}</ul>
+ )}</div>;
+}
 
 /* Mirrors the Math tutor's knowledge-page-only policy: no assessment,
  * quiz, Diagnostic or unsubmitted learner answers are sent to Gemini. */
@@ -43,7 +59,7 @@ export function EnglishLessonTutor({lesson,focus}:{lesson:string;focus?:string})
     rows={3} placeholder="What would you like to understand better?"/>
    <button type="button" className="primary-button" disabled={pending||!question.trim()} onClick={()=>void ask(question)}>
     {pending?'Asking Gemini…':'Ask Gemini'}</button>
-   {answer&&<article aria-live="polite"><strong>Gemini response · {model}</strong><p>{answer}</p></article>}
+   {answer&&<article aria-live="polite"><strong>Gemini response · {model}</strong><TutorAnswer answer={answer}/></article>}
    {error&&<p role="status" className="notice">{error}</p>}
    <small>AI can make mistakes. Do not enter personal information. This tutor is for learning, not graded assessments. Your question is sent only when you ask.</small>
   </section>}
