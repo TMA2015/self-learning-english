@@ -1,6 +1,7 @@
 "use client";
 import {useEffect,useState} from 'react';
 import {Sparkles,X} from 'lucide-react';
+import {TeachingBlocks} from './teaching-blocks';
 import {explainEnglishLessonAI} from '../infrastructure/browser/firebase-ai-browser';
 
 const starters=[
@@ -43,7 +44,7 @@ export function EnglishLessonTutor({lesson,focus}:{lesson:string;focus?:string})
     rows={3} placeholder="What would you like to understand better?"/>
    <button type="button" className="primary-button" disabled={pending||!question.trim()} onClick={()=>void ask(question)}>
     {pending?'Asking Gemini…':'Ask Gemini'}</button>
-   {answer&&<article aria-live="polite"><strong>Gemini response · {model}</strong><p>{answer}</p></article>}
+   {answer&&<article aria-live="polite"><strong>Gemini response · {model}</strong><div className="english-lesson-ai-answer"><TeachingBlocks text={answer}/></div></article>}
    {error&&<p role="status" className="notice">{error}</p>}
    <small>AI can make mistakes. Do not enter personal information. This tutor is for learning, not graded assessments. Your question is sent only when you ask.</small>
   </section>}
