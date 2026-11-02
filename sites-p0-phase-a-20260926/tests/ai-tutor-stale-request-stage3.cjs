@@ -44,5 +44,39 @@ const {LatestTutorRequest}=m.exports;
  assert(ui.includes('setPending(false)'));
  assert(ui.includes('requestGate.current.isCurrent(ticket)'));
  assert(ui.includes('finally'),'Pending state must settle on current request');
- console.log(JSON.stringify({result:'PASS',scope:'compiled request-identity gate and component source wiring',browserGeminiQA:'NOT_RUN'}));
+ // AST-level regression contract: mere presence of the guard string is insufficient.
+ // The guard MUST execute after awaiting Gemini but BEFORE any answer UI update.
+ const ast=ts.createSourceFile('english-lesson-tutor.tsx',ui,ts.ScriptTarget.Latest,true,ts.ScriptKind.TSX);
+ assert.equal(ast.parseDiagnostics.length,0,'The UI must be parseable TSX');
+ let ask;
+ function walk(node){
+   if(ts.isFunctionDeclaration(node)&&node.name?.text==='ask')ask=node;
+   ts.forEachChild(node,walk);
+ }
+ walk(ast);
+ assert(ask?.body,'Missing ask() handler');
+ const requestTry=ask.body.statements.find(ts.isTryStatement);
+ assert(requestTry,'ask() must handle awaited Gemini result in try/catch/finally');
+ const trySteps=requestTry.tryBlock.statements;
+ const awaited=trySteps.findIndex(node=>node.getText(ast).includes('await explainEnglishLessonAI('));
+ const responseGuard=trySteps.findIndex(node=>
+   ts.isIfStatement(node)&&
+   node.expression.getText(ast)==='!requestGate.current.isCurrent(ticket)'&&
+   node.thenStatement.getText(ast).includes('return;'));
+ const resultUpdate=trySteps.findIndex(node=>
+   node.getText(ast).includes('setAnswer(result.text)')||node.getText(ast).includes('setError(result.reason)'));
+ assert(awaited>=0&&responseGuard>awaited&&resultUpdate>responseGuard,
+   'Guard must reject stale Gemini replies BEFORE answer/error UI updates');
+ const guardedState=(block,state)=>block?.statements?.some(node=>
+   ts.isIfStatement(node)&&
+   node.expression.getText(ast)==='requestGate.current.isCurrent(ticket)'&&
+   node.thenStatement.getText(ast).includes(state));
+ assert(guardedState(requestTry.catchClause?.block,'setError('),
+   'catch must ignore errors from superseded requests');
+ assert(guardedState(requestTry.finallyBlock,'setPending(false)'),
+   'finally must not reset pending for a newer request');
+ // Ensure the React effect invalidates on lesson navigation AND on unmount.
+ assert(/useEffect\(\(\)=>\{[\s\S]*?requestGate\.current\.invalidate\(\);[\s\S]*?setPending\(false\);[\s\S]*?return \(\)=>\{requestGate\.current\.invalidate\(\)\};[\s\S]*?\},\[lesson\]\);/.test(ui),
+   'Lesson change/unmount must invalidate requests and clear pending state');
+ console.log(JSON.stringify({result:'PASS',scope:'compiled gate, live async isolation, and AST verified React request ordering',browserGeminiQA:'NOT_RUN'}));
 })().catch(e=>{console.error(e);process.exitCode=1});
