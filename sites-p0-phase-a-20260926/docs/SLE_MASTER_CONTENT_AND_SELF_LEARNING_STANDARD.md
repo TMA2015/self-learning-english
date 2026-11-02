@@ -2,7 +2,7 @@
 
 **Standard ID:** SLE-MASTER-001  
 **Document version:** 1.0.0  
-**Status:** DRAFT — academic GO reported by independent NotebookLM after four mandatory amendments incorporated; owner adoption/merge still pending; NOT YET NORMATIVE  
+**Status:** APPROVED FOR ADOPTION — becomes the sole normative SLE content/self-learning standard when PR #71 is merged into the active English release reference branch. NotebookLM academic GO with all four required corrections incorporated; this policy adoption does NOT authorize any website production release.  
 **Prepared:** 2026-11-02  
 **Canonical target path:** `docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md` in the English website repository `TMA2015/self-learning-english`  
 **Scope:** One unified Self-Learning English (SLE) GitHub + Firebase website/app. This is **not** the independent ChatGPT-in-chat English Tutor project.  
@@ -16,7 +16,7 @@
 - A previous review verdict, historical design document, chat message, issue, test or implementation note is **supporting evidence**, not a second competing policy. An externally approved academic decision becomes normative only when intentionally incorporated into this file as a versioned change.
 - An approved release must declare `standard_version`, `content_version`, source commit, and QA/academic verdict. These are *release-report fields* unless separately introduced into a validated runtime schema; do not insert unknown keys into the existing curriculum JSON.
 - The standard's version is independent of the curriculum package version. Changing the standard does **not** automatically edit lesson IDs, content packages, attempts, evidence, grades, dashboards or deployed UI.
-- Do not silently treat this draft as effective. Its first effective version must record the owner's approval, NotebookLM verdict, adoption commit and scope. Until then, currently implemented safeguards and approved historical content remain unchanged.
+- This standard becomes effective **only on the successful merge of documentation PR #71 into `release/nov2026-content-v1.18.0`**, following the owner's 2026-11-02 instruction to refine and adopt it after NotebookLM review. The PR/merge Git history is its immutable adoption evidence. Until that merge is confirmed, previously implemented safeguards and approved historical content remain unchanged. This is policy adoption, not runtime or production release authorization.
 - One **temporary Git feature branch / draft PR** may be used for safe review; this is a technical change-isolation method, **not** a second permanent project or a split development process.
 
 ### 0.1 Relationship to historical documents after adoption
@@ -241,11 +241,11 @@ Use `major.minor.patch`: **major** for a policy redesign or changed evidence mea
 
 | Standard version | Date | Status | Summary | Approval / effective commit |
 | --- | --- | --- | --- | --- |
-| 1.0.0 | 2026-11-02 | DRAFT / ACADEMIC GO WITH CORRECTIONS INCORPORATED | Unified existing authoring/UX/evidence standards; integrated NotebookLM mandatory amendments C1–C4 (permanent-baseline relationship, historical Speaking projection, audio gate/masking, bilingual safe AI rendering). No curriculum/code release implied | NotebookLM `PASS_WITH_REQUIRED_CHANGES`; owner adoption/effective commit PENDING |
+| 1.0.0 | 2026-11-02 | ACADEMIC GO / ADOPTION ON PR #71 MERGE | Unified existing authoring/UX/evidence standards; incorporated NotebookLM mandatory amendments C1–C4 (baseline relationship, legacy Speaking projection, audio gate/masking, bilingual safe AI rendering). No curriculum/code release implied | Owner instructed adoption after review (2026-11-02); effective when GitHub PR #71 merge is confirmed; refer to its merge commit |
 
 ### Independent academic review record (2026-11-02)
 
-NotebookLM returned `PASS_WITH_REQUIRED_CHANGES`, `ACADEMIC ADOPTION GO`, and `PRODUCTION NO-GO` for standard draft 1.0.0. Required corrections were incorporated in Sections 0.1, 5.6, 5.7, 7 and MED-01. The existing independently approved pedagogical baseline is retained; a standards approval must not be misread as final QA or authorization to merge/deploy pending website PRs #68–#70. Optional one-screen prerequisite Error Bank repair and split study visits are guidance, not required new runtime features. The owner's effective adoption decision and commit will be recorded after approval.
+NotebookLM returned `PASS_WITH_REQUIRED_CHANGES`, `ACADEMIC ADOPTION GO`, and `PRODUCTION NO-GO` for standard draft 1.0.0. Required corrections were incorporated in Sections 0.1, 5.6, 5.7, 7 and MED-01. The existing independently approved pedagogical baseline is retained; a standards approval must not be misread as final QA or authorization to merge/deploy pending website PRs #68–#70. Optional one-screen prerequisite Error Bank repair and split study visits are guidance, not required new runtime features. The owner directed adoption after NotebookLM review on 2026-11-02; successful PR #71 merge establishes the effective Git revision. No code or content PR becomes approved merely because this policy is adopted.
 
 ## 12. Current evidence and open matters — NOT an implicit approval
 
