@@ -1,7 +1,7 @@
 # Stage 7 — P01 School & Everyday Communication (working authoring packet)
 
-**ID:** SLE-P01-SCHOOL-COMM-R0 · **Date:** 2026-11-01  
-**Status:** `CONTENT_DRAFT` — not approved, not NotebookLM-ready, not imported or deployed.  
+**ID:** SLE-P01-SCHOOL-COMM-R1 · **Initial date:** 2026-11-01 · **Updated:** 2026-11-02  
+**Status:** `CONTENT_DRAFT` — updated original U03/U04 plus seven authored units in `content/drafts/P01_SCHOOL_COMMUNICATION_AUTHORING_UNITS_R1_20261102.json`; not imported/deployed. Pre-A1–A1 sub-pack is prepared separately for NotebookLM review.  
 **Level span:** Pre-A1 → A2 first; later expansion by actual skill progression.  
 **Goal:** Build a coherent sequence of original mini-communication situations; learners independently understand instructions, use useful phrases, read/listen to messages, write short replies and prepare simple spoken interactions. Cross-skill links reuse the approved curriculum rather than duplicating old lessons.
 
@@ -20,18 +20,18 @@ These are *reuse links*, not new learner completions or qualifications.
 
 | Draft unit | Level | Main skill | Learning purpose | New material / reuse |
 | --- | --- | --- | --- | --- |
-| P01-U01 | Pre-A1 | Vocabulary | People, places and classroom objects: identify + request | NEW cue-and-context learning cards |
-| P01-U02 | Pre-A1 | Grammar/Vocabulary | Basic yes/no needs and short politeness | NEW guided micro-dialogues |
+| P01-U01 | Pre-A1 | Vocabulary | People, places and classroom objects: identify + request | AUTHORED R1 in JSON draft |
+| P01-U02 | Pre-A1 | Grammar/Vocabulary | Basic yes/no needs and short politeness | AUTHORED R1 in JSON draft |
 | P01-U03 | A1 | Reading | Interpret a lost-property notice | NEW independent reading task (drafted below) |
 | P01-U04 | A1 | Vocabulary | Useful school actions in natural chunks | NEW strategy + retrieval (drafted below) |
-| P01-U05 | A1 | Writing | Compose a practical 3-sentence message | REUSE WRI-A1-02 + new transfer task |
+| P01-U05 | A1 | Writing | Compose a practical 3-sentence message | AUTHORED R1 in JSON draft; WRI-A1-02 optional reuse |
 | P01-U06 | A1 | Listening | Identify announcement gist and one key detail | REUSE LIS-A1-01 (no new MP3 yet) |
-| P01-U07 | A1 | Speaking Prep | Ask for a classroom item politely | NEW keyword planning/self-report, weight 0 |
-| P01-U08 | A2 | Reading | Compare two notices with changed rules | NEW contrasting conditions |
+| P01-U07 | A1 | Speaking Prep | Ask for a classroom item politely | AUTHORED R1 in JSON draft, all oral weight 0 |
+| P01-U08 | A2 | Reading | Compare two notices with changed rules | AUTHORED R1 in JSON draft |
 | P01-U09 | A2 | Listening | Understand two speakers arranging a group task | NEW audio REQUIRED before any scored item |
-| P01-U10 | A2 | Vocabulary | Suggest, agree, disagree, and clarify in chunks | NEW context + independent recall |
+| P01-U10 | A2 | Vocabulary | Suggest, agree, disagree, and clarify in chunks | AUTHORED R1 in JSON draft |
 | P01-U11 | A2 | Grammar | Advice, questions and reasons in real messages | REUSE suitable existing Grammar IDs |
-| P01-U12 | A2 | Writing | Write a polite request for help with reasons | NEW guided and independent prompts |
+| P01-U12 | A2 | Writing | Write a polite request for help with reasons | AUTHORED R1 in JSON draft |
 | P01-U13 | A2 | Speaking Prep | Explain a problem, add a useful detail, request assistance | REUSE SPE-A2-02, no speech score |
 | P01-U14 | A2 | Reading/Writing | Follow and communicate a schedule change | NEW integrated cross-skill transfer |
 | P01-U15 | A2 | Review | Retrieval across texts and new scenarios | NEW objective practice + separate self-report; not CEFR certification |
@@ -66,9 +66,9 @@ These are *reuse links*, not new learner completions or qualifications.
 | P01-U03-Q3 | Which item did staff find? | A: A yellow pencil case; B: A green scarf; C: A black umbrella | B | A small green scarf is listed with two other found things |
 | P01-U03-Q4 | What should a pupil do before collecting an item? | A: Pay for it; B: Bring a photograph; C: Describe it to staff | C | Pupils are asked to tell staff what the item looks like |
 | P01-U03-Q5 | What happens to uncollected things on Friday? | A: They move to storage; B: They are thrown away; C: They remain at the library | A | Friday morning is when items move to the storage room |
-| P01-U03-Q6 | Could someone look for an item after Thursday? | A: No, it disappears; B: It may have moved to storage; C: They must buy it | B | The notice says uncollected items move on Friday; it does not say collection is guaranteed after the deadline, so the answer describes location rather than a promise |
+| P01-U03-Q6 | Do students need to pay to collect their own item? | A: Yes, every item costs five dollars; B: No, collecting your own item is free; C: Only if the item is green | B | The notice explicitly says pupils do not need to pay to collect their own item |
 
-**Review caution:** Q6 may demand an A2-style inference rather than straightforward A1. Academic reviewer should decide: simplify, lower evidence weighting, or move to an A2 transfer; not hide difficulty with a false A1 tag. Choice options need independent distractor review and mobile testing.
+**Review caution:** Q6 was rewritten as an explicit A1 detail rather than an unsupported post-deadline inference. Independent reviewer should still check distractors, text length and mobile readability.
 
 **Feedback & repair:** On wrong answers, show the reason, point to a relevant full sentence after submit, and offer one fresh short notice for practice. Wrong MCQ is not automatic proof of mastery failure; retakes are new evidence.
 
@@ -88,14 +88,25 @@ These are *reuse links*, not new learner completions or qualifications.
 | ID | Prompt | Expected answer | Why |
 | --- | --- | --- | --- |
 | P01-U04-Q1 | Two students want to use one microscope. They should... A: take turns; B: look for it; C: sign up for it | take turns | Sharing one resource means each person gets a turn |
-| P01-U04-Q2 | After art class, where should pupils ___ the paint brushes? A: put away; B: take turns; C: look for | put away | Return the brushes to storage after using them; the final question needs minor wording correction before review |
+| P01-U04-Q2 | After art class, pupils should ___ the paint brushes. A: put away; B: take turns; C: look for | put away | The sentence requires a verb phrase meaning return the brushes to their proper place |
 | P01-U04-Q3 | Mina cannot see her notebook. She will ___ it before the next lesson. (enter missing words) | look for | She is trying to find a missing object |
-| P01-U04-Q4 | We want to join the lunchtime music group. We must ___ for it online. (one missing word) | sign up | Registering to join an organized activity |
-| P01-U04-Q5 | Which phrase best describes a fair way for three pupils to use one tablet? | take turns | Distinguishes sharing time from simply registering or finding an object |
+| P01-U04-Q4 | We want to join the lunchtime music group. We must ___ for it online. (TWO missing words) | sign up | Sign up for means register for an organised activity; the answer contains two words |
+| P01-U04-Q5 | Three pupils share one tablet. Which phrase describes using it one after another? A: take turns; B: put away; C: sign up | take turns | Take turns describes fair sequential use; the other phrases mean store or register |
 
-**Required editorial repair before review:** Q2 has awkward syntax and Q4 must specify exactly which part is missing: `sign up` or `sign`, without duplicating a printed preposition. Resolve these before treating as a valid package. Work through every short-answer substitution literally. Avoid claiming freeform use can be semantically graded without review.
+**Editorial repair completed 2026-11-02:** Q2 syntax, Q4 two-word blank and Q5 complete options were corrected. Independent reviewer must still check all distractors and acceptable short-answer variants. Free-form meaning is not automatically graded.
 
 **Optional review:** One day later, show the action scenario without multiple-choice options. Scheduling is a recommendation, not a promise of memory retention.
+
+## Authored cross-skill expansion — 2026-11-02 checkpoint
+
+**Authoring source:** `sites-p0-phase-a-20260926/content/drafts/P01_SCHOOL_COMMUNICATION_AUTHORING_UNITS_R1_20261102.json` (GitHub content branch only, authoring schema v0.1; NOT an importer-compatible curriculum package).
+
+- **Seven additional full four-stage units authored:** `P01-U01`, `U02`, `U05`, `U07`, `U08`, `U10`, `U12`. Each contains goal/prerequisite, strategy + distinct worked model, independent questions with keys and rationales, optional hint, post-submit remediation and bilingual support.
+- **34 new draft practice items:** 30 objective candidates and 4 unassessed open/self-report tasks. No task is live or currently graded. `P01-U07` (Speaking Preparation) carries oral proficiency weight 0 for all four tasks.
+- `P01-U03` and `P01-U04` were repaired above (ambiguous post-deadline inference removed; awkward phrasing and answer format corrected).
+- `P01-U06` is existing `LIS-A1-01` reuse only; audio playback/hidden transcript and option-shuffle QA are not claimed as done.
+- **P01-A** (Pre-A1–A1 U01–U07) is an independently reviewable first thematic sub-pack; its single NotebookLM review source is prepared separately. **P01-B** A2 expansion remains `CONTENT_DRAFT` pending U09/U11/U13/U14/U15 and authentic new audio.
+- The source draft JSON is an authoring representation; no automatic CEFR mastery, import compatibility or browser behavior has been verified.
 
 ## Assessment and audio safety
 
@@ -106,7 +117,6 @@ These are *reuse links*, not new learner completions or qualifications.
 
 ## Next bounded work
 
-1. Fix P01-U03-Q6 level/inference and P01-U04 answer format wording; independent QA for alternative answers.
-2. Author remaining units in manageable groups and capture short authored mini-packets with full explanations and distractor rationale, not generic outlines.
-3. Prepare a **single consolidated NotebookLM Markdown** only once a coherent P01 theme packet has actual finished authored content and source checks. Do not ask owner to upload draft files piecemeal.
-4. Continue Stage 6 109-lesson enhancement queue in parallel.
+1. Complete the remaining P01 A2 units `U09`, `U11`, `U13`, `U14`, `U15`; new audio-only items remain `AUDIO_PENDING/UNASSESSED` until produced.
+2. Respond to P01-A NotebookLM verdict only when owner provides it; meanwhile keep authoring P01-B and Stage 6 upgrades.
+3. Convert only academically approved source into a versioned, fully validated future curriculum candidate; never import this draft directly.
