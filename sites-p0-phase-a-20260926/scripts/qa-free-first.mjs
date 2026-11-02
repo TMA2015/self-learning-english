@@ -11,6 +11,7 @@ const coreTests=[
   "speaking-prep-stage3.cjs",
   "speaking-notes-stage3.cjs",
   "ai-tutor-stage3.cjs",
+  "ai-tutor-language-stage3.cjs",
   "ai-tutor-markdown-stage3.cjs",
   "listening-option-order-stage3.cjs",
   "stage3-import-preview.cjs",
