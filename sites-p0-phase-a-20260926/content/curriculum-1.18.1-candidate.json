@@ -1226,18 +1226,21 @@
         "Understand useful school expressions from their context.",
         "Notice which verbs and nouns naturally occur together.",
         "Recall a useful phrase without always seeing answer options.",
-        "Use school expressions in a new situation, without claiming free writing is auto-graded."
+        "Practise using school expressions in simple spoken or written sentences (unscored self-practice)."
       ],
       "explanation": {
-        "en": "Words are more useful when learned in chunks: a verb together with the words that normally follow it. Decide what action the situation requires before choosing an expression. For example, checking a schedule, asking how to reach a place, and giving a completed form are three different actions. Practise recalling the missing word later without looking at a list; any review schedule is only a suggestion.",
-        "vi": "Học từ theo cụm từ tự nhiên và ngữ cảnh: xem thời khóa biểu, hỏi đường, nộp biểu mẫu. Trước khi chọn cụm từ, hãy xác định hành động cần làm. Ôn lại bằng cách tự nhớ từ; lịch ôn chỉ là gợi ý."
+        "en": "School words name places, classroom tools and actions. A library has books for reading; a canteen serves food; a science lab is a special room for practical science; a corridor connects classrooms. A ruler is used for measuring. To borrow something means to use it briefly and return it. If you miss an instruction, ask politely for the speaker to say it again. Notice natural verb–noun groups such as doing your homework instead of translating each word separately. First decide whether a situation calls for a place, an object or an action. Then use the context to choose an expression. The two missing-word questions practise recall with a clue; your own sentences are optional, unscored self-practice.",
+        "vi": "Tên nơi chốn, dụng cụ và hành động ở trường cần được hiểu theo ngữ cảnh. Library gắn với sách đọc, canteen là nơi phục vụ đồ ăn, science lab dùng cho hoạt động khoa học và corridor nối các phòng học. Ruler dùng để đo; borrow là mượn tạm rồi trả. Khi chưa nghe rõ, hãy hỏi lại lịch sự. Chú ý cụm động từ–danh từ tự nhiên như doing your homework. Xác định trước câu hỏi cần nơi chốn, đồ vật hay hành động. Hai câu điền từ kiểm tra khả năng nhớ từ có gợi ý; việc tự đặt câu chỉ để luyện thêm, không được chấm điểm."
       },
       "examples": [
-        "SCHOOL CHUNKS TOOLKIT · check the timetable = look at the plan for classes. Example: I check the timetable before my next class.",
-        "SCHOOL CHUNKS TOOLKIT · ask for directions = ask how to reach a place. Example: At a new school, I ask for directions.",
-        "SCHOOL CHUNKS TOOLKIT · hand in a form = give a completed paper to someone. Example: I hand in a form at the school office.",
-        "SCHOOL CHUNKS TOOLKIT · join a school club = become a group member. Example: I want to join a club this term.",
-        "WORKED STRATEGY · First identify the action in a situation, then choose the verb-noun chunk that communicates it. A timetable is for checking a schedule; a form is for handing in."
+        "SCHOOL PLACES · At break time, Noor buys a banana at the canteen. Later she returns a storybook to the library. One place serves food; the other has books.",
+        "SCHOOL PLACES · The corridor connects classrooms. Students read the safety signs when they enter the science lab for a practical science activity.",
+        "CLASSROOM TOOLS · Lin measures the width of a notebook with the ruler before a design project. Think about what each classroom tool is used for.",
+        "POLITE REQUESTS · Alex missed part of an instruction, so he asks, 'Sorry, could you say the last part again, please?' The teacher says it more slowly.",
+        "TEMPORARY USE · During group work, Sam borrows a coloured marker and returns it afterwards. The action is temporary, not taking something to keep.",
+        "SCHOOL ROUTINES · After football, Mei is doing her homework before dinner. Notice the verb that naturally goes with a school task.",
+        "WORKED STRATEGY · A classmate says, 'The science room is along the hall.' First identify that the message gives a place and a route, not a classroom object. Then match the meaning of the whole context instead of choosing a familiar word blindly.",
+        "UNSCORED SELF-PRACTICE · Cover the examples. Recall one school place, one classroom tool and one polite request, then write a new sentence of your own. This activity is for practice, not an automatic writing score."
       ],
       "activities": [
         {
@@ -1772,7 +1775,7 @@
         "Understand the main purpose of a short school notice.",
         "Find useful details by matching the question to the meaning of the text.",
         "Notice small conditions that change what a notice means.",
-        "Make a reasonable inference without inventing extra facts."
+        "Understand explicit details and simple paraphrased conditions without adding unstated facts."
       ],
       "explanation": {
         "en": "Read a short notice once to understand its purpose. Read again to answer practical questions: when, where, what to bring and what to do. Check the full phrase, including words such as if, before and only. For an inference, combine clues carefully; the text may suggest something without saying it word for word. Highlighting text is an optional helper, not a requirement for answering.",

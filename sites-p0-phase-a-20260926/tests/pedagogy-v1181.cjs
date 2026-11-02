@@ -37,9 +37,31 @@ const vocabulary=next.lessons.find(l=>l.id==='VOC-A1-01');
 assert(reading.examples.join(' ').includes('guitar group'));
 assert(!/room 12|wednesday|saving water|bring paint/i.test(reading.examples.join(' ')),
  'Reading worked demonstration leaks Art Club quiz specifics');
-assert(vocabulary.examples.join(' ').includes('check the timetable'));
-assert(vocabulary.examples.join(' ').includes('hand in a form'));
-assert(!/borrow a book|could you repeat|do homework|school canteen|ruler/i.test(vocabulary.examples.join(' ')),
- 'Vocabulary worked toolkit leaks current quiz stems');
+assert.equal(reading.objectives[3],
+ 'Understand explicit details and simple paraphrased conditions without adding unstated facts.');
+assert.equal(vocabulary.objectives[3],
+ 'Practise using school expressions in simple spoken or written sentences (unscored self-practice).');
+const toolkit=(vocabulary.explanation.en+' '+vocabulary.examples.join(' ')).toLowerCase();
+for(const term of ['library','canteen','science lab','corridor','ruler','borrow','homework','again']){
+ assert(toolkit.includes(term),'Vocabulary toolkit has not taught: '+term);
+}
+assert(vocabulary.examples.some(s=>s.startsWith('WORKED STRATEGY · ')),
+ 'Worked strategy must use a separate context.');
+assert(vocabulary.examples.some(s=>s.startsWith('UNSCORED SELF-PRACTICE · ')),
+ 'Productive use cannot be presented as an automatically graded outcome.');
+for(const lesson of [reading,vocabulary]){
+ const demo=lesson.examples.join(' ').toLowerCase();
+ for(const question of lesson.activities){
+  assert(!demo.includes(question.prompt.toLowerCase()),
+   'Instruction copied an active prompt: '+question.id);
+  if(question.type==='single_choice'){
+   const keyed=question.options.find(option=>option.id===question.answer.correct_option_id)?.text.trim();
+   if(keyed&&keyed.length>=9){
+    assert(!demo.includes(keyed.toLowerCase()),
+     'Instruction copied an exact scored answer choice: '+question.id);
+   }
+  }
+ }
+}
 assert(/optional helper/.test(reading.explanation.en));
 console.log(JSON.stringify({result:'PASS',pilot:'pedagogy-v1181',lessons:109,activities:913,updated:changed,preservedActivities:913}));
