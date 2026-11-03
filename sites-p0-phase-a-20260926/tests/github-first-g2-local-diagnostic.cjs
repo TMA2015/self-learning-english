@@ -90,6 +90,13 @@ global.window={localStorage:new MemoryStorage(),location:{origin:'https://exampl
   await assert.rejects(()=>finishLocalDiagnostic(notPlayed),/Finish all Listening questions/);
   assert.equal((await local.service.readAssessments()).length,1);
 
+  const missing={...session,sessionId:'g2-missing-listening',listening:undefined};
+  await assert.rejects(()=>finishLocalDiagnostic(missing),/Finish Listening or select Skip Listening explicitly/);
+  assert.equal((await local.service.readAssessments()).length,1);
+  const skipped=await finishLocalDiagnostic({...missing,sessionId:'g2-skipped',listeningSkipped:true});
+  assert.equal(skipped.result.estimates.Listening.assessed,false);
+  assert.equal(skipped.result.estimates.Listening.evidenceCount,0);
+  assert.equal((await local.service.readAssessments()).find(a=>a.sessionId==='g2-skipped').listeningSkipped,true);
   const routePage=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8');
   const page=fs.readFileSync(path.join(root,'app/home-client.tsx'),'utf8');
   assert(routePage.includes('<HomeClient/>'),'root route must delegate Diagnostic UI to HomeClient');
