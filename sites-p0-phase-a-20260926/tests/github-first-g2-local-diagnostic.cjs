@@ -97,6 +97,21 @@ global.window={localStorage:new MemoryStorage(),location:{origin:'https://exampl
   assert.equal(skipped.result.estimates.Listening.assessed,false);
   assert.equal(skipped.result.estimates.Listening.evidenceCount,0);
   assert.equal((await local.service.readAssessments()).find(a=>a.sessionId==='g2-skipped').listeningSkipped,true);
+  const historicalAt=Date.now()+10000;
+  const historical={...session,sessionId:'g2-saved-legacy-listening',
+    startedAt:historicalAt-1,finishedAt:historicalAt,
+    result:model.makeDiagnostic(attempts,words,historicalAt,[],undefined)};
+  await local.service.recordAssessment(historical);
+  const storedBefore=JSON.stringify((await local.service.readAssessments()).find(a=>a.sessionId===historical.sessionId));
+  const recovered=await local.service.rebuild({diagnosticV2:historical,evidence:[]});
+  assert.equal(recovered.diagnosticV2.listeningEvidenceRecovered,true);
+  assert.equal(recovered.diagnosticV2.result.listening.total,coreListening.length);
+  assert.equal(recovered.diagnosticV2.result.estimates.Listening.evidenceCount,coreListening.length);
+  assert.equal(recovered.learnerModel.estimates.Listening.assessed,true);
+  assert.equal(JSON.stringify((await local.service.readAssessments()).find(a=>a.sessionId===historical.sessionId)),storedBefore);
+  const originalWithoutAudio={...historical,listening:undefined};
+  const resultWithoutAudio=await local.service.rebuild({diagnosticV2:originalWithoutAudio,evidence:[]});
+  assert.equal(resultWithoutAudio.diagnosticV2.listeningEvidenceRecovered,undefined);
   const routePage=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8');
   const page=fs.readFileSync(path.join(root,'app/home-client.tsx'),'utf8');
   assert(routePage.includes('<HomeClient/>'),'root route must delegate Diagnostic UI to HomeClient');
