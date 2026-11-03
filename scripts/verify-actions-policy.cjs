@@ -45,7 +45,7 @@ for (const file of entries) {
     violations.push(file + ': expected only ' + (expected || 'an approved trigger') + ', found ' + JSON.stringify(actual));
   }
   if (file === 'english-pr-qa.yml') {
-    if (!/^\s{4}branches:\s*\[main\]/m.test(src)) violations.push(file + ': PR must target main only');
+    if (!/^\s{4}branches:\s*\[main,\s*'release\/nov2026-content-v1\.18\.0'\]\s*$/m.test(src)) violations.push(file + ': PR may only target main and the approved v1.18.0 release branch');
     if (!/^\s{2}contents:\s*read\s*$/m.test(src)) violations.push(file + ': read-only contents permission required');
     if (/\bsecrets\s*\.|action-hosting-deploy|firebaseServiceAccount|\bchannelId\s*:\s*live\b|\bfirebase\s+deploy\b/i.test(src)) {
       violations.push(file + ': PR QA may not reference secrets or deploy Firebase');
