@@ -92,6 +92,7 @@ jobs:
           sudo apt-get install -y --no-install-recommends ffmpeg
 
       - name: Full QA, TypeScript and Firebase static production build
+        id: qa_release
         run: pnpm qa:release
 
       - name: Verify exact release artifacts and prevent Math deployment
@@ -117,36 +118,64 @@ jobs:
           disableComment: true
           firebaseToolsVersion: '15.32.1'
 
-      - name: Production HTTP smoke test — English URL and both new audio files
+      - name: Production HTTP smoke test — HTML and valid English audio
+        id: live_smoke
         if: ${{ inputs.confirm == 'DEPLOY_ENGLISH_V1180' }}
         run: |
           set -euo pipefail
           base="https://g-learning-english.web.app"
-          # Firebase deploy success can precede CDN edge propagation. GitHub Actions
-          # curl --retry alone does NOT retry HTTP 404; retry-all-errors does.
-          # Fail closed if fresh MP3 assets never become available.
+          # A successful Firebase deployment can precede edge-cache propagation.
+          # Retry HTTP 404, as well as an HTML fallback returning 200 for a missing MP3.
           sleep 15
-          for path in / /foundation-audio/LIS-A2-01-v2.mp3 /foundation-audio/LIS-B1-01-v2.mp3 /diagnostic-audio/DIAG-LIS-01-v1.mp3; do
-            echo "Check: $base$path"
-            curl --fail --silent --show-error --location --retry 10 --retry-all-errors --retry-delay 6 --retry-max-time 95 --output /dev/null "$base$path"
+          tmp="$(mktemp)"
+          trap 'rm -f "$tmp"' EXIT
+          for asset in / /foundation-audio/LIS-A2-01-v2.mp3 /foundation-audio/LIS-B1-01-v2.mp3 /diagnostic-audio/DIAG-LIS-01-v1.mp3; do
+            ok=0
+            for attempt in {1..10}; do
+              if curl --fail --silent --show-error --location --connect-timeout 10 --max-time 20 --output "$tmp" "$base$asset" && test -s "$tmp"; then
+                if [[ "$asset" == "/" ]]; then
+                  if grep -Eiq '<(!doctype html|html)([[:space:]>])' "$tmp"; then ok=1; fi
+                elif [[ "$asset" == *.mp3 ]]; then
+                  codec="$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 "$tmp" 2>/dev/null || true)"
+                  if [[ "$codec" == "mp3" ]]; then ok=1; fi
+                fi
+              fi
+              if [[ "$ok" == 1 ]]; then break; fi
+              echo "Not yet valid: $asset (attempt $attempt/10; HTTP 200 may be an HTML fallback)"
+              if [[ "$attempt" -lt 10 ]]; then sleep 6; fi
+            done
+            if [[ "$ok" != 1 ]]; then
+              echo "::error::Production smoke failed for $asset after bounded retries. Deployment may already have succeeded; check release history."
+              exit 1
+            fi
+            echo "Verified $asset"
           done
-          echo "PRODUCTION_SMOKE_PASS — English only; interactive Writing AI not verified"
+          echo "PRODUCTION_SMOKE_PASS — HTML and genuine MP3 audio; live AI behavior not verified"
 
-      - name: Release evidence
-        if: ${{ success() }}
+      - name: Record QA, deployment and smoke outcomes even on failure
+        if: ${{ always() }}
+        working-directory: .
         env:
-          LIVE_URL: ${{ steps.english_live.outputs.details_url }}
           RELEASE_CONFIRM: ${{ inputs.confirm }}
+          QA_OUTCOME: ${{ steps.qa_release.outcome }}
+          DEPLOY_OUTCOME: ${{ steps.english_live.outcome }}
+          SMOKE_OUTCOME: ${{ steps.live_smoke.outcome }}
         run: |
-          echo "## Self-Learning English v1.18.0" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Source commit: \`$GITHUB_SHA\`" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Full QA / strict rights / Firebase static build: PASS" >> "$GITHUB_STEP_SUMMARY"
-          if [ "$RELEASE_CONFIRM" = "DEPLOY_ENGLISH_V1180" ]; then
-            echo "- Deployed: Firebase Hosting **live**, English target only" >> "$GITHUB_STEP_SUMMARY"
-            echo "- Site: https://g-learning-english.web.app/" >> "$GITHUB_STEP_SUMMARY"
-            echo "- Deployment link: $LIVE_URL" >> "$GITHUB_STEP_SUMMARY"
-            echo "- Writing AI live feedback: NOT VERIFIED (deterministic fallback retained)" >> "$GITHUB_STEP_SUMMARY"
-            echo "- Rollback: Firebase Console > Hosting > g-learning-english > release history > previous release" >> "$GITHUB_STEP_SUMMARY"
-          else
-            echo "- Mode: QA only — NO DEPLOY" >> "$GITHUB_STEP_SUMMARY"
-          fi
+          {
+            echo "## Self-Learning English v1.18.0 — exact run outcomes"
+            echo "- Source commit: \`$GITHUB_SHA\`"
+            echo "- QA / TypeScript / build: **$QA_OUTCOME**"
+            echo "- Firebase Hosting deployment action: **$DEPLOY_OUTCOME**"
+            echo "- Live HTTP + audio smoke test: **$SMOKE_OUTCOME**"
+            if [[ "$RELEASE_CONFIRM" == "QA" ]]; then
+              echo "- QA-only mode. No Firebase deploy was requested."
+            elif [[ "$DEPLOY_OUTCOME" == "success" && "$SMOKE_OUTCOME" != "success" ]]; then
+              echo "- **Deployed but not verified**. Check the English Hosting release history and site behavior. Do NOT assume rollback happened."
+            elif [[ "$DEPLOY_OUTCOME" == "success" && "$SMOKE_OUTCOME" == "success" ]]; then
+              echo "- English Hosting: https://g-learning-english.web.app/"
+              echo "- Interactive Gemini Writing feedback: NOT VERIFIED by this workflow."
+            else
+              echo "- Production not confirmed by this run."
+            fi
+            echo "- Rollback if needed: Firebase Console > Hosting > g-learning-english > release history."
+          } >> "$GITHUB_STEP_SUMMARY"

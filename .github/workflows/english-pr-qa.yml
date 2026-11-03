@@ -2,7 +2,7 @@ name: SLE Pull Request QA (public, no deploy)
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, 'release/nov2026-content-v1.18.0']
 
 permissions:
   contents: read
