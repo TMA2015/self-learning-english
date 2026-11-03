@@ -1,0 +1,664 @@
+{
+  "artifact_id": "SLE-P01-B-AUTHORING-R1-20261103",
+  "authoring_schema": "self-learning-english.topic-authoring.v0.1",
+  "importer_compatible": false,
+  "created_at": "2026-11-03",
+  "status": "CONTENT_DRAFT",
+  "source_curriculum_version": "1.18.0",
+  "standard_id": "SLE-MASTER-001",
+  "standard_version": "1.0.0",
+  "topic_id": "P01",
+  "theme": "School & Everyday Communication",
+  "academic_review": "NOT_REQUESTED",
+  "technical_qa": "SOURCE_STATIC_ONLY",
+  "qa_summary": {
+    "units": 5,
+    "unique_items": 22,
+    "objective": 16,
+    "unassessed": 11,
+    "errors": 0,
+    "limitations": "No importer, live audio, browser, independent academic or writing/oral grading QA"
+  },
+  "units": [
+    {
+      "id": "P01-U09",
+      "level": "A1",
+      "module": "listening",
+      "title": "A changed meeting plan — listening preparation",
+      "prerequisites": "P01-U06 or equivalent real-audio Listening introduction",
+      "minutes": 18,
+      "goal": "Identify the main purpose and changed time/place of a spoken school message, but earn no Listening credit without verified original MP3.",
+      "concept": "Before listening, predict whether the message is about a place, time or instruction. First listen for the main idea, then listen for the changed detail. A transcript is preparation material, not proof of hearing.",
+      "support_vi": "Học cách làm qua ví dụ riêng, sau đó tự trả lời bài tập. Chỉ bài có đáp án khách quan mới có thể được chấm sau khi duyệt; bài viết/nói tự do không được tự chấm điểm.",
+      "model": "Independent written model (not assessed): 'The art room is closed. Meet outside the library at four.' First identify the change (place), then verify the new place (outside the library).",
+      "strategy": [
+        "Read the situation without seeing the target transcript.",
+        "When approved audio exists, listen once for purpose and again for details.",
+        "Compare the audio cue to each option; if audio is unavailable, do not answer for Listening credit."
+      ],
+      "hint": "Listen for change markers such as instead, now and moved to.",
+      "feedback_strategy": "After approved audio playback and Submit, explain the time/place cue, show transcript and replay. Without MP3, use the script only as reading preparation, with no Listening score.",
+      "draft_audio_script": "Hello, science club members. Our usual classroom is being repaired today. Instead, please meet in the school courtyard at three fifteen this afternoon. Bring your notebook. See you there!",
+      "audio_asset_status": "NOT_PRODUCED_NO_MP3",
+      "audio_manifest_status": "PROPOSED_ONLY",
+      "transcript_visibility_requirement": "HIDDEN_BEFORE_AUDIO_BASED_SUBMISSION",
+      "hearing_evidence_weight": 0,
+      "practice": [
+        {
+          "id": "P01-U09-Q1",
+          "type": "single_choice",
+          "prompt": "What is the new meeting place mentioned in the script?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The science lab"
+            },
+            {
+              "id": "B",
+              "text": "The school courtyard"
+            },
+            {
+              "id": "C",
+              "text": "The gym"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The message moves the group to the school courtyard."
+          },
+          "assessment_status": "UNASSESSED_AUDIO_PENDING",
+          "proposed_evidence_weight": 0,
+          "skill_tag_proposed": "listening.detail"
+        },
+        {
+          "id": "P01-U09-Q2",
+          "type": "single_choice",
+          "prompt": "When should the group meet according to the script?",
+          "options": [
+            {
+              "id": "A",
+              "text": "3:15 p.m."
+            },
+            {
+              "id": "B",
+              "text": "3:45 p.m."
+            },
+            {
+              "id": "C",
+              "text": "4:15 p.m."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The speaker gives the revised time as 3:15 p.m."
+          },
+          "assessment_status": "UNASSESSED_AUDIO_PENDING",
+          "proposed_evidence_weight": 0,
+          "skill_tag_proposed": "listening.detail"
+        },
+        {
+          "id": "P01-U09-Q3",
+          "type": "single_choice",
+          "prompt": "Why is the plan changing?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A room is being repaired"
+            },
+            {
+              "id": "B",
+              "text": "The teacher is absent"
+            },
+            {
+              "id": "C",
+              "text": "A school trip was cancelled"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The old room is being repaired, so the location changes."
+          },
+          "assessment_status": "UNASSESSED_AUDIO_PENDING",
+          "proposed_evidence_weight": 0,
+          "skill_tag_proposed": "listening.gist"
+        },
+        {
+          "id": "P01-U09-Q4",
+          "type": "extended_response",
+          "prompt": "Write one useful phrase that signals a change in a spoken announcement.",
+          "feedback": {
+            "self_check_en": "Possible cues include instead, moved to, or now. This is vocabulary reflection, not a listening score."
+          },
+          "assessment_status": "UNASSESSED_HUMAN_REVIEW_OR_SELF_REPORT",
+          "proposed_evidence_weight": 0,
+          "skill_tag_proposed": "listening.strategy"
+        }
+      ]
+    },
+    {
+      "id": "P01-U11",
+      "level": "A1",
+      "module": "grammar",
+      "title": "Polite requests with can and could",
+      "prerequisites": "P01-U02 and existing Grammar foundation (exact reusable lesson ID requires confirmation)",
+      "minutes": 18,
+      "goal": "Choose can or could in clear school requests and distinguish requests from statements.",
+      "concept": "Use Can I ...? and Could I ...? to request permission politely. Could is often more tentative; neither guarantees permission. For a request, keep the base verb after the modal: Could I borrow ...? not Could I borrowing ...?",
+      "support_vi": "Học cách làm qua ví dụ riêng, sau đó tự trả lời bài tập. Chỉ bài có đáp án khách quan mới có thể được chấm sau khi duyệt; bài viết/nói tự do không được tự chấm điểm.",
+      "model": "Different model: 'Could I open the window, please?' The speaker asks permission; open is the base verb. 'I open the window' is a statement, not a permission request.",
+      "strategy": [
+        "Identify whether the speaker is asking permission.",
+        "Choose can/could plus the base verb.",
+        "Check whether the request is polite and grammatically complete."
+      ],
+      "hint": "After can/could, look for the base form of the verb.",
+      "feedback_strategy": "After Submit, contrast a grammatical permission question with a statement or an incorrect -ing form.",
+      "reuse_note": "Link to an existing Grammar lesson only after verifying its actual ID and prerequisite match; do not duplicate or overwrite legacy curriculum.",
+      "practice": [
+        {
+          "id": "P01-U11-Q1",
+          "type": "single_choice",
+          "prompt": "Choose the best polite request to use the school printer.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Could I use the printer, please?"
+            },
+            {
+              "id": "B",
+              "text": "Could I using the printer?"
+            },
+            {
+              "id": "C",
+              "text": "I printer now."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Could I use ...? correctly uses the base verb and asks permission."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "grammar.modals.permission"
+        },
+        {
+          "id": "P01-U11-Q2",
+          "type": "single_choice",
+          "prompt": "Complete the question: '___ I sit here, please?'",
+          "options": [
+            {
+              "id": "A",
+              "text": "Am"
+            },
+            {
+              "id": "B",
+              "text": "Can"
+            },
+            {
+              "id": "C",
+              "text": "Do"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Can I ...? is a common polite permission question."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "grammar.modals.permission"
+        },
+        {
+          "id": "P01-U11-Q3",
+          "type": "single_choice",
+          "prompt": "Which sentence is a statement rather than a request?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Could I borrow your pen?"
+            },
+            {
+              "id": "B",
+              "text": "Can I ask a question?"
+            },
+            {
+              "id": "C",
+              "text": "I need a pen."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "I need a pen describes a need; it does not directly ask permission."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "grammar.functions"
+        },
+        {
+          "id": "P01-U11-Q4",
+          "type": "single_choice",
+          "prompt": "Which verb form follows 'Could I' in a correct request?",
+          "options": [
+            {
+              "id": "A",
+              "text": "borrowing"
+            },
+            {
+              "id": "B",
+              "text": "borrow"
+            },
+            {
+              "id": "C",
+              "text": "borrowed"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A modal verb is followed by the base verb: Could I borrow ...?"
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "grammar.modals.form"
+        },
+        {
+          "id": "P01-U11-Q5",
+          "type": "extended_response",
+          "prompt": "Write your own polite request to use a classroom object.",
+          "feedback": {
+            "self_check_en": "Check for Can/Could I + base verb + object + please. This original sentence is unassessed until reviewed."
+          },
+          "assessment_status": "UNASSESSED_HUMAN_REVIEW_OR_SELF_REPORT",
+          "proposed_evidence_weight": 0,
+          "skill_tag_proposed": "grammar.production"
+        }
+      ]
+    },
+    {
+      "id": "P01-U13",
+      "level": "A2",
+      "module": "speaking",
+      "title": "Prepare and practise: explaining a missed deadline",
+      "prerequisites": "P01-U07 and P01-U12",
+      "minutes": 18,
+      "goal": "Plan a respectful explanation and request for help, then practise aloud without receiving a speaking proficiency score.",
+      "concept": "A clear request has a greeting, a factual problem, one relevant reason, a specific next-step question and thanks. Do not promise an extension; ask what is possible.",
+      "support_vi": "Học cách làm qua ví dụ riêng, sau đó tự trả lời bài tập. Chỉ bài có đáp án khách quan mới có thể được chấm sau khi duyệt; bài viết/nói tự do không được tự chấm điểm.",
+      "model": "Independent model: 'Excuse me, I could not attend the club meeting because I was ill. Could you tell me what I missed? Thank you.' Notice the factual reason and specific question.",
+      "strategy": [
+        "Write three keywords for the problem, reason and request.",
+        "Speak aloud using keywords instead of reading a complete script.",
+        "Self-check clarity and politeness; no oral performance is measured."
+      ],
+      "hint": "A respectful request explains the situation without blaming someone else.",
+      "feedback_strategy": "Self-check whether the request names the problem and asks a clear question. No microphone, speech evaluation, fluency mark or CEFR result is implied.",
+      "oral_proficiency_weight": 0,
+      "practice_label": "Speaking · Prepare & Practise (not assessed)",
+      "practice": [
+        {
+          "id": "P01-U13-Q1",
+          "type": "single_choice",
+          "prompt": "Which message asks for a next step respectfully?",
+          "options": [
+            {
+              "id": "A",
+              "text": "You must accept it now."
+            },
+            {
+              "id": "B",
+              "text": "Could you tell me how to submit the late work?"
+            },
+            {
+              "id": "C",
+              "text": "This is your fault."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A specific polite question asks for guidance without demanding an outcome."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 0,
+          "skill_tag_proposed": "language_preparation_knowledge"
+        },
+        {
+          "id": "P01-U13-Q2",
+          "type": "single_choice",
+          "prompt": "Which detail is most useful when explaining a missed deadline?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A truthful brief reason"
+            },
+            {
+              "id": "B",
+              "text": "A classmate's private password"
+            },
+            {
+              "id": "C",
+              "text": "A long unrelated story"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A concise relevant reason helps the listener understand the situation."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 0,
+          "skill_tag_proposed": "language_preparation_knowledge"
+        },
+        {
+          "id": "P01-U13-Q3",
+          "type": "extended_response",
+          "prompt": "Plan three keywords: problem, reason, request. Do not write a full script.",
+          "feedback": {
+            "self_check_en": "Check that the request is specific and respectful. Planning is not oral proficiency evidence."
+          },
+          "assessment_status": "UNASSESSED_HUMAN_REVIEW_OR_SELF_REPORT",
+          "proposed_evidence_weight": 0,
+          "skill_tag_proposed": "speaking.self_report"
+        },
+        {
+          "id": "P01-U13-Q4",
+          "type": "extended_response",
+          "prompt": "Practise aloud for about 20–40 seconds, then note one phrase you would improve.",
+          "feedback": {
+            "self_check_en": "This is self-reported practice only; no recording or observed speaking score."
+          },
+          "assessment_status": "UNASSESSED_HUMAN_REVIEW_OR_SELF_REPORT",
+          "proposed_evidence_weight": 0,
+          "skill_tag_proposed": "speaking.self_report"
+        }
+      ]
+    },
+    {
+      "id": "P01-U14",
+      "level": "A2",
+      "module": "reading_writing",
+      "title": "Read a school project update and write a useful reply",
+      "prerequisites": "P01-U08, P01-U10 and P01-U12",
+      "minutes": 18,
+      "goal": "Identify two changed project requirements and draft a clear reply that acknowledges them and asks one useful question.",
+      "concept": "For an update, separate what stays the same from what changes. In a reply, confirm the new requirement, say what you will do, and ask only for missing information.",
+      "support_vi": "Học cách làm qua ví dụ riêng, sau đó tự trả lời bài tập. Chỉ bài có đáp án khách quan mới có thể được chấm sau khi duyệt; bài viết/nói tự do không được tự chấm điểm.",
+      "model": "Different model: A club moves its rehearsal from Monday to Thursday. A useful reply is: 'Thanks for the update. I can come on Thursday. Should I bring the same music folder?' This confirms the change and asks one relevant question.",
+      "strategy": [
+        "Read the complete update, noting the original and revised instructions.",
+        "Answer independent comprehension questions from the update.",
+        "Plan a reply: acknowledge, confirm action, ask one specific question."
+      ],
+      "hint": "Check the newest message; older details may have been replaced.",
+      "feedback_strategy": "After Submit, show the precise updated instruction for objective reading answers. Give a revision checklist for the unassessed original reply.",
+      "assessed_text": "Monday notice: The environment project teams will meet on Friday at 3:30 p.m. in Room 8. Bring a photograph of your local area. Submit your final project on Friday. Wednesday update: Our planning meeting has moved to Thursday at 3:30 p.m. in Room 8. Please bring a draft poster instead of a photograph. The final submission deadline is still Friday.",
+      "writing_task_model": {
+        "topic": "School environment project update",
+        "task": "Write a polite reply to the teacher",
+        "must_include": [
+          "Acknowledge Thursday 3:30 p.m.",
+          "Confirm bringing a draft poster",
+          "Ask one relevant question"
+        ],
+        "boundary": "35–55 words, respectful teacher-facing register"
+      },
+      "writing_evidence_weight": 0,
+      "practice": [
+        {
+          "id": "P01-U14-Q1",
+          "type": "single_choice",
+          "prompt": "When is the revised project meeting?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Thursday at 3:30 p.m."
+            },
+            {
+              "id": "B",
+              "text": "Friday at 3:30 p.m."
+            },
+            {
+              "id": "C",
+              "text": "Thursday at 4:30 p.m."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The newer message changes the meeting to Thursday at 3:30 p.m."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "reading.detail"
+        },
+        {
+          "id": "P01-U14-Q2",
+          "type": "single_choice",
+          "prompt": "Which item must each group bring now?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A printed photograph"
+            },
+            {
+              "id": "B",
+              "text": "A draft poster"
+            },
+            {
+              "id": "C",
+              "text": "A USB drive"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The revised instructions specifically request a draft poster."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "reading.detail"
+        },
+        {
+          "id": "P01-U14-Q3",
+          "type": "single_choice",
+          "prompt": "Which statement is supported by the latest message?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The deadline is cancelled."
+            },
+            {
+              "id": "B",
+              "text": "The deadline is still Friday."
+            },
+            {
+              "id": "C",
+              "text": "The deadline moves to Monday."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The latest message says the Friday submission deadline remains unchanged."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "reading.inference"
+        },
+        {
+          "id": "P01-U14-Q4",
+          "type": "extended_response",
+          "prompt": "Write a 35–55-word reply to the teacher. Acknowledge the new meeting time and item, then ask one useful question.",
+          "feedback": {
+            "self_check_en": "Check Topic (project update), Task (reply), Must Include (new meeting, draft poster, question), Boundary (teacher, polite tone, 35–55 words). Do not self-award writing proficiency."
+          },
+          "assessment_status": "UNASSESSED_HUMAN_REVIEW_OR_SELF_REPORT",
+          "proposed_evidence_weight": 0,
+          "skill_tag_proposed": "writing.original_reply"
+        }
+      ]
+    },
+    {
+      "id": "P01-U15",
+      "level": "A2",
+      "module": "integrated_review",
+      "title": "School communication: independent retrieval and repair",
+      "prerequisites": "P01-U01 through P01-U14 as available; do not imply all were completed",
+      "minutes": 18,
+      "goal": "Retrieve useful school language across vocabulary, requests, updates and written communication, and identify a specific next topic to review.",
+      "concept": "Retrieval means answering without rereading a model first. Review your answer only after submission, identify the kind of error and revisit the relevant concept. Recognition checks do not prove fluent speaking or original writing.",
+      "support_vi": "Học cách làm qua ví dụ riêng, sau đó tự trả lời bài tập. Chỉ bài có đáp án khách quan mới có thể được chấm sau khi duyệt; bài viết/nói tự do không được tự chấm điểm.",
+      "model": "Different model: A learner mistakes 'hand in a form' for 'check a timetable'. The repair is to identify the action: hand in means submit a completed document. The learner then writes a fresh example in a different situation.",
+      "strategy": [
+        "Hide earlier lesson notes and answer independently.",
+        "Check explanations and classify mistakes: meaning, form, changed detail or register.",
+        "Choose one targeted earlier unit to revisit; do not convert practice completion into a CEFR certification."
+      ],
+      "hint": "Which action or new instruction matters in this situation?",
+      "feedback_strategy": "After Submit, give a short reason and name the prerequisite unit to revisit for each error. Repeat a different-context practice later; the review interval is advisory.",
+      "retrieval_intervals_advisory": "Optional review after 2 and 7 days; no automatic scheduling or memory guarantee.",
+      "practice": [
+        {
+          "id": "P01-U15-Q1",
+          "type": "single_choice",
+          "prompt": "You finished a permission slip. What should you do with it?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Hand it in to the office"
+            },
+            {
+              "id": "B",
+              "text": "Check the timetable"
+            },
+            {
+              "id": "C",
+              "text": "Borrow a ruler"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Hand in means submit a completed document. Review P01-U01/U10 language chunks if unsure."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "vocabulary.chunks"
+        },
+        {
+          "id": "P01-U15-Q2",
+          "type": "single_choice",
+          "prompt": "Which request is polite and grammatical?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Could I borrowing a notebook?"
+            },
+            {
+              "id": "B",
+              "text": "Could I borrow a notebook, please?"
+            },
+            {
+              "id": "C",
+              "text": "I notebook now."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Could I + base verb makes a polite request. Review P01-U11 if unsure."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "grammar.modals.permission"
+        },
+        {
+          "id": "P01-U15-Q3",
+          "type": "single_choice",
+          "prompt": "A new message says 'Meet in Room 6 instead of Room 2.' Which room is current?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Room 2"
+            },
+            {
+              "id": "B",
+              "text": "Both rooms"
+            },
+            {
+              "id": "C",
+              "text": "Room 6"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Instead of marks the replacement; follow the latest message. Review P01-U08 if unsure."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "reading.detail"
+        },
+        {
+          "id": "P01-U15-Q4",
+          "type": "single_choice",
+          "prompt": "What should a short reply to a changed deadline do?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Ignore the change"
+            },
+            {
+              "id": "B",
+              "text": "Confirm the new deadline and ask a relevant question if needed"
+            },
+            {
+              "id": "C",
+              "text": "Include only unrelated personal details"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "An effective reply acknowledges the update and clarifies missing information. Review P01-U14 if unsure."
+          },
+          "assessment_status": "PROPOSED_OBJECTIVE_NOT_LIVE",
+          "proposed_evidence_weight": 1,
+          "skill_tag_proposed": "writing.task_understanding"
+        },
+        {
+          "id": "P01-U15-Q5",
+          "type": "extended_response",
+          "prompt": "Write one original sentence requesting help with a new school problem.",
+          "feedback": {
+            "self_check_en": "Self-check Can/Could + base verb + specific help request. This production task is unassessed."
+          },
+          "assessment_status": "UNASSESSED_HUMAN_REVIEW_OR_SELF_REPORT",
+          "proposed_evidence_weight": 0,
+          "skill_tag_proposed": "writing.original_sentence"
+        }
+      ]
+    }
+  ]
+}
