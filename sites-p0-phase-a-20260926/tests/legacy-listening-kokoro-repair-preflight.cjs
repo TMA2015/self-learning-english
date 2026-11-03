@@ -9,6 +9,19 @@ const root=path.resolve(__dirname,'..');
 const manifest=require('../content/foundation-audio.json');
 const data=require('../content/curriculum-1.18.1-candidate.json');
 const byId=new Map(data.lessons.map(l=>[l.id,l]));
+const crypto=require('node:crypto');
+const newAudio={
+ 'LIS-A1-01':{sha256:'99e89bc0ec02c91732b3b265447012841199b52da84db79615f33576bc73dd29',turns:1,bytes:187152},
+ 'LIS-A2-02':{sha256:'dc8ddb20211e05be2fdc86ffdb419582268255861f67aeb6f96dd1892b4671e3',turns:7,bytes:294504},
+ 'LIS-B1-02':{sha256:'92a7b222b8cf08591f49ac9ad54c6aabf47ab3755af86460a2635ea8efbb011d',turns:9,bytes:477624},
+};
+for(const [id,p] of Object.entries(newAudio)){
+ const manifestEntry=manifest[id];
+ assert.equal(manifestEntry.url,'/foundation-audio/'+id+'-v2.mp3');
+ const sound=fs.readFileSync(path.join(root,'public/foundation-audio',id+'-v2.mp3'));
+ assert.equal(sound.length,p.bytes,id+' wrong file size');
+ assert.equal(crypto.createHash('sha256').update(sound).digest('hex'),p.sha256,id+' wrong uploaded bytes');
+}
 const roleSets={
  'LIS-A1-01':['Teacher'],
  'LIS-A2-02':['Emma','Ben','Emma','Ben','Emma','Ben','Emma'],
@@ -35,4 +48,4 @@ assert(scriptText.includes('FileExistsError'),'Must not silently overwrite an al
 assert(!/public\/foundation-audio\/LIS-A1-01-v2/.test(scriptText),'Script must stage, not publish');
 console.log(JSON.stringify({result:'PASS',test:'legacy-kokoro-repair-preflight',
  exactSources:3,expectedSpeakerTurns:[1,7,9],
- newKokoroMP3s:'NOT_GENERATED',liveWebsite:'NOT_CHANGED',ownerListeningQA:'PENDING'}));
+ newKokoroMP3s:'GITHUB_BINARY_INTEGRATED_SHA_VERIFIED',liveWebsite:'NOT_CHANGED',ownerListeningQA:'PENDING'}));

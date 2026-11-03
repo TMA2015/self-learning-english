@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "release": "1.18.0",
-  "notice": "38 individual MP3s owner-authorized for G Learning educational website use on 2026-11-01; original project content and per-asset provenance/license review recorded in docs/releases/2026-11-audio-rights-owner-clearance-decision.md. Approval is scoped and is not independent exhaustive copyright certification.",
+  "release": "1.18.1",
+  "notice": "41 versioned MP3 assets (38 original plus three newly owner-supplied Kokoro v2 audio repairs) with individual SHA-256 and educational-use provenance. Old eSpeak v1 files retained for historical replay/rollback, while current manifests serve transcript-matched Kokoro v2. No academic keys or saved attempts changed. Local export metadata says owner_audio_qa=PENDING; live listening acceptance is still an honest separate status.",
   "entries": [
     {
       "asset_path": "public/foundation-audio/LIS-A1-01-v1.mp3",
@@ -572,6 +572,51 @@
       "source_originality_basis": "Owner-originality declaration 2026-11-01 + project-generated audio source/lesson mapping, original transcript and academic provenance; verification is project-origin traceability, not exhaustive independent plagiarism screening",
       "license_basis": "parler-tts/parler-tts-mini-v1 Apache-2.0; original project speech output; https://huggingface.co/parler-tts/parler-tts-mini-v1",
       "rights_decision_ref": "docs/releases/2026-11-audio-rights-owner-clearance-decision.md"
+    },
+    {
+      "asset_path": "public/foundation-audio/LIS-A1-01-v2.mp3",
+      "sha256": "99e89bc0ec02c91732b3b265447012841199b52da84db79615f33576bc73dd29",
+      "model_or_engine": "Kokoro-82M v1.0 (owner local generator; Kokoro package 0.9.4, G Learning Audio Production v1.2)",
+      "voice_or_processing": "A=bf_emma; 24 kHz mono MP3; speed 0.9; 0.35 sec dialogue gap; balanced volumes=false",
+      "provenance_evidence": "Owner-uploaded 03-11-2026.zip original MP3 + per-asset JSON (SHA exact); Git blob 7121e0e8d03c49a048d31f73757195aaf870f490; QA matched original curriculum speech script and 1 separate turns; docs/releases/2026-11-kokoro-3-listening-repair-evidence.json",
+      "source_originality": "VERIFIED",
+      "release_clearance": "APPROVED",
+      "approved_by": "Project owner: existing explicit 2026-11-01 authorization of original educational scripts/project-generated Kokoro audio, plus owner-submitted 2026-11-03 repair MP3s for website replacement (listening quality separately subject to live owner QA)",
+      "approved_on": "2026-11-03",
+      "remaining_rights_gate": "Scoped G Learning educational website use. Full automated QA and on-site listening quality check remain distinct; file metadata owner_audio_qa=PENDING is not a separately confirmed quality PASS.",
+      "source_originality_basis": "Exact normalized transcript parity with immutable curriculum 1.18.1, including 1/7/9 role turns; no modified questions or assessment keys.",
+      "license_basis": "Kokoro model and voices: Apache-2.0; https://huggingface.co/hexgrad/Kokoro-82M; owner-generated local audio.",
+      "rights_decision_ref": "docs/releases/2026-11-audio-rights-owner-clearance-decision.md"
+    },
+    {
+      "asset_path": "public/foundation-audio/LIS-A2-02-v2.mp3",
+      "sha256": "dc8ddb20211e05be2fdc86ffdb419582268255861f67aeb6f96dd1892b4671e3",
+      "model_or_engine": "Kokoro-82M v1.0 (owner local generator; Kokoro package 0.9.4, G Learning Audio Production v1.2)",
+      "voice_or_processing": "A=bf_emma; B=bm_fable; 24 kHz mono MP3; speed 0.9; 0.35 sec dialogue gap; balanced volumes=false",
+      "provenance_evidence": "Owner-uploaded 03-11-2026.zip original MP3 + per-asset JSON (SHA exact); Git blob 61d7480b6c109253498ebb25f8aaa69ab957f189; QA matched original curriculum speech script and 7 separate turns; docs/releases/2026-11-kokoro-3-listening-repair-evidence.json",
+      "source_originality": "VERIFIED",
+      "release_clearance": "APPROVED",
+      "approved_by": "Project owner: existing explicit 2026-11-01 authorization of original educational scripts/project-generated Kokoro audio, plus owner-submitted 2026-11-03 repair MP3s for website replacement (listening quality separately subject to live owner QA)",
+      "approved_on": "2026-11-03",
+      "remaining_rights_gate": "Scoped G Learning educational website use. Full automated QA and on-site listening quality check remain distinct; file metadata owner_audio_qa=PENDING is not a separately confirmed quality PASS.",
+      "source_originality_basis": "Exact normalized transcript parity with immutable curriculum 1.18.1, including 1/7/9 role turns; no modified questions or assessment keys.",
+      "license_basis": "Kokoro model and voices: Apache-2.0; https://huggingface.co/hexgrad/Kokoro-82M; owner-generated local audio.",
+      "rights_decision_ref": "docs/releases/2026-11-audio-rights-owner-clearance-decision.md"
+    },
+    {
+      "asset_path": "public/foundation-audio/LIS-B1-02-v2.mp3",
+      "sha256": "92a7b222b8cf08591f49ac9ad54c6aabf47ab3755af86460a2635ea8efbb011d",
+      "model_or_engine": "Kokoro-82M v1.0 (owner local generator; Kokoro package 0.9.4, G Learning Audio Production v1.2)",
+      "voice_or_processing": "A=bf_emma; B=bm_fable; 24 kHz mono MP3; speed 0.9; 0.35 sec dialogue gap; balanced volumes=true",
+      "provenance_evidence": "Owner-uploaded 03-11-2026.zip original MP3 + per-asset JSON (SHA exact); Git blob 1396c2f4076d80ed5ec2ed8576cdee6b5014107e; QA matched original curriculum speech script and 9 separate turns; docs/releases/2026-11-kokoro-3-listening-repair-evidence.json",
+      "source_originality": "VERIFIED",
+      "release_clearance": "APPROVED",
+      "approved_by": "Project owner: existing explicit 2026-11-01 authorization of original educational scripts/project-generated Kokoro audio, plus owner-submitted 2026-11-03 repair MP3s for website replacement (listening quality separately subject to live owner QA)",
+      "approved_on": "2026-11-03",
+      "remaining_rights_gate": "Scoped G Learning educational website use. Full automated QA and on-site listening quality check remain distinct; file metadata owner_audio_qa=PENDING is not a separately confirmed quality PASS.",
+      "source_originality_basis": "Exact normalized transcript parity with immutable curriculum 1.18.1, including 1/7/9 role turns; no modified questions or assessment keys.",
+      "license_basis": "Kokoro model and voices: Apache-2.0; https://huggingface.co/hexgrad/Kokoro-82M; owner-generated local audio.",
+      "rights_decision_ref": "docs/releases/2026-11-audio-rights-owner-clearance-decision.md"
     }
   ],
   "owner_originality_attestation": {
@@ -653,5 +698,18 @@
     "source": "Project owner explicit permission plus per-asset provenance, upstream license check and archival QA",
     "decision_document": "docs/releases/2026-11-audio-rights-owner-clearance-decision.md",
     "limitations": "Historical exact model revisions not fully documented for some sources; project originality is owner-attested and corroborated by local source mapping, not independently checked for all-world similarity. Production requires separate full QA and preview."
+  },
+  "owner_audio_repair_20261103": {
+    "provenance_document": "docs/releases/2026-11-kokoro-3-listening-repair-evidence.json",
+    "prior_versioned_mp3s_retained": true,
+    "current_manifest_updated": true,
+    "owner_upload_date": "2026-11-03",
+    "recorded_audio_qa": "PENDING (source sidecars; direct owner listening confirmation not explicitly supplied with ZIP)",
+    "rights_basis": "General scope approval 2026-11-01 plus owner-submitted original project Kokoro replacements",
+    "ids": [
+      "LIS-A1-01",
+      "LIS-A2-02",
+      "LIS-B1-02"
+    ]
   }
 }

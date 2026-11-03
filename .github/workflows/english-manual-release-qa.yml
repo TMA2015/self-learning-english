@@ -92,6 +92,9 @@ jobs:
           test -s dist/client/index.html
           test -s dist/client/foundation-audio/LIS-A2-01-v2.mp3
           test -s dist/client/foundation-audio/LIS-B1-01-v2.mp3
+          test -s dist/client/foundation-audio/LIS-A1-01-v2.mp3
+          test -s dist/client/foundation-audio/LIS-A2-02-v2.mp3
+          test -s dist/client/foundation-audio/LIS-B1-02-v2.mp3
           test -s dist/client/diagnostic-audio/DIAG-LIS-01-v1.mp3
           test ! -e dist/client/foundation-audio/LIS-A2-01-v1.mp3
           test ! -e dist/client/foundation-audio/LIS-B1-01-v1.mp3
@@ -117,7 +120,7 @@ jobs:
           tmp="$(mktemp)"
           trap 'rm -f "$tmp"' EXIT
           sleep 15
-          for asset in / /foundation-audio/LIS-A2-01-v2.mp3 /foundation-audio/LIS-B1-01-v2.mp3 /diagnostic-audio/DIAG-LIS-01-v1.mp3; do
+          for asset in / /foundation-audio/LIS-A2-01-v2.mp3 /foundation-audio/LIS-B1-01-v2.mp3 /foundation-audio/LIS-A1-01-v2.mp3 /foundation-audio/LIS-A2-02-v2.mp3 /foundation-audio/LIS-B1-02-v2.mp3 /diagnostic-audio/DIAG-LIS-01-v1.mp3; do
             valid=0
             for attempt in {1..10}; do
               if curl --silent --show-error --fail --location --connect-timeout 10 --max-time 20 --output "$tmp" "$base$asset" && test -s "$tmp"; then

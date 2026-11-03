@@ -21,9 +21,9 @@ for(const folder of folders){
 }
 actual.sort();
 assert.equal(register.schema_version,1);
-assert.equal(register.release,'1.18.0');
-assert.equal(actual.length,38,'Expected exactly 38 MP3 assets');
-assert.equal(register.entries.length,38,'Every MP3 requires a register record');
+assert.equal(register.release,'1.18.1');
+assert.equal(actual.length,41,'Expected 38 original + 3 versioned Kokoro replacement MP3s');
+assert.equal(register.entries.length,41,'Every original and replacement MP3 requires a record');
 const recorded=register.entries.map(x=>x.asset_path).sort();
 assert.deepEqual(recorded,actual,'Rights register must cover every MP3, with no extra or duplicate paths');
 const missing=[];
