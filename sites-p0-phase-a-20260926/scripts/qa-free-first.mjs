@@ -33,6 +33,7 @@ const coreTests=[
   "g3-firebase-ai-provider-contract.cjs",
   "g3-firebase-browser-bridge.cjs",
   "listening-audio-manifest-coverage.cjs",
+  "legacy-listening-kokoro-repair-preflight.cjs",
   "writing-step-feedback-ux.cjs",
   "pronunciation-runtime-audio.cjs",
 ];
