@@ -1,3 +1,5 @@
+> **ARCHIVED / HISTORICAL — 2026-11-03.** This is NOT an active SLE rulebook. Use only [SLE-MASTER-001](../../sites-p0-phase-a-20260926/docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md). Historical commands, older branches and old quota restrictions below may be obsolete; do not treat them as current instructions.
+
 # English Tutor — repeatable lesson authoring standard (v1)
 
 **Purpose:** Author, review, import and extend *real original* learning content in short batches, without rebuilding the application or turning each new lesson into a new software project. Applies to Grammar, Vocabulary, Reading, Listening, Writing, Speaking and Pronunciation. Current production is a private Site; GitHub JSON is source, **not** a learner-facing release by itself.

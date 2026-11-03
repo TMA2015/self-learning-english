@@ -1,3 +1,5 @@
+> **ARCHIVED / HISTORICAL — 2026-11-03.** This is NOT an active SLE rulebook. Use only [SLE-MASTER-001](../../sites-p0-phase-a-20260926/docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md). Historical commands, older branches and old quota restrictions below may be obsolete; do not treat them as current instructions.
+
 # G Learning · Learner Action & Feedback Standard v1
 
 **Owner-approved product principle:** Learners should never have to guess why an action cannot proceed or what to do next. Preserve Self-Learning English's own teaching method and academic progression; this standard is presentation/feedback guidance, not a replacement curriculum or an AI Curriculum Builder.

@@ -2,43 +2,25 @@
 
 **G Learning · Learn · Grow · Go**
 
-Self-Learning English (SLE) is a browser-based English self-study project. The source repository is **public**. The learner-facing application continues to use **Firebase Hosting**; public GitHub does not require a move to GitHub Pages.
+Self-Learning English (SLE) is a browser-based English self-study application. Public source repository: `TMA2015/self-learning-english`. Official Firebase Hosting: https://g-learning-english.web.app/ (project `roadmap-toan-ai`, **English** target only).
 
-## Current architecture
+## One authoritative standard
 
-- **Source and review:** [TMA2015/self-learning-english](https://github.com/TMA2015/self-learning-english), including curriculum candidates, tests, code and release evidence.
-- **Firebase project:** `roadmap-toan-ai` (G-Learning).
-- **English-only Hosting target:** `english`, mapped to `g-learning-english`; site: https://g-learning-english.web.app/.
-- **Math separation:** Self-Learning Math may share the Firebase project, but English deployments must never target the Math Hosting site or overwrite Math data.
-- **Learning flow:** deterministic scoring for suitable objective tasks; optional Firebase AI Logic assistance for supported Writing/Tutor experiences. AI answers are not automatic CEFR certification.
-- **Learner records:** browser-local progress and backup/restore are supported by the application; any optional cloud access is governed by deployed Firebase access controls, not GitHub repository visibility.
+**[SLE-MASTER-001 — Content, NotebookLM, QA, Release](sites-p0-phase-a-20260926/docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md)** is the **only current rules document**. Update this one file when policies change. Old `*_STANDARD`, dated `*_QA`, `*_RELEASE` and CI quota reports are historical evidence, never parallel rulebooks.
 
-## Repository layout and release status
+## Simple working process
 
-- `main` currently contains repository governance, workflow configuration and baseline content. It is **not** a complete application checkout.
-- The application source is maintained under `sites-p0-phase-a-20260926/` on development/release branches.
-- [Release PR #67](https://github.com/TMA2015/self-learning-english/pull/67) tracks the v1.18.0 source candidate; it must not be mistaken for a verified live release merely because it exists in Git.
-- [Stage 3 PR #72](https://github.com/TMA2015/self-learning-english/pull/72) is a separate draft integration based on the v1.18.0 release branch.
-- Promotion to Firebase production remains an explicit, QA-gated operation.
+1. Prepare source/educational material in one PR; use NotebookLM review when pedagogy, content meaning, answer keys, rubrics or evidence change. Keep permanent review sources and only the current temporary packet.
+2. GitHub Actions automatically runs **one `qa` check** on PRs targeting protected `main`; no Firebase Preview or manual QA button is needed.
+3. After applicable checks PASS, the owner explicitly authorizes a release by squash-merging a reviewed PR into `main` with `[release-english]` in the commit title. The single release workflow reruns QA and deploys **English Firebase LIVE only**, then checks the HTML and MP3s.
+4. Make a brief real-world spot check on the actual website (Reading/Vocabulary, Listening, feedback, saved draft, optional Gemini and mobile). Do not claim untested AI behavior, CEFR levels or offline capability.
 
-## Learning areas
+## Important boundaries
 
-Grammar, Vocabulary, Reading, Listening, Writing, Speaking, Pronunciation, Diagnostic Assessment, Skill Map, Error Bank, Suggested Practice and My Courses. These are website/app features; this project is separate from the ChatGPT-in-chat **English Tutor** project.
+- Application source: `sites-p0-phase-a-20260926/`. The Stage 3 v1.18.1 candidate contains 109 lessons and 913 activities with 38 currently authorized baseline MP3 assets.
+- Curriculum packages and historical attempts are version-pinned and must not be rewritten or regraded.
+- Browser progress uses localStorage, separate by origin. Do not clear existing learner browser data.
+- Keep Firebase service-account secrets, individual learner records and personal backups outside this public repo.
+- This website is separate from the ChatGPT-in-chat English Tutor project.
 
-## Quality assurance and deployment
-
-- **Pull request QA:** the public-repository workflow checks repository policy on PRs targeting `main`. When a complete application checkout is present, it runs frozen-dependency full release QA and a static build, **without deploying**.
-- **Manual production release:** `.github/workflows/english-manual-release-qa.yml` runs only on explicit dispatch with the exact protected release input and approved release branch. The release workflow alone may access its configured Firebase deployment secret.
-- Only GitHub-hosted standard Linux runners are permitted; no paid runners, scheduled checks, or broad push-triggered build storms.
-- Current CI rules and rollout constraints are in [`docs/releases/2026-11-ci-quota-policy.md`](docs/releases/2026-11-ci-quota-policy.md).
-
-## Security, licensing and academic review
-
-- Never commit service-account credentials, private tokens, student records or personal backups.
-- Firebase **Web API keys** and App Check **site keys** are public browser configuration, **not** Firebase Admin credentials. Protect backend access using Firebase Security Rules, App Check where applicable, API restrictions and authorized domains.
-- Public repository visibility does not itself grant unrestricted reuse rights to third-party assets. Respect source licenses and the project's recorded audio release clearances.
-- NotebookLM is the independent **academic reviewer**, not an implementation or deployment tool. Maintain distinct permanent baseline sources and temporary per-batch review sources; keep full review instructions in human-readable packets, with short NotebookLM prompts.
-
-## Contributing
-
-Propose changes through a PR; do not merge unreviewed historical branches, reset learner evidence or trigger a production deployment as part of routine QA.
+A successful Git merge is source integration, **not** proof of completed LIVE Firebase deployment.

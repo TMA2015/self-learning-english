@@ -1,3 +1,5 @@
+> **CANCELLED / HISTORICAL — 2026-11-03.** The Stage 3 Firebase Preview plan was withdrawn at the owner's request. The only active standard is [SLE-MASTER-001](../../sites-p0-phase-a-20260926/docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md). Do not use these old Preview steps.
+
 # Stage 3 v1.18.1 — Real Browser & Mobile Preview QA
 
 **State:** QA instructions only; **no preview deployment is implied by this file**. PR #72 remains Draft and SLE production remains unchanged.

@@ -1,3 +1,5 @@
+> **ARCHIVED / HISTORICAL — 2026-11-03.** This is NOT an active SLE rulebook. Use only [SLE-MASTER-001](../../sites-p0-phase-a-20260926/docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md). Historical commands, older branches and old quota restrictions below may be obsolete; do not treat them as current instructions.
+
 # Shared quality safeguards — Q2A
 
 All sidebar destinations, including the already-selected Foundation skill, must confirm the latest draft before leaving. Same-skill means return to its catalog. Serialize rapid navigation, block busy/recording actions, and leave the learner in place on failed writes. Recheck edits made during asynchronous saving. Never display save success for a failed write.
