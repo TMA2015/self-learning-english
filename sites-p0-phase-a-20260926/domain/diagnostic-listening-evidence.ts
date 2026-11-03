@@ -27,6 +27,33 @@ export function scoreDiagnosticListening(answers:ListeningAttempt[],sessionId:st
 }
 
 /**
+ * Continue the missing recordings of one completed, explicitly skipped
+ * Diagnostic without changing the original historical result. Only the
+ * previously verified contiguous playback answers are reusable.
+ *
+ * The follow-up receives a NEW session ID; finishing it appends a separate
+ * historical assessment, while original score/attempts remain intact.
+ */
+export function canCompleteSavedListening(session:DiagnosticV2):boolean{
+ const saved=session.listening;
+ return session.version===4&&!!session.result&&session.listeningSkipped===true&&
+  !session.listeningSupplementOf&&
+  !(session.writingReviews??[]).some(Boolean)&&
+  Array.isArray(saved)&&saved.length>0&&saved.length<coreListening.length&&
+  saved.every((a,i)=>a?.id===coreListening[i].id&&a.played===true&&
+   Number.isInteger(a.answer)&&a.answer>=0&&a.answer<coreListening[i].options.length);
+}
+export function startSavedListeningSupplement(session:DiagnosticV2,now=Date.now()):DiagnosticV2{
+ if(!canCompleteSavedListening(session)||!Number.isSafeInteger(now)||now<1)
+  throw new Error('There are no verified partial Listening answers to continue.');
+ const originalId=session.sessionId??String(session.startedAt);
+ return {...session,sessionId:`${originalId}-listening-supplement-${now}`,
+  startedAt:now,finishedAt:undefined,paused:false,
+  result:undefined,listeningSkipped:false,listeningEvidenceRecovered:undefined,
+  listeningSupplementOf:originalId};
+}
+
+/**
  * Read-only recovery for completed historical diagnostics with all 15 saved
  * verified playback answers but a missing Listening result. The original
  * persisted assessment and evidence log remain byte-identical.
