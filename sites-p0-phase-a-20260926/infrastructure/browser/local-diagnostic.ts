@@ -4,10 +4,9 @@ import {
   recordAnswer,
   type Attempt,
   type DiagnosticV2,
-  type ListeningResult,
   type WritingRating,
 } from '../../domain/learning-model';
-import {coreListening} from '../../domain/core-listening';
+import {scoreDiagnosticListening} from '../../domain/diagnostic-listening-evidence';
 import {localLearningRuntime} from './local-runtime';
 
 function wordCount(text:string){
@@ -38,57 +37,6 @@ function validateAttempts(source:Attempt[],version:DiagnosticV2['version']){
   return validated;
 }
 
-function scoreListening(
-  source:DiagnosticV2['listening'],
-  sessionId:string,
-  version:DiagnosticV2['version'],
-):ListeningResult|undefined{
-  if(!source?.length)return undefined;
-  if(version!==4)throw new Error('Browser-local Diagnostic supports the current v4 Listening screen only.');
-  if(
-    source.length!==coreListening.length||
-    source.some((answer,index)=>
-      answer.id!==coreListening[index].id||
-      !Number.isInteger(answer.answer)||
-      answer.answer<0||answer.answer>2||
-      answer.played!==true
-    )
-  )throw new Error('Finish all Listening questions, or skip this optional section.');
-
-  const subskills:ListeningResult['subskills']={};
-  let correct=0;
-  const at=Date.now();
-  const evidence=source.map((answer,index)=>{
-    const task=coreListening[index];
-    const ok=Number(answer.answer===task.correct);
-    correct+=ok;
-    subskills[task.tag]??={correct:0,total:0};
-    subskills[task.tag].correct+=ok;
-    subskills[task.tag].total++;
-    return {
-      id:`listen-${sessionId}-${answer.id}`,
-      activityId:`listen-${sessionId}`,
-      source:'listening' as const,
-      skill:'Listening' as const,
-      tag:task.tag,
-      level:task.level,
-      score:ok,
-      max:1,
-      at,
-      mode:'rubric' as const,
-      questionId:answer.id,
-      raw:answer,
-    };
-  });
-  return {
-    correct,
-    total:coreListening.length,
-    confidence:'low',
-    subskills,
-    note:'Synthetic speech screen; confidence remains low. Natural accents and conversation are not fully assessed.',
-    evidence,
-  };
-}
 
 export async function finishLocalDiagnostic(value:DiagnosticV2){
   if(value.version!==4)throw new Error('Start a new v4 Diagnostic to finish it in browser-local mode.');
@@ -107,7 +55,9 @@ export async function finishLocalDiagnostic(value:DiagnosticV2){
   validateWriting(writing,0);
   validateWriting(writing2,1);
   const attempts=validateAttempts(value.attempts,value.version);
-  const listening=value.listeningSkipped?undefined:scoreListening(value.listening,sessionId,value.version);
+  if(value.listeningSkipped!==true&&(!value.listening||value.listening.length===0))
+    throw new Error('Finish Listening or select Skip Listening explicitly before submitting. Your saved answers are unchanged.');
+  const listening=value.listeningSkipped===true?undefined:scoreDiagnosticListening(value.listening!,sessionId,Date.now());
   const result=makeDiagnostic(attempts,`${writing}\n\n${writing2}`,Date.now(),[],listening);
   const writingReviews:(WritingRating|null)[]=[null,null];
   const completed:DiagnosticV2={
