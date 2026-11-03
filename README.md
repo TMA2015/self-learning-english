@@ -2,97 +2,43 @@
 
 **G Learning · Learn · Grow · Go**
 
-Free-to-run, GitHub-first English learning platform designed for practical family self-study.
+Self-Learning English (SLE) is a browser-based English self-study project. The source repository is **public**. The learner-facing application continues to use **Firebase Hosting**; public GitHub does not require a move to GitHub Pages.
 
-## Current direction
+## Current architecture
 
-GitHub is the durable source of truth for application code, curriculum, answer keys, skill metadata, tests and release documentation.
+- **Source and review:** [TMA2015/self-learning-english](https://github.com/TMA2015/self-learning-english), including curriculum candidates, tests, code and release evidence.
+- **Firebase project:** `roadmap-toan-ai` (G-Learning).
+- **English-only Hosting target:** `english`, mapped to `g-learning-english`; site: https://g-learning-english.web.app/.
+- **Math separation:** Self-Learning Math may share the Firebase project, but English deployments must never target the Math Hosting site or overwrite Math data.
+- **Learning flow:** deterministic scoring for suitable objective tasks; optional Firebase AI Logic assistance for supported Writing/Tutor experiences. AI answers are not automatic CEFR certification.
+- **Learner records:** browser-local progress and backup/restore are supported by the application; any optional cloud access is governed by deployed Firebase access controls, not GitHub repository visibility.
 
-The project is moving from the existing private ChatGPT Site runtime toward a self-contained browser application that can be hosted on GitHub Pages.
+## Repository layout and release status
 
-Core learning should remain usable without AI, without a paid backend and without a mandatory account.
+- `main` currently contains repository governance, workflow configuration and baseline content. It is **not** a complete application checkout.
+- The application source is maintained under `sites-p0-phase-a-20260926/` on development/release branches.
+- [Release PR #67](https://github.com/TMA2015/self-learning-english/pull/67) tracks the v1.18.0 source candidate; it must not be mistaken for a verified live release merely because it exists in Git.
+- [Stage 3 PR #72](https://github.com/TMA2015/self-learning-english/pull/72) is a separate draft integration based on the v1.18.0 release branch.
+- Promotion to Firebase production remains an explicit, QA-gated operation.
 
 ## Learning areas
 
-- Grammar
-- Vocabulary
-- Reading
-- Listening
-- Writing
-- Speaking
-- Pronunciation
-- Diagnostic assessment
-- Skill Map
-- Error Bank
-- Suggested Practice
-- My Courses
+Grammar, Vocabulary, Reading, Listening, Writing, Speaking, Pronunciation, Diagnostic Assessment, Skill Map, Error Bank, Suggested Practice and My Courses. These are website/app features; this project is separate from the ChatGPT-in-chat **English Tutor** project.
 
-Objective exercises are scored deterministically from versioned content and answer keys. Learner evidence can feed progress, subskills, repeated mistakes and practice recommendations.
+## Quality assurance and deployment
 
-Practice accuracy is not automatically treated as CEFR certification.
+- **Pull request QA:** the public-repository workflow checks repository policy on PRs targeting `main`. When a complete application checkout is present, it runs frozen-dependency full release QA and a static build, **without deploying**.
+- **Manual production release:** `.github/workflows/english-manual-release-qa.yml` runs only on explicit dispatch with the exact protected release input and approved release branch. The release workflow alone may access its configured Firebase deployment secret.
+- Only GitHub-hosted standard Linux runners are permitted; no paid runners, scheduled checks, or broad push-triggered build storms.
+- Current CI rules and rollout constraints are in [`docs/releases/2026-11-ci-quota-policy.md`](docs/releases/2026-11-ci-quota-policy.md).
 
-## GitHub-first architecture
+## Security, licensing and academic review
 
-Target runtime:
+- Never commit service-account credentials, private tokens, student records or personal backups.
+- Firebase **Web API keys** and App Check **site keys** are public browser configuration, **not** Firebase Admin credentials. Protect backend access using Firebase Security Rules, App Check where applicable, API restrictions and authorized domains.
+- Public repository visibility does not itself grant unrestricted reuse rights to third-party assets. Respect source licenses and the project's recorded audio release clearances.
+- NotebookLM is the independent **academic reviewer**, not an implementation or deployment tool. Maintain distinct permanent baseline sources and temporary per-batch review sources; keep full review instructions in human-readable packets, with short NotebookLM prompts.
 
-```
-GitHub repository
-  -> static application
-  -> GitHub Pages
+## Contributing
 
-Browser
-  -> versioned curriculum
-  -> deterministic scoring
-  -> learner evidence
-  -> Skill Map / Error Bank / Progress
-  -> local persistence
-  -> backup / restore
-
-Optional AI
-  -> Writing feedback
-  -> future Speaking feedback
-  -> optional explanations / recommendations
-```
-
-AI is an enhancement layer, not a dependency for ordinary Grammar, Vocabulary, Reading or appropriately designed Listening practice.
-
-## Current application source
-
-The most complete application source currently lives under:
-
-`sites-p0-phase-a-20260926/`
-
-That source already separates:
-
-- `domain/` — learning model and scoring contracts;
-- `application/` — provider/storage-independent use cases;
-- `content/` — versioned curriculum and academic assets;
-- `infrastructure/` — storage/auth/AI adapters;
-- `app/` — UI and controllers;
-- `tests/` — academic and application regression gates.
-
-The GitHub-first migration replaces hosting adapters rather than rewriting the academic core.
-
-## Data and privacy
-
-Browser-local mode is intended to support learner progress without a server account.
-
-No learner writing, recordings, personal profiles, API keys, database dumps or production credentials belong in this repository.
-
-Historical curriculum IDs, content versions and learner evidence are immutable.
-
-## AI boundary
-
-Do not embed Gemini/OpenAI secrets in a GitHub Pages bundle.
-
-Future automatic AI should remain provider-independent and use a protected service path such as Firebase AI Logic or another server-side proxy. Self-Learning English and Self-Learning Math may share the same architectural AI layer while keeping project configuration isolated when useful.
-
-## Academic review
-
-NotebookLM is used as an independent academic-review tool for curriculum batches.
-
-Permanent project/rule sources are kept separate from temporary per-batch review sources. New skill tags remain closed to runtime use until they are independently reviewed and explicitly approved.
-
-## Status
-
-The existing private Site remains a migration/reference runtime until GitHub-first parity gates pass. Do not reset or rewrite historical learner data during the migration.
+Propose changes through a PR; do not merge unreviewed historical branches, reset learner evidence or trigger a production deployment as part of routine QA.
