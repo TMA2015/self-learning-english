@@ -9,7 +9,7 @@ export function validDiagnosticListening(answers:ListeningAttempt[]|undefined):a
 }
 
 export function scoreDiagnosticListening(answers:ListeningAttempt[],sessionId:string,at:number):ListeningResult{
- if(!validDiagnosticListening(answers))throw new Error('Finish every Listening audio question or explicitly skip Listening.');
+ if(!validDiagnosticListening(answers))throw new Error('Finish all Listening questions, or explicitly skip Listening.');
  const subskills:ListeningResult['subskills']={};
  let correct=0;
  const evidence:Evidence[]=answers.map((a,i)=>{
