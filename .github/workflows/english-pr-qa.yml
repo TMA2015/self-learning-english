@@ -1,8 +1,8 @@
-name: SLE Pull Request QA (public, no deploy)
+name: SLE PR QA
 
 on:
   pull_request:
-    branches: [main, 'release/nov2026-content-v1.18.0']
+    branches: [main]
 
 permissions:
   contents: read

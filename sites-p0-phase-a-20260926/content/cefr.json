@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "scale": [
+    "Pre-A1",
+    "A1",
+    "A2",
+    "B1",
+    "B2"
+  ],
+  "ceiling": "B2",
+  "certification": false,
+  "descriptors": {
+    "Pre-A1": "Isolated words with support",
+    "A1": "Simple phrases about familiar needs",
+    "A2": "Short linked sentences about familiar topics",
+    "B1": "Connected text with reasons on familiar subjects",
+    "B2": "Clear developed text and supported arguments"
+  }
+}

@@ -1,0 +1,375 @@
+{
+  "format": "self-learning-english.grammar-hotfix-review-packet",
+  "schema_version": 1,
+  "packet_id": "GRAMMAR-1601-RELATIVE-THAT-HOTFIX-20261003",
+  "status": "DRAFT_FOR_TARGETED_INDEPENDENT_ACADEMIC_REVIEW_NOT_IMPORTABLE",
+  "production_reference": {
+    "sites_version": "v30",
+    "curriculum_version": "1.6.0",
+    "lessons": 59,
+    "activities": 499
+  },
+  "issue": {
+    "discovered_by": "post-import representative browser QA",
+    "lesson_id": "GRA-A2-16",
+    "activity_id": "GRA-A2-16-Q5",
+    "observed_problem": "The short-answer item accepts only 'who' in 'The coach ___ works with our team is from Da Nang.', rejecting the valid defining-relative pronoun 'that'."
+  },
+  "authoritative_reference_summary": [
+    "Cambridge English Grammar Today: that can replace who/whom/which in defining relative clauses and can refer to people, animals and things; that is more informal.",
+    "British Council LearnEnglish: who or that can be used to talk about people in defining relative clauses."
+  ],
+  "proposed_lesson": {
+    "id": "GRA-A2-16",
+    "module": "grammar",
+    "cefr_target": "A2",
+    "title": "Defining relative clauses: who, which and that",
+    "estimated_minutes": 26,
+    "objectives": [
+      "Use who or that to identify a person with a defining relative clause.",
+      "Use which or that to identify a thing with a defining relative clause.",
+      "Avoid repeating a subject pronoun inside a simple subject relative clause."
+    ],
+    "explanation": {
+      "en": "A defining relative clause tells us exactly which person or thing we mean. Use who or that for people in defining clauses: The student who sits by the window is my cousin; The coach that works with us is from Da Nang. Use which or that for things: The book which is on the desk is mine; The book that is on the desk is mine. That is used only in defining relative clauses and is often more informal than who or which. In these simple subject relative clauses, do not repeat the subject with he/she/it: the girl who sings, not the girl who she sings.",
+      "vi": "Mệnh đề quan hệ xác định giúp nói rõ người/vật nào. Với người, có thể dùng who hoặc that trong mệnh đề xác định; với vật, dùng which hoặc that. That thường thân mật hơn và không dùng trong mệnh đề quan hệ không xác định. Trong dạng chủ ngữ đơn giản, không lặp lại he/she/it sau who/which/that."
+    },
+    "examples": [
+      "PERSON · The teacher who helps us is Mr Long.",
+      "PERSON · The coach that works with us is from Da Nang.",
+      "THING · The app which tracks my reading is useful.",
+      "THING · The bag that is under the chair is mine.",
+      "NO REPEATED SUBJECT · the girl who sings, not the girl who she sings."
+    ],
+    "activities": [
+      {
+        "id": "GRA-A2-16-Q1",
+        "type": "single_choice",
+        "prompt": "Complete: The student ___ sits next to me is very kind.",
+        "options": [
+          {
+            "id": "A",
+            "text": "who"
+          },
+          {
+            "id": "B",
+            "text": "which"
+          },
+          {
+            "id": "C",
+            "text": "where"
+          },
+          {
+            "id": "D",
+            "text": "what"
+          }
+        ],
+        "answer": {
+          "correct_option_id": "A"
+        },
+        "feedback": {
+          "explanation_en": "Who introduces a defining relative clause about a person."
+        },
+        "skill_tags": [
+          "grammar.relative_clauses"
+        ],
+        "evidence_weight": 1
+      },
+      {
+        "id": "GRA-A2-16-Q2",
+        "type": "single_choice",
+        "prompt": "Complete: The tablet ___ is on the desk belongs to our class.",
+        "options": [
+          {
+            "id": "A",
+            "text": "who"
+          },
+          {
+            "id": "B",
+            "text": "that"
+          },
+          {
+            "id": "C",
+            "text": "where"
+          },
+          {
+            "id": "D",
+            "text": "whose is"
+          }
+        ],
+        "answer": {
+          "correct_option_id": "B"
+        },
+        "feedback": {
+          "explanation_en": "That can introduce a defining relative clause about a thing."
+        },
+        "skill_tags": [
+          "grammar.relative_clauses"
+        ],
+        "evidence_weight": 1
+      },
+      {
+        "id": "GRA-A2-16-Q3",
+        "type": "single_choice",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          {
+            "id": "A",
+            "text": "The bike which is outside is mine."
+          },
+          {
+            "id": "B",
+            "text": "The bike who is outside is mine."
+          },
+          {
+            "id": "C",
+            "text": "The bike which it is outside is mine."
+          },
+          {
+            "id": "D",
+            "text": "The bike what is outside is mine."
+          }
+        ],
+        "answer": {
+          "correct_option_id": "A"
+        },
+        "feedback": {
+          "explanation_en": "Which can refer to a thing, and no extra subject pronoun is needed."
+        },
+        "skill_tags": [
+          "grammar.relative_clauses"
+        ],
+        "evidence_weight": 1
+      },
+      {
+        "id": "GRA-A2-16-Q4",
+        "type": "single_choice",
+        "prompt": "Complete: I know a girl ___ draws excellent comics.",
+        "options": [
+          {
+            "id": "A",
+            "text": "who"
+          },
+          {
+            "id": "B",
+            "text": "which"
+          },
+          {
+            "id": "C",
+            "text": "what"
+          },
+          {
+            "id": "D",
+            "text": "it"
+          }
+        ],
+        "answer": {
+          "correct_option_id": "A"
+        },
+        "feedback": {
+          "explanation_en": "A person can be identified with who + verb."
+        },
+        "skill_tags": [
+          "grammar.relative_clauses"
+        ],
+        "evidence_weight": 1
+      },
+      {
+        "id": "GRA-A2-16-Q5",
+        "type": "short_answer",
+        "prompt": "Write only the missing word: The coach ___ works with our team is from Da Nang.",
+        "answer": {
+          "accepted_answers": [
+            "who",
+            "that"
+          ],
+          "normalization": [
+            "trim",
+            "casefold",
+            "collapse_spaces",
+            "strip_terminal_punctuation"
+          ]
+        },
+        "feedback": {
+          "explanation_en": "Coach is a person in a defining relative clause, so both who and that are valid here."
+        },
+        "skill_tags": [
+          "grammar.relative_clauses"
+        ],
+        "evidence_weight": 1
+      },
+      {
+        "id": "GRA-A2-16-Q6",
+        "type": "short_answer",
+        "prompt": "Write only the missing word: The book ___ is on the top shelf is mine. Use a relative word for a thing.",
+        "answer": {
+          "accepted_answers": [
+            "which",
+            "that"
+          ],
+          "normalization": [
+            "trim",
+            "casefold",
+            "collapse_spaces",
+            "strip_terminal_punctuation"
+          ]
+        },
+        "feedback": {
+          "explanation_en": "Both which and that can introduce this defining relative clause about a thing."
+        },
+        "skill_tags": [
+          "grammar.relative_clauses"
+        ],
+        "evidence_weight": 1
+      },
+      {
+        "id": "GRA-A2-16-Q7",
+        "type": "single_choice",
+        "prompt": "Which sentence correctly identifies a person?",
+        "options": [
+          {
+            "id": "A",
+            "text": "The boy who won the race is my cousin."
+          },
+          {
+            "id": "B",
+            "text": "The boy which won the race is my cousin."
+          },
+          {
+            "id": "C",
+            "text": "The boy who he won the race is my cousin."
+          },
+          {
+            "id": "D",
+            "text": "The boy what won the race is my cousin."
+          }
+        ],
+        "answer": {
+          "correct_option_id": "A"
+        },
+        "feedback": {
+          "explanation_en": "Who refers to the person and acts as the subject of won; no he is added."
+        },
+        "skill_tags": [
+          "grammar.relative_clauses"
+        ],
+        "evidence_weight": 1
+      },
+      {
+        "id": "GRA-A2-16-Q8",
+        "type": "single_choice",
+        "prompt": "Combine the ideas correctly: “I use an app. The app records my study time.”",
+        "options": [
+          {
+            "id": "A",
+            "text": "I use an app that records my study time."
+          },
+          {
+            "id": "B",
+            "text": "I use an app who records my study time."
+          },
+          {
+            "id": "C",
+            "text": "I use an app that it records my study time."
+          },
+          {
+            "id": "D",
+            "text": "I use an app records that my study time."
+          }
+        ],
+        "answer": {
+          "correct_option_id": "A"
+        },
+        "feedback": {
+          "explanation_en": "That introduces the defining clause about the app without repeating it."
+        },
+        "skill_tags": [
+          "grammar.relative_clauses"
+        ],
+        "evidence_weight": 1
+      },
+      {
+        "id": "GRA-A2-16-Q9",
+        "type": "single_choice",
+        "prompt": "Which sentence avoids an unnecessary repeated subject?",
+        "options": [
+          {
+            "id": "A",
+            "text": "The girl who sits near the door is Mai."
+          },
+          {
+            "id": "B",
+            "text": "The girl who she sits near the door is Mai."
+          },
+          {
+            "id": "C",
+            "text": "The girl which she sits near the door is Mai."
+          },
+          {
+            "id": "D",
+            "text": "The girl who her sits near the door is Mai."
+          }
+        ],
+        "answer": {
+          "correct_option_id": "A"
+        },
+        "feedback": {
+          "explanation_en": "Who already acts as the subject of sits, so no extra she/her is needed."
+        },
+        "skill_tags": [
+          "grammar.relative_clauses"
+        ],
+        "evidence_weight": 1
+      },
+      {
+        "id": "GRA-A2-16-Q10",
+        "type": "single_choice",
+        "prompt": "Choose the best sentence to identify one specific bag.",
+        "options": [
+          {
+            "id": "A",
+            "text": "The bag that has a yellow star is mine."
+          },
+          {
+            "id": "B",
+            "text": "The bag who has a yellow star is mine."
+          },
+          {
+            "id": "C",
+            "text": "The bag that it has a yellow star is mine."
+          },
+          {
+            "id": "D",
+            "text": "The bag what has yellow star is mine."
+          }
+        ],
+        "answer": {
+          "correct_option_id": "A"
+        },
+        "feedback": {
+          "explanation_en": "That correctly introduces a defining clause about the thing and does not repeat it."
+        },
+        "skill_tags": [
+          "grammar.relative_clauses"
+        ],
+        "evidence_weight": 1
+      }
+    ]
+  },
+  "required_review_questions": [
+    "Is 'that' grammatically valid as the subject relative pronoun in the defining clause 'The coach that works with our team is from Da Nang'?",
+    "Should GRA-A2-16-Q5 accept both 'who' and 'that'?",
+    "Is the revised lesson objective/explanation accurate and still suitable for A2 learners?",
+    "Do any of the other GRA-A2-16 activities become ambiguous or invalid after teaching that both who and that can refer to people in defining clauses?",
+    "Is the statement that 'that' is used only in defining relative clauses and is often more informal than who or which appropriate here?"
+  ],
+  "expected_output": {
+    "verdicts": [
+      "PASS",
+      "REVISE",
+      "BLOCK"
+    ],
+    "require_exact_item_check": true,
+    "require_lesson_level_check": true
+  }
+}

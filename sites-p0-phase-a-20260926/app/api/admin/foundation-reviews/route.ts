@@ -1,0 +1,7 @@
+import {NextRequest,NextResponse} from 'next/server';
+import {principal} from '../../identity';
+import {accountAcademic} from '@/infrastructure/academic-runtime';
+import {AcademicError} from '@/domain/academic';
+const headers={'Cache-Control':'no-store'};
+export async function GET(request:NextRequest){const user=principal(request);if(!user)return NextResponse.json({error:'Sign in required.'},{status:401});if(!user.roles.includes('admin'))return NextResponse.json({error:'Administrator access required.'},{status:403});try{return NextResponse.json({reviews:await accountAcademic(user.accountId).reviews()},{headers})}catch{return NextResponse.json({error:'Reviews could not be loaded.'},{status:503})}}
+export async function POST(request:NextRequest){const user=principal(request);if(!user)return NextResponse.json({error:'Sign in required.'},{status:401});if(!user.roles.includes('admin'))return NextResponse.json({error:'Administrator access required.'},{status:403});try{const text=await request.text();if(text.length>12000)throw new AcademicError('Review is too long.');const b=JSON.parse(text);return NextResponse.json(await accountAcademic(user.accountId).approve(b.id,b.feedback,b.scores,b.confirmed===true),{headers})}catch(e){return NextResponse.json({error:e instanceof AcademicError?e.message:'Review was not saved.'},{status:e instanceof AcademicError?e.status:400})}}

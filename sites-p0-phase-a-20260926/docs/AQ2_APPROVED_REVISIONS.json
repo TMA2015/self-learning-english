@@ -1,0 +1,90 @@
+{
+  "packet": "EN-ASSESSMENT-QUALITY-REVIEW-01-20261015",
+  "approval": "Owner supplied exact approved text and PASS verdict in this task",
+  "items": {
+    "GRA-A2-11-Q5": [
+      "Which sentence has the correct form after will?",
+      [
+        "I will close the window.",
+        "I will to close the window.",
+        "I will closing the window.",
+        "I will closed the window."
+      ],
+      "Will is followed by the base form close, not to close, closing or closed."
+    ],
+    "GRA-A2-14-Q3": [
+      "Which sentence uses the if-clause correctly?",
+      [
+        "If I will finish early, I will stay at home.",
+        "If I finish early, I will stay at home.",
+        "If I finishes early, I will stay at home.",
+        "If I finish early, I will staying at home."
+      ],
+      "In a basic first conditional, use present simple in the if-clause and will plus a base verb in the result clause."
+    ],
+    "GRA-A2-14-Q10": [
+      "You may miss the last bus tonight. Which sentence gives a realistic future plan?",
+      [
+        "If we miss the last bus, we will book a taxi.",
+        "If we will miss the last bus, we booked a taxi yesterday.",
+        "If we missed every bus, we are book a taxi.",
+        "If miss bus, booking taxi."
+      ],
+      "A realistic future possibility can use if + present simple and will + base verb."
+    ],
+    "GRA-A2-06-Q13": [
+      "Trip instructions say: sturdy shoes are compulsory; bringing a map is optional because the guide provides maps. Select one sentence that expresses BOTH rules correctly.",
+      [
+        "We must not wear sturdy shoes, and we have to bring a map.",
+        "We do not have to wear sturdy shoes, and we must bring a map.",
+        "We have to wear sturdy shoes, and we do not have to bring a map.",
+        "We have to wear sturdy shoes, and we must not bring a map."
+      ],
+      "Have to shows the required shoes; do not have to means a map is not required, rather than forbidden."
+    ],
+    "GRA-A2-05-Q11": [
+      "Maya has decided to paint a sign at home tomorrow, but she has not arranged a meeting with anyone. Select one sentence that expresses HER INTENTION.",
+      [
+        "Maya painted a sign yesterday.",
+        "Maya paints a sign every Friday.",
+        "Maya is going to paint a sign tomorrow.",
+        "Maya has painted a sign already."
+      ],
+      "Be going to describes Maya’s previously decided future intention; the other options describe past actions or a routine."
+    ],
+    "GRA-B1-03-Q4": [
+      "I opened my bag and realized that I ___ my wallet at home.",
+      [
+        "had forgotten",
+        "have forgotten",
+        "had forget",
+        "was forgetting"
+      ],
+      "Forgetting the wallet happened before the later realization, so past perfect had forgotten is appropriate."
+    ]
+  },
+  "feedback": {
+    "WRI-B1-02-Q2": "A clear opinion opening states the writer’s position on the question directly.",
+    "WRI-B1-02-Q8": "This wording is clear and neutral, making it appropriate for a school opinion paragraph.",
+    "WRI-A2-04-Q5": "A polite question naming a specific place and time sounds friendly and clear.",
+    "WRI-B1-03-Q4": "An effective recommendation selects an option and gives a relevant reason connected to the reader’s needs.",
+    "WRI-B1-03-Q6": "Neutral wording gives a relevant reason without exaggeration or an insulting tone.",
+    "SPE-A2-02-Q1": "The sentence directly identifies what the speaker cannot find, so the listener understands the problem.",
+    "SPE-A2-02-Q4": "The because-clause clearly explains why the speaker needs help now.",
+    "SPE-A1-01-Q3": "A natural information question uses standard question word order: What + do + subject + base verb ...?",
+    "SPE-B1-03-Q1": "The problem statement identifies a specific place, difficulty and time, making the issue easy to understand.",
+    "WRI-B1-02-Q3": "The reason directly supports the proposed homework-free evening by explaining how students could benefit.",
+    "WRI-B1-03-Q7": "The sequence builds the recommendation from relevant evidence.",
+    "SPE-B1-02-Q2": "The response states a choice and supports it with a reason.",
+    "SPE-B1-03-Q3": "The proposal is realistic, specific and connected to the problem."
+  },
+  "review02": {
+    "approval": "Owner supplied NotebookLM Review 02 PASS and exact four strings",
+    "feedback": {
+      "WRI-B1-02-Q3": "The reason directly supports the proposed homework-free evening by explaining how students could benefit.",
+      "WRI-B1-03-Q7": "The sequence builds the recommendation from relevant evidence.",
+      "SPE-B1-02-Q2": "The response states a choice and supports it with a reason.",
+      "SPE-B1-03-Q3": "The proposal is realistic, specific and connected to the problem."
+    }
+  }
+}

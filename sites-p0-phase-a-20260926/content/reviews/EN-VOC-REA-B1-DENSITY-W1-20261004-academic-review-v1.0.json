@@ -1,0 +1,60 @@
+{
+  "format": "self-learning-english.academic-review-v1",
+  "schema_version": "1.0",
+  "packet_id": "EN-VOC-REA-B1-DENSITY-W1-20261004",
+  "batch_id": "VOCAB-READING-B1-DENSITY-WAVE1-20261004",
+  "base_curriculum": "1.9.0",
+  "proposed_curriculum": "1.10.0",
+  "reviewer": "NotebookLM independent academic review",
+  "review_rounds": 1,
+  "final_verdict": "PASS",
+  "scope": {
+    "lessons": 4,
+    "activities": 40,
+    "lesson_ids": [
+      "VOC-B1-02",
+      "VOC-B1-03",
+      "REA-B1-02",
+      "REA-B1-03"
+    ]
+  },
+  "academic_summary": {
+    "grammar_accuracy": "PASS",
+    "naturalness": "PASS",
+    "ambiguity_and_determinism": "PASS",
+    "cefr_targeting": "PASS",
+    "explanations": "PASS",
+    "vietnamese_support": "PASS",
+    "distractors": "PASS",
+    "skill_tags": "PASS",
+    "lesson_contract": "PASS",
+    "originality_and_safety": "PASS"
+  },
+  "focus_checks": {
+    "word_formation": "PASS",
+    "collocations": "PASS",
+    "reading_text_support": "PASS",
+    "reading_skill_tag_alignment": "PASS"
+  },
+  "reviewed_existing_tags": [
+    "vocabulary.word_formation",
+    "vocabulary.collocations",
+    "vocabulary.meaning_in_context",
+    "reading.gist",
+    "reading.detail",
+    "reading.inference",
+    "reading.author_purpose",
+    "reading.vocabulary_in_context"
+  ],
+  "new_runtime_tags": [],
+  "release_boundary": {
+    "import_authorized": false,
+    "deploy_authorized": false,
+    "next_steps": [
+      "compose immutable 1.10.0 candidate",
+      "verify all 1.9.0 lessons preserved",
+      "run regression and import-preview gates",
+      "advance GitHub-first browser runtime after technical PASS"
+    ]
+  }
+}

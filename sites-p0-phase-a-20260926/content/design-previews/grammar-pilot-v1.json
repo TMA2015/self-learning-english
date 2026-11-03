@@ -1,0 +1,137 @@
+{
+  "previewId": "grammar-design-pilot-v1",
+  "baselineCurriculumVersion": "1.15.0",
+  "baselineCurriculumRawSHA256": "981a7273a9158c9e53a0e3336de1a88892024f617330d797d534f9e293dc4426",
+  "lessons": [
+    {
+      "id": "GRA-A1-01",
+      "title": "Be: am, is and are",
+      "cefr_target": "A1",
+      "baseline_goals": [
+        "Use am, is and are with the right subject.",
+        "Make negative sentences and questions with be.",
+        "Distinguish a description from an action verb.",
+        "Complete a gap with the missing phrase only."
+      ],
+      "baseline_lesson_sha256": "183513a80d5843cc1a1930a7b43783a41820427b9a2dfd7fe8e00b675048cf01",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_NOTEBOOKLM_PILOT_01_R2.md",
+      "source_packet_sha256": "a448f485ba01c08af89cd27c3e8db1fc05f13f16b4a48c3785e34fd4b2b7f0b1",
+      "sections": [
+        {
+          "title": "Core rule / Meaning",
+          "markdown": "We use *be* to tell who or what someone/something is, or to describe how/where they are. For beginner sentences, choose the correct form for the subject."
+        },
+        {
+          "title": "When to use",
+          "markdown": "- **Name/identity:** She is my sister.\n- **Feeling/description:** She is happy.\n- **Place:** They are in the library.\n- Distinguish *be* used with descriptions from an action verb in simple examples: *She is happy* versus *She plays*."
+        },
+        {
+          "title": "Formulas / patterns",
+          "markdown": "| Purpose | Pattern | Example |\n|---|---|---|\n| Affirmative | **I am... / He, she, it is... / You, we, they are...** + (name / feeling / place / age) | I am eleven. / They are students. |\n| Negative | Subject + **am/is/are + not** + (name / feeling / place / age / description) | He isn't late. / We aren't tired. |\n| Yes/no question | **Am / Is / Are + subject** + (ready / here / a student)? | Are you ready? |\n| Short answer | **Yes/No + subject + matching am/is/are** (add **not** for negative) | Yes, I am. |"
+        },
+        {
+          "title": "Worked examples",
+          "markdown": "- *I am eleven. She is my sister. They are students.* → The subject determines **am/is/are**.\n- *He isn't late. We aren't tired.* → Put **not** after *be* to make a negative.\n- *Are you ready? Yes, I am.* → In a yes/no question, put *be* before the subject.\n- *The books ___ on the desk.* → Write **are**, not the whole sentence, when the task asks for the missing word only."
+        },
+        {
+          "title": "Common mistakes",
+          "markdown": "- *She are happy* ✗ → *She is happy* ✓ (singular subject agreement).\n- *Does she is ready?* ✗ → *Is she ready?* ✓ (do not add **do/does** to a basic *be* question).\n- In a gap-fill, typing *The books are on the desk* instead of **are** may violate the exercise format even though the whole sentence is grammatical. A format issue must not automatically be labelled the same as a grammar misconception."
+        },
+        {
+          "title": "Remember",
+          "markdown": "Learn *I am / he–she–it is / you–we–they are* first. For simple questions with *be*, put the form of *be* before the subject."
+        },
+        {
+          "title": "Vietnamese Support (opt-in)",
+          "markdown": "*Động từ “be” đổi theo chủ ngữ: I am; he/she/it is; you/we/they are. Khi hỏi, đưa am/is/are lên trước chủ ngữ. Khi làm bài điền khuyết, chỉ nhập phần còn thiếu nếu đề yêu cầu.*"
+        }
+      ]
+    },
+    {
+      "id": "GRA-A2-11",
+      "title": "Choosing future forms: will, going to and present continuous",
+      "cefr_target": "A2",
+      "baseline_goals": [
+        "Use will for spontaneous decisions and simple predictions.",
+        "Use be going to for prior intentions and predictions based on present evidence.",
+        "Use the present continuous for arranged future plans with a clear time or other arrangement detail."
+      ],
+      "baseline_lesson_sha256": "e92c391ae90e062c6a6572f9d6ce96644558caf9d8750d862381c4ca387477ec",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_NOTEBOOKLM_PILOT_01_R2.md",
+      "source_packet_sha256": "a448f485ba01c08af89cd27c3e8db1fc05f13f16b4a48c3785e34fd4b2b7f0b1",
+      "sections": [
+        {
+          "title": "Core rule / Meaning",
+          "markdown": "More than one English form can refer to the future. Choose the one that best matches the information and intent in the situation; these are useful tendencies, **not absolute one-to-one rules**."
+        },
+        {
+          "title": "When to use",
+          "markdown": "| Form | Typical meaning in this lesson | Context cue | Worked example |\n|---|---|---|---|\n| **will + base verb** | Spontaneous decision / offer at the moment of speaking; also some predictions | The decision is made now | The phone is ringing — **I'll answer** it. |\n| **am/is/are going to + base verb** | A prior intention or a prediction based on clear current evidence | Already planned, or evidence visible now | **I'm going to save** for a new bike. / Look at those clouds — **it's going to rain**. |\n| **am/is/are + verb-ing** | A future arrangement already organised | Appointment, agreed time or other arrangement detail | **I'm meeting** Mai at four. |"
+        },
+        {
+          "title": "Formulas / patterns",
+          "markdown": "- **Will:** Subject + **will + base verb** → *I will answer it.*\n- **Going to:** Subject + **am/is/are + going to + base verb** → *She is going to practise tonight.*\n- **Present continuous for an arrangement:** Subject + **am/is/are + verb-ing** (+ future arrangement context) → *We're seeing the film at 7 p.m.*"
+        },
+        {
+          "title": "Worked examples",
+          "markdown": "- *The phone is ringing — **I'll answer** it.* → A decision made at the moment of speaking.\n- *I'm going to save for a new bike.* → A previously formed intention.\n- *Look at those clouds. It's going to rain.* → Present evidence motivates the prediction.\n- *I'm meeting Mai at four.* → An existing arrangement, with a clear time."
+        },
+        {
+          "title": "Common mistakes",
+          "markdown": "- *I will answering it* ✗ → *I will answer it* ✓ (base form after **will**).\n- *She going to practise tonight* ✗ → *She is going to practise tonight* ✓ (include appropriate **be**).\n- *I am meet Mai at four* ✗ → *I am meeting Mai at four* ✓ (**be + -ing**).\n- A whole grammatically correct sentence entered in a “write only the missing phrase” box is a **format mismatch**, not necessarily a grammar error."
+        },
+        {
+          "title": "Quick decision guide",
+          "markdown": "- Deciding right now? → **will** is often a good choice.\n- Intention existed before speaking, or clear evidence now? → **going to** is often a good choice.\n- Specific future arrangement already agreed? → **present continuous** is often a good choice.\n- Ask: What does the full situation tell us? Without context, forms can overlap."
+        },
+        {
+          "title": "Vietnamese Support (opt-in)",
+          "markdown": "*Will: quyết định/lời đề nghị ngay khi nói. Be going to: dự định đã có hoặc dự đoán dựa vào dấu hiệu. Hiện tại tiếp diễn: lịch hẹn/kế hoạch đã sắp xếp. Đây là xu hướng thường gặp, không phải ba quy tắc tuyệt đối loại trừ nhau.*"
+        }
+      ]
+    },
+    {
+      "id": "GRA-B1-10",
+      "title": "Defining and non-defining relative clauses",
+      "cefr_target": "B1",
+      "baseline_goals": [
+        "Distinguish defining relative clauses from non-defining clauses that add extra information.",
+        "Use commas and who/which correctly in non-defining relative clauses.",
+        "Recognize when an object relative pronoun can be omitted in a defining clause."
+      ],
+      "baseline_lesson_sha256": "a9b1935d29119ce361a3ff58a276ccd817db78e90d24ff7594b9918eb3c343f3",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_NOTEBOOKLM_PILOT_01_R2.md",
+      "source_packet_sha256": "a448f485ba01c08af89cd27c3e8db1fc05f13f16b4a48c3785e34fd4b2b7f0b1",
+      "sections": [
+        {
+          "title": "Core rule / Meaning",
+          "markdown": "Some relative clauses identify **which** person/thing we mean (*defining*). Others add extra information about an already identified person/thing (*non-defining*)."
+        },
+        {
+          "title": "When to use",
+          "markdown": "| Type | Meaning | Punctuation | Example |\n|---|---|---|---|\n| **Defining** | Identifies the intended person/thing; information is needed to identify it | Normally no commas | The student **who won the prize** is in my class. |\n| **Non-defining** | Gives extra information about someone/something already identified | Set the extra clause off with commas | My aunt, **who lives in Hue**, is visiting us. |"
+        },
+        {
+          "title": "Relative words and omission",
+          "markdown": "- **who** refers to a person; **which** refers to a thing. In a **non-defining clause**, do **not** use **that** instead of **who/which**.\n- In a **defining clause**, *that* may be possible for people or things in relevant contexts, subject to clause constraints..\n- **Object relative pronoun** in a defining clause may sometimes be omitted: *The film (that) we watched was excellent* → *The film we watched was excellent*.\n- **Subject relative pronoun** should not be omitted in that structure: *The student who won the prize...*; not *The student won the prize is...*.\n- **Non-defining relative clause:** **Never omit the relative pronoun**, whether it functions as a subject or an object. The option to omit an object relative pronoun applies **only to defining clauses** (and only in the relevant grammatical environment)."
+        },
+        {
+          "title": "Worked examples",
+          "markdown": "- *The student who won the prize is in my class.* → The clause tells us **which student**.\n- *My aunt, who lives in Hue, is visiting us.* → The relative clause adds information about *my aunt*.\n- *This camera, which I bought last year, still works well.* → **which** adds information about *this camera*; commas mark the extra clause.\n- *The film we watched was excellent.* → Object relative pronoun is omitted in a defining clause."
+        },
+        {
+          "title": "Common mistakes",
+          "markdown": "- *My aunt, that lives in Hue, is visiting us* ✗ → *My aunt, who lives in Hue, is visiting us* ✓ (non-defining clause: not **that**).\n- *The student won the prize is in my class* ✗ → *The student who won the prize is in my class* ✓ (cannot omit subject relative pronoun there).\n- Treat commas as **meaningful** in this lesson: do not assume defining and non-defining uses are interchangeable."
+        },
+        {
+          "title": "Remember",
+          "markdown": "First ask whether the relative clause *identifies which one* or *adds extra information*. Then choose punctuation and pronoun accordingly. Never omit a relative pronoun in a non-defining clause; in a defining clause, only an object relative pronoun may sometimes be omitted."
+        },
+        {
+          "title": "Vietnamese Support (opt-in)",
+          "markdown": "*Mệnh đề xác định giúp chỉ rõ người/vật và thường không có dấu phẩy; đôi khi có thể bỏ đại từ quan hệ làm tân ngữ. Mệnh đề không xác định chỉ bổ sung thông tin, có dấu phẩy, không dùng “that” và **không được lược bỏ đại từ quan hệ**.*"
+        }
+      ]
+    }
+  ]
+}

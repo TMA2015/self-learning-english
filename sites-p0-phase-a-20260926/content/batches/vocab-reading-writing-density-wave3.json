@@ -1,0 +1,1850 @@
+{
+  "format": "ai-english-tutor.curriculum-batch",
+  "schema_version": 1,
+  "batch_id": "VOCAB-READING-WRITING-DENSITY-WAVE3-20261005",
+  "base_version": "1.11.0",
+  "target_version": "1.12.0",
+  "status": "academic_pass_ready_for_1.12.0_composition",
+  "metadata": {
+    "status": "vocab_reading_writing_density_wave3_academic_pass_ready_for_candidate_no_import",
+    "course_title": "English Foundation · A1–B1 developing curriculum",
+    "course_description": "Original self-study curriculum with density expansion across Vocabulary, Reading and Writing.",
+    "curriculum_principle": "Expand thinner skill areas without changing reviewed historical lessons. Reuse reviewed skill tags only. Extended Writing remains review-required."
+  },
+  "insert_after": [
+    {
+      "after": "VOC-A2-03",
+      "ids": [
+        "VOC-A2-04"
+      ]
+    },
+    {
+      "after": "VOC-B1-03",
+      "ids": [
+        "VOC-B1-04"
+      ]
+    },
+    {
+      "after": "REA-A2-04",
+      "ids": [
+        "REA-A2-05"
+      ]
+    },
+    {
+      "after": "REA-B1-03",
+      "ids": [
+        "REA-B1-04"
+      ]
+    },
+    {
+      "after": "WRI-A2-03",
+      "ids": [
+        "WRI-A2-04"
+      ]
+    },
+    {
+      "after": "WRI-B1-02",
+      "ids": [
+        "WRI-B1-03"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "VOC-A2-04",
+      "module": "vocabulary",
+      "cefr_target": "A2",
+      "title": "Feelings, reactions and useful adjective pairs",
+      "estimated_minutes": 21,
+      "objectives": [
+        "Use common adjective–preposition combinations for feelings and reactions.",
+        "Distinguish natural combinations such as interested in, worried about and proud of.",
+        "Choose vocabulary from sentence meaning as well as grammar."
+      ],
+      "explanation": {
+        "en": "Many common adjectives are usually followed by a particular preposition. Useful A2 combinations include interested in, worried about, excited about, proud of, good at, afraid of, ready for and responsible for. Learn the whole phrase, not only the adjective. Check the meaning of the sentence before choosing the preposition.",
+        "vi": "Nhiều tính từ thường đi với một giới từ cố định. Một số cụm A2 hữu ích: interested in, worried about, excited about, proud of, good at, afraid of, ready for, responsible for. Nên học theo cả cụm."
+      },
+      "examples": [
+        "INTERESTED IN · I am interested in photography.",
+        "WORRIED ABOUT · She is worried about the test.",
+        "GOOD AT · Minh is good at drawing.",
+        "READY FOR · We are ready for the trip."
+      ],
+      "activities": [
+        {
+          "id": "VOC-A2-04-Q1",
+          "type": "single_choice",
+          "prompt": "Choose the natural phrase: I am interested ___ joining the art club.",
+          "options": [
+            {
+              "id": "A",
+              "text": "in"
+            },
+            {
+              "id": "B",
+              "text": "on"
+            },
+            {
+              "id": "C",
+              "text": "at"
+            },
+            {
+              "id": "D",
+              "text": "for"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Interested in is the standard adjective–preposition combination."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-04-Q2",
+          "type": "single_choice",
+          "prompt": "Lan is worried ___ tomorrow's science test.",
+          "options": [
+            {
+              "id": "A",
+              "text": "about"
+            },
+            {
+              "id": "B",
+              "text": "of"
+            },
+            {
+              "id": "C",
+              "text": "in"
+            },
+            {
+              "id": "D",
+              "text": "for"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Worried about introduces the thing that causes concern."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-04-Q3",
+          "type": "single_choice",
+          "prompt": "Which sentence is natural?",
+          "options": [
+            {
+              "id": "A",
+              "text": "My brother is good at chess."
+            },
+            {
+              "id": "B",
+              "text": "My brother is good in chess."
+            },
+            {
+              "id": "C",
+              "text": "My brother is good for chess."
+            },
+            {
+              "id": "D",
+              "text": "My brother is good about chess."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Good at is used for an activity or skill."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-04-Q4",
+          "type": "single_choice",
+          "prompt": "The students were proud ___ the poster they made together.",
+          "options": [
+            {
+              "id": "A",
+              "text": "of"
+            },
+            {
+              "id": "B",
+              "text": "at"
+            },
+            {
+              "id": "C",
+              "text": "in"
+            },
+            {
+              "id": "D",
+              "text": "with"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Proud of is the natural combination."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-04-Q5",
+          "type": "single_choice",
+          "prompt": "In 'I'm excited about the school trip,' what does excited most nearly mean?",
+          "options": [
+            {
+              "id": "A",
+              "text": "very happy and looking forward to it"
+            },
+            {
+              "id": "B",
+              "text": "angry because it is late"
+            },
+            {
+              "id": "C",
+              "text": "unable to understand it"
+            },
+            {
+              "id": "D",
+              "text": "responsible for planning it"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Excited describes strong positive anticipation."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-04-Q6",
+          "type": "single_choice",
+          "prompt": "Choose the natural phrase: Are you ready ___ the presentation?",
+          "options": [
+            {
+              "id": "A",
+              "text": "for"
+            },
+            {
+              "id": "B",
+              "text": "of"
+            },
+            {
+              "id": "C",
+              "text": "at"
+            },
+            {
+              "id": "D",
+              "text": "about"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Ready for introduces the event or thing you are prepared for."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-04-Q7",
+          "type": "short_answer",
+          "prompt": "Complete the phrase with one preposition: My little cousin is afraid ___ dogs.",
+          "answer": {
+            "accepted_answers": [
+              "of"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Afraid of is the standard combination."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-04-Q8",
+          "type": "single_choice",
+          "prompt": "Which sentence uses responsible for correctly?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Mai is responsible for bringing the class list."
+            },
+            {
+              "id": "B",
+              "text": "Mai is responsible about bringing the class list."
+            },
+            {
+              "id": "C",
+              "text": "Mai is responsible at bringing the class list."
+            },
+            {
+              "id": "D",
+              "text": "Mai is responsible to bringing the class list."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Responsible for is followed by the duty or task."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "VOC-B1-04",
+      "module": "vocabulary",
+      "cefr_target": "B1",
+      "title": "Verbs for explaining evidence and change",
+      "estimated_minutes": 24,
+      "objectives": [
+        "Use common B1 verbs for describing evidence, causes and changes.",
+        "Distinguish show, suggest and prove according to strength of evidence.",
+        "Use cause, lead to, result in, increase, decrease and remain in clear contexts."
+      ],
+      "explanation": {
+        "en": "When explaining information, choose verbs that match the strength and direction of the evidence. Show can introduce a clear pattern; suggest is more cautious; prove is much stronger and should not be used when the evidence is limited. For change, useful patterns include lead to + noun, result in + noun, cause + noun, increase/decrease, and remain + adjective or noun phrase.",
+        "vi": "Khi mô tả bằng chứng, cần chọn động từ đúng mức độ chắc chắn. show có thể nêu một xu hướng rõ; suggest thận trọng hơn; prove rất mạnh. Với thay đổi có thể dùng lead to, result in, cause, increase, decrease, remain."
+      },
+      "examples": [
+        "EVIDENCE · The survey suggests that students prefer shorter meetings.",
+        "CAUSE · Heavy rain caused a delay.",
+        "RESULT · Better signs led to fewer mistakes.",
+        "STABILITY · Attendance remained stable."
+      ],
+      "activities": [
+        {
+          "id": "VOC-B1-04-Q1",
+          "type": "single_choice",
+          "prompt": "A small survey of one class found that many students like quiet study rooms. Which verb is most cautious?",
+          "options": [
+            {
+              "id": "A",
+              "text": "suggests"
+            },
+            {
+              "id": "B",
+              "text": "proves"
+            },
+            {
+              "id": "C",
+              "text": "guarantees"
+            },
+            {
+              "id": "D",
+              "text": "commands"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Suggests reports limited evidence without claiming certainty."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-04-Q2",
+          "type": "single_choice",
+          "prompt": "Choose the natural phrase: Clearer instructions can ___ fewer mistakes.",
+          "options": [
+            {
+              "id": "A",
+              "text": "lead to"
+            },
+            {
+              "id": "B",
+              "text": "lead at"
+            },
+            {
+              "id": "C",
+              "text": "result from into"
+            },
+            {
+              "id": "D",
+              "text": "cause to"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Lead to + noun is a standard pattern for describing a result."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-04-Q3",
+          "type": "single_choice",
+          "prompt": "The number of late arrivals fell from 20 to 8. Which verb best describes the change?",
+          "options": [
+            {
+              "id": "A",
+              "text": "decreased"
+            },
+            {
+              "id": "B",
+              "text": "remained"
+            },
+            {
+              "id": "C",
+              "text": "proved"
+            },
+            {
+              "id": "D",
+              "text": "caused"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Decreased means became smaller in number or amount."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-04-Q4",
+          "type": "single_choice",
+          "prompt": "Choose the best word: Attendance stayed at about 90% for three months; it ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "remained stable"
+            },
+            {
+              "id": "B",
+              "text": "increased sharply"
+            },
+            {
+              "id": "C",
+              "text": "resulted in"
+            },
+            {
+              "id": "D",
+              "text": "proved"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Remained stable means it stayed at roughly the same level."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-04-Q5",
+          "type": "single_choice",
+          "prompt": "Which sentence uses result in naturally?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The room change resulted in a shorter walk."
+            },
+            {
+              "id": "B",
+              "text": "The room change resulted to a shorter walk."
+            },
+            {
+              "id": "C",
+              "text": "The room change resulted a shorter walk."
+            },
+            {
+              "id": "D",
+              "text": "The room change was result in a shorter walk."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Result in is followed by the consequence."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-04-Q6",
+          "type": "single_choice",
+          "prompt": "Which statement uses prove too strongly?",
+          "options": [
+            {
+              "id": "A",
+              "text": "One short survey proves that all teenagers dislike homework."
+            },
+            {
+              "id": "B",
+              "text": "The survey suggests that this class prefers shorter tasks."
+            },
+            {
+              "id": "C",
+              "text": "The results show a difference between the two groups."
+            },
+            {
+              "id": "D",
+              "text": "The data indicate that attendance improved."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A single small survey cannot justify a universal claim about all teenagers."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-04-Q7",
+          "type": "short_answer",
+          "prompt": "Complete with one verb: Better lighting may ___ concentration by making text easier to read.",
+          "answer": {
+            "accepted_answers": [
+              "improve",
+              "increase"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "Improve or increase can fit this context by describing a positive change in concentration."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-04-Q8",
+          "type": "single_choice",
+          "prompt": "What does 'indicate' mean here? 'The results indicate that students need more practice with inference questions.'",
+          "options": [
+            {
+              "id": "A",
+              "text": "give evidence or signs that something is likely"
+            },
+            {
+              "id": "B",
+              "text": "make the students practise immediately"
+            },
+            {
+              "id": "C",
+              "text": "remove uncertainty completely"
+            },
+            {
+              "id": "D",
+              "text": "change the test result"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Indicate means point to or provide evidence for a conclusion."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "REA-A2-05",
+      "module": "reading",
+      "cefr_target": "A2",
+      "title": "Two club updates: compare practical details",
+      "estimated_minutes": 20,
+      "objectives": [
+        "Find practical details in two short school notices.",
+        "Compare times, places and requirements across the notices.",
+        "Choose the best option for a simple learner need using textual evidence."
+      ],
+      "explanation": {
+        "en": "When two notices are presented together, first identify which details belong to each option. Make a small mental table: day, time, place, what to bring and whether registration is needed. For a comparison question, use only information that appears in the text.",
+        "vi": "Khi có hai thông báo, hãy tách thông tin của từng lựa chọn: ngày, giờ, địa điểm, đồ cần mang và có cần đăng ký hay không. Câu so sánh phải dựa trên dữ kiện trong bài."
+      },
+      "examples": [
+        "DETAIL · Which club is on Tuesday?",
+        "COMPARE · Which club finishes later?",
+        "REQUIREMENT · Which club needs registration?",
+        "CHOICE · Which option fits a student who is free only on Tuesday?"
+      ],
+      "reading_asset": {
+        "id": "TXT-CLUB-UPDATES-A2",
+        "title": "Club updates for next week",
+        "display_to_learner": true,
+        "body": "Two clubs have changed their plans for next week. The Photography Club will now meet on Tuesday in Room 18 from 3:30 to 4:30. Students should bring a phone or camera if possible, but the club will provide paper for notes. New members are welcome and do not need to register before the meeting. The Cooking Club will meet on Wednesday in the school kitchen from 4:00 to 5:30. Students must register by Monday because the kitchen has only twelve places. They do not need to bring ingredients, but they should bring a notebook. Both clubs are free this month."
+      },
+      "activities": [
+        {
+          "id": "REA-A2-05-Q1",
+          "type": "single_choice",
+          "prompt": "Why was this text written?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To give updated information about two clubs"
+            },
+            {
+              "id": "B",
+              "text": "To explain how to cook a meal"
+            },
+            {
+              "id": "C",
+              "text": "To describe a photography competition"
+            },
+            {
+              "id": "D",
+              "text": "To compare two school subjects"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The text gives changed times, places and requirements for two clubs."
+          },
+          "skill_tags": [
+            "reading.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-05-Q2",
+          "type": "single_choice",
+          "prompt": "When does the Photography Club meet?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Tuesday, 3:30–4:30"
+            },
+            {
+              "id": "B",
+              "text": "Wednesday, 4:00–5:30"
+            },
+            {
+              "id": "C",
+              "text": "Monday, 3:30–4:30"
+            },
+            {
+              "id": "D",
+              "text": "Tuesday, 4:00–5:30"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The Photography Club meets on Tuesday from 3:30 to 4:30."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-05-Q3",
+          "type": "single_choice",
+          "prompt": "Where does the Cooking Club meet?",
+          "options": [
+            {
+              "id": "A",
+              "text": "In the school kitchen"
+            },
+            {
+              "id": "B",
+              "text": "In Room 18"
+            },
+            {
+              "id": "C",
+              "text": "In the library"
+            },
+            {
+              "id": "D",
+              "text": "In the sports hall"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The Cooking Club meets in the school kitchen."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-05-Q4",
+          "type": "single_choice",
+          "prompt": "Which club requires students to register before attending?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Cooking Club"
+            },
+            {
+              "id": "B",
+              "text": "Photography Club"
+            },
+            {
+              "id": "C",
+              "text": "Both clubs"
+            },
+            {
+              "id": "D",
+              "text": "Neither club"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Cooking Club students must register by Monday."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-05-Q5",
+          "type": "single_choice",
+          "prompt": "What should Cooking Club students bring?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A notebook"
+            },
+            {
+              "id": "B",
+              "text": "Ingredients"
+            },
+            {
+              "id": "C",
+              "text": "A camera"
+            },
+            {
+              "id": "D",
+              "text": "Paper for notes"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The notice says ingredients are provided, but students should bring a notebook."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-05-Q6",
+          "type": "single_choice",
+          "prompt": "Which club finishes later?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Cooking Club"
+            },
+            {
+              "id": "B",
+              "text": "Photography Club"
+            },
+            {
+              "id": "C",
+              "text": "They finish at the same time"
+            },
+            {
+              "id": "D",
+              "text": "The text does not say"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Cooking Club finishes at 5:30; Photography Club finishes at 4:30."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-05-Q7",
+          "type": "single_choice",
+          "prompt": "A student is free only on Tuesday and does not want to register in advance. Which club fits best?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Photography Club"
+            },
+            {
+              "id": "B",
+              "text": "Cooking Club"
+            },
+            {
+              "id": "C",
+              "text": "Both clubs"
+            },
+            {
+              "id": "D",
+              "text": "Neither club"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Photography Club is on Tuesday and new members do not need to register first."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-05-Q8",
+          "type": "single_choice",
+          "prompt": "What does 'provide' mean in 'the club will provide paper for notes'?",
+          "options": [
+            {
+              "id": "A",
+              "text": "give or make available"
+            },
+            {
+              "id": "B",
+              "text": "ask students to buy"
+            },
+            {
+              "id": "C",
+              "text": "remove"
+            },
+            {
+              "id": "D",
+              "text": "write on"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Provide means give or make something available for use."
+          },
+          "skill_tags": [
+            "reading.vocabulary_in_context"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "REA-B1-04",
+      "module": "reading",
+      "cefr_target": "B1",
+      "title": "Why some study breaks work better",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Identify the writer's main claim and supporting contrast.",
+        "Distinguish examples from the principle they illustrate.",
+        "Infer why timing and break activity both affect concentration.",
+        "Interpret cautious language in a balanced advice text."
+      ],
+      "explanation": {
+        "en": "Advice texts often combine a main principle with examples and limits. At B1, look for contrasts such as in contrast and while, and cautious phrases such as can, may and depends on. These show that the writer is not claiming one rule works for everyone.",
+        "vi": "Văn bản lời khuyên thường có nguyên tắc chính, ví dụ và giới hạn. Hãy chú ý các từ nối tương phản như in contrast, while và các từ thận trọng như can, may, depends on."
+      },
+      "examples": [
+        "MAIN CLAIM · A break should help the next work period.",
+        "CONTRAST · Stretching creates a pause; a fast social feed may be hard to leave.",
+        "LIMIT · The exact pattern is not identical for everyone.",
+        "INFERENCE · Combine timing and activity to understand why a break helps or harms focus."
+      ],
+      "reading_asset": {
+        "id": "TXT-STUDY-BREAKS-B1",
+        "title": "Why some study breaks work better",
+        "display_to_learner": true,
+        "body": "Short breaks can help during a long study session, but the effect depends on what a learner does before, during and after the break. A useful break gives attention a chance to reset without making it difficult to return to the task. Standing up, stretching, getting water or looking away from a screen for a few minutes can work well because these activities create a clear pause. In contrast, opening a fast-moving game or social feed may turn a five-minute break into twenty minutes and fill the learner's attention with new information. The timing also matters. Taking a break every few minutes can interrupt concentration before it becomes useful, while working for a very long period without stopping may lead to tired, careless work. A practical approach is to choose a reasonable work block, notice when attention is becoming less effective, and then take a short planned break. The exact pattern will not be identical for everyone. The important point is that a break should support the next period of focused work rather than become a new activity that is hard to leave."
+      },
+      "activities": [
+        {
+          "id": "REA-B1-04-Q1",
+          "type": "single_choice",
+          "prompt": "Which sentence best states the writer's main view?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A good break should make it easier to return to focused work."
+            },
+            {
+              "id": "B",
+              "text": "Every learner should take a break every five minutes."
+            },
+            {
+              "id": "C",
+              "text": "Social media is always harmful."
+            },
+            {
+              "id": "D",
+              "text": "Long study sessions should never include breaks."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The final sentence and earlier examples support the idea that a break should help the next work period."
+          },
+          "skill_tags": [
+            "reading.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-04-Q2",
+          "type": "single_choice",
+          "prompt": "Why can stretching or getting water be useful during a break?",
+          "options": [
+            {
+              "id": "A",
+              "text": "They create a clear pause without adding much new information."
+            },
+            {
+              "id": "B",
+              "text": "They make the learner finish the whole task immediately."
+            },
+            {
+              "id": "C",
+              "text": "They guarantee perfect concentration."
+            },
+            {
+              "id": "D",
+              "text": "They replace the need to study."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The text says these activities let attention reset while keeping the break simple."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-04-Q3",
+          "type": "single_choice",
+          "prompt": "What risk does the writer mention about a fast-moving game or social feed?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A short break may become much longer and fill attention with new information."
+            },
+            {
+              "id": "B",
+              "text": "The learner may forget how to use a phone."
+            },
+            {
+              "id": "C",
+              "text": "The study task may become easier."
+            },
+            {
+              "id": "D",
+              "text": "The screen may stop working."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The passage says such activities can extend the break and make returning harder."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-04-Q4",
+          "type": "single_choice",
+          "prompt": "Why might taking breaks every few minutes be unhelpful?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It can interrupt concentration before a useful period of focus develops."
+            },
+            {
+              "id": "B",
+              "text": "It always makes students tired."
+            },
+            {
+              "id": "C",
+              "text": "It means the learner studies for too long."
+            },
+            {
+              "id": "D",
+              "text": "It removes all new information."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The text explicitly says very frequent breaks can interrupt concentration too early."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-04-Q5",
+          "type": "single_choice",
+          "prompt": "What does 'a reasonable work block' mean in context?",
+          "options": [
+            {
+              "id": "A",
+              "text": "a sensible period of focused work before a break"
+            },
+            {
+              "id": "B",
+              "text": "a difficult homework question"
+            },
+            {
+              "id": "C",
+              "text": "a fixed rule for every learner"
+            },
+            {
+              "id": "D",
+              "text": "a social-media timer"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The phrase refers to a sensible period of work, not an identical fixed duration for everyone."
+          },
+          "skill_tags": [
+            "reading.vocabulary_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-04-Q6",
+          "type": "single_choice",
+          "prompt": "What can be inferred about the writer's view of one universal study schedule?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The writer does not think one exact schedule suits everyone."
+            },
+            {
+              "id": "B",
+              "text": "The writer recommends exactly twenty minutes for all learners."
+            },
+            {
+              "id": "C",
+              "text": "The writer believes timing never matters."
+            },
+            {
+              "id": "D",
+              "text": "The writer thinks breaks should be random."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The passage says the exact pattern will not be identical for everyone."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-04-Q7",
+          "type": "single_choice",
+          "prompt": "Why does the writer use 'In contrast'?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To compare simple reset activities with breaks that may be hard to leave"
+            },
+            {
+              "id": "B",
+              "text": "To introduce a definition of concentration"
+            },
+            {
+              "id": "C",
+              "text": "To repeat the same advice"
+            },
+            {
+              "id": "D",
+              "text": "To change the topic to homework deadlines"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "In contrast introduces an opposing type of break activity."
+          },
+          "skill_tags": [
+            "reading.author_purpose"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-04-Q8",
+          "type": "single_choice",
+          "prompt": "What does 'depends on' show about the writer's claim?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The effect changes according to several conditions."
+            },
+            {
+              "id": "B",
+              "text": "The writer is completely certain about one rule."
+            },
+            {
+              "id": "C",
+              "text": "The writer has no opinion."
+            },
+            {
+              "id": "D",
+              "text": "The effect is unrelated to learner behaviour."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Depends on signals that the result varies with conditions."
+          },
+          "skill_tags": [
+            "reading.author_purpose",
+            "reading.vocabulary_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-04-Q9",
+          "type": "single_choice",
+          "prompt": "Which learner action best follows the writer's advice?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Work for a planned period, notice falling attention, take a short simple break, then return."
+            },
+            {
+              "id": "B",
+              "text": "Open a social feed with no time limit whenever work feels difficult."
+            },
+            {
+              "id": "C",
+              "text": "Take a break after every sentence."
+            },
+            {
+              "id": "D",
+              "text": "Study for hours without stopping even when making careless mistakes."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "This sequence matches the practical approach described in the passage."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-04-Q10",
+          "type": "single_choice",
+          "prompt": "Which detail best supports the idea that break quality matters as well as break length?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Different break activities can either reset attention or fill it with new information."
+            },
+            {
+              "id": "B",
+              "text": "The text contains several paragraphs."
+            },
+            {
+              "id": "C",
+              "text": "Some tasks are difficult."
+            },
+            {
+              "id": "D",
+              "text": "A learner can drink water."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The contrast between simple reset activities and attention-grabbing activities directly supports this idea."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "WRI-A2-04",
+      "module": "writing",
+      "cefr_target": "A2",
+      "title": "Reply to a message and solve a small problem",
+      "estimated_minutes": 27,
+      "objectives": [
+        "Identify every practical point in a short message task.",
+        "Organise a friendly reply that answers questions and proposes a solution.",
+        "Use clear time/place language and a suitable closing.",
+        "Write an independent response for AI or human review."
+      ],
+      "explanation": {
+        "en": "A useful A2 reply should answer the exact questions in the message. First underline the practical points: what changed, what the other person needs to know, and what solution you can offer. Then plan a simple order: greeting → answer/update → solution → final question or friendly closing. Keep times and places precise. Do not add private addresses or invented details that the task does not give you.",
+        "vi": "Một email A2 cần trả lời đúng từng ý trong tin nhắn. Hãy xác định: điều gì thay đổi, người nhận cần biết gì, và bạn đề xuất giải pháp nào. Sắp xếp: lời chào → thông tin → giải pháp → câu hỏi/lời kết."
+      },
+      "examples": [
+        "TASK · Answer the changed time and suggest a new meeting point.",
+        "ORDER · Greeting → update → solution → closing.",
+        "PRECISION · 'Meet at the library entrance at 4:15.'",
+        "CHECK · Did I answer every practical question?"
+      ],
+      "activities": [
+        {
+          "id": "WRI-A2-04-Q1",
+          "type": "single_choice",
+          "prompt": "A friend says the club now starts 30 minutes later and asks where to meet. What must your reply do?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Mention the new time and give a clear meeting place"
+            },
+            {
+              "id": "B",
+              "text": "Describe your whole week"
+            },
+            {
+              "id": "C",
+              "text": "Explain why clubs exist"
+            },
+            {
+              "id": "D",
+              "text": "Write only 'OK'"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The reply must respond to both practical points."
+          },
+          "skill_tags": [
+            "writing.task_understanding"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A2-04-Q2",
+          "type": "single_choice",
+          "prompt": "Which meeting-place phrase is clearest?",
+          "options": [
+            {
+              "id": "A",
+              "text": "outside the library entrance"
+            },
+            {
+              "id": "B",
+              "text": "somewhere near school"
+            },
+            {
+              "id": "C",
+              "text": "at a place"
+            },
+            {
+              "id": "D",
+              "text": "over there"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A specific public meeting point is easiest to follow."
+          },
+          "skill_tags": [
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A2-04-Q3",
+          "type": "single_choice",
+          "prompt": "Which order is clearest for a short friendly reply?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Greeting → updated information → solution → closing"
+            },
+            {
+              "id": "B",
+              "text": "Closing → unrelated story → greeting"
+            },
+            {
+              "id": "C",
+              "text": "Solution → no context → goodbye → question"
+            },
+            {
+              "id": "D",
+              "text": "Only a list of times"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "This order helps the reader understand the change and what to do next."
+          },
+          "skill_tags": [
+            "writing.organization"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A2-04-Q4",
+          "type": "single_choice",
+          "prompt": "Choose the grammatically correct sentence.",
+          "options": [
+            {
+              "id": "A",
+              "text": "The club now starts at 4:30."
+            },
+            {
+              "id": "B",
+              "text": "The club now start at 4:30."
+            },
+            {
+              "id": "C",
+              "text": "The club now starting at 4:30."
+            },
+            {
+              "id": "D",
+              "text": "The club is start at 4:30."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The singular subject club takes starts in the present simple."
+          },
+          "skill_tags": [
+            "writing.grammar"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A2-04-Q5",
+          "type": "single_choice",
+          "prompt": "Which sentence sounds friendly but clear?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Could we meet outside the library entrance at 4:15?"
+            },
+            {
+              "id": "B",
+              "text": "You must appear there immediately."
+            },
+            {
+              "id": "C",
+              "text": "Meeting. Library. 4:15."
+            },
+            {
+              "id": "D",
+              "text": "Whatever place is fine maybe."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The first sentence is polite, specific and natural."
+          },
+          "skill_tags": [
+            "writing.register",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A2-04-Q6",
+          "type": "single_choice",
+          "prompt": "What should you check before sending?",
+          "options": [
+            {
+              "id": "A",
+              "text": "That every question in the original message has an answer"
+            },
+            {
+              "id": "B",
+              "text": "That the email uses the longest words possible"
+            },
+            {
+              "id": "C",
+              "text": "That you added a private phone number"
+            },
+            {
+              "id": "D",
+              "text": "That every sentence begins with I"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Task completion matters more than difficult vocabulary."
+          },
+          "skill_tags": [
+            "writing.task_understanding"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-A2-04-Q7",
+          "type": "extended_response",
+          "prompt": "Your classmate Sam planned to meet you for Art Club at 4:00 outside Room 5. The teacher has moved the club to the library and it now starts at 4:30. Write Sam a friendly message. Explain the change, suggest a clear public meeting place and time before the club starts, and ask Sam to confirm. Aim for about 70–100 words. Do not include private phone numbers or home addresses.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-WRITING-A2",
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.idea_development",
+            "writing.organization",
+            "writing.register",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Submitted. This response needs AI or human review; the platform does not assign an automatic CEFR score."
+          },
+          "word_range_guidance": {
+            "min": 70,
+            "max": 100,
+            "not_a_quality_score": true
+          }
+        }
+      ],
+      "writing_process": [
+        "analyse_prompt",
+        "brainstorm",
+        "outline",
+        "draft",
+        "review",
+        "revise"
+      ]
+    },
+    {
+      "id": "WRI-B1-03",
+      "module": "writing",
+      "cefr_target": "B1",
+      "title": "Compare two options and recommend one",
+      "estimated_minutes": 31,
+      "objectives": [
+        "Select relevant comparison criteria from a practical brief.",
+        "Compare two options without inventing unsupported facts.",
+        "Make a clear recommendation supported by evidence and a limitation.",
+        "Use cohesive language and neutral register in an independent response."
+      ],
+      "explanation": {
+        "en": "A B1 recommendation should not simply list two options. Decide which criteria matter for the reader, compare the options using those criteria, then recommend one. Useful language includes both options…, whereas…, however…, because…, and therefore…. A strong response may acknowledge one disadvantage of the recommended option, but the final choice should remain clear and evidence-based.",
+        "vi": "Bài gợi ý B1 cần chọn tiêu chí quan trọng, so sánh hai lựa chọn theo tiêu chí đó rồi đưa ra đề xuất rõ ràng. Có thể nêu một hạn chế của phương án được chọn, nhưng kết luận phải nhất quán và dựa trên dữ kiện."
+      },
+      "examples": [
+        "CRITERIA · time, cost, location, learner needs",
+        "COMPARE · Option A is closer, whereas Option B lasts longer.",
+        "LIMIT · However, Option A has fewer places.",
+        "RECOMMEND · Therefore, I would choose Option A because…"
+      ],
+      "activities": [
+        {
+          "id": "WRI-B1-03-Q1",
+          "type": "single_choice",
+          "prompt": "A task asks you to compare two after-school courses for a friend who has limited time. Which criterion is most relevant?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Schedule and duration"
+            },
+            {
+              "id": "B",
+              "text": "The colour of the course poster"
+            },
+            {
+              "id": "C",
+              "text": "The teacher's favourite food"
+            },
+            {
+              "id": "D",
+              "text": "The number of letters in the course title"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Schedule and duration directly relate to the friend's limited time."
+          },
+          "skill_tags": [
+            "writing.task_understanding"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-03-Q2",
+          "type": "single_choice",
+          "prompt": "Which sentence makes a real comparison?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Course A is shorter, whereas Course B includes an extra weekly session."
+            },
+            {
+              "id": "B",
+              "text": "Course A exists. Course B exists."
+            },
+            {
+              "id": "C",
+              "text": "Courses are activities."
+            },
+            {
+              "id": "D",
+              "text": "There are two options."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The sentence compares the options on duration/frequency."
+          },
+          "skill_tags": [
+            "writing.idea_development",
+            "writing.cohesion"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-03-Q3",
+          "type": "single_choice",
+          "prompt": "Which linker best introduces a disadvantage after a positive point?",
+          "options": [
+            {
+              "id": "A",
+              "text": "However"
+            },
+            {
+              "id": "B",
+              "text": "Therefore"
+            },
+            {
+              "id": "C",
+              "text": "For example"
+            },
+            {
+              "id": "D",
+              "text": "Because"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "However introduces a contrast or limitation."
+          },
+          "skill_tags": [
+            "writing.cohesion"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-03-Q4",
+          "type": "single_choice",
+          "prompt": "Which recommendation is clearest?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I would recommend Course A because its shorter schedule fits your available time."
+            },
+            {
+              "id": "B",
+              "text": "There are courses and they are interesting."
+            },
+            {
+              "id": "C",
+              "text": "Maybe something is possible."
+            },
+            {
+              "id": "D",
+              "text": "Course A, Course B, both."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The first sentence gives a clear choice and a relevant reason."
+          },
+          "skill_tags": [
+            "writing.idea_development"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-03-Q5",
+          "type": "single_choice",
+          "prompt": "Which sentence avoids inventing information?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The brief says Course A costs £20, so I can compare that stated price."
+            },
+            {
+              "id": "B",
+              "text": "Course A probably has the nicest teacher."
+            },
+            {
+              "id": "C",
+              "text": "Course B must be more popular because I like its name."
+            },
+            {
+              "id": "D",
+              "text": "Course A is certainly easier, although the brief says nothing about difficulty."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A recommendation should use stated evidence rather than guesses."
+          },
+          "skill_tags": [
+            "writing.task_understanding"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-03-Q6",
+          "type": "single_choice",
+          "prompt": "Choose the most suitable neutral register.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Course B may suit you better because it offers more practice time."
+            },
+            {
+              "id": "B",
+              "text": "Course B is totally awesome and way better!!!"
+            },
+            {
+              "id": "C",
+              "text": "You'd be crazy not to pick B."
+            },
+            {
+              "id": "D",
+              "text": "B wins, no question."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The first sentence is clear, neutral and appropriate."
+          },
+          "skill_tags": [
+            "writing.register"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-03-Q7",
+          "type": "single_choice",
+          "prompt": "Which order makes the argument easiest to follow?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Reader's needs → comparison → limitation → recommendation"
+            },
+            {
+              "id": "B",
+              "text": "Recommendation → unrelated story → new topic → no conclusion"
+            },
+            {
+              "id": "C",
+              "text": "List of adjectives → greeting → different task"
+            },
+            {
+              "id": "D",
+              "text": "Conclusion → no evidence → title"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The first sequence builds the recommendation from relevant evidence."
+          },
+          "skill_tags": [
+            "writing.organization"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-03-Q8",
+          "type": "single_choice",
+          "prompt": "Which sentence is grammatically correct?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Although Course A is cheaper, Course B offers more practice time."
+            },
+            {
+              "id": "B",
+              "text": "Although Course A cheaper, but Course B offer more practice time."
+            },
+            {
+              "id": "C",
+              "text": "Although Course A is cheaper, but Course B offers more practice time."
+            },
+            {
+              "id": "D",
+              "text": "Course A although is cheaper Course B offering more practice."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Although introduces the dependent clause without adding but in the main clause."
+          },
+          "skill_tags": [
+            "writing.grammar",
+            "writing.cohesion"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "WRI-B1-03-Q9",
+          "type": "extended_response",
+          "prompt": "Your friend Alex wants an after-school English course. Alex is free only on Tuesday and Thursday, wants speaking practice, and can spend up to £30. Course A meets Tuesday for 60 minutes, costs £20 and focuses on conversation. Course B meets Wednesday and Thursday for 90 minutes, costs £25 and focuses on exam reading and writing. Write Alex a recommendation comparing the two courses. Use the information given, explain at least two relevant differences, acknowledge one limitation if useful, and make a clear final recommendation. Aim for about 120–160 words.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-WRITING-B1",
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.idea_development",
+            "writing.organization",
+            "writing.cohesion",
+            "writing.register",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Submitted. This response needs AI or human review; the platform does not assign an automatic CEFR score."
+          },
+          "word_range_guidance": {
+            "min": 120,
+            "max": 160,
+            "not_a_quality_score": true
+          }
+        }
+      ],
+      "writing_process": [
+        "analyse_prompt",
+        "brainstorm",
+        "outline",
+        "draft",
+        "review",
+        "revise"
+      ]
+    }
+  ]
+}

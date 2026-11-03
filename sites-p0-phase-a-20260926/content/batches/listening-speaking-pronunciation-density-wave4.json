@@ -1,0 +1,1507 @@
+{
+  "format": "ai-english-tutor.curriculum-batch",
+  "schema_version": 1,
+  "batch_id": "LISTENING-SPEAKING-PRONUNCIATION-DENSITY-WAVE4-20261005",
+  "base_version": "1.12.0",
+  "target_version": "1.13.0",
+  "status": "academic_pass_ready_for_1.13.0_composition",
+  "metadata": {
+    "status": "listening_speaking_pronunciation_density_wave4_academic_pass_ready_for_candidate_no_import",
+    "course_title": "English Foundation · A1–B1 developing curriculum",
+    "course_description": "Original self-study curriculum with balanced expansion across receptive and productive skills.",
+    "curriculum_principle": "Expand thin Listening, Speaking and Pronunciation coverage while preserving reviewed historical lessons. Real playback is required for audio-based credit; speaking/pronunciation recordings remain review-gated."
+  },
+  "insert_after": [
+    {
+      "after": "LIS-A1-01",
+      "ids": [
+        "LIS-A1-02"
+      ]
+    },
+    {
+      "after": "LIS-B1-02",
+      "ids": [
+        "LIS-B1-03"
+      ]
+    },
+    {
+      "after": "SPE-A2-01",
+      "ids": [
+        "SPE-A2-02"
+      ]
+    },
+    {
+      "after": "SPE-B1-01",
+      "ids": [
+        "SPE-B1-02"
+      ]
+    },
+    {
+      "after": "PRO-A2-01",
+      "ids": [
+        "PRO-A2-02",
+        "PRO-B1-01"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "LIS-A1-02",
+      "module": "listening",
+      "cefr_target": "A1",
+      "title": "A classroom change for Thursday",
+      "estimated_minutes": 15,
+      "objectives": [
+        "Understand the main purpose of a short school announcement.",
+        "Identify the day, time, room and materials in the announcement.",
+        "Distinguish the changed information from the original plan."
+      ],
+      "explanation": {
+        "en": "For a short announcement, listen first for the main purpose. On the second listen, note practical details such as day, time, room and what to bring. Words such as now, instead and changed often signal new information.",
+        "vi": "Với một thông báo ngắn, lần nghe đầu hãy xác định mục đích chính. Lần nghe thứ hai ghi lại ngày, giờ, phòng và đồ cần mang. Các từ như now, instead, changed thường báo hiệu thông tin mới."
+      },
+      "examples": [
+        "PURPOSE · Why is the teacher speaking?",
+        "CHANGE · Which room is new?",
+        "DETAIL · What time does the activity start?"
+      ],
+      "audio_asset": {
+        "id": "AUD-CLASSROOM-CHANGE-A1",
+        "source_text": "Teacher: Hello, class. Here is a quick change for Thursday's English club. We usually meet in Room 7, but another class needs that room this week. Please go to Room 14 instead. The club still starts at four o'clock and finishes at five. Bring your English notebook and a pencil. You do not need your course book because I will give you a short reading sheet. Please arrive five minutes early so we can begin on time.",
+        "language": "en",
+        "roles": [
+          "Teacher"
+        ],
+        "transcript_reveal": "after_submission",
+        "requires_real_playback": true,
+        "fallback": "No real playback means no listening score. A transcript may be shown only later as a separately labelled reading support."
+      },
+      "activities": [
+        {
+          "id": "LIS-A1-02-Q1",
+          "type": "single_choice",
+          "prompt": "Why is the teacher speaking?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To explain a change to Thursday's English club"
+            },
+            {
+              "id": "B",
+              "text": "To cancel English club for the year"
+            },
+            {
+              "id": "C",
+              "text": "To announce a sports match"
+            },
+            {
+              "id": "D",
+              "text": "To ask students to buy a book"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The teacher is explaining a room change for Thursday's English club."
+          },
+          "skill_tags": [
+            "listening.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-02-Q2",
+          "type": "single_choice",
+          "prompt": "Which day is the club meeting?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Thursday"
+            },
+            {
+              "id": "B",
+              "text": "Tuesday"
+            },
+            {
+              "id": "C",
+              "text": "Friday"
+            },
+            {
+              "id": "D",
+              "text": "Saturday"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The announcement is about Thursday's English club."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-02-Q3",
+          "type": "single_choice",
+          "prompt": "Where does the club usually meet?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Room 7"
+            },
+            {
+              "id": "B",
+              "text": "Room 14"
+            },
+            {
+              "id": "C",
+              "text": "The library"
+            },
+            {
+              "id": "D",
+              "text": "The sports hall"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The teacher says the club usually meets in Room 7."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-02-Q4",
+          "type": "single_choice",
+          "prompt": "Where should students go this week?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Room 14"
+            },
+            {
+              "id": "B",
+              "text": "Room 7"
+            },
+            {
+              "id": "C",
+              "text": "Room 4"
+            },
+            {
+              "id": "D",
+              "text": "The school gate"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Students should go to Room 14 instead."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-02-Q5",
+          "type": "single_choice",
+          "prompt": "What time does the club start?",
+          "options": [
+            {
+              "id": "A",
+              "text": "4:00"
+            },
+            {
+              "id": "B",
+              "text": "3:55"
+            },
+            {
+              "id": "C",
+              "text": "5:00"
+            },
+            {
+              "id": "D",
+              "text": "4:30"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The club still starts at four o'clock."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-02-Q6",
+          "type": "single_choice",
+          "prompt": "What should students bring?",
+          "options": [
+            {
+              "id": "A",
+              "text": "An English notebook and a pencil"
+            },
+            {
+              "id": "B",
+              "text": "A course book and a ruler"
+            },
+            {
+              "id": "C",
+              "text": "Money and a phone"
+            },
+            {
+              "id": "D",
+              "text": "A lunch box and water"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The teacher asks students to bring an English notebook and a pencil."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-02-Q7",
+          "type": "single_choice",
+          "prompt": "Why do students not need the course book?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The teacher will give them a reading sheet."
+            },
+            {
+              "id": "B",
+              "text": "The club is cancelled."
+            },
+            {
+              "id": "C",
+              "text": "They will only play a game."
+            },
+            {
+              "id": "D",
+              "text": "The book is in Room 7."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The teacher will provide a short reading sheet."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-02-Q8",
+          "type": "single_choice",
+          "prompt": "When should students arrive?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Five minutes early"
+            },
+            {
+              "id": "B",
+              "text": "At five o'clock"
+            },
+            {
+              "id": "C",
+              "text": "Thirty minutes early"
+            },
+            {
+              "id": "D",
+              "text": "After the club starts"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The teacher asks students to arrive five minutes early."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "LIS-B1-03",
+      "module": "listening",
+      "cefr_target": "B1",
+      "title": "Planning a study-group session",
+      "estimated_minutes": 21,
+      "objectives": [
+        "Identify the main problem and agreed solution in a planning conversation.",
+        "Follow details about timing, responsibilities and materials.",
+        "Infer why speakers accept or reject suggestions.",
+        "Recognise polite intentions such as proposing, checking and clarifying."
+      ],
+      "explanation": {
+        "en": "In a planning conversation, speakers may suggest several options before agreeing on one. Listen for proposal language such as why don't we, could we and how about, then notice the response and final decision. Separate ideas that are only suggested from plans that are actually agreed.",
+        "vi": "Trong hội thoại lập kế hoạch, người nói có thể đưa ra nhiều phương án trước khi chốt. Hãy chú ý các mẫu gợi ý như why don't we, could we, how about, rồi nghe phản hồi và quyết định cuối cùng. Phân biệt ý mới đề xuất với kế hoạch đã được thống nhất."
+      },
+      "examples": [
+        "PROPOSAL · Why don't we meet after lunch?",
+        "CHECK · Does 3:30 work for you?",
+        "FINAL PLAN · So we will meet in the library at 3:30.",
+        "REASON · I cannot stay late because I have practice."
+      ],
+      "audio_asset": {
+        "id": "AUD-STUDY-GROUP-B1",
+        "source_text": "Nina: We still need to prepare for Friday's history quiz. Shall we meet after school tomorrow? Omar: I can, but I have basketball practice at five, so I need to leave by four thirty. Nina: Then how about meeting in the library at three thirty? We could spend twenty minutes reviewing dates and then practise the longer questions. Omar: That works. I made flashcards for the dates, but I have not finished the chapter summary. Nina: I can bring my summary. Could you bring the teacher's practice sheet? Omar: Yes. Should we invite Maya too? She said she wanted help with the longer answers. Nina: Good idea, but let's message her now so she has time to reply. Omar: One more thing: the library computers are often busy after school. Do we need one? Nina: Probably not. The practice sheet and our notes should be enough. Omar: Great. I'll bring the sheet and flashcards, and you bring the summary. We'll meet by the library entrance at three thirty.",
+        "language": "en",
+        "roles": [
+          "Nina",
+          "Omar"
+        ],
+        "transcript_reveal": "after_submission",
+        "requires_real_playback": true,
+        "fallback": "No real playback means no listening score. A transcript may be shown only later as a separately labelled reading support."
+      },
+      "activities": [
+        {
+          "id": "LIS-B1-03-Q1",
+          "type": "single_choice",
+          "prompt": "What are Nina and Omar mainly trying to do?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Plan a study session for a history quiz"
+            },
+            {
+              "id": "B",
+              "text": "Choose a new basketball team"
+            },
+            {
+              "id": "C",
+              "text": "Repair a library computer"
+            },
+            {
+              "id": "D",
+              "text": "Organise a class trip"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "They are arranging how and when to study for Friday's history quiz."
+          },
+          "skill_tags": [
+            "listening.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-03-Q2",
+          "type": "single_choice",
+          "prompt": "Why does Omar need to leave by 4:30?",
+          "options": [
+            {
+              "id": "A",
+              "text": "He has basketball practice at five."
+            },
+            {
+              "id": "B",
+              "text": "The library closes at 4:30."
+            },
+            {
+              "id": "C",
+              "text": "He has a bus at four."
+            },
+            {
+              "id": "D",
+              "text": "He must meet Maya at five."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Omar says he has basketball practice at five."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-03-Q3",
+          "type": "single_choice",
+          "prompt": "What time do they finally agree to meet?",
+          "options": [
+            {
+              "id": "A",
+              "text": "3:30"
+            },
+            {
+              "id": "B",
+              "text": "4:30"
+            },
+            {
+              "id": "C",
+              "text": "5:00"
+            },
+            {
+              "id": "D",
+              "text": "3:00"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "They agree to meet at three thirty."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-03-Q4",
+          "type": "single_choice",
+          "prompt": "What will they do first during the study session?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Review dates"
+            },
+            {
+              "id": "B",
+              "text": "Use the library computers"
+            },
+            {
+              "id": "C",
+              "text": "Write a new chapter"
+            },
+            {
+              "id": "D",
+              "text": "Practise basketball"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Nina suggests spending twenty minutes reviewing dates before the longer questions."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-03-Q5",
+          "type": "single_choice",
+          "prompt": "What has Omar already prepared?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Flashcards for the dates"
+            },
+            {
+              "id": "B",
+              "text": "A complete chapter summary"
+            },
+            {
+              "id": "C",
+              "text": "A presentation poster"
+            },
+            {
+              "id": "D",
+              "text": "A list of computer passwords"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Omar says he made flashcards for the dates."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-03-Q6",
+          "type": "single_choice",
+          "prompt": "Why do they want to message Maya now?",
+          "options": [
+            {
+              "id": "A",
+              "text": "So she has enough time to reply"
+            },
+            {
+              "id": "B",
+              "text": "Because she owns the practice sheet"
+            },
+            {
+              "id": "C",
+              "text": "Because she must reserve a computer"
+            },
+            {
+              "id": "D",
+              "text": "So she can cancel the quiz"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Nina says they should message Maya now so she has time to reply."
+          },
+          "skill_tags": [
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-03-Q7",
+          "type": "single_choice",
+          "prompt": "Why does Omar ask whether they need a computer?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The library computers are often busy after school."
+            },
+            {
+              "id": "B",
+              "text": "He wants to play a game."
+            },
+            {
+              "id": "C",
+              "text": "The teacher requires an online quiz."
+            },
+            {
+              "id": "D",
+              "text": "Nina forgot all of her notes."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "He raises the question because library computers are often busy after school."
+          },
+          "skill_tags": [
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-03-Q8",
+          "type": "single_choice",
+          "prompt": "What is Nina doing when she says, “Could you bring the teacher's practice sheet?”",
+          "options": [
+            {
+              "id": "A",
+              "text": "Politely asking Omar to bring something"
+            },
+            {
+              "id": "B",
+              "text": "Refusing to study"
+            },
+            {
+              "id": "C",
+              "text": "Changing the quiz date"
+            },
+            {
+              "id": "D",
+              "text": "Explaining a history fact"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Could you...? is a polite request."
+          },
+          "skill_tags": [
+            "listening.speaker_intention"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-03-Q9",
+          "type": "single_choice",
+          "prompt": "Which responsibility belongs to Nina in the final plan?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Bring the chapter summary"
+            },
+            {
+              "id": "B",
+              "text": "Bring the practice sheet"
+            },
+            {
+              "id": "C",
+              "text": "Bring the flashcards"
+            },
+            {
+              "id": "D",
+              "text": "Reserve a computer"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "They agree that Nina will bring the summary."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-03-Q10",
+          "type": "single_choice",
+          "prompt": "Which statement is true about the final plan?",
+          "options": [
+            {
+              "id": "A",
+              "text": "They expect their notes and practice sheet to be enough without a computer."
+            },
+            {
+              "id": "B",
+              "text": "They cancel because no computer is available."
+            },
+            {
+              "id": "C",
+              "text": "They will study only dates for the whole session."
+            },
+            {
+              "id": "D",
+              "text": "They decide not to invite Maya."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Nina says they probably do not need a computer because the practice sheet and notes should be enough."
+          },
+          "skill_tags": [
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "SPE-A2-02",
+      "module": "speaking",
+      "cefr_target": "A2",
+      "title": "Explain a simple problem and ask for help",
+      "estimated_minutes": 16,
+      "objectives": [
+        "State a simple problem clearly.",
+        "Add one useful detail or reason.",
+        "Make a polite request for help.",
+        "Give a short connected spoken response without reading a full script."
+      ],
+      "explanation": {
+        "en": "A useful short spoken request has three parts: say the problem, add one important detail, and ask clearly for help. Use simple linking such as because or so. Plan keywords, not a full script, then speak naturally. A text planning note is useful when no microphone is available, but it is not speaking evidence.",
+        "vi": "Một lời nhờ giúp ngắn có ba phần: nêu vấn đề, thêm một chi tiết quan trọng và nhờ giúp rõ ràng. Dùng because hoặc so. Chỉ ghi từ khóa thay vì viết cả bài để đọc. Nếu không có micro, ghi chú kế hoạch vẫn hữu ích nhưng không được tính là bằng chứng kỹ năng nói."
+      },
+      "examples": [
+        "PROBLEM · I cannot find Room 18.",
+        "DETAIL · My club starts in ten minutes.",
+        "REQUEST · Could you show me where it is?",
+        "PLAN · problem → detail → polite request"
+      ],
+      "activities": [
+        {
+          "id": "SPE-A2-02-Q1",
+          "type": "single_choice",
+          "prompt": "Which opening states a problem clearly?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I cannot find the science room."
+            },
+            {
+              "id": "B",
+              "text": "Science is a word."
+            },
+            {
+              "id": "C",
+              "text": "Maybe room."
+            },
+            {
+              "id": "D",
+              "text": "Hello and goodbye."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The first sentence clearly tells the listener what the problem is."
+          },
+          "skill_tags": [
+            "speaking.task_response"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-A2-02-Q2",
+          "type": "single_choice",
+          "prompt": "Which request is polite and clear?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Could you show me where Room 18 is?"
+            },
+            {
+              "id": "B",
+              "text": "You show room now."
+            },
+            {
+              "id": "C",
+              "text": "Room?"
+            },
+            {
+              "id": "D",
+              "text": "I demand directions."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Could you...? is a polite and clear request form."
+          },
+          "skill_tags": [
+            "speaking.vocabulary"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-A2-02-Q3",
+          "type": "single_choice",
+          "prompt": "Which order is easiest for a listener to follow?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Problem → useful detail → request"
+            },
+            {
+              "id": "B",
+              "text": "Request → unrelated story → problem"
+            },
+            {
+              "id": "C",
+              "text": "Random details → goodbye → problem"
+            },
+            {
+              "id": "D",
+              "text": "Only one unclear word"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "This sequence gives context before the request."
+          },
+          "skill_tags": [
+            "speaking.organization"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-A2-02-Q4",
+          "type": "single_choice",
+          "prompt": "Which sentence adds a useful reason?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I need help because my club starts in ten minutes."
+            },
+            {
+              "id": "B",
+              "text": "I need help and blue."
+            },
+            {
+              "id": "C",
+              "text": "Because maybe room."
+            },
+            {
+              "id": "D",
+              "text": "Ten minutes is a number."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The first sentence uses because to explain why the help is needed."
+          },
+          "skill_tags": [
+            "speaking.task_response"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-A2-02-Q5",
+          "type": "extended_response",
+          "prompt": "Record 45–60 seconds. Imagine you are at a school activity and cannot find the correct room. Explain the problem, give one useful detail, and politely ask a staff member for help. Use brief planning notes rather than reading a full script. If microphone access is unavailable, save the planning note only and mark Speaking unassessed.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-SPEAKING-A2",
+          "skill_tags": [
+            "speaking.task_response",
+            "speaking.organization",
+            "speaking.fluency",
+            "speaking.intelligibility"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Submitted. This task requires reviewed feedback; no automatic CEFR or pronunciation score is assigned."
+          }
+        }
+      ],
+      "recording": {
+        "optional": true,
+        "requires_permission": true,
+        "no_auto_pronunciation_score": true,
+        "fallback": "Keep a planning note; mark speaking not assessed."
+      }
+    },
+    {
+      "id": "SPE-B1-02",
+      "module": "speaking",
+      "cefr_target": "B1",
+      "title": "Compare two options and answer a follow-up",
+      "estimated_minutes": 19,
+      "objectives": [
+        "Compare two options using relevant criteria.",
+        "State and support a clear preference.",
+        "Acknowledge one advantage of the other option.",
+        "Respond to a follow-up question without abandoning the main point."
+      ],
+      "explanation": {
+        "en": "For a B1 comparison, choose two or three useful criteria rather than listing every detail. Compare the options, state your preference and explain why. Acknowledge a strength of the other option if it is relevant. In a follow-up question, respond directly first, then add a reason or example.",
+        "vi": "Khi so sánh ở B1, hãy chọn hai hoặc ba tiêu chí quan trọng thay vì liệt kê mọi chi tiết. So sánh, nêu lựa chọn và giải thích lý do. Có thể công nhận một ưu điểm của phương án còn lại. Với câu hỏi phụ, trả lời trực tiếp trước rồi thêm lý do hoặc ví dụ."
+      },
+      "examples": [
+        "COMPARE · Option A is cheaper, whereas Option B gives more practice time.",
+        "PREFERENCE · I would choose A because it fits my schedule.",
+        "BALANCE · B has one advantage: the sessions are longer.",
+        "FOLLOW-UP · If I had more time, I might choose B."
+      ],
+      "activities": [
+        {
+          "id": "SPE-B1-02-Q1",
+          "type": "single_choice",
+          "prompt": "Which sentence makes a clear comparison?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The library is quieter, whereas the café stays open later."
+            },
+            {
+              "id": "B",
+              "text": "The library is a place and the café is a place."
+            },
+            {
+              "id": "C",
+              "text": "Both are things."
+            },
+            {
+              "id": "D",
+              "text": "I know two names."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Whereas clearly contrasts two relevant features."
+          },
+          "skill_tags": [
+            "speaking.idea_development"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-B1-02-Q2",
+          "type": "single_choice",
+          "prompt": "Which response gives a preference with a reason?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I would choose the library because I concentrate better in a quiet place."
+            },
+            {
+              "id": "B",
+              "text": "Library."
+            },
+            {
+              "id": "C",
+              "text": "Maybe both perhaps."
+            },
+            {
+              "id": "D",
+              "text": "The question has options."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The first response states a choice and supports it with a reason."
+          },
+          "skill_tags": [
+            "speaking.task_response"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-B1-02-Q3",
+          "type": "single_choice",
+          "prompt": "Which sentence fairly acknowledges the other option?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The café is noisier, but it is useful when I need to meet after the library closes."
+            },
+            {
+              "id": "B",
+              "text": "The café is terrible in every possible way."
+            },
+            {
+              "id": "C",
+              "text": "There is no other option."
+            },
+            {
+              "id": "D",
+              "text": "I refuse to compare them."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The sentence recognises a real advantage while maintaining the comparison."
+          },
+          "skill_tags": [
+            "speaking.idea_development"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-B1-02-Q4",
+          "type": "single_choice",
+          "prompt": "Which linker best introduces a contrast?",
+          "options": [
+            {
+              "id": "A",
+              "text": "However"
+            },
+            {
+              "id": "B",
+              "text": "Therefore"
+            },
+            {
+              "id": "C",
+              "text": "For example"
+            },
+            {
+              "id": "D",
+              "text": "Because"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "However commonly introduces a contrasting point."
+          },
+          "skill_tags": [
+            "speaking.vocabulary"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-B1-02-Q5",
+          "type": "single_choice",
+          "prompt": "A listener asks, “When might the other option be better?” Which response is strongest?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It might be better when I need a later meeting time, because the café stays open longer."
+            },
+            {
+              "id": "B",
+              "text": "No."
+            },
+            {
+              "id": "C",
+              "text": "The other option is an option."
+            },
+            {
+              "id": "D",
+              "text": "I already answered."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "It answers the follow-up directly and gives a reason."
+          },
+          "skill_tags": [
+            "speaking.task_response",
+            "speaking.idea_development"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "SPE-B1-02-Q6",
+          "type": "extended_response",
+          "prompt": "Record 60–90 seconds. Compare studying in a quiet library with studying in a café. Choose two relevant criteria, state which option you prefer and why, and mention one situation in which the other option could be better. Then answer this follow-up: What might make you change your choice? If microphone access is unavailable, keep planning notes only and mark Speaking unassessed.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-SPEAKING-B1",
+          "skill_tags": [
+            "speaking.task_response",
+            "speaking.idea_development",
+            "speaking.fluency",
+            "speaking.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Submitted. This task requires reviewed feedback; no automatic CEFR or pronunciation score is assigned."
+          }
+        }
+      ],
+      "recording": {
+        "optional": true,
+        "requires_permission": true,
+        "no_auto_pronunciation_score": true,
+        "fallback": "Keep a planning note; mark speaking not assessed."
+      }
+    },
+    {
+      "id": "PRO-A2-02",
+      "module": "pronunciation",
+      "cefr_target": "A2",
+      "title": "Hear stress in common two-syllable words",
+      "estimated_minutes": 14,
+      "objectives": [
+        "Notice which syllable is stronger in common two-syllable words.",
+        "Distinguish first-syllable and second-syllable stress in familiar vocabulary.",
+        "Practise stressed words with an audio model before recording."
+      ],
+      "explanation": {
+        "en": "In a two-syllable word, one syllable is usually stronger. It may be a little louder, longer or clearer. For example, TAble has first-syllable stress, while hoTEL has second-syllable stress. Listen to a real audio model before practising; spelling alone cannot show stress reliably.",
+        "vi": "Trong từ hai âm tiết, thường có một âm tiết được nhấn mạnh hơn: có thể to hơn, dài hơn hoặc rõ hơn. Ví dụ TAble nhấn âm đầu, còn hoTEL nhấn âm sau. Cần nghe âm thanh mẫu thật trước khi luyện."
+      },
+      "examples": [
+        "FIRST STRESS · TAble, WINdow, DOCtor",
+        "SECOND STRESS · hoTEL, beGIN, reLAX"
+      ],
+      "activities": [
+        {
+          "id": "PRO-A2-02-Q1",
+          "type": "single_choice",
+          "prompt": "Which word has first-syllable stress in standard pronunciation?",
+          "options": [
+            {
+              "id": "A",
+              "text": "TAble"
+            },
+            {
+              "id": "B",
+              "text": "hoTEL"
+            },
+            {
+              "id": "C",
+              "text": "beGIN"
+            },
+            {
+              "id": "D",
+              "text": "reLAX"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Table normally has stress on the first syllable."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-A2-02-Q2",
+          "type": "single_choice",
+          "prompt": "Which word has second-syllable stress?",
+          "options": [
+            {
+              "id": "A",
+              "text": "hoTEL"
+            },
+            {
+              "id": "B",
+              "text": "WINdow"
+            },
+            {
+              "id": "C",
+              "text": "DOCtor"
+            },
+            {
+              "id": "D",
+              "text": "TAble"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Hotel normally has stress on the second syllable."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-A2-02-Q3",
+          "type": "single_choice",
+          "prompt": "What does the capitalised part show in reLAX?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The stressed syllable"
+            },
+            {
+              "id": "B",
+              "text": "A silent syllable"
+            },
+            {
+              "id": "C",
+              "text": "The spelling that must be removed"
+            },
+            {
+              "id": "D",
+              "text": "The plural ending"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The capitalised syllable marks the stronger, stressed syllable."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-A2-02-Q4",
+          "type": "single_choice",
+          "prompt": "Which pair has the same first-syllable stress pattern?",
+          "options": [
+            {
+              "id": "A",
+              "text": "TAble and WINdow"
+            },
+            {
+              "id": "B",
+              "text": "hoTEL and TAble"
+            },
+            {
+              "id": "C",
+              "text": "beGIN and DOCtor"
+            },
+            {
+              "id": "D",
+              "text": "reLAX and WINdow"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Both table and window normally have first-syllable stress."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-A2-02-Q5",
+          "type": "extended_response",
+          "prompt": "Listen to the audio models, then record these words in short phrases: TAble, WINdow, hoTEL, reLAX. Try to make the stressed syllable clearer without shouting. If no real audio model or recording is available, keep this as optional awareness practice and do not assign a pronunciation or CEFR score.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-PRONUNCIATION",
+          "skill_tags": [
+            "pronunciation.intelligibility"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Submitted. This task requires reviewed feedback; no automatic CEFR or pronunciation score is assigned."
+          }
+        }
+      ],
+      "audio_model": {
+        "text": [
+          "table",
+          "window",
+          "hotel",
+          "relax",
+          "a small table",
+          "open the window",
+          "a quiet hotel",
+          "relax after school"
+        ],
+        "requires_real_playback": true,
+        "fallback": "No playback means no audio-based skill evidence."
+      }
+    },
+    {
+      "id": "PRO-B1-01",
+      "module": "pronunciation",
+      "cefr_target": "B1",
+      "title": "Use sentence stress to show the important idea",
+      "estimated_minutes": 16,
+      "objectives": [
+        "Notice that content words often carry stronger sentence stress.",
+        "Use contrastive stress to highlight one corrected or important idea.",
+        "Practise short thought groups with an audio model."
+      ],
+      "explanation": {
+        "en": "English sentence stress helps a listener hear the important information. Content words such as main nouns, verbs, adjectives and adverbs often receive stronger stress, while many short grammar words are weaker. A speaker can also move strong stress to correct or contrast one idea: I wanted the BLUE notebook, not the red one. Meaning depends on context, so listen to the full model before copying the pattern.",
+        "vi": "Trọng âm câu giúp người nghe nhận ra thông tin quan trọng. Danh từ, động từ chính, tính từ và trạng từ thường được nhấn rõ hơn; nhiều từ ngữ pháp ngắn thường nhẹ hơn. Người nói cũng có thể chuyển trọng âm để sửa hoặc đối lập một ý, ví dụ BLUE để đối lập với red."
+      },
+      "examples": [
+        "NEW INFORMATION · I BOUGHT a NEW NOTEBOOK.",
+        "CONTRAST · I wanted the BLUE notebook, not the red one.",
+        "WHO? · SHE sent the file, not Minh.",
+        "THOUGHT GROUP · After lunch / we met in the library."
+      ],
+      "activities": [
+        {
+          "id": "PRO-B1-01-Q1",
+          "type": "single_choice",
+          "prompt": "In “I wanted the BLUE notebook, not the red one,” why is BLUE strongly stressed?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To contrast blue with red"
+            },
+            {
+              "id": "B",
+              "text": "Because blue is always the loudest English word"
+            },
+            {
+              "id": "C",
+              "text": "To mark a question"
+            },
+            {
+              "id": "D",
+              "text": "Because notebook is silent"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Strong stress on BLUE highlights the contrast with red."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-B1-01-Q2",
+          "type": "single_choice",
+          "prompt": "Which type of word often carries important sentence stress?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A main noun or verb"
+            },
+            {
+              "id": "B",
+              "text": "Every article such as a or the"
+            },
+            {
+              "id": "C",
+              "text": "Every preposition equally"
+            },
+            {
+              "id": "D",
+              "text": "Only punctuation"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Main content words such as nouns and verbs often carry stronger stress."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-B1-01-Q3",
+          "type": "single_choice",
+          "prompt": "If the meaning is “Mai sent the file, not Minh,” which word should receive the strongest contrastive stress?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Mai"
+            },
+            {
+              "id": "B",
+              "text": "sent"
+            },
+            {
+              "id": "C",
+              "text": "the"
+            },
+            {
+              "id": "D",
+              "text": "file"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Stressing Mai highlights who did the action."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-B1-01-Q4",
+          "type": "single_choice",
+          "prompt": "What is a useful purpose of a short thought-group pause?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To divide a longer message into meaningful chunks"
+            },
+            {
+              "id": "B",
+              "text": "To make every sentence sound uncertain"
+            },
+            {
+              "id": "C",
+              "text": "To replace all word stress"
+            },
+            {
+              "id": "D",
+              "text": "To remove important information"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A brief pause can help organise a longer message into meaningful chunks."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-B1-01-Q5",
+          "type": "single_choice",
+          "prompt": "Which version best highlights that the meeting was after lunch, not before lunch?",
+          "options": [
+            {
+              "id": "A",
+              "text": "AFTER LUNCH, we met in the library."
+            },
+            {
+              "id": "B",
+              "text": "After lunch, WE met in the library."
+            },
+            {
+              "id": "C",
+              "text": "After lunch, we MET in the library."
+            },
+            {
+              "id": "D",
+              "text": "After lunch, we met in the LIBRARY."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Strong stress on AFTER LUNCH highlights the corrected time."
+          },
+          "skill_tags": [
+            "pronunciation.sound_awareness"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "PRO-B1-01-Q6",
+          "type": "extended_response",
+          "prompt": "Listen to the model, then record three short versions of the same sentence with a different important word each time: “We need the blue folder today.” Make the stress show (1) who needs it, (2) which folder, and (3) when it is needed. If no real audio model or recording is available, do not assign pronunciation or CEFR evidence.",
+          "answer": null,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-PRONUNCIATION",
+          "skill_tags": [
+            "pronunciation.intelligibility"
+          ],
+          "evidence_weight": 0,
+          "feedback": {
+            "pending_message": "Submitted. This task requires reviewed feedback; no automatic CEFR or pronunciation score is assigned."
+          }
+        }
+      ],
+      "audio_model": {
+        "text": [
+          "We need the blue folder today.",
+          "WE need the blue folder today.",
+          "We need the BLUE folder today.",
+          "We need the blue folder TODAY."
+        ],
+        "requires_real_playback": true,
+        "fallback": "No playback means no audio-based skill evidence."
+      }
+    }
+  ]
+}

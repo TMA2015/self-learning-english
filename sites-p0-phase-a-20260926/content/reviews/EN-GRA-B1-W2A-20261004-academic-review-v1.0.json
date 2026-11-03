@@ -1,0 +1,77 @@
+{
+  "format": "self-learning-english.academic-review-v1",
+  "schema_version": "1.0",
+  "packet_id": "EN-GRA-B1-W2A-20261004",
+  "batch_id": "GRAMMAR-B1-WAVE2A-20261004",
+  "base_curriculum": "1.6.1",
+  "proposed_curriculum": "1.7.0",
+  "reviewer": "NotebookLM independent academic review",
+  "review_rounds": 2,
+  "final_verdict": "PASS",
+  "scope": {
+    "lessons": 4,
+    "activities": 40,
+    "lesson_ids": [
+      "GRA-B1-02",
+      "GRA-B1-03",
+      "GRA-B1-04",
+      "GRA-B1-05"
+    ]
+  },
+  "first_round": {
+    "verdict": "REVISIONS_REQUIRED",
+    "issues": [
+      {
+        "item_id": "GRA-B1-02-Q5",
+        "resolution": "Added standard straight/smart apostrophe contracted forms."
+      },
+      {
+        "item_id": "GRA-B1-02-Q7",
+        "resolution": "Changed to one contiguous gap; kept only standard full inverted form have you been learning."
+      },
+      {
+        "item_id": "GRA-B1-02-Q9",
+        "resolution": "Added standard straight/smart apostrophe contracted forms."
+      },
+      {
+        "item_id": "GRA-B1-03-Q3",
+        "resolution": "Added standard straight/smart apostrophe contracted forms."
+      },
+      {
+        "item_id": "GRA-B1-03-Q8",
+        "resolution": "Changed to one contiguous gap and added standard straight/smart apostrophe contractions."
+      }
+    ]
+  },
+  "targeted_recheck": {
+    "verdict": "PASS",
+    "checked_items": [
+      "GRA-B1-02-Q5",
+      "GRA-B1-02-Q7",
+      "GRA-B1-02-Q9",
+      "GRA-B1-03-Q3",
+      "GRA-B1-03-Q8"
+    ],
+    "conclusion": "Original short-answer scoring/gap issues resolved; no new ambiguity introduced."
+  },
+  "academic_summary": {
+    "grammar_accuracy": "PASS",
+    "cefr_targeting": "PASS",
+    "explanations": "PASS",
+    "vietnamese_support": "PASS",
+    "distractors": "PASS",
+    "skill_tags": "PASS",
+    "objectives": "PASS",
+    "originality": "PASS"
+  },
+  "release_boundary": {
+    "import_authorized": false,
+    "deploy_authorized": false,
+    "next_steps": [
+      "admit reviewed tag mappings",
+      "compose immutable 1.7.0 candidate",
+      "verify 1.6.1 lessons preserved",
+      "run regression and import-preview gates"
+    ]
+  }
+}

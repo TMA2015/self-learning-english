@@ -1,0 +1,346 @@
+[
+  {
+    "id": "g-a2-1",
+    "skill": "Grammar",
+    "level": "A2",
+    "tag": "past-tense",
+    "prompt": "Yesterday, Mia ___ a letter to her friend.",
+    "options": [
+      "write",
+      "wrote",
+      "writes"
+    ],
+    "correct": 1,
+    "hintVi": "Yesterday cho biết hành động xảy ra trong quá khứ."
+  },
+  {
+    "id": "g-a2-2",
+    "skill": "Grammar",
+    "level": "A2",
+    "tag": "subject-verb-agreement",
+    "prompt": "My brother usually ___ breakfast at seven.",
+    "options": [
+      "have",
+      "having",
+      "has"
+    ],
+    "correct": 2,
+    "hintVi": "Chủ ngữ số ít ở hiện tại đơn cần dạng động từ phù hợp."
+  },
+  {
+    "id": "g-a2-3",
+    "skill": "Grammar",
+    "level": "A2",
+    "tag": "preposition",
+    "prompt": "We arrived ___ school before eight o'clock.",
+    "options": [
+      "at",
+      "on",
+      "in"
+    ],
+    "correct": 0,
+    "hintVi": "Tìm giới từ đi với địa điểm cụ thể."
+  },
+  {
+    "id": "g-a2-4",
+    "skill": "Grammar",
+    "level": "A2",
+    "tag": "present-continuous",
+    "prompt": "Look! The children ___ in the garden.",
+    "options": [
+      "play",
+      "are playing",
+      "played"
+    ],
+    "correct": 1,
+    "hintVi": "Look! diễn tả sự việc đang diễn ra."
+  },
+  {
+    "id": "g-a1-1",
+    "skill": "Grammar",
+    "level": "A1",
+    "tag": "be-verb",
+    "prompt": "They ___ happy today.",
+    "options": [
+      "is",
+      "are",
+      "am"
+    ],
+    "correct": 1,
+    "hintVi": "They là chủ ngữ số nhiều."
+  },
+  {
+    "id": "g-a1-2",
+    "skill": "Grammar",
+    "level": "A1",
+    "tag": "article",
+    "prompt": "I have ___ apple.",
+    "options": [
+      "a",
+      "an",
+      "the"
+    ],
+    "correct": 1,
+    "hintVi": "Apple bắt đầu bằng nguyên âm."
+  },
+  {
+    "id": "g-b1-1",
+    "skill": "Grammar",
+    "level": "B1",
+    "tag": "first-conditional",
+    "prompt": "If it rains tomorrow, we ___ inside.",
+    "options": [
+      "will stay",
+      "stayed",
+      "staying"
+    ],
+    "correct": 0,
+    "hintVi": "Câu điều kiện có thể nói về một khả năng trong tương lai."
+  },
+  {
+    "id": "g-b1-2",
+    "skill": "Grammar",
+    "level": "B1",
+    "tag": "relative-clause",
+    "prompt": "This is the book ___ I borrowed from the library.",
+    "options": [
+      "who",
+      "where",
+      "that"
+    ],
+    "correct": 2,
+    "hintVi": "Đại từ quan hệ này thay cho một đồ vật."
+  },
+  {
+    "id": "v-a2-1",
+    "skill": "Vocabulary",
+    "level": "A2",
+    "tag": "context-meaning",
+    "prompt": "The room was silent. What does silent mean?",
+    "options": [
+      "very quiet",
+      "very bright",
+      "very small"
+    ],
+    "correct": 0,
+    "hintVi": "Silent nói về âm thanh."
+  },
+  {
+    "id": "v-a2-2",
+    "skill": "Vocabulary",
+    "level": "A2",
+    "tag": "word-choice",
+    "prompt": "Choose the best word: Please ___ your homework before dinner.",
+    "options": [
+      "make",
+      "do",
+      "build"
+    ],
+    "correct": 1,
+    "hintVi": "Động từ nào thường đi với homework?"
+  },
+  {
+    "id": "v-a2-3",
+    "skill": "Vocabulary",
+    "level": "A2",
+    "tag": "context-meaning",
+    "prompt": "The path is narrow, so only one person can walk along it. Narrow means ___.",
+    "options": [
+      "not wide",
+      "not clean",
+      "not long"
+    ],
+    "correct": 0,
+    "hintVi": "Chỉ một người có thể đi qua cùng lúc."
+  },
+  {
+    "id": "v-a2-4",
+    "skill": "Vocabulary",
+    "level": "A2",
+    "tag": "word-family",
+    "prompt": "Choose the noun: She made a difficult ___.",
+    "options": [
+      "decide",
+      "decision",
+      "decisive"
+    ],
+    "correct": 1,
+    "hintVi": "Sau a difficult cần một danh từ."
+  },
+  {
+    "id": "v-a1-1",
+    "skill": "Vocabulary",
+    "level": "A1",
+    "tag": "basic-meaning",
+    "prompt": "Which word means a place where you borrow books?",
+    "options": [
+      "library",
+      "kitchen",
+      "station"
+    ],
+    "correct": 0,
+    "hintVi": "Nơi em có thể mượn sách."
+  },
+  {
+    "id": "v-a1-2",
+    "skill": "Vocabulary",
+    "level": "A1",
+    "tag": "basic-meaning",
+    "prompt": "Which word means the opposite of cold?",
+    "options": [
+      "wet",
+      "hot",
+      "small"
+    ],
+    "correct": 1,
+    "hintVi": "Từ trái nghĩa với cold."
+  },
+  {
+    "id": "v-b1-1",
+    "skill": "Vocabulary",
+    "level": "B1",
+    "tag": "context-meaning",
+    "prompt": "Although the task was challenging, Ava completed it. Challenging means ___.",
+    "options": [
+      "difficult",
+      "boring",
+      "quick"
+    ],
+    "correct": 0,
+    "hintVi": "Although gợi sự tương phản giữa khó khăn và kết quả."
+  },
+  {
+    "id": "v-b1-2",
+    "skill": "Vocabulary",
+    "level": "B1",
+    "tag": "collocation",
+    "prompt": "Which phrase sounds natural?",
+    "options": [
+      "make progress",
+      "do progress",
+      "take progress"
+    ],
+    "correct": 0,
+    "hintVi": "Một động từ thường đi với progress."
+  },
+  {
+    "id": "r-a2-1",
+    "skill": "Reading",
+    "level": "A2",
+    "tag": "main-idea",
+    "passage": "Ben takes the bus to school. Last week, he started walking with his friend. He enjoys talking on the way and feels more awake in class.",
+    "prompt": "What is the passage mainly about?",
+    "options": [
+      "Why Ben enjoys walking to school",
+      "Ben's favourite class",
+      "How to drive a bus"
+    ],
+    "correct": 0,
+    "hintVi": "Đọc toàn đoạn để tìm ý được nhắc nhiều nhất."
+  },
+  {
+    "id": "r-a2-2",
+    "skill": "Reading",
+    "level": "A2",
+    "tag": "detail",
+    "passage": "At the school fair, Sara sold small plants. She used the money to buy books for the classroom. Her friends helped make signs for the stall.",
+    "prompt": "What did Sara buy with the money?",
+    "options": [
+      "Signs",
+      "Books",
+      "Plants"
+    ],
+    "correct": 1,
+    "hintVi": "Tìm câu có cụm used the money."
+  },
+  {
+    "id": "r-a2-3",
+    "skill": "Reading",
+    "level": "A2",
+    "tag": "inference",
+    "passage": "Tom packed an umbrella after he looked at the dark clouds. He also put his football inside his bag.",
+    "prompt": "Why did Tom pack an umbrella?",
+    "options": [
+      "He thought it might rain",
+      "He wanted to play football",
+      "He was going to the beach"
+    ],
+    "correct": 0,
+    "hintVi": "Dark clouds gợi điều gì có thể xảy ra?"
+  },
+  {
+    "id": "r-a2-4",
+    "skill": "Reading",
+    "level": "A2",
+    "tag": "sequence",
+    "passage": "First, Nina washed the seeds. Then she put them in a small pot. A week later, she saw green leaves.",
+    "prompt": "What did Nina do after washing the seeds?",
+    "options": [
+      "She saw leaves",
+      "She put them in a pot",
+      "She bought a book"
+    ],
+    "correct": 1,
+    "hintVi": "Tìm hành động sau then."
+  },
+  {
+    "id": "r-a1-1",
+    "skill": "Reading",
+    "level": "A1",
+    "tag": "detail",
+    "passage": "Lily has a red bicycle. She rides it to the park on Sunday.",
+    "prompt": "What colour is Lily's bicycle?",
+    "options": [
+      "Blue",
+      "Red",
+      "Green"
+    ],
+    "correct": 1,
+    "hintVi": "Màu xe có ngay trong câu đầu."
+  },
+  {
+    "id": "r-a1-2",
+    "skill": "Reading",
+    "level": "A1",
+    "tag": "detail",
+    "passage": "Sam has a cat. It sleeps on the sofa every afternoon.",
+    "prompt": "Where does the cat sleep?",
+    "options": [
+      "On the sofa",
+      "In the garden",
+      "Under the table"
+    ],
+    "correct": 0,
+    "hintVi": "Tìm nơi con mèo ngủ trong câu thứ hai."
+  },
+  {
+    "id": "r-b1-1",
+    "skill": "Reading",
+    "level": "B1",
+    "tag": "inference",
+    "passage": "The club had planned an outdoor film night. By five o'clock, the volunteers were moving chairs into the hall and checking the projector.",
+    "prompt": "What probably changed?",
+    "options": [
+      "The film was cancelled",
+      "The event moved indoors",
+      "The volunteers left early"
+    ],
+    "correct": 1,
+    "hintVi": "Vì sao họ chuyển ghế vào hội trường?"
+  },
+  {
+    "id": "r-b1-2",
+    "skill": "Reading",
+    "level": "B1",
+    "tag": "author-purpose",
+    "passage": "Our school could reduce waste by placing refill stations near classrooms. Students would bring bottles from home, and fewer plastic bottles would be thrown away.",
+    "prompt": "What is the writer trying to do?",
+    "options": [
+      "Describe a past trip",
+      "Suggest a way to reduce waste",
+      "Explain how bottles are made"
+    ],
+    "correct": 1,
+    "hintVi": "Người viết đang đưa ra một đề xuất."
+  }
+]

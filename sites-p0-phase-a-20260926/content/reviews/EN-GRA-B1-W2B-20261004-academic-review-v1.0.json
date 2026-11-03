@@ -1,0 +1,56 @@
+{
+  "format": "self-learning-english.academic-review-v1",
+  "schema_version": "1.0",
+  "packet_id": "EN-GRA-B1-W2B-20261004",
+  "batch_id": "GRAMMAR-B1-WAVE2B-20261004",
+  "base_curriculum": "1.7.0",
+  "proposed_curriculum": "1.8.0",
+  "reviewer": "NotebookLM independent academic review",
+  "review_rounds": 1,
+  "final_verdict": "PASS",
+  "scope": {
+    "lessons": 4,
+    "activities": 40,
+    "lesson_ids": [
+      "GRA-B1-06",
+      "GRA-B1-07",
+      "GRA-B1-08",
+      "GRA-B1-09"
+    ]
+  },
+  "academic_summary": {
+    "grammar_accuracy": "PASS",
+    "naturalness": "PASS",
+    "ambiguity_and_determinism": "PASS",
+    "cefr_targeting": "PASS",
+    "explanations": "PASS",
+    "vietnamese_support": "PASS",
+    "distractors": "PASS",
+    "skill_tags": "PASS",
+    "lesson_contract": "PASS",
+    "originality_and_safety": "PASS"
+  },
+  "focus_checks": {
+    "second_conditional": "PASS",
+    "present_wish_vs_hope": "PASS",
+    "passive_voice_agreement": "PASS",
+    "reported_speech_backshift_and_word_order": "PASS"
+  },
+  "approved_source_tags": [
+    "grammar.second_conditional",
+    "grammar.wish_present",
+    "grammar.passive_voice",
+    "grammar.reported_speech",
+    "grammar.reported_questions"
+  ],
+  "release_boundary": {
+    "import_authorized": false,
+    "deploy_authorized": false,
+    "next_steps": [
+      "admit reviewed tag mappings",
+      "compose immutable 1.8.0 candidate",
+      "verify all 1.7.0 lessons preserved",
+      "run regression and import-preview gates"
+    ]
+  }
+}

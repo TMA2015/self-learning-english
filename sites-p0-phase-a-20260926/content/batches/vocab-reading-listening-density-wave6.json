@@ -1,0 +1,1894 @@
+{
+  "format": "ai-english-tutor.curriculum-batch",
+  "schema_version": 1,
+  "batch_id": "VOCAB-READING-LISTENING-DENSITY-WAVE6-20261008",
+  "base_version": "1.14.0",
+  "target_version": "1.15.0",
+  "status": "academic_pass_audio_pass_candidate_only_no_import",
+  "metadata": {
+    "status": "academic_pass_audio_pass_no_import",
+    "course_title": "English Foundation · A1–B1 developing curriculum",
+    "course_description": "Expand underrepresented A2→B1 content while GitHub Actions remain intentionally unused.",
+    "curriculum_principle": "A lesson target is not a CEFR certification.",
+    "evidence_weight": 1,
+    "proficiency_weight": 0,
+    "tag_mappings": {
+      "vocabulary.food_preparation": "vocabulary.collocations",
+      "vocabulary.learning_collocations": "vocabulary.collocations",
+      "vocabulary.collocation": "vocabulary.collocations",
+      "vocabulary.context": "vocabulary.meaning_in_context",
+      "reading.compare_information": "reading.detail",
+      "reading.main_claim": "reading.gist",
+      "reading.qualification": "reading.inference",
+      "listening.time": "listening.detail",
+      "listening.speaker_preference": "listening.speaker_intention",
+      "listening.qualification": "listening.inference"
+    },
+    "audio_qa": "OWNER PASS"
+  },
+  "insert_after": [
+    {
+      "after": "VOC-A2-04",
+      "ids": [
+        "VOC-A2-05"
+      ]
+    },
+    {
+      "after": "VOC-B1-04",
+      "ids": [
+        "VOC-B1-05"
+      ]
+    },
+    {
+      "after": "REA-A2-05",
+      "ids": [
+        "REA-A2-06"
+      ]
+    },
+    {
+      "after": "REA-B1-04",
+      "ids": [
+        "REA-B1-05"
+      ]
+    },
+    {
+      "after": "LIS-A2-02",
+      "ids": [
+        "LIS-A2-03"
+      ]
+    },
+    {
+      "after": "LIS-B1-03",
+      "ids": [
+        "LIS-B1-04"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "VOC-A2-05",
+      "module": "vocabulary",
+      "cefr_target": "A2",
+      "title": "Food preparation and simple instructions",
+      "estimated_minutes": 20,
+      "objectives": [
+        "understand common food-preparation verbs in everyday instructions;",
+        "choose natural verb–noun combinations;",
+        "use context to distinguish similar actions such as chop, mix, pour, heat and serve."
+      ],
+      "explanation": {
+        "en": "Key chunks:\n\n- **chop vegetables** — cut them into smaller pieces;\n- **mix ingredients** — combine them together;\n- **pour water / milk** — make liquid flow from one container to another;\n- **heat soup** — make it hot;\n- **add salt / sugar** — put an extra ingredient in;\n- **serve food** — give prepared food to people to eat.\n\nUseful nouns:\n- **ingredient** — one food item used to make a dish;\n- **recipe** — instructions explaining how to prepare a dish.\n\nVietnamese micro-support:\n- ingredient = nguyên liệu;\n- recipe = công thức;\n- chop = cắt nhỏ;\n- pour = rót/đổ;\n- serve = dọn/phục vụ món ăn."
+      },
+      "examples": [],
+      "activities": [
+        {
+          "id": "VOC-A2-05-Q1",
+          "type": "single_choice",
+          "prompt": "You want smaller pieces of carrot for a salad. What should you do?",
+          "options": [
+            {
+              "id": "A",
+              "text": "chop the carrot"
+            },
+            {
+              "id": "B",
+              "text": "pour the carrot"
+            },
+            {
+              "id": "C",
+              "text": "serve the carrot"
+            },
+            {
+              "id": "D",
+              "text": "heat the carrot"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "*Chop* means cut food into smaller pieces. *Pour* is for liquids."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-05-Q2",
+          "type": "single_choice",
+          "prompt": "Complete naturally: “___ the flour and eggs in the bowl.”",
+          "options": [
+            {
+              "id": "A",
+              "text": "Mix"
+            },
+            {
+              "id": "B",
+              "text": "Pour"
+            },
+            {
+              "id": "C",
+              "text": "Serve"
+            },
+            {
+              "id": "D",
+              "text": "Chop"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Flour and eggs can be combined by mixing them."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-05-Q3",
+          "type": "single_choice",
+          "prompt": "Which instruction is natural?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Pour the water into the cup."
+            },
+            {
+              "id": "B",
+              "text": "Chop the water into the cup."
+            },
+            {
+              "id": "C",
+              "text": "Serve the water into the cup."
+            },
+            {
+              "id": "D",
+              "text": "Mix the cup into the water."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "*Pour* is used when moving liquid from one container to another."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-05-Q4",
+          "type": "single_choice",
+          "prompt": "The soup is cold. Which instruction best fits?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Heat the soup before dinner."
+            },
+            {
+              "id": "B",
+              "text": "Chop the soup before dinner."
+            },
+            {
+              "id": "C",
+              "text": "Pour the soup before dinner."
+            },
+            {
+              "id": "D",
+              "text": "Mix the dinner before soup."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "*Heat* means make something warmer or hot."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-05-Q5",
+          "type": "single_choice",
+          "prompt": "A recipe says, “Add one teaspoon of sugar.” What does *add* mean here?",
+          "options": [
+            {
+              "id": "A",
+              "text": "put in an extra ingredient"
+            },
+            {
+              "id": "B",
+              "text": "remove an ingredient"
+            },
+            {
+              "id": "C",
+              "text": "cut the ingredient into pieces"
+            },
+            {
+              "id": "D",
+              "text": "give the finished food to guests"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "In a recipe, *add* means put another ingredient into the mixture."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-05-Q6",
+          "type": "single_choice",
+          "prompt": "Which sentence uses *serve* correctly?",
+          "options": [
+            {
+              "id": "A",
+              "text": "We served the rice with vegetables."
+            },
+            {
+              "id": "B",
+              "text": "We served the onion into tiny pieces."
+            },
+            {
+              "id": "C",
+              "text": "We served the milk into the glass."
+            },
+            {
+              "id": "D",
+              "text": "We served the soup until it became hot."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "*Serve* is used for giving prepared food to people."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-05-Q7",
+          "type": "single_choice",
+          "prompt": "Which word means “one of the foods used to make a dish”?",
+          "options": [
+            {
+              "id": "A",
+              "text": "ingredient"
+            },
+            {
+              "id": "B",
+              "text": "receipt"
+            },
+            {
+              "id": "C",
+              "text": "timetable"
+            },
+            {
+              "id": "D",
+              "text": "journey"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "An ingredient is one item used in preparing food."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-A2-05-Q8",
+          "type": "single_choice",
+          "prompt": "You have never made vegetable soup before. Which item would most directly tell you the steps?",
+          "options": [
+            {
+              "id": "A",
+              "text": "a recipe"
+            },
+            {
+              "id": "B",
+              "text": "a receipt"
+            },
+            {
+              "id": "C",
+              "text": "a ticket"
+            },
+            {
+              "id": "D",
+              "text": "a timetable"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A recipe gives instructions for preparing a dish."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "VOC-B1-05",
+      "module": "vocabulary",
+      "cefr_target": "B1",
+      "title": "Learning goals, progress and feedback",
+      "estimated_minutes": 22,
+      "objectives": [
+        "understand common B1 collocations used to talk about learning and improvement;",
+        "distinguish natural combinations from grammatically possible but unnatural ones;",
+        "infer the meaning of a learning collocation from context."
+      ],
+      "explanation": {
+        "en": "Core chunks:\n\n- **set a goal** — decide what you want to achieve;\n- **make progress** — improve over time;\n- **pay attention** — focus carefully;\n- **ask for feedback** — request comments that can help you improve;\n- **improve a skill** — become better at an ability;\n- **keep track of progress** — record or follow changes over time;\n- **review notes** — look at notes again to remember or understand them;\n- **solve a problem** — find an answer or way forward.\n\nVietnamese micro-support:\n- set a goal = đặt mục tiêu;\n- make progress = tiến bộ;\n- feedback = phản hồi;\n- keep track of = theo dõi."
+      },
+      "examples": [],
+      "activities": [
+        {
+          "id": "VOC-B1-05-Q1",
+          "type": "single_choice",
+          "prompt": "Which phrase is most natural?",
+          "options": [
+            {
+              "id": "A",
+              "text": "set a goal"
+            },
+            {
+              "id": "B",
+              "text": "put a goal"
+            },
+            {
+              "id": "C",
+              "text": "build a goal"
+            },
+            {
+              "id": "D",
+              "text": "do a goal"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "English normally uses the collocation *set a goal*."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-05-Q2",
+          "type": "single_choice",
+          "prompt": "Mai practises pronunciation every day and can now speak more clearly. She is ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "making progress"
+            },
+            {
+              "id": "B",
+              "text": "doing progress"
+            },
+            {
+              "id": "C",
+              "text": "creating progress"
+            },
+            {
+              "id": "D",
+              "text": "putting progress"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "*Make progress* means improve over time."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-05-Q3",
+          "type": "single_choice",
+          "prompt": "The teacher is explaining a new idea. What should students do?",
+          "options": [
+            {
+              "id": "A",
+              "text": "pay attention"
+            },
+            {
+              "id": "B",
+              "text": "make attention"
+            },
+            {
+              "id": "C",
+              "text": "set attention"
+            },
+            {
+              "id": "D",
+              "text": "solve attention"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "*Pay attention* is the natural collocation for focusing carefully."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-05-Q4",
+          "type": "single_choice",
+          "prompt": "Linh wants to know how to improve her paragraph. What is the most useful action?",
+          "options": [
+            {
+              "id": "A",
+              "text": "ask for feedback"
+            },
+            {
+              "id": "B",
+              "text": "make a feedback"
+            },
+            {
+              "id": "C",
+              "text": "solve feedback"
+            },
+            {
+              "id": "D",
+              "text": "pay feedback"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "We normally *ask for feedback* when we want comments that help us improve."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-05-Q5",
+          "type": "single_choice",
+          "prompt": "Which sentence best shows the meaning of *keep track of progress*?",
+          "options": [
+            {
+              "id": "A",
+              "text": "I record my quiz results each week so I can see how I am changing."
+            },
+            {
+              "id": "B",
+              "text": "I close my notebook and forget my results."
+            },
+            {
+              "id": "C",
+              "text": "I change my goal every five minutes."
+            },
+            {
+              "id": "D",
+              "text": "I copy the answer without checking it."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Keeping track means recording or following changes over time."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-05-Q6",
+          "type": "single_choice",
+          "prompt": "Before tomorrow’s test, Ana reads her class notes again. She is ___.",
+          "options": [
+            {
+              "id": "A",
+              "text": "reviewing her notes"
+            },
+            {
+              "id": "B",
+              "text": "solving her notes"
+            },
+            {
+              "id": "C",
+              "text": "setting her notes"
+            },
+            {
+              "id": "D",
+              "text": "paying her notes"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "*Review notes* means look at them again for study."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-05-Q7",
+          "type": "single_choice",
+          "prompt": "Which phrase best completes the sentence? “Working with a partner helped us ___ when the instructions were unclear.”",
+          "options": [
+            {
+              "id": "A",
+              "text": "solve the problem"
+            },
+            {
+              "id": "B",
+              "text": "make the problem"
+            },
+            {
+              "id": "C",
+              "text": "pay the problem"
+            },
+            {
+              "id": "D",
+              "text": "review the problem into"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "To *solve a problem* is to find an answer or workable solution."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-05-Q8",
+          "type": "single_choice",
+          "prompt": "“I want to become better at summarising articles.” Which phrase describes this aim?",
+          "options": [
+            {
+              "id": "A",
+              "text": "improve a skill"
+            },
+            {
+              "id": "B",
+              "text": "pour a skill"
+            },
+            {
+              "id": "C",
+              "text": "attend a skill"
+            },
+            {
+              "id": "D",
+              "text": "refund a skill"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Summarising is a skill, and *improve a skill* means become better at it."
+          },
+          "skill_tags": [
+            "vocabulary.collocations",
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "REA-A2-06",
+      "module": "reading",
+      "cefr_target": "A2",
+      "title": "Which club fits you?",
+      "estimated_minutes": 24,
+      "objectives": [
+        "find key details across short club notices;",
+        "compare times, requirements and activities;",
+        "make a simple inference about which club best fits a stated preference."
+      ],
+      "explanation": {
+        "en": "Learners will:\n1. find key details across short club notices;\n2. compare times, requirements and activities;\n3. make a simple inference about which club best fits a stated preference."
+      },
+      "examples": [],
+      "activities": [
+        {
+          "id": "REA-A2-06-Q1",
+          "type": "single_choice",
+          "prompt": "What is the main purpose of the text?",
+          "options": [
+            {
+              "id": "A",
+              "text": "to describe three after-school club choices"
+            },
+            {
+              "id": "B",
+              "text": "to report the results of a sports match"
+            },
+            {
+              "id": "C",
+              "text": "to explain how to travel to school"
+            },
+            {
+              "id": "D",
+              "text": "to advertise a shop sale"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The text gives times, activities and requirements for three clubs."
+          },
+          "skill_tags": [
+            "reading.gist",
+            "reading.detail",
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-06-Q2",
+          "type": "single_choice",
+          "prompt": "Which club meets earliest in the afternoon?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Art Lab"
+            },
+            {
+              "id": "B",
+              "text": "Coding Corner"
+            },
+            {
+              "id": "C",
+              "text": "Nature Walkers"
+            },
+            {
+              "id": "D",
+              "text": "They all start at the same time"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Nature Walkers starts at 3:30; Art Lab at 3:45; Coding Corner at 4:00."
+          },
+          "skill_tags": [
+            "reading.gist",
+            "reading.detail",
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-06-Q3",
+          "type": "single_choice",
+          "prompt": "What must an Art Lab student do to get a place?",
+          "options": [
+            {
+              "id": "A",
+              "text": "sign up by Monday lunchtime"
+            },
+            {
+              "id": "B",
+              "text": "bring their own paint"
+            },
+            {
+              "id": "C",
+              "text": "already know how to draw well"
+            },
+            {
+              "id": "D",
+              "text": "buy an apron from the school"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "There are 16 places, so students must sign up by Monday lunchtime."
+          },
+          "skill_tags": [
+            "reading.gist",
+            "reading.detail",
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-06-Q4",
+          "type": "single_choice",
+          "prompt": "Why might a Coding Corner student reserve a school laptop?",
+          "options": [
+            {
+              "id": "A",
+              "text": "because school laptops are available only if requested when signing up"
+            },
+            {
+              "id": "B",
+              "text": "because every student must use two laptops"
+            },
+            {
+              "id": "C",
+              "text": "because tablets are not allowed"
+            },
+            {
+              "id": "D",
+              "text": "because the club sells computers"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The notice says school laptops are available, but students must reserve one when they sign up."
+          },
+          "skill_tags": [
+            "reading.gist",
+            "reading.detail",
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-06-Q5",
+          "type": "single_choice",
+          "prompt": "Which item is specifically required for Nature Walkers?",
+          "options": [
+            {
+              "id": "A",
+              "text": "a water bottle"
+            },
+            {
+              "id": "B",
+              "text": "a paint brush"
+            },
+            {
+              "id": "C",
+              "text": "a school laptop"
+            },
+            {
+              "id": "D",
+              "text": "an apron"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Nature Walkers says to bring a water bottle."
+          },
+          "skill_tags": [
+            "reading.gist",
+            "reading.detail",
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-06-Q6",
+          "type": "single_choice",
+          "prompt": "What happens to Nature Walkers if there is heavy rain?",
+          "options": [
+            {
+              "id": "A",
+              "text": "They work indoors on the nature journal."
+            },
+            {
+              "id": "B",
+              "text": "The club is always cancelled."
+            },
+            {
+              "id": "C",
+              "text": "They move to Coding Corner."
+            },
+            {
+              "id": "D",
+              "text": "They meet earlier outside."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The text states that in heavy rain the group stays inside and works on its nature journal."
+          },
+          "skill_tags": [
+            "reading.gist",
+            "reading.detail",
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-06-Q7",
+          "type": "single_choice",
+          "prompt": "Hana wants a club where she can start with no previous experience and use school equipment if she plans ahead. Which club best fits?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Coding Corner"
+            },
+            {
+              "id": "B",
+              "text": "Nature Walkers"
+            },
+            {
+              "id": "C",
+              "text": "Art Lab only because paint is expensive"
+            },
+            {
+              "id": "D",
+              "text": "None of the clubs"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Coding Corner requires no coding experience and offers school laptops if reserved in advance."
+          },
+          "skill_tags": [
+            "reading.gist",
+            "reading.detail",
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-06-Q8",
+          "type": "single_choice",
+          "prompt": "Which statement is true about both Art Lab and Coding Corner?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Beginners can join."
+            },
+            {
+              "id": "B",
+              "text": "They always meet outdoors."
+            },
+            {
+              "id": "C",
+              "text": "Students must bring a water bottle."
+            },
+            {
+              "id": "D",
+              "text": "They start at 3:30."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Art Lab says beginners are welcome; Coding Corner says no coding experience is needed."
+          },
+          "skill_tags": [
+            "reading.gist",
+            "reading.detail",
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "READ-REA-A2-06",
+        "title": "AFTER-SCHOOL CLUBS — NEW TERM",
+        "body": "### AFTER-SCHOOL CLUBS — NEW TERM\n\n**Art Lab — Tuesday, 3:45–4:45**\nTry drawing, poster design and simple craft projects. Beginners are welcome. The club provides paper, pencils and paint, but you may bring an old shirt or apron to protect your clothes. There are 16 places, so sign up by Monday lunchtime.\n\n**Coding Corner — Wednesday, 4:00–5:00**\nLearn to make simple games and animations. You do not need coding experience. School laptops are available, but students who want to use one must reserve it when they sign up. You may also bring a charged laptop or tablet of your own.\n\n**Nature Walkers — Friday, 3:30–4:30**\nExplore the park beside the school and record plants, insects and birds. Wear comfortable shoes and bring a water bottle. The club usually meets outdoors. If there is heavy rain, the group will stay inside and work on its nature journal instead.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "REA-B1-05",
+      "module": "reading",
+      "cefr_target": "B1",
+      "title": "Can short breaks help you learn?",
+      "estimated_minutes": 25,
+      "objectives": [
+        "identify the main claim of a balanced informational text;",
+        "distinguish supporting reasons from qualifications;",
+        "infer meaning from context;",
+        "use textual evidence to evaluate a recommendation."
+      ],
+      "explanation": {
+        "en": "Learners will:\n1. identify the main claim of a balanced informational text;\n2. distinguish supporting reasons from qualifications;\n3. infer meaning from context;\n4. use textual evidence to evaluate a recommendation."
+      },
+      "examples": [],
+      "activities": [
+        {
+          "id": "REA-B1-05-Q1",
+          "type": "single_choice",
+          "prompt": "What is the writer’s main claim?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Short planned breaks can help attention, but they should fit the task and situation."
+            },
+            {
+              "id": "B",
+              "text": "Every learner should stop studying every five minutes."
+            },
+            {
+              "id": "C",
+              "text": "Phones are the best way to rest during study."
+            },
+            {
+              "id": "D",
+              "text": "Long study sessions never work."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The text supports planned breaks but repeatedly qualifies when and how they are useful."
+          },
+          "skill_tags": [
+            "reading.gist",
+            "reading.detail",
+            "reading.inference",
+            "reading.vocabulary_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-05-Q2",
+          "type": "single_choice",
+          "prompt": "Why does the writer mention “looking at the page but no longer thinking carefully”?",
+          "options": [
+            {
+              "id": "A",
+              "text": "to describe a sign that attention may be fading"
+            },
+            {
+              "id": "B",
+              "text": "to prove that reading is unnecessary"
+            },
+            {
+              "id": "C",
+              "text": "to show that books are badly designed"
+            },
+            {
+              "id": "D",
+              "text": "to recommend studying without breaks"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The example introduces a situation where a short break may help."
+          },
+          "skill_tags": [
+            "reading.gist",
+            "reading.detail",
+            "reading.inference",
+            "reading.vocabulary_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-05-Q3",
+          "type": "single_choice",
+          "prompt": "What problem can happen with an unplanned phone break?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It may become longer than intended and make returning harder."
+            },
+            {
+              "id": "B",
+              "text": "It always improves concentration."
+            },
+            {
+              "id": "C",
+              "text": "It makes the study material easier."
+            },
+            {
+              "id": "D",
+              "text": "It guarantees better memory."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The second paragraph explains how one message can lead to a much longer interruption."
+          },
+          "skill_tags": [
+            "reading.gist",
+            "reading.detail",
+            "reading.inference",
+            "reading.vocabulary_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-05-Q4",
+          "type": "single_choice",
+          "prompt": "In the final paragraph, what does *drift* most nearly mean?",
+          "options": [
+            {
+              "id": "A",
+              "text": "gradually move away from focused attention"
+            },
+            {
+              "id": "B",
+              "text": "write faster"
+            },
+            {
+              "id": "C",
+              "text": "become physically stronger"
+            },
+            {
+              "id": "D",
+              "text": "finish a task completely"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The phrase “attention beginning to drift” contrasts with being focused and making progress."
+          },
+          "skill_tags": [
+            "reading.gist",
+            "reading.detail",
+            "reading.inference",
+            "reading.vocabulary_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-05-Q5",
+          "type": "single_choice",
+          "prompt": "Why does the writer compare a difficult maths problem with vocabulary review?",
+          "options": [
+            {
+              "id": "A",
+              "text": "to show that useful study-block length can depend on the task"
+            },
+            {
+              "id": "B",
+              "text": "to show that maths is always more important"
+            },
+            {
+              "id": "C",
+              "text": "to prove vocabulary should never be reviewed"
+            },
+            {
+              "id": "D",
+              "text": "to say everyone needs the same study schedule"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The paragraph states that exact timing does not need to be the same for everyone or every task."
+          },
+          "skill_tags": [
+            "reading.gist",
+            "reading.detail",
+            "reading.inference",
+            "reading.vocabulary_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-05-Q6",
+          "type": "single_choice",
+          "prompt": "Which statement would the writer most likely agree with?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A break is useful when it supports concentration, not simply because a timer rings."
+            },
+            {
+              "id": "B",
+              "text": "Learners should stop whenever five minutes have passed."
+            },
+            {
+              "id": "C",
+              "text": "A phone is necessary for every break."
+            },
+            {
+              "id": "D",
+              "text": "Deep focus should always be interrupted."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The final sentence says there may be no reason to stop during deep, productive focus."
+          },
+          "skill_tags": [
+            "reading.gist",
+            "reading.detail",
+            "reading.inference",
+            "reading.vocabulary_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-05-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence is a qualification rather than a simple supporting claim?",
+          "options": [
+            {
+              "id": "A",
+              "text": "“However, this does not mean that every interruption is useful.”"
+            },
+            {
+              "id": "B",
+              "text": "“Standing up can be a type of break.”"
+            },
+            {
+              "id": "C",
+              "text": "“Some people study for a long time.”"
+            },
+            {
+              "id": "D",
+              "text": "“Vocabulary is a school subject.”"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "*However* introduces a limitation to the earlier positive point about breaks."
+          },
+          "skill_tags": [
+            "reading.gist",
+            "reading.detail",
+            "reading.inference",
+            "reading.vocabulary_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-05-Q8",
+          "type": "single_choice",
+          "prompt": "What is the best summary of the third paragraph?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Plan a stopping point, but adjust study-block length to the task and learner."
+            },
+            {
+              "id": "B",
+              "text": "Always use exactly five-minute study sessions."
+            },
+            {
+              "id": "C",
+              "text": "Study only maths and vocabulary."
+            },
+            {
+              "id": "D",
+              "text": "Never use a timer for any reason."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The paragraph recommends a planned stopping point while explicitly rejecting one fixed timing rule."
+          },
+          "skill_tags": [
+            "reading.gist",
+            "reading.detail",
+            "reading.inference",
+            "reading.vocabulary_in_context"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "READ-REA-B1-05",
+        "title": "CAN SHORT BREAKS HELP YOU LEARN?",
+        "body": "### CAN SHORT BREAKS HELP YOU LEARN?\n\nWhen people study for a long time, they sometimes notice that they are still looking at the page but no longer thinking carefully about it. A short, planned break can help at this point. Standing up, stretching, getting some water or looking away from a screen for a few minutes may help a learner return with better attention.\n\nHowever, this does not mean that every interruption is useful. A break can easily become much longer than planned. For example, checking one message on a phone may lead to ten minutes of videos or group-chat replies. In that case, the learner may find it harder to return to the original task.\n\nOne useful approach is to decide on a clear stopping point before beginning a study session. A learner might work until the end of a short section, then take a five-minute break. The exact timing does not need to be the same for everyone. A difficult maths problem may require a longer period of concentration, while reviewing vocabulary might work well in shorter blocks.\n\nThe important point is that breaks should support the task rather than replace it. If a learner notices attention beginning to drift, a brief planned pause may be useful. But if the learner is deeply focused and making progress, there may be no reason to stop simply because a timer says so.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "LIS-A2-03",
+      "module": "listening",
+      "cefr_target": "A2",
+      "title": "Choosing a class at the sports centre",
+      "estimated_minutes": 18,
+      "objectives": [
+        "understand the main purpose of a short everyday conversation;",
+        "identify times, prices, equipment and conditions;",
+        "make a simple inference about a final choice."
+      ],
+      "explanation": {
+        "en": "- Two clearly different voices.\n- Natural conversational pace for A2.\n- No background music/effects.\n- Script must be spoken exactly enough that all answer evidence remains unchanged.\n- Real MP3 required before import.\n- Full playback required before scoring.\n- Transcript hidden until submission."
+      },
+      "examples": [],
+      "activities": [
+        {
+          "id": "LIS-A2-03-Q1",
+          "type": "single_choice",
+          "prompt": "Why are Maya and her dad talking?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Maya is choosing a sports-centre class."
+            },
+            {
+              "id": "B",
+              "text": "They are buying a new phone."
+            },
+            {
+              "id": "C",
+              "text": "They are planning a train journey."
+            },
+            {
+              "id": "D",
+              "text": "Maya is changing schools."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Maya says she wants to join one sports-centre class."
+          },
+          "skill_tags": [
+            "listening.gist",
+            "listening.detail",
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-03-Q2",
+          "type": "single_choice",
+          "prompt": "When is badminton?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Tuesday at 4:30"
+            },
+            {
+              "id": "B",
+              "text": "Tuesday at 5:00"
+            },
+            {
+              "id": "C",
+              "text": "Thursday at 4:30"
+            },
+            {
+              "id": "D",
+              "text": "Thursday at 5:00"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Maya says badminton is Tuesday at half past four."
+          },
+          "skill_tags": [
+            "listening.gist",
+            "listening.detail",
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-03-Q3",
+          "type": "single_choice",
+          "prompt": "How much is climbing for the course?",
+          "options": [
+            {
+              "id": "A",
+              "text": "£20"
+            },
+            {
+              "id": "B",
+              "text": "£24"
+            },
+            {
+              "id": "C",
+              "text": "£30"
+            },
+            {
+              "id": "D",
+              "text": "£36"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Maya says climbing is thirty pounds."
+          },
+          "skill_tags": [
+            "listening.gist",
+            "listening.detail",
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-03-Q4",
+          "type": "single_choice",
+          "prompt": "What does the centre provide for climbing?",
+          "options": [
+            {
+              "id": "A",
+              "text": "climbing shoes and safety equipment"
+            },
+            {
+              "id": "B",
+              "text": "a music book"
+            },
+            {
+              "id": "C",
+              "text": "a badminton racket for six weeks"
+            },
+            {
+              "id": "D",
+              "text": "indoor sports shoes"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Maya says the centre provides climbing shoes and safety equipment."
+          },
+          "skill_tags": [
+            "listening.gist",
+            "listening.detail",
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-03-Q5",
+          "type": "single_choice",
+          "prompt": "What can Maya borrow for the first two badminton lessons?",
+          "options": [
+            {
+              "id": "A",
+              "text": "a racket"
+            },
+            {
+              "id": "B",
+              "text": "sports shoes"
+            },
+            {
+              "id": "C",
+              "text": "a water bottle"
+            },
+            {
+              "id": "D",
+              "text": "a climbing helmet only"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "She can borrow a racket for the first two lessons."
+          },
+          "skill_tags": [
+            "listening.gist",
+            "listening.detail",
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-03-Q6",
+          "type": "single_choice",
+          "prompt": "Why is Tuesday difficult for Maya?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Music club ends only 15 minutes before badminton starts."
+            },
+            {
+              "id": "B",
+              "text": "The sports centre is closed."
+            },
+            {
+              "id": "C",
+              "text": "She has climbing at the same time."
+            },
+            {
+              "id": "D",
+              "text": "Badminton starts before school finishes."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Music ends at 4:15 and badminton begins at 4:30."
+          },
+          "skill_tags": [
+            "listening.gist",
+            "listening.detail",
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-03-Q7",
+          "type": "single_choice",
+          "prompt": "Which class does Maya finally choose?",
+          "options": [
+            {
+              "id": "A",
+              "text": "climbing"
+            },
+            {
+              "id": "B",
+              "text": "badminton"
+            },
+            {
+              "id": "C",
+              "text": "music"
+            },
+            {
+              "id": "D",
+              "text": "neither class"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Maya explicitly says, “I’ll choose climbing.”"
+          },
+          "skill_tags": [
+            "listening.gist",
+            "listening.detail",
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-03-Q8",
+          "type": "single_choice",
+          "prompt": "What is one reason Maya prefers climbing in the end?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Thursday is free and she does not need to buy special equipment at the start."
+            },
+            {
+              "id": "B",
+              "text": "Climbing is cheaper than badminton."
+            },
+            {
+              "id": "C",
+              "text": "Climbing happens on Tuesday."
+            },
+            {
+              "id": "D",
+              "text": "Music club moves to Thursday."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Maya gives both reasons in her final turn."
+          },
+          "skill_tags": [
+            "listening.gist",
+            "listening.detail",
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "audio_asset": {
+        "id": "AUD-LIS-A2-03",
+        "source_text": "Maya: Dad, I want to join one class at the sports centre this term. Badminton is on Tuesday at half past four, and climbing is on Thursday at five.\n\nDad: Which one costs less?\n\nMaya: Badminton is twenty-four pounds for six weeks. Climbing is thirty pounds, but the centre provides the climbing shoes and safety equipment.\n\nDad: Do you need anything for badminton?\n\nMaya: I need indoor sports shoes. I can borrow a racket for the first two lessons, but after that I should bring my own.\n\nDad: Tuesday is the day you have music club, isn’t it?\n\nMaya: Yes. Music finishes at four fifteen, so getting to badminton by four thirty would be difficult.\n\nDad: Then climbing may be easier, even though it costs more.\n\nMaya: I think so. Thursday is free, and I don’t need to buy special equipment at the start. I’ll choose climbing.",
+        "language": "en",
+        "roles": [
+          "Maya",
+          "Dad"
+        ],
+        "transcript_reveal": "after_submission",
+        "requires_real_playback": true,
+        "fallback": "If playback is unavailable, mark listening unassessed; do not reveal the transcript first or award listening credit."
+      }
+    },
+    {
+      "id": "LIS-B1-04",
+      "module": "listening",
+      "cefr_target": "B1",
+      "title": "Planning a student podcast episode",
+      "estimated_minutes": 21,
+      "objectives": [
+        "identify the main problem and proposed compromise in a planning discussion;",
+        "understand reasons, constraints and speaker preferences;",
+        "recognise a qualified final decision."
+      ],
+      "explanation": {
+        "en": "- Two distinct teenage/young-adult voices.\n- Natural but clear B1 conversational pace.\n- No music or sound effects.\n- Preserve wording that carries answer evidence.\n- Real MP3 required before import.\n- Full playback required before scoring.\n- Transcript hidden until submission."
+      },
+      "examples": [],
+      "activities": [
+        {
+          "id": "LIS-B1-04-Q1",
+          "type": "single_choice",
+          "prompt": "What are Nina and Omar mainly planning?",
+          "options": [
+            {
+              "id": "A",
+              "text": "the next school podcast episode"
+            },
+            {
+              "id": "B",
+              "text": "a community garden timetable"
+            },
+            {
+              "id": "C",
+              "text": "a drama performance"
+            },
+            {
+              "id": "D",
+              "text": "a Friday sports event"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Nina says they need to decide the plan for the next school podcast."
+          },
+          "skill_tags": [
+            "listening.gist",
+            "listening.detail",
+            "listening.speaker_intention",
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-04-Q2",
+          "type": "single_choice",
+          "prompt": "Why is Wednesday difficult?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The interview is late in the week and the usual recording room is already booked."
+            },
+            {
+              "id": "B",
+              "text": "Ms Patel refuses to be interviewed."
+            },
+            {
+              "id": "C",
+              "text": "The podcast deadline has been cancelled."
+            },
+            {
+              "id": "D",
+              "text": "Nina cannot think of any questions."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Ms Patel is only available Wednesday and the drama club has booked the recording room."
+          },
+          "skill_tags": [
+            "listening.gist",
+            "listening.detail",
+            "listening.speaker_intention",
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-04-Q3",
+          "type": "single_choice",
+          "prompt": "What is Omar’s bigger concern?",
+          "options": [
+            {
+              "id": "A",
+              "text": "possible recording noise"
+            },
+            {
+              "id": "B",
+              "text": "the garden topic itself"
+            },
+            {
+              "id": "C",
+              "text": "the number of students in the garden"
+            },
+            {
+              "id": "D",
+              "text": "the price of the microphone"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Omar says his bigger worry is the recording room and people walking past in the library."
+          },
+          "skill_tags": [
+            "listening.gist",
+            "listening.detail",
+            "listening.speaker_intention",
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-04-Q4",
+          "type": "single_choice",
+          "prompt": "Why does Nina suggest the small study room?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It may be quiet enough if they reduce interruptions and sit close to the microphone."
+            },
+            {
+              "id": "B",
+              "text": "It has professional music equipment."
+            },
+            {
+              "id": "C",
+              "text": "It is available only on Friday."
+            },
+            {
+              "id": "D",
+              "text": "It is outdoors beside the garden."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Nina says they can put a sign on the door and sit close to the microphone."
+          },
+          "skill_tags": [
+            "listening.gist",
+            "listening.detail",
+            "listening.speaker_intention",
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-04-Q5",
+          "type": "single_choice",
+          "prompt": "What does Omar mean by “I’d rather keep the garden interview if the sound is clear enough”?",
+          "options": [
+            {
+              "id": "A",
+              "text": "He prefers the original topic, but only if recording quality is acceptable."
+            },
+            {
+              "id": "B",
+              "text": "He wants to cancel the podcast."
+            },
+            {
+              "id": "C",
+              "text": "He thinks the garden topic is boring."
+            },
+            {
+              "id": "D",
+              "text": "He wants eight questions instead of five."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "His preference is qualified by the condition about sound quality."
+          },
+          "skill_tags": [
+            "listening.gist",
+            "listening.detail",
+            "listening.speaker_intention",
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-04-Q6",
+          "type": "single_choice",
+          "prompt": "Why do they reduce the interview from eight questions to five?",
+          "options": [
+            {
+              "id": "A",
+              "text": "to keep it shorter and leave more time for editing"
+            },
+            {
+              "id": "B",
+              "text": "because Ms Patel can answer only five words"
+            },
+            {
+              "id": "C",
+              "text": "because the podcast must be exactly five minutes"
+            },
+            {
+              "id": "D",
+              "text": "because the drama club requested it"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Nina links five questions to a ten-minute interview and starting editing the same evening."
+          },
+          "skill_tags": [
+            "listening.gist",
+            "listening.detail",
+            "listening.speaker_intention",
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-04-Q7",
+          "type": "single_choice",
+          "prompt": "What is their backup plan?",
+          "options": [
+            {
+              "id": "A",
+              "text": "record Ms Patel’s answers on Thursday lunchtime if Wednesday’s room is too noisy"
+            },
+            {
+              "id": "B",
+              "text": "cancel the episode immediately"
+            },
+            {
+              "id": "C",
+              "text": "use the drama club room without permission"
+            },
+            {
+              "id": "D",
+              "text": "record on Friday after the deadline"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Omar explicitly states the Thursday-lunchtime backup."
+          },
+          "skill_tags": [
+            "listening.gist",
+            "listening.detail",
+            "listening.speaker_intention",
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-04-Q8",
+          "type": "single_choice",
+          "prompt": "Which best describes their final decision?",
+          "options": [
+            {
+              "id": "A",
+              "text": "They keep the original interview idea but make it shorter and add a backup recording time."
+            },
+            {
+              "id": "B",
+              "text": "They abandon the interview and choose a completely new topic."
+            },
+            {
+              "id": "C",
+              "text": "They delay the episode until the next month."
+            },
+            {
+              "id": "D",
+              "text": "They decide to record eight questions in the drama room."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The final plan keeps Ms Patel, shortens the interview, uses the study room, and keeps Thursday lunchtime as backup."
+          },
+          "skill_tags": [
+            "listening.gist",
+            "listening.detail",
+            "listening.speaker_intention",
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "audio_asset": {
+        "id": "AUD-LIS-B1-04",
+        "source_text": "Nina: We need to decide the plan for our next school podcast. I still think we should interview Ms Patel about the community garden. She can explain how students helped design it.\n\nOmar: I like the topic, but she can only meet us on Wednesday after school. Our edited episode is due Friday morning.\n\nNina: That gives us Thursday to edit. It’s tight, but possible if we keep the interview short.\n\nOmar: My bigger worry is the recording room. The drama club has booked it on Wednesday. We could record in the library, but there may be people walking past.\n\nNina: What if we use the small study room at the back? It isn’t completely silent, but we can put a sign on the door and sit close to the microphone.\n\nOmar: That could work. I was going to suggest changing the topic, but I’d rather keep the garden interview if the sound is clear enough.\n\nNina: Let’s prepare five questions instead of eight. Then the interview should take about ten minutes, and we can start editing the same evening.\n\nOmar: Okay. So we keep Ms Patel, use the study room, and make a shorter interview. If the room is too noisy when we arrive, we’ll record her answers on Thursday lunchtime instead.\n\nNina: Good. It’s not our perfect plan, but it gives us a backup.",
+        "language": "en",
+        "roles": [
+          "Nina",
+          "Omar"
+        ],
+        "transcript_reveal": "after_submission",
+        "requires_real_playback": true,
+        "fallback": "If playback is unavailable, mark listening unassessed; do not reveal the transcript first or award listening credit."
+      }
+    }
+  ]
+}

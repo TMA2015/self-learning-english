@@ -1,0 +1,21 @@
+'use strict';
+// CI contract for the one canonical release path; no network or deploy.
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const root=path.resolve(__dirname,'../..');
+const live=fs.readFileSync(path.join(root,'.github/workflows/english-manual-release-qa.yml'),'utf8');
+const pr=fs.readFileSync(path.join(root,'.github/workflows/english-pr-qa.yml'),'utf8');
+const cfg=JSON.parse(fs.readFileSync(path.join(__dirname,'../firebase.json'),'utf8'));
+const rc=JSON.parse(fs.readFileSync(path.join(__dirname,'../.firebaserc'),'utf8'));
+assert.equal(cfg.hosting.target,'english');
+assert.equal(cfg.hosting.public,'dist/client');
+assert.equal(rc.projects.default,'roadmap-toan-ai');
+assert.deepEqual(rc.targets['roadmap-toan-ai'].hosting.english,['g-learning-english']);
+assert.match(live,/^on:\n  push:\n    branches: \[main\]/m);
+assert(live.includes("contains(github.event.head_commit.message, '[release-english]')"));
+assert(!/workflow_dispatch:|PREVIEW_STAGE3_1181|sle-stage3-1181-qa|expires: 7d/.test(live));
+assert(/channelId: live/.test(live)&&/target: english/.test(live));
+assert(/firebaseServiceAccount:/.test(live));
+assert(live.indexOf('run: pnpm qa:release')<live.indexOf('name: Deploy Firebase Hosting English LIVE only'));
+assert.match(pr,/^on:\n  pull_request:\n    branches: \[main\]/m);
+assert(!/secrets\.|channelId: live|action-hosting-deploy/.test(pr));
+console.log(JSON.stringify({result:'PASS',gate:'sle-single-release-policy',onlyEnglish:true,ownerMergeMarker:true,qaBeforeDeploy:true,previewRemoved:true}));

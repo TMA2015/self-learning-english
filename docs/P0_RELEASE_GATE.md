@@ -1,3 +1,5 @@
+> **ARCHIVED / HISTORICAL — 2026-11-03.** This is NOT an active SLE rulebook. Use only [SLE-MASTER-001](../sites-p0-phase-a-20260926/docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md). Historical commands, older branches and old quota restrictions below may be obsolete; do not treat them as current instructions.
+
 > **Current release instruction (supersedes the earlier sequence below):** A full live D1 backup is NOT available in the current Sites toolset. Separate offline build/managed-preview from production release. Build and test the P0 artifact now **without touching live D1 or publishing**. Production migration/deploy is a later explicit decision after a risk/backup review. See [P0_BUILD_ONLY.md](./P0_BUILD_ONLY.md). Do not mistake a source/version rollback for a database backup.
 
 # P0 release gate — preserve learner data

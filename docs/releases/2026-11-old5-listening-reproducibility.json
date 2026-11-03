@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "purpose": "Forensic reproducibility only, not an owner rights approval",
+  "method": "Use original project generation script with 1.18.0 immutable transcripts; decode both MP3 to s16le mono 44100 via FFmpeg and compare full sample buffers",
+  "exact_matches": [
+    "LIS-A1-01",
+    "LIS-A2-02",
+    "LIS-B1-02"
+  ],
+  "nonmatches": [
+    "LIS-A2-01",
+    "LIS-B1-01"
+  ],
+  "assets": [
+    {
+      "id": "LIS-A1-01",
+      "source_path": "public/foundation-audio/LIS-A1-01-v1.mp3",
+      "source_mp3_sha256": "7f7b514e30f1239d29cde08fe4e7b2ee2a448460dc392b4d4f390690adb9ae34",
+      "reproduction_mp3_sha256": "9f8319a32712f229d3a2b0c93bfead955ecf18b397d1100449b5218d3d54c9ef",
+      "source_pcm_sha256": "ffe7bf3542dec225f07f6d7a7eab32473f759123b232de6d1b5dff8f55de04c0",
+      "reproduction_pcm_sha256": "ffe7bf3542dec225f07f6d7a7eab32473f759123b232de6d1b5dff8f55de04c0",
+      "same_decoded_pcm": true,
+      "source_pcm_bytes": 2886460,
+      "reproduction_pcm_bytes": 2886460,
+      "script": "scripts/generate-foundation-audio.py",
+      "toolchain": "espeak + ffmpeg (local version; original exact versions not established)",
+      "rights_clearance": "PENDING"
+    },
+    {
+      "id": "LIS-A2-01",
+      "source_path": "public/foundation-audio/LIS-A2-01-v1.mp3",
+      "source_mp3_sha256": "c99b3e3c56ab3290e6c03447e1ca2c5a2f71f8339c752fc4b25726d9774d10ed",
+      "reproduction_mp3_sha256": "5e6b5c6bc4595d4037d09cf1e81f1c0fe1d70156f3cecdcd0cbe2dd3efdd8d20",
+      "source_pcm_sha256": "90a2f5f16bc8bf13275d0422c55ddc35363fa4576da88c0ab8b1a2fdba247a98",
+      "reproduction_pcm_sha256": "ba908e204038daecb797e1c9a59d5ac30b3b95dfe48aec2b64f4b0e7d50c3faf",
+      "same_decoded_pcm": false,
+      "source_pcm_bytes": 2179864,
+      "reproduction_pcm_bytes": 2772256,
+      "script": "scripts/generate-foundation-audio.py",
+      "toolchain": "espeak + ffmpeg (local version; original exact versions not established)",
+      "rights_clearance": "PENDING"
+    },
+    {
+      "id": "LIS-A2-02",
+      "source_path": "public/foundation-audio/LIS-A2-02-v1.mp3",
+      "source_mp3_sha256": "3cbe8e37ab59d454f97852eb45e6db8a60cd5bc61aad47ce732a1eecbc898b14",
+      "reproduction_mp3_sha256": "4918e5bcf122c286f990d06e7fa5049caab05116edc2af76bff58e7038308b6c",
+      "source_pcm_sha256": "ac34956457ea96d010e38ff3bbfe09b34d8e92bff6b859f67a44a53ead54a3f5",
+      "reproduction_pcm_sha256": "ac34956457ea96d010e38ff3bbfe09b34d8e92bff6b859f67a44a53ead54a3f5",
+      "same_decoded_pcm": true,
+      "source_pcm_bytes": 4323368,
+      "reproduction_pcm_bytes": 4323368,
+      "script": "scripts/generate-foundation-audio.py",
+      "toolchain": "espeak + ffmpeg (local version; original exact versions not established)",
+      "rights_clearance": "PENDING"
+    },
+    {
+      "id": "LIS-B1-01",
+      "source_path": "public/foundation-audio/LIS-B1-01-v1.mp3",
+      "source_mp3_sha256": "c9347e33a3e1a51bbbaa76b71b65ed6521c85d1f87a79767e810fc25565bb402",
+      "reproduction_mp3_sha256": "0e7369ade3cc8963515967228fa51083bb27afbaf63a9c154cdf49133a71dfae",
+      "source_pcm_sha256": "f6dee8d8a91f269d8034903e941b964d49032bc19cc70a04167105c03fb45947",
+      "reproduction_pcm_sha256": "bc07705ea57d1e2fc557389b048db8caf97163442e660590830074942b35f78d",
+      "same_decoded_pcm": false,
+      "source_pcm_bytes": 3523150,
+      "reproduction_pcm_bytes": 3972932,
+      "script": "scripts/generate-foundation-audio.py",
+      "toolchain": "espeak + ffmpeg (local version; original exact versions not established)",
+      "rights_clearance": "PENDING"
+    },
+    {
+      "id": "LIS-B1-02",
+      "source_path": "public/foundation-audio/LIS-B1-02-v1.mp3",
+      "source_mp3_sha256": "24c0c59ba28b1b87a4cba4a6f862a197f3f9d7cafd96b1516f734ac531b7dbe0",
+      "reproduction_mp3_sha256": "7ad03cd8e4be8cc3dcb13e318123493fc29876130cfb0c9c0163161817483bf5",
+      "source_pcm_sha256": "7f141e826f07528933dc09b057d44c196e4135ecb5b1e32e83fd4d2e1ad016be",
+      "reproduction_pcm_sha256": "7f141e826f07528933dc09b057d44c196e4135ecb5b1e32e83fd4d2e1ad016be",
+      "same_decoded_pcm": true,
+      "source_pcm_bytes": 6257036,
+      "reproduction_pcm_bytes": 6257036,
+      "script": "scripts/generate-foundation-audio.py",
+      "toolchain": "espeak + ffmpeg (local version; original exact versions not established)",
+      "rights_clearance": "PENDING"
+    }
+  ]
+}

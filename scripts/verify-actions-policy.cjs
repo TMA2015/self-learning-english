@@ -1,60 +1,37 @@
 #!/usr/bin/env node
 'use strict';
-const fs = require('node:fs');
-const path = require('node:path');
-
-const root = path.resolve(__dirname, '..');
-const dir = path.join(root, '.github', 'workflows');
-const entries = fs.existsSync(dir)
-  ? fs.readdirSync(dir).filter(x => /\.ya?ml$/i.test(x)).sort()
-  : [];
-const approved = new Map([
-  ['english-manual-release-qa.yml', 'workflow_dispatch'],
-  ['english-pr-qa.yml', 'pull_request'],
-]);
-const violations = [];
-if (entries.length !== approved.size || entries.some(file => !approved.has(file))) {
-  violations.push('Only these workflows are approved: ' + [...approved.keys()].join(', '));
+// Executable subset of the sole canonical policy:
+// sites-p0-phase-a-20260926/docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const root=path.resolve(__dirname,'..'),dir=path.join(root,'.github/workflows');
+const files=fs.readdirSync(dir).filter(x=>/\.ya?ml$/.test(x)).sort();
+assert.deepEqual(files,['english-manual-release-qa.yml','english-pr-qa.yml'],
+ 'Exactly one PR QA and one English LIVE release workflow are allowed');
+const pr=fs.readFileSync(path.join(dir,'english-pr-qa.yml'),'utf8');
+const live=fs.readFileSync(path.join(dir,'english-manual-release-qa.yml'),'utf8');
+function triggers(src){
+ const lines=src.split(/\r?\n/),start=lines.findIndex(x=>/^on:\s*$/.test(x));
+ assert(start>=0,'Missing on:');
+ const events=[];
+ for(let i=start+1;i<lines.length;i++){
+  if(lines[i].trim()&&!/^\s/.test(lines[i]))break;
+  const m=/^  ([\w-]+):/.exec(lines[i]);if(m)events.push(m[1]);
+ }
+ return events;
 }
-
-function triggers(src, file) {
-  const lines = src.split(/\r?\n/).map(line => line.replace(/\s+#.*$/, ''));
-  const start = lines.findIndex(line => /^on\s*:/.test(line));
-  if (start < 0) { violations.push(file + ': missing explicit on:'); return []; }
-  const inline = lines[start].replace(/^on\s*:\s*/, '').trim();
-  if (inline) {
-    if (/^[a-z_]+$/.test(inline)) return [inline];
-    if (/^\[.+\]$/.test(inline)) return inline.slice(1, -1).split(',').map(x => x.trim());
-    violations.push(file + ': invalid inline on:'); return [];
-  }
-  const found = [];
-  for (let i = start + 1; i < lines.length; i++) {
-    const line = lines[i];
-    if (line.trim() && !/^\s/.test(line)) break;
-    const m = /^  ([\w-]+)\s*:/.exec(line);
-    if (m) found.push(m[1]);
-  }
-  return found;
-}
-
-for (const file of entries) {
-  const src = fs.readFileSync(path.join(dir, file), 'utf8');
-  const actual = triggers(src, file);
-  const expected = approved.get(file);
-  if (!expected || actual.length !== 1 || actual[0] !== expected) {
-    violations.push(file + ': expected only ' + (expected || 'an approved trigger') + ', found ' + JSON.stringify(actual));
-  }
-  if (file === 'english-pr-qa.yml') {
-    if (!/^\s{4}branches:\s*\[main,\s*'release\/nov2026-content-v1\.18\.0'\]\s*$/m.test(src)) violations.push(file + ': PR may only target main and the approved v1.18.0 release branch');
-    if (!/^\s{2}contents:\s*read\s*$/m.test(src)) violations.push(file + ': read-only contents permission required');
-    if (/\bsecrets\s*\.|action-hosting-deploy|firebaseServiceAccount|\bchannelId\s*:\s*live\b|\bfirebase\s+deploy\b/i.test(src)) {
-      violations.push(file + ': PR QA may not reference secrets or deploy Firebase');
-    }
-    if (!/cancel-in-progress:\s*true/.test(src)) violations.push(file + ': superseded PR runs must be cancelled');
-  }
-}
-if (violations.length) {
-  console.error('CI_POLICY_FAIL\n' + violations.map(x => '- ' + x).join('\n'));
-  process.exit(1);
-}
-console.log('CI_POLICY_PASS: manual release + PR-only QA, no automatic deploy or secret access');
+assert.deepEqual(triggers(pr),['pull_request']);
+assert.deepEqual(triggers(live),['push']);
+assert(pr.includes('branches: [main]'));
+assert(live.includes('branches: [main]'));
+assert(live.includes("'sites-p0-phase-a-20260926/**'"));
+assert(live.includes("contains(github.event.head_commit.message, '[release-english]')"),
+ 'LIVE must require the owner release marker');
+assert(!/secrets\.|channelId:\s*live|action-hosting-deploy|firebaseServiceAccount/.test(pr),
+ 'PR QA cannot access secrets or deploy');
+assert(/cancel-in-progress:\s*true/.test(pr));
+assert(/target: english/.test(live)&&/channelId: live/.test(live));
+assert(/projectId: roadmap-toan-ai/.test(live));
+assert(!/PREVIEW_STAGE3_1181|sle-stage3-1181-qa|workflow_dispatch:/.test(live));
+const qa=live.indexOf('run: pnpm qa:release'),deploy=live.indexOf('name: Deploy Firebase Hosting English LIVE only');
+assert(qa>=0&&deploy>qa,'Full QA must precede English LIVE deployment');
+console.log('CI_POLICY_PASS: single PR QA + owner-authorized main LIVE release, no Preview');

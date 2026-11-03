@@ -1,0 +1,62 @@
+{
+  "candidateVersion": "1.16.0",
+  "baseVersion": "1.15.0",
+  "approvedZipSHA256": "2b9a710670ed8d652991b8274ef4b3512f07477c45bde46d946fc36e352ec97f",
+  "verifiedIds": [
+    "GRA-A1-01",
+    "GRA-A1-02",
+    "GRA-A1-03",
+    "GRA-A2-01",
+    "GRA-B1-01",
+    "GRA-A1-04",
+    "GRA-A1-05",
+    "GRA-A1-06",
+    "GRA-A1-07",
+    "GRA-A2-02",
+    "GRA-A2-03",
+    "GRA-A2-04",
+    "GRA-A1-08",
+    "GRA-A2-05",
+    "GRA-A2-06",
+    "GRA-A1-09",
+    "GRA-A1-10",
+    "GRA-A1-11",
+    "GRA-A1-12",
+    "GRA-A2-07",
+    "GRA-A2-08",
+    "GRA-A2-09",
+    "GRA-A2-10",
+    "GRA-A2-11",
+    "GRA-A2-12",
+    "GRA-A2-13",
+    "GRA-A2-14",
+    "GRA-A2-15",
+    "GRA-A2-16",
+    "GRA-B1-02",
+    "GRA-B1-03",
+    "GRA-B1-04",
+    "GRA-B1-05",
+    "GRA-B1-06",
+    "GRA-B1-07",
+    "GRA-B1-08",
+    "GRA-B1-09",
+    "GRA-B1-10",
+    "GRA-B1-11",
+    "GRA-B1-12"
+  ],
+  "editorialOmissions": [
+    {
+      "id": "GRA-A2-11",
+      "omitted": " (an existing source worked example; not the assessed gap-fill item)"
+    },
+    {
+      "id": "GRA-A2-11",
+      "omitted": " The grading policy will be decided separately."
+    },
+    {
+      "id": "GRA-B1-10",
+      "omitted": "; assess which examples need to be included for B1 learners"
+    }
+  ],
+  "originalReviewPacketsSupplied": false
+}

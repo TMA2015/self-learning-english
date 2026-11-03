@@ -1,0 +1,166 @@
+{
+  "weeks": [
+    {
+      "title": "Read the question",
+      "vi": "Đọc và tách đề",
+      "focus": "Question analysis",
+      "lessons": [
+        "Spot the topic & task",
+        "Find key words and limits",
+        "Garden writing challenge"
+      ]
+    },
+    {
+      "title": "Stay on topic",
+      "vi": "Không lạc đề",
+      "focus": "Relevance",
+      "lessons": [
+        "What belongs in an answer?",
+        "Choose on-topic examples",
+        "School clubs challenge"
+      ]
+    },
+    {
+      "title": "Ideas that matter",
+      "vi": "Tìm ý chính",
+      "focus": "Brainstorming",
+      "lessons": [
+        "List before choosing",
+        "One strong idea vs many weak ideas",
+        "Healthy lunch challenge"
+      ]
+    },
+    {
+      "title": "Explain your ideas",
+      "vi": "Phát triển lý do",
+      "focus": "Idea development",
+      "lessons": [
+        "Answer the question why",
+        "Add a useful detail",
+        "Reading time challenge"
+      ]
+    },
+    {
+      "title": "Examples from life",
+      "vi": "Ví dụ cụ thể",
+      "focus": "Examples",
+      "lessons": [
+        "Make an example specific",
+        "Connect example to reason",
+        "Helping at home challenge"
+      ]
+    },
+    {
+      "title": "Build an outline",
+      "vi": "Lập dàn ý",
+      "focus": "Organization",
+      "lessons": [
+        "Opening, reasons, ending",
+        "Put ideas in order",
+        "Outdoor learning challenge"
+      ]
+    },
+    {
+      "title": "Clear sentences",
+      "vi": "Viết câu rõ nghĩa",
+      "focus": "Sentence quality",
+      "lessons": [
+        "One clear thought",
+        "Because and so",
+        "Favorite place challenge"
+      ]
+    },
+    {
+      "title": "Accurate sentences",
+      "vi": "Chỉnh câu cho đúng",
+      "focus": "Grammar",
+      "lessons": [
+        "Subject and verb",
+        "Tense and articles",
+        "School day challenge"
+      ]
+    },
+    {
+      "title": "A strong paragraph",
+      "vi": "Viết đoạn văn",
+      "focus": "Paragraph writing",
+      "lessons": [
+        "Topic sentence",
+        "Reason and example",
+        "Pets challenge"
+      ]
+    },
+    {
+      "title": "Link paragraphs",
+      "vi": "Nối các đoạn",
+      "focus": "Organization",
+      "lessons": [
+        "Simple transitions",
+        "A clear beginning and ending",
+        "Screen time challenge"
+      ]
+    },
+    {
+      "title": "Revise your draft",
+      "vi": "Tự kiểm tra và sửa",
+      "focus": "Self-editing",
+      "lessons": [
+        "Check the task",
+        "Check ideas and sentences",
+        "Sports challenge"
+      ]
+    },
+    {
+      "title": "Write independently",
+      "vi": "Bài viết hoàn chỉnh",
+      "focus": "Independent writing",
+      "lessons": [
+        "Plan without hints",
+        "Write and revise",
+        "My school challenge"
+      ]
+    }
+  ],
+  "task": "Some students think schools should have a small garden. Do you agree? Give reasons and an example.",
+  "stages": [
+    "Question Analysis",
+    "Brainstorm",
+    "Outline",
+    "Writing",
+    "Feedback"
+  ],
+  "skillLabels": [
+    "Task Understanding",
+    "Ideas",
+    "Organization",
+    "Grammar",
+    "Vocabulary",
+    "Sentence Quality"
+  ],
+  "demoHistory": [
+    {
+      "week": 0,
+      "score": 7,
+      "tag": "subject-verb agreement",
+      "correct": 18,
+      "total": 25
+    },
+    {
+      "week": 0,
+      "score": 6,
+      "tag": "idea development",
+      "correct": 12,
+      "total": 20
+    },
+    {
+      "week": 0,
+      "score": 8,
+      "tag": "question analysis",
+      "correct": 9,
+      "total": 10
+    }
+  ],
+  "id": "english-writing-coach",
+  "version": "1.0.0",
+  "title": "English Writing Coach"
+}

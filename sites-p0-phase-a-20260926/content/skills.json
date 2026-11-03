@@ -1,0 +1,48 @@
+{
+  "Grammar": [
+    "tense-and-aspect",
+    "subject-verb-agreement",
+    "articles",
+    "pronouns",
+    "prepositions",
+    "clauses",
+    "conditionals",
+    "sentence-structure"
+  ],
+  "Vocabulary": [
+    "vocabulary-range",
+    "meaning-in-context",
+    "collocation",
+    "word-formation",
+    "appropriate-word-choice"
+  ],
+  "Reading": [
+    "gist",
+    "detail",
+    "inference",
+    "reference",
+    "vocabulary-in-context"
+  ],
+  "Writing": [
+    "task-understanding",
+    "idea-development",
+    "organization",
+    "grammar-accuracy",
+    "vocabulary",
+    "sentence-quality"
+  ],
+  "Listening": [
+    "gist",
+    "detail",
+    "speaker-intention",
+    "connected-speech-recognition",
+    "vocabulary-in-context"
+  ],
+  "Speaking": [
+    "task-response",
+    "fluency",
+    "grammar",
+    "vocabulary",
+    "pronunciation-intelligibility"
+  ]
+}

@@ -1,0 +1,710 @@
+{
+  "package_type": "academically_approved_grammar_lesson_design_candidate",
+  "candidate_status": "ACADEMIC_APPROVED_INTEGRATION_PENDING",
+  "schema_version": "1.0",
+  "baseline_curriculum_version": "1.15.0",
+  "baseline_curriculum_raw_sha256": "981a7273a9158c9e53a0e3336de1a88892024f617330d797d534f9e293dc4426",
+  "q2a_source_sha256": "ca6255aa19c009bfb0443d68b904b77898100dad6b41276b7958656830719e77",
+  "target_version": "not_assigned_requires_owner_approval",
+  "pedagogical_standard": "4 core + adaptive, English-first, opt-in Vietnamese micro-support",
+  "scope": "lesson explanations/design only; NO assessment content",
+  "academic_verdicts": [
+    {
+      "batch": "PILOT_R2",
+      "lessons": 3,
+      "verdict": "PASS",
+      "packet_filename": "EN_GRAMMAR_LESSON_DESIGN_NOTEBOOKLM_PILOT_01_R2.md"
+    },
+    {
+      "batch": "A1_BATCH_01_R2",
+      "lessons": 11,
+      "verdict": "PASS",
+      "packet_filename": "EN_GRAMMAR_LESSON_DESIGN_A1_BATCH_01_NOTEBOOKLM_R2.md"
+    },
+    {
+      "batch": "A2_BATCH_02",
+      "lessons": 8,
+      "verdict": "PASS",
+      "packet_filename": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_02_NOTEBOOKLM.md"
+    },
+    {
+      "batch": "A2_BATCH_03",
+      "lessons": 7,
+      "verdict": "PASS",
+      "packet_filename": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_03_NOTEBOOKLM.md"
+    },
+    {
+      "batch": "B1_BATCH_04_R2",
+      "lessons": 11,
+      "verdict": "PASS",
+      "packet_filename": "EN_GRAMMAR_LESSON_DESIGN_B1_BATCH_04_NOTEBOOKLM_R2.md"
+    }
+  ],
+  "integration_constraints": [
+    "Never expose reviewer-only inventories, question keys, candidate notes, or hidden assessment material in learner UI.",
+    "Do not mutate immutable 1.15.0; create a new versioned curriculum candidate only after verifying schema compatibility.",
+    "Preserve objectives and all existing activity/question IDs, options, answer keys, feedback, normalization, scoring, tags, history, audio, learner drafts and progress.",
+    "Build a reusable level-adaptive lesson renderer; formula/common mistake/comparison sections are optional.",
+    "Keep Vietnamese support optional and English-first by default.",
+    "Avoid sharing examples that reconstruct test answers; reevaluate UI renders and regression test leakage.",
+    "No scoring/format-classification changes are approved by this content package.",
+    "Use source-only/local QA. No deploy, GitHub Actions, Git push/merge, or production changes without owner authorization."
+  ],
+  "lessons": [
+    {
+      "id": "GRA-A1-01",
+      "title": "Be: am, is and are",
+      "cefr_target": "A1",
+      "baseline_goals": [
+        "Use am, is and are with the right subject.",
+        "Make negative sentences and questions with be.",
+        "Distinguish a description from an action verb.",
+        "Complete a gap with the missing phrase only."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning We use *be* to tell who or what someone/something is, or to describe how/where they are. For beginner sentences, choose the correct form for the subject.\n\n### When to use\n- **Name/identity:** She is my sister.\n- **Feeling/description:** She is happy.\n- **Place:** They are in the library.\n- Distinguish *be* used with descriptions from an action verb in simple examples: *She is happy* versus *She plays*.\n\n### Formulas / patterns\n\n| Purpose | Pattern | Example |\n|---|---|---|\n| Affirmative | **I am... / He, she, it is... / You, we, they are...** + (name / feeling / place / age) | I am eleven. / They are students. |\n| Negative | Subject + **am/is/are + not** + (name / feeling / place / age / description) | He isn't late. / We aren't tired. |\n| Yes/no question | **Am / Is / Are + subject** + (ready / here / a student)? | Are you ready? |\n| Short answer | **Yes/No + subject + matching am/is/are** (add **not** for negative) | Yes, I am. |\n\n### Worked examples\n- *I am eleven. She is my sister. They are students.* → The subject determines **am/is/are**.\n- *He isn't late. We aren't tired.* → Put **not** after *be* to make a negative.\n- *Are you ready? Yes, I am.* → In a yes/no question, put *be* before the subject.\n- *The books ___ on the desk.* → Write **are**, not the whole sentence, when the task asks for the missing word only.\n\n### Common mistakes\n- *She are happy* ✗ → *She is happy* ✓ (singular subject agreement).\n- *Does she is ready?* ✗ → *Is she ready?* ✓ (do not add **do/does** to a basic *be* question).\n- In a gap-fill, typing *The books are on the desk* instead of **are** may violate the exercise format even though the whole sentence is grammatical. A format issue must not automatically be labelled the same as a grammar misconception.\n\n### Remember Learn *I am / he–she–it is / you–we–they are* first. For simple questions with *be*, put the form of *be* before the subject.\n\n### Vietnamese Support (opt-in) *Động từ “be” đổi theo chủ ngữ: I am; he/she/it is; you/we/they are. Khi hỏi, đưa am/is/are lên trước chủ ngữ. Khi làm bài điền khuyết, chỉ nhập phần còn thiếu nếu đề yêu cầu.*",
+      "review_batch": "PILOT_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_NOTEBOOKLM_PILOT_01_R2.md",
+      "source_packet_sha256": "a448f485ba01c08af89cd27c3e8db1fc05f13f16b4a48c3785e34fd4b2b7f0b1",
+      "baseline_lesson_sha256": "183513a80d5843cc1a1930a7b43783a41820427b9a2dfd7fe8e00b675048cf01",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A1-02",
+      "title": "Pronouns and possessive adjectives",
+      "cefr_target": "A1",
+      "baseline_goals": [
+        "Use I, you, he, she, it, we and they as subjects.",
+        "Distinguish my, your, his, her, its, our and their before a noun.",
+        "Choose a pronoun using meaning and number.",
+        "Avoid confusing he/his and they/their."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nA **subject pronoun** tells us who or what the sentence is about; a **possessive adjective** tells us whose thing it is and comes before a noun.\n\n### When to use + worked example + why\n- **Talk about a person or thing without repeating the name.** *Linh is my friend. **She** is kind.* → **She** replaces Linh as the subject.\n- **Show who owns a thing.** *Minh has a pencil. **His pencil** is blue.* → **His** comes before **pencil**.\n- **Refer to several people.** *Mai and I are classmates. **We** study together.* → **We** includes the speaker.\n- **Talk about things.** *The dog wags **its** tail.* → **Its** shows ownership; **it’s** means **it is**.\n\n### simple forms / decision cues (adaptive)\n- **Subjects:** I / you / he / she / it / we / they.\n- **Before a noun (ownership):** my / your / his / her / its / our / their + noun.\n- **Quick check:** Is this word the subject, or does it describe whose noun it is?\n\n### common mistakes (review whether actually distinctive/relevant)\n- **He** pencil is blue. ✗ → **His** pencil is blue. ✓ (ownership before a noun).\n- **Its** raining. ✗ → **It’s** raining. ✓ (it is); but **its** tail ✓ (possession).\n\n### Remember\n\n**he → his**, **she → her**, **they → their** when the word comes before a noun.\n\n### Vietnamese Support (only when toggled on)\n\nĐại từ chủ ngữ thay tên người hoặc vật: I, you, he, she, it, we, they. Tính từ sở hữu đứng trước danh từ: my, your, his, her, its, our, their. **It’s** = it is, còn **its** chỉ sở hữu.",
+      "review_batch": "A1_BATCH_01_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A1_BATCH_01_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "430a8235d55eb3f7521a0090b14b63d6baef189e999b731e2796efa4a73e77c4",
+      "baseline_lesson_sha256": "6d319ebfac648cc2e173a61a8e087e2250d5315ccb4ae5097618d7709aa9ef3a",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A1-03",
+      "title": "Present simple: everyday routines",
+      "cefr_target": "A1",
+      "baseline_goals": [
+        "Describe repeated habits using the present simple.",
+        "Add -s/-es for he, she and it in positive sentences.",
+        "Form negatives and questions with do/does plus base verb.",
+        "Place common frequency words before a main verb."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse the **present simple** to talk about things you do regularly, such as habits and routines.\n\n### When to use + worked example + why\n- **Talk about a routine.** *I **walk** to school every weekday.* → This is a repeated habit.\n- **Talk about one other person.** *My sister **watches** cartoons on Fridays.* → With **she**, a positive present-simple verb often needs **-s/-es**.\n- **Say that a habit does not happen.** *He **doesn’t play** chess.* → Use **doesn’t + base verb**.\n- **Ask about a routine.** *Does your dad **cook**?* → Use **does + subject + base verb**.\n- **Show frequency.** *I **usually** read after dinner.* / *They **are always** happy on weekends.* → Frequency words usually come before an action verb but after **be**.\n\n### simple forms / decision cues (adaptive)\n- **Positive:** I/you/we/they + base verb; he/she/it + verb(-s/-es).\n- **Negative:** do/does + not + base verb.\n- **Yes/no question:** Do/Does + subject + base verb?\n- **Frequency:** usually/often/always + action verb; am/is/are + usually/often/always.\n\n### common mistakes (review whether actually distinctive/relevant)\n- *He **doesn’t plays** chess.* ✗ → *He **doesn’t play** chess.* ✓\n- *Does she **walks**?* ✗ → *Does she **walk**?* ✓\n\n### Remember\n\nWith **does/doesn’t**, the main verb returns to its **base form**.\n\n### Vietnamese Support (only when toggled on)\n\nHiện tại đơn nói về thói quen. Câu khẳng định he/she/it thường thêm -s/-es; với does/doesn’t thì động từ chính trở về nguyên mẫu. Trạng từ tần suất thường đứng trước động từ thường nhưng sau **be**.",
+      "review_batch": "A1_BATCH_01_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A1_BATCH_01_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "430a8235d55eb3f7521a0090b14b63d6baef189e999b731e2796efa4a73e77c4",
+      "baseline_lesson_sha256": "0bf585294d7160dd415fb5053cde7c4552c98b94a6ab198acaa02e12fea278a6",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A1-04",
+      "title": "A, an and regular plurals",
+      "cefr_target": "A1",
+      "baseline_goals": [
+        "Choose a or an before a singular countable noun from its starting sound.",
+        "Use regular -s, -es and consonant + y → -ies plural forms.",
+        "Recognise common irregular plurals such as children.",
+        "Avoid placing a or an before an ordinary plural noun."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse **a/an** with one countable thing and use the correct **plural** when talking about more than one.\n\n### When to use + worked example + why\n- **Talk about one countable object.** *I need **a pencil** and **an eraser**.* → Both are singular countable nouns.\n- **Choose a/an by sound.** *A **uniform**, but an **umbrella**.* → The next **sound**, not just its letter, matters.\n- **Talk about several regular things.** *One desk → three **desks**; one box → two **boxes**.*\n- **Change consonant + y.** *One city → two **cities**.* → consonant + **y** becomes **-ies**.\n- **Know a common irregular form.** *One child → two **children**.* → This does not follow the simple -s rule.\n\n### simple forms / decision cues (adaptive)\n- **One:** a/an + singular countable noun.\n- **Many:** often noun + **-s**; some endings (**-s/-sh/-ch/-x**) commonly add **-es**.\n- **Consonant + y:** **-y → -ies** (city → cities).\n- **Some irregular nouns:** child → children.\n\n### common mistakes (review whether actually distinctive/relevant)\n- *A books* ✗ → *a book* ✓ or *books* ✓.\n- *An uniform* ✗ → *a uniform* ✓ (starts with a /j/ sound).\n\n### Remember\n\nChoose **a/an by sound**. Check whether the noun means **one or more than one**.\n\n### Vietnamese Support (only when toggled on)\n\nDùng a/an với danh từ đếm được số ít và chọn theo **âm đầu**. Số nhiều thường thêm -s/-es; phụ âm + y đổi thành -ies. Một số danh từ bất quy tắc như child → children.",
+      "review_batch": "A1_BATCH_01_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A1_BATCH_01_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "430a8235d55eb3f7521a0090b14b63d6baef189e999b731e2796efa4a73e77c4",
+      "baseline_lesson_sha256": "d69fdbdc58e20395fbfd4834ed5b37f635c8a902ebe92e718cb0ab0757642a72",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A1-05",
+      "title": "There is and there are",
+      "cefr_target": "A1",
+      "baseline_goals": [
+        "Use there is for one item and there are for several items.",
+        "Make negative descriptions with there isn't and there aren't.",
+        "Ask Is there? and Are there? questions.",
+        "Distinguish a place description from a statement about an item's owner."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse **there is** and **there are** to say that a thing or some things exist in a place.\n\n### When to use + worked example + why\n- **Describe one thing in a place.** *There **is** a lamp on the table.* → **A lamp** is singular.\n- **Describe several things.** *There **are** four desks by the window.* → **Four desks** is plural.\n- **Describe something that is not there.** *There **isn’t** a computer in this room.* / *There **aren’t** any pencils in the box.*\n- **Ask whether something is in a place.** *Are there any posters? **Yes, there are**.*\n- **Contrast existence with ownership.** *My sister **has** a bag.* → ownership; *There **is** a bag on the chair.* → what is in a place.\n\n### simple forms / decision cues (adaptive)\n- **One:** There is + singular noun.\n- **More than one:** There are + plural noun.\n- **Negative:** There isn’t / There aren’t.\n- **Question:** Is there...? / Are there...?\n\n### common mistakes (review whether actually distinctive/relevant)\n- *There **is** three chairs.* ✗ → *There **are** three chairs.* ✓\n- *Are there a clock?* ✗ → *Is there a clock?* ✓\n\n### Remember\n\nLook at the noun **after is/are**: one thing or several?\n\n### Vietnamese Support (only when toggled on)\n\nThere is/there are diễn tả có đồ vật ở một nơi. **Is** đi với một vật, **are** đi với nhiều vật. Phân biệt với **have/has**, thường nói về sở hữu.",
+      "review_batch": "A1_BATCH_01_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A1_BATCH_01_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "430a8235d55eb3f7521a0090b14b63d6baef189e999b731e2796efa4a73e77c4",
+      "baseline_lesson_sha256": "c26c4412d2d781be5d580e454b630896bb9fdac1a6c15437a2df5ebc6e24fdaf",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A1-06",
+      "title": "Prepositions of place",
+      "cefr_target": "A1",
+      "baseline_goals": [
+        "Use in, on and under to describe simple positions.",
+        "Distinguish next to, between, behind and in front of.",
+        "Choose position phrases from a clearly described context.",
+        "Write a short phrase rather than repeat printed words."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nA **preposition of place** helps show where something is compared with another thing.\n\n### When to use + worked example + why\n- **Say something is inside / on a surface / below.** *The coins are **in** the box.* / *The cup is **on** the table.* / *The shoes are **under** the bed.*\n- **Say two things are beside each other.** *The bookcase is **next to** the door.*\n- **Say one thing is in the space separating two things.** *The desk is **between** two shelves.*\n- **Describe the front or the back.** *The teacher is **in front of** the board.* / *The storage room is **behind** the library.*\n\n### simple forms / decision cues (adaptive)\n- **in** = inside; **on** = on a surface; **under** = below.\n- **next to** = beside; **between** = in the space separating two reference points.\n- **in front of / behind** = front-side / back-side relation.\n- **Common pattern:** thing + **is/are + place phrase**.\n\n### common mistakes (review whether actually distinctive/relevant)\n- **in front of** has three words: do not drop **of** in this expression.\n- Do not guess a location from one word; follow all the clues in the description.\n\n### Remember\n\nAsk: **Where is it?** Then compare the two objects using the location clue.\n\n### Vietnamese Support (only when toggled on)\n\nIn = trong; on = trên bề mặt; under = dưới; next to = cạnh; between = giữa hai vật; in front of = phía trước; behind = phía sau. Xác định vị trí dựa trên đầy đủ mô tả.",
+      "review_batch": "A1_BATCH_01_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A1_BATCH_01_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "430a8235d55eb3f7521a0090b14b63d6baef189e999b731e2796efa4a73e77c4",
+      "baseline_lesson_sha256": "f05e8e2bdce6d0af674d20bc80264aff22f9fba1b099b2d9fd4a756d37d62942",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A1-07",
+      "title": "Can, can't and basic requests",
+      "cefr_target": "A1",
+      "baseline_goals": [
+        "Express simple present ability using can and can't.",
+        "Ask about ability and give short answers.",
+        "Make a polite basic request with Can you ... please?",
+        "Use the base form of a verb after can or can't."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse **can/can’t** to describe ability now; use **Can you ... please?** to make a simple request.\n\n### When to use + worked example + why\n- **Say what somebody can do.** *Nia **can ride** a bicycle now.* → Present ability.\n- **Say what somebody cannot do yet.** *Ben **can’t swim** yet.* → He is still learning.\n- **Ask about ability.** *Can you draw a map? — Yes, I can.*\n- **Ask politely for help.** *Can you pass me the notebook, please?* → A request, not necessarily a test of ability.\n\n### simple forms / decision cues (adaptive)\n- **Positive:** Subject + **can + base verb**.\n- **Negative:** Subject + **can’t/cannot + base verb**.\n- **Question/request:** **Can + subject + base verb** ...?\n- **Short answer:** Yes, I can. / No, I can’t.\n\n### common mistakes (review whether actually distinctive/relevant)\n- *She **cans sings**.* ✗ → *She **can sing**.* ✓\n- *He **can to draw**.* ✗ → *He **can draw**.* ✓\n\n### Remember\n\n**Can never changes** for he/she/it. Use the **base verb** after it.\n\n### Vietnamese Support (only when toggled on)\n\nCan diễn tả khả năng, can’t/cannot diễn tả chưa thể làm. Sau can/can’t luôn dùng động từ nguyên mẫu, không thêm **-s** hay **to**. **Can you ... please?** còn có thể là lời nhờ lịch sự.",
+      "review_batch": "A1_BATCH_01_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A1_BATCH_01_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "430a8235d55eb3f7521a0090b14b63d6baef189e999b731e2796efa4a73e77c4",
+      "baseline_lesson_sha256": "d290f532ab023299b0bca4f0100c806f8fa249f86d7210d7bbcec36e5a1fc58a",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A1-08",
+      "title": "Question words and basic question order",
+      "cefr_target": "A1",
+      "baseline_goals": [
+        "Choose who, what, where, when, why or how according to the information needed.",
+        "Ask simple present questions with do/does plus the base verb.",
+        "Invert be and the subject in be-questions.",
+        "Recognise when who is the subject and do/does is not added."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse a **question word** to ask for the information you need; then choose the right word order for **be** or another present-simple verb.\n\n### When to use + worked example + why\n- **Ask about person / thing / place / time / reason / method.** **who** = person; **what** = thing/activity; **where** = place; **when** = time; **why** = reason; **how** = method.\n- **Ask with be.** *Where **is the sports hall**?* → question word + **be** + subject.\n- **Ask about a routine with an action verb.** *When **does the club start**?* → question word + **does** + subject + **base verb**.\n- **Ask with who as the subject.** *Who **teaches** science?* → Here **who** does the action; do not insert **does**.\n- **Ask about the object rather than the subject.** *Who **does Lan help**?* → Lan does the action; **who** asks about the person receiving it.\n\n### simple forms / decision cues (adaptive)\n- **With be:** Question word + **am/is/are + subject**...?\n- **With an action verb (usual do/does question):** Question word + **do/does + subject + base verb**...?\n- **When who is the subject:** **Who + present-simple verb**...? (normally no do/does auxiliary).\n- **Check the answer you expect:** a person, a place, a time, a reason, or a method?\n\n### common mistakes (review whether actually distinctive/relevant)\n- *Where she **is**?* ✗ → *Where **is she**?* ✓\n- *When does the club **starts**?* ✗ → *When does the club **start**?* ✓\n- *Who **does teach** science?* is **not** the neutral everyday subject-question pattern in the lesson; *Who **teaches** science?* ✓ (emphatic constructions exist outside this A1 scope).\n\n### Remember\n\nFirst choose the **question word**, then ask whether you need **be**, **do/does**, or **who as subject**.\n\n### Vietnamese Support (only when toggled on)\n\nWho hỏi người; what hỏi vật/hoạt động; where nơi chốn; when thời gian; why lý do; how cách thức. Với **be**, đảo am/is/are lên trước chủ ngữ; với động từ thường dùng do/does + nguyên mẫu. Khi **who** chính là chủ ngữ, thường không thêm do/does.",
+      "review_batch": "A1_BATCH_01_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A1_BATCH_01_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "430a8235d55eb3f7521a0090b14b63d6baef189e999b731e2796efa4a73e77c4",
+      "baseline_lesson_sha256": "1ad242bf9da03f0d0000af50daf32a0f8632c2da1c9b293091e7ec05108a6fad",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A1-09",
+      "title": "This, that, these and those",
+      "cefr_target": "A1",
+      "baseline_goals": [
+        "Choose this/that for one thing and these/those for more than one thing.",
+        "Use near/far context to select an appropriate demonstrative.",
+        "Match demonstratives with singular or plural nouns."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nChoose **this/that** for one thing and **these/those** for more than one; then use the distance clues in the situation.\n\n### When to use + worked example + why\n- **One thing close to the speaker.** *This ruler in my bag is new.* → **this** = near, singular.\n- **One thing farther away.** *That bus over there is ours.* → **that** = farther, singular.\n- **Several things nearby.** *These books here are new.* → **these** = near, plural.\n- **Several things farther away.** *Those lights across the street are bright.* → **those** = farther, plural.\n\n### simple forms / decision cues (adaptive)\n- | | One | More than one |\n|---|---|---|\n| **Near** | **this** | **these** |\n| **Farther away** | **that** | **those** |\n- **Before a noun:** this book / those lights. **On their own:** These are mine.\n\n### common mistakes (review whether actually distinctive/relevant)\n- *These book* ✗ → *This book* ✓ or *These books* ✓.\n- *That shoes* ✗ → *Those shoes* ✓ when talking about several shoes farther away.\n\n### Remember\n\n**One or many? Near or farther away?** Make both choices before answering.\n\n### Vietnamese Support (only when toggled on)\n\nThis/these dùng cho vật gần; that/those cho vật xa hơn trong tình huống. **This/that** là số ít; **these/those** là số nhiều. Xem các dấu hiệu **here**, **in my hand**, **over there**.",
+      "review_batch": "A1_BATCH_01_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A1_BATCH_01_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "430a8235d55eb3f7521a0090b14b63d6baef189e999b731e2796efa4a73e77c4",
+      "baseline_lesson_sha256": "c4c102fbb928660a7e88e835f38b0518820d01ff7fdb42c3a7628f4f10e9c037",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A1-10",
+      "title": "Object pronouns and possessive pronouns",
+      "cefr_target": "A1",
+      "baseline_goals": [
+        "Use me/you/him/her/it/us/them after verbs and prepositions.",
+        "Use mine/yours/his/hers/ours/theirs without a following noun.",
+        "Distinguish possessive adjectives such as my/your from possessive pronouns such as mine/yours."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse **object pronouns** after a verb or preposition; use **possessive pronouns** by themselves to show ownership.\n\n### When to use + worked example + why\n- **Show who receives an action.** *The coach calls **us**.* → **us** is the object of calls.\n- **Show who follows a preposition.** *I walk with **him**.* → **him** follows **with**.\n- **Show ownership without repeating the noun.** *This notebook is **mine**.* → Do not add **notebook** after mine.\n- **Contrast ownership before and without a noun.** *That is **your bag**. The bag is **yours**.* → **your + noun**, but **yours** stands alone.\n\n### simple forms / decision cues (adaptive)\n- **Object pronouns:** me, you, him, her, it, us, them (after verbs or prepositions).\n- **Possessive pronouns:** mine, yours, his, hers, ours, theirs (no following noun).\n- **Contrast:** my + pen → the pen is mine; your + bag → the bag is yours.\n\n### common mistakes (review whether actually distinctive/relevant)\n- *This is **mine notebook**.* ✗ → *This is **my notebook**.* ✓ / *This notebook is **mine**.* ✓\n- *I sit next to **she**.* ✗ → *I sit next to **her**.* ✓\n\n### Remember\n\n**My/your/her + noun**; **mine/yours/hers** stands alone.\n\n### Vietnamese Support (only when toggled on)\n\nĐại từ tân ngữ (me, him, her, us...) đứng sau động từ/giới từ. Đại từ sở hữu (mine, yours, his, hers, ours, theirs) đứng độc lập, **không có danh từ phía sau**. So sánh **my pen** và **the pen is mine**.",
+      "review_batch": "A1_BATCH_01_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A1_BATCH_01_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "430a8235d55eb3f7521a0090b14b63d6baef189e999b731e2796efa4a73e77c4",
+      "baseline_lesson_sha256": "5b06346742c0e7ae982cfc67c64e75c311f5af7305f57d04692906ba27691ce3",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A1-11",
+      "title": "Imperatives and everyday instructions",
+      "cefr_target": "A1",
+      "baseline_goals": [
+        "Use the base verb for positive instructions.",
+        "Form negative instructions with don't + base verb.",
+        "Recognise polite and clearly ordered everyday instructions."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nAn **imperative** tells someone what to do. It normally starts with the **base verb**; use **don’t** to say what not to do.\n\n### When to use + worked example + why\n- **Give a clear instruction.** *Turn left at the corner.* → Starts with the base verb **turn**.\n- **Make a simple request polite.** *Please close the door.* → **Please** softens the request.\n- **Tell someone not to do something.** *Don’t shout in the library.* → **Don’t + base verb**.\n- **Give instructions in order.** *First wash the fruit. Then cut it.* → Order words guide the steps.\n\n### simple forms / decision cues (adaptive)\n- **Positive:** **Base verb** + rest of instruction.\n- **Negative:** **Don’t / Do not + base verb**.\n- **Polite:** **Please** + base verb..., or base verb... + **please**.\n- **Sequence:** First..., Then..., Finally... (when relevant).\n\n### common mistakes (review whether actually distinctive/relevant)\n- *Don’t **running**.* ✗ → *Don’t **run**.* ✓\n- *You open the door!* is not the basic neutral imperative pattern taught here; use *Open the door.* for a simple instruction (other emphatic uses are beyond scope).\n\n### Remember\n\nFor basic instructions, begin with the **base verb**; for “no,” use **don’t + base verb**.\n\n### Vietnamese Support (only when toggled on)\n\nCâu mệnh lệnh cơ bản bắt đầu bằng động từ nguyên mẫu: **Open the book.** Phủ định dùng **Don’t + nguyên mẫu**. Có thể thêm **please** cho lịch sự và **first/then/finally** để chỉ thứ tự.",
+      "review_batch": "A1_BATCH_01_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A1_BATCH_01_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "430a8235d55eb3f7521a0090b14b63d6baef189e999b731e2796efa4a73e77c4",
+      "baseline_lesson_sha256": "49c46278239dfa1302ec1bf3eaa712dc5fcd25a53957f8ce6d6df99e880c4657",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A1-12",
+      "title": "Prepositions of time: at, on and in",
+      "cefr_target": "A1",
+      "baseline_goals": [
+        "Use at with clock times and selected fixed times such as night.",
+        "Use on with days and dates.",
+        "Use in with months, years and broad parts of the day."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse **at, on, in** for different kinds of times: exact time, day/date, or month/year/part of day.\n\n### When to use + worked example + why\n- **Give a clock time.** *The lesson starts **at** 8:00.* → Precise clock time.\n- **Name a weekday or a date.** *We practise **on** Tuesday.* / *The event is **on** 15 March.*\n- **Name a month, year or broad part of day.** *School starts **in** September.* / *I read **in** the evening.*\n- **Use a common fixed expression.** *I sleep **at** night.* → Learn this as an everyday expression.\n- **Combine a day and a clock time.** *The meeting is **on** Friday afternoon **at** 4:00.* → One phrase can contain both.\n\n### simple forms / decision cues (adaptive)\n- **at:** clock times (at 7:30) and the expression **at night**.\n- **on:** weekdays and dates (on Monday; on 15 March).\n- **in:** months, years and broad parts of the day (in August; in 2026; in the morning).\n\n### common mistakes (review whether actually distinctive/relevant)\n- *In Monday* ✗ → *On Monday* ✓.\n- *On night* ✗ → *At night* ✓ in the taught expression.\n\n### Remember\n\n**at** a time · **on** a day/date · **in** a month/year/part of day (with **at night** as an exception to remember).\n\n### Vietnamese Support (only when toggled on)\n\n**At** đi với giờ cụ thể và **at night**. **On** đi với thứ/ngày tháng. **In** đi với tháng, năm và buổi trong ngày như **in the morning**. Một câu có thể dùng **on** và **at** cùng lúc.",
+      "review_batch": "A1_BATCH_01_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A1_BATCH_01_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "430a8235d55eb3f7521a0090b14b63d6baef189e999b731e2796efa4a73e77c4",
+      "baseline_lesson_sha256": "d45c191020e247fb746bf05c3128f687c2917aeac62c9178b5f33fe31546c900",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A2-01",
+      "title": "Present simple or present continuous?",
+      "cefr_target": "A2",
+      "baseline_goals": [
+        "Decide whether a sentence describes a routine, an action happening now or a temporary arrangement.",
+        "Use present simple and present continuous in positive, negative and question forms.",
+        "Choose correct verb agreement and distinguish common state verbs.",
+        "Enter only the missing word or phrase when completing a sentence."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nChoose the verb form from the **meaning**: the present simple often describes routines or general facts; the present continuous often describes something in progress now or a temporary situation.\n\n### When to use + worked example + why\n- **Repeated routine:** On weekdays, Noor **feeds** her cat at seven. → This describes what normally happens.\n- **Action now:** At the moment, Noor **is cleaning** its bowl. → The action is in progress now.\n- **Temporary situation:** For two weeks, her cousins **are living** nearby. → This is a temporary arrangement, not necessarily their usual home.\n- **Question and negative:** **Is** Amira **practising** her lines? / Rafi **doesn’t eat** at school. → The continuous question starts with **is**; a simple negative uses **doesn’t + base verb**.\n- **State verb:** I **understand** the instructions. → In this meaning, **understand** normally uses the simple form rather than a continuous form.\n\n### form / formula / decision cues (adaptive)\n- **Simple affirmative:** I/you/we/they + base verb; he/she/it + verb **-s/-es**.\n- **Simple negative/question:** do/does + (not) + base verb; Do/Does + subject + base verb?\n- **Continuous:** am/is/are + verb-ing; put **not** after *be*, or move *be* before the subject for a question.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *He **doesn’t washes** dishes.* → **He **doesn’t wash** dishes.** (After **doesn’t**, use the base verb.)\n- ⚠️ *They **is playing** outside.* → **They **are playing** outside.** (Match *be* to the subject.)\n\n### Remember / comparison (adaptive)\n\nAsk first: **habit/fact**, **happening now**, or **temporary**? Time expressions are clues, not automatic rules.\n\n### Vietnamese Support (opt-in only)\n\nHiện tại đơn thường dùng cho thói quen/sự thật; hiện tại tiếp diễn cho việc đang diễn ra hoặc tình huống tạm thời. Chọn theo ý nghĩa, không chỉ từ chỉ thời gian. Sau does/doesn’t dùng động từ nguyên mẫu.\n\n**Lesson review question:** Are all added rules, scenarios, examples, mistakes, and Vietnamese glosses accurate, A2-appropriate, aligned to this lesson's goals, and free of exam-key leakage? List exact edits if not.\n\n---",
+      "review_batch": "A2_BATCH_02",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_02_NOTEBOOKLM.md",
+      "source_packet_sha256": "aae4f8d2e136acf2ece6d0a84cf2ae49ebe0fc3f805302ac1fef3e1d60374045",
+      "baseline_lesson_sha256": "ce7b6a259479c2b5c12a69cef48c8245cc8035d346823878749cc905fc51299c",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A2-02",
+      "title": "Past simple forms, negatives and questions",
+      "cefr_target": "A2",
+      "baseline_goals": [
+        "Use regular and common irregular verbs for finished past events.",
+        "Form negatives with didn't + base verb.",
+        "Make questions with Did + subject + base verb.",
+        "Use was/were for past forms of be and distinguish them from did."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse the **past simple** for a finished event in the past. An action verb takes a past form in positive sentences; **did/didn’t + base verb** works for most action-verb questions and negatives; past **be** follows a different pattern.\n\n### When to use + worked example + why\n- **Finished event:** Last Friday, we **painted** a mural. → The activity ended in the past.\n- **Irregular action:** My uncle **brought** a lantern to the festival. → **Bring → brought** is an irregular past form.\n- **Negative action:** We **didn’t visit** the castle. → After **didn’t**, use the base verb **visit**.\n- **Question about an action:** **Did** Aisha **find** her scarf? → Use **Did + subject + base verb**.\n- **Past *be*:** The streets **were** quiet yesterday. / **Was** the hall crowded? → **Was/were** forms and questions do not need **did**.\n\n### form / formula / decision cues (adaptive)\n- **Past action:** subject + regular **-ed** verb or an irregular past form.\n- **Negative:** subject + **didn’t + base verb**. **Question:** **Did + subject + base verb?**\n- **Past *be*:** I/he/she/it **was**; you/we/they **were**. Question: **Was/Were + subject ...?**\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *We **didn’t brought** snacks.* → **We **didn’t bring** snacks.** (Use the base verb after **didn’t**.)\n- ⚠️ ***Did** you **were** tired?* → ****Were** you tired?** (A past *be* question starts with **was/were**.)\n\n### Remember / comparison (adaptive)\n\nFirst decide whether the sentence uses an **action verb** or past **be**. Do not mix **did** with **was/were** in a basic past-*be* question.\n\n### Vietnamese Support (opt-in only)\n\nQuá khứ đơn kể việc đã kết thúc. Động từ thường ở câu hỏi/phủ định dùng did/didn’t + nguyên mẫu. Riêng be dùng was/were và đưa was/were lên trước chủ ngữ khi hỏi.\n\n**Lesson review question:** Are all added rules, scenarios, examples, mistakes, and Vietnamese glosses accurate, A2-appropriate, aligned to this lesson's goals, and free of exam-key leakage? List exact edits if not.\n\n---",
+      "review_batch": "A2_BATCH_02",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_02_NOTEBOOKLM.md",
+      "source_packet_sha256": "aae4f8d2e136acf2ece6d0a84cf2ae49ebe0fc3f805302ac1fef3e1d60374045",
+      "baseline_lesson_sha256": "8b0df00717262b56c204dbb563fb4661dc5feddf5f951684d075c379368c4e31",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A2-03",
+      "title": "Countability, some/any, much/many",
+      "cefr_target": "A2",
+      "baseline_goals": [
+        "Distinguish common countable and uncountable nouns in everyday contexts.",
+        "Use many with plural countable nouns and much with uncountable nouns.",
+        "Use some in ordinary affirmative statements and any in neutral questions/negatives.",
+        "Choose a quantity expression based on both noun type and sentence meaning."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nDecide first whether a noun names **separate things we can count** or a **substance/idea we usually measure**. Use **many** with plural countable nouns and **much** with uncountable nouns. **Some** is common in affirmative statements; **any** is common in neutral questions and negatives, but the speaker’s purpose can change the choice.\n\n### When to use + worked example + why\n- **Countable objects:** There are **four pears** in the basket. → Pears can be counted separately; one pear, four pears.\n- **Uncountable amount:** There is **some flour** in the cupboard. → Flour is normally measured by amount in this meaning, not by individual pieces.\n- **Ask about quantities:** **How many** postcards did you buy? / **How much** flour do we need? → Use many for plural things and much for a mass noun.\n- **Some and any in context:** We have **some** candles. / We don’t have **any** matches. → An ordinary affirmative statement often uses some; a negative often uses any.\n- **Offer with some:** Would you like **some** hot chocolate? → Some is natural in an offer even though the sentence is a question.\n- **Count containers or portions:** Please bring **three jars of jam**. → Jars are countable; jam is usually uncountable in this sense.\n\n### form / formula / decision cues (adaptive)\n- **Countable:** one + singular noun; two/many + plural countable noun.\n- **Uncountable (usual substance sense):** much + noun; do not automatically add **-s**.\n- **Questions:** How many + plural countable noun? / How much + uncountable noun?\n- **Some/any:** meaning and speaker intention matter; avoid a rigid affirmative/question rule.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *How **many** flour is left?* → **How **much** flour is left?** (Flour refers to an amount of substance.)\n- ⚠️ *I have **two jam** for the trip.* → **I have **two jars of jam** for the trip.** (Count the jars, not the substance.)\n\n### Remember / comparison (adaptive)\n\nCheck: **Can I count the items separately?** If not, ask about an amount or use a container/unit phrase. Read the whole question before choosing **some** or **any**.\n\n### Vietnamese Support (opt-in only)\n\nHãy phân biệt danh từ đếm được (số ít/số nhiều) và danh từ thường không đếm được theo nghĩa đang dùng. Many đi với số nhiều đếm được; much đi với không đếm được. Some/any phụ thuộc cả mục đích nói, đặc biệt trong lời mời và lời đề nghị.",
+      "review_batch": "A2_BATCH_03",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_03_NOTEBOOKLM.md",
+      "source_packet_sha256": "de62f53163f3150317ff89b6fcfe19ccf79f52f05352814b9b707e5c5a0b2015",
+      "baseline_lesson_sha256": "bc8cf85a3758b6e73ded995abfd5b8e04772fde7dfdab9304ba6236af741baec",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A2-04",
+      "title": "Comparatives and superlatives",
+      "cefr_target": "A2",
+      "baseline_goals": [
+        "Use comparative forms with than for two people or things.",
+        "Use the + superlative for one item in a defined group of three or more.",
+        "Form common -er/-est and more/most patterns.",
+        "Use irregular better/best and worse/worst accurately."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse a **comparative** to compare two people or things, often with **than**. Use a **superlative** to identify one member at the top or bottom of a defined group. The adjective determines whether you usually add **-er/-est** or use **more/most**.\n\n### When to use + worked example + why\n- **Two things, short adjective:** This bridge is **wider than** the old one. → Wide becomes wider for a comparison of two.\n- **A defined group:** The green trail is **the steepest** of the four trails. → The superlative identifies one extreme in the group.\n- **Adjective ending in -y:** Her second sketch is **tidier than** the first. → Tidy changes y to i before -er.\n- **Longer adjective:** The new instructions are **more detailed than** the old ones. → More is often used with longer adjectives.\n- **Irregular form:** His second performance is **better than** the first. → Good has an irregular comparative: better.\n\n### form / formula / decision cues (adaptive)\n- **Comparative:** short adjective + **-er + than**, or **more + adjective + than**.\n- **Superlative:** usually **the + short adjective + -est** or **the most + adjective**, with a clear comparison group.\n- **Spelling:** tidy → tidier/tidiest; wide → wider/widest (drop silent **e** before adding -er/-est).\n- **Irregular:** good → better → best; bad → worse → worst.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *This coat is **more warmer** than mine.* → **This coat is **warmer** than mine.** (Do not use **more** together with **-er**.)\n- ⚠️ *She is **the most fastest** runner here.* → **She is **the fastest** runner here.** (Do not double-mark the superlative.)\n\n### Remember / comparison (adaptive)\n\nTwo items → usually **comparative + than**. One extreme in a group → usually **the + superlative**. Choose the adjective pattern before adding words.\n\n### Vietnamese Support (opt-in only)\n\nSo sánh hơn thường dùng khi so sánh hai đối tượng; so sánh nhất chỉ một đối tượng nổi bật trong nhóm xác định. Tính từ ngắn thường thêm -er/-est; tính từ dài thường dùng more/most. Không dùng cùng lúc more + -er hoặc most + -est.",
+      "review_batch": "A2_BATCH_03",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_03_NOTEBOOKLM.md",
+      "source_packet_sha256": "de62f53163f3150317ff89b6fcfe19ccf79f52f05352814b9b707e5c5a0b2015",
+      "baseline_lesson_sha256": "d270b2e8b88e38927bef3dacc90fee26b974b6f29d9a5a3009e6eb84032b2d09",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A2-05",
+      "title": "Future intentions with be going to",
+      "cefr_target": "A2",
+      "baseline_goals": [
+        "Express a simple future intention using be going to plus a base verb.",
+        "Make negative statements and questions with the correct form of be.",
+        "Identify a prediction supported by visible evidence.",
+        "Distinguish a specific future plan from a regular habit."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse **am/is/are going to + base verb** to express an intention formed before speaking or a prediction supported by current evidence. The same form can make questions and negatives.\n\n### When to use + worked example + why\n- **Intention:** I **am going to learn** a magic trick this weekend. → This is something the speaker has decided to do.\n- **Negative intention:** Leo **isn’t going to buy** a tablet this year. → Put **not** after *be*.\n- **Question about a plan:** **Are** Mina and Sara **going to bake** bread? → Move *be* before the subject.\n- **Evidence-based prediction:** That cup is tipping over! It **is going to spill**. → Something visible now supports the prediction.\n- **Habit versus future plan:** We **often play** badminton, but we **are going to try** volleyball this Sunday. → The first part is a habit; the second describes a particular intention.\n\n### form / formula / decision cues (adaptive)\n- **Affirmative:** subject + **am/is/are + going to + base verb**.\n- **Negative:** subject + **am/is/are + not + going to + base verb**.\n- **Question:** **Am/Is/Are + subject + going to + base verb?**\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *She **going to sing** tomorrow.* → **She **is going to sing** tomorrow.** (Include the correct form of *be*.)\n- ⚠️ *We are going to **studying** later.* → **We are going to **study** later.** (Use the base verb after **going to**.)\n\n### Remember / comparison (adaptive)\n\nContrast **usual habit** with **specific intention**. An agreed future arrangement may instead use the present continuous; choice depends on context rather than one exclusive trigger.\n\n### Vietnamese Support (opt-in only)\n\nBe going to diễn tả dự định đã có hoặc dự đoán dựa trên dấu hiệu hiện tại. Luôn có am/is/are và động từ nguyên mẫu sau going to. Phân biệt thói quen với kế hoạch cụ thể bằng ngữ cảnh.\n\n**Lesson review question:** Are all added rules, scenarios, examples, mistakes, and Vietnamese glosses accurate, A2-appropriate, aligned to this lesson's goals, and free of exam-key leakage? List exact edits if not.\n\n---",
+      "review_batch": "A2_BATCH_02",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_02_NOTEBOOKLM.md",
+      "source_packet_sha256": "aae4f8d2e136acf2ece6d0a84cf2ae49ebe0fc3f805302ac1fef3e1d60374045",
+      "baseline_lesson_sha256": "00ab57b70933c55784e8068977db50136e1ebc225459143e1b148ee67f5755d1",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A2-06",
+      "title": "Rules: must, must not and have to",
+      "cefr_target": "A2",
+      "baseline_goals": [
+        "Identify required, forbidden and optional actions from everyday notices.",
+        "Use must and must not with a base verb.",
+        "Use have to/has to and do/does not have to with correct agreement.",
+        "Ask about necessity with do/does + have to."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nRead the rule’s **meaning** first: **must / have to** express an obligation; **must not** expresses prohibition; **do not have to** means something is unnecessary, not forbidden.\n\n### When to use + worked example + why\n- **Required action:** You **must switch off** your phone during the performance. → The rule requires the action.\n- **Forbidden action:** You **mustn’t feed** the animals. → The rule says the action is not allowed.\n- **Optional action:** You **don’t have to wear** a uniform at the weekend club. → Wearing it is not necessary; it is not necessarily banned.\n- **Agreement:** Rina **has to sign in** before the workshop. → With **she**, use **has to**.\n- **Ask whether something is necessary:** **Does** Noor **have to reserve** a seat? → After **does**, use **have to**, not **has to**.\n\n### form / formula / decision cues (adaptive)\n- **Obligation:** subject + **must + base verb** or **have to/has to + base verb**.\n- **Prohibition:** subject + **must not/mustn’t + base verb**.\n- **No necessity:** subject + **don’t/doesn’t have to + base verb**.\n- **Necessity question:** **Do/Does + subject + have to + base verb?**\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *You **mustn’t** bring a pen because pens are supplied.* → **You **don’t have to** bring a pen because pens are supplied.** (Provided materials make bringing one optional; they do not forbid it.)\n- ⚠️ *He **must to leave** early.* → **He **must leave** early.** (After **must**, use the base verb without **to**.)\n\n### Remember / comparison (adaptive)\n\n**Must not = forbidden. Don’t have to = not necessary.** Read the notice carefully; do not confuse these meanings.\n\n### Vietnamese Support (opt-in only)\n\nMust/have to: bắt buộc; must not: bị cấm; don’t/doesn’t have to: không bắt buộc. Với he/she/it dùng has to, nhưng sau does/doesn’t dùng have to.\n\n**Lesson review question:** Are all added rules, scenarios, examples, mistakes, and Vietnamese glosses accurate, A2-appropriate, aligned to this lesson's goals, and free of exam-key leakage? List exact edits if not.\n\n---",
+      "review_batch": "A2_BATCH_02",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_02_NOTEBOOKLM.md",
+      "source_packet_sha256": "aae4f8d2e136acf2ece6d0a84cf2ae49ebe0fc3f805302ac1fef3e1d60374045",
+      "baseline_lesson_sha256": "97eb19cd90caf4e1a3f5103b937c3cdf56a50505b10e9701dd6873ac85d1e3be",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A2-07",
+      "title": "Present continuous: form and use",
+      "cefr_target": "A2",
+      "baseline_goals": [
+        "Build present-continuous statements with am, is or are plus verb-ing.",
+        "Make present-continuous negatives and questions with correct word order.",
+        "Apply common -ing spelling changes in familiar verbs.",
+        "Use the present continuous for actions happening now or around the present time."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse **am/is/are + verb-ing** for actions happening now or around the present. Change *be* for the subject; keep the **-ing** form of the main verb.\n\n### When to use + worked example + why\n- **Action happening now:** The chef **is chopping** carrots now. → The action is taking place as we speak.\n- **Temporary activity:** My cousins **are staying** near the beach this month. → This describes the current temporary situation.\n- **Negative:** I **am not using** my camera. → Put **not** after *am*.\n- **Question:** **Is** Theo **fixing** his bicycle? → The question begins with **is**.\n- **Spelling when adding -ing:** **dance → dancing; sit → sitting**. → Some verbs drop a final silent **e**; some double the final consonant.\n\n### form / formula / decision cues (adaptive)\n- **Affirmative:** subject + **am/is/are + verb-ing**.\n- **Negative:** subject + **am/is/are + not + verb-ing**.\n- **Question:** **Am/Is/Are + subject + verb-ing?**\n- **Common spelling:** dance → dancing; sit → sitting; not all verbs follow one simple spelling change.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *They **is walking** home now.* → **They **are walking** home now.** (Choose **are** for a plural subject.)\n- ⚠️ *I **am draw** a picture.* → **I **am drawing** a picture.** (Use the **-ing** verb with *be*.)\n\n### Remember / comparison (adaptive)\n\nCheck both pieces: **correct am/is/are** and **correct -ing form**. Decide whether the action is in progress, not just whether the sentence mentions today.\n\n### Vietnamese Support (opt-in only)\n\nHiện tại tiếp diễn dùng am/is/are + V-ing cho việc đang diễn ra hoặc quanh thời điểm nói. Đổi am/is/are theo chủ ngữ; câu hỏi đưa am/is/are lên đầu. Lưu ý cách thêm -ing.\n\n**Lesson review question:** Are all added rules, scenarios, examples, mistakes, and Vietnamese glosses accurate, A2-appropriate, aligned to this lesson's goals, and free of exam-key leakage? List exact edits if not.\n\n---",
+      "review_batch": "A2_BATCH_02",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_02_NOTEBOOKLM.md",
+      "source_packet_sha256": "aae4f8d2e136acf2ece6d0a84cf2ae49ebe0fc3f805302ac1fef3e1d60374045",
+      "baseline_lesson_sha256": "460069c1ec72d270a87e3e5775eebcadbe1b13e8e3f2e52cfe315083a669fbd6",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A2-08",
+      "title": "Past continuous and interrupted actions",
+      "cefr_target": "A2",
+      "baseline_goals": [
+        "Build past-continuous statements with was/were + verb-ing.",
+        "Form past-continuous negatives and questions.",
+        "Use past continuous for an action in progress around a past moment and past simple for a shorter interrupting event."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse **was/were + verb-ing** for an action in progress around a past time. The **past simple** often describes a shorter event that interrupts an ongoing background action.\n\n### When to use + worked example + why\n- **Background at a past moment:** At half past seven, Layla **was sketching** a portrait. → The drawing was in progress then.\n- **Plural past background:** The lights **were flickering** during the storm. → Use **were + -ing** with a plural subject.\n- **Negative and question:** I **wasn’t reading** then. / **Was** Karim **searching** for his glasses? → Put **not** after *was* or move *was* before the subject.\n- **Interruption:** We **were crossing** the square when the bell **rang**. → The crossing was ongoing; the bell rang at a point during it.\n- **Two overlapping actions:** While one child **was drawing**, another **was singing**. → Both actions were in progress around the same past time.\n\n### form / formula / decision cues (adaptive)\n- **Affirmative:** subject + **was/were + verb-ing**.\n- **Negative:** subject + **wasn’t/weren’t + verb-ing**.\n- **Question:** **Was/Were + subject + verb-ing?**\n- **Typical contrast:** past continuous (ongoing background) + **when** + past simple (interrupting event); context may support other patterns.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ ***Were** he sleeping when you arrived?* → ****Was** he sleeping when you arrived?** (Use **was** with **he**.)\n- ⚠️ *We **were cross** the bridge when the rain began.* → **We **were crossing** the bridge when the rain began.** (Use **verb-ing** after **was/were**.)\n\n### Remember / comparison (adaptive)\n\nAsk which action was **already in progress** and which event happened **during** it; avoid treating *when* or *while* as automatic tense switches.\n\n### Vietnamese Support (opt-in only)\n\nQuá khứ tiếp diễn dùng was/were + V-ing để diễn tả việc đang xảy ra tại thời điểm quá khứ. Trong tình huống bị gián đoạn, việc nền thường dùng quá khứ tiếp diễn và sự kiện xen vào dùng quá khứ đơn.\n\n**Lesson review question:** Are all added rules, scenarios, examples, mistakes, and Vietnamese glosses accurate, A2-appropriate, aligned to this lesson's goals, and free of exam-key leakage? List exact edits if not.\n\n---",
+      "review_batch": "A2_BATCH_02",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_02_NOTEBOOKLM.md",
+      "source_packet_sha256": "aae4f8d2e136acf2ece6d0a84cf2ae49ebe0fc3f805302ac1fef3e1d60374045",
+      "baseline_lesson_sha256": "53c41fddb445720098666a50a6d6810e082793e071cccfad6c338da97a033e69",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A2-09",
+      "title": "Present perfect: experiences with ever and never",
+      "cefr_target": "A2",
+      "baseline_goals": [
+        "Build present-perfect experience statements with have or has plus a past participle.",
+        "Use ever in questions and never in negative-experience statements.",
+        "Use common irregular past participles in familiar experience contexts.",
+        "Distinguish an unspecified life experience from a finished past event with a stated time."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse **have/has + past participle** to talk about a life experience without saying exactly when a finished event happened. Use **ever** in typical experience questions and **never** for an experience that has not occurred.\n\n### When to use + worked example + why\n- **Life experience:** I **have climbed** a small hill. → The experience matters; no specific finished time is given.\n- **Ask about experience:** **Have** you **ever built** a kite? → **Ever** often follows the subject in this type of question.\n- **No experience up to now:** He **has never tried** ice skating. → **Never** follows **has**.\n- **Past participle:** **break → broken; take → taken**. → The past participle is not always the same as the simple past form.\n- **Finished past time:** We **explored** the old fort last April. → A definite completed past time normally calls for the past simple.\n\n### form / formula / decision cues (adaptive)\n- **Experience:** subject + **have/has + past participle**.\n- **Ever question:** **Have/Has + subject + ever + past participle?**\n- **Never statement:** subject + **have/has + never + past participle**.\n- **Past-time contrast:** use the past simple when specifying a finished past time such as *last April*.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *I have **breaked** a plate once.* → **I have **broken** a plate once.** (**Break → broken** is an irregular past participle.)\n- ⚠️ *I **have met** him **last Tuesday**.* → **I **met** him **last Tuesday**.** (Use the past simple with that finished time.)\n\n### Remember / comparison (adaptive)\n\nAsk: **life experience without a stated finished time**, or **a finished event with a stated past time**? Check the past participle and the meaning.\n\n### Vietnamese Support (opt-in only)\n\nHiện tại hoàn thành nói về trải nghiệm khi không nêu thời điểm quá khứ đã kết thúc cụ thể: have/has + quá khứ phân từ. Ever thường dùng để hỏi, never nói chưa từng. Có thời điểm đã kết thúc rõ ràng thì thường dùng quá khứ đơn.\n\n**Lesson review question:** Are all added rules, scenarios, examples, mistakes, and Vietnamese glosses accurate, A2-appropriate, aligned to this lesson's goals, and free of exam-key leakage? List exact edits if not.\n\n---",
+      "review_batch": "A2_BATCH_02",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_02_NOTEBOOKLM.md",
+      "source_packet_sha256": "aae4f8d2e136acf2ece6d0a84cf2ae49ebe0fc3f805302ac1fef3e1d60374045",
+      "baseline_lesson_sha256": "f575263dcd03ba164809112775831baf81c642349206553ade2303fd5ac4791c",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A2-10",
+      "title": "Present perfect: just, already and yet",
+      "cefr_target": "A2",
+      "baseline_goals": [
+        "Use just and already with the present perfect in common positions.",
+        "Use yet in present-perfect questions and negatives.",
+        "Choose have/has + past participle for recent or completed events connected to the present when no finished past time is given."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse **have/has + past participle** to connect a recent/completed event to the present. **Just**, **already**, and **yet** express different meanings and usually have different positions.\n\n### When to use + worked example + why\n- **Very recent event:** Dad **has just switched on** the heater. → **Just** means a short time ago; it commonly follows **has**.\n- **Completed sooner / before now:** I **have already packed** my lunch. → **Already** commonly sits after **have**.\n- **Ask whether something has happened:** **Have** the guests **arrived yet**? → **Yet** commonly comes at the end of a question.\n- **Something has not happened so far:** Tariq **hasn’t opened** the message **yet**. → **Yet** commonly comes at the end of a negative statement.\n- **Finished past-time contrast:** I **lost** my scarf on Monday. → The named finished time calls for past simple in this context.\n\n### form / formula / decision cues (adaptive)\n- **Present perfect:** subject + **have/has + past participle**.\n- **Just / already:** subject + **have/has + just/already + past participle** (common placement).\n- **Yet question:** **Have/Has + subject + past participle + yet?**\n- **Yet negative:** subject + **haven’t/hasn’t + past participle + yet**.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *We **have already ate** our lunch.* → **We **have already eaten** our lunch.** (Use the past participle after **have**.)\n- ⚠️ *He has just **arrive**.* → **He has just **arrived**.** (Use the past participle after **has just**.)\n\n### Remember / comparison (adaptive)\n\n**Just**: a short time ago. **Already**: before now/often sooner than expected. **Yet**: commonly at the end of questions and negatives. These are typical positions, not universal rules.\n\n### Vietnamese Support (opt-in only)\n\nJust: vừa mới; already: đã rồi; yet: thường là “chưa/đã... chưa” trong phủ định hoặc câu hỏi. Dùng have/has + quá khứ phân từ; các vị trí nêu trong bài là cách dùng thường gặp, không phải quy tắc tuyệt đối.\n\n**Lesson review question:** Are all added rules, scenarios, examples, mistakes, and Vietnamese glosses accurate, A2-appropriate, aligned to this lesson's goals, and free of exam-key leakage? List exact edits if not.\n\n---",
+      "review_batch": "A2_BATCH_02",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_02_NOTEBOOKLM.md",
+      "source_packet_sha256": "aae4f8d2e136acf2ece6d0a84cf2ae49ebe0fc3f805302ac1fef3e1d60374045",
+      "baseline_lesson_sha256": "2bf1aaaab04b8b6a6c4f80334223192da5e477ad3e8358cabcb10855e274668d",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A2-11",
+      "title": "Choosing future forms: will, going to and present continuous",
+      "cefr_target": "A2",
+      "baseline_goals": [
+        "Use will for spontaneous decisions and simple predictions.",
+        "Use be going to for prior intentions and predictions based on present evidence.",
+        "Use the present continuous for arranged future plans with a clear time or other arrangement detail."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning More than one English form can refer to the future. Choose the one that best matches the information and intent in the situation; these are useful tendencies, **not absolute one-to-one rules**.\n\n### When to use\n\n| Form | Typical meaning in this lesson | Context cue | Worked example |\n|---|---|---|---|\n| **will + base verb** | Spontaneous decision / offer at the moment of speaking; also some predictions | The decision is made now | The phone is ringing — **I'll answer** it. |\n| **am/is/are going to + base verb** | A prior intention or a prediction based on clear current evidence | Already planned, or evidence visible now | **I'm going to save** for a new bike. / Look at those clouds — **it's going to rain**. |\n| **am/is/are + verb-ing** | A future arrangement already organised | Appointment, agreed time or other arrangement detail | **I'm meeting** Mai at four. |\n\n### Formulas / patterns\n\n- **Will:** Subject + **will + base verb** → *I will answer it.*\n- **Going to:** Subject + **am/is/are + going to + base verb** → *She is going to practise tonight.*\n- **Present continuous for an arrangement:** Subject + **am/is/are + verb-ing** (+ future arrangement context) → *We're seeing the film at 7 p.m.*\n\n### Worked examples\n- *The phone is ringing — **I'll answer** it.* → A decision made at the moment of speaking (an existing source worked example; not the assessed gap-fill item).\n- *I'm going to save for a new bike.* → A previously formed intention.\n- *Look at those clouds. It's going to rain.* → Present evidence motivates the prediction.\n- *I'm meeting Mai at four.* → An existing arrangement, with a clear time.\n\n### Common mistakes\n- *I will answering it* ✗ → *I will answer it* ✓ (base form after **will**).\n- *She going to practise tonight* ✗ → *She is going to practise tonight* ✓ (include appropriate **be**).\n- *I am meet Mai at four* ✗ → *I am meeting Mai at four* ✓ (**be + -ing**).\n- A whole grammatically correct sentence entered in a “write only the missing phrase” box is a **format mismatch**, not necessarily a grammar error. The grading policy will be decided separately.\n\n### Quick decision guide\n- Deciding right now? → **will** is often a good choice.\n- Intention existed before speaking, or clear evidence now? → **going to** is often a good choice.\n- Specific future arrangement already agreed? → **present continuous** is often a good choice.\n- Ask: What does the full situation tell us? Without context, forms can overlap.\n\n### Vietnamese Support (opt-in) *Will: quyết định/lời đề nghị ngay khi nói. Be going to: dự định đã có hoặc dự đoán dựa vào dấu hiệu. Hiện tại tiếp diễn: lịch hẹn/kế hoạch đã sắp xếp. Đây là xu hướng thường gặp, không phải ba quy tắc tuyệt đối loại trừ nhau.*",
+      "review_batch": "PILOT_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_NOTEBOOKLM_PILOT_01_R2.md",
+      "source_packet_sha256": "a448f485ba01c08af89cd27c3e8db1fc05f13f16b4a48c3785e34fd4b2b7f0b1",
+      "baseline_lesson_sha256": "e92c391ae90e062c6a6572f9d6ce96644558caf9d8750d862381c4ca387477ec",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A2-12",
+      "title": "Advice with should and shouldn't",
+      "cefr_target": "A2",
+      "baseline_goals": [
+        "Give simple advice with should + base verb.",
+        "Give negative advice with shouldn't + base verb.",
+        "Form questions with should and distinguish advice from stronger rules or obligations."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse **should + base verb** for advice you think is helpful, and **should not/shouldn’t + base verb** to advise against something. A **should** question asks for advice. Advice is usually not as strong as a strict rule using **must**.\n\n### When to use + worked example + why\n- **Helpful suggestion:** You **should stretch** after sitting for a long time. → This is a helpful suggestion, not a compulsory rule.\n- **Advice against an action:** You **shouldn’t leave** your wet jacket on the floor. → The speaker advises you not to do this.\n- **Ask for advice:** **Should** we **check** the map before leaving? → Start the advice question with should.\n- **Contrast with a rule:** You **should speak** politely; visitors **must wear** a safety helmet in this area. → Should recommends good behaviour; must expresses a requirement.\n\n### form / formula / decision cues (adaptive)\n- **Advice:** subject + **should + base verb**.\n- **Advice against:** subject + **should not / shouldn’t + base verb**.\n- **Question:** **Should + subject + base verb?**\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *He **should to bring** a coat.* → **He **should bring** a coat.** (Do not add **to** after should.)\n- ⚠️ *We **should waiting** here.* → **We **should wait** here.** (Use the base verb after should.)\n\n### Remember / comparison (adaptive)\n\nAsk whether the speaker is **suggesting** or **requiring** something. **Should** generally recommends; **must** can state a rule.\n\n### Vietnamese Support (opt-in only)\n\nShould + động từ nguyên mẫu để đưa lời khuyên; shouldn’t để khuyên không làm việc gì đó. Câu hỏi bắt đầu bằng Should. Lời khuyên thường nhẹ hơn quy định bắt buộc dùng must.",
+      "review_batch": "A2_BATCH_03",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_03_NOTEBOOKLM.md",
+      "source_packet_sha256": "de62f53163f3150317ff89b6fcfe19ccf79f52f05352814b9b707e5c5a0b2015",
+      "baseline_lesson_sha256": "7c21f838afcd8df43fc0dfd8725544e1d78291c310b9f882675fd7a662a4ce93",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A2-13",
+      "title": "Possibility with may, might and could",
+      "cefr_target": "A2",
+      "baseline_goals": [
+        "Use may/might/could + base verb to express present or future possibility.",
+        "Form negative possibility with may not/might not.",
+        "Avoid adding to or -s after these modal verbs."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse **may**, **might** or **could** with the **base verb** to say something is possible but not certain. More than one of these modals can fit the same situation; choose from meaning, context and the task’s required form.\n\n### When to use + worked example + why\n- **Possible plan:** Our class **may visit** the science centre next month. → The visit is possible, but not confirmed.\n- **Uncertain arrival:** The parcel **might arrive** after lunch. → The speaker is uncertain about its arrival time.\n- **Possible result:** The river **could rise** after heavy rain. → This describes a possible result, not a guaranteed one.\n- **Negative possibility:** Suri **might not attend** rehearsal tomorrow. → Might not means attendance is uncertain; it does not mean the person is forbidden to attend.\n- **Base verb after a modal:** The timetable **may change**. → After may, use change, not changes or to change.\n\n### form / formula / decision cues (adaptive)\n- **Possibility:** subject + **may/might/could + base verb**.\n- **Negative possibility:** subject + **may not/might not + base verb**, depending on context.\n- Avoid treating may, might and could as a fixed numerical probability ladder.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *He **might goes** to the workshop.* → **He **might go** to the workshop.** (A modal takes a base verb.)\n- ⚠️ *It **could to change** later.* → **It **could change** later.** (Do not put **to** after could in this pattern.)\n\n### Remember / comparison (adaptive)\n\n**Possible, not certain.** Several modals may be grammatically acceptable in open communication; strict practice questions can specify the intended modal.\n\n### Vietnamese Support (opt-in only)\n\nMay/might/could + động từ nguyên mẫu diễn tả khả năng, chưa chắc chắn. Không nên mặc định ba từ có mức xác suất cố định. Với câu có gợi ý cụ thể, chỉ điền từ hoặc cụm từ được yêu cầu.",
+      "review_batch": "A2_BATCH_03",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_03_NOTEBOOKLM.md",
+      "source_packet_sha256": "de62f53163f3150317ff89b6fcfe19ccf79f52f05352814b9b707e5c5a0b2015",
+      "baseline_lesson_sha256": "0e30c9b3262eca8768e367a062fee7314dbc36bb4b0ba35d6ce5cfd2529af4a0",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A2-14",
+      "title": "Zero and first conditionals",
+      "cefr_target": "A2",
+      "baseline_goals": [
+        "Use the zero conditional for general results with present simple in both clauses.",
+        "Use the first conditional for a realistic future possibility with if + present simple and will + base verb.",
+        "Avoid will in the if-clause in the basic first-conditional pattern."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nA **zero conditional** often describes a regular result or general fact. A **first conditional** usually describes a realistic future possibility and a likely result if its condition happens. Choose the pattern from meaning, not from the word **if** alone.\n\n### When to use + worked example + why\n- **Regular result:** If I skip breakfast, I **feel** hungry before lunch. → This describes what usually happens to me.\n- **General fact:** If you **heat** chocolate, it **melts**. → This describes a regular physical result in ordinary conditions.\n- **Real future possibility:** If the library **closes** early, we **will study** at home. → The closing is possible; studying at home is the planned result.\n- **Result clause first:** We **will bring** extra water if the walk **is** long. → The same first-conditional meaning works with the clauses reversed.\n\n### form / formula / decision cues (adaptive)\n- **Zero conditional:** **If + present simple, present simple** (general/regular result).\n- **First conditional:** **If + present simple, will + base verb** (a realistic future possibility).\n- **Order:** **We will wait if it gets dark** = **If it gets dark, we will wait**. A comma is normally used when the if-clause comes first.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *If he **will arrive** early, we will start.* → **If he **arrives** early, we will start.** (In this basic first-conditional pattern, use present simple in the if-clause.)\n- ⚠️ *If the tea **get** cold, I drink it quickly.* → **If the tea **gets** cold, I drink it quickly.** (For a regular result with singular tea, use gets.)\n\n### Remember / comparison (adaptive)\n\n**Always/usually true?** Zero conditional. **One real future possibility?** First conditional. The if-clause normally uses present simple in both basic patterns.\n\n### Vietnamese Support (opt-in only)\n\nCâu điều kiện loại 0 diễn tả sự thật hoặc kết quả thường xuyên; loại 1 diễn tả khả năng thực tế trong tương lai. Loại 0 thường dùng hiện tại đơn ở hai mệnh đề; loại 1 thường dùng if + hiện tại đơn, will + nguyên mẫu ở mệnh đề kết quả. Đọc ý nghĩa trước khi chọn.",
+      "review_batch": "A2_BATCH_03",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_03_NOTEBOOKLM.md",
+      "source_packet_sha256": "de62f53163f3150317ff89b6fcfe19ccf79f52f05352814b9b707e5c5a0b2015",
+      "baseline_lesson_sha256": "66dcdd4e076cd85ca285e72822d35f868d8a44f65159558576884706172ce072",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A2-15",
+      "title": "Common verb patterns: to-infinitive and -ing",
+      "cefr_target": "A2",
+      "baseline_goals": [
+        "Use to-infinitive after common verbs such as want, plan, hope and decide.",
+        "Use -ing after common verbs such as enjoy and finish.",
+        "Recognise that verb patterns depend on the first verb and should be learned as useful chunks."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nThe **first verb** often decides whether the next verb uses **to + base verb** or **verb-ing**. Learn these patterns together with the first verb; do not choose the form from a single universal rule.\n\n### When to use + worked example + why\n- **Want + to:** Ravi **wants to build** a birdhouse. → Want is commonly followed by to + base verb.\n- **Plan + to:** The cousins **plan to organise** a picnic. → Plan is followed by to + base verb in this use.\n- **Decide + to:** We **decided to wait** for the morning train. → Decide is followed by to + base verb.\n- **Enjoy + -ing:** Hana **enjoys collecting** postcards. → Enjoy is normally followed by an -ing verb.\n- **Finish + -ing:** Arman **finished washing** the dishes. → Finish is normally followed by an -ing verb.\n\n### form / formula / decision cues (adaptive)\n- **Verb + to + base:** want to draw; plan to move; hope to improve; decide to leave.\n- **Verb + -ing:** enjoy painting; finish packing.\n- Some other verbs allow more than one pattern with meaning or usage differences; those contrasts are outside this lesson.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *I **enjoy to collect** stickers.* → **I **enjoy collecting** stickers.** (Use **-ing** after enjoy in this meaning.)\n- ⚠️ *She **decided taking** a break.* → **She **decided to take** a break.** (Use **to + base verb** after decide.)\n\n### Remember / comparison (adaptive)\n\nLearn verb patterns as chunks: **want/plan/hope/decide + to + verb**; **enjoy/finish + verb-ing**. Do not assume every verb follows the same pattern.\n\n### Vietnamese Support (opt-in only)\n\nĐộng từ đứng trước thường quyết định dùng to + nguyên mẫu hay V-ing. Ví dụ want/plan/hope/decide thường đi với to + V; enjoy/finish thường đi với V-ing. Hãy học từng cụm thay vì tự thêm to hoặc -ing.",
+      "review_batch": "A2_BATCH_03",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_03_NOTEBOOKLM.md",
+      "source_packet_sha256": "de62f53163f3150317ff89b6fcfe19ccf79f52f05352814b9b707e5c5a0b2015",
+      "baseline_lesson_sha256": "76c05774a913b7678e5b47292db8c9bbb72704d88932763b7cc371b033ff6ee5",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-A2-16",
+      "title": "Defining relative clauses: who, which and that",
+      "cefr_target": "A2",
+      "baseline_goals": [
+        "Use who or that to identify a person with a defining relative clause.",
+        "Use which or that to identify a thing with a defining relative clause.",
+        "Avoid repeating a subject pronoun inside a simple subject relative clause."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nA **defining relative clause** gives information needed to identify which person or thing you mean. For **people**, use **who** or **that**; for **things**, use **which** or **that**. In the **subject-relative patterns tested here**, do not repeat the subject pronoun after the relative word.\n\n### When to use + worked example + why\n- **Identify a person:** The musician **who plays the violin** is our neighbour. → Who introduces information that identifies the person.\n- **Person with that:** The baker **that opens early** sells fresh bread. → That can also introduce a defining clause about a person.\n- **Identify a thing:** The printer **which makes labels** is broken. → Which introduces a defining clause about a thing.\n- **Thing with that:** The umbrella **that folds into a pocket** is useful. → That can also introduce a defining clause about a thing.\n- **Avoid repeated subject:** The athlete **who trains at dawn** is my cousin. → Do not write **who she trains** in this subject-relative pattern.\n\n### form / formula / decision cues (adaptive)\n- **Person + who/that + verb ...** (when the relative word is the clause subject).\n- **Thing + which/that + verb ...** (when the relative word is the clause subject).\n- **Do not repeat a subject:** *the musician who sings*, not *the musician who he sings*.\n- **Boundary:** This A2 lesson practises defining subject-relative clauses, not every kind of relative clause; the more advanced non-defining distinction is taught separately.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *The dancer **which performs** is famous.* → **The dancer **who performs** is famous.** (Prefer **who** for a person (or **that** in a defining clause).)\n- ⚠️ *The scanner **that it saves** images is new.* → **The scanner **that saves** images is new.** (Do not add **it** when that is the subject of the relative clause.)\n\n### Remember / comparison (adaptive)\n\n**Who/that** for a person; **which/that** for a thing in these defining clauses. Check whether the relative word is already the subject so you do not repeat **he/she/it**.\n\n### Vietnamese Support (opt-in only)\n\nMệnh đề quan hệ xác định giúp làm rõ người hoặc vật nào. Với người dùng who/that; với vật dùng which/that trong loại mệnh đề đang học. Khi who/which/that làm chủ ngữ, không thêm he/she/it ngay sau đó.",
+      "review_batch": "A2_BATCH_03",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_A2_BATCH_03_NOTEBOOKLM.md",
+      "source_packet_sha256": "de62f53163f3150317ff89b6fcfe19ccf79f52f05352814b9b707e5c5a0b2015",
+      "baseline_lesson_sha256": "443613acfef7fb9d22361ab51fe69725a0b47bac2bb61b9084f80bf0fcd98f28",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-B1-01",
+      "title": "Past simple and present perfect",
+      "cefr_target": "B1",
+      "baseline_goals": [
+        "Use past simple with a finished past time",
+        "Use present perfect for experiences and current relevance"
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse the **past simple** to place an action at a finished past time. Use the **present perfect** to relate an earlier event to experience or a result that matters now. Decide whether the sentence emphasizes **when it happened** or **its connection to now**, not only a signal word.\n\n### When to use + worked example + why\n- **Finished past time:** Our class **visited** the aquarium three weeks ago. → The visit happened at a stated finished time.\n- **Life experience:** I **have tried** rock climbing once. → We talk about the experience without a finished time.\n- **Result that matters now:** Nora **has broken** her glasses, so she needs new ones. → The earlier event has a consequence now.\n- **Meaning contrast:** I **bought** this puzzle on Sunday. / I **have completed** the puzzle. → The first gives a finished past time; the second emphasizes the result now.\n\n### form / formula / decision cues (adaptive)\n- **Past simple:** subject + past verb; with a finished past-time expression when appropriate.\n- **Present perfect:** subject + **have/has + past participle**.\n- A finished time that locates the event, such as **last Friday**, normally calls for past simple in this basic contrast.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *We **have opened** the shop last Tuesday.* → **We **opened** the shop last Tuesday.** (A specified finished event time normally takes past simple.)\n- ⚠️ *She **has wrote** a new song.* → **She **has written** a new song.** (Use the past participle after has.)\n\n### Remember / comparison (adaptive)\n\nAsk: **Am I saying when it happened, or why the event matters now?** The choice follows the whole meaning.\n\n### Vietnamese Support (opt-in only)\n\nQuá khứ đơn nhấn mạnh sự việc tại một thời điểm đã kết thúc; hiện tại hoàn thành nói về trải nghiệm hay kết quả liên quan hiện tại. Chọn thì theo ý nghĩa toàn câu, không chỉ dựa vào một từ chỉ thời gian.",
+      "review_batch": "B1_BATCH_04_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_B1_BATCH_04_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "d3278571f4181039b624d833289f2276459f3187b037dfa6cd628f8cf60e8bd2",
+      "baseline_lesson_sha256": "6fc0344bba248aec51b70cc6fafd9a71d280e8d7726fb8e7066dd31b19db37c7",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-B1-02",
+      "title": "Present perfect simple or continuous?",
+      "cefr_target": "B1",
+      "baseline_goals": [
+        "Choose present perfect simple when a completed result or number is important.",
+        "Choose present perfect continuous when duration or an ongoing/recent activity is important.",
+        "Avoid continuous forms with common stative verbs such as know, own and believe."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nBoth forms connect a past period with the present. **Present perfect simple** commonly focuses on a finished result, amount, or continuing state. **Present perfect continuous** commonly highlights activity over time or recent activity; context matters because some events allow both forms with different emphasis.\n\n### When to use + worked example + why\n- **Completed amount:** Tara **has knitted four scarves** this month. → Four scarves highlights the number completed.\n- **Activity continuing over time:** Tara **has been knitting** since breakfast. → The focus is how long the activity has been happening.\n- **Recent evidence of activity:** The grass is wet this morning. **Has it been raining**? → The question focuses on the recent activity suggested by present evidence.\n- **Continuing state:** We **have known** our neighbours for a decade. → Know is usually not used in this continuous pattern.\n- **Result versus process:** I **have cleaned** the balcony. / I **have been cleaning** the balcony. → The first foregrounds a completed result; the second highlights recent work, which need not be complete.\n\n### form / formula / decision cues (adaptive)\n- **Simple:** **have/has + past participle**.\n- **Continuous:** **have/has + been + verb-ing**.\n- **Result / completed number** versus **duration / recent process** is a useful cue, not a universal exclusive rule.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *She **has been owning** that violin for years.* → **She **has owned** that violin for years.** (Own is generally a stative verb.)\n- ⚠️ *They **has been practising** all afternoon.* → **They **have been practising** all afternoon.** (Use have with plural they.)\n\n### Remember / comparison (adaptive)\n\nCheck the focus: **how many / what is done** or **how long / what has been going on**? Remember that state verbs usually prefer the simple form.\n\n### Vietnamese Support (opt-in only)\n\nHiện tại hoàn thành đơn thường nhấn mạnh kết quả, số lượng hoặc trạng thái; dạng tiếp diễn thường nhấn vào quá trình và thời lượng. Một số tình huống dùng được cả hai với sắc thái khác nhau. Các động từ trạng thái như know, own thường không dùng dạng tiếp diễn.",
+      "review_batch": "B1_BATCH_04_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_B1_BATCH_04_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "d3278571f4181039b624d833289f2276459f3187b037dfa6cd628f8cf60e8bd2",
+      "baseline_lesson_sha256": "d5da9d21bae41f4d53832e5d10e6fad301eba55ae4318a9470ae63d89cb2711c",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-B1-03",
+      "title": "Past perfect and narrative order",
+      "cefr_target": "B1",
+      "baseline_goals": [
+        "Use had + past participle for an action completed before another past time or action.",
+        "Combine past perfect and past simple to make narrative order clear.",
+        "Recognize common past participles used in past-perfect sentences."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse **had + past participle** to make clear that one event was already completed **before another past event or reference point**. Use past simple for the later event when describing a sequence. You do not need past perfect for every action in a story; use it when earlier order needs emphasis or clarification.\n\n### When to use + worked example + why\n- **Earlier preparation:** We **had packed** the tents before the guide arrived. → Packing was complete before the later arrival.\n- **Past realization:** Eva found that she **had dropped** her ticket outside. → Dropping happened before she discovered the problem.\n- **Negative earlier event:** The hikers **had not checked** the route when the fog appeared. → The check had not happened by that past moment.\n- **Recognize participles:** By sunrise, the artist **had drawn** three sketches. → Drawn, not drew, is the participle after had.\n\n### form / formula / decision cues (adaptive)\n- **Earlier past action:** subject + **had + past participle**.\n- **Later past event:** often a past-simple clause: **had prepared** before **arrived**.\n- **Negative:** **had not / hadn’t + past participle**.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *By noon, we **had took** the photos.* → **By noon, we **had taken** the photos.** (Use the past participle taken after had.)\n- ⚠️ *When I arrived, they **have finished** the display.* → **When I arrived, they **had finished** the display.** (The display was finished before a past reference point.)\n\n### Remember / comparison (adaptive)\n\nDraw a mini timeline: **earlier past → later past**. Past perfect marks the earlier step when that distinction is useful.\n\n### Vietnamese Support (opt-in only)\n\nQuá khứ hoàn thành dùng had + quá khứ phân từ để cho thấy hành động xảy ra trước một mốc quá khứ khác. Không cần dùng quá khứ hoàn thành cho mọi câu kể chuyện; hãy dùng khi cần làm rõ thứ tự sự kiện.",
+      "review_batch": "B1_BATCH_04_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_B1_BATCH_04_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "d3278571f4181039b624d833289f2276459f3187b037dfa6cd628f8cf60e8bd2",
+      "baseline_lesson_sha256": "b5be840cb40822ef7cd5104158fbd581f0e438645a4901398692b372398cde0c",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-B1-04",
+      "title": "Past habits with used to and would",
+      "cefr_target": "B1",
+      "baseline_goals": [
+        "Use used to for past states or repeated actions that are no longer true.",
+        "Use would for repeated past actions when the past-time context is clear.",
+        "Form questions and negatives with did + use to."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse **used to + base verb** for past habits and states that are different now. Use **would + base verb** for repeated past actions when a past-time context is already clear; would does not usually describe past states in this meaning. After **did/didn’t**, use **use to**, not used to.\n\n### When to use + worked example + why\n- **Former state:** My cousin **used to be** very shy, but now she enjoys speaking on stage. → Being shy describes a state that has changed.\n- **Old habit:** We **used to collect** seashells on holiday. → This was a repeated past activity.\n- **Repeated action with a time setting:** During winter holidays, our neighbours **would host** board-game evenings. → The explicit past setting makes would a natural habitual choice.\n- **Negative form:** I **didn’t use to enjoy** olives, but I do now. → After did not, write use to.\n- **Question form:** **Did** your family **use to travel** by train? → The auxiliary did carries past tense.\n\n### form / formula / decision cues (adaptive)\n- **Affirmative former habit/state:** subject + **used to + base verb**.\n- **Repeated past action with clear past setting:** subject + **would + base verb**.\n- **Negative/question:** **didn’t use to** / **Did + subject + use to...?**\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *When I was ten, I **would be** very shy.* → **When I was ten, I **used to be** very shy.** (For a former state of being, used to is natural.)\n- ⚠️ ***Did** she **used to** sing in a choir?* → ****Did** she **use to** sing in a choir?** (Use the base form after did.)\n\n### Remember / comparison (adaptive)\n\n**Former state?** Choose used to. **Repeated past action with a clear time setting?** Would may also work.\n\n### Vietnamese Support (opt-in only)\n\nUsed to dùng cho thói quen hoặc trạng thái trong quá khứ nay đã thay đổi. Would có thể tả hành động lặp lại khi bối cảnh quá khứ rõ ràng, nhưng không thường dùng cho trạng thái theo nghĩa này. Sau did/didn’t viết use to.",
+      "review_batch": "B1_BATCH_04_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_B1_BATCH_04_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "d3278571f4181039b624d833289f2276459f3187b037dfa6cd628f8cf60e8bd2",
+      "baseline_lesson_sha256": "2793a77573dc5185d3ffc4759fd6db532422196f3ae9da7c8bf4908e6c00e032",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-B1-05",
+      "title": "Modal deduction: must, might and can't",
+      "cefr_target": "B1",
+      "baseline_goals": [
+        "Use must for a strong positive deduction based on present evidence.",
+        "Use might, may or could for a possible but uncertain conclusion.",
+        "Use can't for a strong negative deduction when evidence makes something impossible."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse modals to draw **conclusions from present evidence**, not to state duties. **Must** suggests a strong positive conclusion, **might/may/could** a possible but uncertain conclusion, and **can’t** a strong negative conclusion. The strength follows the available evidence; no fixed percentages are implied.\n\n### When to use + worked example + why\n- **Strong positive evidence:** The hall is full of decorations and music is playing; the celebration **must be** underway. → Visible clues strongly support the conclusion.\n- **One uncertain possibility:** We cannot see the schedule; the workshop **might begin** at noon. → The speaker treats the time as possible, not certain.\n- **Strong negative evidence:** The bakery is closed today, so that noise **can’t be** coming from its ovens. → The known facts rule out the conclusion.\n- **Several possibilities:** This coat **could fit** your brother, but we should check the size. → The conclusion is not proven.\n\n### form / formula / decision cues (adaptive)\n- **Strong positive deduction:** subject + **must + base verb**.\n- **Uncertain possibility:** subject + **may/might/could + base verb**.\n- **Strong negative deduction:** subject + **can’t + base verb**; **mustn’t** usually means prohibition, not negative deduction.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *He is abroad, so he **mustn’t be** at today’s rehearsal.* → **He is abroad, so he **can’t be** at today’s rehearsal.** (Can’t expresses negative deduction; mustn’t usually prohibits something.)\n- ⚠️ *There is a light on; someone **must to be** inside.* → **There is a light on; someone **must be** inside.** (Use the base verb without to after must.)\n\n### Remember / comparison (adaptive)\n\nAsk what the **evidence** actually supports: very likely, possible, or ruled out. Do not confuse deduction with rules.\n\n### Vietnamese Support (opt-in only)\n\nKhi suy luận từ dấu hiệu hiện tại, must thường diễn tả kết luận rất chắc; may/might/could diễn tả khả năng chưa chắc; can’t diễn tả kết luận không thể đúng. Mustn’t thường là cấm đoán, không phải suy luận phủ định.",
+      "review_batch": "B1_BATCH_04_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_B1_BATCH_04_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "d3278571f4181039b624d833289f2276459f3187b037dfa6cd628f8cf60e8bd2",
+      "baseline_lesson_sha256": "6b26df0a756aea14651bea7ddba89995171659cbb4e3acb933363ac36e223230",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-B1-06",
+      "title": "Second conditional: imaginary situations",
+      "cefr_target": "B1",
+      "baseline_goals": [
+        "Use if + past simple and would + base verb for imaginary or unlikely present/future situations.",
+        "Keep would in the result clause rather than the if-clause in standard second-conditionals.",
+        "Use the common hypothetical form If I were you to give advice."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nA **second conditional** imagines a present or future situation that is unreal or unlikely. The basic pattern uses **if + past simple** for the imagined condition and **would + base verb** for the result. The past form here marks distance from reality, not past time.\n\n### When to use + worked example + why\n- **Imaginary opportunity:** If I **spoke** Italian, I **would translate** the menu for you. → The speaker imagines a skill they do not currently have.\n- **Unlikely situation:** If the town **had** a planetarium, we **would visit** it every weekend. → The town does not currently have this option.\n- **Advice in another person’s place:** **If I were you**, I **would check** the instructions first. → The speaker imagines being the listener to give advice.\n- **Question about an imagined choice:** What **would** you build if you **had** a workshop? → Would belongs in the result/question clause, not the if-clause.\n\n### form / formula / decision cues (adaptive)\n- **Basic second conditional:** **If + past simple, subject + would + base verb**.\n- **Result first:** **Subject + would + base verb + if + past simple**.\n- **Advice:** **If I were you, I would + base verb** (standard taught form).\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *If he **would practise** more, he would improve.* → **If he **practised** more, he would improve.** (In the basic second conditional, do not place would in the if-clause.)\n- ⚠️ *If I owned a kayak, I **would paddled** across the lake.* → **If I owned a kayak, I **would paddle** across the lake.** (Would is followed by the base verb.)\n\n### Remember / comparison (adaptive)\n\n**Unreal or unlikely now / later?** Use past simple in the if-clause and would + base verb in the result.\n\n### Vietnamese Support (opt-in only)\n\nCâu điều kiện loại hai tưởng tượng tình huống ở hiện tại hoặc tương lai ít có thật/ít khả năng. If + quá khứ đơn, would + động từ nguyên mẫu; quá khứ ở đây không có nghĩa sự việc diễn ra trong quá khứ. Khi khuyên ai, thường dùng If I were you.",
+      "review_batch": "B1_BATCH_04_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_B1_BATCH_04_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "d3278571f4181039b624d833289f2276459f3187b037dfa6cd628f8cf60e8bd2",
+      "baseline_lesson_sha256": "8e6856631905777fc5be72f9008d1a9b1b137de866d77c3141606561cccd57ee",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-B1-07",
+      "title": "Wish and if only for present situations",
+      "cefr_target": "B1",
+      "baseline_goals": [
+        "Use wish + past form to express that a present situation is different from what you want.",
+        "Use if only for the same present-regret meaning with stronger emphasis.",
+        "Use could after wish when the missing ability or possibility is the focus."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse **wish + past form** to imagine that something about the **present** were different. **If only + past form** often conveys a stronger feeling about the same unreal present. Use **wish + could + base verb** to focus on an ability or possibility the speaker lacks now.\n\n### When to use + worked example + why\n- **Want a different present fact:** I wish my backpack **weighed** less. → It is heavy now; the speaker wants that fact to change.\n- **Stronger wish:** If only our school **had** a bigger garden! → The speaker strongly wishes the current school facility were different.\n- **Wish for ability:** Jon wishes he **could understand** the radio announcement. → He cannot understand it now.\n- **Reality versus wish:** I **have** a small desk. / I wish I **had** a wider desk. → The past form signals an unreal current situation.\n\n### form / formula / decision cues (adaptive)\n- **Unreal present wish:** subject + **wish + subject + past form**.\n- **Emphatic unreal present:** **If only + subject + past form**.\n- **Missing ability:** **wish + subject + could + base verb**.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *I wish I **know** the song.* → **I wish I **knew** the song.** (Use a past form for an unreal present wish.)\n- ⚠️ *If only she **could draws** portraits.* → **If only she **could draw** portraits.** (Could takes the base verb.)\n\n### Remember / comparison (adaptive)\n\n**I wish / If only** often means reality is different **now**. This pattern is not a description of a finished past event.\n\n### Vietnamese Support (opt-in only)\n\nWish + dạng quá khứ nói về điều không như mong muốn ở hiện tại; If only nhấn mạnh cảm xúc hơn. Dùng could + động từ nguyên mẫu khi ước có khả năng làm điều gì đó. Dạng quá khứ ở đây không nhất thiết nói về thời gian quá khứ.",
+      "review_batch": "B1_BATCH_04_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_B1_BATCH_04_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "d3278571f4181039b624d833289f2276459f3187b037dfa6cd628f8cf60e8bd2",
+      "baseline_lesson_sha256": "5531b166118b1e80dd7b72016cca34059ffda589ebaeeaa8b148c63ceda43c16",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-B1-08",
+      "title": "Passive voice in the present and past",
+      "cefr_target": "B1",
+      "baseline_goals": [
+        "Form the present simple passive with am/is/are + past participle.",
+        "Form the past simple passive with was/were + past participle.",
+        "Choose the passive when the action or receiver is more important than the doer."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse the **passive** when the action or the person/thing affected matters more than the doer, or the doer is unknown. Build the **present simple passive** with **am/is/are + past participle**, and the **past simple passive** with **was/were + past participle**.\n\n### When to use + worked example + why\n- **Present routine/process:** The costumes **are stored** in labelled boxes. → The storage arrangement matters more than the people doing it.\n- **Present singular receiver:** The classroom clock **is checked** every morning. → Clock is singular, so use is + checked.\n- **Finished past event:** The playground fence **was repaired** during the school break. → The event happened in a finished past period.\n- **Plural receiver in the past:** The festival posters **were printed** on Monday. → Posters is plural, so use were + printed.\n- **Relevant doer:** The invitation **was designed by** a student artist. → The by-phrase is included because the creator is relevant.\n\n### form / formula / decision cues (adaptive)\n- **Present passive:** subject + **am/is/are + past participle**.\n- **Past passive:** subject + **was/were + past participle**.\n- **Optional agent:** **by + doer** when that detail adds useful information.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *The instruments **are keep** in this room.* → **The instruments **are kept** in this room.** (Use the past participle after the form of be.)\n- ⚠️ *The invitation **were designed** last week.* → **The invitation **was designed** last week.** (Use was with a singular receiver.)\n\n### Remember / comparison (adaptive)\n\nAsk: **Who or what receives the action?** Make that the subject, then choose the correct be form and participle.\n\n### Vietnamese Support (opt-in only)\n\nCâu bị động nhấn mạnh đối tượng nhận hành động hoặc khi người làm không quan trọng/không rõ. Hiện tại: am/is/are + quá khứ phân từ; quá khứ: was/were + quá khứ phân từ. Chỉ thêm by + người làm khi cần.",
+      "review_batch": "B1_BATCH_04_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_B1_BATCH_04_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "d3278571f4181039b624d833289f2276459f3187b037dfa6cd628f8cf60e8bd2",
+      "baseline_lesson_sha256": "3124b8e4790144a0ff326a15defd9458df569d4d52afaded5a455175430fae0e",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-B1-09",
+      "title": "Reported statements and questions",
+      "cefr_target": "B1",
+      "baseline_goals": [
+        "Report basic statements after a past reporting verb using an appropriate backshift.",
+        "Use statement word order in reported wh-questions.",
+        "Use if or whether for basic reported yes/no questions."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nUse **reported speech** to explain what someone said without repeating the direct quotation. After a **past reporting verb**, a present verb often moves back to a past form when reporting from a later viewpoint. Reported questions use **statement word order**; use **if/whether** for yes/no questions.\n\n### When to use + worked example + why\n- **Report a statement:** Omar said, “I feel cold.” → Omar said (that) he **felt** cold. → From a later viewpoint, feel often backshifts to felt.\n- **Report a wh-question:** The coach asked, “Why are you late?” → The coach asked why I **was** late. → The reported clause uses subject-before-verb word order.\n- **Report a yes/no question:** Nila asked, “Can you sing?” → Nila asked **if** I **could** sing. → If introduces a reported yes/no question in this example.\n- **Adjust a time expression:** Sam said, “I will return tonight.” → Sam said that he **would return that night**. → From a later reporting viewpoint, will and tonight shift in this example.\n\n### form / formula / decision cues (adaptive)\n- **Statement:** past reporting verb + (that) + subject + reported verb.\n- **Wh-question:** asked + question word + subject + verb (no direct-question inversion).\n- **Yes/no question:** asked + **if/whether** + subject + verb.\n- Backshift, pronouns and time words depend on **who reports, when, and whether the information is still current**; avoid teaching universal shifts.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *She asked when **would** the class start.* → **She asked when the class **would start**.** (Use statement word order in a reported wh-question.)\n- ⚠️ *He asked **that** I liked drawing.* → **He asked **if** I liked drawing.** (Reported yes/no questions use if or whether, not that.)\n\n### Remember / comparison (adaptive)\n\nInside the reported question, make a **statement-order clause**. Decide whether backshift and reference-word changes fit the reporting viewpoint.\n\n### Vietnamese Support (opt-in only)\n\nLời tường thuật kể lại điều người khác nói. Sau động từ tường thuật ở quá khứ, động từ thường lùi thì tùy bối cảnh; câu hỏi tường thuật dùng trật tự câu kể. Với câu hỏi có/không, dùng if hoặc whether.",
+      "review_batch": "B1_BATCH_04_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_B1_BATCH_04_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "d3278571f4181039b624d833289f2276459f3187b037dfa6cd628f8cf60e8bd2",
+      "baseline_lesson_sha256": "62757ea7682e1e0207c734766df1188924c8bf4cb7aa909d5ffc644931a6997a",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-B1-10",
+      "title": "Defining and non-defining relative clauses",
+      "cefr_target": "B1",
+      "baseline_goals": [
+        "Distinguish defining relative clauses from non-defining clauses that add extra information.",
+        "Use commas and who/which correctly in non-defining relative clauses.",
+        "Recognize when an object relative pronoun can be omitted in a defining clause."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning Some relative clauses identify **which** person/thing we mean (*defining*). Others add extra information about an already identified person/thing (*non-defining*).\n\n### When to use\n\n| Type | Meaning | Punctuation | Example |\n|---|---|---|---|\n| **Defining** | Identifies the intended person/thing; information is needed to identify it | Normally no commas | The student **who won the prize** is in my class. |\n| **Non-defining** | Gives extra information about someone/something already identified | Set the extra clause off with commas | My aunt, **who lives in Hue**, is visiting us. |\n\n### Relative words and omission\n- **who** refers to a person; **which** refers to a thing. In a **non-defining clause**, do **not** use **that** instead of **who/which**.\n- In a **defining clause**, *that* may be possible for people or things in relevant contexts, subject to clause constraints; assess which examples need to be included for B1 learners.\n- **Object relative pronoun** in a defining clause may sometimes be omitted: *The film (that) we watched was excellent* → *The film we watched was excellent*.\n- **Subject relative pronoun** should not be omitted in that structure: *The student who won the prize...*; not *The student won the prize is...*.\n- **Non-defining relative clause:** **Never omit the relative pronoun**, whether it functions as a subject or an object. The option to omit an object relative pronoun applies **only to defining clauses** (and only in the relevant grammatical environment).\n\n### Worked examples\n- *The student who won the prize is in my class.* → The clause tells us **which student**.\n- *My aunt, who lives in Hue, is visiting us.* → The relative clause adds information about *my aunt*.\n- *This camera, which I bought last year, still works well.* → **which** adds information about *this camera*; commas mark the extra clause.\n- *The film we watched was excellent.* → Object relative pronoun is omitted in a defining clause.\n\n### Common mistakes\n- *My aunt, that lives in Hue, is visiting us* ✗ → *My aunt, who lives in Hue, is visiting us* ✓ (non-defining clause: not **that**).\n- *The student won the prize is in my class* ✗ → *The student who won the prize is in my class* ✓ (cannot omit subject relative pronoun there).\n- Treat commas as **meaningful** in this lesson: do not assume defining and non-defining uses are interchangeable.\n\n### Remember First ask whether the relative clause *identifies which one* or *adds extra information*. Then choose punctuation and pronoun accordingly. Never omit a relative pronoun in a non-defining clause; in a defining clause, only an object relative pronoun may sometimes be omitted.\n\n### Vietnamese Support (opt-in) *Mệnh đề xác định giúp chỉ rõ người/vật và thường không có dấu phẩy; đôi khi có thể bỏ đại từ quan hệ làm tân ngữ. Mệnh đề không xác định chỉ bổ sung thông tin, có dấu phẩy, không dùng “that” và **không được lược bỏ đại từ quan hệ**.*",
+      "review_batch": "PILOT_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_NOTEBOOKLM_PILOT_01_R2.md",
+      "source_packet_sha256": "a448f485ba01c08af89cd27c3e8db1fc05f13f16b4a48c3785e34fd4b2b7f0b1",
+      "baseline_lesson_sha256": "a9b1935d29119ce361a3ff58a276ccd817db78e90d24ff7594b9918eb3c343f3",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-B1-11",
+      "title": "Gerunds and infinitives after common verbs",
+      "cefr_target": "B1",
+      "baseline_goals": [
+        "Use -ing forms after common verbs such as enjoy, avoid, finish and suggest.",
+        "Use to + infinitive after common verbs such as want, plan, decide and hope.",
+        "Choose the correct verb pattern without adding an unnecessary preposition or auxiliary."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nDifferent verbs take different following patterns. Commonly **enjoy, avoid, finish, suggest** are followed by a **verb-ing** phrase; **want, plan, decide, hope** are commonly followed by **to + base verb**. Learn the pairings in their intended meanings rather than choosing freely.\n\n### When to use + worked example + why\n- **Enjoy an activity:** Ravi **enjoys designing** paper lanterns. → Enjoy is followed by -ing in this pattern.\n- **Avoid an action:** We **avoid crossing** the busy street at lunchtime. → Avoid takes -ing here.\n- **Finish an activity:** Lena **finished arranging** the flowers. → The following verb is an -ing form.\n- **Plan and hope:** We **plan to organise** a class exhibition. / They **hope to win** a prize. → Plan and hope commonly take to + base verb.\n- **Suggest an action:** Dad **suggested ordering** a pizza. → The following action takes -ing, not to-infinitive.\n\n### form / formula / decision cues (adaptive)\n- **Common -ing patterns:** **enjoy/avoid/finish/suggest + verb-ing**.\n- **Common to-infinitive patterns:** **want/plan/decide/hope + to + base verb**.\n- The choice is **verb-specific**; other verbs may allow both patterns, sometimes with changed meaning.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *They **finished to clean** the kitchen.* → **They **finished cleaning** the kitchen.** (In this pattern, finish takes an -ing phrase.)\n- ⚠️ *We **hope meeting** the illustrator.* → **We **hope to meet** the illustrator.** (Hope commonly takes a to-infinitive.)\n\n### Remember / comparison (adaptive)\n\nRemember the **first verb + next verb pattern** as a pair. Do not add extra to or -ing unless that verb permits it.\n\n### Vietnamese Support (opt-in only)\n\nCác động từ có mẫu theo sau khác nhau: enjoy/avoid/finish/suggest thường đi với -ing, còn want/plan/decide/hope thường đi với to + động từ nguyên mẫu. Nên học theo cặp động từ và mẫu, không tự thêm to/-ing tùy ý.",
+      "review_batch": "B1_BATCH_04_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_B1_BATCH_04_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "d3278571f4181039b624d833289f2276459f3187b037dfa6cd628f8cf60e8bd2",
+      "baseline_lesson_sha256": "decd096026dfd644c13b08009801156d7a07d725427256020ad0c47c86f987e6",
+      "assessment_change_authorized": false
+    },
+    {
+      "id": "GRA-B1-12",
+      "title": "Indirect questions and question tags",
+      "cefr_target": "B1",
+      "baseline_goals": [
+        "Use statement word order after an indirect-question opener.",
+        "Use if or whether to introduce indirect yes/no questions.",
+        "Form common question tags by matching the auxiliary and reversing positive/negative polarity."
+      ],
+      "approved_lesson_design_markdown": "### Core rule / Meaning\n\nAn **indirect question** asks more politely or embeds a question inside another sentence; its inner clause normally has **statement word order**, not direct-question inversion. For yes/no content use **if/whether**. A **question tag** checks or invites agreement after a statement and usually uses the matching auxiliary with opposite positive/negative polarity.\n\n### When to use + worked example + why\n- **Polite wh-question:** Could you explain **how this machine works**? → The embedded clause is subject then verb: this machine works.\n- **Ask about a place:** I wonder **where the exhibition begins**. → There is no extra does inside the embedded clause.\n- **Indirect yes/no question:** Do you know **whether the hall is accessible**? → Whether introduces the yes/no content.\n- **Positive statement plus negative tag:** The garden looks beautiful, **doesn’t it**? → A present simple main verb uses does in a negative tag.\n- **Negative statement plus positive tag:** They **weren’t** at the meeting, **were they**? → The past be auxiliary is reversed in the tag.\n\n### form / formula / decision cues (adaptive)\n- **Indirect wh-question:** opener + question word + **subject + verb**.\n- **Indirect yes/no question:** opener + **if/whether + subject + verb**.\n- **Usual tags:** positive statement → negative tag; negative statement → positive tag; match auxiliary, time and subject pronoun.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *Could you tell me why **is** the gate locked?* → **Could you tell me why the gate **is** locked?** (Do not invert the inner indirect-question clause.)\n- ⚠️ *They **aren’t** invited, **aren’t they**?* → **They **aren’t** invited, **are they**?** (A negative statement usually takes a positive tag.)\n\n### Remember / comparison (adaptive)\n\nFor an **indirect question**, keep the inside clause in statement order. For a **tag**, check the auxiliary, polarity and pronoun.\n\n### Vietnamese Support (opt-in only)\n\nCâu hỏi gián tiếp dùng trật tự câu kể sau từ để hỏi, không đảo trợ động từ trong mệnh đề bên trong. Với câu hỏi yes/no, dùng if/whether. Câu hỏi đuôi thường đổi khẳng định/phủ định và dùng đúng trợ động từ, đại từ.",
+      "review_batch": "B1_BATCH_04_R2",
+      "source_packet": "EN_GRAMMAR_LESSON_DESIGN_B1_BATCH_04_NOTEBOOKLM_R2.md",
+      "source_packet_sha256": "d3278571f4181039b624d833289f2276459f3187b037dfa6cd628f8cf60e8bd2",
+      "baseline_lesson_sha256": "1ab70806f9a16f16e7ea505307e30381df035b8f8cf2498d325cd302766d8da5",
+      "assessment_change_authorized": false
+    }
+  ]
+}
