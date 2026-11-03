@@ -1,12 +1,12 @@
 # Self-Learning English — Master Content & Self-Learning Standard
 
 **Standard ID:** SLE-MASTER-001  
-**Document version:** 1.0.0  
-**Status:** APPROVED FOR ADOPTION — becomes the sole normative SLE content/self-learning standard when PR #71 is merged into the active English release reference branch. NotebookLM academic GO with all four required corrections incorporated; this policy adoption does NOT authorize any website production release.  
-**Prepared:** 2026-11-02  
-**Canonical target path:** `docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md` in the English website repository `TMA2015/self-learning-english`  
+**Document version:** 1.1.0  
+**Status:** ACTIVE / SOLE NORMATIVE STANDARD. Academic adoption was completed by merged PR #71 on 2026-11-02; the owner unified SLE project rules on 2026-11-03. The current curriculum candidate is v1.18.1; this policy revision does not itself certify untested browser behavior.  
+**Prepared:** 2026-11-02; living revision 2026-11-03  
+**Canonical path:** `sites-p0-phase-a-20260926/docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md` in `TMA2015/self-learning-english`. Do not create a second copy under root `docs/`.  
 **Scope:** One unified Self-Learning English (SLE) GitHub + Firebase website/app. This is **not** the independent ChatGPT-in-chat English Tutor project.  
-**Product checkpoint considered:** v1.18.0: 109 lessons, 913 activities, 38 MP3s. PR #68 (AI Tutor fix), #69 (proposed cumulative v1.18.1 teaching update), and #70 (Speaking Preparation UI) are DRAFT changes, not proof of production release.
+**Current development checkpoint:** v1.18.1: 109 lessons, 913 activities and 38 currently approved baseline MP3s. Historical PR snapshots remain evidence, not separate release policy. Code in GitHub is not automatically the deployed version.
 
 ## 0. Authority, document control, and adoption (MUST)
 
@@ -16,7 +16,7 @@
 - A previous review verdict, historical design document, chat message, issue, test or implementation note is **supporting evidence**, not a second competing policy. An externally approved academic decision becomes normative only when intentionally incorporated into this file as a versioned change.
 - An approved release must declare `standard_version`, `content_version`, source commit, and QA/academic verdict. These are *release-report fields* unless separately introduced into a validated runtime schema; do not insert unknown keys into the existing curriculum JSON.
 - The standard's version is independent of the curriculum package version. Changing the standard does **not** automatically edit lesson IDs, content packages, attempts, evidence, grades, dashboards or deployed UI.
-- This standard becomes effective **only on the successful merge of documentation PR #71 into `release/nov2026-content-v1.18.0`**, following the owner's 2026-11-02 instruction to refine and adopt it after NotebookLM review. The PR/merge Git history is its immutable adoption evidence. Until that merge is confirmed, previously implemented safeguards and approved historical content remain unchanged. This is policy adoption, not runtime or production release authorization.
+- This standard took effect when **PR #71 was merged on 2026-11-02**. Later approved changes amend this same file in place, with Git history as the version record. The 2026-11-03 owner decision consolidates content, authoring, independent NotebookLM review, technical QA, browser acceptance and release rules here; separate dated reports and older policy-like files are evidence only. An approval to consolidate documents is not permission to invent a passing test or change saved learner data.
 - One **temporary Git feature branch / draft PR** may be used for safe review; this is a technical change-isolation method, **not** a second permanent project or a split development process.
 
 ### 0.1 Relationship to historical documents after adoption
@@ -31,9 +31,9 @@
 | `domain/academic.ts`, current curriculum JSON and runtime tests | Actual implementation contracts and evidence | They constrain what can be shipped today; a normative change requiring code work does not magically make that work complete |
 | `content/audio-rights-register.json` and release audit records | Per-asset provenance and authorization evidence | Keep as factual records; they are not a separate pedagogical standard |
 
-**Permanent academic baseline and single local authority:** Upon adoption, `SLE-MASTER-001` unifies and supersedes historical **local** authoring and QA documents (`docs/CONTENT_AUTHORING_STANDARD.md`, `docs/LEARNER_ACTION_FEEDBACK_STANDARD.md`, `docs/CROSS_SKILL_QUALITY_STANDARD.md`). It remains subject to the five permanent English-project academic baseline sources (`00_NOTEBOOK_ENGLISH_PERMANENT_v2.md` through `04_GRAMMAR_ADAPTIVE_ROADMAP_v2.md`), and its compatibility with those sources MUST be checked whenever substantive rules change. NotebookLM baseline documents provide review evidence and academic constraints, not a second active repository authoring checklist. Conflicts require documented reconciliation; never claim compliance from document naming alone.
+**Permanent academic baseline and single local authority:** `SLE-MASTER-001` unifies and supersedes historical **local** authoring and QA documents (`docs/CONTENT_AUTHORING_STANDARD.md`, `docs/LEARNER_ACTION_FEEDBACK_STANDARD.md`, `docs/CROSS_SKILL_QUALITY_STANDARD.md`). It remains subject to the five permanent English-project academic baseline sources (`00_NOTEBOOK_ENGLISH_PERMANENT_v2.md` through `04_GRAMMAR_ADAPTIVE_ROADMAP_v2.md`), and its compatibility with those sources MUST be checked whenever substantive rules change. NotebookLM baseline documents provide review evidence and academic constraints, not a second active repository authoring checklist. Conflicts require documented reconciliation; never claim compliance from document naming alone.
 
-When legacy prose differs from validated current runtime behavior, **do not assume either is safe**: record the discrepancy, apply the more conservative learner-data/evidence guard, and require a versioned resolution before deployment. Avoid deleting historical documentation; mark it archival in a later explicitly reviewed documentation-only task. Maintain one canonical version of this file, with Git history providing earlier versions; do not create `MASTER_v1`, `MASTER_v2` etc. as competing active files.
+When legacy prose differs from validated current runtime behavior, **do not assume either is safe**: record the discrepancy, apply the more conservative learner-data/evidence guard, and require a versioned resolution before deployment. Avoid deleting historical documentation; mark it archival in a later explicitly reviewed documentation-only task. Maintain **one canonical version of this file**; Git history is the change record. Historical issue/PR/dated QA documents are never normative. Do not create `MASTER_v1`, `MASTER_v2`, separate CI-rule documents, or parallel active checklists. GitHub workflows/tests are executable implementations of this standard, not competing policy. The old repo-root `docs/REPO_TESTING_AND_QUALITY_RULES.md`, `docs/P0_RELEASE_GATE.md` and `docs/releases/2026-11-ci-quota-policy.md` are archived historical references.
 
 ## 1. Product promise and non-negotiable learner outcome (MUST)
 
@@ -184,22 +184,21 @@ Teach clear word/sentence models, contrasting sounds, stress cues and simple mou
 - An attempted/submitted record is pinned to its content version. An old attempt views old questions, keys, content, original order if stored, score and review as saved. Retake/revision is a new attempt linked to historical provenance, not mutation. No destructive migrations, bulk resets or regrading without explicit separately reviewed authorization.
 - **Implementation compatibility:** runtime restrictions (importer file size, max lessons, allowed tags, media capabilities) must be freshly measured from current code/tests. Do not hardcode historically obsolete size/count claims into this standard.
 
-## 9. Single end-to-end authoring / QA / release process (MUST)
+## 9. One practical workflow per task (MUST)
 
-This is one workflow for SLE, not two independent development tracks:
+The following is the **only active SLE operating process**. All other dated guidance is historical evidence, not a parallel checklist. The core rule is *one source of truth, one PR QA, one deliberate release, one brief learner check*.
 
-1. **Select a real learning gap.** Define learner problem, skill/subskill, target and rationale, prerequisites, expected transfer and accepted evidence type. Record exact original lesson IDs or planned new IDs.
-2. **Author and self-audit.** Write goal/context, explanation and separate model, independent tasks, valid answers, misconception feedback, Vietnamese help if helpful, provenance, scoring limits and all media dependencies. Complete the whole lesson as a learner would.
-3. **Independent academic review** with NotebookLM when a new concept, significant pedagogy, answer key, rubric, semantic scoring or substantive lesson content changes. Keep permanent sources controlled; use one temporary human-readable packet. Resolve every **required change**, not merely note it. A narrowly mechanical renderer fix may instead receive a scoped engineering review without repeated academic resubmission.
-4. **Versioned source candidate** in a safe Git change, with explicit diff and immutable cumulative content. Verify authoring contract, schema, counts, IDs, keys, source rights, attempt isolation and no answer leakage.
-5. **Automated deterministic tests** on current code plus targeted regression. Run applicable content validation, audio guards, option shuffling, navigation/save tests, static/type/build tests and no-leak assertions. Passing a source assertion is **not** proof of browser behavior.
-6. **Real learner-facing QA**: desktop and mobile, keyboard, explanation/demo, guided optionality, new/incorrect/correct/retake flows, full-audio handling, save failure and restore; AI unavailable path, bilingual question and safe formatting where relevant. If browser unavailable, state **NOT TESTED**.
-7. **Preview/import and final release gate.** Reconcile expected Add/Update/Skip/Conflict, check old attempts, sample lessons/skills, media byte integrity, Git revision, production scope, rollback and separate Math safety. No production import/deploy until owner explicitly authorizes it. Browser QA and academic PASS are not deployment authorization.
-8. **Post-release verification.** Verify actual live English URL/version and representative lesson/audio/feedback flows. Record real result, not an unverified completion claim. Update this standard only if the release exposed a genuinely missing or conflicting universal requirement.
+**A. Create or revise educational content:** (1) Define the missing learning outcome and learner-visible explanation/model/practice/feedback; (2) validate keys, CEFR target, copyrights and media provenance; (3) obtain independent NotebookLM review only for substantive pedagogy/meaning/evidence changes; (4) reconcile required changes in this canonical standard and/or source code; (5) create a new cumulative immutable curriculum version when scored item/tag/meaning changes; (6) use one PR and its automatic `qa` check. Small UI-only or documentation-only fixes do **not** need another full independent academic review if they preserve item meaning and evidence.
 
-### 9.1 Avoid wasted Work capacity
+**B. NotebookLM review — the only active review method:** Maintain the current permanent English academic sources and current version of this standard as durable references. KEEP permanent sources, REMOVE previous temporary packets, ADD only the current human-readable packet. Put full questions, evidence, conditions and verdict format *in the packet*. Use a **short** NotebookLM chat request. One .md/.txt source is linked directly; two or more new sources are bundled into one ZIP. Do not upload raw machine JSON or duplicate active baseline rules. After the verdict, make required corrections in GitHub and record reconciliation in the PR; no new permanent review-rule document.
 
-Routine writing, code diffing, Git commits and deterministic inspections SHOULD be performed through directly available GitHub/tools when safe. Work MAY be used for browser/cloud-computer actions or complex QA when its benefit is material. Keep tasks small and commit intermediate progress; never make the entire learning project dependent on one large Work session or uncommitted temporary edits. This is an execution preference **within the same unified standard**, not a distinct governance track.
+**C. Technical QA — one automatic check:** A PR into `main` runs the existing `qa` GitHub Actions job once on the latest source. It checks current tests, code, permissions/rights where applicable, audio, TypeScript and build. The required `qa` check must PASS on the **actual PR head/merge candidate**; old PASS or a cancelled run is not evidence. No extra user-initiated QA workflow and no Preview Hosting prerequisite. Retire obsolete release branches after their content is integrated, rather than accumulating new long-lived tracks.
+
+**D. Release — one approved path:** After content, rights, migration and PR QA gates pass, the owner authorizes production release; the reviewed PR is squash-merged into protected `main` with an explicit `[release-english]` marker. A GitHub Actions release workflow runs full `qa:release` **before** deploying the exact checked commit to Firebase project `roadmap-toan-ai`, target `english`, channel `live`. Pushes without that marker cannot deploy. No separate Firebase Preview and no deploy of Math. Record the deployment action and HTTP/MP3 live checks separately; a deployment can succeed while later smoke fails.
+
+**E. Learner-facing acceptance after release:** For small, backwards-compatible improvements with deterministic PASS, **one compact owner spot-check on the actual live English website** suffices: read/practise/feedback, Listening audio, resume one fictional attempt, optionally Gemini and phone layout. Unverified capabilities are marked NOT TESTED; do not claim AI quality, perfect accessibility, fully offline access or CEFR certification without appropriate real evidence. For destructive storage changes, unclear rights, wrong answer keys, private data exposure or changes to scored evidence, STOP before LIVE until the relevant pre-release verification is complete. Keep rollback available.
+
+**Operating economy:** Use public standard GitHub Actions Linux runners and one bounded job per PR; cancel superseded PR runs, no paid/self-hosted runners, duplicate push-build loops or scheduled deployment checks. Source-level CI, live Gemini responses and real-device usability remain distinct facts, but should be recorded in the **same PR**, not three new governance documents. Work/browser tools are optional, not required to navigate GitHub on every release.
 
 ## 10. Release gates and pass/fail checklist (MUST)
 
@@ -216,14 +215,18 @@ A candidate is **not releasable** unless applicable gates below have recorded **
 | **MOD-01 Domain guard** | skill-specific checks from Section 5 | e.g. Reading literal-match-only, Listening without audio |
 | **DAT-01 Immutability & scope** | version diff, stable IDs, preserved old attempts, count comparison | old keys/attempts silently rewritten |
 | **MED-01 Media integrity (if applicable)** | real file, aligned manifest, rights and verified playback; audio-discrimination task defaults to `UNASSESSED` / weight 0 until verified; no pre-playback visible/accessible spelling or IPA key cue | absent/unverified audio scored; stimulus exposed before listening |
-| **UX-01 Accessibility & resilience** | real mobile/keyboard QA, correct save/error/retake states | unsaved work lost, user blocked without guidance |
+| **UX-01 Accessibility & resilience** | deterministic test of save/error/retake + one short post-release live owner check for low-risk additions; pre-release real-device check for destructive/unknown migration or high-risk changes | actual data loss, user blocked without guidance, or untested dangerous migration |
 | **AI-01 Optional and safe (if applicable)** | deterministic fallback, context-only prompt, safe rendering, no answer leak | mandatory AI, private content sent, unsafe rendering |
 | **OFF-01 Honest offline disclosure** | tested real offline paths or explicit “not verified” | unsupported offline marketing claim |
-| **REL-01 Final release check** | academic verdict, tests, owner authorization, live QA, rollback | draft/preview mislabeled as deployed |
+| **REL-01 Final release check** | applicable academic verdict/reconciled required changes, exact-current-commit CI, approved rights/data protection, explicit owner authorization, English-only deployment then live smoke + spot check/rollback | unapproved deployment, unresolved hard blocker, failed CI or calling a draft/commit 'live' |
 
 **Status vocabulary:** `PASS`; `PASS_WITH_REQUIRED_CHANGES` (blocked pending corrections); `FAIL`; `NOT_TESTED`; `NOT_APPLICABLE`. For independent review, return required changes with exact lesson/item ID, problem, correction and retest requirement; optional improvements separately. Academic approval and engineering/production approval are independent gates.
 
+**UX exception for small backwards-compatible releases:** A reviewer verdict of NO-GO **solely** because a real-device smoke has not yet been performed may be resolved by owner-authorized direct production release followed by a short live check, provided deterministic QA passed, old records cannot be lost by the change, all required academic corrections are implemented and the release has rollback. Record that browser/Gemini remain unverified until actually tested. This does **not** waive audio rights, correct scoring, storage invariants, protected learner data or any other zero-tolerance blocker.
+
 **Zero-tolerance blockers:** wrong assessment key, pre-submit answer leak, fabricated proficiency/CEFR, scoring Listening without real playback, false save success, historical record corruption, insecure private data exposure, unapproved media rights, or unverified production deployment claim.
+
+**Policy scope note (2026-11-03):** From this date all operational CI, NotebookLM review, QA, deployment and release gates are governed here, not in separate dated documents. The prior Stage 3 `NO-GO` from NotebookLM remains preserved as historical evidence; current mitigations do not convert untested live Gemini/mobile UX into PASS. Owner-initiated release after full CI is treated as a deliberate acceptance of a limited post-release visual spot check only for backwards-compatible changes.
 
 ## 11. Updating this single living standard (MUST)
 
@@ -247,7 +250,7 @@ Use `major.minor.patch`: **major** for a policy redesign or changed evidence mea
 
 NotebookLM returned `PASS_WITH_REQUIRED_CHANGES`, `ACADEMIC ADOPTION GO`, and `PRODUCTION NO-GO` for standard draft 1.0.0. Required corrections were incorporated in Sections 0.1, 5.6, 5.7, 7 and MED-01. The existing independently approved pedagogical baseline is retained; a standards approval must not be misread as final QA or authorization to merge/deploy pending website PRs #68–#70. Optional one-screen prerequisite Error Bank repair and split study visits are guidance, not required new runtime features. The owner directed adoption after NotebookLM review on 2026-11-02; successful PR #71 merge establishes the effective Git revision. No code or content PR becomes approved merely because this policy is adopted.
 
-## 12. Current evidence and open matters — NOT an implicit approval
+## 12. Historical checkpoint evidence (dated snapshots, not standing policy)
 
 This section is a **snapshot**, not a live status dashboard; review it when adopting the standard.
 
@@ -258,6 +261,8 @@ This section is a **snapshot**, not a live status dashboard; review it when adop
 - Pronunciation audio trial reports include owner listening acceptance, but blind listening/media linking/provenance/runtime release checks must be separate.
 - The repo's historical authoring document mentions obsolete bounded package counts; the current importer `MAX_CURRICULUM_LESSONS` is 150 at the inspected release branch, with up to 24 activities per lesson. Other importer/server limits must be freshly reverified rather than assumed.
 - Full offline operation remains unverified, and English AI Tutor bilingual/Markdown changes on draft PR #68 remain unverified in live browser.
+
+**Revision 2026-11-03 (1.1.0):** Single authoritative rules file for academic authoring, NotebookLM review, CI, release and short owner QA. Manual Preview workflow removed; release occurs only after an explicitly authorized protected-main merge with a release marker and mandatory QA. No rewrite of existing scored content or learner attempts.
 
 ## 13. Independent NotebookLM review checklist for initial adoption and future revisions
 
