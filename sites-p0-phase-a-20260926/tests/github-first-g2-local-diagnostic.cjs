@@ -29,6 +29,7 @@ global.window={localStorage:new MemoryStorage(),location:{origin:'https://exampl
 (async()=>{
   const model=require(path.join(out,'domain/learning-model.js'));
   const {coreListening}=require(path.join(out,'domain/core-listening.js'));
+  const {canCompleteSavedListening,startSavedListeningSupplement}=require(path.join(out,'domain/diagnostic-listening-evidence.js'));
   const {finishLocalDiagnostic}=require(path.join(out,'infrastructure/browser/local-diagnostic.js'));
   const runtime=require(path.join(out,'infrastructure/browser/local-runtime.js'));
 
@@ -117,6 +118,42 @@ global.window={localStorage:new MemoryStorage(),location:{origin:'https://exampl
   const unverified=await local.service.rebuild({diagnosticV2:emptyHistorical,evidence:[]});
   assert.equal(unverified.diagnosticV2.listeningEvidenceRecovered,undefined);
   assert.equal(unverified.diagnosticV2.result.estimates.Listening.evidenceCount,0);
+  // Owner iPad scenario: 10 full-playback answers retained in local state,
+  // original completed assessment was explicitly skipped and stored without
+  // a Listening result. Finish only the remaining five, no full retake.
+  const previousAt=Date.now()+50000;
+  const oldSkipped={...session,sessionId:'g2-owner-ipad-old-skip',
+    startedAt:previousAt-5000,finishedAt:previousAt,
+    listening:listening.slice(0,10),listeningSkipped:true,
+    result:model.makeDiagnostic(attempts,words,previousAt,[],undefined),
+    writingReviews:[null,null]};
+  const originalStored={...oldSkipped,listening:undefined};
+  await local.service.recordAssessment(originalStored);
+  const before=JSON.stringify((await local.service.readAssessments()).find(x=>x.sessionId===originalStored.sessionId));
+  assert.equal(canCompleteSavedListening(oldSkipped),true);
+  assert.equal(canCompleteSavedListening({...oldSkipped,listening:[]}),false);
+  assert.equal(canCompleteSavedListening({...oldSkipped,listening:listening.slice(0,10).map((x,i)=>i?x:{...x,played:false})}),false);
+  assert.equal(canCompleteSavedListening({...oldSkipped,listening:listening.slice(0,15)}),false);
+  const followup=startSavedListeningSupplement(oldSkipped,previousAt+5000);
+  assert.equal(followup.listening.length,10);
+  assert.equal(followup.listeningSkipped,false);
+  assert.equal(followup.result,undefined);
+  assert.equal(followup.listeningSupplementOf,oldSkipped.sessionId);
+  assert.equal(followup.writing,oldSkipped.writing);
+  assert.equal(followup.writing2,oldSkipped.writing2);
+  assert.deepEqual(followup.attempts,oldSkipped.attempts);
+  const rest=[...followup.listening,...listening.slice(10)];
+  await assert.rejects(()=>finishLocalDiagnostic({...followup,listening:rest.slice(0,14)}),/Finish all Listening questions/);
+  const supplemented=await finishLocalDiagnostic({...followup,listening:rest});
+  assert.equal(supplemented.result.listening.total,15);
+  assert.equal(supplemented.result.estimates.Listening.evidenceCount,15);
+  assert.equal(supplemented.result.estimates.Listening.assessed,true);
+  const assessmentRows=await local.service.readAssessments();
+  assert(assessmentRows.some(x=>x.sessionId===followup.sessionId&&x.listeningSupplementOf===oldSkipped.sessionId));
+  assert.equal(JSON.stringify(assessmentRows.find(x=>x.sessionId===originalStored.sessionId)),before,
+    'Old skipped assessment must not be rewritten');
+  assert.equal(JSON.stringify(oldSkipped.listening),JSON.stringify(listening.slice(0,10)),
+    'Original ten Listening answers must be immutable');
   const routePage=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8');
   const page=fs.readFileSync(path.join(root,'app/home-client.tsx'),'utf8');
   assert(routePage.includes('<HomeClient/>'),'root route must delegate Diagnostic UI to HomeClient');
@@ -128,6 +165,8 @@ global.window={localStorage:new MemoryStorage(),location:{origin:'https://exampl
   assert(component.includes('||!listeningReady'),'Must require Listening completion or explicit Skip');
   assert(component.includes('Listening not included in this completed assessment'),'Missing Listening requires visible explanation');
   assert(component.includes('listeningEvidenceRecovered'),'Recovered evidence must be labelled');
+  assert(component.includes('Complete remaining Listening ('),'Only remaining audio should be offered');
+  assert(component.includes('d.listeningSupplementOf?'),'New session must hide old Writing tasks');
   assert(page.includes('finishDiagnosticAssessment(diagnosticV2)'));
   assert(clients.includes("return jsonFetch('/api/diagnostic'"),'Sites diagnostic route fallback must remain');
   assert(clients.includes("if(browserLearningEnabled())return finishLocalDiagnostic(value)"),'browser diagnostic must remain local');
@@ -140,6 +179,7 @@ global.window={localStorage:new MemoryStorage(),location:{origin:'https://exampl
     writingAI:false,
     writingLevel:'Not assessed',
     listeningPlayedRequired:true,
+    partialSavedListeningSupplement:true,
     retryIdempotent:true,
     directDiagnosticApiDependency:false,
     sitesFallbackPreserved:true
