@@ -131,6 +131,7 @@ export class BrowserLocalAcademicRepository implements AcademicRepository {
     private readonly storage:BrowserKeyValueStorage,
     private readonly prefix=DEFAULT_PREFIX,
   ){}
+  private readonly derivedBundles=new Map<string,ReturnType<typeof mapSeed>>();
 
   private packagesKey(){return `${this.prefix}:academic:packages`}
   private attemptsKey(owner:string){return ownerKey(this.prefix,owner,'academic-attempts')}
@@ -143,7 +144,11 @@ export class BrowserLocalAcademicRepository implements AcademicRepository {
       if(row.bundle!==undefined)return row;
       if(!Array.isArray(row.source?.lessons)||!row.source?.course?.id)
         throw new Error('Local curriculum package is incomplete. Preserve this browser data; do not clear it.');
-      return {...row,bundle:mapSeed(row.source)};
+      const key=row.version+'|'+row.digest;
+      let bundle=this.derivedBundles.get(key);
+      if(!bundle){bundle=mapSeed(row.source);this.derivedBundles.set(key,bundle);}
+      // Fresh copies protect value semantics: downstream UI may transform data.
+      return {...row,bundle:clone(bundle)};
     });
   }
 

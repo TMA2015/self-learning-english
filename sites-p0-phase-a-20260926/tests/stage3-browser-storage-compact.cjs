@@ -62,6 +62,10 @@ const asPackage=source=>({id:source.package_id,version:source.schema_version,
  const restored=await fresh.packages();
  assert.deepEqual(restored[0],historical,'Historical bundle must rehydrate identically');
  assert.deepEqual(restored[1],candidate,'Candidate bundle must rehydrate identically');
+ restored[0].bundle.lessons[0].title='MUTATED IN CALLER';
+ const readAgain=await fresh.packages();
+ assert.deepEqual(readAgain[0],historical,'A caller must not mutate a cached historical bundle');
+ assert.deepEqual(readAgain[1],candidate,'A caller must not mutate the other package');
  assert.equal(restored[0].digest,oldDigest);
  assert.deepEqual(restored.map(x=>x.source),[old,next],'Immutable historical source must be preserved');
  const size=storage.getItem(key).length;
