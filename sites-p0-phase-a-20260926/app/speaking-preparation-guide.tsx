@@ -5,6 +5,8 @@ import {useState} from 'react';
 export function SpeakingPreparationGuide(){
  const [notes,setNotes]=useState({problem:'',detail:'',request:''});
  const [selfReport,setSelfReport]=useState([false,false,false]);
+ const [modelOpen,setModelOpen]=useState(true);
+ const [rehearsing,setRehearsing]=useState(false);
  const toolkit=[
   ['Start politely','Excuse me. / Could I ask you something?'],
   ['State the problem',"I can't find… / I've forgotten… / I'm not sure where…"],
@@ -39,7 +41,11 @@ export function SpeakingPreparationGuide(){
   <div className="foundation-learn-block">
    <h3>3. Independent worked model</h3>
    <p><strong>Different situation:</strong> You lost your library card and need to borrow a book.</p>
-   <details open><summary>Model response — close before you speak</summary>
+   <details open={modelOpen} onToggle={event=>{
+    const nowOpen=event.currentTarget.open;
+    setModelOpen(nowOpen);
+    if(nowOpen)setRehearsing(false);
+   }}><summary>Model response — close before you speak</summary>
     <blockquote>Excuse me, I can't find my library card. I need a book for homework, so could you tell me what to do? Thank you.</blockquote>
     <p><strong>Problem:</strong> I can't find my library card.</p>
     <p><strong>Useful detail:</strong> I need a book for homework.</p>
@@ -59,7 +65,11 @@ export function SpeakingPreparationGuide(){
   </div>
   <div className="foundation-learn-block">
    <h3>5. Speak aloud without reading</h3>
-   <p>Close the model, look only at your keywords and speak for about 20–40 seconds. Include the problem, a useful detail and a polite request. You may practise again.</p>
+   <button type="button" className="secondary-button" onClick={()=>{setModelOpen(false);setRehearsing(true)}}>
+    {rehearsing?'Restart speaking practice':'Start speaking practice — hide the model'}
+   </button>
+   {rehearsing?<p role="status">The worked model is closed. Speak from your keywords for about 20–40 seconds; include the problem, a detail and a polite request. This is unassessed practice.</p>:<p>When you are ready, start speaking practice. This will close the worked model so you can speak from your keywords instead of reading a script.</p>}
+   <p className="muted">You may practise again. Reopening the worked model ends this rehearsal; start speaking practice again when ready.</p>
   </div>
   <div className="foundation-learn-block">
    <h3>6. Self-check (not assessed)</h3>
