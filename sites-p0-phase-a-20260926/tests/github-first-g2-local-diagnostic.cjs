@@ -60,6 +60,8 @@ global.window={localStorage:new MemoryStorage(),location:{origin:'https://exampl
   assert(first.result.evidence.some(e=>e.tag==='writing-review-pending'&&e.provisional===true));
   assert(first.result.listening);
   assert.equal(first.result.listening.correct,coreListening.length);
+  assert.equal(first.result.estimates.Listening.assessed,true);
+  assert.equal(first.result.estimates.Listening.evidenceCount,coreListening.length);
   assert(first.result.evidence.some(e=>e.skill==='Listening'));
 
   const local=await runtime.localLearningRuntime();
