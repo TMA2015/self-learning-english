@@ -43,6 +43,14 @@ export async function finishLocalDiagnostic(value:DiagnosticV2){
   const sessionId=value.sessionId??String(value.startedAt);
   const {service}=await localLearningRuntime();
   const existing=await service.getAssessment(sessionId);
+  if(value.listeningSupplementOf){
+    const original=await service.getAssessment(value.listeningSupplementOf);
+    if(!original?.result||original.listeningSkipped!==true||value.listeningSkipped===true)
+      throw new Error('The linked previous Diagnostic is unavailable. Your saved answers were not changed.');
+    if(original.writing!==value.writing||original.writing2!==value.writing2||
+       JSON.stringify(original.attempts)!==JSON.stringify(value.attempts))
+      throw new Error('Previous Diagnostic answers changed. The original saved result was preserved.');
+  }
   if(existing?.result)return {
     result:existing.result,
     attempts:existing.attempts,
