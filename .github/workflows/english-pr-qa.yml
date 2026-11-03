@@ -1,0 +1,75 @@
+name: SLE Pull Request QA (public, no deploy)
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sle-pr-qa-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout PR merge without stored credentials
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Verify approved workflow and trigger policy
+        run: node scripts/verify-actions-policy.cjs
+
+      - name: Detect full application tree
+        id: app
+        shell: bash
+        run: |
+          if [[ -f sites-p0-phase-a-20260926/package.json && -f sites-p0-phase-a-20260926/pnpm-lock.yaml ]]; then
+            echo 'present=true' >> "$GITHUB_OUTPUT"
+          elif [[ -d sites-p0-phase-a-20260926 ]]; then
+            echo '::error::Application directory exists but package.json or pnpm-lock.yaml is missing'
+            exit 1
+          else
+            echo 'present=false' >> "$GITHUB_OUTPUT"
+            echo 'BASELINE_ONLY: policy QA passed; no full app checkout in this PR'
+          fi
+
+      - name: Install pnpm for full application QA
+        if: ${{ steps.app.outputs.present == 'true' }}
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+
+      - name: Frozen dependency install
+        if: ${{ steps.app.outputs.present == 'true' }}
+        working-directory: sites-p0-phase-a-20260926
+        run: pnpm install --frozen-lockfile
+
+      - name: Install FFmpeg for audio validation
+        if: ${{ steps.app.outputs.present == 'true' }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg
+
+      - name: Full application release QA and static build (NO DEPLOY)
+        if: ${{ steps.app.outputs.present == 'true' }}
+        working-directory: sites-p0-phase-a-20260926
+        run: pnpm qa:release
+
+      - name: Record scope accurately
+        if: ${{ success() }}
+        run: |
+          if [[ '${{ steps.app.outputs.present }}' == 'true' ]]; then
+            echo 'Full application QA passed on PR code. No Firebase deployment or live AI test.' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'Repository policy QA passed. No application source on this PR; full QA not run.' >> "$GITHUB_STEP_SUMMARY"
+          fi
