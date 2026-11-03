@@ -16,6 +16,7 @@ const coreTests=[
   "ai-tutor-markdown-stage3.cjs",
   "listening-option-order-stage3.cjs",
   "stage3-import-preview.cjs",
+  "stage3-browser-storage-compact.cjs",
   "content-quality.cjs",
   "version-aware-attempt-ux.cjs",
   "practice-progress-p2a.cjs",

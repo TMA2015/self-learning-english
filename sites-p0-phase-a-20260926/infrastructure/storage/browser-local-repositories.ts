@@ -1,4 +1,4 @@
-import type {AcademicAttempt,AcademicPackage,AcademicRepository} from '../../domain/academic';
+import {mapSeed,type AcademicAttempt,type AcademicPackage,type AcademicRepository} from '../../domain/academic';
 import type {LearningRepository,LearnerState,Scope,Snapshot} from '../../domain/repository';
 import type {DiagnosticV2,Evidence} from '../../domain/learning-model';
 import {emptySelection,WRITING_COURSE_ID,type CourseSelection} from '../../domain/course-p1';
@@ -136,7 +136,15 @@ export class BrowserLocalAcademicRepository implements AcademicRepository {
   private attemptsKey(owner:string){return ownerKey(this.prefix,owner,'academic-attempts')}
 
   async packages():Promise<AcademicPackage[]>{
-    return readJSON<AcademicPackage[]>(this.storage,this.packagesKey(),[]);
+    const rows=readJSON<AcademicPackage[]>(this.storage,this.packagesKey(),[]);
+    // Older profiles may still contain full packages. Compact records retain the
+    // immutable source/digest/version and reconstruct only the derived bundle.
+    return rows.map(row=>{
+      if(row.bundle!==undefined)return row;
+      if(!Array.isArray(row.source?.lessons)||!row.source?.course?.id)
+        throw new Error('Local curriculum package is incomplete. Preserve this browser data; do not clear it.');
+      return {...row,bundle:mapSeed(row.source)};
+    });
   }
 
   async addPackage(value:AcademicPackage):Promise<void>{
@@ -147,7 +155,16 @@ export class BrowserLocalAcademicRepository implements AcademicRepository {
       return;
     }
     rows.push(clone(value));
-    writeJSON(this.storage,this.packagesKey(),rows);
+    // Both the source and its mapped exercise bundle are large; storing both
+    // for every immutable version can exhaust localStorage on family devices.
+    // Never delete a historical version or learner attempt. Only omit a bundle
+    // that can be rebuilt deterministically from its immutable source.
+    const compact=rows.map(row=>{
+      if(!Array.isArray(row.source?.lessons)||!row.source?.course?.id)return row;
+      const {bundle:_derived,...stored}=row;
+      return stored;
+    });
+    writeJSON(this.storage,this.packagesKey(),compact);
   }
 
   async attempts(owner:string):Promise<AcademicAttempt[]>{
