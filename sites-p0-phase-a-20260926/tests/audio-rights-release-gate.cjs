@@ -21,9 +21,9 @@ for(const folder of folders){
 }
 actual.sort();
 assert.equal(register.schema_version,1);
-assert.equal(register.release,'1.18.0');
-assert.equal(actual.length,38,'Expected exactly 38 MP3 assets');
-assert.equal(register.entries.length,38,'Every MP3 requires a register record');
+assert.equal(register.release,'1.18.1');
+assert.equal(actual.length,41,'Expected 38 original + 3 versioned Kokoro replacement MP3s');
+assert.equal(register.entries.length,41,'Every original and replacement MP3 requires a record');
 const recorded=register.entries.map(x=>x.asset_path).sort();
 assert.deepEqual(recorded,actual,'Rights register must cover every MP3, with no extra or duplicate paths');
 const missing=[];
@@ -40,7 +40,7 @@ for(const entry of register.entries){
     missing.push(entry.asset_path);
   }
 }
-const summary={audioIntegrity:'PASS',total:38,rightsApproved:38-missing.length,rightsPending:missing.length,mode:strict?'release-clearance':'integrity-only'};
+const summary={audioIntegrity:'PASS',total:actual.length,rightsApproved:register.entries.length-missing.length,rightsPending:missing.length,mode:strict?'release-clearance':'integrity-only'};
 console.log(JSON.stringify(summary));
 if(strict&&missing.length){
   console.error('AUDIO_RIGHTS_BLOCKED: approval and provenance incomplete for '+missing.length+' assets. First: '+missing.slice(0,8).join(', '));

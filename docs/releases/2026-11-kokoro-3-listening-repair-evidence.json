@@ -1,0 +1,75 @@
+{
+  "record_type": "SLE-AUDIO-REPAIR-20261103",
+  "issue": 77,
+  "pr": 78,
+  "release": "1.18.1 media-only quality correction",
+  "source_package": "Owner upload 03-11-2026.zip",
+  "source_app": "G Learning Audio Production v1.2",
+  "producer": "local Kokoro 0.9.4",
+  "educational_script": "immutable v1.18.1; original transcripts unchanged",
+  "owner_audio_qa": "PENDING per each source JSON (separate live hearing feedback outstanding)",
+  "source_checked": "All normalized original transcript strings identical; role counts 1,7,9",
+  "packaging": "Original filename -v1 from owner export renamed to -v2 with identical bytes",
+  "historical_files": "Existing eSpeak -v1 remain in public to preserve source provenance and rollback",
+  "assets": [
+    {
+      "id": "LIS-A1-01",
+      "oldPublic": "/foundation-audio/LIS-A1-01-v1.mp3",
+      "newPublic": "/foundation-audio/LIS-A1-01-v2.mp3",
+      "sha256": "99e89bc0ec02c91732b3b265447012841199b52da84db79615f33576bc73dd29",
+      "gitBlobSha1": "7121e0e8d03c49a048d31f73757195aaf870f490",
+      "size_bytes": 187152,
+      "ffprobe_duration_seconds": 25.632,
+      "metadata_duration_seconds": 25.575,
+      "normalizedTranscriptHashFNV1A": "ade0658c",
+      "normalizedTranscriptCharacters": 463,
+      "turns": 1,
+      "voices": {
+        "A": "bf_emma"
+      },
+      "voice_balance": false,
+      "owner_created_local": "2026-11-03T19:16:38",
+      "owner_audio_qa": "PENDING"
+    },
+    {
+      "id": "LIS-A2-02",
+      "oldPublic": "/foundation-audio/LIS-A2-02-v1.mp3",
+      "newPublic": "/foundation-audio/LIS-A2-02-v2.mp3",
+      "sha256": "dc8ddb20211e05be2fdc86ffdb419582268255861f67aeb6f96dd1892b4671e3",
+      "gitBlobSha1": "61d7480b6c109253498ebb25f8aaa69ab957f189",
+      "size_bytes": 294504,
+      "ffprobe_duration_seconds": 45.84,
+      "metadata_duration_seconds": 45.775,
+      "normalizedTranscriptHashFNV1A": "41465742",
+      "normalizedTranscriptCharacters": 652,
+      "turns": 7,
+      "voices": {
+        "A": "bf_emma",
+        "B": "bm_fable"
+      },
+      "voice_balance": false,
+      "owner_created_local": "2026-11-03T19:20:02",
+      "owner_audio_qa": "PENDING"
+    },
+    {
+      "id": "LIS-B1-02",
+      "oldPublic": "/foundation-audio/LIS-B1-02-v1.mp3",
+      "newPublic": "/foundation-audio/LIS-B1-02-v2.mp3",
+      "sha256": "92a7b222b8cf08591f49ac9ad54c6aabf47ab3755af86460a2635ea8efbb011d",
+      "gitBlobSha1": "1396c2f4076d80ed5ec2ed8576cdee6b5014107e",
+      "size_bytes": 477624,
+      "ffprobe_duration_seconds": 71.424,
+      "metadata_duration_seconds": 71.375,
+      "normalizedTranscriptHashFNV1A": "c9575032",
+      "normalizedTranscriptCharacters": 1058,
+      "turns": 9,
+      "voices": {
+        "A": "bf_emma",
+        "B": "bm_fable"
+      },
+      "voice_balance": true,
+      "owner_created_local": "2026-11-03T19:23:57",
+      "owner_audio_qa": "PENDING"
+    }
+  ]
+}
