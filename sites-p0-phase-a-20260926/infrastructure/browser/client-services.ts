@@ -4,6 +4,7 @@ import {writingEvidence,type DiagnosticResult,type DiagnosticV2,type Evidence,ty
 import {localAcademicRuntime,localCourseRuntime,localLearningRuntime,localPracticeProgress} from './local-runtime';
 import type {myCourses,CourseSelection} from '../../domain/course-p1';
 import {finishLocalDiagnostic} from './local-diagnostic';
+import {presentSavedListening} from '../../domain/diagnostic-listening-evidence';
 import {publicPath} from './public-path';
 import {pilotProgressEvidence} from '../../domain/writing-course-v2';
 import {guidedWritingFeedback} from '../../application/guided-writing';
@@ -56,7 +57,12 @@ export async function saveLearnerState(next:LearnerState):Promise<{ok:true;stora
   await service.importLegacy(previous);
   if(body.diagnosticV2?.result){
     const canonical=await service.getAssessment(body.diagnosticV2.sessionId??String(body.diagnosticV2.startedAt));
-    body.diagnosticV2=canonical?.result?{...body.diagnosticV2,...canonical}:{...body.diagnosticV2,result:undefined};
+    // Recover only complete, actually saved Listening answers. Do not rewrite
+    // canonical historical assessment rows or infer a missing audio score.
+    const savedAudio=canonical?.listening?.length?canonical.listening:body.diagnosticV2.listening;
+    body.diagnosticV2=canonical?.result?
+      presentSavedListening({...body.diagnosticV2,...canonical,listening:savedAudio}):
+      {...body.diagnosticV2,result:undefined};
   }
   const state=await service.rebuild({...previous,...body});
   await service.saveState(state);
@@ -141,6 +147,7 @@ export async function finishDiagnosticAssessment(value:DiagnosticV2):Promise<{
     sessionId:value.sessionId??String(value.startedAt),
     writing2:value.writing2,
     listening:value.listeningSkipped?[]:value.listening,
+    listeningSkipped:value.listeningSkipped===true,
     attempts:value.attempts.map(answer=>({id:answer.id,answer:answer.answer})),
     writing:value.writing,
   });

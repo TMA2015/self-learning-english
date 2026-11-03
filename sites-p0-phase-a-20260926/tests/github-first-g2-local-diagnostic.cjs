@@ -60,6 +60,8 @@ global.window={localStorage:new MemoryStorage(),location:{origin:'https://exampl
   assert(first.result.evidence.some(e=>e.tag==='writing-review-pending'&&e.provisional===true));
   assert(first.result.listening);
   assert.equal(first.result.listening.correct,coreListening.length);
+  assert.equal(first.result.estimates.Listening.assessed,true);
+  assert.equal(first.result.estimates.Listening.evidenceCount,coreListening.length);
   assert(first.result.evidence.some(e=>e.skill==='Listening'));
 
   const local=await runtime.localLearningRuntime();
@@ -88,6 +90,33 @@ global.window={localStorage:new MemoryStorage(),location:{origin:'https://exampl
   await assert.rejects(()=>finishLocalDiagnostic(notPlayed),/Finish all Listening questions/);
   assert.equal((await local.service.readAssessments()).length,1);
 
+  const missing={...session,sessionId:'g2-missing-listening',listening:undefined};
+  await assert.rejects(()=>finishLocalDiagnostic(missing),/Finish Listening or select Skip Listening explicitly/);
+  assert.equal((await local.service.readAssessments()).length,1);
+  const skipped=await finishLocalDiagnostic({...missing,sessionId:'g2-skipped',listeningSkipped:true});
+  assert.equal(skipped.result.estimates.Listening.assessed,false);
+  assert.equal(skipped.result.estimates.Listening.evidenceCount,0);
+  assert.equal((await local.service.readAssessments()).find(a=>a.sessionId==='g2-skipped').listeningSkipped,true);
+  const historicalAt=Date.now()+10000;
+  const historical={...session,sessionId:'g2-saved-legacy-listening',
+    startedAt:historicalAt-1,finishedAt:historicalAt,
+    result:model.makeDiagnostic(attempts,words,historicalAt,[],undefined)};
+  await local.service.recordAssessment(historical);
+  const storedBefore=JSON.stringify((await local.service.readAssessments()).find(a=>a.sessionId===historical.sessionId));
+  const recovered=await local.service.rebuild({diagnosticV2:historical,evidence:[]});
+  assert.equal(recovered.diagnosticV2.listeningEvidenceRecovered,true);
+  assert.equal(recovered.diagnosticV2.result.listening.total,coreListening.length);
+  assert.equal(recovered.diagnosticV2.result.estimates.Listening.evidenceCount,coreListening.length);
+  assert.equal(recovered.learnerModel.estimates.Listening.assessed,true);
+  assert.equal(JSON.stringify((await local.service.readAssessments()).find(a=>a.sessionId===historical.sessionId)),storedBefore);
+  const noAudioAt=historicalAt+1000;
+  const emptyHistorical={...historical,sessionId:'g2-old-without-audio',listening:undefined,
+    startedAt:noAudioAt-1,finishedAt:noAudioAt,
+    result:model.makeDiagnostic(attempts,words,noAudioAt,[],undefined)};
+  await local.service.recordAssessment(emptyHistorical);
+  const unverified=await local.service.rebuild({diagnosticV2:emptyHistorical,evidence:[]});
+  assert.equal(unverified.diagnosticV2.listeningEvidenceRecovered,undefined);
+  assert.equal(unverified.diagnosticV2.result.estimates.Listening.evidenceCount,0);
   const routePage=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8');
   const page=fs.readFileSync(path.join(root,'app/home-client.tsx'),'utf8');
   assert(routePage.includes('<HomeClient/>'),'root route must delegate Diagnostic UI to HomeClient');
@@ -96,6 +125,9 @@ global.window={localStorage:new MemoryStorage(),location:{origin:'https://exampl
   assert(!page.includes('fetch("/api/diagnostic"'),'main page must not call Diagnostic route directly');
   assert(!page.includes('fetch("/api/capabilities"'),'main page must not call capabilities directly');
   assert(!component.includes('fetch("/api/capabilities"'),'Diagnostic UI must use browser-aware capability service');
+  assert(component.includes('||!listeningReady'),'Must require Listening completion or explicit Skip');
+  assert(component.includes('Listening not included in this completed assessment'),'Missing Listening requires visible explanation');
+  assert(component.includes('listeningEvidenceRecovered'),'Recovered evidence must be labelled');
   assert(page.includes('finishDiagnosticAssessment(diagnosticV2)'));
   assert(clients.includes("return jsonFetch('/api/diagnostic'"),'Sites diagnostic route fallback must remain');
   assert(clients.includes("if(browserLearningEnabled())return finishLocalDiagnostic(value)"),'browser diagnostic must remain local');
