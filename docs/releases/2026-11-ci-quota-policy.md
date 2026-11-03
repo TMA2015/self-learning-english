@@ -1,33 +1,31 @@
-# CI quota safety policy — Self-Learning English (November 2026)
+# SLE public-repository GitHub Actions policy — 2026-11-03
 
-Context: In October, ordinary English PRs launched up to 12 overlapping jobs,
-each repeating package installation and builds. The included private GitHub
-Actions compute quota was exhausted.
+## Context and decision
 
-## Root-cause correction now in the release path
+SLE was private until 2026-11-03. October 2026 CI exhausted private-repository Actions allowances because many push/PR workflows repeated installs and builds. The repository is now public, so standard GitHub-hosted runners can be used for eligible public-repository jobs. The no-paid-runners and explicit-production-deploy boundaries remain in force.
 
-- Default branch is deliberately limited to manual-only workflows.
-- Use a SINGLE bounded job when a release QA run is explicitly requested.
-- Do not auto-trigger on push, pull_request, workflow_run, or schedule.
-- Never run routine development checks on GitHub-hosted Actions.
-- Consolidated pnpm qa:release runs in one job, with frozen dependency install once.
-- Workflow timeout: maximum 25 minutes. Concurrency cancels superseded requests.
-- The manual workflow is restricted to release/nov2026-content-v1.18.0,
-  and requires confirm=RUN. Zero Actions minutes on commits/PRs.
-- scripts/verify-actions-policy.cjs blocks automated triggers and >3 workflow files.
-- Before merging ANY old academic or feature branch, check its .github/workflows
-  diff and reject auto-triggering workflows. Old PR #48 is superseded by #51.
-- No approval to exceed GitHub Free included quota; no paid runners.
+## Approved workflows (exactly two)
 
-## Limitations / verification
+1. `.github/workflows/english-pr-qa.yml` — automatic **pull_request** checks targeting `main` only. One bounded job; superseded runs cancelled. `permissions: contents: read`, no repository secrets, no Firebase deployment, no `pull_request_target`. Policy verification always runs; full `pnpm qa:release` and static build run only when a complete application tree with `package.json` and `pnpm-lock.yaml` is present. The current default branch contains only the baseline/governance tree, so documentation-only PRs receive policy checks rather than a misleading application QA PASS.
+2. `.github/workflows/english-manual-release-qa.yml` — **workflow_dispatch only** on the explicitly authorized release branch, with existing release-confirmation gate. This workflow retains the only Firebase production deploy action; it checks the English-only Hosting target and must run QA before LIVE deployment.
 
-Repository-wide Actions settings/billing cut-off are account controls, not
-modifiable by this source-only policy. The GitHub Billing screenshots from
-2026-11-01 show compute $0 used of $12 included (with $0.09 included discount),
-but future usage should still be monitored.
+Forbidden: push/schedule/workflow_run/pull_request_target triggers; third-party paid/self-hosted runners; publishing preview or production from PR QA; secrets in PR QA; automatic production deployments.
 
-The current main branch does not yet include the full application source. Thus,
-the manually invoked release QA workflow must NOT be run on main; first finish
-and validate the complete release branch, then select that branch in Actions.
+## QA and change controls
 
-Do not merge the release PR or deploy until all QA and provenance gates pass.
+- `.github/workflows/` must contain exactly the approved two files. `node scripts/verify-actions-policy.cjs` enforces the trigger separation and PR secret/deployment boundaries.
+- Full application PR QA uses Node 24, pnpm 11.25.0, `pnpm install --frozen-lockfile`, FFmpeg, `pnpm qa:release`. No live Firebase credentials are needed for PR QA.
+- PR QA is not proof of live browser AI functionality or learner-data preservation. Firebase deployment, App Check and live smoke tests remain separate acceptance gates.
+- Avoid duplicate CI on every push; review PRs against `main`. Do not turn on required status checks until the new PR workflow has produced a successful status for the target branch.
+- Carefully inspect `.github/workflows` changes when promoting older development branches. Never blindly merge workflows from historical PRs.
+
+## Rollout record
+
+- Public visibility verified 2026-11-03. Existing releases and site data were not changed by the visibility transition.
+- This policy and PR workflow are staged through a PR: automatic PR QA becomes authoritative only when that PR is merged into the default branch.
+- Branch protection and rulesets are repository Settings operations; configure them separately, without requiring unavailable status checks or allowing silent bypass.
+- No curriculum import, Firebase deploy, secret rotation or learner data change is part of this policy migration.
+
+## Historical note
+
+The prior `2026-11-ci-quota-policy.md` was a **private-repository** manual-only rule. Its historical quota issue remains documented here; its prohibition on PR QA is superseded by this narrowly scoped public workflow.
