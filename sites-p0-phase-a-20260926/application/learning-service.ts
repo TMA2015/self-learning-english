@@ -25,7 +25,7 @@ export function learningService(repository:LearningRepository,scope:Scope){
   if(!baseline){const {learnerModel,learningPlan,...rest}=state;return {...rest,evidence} as LearnerState}
   const learnerModel=deriveLearner(baseline,evidence,state.profile?.goal??'Build balanced English skills');
   const learningPlan=derivePlan(learnerModel);
-  const restore=latest&&(!inState||same&&(!inState.result||latest.listeningEvidenceRecovered===true));
+  const restore=latest&&(!inState||same);
   // Display projection only: original assessment row, event log and historical
   // scores remain unchanged and replayable.
   return {...state,...(restore?{diagnosticV2:latest}:{}),evidence,learnerModel,learningPlan}
