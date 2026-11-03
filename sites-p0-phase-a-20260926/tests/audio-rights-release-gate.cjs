@@ -40,7 +40,7 @@ for(const entry of register.entries){
     missing.push(entry.asset_path);
   }
 }
-const summary={audioIntegrity:'PASS',total:38,rightsApproved:38-missing.length,rightsPending:missing.length,mode:strict?'release-clearance':'integrity-only'};
+const summary={audioIntegrity:'PASS',total:actual.length,rightsApproved:register.entries.length-missing.length,rightsPending:missing.length,mode:strict?'release-clearance':'integrity-only'};
 console.log(JSON.stringify(summary));
 if(strict&&missing.length){
   console.error('AUDIO_RIGHTS_BLOCKED: approval and provenance incomplete for '+missing.length+' assets. First: '+missing.slice(0,8).join(', '));
