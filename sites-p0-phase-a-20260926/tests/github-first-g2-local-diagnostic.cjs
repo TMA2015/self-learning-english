@@ -125,6 +125,9 @@ global.window={localStorage:new MemoryStorage(),location:{origin:'https://exampl
   assert(!page.includes('fetch("/api/diagnostic"'),'main page must not call Diagnostic route directly');
   assert(!page.includes('fetch("/api/capabilities"'),'main page must not call capabilities directly');
   assert(!component.includes('fetch("/api/capabilities"'),'Diagnostic UI must use browser-aware capability service');
+  assert(component.includes('||!listeningReady'),'Must require Listening completion or explicit Skip');
+  assert(component.includes('Listening not included in this completed assessment'),'Missing Listening requires visible explanation');
+  assert(component.includes('listeningEvidenceRecovered'),'Recovered evidence must be labelled');
   assert(page.includes('finishDiagnosticAssessment(diagnosticV2)'));
   assert(clients.includes("return jsonFetch('/api/diagnostic'"),'Sites diagnostic route fallback must remain');
   assert(clients.includes("if(browserLearningEnabled())return finishLocalDiagnostic(value)"),'browser diagnostic must remain local');
