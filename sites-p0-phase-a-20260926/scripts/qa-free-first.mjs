@@ -11,6 +11,7 @@ const coreTests=[
   "pedagogy-v1181.cjs",
   "speaking-prep-stage3.cjs",
   "stage3-notebooklm-remediation.cjs",
+  "stage3-preview-hosting-safety.cjs",
   "speaking-notes-stage3.cjs",
   "ai-tutor-stage3.cjs",
   "ai-tutor-language-stage3.cjs",
