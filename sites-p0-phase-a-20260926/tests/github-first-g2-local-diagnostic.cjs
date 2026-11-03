@@ -11,7 +11,6 @@ execFileSync(process.execPath,[
   path.join(root,'node_modules/typescript/bin/tsc'),
   'infrastructure/browser/local-diagnostic.ts',
   'infrastructure/browser/local-runtime.ts',
-  'infrastructure/browser/client-services.ts',
   'domain/learning-model.ts',
   'domain/core-listening.ts',
   '--outDir','.sites-runtime/github-first-g2-diagnostic',
