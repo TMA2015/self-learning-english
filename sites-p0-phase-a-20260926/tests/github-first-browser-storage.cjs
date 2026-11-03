@@ -1,28 +1,25 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
-const ts=require('typescript');
+const {execFileSync}=require('node:child_process');
 
-const outDir=path.join(__dirname,'../.sites-runtime/github-first-browser-storage');
+// Compile the actual transitive TypeScript/JSON dependency graph. A manual
+// transpileModule whitelist went stale when the storage adapter gained a
+// runtime import from domain/academic and produced MODULE_NOT_FOUND.
+const root=path.resolve(__dirname,'..');
+const out='.sites-runtime/github-first-browser-storage';
+const outDir=path.join(root,out);
 fs.rmSync(outDir,{recursive:true,force:true});
-fs.mkdirSync(path.join(outDir,'infrastructure/storage'),{recursive:true});
-fs.mkdirSync(path.join(outDir,'domain'),{recursive:true});
-
-const compilerOptions={
-  module:ts.ModuleKind.CommonJS,
-  target:ts.ScriptTarget.ES2022,
-  esModuleInterop:true,
-};
-for(const [sourcePath,outPath] of [
-  ['../domain/course-p1.ts','domain/course-p1.js'],
-  ['../infrastructure/storage/browser-local-repositories.ts','infrastructure/storage/browser-local-repositories.cjs'],
-]){
-  const source=fs.readFileSync(path.join(__dirname,sourcePath),'utf8');
-  const built=ts.transpileModule(source,{compilerOptions}).outputText;
-  fs.writeFileSync(path.join(outDir,outPath),built);
-}
+execFileSync(process.execPath,[
+  path.join(root,'node_modules/typescript/bin/tsc'),
+  'infrastructure/storage/browser-local-repositories.ts',
+  '--outDir',out,
+  '--module','commonjs','--target','es2022',
+  '--resolveJsonModule','--esModuleInterop','--skipLibCheck',
+  '--lib','es2022,dom',
+],{cwd:root,stdio:'inherit'});
 fs.writeFileSync(path.join(outDir,'package.json'),'{"type":"commonjs"}\n');
-const outFile=path.join(outDir,'infrastructure/storage/browser-local-repositories.cjs');
+const outFile=path.join(outDir,'infrastructure/storage/browser-local-repositories.js');
 const {BrowserLocalLearningRepository,BrowserLocalAcademicRepository,browserLocalRepositories}=require(outFile);
 
 class MemoryStorage{
