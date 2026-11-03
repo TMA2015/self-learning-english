@@ -14,6 +14,7 @@ execFileSync(process.execPath,[
  'node_modules/typescript/bin/tsc',
  'domain/content-model.ts','domain/academic.ts',
  'application/learning-service.ts','application/academic-service.ts',
+ 'infrastructure/storage/browser-local-repositories.ts',
  '--outDir',out,'--module','commonjs','--target','es2022',
  '--resolveJsonModule','--esModuleInterop','--skipLibCheck'
 ],{cwd:root,stdio:'inherit'});
@@ -65,5 +66,58 @@ class Store{
  assert.equal(unchangedAttempt.version,'1.18.0');
  assert.equal(unchangedAttempt.status,'started');
  assert.equal(storage.p.length,2);
+ // Browser-local integration: use the actual importer AND actual persistence adapter.
+ // This catches successes in a simplistic in-memory store which fail once both
+ // immutable curriculum versions compete with real localStorage quota.
+ const {BrowserLocalAcademicRepository,BrowserLocalLearningRepository}=
+   require('../'+out+'/infrastructure/storage/browser-local-repositories.js');
+ const pkgKey='g-learning:english:v1:academic:packages';
+ const attemptKey='g-learning:english:v1:owner:stage3-browser-qa:academic-attempts';
+ class QuotaStorage{
+  map=new Map();
+  getItem(k){return this.map.get(k)??null}
+  setItem(k,v){
+   const proposed=new Map(this.map);proposed.set(k,String(v));
+   const units=[...proposed].reduce((sum,[name,value])=>sum+name.length+value.length,0);
+   if(units*2>5*1024*1024){const error=Error('quota');error.name='QuotaExceededError';throw error}
+   this.map=proposed;
+  }
+  removeItem(){throw Error('Attempt/version deletion is forbidden')}
+ }
+ const browserStorage=new QuotaStorage();
+ const browserAcademic=new BrowserLocalAcademicRepository(browserStorage);
+ const browserLearning=new BrowserLocalLearningRepository(browserStorage);
+ const browserSvc=academicService(browserAcademic,browserLearning,'stage3-browser-qa');
+ let browserPreview=await browserSvc.preview(old);
+ assert.deepEqual(browserPreview.errors,[]);
+ await browserSvc.importPackage(old,browserPreview.token,true);
+ const historical=await browserSvc.start('REA-A1-01','qa-stage3-browser-old-reading');
+ assert.equal(historical.version,'1.18.0');
+ const oldAttemptBytes=browserStorage.getItem(attemptKey);
+ const priorNotes=(await browserSvc.lesson('REA-A1-01','1.18.0')).lesson.examples;
+ browserPreview=await browserSvc.preview(next);
+ assert.deepEqual(browserPreview.errors,[]);
+ assert.deepEqual(browserPreview.counts,{add:0,update:2,skip:107,conflict:0});
+ await browserSvc.importPackage(next,browserPreview.token,true);
+ assert.equal((await browserSvc.catalog()).version,'1.18.1');
+ assert.equal(browserStorage.getItem(attemptKey),oldAttemptBytes,
+  'Historical attempt bytes must remain unchanged during curriculum import');
+ assert.deepEqual((await browserSvc.lesson('REA-A1-01','1.18.0')).lesson.examples,priorNotes);
+ assert((await browserSvc.lesson('REA-A1-01')).lesson.examples.join(' ').includes('guitar group'));
+ assert.deepEqual((await browserAcademic.packages()).map(row=>row.version),['1.18.0','1.18.1']);
+ assert(JSON.parse(browserStorage.getItem(pkgKey)).every(row=>!Object.hasOwn(row,'bundle')),
+  'Derived bundle must be compacted for all source-complete versions');
+ assert(browserStorage.getItem(pkgKey).length*2<5*1024*1024,
+  'Two source-preserving versions must fit conservative 5 MiB quota simulation');
+ const beforeReload=browserStorage.getItem(pkgKey);
+ const reopened=new BrowserLocalAcademicRepository(browserStorage);
+ assert.deepEqual((await reopened.packages()).map(row=>row.version),['1.18.0','1.18.1']);
+ assert.equal(browserStorage.getItem(pkgKey),beforeReload,'Reopening must not rewrite storage');
+ const pinned=(await reopened.attempts('stage3-browser-qa')).find(a=>a.id===historical.id);
+ assert.equal(pinned.version,'1.18.0');
+ assert.equal(pinned.status,'started');
+ console.log(JSON.stringify({result:'PASS',gate:'browser-import-preview',
+  versions:['1.18.0','1.18.1'],historicalAttemptPreserved:true,
+  compactStorage:true,productionWrites:0}));
  console.log(JSON.stringify({result:'PASS',gate:'actual-importer-preview',versions:storage.p.map(p=>p.version),preview:{add:0,update:2,skip:107,conflict:0},historicalAttemptPreserved:true}));
 })().catch(err=>{console.error(err);process.exitCode=1});
