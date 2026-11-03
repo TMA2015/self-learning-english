@@ -17,6 +17,7 @@ const coreTests=[
   "listening-option-order-stage3.cjs",
   "stage3-import-preview.cjs",
   "stage3-browser-storage-compact.cjs",
+  "stage3-quota-readonly-fallback.cjs",
   "content-quality.cjs",
   "version-aware-attempt-ux.cjs",
   "practice-progress-p2a.cjs",

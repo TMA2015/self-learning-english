@@ -65,7 +65,7 @@ export async function saveLearnerState(next:LearnerState):Promise<{ok:true;stora
 
 export async function foundationRequest<T=any>(url:string,body?:unknown):Promise<T>{
   if(!browserLearningEnabled())return jsonFetch<T>(url,body);
-  const {service}=await localAcademicRuntime();
+  const {service,warning}=await localAcademicRuntime();
   try{
     if(body!==undefined){
       const b=body as any;
@@ -86,7 +86,8 @@ export async function foundationRequest<T=any>(url:string,body?:unknown):Promise
       return {...view,audio:view.audio?{...view.audio,url:publicPath(view.audio.url)}:null,pronunciationAudio:view.pronunciationAudio?{...view.pronunciationAudio,url:publicPath(view.pronunciationAudio.url)}:null} as T;
     }
     if(parsed.searchParams.has('audio'))throw new AcademicError('Browser-local recording playback is not enabled yet.',501);
-    return await service.catalog() as T;
+    const catalog=await service.catalog();
+    return {...catalog,...(warning?{warning}:{})} as T;
   }catch(error){
     throw new Error(error instanceof AcademicError?error.message:'Could not save or load this activity. Your existing records are preserved.');
   }

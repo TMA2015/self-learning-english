@@ -10,6 +10,7 @@ export const LOCAL_OWNER_ID='local-family';
 export const LOCAL_LEARNER_ID='primary';
 // Bundled candidate metadata only; not a production deployment timestamp.
 const CURRICULUM_IMPORTED_AT=Date.parse('2026-11-03T00:00:00.000Z');
+let curriculumWarning:string|undefined;
 
 let cached:{
   storage:BrowserKeyValueStorage;
@@ -44,16 +45,28 @@ async function ensureCurriculum(){
   const digest=await sourceDigest(source);
   if(current){
     if(current.digest!==digest)throw new Error('Bundled curriculum version conflicts with local immutable content.');
+    curriculumWarning=undefined;
     return;
   }
-  await academic.addPackage({
-    id:source.package_id,
-    version:source.schema_version,
-    digest,
-    source,
-    bundle:mapSeed(source),
-    at:CURRICULUM_IMPORTED_AT,
-  });
+  try{
+    await academic.addPackage({
+      id:source.package_id,
+      version:source.schema_version,
+      digest,
+      source,
+      bundle:mapSeed(source),
+      at:CURRICULUM_IMPORTED_AT,
+    });
+    curriculumWarning=undefined;
+  }catch(error){
+    if(!(error instanceof Error&&/Could not save:.*no storage space available/i.test(error.message)))throw error;
+    // Import failure must not make a previously saved and readable course
+    // inaccessible. The failed localStorage write is atomic; we never delete
+    // old package versions or learner attempts as an automatic "recovery".
+    const previous=await academic.packages();
+    if(!previous.some(row=>Array.isArray(row.source?.lessons)&&row.source.lessons.length>0))throw error;
+    curriculumWarning='The latest English curriculum could not be saved because this browser is short of storage space. Older lessons and saved results remain available to view. New saves may also fail. Do not clear this site’s browser data; free space or copy important work before retrying.';
+  }
 }
 
 export async function localLearningRuntime(){
@@ -69,6 +82,7 @@ export async function localAcademicRuntime(){
     learning,
     academic,
     service:academicService(academic,learning,LOCAL_OWNER_ID),
+    warning:curriculumWarning,
   };
 }
 
