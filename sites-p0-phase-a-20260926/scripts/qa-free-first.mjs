@@ -5,6 +5,7 @@ const mode=process.argv.includes("--core")?"core":"full";
 const root=process.cwd();
 
 const coreTests=[
+  "typescript-syntax.cjs",
   "run.cjs",
   "academic.cjs",
   "pedagogy-v1181.cjs",
