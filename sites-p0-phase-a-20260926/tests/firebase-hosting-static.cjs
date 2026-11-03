@@ -44,8 +44,17 @@ for(const [taskId,m] of Object.entries(diagnosticManifest)){
  assert(bytes.equals(fs.readFileSync(sourceFile)),taskId+': diagnostic MP3 changed during build');
  assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),m.sha256,taskId+': diagnostic audio SHA-256 mismatch');
 }
-const future=require('../content/curriculum-1.18.0-candidate.json');
-assert.equal(future.lessons.length,109);assert.equal(future.lessons.flatMap(l=>l.activities).length,913);
+// The 1.18.0 baseline remains available, but the Stage 3 browser bundle must
+// actually activate the distinct cumulative 1.18.1 candidate.
+const baseline=require('../content/curriculum-1.18.0-candidate.json');
+const active=require('../content/curriculum-1.18.1-candidate.json');
+assert.equal(baseline.schema_version,'1.18.0');
+assert.equal(active.schema_version,'1.18.1');
+assert.equal(active.lessons.length,109);
+assert.equal(active.lessons.flatMap(l=>l.activities).length,913);
+const runtimeSource=fs.readFileSync(path.join(root,'infrastructure','browser','local-runtime.ts'),'utf8');
+assert(runtimeSource.includes("import curriculum1181 from '../../content/curriculum-1.18.1-candidate.json'"),
+  'Static browser runtime must bundle the currently reviewed Stage 3 curriculum');
 const raw=fs.readFileSync(path.join(root,'content/curriculum-1.15.0-candidate.json'));const canonical=v=>Array.isArray(v)?v.map(canonical):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,canonical(v[k])])):v;const sha=v=>crypto.createHash('sha256').update(v).digest('hex');assert.equal(sha(raw),'981a7273a9158c9e53a0e3336de1a88892024f617330d797d534f9e293dc4426');assert.equal(sha(JSON.stringify(canonical(JSON.parse(raw)))),'66663bb61cf60b266d25e8abd890e81ad27398d3ebee9b7cd5cd211de878b1e8');
 const html=fs.readFileSync(path.join(out,'index.html'),'utf8');
 assert(!html.includes('/self-learning-english/self-learning-english/'),'Firebase build must not duplicate a GitHub Pages base path');
@@ -76,6 +85,15 @@ function walk(dir){
   });
 }
 const textAssets=walk(out).filter(file=>/\.(?:html|js|css|json|txt|xml|svg)$/i.test(file));
+// A source import alone is insufficient: the built static JS must contain
+// Stage 3 lesson material after optimization, so a stale baseline build fails.
+const builtJS=walk(out).filter(file=>/\.js$/i.test(file));
+assert(builtJS.length>0,'No static JavaScript emitted by Firebase build');
+const hasStage3Text=builtJS.some(file=>{
+  const text=fs.readFileSync(file,'utf8');
+  return text.includes('guitar group')&&text.includes('science room is along the hall');
+});
+assert(hasStage3Text,'Firebase built JavaScript is missing Stage 3 worked demonstrations');
 const allowedPublicFirebaseWebApiKeys=new Set([
   'AIzaSyAnCa-t04dmwFHLARYN77o866tomq4RUBg',
 ]);
@@ -94,7 +112,7 @@ console.log(JSON.stringify({
   result:'PASS',
   output:'dist/client',
   hosting:'g-learning-english',
-  curriculum:'1.18.0',
+  curriculum:active.schema_version,
   staticAudioFiles:38,
   criticalBrowserWritingServerFree:true,
   secretShapeScan:true,
