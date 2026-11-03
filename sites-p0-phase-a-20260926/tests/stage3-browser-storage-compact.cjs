@@ -37,6 +37,9 @@ class QuotaStorage{
 }
 const asPackage=source=>({id:source.package_id,version:source.schema_version,
  digest:'a'.repeat(64),source,bundle:mapSeed(source),at:100});
+ // Match the JSON storage boundary: undefined optional properties cannot be
+ // persisted in localStorage. Do not weaken comparisons for real saved fields.
+ const persisted=value=>JSON.parse(JSON.stringify(value));
 (async()=>{
  const historical=asPackage(old),candidate=asPackage(next);
  assert(JSON.stringify([historical,candidate]).length*2>quota,
@@ -48,7 +51,7 @@ const asPackage=source=>({id:source.package_id,version:source.schema_version,
  const attemptBytes=JSON.stringify([historicAttempt]);
  storage.setItem(ownerKey,attemptBytes);
  const before=await repo.packages();
- assert.deepEqual(before,[historical],'Legacy full package must remain readable');
+ assert.deepEqual(before,[persisted(historical)],'Legacy full package must remain readable after JSON round-trip');
  const oldDigest=before[0].digest;
  const startWrites=storage.writes.length;
  await repo.addPackage(candidate);
@@ -60,12 +63,12 @@ const asPackage=source=>({id:source.package_id,version:source.schema_version,
  assert(storage.getItem(key).length*2<quota,'Two immutable source versions must fit simulated 5 MiB');
  const fresh=new BrowserLocalAcademicRepository(storage);
  const restored=await fresh.packages();
- assert.deepEqual(restored[0],historical,'Historical bundle must rehydrate identically');
- assert.deepEqual(restored[1],candidate,'Candidate bundle must rehydrate identically');
+ assert.deepEqual(restored[0],persisted(historical),'Historical bundle must rehydrate identically after JSON round-trip');
+ assert.deepEqual(restored[1],persisted(candidate),'Candidate bundle must rehydrate identically after JSON round-trip');
  restored[0].bundle.lessons[0].title='MUTATED IN CALLER';
  const readAgain=await fresh.packages();
- assert.deepEqual(readAgain[0],historical,'A caller must not mutate a cached historical bundle');
- assert.deepEqual(readAgain[1],candidate,'A caller must not mutate the other package');
+ assert.deepEqual(readAgain[0],persisted(historical),'A caller must not mutate a cached historical bundle');
+ assert.deepEqual(readAgain[1],persisted(candidate),'A caller must not mutate the other package');
  assert.equal(restored[0].digest,oldDigest);
  assert.deepEqual(restored.map(x=>x.source),[old,next],'Immutable historical source must be preserved');
  const size=storage.getItem(key).length;
