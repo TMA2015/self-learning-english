@@ -1,136 +1,104 @@
-name: English Manual QA, Stage 3 Preview, or Approved LIVE Release
+name: SLE Authorized English LIVE Release
 
-# Only manually triggered. Zero push/PR/schedule triggers; no automatic billed runs.
+# Only an owner-approved merge into protected main with [release-english]
+# triggers the release. No Preview, no manual run and no Math deployment.
 on:
-  workflow_dispatch:
-    inputs:
-      confirm:
-        description: "QA (v1.18.0 branch) / PREVIEW_STAGE3_1181 (Stage 3 branch) / DEPLOY_ENGLISH_V1180 (LIVE, explicit approval)"
-        required: true
-        type: string
+  push:
+    branches: [main]
+    paths:
+      - 'sites-p0-phase-a-20260926/**'
+      - '.github/workflows/english-manual-release-qa.yml'
 
 permissions:
   contents: read
 
 concurrency:
-  group: english-v1180-release-${{ github.ref }}
+  group: sle-english-live-release
   cancel-in-progress: false
 
 jobs:
   release:
-    if: >-
-      (github.ref_name == 'release/nov2026-content-v1.18.0' &&
-       (inputs.confirm == 'QA' || inputs.confirm == 'DEPLOY_ENGLISH_V1180')) ||
-      (github.ref_name == 'integration/sle-stage3-pilot-v1181-20261102' &&
-       inputs.confirm == 'PREVIEW_STAGE3_1181')
+    if: ${{ github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[release-english]') }}
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
     defaults:
       run:
         working-directory: sites-p0-phase-a-20260926
     steps:
-      - name: Checkout exactly selected authorized branch (NOT main)
+      - name: Checkout exact approved main commit
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
-      - name: Require exact manual instruction
-        env:
-          RELEASE_CONFIRM: ${{ inputs.confirm }}
+      - name: Verify authorization and English-only source
         run: |
-          case "$RELEASE_CONFIRM" in
-            QA|PREVIEW_STAGE3_1181|DEPLOY_ENGLISH_V1180) ;;
-            *) echo "::error::Select exact authorized branch and enter QA, PREVIEW_STAGE3_1181, or DEPLOY_ENGLISH_V1180"; exit 1 ;;
-          esac
-          if [[ "$RELEASE_CONFIRM" == "PREVIEW_STAGE3_1181" && "$GITHUB_REF_NAME" != "integration/sle-stage3-pilot-v1181-20261102" ]]; then
-            echo "::error::Preview is authorized only on the Stage 3 integration branch"; exit 1
-          fi
-          if [[ "$RELEASE_CONFIRM" == "DEPLOY_ENGLISH_V1180" && "$GITHUB_REF_NAME" != "release/nov2026-content-v1.18.0" ]]; then
-            echo "::error::Live deployment is authorized only on the v1.18.0 release branch"; exit 1
-          fi
-          echo "Selected source commit: $GITHUB_SHA"
-
-      - name: Enforce manual-only Actions policy
-        run: node ../scripts/verify-actions-policy.cjs
-
-      - name: Verify app, project, English-only Hosting target
-        run: |
-          node --input-type=commonjs - <<'NODE'
-          const assert = require('node:assert/strict');
-          const fs = require('node:fs');
-          for (const p of ['package.json','pnpm-lock.yaml','content/curriculum-1.18.0-candidate.json','tests/nov-2026-content-preflight.cjs','firebase.json','.firebaserc']) assert(fs.existsSync(p), 'Missing '+p);
-          const cfg = JSON.parse(fs.readFileSync('firebase.json','utf8'));
-          const rc = JSON.parse(fs.readFileSync('.firebaserc','utf8'));
-          assert.equal(cfg.hosting.target, 'english');
-          assert.equal(cfg.hosting.public, 'dist/client');
-          assert.deepEqual(rc.targets?.['roadmap-toan-ai']?.hosting?.english, ['g-learning-english']);
-          assert.equal(rc.projects.default, 'roadmap-toan-ai');
-          console.log('FIREBASE_TARGET_PASS: roadmap-toan-ai / english / g-learning-english (not Math)');
-          NODE
-
-      - name: Ensure Stage 3 preview bundles v1.18.1, not the v1.18.0 baseline
-        if: ${{ inputs.confirm == 'PREVIEW_STAGE3_1181' }}
-        run: |
+          set -euo pipefail
+          [[ "$GITHUB_REF" == 'refs/heads/main' ]]
+          [[ "$(git rev-parse HEAD)" == "$GITHUB_SHA" ]]
           node --input-type=commonjs - <<'NODE'
           const assert=require('node:assert/strict'),fs=require('node:fs');
-          const data=require('./content/curriculum-1.18.1-candidate.json');
-          assert.equal(data.schema_version,'1.18.1');
-          const source=fs.readFileSync('infrastructure/browser/local-runtime.ts','utf8');
-          assert(source.includes("import curriculum1181 from '../../content/curriculum-1.18.1-candidate.json'"));
-          console.log('PREVIEW_SOURCE_PASS: Stage 3 v1.18.1 explicitly bundled');
+          const cfg=JSON.parse(fs.readFileSync('firebase.json','utf8'));
+          const rc=JSON.parse(fs.readFileSync('.firebaserc','utf8'));
+          const candidate=require('./content/curriculum-1.18.1-candidate.json');
+          assert.equal(candidate.schema_version,'1.18.1');
+          assert.equal(candidate.lessons.length,109);
+          assert.equal(candidate.lessons.reduce((s,l)=>s+l.activities.length,0),913);
+          assert.equal(cfg.hosting.target,'english');
+          assert.equal(cfg.hosting.public,'dist/client');
+          assert.equal(rc.projects.default,'roadmap-toan-ai');
+          assert.deepEqual(rc.targets['roadmap-toan-ai'].hosting.english,['g-learning-english']);
+          assert(fs.existsSync('docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md'));
+          console.log('ENGLISH_RELEASE_SCOPE_PASS: v1.18.1 / English only');
           NODE
-
-      - name: Verify all original-content rights and audio hashes
-        run: |
+          node ../scripts/verify-actions-policy.cjs
           node tests/nov-2026-content-preflight.cjs
           node tests/audio-rights-release-gate.cjs --require-clearance
 
-      # Preview and LIVE require the existing Firebase secret, QA-only does not.
-      # Never display credentials in logs or request tokens in chat.
-      - name: Check Firebase Hosting credential for authorized preview or LIVE
-        if: ${{ inputs.confirm == 'PREVIEW_STAGE3_1181' || inputs.confirm == 'DEPLOY_ENGLISH_V1180' }}
+      - name: Confirm Firebase credential before expensive CI
         env:
           FIREBASE_CREDENTIAL: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
         run: |
-          if [ -z "$FIREBASE_CREDENTIAL" ]; then
-            echo "::error::Missing FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI. Neither preview nor LIVE deployment was attempted."
+          if [[ -z "$FIREBASE_CREDENTIAL" ]]; then
+            echo '::error::Firebase Hosting credential not configured; no deploy'
             exit 1
           fi
-          echo "Firebase Hosting credential present (contents not displayed)"
+          echo 'Firebase credential present (contents not logged)'
 
-      - name: Install pnpm
+      - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 11.25.0
 
-      - name: Use Node.js 24
+      - name: Setup Node 24
         uses: actions/setup-node@v4
         with:
           node-version: '24'
 
-      - name: Frozen dependency installation
+      - name: Frozen dependency install
         run: pnpm install --frozen-lockfile
 
-      - name: Install FFmpeg for mandatory audio checks
+      - name: Install FFmpeg
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends ffmpeg
 
-      - name: Full QA, TypeScript and Firebase static production build
-        id: qa_release
+      - name: Full release QA, TS, static build and audio validation
+        id: release_qa
         run: pnpm qa:release
 
-      - name: Verify exact release artifacts and prevent Math deployment
+      - name: Verify exact English build artifacts
         run: |
+          set -euo pipefail
           test -s dist/client/index.html
           test -s dist/client/foundation-audio/LIS-A2-01-v2.mp3
           test -s dist/client/foundation-audio/LIS-B1-01-v2.mp3
           test -s dist/client/diagnostic-audio/DIAG-LIS-01-v1.mp3
           test ! -e dist/client/foundation-audio/LIS-A2-01-v1.mp3
           test ! -e dist/client/foundation-audio/LIS-B1-01-v1.mp3
-          echo "BUILD_ARTIFACTS_PASS: English Hosting assets exist; curriculum identity separately verified by full QA"
+          echo 'ENGLISH_BUILD_PASS'
 
-      - name: Deploy LIVE Firebase Hosting — ENGLISH ONLY (no preview)
-        id: english_live
-        if: ${{ github.ref_name == 'release/nov2026-content-v1.18.0' && inputs.confirm == 'DEPLOY_ENGLISH_V1180' }}
+      - name: Deploy Firebase Hosting English LIVE only
+        id: deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
@@ -141,117 +109,47 @@ jobs:
           disableComment: true
           firebaseToolsVersion: '15.32.1'
 
-      - name: Deploy Stage 3 to disposable English Hosting preview channel — never LIVE
-        id: english_preview
-        if: ${{ github.ref_name == 'integration/sle-stage3-pilot-v1181-20261102' && inputs.confirm == 'PREVIEW_STAGE3_1181' }}
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
-          projectId: roadmap-toan-ai
-          target: english
-          entryPoint: sites-p0-phase-a-20260926
-          channelId: sle-stage3-1181-qa
-          expires: 7d
-          disableComment: true
-          firebaseToolsVersion: '15.32.1'
-
-      - name: Preview HTTP smoke — verify HTML and genuine English audio
-        id: preview_smoke
-        if: ${{ inputs.confirm == 'PREVIEW_STAGE3_1181' }}
-        env:
-          PREVIEW_URL: ${{ steps.english_preview.outputs.details_url }}
+      - name: Check LIVE English HTML and valid audio
+        id: live_smoke
         run: |
           set -euo pipefail
-          test -n "$PREVIEW_URL" || { echo "::error::No Firebase Preview URL returned"; exit 1; }
-          base="${PREVIEW_URL%/}"
+          base='https://g-learning-english.web.app'
           tmp="$(mktemp)"
           trap 'rm -f "$tmp"' EXIT
-          sleep 8
-          for asset in / /foundation-audio/LIS-A2-01-v2.mp3 /diagnostic-audio/DIAG-LIS-01-v1.mp3; do
+          sleep 15
+          for asset in / /foundation-audio/LIS-A2-01-v2.mp3 /foundation-audio/LIS-B1-01-v2.mp3 /diagnostic-audio/DIAG-LIS-01-v1.mp3; do
             valid=0
-            for attempt in {1..6}; do
-              if curl --fail --silent --show-error --location --connect-timeout 10 --max-time 20 --output "$tmp" "$base$asset" && test -s "$tmp"; then
-                if [[ "$asset" == "/" ]] && grep -Eiq '<(!doctype html|html)([[:space:]>])' "$tmp"; then valid=1; fi
-                if [[ "$asset" == *.mp3 ]] && [[ "$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 "$tmp" 2>/dev/null || true)" == "mp3" ]]; then valid=1; fi
+            for attempt in {1..10}; do
+              if curl --silent --show-error --fail --location --connect-timeout 10 --max-time 20 --output "$tmp" "$base$asset" && test -s "$tmp"; then
+                if [[ "$asset" == '/' ]] && grep -Eiq '<(!doctype html|html)([[:space:]>])' "$tmp"; then valid=1; fi
+                if [[ "$asset" == *.mp3 ]] && [[ "$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 "$tmp" 2>/dev/null || true)" == 'mp3' ]]; then valid=1; fi
               fi
               if [[ "$valid" == 1 ]]; then break; fi
-              if [[ "$attempt" -lt 6 ]]; then sleep 5; fi
-            done
-            if [[ "$valid" != 1 ]]; then echo "::error::Preview asset invalid: $asset"; exit 1; fi
-            echo "PREVIEW_ASSET_PASS: $asset"
-          done
-          echo "PREVIEW_STATIC_SMOKE_PASS; interactive Gemini and user flows NOT TESTED"
-      - name: Production HTTP smoke test — HTML and valid English audio
-        id: live_smoke
-        if: ${{ inputs.confirm == 'DEPLOY_ENGLISH_V1180' }}
-        run: |
-          set -euo pipefail
-          base="https://g-learning-english.web.app"
-          # A successful Firebase deployment can precede edge-cache propagation.
-          # Retry HTTP 404, as well as an HTML fallback returning 200 for a missing MP3.
-          sleep 15
-          tmp="$(mktemp)"
-          trap 'rm -f "$tmp"' EXIT
-          for asset in / /foundation-audio/LIS-A2-01-v2.mp3 /foundation-audio/LIS-B1-01-v2.mp3 /diagnostic-audio/DIAG-LIS-01-v1.mp3; do
-            ok=0
-            for attempt in {1..10}; do
-              if curl --fail --silent --show-error --location --connect-timeout 10 --max-time 20 --output "$tmp" "$base$asset" && test -s "$tmp"; then
-                if [[ "$asset" == "/" ]]; then
-                  if grep -Eiq '<(!doctype html|html)([[:space:]>])' "$tmp"; then ok=1; fi
-                elif [[ "$asset" == *.mp3 ]]; then
-                  codec="$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 "$tmp" 2>/dev/null || true)"
-                  if [[ "$codec" == "mp3" ]]; then ok=1; fi
-                fi
-              fi
-              if [[ "$ok" == 1 ]]; then break; fi
-              echo "Not yet valid: $asset (attempt $attempt/10; HTTP 200 may be an HTML fallback)"
               if [[ "$attempt" -lt 10 ]]; then sleep 6; fi
             done
-            if [[ "$ok" != 1 ]]; then
-              echo "::error::Production smoke failed for $asset after bounded retries. Deployment may already have succeeded; check release history."
+            if [[ "$valid" != 1 ]]; then
+              echo "::error::English LIVE asset unverified: $asset; deploy may already have succeeded"
               exit 1
             fi
-            echo "Verified $asset"
+            echo "LIVE_ASSET_PASS: $asset"
           done
-          echo "PRODUCTION_SMOKE_PASS — HTML and genuine MP3 audio; live AI behavior not verified"
 
-      - name: Record QA, deployment and smoke outcomes even on failure
+      - name: Report QA, deploy and live verification separately
         if: ${{ always() }}
         working-directory: .
         env:
-          RELEASE_CONFIRM: ${{ inputs.confirm }}
-          QA_OUTCOME: ${{ steps.qa_release.outcome }}
-          DEPLOY_OUTCOME: ${{ steps.english_live.outcome }}
-          SMOKE_OUTCOME: ${{ steps.live_smoke.outcome }}
-          PREVIEW_OUTCOME: ${{ steps.english_preview.outcome }}
-          PREVIEW_SMOKE_OUTCOME: ${{ steps.preview_smoke.outcome }}
-          PREVIEW_URL: ${{ steps.english_preview.outputs.details_url }}
+          QA_RESULT: ${{ steps.release_qa.outcome }}
+          DEPLOY_RESULT: ${{ steps.deploy.outcome }}
+          SMOKE_RESULT: ${{ steps.live_smoke.outcome }}
         run: |
           {
-            echo "## Self-Learning English v1.18.0 — exact run outcomes"
-            echo "- Source commit: \`$GITHUB_SHA\`"
-            echo "- QA / TypeScript / build: **$QA_OUTCOME**"
-            echo "- Firebase Hosting deployment action: **$DEPLOY_OUTCOME**"
-            echo "- Live HTTP + audio smoke test: **$SMOKE_OUTCOME**"
-            echo "- Preview channel deployment action: **$PREVIEW_OUTCOME**"
-            echo "- Preview HTML/audio smoke test: **$PREVIEW_SMOKE_OUTCOME**"
-            if [[ "$RELEASE_CONFIRM" == "PREVIEW_STAGE3_1181" ]]; then
-              if [[ "$PREVIEW_OUTCOME" == "success" && "$PREVIEW_SMOKE_OUTCOME" == "success" ]]; then
-                echo "- **Stage 3 Preview URL:** $PREVIEW_URL"
-                echo "- Temporary, publicly shareable QA address (7-day expiry, not LIVE). Uses the same Firebase backend but distinct browser origin/localStorage."
-                echo "- Gemini App Check may require explicitly authorizing the preview hostname; this static smoke does NOT verify AI."
-              else
-                echo "- **Preview NOT VERIFIED**; see the failed step. LIVE site unchanged."
-              fi
-            elif [[ "$RELEASE_CONFIRM" == "QA" ]]; then
-              echo "- QA-only mode. No Firebase deploy was requested."
-            elif [[ "$DEPLOY_OUTCOME" == "success" && "$SMOKE_OUTCOME" != "success" ]]; then
-              echo "- **Deployed but not verified**. Check the English Hosting release history and site behavior. Do NOT assume rollback happened."
-            elif [[ "$DEPLOY_OUTCOME" == "success" && "$SMOKE_OUTCOME" == "success" ]]; then
-              echo "- English Hosting: https://g-learning-english.web.app/"
-              echo "- Interactive Gemini Writing feedback: NOT VERIFIED by this workflow."
-            else
-              echo "- Production not confirmed by this run."
-            fi
-            echo "- Rollback if needed: Firebase Console > Hosting > g-learning-english > release history."
+            echo '## SLE English LIVE release'
+            echo "- Commit: $GITHUB_SHA"
+            echo "- Full QA: $QA_RESULT"
+            echo "- Firebase LIVE deploy: $DEPLOY_RESULT"
+            echo "- LIVE HTML/MP3 verification: $SMOKE_RESULT"
+            echo '- Website: https://g-learning-english.web.app/'
+            echo '- Remaining owner spot-check: wrong-answer feedback, Listening, saved draft, optional Gemini and mobile'
+            echo '- If deploy succeeded but smoke failed: DEPLOYED / UNVERIFIED; review Hosting release history before rollback'
+            echo '- Rollback: Firebase Console > Hosting > g-learning-english > release history > previous release'
           } >> "$GITHUB_STEP_SUMMARY"
