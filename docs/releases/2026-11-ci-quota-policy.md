@@ -6,7 +6,7 @@ SLE was private until 2026-11-03. October 2026 CI exhausted private-repository A
 
 ## Approved workflows (exactly two)
 
-1. `.github/workflows/english-pr-qa.yml` — automatic **pull_request** checks targeting `main` only. One bounded job; superseded runs cancelled. `permissions: contents: read`, no repository secrets, no Firebase deployment, no `pull_request_target`. Policy verification always runs; full `pnpm qa:release` and static build run only when a complete application tree with `package.json` and `pnpm-lock.yaml` is present. The current default branch contains only the baseline/governance tree, so documentation-only PRs receive policy checks rather than a misleading application QA PASS.
+1. `.github/workflows/english-pr-qa.yml` — automatic **pull_request** checks targeting `main` and `release/nov2026-content-v1.18.0` only. One bounded job; superseded runs cancelled. `permissions: contents: read`, no repository secrets, no Firebase deployment, no `pull_request_target`. Policy verification always runs; full `pnpm qa:release` and static build run only when a complete application tree with `package.json` and `pnpm-lock.yaml` is present. The current default branch contains only the baseline/governance tree, so documentation-only PRs receive policy checks rather than a misleading application QA PASS.
 2. `.github/workflows/english-manual-release-qa.yml` — **workflow_dispatch only** on the explicitly authorized release branch, with existing release-confirmation gate. This workflow retains the only Firebase production deploy action; it checks the English-only Hosting target and must run QA before LIVE deployment.
 
 Forbidden: push/schedule/workflow_run/pull_request_target triggers; third-party paid/self-hosted runners; publishing preview or production from PR QA; secrets in PR QA; automatic production deployments.
@@ -14,9 +14,9 @@ Forbidden: push/schedule/workflow_run/pull_request_target triggers; third-party 
 ## QA and change controls
 
 - `.github/workflows/` must contain exactly the approved two files. `node scripts/verify-actions-policy.cjs` enforces the trigger separation and PR secret/deployment boundaries.
-- Full application PR QA uses Node 24, pnpm 11.25.0, `pnpm install --frozen-lockfile`, FFmpeg, `pnpm qa:release`. No live Firebase credentials are needed for PR QA.
+- Full application PR QA uses Node 24, pnpm 11.25.0, `pnpm install --frozen-lockfile`, FFmpeg, `pnpm qa:release`. No live Firebase credentials are needed for PR QA. Stage 3 PRs against the release branch are covered without granting deployment credentials.
 - PR QA is not proof of live browser AI functionality or learner-data preservation. Firebase deployment, App Check and live smoke tests remain separate acceptance gates.
-- Avoid duplicate CI on every push; review PRs against `main`. Do not turn on required status checks until the new PR workflow has produced a successful status for the target branch.
+- Avoid duplicate CI on every push; PRs to `main` or the approved release branch automatically receive one bounded QA job. A successful repository-policy-only run is **not** a full application PASS. Keep required status check `qa` for `main` after a verified run.
 - Carefully inspect `.github/workflows` changes when promoting older development branches. Never blindly merge workflows from historical PRs.
 
 ## Rollout record
@@ -29,3 +29,11 @@ Forbidden: push/schedule/workflow_run/pull_request_target triggers; third-party 
 ## Historical note
 
 The prior `2026-11-ci-quota-policy.md` was a **private-repository** manual-only rule. Its historical quota issue remains documented here; its prohibition on PR QA is superseded by this narrowly scoped public workflow.
+
+## Failure prevention and status accounting (2026-11-03)
+
+- [CI failure postmortem](2026-11-ci-failure-postmortem.md) records actual failing steps and non-speculative diagnoses.
+- Release QA runs prior to LIVE deployment; PR QA is secretless and never deploys.
+- A successful deploy followed by failed HTTP verification is **DEPLOYED / UNVERIFIED**, not "no deployment". The manual workflow writes separate QA, deployment, and smoke outcomes even if a later step fails.
+- A real MP3 must decode as MP3 after HTTP 200; Firebase's HTML fallback cannot count as passing audio. Bounded retries accommodate temporary CDN propagation without masking a missing or invalid file.
+- Run release QA on the exact candidate commit; do not treat earlier green checks as proof that later source remains green.
