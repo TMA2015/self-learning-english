@@ -109,9 +109,14 @@ global.window={localStorage:new MemoryStorage(),location:{origin:'https://exampl
   assert.equal(recovered.diagnosticV2.result.estimates.Listening.evidenceCount,coreListening.length);
   assert.equal(recovered.learnerModel.estimates.Listening.assessed,true);
   assert.equal(JSON.stringify((await local.service.readAssessments()).find(a=>a.sessionId===historical.sessionId)),storedBefore);
-  const originalWithoutAudio={...historical,listening:undefined};
-  const resultWithoutAudio=await local.service.rebuild({diagnosticV2:originalWithoutAudio,evidence:[]});
-  assert.equal(resultWithoutAudio.diagnosticV2.listeningEvidenceRecovered,undefined);
+  const noAudioAt=historicalAt+1000;
+  const emptyHistorical={...historical,sessionId:'g2-old-without-audio',listening:undefined,
+    startedAt:noAudioAt-1,finishedAt:noAudioAt,
+    result:model.makeDiagnostic(attempts,words,noAudioAt,[],undefined)};
+  await local.service.recordAssessment(emptyHistorical);
+  const unverified=await local.service.rebuild({diagnosticV2:emptyHistorical,evidence:[]});
+  assert.equal(unverified.diagnosticV2.listeningEvidenceRecovered,undefined);
+  assert.equal(unverified.diagnosticV2.result.estimates.Listening.evidenceCount,0);
   const routePage=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8');
   const page=fs.readFileSync(path.join(root,'app/home-client.tsx'),'utf8');
   assert(routePage.includes('<HomeClient/>'),'root route must delegate Diagnostic UI to HomeClient');
