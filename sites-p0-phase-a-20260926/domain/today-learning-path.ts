@@ -10,15 +10,15 @@ export type TodayAttempt = {
  status:'started'|'scored'|'pending_review'|'approved'|'unassessed';
  results?:{id:string;correct:boolean|null}[];
 };
-export type TodayCatalog = {
- lessons:TodayLesson[];attempts:TodayAttempt[];
+export type TodayCatalog<T extends TodayAttempt=TodayAttempt> = {
+ lessons:TodayLesson[];attempts:T[];
  course?:{sequence:string[]};
  journey?:{steps:string[]};
 };
-export type TodayAction = {lesson:TodayLesson;attempt?:TodayAttempt;unit?:string;reason:string};
-export type TodayPlan = {
+export type TodayAction<T extends TodayAttempt=TodayAttempt> = {lesson:TodayLesson;attempt?:T;unit?:string;reason:string};
+export type TodayPlan<T extends TodayAttempt=TodayAttempt> = {
  focusUnit:string|undefined;availableUnits:string[];
- resume:TodayAction|undefined;review:TodayAction|undefined;learn:TodayAction|undefined;
+ resume:TodayAction<T>|undefined;review:TodayAction<T>|undefined;learn:TodayAction<T>|undefined;
  emptyReason:string|undefined;
 };
 const allUnits:{[lessonId:string]:string}={
@@ -30,9 +30,9 @@ export function primaryUnitForLesson(id:string):string|undefined{return allUnits
  * Unknown/unreleased IDs are never suggested, even if they occur in a draft map.
  * Historical in-progress attempts are preferred to new actions.
  */
-export function todayLearningPath(
- catalog:TodayCatalog,skill?:string,requestedUnit='auto'
-):TodayPlan{
+export function todayLearningPath<T extends TodayAttempt>(
+ catalog:TodayCatalog<T>,skill?:string,requestedUnit='auto'
+):TodayPlan<T>{
  const visible=catalog.lessons.filter(l=>!skill||l.module===skill);
  const byId=new Map(visible.map(l=>[l.id,l]));
  const order=catalog.course?.sequence??catalog.journey?.steps??visible.map(l=>l.id);
@@ -47,11 +47,11 @@ export function todayLearningPath(
  const focusUnit=requestedUnit!=='auto'&&availableUnits.includes(requestedUnit)
   ?requestedUnit:unitOfLast&&availableUnits.includes(unitOfLast)?unitOfLast:availableUnits[0];
  const inFocus=bySequence.filter(l=>primaryUnitForLesson(l.id)&&(!focusUnit||primaryUnitForLesson(l.id)===focusUnit));
- const newest=new Map<string,TodayAttempt>();
+ const newest=new Map<string,T>();
  for(const a of activeAttempts)if(!newest.has(a.lessonId))newest.set(a.lessonId,a);
  const reviewable=inFocus
   .map(l=>({lesson:l,attempt:newest.get(l.id)}))
-  .filter((x):x is {lesson:TodayLesson;attempt:TodayAttempt}=>
+  .filter((x):x is {lesson:TodayLesson;attempt:T}=>
    !!x.attempt&&x.attempt.status==='scored'&&
    !!x.attempt.results?.some(q=>q.correct===false))
   .sort((a,b)=>b.attempt.createdAt-a.attempt.createdAt||a.lesson.id.localeCompare(b.lesson.id));
