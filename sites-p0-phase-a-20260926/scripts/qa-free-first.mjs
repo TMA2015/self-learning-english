@@ -75,6 +75,7 @@ const fullRegressionTests=[
   "grammar-b1-wave2b-draft.cjs",
   "grammar-b1-wave2c-draft.cjs",
   "importer-capacity-150.cjs",
+  "c1c2-importer-compat.cjs",
   "listening-retake-audio-readiness.cjs",
   "listening-submit-feedback.cjs",
   "listening-writing-density-wave2-draft.cjs",
