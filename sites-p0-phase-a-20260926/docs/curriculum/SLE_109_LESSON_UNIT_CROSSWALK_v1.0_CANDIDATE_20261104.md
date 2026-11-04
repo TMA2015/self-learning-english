@@ -187,7 +187,7 @@ Source: `curriculum-1.18.1-candidate.json` on main (Git blob SHA `7c4a9f1186fd11
 | `LIS-B1-07` | listening | Checking a Photo Before Sharing | 8 | `B1-U07` | PROVISIONAL |
 ## 3. Exact-source checks
 - Mapped distinct lesson IDs: 109 of 109; unique IDs: 109.
-- Unit IDs with source lessons: 28/60; empty Units: A1-U10, B1-U10, all B2-U01…B2-U10, all C1-U01…C1-U10 and all C2-U01…C2-U10. C1/C2 are future instructional targets, not omissions from previously published C-level course material.
+- Unit IDs with source lessons: 27/60; empty Units: A1-U10, B1-U10, all B2-U01…B2-U10, all C1-U01…C1-U10 and all C2-U01…C2-U10. C1/C2 are future instructional targets, not omissions from previously published C-level course material.
 - This denominator is NOT a CEFR achievement / quality percentage. An integrated Unit may be mapped to several lessons yet still lack listening, writing, teaching examples or independent transfer.
 ## 4. Review reconciliation (NotebookLM COR-01..05)
 - **COR-01:** GRA-A2-15 now primary A2-U06; GRA-A2-16 now primary A2-U09. Both can retain A2-U08 as advisory secondary context (no duplicate scored evidence).
