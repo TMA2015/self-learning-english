@@ -77,6 +77,7 @@ const fullRegressionTests=[
   "importer-capacity-150.cjs",
   "c1c2-importer-compat.cjs",
   "c1c2-draft-source.cjs",
+  "c1c2-authored-content-schema.cjs",
   "listening-retake-audio-readiness.cjs",
   "listening-submit-feedback.cjs",
   "listening-writing-density-wave2-draft.cjs",
