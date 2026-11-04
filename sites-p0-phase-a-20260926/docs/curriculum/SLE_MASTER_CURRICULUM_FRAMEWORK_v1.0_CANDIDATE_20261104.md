@@ -301,7 +301,7 @@ Present/past/future choices → everyday transactions and explanations → exper
   - None directly mapped in 1.18.1. The capstone will reuse earlier lesson content via secondary relationships; no primary lesson does not mean no usable material.
 - **What to check / proposed future additions:** Design a cross-domain practical task reusing A2 lessons; verify audio and no duplicate learner scoring. This is not a claim the current lesson is faulty or that a specific subskill is definitely absent.
 - **Unit-level independent transfer target:** Use a short audio and text to choose a practical solution, then write a brief unassessed reply. Status: **PROPOSED**, not an already released scored activity.
-- **Coverage verdict now:** PARTIALLY_MAPPED (not independently audited for Unit outcome). Require review of actual explanatory text, passage/audio, comprehension type, independent examples and evidence before assigning an academic completion judgment.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED (integrated checkpoint will reuse earlier A2 lessons via approved secondary links; no Unit-outcome achievement is yet verified). Require review of actual explanatory text, passage/audio, comprehension type, independent examples and evidence before assigning an academic completion judgment.
 
 ### Level B1: programme-level intended progression
 Connected narrative and inference → evidence-based views → interpreting discussion and digital claims → connected written arguments → integrated transfer.
@@ -782,4 +782,4 @@ C-level lesson development requires age-appropriate authentic communication, dom
 ## 8. External review decision format
 Return `FRAMEWORK_ARCHITECTURE_VERDICT: PASS / PASS_WITH_REQUIRED_CHANGES / FAIL / INSUFFICIENT_EVIDENCE`, `ACADEMIC_ADOPTION: GO/NO-GO`, `PRODUCTION: NOT_REQUESTED`, (i) Unit-level changes with exact IDs and reasons, (ii) placement corrections, (iii) missing outcomes / prerequisite corrections, (iv) overall level coverage caveats, (v) optional ideas, (vi) proposed sequence and evidence limitations. **Do not issue new per-item content verdicts.**
 
-**Permanent reference:** SLE-MASTER-001 v1.1.0; append the approved curriculum outcomes as descriptive architecture, not a competing governing rulebook. **End of integrated draft (six CEFR levels).**
+**Permanent reference:** SLE-MASTER-001 v1.1.0; append the approved curriculum outcomes as descriptive architecture, not a competing governing rulebook. **End of v1.0 Candidate (six CEFR levels; pending focused Mediation verdict and owner acceptance).**
