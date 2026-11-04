@@ -511,7 +511,7 @@ Nuanced language and source analysis → extended audio and synthesis → counte
 #### B2-U08 — Explaining and facilitating discussions
 - **Role / learning outcome:** Prepare clear explanations, compare perspectives and summarise disagreement.
 - **Core content and skill connections:** functional mediation; listening-to-speak transfer; oral preparation UNASSESSED.
-- **Proposed prerequisite(s):** B2-U04, B2-U06; **priority:** P1. Dependencies are conceptual, not demonstrated runtime locks.
+- **Proposed prerequisite(s):** B1-U08, B2-U04, B2-U06; **priority:** P1. Dependencies are conceptual, not demonstrated runtime locks.
 - **Current mapped source lessons:** **0** (provisional primary placement; none).
   - None directly mapped from 1.18.1. **Do not** infer no reusable content exists in earlier Units.
 - **What to check / proposed future additions:** No baseline B2 lesson; plan mediation and prepared spoken summaries, without unvalidated oral score. This is not a claim the current lesson is faulty or that a specific subskill is definitely absent.
@@ -620,7 +620,7 @@ Proficient communication begins here: work with demanding extended texts, implic
 - **Role / learning outcome:** Prepare flexible explanations, respond to disagreement and adapt tone across professional, community and intercultural scenarios.
 - **Core content and skill connections:** written/online interaction, negotiation and clarification, tact, repair strategies, politeness choices, culturally contingent discourse.
 - **Mediation practice (communication and concepts):** Clarify opposing ideas in a hypothetical written group exchange; identify potential intercultural misunderstandings, ask tactful clarifying questions and help collaborators build shared understanding without stereotyping. Proposed original task: write an impartial account of two positions and a constructive response. Spoken rehearsal is self-reported only.
-- **Proposed prerequisite(s):** C1-U04, C1-U06; **priority:** P1. Design dependencies are not implemented unlocks.
+- **Proposed prerequisite(s):** B2-U08, C1-U04, C1-U06; **priority:** P1. Design dependencies are not implemented unlocks.
 - **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
 - **What to check / proposed future additions:** optional speaking preparation and roleplay only; no self-scored oral fluency or cultural stereotypes. This is a development proposal, not evidence of a currently deficient C-level lesson.
 - **Unit-level independent transfer target:** respond to a complex disagreement in writing, preserving nuance and respectful tone. Status: **PROPOSED**, not a released or automatically scored activity.
@@ -747,6 +747,10 @@ Proficient and highly precise language use: synthesize virtually any suitable sp
 | Concepts | `C1-U07/C1-U09`: link unfamiliar concepts to reader needs; facilitate clarification | `C2-U07/C2-U09`: reconcile sophisticated contrasting models, anticipate misunderstanding | Written roleplay supports scenario practice, not observed real-time interaction |
 | Communication | `C1-U09`: clarify disagreement and prevent avoidable cross-cultural misunderstanding | `C2-U09`: diplomatic reframing of delicate conflict with faithful representation | Spoken practice self-report has oral proficiency weight zero |
 **Proposed content rubric (not runtime scoring):** semantic/source fidelity; attention to alternative interpretations; audience adaptation; respectful intercultural pragmatics; attribution and uncertainty. Without validated reviewer evidence, label original writing pending/unassessed rather than granting C1/C2 proficiency.
+
+**Evidence limitation for mediating concepts/communication:** a one-learner solo written scenario can demonstrate understanding of mediation **strategies**, not verified success in facilitating a real collaborative process or mediating live disagreement. Where possible, future optional peer/teacher-reviewed real interaction may be assessed under separately validated rubrics; until then mark interactive mediation proficiency **NOT_ASSESSED**, even if written drafts are reviewed. The full CEFR mediation construct is broader than SLE's current deterministic implementation.
+
+**Proposed spiral prerequisite chains (advisory, not app locks):** text/source strand `B2-U05 → C1-U07 → C2-U07`; communication strand `B1-U08 → B2-U08 → C1-U09 → C2-U09`. The latter links are explicit design refinements, **not yet independently reviewed**; use the focused packet before final adoption.
 
 ## 5. Development stages after global architecture verdict
 **Stage F0:** review integrated Unit catalogue (this document) against permanent academic sources; fix structural problems and freeze Framework v1.0. This requires no re-release of old lessons.
