@@ -1,13 +1,14 @@
-# Self-Learning English — Master Curriculum Framework (Integrated Draft v0.1, revision 2)
+# Self-Learning English — Master Curriculum Framework (Integrated Draft v0.1, revision 3 · A1–C2)
 **Status: DESIGN / TOTAL-PROGRAM ACADEMIC REVIEW PENDING / NOT RELEASED.**
-**Owner direction (2026-11-04):** review the full curriculum architecture, **not** re-audit previously reviewed individual lessons. This revision **replaces the earlier disconnected overview** in this same draft file by embedding the full existing lesson catalog in its proposed Unit structure.
+**Owner direction (2026-11-04):** review the full curriculum architecture, **not** re-audit previously reviewed individual lessons. This revision **replaces the earlier disconnected overview** in this same draft file by embedding the full existing lesson catalog in its proposed Unit structure, now with C1–C2 future targets.
 **Source of existing lessons:** GitHub `main`, `sites-p0-phase-a-20260926/content/curriculum-1.18.1-candidate.json`, immutable Git blob `7c4a9f1186fd11c47b8e1ee2951e5aad908102a3` (109 lessons / 913 activities). Released status is recorded in repository release evidence, but this document does not independently inspect every learner account's live import state.
 **Authority:** `SLE-MASTER-001 v1.1.0` remains the only governing SLE standard; this is an integrated descriptive planning document. Historical published lessons and learner attempts remain immutable. No production import, merge or Firebase change is requested.
 
 ## 1. Read this first: what is already in SLE and what is new
 - **EXISTING:** all 109 baseline lesson IDs and titles shown in Unit sections below are already in source version 1.18.1. They are **not** being proposed for replacement, deletion, or re-review of their old question banks. They may serve multiple learning goals via future secondary links, without duplicating stored evidence.
 - **PROVISIONAL PLACEMENT:** each existing lesson is listed under exactly one *primary* Unit in this planning draft. The title/objective match is provisional: it does not prove the Unit is taught sufficiently or that prerequisites are enforced. Secondary relationships and competency-level coverage still require expert mapping.
-- **PROPOSED:** Unit outcomes, integrations, missing-coverage hypotheses, transfer tasks, cross-Unit checkpoints, B2 units and all future lesson suggestions are **new curriculum design** for independent architecture review.
+- **PROPOSED:** Unit outcomes, integrations, missing-coverage hypotheses, transfer tasks, cross-Unit checkpoints, B2/C1/C2 units and all future lesson suggestions are **new curriculum design** for independent architecture review.
+- **C1–C2 FUTURE DESIGN:** ten proposed Units at each C level, with zero source lessons currently mapped; reviewed later for CEFR fidelity without claiming current availability.
 - **REVIEWED BUT UNRELEASED:** Writing Wave A has independent NotebookLM Academic PASS (6 lessons/48 items: WRI-A2-05, WRI-A2-06, WRI-B1-04…07). Do not list those as current baseline lessons. Vocabulary/Reading Wave B (6 lessons/48 items) has no verified independent verdict; keep it separate and do not infer released B2 content from it.
 - **STRICT DISTINCTIONS:** curriculum Unit ≠ individual imported lesson; existence of tagged item ≠ competence coverage; completion/score ≠ certified CEFR. Speaking preparation and unreviewed Writing are not validated production proficiency. No fabricated 100% coverage claims.
 
@@ -18,7 +19,9 @@
 | A2 | 42 | 359 | 10 (draft) |
 | B1 | 37 | 305 | 10 (draft) |
 | B2 | 0 | 0 | 10 (draft) |
-| **Total** | **109** | **913** | **40 (draft)** |
+| C1 | 0 | 0 | 10 (draft) |
+| C2 | 0 | 0 | 10 (draft) |
+| **Total** | **109** | **913** | **60 (draft)** |
 ### Existing baseline by module
 | Module | A1 | A2 | B1 | Total |
 |---|---:|---:|---:|---:|
@@ -31,7 +34,7 @@
 | pronunciation | 0 | 3 | 2 | 5 |
 **Instructional principle:** retain approved content, make an actual cross-skill sequence, use rigorous academic review for **new** syllabus claims, missing competencies, redundancy and prerequisites. Do not blanket-reassess released old item-level content.
 
-## 3. Integrated programme atlas: 40 provisional Units containing all 109 existing lessons
+## 3. Integrated programme atlas: 60 provisional Units, containing all 109 existing lessons and 20 future C-level Units
 **Field reading:** the **existing lesson list** is sourced from curriculum 1.18.1 (ID, exact title, module, activity count). Unit learning outcome/scope, prerequisites and placement are draft proposals. `Review next` is a *hypothesis/check*, not a confirmed defect; `Transfer outcome` is a recommended future integrated assignment and not currently assumed deployed. Priority P0/P1 is provisional. A Unit with zero primary assignments may still reuse lessons from earlier Units.
 
 ### Level A1: programme-level intended progression
@@ -527,11 +530,199 @@ Nuanced language and source analysis → extended audio and synthesis → counte
 - **Unit-level independent transfer target:** Use reading, listening and writing in a multi-source task and review error evidence. Status: **PROPOSED**, not an already released scored activity.
 - **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED (not a verified syllabus gap). Require review of actual explanatory text, passage/audio, comprehension type, independent examples and evidence before assigning an academic completion judgment.
 
+
+### Level C1: proposed advanced progression (no currently mapped lessons)
+Proficient communication begins here: work with demanding extended texts, implicit meaning, flexible language and sustained well-organised expression across academic, professional and social situations. C1 is not synonymous with university enrolment.
+**Source reality:** zero C1/C2 lessons in the source v1.18.1, therefore every Unit below is a *future course-design target*. No lesson IDs are assigned or claimed to exist.
+
+#### C1-U01 — Coherent extended discourse and information flow
+- **Role / learning outcome:** Organise and follow complex explanations and arguments with a clear, flexible line of development.
+- **Core content and skill connections:** thematic progression; reference and emphasis; discourse markers used semantically, not mechanically; paragraph-to-section coherence.
+- **Proposed prerequisite(s):** B2-U06, B2-U07; **priority:** P0. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** check B2 written-argument prerequisites; plan genre-diverse cohesive discourse models. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** reorganise a disjointed explanation into an accurate, coherent extended text. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
+#### C1-U02 — Implicit meaning and complex reading
+- **Role / learning outcome:** Interpret implicit viewpoints, author stance, purpose and assumptions in demanding extended texts.
+- **Core content and skill connections:** argument structure, irony where supported, implied meaning, rhetorical purpose, close-reading evidence and interpretation limits.
+- **Proposed prerequisite(s):** B2-U03, B2-U05; **priority:** P0. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** design coherent originals in several genres, avoiding invented implied claims. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** compare two defensible interpretations and cite support from one unfamiliar source. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
+#### C1-U03 — Lectures, debates and speaker positioning
+- **Role / learning outcome:** Follow an extended discussion or lecture and infer how speakers qualify, revise or challenge a position.
+- **Core content and skill connections:** real audio; rapid but intelligible delivery; discourse signposting; stance shifts; evidence vs speculation; note selection.
+- **Proposed prerequisite(s):** B2-U04; **priority:** P0. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** plan copyright-clear real audio and verified playback; mark audio evidence NOT AVAILABLE until produced. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** make an accurate summary of positions and important qualifications from a new recording. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
+#### C1-U04 — Lexical range, collocation and register
+- **Role / learning outcome:** Choose context-appropriate lexical combinations and shades of meaning across familiar and unfamiliar topics.
+- **Core content and skill connections:** advanced collocations, lexical patterning, connotation, register, phraseology, figurative meaning with contextual safeguards.
+- **Proposed prerequisite(s):** B2-U02; **priority:** P0. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** avoid treating low-frequency word memorisation as C1 ability; provide retrieval, editing and new-context transfer. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** revise a text for a new audience while preserving meaning and natural collocation. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
+#### C1-U05 — Grammar for precision, stance and emphasis
+- **Role / learning outcome:** Use advanced form–meaning choices to express certainty, contrast, conditions and emphasis precisely.
+- **Core content and skill connections:** hedging and modality, inversion/cleft and information focus when useful, complex subordination, compact noun phrases, variation in clause choice.
+- **Proposed prerequisite(s):** B2-U01, B2-U06; **priority:** P1. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** teach rhetorical purpose first; avoid lists of prestige constructions without communicative function. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** select or reformulate constructions to convey a specific degree of certainty in context. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
+#### C1-U06 — Critical argument, counterclaims and qualification
+- **Role / learning outcome:** Develop a sustained position, evaluate counterarguments fairly and qualify conclusions appropriately.
+- **Core content and skill connections:** claims, warrants, evidence strength, limitations, rebuttal, balanced academic/civic reasoning, rhetorical organisation.
+- **Proposed prerequisite(s):** B2-U06, C1-U02; **priority:** P0. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** plan argument models with distinct data sources and bias limits, not merely more connectors. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** prepare a source-grounded argument including a serious objection and justified response. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
+#### C1-U07 — Synthesis and mediation across sources
+- **Role / learning outcome:** Consolidate complex information from multiple texts or recorded sources for a specific reader without misrepresenting key nuances.
+- **Core content and skill connections:** compare and group ideas; summarise, paraphrase, synthesise, acknowledge perspective and uncertainty; explain to varied audiences.
+- **Proposed prerequisite(s):** B2-U05, C1-U02, C1-U03; **priority:** P0. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** include source provenance and avoid fabricated citations; written mediation can be practised without claiming oral proficiency. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** write an accurate comparative briefing from two sources with transparent source boundaries. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
+#### C1-U08 — Reports, proposals and specialist communication
+- **Role / learning outcome:** Plan and revise detailed, well-structured reports, proposals and extended evaluative texts for a defined audience.
+- **Core content and skill connections:** register, genre and purpose; executive summary, recommendations, synthesis, editing cycles and substantive rubric review.
+- **Proposed prerequisite(s):** C1-U01, C1-U06, C1-U07; **priority:** P0. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** provide non-academic high-level genres too; free responses remain unassessed until trusted review. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** draft and revise a proposal that reports evidence and recommends proportionate action. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
+#### C1-U09 — High-level interaction and intercultural pragmatics
+- **Role / learning outcome:** Prepare flexible explanations, respond to disagreement and adapt tone across professional, community and intercultural scenarios.
+- **Core content and skill connections:** written/online interaction, negotiation and clarification, tact, repair strategies, politeness choices, culturally contingent discourse.
+- **Proposed prerequisite(s):** C1-U04, C1-U06; **priority:** P1. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** optional speaking preparation and roleplay only; no self-scored oral fluency or cultural stereotypes. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** respond to a complex disagreement in writing, preserving nuance and respectful tone. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
+#### C1-U10 — C1 integrated performance and revision
+- **Role / learning outcome:** Integrate sustained reading, verified listening, synthesis and original writing to accomplish a complex communicative purpose.
+- **Core content and skill connections:** cross-source comprehension, self-monitoring, editing, evidence-informed reflection, longitudinal progress without certification.
+- **Proposed prerequisite(s):** C1-U01…C1-U09; **priority:** P0. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** design authentic integrated tasks with written review gates and audio rights; no automatic C1 level award. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** complete a multi-source briefing and revision log with transparent strengths and uncertainties. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+### Level C2: proposed advanced progression (no currently mapped lessons)
+Proficient and highly precise language use: synthesize virtually any suitable spoken or written source and communicate fine distinctions of meaning, with genre-sensitive control. C2 is not defined as native-speaker status, exhaustive vocabulary, or flawless output.
+**Source reality:** zero C1/C2 lessons in the source v1.18.1, therefore every Unit below is a *future course-design target*. No lesson IDs are assigned or claimed to exist.
+
+#### C2-U01 — Fine shades of meaning and pragmatic precision
+- **Role / learning outcome:** Distinguish and express subtle differences in emphasis, implication, attitude and connotation in varied contexts.
+- **Core content and skill connections:** lexical semantics, graded modality, subtle collocations, formal/informal effects, tact and context-sensitive idiomatic language.
+- **Proposed prerequisite(s):** C1-U04, C1-U05, C1-U09; **priority:** P0. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** C2 is not simply a list of rare idioms or native-speaker slang; design meaningful contrastive contexts. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** compare near-synonymous formulations and justify different pragmatic effects. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
+#### C2-U02 — Dense texts, rhetoric and layered interpretation
+- **Role / learning outcome:** Analyse complex factual, abstract or literary texts with competing readings, rhetorical effects and implicit intentions.
+- **Core content and skill connections:** voice, genre, irony, ambiguity, narrative structure, argument positioning, cultural references with transparent context.
+- **Proposed prerequisite(s):** C1-U02, C1-U06; **priority:** P0. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** include literary and nonliterary texts; avoid presenting subjective interpretations as single objective answers. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** defend a text-based interpretation while acknowledging a plausible alternative. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
+#### C2-U03 — Complex spoken language across contexts
+- **Role / learning outcome:** Follow subtle implications, rapid exchanges and complex argument development in authentic, intelligible recordings.
+- **Core content and skill connections:** extended conversations, debate, lectures; accents/variation appropriately scaffolded; implicature, register and attitude; real audio only.
+- **Proposed prerequisite(s):** C1-U03, C1-U09; **priority:** P0. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** do not confuse speed or obscure accent with advanced communicative competence; real media rights and playback required. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** synthesise multiple speakers' positions and the nuanced reasons behind them. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
+#### C2-U04 — Rhetorical strategy and audience adaptation
+- **Role / learning outcome:** Select discourse structures and rhetorical moves for different complex purposes while preserving precision.
+- **Core content and skill connections:** emphasis, understatement, concession, audience framing, metadiscourse, persuasive vs neutral style, discourse repair.
+- **Proposed prerequisite(s):** C1-U01, C1-U06, C2-U01; **priority:** P0. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** compare communicative effectiveness across genres, not novelty of constructions. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** reframe one complex claim accurately for two audiences with different needs. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
+#### C2-U05 — Flexible syntax and stylistic control
+- **Role / learning outcome:** Use sophisticated syntactic alternatives deliberately to manage clarity, foregrounding, nuance and rhythm.
+- **Core content and skill connections:** information packaging, complex clauses, emphasis and parallelism, controlled ambiguity, nominal and verbal styles.
+- **Proposed prerequisite(s):** C1-U05, C2-U04; **priority:** P1. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** avoid grammar-drill inflation; measure successful expressive choices in whole texts. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** edit a dense passage for clarity without erasing subtle meaning. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
+#### C2-U06 — Evaluating reasoning and conflicting evidence
+- **Role / learning outcome:** Critically examine layered arguments, uncertainty, methodological limits and competing interpretations.
+- **Core content and skill connections:** argument/warrant validity, evidence quality, bias, rhetoric, uncertainty and fair counter-positioning.
+- **Proposed prerequisite(s):** C1-U06, C1-U07, C2-U02; **priority:** P0. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** separate critical reasoning from language proficiency claims; use diverse real-life issues and original materials. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** prepare a nuanced evidence review and explain where sources do not justify a conclusion. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
+#### C2-U07 — Advanced mediation and reconstruction
+- **Role / learning outcome:** Reconstruct complex accounts and arguments from multiple spoken/written sources for a new audience without losing important nuances.
+- **Core content and skill connections:** cross-source synthesis, mediated explanation, concise vs detailed summaries, framing conflicts, attribution and faithful reformulation.
+- **Proposed prerequisite(s):** C1-U07, C2-U03, C2-U06; **priority:** P0. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** test faithful mediation rather than making unverified oral translation or live conversation claims. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** write an accessible synthesis of several complex positions and their limitations. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
+#### C2-U08 — Sophisticated writing and genre versatility
+- **Role / learning outcome:** Produce and revise precise, coherent and appropriately styled extended texts across demanding genres and purposes.
+- **Core content and skill connections:** formal analysis, critique, proposal, reflective or creative genre as appropriate, lexical nuance, revision with trusted rubric.
+- **Proposed prerequisite(s):** C1-U08, C2-U01, C2-U04; **priority:** P0. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** focus on communication and audience; AI scoring stays provisional and no automatic C2 designation. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** write and substantially revise a high-stakes style-neutral report or a nuanced critical essay. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
+#### C2-U09 — Diplomacy, disagreement and intercultural nuance
+- **Role / learning outcome:** Handle complex written/online exchanges and prepare nuanced spoken responses while adapting to differing viewpoints.
+- **Core content and skill connections:** careful qualification, mediation of disagreement, humour/irony risk, tact, intercultural sensitivity and repair strategies.
+- **Proposed prerequisite(s):** C1-U09, C2-U01, C2-U07; **priority:** P1. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** avoid stereotypes, compulsory real disclosures and unsupported pronunciation/interaction grading. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** negotiate a difficult fictional agreement in written exchanges and explain tone choices. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
+#### C2-U10 — C2 integrated synthesis and lifelong transfer
+- **Role / learning outcome:** Apply flexible, precise language across complex sources and contexts with critical self-monitoring and revision.
+- **Core content and skill connections:** multi-genre reading, verified listening, nuanced synthesis and writing; personally relevant extension paths and evidence honesty.
+- **Proposed prerequisite(s):** C2-U01…C2-U09; **priority:** P0. Design dependencies are not implemented unlocks.
+- **Current mapped source lessons:** **0**. No C1/C2 lessons exist in source version 1.18.1. Relevant A1–B2 content can be reused for review/prerequisite bridges but does not become C-level lesson evidence.
+- **What to check / proposed future additions:** no C2 achievement certification by completing a capstone; test conditions and calibration must be reviewed separately. This is a development proposal, not evidence of a currently deficient C-level lesson.
+- **Unit-level independent transfer target:** produce a nuanced multi-source report with an independently assessed revision stage. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Coverage verdict now:** NO_PRIMARY_LESSON_MAPPED / TARGET_UNDER_REVIEW. C1/C2 unit approval requires comparison with actual CEFR descriptors and future content QA.
+
 ## 4. Programme-wide curriculum coherence and gaps requiring architecture review
 1. **Prerequisite progression:** existing A1/A2 Grammar may support foundational skills, but full non-Grammar dependencies are not documented as enforceable. Unit prerequisite graph is proposed for NotebookLM review before adoption.
 2. **Cross-skill connections:** the same communicative theme can combine skills without forcing all seven domains per Unit. Across each CEFR level, inspect gist/detail/inference/purpose in reading; gist/detail/speaker-intention in listening; productive writing, register, lexical retrieval and pronunciation awareness.
 3. **Learning evidence:** current baseline has many objective items and few original response items. Contextual transfer tasks are *proposed*; scoring of open response is review-required and CEFR is instructional target only.
-4. **B2 absence:** no B2 lesson is in 1.18.1. B2 Unit descriptions are development targets only. A1-U10 and B1-U10 are integrative checkpoints, so zero primary assignments do not imply zero supporting content.
+4. **B2/C1/C2 absence:** no B2, C1 or C2 lesson is in 1.18.1. All Unit descriptions at those levels are development targets only. A1-U10 and B1-U10 are integrative checkpoints, so zero primary assignments do not imply zero supporting content.
 5. **Gaps vs defects:** a subskill not visible in source titles/primary mapping is a candidate coverage question, *not* grounds to rewrite or deprecate a previously approved lesson. Review only whether additional Units/tasks are needed, or whether cross-referencing current material suffices.
 6. **Previously approved incremental content:** 6 Writing Wave A lessons may become source after separate release gates; 6 Vocabulary/Reading Wave B lessons remain externally unverified; neither was silently counted in the 109/913.
 7. **Open structural quality point:** 24 legacy lessons have `examples` array empty, which is a format-level observation and not proof their explanations lack models. If a need emerges, inspect only the affected teaching gap; don't blanket-review old banks.
@@ -541,21 +732,29 @@ Nuanced language and source analysis → extended audio and synthesis → counte
 **Stage F1:** verify each existing lesson's *coverage placement* (source ID → primary/secondary Unit → relevant learning goal), prioritising uncertain mappings and authentic source variety. Preserve original texts and review history.
 **Stage F2:** create a gap register **only** for competencies not sufficiently covered by existing lessons; prioritise A1→A2 prerequisites and Writing/Reading/Listening transfer as indicated by review.
 **Stage F3:** author genuinely new lesson content in small approved batches with CORE-1…4, NotebookLM academic review, one PR QA, immutable cumulative package and owner release authorisation.
-**Stage F4:** expand B1 and B2, audio and advanced Writing carefully; enrich optional exam-preparation overlays after general competence pathways are credible.
+**Stage F4:** develop B1 and B2 with valid audio/advanced Writing; then phase C1 and C2 with progressively more demanding multi-source, discourse, stylistic and mediation work, each using the same independent academic and engineering gates. Exam preparation remains an optional overlay, not the C-level definition.
 
 ## 6. Architecture review questions (NOT a request to regrade old lessons)
-1. Does the overall A1–B2 Unit progression make sense given the five permanent English academic sources and SLE-MASTER-001?
+1. Does the overall A1–C2 Unit progression make sense given the five permanent English academic sources and SLE-MASTER-001?
 2. Which essential themes, linguistic functions and skill subcompetencies are missing from the *proposed* Unit outcomes?
 3. Are existing 109 lessons placed into the most relevant Units and what precise placements or secondary links should change? Name IDs, but do not audit old individual answer keys.
 4. Which Unit prerequisites are incorrect, overly demanding or cyclic? Propose corrected dependencies.
-5. Are ten Units per level too few, too many, or suitable? Suggest merges/splits only with curriculum reasons.
-6. Is the A1/A2→B1→B2 transition defensible without claiming CEFR completion based only on mapped lesson count?
+5. Are ten Units per level too few, too many, or suitable, particularly for C1/C2 where genre and domain diversity matter? Suggest merges/splits only with curriculum reasons.
+6. Is the A1/A2→B1→B2→C1→C2 transition defensible without claiming CEFR completion based only on mapped lesson count?
 7. How should cross-skill/transfer checkpoints and authentic reading/audio/writing genres be added without duplicating historical assessments?
-8. Distinguish *genuine* gaps from mapped-content uncertainty, and rank additional new Units/lessons by educational benefit and dependencies.
-9. Are Speaking self-practice, pronunciation and open writing evidence distinguished correctly from validated proficiency?
-10. Propose specific revisions to integrated Framework v1.0, separate must-fix structural defects from optional improvements, and give an achievable sequence.
+8. Assess the proposed advanced C1/C2 Units against the Council of Europe CEFR Companion volume: is the difference between flexible, complex C1 use and subtle, nearly unrestricted C2 use adequately expressed without conflating C2 with rare vocabulary, speed or native speakers?
+9. Distinguish *genuine* gaps from mapped-content uncertainty, and rank additional new Units/lessons by educational benefit and dependencies.
+10. Are Speaking self-practice, pronunciation and open writing evidence distinguished correctly from validated proficiency?
+11. Propose specific revisions to integrated Framework v1.0, separate must-fix structural defects from optional improvements, and give an achievable sequence.
 
-## 7. External review decision format
+## 7. CEFR framework source alignment and scope of future review
+The Council of Europe describes six common reference levels A1, A2, B1, B2, C1 and C2; the Companion Volume provides descriptors for reception, production, interaction, mediation, linguistic, sociolinguistic and pragmatic competences. These are orientation anchors for drafting this syllabus, **not** a claim that all authored Units already match CEFR descriptor coverage. References:
+- https://www.coe.int/en/web/common-european-framework-reference-languages/cefr-descriptors
+- https://www.coe.int/en/web/common-european-framework-reference-languages/table-1-cefr-3.3-common-reference-levels-global-scale
+- https://www.coe.int/en/web/common-european-framework-reference-languages/cefr-companion-volume-and-its-language-versions
+C-level lesson development requires age-appropriate authentic communication, domain variability and accurate evidence limits; exams and advanced vocabulary alone cannot define C1/C2.
+
+## 8. External review decision format
 Return `FRAMEWORK_ARCHITECTURE_VERDICT: PASS / PASS_WITH_REQUIRED_CHANGES / FAIL / INSUFFICIENT_EVIDENCE`, `ACADEMIC_ADOPTION: GO/NO-GO`, `PRODUCTION: NOT_REQUESTED`, (i) Unit-level changes with exact IDs and reasons, (ii) placement corrections, (iii) missing outcomes / prerequisite corrections, (iv) overall level coverage caveats, (v) optional ideas, (vi) proposed sequence and evidence limitations. **Do not issue new per-item content verdicts.**
 
-**Permanent reference:** SLE-MASTER-001 v1.1.0; append the approved curriculum outcomes as descriptive architecture, not a competing governing rulebook. **End of integrated draft.**
+**Permanent reference:** SLE-MASTER-001 v1.1.0; append the approved curriculum outcomes as descriptive architecture, not a competing governing rulebook. **End of integrated draft (six CEFR levels).**
