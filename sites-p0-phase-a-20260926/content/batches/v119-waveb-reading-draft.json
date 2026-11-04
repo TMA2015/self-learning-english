@@ -1,0 +1,447 @@
+{
+  "packet_id": "SLE-V119-VOC-REA-WAVEB-20261104",
+  "status": "ACADEMIC_REVIEW_PENDING",
+  "source_type": "Reading draft — no live import",
+  "scope": "Reading A2 B1 B2",
+  "lessons": [
+    {
+      "id": "REA-A2-07",
+      "module": "reading",
+      "cefr_target": "A2",
+      "title": "Follow a plan when a notice is updated",
+      "estimated_minutes": 26,
+      "prerequisites": [
+        "REA-A2-04",
+        "WRI-A2-05"
+      ],
+      "objectives": [
+        "Understand the purpose of two linked notices.",
+        "Separate original information from updated details.",
+        "Interpret deadlines and conditions accurately.",
+        "Use text evidence without inventing extra rules."
+      ],
+      "explanation": {
+        "en": "Read the first notice for its original plan. Then read the update, marking what changed and what stayed the same. Words such as by and before mark deadlines, while if and only if mark conditions. 'Moved to' changes a location; it does not necessarily change the registration deadline. Before choosing a response, locate the sentence that contains the evidence. A possible Monday collection is not a guaranteed one.",
+        "vi": "Đọc thông báo đầu tiên để biết kế hoạch gốc, rồi so sánh bản cập nhật. Chú ý thay đổi, giữ nguyên, hạn chót và các điều kiện. Không tự tạo ra điều kiện chưa được nêu."
+      },
+      "examples": [
+        "INDEPENDENT MODEL · Swimming lessons originally begin at 9:00 a.m. on Saturday. An update says the first lesson will begin at 9:30 a.m. in Pool B, while registration still closes on Wednesday.",
+        "THINKING · Changed: the time and pool; unchanged: Wednesday deadline. The update is not a reason to invent a new registration requirement.",
+        "PITFALL · A new location does not imply a different sign-up deadline.",
+        "UNSCORED TRANSFER · For another short notice, label each fact OLD, CHANGED or UNCHANGED."
+      ],
+      "reading_asset": {
+        "id": "PASS-REA-A2-07",
+        "title": "Two messages about Friday's game-kit collection",
+        "body": "TUESDAY MESSAGE — Our school resource centre will lend board-game kits to families for Friday evening. Families can collect a kit from Room 8 on Friday between 3:30 and 4:30 p.m. Please register by Thursday at noon. Each family may borrow one kit. New members should bring their library card when collecting. The games are free to borrow and must be returned the following Tuesday.\n\nTHURSDAY UPDATE — Room 8 will be closed for painting, so collection has moved to the school office. The new collection time is Friday from 4:00 to 5:00 p.m. The registration deadline is still Thursday at noon, and the rule of one kit per family has not changed. Volunteers can explain the games at the office, but they cannot deliver kits to homes. If your family cannot collect on Friday, email the resource centre before Friday lunchtime. You may then collect a kit on Monday, but only if a returned kit is available. The free borrowing rule and Tuesday return deadline still apply."
+      },
+      "questions": [
+        {
+          "type": "single_choice",
+          "stem": "What is the main purpose of the two messages?",
+          "options": [
+            "To sell classroom tables",
+            "To explain a game-kit borrowing plan and its update",
+            "To announce examination results",
+            "To cancel every Friday activity"
+          ],
+          "answer": 1,
+          "tag": "reading.gist",
+          "why": "Both notices concern borrowing game kits; the second changes collection details.",
+          "next": "Find the common topic of both messages."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Where was Friday collection originally planned?",
+          "options": [
+            "The school office",
+            "Room 8",
+            "The sports hall",
+            "A volunteer's home"
+          ],
+          "answer": 1,
+          "tag": "reading.detail",
+          "why": "The Tuesday message originally says Room 8.",
+          "next": "Read the earlier message when you see originally."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Where must families now collect kits on Friday?",
+          "options": [
+            "The school office",
+            "Room 8",
+            "The art studio",
+            "The car park"
+          ],
+          "answer": 0,
+          "tag": "reading.detail",
+          "why": "The Thursday update moves collection to the school office.",
+          "next": "Look for the words collection has moved."
+        },
+        {
+          "type": "single_choice",
+          "stem": "What is the updated Friday collection time?",
+          "options": [
+            "3:00 to 4:00 p.m.",
+            "3:30 to 4:30 p.m.",
+            "4:00 to 5:00 p.m.",
+            "5:30 to 6:30 p.m."
+          ],
+          "answer": 2,
+          "tag": "reading.detail",
+          "why": "The new collection time is four to five in the afternoon.",
+          "next": "Select the updated, not the original, time."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Which detail stays unchanged?",
+          "options": [
+            "The collection room",
+            "The Friday collection hour",
+            "The Thursday-noon registration deadline",
+            "The possibility of home delivery"
+          ],
+          "answer": 2,
+          "tag": "reading.detail",
+          "why": "The update explicitly says the registration deadline is still Thursday noon.",
+          "next": "Sort details into changed and unchanged."
+        },
+        {
+          "type": "single_choice",
+          "stem": "A family cannot collect on Friday. Under which conditions can it collect on Monday?",
+          "options": [
+            "It emails before Friday lunchtime and a returned kit is available",
+            "It arrives without contacting anyone",
+            "It offers to buy a kit",
+            "It borrows two kits"
+          ],
+          "answer": 0,
+          "tag": "reading.inference",
+          "why": "The text states both the advance email and the availability of a returned kit as conditions.",
+          "next": "Check every condition, not just the first."
+        },
+        {
+          "type": "single_choice",
+          "stem": "What follows from 'volunteers cannot deliver kits to homes'?",
+          "options": [
+            "Families need to arrange collection themselves",
+            "Nobody may borrow a kit",
+            "Friday collection is cancelled",
+            "The volunteers will post all the games"
+          ],
+          "answer": 0,
+          "tag": "reading.detail",
+          "why": "Volunteers may help at the collection point but do not bring kits to people's homes.",
+          "next": "Separate help at the office from home delivery."
+        },
+        {
+          "type": "single_choice",
+          "stem": "A family registered on Wednesday. Does the update require it to register again?",
+          "options": [
+            "Yes, the deadline moved to Monday",
+            "Yes, every family must send a second form",
+            "No, the registration rule was not changed",
+            "No, kits are no longer lent"
+          ],
+          "answer": 2,
+          "tag": "reading.inference",
+          "why": "The update preserves the registration rule and does not request another registration.",
+          "next": "Avoid adding an unstated obligation."
+        }
+      ]
+    },
+    {
+      "id": "REA-B1-06",
+      "module": "reading",
+      "cefr_target": "B1",
+      "title": "Separate a recommendation from evidence for it",
+      "estimated_minutes": 29,
+      "prerequisites": [
+        "REA-B1-04",
+        "WRI-B1-04"
+      ],
+      "objectives": [
+        "Identify the writer's recommendation in an evidence-led article.",
+        "Distinguish observed results from interpretation.",
+        "Explain a limitation of a comparison.",
+        "Infer a cautious attitude without overstating evidence."
+      ],
+      "explanation": {
+        "en": "An article may describe results, suggest an explanation, recognise its limits and recommend a next step. Underline its main claim and mark which details support it. A small comparison can be useful, but it may not prove that one method always works. Ask whether the groups were comparable and whether something besides the tested feature could explain the difference. Retain the author's degree of certainty: 'might help' does not mean 'is always better'.",
+        "vi": "Phân biệt kết quả quan sát, diễn giải và khuyến nghị. Kiểm tra tính công bằng giữa các nhóm và nguyên nhân khác có thể ảnh hưởng. Giữ mức chắc chắn giống tác giả."
+      },
+      "examples": [
+        "INDEPENDENT MODEL · A library tested larger shelf labels. Ten adult visitors said they were easier to notice, but children were not asked. The librarian suggested another test with younger readers.",
+        "THINKING · Observation: ten adult opinions; limitation: children missing; reasonable next step: test a different group.",
+        "PITFALL · Ten satisfied adults do not prove all students will prefer bigger labels.",
+        "UNSCORED TRANSFER · In a new article, mark CLAIM, OBSERVATION, LIMITATION and NEXT TEST."
+      ],
+      "reading_asset": {
+        "id": "PASS-REA-B1-06",
+        "title": "What makes a science-fair display easier to learn from?",
+        "body": "At Eastbrook School's science fair, visitors used to walk past rows of posters and read the explanations quietly. This year, a group of pupils proposed adding small models that visitors could try. The pupils believed that taking part in an activity might make scientific ideas easier to remember.\n\nBefore changing the whole fair, the organisers tested two types of displays one afternoon. Twelve visiting families chose a traditional explanation poster; another twelve chose a small working model with a student volunteer. After using their display, each family answered two short factual questions. The poster group answered thirteen of its twenty-four questions correctly, while the model group answered twenty of twenty-four correctly.\n\nThe numbers looked promising, but the comparison was not perfect. The families were not placed in groups at random: some chose the working model because they already enjoyed hands-on tasks. The volunteers also explained ideas in different ways. Because the trial lasted only one afternoon, nobody knew whether the visitors would remember the information a week later.\n\nSome teachers worried that making a model for every exhibit would be expensive and that visitors might wait too long in queues. Others pointed out that clear written explanations are still important for people who prefer to read at their own pace. The organising group therefore recommended a small number of interactive stations alongside good posters, followed by a longer study with comparable groups. Their conclusion was not that models always teach better, but that the idea deserved a fairer test."
+      },
+      "questions": [
+        {
+          "type": "single_choice",
+          "stem": "What is the article mainly about?",
+          "options": [
+            "Why fairs must remove posters",
+            "A small test of interactive displays and a cautious next step",
+            "A competition between volunteers",
+            "Answering science questions without reading"
+          ],
+          "answer": 1,
+          "tag": "reading.gist",
+          "why": "The article presents a comparison, its weaknesses and a limited recommendation.",
+          "next": "Find the central issue across all paragraphs."
+        },
+        {
+          "type": "single_choice",
+          "stem": "How many factual answers were correct in the working-model group?",
+          "options": [
+            "12 out of 24",
+            "13 out of 24",
+            "20 out of 24",
+            "24 out of 24"
+          ],
+          "answer": 2,
+          "tag": "reading.detail",
+          "why": "The working-model group answered twenty of twenty-four questions correctly.",
+          "next": "Distinguish families from answers."
+        },
+        {
+          "type": "single_choice",
+          "stem": "What weakens the comparison of the two display types?",
+          "options": [
+            "The models were all broken",
+            "Families chose their group and volunteers explained differently",
+            "All families had an identical experience",
+            "The fair happened indoors"
+          ],
+          "answer": 1,
+          "tag": "reading.inference",
+          "why": "Self-selection and varying explanations are possible alternative influences.",
+          "next": "Identify what changed besides the display."
+        },
+        {
+          "type": "single_choice",
+          "stem": "What did the organisers not measure?",
+          "options": [
+            "Immediate answers after a display",
+            "Which display each family chose",
+            "Memory of the information a week later",
+            "Two questions per family"
+          ],
+          "answer": 2,
+          "tag": "reading.detail",
+          "why": "The passage says later recall was unknown.",
+          "next": "Separate an immediate score from retention."
+        },
+        {
+          "type": "single_choice",
+          "stem": "In context, what does promising mean about the early numbers?",
+          "options": [
+            "Encouraging enough to investigate, but not proof",
+            "Certainly false",
+            "Guaranteed everywhere",
+            "Proof posters are useless"
+          ],
+          "answer": 0,
+          "tag": "reading.vocabulary_in_context",
+          "why": "Promising means encouraging while limitations still exist.",
+          "next": "Read the limitations that follow."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Why do some teachers want written posters to remain?",
+          "options": [
+            "Because nobody can touch models",
+            "Some visitors prefer to read at their own pace",
+            "Posters ensure perfect memory",
+            "Volunteers refuse to help"
+          ],
+          "answer": 1,
+          "tag": "reading.detail",
+          "why": "Written explanations remain useful for people who prefer reading.",
+          "next": "Locate the reason given for the counterargument."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Which option reflects the organising group's final recommendation?",
+          "options": [
+            "Replace all posters now",
+            "Stop holding science fairs",
+            "Use a few models alongside posters and test more fairly",
+            "Use models everywhere without more evidence"
+          ],
+          "answer": 2,
+          "tag": "reading.author_purpose",
+          "why": "A limited mixed approach plus a better study matches their actual position.",
+          "next": "Keep the recommendation proportional to the evidence."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Which statement best matches the writer's position?",
+          "options": [
+            "The early result is interesting, but group differences limit what it proves",
+            "One afternoon proves everyone learns best by doing",
+            "Working models should never be used",
+            "A visitor's preference cannot affect results"
+          ],
+          "answer": 0,
+          "tag": "reading.inference",
+          "why": "The writer acknowledges both encouraging observations and unresolved alternative explanations.",
+          "next": "Combine evidence and caution."
+        }
+      ]
+    },
+    {
+      "id": "REA-B2-01",
+      "module": "reading",
+      "cefr_target": "B2",
+      "title": "Evaluate competing claims in a school policy proposal",
+      "estimated_minutes": 32,
+      "prerequisites": [
+        "REA-B1-03",
+        "REA-B1-06",
+        "VOC-B2-01"
+      ],
+      "objectives": [
+        "Locate a qualified thesis in an extended article.",
+        "Evaluate statistics using the correct denominator and likely response bias.",
+        "Distinguish correlations from causal conclusions.",
+        "Assess a fair policy recommendation that considers access and costs."
+      ],
+      "explanation": {
+        "en": "At B2, critical reading means checking how an argument was constructed, not only finding facts. Identify the thesis, observation, interpretation, concession and proposed action. For a percentage, ask who was invited and who actually responded. If several things changed at once, a rise in outcomes does not prove any one change caused it. Look for omitted costs and groups that may have difficulty accessing a new system. The best conclusion fits the evidence and recommends an informative next test.",
+        "vi": "Ở B2 cần phân tích lập luận, mẫu khảo sát, sai lệch chọn mẫu, ngộ nhận nhân quả, lợi ích và chi phí còn thiếu. Đáp án đúng bám sát ý tác giả, không theo sở thích cá nhân."
+      },
+      "examples": [
+        "INDEPENDENT MODEL · Eight market stalls tried paper packaging for one weekend. Six owners reported positive customer comments. The report measures comments from six owners, not plastic waste reduction or proof of lower costs.",
+        "THINKING · Who gave information? Owners. What was measured? Comments. What is missing? Reliable waste and cost data.",
+        "PITFALL · 'Most respondents liked it' does not mean 'it benefits everyone'.",
+        "UNSCORED TRANSFER · In an unrelated policy question, name one evidence limitation and how to test it."
+      ],
+      "reading_asset": {
+        "id": "PASS-REA-B2-01",
+        "title": "Digital screens or paper notices? A school decision under review",
+        "body": "When Northbridge School proposed replacing its printed event posters with digital noticeboards, the idea appeared straightforward. Screens could show last-minute timetable changes, reduce reprinting and let staff update several locations at once. The student council welcomed the proposal, while some families asked whether information might become less accessible.\n\nThe school ran a voluntary three-week pilot with two screens in busy corridors. Staff continued to put up paper notices because they did not want pupils to miss events during the trial. At the end, an online survey invitation went to about 400 students; 62 replied. Fifty of those respondents said they preferred the new screens, a figure the council described as 'about four in five'. On its own, that sounds like broad support. Yet students who already liked digital announcements may have been more inclined to respond, and the school did not measure how many announcements were actually seen or remembered.\n\nDuring the pilot, sign-ups for two clubs increased. A newsletter called this proof that the screens had made communication more effective. That claim goes further than the available evidence. The clubs had also changed their meeting times and advertised through teachers. Without a comparable period or a reliable measure of notice exposure, it is impossible to tell how much influence the screens had.\n\nOther concerns were practical rather than ideological. A screen stopped working twice during short power interruptions. Staff reported that updating it was convenient, but they had not yet counted the time spent preparing digital graphics. In interviews, nine students who rarely used personal devices said they relied on wall notices when planning after-school activities. Digital screens could still help these students, but removing all printed alternatives before testing accessibility would be risky.\n\nThe writer's position is neither to reject the technology nor to replace paper immediately. The school could keep one clear printed noticeboard while testing digital displays over a full term. It should record which messages reach students, how much staff time each format costs and whether different groups can find the information they need. If that evidence supports a broader change, the school would have a stronger case for making it."
+      },
+      "questions": [
+        {
+          "type": "single_choice",
+          "stem": "Which statement best captures the writer's overall position?",
+          "options": [
+            "Digital screens should be banned",
+            "Paper posters must disappear immediately",
+            "A mixed, measured trial is preferable to an immediate permanent switch",
+            "The survey proves the whole school wants screens"
+          ],
+          "answer": 2,
+          "tag": "reading.gist",
+          "why": "The writer favours a longer mixed trial before a final decision.",
+          "next": "Look for the qualified final recommendation."
+        },
+        {
+          "type": "single_choice",
+          "stem": "What does 'about four in five' refer to?",
+          "options": [
+            "50 of 62 survey respondents",
+            "50 of about 400 invited students",
+            "Four fifths of all families",
+            "Four out of five clubs"
+          ],
+          "answer": 0,
+          "tag": "reading.detail",
+          "why": "Fifty of sixty-two respondents preferred the screens.",
+          "next": "Check the denominator behind a percentage."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Why might the poll not represent the entire student body?",
+          "options": [
+            "It was printed in French",
+            "Only 62 replied, and supporters may have been more willing to answer",
+            "Every invited student voted",
+            "The poll was only for staff"
+          ],
+          "answer": 1,
+          "tag": "reading.inference",
+          "why": "Voluntary responses may be biased toward students who already support screens.",
+          "next": "Ask who did not answer."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Why does the article reject the newsletter's explanation of increased club sign-ups?",
+          "options": [
+            "The clubs also changed meeting times and used other publicity",
+            "The screens were never switched on",
+            "Both clubs lost members",
+            "The school has no clubs"
+          ],
+          "answer": 0,
+          "tag": "reading.inference",
+          "why": "Several factors changed, so the increase cannot be attributed uniquely to screens.",
+          "next": "List alternative causes before concluding causation."
+        },
+        {
+          "type": "single_choice",
+          "stem": "What is criticised by 'That claim goes further than the available evidence'?",
+          "options": [
+            "The ability of screens to show changes",
+            "The assertion that screens caused the sign-up increase",
+            "The decision to retain paper during a pilot",
+            "The installation of two screens"
+          ],
+          "answer": 1,
+          "tag": "reading.author_purpose",
+          "why": "The writer questions an unsupported causal claim, not the reported sign-ups.",
+          "next": "Connect criticism to the immediately preceding claim."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Which hidden cost had not been measured?",
+          "options": [
+            "The number of wall surfaces",
+            "Staff time spent preparing digital graphics",
+            "Every student's tuition fee",
+            "Club sports equipment"
+          ],
+          "answer": 1,
+          "tag": "reading.detail",
+          "why": "Staff had not counted the time required for digital graphics.",
+          "next": "Find the missing resource measurement."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Why mention nine students who seldom use personal devices?",
+          "options": [
+            "To prove screens cannot help them",
+            "To raise an accessibility concern about removing paper too soon",
+            "To show all pupils dislike technology",
+            "To reject every student survey"
+          ],
+          "answer": 1,
+          "tag": "reading.inference",
+          "why": "Those students use wall notices; removing them could affect access.",
+          "next": "Consider whose needs a new policy might overlook."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Which new evidence best supports a final decision?",
+          "options": [
+            "Longer data on message reach, workload and access across groups",
+            "One enthusiastic council comment",
+            "A survey about lunch food",
+            "A promise screens will never fail"
+          ],
+          "answer": 0,
+          "tag": "reading.author_purpose",
+          "why": "The writer requests reach, staff time and accessible communication across a full term.",
+          "next": "Choose a test that addresses the stated limitations."
+        }
+      ]
+    }
+  ]
+}
