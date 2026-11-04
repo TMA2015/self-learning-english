@@ -51,6 +51,7 @@ const fullRegressionTests=[
   "curriculum-1150-density-wave6.cjs",
   "assisted-review.cjs",
   "attempt-navigation-ui.cjs",
+  "today-learning-path.cjs",
   "batch02-v11-release.cjs",
   "batch04-code-compat.cjs",
   "catalog-groups.cjs",
