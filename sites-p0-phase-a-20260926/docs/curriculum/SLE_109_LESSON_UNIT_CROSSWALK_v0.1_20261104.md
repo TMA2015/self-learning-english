@@ -1,6 +1,6 @@
-# SLE 109-lesson → 40-Unit crosswalk v0.1 (2026-11-04)
+# SLE 109-lesson → 60-Unit crosswalk v0.1 (2026-11-04)
 **Status: PROPOSED MAPPING / HUMAN SEMANTIC AUDIT NOT YET COMPLETE.**
-Source: `curriculum-1.18.1-candidate.json` on main (Git blob SHA `7c4a9f1186fd11c47b8e1ee2951e5aad908102a3`); proposed Unit definitions: `SLE_MASTER_CURRICULUM_FRAMEWORK_v0.1_20261104.md`. No historical lesson/content/attempt is changed.
+Source: `curriculum-1.18.1-candidate.json` on main (Git blob SHA `7c4a9f1186fd11c47b8e1ee2951e5aad908102a3`); proposed A1–C2 Unit definitions: `SLE_MASTER_CURRICULUM_FRAMEWORK_v0.1_20261104.md`. No historical lesson/content/attempt is changed.
 **Method and limits:** each of 109 existing lessons assigned exactly one provisional *primary* integrated Unit based on title, first objective and level; secondary cross-unit relevance has not been established. This is an organizational *hypothesis*, not a claim that each Unit's outcome is correctly taught, academically approved, independently assessed or released. Underlying CEFR level and module come from source. No B2 lesson exists.
 ## 1. Primary Unit map — descriptive counts
 | Unit | Provisional source lesson IDs | Count |
@@ -45,6 +45,27 @@ Source: `curriculum-1.18.1-candidate.json` on main (Git blob SHA `7c4a9f1186fd11
 | `B2-U08` | none mapped | 0 |
 | `B2-U09` | none mapped | 0 |
 | `B2-U10` | none mapped | 0 |
+| `C1-U01` | none mapped — future C1 | 0 |
+| `C2-U01` | none mapped — future C2 | 0 |
+| `C1-U02` | none mapped — future C1 | 0 |
+| `C2-U02` | none mapped — future C2 | 0 |
+| `C1-U03` | none mapped — future C1 | 0 |
+| `C2-U03` | none mapped — future C2 | 0 |
+| `C1-U04` | none mapped — future C1 | 0 |
+| `C2-U04` | none mapped — future C2 | 0 |
+| `C1-U05` | none mapped — future C1 | 0 |
+| `C2-U05` | none mapped — future C2 | 0 |
+| `C1-U06` | none mapped — future C1 | 0 |
+| `C2-U06` | none mapped — future C2 | 0 |
+| `C1-U07` | none mapped — future C1 | 0 |
+| `C2-U07` | none mapped — future C2 | 0 |
+| `C1-U08` | none mapped — future C1 | 0 |
+| `C2-U08` | none mapped — future C2 | 0 |
+| `C1-U09` | none mapped — future C1 | 0 |
+| `C2-U09` | none mapped — future C2 | 0 |
+| `C1-U10` | none mapped — future C1 | 0 |
+| `C2-U10` | none mapped — future C2 | 0 |
+
 ## 2. Per-lesson source crosswalk
 ### A1
 | Lesson ID | Module | Source title | n activities | Suggested primary Unit | Mapping status |
@@ -166,10 +187,10 @@ Source: `curriculum-1.18.1-candidate.json` on main (Git blob SHA `7c4a9f1186fd11
 | `LIS-B1-07` | listening | Checking a Photo Before Sharing | 8 | `B1-U07` | PROVISIONAL |
 ## 3. Exact-source checks
 - Mapped distinct lesson IDs: 109 of 109; unique IDs: 109.
-- Unit IDs with source lessons: 28/40; empty Units: A1-U10, B1-U10, B2-U01, B2-U02, B2-U03, B2-U04, B2-U05, B2-U06, B2-U07, B2-U08, B2-U09, B2-U10.
+- Unit IDs with source lessons: 28/60; empty Units: A1-U10, B1-U10, all B2-U01…B2-U10, all C1-U01…C1-U10 and all C2-U01…C2-U10. C1/C2 are future instructional targets, not omissions from previously published C-level course material.
 - This denominator is NOT a CEFR achievement / quality percentage. An integrated Unit may be mapped to several lessons yet still lack listening, writing, teaching examples or independent transfer.
 ## 4. Required next semantic checks
-1. For each row verify actual instructional objectives, passage/audio genre, cognitive demand, explanations/independent models and lesson assessment evidence against the proposed Unit's specific outcomes.
+1. For each row verify actual instructional objectives, passage/audio genre, cognitive demand, explanations/independent models and lesson assessment evidence against the proposed A1–C2 Unit's specific outcomes.
 2. Confirm all Grammar lesson prerequisite metadata and derive reviewable *proposed* non-Grammar dependencies. Never claim runtime enforcement from planning metadata.
 3. Add secondary Unit relationships only when supported by reviewed lesson content; do not duplicate activity/attempt evidence.
 4. Record per Unit/outcome status as `NOT_MAPPED`, `PARTIAL_TEACHING`, `CONTENT_PRESENT`, `ACADEMIC_REVIEWED`, `QA_VERIFIED`, or `LIVE_VERIFIED`, with evidence trail and reviewer; do not infer a better status from assignment alone.
