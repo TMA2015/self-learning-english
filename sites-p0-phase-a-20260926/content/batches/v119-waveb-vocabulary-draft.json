@@ -1,0 +1,408 @@
+{
+  "packet_id": "SLE-V119-VOC-REA-WAVEB-20261104",
+  "status": "ACADEMIC_REVIEW_PENDING",
+  "review_source": "NotebookLM",
+  "scope": "Vocabulary A2 B1 B2; draft only, not yet curriculum",
+  "lessons": [
+    {
+      "id": "VOC-A2-06",
+      "module": "vocabulary",
+      "cefr_target": "A2",
+      "title": "Explain a reason and suggest a practical step",
+      "estimated_minutes": 24,
+      "prerequisites": [
+        "VOC-A2-04",
+        "WRI-A2-05"
+      ],
+      "objectives": [
+        "Explain cause and result using because and so.",
+        "Use natural chunks for practical recommendations.",
+        "Distinguish a suggestion from an unsupported promise.",
+        "Recall useful phrases and transfer them to a new situation."
+      ],
+      "explanation": {
+        "en": "A useful recommendation identifies a problem, says why it matters, and proposes a manageable action. Because introduces a reason; so introduces a result. We make a suggestion, give a reason and take a first step. 'We could…' and 'One practical step would be to…' are appropriately polite. Could or might shows possibility rather than a guaranteed result. Avoid words like always unless you have evidence. After the questions, write one original two-sentence suggestion for a different situation; this is unscored self-practice.",
+        "vi": "Đề xuất tốt gồm vấn đề, lý do và bước khả thi. Because chỉ lý do; so chỉ kết quả. Could/might không phải lời hứa chắc chắn. Tự viết hai câu mới để ôn thêm, không tự chấm năng lực viết."
+      },
+      "examples": [
+        "MODEL · The class paper-collection boxes are hidden behind a cupboard. Because students cannot see them, some clean paper is thrown away. One practical first step would be to move the boxes beside the door. This could make recycling easier.",
+        "THINKING · The model names a specific difficulty, gives a cause, suggests a modest action and avoids an unsupported guarantee.",
+        "PITFALL · 'Everyone will recycle perfectly tomorrow' overpromises.",
+        "TRANSFER · Choose a different school routine. Name a problem, why it matters and one small step; unscored."
+      ],
+      "questions": [
+        {
+          "type": "single_choice",
+          "stem": "The study room is noisy because the door stays open. Which part gives the reason?",
+          "options": [
+            "The study room is noisy.",
+            "The door stays open.",
+            "There are twelve chairs.",
+            "We could paint the room."
+          ],
+          "answer": 1,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "Because introduces the cause: the door stays open.",
+          "next": "Read the words after because."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Choose the natural phrase.",
+          "options": [
+            "do a suggestion",
+            "make a suggestion",
+            "perform a suggestion",
+            "collect a suggestion"
+          ],
+          "answer": 1,
+          "tag": "vocabulary.collocations",
+          "why": "Make a suggestion means propose an idea.",
+          "next": "Use this chunk in a new situation."
+        },
+        {
+          "type": "single_choice",
+          "stem": "The school wants a quieter corridor. Which is a polite, practical suggestion?",
+          "options": [
+            "All students must never speak again.",
+            "One practical step would be to place reminders near doors.",
+            "A notice guarantees higher marks.",
+            "Noise is everyone's fault."
+          ],
+          "answer": 1,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "The suggestion is actionable without claiming universal results.",
+          "next": "Identify what someone could actually do."
+        },
+        {
+          "type": "single_choice",
+          "stem": "The equipment is scattered, so pupils waste time finding it. What does so signal?",
+          "options": [
+            "A reason",
+            "A result",
+            "A disagreement",
+            "A request"
+          ],
+          "answer": 1,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "So introduces the consequence.",
+          "next": "Contrast a reason with a result."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Choose a cautious statement about a new noticeboard.",
+          "options": [
+            "It will solve all problems.",
+            "It might help pupils find changes sooner.",
+            "Everyone will read every notice.",
+            "It guarantees examination success."
+          ],
+          "answer": 1,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "Might expresses a possible benefit without overstating evidence.",
+          "next": "Replace an exaggerated claim with might/could."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Which statement gives both a reason and proposal about forgotten library returns?",
+          "options": [
+            "Books are colourful.",
+            "Some pupils forget return dates, so we could use reminder slips.",
+            "The library has chairs.",
+            "All borrowing should stop forever."
+          ],
+          "answer": 1,
+          "tag": "vocabulary.collocations",
+          "why": "It explains the problem and suggests a relevant action.",
+          "next": "Check that the action addresses the problem."
+        },
+        {
+          "type": "short_answer",
+          "stem": "Complete the taught collocation: 'make a ___' means propose an idea.",
+          "answers": [
+            "suggestion"
+          ],
+          "tag": "vocabulary.collocations",
+          "why": "Make a suggestion is the natural verb–noun phrase.",
+          "next": "Write a new sentence using the full phrase."
+        },
+        {
+          "type": "short_answer",
+          "stem": "Complete the taught two-word chunk for an achievable initial action: 'a practical ___'.",
+          "answers": [
+            "first step"
+          ],
+          "tag": "vocabulary.collocations",
+          "why": "A practical first step is a manageable starting action.",
+          "next": "Propose a small first step in an unrelated situation."
+        }
+      ]
+    },
+    {
+      "id": "VOC-B1-06",
+      "module": "vocabulary",
+      "cefr_target": "B1",
+      "title": "Qualify a claim and recommend a trial",
+      "estimated_minutes": 28,
+      "prerequisites": [
+        "VOC-B1-04",
+        "WRI-B1-04"
+      ],
+      "objectives": [
+        "Use concession chunks to acknowledge a limitation.",
+        "Distinguish evidence from a universal claim.",
+        "Make a conditional proposal using provided that.",
+        "Retrieve and apply two qualification phrases."
+      ],
+      "explanation": {
+        "en": "A balanced recommendation gives a reason, recognises a limitation and suggests a practical next step. 'However, one limitation is…' introduces a drawback. 'Although…' introduces a concession; do not add but to the same although clause. 'Provided that…' makes a plan conditional. A short trial gathers evidence before a permanent decision. A small voluntary survey may suggest interest; it rarely proves that everyone will benefit.",
+        "vi": "Đề xuất tốt thừa nhận giới hạn và điều kiện. Although không thêm but cùng cấu trúc. Provided that nghĩa là chỉ khi. Mẫu khảo sát nhỏ gợi ý ý kiến nhưng không chứng minh cho mọi người."
+      },
+      "examples": [
+        "MODEL · A community greenhouse wants volunteers to water plants twice a week. A trial rota could reduce missed days. However, one limitation is that some volunteers travel during holidays. A sensible first step would be a two-week trial, provided that enough people sign up.",
+        "THINKING · The benefit is possible, the drawback is real, and the trial is conditional rather than certain.",
+        "PITFALL · 'Although people may travel, but the rota is perfect' doubles contrast and ignores uncertainty.",
+        "TRANSFER · Try a conditional recommendation for an unrelated community activity; unscored."
+      ],
+      "questions": [
+        {
+          "type": "single_choice",
+          "stem": "An equipment-lending plan may exclude families without storage space. Which phrase acknowledges the problem?",
+          "options": [
+            "Everyone is completely satisfied.",
+            "However, one limitation is that some families have little storage space.",
+            "Therefore, success is guaranteed.",
+            "No one has concerns."
+          ],
+          "answer": 1,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "However, one limitation is… names the relevant drawback.",
+          "next": "Include the actual practical limitation."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Choose a correct concession sentence.",
+          "options": [
+            "Although the hall is small, but a trial may work.",
+            "Although the hall is small, a short trial may work.",
+            "Although small hall, trial it work.",
+            "Although the hall is small because a trial."
+          ],
+          "answer": 1,
+          "tag": "vocabulary.collocations",
+          "why": "Although and a complete clause introduce contrast without an extra but.",
+          "next": "Remove a duplicated contrast linker."
+        },
+        {
+          "type": "single_choice",
+          "stem": "What does 'provided that enough volunteers register' mean?",
+          "options": [
+            "Even if none register",
+            "Only if enough volunteers register",
+            "Before anyone hears about the plan",
+            "Because volunteers are unnecessary"
+          ],
+          "answer": 1,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "Provided that sets a condition.",
+          "next": "Ask what must happen first."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Twelve people support a new chess club in a poll. Which report is justified?",
+          "options": [
+            "The poll proves the entire school wants chess.",
+            "These twelve responses suggest interest among the people asked.",
+            "Every family has requested the club.",
+            "Chess must replace all sport."
+          ],
+          "answer": 1,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "Twelve opinions do not prove universal support.",
+          "next": "Match the conclusion to the surveyed group."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Choose the natural phrase for testing an idea briefly.",
+          "options": [
+            "run a short trial",
+            "do a forever decision",
+            "prove a trial",
+            "make an evidence"
+          ],
+          "answer": 0,
+          "tag": "vocabulary.collocations",
+          "why": "We run a trial before deciding whether to expand a plan.",
+          "next": "Use run a trial in a proposal."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Which proposal balances a classroom printing service's benefits and costs?",
+          "options": [
+            "Printing is perfect and costs nothing.",
+            "Printing may help, but paper costs should be checked before expansion.",
+            "Nobody needs documents.",
+            "All printing must end."
+          ],
+          "answer": 1,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "The answer considers both benefit and resource cost.",
+          "next": "Check one drawback before expanding a trial."
+        },
+        {
+          "type": "short_answer",
+          "stem": "Complete the conditional phrase: '___ that enough students sign up, we can hold the workshop.'",
+          "answers": [
+            "provided"
+          ],
+          "tag": "vocabulary.collocations",
+          "why": "Provided that states a necessary condition.",
+          "next": "Rewrite it using if."
+        },
+        {
+          "type": "short_answer",
+          "stem": "Complete the phrase naming a drawback: 'One ___ is that the room is too small.'",
+          "answers": [
+            "limitation"
+          ],
+          "tag": "vocabulary.collocations",
+          "why": "Limitation names a constraint.",
+          "next": "Name a real limitation of another plan."
+        }
+      ]
+    },
+    {
+      "id": "VOC-B2-01",
+      "module": "vocabulary",
+      "cefr_target": "B2",
+      "title": "Use precise stance and evidence-aware language",
+      "estimated_minutes": 30,
+      "prerequisites": [
+        "VOC-B1-04",
+        "VOC-B1-06"
+      ],
+      "objectives": [
+        "Identify degrees of certainty in reporting verbs.",
+        "Qualify conclusions from a self-selected sample.",
+        "Distinguish correlation from causation.",
+        "Use concession language and propose a stronger follow-up test."
+      ],
+      "explanation": {
+        "en": "An academic claim must match its evidence. Suggests and indicates signal a tentative interpretation; proves or guarantees require stronger support. 'This does not necessarily mean…' blocks an unjustified leap without saying success is impossible. A voluntary sample may be self-selected and unrepresentative. Two changes occurring together do not prove that one caused the other. A careful recommendation identifies a possible benefit, a rival explanation, what has not been measured, and a useful next test.",
+        "vi": "Lời khẳng định học thuật phải theo độ mạnh bằng chứng. Suggests/indicates mềm hơn proves. Mẫu tự nguyện có thể thiếu đại diện. Hai thay đổi cùng lúc chưa chứng minh nguyên nhân. Hãy nêu giới hạn và phép thử cần tiếp."
+      },
+      "examples": [
+        "MODEL · In a voluntary music-practice trial, 14 of 20 respondents said that a shared schedule helped them practise more regularly. This suggests some respondents found it useful. However, a small self-selected group and no comparison period limit the conclusion. A longer trial with comparable groups might provide stronger evidence.",
+        "THINKING · The number describes opinions from respondents, not measured increases in skill or proven causation.",
+        "PITFALL · 'Seventy per cent proves all students will improve' overgeneralises.",
+        "TRANSFER · Draft a cautious conclusion and one missing measurement for another fictional trial; unscored."
+      ],
+      "questions": [
+        {
+          "type": "single_choice",
+          "stem": "Only 18 of 240 invited pupils answer a voluntary online survey. What conclusion is justified?",
+          "options": [
+            "The result represents every pupil exactly.",
+            "The respondents' views are useful but may not represent all pupils.",
+            "Every non-respondent disagrees.",
+            "The survey proves the programme works."
+          ],
+          "answer": 1,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "A small self-selected sample can introduce response bias.",
+          "next": "Identify who answered and who did not."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Which verb fits tentative evidence from an uncontrolled pilot?",
+          "options": [
+            "proves",
+            "guarantees",
+            "suggests",
+            "certifies"
+          ],
+          "answer": 2,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "Suggests signals an interpretation that is not yet certain.",
+          "next": "Choose a stronger verb only for stronger evidence."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Attendance increases after two clubs change schedules. Which claim is cautious?",
+          "options": [
+            "The new schedules certainly caused the increase.",
+            "Attendance rose after the changes, but other factors could have contributed.",
+            "Every new schedule is perfect.",
+            "Old schedules must have harmed attendance."
+          ],
+          "answer": 1,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "Timing alone does not establish cause.",
+          "next": "Check for alternative influences."
+        },
+        {
+          "type": "single_choice",
+          "stem": "What does 'This does not necessarily mean it will work elsewhere' imply?",
+          "options": [
+            "It cannot possibly work anywhere else.",
+            "One result does not guarantee success in every setting.",
+            "It is certain to work in all settings.",
+            "The result never occurred."
+          ],
+          "answer": 1,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "Not necessarily avoids assuming transfer is guaranteed.",
+          "next": "Distinguish not guaranteed from impossible."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Which sentence makes a grammatical, fair concession?",
+          "options": [
+            "Although flexibility helps, unequal access may limit participation.",
+            "Although flexibility helps, but everyone must join.",
+            "Online groups are always accessible.",
+            "Internet access never matters."
+          ],
+          "answer": 0,
+          "tag": "vocabulary.collocations",
+          "why": "Although introduces a benefit weighed against a relevant limitation.",
+          "next": "Avoid duplicated contrast linkers."
+        },
+        {
+          "type": "single_choice",
+          "stem": "In 'The findings indicate a need for further testing', indicate conveys what?",
+          "options": [
+            "A cautious signal from the evidence",
+            "A legal guarantee",
+            "An instruction to hide uncertainty",
+            "Proof without data"
+          ],
+          "answer": 0,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "Indicate describes a plausible direction of evidence.",
+          "next": "Match the verb to the study's strength."
+        },
+        {
+          "type": "short_answer",
+          "stem": "Use a cautious verb: 'The early results ___ that more testing is needed.'",
+          "answers": [
+            "suggest",
+            "indicate"
+          ],
+          "tag": "vocabulary.collocations",
+          "why": "Suggest or indicate is suitably cautious for preliminary findings.",
+          "next": "Explain what evidence might justify a stronger verb."
+        },
+        {
+          "type": "short_answer",
+          "stem": "Complete a concession using one word: '___ this benefit, the pilot has important limits.'",
+          "answers": [
+            "despite"
+          ],
+          "tag": "vocabulary.collocations",
+          "why": "Despite introduces a noun phrase before the contrasting point.",
+          "next": "Remember that despite takes a noun phrase."
+        }
+      ]
+    }
+  ]
+}
