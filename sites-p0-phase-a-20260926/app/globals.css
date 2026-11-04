@@ -322,3 +322,20 @@ body {
 .foundation-today-card strong,.foundation-today-card span,.foundation-today-card small{overflow-wrap:anywhere}
 .foundation-today-card small{font-weight:400;opacity:.85;line-height:1.5}
 @media(max-width:380px){.foundation-today-actions{grid-template-columns:1fr}.foundation-today .foundation-catalog-heading select{min-width:0;width:100%}}
+
+/* Lesson progress marks: submission does not imply mastery. */
+.foundation-lesson-topline{display:flex;align-items:flex-start;justify-content:space-between;gap:.45rem;width:100%;min-width:0}
+.foundation-lesson-topline .foundation-lesson-id{min-width:0;overflow-wrap:anywhere}
+.foundation-progress-mark{display:inline-flex;align-items:center;justify-content:center;flex:none;border-radius:999px;min-width:1.55rem;min-height:1.55rem;font-size:1rem;font-weight:800;line-height:1}
+.foundation-progress-mark.is-submitted{background:#dcfce7;color:#136636;border:1px solid #77c79a}
+.foundation-progress-mark.is-draft{background:#fff3cf;color:#8b5b05;border:1px solid #e8c577}
+.foundation-progress-mark.is-unassessed{background:#eaf0f8;color:#476079;border:1px solid #b8cada}
+.foundation-progress-mark.is-not_started{background:#f5f6f8;color:#64748b;border:1px solid #cbd5e1}
+.foundation-progress-summary{margin:1rem 0}
+.foundation-progress-summary .foundation-catalog-heading h2{margin:0}
+.foundation-progress-summary progress{display:block;width:100%;height:.7rem;margin:.85rem 0;accent-color:#177a46}
+.foundation-progress-stats{display:flex;flex-wrap:wrap;align-items:center;gap:.55rem 1rem;font-size:.9rem}
+.foundation-progress-stats>span{white-space:nowrap}
+.foundation-stats-check{color:#177a46;font-weight:800}
+.foundation-progress-note{margin:.75rem 0 0;font-size:.83rem;line-height:1.5}
+@media(max-width:600px){.foundation-progress-summary{padding:1rem}.foundation-progress-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem;font-size:.82rem}.foundation-progress-stats>span{white-space:normal}.foundation-progress-mark{min-width:1.35rem;min-height:1.35rem}}

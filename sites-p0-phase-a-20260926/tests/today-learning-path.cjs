@@ -17,11 +17,13 @@ const out='.sites-runtime/today-learning-path';
 execFileSync(process.execPath,[
  'node_modules/typescript/bin/tsc',
  'domain/today-learning-path.ts',
+ 'domain/attempt-navigation.ts',
  '--outDir',out,'--module','commonjs','--target','es2022',
  '--resolveJsonModule','--esModuleInterop','--skipLibCheck'
 ],{cwd:root,stdio:'inherit'});
 fs.writeFileSync(path.join(root,out,'package.json'),'{"type":"commonjs"}');
 const {todayLearningPath,primaryUnitForLesson}=require('../'+out+'/domain/today-learning-path.js');
+const {lessonProgressForLesson,summarizeLessonProgress}=require('../'+out+'/domain/attempt-navigation.js');
 const lessons=seed.lessons.map(l=>({id:l.id,title:l.title,module:l.module,cefr:l.cefr_target,minutes:l.estimated_minutes}));
 const course={sequence:seed.course.sequence};
 let catalog={lessons,attempts:[],course};
@@ -73,6 +75,28 @@ assert.equal(proposedToday.learn?.lesson.id,'VOC-B2-01',
  'Once genuinely imported, candidate Unit placement becomes navigable');
 assert.equal(todayLearningPath({lessons:[],attempts:[],course}).learn,undefined);
 assert.equal(todayLearningPath({lessons:[],attempts:[],course}).availableUnits.length,0);
+// Progress counts unique lessons and distinguishes submissions from drafts/unassessed work.
+const five=lessons.slice(0,5),[one,two,three,four,fiveLesson]=five;
+const records=[
+ {id:'score',lessonId:one.id,status:'scored',createdAt:10},
+ {id:'retake',lessonId:one.id,status:'scored',createdAt:20},
+ {id:'draft-new',lessonId:one.id,status:'started',createdAt:30},
+ {id:'pending',lessonId:two.id,status:'pending_review',createdAt:20},
+ {id:'draft',lessonId:three.id,status:'started',createdAt:30},
+ {id:'no-score',lessonId:four.id,status:'unassessed',createdAt:15},
+ {id:'foreign',lessonId:'FAKE-OTHER',status:'scored',createdAt:99}
+];
+assert.deepEqual(summarizeLessonProgress(five,records),{total:5,submitted:2,draft:1,unassessed:1,notStarted:1});
+assert.deepEqual(lessonProgressForLesson(records,one.id),{kind:'submitted',hasDraft:true,awaitingReview:false});
+assert.deepEqual(lessonProgressForLesson(records,two.id),{kind:'submitted',hasDraft:false,awaitingReview:true});
+assert.equal(lessonProgressForLesson(records,three.id).kind,'draft');
+assert.equal(lessonProgressForLesson(records,four.id).kind,'unassessed');
+assert.equal(lessonProgressForLesson(records,fiveLesson.id).kind,'not_started');
+assert.equal(lessonProgressForLesson([{id:'approved',lessonId:two.id,status:'approved',createdAt:120},...records],two.id).awaitingReview,false);
+assert.deepEqual(summarizeLessonProgress([],records),{total:0,submitted:0,draft:0,unassessed:0,notStarted:0});
+const foundation=fs.readFileSync(path.join(root,'app/foundation.tsx'),'utf8');
+assert(foundation.includes('Filter lessons by progress'));
+assert.equal((foundation.match(/<LessonProgressMark \{\.\.\.lessonProgressForLesson/g)||[]).length,2);
 console.log(JSON.stringify({result:'PASS',gate:'read-only-today-learning-path',canonicalLessonMap:109,
  candidateGuard:12,pilotUnit:'A2-U09',historicalDraftVersionPreserved:true,
  oldMistakeNonCarryover:true,unassessedWritingNotProficiency:true,
