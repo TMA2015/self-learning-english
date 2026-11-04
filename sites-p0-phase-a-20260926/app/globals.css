@@ -311,3 +311,14 @@ body {
 .wcv2-optional-helper[open] .wcv2-helper-toggle::after{content:"Hide hints";font-size:13px}
 .wcv2-optional-helper-body{padding:0 17px 17px}
 .wcv2-optional-helper-body>.wcv2-grid{margin-top:12px}
+
+/* Learning Path pilot: these are guidance cards, never proficiency or Unit completion badges. */
+.foundation-today{margin:1rem 0}
+.foundation-today .foundation-catalog-heading{gap:1rem;align-items:start;flex-wrap:wrap}
+.foundation-today .foundation-catalog-heading label{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap}
+.foundation-today .foundation-catalog-heading select{max-width:100%;min-width:11rem}
+.foundation-today-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));gap:.75rem;margin:1rem 0}
+.foundation-today-card{display:flex;flex-direction:column;align-items:flex-start;gap:.35rem;text-align:left;min-width:0;white-space:normal}
+.foundation-today-card strong,.foundation-today-card span,.foundation-today-card small{overflow-wrap:anywhere}
+.foundation-today-card small{font-weight:400;opacity:.85;line-height:1.5}
+@media(max-width:380px){.foundation-today-actions{grid-template-columns:1fr}.foundation-today .foundation-catalog-heading select{min-width:0;width:100%}}
