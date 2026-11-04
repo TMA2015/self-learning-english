@@ -1,7 +1,7 @@
 # Self-Learning English — Master Content & Self-Learning Standard
 
 **Standard ID:** SLE-MASTER-001  
-**Document version:** 1.1.0  
+**Document version:** 1.1.1 (editorial learner-path clarification proposed on v1.19 content branch; effective only after review and owner-approved merge)  
 **Status:** ACTIVE / SOLE NORMATIVE STANDARD. Academic adoption was completed by merged PR #71 on 2026-11-02; the owner unified SLE project rules on 2026-11-03. The current curriculum candidate is v1.18.1; this policy revision does not itself certify untested browser behavior.  
 **Prepared:** 2026-11-02; living revision 2026-11-03  
 **Canonical path:** `sites-p0-phase-a-20260926/docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md` in `TMA2015/self-learning-english`. Do not create a second copy under root `docs/`.  
@@ -51,6 +51,18 @@ For each released teaching lesson, reviewer MUST answer **YES** with observable 
 8. Are the actual limits of devices, audio, offline availability, and optional AI transparent rather than advertised as working when untested?
 
 **Release BLOCKER:** any “teaching lesson” that is a bare question bank without explanation/demonstration/feedback, or whose learner cannot recover from foreseeable mistakes. Practice-only resources can exist, but MUST be unmistakably labeled as practice rather than a complete taught lesson.
+
+### 1.1 Long-range learning pathway and audience (editorial clarification)
+
+The same **free self-learning website** serves school study, independent practical English and long-term preparation for higher education, IELTS/TOEFL and possible study abroad. Exams are later applications of a broad language foundation, **not** the curriculum's sole target. Course paths MUST remain meaningful when optional AI is unavailable and cannot promise exam scores or formally certified CEFR outcomes.
+
+- The active sequence develops **A1 → A2 → B1 → B2** with explicit prerequisites, separate skill development, cumulative practice and transfer into unfamiliar contexts. Higher **C1/C2** academic and professional directions should be mapped for future expansion, but the current validated import schema only accepts A1–B2 IDs; do not publish fake C1/C2 labels or bypass import validation.
+- **Depth and breadth develop in parallel:** strengthen foundational A1/A2 material for beginners and targeted review while promptly introducing authentic B2 Reading, Writing, Listening and Vocabulary for capable learners. Do not make an A1 restart a condition for a learner with demonstrated B1/B2 readiness. A low-level review is a recommended repair for an observed prerequisite gap, not a compulsory detour for everyone.
+- Treat diagnostic estimates and individual skill profiles as **provisional evidence**: a learner may be stronger in Reading than productive Writing. Choose accessible prerequisites and targeted next steps rather than assign a single permanent ability label or mistake B2 lesson completion for verified B2 competence.
+- For each new lesson the existing CORE1–CORE4 standard already requires **an observable new ability, what must be understood first, independent transfer and a useful next practice action**. When planning lesson sequences, identify the entry skill, the new use of English, and the next skill to build. Mere item counts or multiple-choice strategy scores are never a substitute for productive skills.
+- Practical school use and future academic use should reinforce one another: topic analysis, brainstorming, evidence-based inference, communication and revision can grow from short age-appropriate tasks into mature reasoned essays and source evaluation. Add exam-specific strategies on top of general competence instead of reducing teaching to tricks.
+
+This paragraph clarifies the existing self-study promise, CEFR honesty and lesson contract. **It adds no Preview, separate QA policy, new learner data operation, or unreviewed technical release gate.**
 
 ## 2. Universal lesson contract: four core steps plus adaptive support (MUST)
 
@@ -244,6 +256,7 @@ Use `major.minor.patch`: **major** for a policy redesign or changed evidence mea
 
 | Standard version | Date | Status | Summary | Approval / effective commit |
 | --- | --- | --- | --- | --- |
+| 1.1.1 | 2026-11-04 | PROPOSED EDITORIAL CLARIFICATION — not effective before merge | State long-term A1–B2, future C1/C2, exam preparation as downstream application, varied learner paths and honest provisional skill evidence; no new authoring/release gates | Owner direction in SLE conversation, 2026-11-04; academic review if reviewer identifies a substantive rule change; owner-approved merge required |
 | 1.0.0 | 2026-11-02 | ACADEMIC GO / ADOPTION ON PR #71 MERGE | Unified existing authoring/UX/evidence standards; incorporated NotebookLM mandatory amendments C1–C4 (baseline relationship, legacy Speaking projection, audio gate/masking, bilingual safe AI rendering). No curriculum/code release implied | Owner instructed adoption after review (2026-11-02); effective when GitHub PR #71 merge is confirmed; refer to its merge commit |
 
 ### Independent academic review record (2026-11-02)
