@@ -96,6 +96,10 @@ assert.equal(lessonProgressForLesson([{id:'approved',lessonId:two.id,status:'app
 assert.deepEqual(summarizeLessonProgress([],records),{total:0,submitted:0,draft:0,unassessed:0,notStarted:0});
 const foundation=fs.readFileSync(path.join(root,'app/foundation.tsx'),'utf8');
 assert(foundation.includes('Filter lessons by progress'));
+assert(foundation.includes('summarizeLessonProgress(section.lessons,catalog.attempts).submitted'),
+ 'Grouped lesson headings must match green submitted ticks and not count unassessed work');
+assert(!foundation.includes('section.attempted} attempted'),
+ 'Do not label unfinished/unassessed work as submitted');
 assert.equal((foundation.match(/<LessonProgressMark \{\.\.\.lessonProgressForLesson/g)||[]).length,2);
 console.log(JSON.stringify({result:'PASS',gate:'read-only-today-learning-path',canonicalLessonMap:109,
  candidateGuard:12,pilotUnit:'A2-U09',historicalDraftVersionPreserved:true,
