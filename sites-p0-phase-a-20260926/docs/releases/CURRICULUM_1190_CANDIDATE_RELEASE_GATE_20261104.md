@@ -1,6 +1,6 @@
 # SLE Curriculum v1.19.0 — Cumulative Candidate Review & Release Gate (2026-11-04)
 
-**Status:** TECHNICAL QA PENDING / PRODUCTION NO-GO. This report is evidence and release-specific state, **not** a second active rulebook. The single governing standard is `SLE-MASTER-001 v1.1.0` on `main`.
+**Status:** ACADEMIC PASS / CANDIDATE-SPECIFIC CI PASS (exact PR #83 head `6cba419bb6fa07293eccdf1c52ca93daaeb36a4d`) / PRODUCTION NOT DEPLOYED / ADMIN CONTENT IMPORT NOT PERFORMED. This report is evidence and release-specific state, **not** a second active rulebook. The single governing standard is `SLE-MASTER-001 v1.1.0` on `main`.
 
 ## 1. Source-of-truth and verdicts
 
@@ -33,20 +33,42 @@
 - Candidate follows the original bounded `academic-seed-v1.json` nested field shape; no unknown lesson/answer/feedback fields were introduced. File length approximately 1.2 MB, below the historical 5 MB interface guard.
 - Optional issue #75 `REA-A1-01-Q7` re-tagging **deferred** in this release to preserve all 913 historical activity objects exactly. This is a non-blocking optional change from the Wave B verdict; historical saved attempt records remain out of scope.
 
-## 4. Remaining mandatory gates
+## 4. QA evidence and remaining release gates
 
-| Gate | Status at drafting | Evidence required |
+Verified on exact Draft PR #83 head `6cba419bb6fa07293eccdf1c52ca93daaeb36a4d`: [GitHub Actions QA job](https://github.com/TMA2015/self-learning-english/actions/runs/41801452201/job/126477939647). The test log **does invoke** `tests/curriculum-1190-release.cjs` and emits:
+
+```json
+{"result":"PASS","gate":"v1.19.0-cumulative-release-preflight","lessons":121,"activities":1009,"oldObjectsPreserved":109,"preview":{"add":12,"update":0,"skip":109,"conflict":0},"newObjectiveItems":90,"unassessedWriting":6,"shuffledItems":84,"historyUnchanged":true,"browserQuotaBytes":2866330,"browserQuotaLimit":5242880,"productionWrites":0,"actualBrowserGUI":"NOT_TESTED"}
+```
+
+| Gate | Recorded disposition | Reason |
 |---|---|---|
-| Two academic packets | **PASS** | Wave A and Wave B independent NotebookLM verdicts provided by owner |
-| Source shape / version diff | **PASS (static source level)** | 121/1009, 109 old lessons untouched, no ID collisions |
-| `validateSeed` and `validateContent(mapSeed)` actual runtime | **NOT_TESTED** | Execute `tests/curriculum-1190-release.cjs` on repo dependencies |
-| Academic importer Preview and historical attempt invariants | **NOT_TESTED** | Real `academicService.preview`: add 12 / update 0 / skip 109 / conflict 0; import simulation pinned attempts |
-| Browser-local storage quota / source version recovery | **NOT_TESTED** | Exercise real `BrowserLocalAcademicRepository` with 1.18.1 then 1.19.0, preserve prior attempts |
-| MCQ deterministic shuffle / answer identity | **NOT_TESTED** | Execute actual `domain/option-order.ts` regression for new 90 objective activities |
-| Existing PR `qa` exact head | **PENDING** | Automatic full release QA and static build |
-| Production deployment and live smoke | **NO-GO** | Only after importer/CI/rights gates and explicit owner release approval, merge with `[release-english]` |
-| Manual actual mobile/browser UX | **NOT_TESTED** | One compact post-release owner check only if low-risk backwards-compatible under SLE-MASTER-001 |
+| Writing Wave A and Vocabulary/Reading Wave B | **PASS (academic)** | Two owner-supplied independent NotebookLM verdicts, zero mandatory fixes |
+| 109 old lessons / 913 activities preserved | **PASS** | Exact JSON source comparison, immutable old attempts and 121/1009 candidate |
+| Actual importer/schema validation | **PASS (CI simulation)** | `validateSeed`, `validateContent(mapSeed)` and academic import preview |
+| Versioned attempt recovery | **PASS (CI simulation)** | History remains linked to earlier content version |
+| Real option order and answer keys | **PASS (CI)** | 84 shuffled single-choice items exercised, identity preserved |
+| Browser-local quota simulation | **PASS (CI)** | 2,866,330 / 5,242,880 bytes; **not** a promise all real devices have available quota |
+| Exact-head PR `qa` | **PASS** | Check run completed successfully on above SHA |
+| Owner release decision for PR #83 | **PENDING** | No approval or `[release-english]` merge of the specific PR has occurred |
+| Firebase English LIVE action | **NOT_STARTED** | No deployment of this candidate |
+| Admin content import of v1.19.0 into **actual learner store** | **NOT_STARTED** | Important: a GitHub code/docs merge or Firebase deploy **does not** itself import this file |
+| Post-deploy source/catalog verification | **NOT_TESTED** | Confirm imported version 1.19.0, 121 lessons, 12 new IDs visible in the right actual account/browser |
+| Real device/browser usability spot-check | **NOT_TESTED** | May follow low-risk authorized release under SLE-MASTER-001; not implied by CLI tests |
 
-**Test fixture note:** `tests/curriculum-1190-release.cjs` has been authored and committed to the PR, but is **not automatically added to the existing `qa:full` test manifest**. Do **not** call candidate-specific technical QA PASS solely because the generic PR check succeeds. The test needs to be invoked and pass, or incorporated into the existing test runner through an authorized reviewable change.
+## 5. Exact production handoff: deployment and content import are distinct
 
-This PR is the **candidate staging PR**, not a release marker PR. No Firebase deploy, learner import, Math changes, credentials, or stored attempt changes are authorized by this document.
+The existing SLE app uses `ContentImporter` inside **Parent View**. It accepts a local .json file, validates a **Preview import** result, then requires an explicit confirmation before it writes the versioned content package. It does not watch the repository and it does not fetch a newly merged candidate automatically.
+
+Consequently, a release of the website code with `[release-english]` alone may leave the learner's existing catalog at **1.18.1 / 109 lessons**. Do **not** report v1.19.0 content as LIVE until BOTH its production delivery and the relevant store's content-import result are confirmed.
+
+**Conditional owner-authorized release steps under SLE-MASTER-001 (NOT yet executed):**
+1. Recheck exact-current PR head and full `qa`. Obtain explicit owner authorization for **this** release PR and any live content import. Use the existing protected-main and `[release-english]` process only.
+2. Confirm the correct raw `content/curriculum-1.19.0-candidate.json` is downloadable and matches the approved candidate; it contains instructional content only, not learner records.
+3. Perform approved site release, then use authenticated Parent View's **Curriculum content importer** on the intended browser/account: select JSON, Preview, verify `Add 12 / Update 0 / Skip 109 / Conflict 0` and version `1.19.0`, then explicitly confirm import. If a different legitimate prior version is installed, **STOP** to reconcile its preview, never guess or override.
+4. Verify the actual learner catalog reports version 1.19.0, **121 lessons** including the 12 new IDs; check one Writing and one Reading/Vocabulary task, real draft restore, pending Writing review and a brief narrow-screen view. Do not assume that a successful import in one browser automatically updates any other browser's local package store.
+5. Record separately: `CI PASS`, `DEPLOYED`, `IMPORTED`, `LIVE CATALOG VERIFIED`. Retain rollback path. Do not claim actual Gemini review, spoken proficiency or device checks until independently observed.
+
+**Scope protection:** no Math Firebase target, billing, secrets, historical attempt regrading, bulk account data import or automatic syllabus rewrite. A failed preview or unexpected storage state means **NO-GO**, not a forced import.
+
+**Document control:** This file records current evidence and a handoff for the already governed release process; it is not a second SLE release policy. The authoritative source remains `SLE-MASTER-001` on `main`.
