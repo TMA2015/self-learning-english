@@ -63,6 +63,7 @@ const fullRegressionTests=[
   "curriculum-170-grammar-b1-wave2a.cjs",
   "curriculum-180-grammar-b1-wave2b.cjs",
   "curriculum-190-grammar-b1-wave2c.cjs",
+  "curriculum-1190-release.cjs",
   "curriculum-1100-vocab-reading-b1-density-wave1.cjs",
   "curriculum-1110-listening-writing-density-wave2.cjs",
   "curriculum-batch02.cjs",
