@@ -46,7 +46,7 @@ export function todayLearningPath(
  const unitOfLast=activeAttempts.map(a=>primaryUnitForLesson(a.lessonId)).find(u=>!!u);
  const focusUnit=requestedUnit!=='auto'&&availableUnits.includes(requestedUnit)
   ?requestedUnit:unitOfLast&&availableUnits.includes(unitOfLast)?unitOfLast:availableUnits[0];
- const inFocus=bySequence.filter(l=>!focusUnit||primaryUnitForLesson(l.id)===focusUnit);
+ const inFocus=bySequence.filter(l=>primaryUnitForLesson(l.id)&&(!focusUnit||primaryUnitForLesson(l.id)===focusUnit));
  const newest=new Map<string,TodayAttempt>();
  for(const a of activeAttempts)if(!newest.has(a.lessonId))newest.set(a.lessonId,a);
  const reviewable=inFocus
