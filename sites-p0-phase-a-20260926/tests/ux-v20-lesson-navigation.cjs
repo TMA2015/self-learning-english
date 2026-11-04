@@ -9,8 +9,18 @@ assert.equal((source.match(/className="foundation-lesson-id"/g)||[]).length,4,'I
 assert.ok(source.includes('<span className="foundation-lesson-id">{l.id}</span><strong>{l.title}</strong>'),'catalog titles preserve names and expose IDs');
 assert.ok(source.includes('<span className="foundation-lesson-id">{lesson.id}</span> · {lesson.module}'),'focused player displays source ID');
 assert.ok(css.includes('.foundation-lesson-id{')&&css.includes('overflow-wrap:anywhere'),'readable IDs must fit mobile cards');
-assert.equal((source.match(/onPointerEnter=\{\(\)=>prefetchLesson\(/g)||[]).length,3,'three Catalog/recent prefetch surfaces');
-assert.equal((source.match(/onFocus=\{\(\)=>prefetchLesson\(/g)||[]).length,3,'prefetch must also support keyboard focus');
+// Preserve all three original prefetch sites (Recent Work plus both Catalog layouts).
+assert.equal((source.match(/onPointerEnter=\{\(\)=>prefetchLesson\(l\.id/g)||[]).length,3,'original three Catalog/recent prefetch surfaces remain');
+assert.equal((source.match(/onFocus=\{\(\)=>prefetchLesson\(l\.id/g)||[]).length,3,'original keyboard-focus prefetch surfaces remain');
+// The new Today panel adds exactly three corresponding pointer and keyboard sites.
+for(const kind of ['resume','review','learn']){
+ assert.ok(source.includes('onPointerEnter={()=>prefetchLesson(todayPlan.'+kind+'!.lesson.id'),
+  'Today '+kind+' must prefetch on pointer hover');
+ assert.ok(source.includes('onFocus={()=>prefetchLesson(todayPlan.'+kind+'!.lesson.id'),
+  'Today '+kind+' must prefetch on keyboard focus');
+}
+assert.equal((source.match(/onPointerEnter=\{\(\)=>prefetchLesson\(/g)||[]).length,6,'only three new Today surfaces plus three existing catalog surfaces');
+assert.equal((source.match(/onFocus=\{\(\)=>prefetchLesson\(/g)||[]).length,6,'all six hover surfaces must also support keyboard focus');
 assert.ok(source.includes("lessonCache=useRef(new Map<string,Promise<LessonView>>())"),'bounded session-only immutable lesson cache');
 assert.ok(source.includes("lessonCache.current.size>12"),'prevent unbounded in-memory lesson prefetch');
 assert.ok(source.includes("if(lessonCache.current.get(key)===task)lessonCache.current.delete(key)"),'failed prefetch must allow retry');
