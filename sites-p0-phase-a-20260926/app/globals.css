@@ -254,6 +254,8 @@ body {
 
 /* Q2A: preserve authored line breaks without interpreting academic prose. */
 .foundation-explanation p,.foundation-vi-help p,.foundation-example-card p{white-space:pre-line;overflow-wrap:anywhere}
+/* Show original passage paragraph breaks, including advanced C1 long-form Reading, without changing scored content. */
+.foundation-passage p{white-space:pre-line;overflow-wrap:anywhere;line-height:1.8;max-width:74ch}
 .foundation-explanation p{margin:0 0 .85rem}.foundation-explanation p:last-child{margin-bottom:0}
 .foundation-learn-block,.foundation-question,.foundation-question .field{min-width:0}
 .foundation-question textarea{box-sizing:border-box;max-width:100%;width:100%}
