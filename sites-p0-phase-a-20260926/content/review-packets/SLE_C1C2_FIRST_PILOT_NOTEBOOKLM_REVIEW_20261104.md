@@ -25,7 +25,7 @@ CORE 2 — STRATEGY
 1. Identify the decision under debate and the author's position at the beginning and end.
 2. Mark the boundary between facts (what was counted), interpretations (what the figures suggest) and recommendations (what should happen next).
 3. Read concessions precisely: "encouraging without being decisive" acknowledges positive results while rejecting overconfidence.
-4. Infer only what the text warrants. For example, a survey of participants cannot describe nonparticipants, but that does not prove that nonparticipants dislike the project.
+4. Infer only what the text warrants. If a narrator reports that an editor rejected one headline, do not assume the editor rejected the entire article; distinguish the stated objection from an imagined wider motive.
 5. When choices contain strong words such as "all", "never", "proves", or "should close", check whether the author made such a categorical claim.
 
 WORKED DEMONSTRATION — DIFFERENT CONTEXT FROM PRACTICE
