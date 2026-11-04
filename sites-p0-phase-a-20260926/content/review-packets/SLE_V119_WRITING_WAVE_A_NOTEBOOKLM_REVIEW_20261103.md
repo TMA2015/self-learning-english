@@ -1,7 +1,7 @@
 # SLE v1.19.0 — Writing First: Academic Review Packet (Wave A)
 
 **Packet ID:** `SLE-V119-WRI-WAVEA-20261103`  
-**Status:** `DRAFT_FOR_INDEPENDENT_NOTEBOOKLM_REVIEW` — not an academic PASS and not a published curriculum  
+**Status:** `INDEPENDENT_NOTEBOOKLM_ACADEMIC_PASS_20261104` — content approved, no mandatory fixes; production NO-GO until Wave B and technical QA  
 **Source authority:** `SLE-MASTER-001 v1.1.0` on `TMA2015/self-learning-english/main`  
 **Base package:** `1.18.1` (109 lessons / 913 activities, per verified current release; no historical item mutation)  
 **Planned version:** `1.19.0` (not yet imported or deployed)  
@@ -10,6 +10,14 @@
 **Learning audience:** lower-secondary learners working toward A2–B1 objectives; CEFR tags are *instructional targets*, not placement or certification.  
 **Rights:** all model texts, tasks and distractors in this packet are newly authored original examples; no third-party reading passage or media is copied; no audio needed in this Writing wave.  
 **Implementation boundary:** no deploy, no import, no learner data operations until academic verdict and implementation QA. Do not insert these draft IDs in a released curriculum yet.  
+
+## Independent review reconciliation — 2026-11-04
+
+**Packet ID:** SLE-V119-WRI-WAVEA-20261103. **NotebookLM verdict:** PASS. **Academic adoption:** GO. **Production release:** NO-GO pending Wave B, full 1.19.0 candidate composition, regression QA and owner release authorization.
+
+All six Writing lessons `WRI-A2-05`, `WRI-A2-06`, `WRI-B1-04`, `WRI-B1-05`, `WRI-B1-06`, `WRI-B1-07` received per-lesson PASS. **Required changes: NONE**. The independent review confirmed all 42 objective MCQ keys, six independent extended responses, task/model independence, position-neutral feedback, reasonable A2→B1 writing progression and no auto-scored Writing CEFR claims. Two **optional** ideas (non-blocking): B1 qualification chunks in Wave B Vocabulary and a future compact 4-step UI visual indicator. No change to Wave A instructional or scored items was made during reconciliation. Full review verdict was supplied by the owner after NotebookLM review, and is distinct from build/browser/production verification.
+
+**Next current temporary review source:** `SLE_V119_VOC_REA_WAVE_B_NOTEBOOKLM_REVIEW_20261104.md`. The previous Wave A packet is now a retained audit source, not a second live standard.
 
 ## 1. Scope, sequencing and avoid-duplication rationale
 
