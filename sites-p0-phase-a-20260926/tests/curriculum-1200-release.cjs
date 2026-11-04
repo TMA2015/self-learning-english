@@ -118,8 +118,8 @@ class QuotaStorage{
   }
  }
  assert.equal((await svc.catalog()).version,'1.20.0');
- assert.equal((await svc.lesson('REA-C1-01')).lesson.cefrTarget,'C1');
- assert.equal((await svc.lesson('VOC-C2-01')).lesson.cefrTarget,'C2');
+ assert.equal((await svc.lesson('REA-C1-01')).lesson.cefr_target,'C1');
+ assert.equal((await svc.lesson('VOC-C2-01')).lesson.cefr_target,'C2');
  assert.equal((await svc.lesson('REA-A1-01','1.18.1')).lesson.id,'REA-A1-01');
  assert.deepEqual((await r.attempts('v120-qa-owner')).map(x=>x.version),['1.18.1']);
  const storage=new QuotaStorage(5*1024*1024);
