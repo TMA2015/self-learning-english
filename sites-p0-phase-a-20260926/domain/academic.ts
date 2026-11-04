@@ -54,8 +54,8 @@ function validateShape(raw:unknown):string[]{
  if(!Array.isArray(s.lessons)||s.lessons.length<seed.lessons.length||s.lessons.length>MAX_CURRICULUM_LESSONS)return [...errors,`Expected between ${seed.lessons.length} and ${MAX_CURRICULUM_LESSONS} lessons.`];
  const ids=new Set<string>(),activityIds=new Set<string>();
  for(const l of s.lessons){
-  if(!l||typeof l.id!=='string'||!/^(GRA|VOC|REA|LIS|WRI|SPE|PRO)-(A1|A2|B1|B2)-\d{2,3}$/.test(l.id)||moduleForPrefix[l.id.slice(0,3)]!==l.module||ids.has(l.id)){errors.push('Invalid/duplicate lesson ID or mismatched domain.');continue}ids.add(l.id);
-  if(!['A1','A2','B1','B2'].includes(l.cefr_target)||!nonempty(l.title,180)||!strings(l.objectives)||!nonempty(l.explanation?.en)||!Array.isArray(l.examples)||!l.examples.every(x=>nonempty(x)))errors.push(`${l.id}: invalid lesson metadata.`);
+  if(!l||typeof l.id!=='string'||!/^(GRA|VOC|REA|LIS|WRI|SPE|PRO)-(A1|A2|B1|B2|C1|C2)-\d{2,3}$/.test(l.id)||moduleForPrefix[l.id.slice(0,3)]!==l.module||ids.has(l.id)){errors.push('Invalid/duplicate lesson ID or mismatched domain.');continue}ids.add(l.id);
+  if(!['A1','A2','B1','B2','C1','C2'].includes(l.cefr_target)||!nonempty(l.title,180)||!strings(l.objectives)||!nonempty(l.explanation?.en)||!Array.isArray(l.examples)||!l.examples.every(x=>nonempty(x)))errors.push(`${l.id}: invalid lesson metadata.`);
   if(!Array.isArray(l.activities)||!l.activities.length||l.activities.length>24){errors.push(`${l.id}: invalid activities.`);continue}
   for(const q of l.activities){
    if(!q||!nonempty(q.id,100)||!q.id.startsWith(l.id+'-')||activityIds.has(q.id)){errors.push(`${l.id}: invalid/duplicate activity ID.`);continue}activityIds.add(q.id);
