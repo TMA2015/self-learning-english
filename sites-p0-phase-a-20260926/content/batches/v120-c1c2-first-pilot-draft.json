@@ -1,0 +1,288 @@
+{
+  "packet_id": "SLE-C1C2-FIRST-PILOT-20261104",
+  "status": "ACADEMIC_REVIEW_PENDING",
+  "base_candidate": "1.19.0 (PR #83; not released)",
+  "target_candidate": "1.20.0 (only after NotebookLM PASS and release ordering)",
+  "scope": "One C1 Reading and one C2 Vocabulary challenge lesson; independent advanced exploration without forced prerequisites",
+  "lessons": [
+    {
+      "id": "REA-C1-01",
+      "module": "reading",
+      "cefr_target": "C1",
+      "title": "Read between the lines: stance, evidence and qualified support",
+      "estimated_minutes": 30,
+      "prerequisites": [
+        "REA-B2-01 (advisory, not locked)"
+      ],
+      "objectives": [
+        "Identify a writer's qualified position in a demanding school-policy commentary without treating criticism as outright rejection.",
+        "Distinguish observed figures, survey limitations, implied concerns and recommendations, citing precise wording.",
+        "Explain how concessive and evaluative wording guides readers toward a cautious interpretation."
+      ],
+      "explanation": {
+        "en": "CORE 1 — GOAL AND CONTEXT\nAdvanced readers distinguish the writer's overall stance from isolated negative comments. The context is a fictional school committee considering whether to continue a pilot project.\n\nCORE 2 — STRATEGY\n1. Identify the decision under debate and the author's position at the beginning and end.\n2. Mark the boundary between facts (what was counted), interpretations (what the figures suggest) and recommendations (what should happen next).\n3. Read concessions precisely: \"encouraging without being decisive\" acknowledges positive results while rejecting overconfidence.\n4. Infer only what the text warrants. For example, a survey of participants cannot describe nonparticipants, but that does not prove that nonparticipants dislike the project.\n5. When choices contain strong words such as \"all\", \"never\", \"proves\", or \"should close\", check whether the author made such a categorical claim.\n\nWORKED DEMONSTRATION — DIFFERENT CONTEXT FROM PRACTICE\nA fictional community group introduces a weekend bicycle rack. Its notice says: \"Several cyclists have welcomed the new racks; nevertheless, their position near the entrance deserves another look.\" The writer supports the initiative in principle yet questions one design decision. A careful reader would NOT infer that the group wants the racks removed. The contrasting words \"nevertheless\" and \"deserves another look\" signal a limited reservation.\n\nTYPICAL PITFALL\nReading one complaint as proof that a writer opposes an entire policy. Instead, identify which part is supported, which part is questioned, and how strongly.\n\nUNSCORED TRANSFER\nAfter practice, write a 70–100-word explanation of whether the Eastbridge writer supports the studio, quoting two distinct pieces of wording. This is optional self-practice, not scored reading evidence or a verified C1 designation."
+      },
+      "examples": [
+        "Independent model: A proposal for a weekend bicycle rack was welcomed, yet its entrance location needed review. The writer supports the plan conditionally; she does not demand that it stop.",
+        "Think-aloud cue: Ask whether a phrase states a fact, signals a reservation, reports a possible explanation or recommends a next step.",
+        "Self-check: Can you name one supported claim and one claim that the passage does NOT justify?"
+      ],
+      "reading_asset": {
+        "id": "PASS-REA-C1-01",
+        "title": "Why the lunchtime studio should remain an experiment",
+        "body": "WHY THE LUNCHTIME STUDIO SHOULD REMAIN AN EXPERIMENT\n\nWhen Eastbridge School converted a spare classroom into a lunchtime studio, the announcement promised a place where pupils could sketch, build prototypes or simply develop an idea without being graded. Its most enthusiastic supporters called it \"a room for everyone\". Six weeks later, the school committee is considering making the arrangement permanent. That is a reasonable possibility, but a premature conclusion.\n\nThe early figures are encouraging without being decisive. Forty-six pupils visited at least once; nineteen returned on three or more occasions. Those figures tell us that the room attracted interest. They do not tell us whether interest was widespread, whether regular visitors benefited more than occasional visitors, or whether pupils who stayed away had been offered a realistic opportunity to come.\n\nA questionnaire completed by twenty-eight visitors was similarly positive: twenty-four described the studio as useful. It would be perverse to dismiss their experience. Yet the questionnaire, distributed inside the room, could scarcely reveal the views of pupils who never entered it. One need not be an expert in statistics to notice that omission. The headline \"Most pupils support the studio\", which appeared in an early newsletter draft, therefore goes further than the evidence allows.\n\nNor is the room's purpose as straightforward as its publicity suggests. Some visitors say that the chance to talk through an idea is its main advantage. Others appreciate somewhere quiet enough to concentrate. Both groups have a defensible claim on the space, but a single room cannot satisfy them simultaneously without some thought about how it is used. A notice asking everyone to \"work creatively\" does little to settle the issue.\n\nNone of this amounts to an argument for closing the studio. Equally, keeping the door unlocked is not quite the same as making the opportunity accessible. Pupils with lunchtime responsibilities or activities may never be free during the studio's advertised hours. The committee could try two quieter sessions each week, allow a limited number of supervised visits at another time, and invite feedback from pupils who have not attended. It could then examine not merely how many visits take place but whose participation changes.\n\nEnthusiasm is worth preserving; it is not a substitute for inquiry. The choice is not between celebrating the project and obstructing it. It is between treating the pilot as a promising idea that can still be improved and treating applause as if it were the evidence that no improvement is needed."
+      },
+      "questions": [
+        {
+          "type": "single_choice",
+          "stem": "Which description best captures the writer's overall position on the studio?",
+          "options": [
+            "It should close because the initial survey was misleading.",
+            "It should become permanent immediately because visitors liked it.",
+            "It has promise, but a decision should follow broader evidence and adjustments.",
+            "Its purpose is impossible to determine, so no decision can be made."
+          ],
+          "answer": 2,
+          "tag": "reading.gist",
+          "why": "The writer describes the early results as encouraging, rejects closure, and recommends further inquiry before treating the pilot as settled.",
+          "next": "Compare the opening qualification with the final recommendation rather than relying on a single critical sentence."
+        },
+        {
+          "type": "single_choice",
+          "stem": "What do the figures forty-six visitors and nineteen repeat visitors establish?",
+          "options": [
+            "A number of pupils tried the studio, and some came back repeatedly.",
+            "The majority of all Eastbridge pupils used the studio.",
+            "Repeat visitors improved their creative work more than others.",
+            "Pupils who did not attend had no interest in the project."
+          ],
+          "answer": 0,
+          "tag": "reading.detail",
+          "why": "The counts establish attendance and repeat visits only; the passage explicitly warns against inferring school-wide reach or benefits.",
+          "next": "Separate what was counted from what the school still needs to investigate."
+        },
+        {
+          "type": "single_choice",
+          "stem": "What is implied by the remark that one need not be an expert in statistics to notice the survey's omission?",
+          "options": [
+            "The questionnaire was deliberately dishonest.",
+            "Only trained statisticians are capable of judging the studio.",
+            "Visitors were instructed to give positive answers.",
+            "The gap in whose views were collected is sufficiently obvious to undermine a school-wide claim."
+          ],
+          "answer": 3,
+          "tag": "reading.inference",
+          "why": "The visitors-only questionnaire excludes nonparticipants; the writer uses understated criticism to highlight this evident sampling limitation.",
+          "next": "Look for the group missing from the survey before judging the tone."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Why does the writer contrast visitors who want to talk with visitors who want quiet?",
+          "options": [
+            "To prove that collaborative creativity damages concentration.",
+            "To reveal a practical tension that enthusiasm alone will not resolve.",
+            "To suggest that the quieter group should receive exclusive access.",
+            "To claim that neither group has a legitimate reason to visit."
+          ],
+          "answer": 1,
+          "tag": "reading.author_purpose",
+          "why": "The passage states that both groups have defensible claims, but one space requires a plan for competing uses.",
+          "next": "Locate the sentence immediately after the contrasting preferences."
+        },
+        {
+          "type": "single_choice",
+          "stem": "In this context, what does the writer chiefly mean by saying an unlocked door is not quite the same as an accessible opportunity?",
+          "options": [
+            "The studio needs a more secure lock.",
+            "The studio's equipment must all be free of charge.",
+            "Access depends on practical availability, not merely a physical entrance.",
+            "Visitors should receive permission letters before entering."
+          ],
+          "answer": 2,
+          "tag": "reading.inference",
+          "why": "The following sentence describes pupils whose lunchtime responsibilities or activities prevent them from attending.",
+          "next": "Use the concrete example after the metaphor to identify its intended meaning."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Which proposed action most directly addresses the survey limitation identified earlier?",
+          "options": [
+            "Invite feedback from pupils who have not attended.",
+            "Replace every pupil questionnaire with a staff vote.",
+            "Count only the number of repeat visitors.",
+            "Publicise the original satisfaction percentage more prominently."
+          ],
+          "answer": 0,
+          "tag": "reading.detail",
+          "why": "The final recommendation explicitly calls for responses from nonparticipants, the group omitted from the visitor-only questionnaire.",
+          "next": "Match each proposed change to the specific problem it would help investigate."
+        },
+        {
+          "type": "single_choice",
+          "stem": "The phrase 'treating applause as if it were the evidence' mainly criticises which practice?",
+          "options": [
+            "Listening to students before making a decision.",
+            "Organising celebrations too soon after school events.",
+            "Measuring visits instead of counting pupils.",
+            "Mistaking enthusiastic approval for proof that no further evaluation is necessary."
+          ],
+          "answer": 3,
+          "tag": "reading.vocabulary_in_context",
+          "why": "'Applause' figuratively represents positive reaction; the writer objects to using enthusiasm as conclusive policy evidence.",
+          "next": "Read the contrast between 'promising idea' and 'no improvement is needed'."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Which inference about the writer is most defensible?",
+          "options": [
+            "She believes creativity should be graded to measure improvement.",
+            "She regards a revised, more inclusive trial as preferable to either immediate closure or unqualified permanence.",
+            "She thinks regular visitors should decide the policy for everyone.",
+            "She has concluded that a quieter room would solve every objection."
+          ],
+          "answer": 1,
+          "tag": "reading.inference",
+          "why": "The writer proposes adjustments, more inclusive evidence and further inquiry while explicitly rejecting the simple celebration-versus-closure choice.",
+          "next": "Choose the interpretation that reflects both the concessions and the practical recommendations."
+        }
+      ]
+    },
+    {
+      "id": "VOC-C2-01",
+      "module": "vocabulary",
+      "cefr_target": "C2",
+      "title": "Fine shades of meaning: tact, emphasis and qualified judgment",
+      "estimated_minutes": 30,
+      "prerequisites": [
+        "VOC-B2-01 (advisory, not locked)"
+      ],
+      "objectives": [
+        "Distinguish close but non-equivalent statements by degree of certainty, concession, emphasis and interpersonal force.",
+        "Select formulations that preserve a speaker's intended stance without increasing or reducing the strength of a claim.",
+        "Recognise when subtle understatement, partial concession and tactful disagreement are appropriate to context."
+      ],
+      "explanation": {
+        "en": "CORE 1 — GOAL AND CONTEXT\nC2-level precision is not about collecting rare idioms. It involves choosing a phrase whose implication, emphasis and tone fit a specific audience and situation. These are advanced language targets, not a promise that one lesson establishes C2 ability.\n\nCORE 2 — MEANING AND PRAGMATIC FORCE\n1. Distinguish *degree*: \"not entirely convinced\" expresses a reservation, not complete rejection.\n2. Distinguish *scope*: \"some of the evidence\" is not interchangeable with \"all the evidence\".\n3. Distinguish *concession*: \"not without merit\" offers cautious credit while leaving space for objections.\n4. Distinguish *foregrounding*: \"not so much X as Y\" places the emphasis on Y; it need not declare X irrelevant.\n5. Distinguish *interpersonal effect*: a diplomatic correction may convey disagreement as accurately as a blunt one, but with less threat to cooperation.\n6. Avoid excessive politeness or vague hedging if the situation calls for a clear, firm warning.\n\nWORKED DEMONSTRATION — INDEPENDENT MODEL\nIn a fictional museum committee meeting, a member says, \"I wouldn't dismiss the exhibition, but the labels need revision.\" This is not a promise that the exhibition is excellent, nor a request to cancel it. The speaker rejects an extreme conclusion while identifying one concrete defect. A faithful paraphrase is: \"The idea remains worth considering, provided its labels are improved.\" The phrase \"provided\" makes the condition explicit.\n\nCOMMON PITFALL\nTreating \"could be clearer\", \"is unclear\" and \"is misleading\" as interchangeable. The first often signals a gentle suggestion, the second describes a deficiency, and the third may imply the audience is led toward a false conclusion.\n\nUNSCORED TRANSFER\nChoose a short opinion you genuinely disagree with. Write two replies: one respectfully qualified and one deliberately direct. Explain which one better suits a school committee discussion. This exercise is self-reflection, not an automatic C2 writing score."
+      },
+      "examples": [
+        "Independent model: 'I would not dismiss the museum exhibition' rejects an extreme negative judgment without endorsing everything about the exhibition.",
+        "Meaning contrast: 'The labels could be clearer' is milder than 'The labels are misleading'; the two may lead to different practical responses.",
+        "Strategy: Preserve the speaker's attitude and degree of commitment before choosing a stylistically elegant synonym."
+      ],
+      "questions": [
+        {
+          "type": "single_choice",
+          "stem": "A report says, 'I wouldn't go so far as to call the science-fair trial a failure.' Which paraphrase preserves its stance most accurately?",
+          "options": [
+            "The trial was successful in every meaningful respect.",
+            "The trial may have fallen short, but 'failure' is too strong a conclusion.",
+            "The trial was an unequivocal disaster.",
+            "There is no basis on which anyone could evaluate the trial."
+          ],
+          "answer": 1,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "The speaker resists the categorical label 'failure' without asserting success or denying that evaluation is possible.",
+          "next": "Identify which extreme claim is being rejected, and avoid adding a positive verdict."
+        },
+        {
+          "type": "single_choice",
+          "stem": "The student newspaper says the survey 'offers tentative support' for a proposal. Which claim best retains that degree of confidence?",
+          "options": [
+            "The survey proves the proposal will work.",
+            "The survey refutes every objection to the proposal.",
+            "The proposal's success is statistically inevitable.",
+            "The results are consistent with the proposal's promise but are not conclusive."
+          ],
+          "answer": 3,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "'Tentative support' allows a cautious positive reading without proof, inevitability or a comprehensive rebuttal.",
+          "next": "Test whether each option turns limited evidence into certainty."
+        },
+        {
+          "type": "single_choice",
+          "stem": "A committee member says, 'My concern is not so much the garden's cost as the lack of clarity about who maintains it.' What is foregrounded?",
+          "options": [
+            "Unclear maintenance responsibility is the main concern; cost is less central.",
+            "Cost is the only serious objection to the garden.",
+            "There are absolutely no financial implications.",
+            "Maintenance has already been delegated successfully."
+          ],
+          "answer": 0,
+          "tag": "vocabulary.collocations",
+          "why": "'Not so much X as Y' places relative emphasis on Y rather than proving X irrelevant.",
+          "next": "Identify the phrase after 'as' and preserve the comparative emphasis."
+        },
+        {
+          "type": "single_choice",
+          "stem": "Which reply gives qualified approval of a revised school timetable rather than unconditional agreement?",
+          "options": [
+            "The timetable is perfect and should never change.",
+            "We should reject the timetable without discussion.",
+            "I could support it, provided travel arrangements are reviewed first.",
+            "Every concern has been resolved already."
+          ],
+          "answer": 2,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "'Could support ... provided' makes support contingent on a specified review.",
+          "next": "Locate the explicit condition and distinguish it from general enthusiasm."
+        },
+        {
+          "type": "single_choice",
+          "stem": "A debate summary says a team leader 'conceded that the opposing group had identified a genuine limitation'. What does 'conceded' imply here?",
+          "options": [
+            "She reluctantly acknowledged a valid point despite defending a different overall position.",
+            "She enthusiastically adopted every proposal made by her opponents.",
+            "She proved that no limitations existed.",
+            "She deliberately concealed information from the audience."
+          ],
+          "answer": 0,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "In argumentation, 'concede' typically means acknowledging a point that complicates one's own position, without necessarily accepting the opponent's full conclusion.",
+          "next": "Separate admitting a limited point from abandoning the entire argument."
+        },
+        {
+          "type": "single_choice",
+          "stem": "A teacher describes an email to a visiting musician as 'a shade too direct'. Which interpretation best captures the criticism?",
+          "options": [
+            "It is dangerously offensive and requires disciplinary action.",
+            "Its tone is slightly more blunt than would be appropriate.",
+            "It is completely impossible to understand.",
+            "It is too indirect for the reader to know the request."
+          ],
+          "answer": 1,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "'A shade too' is a mild scalar criticism; it suggests a small but meaningful adjustment to tone.",
+          "next": "Check whether the modifier weakens or intensifies the criticism."
+        },
+        {
+          "type": "single_choice",
+          "stem": "An editorial states, 'The criticism of the new library app is not entirely unwarranted.' What does this most carefully communicate?",
+          "options": [
+            "Every complaint about the app has been proven.",
+            "The app's designers intentionally misled users.",
+            "No one has raised a credible concern.",
+            "At least some criticism has a reasonable basis, although it need not all be justified."
+          ],
+          "answer": 3,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "'Not entirely unwarranted' uses qualified negation to recognise some legitimacy without endorsing every complaint.",
+          "next": "Translate the double qualification into a limited positive claim rather than an absolute."
+        },
+        {
+          "type": "single_choice",
+          "stem": "A club organiser writes, 'A private discussion would have been preferable to publicly correcting the new volunteer.' Which reading best captures the intended interpersonal effect?",
+          "options": [
+            "The public correction was certainly made with malicious intent.",
+            "The organiser approves of public correction as the preferred approach.",
+            "The organiser expresses a retrospective preference without directly accusing the person of bad motives.",
+            "The organiser believes volunteers should never receive feedback."
+          ],
+          "answer": 2,
+          "tag": "vocabulary.meaning_in_context",
+          "why": "'Would have been preferable' signals a counterfactual preference and tactful criticism of the approach, not an accusation about intention.",
+          "next": "Distinguish an evaluation of an action from an unsupported claim about the actor's motives."
+        }
+      ]
+    }
+  ]
+}
