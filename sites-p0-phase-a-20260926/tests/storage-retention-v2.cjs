@@ -51,9 +51,12 @@ class BrowserStore{
  await repo.addPackage({...oldPkg,bundle:{}});
  await repo.start('local-family',historicalAttempt);
  await repo.start('family-friends',otherOwner);
+ const writingAttempt={...historicalAttempt,id:'review-001',rootId:'review-001',
+  lessonId:'WRI-A1-02',status:'pending_review',answers:{},submittedAt:2};
+ await repo.start('local-family',writingAttempt);
  await repo.addPackage({...newPkg,bundle:{}});
  const p=await repo.previewRetention();
- assert.equal(p.protectedLessonCount,2);
+ assert.equal(p.protectedLessonCount,3);
  assert.equal(p.retainedVersions.length,2);
  assert.equal(storage.deletions,0);
  const before=storage.getItem('g-learning:english:v1:academic:packages');
@@ -64,18 +67,36 @@ class BrowserStore{
  assert.equal(storage.deletions,0);
  const after=JSON.parse(storage.getItem('g-learning:english:v1:academic:packages'));
  assert.equal(after.schema,2);
- assert.equal(after.records[0].source.lessons.length,2);
+ assert.equal(after.records[0].source.lessons.length,3);
  assert.equal(after.records[1].source.lessons.length,next.lessons.length);
- assert.equal((await repo.attempts('local-family')).length,1);
+ assert.equal((await repo.attempts('local-family')).length,2);
  assert.equal((await repo.attempts('family-friends')).length,1);
  const fresh=new BrowserLocalAcademicRepository(storage);
  const history=(await fresh.packages()).find(x=>x.version===old.schema_version);
- assert.equal(history.source.lessons.length,2);
+ assert.equal(history.source.lessons.length,3);
+ assert.deepEqual(history.source.rubrics,old.rubrics,'Historic review rubrics must remain exact');
  const service=academicService(fresh,new BrowserLocalLearningRepository(storage),'local-family');
  const view=await service.lesson('REA-A1-01',old.schema_version);
  assert.equal(view.version,old.schema_version);
- await service.draft('legacy-001',{});
- assert.equal((await fresh.attempts('local-family'))[0].status,'started');
+ const authored=old.lessons.find(x=>x.id==='REA-A1-01');
+ const correctAnswers=Object.fromEntries(authored.activities.map(q=>[
+  q.id,q.type==='single_choice'?q.answer.correct_option_id:
+   q.type==='short_answer'?q.answer.accepted_answers[0]:'Independent response'
+ ]));
+ await service.draft('legacy-001',correctAnswers);
+ const graded=await service.submit('legacy-001');
+ assert.equal(graded.status,'scored');
+ assert.equal(graded.version,old.schema_version,'Submission must keep the original content version');
+ assert(graded.results.length>0&&graded.results.every(x=>x.correct===true));
+ const prompt=old.lessons.find(l=>l.id==='WRI-A1-02');
+ const rubricId=prompt.activities.find(q=>q.type==='extended_response').rubric_id;
+ const scores=Object.fromEntries(old.rubrics[rubricId].criteria.map(c=>[c,3]));
+ const adult=await service.approve('review-001','Clear feedback on the original task',scores,true);
+ assert.equal(adult.status,'approved');
+ assert.equal(adult.version,old.schema_version);
+ assert.equal(adult.review.source,'adult-review');
+ const attemptsAfter=await fresh.attempts('local-family');
+ assert.equal(attemptsAfter.length,2,'All original attempts remain and are independently updated');
  const pAgain=await fresh.previewRetention();
  await fresh.compactRetention(pAgain.token,true);
  assert.equal(storage.deletions,0,'Compaction must never remove browser keys');
