@@ -16,6 +16,29 @@ export function attemptStatusLabel(attempt?:AttemptNavigationRecord):string{
  default:return 'Not started';
  }
 }
+export type LessonProgressKind='not_started'|'draft'|'submitted'|'unassessed';
+export type LessonProgress={kind:LessonProgressKind;hasDraft:boolean;awaitingReview:boolean};
+/** Green check means a previous submission, never CEFR attainment or mastery. */
+export function lessonProgressForLesson(attempts:readonly AttemptNavigationRecord[],lessonId:string):LessonProgress{
+ const history=attempts.filter(a=>a.lessonId===lessonId);
+ const hasDraft=history.some(a=>a.status==='started');
+ const submitted=history.filter(a=>a.status==='scored'||a.status==='pending_review'||a.status==='approved')
+  .sort((a,b)=>b.createdAt-a.createdAt||b.id.localeCompare(a.id));
+ if(submitted.length)return {kind:'submitted',hasDraft,awaitingReview:submitted[0].status==='pending_review'};
+ const latest=latestAttemptForLesson(history,lessonId);
+ return {kind:latest?.status==='started'?'draft':latest?.status==='unassessed'?'unassessed':'not_started',hasDraft,awaitingReview:false};
+}
+export function summarizeLessonProgress(lessons:readonly LessonNavigationRecord[],attempts:readonly AttemptNavigationRecord[]){
+ const result={total:lessons.length,submitted:0,draft:0,unassessed:0,notStarted:0};
+ for(const lesson of lessons)switch(lessonProgressForLesson(attempts,lesson.id).kind){
+  case 'submitted':result.submitted++;break;
+  case 'draft':result.draft++;break;
+  case 'unassessed':result.unassessed++;break;
+  default:result.notStarted++;
+ }
+ return result;
+}
+
 export function recentSkillWork<T extends AttemptNavigationRecord>(attempts:readonly T[],lessons:readonly LessonNavigationRecord[],skill?:string,limit=4){
  const visible=lessons.filter(l=>!skill||l.module===skill);
  const work=visible.flatMap(lesson=>{const attempt=latestAttemptForLesson(attempts,lesson.id);return attempt?[{lesson,attempt}]:[]});
