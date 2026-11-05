@@ -16,9 +16,17 @@ const root=path.resolve(__dirname,'..');
       name:'StoragePanelUITest',fileName:()=> 'bundle.js'}}
  });
  const bundle=fs.readFileSync(path.join(out,'bundle.js'),'utf8');
+ const errorTrap=`<script>
+  window.addEventListener('error',e=>{
+   document.getElementById('sle-test-result').textContent='FAIL_SCRIPT '+String(e.message)+' @ '+String(e.filename)+':'+String(e.lineno);
+  });
+  window.addEventListener('unhandledrejection',e=>{
+   document.getElementById('sle-test-result').textContent='FAIL_REJECTION '+String(e.reason?.stack||e.reason);
+  });
+ </script>`;
  const html='<!doctype html><html><head><meta charset="utf-8"></head><body>'+
   '<div id="app"></div><div id="sle-test-result">STARTED</div>'+
-  '<script>'+bundle.replaceAll('</script>','<\\/script>')+'</script></body></html>';
+  errorTrap+'<script>'+bundle.replaceAll('</script>','<\\/script>')+'</script></body></html>';
  const bin=['google-chrome','google-chrome-stable','chromium','chromium-browser']
   .map(name=>{try{return cp.execFileSync('which',[name],{encoding:'utf8'}).trim()}catch{return ''}})
   .find(Boolean);
