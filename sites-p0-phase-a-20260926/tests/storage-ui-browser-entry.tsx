@@ -105,7 +105,11 @@ const pkg=async(version:string)=>{
    await wait(()=>status().includes('Recovery verified:'),'restore UI finished');
    assert((await repo.attempts(owner)).length===1,'historical attempt restored through React UI');
    const lessons=await repo.packages();
-   assert(lessons.find(x=>x.version==='1.18.0')?.source.lessons.length===1,'historical content restored');
+   // Recovery faithfully restores the pre-compaction source file selected
+   // by the parent. Older full packages may be compacted again only after
+   // another explicit on-device verification, never during restore.
+   assert(lessons.find(x=>x.version==='1.18.0')?.source.lessons.some(l=>l.id===lessonId),
+    'version-pinned historical lesson restored from parent-selected backup');
    assert(localStorage.getItem(PREFIX+':recovery-pending-v2')===null,'no pending transaction marker');
    await upload('sle-v2-recovery-file',content,'test-downloaded-recovery-v2.json');
    await wait(()=>status().includes('already contains learner data'),'restore duplicate blocked');
