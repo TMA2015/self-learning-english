@@ -118,9 +118,12 @@ export async function previewLocalRecoveryV2(text:string):Promise<{
  const store=currentStore();
  const {file,scope}=await parseRecovery(text);
  const errors:string[]=[];
- if(store.getItem(RECOVERY_MARKER))errors.push('An interrupted recovery exists. Preserve this browser data; seek owner assistance.');
- if(occupied(store).length)errors.push('This browser already contains learner data. Recovery is allowed only into an empty learner profile, to prevent overwriting real progress.');
- const token=errors.length?'':await sha256(JSON.stringify({checksum:file.sha256,current:entriesIn(store)}));
+ const interrupted=store.getItem(RECOVERY_MARKER);
+ if(interrupted&&interrupted!==file.sha256)
+  errors.push('An interrupted recovery requires its original V2 file. Do not clear this browser.');
+ if(!interrupted&&occupied(store).length)
+  errors.push('This browser already contains learner data. Recovery is allowed only into an empty learner profile, to prevent overwriting real progress.');
+ const token=errors.length?'':await sha256(JSON.stringify({checksum:file.sha256,current:entriesIn(store),interrupted}));
  return {valid:errors.length===0,errors,token,
   attempts:scope.attempts,versions:scope.versions,exportedAt:file.exportedAt};
 }
@@ -132,6 +135,7 @@ export async function restoreLocalRecoveryV2(text:string,token:string,confirmed:
  if(!preview.valid||token!==preview.token)throw Error('Recovery source or target changed. Preview again before restoring.');
  const {file,scope}=await parseRecovery(text);
  const store=currentStore();
+ const initialMarker=store.getItem(RECOVERY_MARKER);
  const previous=new Map<string,string|null>();
  for(const e of file.entries)previous.set(e.key,store.getItem(e.key));
  let markerWritten=false;
@@ -156,9 +160,11 @@ export async function restoreLocalRecoveryV2(text:string,token:string,confirmed:
     else if(prior!==undefined)store.setItem(e.key,prior)}
    catch{rollbackOkay=false}
   }
-  if(markerWritten&&rollbackOkay){
+  if(markerWritten&&rollbackOkay&&!initialMarker){
    try{store.removeItem(RECOVERY_MARKER);markerWritten=false}catch{rollbackOkay=false}
   }
-  throw Error(rollbackOkay?'Recovery failed; earlier browser content was restored.': 'Recovery interrupted. Do not study or clear data; preserve this browser profile and contact the project owner.');
+  throw Error(rollbackOkay&&!initialMarker
+   ?'Recovery failed; earlier browser content was restored.'
+   :'Recovery remains interrupted. Retry using the same verified V2 file; do not clear this browser profile.');
  }
 }

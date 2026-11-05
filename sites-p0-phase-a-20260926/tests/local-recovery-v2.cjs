@@ -90,11 +90,22 @@ const scored={id:'saved-real-attempt',packageId:old.package_id,version:old.schem
  const occupied=await recovery.previewLocalRecoveryV2(data.text);
  assert.equal(occupied.valid,false);
  assert(occupied.errors.some(e=>/already contains learner data/.test(e)));
- // Interrupted recovery blocks further preview; never treat partial state as valid.
- faulty.setItem(recovery.RECOVERY_MARKER,'interrupted');
+ // An unrelated recovery marker blocks files from other export sessions.
+ faulty.setItem(recovery.RECOVERY_MARKER,'other-file-digest');
  assert.equal((await recovery.previewLocalRecoveryV2(data.text)).valid,false);
+ // A matching marker resumes a partially completed transfer rather than
+ // leaving an unusable learner profile after a browser crash.
+ const interrupted=new Store();use(interrupted);
+ interrupted.setItem(recovery.RECOVERY_MARKER,file.sha256);
+ interrupted.setItem(key,file.entries.find(e=>e.key===key).value);
+ const continued=await recovery.previewLocalRecoveryV2(data.text);
+ assert.equal(continued.valid,true);
+ const finished=await recovery.restoreLocalRecoveryV2(data.text,continued.token,true);
+ assert.equal(finished.attempts,1);
+ assert.equal(interrupted.getItem(recovery.RECOVERY_MARKER),null);
+ assert.deepEqual(JSON.parse(interrupted.getItem(attemptKey)),[scored]);
  console.log(JSON.stringify({result:'PASS',gate:'local-recovery-v2',
   portableHistoricalLesson:true,checkedSHA256:true,freshBrowserRestore:true,
-  protectedExistingLearner:true,rollbackOnWriteFailure:true,interruptedMarkerGuard:true,
+  protectedExistingLearner:true,rollbackOnWriteFailure:true,interruptedMarkerGuard:true,interruptedRecoveryResumable:true,
   remoteUpload:false,productionWrites:0}));
 })().catch(e=>{console.error(e);process.exitCode=1});
