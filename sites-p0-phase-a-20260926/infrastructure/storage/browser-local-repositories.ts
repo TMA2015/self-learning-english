@@ -193,11 +193,11 @@ export class BrowserLocalAcademicRepository implements AcademicRepository {
   }
 
   async packages():Promise<AcademicPackage[]>{
-    const rows=this.storedDocument().records;
+    const rows=this.storedDocument().records as (StoredAcademicPackage & {bundle?:AcademicPackage['bundle']})[];
     // Older profiles may still contain full packages. Compact records retain the
     // immutable source/digest/version and reconstruct only the derived bundle.
-    return rows.map(row=>{
-      if(row.bundle!==undefined)return row;
+    return rows.map((row):AcademicPackage=>{
+      if(row.bundle!==undefined)return row as AcademicPackage;
       if(!Array.isArray(row.source?.lessons)||!row.source?.course?.id)
         throw new Error('Local curriculum package is incomplete. Preserve this browser data; do not clear it.');
       const key=row.version+'|'+row.digest;

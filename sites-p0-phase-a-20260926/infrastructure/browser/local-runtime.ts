@@ -1,7 +1,7 @@
 import curriculum1181 from '../../content/curriculum-1.18.1-candidate.json';
 import {academicService,sourceDigest} from '../../application/academic-service';
 import {learningService} from '../../application/learning-service';
-import {mapSeed,validateSeed,type Seed} from '../../domain/academic';
+import {mapSeed,validateSeed,compareVersions,type Seed} from '../../domain/academic';
 import {derivePracticeProgress} from '../../domain/practice-progress';
 import {myCourses} from '../../domain/course-p1';
 import {BrowserLocalAcademicRepository,BrowserLocalCourseSelectionRepository,BrowserLocalLearningRepository,type BrowserKeyValueStorage} from '../storage/browser-local-repositories';
@@ -37,15 +37,17 @@ function repositories(){
 }
 
 async function ensureCurriculum(){
-  const {academic}=repositories();
+  const {academic,storage}=repositories();
+  if(storage.getItem('g-learning:english:v1:recovery-pending-v2'))
+    throw new Error('An interrupted local recovery was detected. Do not edit or clear learning data; contact the project owner.');
+
   const source=curriculum1181 as unknown as Seed;
   const errors=validateSeed(source);
   if(errors.length)throw new Error('Bundled curriculum is invalid: '+errors.join(' '));
   const available=await academic.packages();
   // Never re-install the old bundled baseline once the user has imported a
   // newer active curriculum and compacted away unreferenced baseline content.
-  const newer=available.some(row=>row.version!==source.schema_version
-     && row.version.split('.').map(Number).some((part,i)=>part>(source.schema_version.split('.').map(Number)[i]??0)));
+  const newer=available.some(row=>compareVersions(row.version,source.schema_version)>0);
   const current=available.find(row=>row.version===source.schema_version);
   const digest=await sourceDigest(source);
   if(newer&&!current){
