@@ -49,6 +49,9 @@ const scored={id:'saved-real-attempt',packageId:old.package_id,version:old.schem
  assert(data.bytes>1000&&data.bytes<recovery.RECOVERY_MAX_BYTES);
  const file=JSON.parse(data.text);
  assert.equal(file.schemaVersion,2);
+ const verified=await recovery.verifyLocalRecoveryV2(data.text);
+ assert.equal(verified.sha256,file.sha256);
+ assert.equal(verified.attempts,1);
  assert.equal(file.entries.find(e=>e.key===key).value.includes('referenced-lessons'),true);
  // Recovery into an unoccupied device that has already bootstrapped current lessons.
  const target=new Store();use(target);

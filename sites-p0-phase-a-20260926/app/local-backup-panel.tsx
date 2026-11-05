@@ -2,7 +2,7 @@
 import {useState} from 'react';
 import {browserLearningEnabled} from '../infrastructure/browser/client-services';
 import {exportLocalBackup,LOCAL_RESTORE_LIMITATION} from '../infrastructure/browser/local-backup';
-import {exportLocalRecoveryV2,previewLocalRecoveryV2,restoreLocalRecoveryV2} from '../infrastructure/browser/local-recovery';
+import {exportLocalRecoveryV2,verifyLocalRecoveryV2,previewLocalRecoveryV2,restoreLocalRecoveryV2} from '../infrastructure/browser/local-recovery';
 import {localAcademicRuntime} from '../infrastructure/browser/local-runtime';
 
 type RetentionPreview=Awaited<ReturnType<Awaited<ReturnType<typeof localAcademicRuntime>>['academic']['previewRetention']>>;
@@ -20,6 +20,7 @@ export function LocalBackupPanel(){
  const [recoveryText,setRecoveryText]=useState('');
  const [restorePreview,setRestorePreview]=useState<RecoveryPreview|null>(null);
  const [fullBackupExported,setFullBackupExported]=useState(false);
+ const [backupExpected,setBackupExpected]=useState('');
  if(!browserLearningEnabled())return null;
  async function run(action:()=>Promise<void>){
   setBusy(true);setStatus('');
@@ -36,8 +37,20 @@ export function LocalBackupPanel(){
   await run(async()=>{
    const file=await exportLocalRecoveryV2();
    download(file.text,file.filename);
+   setBackupExpected((JSON.parse(file.text) as {sha256:string}).sha256);
+   setFullBackupExported(false);
+   setStatus('Complete V2 recovery JSON prepared ('+file.versions+' content versions, '+file.attempts+' attempts). Verify the saved file below before cleanup. Nothing was uploaded.');
+  });
+ }
+ async function verifyDownloaded(file:File|undefined){
+  setFullBackupExported(false);
+  if(!file)return;
+  await run(async()=>{
+   const recovered=await verifyLocalRecoveryV2(await file.text());
+   if(!backupExpected||recovered.sha256!==backupExpected)
+    throw Error('Selected file is not the current downloaded backup. Download a new V2 recovery JSON and verify again.');
    setFullBackupExported(true);
-   setStatus('Complete V2 recovery JSON prepared ('+file.versions+' content versions, '+file.attempts+' attempts). Store it privately. Nothing was uploaded.');
+   setStatus('Saved recovery file verified against the current export. Compaction can now be confirmed.');
   });
  }
  async function inspect(){
@@ -51,9 +64,12 @@ export function LocalBackupPanel(){
  async function compact(){
   if(!retention||!fullBackupExported)return;
   await run(async()=>{
+   const current=await exportLocalRecoveryV2();
+   if(!backupExpected||(JSON.parse(current.text) as {sha256:string}).sha256!==backupExpected)
+    throw Error('Learner data changed since backup. Download and verify a fresh complete V2 recovery file.');
    const {academic}=await localAcademicRuntime();
    await academic.compactRetention(retention.token,true);
-   setRetention(null);setFullBackupExported(false);
+   setRetention(null);setFullBackupExported(false);setBackupExpected('');
    const checked=await academic.previewRetention();
    setStatus('Curriculum storage compacted safely. One current full version; '+checked.protectedLessonCount+' historical lessons protected. Saved attempts are unchanged. Keep the downloaded recovery JSON.');
   });
@@ -88,13 +104,16 @@ export function LocalBackupPanel(){
    <button className="secondary-button" disabled={busy} onClick={()=>void exportReference()}>Export old reference JSON</button>
    <button className="secondary-button" disabled={busy} onClick={()=>void inspect()}>Preview storage cleanup</button>
   </div>
+  <label htmlFor="sle-v2-verify-file">Verify downloaded complete recovery file (before cleanup)</label>
+  <input id="sle-v2-verify-file" type="file" accept=".json,application/json" disabled={busy||!backupExpected}
+   onChange={e=>void verifyDownloaded(e.target.files?.[0])}/>
   {retention&&<div className="foundation-storage-inspection" aria-label="Storage cleanup preview">
    <p><strong>Current curriculum:</strong> {retention.activeVersion}. Full historical versions: {retention.beforeVersions.length}; versions still required: {retention.retainedVersions.length}. Historical lessons with actual work: {retention.protectedLessonCount}.</p>
    <p>Estimated curriculum storage: {Math.ceil(retention.estimatedBeforeBytes/1024)} → {Math.ceil(retention.estimatedAfterBytes/1024)} KiB. Browser space varies.</p>
    <p>Only curriculum sources not used by saved attempts can be reduced. Actual attempts, scores and drafts are not deleted.</p>
    <button className="secondary-button" disabled={busy||!fullBackupExported}
     onClick={()=>void compact()}>Confirm compact storage (after recovery download)</button>
-   {!fullBackupExported&&<small>Download the complete recovery JSON above before confirming.</small>}
+   {!fullBackupExported&&<small>Download and re-select the saved V2 recovery JSON above to verify it before confirming.</small>}
   </div>}
   <hr/>
   <p><strong>Restore:</strong> Select a complete V2 recovery JSON on an otherwise empty learner profile. Existing work cannot be overwritten.</p>

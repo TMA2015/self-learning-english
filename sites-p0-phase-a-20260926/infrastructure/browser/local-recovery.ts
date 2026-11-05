@@ -106,6 +106,12 @@ function occupied(store:Store):string[]{
   return e.value!=='[]'&&e.value!=='{}'&&e.value!==''&&e.value!=='null';
  }).map(e=>e.key);
 }
+export async function verifyLocalRecoveryV2(text:string):Promise<{
+ sha256:string;attempts:number;versions:number;exportedAt:string
+}>{
+ const {file,scope}=await parseRecovery(text);
+ return {sha256:file.sha256,attempts:scope.attempts,versions:scope.versions,exportedAt:file.exportedAt};
+}
 export async function previewLocalRecoveryV2(text:string):Promise<{
  valid:boolean;errors:string[];token:string;attempts:number;versions:number;exportedAt:string;
 }>{

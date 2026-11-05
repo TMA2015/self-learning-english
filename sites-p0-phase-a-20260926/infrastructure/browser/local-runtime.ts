@@ -26,6 +26,10 @@ function browserStorage():BrowserKeyValueStorage{
 
 function repositories(){
   const storage=browserStorage();
+  // Block ALL learner writes while any interrupted recovery marker remains.
+  // A partial multi-key restore cannot safely be treated as an active profile.
+  if(storage.getItem('g-learning:english:v1:recovery-pending-v2'))
+    throw new Error('An interrupted local recovery was detected. Preserve this browser data and contact the project owner.');
   if(cached?.storage===storage)return cached;
   cached={
     storage,
