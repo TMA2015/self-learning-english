@@ -41,8 +41,17 @@ async function ensureCurriculum(){
   const source=curriculum1181 as unknown as Seed;
   const errors=validateSeed(source);
   if(errors.length)throw new Error('Bundled curriculum is invalid: '+errors.join(' '));
-  const current=(await academic.packages()).find(row=>row.version===source.schema_version);
+  const available=await academic.packages();
+  // Never re-install the old bundled baseline once the user has imported a
+  // newer active curriculum and compacted away unreferenced baseline content.
+  const newer=available.some(row=>row.version!==source.schema_version
+     && row.version.split('.').map(Number).some((part,i)=>part>(source.schema_version.split('.').map(Number)[i]??0)));
+  const current=available.find(row=>row.version===source.schema_version);
   const digest=await sourceDigest(source);
+  if(newer&&!current){
+    curriculumWarning=undefined;
+    return;
+  }
   if(current){
     if(current.digest!==digest)throw new Error('Bundled curriculum version conflicts with local immutable content.');
     curriculumWarning=undefined;
