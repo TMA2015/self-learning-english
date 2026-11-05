@@ -6,6 +6,7 @@ const root=path.resolve(__dirname,'..');
 const out='.sites-runtime/storage-retention-v2';
 execFileSync(process.execPath,['node_modules/typescript/bin/tsc',
  'domain/storage-retention.ts','infrastructure/storage/browser-local-repositories.ts',
+ 'application/academic-service.ts',
  '--outDir',out,'--module','commonjs','--target','es2022',
  '--resolveJsonModule','--esModuleInterop','--skipLibCheck','--lib','es2022,dom'],
  {cwd:root,stdio:'inherit'});
