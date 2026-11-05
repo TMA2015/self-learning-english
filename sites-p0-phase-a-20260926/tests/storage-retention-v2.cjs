@@ -14,13 +14,15 @@ fs.writeFileSync(path.join(root,out,'package.json'),'{"type":"commonjs"}');
 const {retainReferencedLessons,decodePackageDocument}=require('../'+out+'/domain/storage-retention.js');
 const {BrowserLocalAcademicRepository}=require('../'+out+'/infrastructure/storage/browser-local-repositories.js');
 const {academicService}=require('../'+out+'/application/academic-service.js');
+const {createOptionOrder}=require('../'+out+'/domain/option-order.js');
 const {BrowserLocalLearningRepository}=require('../'+out+'/infrastructure/storage/browser-local-repositories.js');
 const old=require('../content/curriculum-1.18.0-candidate.json');
 const next=require('../content/curriculum-1.18.1-candidate.json');
 const asPackage=(src,at)=>({id:src.package_id,version:src.schema_version,digest:'digest-'+src.schema_version,source:src,at});
 const oldPkg=asPackage(old,1),newPkg=asPackage(next,2);
 const historicalAttempt={id:'legacy-001',packageId:old.package_id,version:old.schema_version,
- lessonId:'REA-A1-01',rootId:'legacy-001',status:'started',answers:{},createdAt:1,evidence:[]};
+ lessonId:'REA-A1-01',rootId:'legacy-001',status:'started',answers:{},createdAt:1,evidence:[],
+ optionOrder:createOptionOrder(old.lessons.find(l=>l.id==='REA-A1-01').activities)};
 const otherOwner={...historicalAttempt,id:'other-001',lessonId:'GRA-A1-01',rootId:'other-001'};
 const snapshot=retainReferencedLessons([oldPkg,newPkg],[historicalAttempt,otherOwner]);
 assert.equal(snapshot.activeVersion,next.schema_version);
@@ -51,7 +53,7 @@ class BrowserStore{
  await repo.addPackage({...oldPkg,bundle:{}});
  await repo.start('local-family',historicalAttempt);
  await repo.start('family-friends',otherOwner);
- const writingAttempt={...historicalAttempt,id:'review-001',rootId:'review-001',
+ const writingAttempt={...historicalAttempt,optionOrder:undefined,id:'review-001',rootId:'review-001',
   lessonId:'WRI-A1-02',status:'pending_review',answers:{},submittedAt:2};
  await repo.start('local-family',writingAttempt);
  await repo.addPackage({...newPkg,bundle:{}});
