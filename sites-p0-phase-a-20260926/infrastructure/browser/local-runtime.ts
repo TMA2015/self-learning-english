@@ -1,7 +1,7 @@
 import curriculum1181 from '../../content/curriculum-1.18.1-candidate.json';
 import {academicService,sourceDigest} from '../../application/academic-service';
 import {learningService} from '../../application/learning-service';
-import {mapSeed,validateSeed,type Seed} from '../../domain/academic';
+import {mapSeed,validateSeed,compareVersions,type Seed} from '../../domain/academic';
 import {derivePracticeProgress} from '../../domain/practice-progress';
 import {myCourses} from '../../domain/course-p1';
 import {BrowserLocalAcademicRepository,BrowserLocalCourseSelectionRepository,BrowserLocalLearningRepository,type BrowserKeyValueStorage} from '../storage/browser-local-repositories';
@@ -26,6 +26,10 @@ function browserStorage():BrowserKeyValueStorage{
 
 function repositories(){
   const storage=browserStorage();
+  // Block ALL learner writes while any interrupted recovery marker remains.
+  // A partial multi-key restore cannot safely be treated as an active profile.
+  if(storage.getItem('g-learning:english:v1:recovery-pending-v2'))
+    throw new Error('An interrupted local recovery was detected. Preserve this browser data and contact the project owner.');
   if(cached?.storage===storage)return cached;
   cached={
     storage,
@@ -37,12 +41,23 @@ function repositories(){
 }
 
 async function ensureCurriculum(){
-  const {academic}=repositories();
+  const {academic,storage}=repositories();
+  if(storage.getItem('g-learning:english:v1:recovery-pending-v2'))
+    throw new Error('An interrupted local recovery was detected. Do not edit or clear learning data; contact the project owner.');
+
   const source=curriculum1181 as unknown as Seed;
   const errors=validateSeed(source);
   if(errors.length)throw new Error('Bundled curriculum is invalid: '+errors.join(' '));
-  const current=(await academic.packages()).find(row=>row.version===source.schema_version);
+  const available=await academic.packages();
+  // Never re-install the old bundled baseline once the user has imported a
+  // newer active curriculum and compacted away unreferenced baseline content.
+  const newer=available.some(row=>compareVersions(row.version,source.schema_version)>0);
+  const current=available.find(row=>row.version===source.schema_version);
   const digest=await sourceDigest(source);
+  if(newer&&!current){
+    curriculumWarning=undefined;
+    return;
+  }
   if(current){
     if(current.digest!==digest)throw new Error('Bundled curriculum version conflicts with local immutable content.');
     curriculumWarning=undefined;

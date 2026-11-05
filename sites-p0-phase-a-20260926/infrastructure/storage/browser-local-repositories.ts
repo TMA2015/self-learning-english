@@ -1,4 +1,5 @@
 import {mapSeed,type AcademicAttempt,type AcademicPackage,type AcademicRepository} from '../../domain/academic';
+import {retainReferencedLessons,stripBundle,decodePackageDocument,type StoredAcademicPackage,type RetentionSnapshot} from '../../domain/storage-retention';
 import type {LearningRepository,LearnerState,Scope,Snapshot} from '../../domain/repository';
 import type {DiagnosticV2,Evidence} from '../../domain/learning-model';
 import {emptySelection,WRITING_COURSE_ID,type CourseSelection} from '../../domain/course-p1';
@@ -136,12 +137,67 @@ export class BrowserLocalAcademicRepository implements AcademicRepository {
   private packagesKey(){return `${this.prefix}:academic:packages`}
   private attemptsKey(owner:string){return ownerKey(this.prefix,owner,'academic-attempts')}
 
+  private storedDocument():{retention:boolean;records:StoredAcademicPackage[]}{
+    const raw=readJSON<unknown>(this.storage,this.packagesKey(),[]);
+    return decodePackageDocument(raw);
+  }
+
+  private allBrowserAttempts():AcademicAttempt[]{
+    // Never prune content when any owner-scoped attempt key may be unseen.
+    // window.localStorage supports enumeration. Minimal test mocks do not:
+    // they remain on the non-compacting legacy path until explicitly upgraded.
+    const storage=this.storage as BrowserKeyValueStorage & {length?:number;key?:(index:number)=>string|null};
+    if(typeof storage.length!=='number'||typeof storage.key!=='function')
+      throw new Error('Cannot inventory every local learner. Curriculum compaction blocked.');
+    const ownerPrefix=this.prefix+':owner:',suffix=':academic-attempts';
+    const attempts:AcademicAttempt[]=[];
+    for(let i=0;i<storage.length;i++){
+      const key=storage.key(i);
+      if(!key||!key.startsWith(ownerPrefix)||!key.endsWith(suffix))continue;
+      const saved=readJSON<unknown>(this.storage,key,[]);
+      if(!Array.isArray(saved)||saved.some(row=>!row||typeof row.version!=='string'||typeof row.lessonId!=='string'))
+        throw new Error('Invalid stored attempts; curriculum compaction blocked.');
+      attempts.push(...saved as AcademicAttempt[]);
+    }
+    return attempts;
+  }
+
+  private async retentionCandidate(){
+    const rows=this.storedDocument().records;
+    const attempts=this.allBrowserAttempts();
+    const snapshot=retainReferencedLessons(rows,attempts);
+    const input=this.storage.getItem(this.packagesKey());
+    const tokenData=JSON.stringify({input,attempts});
+    const bytes=new TextEncoder().encode(tokenData);
+    const digest=await crypto.subtle.digest('SHA-256',bytes);
+    const token=Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('');
+    return {snapshot,token};
+  }
+
+  async previewRetention():Promise<Omit<RetentionSnapshot,'records'>&{token:string}>{
+    const {snapshot,token}=await this.retentionCandidate();
+    const {records:_records,...summary}=snapshot;
+    return {...summary,token};
+  }
+
+  async compactRetention(token:string,confirmed:boolean):Promise<void>{
+    if(!confirmed||!token)throw new Error('Explicit confirmation and current storage preview are required.');
+    const current=await this.retentionCandidate();
+    if(current.token!==token)throw new Error('Local attempts or curriculum changed. Preview again before compacting.');
+    // One atomic replacement of only the curriculum key. No attempt data, owner
+    // state or browser key is deleted; QuotaExceededError keeps the old value.
+    writeJSON(this.storage,this.packagesKey(),{
+      schema:2 as const,retention:true as const,records:current.snapshot.records
+    });
+    this.derivedBundles.clear();
+  }
+
   async packages():Promise<AcademicPackage[]>{
-    const rows=readJSON<AcademicPackage[]>(this.storage,this.packagesKey(),[]);
+    const rows=this.storedDocument().records as (StoredAcademicPackage & {bundle?:AcademicPackage['bundle']})[];
     // Older profiles may still contain full packages. Compact records retain the
     // immutable source/digest/version and reconstruct only the derived bundle.
-    return rows.map(row=>{
-      if(row.bundle!==undefined)return row;
+    return rows.map((row):AcademicPackage=>{
+      if(row.bundle!==undefined)return row as AcademicPackage;
       if(!Array.isArray(row.source?.lessons)||!row.source?.course?.id)
         throw new Error('Local curriculum package is incomplete. Preserve this browser data; do not clear it.');
       const key=row.version+'|'+row.digest;
@@ -153,6 +209,7 @@ export class BrowserLocalAcademicRepository implements AcademicRepository {
   }
 
   async addPackage(value:AcademicPackage):Promise<void>{
+    const stored=this.storedDocument();
     const rows=await this.packages();
     const same=rows.find(row=>row.version===value.version);
     if(same){
@@ -160,16 +217,23 @@ export class BrowserLocalAcademicRepository implements AcademicRepository {
       return;
     }
     rows.push(clone(value));
-    // Both the source and its mapped exercise bundle are large; storing both
-    // for every immutable version can exhaust localStorage on family devices.
-    // Never delete a historical version or learner attempt. Only omit a bundle
-    // that can be rebuilt deterministically from its immutable source.
-    const compact=rows.map(row=>{
-      if(!Array.isArray(row.source?.lessons)||!row.source?.course?.id)return row;
-      const {bundle:_derived,...stored}=row;
-      return stored;
+    const serializable=rows.map(row=>{
+      // Some early test fixtures have an intentionally empty content source.
+      // Preserve those for the old test-only adapter path.
+      if(!Array.isArray(row.source?.lessons)||!row.source?.course?.id)return row as StoredAcademicPackage;
+      return stripBundle(row);
     });
-    writeJSON(this.storage,this.packagesKey(),compact);
+    if(stored.retention){
+      // After a learner has explicitly enabled retention, all future imports
+      // preserve the same rule. Every attempt owner is inventoried first.
+      const compact=retainReferencedLessons(serializable,this.allBrowserAttempts());
+      writeJSON(this.storage,this.packagesKey(),{schema:2,retention:true,records:compact.records});
+      this.derivedBundles.clear();
+    }else{
+      // Legacy profiles remain untouched until the user explicitly confirms
+      // compaction. The derived bundle is not persisted twice.
+      writeJSON(this.storage,this.packagesKey(),serializable);
+    }
   }
 
   async attempts(owner:string):Promise<AcademicAttempt[]>{

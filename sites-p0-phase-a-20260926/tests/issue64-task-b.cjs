@@ -12,7 +12,12 @@ class Storage{constructor(){this.map=new Map();this.fail=false;this.reads=0;this
  const r=await runtime.localAcademicRuntime();assert.deepEqual((await r.academic.packages()).map(p=>p.version),['1.18.1']);const cat=await r.service.catalog();assert.equal(cat.lessons.length,109);
  await r.service.start('GRA-A1-01','task-b-draft');await r.service.draft('task-b-draft',{});const before=JSON.stringify([...s.map]);s.fail=true;
  let success=false;await assert.rejects(async()=>{await r.service.draft('task-b-draft',{});success=true},/Could not save:.*no storage space/);assert.equal(success,false);assert.equal(JSON.stringify([...s.map]),before);s.fail=false;
- const ui=fs.readFileSync('app/local-backup-panel.tsx','utf8');assert(ui.includes('disabled>Restore unavailable'));assert(!ui.includes('restoreLocalBackup('));assert(!ui.includes('type="file"'));
+ const ui=fs.readFileSync('app/local-backup-panel.tsx','utf8');
+ assert(!ui.includes('restoreLocalBackup('),'Legacy reference-only JSON must never become directly restorable');
+ assert(ui.includes('previewLocalRecoveryV2(')&&ui.includes('restoreLocalRecoveryV2('),
+  'Complete V2 file requires integrity check and explicit fresh-profile recovery');
+ assert(ui.includes('fullBackupExported'),'Compaction must require a complete recovery download first');
+ assert(ui.includes('type="file"'),'V2 recovery is an explicit file-based action');
  const player=fs.readFileSync('app/foundation.tsx','utf8');assert(player.includes('editable&&!browserLearningEnabled()&&(recordingNow?'));assert(player.includes('recordings cannot be saved'));
- console.log('PASS: all restore inputs blocked before any storage read/write; fresh install only 1.18.1; current draft save works; quota rejects without success or last-good loss; UI restore disabled; browser recording disabled.');
+ console.log('PASS: all restore inputs blocked before any storage read/write; fresh install only 1.18.1; current draft save works; quota rejects without success or last-good loss; legacy V1 restore blocked; V2 recovery separately integrity-gated; browser recording disabled.');
 })().catch(e=>{console.error(e);process.exitCode=1});
