@@ -24,6 +24,7 @@ const coreTests=[
   "storage-retention-v2.cjs",
   "local-recovery-v2.cjs",
   "storage-chromium-smoke.cjs",
+  "storage-ui-browser.cjs",
   "content-quality.cjs",
   "version-aware-attempt-ux.cjs",
   "practice-progress-p2a.cjs",
