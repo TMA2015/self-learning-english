@@ -45,6 +45,15 @@ const scored={id:'saved-real-attempt',packageId:old.package_id,version:old.schem
  source.setItem(prefix+':owner:local-family:learner:primary:state',JSON.stringify({writing:'Original draft'}));
  const data=await recovery.exportLocalRecoveryV2();
  assert.equal(data.attempts,1);
+ // New/unknown local schema keys must not be silently omitted from a supposedly
+ // complete backup. Keep them untouched and block export/cleanup until reviewed.
+ const unknown=prefix+':owner:local-family:new-progress-schema';
+ source.setItem(unknown,JSON.stringify({attempt:'hidden-work'}));
+ await assert.rejects(()=>recovery.exportLocalRecoveryV2(),/Unrecognized English storage keys/);
+ assert.deepEqual(JSON.parse(source.getItem(unknown)),{attempt:'hidden-work'});
+ source.removeItem(unknown);
+ const resumed=await recovery.exportLocalRecoveryV2();
+ assert.equal(resumed.attempts,1);
  assert.equal(data.filename,recovery.RECOVERY_FILENAME);
  assert(data.bytes>1000&&data.bytes<recovery.RECOVERY_MAX_BYTES);
  const file=JSON.parse(data.text);

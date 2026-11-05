@@ -17,6 +17,16 @@ function acceptableKey(key:string){
  return suffix==='academic:packages'
   ||/^owner:[^:]+:(academic-attempts|course-selection|learner:[^:]+:(state|evidence|assessments|snapshots|legacy-imported))$/.test(suffix);
 }
+function assertNoUnknownEnglishKeys(storage:Store){
+ const unexpected:string[]=[];
+ for(let i=0;i<storage.length;i++){
+  const key=storage.key(i);
+  if(key?.startsWith(PREFIX+':')&&key!==RECOVERY_MARKER&&!acceptableKey(key))
+   unexpected.push(key);
+ }
+ if(unexpected.length)
+  throw Error('Unrecognized English storage keys detected ('+unexpected.length+'). Complete recovery must not silently omit learning data. Preserve this browser profile and review the storage schema before cleanup.');
+}
 function entriesIn(storage:Store):Entry[]{
  const rows:Entry[]=[];
  for(let n=0;n<storage.length;n++){
@@ -67,6 +77,7 @@ export async function exportLocalRecoveryV2():Promise<{
 }>{
  const storage=currentStore();
  if(storage.getItem(RECOVERY_MARKER))throw Error('A previous restore was interrupted. Do not export incomplete data.');
+ assertNoUnknownEnglishKeys(storage);
  const entries=entriesIn(storage);
  // Do not silently export a torn snapshot if a second browser tab updates
  // learner data while the recovery file is being assembled.
@@ -75,6 +86,9 @@ export async function exportLocalRecoveryV2():Promise<{
   throw Error('Learning data changed during export. Close other learning tabs and export again.');
  const validation=assertSourceAvailable(entries);
  const checksum=await sha256(JSON.stringify(entries));
+ assertNoUnknownEnglishKeys(storage);
+ if(JSON.stringify(entriesIn(storage))!==JSON.stringify(entries))
+  throw Error('Learning data changed during export. Close other learning tabs and export again.');
  const file:RecoveryFile={format:'g-learning-english.recovery',schemaVersion:2,
   exportedAt:new Date().toISOString(),entries,sha256:checksum};
  const text=JSON.stringify(file,null,2)+'\n';
@@ -118,6 +132,7 @@ export async function previewLocalRecoveryV2(text:string):Promise<{
  const store=currentStore();
  const {file,scope}=await parseRecovery(text);
  const errors:string[]=[];
+ assertNoUnknownEnglishKeys(store);
  const interrupted=store.getItem(RECOVERY_MARKER);
  if(interrupted&&interrupted!==file.sha256)
   errors.push('An interrupted recovery requires its original V2 file. Do not clear this browser.');
