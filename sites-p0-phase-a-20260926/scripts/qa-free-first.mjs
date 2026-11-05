@@ -22,6 +22,7 @@ const coreTests=[
   "stage3-browser-storage-compact.cjs",
   "stage3-quota-readonly-fallback.cjs",
   "storage-retention-v2.cjs",
+  "local-recovery-v2.cjs",
   "content-quality.cjs",
   "version-aware-attempt-ux.cjs",
   "practice-progress-p2a.cjs",
