@@ -26,7 +26,8 @@ const root=path.resolve(__dirname,'..');
  </script>`;
  const html='<!doctype html><html><head><meta charset="utf-8"></head><body>'+
   '<div id="app"></div><div id="sle-test-result">STARTED</div>'+
-  errorTrap+'<script>'+bundle.replaceAll('</script>','<\\/script>')+'</script></body></html>';
+  errorTrap+'<script>window.process={env:{NODE_ENV:"production",NEXT_PUBLIC_LEARNING_RUNTIME:"browser"}};</script>'+
+  '<script>'+bundle.replaceAll('</script>','<\\/script>')+'</script></body></html>';
  const bin=['google-chrome','google-chrome-stable','chromium','chromium-browser']
   .map(name=>{try{return cp.execFileSync('which',[name],{encoding:'utf8'}).trim()}catch{return ''}})
   .find(Boolean);
