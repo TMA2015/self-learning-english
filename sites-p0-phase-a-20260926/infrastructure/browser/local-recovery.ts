@@ -68,6 +68,11 @@ export async function exportLocalRecoveryV2():Promise<{
  const storage=currentStore();
  if(storage.getItem(RECOVERY_MARKER))throw Error('A previous restore was interrupted. Do not export incomplete data.');
  const entries=entriesIn(storage);
+ // Do not silently export a torn snapshot if a second browser tab updates
+ // learner data while the recovery file is being assembled.
+ const again=entriesIn(storage);
+ if(JSON.stringify(entries)!==JSON.stringify(again))
+  throw Error('Learning data changed during export. Close other learning tabs and export again.');
  const validation=assertSourceAvailable(entries);
  const checksum=await sha256(JSON.stringify(entries));
  const file:RecoveryFile={format:'g-learning-english.recovery',schemaVersion:2,
@@ -124,9 +129,14 @@ export async function restoreLocalRecoveryV2(text:string,token:string,confirmed:
  const previous=new Map<string,string|null>();
  for(const e of file.entries)previous.set(e.key,store.getItem(e.key));
  let markerWritten=false;
+ const changed:Entry[]=[];
  try{
   store.setItem(RECOVERY_MARKER,file.sha256);markerWritten=true;
-  for(const e of file.entries)store.setItem(e.key,e.value);
+  for(const e of file.entries){
+   if(store.getItem(e.key)===e.value)continue;
+   store.setItem(e.key,e.value);
+   changed.push(e);
+  }
   for(const e of file.entries)if(store.getItem(e.key)!==e.value)
    throw Error('Recovery verification mismatch.');
   store.removeItem(RECOVERY_MARKER);markerWritten=false;
@@ -135,7 +145,7 @@ export async function restoreLocalRecoveryV2(text:string,token:string,confirmed:
   // Roll back changed keys in reverse order. If recovery itself cannot roll
   // back (e.g. browser fault/quota), leave the marker to block false success.
   let rollbackOkay=true;
-  for(const e of [...file.entries].reverse()){
+  for(const e of [...changed].reverse()){
    try{const prior=previous.get(e.key);if(prior===null)store.removeItem(e.key);
     else if(prior!==undefined)store.setItem(e.key,prior)}
    catch{rollbackOkay=false}

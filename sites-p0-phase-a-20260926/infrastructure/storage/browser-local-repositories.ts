@@ -228,6 +228,7 @@ export class BrowserLocalAcademicRepository implements AcademicRepository {
       // preserve the same rule. Every attempt owner is inventoried first.
       const compact=retainReferencedLessons(serializable,this.allBrowserAttempts());
       writeJSON(this.storage,this.packagesKey(),{schema:2,retention:true,records:compact.records});
+      this.derivedBundles.clear();
     }else{
       // Legacy profiles remain untouched until the user explicitly confirms
       // compaction. The derived bundle is not persisted twice.
