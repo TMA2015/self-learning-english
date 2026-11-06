@@ -4,7 +4,7 @@
 **Academic status:** DRAFT / NOTEBOOKLM NOT YET REVIEWED / NOT IMPORT-READY  
 **Scope:** Proposed instructional enhancement to exactly four pre-existing lessons: REA-A2-01, REA-B1-01, LIS-A2-01 and LIS-B1-01; **no change** to scored questions, answers, source passages, scripts, recordings, grading, attempt IDs or historical packages  
 **Source checkpoint:** the owner's complete V2 Recovery held immutable original curriculum package **1.18.1**. Current application has released cumulative **1.20.0** (123 lessons / 1025 activities) and the owner has visually confirmed 123 catalog entries. Exact byte-level identity of these four individual lesson objects in 1.20.0 has **not** been independently compared in this audit; re-check before authoring the next immutable cumulative package.  
-**Authority:** effective SLE-MASTER-001 **v1.1.0** on GitHub main; approved 6-level / 60-Unit Framework v1.0. The v1.2 standards proposal on Draft PR #95 must be reviewed separately and is **not** active.  
+**Authority:** effective SLE-MASTER-001 **v1.2.0** on GitHub `main` (approved PR #95, commit `ebf85390271fe0bd3773b47c655552b2b98ea227`); approved 6-level / 60-Unit Framework v1.0. The new presentation and defect-prevention rules are normative for prospective changes; the existing 1.18.1/1.20.0 lesson packages remain immutable.  
 **Mapping from approved Unit guide:** REA-A2-01 and LIS-A2-01 → A2-U08; REA-B1-01 → B1-U06; LIS-B1-01 → B1-U04.  
 **Independence:** all proposed *worked-text* examples below are newly written, separate from graded passages and audio scripts. A text-only listening strategy example **must not be counted as hearing evidence**.  
 **Release constraint:** no runtime/importer modification or production deploy before academic disposition, schema/renderer tests, original source comparison, media checks and owner release authorization.
@@ -154,9 +154,9 @@ Be conservative about any claim that depends on a source file not supplied. Do *
 
 ## I. NotebookLM source operations for the *next* review round
 
-This packet is prepared but should **not** be activated while the SLE-MASTER v1.2 proposal packet on draft PR #95 is undergoing review. After the standard's independent review is complete:
+The v1.2 SLE-MASTER review is now complete and approved on GitHub. This is the **next** independent review round. Before activating this packet, synchronize NotebookLM's permanent SLE-MASTER source to **v1.2.0**, and remove the superseded temporary v1.2-review packet:
 
-**KEEP:** current permanent authoritative English sources (one effective SLE-MASTER version, approved Framework v1.0, durable academic baselines).  
+**KEEP:** current permanent authoritative English sources, including updated **SLE-MASTER-001 v1.2.0** (replace the old v1.1.0 permanent source rather than keeping both selected), the approved Framework v1.0 and durable academic baselines.  
 **REMOVE:** previously selected temporary SLE-MASTER review packet and earlier batch temporary source(s).  
 **ADD:** only this one Markdown four-lesson review packet; never import source JSON directly into NotebookLM.
 
