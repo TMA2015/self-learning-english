@@ -1,8 +1,8 @@
 # Self-Learning English — Master Content & Self-Learning Standard
 
 **Standard ID:** SLE-MASTER-001  
-**Document version:** 1.1.0  
-**Status:** ACTIVE / SOLE NORMATIVE STANDARD. Academic adoption was completed by merged PR #71 on 2026-11-02; the owner unified SLE project rules on 2026-11-03. The current curriculum candidate is v1.18.1; this policy revision does not itself certify untested browser behavior.  
+**Document version:** 1.2.0-rc1 (PROPOSAL; 1.1.0 remains effective until NotebookLM review and owner adoption)  
+**Status:** DRAFT REVISION (PR ONLY), NOT YET ACTIVE. SLE-MASTER-001 v1.1.0 on `main` remains the SOLE ACTIVE NORMATIVE STANDARD until approval. This is the same canonical file, not a second policy. Academic adoption was completed by merged PR #71 on 2026-11-02; the owner unified SLE project rules on 2026-11-03. The current curriculum candidate is v1.18.1; this policy revision does not itself certify untested browser behavior.  
 **Prepared:** 2026-11-02; living revision 2026-11-03  
 **Canonical path:** `sites-p0-phase-a-20260926/docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md` in `TMA2015/self-learning-english`. Do not create a second copy under root `docs/`.  
 **Scope:** One unified Self-Learning English (SLE) GitHub + Firebase website/app. This is **not** the independent ChatGPT-in-chat English Tutor project.  
@@ -69,6 +69,22 @@ The four functions do **not** have to occupy four large screens. One compact ove
 **ADAPTIVE / OPTIONAL** and closed or lightweight by default: (a) prerequisite links, (b) graduated hints or guided attempts, (c) a simple reflection/self-check, (d) suggestions for spaced review. A hint MUST not reveal the active answer before submit. Review intervals are recommendations, not guarantees of memory retention. Guided activities are useful but MUST not delay motivated students who can proceed independently.
 
 **Suggested time/pace** is advisory, not a universal 30-minute requirement; a roughly 25–30-minute unit MAY be divided into two optional ~15-minute visits (A: Learn + Demonstrate; B: Independent Practice + Feedback) if the current platform can resume reliably. Do not claim that pause/resume exists unless tested; progress and next action must remain clear.
+
+### 2.1. Instructional presentation for independent learning (PROPOSED MUST, pending adoption)
+
+**Objective:** A learner must be able to understand *how* to use new knowledge without an adult translating long paragraphs or AI supplying the actual lesson. This subsection governs **teaching content and its rendered sequence**, not a mandatory new site theme or identical UI for all seven skills.
+
+- **Orient first:** A lesson begins with a short learner-facing goal, a familiar meaningful situation, and any genuinely needed prerequisite. State how a successful attempt differs from simply viewing the lesson. Avoid dumping all objectives, rules and optional help onto one screen without hierarchy.
+- **Explain in digestible steps:** Present concepts in coherent order (**meaning/strategy → form or method → when to use → when *not* to use**); use concise headings and small chunks that can be read on a phone. Complex B2–C2 ideas may require depth; do not impose a universal word/paragraph limit or over-simplify genuine nuance.
+- **Show the thinking:** An **independent** worked example must visibly explain one decision or inference and why common alternatives fail, not merely provide a model answer. The example cannot reproduce active scored stems, reading-passage facts, listening transcript clues, or correct options. Supporting visuals/tables are optional and must be accessible.
+- **Contrast likely mistakes:** Offer a short comparison, counterexample or common misconception when educationally useful. Make the conceptual distinction explicit (e.g., meaning vs grammar form, reading evidence vs assumption, actual hearing vs transcript, recognition vs productive use).
+- **Make practice a conscious transition:** Label the move from guided teaching to independent scored practice; give exact response-format instructions. Preserve active item/key secrecy and provide save/resume only when supported.
+- **Repair and continue:** After submit, show a brief evidence-based explanation for correct or wrong answers, one realistic next action, and optional targeted remediation/retry. Do not call an unreviewed Writing, Speaking or Pronunciation productively "mastered".
+- **Use appropriate presentation per skill:** Grammar uses meaning/contrast/form; Vocabulary uses contextual chunks, retrieval and new-context use; Reading separates gist, detail and defensible inference with a distinct model text; Listening foregrounds genuine audio with gist/detail phases but no pre-submit transcript or key cues; Writing explicitly demonstrates prompt analysis, brainstorming, outlining, drafting and revision; Speaking preparation and Pronunciation distinguish preparation/awareness from actually verified hearing or oral performance.
+- **Control cognitive load without artificial gates:** Default to one clear primary action per study stage, subordinate optional tips/translation/hints, readable typography, keyboard access, semantic headings/lists and safe Markdown rendering. Do not force every learner through more screens, audio replays or arbitrary durations to earn completion.
+- **Observable acceptance:** Review the actual rendered lesson (not just text length or the presence of JSON `examples`) for correct hierarchy, an independent explanatory model, task clarity, feedback and next action. Test at least one representative lesson of each materially different renderer and the current content version; legacy versioned attempts must retain their original educational data. A missing optional field alone is not a teaching-quality FAIL.
+
+**Scope / compatibility:** These are prospective authoring and rendering checks. They never authorize silently changing already scored items, legacy attempts, answer keys or imported packages. A new lesson revision uses the normal immutable content/release gates.
 
 ## 3. Learner experience, feedback and recovery (MUST)
 
@@ -228,6 +244,20 @@ A candidate is **not releasable** unless applicable gates below have recorded **
 
 **Policy scope note (2026-11-03):** From this date all operational CI, NotebookLM review, QA, deployment and release gates are governed here, not in separate dated documents. The prior Stage 3 `NO-GO` from NotebookLM remains preserved as historical evidence; current mitigations do not convert untested live Gemini/mobile UX into PASS. Owner-initiated release after full CI is treated as a deliberate acceptance of a limited post-release visual spot check only for backwards-compatible changes.
 
+### 10.1. Defect learning and recurrence prevention (PROPOSED MUST, pending adoption)
+
+Use the **existing** GitHub Issue/PR, source tests and standard; do not create a duplicate defect database or a separate governance document.
+
+For any learner-affecting defect involving wrong teaching, scoring, rendering, media, saving or release:
+1. **Record reproducible evidence and impact:** affected lesson/skill/version, safe steps or screenshot, expected vs actual behavior, observed learner impact, severity, source commit and whether data were touched. Never publish private responses, learner identity or credentials.
+2. **Identify a demonstrated root cause:** distinguish a confirmed code/content cause from a hypothesis. If not established, label `ROOT_CAUSE_UNVERIFIED` rather than invent certainty.
+3. **Repair minimally and protect history:** name changed files, old-version compatibility, possible content/attempt/media effects and rollback. Wrong keys, answer leakage, data loss and unverified real audio remain zero-tolerance blockers.
+4. **Add a proportional reproducible regression check:** unit/contract/real render/audio or storage test that fails for the old issue and passes for the fix. A visual problem requires a real UI spot-check after the production deployment, even if React/server tests pass.
+5. **Close only on evidence:** link test/CI on the exact relevant commit, authorized release/deploy when applicable, and the real learner-facing verification or an explicit `NOT_TESTED` limitation. Distinguish `FIXED_IN_CODE` from `DEPLOYED` and `LIVE_VERIFIED`.
+6. **Feed back one preventive lesson:** when a failure reveals a general weakness (stale version allowlist, absent media provenance, overloaded explanation, unsafe storage migration), incorporate a narrow test/checklist or propose a versioned amendment to **this** standard—never a standalone competing rulebook.
+
+Avoid blame-based or verbose incident reports for cosmetic/non-recurrent issues; one brief Issue/PR checklist suffices. Closure must never conceal a known blocker or claim a corrected learning outcome without actual evidence.
+
 ## 11. Updating this single living standard (MUST)
 
 Use `major.minor.patch`: **major** for a policy redesign or changed evidence meaning; **minor** for new or substantially revised subject-specific obligations; **patch** for unambiguous clarifications/examples without changed requirements. Each change requires:
@@ -244,7 +274,7 @@ Use `major.minor.patch`: **major** for a policy redesign or changed evidence mea
 
 | Standard version | Date | Status | Summary | Approval / effective commit |
 | --- | --- | --- | --- | --- |
-| 1.0.0 | 2026-11-02 | ACADEMIC GO / ADOPTION ON PR #71 MERGE | Unified existing authoring/UX/evidence standards; incorporated NotebookLM mandatory amendments C1–C4 (baseline relationship, legacy Speaking projection, audio gate/masking, bilingual safe AI rendering). No curriculum/code release implied | Owner instructed adoption after review (2026-11-02); effective when GitHub PR #71 merge is confirmed; refer to its merge commit |
+| 1.2.0-rc1 | 2026-11-06 | PROPOSED / NOTEBOOKLM AND OWNER REVIEW PENDING | Add actionable instructional presentation quality checks (2.1) and recurring-defect prevention loop (10.1) without changing saved records or creating a second rulebook | Draft PR; not effective |\n| 1.0.0 | 2026-11-02 | ACADEMIC GO / ADOPTION ON PR #71 MERGE | Unified existing authoring/UX/evidence standards; incorporated NotebookLM mandatory amendments C1–C4 (baseline relationship, legacy Speaking projection, audio gate/masking, bilingual safe AI rendering). No curriculum/code release implied | Owner instructed adoption after review (2026-11-02); effective when GitHub PR #71 merge is confirmed; refer to its merge commit |
 
 ### Independent academic review record (2026-11-02)
 
@@ -279,6 +309,6 @@ The reviewer must evaluate the **entire candidate** against the five current per
 **Q9.** Is the evidence/progress taxonomy, versioned immutable attempt logic, MCQ shuffling and retake treatment coherent with current source contracts?  
 **Q10.** Are optional AI, child privacy, originality/media provenance and offline honesty requirements comprehensive and proportionate?  
 **Q11.** Does the single pipeline in Sections 9–10 give testable and efficient approval gates without implying that NotebookLM review automatically deploys code?  
-**Q12.** Identify exact contradictions, obsolete claims, missing blockers, ambiguous terminology or rules that cannot be implemented in the inspected runtime. For each give an exact corrected sentence or section and severity.
+**Q13 (1.2.0 proposal).** Do the instructional-presentation checks in Section 2.1 add measurable independent-learning quality without imposing a one-size-fits-all renderer, inaccessible complexity or content-key leakage? For each of seven skills, flag required refinements.  \n**Q14 (1.2.0 proposal).** Is the issue/root-cause/regression/owner-acceptance loop in Section 10.1 proportionate and testable, respecting the sole-source hierarchy and pre-existing release gates? Name any contradiction with Sections 9–11.  \n\n**Q12.** Identify exact contradictions, obsolete claims, missing blockers, ambiguous terminology or rules that cannot be implemented in the inspected runtime. For each give an exact corrected sentence or section and severity.
 
 **Required verdict:** `PASS` / `PASS_WITH_REQUIRED_CHANGES` / `FAIL` / `INSUFFICIENT_EVIDENCE`; return (a) critical contradictions and line/section references; (b) required corrected text; (c) optional improvements; (d) academic adoption GO/NO-GO; (e) engineering implementation GO/NO-GO **separately**. A PASS approves a policy proposal, not any pending curriculum/audio/code or production release.
