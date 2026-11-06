@@ -6,7 +6,7 @@
 **Prepared:** 2026-11-02; living revision 2026-11-03  
 **Canonical path:** `sites-p0-phase-a-20260926/docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md` in `TMA2015/self-learning-english`. Do not create a second copy under root `docs/`.  
 **Scope:** One unified Self-Learning English (SLE) GitHub + Firebase website/app. This is **not** the independent ChatGPT-in-chat English Tutor project.  
-**Current development checkpoint:** v1.18.1: 109 lessons, 913 activities and 38 currently approved baseline MP3s. Historical PR snapshots remain evidence, not separate release policy. Code in GitHub is not automatically the deployed version.
+**Curriculum status is release-specific, not a standing rule:** v1.18.1 (109 lessons / 913 activities) is the immutable pre-v1.20 baseline. Reviewed cumulative v1.20.0 (123 lessons / 1,025 activities) entered GitHub `main` on 2026-11-06. A Firebase deployment is separate from importing that package into any learner's browser; check its actual Parent View catalog rather than assuming that every device is on v1.20.0. Historical counts/media and PR snapshots remain evidence, not parallel policy.
 
 ## 0. Authority, document control, and adoption (MUST)
 
@@ -100,7 +100,7 @@ The four functions do **not** have to occupy four large screens. One compact ove
 
 ## 4. Common academic and assessment-authoring rules (MUST)
 
-**Target and audience.** CEFR A1/A2/B1/B2, when used, is a **target of instruction**, never an automatic grade certification. Match grammar, vocabulary, authentic communication, passage length and inference load to the stated target and young-learner topic suitability. Grade/age must not be equated automatically with CEFR.
+**Target and audience.** CEFR A1–C2, when used, is a **target of instruction**, never an automatic grade certification. Match grammar, vocabulary, authentic communication, passage length and inference load to the stated target and young-learner topic suitability. Grade/age must not be equated automatically with CEFR.
 
 **Originality and rights.** Author or appropriately license passages, dialogue, scripts, example tasks, model answers, and media. Check source provenance and record usage scope; do not copy copyrighted commercial exercise banks. Audio/voice production and third-party art need their own rights/provenance record. Owner attestation is evidence of authorization, not proof of exhaustive third-party clearance.
 
@@ -274,7 +274,7 @@ Use `major.minor.patch`: **major** for a policy redesign or changed evidence mea
 
 | Standard version | Date | Status | Summary | Approval / effective commit |
 | --- | --- | --- | --- | --- |
-| 1.2.0-rc1 | 2026-11-06 | PROPOSED / NOTEBOOKLM AND OWNER REVIEW PENDING | Add actionable instructional presentation quality checks (2.1) and recurring-defect prevention loop (10.1) without changing saved records or creating a second rulebook | Draft PR; not effective |\n| 1.0.0 | 2026-11-02 | ACADEMIC GO / ADOPTION ON PR #71 MERGE | Unified existing authoring/UX/evidence standards; incorporated NotebookLM mandatory amendments C1–C4 (baseline relationship, legacy Speaking projection, audio gate/masking, bilingual safe AI rendering). No curriculum/code release implied | Owner instructed adoption after review (2026-11-02); effective when GitHub PR #71 merge is confirmed; refer to its merge commit |
+| 1.2.0-rc1 | 2026-11-06 | PROPOSED / NOTEBOOKLM AND OWNER REVIEW PENDING | Add instructional presentation checks (2.1), recurring-defect prevention (10.1), and clarify source vs imported status / A1–C2 authoring scope; no learner-record change or second rulebook | Draft PR; not effective |\n| 1.0.0 | 2026-11-02 | ACADEMIC GO / ADOPTION ON PR #71 MERGE | Unified existing authoring/UX/evidence standards; incorporated NotebookLM mandatory amendments C1–C4 (baseline relationship, legacy Speaking projection, audio gate/masking, bilingual safe AI rendering). No curriculum/code release implied | Owner instructed adoption after review (2026-11-02); effective when GitHub PR #71 merge is confirmed; refer to its merge commit |
 
 ### Independent academic review record (2026-11-02)
 
