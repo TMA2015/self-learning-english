@@ -61,7 +61,9 @@ export class IndexedDBCurriculumVault {
    get.onsuccess=()=>{
     const same=get.result as StoredAcademicPackage|undefined;
     if(same){
-     if(!validRecord(same)||same.digest!==value.digest){
+     if(!validRecord(same)||same.digest!==value.digest||same.id!==value.id
+      ||same.archive!==value.archive
+      ||JSON.stringify(same.source)!==JSON.stringify(value.source)){
       conflict=true;
       tx.abort();
      }
