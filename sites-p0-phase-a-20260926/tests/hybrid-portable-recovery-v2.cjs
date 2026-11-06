@@ -74,7 +74,16 @@ const attempts=Array.from({length:73},(_,i)=>{
  // strict 5 MiB localStorage cap; this is a simulation, not measured Safari.
  const huge=new Store(5*1024*1024);
  const allFull=JSON.stringify([pkg(a),pkg(b),pkg(c)]);
- assert.throws(()=>huge.setItem(key,allFull),/quota exceeded/);
+ // The raw historic backup also contains drafts, results, state and evidence.
+ // The three deduplicated fixture packages alone are smaller than the actual
+ // iPad backup; simulate the realistic accumulated learner-state headroom.
+ assert.throws(()=>{
+  huge.setItem(key,allFull);
+  huge.setItem(learner,JSON.stringify(attempts));
+  const used=[...huge.items].reduce((n,[a,b])=>n+2*(a.length+b.length),0);
+  const extra=Math.max(512,Math.ceil((huge.limit-used)/2)+256);
+  huge.setItem(state,JSON.stringify({unsubmittedDraft:'x'.repeat(extra)}));
+ },/quota exceeded/);
  const fresh=new Store(5*1024*1024),freshVault=new Vault();
  await freshVault.putImmutable(pkg(c)); // ordinary site bootstrap goes to IDB
  const preview=await recovery.previewHybridRecoveryV2(hybrid.text,fresh,freshVault);
