@@ -12,18 +12,21 @@ function record(version:string,lessonCount:number){
 }
 const phase=new URL(location.href).searchParams.get('phase');
 (async()=>{
+ result.textContent='RUNNING_'+String(phase);
  const vault=browserCurriculumVault();
  const key='g-learning:english:v1:owner:local-family:academic-attempts';
  if(phase==='write'){
   localStorage.setItem(key,'[{"id":"immutable-historic","lessonId":"GRA-A2-0001","version":"1.18.1"}]');
   const exact=localStorage.getItem(key);
   check(await vault.putImmutable(record('1.18.1',109) as never)==='added','initial document not inserted');
+  result.textContent='FIRST_PACKAGE_WRITTEN';
   check(await vault.putImmutable(record('1.18.1',109) as never)==='identical','same digest should be idempotent');
   let conflict=false;
   try{await vault.putImmutable({...record('1.18.1',109),digest:'different-digest'} as never)}catch(e){conflict=String(e).includes('Immutable curriculum version conflict')}
   check(conflict,'same-version different digest must never overwrite');
   for(let i=2;i<=9;i++){
    check(await vault.putImmutable(record('1.18.'+i,i<=4?200:250) as never)==='added','multi-version commit '+i);
+   result.textContent='PACKAGE_'+i;
   }
   const docs=await vault.list();
   check(docs.length===9,'nine immutable version packages expected');
