@@ -40,4 +40,40 @@ const stars=render('* **Important** point\n* Another point');
 assert(stars.includes('<ul')&&stars.includes('<li><strong>Important</strong> point</li>'),'Asterisk bullets must render as list items');
 const newlines=render('Line one\r\nLine **two**');
 assert(newlines.includes('<br/>')&&newlines.includes('Line <strong>two</strong>'),'Soft line breaks must be preserved and escaped');
+// Regression: curriculum 1.18.1 must use the structured Grammar renderer.
+// This is a rendering-only assertion; it never changes grade, item or attempt data.
+const grammarSource=fs.readFileSync(path.join(__dirname,'../app/structured-grammar.tsx'),'utf8');
+const grammarJS=ts.transpileModule(grammarSource,{
+ fileName:'structured-grammar.tsx',
+ compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX}
+});
+const grammarModule={exports:{}};
+vm.runInNewContext(grammarJS.outputText,{
+ require:name=>{
+  if(name==='react/jsx-runtime')return require('react/jsx-runtime');
+  if(name==='./teaching-blocks')return {TeachingBlocks};
+  throw Error('Unexpected structured Grammar dependency: '+name);
+ },
+ exports:grammarModule.exports,module:grammarModule,
+},{timeout:3000});
+const {structuredGrammarAvailable,StructuredGrammarNotes}=grammarModule.exports;
+const v1181=require('../content/curriculum-1.18.1-candidate.json');
+const grammarLesson=v1181.lessons.find(l=>l.id==='GRA-A1-04');
+assert(grammarLesson,'Baseline Grammar lesson GRA-A1-04 must exist');
+assert.equal(structuredGrammarAvailable(grammarLesson,'1.18.0'),true);
+assert.equal(structuredGrammarAvailable(grammarLesson,'1.18.1'),true,
+ 'Regression: 1.18.1 structured Grammar notes must not fall back to raw Markdown');
+assert.equal(structuredGrammarAvailable(grammarLesson,'1.20.0'),true,
+ 'Future curriculum versions must render matching authored structured notes');
+assert.equal(structuredGrammarAvailable({...grammarLesson,explanation:{...grammarLesson.explanation,en:'Plain historical notes'}},'1.11.0'),false,
+ 'Historical plain-text notes must retain their fallback renderer');
+assert.equal(structuredGrammarAvailable({...grammarLesson,module:'reading'},'1.18.1'),false);
+const grammarMarkup=renderToStaticMarkup(React.createElement(StructuredGrammarNotes,{lesson:grammarLesson,showVi:false}));
+assert(grammarMarkup.includes('The core idea'),'Structured Grammar subheads must render');
+assert(grammarMarkup.includes('<strong>a/an</strong>'),'Authored bold terms must render semantically');
+assert(grammarMarkup.includes('<ul'),'Authored Grammar examples must become list items');
+assert(!grammarMarkup.includes('### Core rule / Meaning'),'Raw heading Markdown must not appear');
+assert(!grammarMarkup.includes('**a/an**'),'Raw emphasis markers must not appear');
+assert(!grammarMarkup.includes('<script>'),'No executable HTML may be emitted');
+
 console.log(JSON.stringify({result:'PASS',scope:'real TeachingBlocks React SSR markdown output and escaped HTML',aiProviderCalls:0}));

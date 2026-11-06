@@ -1,7 +1,11 @@
 import type {SeedLesson} from '../domain/academic';
 import {TeachingBlocks} from './teaching-blocks';
-/** Only the new immutable package opts in. Older attempts keep their original notes. */
-export function structuredGrammarAvailable(lesson:SeedLesson,version:string){return lesson.module==='grammar'&&['1.16.0','1.17.0','1.18.0'].includes(version)&&lesson.explanation.en.startsWith('### Core rule / Meaning')}
+/** Detect authored structured notes by format, not an outdated version allowlist.
+ * Older attempts with plain-text notes keep their original display; new versions
+ * reuse the same safe renderer without changing saved academic content. */
+export function structuredGrammarAvailable(lesson:SeedLesson,_version:string){
+ return lesson.module==='grammar'&&lesson.explanation.en.startsWith('### Core rule / Meaning');
+}
 export function grammarSections(markdown:string){
  return markdown.split('### ').slice(1).map(chunk=>{
   const known=['Core rule / Meaning','Remember / comparison (adaptive)','Remember'];
