@@ -94,6 +94,25 @@ const scored={id:'saved-real-attempt',packageId:old.package_id,version:old.schem
  await assert.rejects(()=>recovery.restoreLocalRecoveryV2(data.text,okay.token,true),/Recovery failed/);
  assert.deepEqual(faulty.items,before,'Failed restore must revert every modified browser key');
  assert.equal(faulty.getItem(recovery.RECOVERY_MARKER),null);
+ // Safari/iPad quota: the recovery file may verify correctly but storage
+ // cannot hold all historical curriculum sources. The restore must give the
+ // real cause, keep the original keys untouched, and never mask as success.
+ const quota=new Store();use(quota);
+ await new BrowserLocalAcademicRepository(quota).addPackage(asPackage(next));
+ const quotaBaseline=new Map(quota.items);
+ const quotaPreview=await recovery.previewLocalRecoveryV2(data.text);
+ const oldSet=quota.setItem.bind(quota);
+ quota.setItem=(key,value)=>{
+  if(key===attemptKey){const error=Error('storage is full');error.name='QuotaExceededError';throw error}
+  return oldSet(key,value);
+ };
+ await assert.rejects(()=>recovery.restoreLocalRecoveryV2(data.text,quotaPreview.token,true),
+  /Recovery could not fit in this browser storage \(quota exceeded\)/);
+ assert.deepEqual(quota.items,quotaBaseline,'Quota failure must rollback all changed keys');
+ assert.equal(quota.getItem(recovery.RECOVERY_MARKER),null);
+ assert.equal((await recovery.verifyLocalRecoveryV2(data.text)).attempts,1,
+  'Quota failure must not modify the original recovery source');
+ use(faulty); // Restore the original test browser profile after quota simulation.
  // An existing learning profile must not be overwritten, even with a valid recovery.
  faulty.setItem(prefix+':owner:local-family:academic-attempts',JSON.stringify([scored]));
  const occupied=await recovery.previewLocalRecoveryV2(data.text);
