@@ -41,6 +41,10 @@ async function until(fn,ms=12000){
   res.end(html);
  });
  async function visit(url){
+  // Chrome may leave a stale DevToolsActivePort after an earlier process
+  // exits. Never connect a new QA session to the previous process port.
+  const oldPortFile=path.join(profile,'DevToolsActivePort');
+  if(fs.existsSync(oldPortFile))fs.rmSync(oldPortFile,{force:true});
   const child=cp.spawn(chrome,['--headless=new','--no-sandbox','--disable-dev-shm-usage',
    '--disable-extensions','--disable-background-networking',
    '--no-first-run','--remote-debugging-port=0','--remote-allow-origins=*',
@@ -94,9 +98,15 @@ async function until(fn,ms=12000){
    throw Error('IndexedDB browser phase timed out; last progress='+last);
   }finally{
    if(socket&&socket.readyState===WebSocket.OPEN)socket.close();
-   if(child.exitCode===null)child.kill('SIGTERM');
-   await delay(450);
-   if(child.exitCode===null)child.kill('SIGKILL');
+   if(child.exitCode===null){
+    const stopped=new Promise(resolve=>child.once('close',resolve));
+    child.kill('SIGTERM');
+    await Promise.race([stopped,delay(2000)]);
+    if(child.exitCode===null){
+     child.kill('SIGKILL');
+     await Promise.race([stopped,delay(2000)]);
+    }
+   }
   }
  }
  try{
