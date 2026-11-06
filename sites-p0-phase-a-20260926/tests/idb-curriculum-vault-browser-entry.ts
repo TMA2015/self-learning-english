@@ -49,8 +49,8 @@ const phase=new URL(location.href).searchParams.get('phase');
   check(docs.length===10,'Ten versions including safe legacy mirror expected');
   check(docs.find(p=>p.version==='1.18.9')?.source.lessons.length===250,'250 lessons preserved in vault');
   check(localStorage.getItem(key)===exact,'learner attempts must remain byte-identical');
-  check(!localStorage.getItem('g-learning:english:v1:academic:packages'),
-   'prototype must not grow localStorage curriculum key');
+  check(localStorage.getItem(packageKey)===legacy,
+   'Prototype must not alter or expand legacy localStorage content');
   result.textContent='PASS_WRITE';
  }else if(phase==='reload'){
   const docs=await vault.list();
