@@ -1,4 +1,4 @@
-import curriculum1181 from '../../content/curriculum-1.18.1-candidate.json';
+import curriculum1200 from '../../content/curriculum-1.20.0-candidate.json';
 import {academicService,sourceDigest} from '../../application/academic-service';
 import {learningService} from '../../application/learning-service';
 import {mapSeed,validateSeed,compareVersions,type Seed} from '../../domain/academic';
@@ -9,7 +9,7 @@ import {BrowserLocalAcademicRepository,BrowserLocalCourseSelectionRepository,Bro
 export const LOCAL_OWNER_ID='local-family';
 export const LOCAL_LEARNER_ID='primary';
 // Bundled candidate metadata only; not a production deployment timestamp.
-const CURRICULUM_IMPORTED_AT=Date.parse('2026-11-03T00:00:00.000Z');
+const CURRICULUM_IMPORTED_AT=Date.parse('2026-11-06T00:00:00.000Z');
 let curriculumWarning:string|undefined;
 
 let cached:{
@@ -45,7 +45,11 @@ async function ensureCurriculum(){
   if(storage.getItem('g-learning:english:v1:recovery-pending-v2'))
     throw new Error('An interrupted local recovery was detected. Do not edit or clear learning data; contact the project owner.');
 
-  const source=curriculum1181 as unknown as Seed;
+  // The deployed cumulative version is bundled into the site. Every visit
+  // ensures this version is available locally; no downloaded JSON or Recovery
+  // import is required. Existing lesson attempts stay pinned to their original
+  // source versions and this code never deletes learner storage.
+  const source=curriculum1200 as unknown as Seed;
   const errors=validateSeed(source);
   if(errors.length)throw new Error('Bundled curriculum is invalid: '+errors.join(' '));
   const available=await academic.packages();
@@ -80,7 +84,7 @@ async function ensureCurriculum(){
     // old package versions or learner attempts as an automatic "recovery".
     const previous=await academic.packages();
     if(!previous.some(row=>Array.isArray(row.source?.lessons)&&row.source.lessons.length>0))throw error;
-    curriculumWarning='The latest English curriculum could not be saved because this browser is short of storage space. Older lessons and saved results remain available to view. New saves may also fail. Do not clear this site’s browser data; free space or copy important work before retrying.';
+    curriculumWarning='The automatic English lesson update was paused because this browser is short of storage space. Your existing lessons and scores are preserved. Do not clear this site’s data or use Restore for curriculum updates. Keep a complete Recovery backup before considering the optional one-time storage cleanup.';
   }
 }
 
