@@ -315,6 +315,22 @@ body {
 .wcv2-optional-helper-body>.wcv2-grid{margin-top:12px}
 
 /* Learning Path pilot: these are guidance cards, never proficiency or Unit completion badges. */
+/* Optional Unit study guide: preserves the free seven-skill library and the original lesson player. */
+.foundation-a2-unit-guide{margin:1rem 0}
+.foundation-a2-unit-guide>summary{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;align-items:center;cursor:pointer;font-size:1rem}
+.foundation-a2-unit-guide>summary span{font-size:.82rem;color:var(--muted-foreground)}
+.foundation-a2-unit-guide>p{margin:.75rem 0;font-size:.88rem}
+.foundation-a2-unit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:.7rem;margin:1rem 0}
+.foundation-a2-unit-card{border:1px solid var(--border);border-radius:.75rem;background:var(--card);padding:.75rem;min-width:0}
+.foundation-a2-unit-card>summary{display:flex;flex-direction:column;gap:.15rem;cursor:pointer}
+.foundation-a2-unit-card>summary strong{overflow-wrap:anywhere}
+.foundation-a2-unit-id{font-weight:750;font-size:.75rem;letter-spacing:.05em;color:var(--primary)}
+.foundation-a2-unit-card>summary small{color:var(--muted-foreground);line-height:1.5}
+.foundation-a2-unit-card p{margin:.6rem 0 0;font-size:.85rem}
+.foundation-a2-unit-lessons{display:flex;flex-direction:column;gap:.45rem;margin-top:.7rem}
+.foundation-a2-unit-lesson{width:100%;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:.2rem;white-space:normal;overflow-wrap:anywhere}
+.foundation-a2-unit-lesson small{color:var(--muted-foreground)}
+@media(max-width:550px){.foundation-a2-unit-grid{grid-template-columns:1fr}.foundation-a2-unit-guide>summary{display:block}.foundation-a2-unit-guide>summary span{display:block;margin-top:.25rem}}
 .foundation-today{margin:1rem 0}
 .foundation-today .foundation-catalog-heading{gap:1rem;align-items:start;flex-wrap:wrap}
 .foundation-today .foundation-catalog-heading label{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap}

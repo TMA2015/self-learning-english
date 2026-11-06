@@ -10,6 +10,7 @@ import {listeningCompletion,listeningSubmitHint,listeningAudioHint} from '../dom
 import {catalogSections} from '../domain/catalog-taxonomy';
 import {latestAttemptForLesson,attemptStatusLabel,recentSkillWork,skillAttemptCount,hasOlderContent,attemptHistoryLabel,lessonProgressForLesson,summarizeLessonProgress,type LessonProgressKind} from '../domain/attempt-navigation';
 import {todayLearningPath} from '../domain/today-learning-path';
+import {A2UnitGuidePilot} from './a2-unit-guide-pilot';
 import {createNavigationGate,confirmLatestDraft} from '../domain/navigation-gate';
 import {browserLearningEnabled,foundationRequest} from '../infrastructure/browser/client-services';
 import {WritingAIReview} from './writing-ai-review';
@@ -190,7 +191,7 @@ export function FoundationDemo({showVi=false,onEvidence,skill,sharedCatalog,onCa
 {!todayPlan?.review&&!todayPlan?.learn&&<p role="status">{todayPlan?.emptyReason??'Choose a Unit or browse available lessons below.'}</p>}
 </>}
 </div><p className="muted">Independent Unit transfer and verified speaking proficiency are not scored by this recommendation. You can always browse other lessons.</p>
-</section><div className="foundation-path" aria-label="Skill navigation">{catalog.journey.steps.map((id,i)=>{const l=catalog.lessons.find(l=>l.id===id)!;const tried=skillAttemptCount(catalog.attempts,catalog.lessons,l.module);return <button key={id} className={l.module===skill?'primary-button':'secondary-button'} disabled={busy||recordingNow} onClick={()=>void chooseSkill(l.module)}>{i+1}. {l.module}<small>{tried?`${tried} lesson${tried===1?'':'s'} tried`:`${l.cefr} target`}</small></button>})}</div><section className="panel foundation-progress-summary" aria-label="Learning progress summary">
+</section>{!skill&&<A2UnitGuidePilot lessons={catalog.lessons} attempts={catalog.attempts} courseOrder={catalog.course?.sequence??[]} disabled={busy||recordingNow} onOpen={id=>void open(id)}/>}<div className="foundation-path" aria-label="Skill navigation">{catalog.journey.steps.map((id,i)=>{const l=catalog.lessons.find(l=>l.id===id)!;const tried=skillAttemptCount(catalog.attempts,catalog.lessons,l.module);return <button key={id} className={l.module===skill?'primary-button':'secondary-button'} disabled={busy||recordingNow} onClick={()=>void chooseSkill(l.module)}>{i+1}. {l.module}<small>{tried?`${tried} lesson${tried===1?'':'s'} tried`:`${l.cefr} target`}</small></button>})}</div><section className="panel foundation-progress-summary" aria-label="Learning progress summary">
 <div className="foundation-catalog-heading"><div><h2>{skill?skill[0].toUpperCase()+skill.slice(1)+' progress':'My learning progress'}</h2><p className="muted">Based on saved lesson attempts in this browser, not a CEFR score.</p></div><strong>{progressSummary.submitted}/{progressSummary.total} submitted</strong></div>
 <progress max={Math.max(1,progressSummary.total)} value={progressSummary.submitted} aria-label="Lessons submitted"/>
 <div className="foundation-progress-stats">
