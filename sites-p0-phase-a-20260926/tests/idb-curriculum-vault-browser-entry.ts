@@ -24,6 +24,10 @@ const phase=new URL(location.href).searchParams.get('phase');
   let conflict=false;
   try{await vault.putImmutable({...record('1.18.1',109),digest:'different-digest'} as never)}catch(e){conflict=String(e).includes('Immutable curriculum version conflict')}
   check(conflict,'same-version different digest must never overwrite');
+  let disguised=false;
+  try{await vault.putImmutable(record('1.18.1',108) as never)}
+  catch(e){disguised=String(e).includes('Immutable curriculum version conflict')}
+  check(disguised,'Same digest with a changed source must also be rejected');
   for(let i=2;i<=9;i++){
    check(await vault.putImmutable(record('1.18.'+i,i<=4?200:250) as never)==='added','multi-version commit '+i);
    result.textContent='PACKAGE_'+i;
