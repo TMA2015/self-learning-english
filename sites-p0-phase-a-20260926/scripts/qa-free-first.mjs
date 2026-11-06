@@ -23,6 +23,7 @@ const coreTests=[
   "stage3-quota-readonly-fallback.cjs",
   "storage-retention-v2.cjs",
   "local-recovery-v2.cjs",
+  "restore-v2-auto-retention-quota.cjs",
   "storage-chromium-smoke.cjs",
   "storage-ui-browser.cjs",
   "content-quality.cjs",

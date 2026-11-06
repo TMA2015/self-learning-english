@@ -1,4 +1,4 @@
-import {decodePackageDocument} from '../../domain/storage-retention';
+import {decodePackageDocument,retainReferencedLessons} from '../../domain/storage-retention';
 
 const PREFIX='g-learning:english:v1';
 export const RECOVERY_MARKER=PREFIX+':recovery-pending-v2';
@@ -119,6 +119,30 @@ async function parseRecovery(text:string){
  const scope=assertSourceAvailable(file.entries);
  return {file,scope};
 }
+/**
+ * Only after V2 checksum/source verification: retain exact historical lessons
+ * referenced by any owner attempt, and one complete latest curriculum.
+ * Transform the on-device write, NEVER the downloaded original backup.
+ */
+function sourceRetainedRestoreEntries(original:Entry[]){
+ const sourceKey=PREFIX+':academic:packages';
+ const row=original.find(e=>e.key===sourceKey);
+ if(!row)throw Error('Complete Recovery is missing original curriculum source.');
+ const packages=decodePackageDocument(JSON.parse(row.value)).records;
+ const attempts:{version:string;lessonId:string}[]=[];
+ for(const e of original.filter(e=>e.key.endsWith(':academic-attempts'))){
+  const list=JSON.parse(e.value) as {version:string;lessonId:string}[];
+  for(const attempt of list)attempts.push({version:attempt.version,lessonId:attempt.lessonId});
+ }
+ const snapshot=retainReferencedLessons(packages,attempts);
+ const next=original.map(e=>e.key===sourceKey?{...e,value:JSON.stringify({
+  schema:2,retention:true,records:snapshot.records,
+ })}:e);
+ const checked=assertSourceAvailable(next);
+ if(checked.attempts!==attempts.length||checked.versions!==snapshot.records.length)
+  throw Error('Historical source retention verification failed; Restore stopped.');
+ return {entries:next,versions:snapshot.records.length};
+}
 function occupied(store:Store):string[]{
  return entriesIn(store).filter(e=>{
   if(e.key===PREFIX+':academic:packages')return false;
@@ -155,23 +179,26 @@ export async function restoreLocalRecoveryV2(text:string,token:string,confirmed:
  const preview=await previewLocalRecoveryV2(text);
  if(!preview.valid||token!==preview.token)throw Error('Recovery source or target changed. Preview again before restoring.');
  const {file,scope}=await parseRecovery(text);
+ // Recovery still verifies its ORIGINAL SHA-256 and source before compacting.
+ const prepared=sourceRetainedRestoreEntries(file.entries);
  const store=currentStore();
  const initialMarker=store.getItem(RECOVERY_MARKER);
  const previous=new Map<string,string|null>();
- for(const e of file.entries)previous.set(e.key,store.getItem(e.key));
+ for(const e of prepared.entries)previous.set(e.key,store.getItem(e.key));
  let markerWritten=false;
  const changed:Entry[]=[];
  try{
   store.setItem(RECOVERY_MARKER,file.sha256);markerWritten=true;
-  for(const e of file.entries){
+  for(const e of prepared.entries){
    if(store.getItem(e.key)===e.value)continue;
    store.setItem(e.key,e.value);
    changed.push(e);
   }
-  for(const e of file.entries)if(store.getItem(e.key)!==e.value)
+  for(const e of prepared.entries)if(store.getItem(e.key)!==e.value)
    throw Error('Recovery verification mismatch.');
   store.removeItem(RECOVERY_MARKER);markerWritten=false;
-  return {restoredKeys:file.entries.length,attempts:scope.attempts,versions:scope.versions};
+  return {restoredKeys:prepared.entries.length,attempts:scope.attempts,
+   versions:prepared.versions};
  }catch(error){
   // Roll back changed keys in reverse order. If recovery itself cannot roll
   // back (e.g. browser fault/quota), leave the marker to block false success.
