@@ -36,4 +36,20 @@ const foundation=fs.readFileSync(path.join(root,'app/foundation.tsx'),'utf8');
 assert(ui.includes('onOpen(lesson.id)')&&ui.includes('lessonProgressForLesson'),'Pilot must reuse same lesson and attempt statuses');
 assert(foundation.includes('<A2UnitGuidePilot')&&foundation.includes('!skill&&<A2UnitGuidePilot'),'Pilot should not replace existing skill libraries');
 assert(!ui.includes('mastered')&&!ui.includes('onClick={()=>setLocked'),'Do not invent mastery or level locks');
+// When merged with the approved v1.20.0 source, verify all currently importable A2
+// candidate lessons are mapped; the UI still reads ONLY the actual device catalog.
+const v120Path=path.join(root,'content/curriculum-1.20.0-candidate.json');
+if(fs.existsSync(v120Path)){
+ const latest=JSON.parse(fs.readFileSync(v120Path,'utf8'));
+ assert.equal(latest.lessons.length,123);
+ const latestA2=latest.lessons.filter(l=>l.cefr_target==='A2');
+ const imported=latest.lessons.map(l=>({id:l.id,title:l.title,module:l.module,cefr:l.cefr_target,minutes:l.estimated_minutes??30}));
+ const grouped=buildA2UnitGuide(imported,[],latest.course?.sequence??[]);
+ assert.equal(grouped.reduce((sum,u)=>sum+u.lessons.length,0),latestA2.length,
+  'All actually imported 1.20 A2 lessons must map exactly once');
+ assert.equal(new Set(grouped.flatMap(u=>u.lessons.map(l=>l.id))).size,latestA2.length);
+ assert(grouped.every(u=>u.submitted===0&&u.inProgress===0),
+  'An imported catalog alone is not learner progress');
+}
+
 console.log(JSON.stringify({result:'PASS',gate:'a2-unit-guide-pilot',units:units.length,baselineA2Lessons:42,submittedNotMastery:true,writeCount:0}));
