@@ -72,6 +72,7 @@ const fullRegressionTests=[
   "curriculum-190-grammar-b1-wave2c.cjs",
   "curriculum-1190-release.cjs",
   "curriculum-1200-release.cjs",
+  "reading-listening-pilot-source-immutability.cjs",
   "c1c2-importer-compat.cjs",
   "c1c2-draft-source.cjs",
   "c1c2-authored-content-schema.cjs",
