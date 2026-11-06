@@ -118,9 +118,13 @@ export async function previewHybridRecoveryV2(text:string,storage:EnumerableStor
  const present=await vault.list();
  // Immutable collision detection before writing anything. A complete source
  // from the backup can coexist with a compatible referenced-lesson archive.
- try{reconcileRecoverySources(legacyPackages(existing),present,[]);
-  reconcileRecoverySources(present,legacyPackages(file.entries),[]);
-  reconcileRecoverySources([...legacyPackages(existing),...present],legacyPackages(file.entries),[]);
+ try{
+  const onDevice=legacyPackages(existing);
+  const incoming=legacyPackages(file.entries);
+  // A completely empty learner profile is an expected Restore target.
+  // Only reconcile existing content when it actually exists.
+  if(onDevice.length||present.length)reconcileRecoverySources(onDevice,present,[]);
+  reconcileRecoverySources([...onDevice,...present],incoming,[]);
  }catch{errors.push('Immutable curriculum source conflict in this browser. No data changed.')}
  const token=errors.length?'':await hash(JSON.stringify({
   checksum:file.sha256,existing,marker,present
