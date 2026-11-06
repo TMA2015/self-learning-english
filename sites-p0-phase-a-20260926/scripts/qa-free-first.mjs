@@ -31,6 +31,7 @@ const coreTests=[
   "github-first-browser-storage.cjs",
   "github-first-g1-local-runtime.cjs",
   "browser-curriculum-upgrade.cjs",
+  "automatic-curriculum-v120.cjs",
   "github-first-g2-backup-restore.cjs",
   "github-first-g2-course-selection.cjs",
   "github-first-g2-local-diagnostic.cjs",
