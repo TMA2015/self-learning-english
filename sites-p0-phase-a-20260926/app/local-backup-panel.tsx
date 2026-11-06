@@ -79,13 +79,6 @@ export function LocalBackupPanel(){
   if(!file)return;
   await run(async()=>{
    const content=await file.text();
-   // A cumulative lesson package is NOT a V2 learner Recovery archive.
-   // Give a useful warning without writing or resetting any browser data.
-   let parsed:unknown;
-   try{parsed=JSON.parse(content)}catch{/* The recovery validator gives the canonical JSON error. */}
-   if(parsed&&typeof parsed==='object'&&!Array.isArray(parsed)&&
-      'schema_version' in parsed&&'lessons' in parsed)
-     throw new Error('This is a curriculum package, not a learner Recovery backup. Approved lessons update automatically when browser storage has space. Do not use Restore to update lessons.');
    const result=await previewLocalRecoveryV2(content);
    setRecoveryText(content);setRestorePreview(result);
    setStatus(result.valid
