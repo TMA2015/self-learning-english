@@ -54,11 +54,30 @@ jobs:
         working-directory: sites-p0-phase-a-20260926
         run: pnpm install --frozen-lockfile
 
-      - name: Install FFmpeg for audio validation
+      - name: Ensure FFmpeg and FFprobe for audio validation
         if: ${{ steps.app.outputs.present == 'true' }}
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends ffmpeg
+          set -euo pipefail
+          # Reuse tools on GitHub runners; avoid a potentially stalled apt mirror.
+          if ! command -v ffmpeg >/dev/null 2>&1 || ! command -v ffprobe >/dev/null 2>&1; then
+            for attempt in 1 2; do
+              if sudo timeout --signal=TERM --kill-after=10s 100s \
+                   apt-get -o Acquire::Retries=1 -o Acquire::http::Timeout=15 update -qq && \
+                 sudo timeout --signal=TERM --kill-after=10s 100s \
+                   apt-get -o Acquire::Retries=1 -o Acquire::http::Timeout=15 \
+                   install -y --no-install-recommends ffmpeg; then
+                break
+              fi
+              if [[ "$attempt" == 2 ]]; then
+                echo '::error::FFmpeg unavailable for mandatory audio QA'
+                exit 1
+              fi
+              sleep 3
+            done
+          fi
+          ffmpeg -hide_banner -version >/dev/null
+          ffprobe -hide_banner -version >/dev/null
+          echo 'FFmpeg/FFprobe present: audio validation remains mandatory'
 
       - name: Full application release QA and static build (NO DEPLOY)
         if: ${{ steps.app.outputs.present == 'true' }}
