@@ -18,7 +18,7 @@ const wait=async(fn:()=>boolean,message:string)=>{
   if(fn())return;
   await new Promise(resolve=>setTimeout(resolve,30));
  }
- throw Error('UI TIMEOUT: '+message);
+ throw Error('UI TIMEOUT: '+message+'; current status: '+(document.querySelector('[role="status"]')?.textContent??'<none>'));
 };
 const findButton=(caption:string)=>{
  return [...document.querySelectorAll('button')].find(b=>b.textContent?.includes(caption)) as HTMLButtonElement|undefined;
