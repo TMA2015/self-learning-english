@@ -1,8 +1,8 @@
 # Self-Learning English — Master Content & Self-Learning Standard
 
 **Standard ID:** SLE-MASTER-001  
-**Document version:** 1.2.0-rc2 (NotebookLM review PASS_WITH_REQUIRED_CHANGES; mandatory corrections applied; 1.1.0 remains effective until this PR is merged and approved)  
-**Status:** ACADEMICALLY REVIEWED DRAFT (PR ONLY), NOT YET ACTIVE. SLE-MASTER-001 v1.1.0 on `main` remains the SOLE ACTIVE NORMATIVE STANDARD until this PR is approved and merged. This is the same canonical file, not a second policy. Academic adoption was completed by merged PR #71 on 2026-11-02; the owner unified SLE project rules on 2026-11-03. The deployed cumulative source is v1.20.0 (123 lessons); the owner has confirmed 123 lessons visible on one browser profile. The screenshot does not establish individual attempt-by-attempt reconciliation or certified CEFR proficiency. This policy revision does not itself change or certify lesson-renderer behavior.  
+**Document version:** 1.2.0  
+**Status:** ACTIVE ONLY AFTER THE APPROVED PR #95 MERGE INTO `main`; while this remains a PR branch, SLE-MASTER-001 v1.1.0 on `main` is the SOLE ACTIVE NORMATIVE STANDARD. This is the same canonical file, not a second policy. Academic adoption was completed by merged PR #71 on 2026-11-02; the owner unified SLE project rules on 2026-11-03. The deployed cumulative source is v1.20.0 (123 lessons); the owner has confirmed 123 lessons visible on one browser profile. The screenshot does not establish individual attempt-by-attempt reconciliation or certified CEFR proficiency. This policy revision does not itself change or certify lesson-renderer behavior.  
 **Prepared:** 2026-11-02; living revision 2026-11-03  
 **Canonical path:** `sites-p0-phase-a-20260926/docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md` in `TMA2015/self-learning-english`. Do not create a second copy under root `docs/`.  
 **Scope:** One unified Self-Learning English (SLE) GitHub + Firebase website/app. This is **not** the independent ChatGPT-in-chat English Tutor project.  
@@ -31,7 +31,7 @@
 | `domain/academic.ts`, current curriculum JSON and runtime tests | Actual implementation contracts and evidence | They constrain what can be shipped today; a normative change requiring code work does not magically make that work complete |
 | `content/audio-rights-register.json` and release audit records | Per-asset provenance and authorization evidence | Keep as factual records; they are not a separate pedagogical standard |
 
-**Permanent academic baseline and single local authority:** `SLE-MASTER-001` unifies and supersedes historical **local** authoring and QA documents (`docs/CONTENT_AUTHORING_STANDARD.md`, `docs/LEARNER_ACTION_FEEDBACK_STANDARD.md`, `docs/CROSS_SKILL_QUALITY_STANDARD.md`). It remains subject to the five permanent English-project academic baseline sources (`00_NOTEBOOK_ENGLISH_PERMANENT_v2.md` through `04_GRAMMAR_ADAPTIVE_ROADMAP_v2.md`), and its compatibility with those sources MUST be checked whenever substantive rules change. NotebookLM baseline documents provide review evidence and academic constraints, not a second active repository authoring checklist. Conflicts require documented reconciliation; never claim compliance from document naming alone.
+**Permanent academic baseline and single local authority:** `SLE-MASTER-001` unifies and supersedes historical **local** authoring and QA documents (`docs/CONTENT_AUTHORING_STANDARD.md`, `docs/LEARNER_ACTION_FEEDBACK_STANDARD.md`, `docs/CROSS_SKILL_QUALITY_STANDARD.md`). It remains subject to the five current permanent English-project academic baseline sources maintained in the dedicated NotebookLM project (using their actual current source versions), and its compatibility with those sources MUST be checked whenever substantive rules change. NotebookLM baseline documents provide review evidence and academic constraints, not a second active repository authoring checklist. Conflicts require documented reconciliation; never claim compliance from document naming alone.
 
 When legacy prose differs from validated current runtime behavior, **do not assume either is safe**: record the discrepancy, apply the more conservative learner-data/evidence guard, and require a versioned resolution before deployment. Avoid deleting historical documentation; mark it archival in a later explicitly reviewed documentation-only task. Maintain **one canonical version of this file**; Git history is the change record. Historical issue/PR/dated QA documents are never normative. Do not create `MASTER_v1`, `MASTER_v2`, separate CI-rule documents, or parallel active checklists. GitHub workflows/tests are executable implementations of this standard, not competing policy. The old repo-root `docs/REPO_TESTING_AND_QUALITY_RULES.md`, `docs/P0_RELEASE_GATE.md` and `docs/releases/2026-11-ci-quota-policy.md` are archived historical references.
 
@@ -70,7 +70,7 @@ The four functions do **not** have to occupy four large screens. One compact ove
 
 **Suggested time/pace** is advisory, not a universal 30-minute requirement; a roughly 25–30-minute unit MAY be divided into two optional ~15-minute visits (A: Learn + Demonstrate; B: Independent Practice + Feedback) if the current platform can resume reliably. Do not claim that pause/resume exists unless tested; progress and next action must remain clear.
 
-### 2.1. Instructional presentation for independent learning (PROPOSED MUST, pending adoption)
+### 2.1. Instructional presentation for independent learning (MUST)
 
 **Objective:** A learner must be able to understand *how* to use new knowledge without an adult translating long paragraphs or AI supplying the actual lesson. This subsection governs **teaching content and its rendered sequence**, not a mandatory new site theme or identical UI for all seven skills.
 
@@ -244,7 +244,7 @@ A candidate is **not releasable** unless applicable gates below have recorded **
 
 **Policy scope note (2026-11-03):** From this date all operational CI, NotebookLM review, QA, deployment and release gates are governed here, not in separate dated documents. The prior Stage 3 `NO-GO` from NotebookLM remains preserved as historical evidence; current mitigations do not convert untested live Gemini/mobile UX into PASS. Owner-initiated release after full CI is treated as a deliberate acceptance of a limited post-release visual spot check only for backwards-compatible changes.
 
-### 10.1. Defect learning and recurrence prevention (PROPOSED MUST, pending adoption)
+### 10.1. Defect learning and recurrence prevention (MUST)
 
 Section 10.1 incorporates defect tracking and recurrence prevention directly into Section 10 (Release Gates and Pass/Fail Checklist) of this canonical standard. It does not establish a secondary quality document or external database. Use the existing GitHub Issues/PRs and source tests to record the evidence.
 
@@ -274,7 +274,9 @@ Use `major.minor.patch`: **major** for a policy redesign or changed evidence mea
 
 | Standard version | Date | Status | Summary | Approval / effective commit |
 | --- | --- | --- | --- | --- |
-| 1.2.0-rc2 | 2026-11-06 | NOTEBOOKLM PASS_WITH_REQUIRED_CHANGES; COR-STD-01/02 APPLIED; PR QA PENDING | Add instructional presentation checks (2.1), recurring-defect prevention (10.1), and clarify source vs imported status / A1–C2 authoring scope; no learner-record change or second rulebook | Draft PR; not effective |\n| 1.0.0 | 2026-11-02 | ACADEMIC GO / ADOPTION ON PR #71 MERGE | Unified existing authoring/UX/evidence standards; incorporated NotebookLM mandatory amendments C1–C4 (baseline relationship, legacy Speaking projection, audio gate/masking, bilingual safe AI rendering). No curriculum/code release implied | Owner instructed adoption after review (2026-11-02); effective when GitHub PR #71 merge is confirmed; refer to its merge commit |
+| 1.2.0 | 2026-11-06 | NOTEBOOKLM ACADEMIC GO AFTER COR-STD-01/02; ENGINEERING QA REQUIRED | Add instructional presentation checks (2.1), recurring-defect prevention (10.1), and clarify source vs imported status / A1–C2 authoring scope; no learner-record change or second rulebook | Effective only on owner-approved PR #95 merge; see merge commit |
+| 1.1.0 | 2026-11-03 | ACTIVE SINCE PRIOR ADOPTION | Unified authoring/review/release rules into one canonical standard | Historical 2026-11-03 owner-adopted revision |
+| 1.0.0 | 2026-11-02 | ACADEMIC GO / ADOPTION ON PR #71 MERGE | Unified existing authoring/UX/evidence standards; incorporated NotebookLM mandatory amendments C1–C4 (baseline relationship, legacy Speaking projection, audio gate/masking, bilingual safe AI rendering). No curriculum/code release implied | Owner instructed adoption after review (2026-11-02); effective when GitHub PR #71 merge is confirmed; refer to its merge commit |
 
 ### Independent academic review record (2026-11-02)
 
@@ -310,7 +312,7 @@ The reviewer must evaluate the **entire candidate** against the five current per
 **Q10.** Are optional AI, child privacy, originality/media provenance and offline honesty requirements comprehensive and proportionate?  
 **Q11.** Does the single pipeline in Sections 9–10 give testable and efficient approval gates without implying that NotebookLM review automatically deploys code?  
 **Q12.** Identify exact contradictions, obsolete claims, missing blockers, ambiguous terminology or rules that cannot be implemented in the inspected runtime. For each give an exact corrected sentence or section and severity.  
-**Q13 (1.2.0 proposal).** Do the instructional-presentation checks in Section 2.1 add measurable independent-learning quality without imposing a one-size-fits-all renderer, inaccessible complexity or content-key leakage? For each of seven skills, flag required refinements.  
-**Q14 (1.2.0 proposal).** Is the issue/root-cause/regression/owner-acceptance loop in Section 10.1 proportionate and testable, respecting the sole-source hierarchy and pre-existing release gates? Name any contradiction with Sections 9–11.  
+**Q13 (1.2.0 adoption check).** Do the instructional-presentation checks in Section 2.1 add measurable independent-learning quality without imposing a one-size-fits-all renderer, inaccessible complexity or content-key leakage? For each of seven skills, flag required refinements.  
+**Q14 (1.2.0 adoption check).** Is the issue/root-cause/regression/owner-acceptance loop in Section 10.1 proportionate and testable, respecting the sole-source hierarchy and pre-existing release gates? Name any contradiction with Sections 9–11.  
 
 **Required verdict:** `PASS` / `PASS_WITH_REQUIRED_CHANGES` / `FAIL` / `INSUFFICIENT_EVIDENCE`; return (a) critical contradictions and line/section references; (b) required corrected text; (c) optional improvements; (d) academic adoption GO/NO-GO; (e) engineering implementation GO/NO-GO **separately**. A PASS approves a policy proposal, not any pending curriculum/audio/code or production release.
