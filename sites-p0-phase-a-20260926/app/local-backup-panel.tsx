@@ -116,10 +116,11 @@ export function LocalBackupPanel(){
    {!fullBackupExported&&<small>Download and re-select the saved V2 recovery JSON above to verify it before confirming.</small>}
   </div>}
   <hr/>
+  <p className="muted">Approved new lessons are added automatically when the site updates and this browser has enough storage. Do not download curriculum JSON files or use Restore to update lessons.</p>
   <p><strong>Restore:</strong> Select a complete V2 recovery JSON on an otherwise empty learner profile. Existing work cannot be overwritten.</p>
   <label htmlFor="sle-v2-recovery-file">Recovery JSON file</label>
   <input id="sle-v2-recovery-file" type="file" accept=".json,application/json" disabled={busy}
-   onChange={e=>void chooseRestore(e.target.files?.[0])}/>
+   onChange={e=>{const file=e.currentTarget.files?.[0];e.currentTarget.value='';void chooseRestore(file)}}/>
   {restorePreview?.valid&&<div className="foundation-storage-inspection">
    <p>Verified backup from {restorePreview.exportedAt}: {restorePreview.attempts} attempts, {restorePreview.versions} content versions.</p>
    <button className="secondary-button" disabled={busy}

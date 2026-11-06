@@ -6,7 +6,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const root=path.resolve(__dirname,'..');
-const candidate=require('../content/curriculum-1.18.1-candidate.json');
+const candidate=require('../content/curriculum-1.20.0-candidate.json');
 const runtime=fs.readFileSync(path.join(root,'infrastructure/browser/local-runtime.ts'),'utf8');
 const upgrade=fs.readFileSync(path.join(root,'tests/browser-curriculum-upgrade.cjs'),'utf8');
 const coreRunner=fs.readFileSync(path.join(root,'scripts/qa-free-first.mjs'),'utf8');
@@ -18,6 +18,8 @@ assert(upgrade.includes(requiredName)&&upgrade.includes('curriculum-1.18.0-candi
  'STAGE3 NO-GO: browser migration QA must cover both existing v1.18.0 and new '+candidate.schema_version+' packages.');
 assert(upgrade.includes("catalog.version,'"+candidate.schema_version+"'"),
  'STAGE3 NO-GO: browser migration QA must assert the newly activated catalog version.');
+assert(coreRunner.includes('"automatic-curriculum-v120.cjs"'),
+ 'RELEASE NO-GO: automatic on-device 1.20 update and no-data-loss quota tests must run.');
 assert(coreRunner.includes('"stage3-import-preview.cjs"'),
  'STAGE3 NO-GO: real importer regression test must remain registered in qa:core.');
 console.log(JSON.stringify({result:'PASS',gate:'stage3-bundled-curriculum-activation',target:candidate.schema_version,requiresFullQa:true}));

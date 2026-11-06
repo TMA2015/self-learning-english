@@ -14,11 +14,14 @@ const report=(value:string,details:unknown)=>{
 };
 const assert=(value:unknown,message:string)=>{if(!value)throw new Error('UI ASSERT: '+message)};
 const wait=async(fn:()=>boolean,message:string)=>{
- for(let n=0;n<400;n++){
+ // A V2 recovery contains multiple versioned curriculum sources. Browser
+ // crypto/subtle hashes those blobs asynchronously; do not exhaust virtual
+ // timer polling before the file verification task has a chance to complete.
+ for(let n=0;n<1600;n++){
   if(fn())return;
   await new Promise(resolve=>setTimeout(resolve,30));
  }
- throw Error('UI TIMEOUT: '+message);
+ throw Error('UI TIMEOUT: '+message+'; current status: '+(document.querySelector('[role="status"]')?.textContent??'<none>'));
 };
 const findButton=(caption:string)=>{
  return [...document.querySelectorAll('button')].find(b=>b.textContent?.includes(caption)) as HTMLButtonElement|undefined;
