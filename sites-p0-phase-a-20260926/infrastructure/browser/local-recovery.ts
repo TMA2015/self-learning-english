@@ -184,8 +184,14 @@ export async function restoreLocalRecoveryV2(text:string,token:string,confirmed:
   if(markerWritten&&rollbackOkay&&!initialMarker){
    try{store.removeItem(RECOVERY_MARKER);markerWritten=false}catch{rollbackOkay=false}
   }
+  const storageQuota=(error instanceof Error&&(error.name==='QuotaExceededError'
+   ||error.name==='NS_ERROR_DOM_QUOTA_REACHED'))
+   ||(!!error&&typeof error==='object'&&'code' in error&&
+      ((error as {code?:unknown}).code===22||(error as {code?:unknown}).code===1014));
   throw Error(rollbackOkay&&!initialMarker
-   ?'Recovery failed; earlier browser content was restored.'
+   ?storageQuota
+     ?'Recovery could not fit in this browser storage (quota exceeded). Earlier browser content was restored. Keep the verified V2 backup. Do not clear or overwrite learner data; use a smaller verified source archive or contact the project owner.'
+     :'Recovery failed; earlier browser content was restored. The original browser error was not confirmed as storage quota. Keep the verified V2 backup and contact the project owner.'
    :'Recovery remains interrupted. Retry using the same verified V2 file; do not clear this browser profile.');
  }
 }
