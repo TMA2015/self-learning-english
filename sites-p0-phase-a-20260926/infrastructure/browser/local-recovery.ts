@@ -99,6 +99,12 @@ async function parseRecovery(text:string){
  if(typeof text!=='string'||bytes(text)>RECOVERY_MAX_BYTES)throw Error('Invalid or oversized recovery file (25 MB maximum).');
  let file:RecoveryFile;
  try{file=JSON.parse(text) as RecoveryFile}catch{throw Error('Recovery file is not valid JSON.')}
+ // The uploaded file may be an academic curriculum package, not a learner
+ // recovery archive. Detect it using this *already parsed* JSON (never parse
+ // the entire multi-megabyte file twice in a browser).
+ const maybeCurriculum=file as unknown as {schema_version?:unknown;lessons?:unknown};
+ if(typeof maybeCurriculum?.schema_version==='string'&&Array.isArray(maybeCurriculum.lessons))
+   throw Error('Unsupported recovery file. This is a curriculum package, not a learner V2 Recovery backup. Published lessons update automatically when browser storage has space; do not use Restore.');
  if(file?.format!=='g-learning-english.recovery'||file.schemaVersion!==2||!Array.isArray(file.entries)
     ||typeof file.sha256!=='string'||typeof file.exportedAt!=='string')
    throw Error('Unsupported recovery file. The old learner-only JSON is for reference, not complete recovery.');
