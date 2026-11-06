@@ -1,8 +1,8 @@
 # Self-Learning English — Master Content & Self-Learning Standard
 
 **Standard ID:** SLE-MASTER-001  
-**Document version:** 1.2.0-rc1 (PROPOSAL; 1.1.0 remains effective until NotebookLM review and owner adoption)  
-**Status:** DRAFT REVISION (PR ONLY), NOT YET ACTIVE. SLE-MASTER-001 v1.1.0 on `main` remains the SOLE ACTIVE NORMATIVE STANDARD until approval. This is the same canonical file, not a second policy. Academic adoption was completed by merged PR #71 on 2026-11-02; the owner unified SLE project rules on 2026-11-03. The current curriculum candidate is v1.18.1; this policy revision does not itself certify untested browser behavior.  
+**Document version:** 1.2.0-rc2 (NotebookLM review PASS_WITH_REQUIRED_CHANGES; mandatory corrections applied; 1.1.0 remains effective until this PR is merged and approved)  
+**Status:** ACADEMICALLY REVIEWED DRAFT (PR ONLY), NOT YET ACTIVE. SLE-MASTER-001 v1.1.0 on `main` remains the SOLE ACTIVE NORMATIVE STANDARD until this PR is approved and merged. This is the same canonical file, not a second policy. Academic adoption was completed by merged PR #71 on 2026-11-02; the owner unified SLE project rules on 2026-11-03. The deployed cumulative source is v1.20.0 (123 lessons); the owner has confirmed 123 lessons visible on one browser profile. The screenshot does not establish individual attempt-by-attempt reconciliation or certified CEFR proficiency. This policy revision does not itself change or certify lesson-renderer behavior.  
 **Prepared:** 2026-11-02; living revision 2026-11-03  
 **Canonical path:** `sites-p0-phase-a-20260926/docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md` in `TMA2015/self-learning-english`. Do not create a second copy under root `docs/`.  
 **Scope:** One unified Self-Learning English (SLE) GitHub + Firebase website/app. This is **not** the independent ChatGPT-in-chat English Tutor project.  
@@ -82,7 +82,7 @@ The four functions do **not** have to occupy four large screens. One compact ove
 - **Repair and continue:** After submit, show a brief evidence-based explanation for correct or wrong answers, one realistic next action, and optional targeted remediation/retry. Do not call an unreviewed Writing, Speaking or Pronunciation productively "mastered".
 - **Use appropriate presentation per skill:** Grammar uses meaning/contrast/form; Vocabulary uses contextual chunks, retrieval and new-context use; Reading separates gist, detail and defensible inference with a distinct model text; Listening foregrounds genuine audio with gist/detail phases but no pre-submit transcript or key cues; Writing explicitly demonstrates prompt analysis, brainstorming, outlining, drafting and revision; Speaking preparation and Pronunciation distinguish preparation/awareness from actually verified hearing or oral performance.
 - **Control cognitive load without artificial gates:** Default to one clear primary action per study stage, subordinate optional tips/translation/hints, readable typography, keyboard access, semantic headings/lists and safe Markdown rendering. Do not force every learner through more screens, audio replays or arbitrary durations to earn completion.
-- **Observable acceptance:** Review the actual rendered lesson (not just text length or the presence of JSON `examples`) for correct hierarchy, an independent explanatory model, task clarity, feedback and next action. Test at least one representative lesson of each materially different renderer and the current content version; legacy versioned attempts must retain their original educational data. A missing optional field alone is not a teaching-quality FAIL.
+- **Observable acceptance:** Review the actual rendered lesson (not just text length or the presence of JSON `examples`) for correct hierarchy, an independent explanatory model, task clarity, feedback and next action. Test at least one representative lesson of each materially different renderer and the current content version; legacy versioned attempts must retain their original educational data. A missing optional adaptive scaffold (such as a hint drawer or Vietnamese translation) is not a teaching-quality FAIL. However, omitting any mandatory Core 1–4 element (Goal, Concept/Strategy, Independent Worked Demonstration, or Explanatory Feedback) remains a release blocker under Gate EDU-02.
 
 **Scope / compatibility:** These are prospective authoring and rendering checks. They never authorize silently changing already scored items, legacy attempts, answer keys or imported packages. A new lesson revision uses the normal immutable content/release gates.
 
@@ -246,7 +246,7 @@ A candidate is **not releasable** unless applicable gates below have recorded **
 
 ### 10.1. Defect learning and recurrence prevention (PROPOSED MUST, pending adoption)
 
-Use the **existing** GitHub Issue/PR, source tests and standard; do not create a duplicate defect database or a separate governance document.
+Section 10.1 incorporates defect tracking and recurrence prevention directly into Section 10 (Release Gates and Pass/Fail Checklist) of this canonical standard. It does not establish a secondary quality document or external database. Use the existing GitHub Issues/PRs and source tests to record the evidence.
 
 For any learner-affecting defect involving wrong teaching, scoring, rendering, media, saving or release:
 1. **Record reproducible evidence and impact:** affected lesson/skill/version, safe steps or screenshot, expected vs actual behavior, observed learner impact, severity, source commit and whether data were touched. Never publish private responses, learner identity or credentials.
@@ -274,7 +274,7 @@ Use `major.minor.patch`: **major** for a policy redesign or changed evidence mea
 
 | Standard version | Date | Status | Summary | Approval / effective commit |
 | --- | --- | --- | --- | --- |
-| 1.2.0-rc1 | 2026-11-06 | PROPOSED / NOTEBOOKLM AND OWNER REVIEW PENDING | Add instructional presentation checks (2.1), recurring-defect prevention (10.1), and clarify source vs imported status / A1–C2 authoring scope; no learner-record change or second rulebook | Draft PR; not effective |\n| 1.0.0 | 2026-11-02 | ACADEMIC GO / ADOPTION ON PR #71 MERGE | Unified existing authoring/UX/evidence standards; incorporated NotebookLM mandatory amendments C1–C4 (baseline relationship, legacy Speaking projection, audio gate/masking, bilingual safe AI rendering). No curriculum/code release implied | Owner instructed adoption after review (2026-11-02); effective when GitHub PR #71 merge is confirmed; refer to its merge commit |
+| 1.2.0-rc2 | 2026-11-06 | NOTEBOOKLM PASS_WITH_REQUIRED_CHANGES; COR-STD-01/02 APPLIED; PR QA PENDING | Add instructional presentation checks (2.1), recurring-defect prevention (10.1), and clarify source vs imported status / A1–C2 authoring scope; no learner-record change or second rulebook | Draft PR; not effective |\n| 1.0.0 | 2026-11-02 | ACADEMIC GO / ADOPTION ON PR #71 MERGE | Unified existing authoring/UX/evidence standards; incorporated NotebookLM mandatory amendments C1–C4 (baseline relationship, legacy Speaking projection, audio gate/masking, bilingual safe AI rendering). No curriculum/code release implied | Owner instructed adoption after review (2026-11-02); effective when GitHub PR #71 merge is confirmed; refer to its merge commit |
 
 ### Independent academic review record (2026-11-02)
 
