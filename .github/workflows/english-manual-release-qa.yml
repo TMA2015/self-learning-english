@@ -101,8 +101,9 @@ jobs:
               sleep 3
             done
           fi
-          ffmpeg -hide_banner -version | head -1
-          ffprobe -hide_banner -version | head -1
+          ffmpeg -hide_banner -version >/dev/null
+          ffprobe -hide_banner -version >/dev/null
+          echo 'FFmpeg and FFprobe verified; audio QA and English deploy remain mandatory'
 
       - name: Full release QA, TS, static build and audio validation
         id: release_qa
