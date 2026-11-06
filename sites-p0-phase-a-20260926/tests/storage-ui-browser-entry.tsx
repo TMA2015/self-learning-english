@@ -14,7 +14,7 @@ const report=(value:string,details:unknown)=>{
 };
 const assert=(value:unknown,message:string)=>{if(!value)throw new Error('UI ASSERT: '+message)};
 const wait=async(fn:()=>boolean,message:string)=>{
- for(let n=0;n<400;n++){
+ // A V2 recovery contains multiple versioned curriculum sources. Browser\n // crypto/subtle hashes those blobs asynchronously; do not exhaust virtual\n // timer polling before the file verification task has a chance to complete.\n for(let n=0;n<1600;n++){
   if(fn())return;
   await new Promise(resolve=>setTimeout(resolve,30));
  }
