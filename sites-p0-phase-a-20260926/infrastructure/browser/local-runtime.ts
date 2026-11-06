@@ -84,7 +84,7 @@ async function ensureCurriculum(){
     // old package versions or learner attempts as an automatic "recovery".
     const previous=await academic.packages();
     if(!previous.some(row=>Array.isArray(row.source?.lessons)&&row.source.lessons.length>0))throw error;
-    curriculumWarning='The automatic English lesson update was paused because this browser is short of storage space. Your existing lessons and scores are preserved. Do not clear this site’s data or use Restore for curriculum updates. Keep a complete Recovery backup before considering the optional one-time storage cleanup.';
+    curriculumWarning='The automatic English lesson update was paused: the new curriculum could not be saved because this browser is short of storage space. Your existing lessons and scores are preserved. Do not clear this site’s data or use Restore for curriculum updates. Keep a complete Recovery backup before considering the optional one-time storage cleanup.';
   }
 }
 
