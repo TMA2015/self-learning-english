@@ -41,7 +41,7 @@ const root=path.resolve(__dirname,'..');
   return new Promise((resolve,reject)=>{
    const cmd=cp.spawn(bin,['--headless=new','--no-sandbox','--disable-dev-shm-usage',
     '--disable-extensions','--disable-background-networking',
-    '--no-first-run','--virtual-time-budget=25000','--dump-dom',
+    '--no-first-run','--virtual-time-budget=90000','--dump-dom',
     '--user-data-dir='+profile,url],{stdio:['ignore','pipe','pipe']});
    let stdout='',stderr='',expired=false;
    const timer=setTimeout(()=>{expired=true;cmd.kill('SIGKILL')},55000);
