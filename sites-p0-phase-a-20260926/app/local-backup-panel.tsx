@@ -79,6 +79,13 @@ export function LocalBackupPanel(){
   if(!file)return;
   await run(async()=>{
    const content=await file.text();
+   // A cumulative lesson package is NOT a V2 learner Recovery archive.
+   // Give a useful warning without writing or resetting any browser data.
+   let parsed:unknown;
+   try{parsed=JSON.parse(content)}catch{/* The recovery validator gives the canonical JSON error. */}
+   if(parsed&&typeof parsed==='object'&&!Array.isArray(parsed)&&
+      'schema_version' in parsed&&'lessons' in parsed)
+     throw new Error('This is a curriculum package, not a learner Recovery backup. Approved lessons update automatically when browser storage has space. Do not use Restore to update lessons.');
    const result=await previewLocalRecoveryV2(content);
    setRecoveryText(content);setRestorePreview(result);
    setStatus(result.valid
@@ -116,6 +123,7 @@ export function LocalBackupPanel(){
    {!fullBackupExported&&<small>Download and re-select the saved V2 recovery JSON above to verify it before confirming.</small>}
   </div>}
   <hr/>
+  <p className="muted">Approved new lessons are added automatically when the site updates and this browser has enough storage. Do not download curriculum JSON files or use Restore to update lessons.</p>
   <p><strong>Restore:</strong> Select a complete V2 recovery JSON on an otherwise empty learner profile. Existing work cannot be overwritten.</p>
   <label htmlFor="sle-v2-recovery-file">Recovery JSON file</label>
   <input id="sle-v2-recovery-file" type="file" accept=".json,application/json" disabled={busy}
