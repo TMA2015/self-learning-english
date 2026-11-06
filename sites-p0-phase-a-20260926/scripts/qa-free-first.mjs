@@ -59,6 +59,7 @@ const fullRegressionTests=[
   "today-learning-path.cjs",
   "a2-unit-guide-pilot.cjs",
   "idb-curriculum-vault-browser.cjs",
+  "hybrid-recovery-source-union.cjs",
   "batch02-v11-release.cjs",
   "batch04-code-compat.cjs",
   "catalog-groups.cjs",
