@@ -58,6 +58,7 @@ const fullRegressionTests=[
   "attempt-navigation-ui.cjs",
   "today-learning-path.cjs",
   "a2-unit-guide-pilot.cjs",
+  "idb-curriculum-vault-browser.cjs",
   "batch02-v11-release.cjs",
   "batch04-code-compat.cjs",
   "catalog-groups.cjs",
