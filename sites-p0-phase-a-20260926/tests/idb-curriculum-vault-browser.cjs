@@ -88,7 +88,7 @@ async function until(fn,ms=12000){
    while(Date.now()-start<45000){
     last=String(await evaluate()||'');
     if(last.startsWith('PASS_'))return last;
-    if(last.startsWith('FAIL_'))throw Error(last);
+    if(last.startsWith('FAIL'))throw Error(last);
     await delay(250);
    }
    throw Error('IndexedDB browser phase timed out; last progress='+last);
