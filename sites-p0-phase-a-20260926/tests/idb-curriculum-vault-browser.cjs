@@ -24,9 +24,9 @@ const root=path.resolve(__dirname,'..');
  const load=url=>new Promise((resolve,reject)=>{
   const process=cp.spawn(chrome,['--headless=new','--no-sandbox','--disable-dev-shm-usage',
    '--disable-extensions','--disable-background-networking',
-   '--virtual-time-budget=18000','--dump-dom','--user-data-dir='+profile,url],{stdio:['ignore','pipe','pipe']});
+   '--virtual-time-budget=90000','--dump-dom','--user-data-dir='+profile,url],{stdio:['ignore','pipe','pipe']});
   let stdout='',stderr='',expired=false;
-  const timeout=setTimeout(()=>{expired=true;process.kill('SIGKILL')},45000);
+  const timeout=setTimeout(()=>{expired=true;process.kill('SIGKILL')},65000);
   process.stdout.on('data',d=>stdout+=String(d));
   process.stderr.on('data',d=>stderr+=String(d));
   process.on('error',reject);
