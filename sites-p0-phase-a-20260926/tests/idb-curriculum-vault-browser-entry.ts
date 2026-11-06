@@ -1,4 +1,5 @@
 import {browserCurriculumVault} from '../infrastructure/storage/indexeddb-curriculum-vault';
+import {inspectLegacyCurriculumMirror,mirrorLegacyCurriculumToVault} from '../infrastructure/storage/legacy-curriculum-mirror';
 
 const result=document.querySelector('#sle-idb-result') as HTMLElement;
 function check(v:boolean,message:string){if(!v)throw Error(message)}
@@ -32,8 +33,20 @@ const phase=new URL(location.href).searchParams.get('phase');
    check(await vault.putImmutable(record('1.18.'+i,i<=4?200:250) as never)==='added','multi-version commit '+i);
    result.textContent='PACKAGE_'+i;
   }
+  // S2 research: copy legacy curriculum versions into IDB without ever
+  // deleting either the original package key or a learner attempt key.
+  const original=localStorage.getItem(key);
+  const packageKey='g-learning:english:v1:academic:packages';
+  const legacy=JSON.stringify([record('1.18.1',109),record('1.17.0',10)]);
+  localStorage.setItem(packageKey,legacy);
+  const preflight=inspectLegacyCurriculumMirror(localStorage);
+  check(preflight.attempts===1&&preflight.versions===2,'All owner-scoped attempts must be inventoried');
+  const migration=await mirrorLegacyCurriculumToVault(localStorage,vault);
+  check(migration.added.join(',')==='1.17.0','Only one genuinely new IDB version should be mirrored');
+  check(localStorage.getItem(packageKey)===legacy&&localStorage.getItem(key)===original,
+   'Content mirror must never mutate original learner or package keys');
   const docs=await vault.list();
-  check(docs.length===9,'nine immutable version packages expected');
+  check(docs.length===10,'Ten versions including safe legacy mirror expected');
   check(docs.find(p=>p.version==='1.18.9')?.source.lessons.length===250,'250 lessons preserved in vault');
   check(localStorage.getItem(key)===exact,'learner attempts must remain byte-identical');
   check(!localStorage.getItem('g-learning:english:v1:academic:packages'),
@@ -41,7 +54,8 @@ const phase=new URL(location.href).searchParams.get('phase');
   result.textContent='PASS_WRITE';
  }else if(phase==='reload'){
   const docs=await vault.list();
-  check(docs.length===9,'Nine packages must survive browser process restart');
+  check(docs.length===10,'Ten packages including legacy mirror must survive browser restart');
+  check(docs.find(x=>x.version==='1.17.0')?.source.lessons.length===10,'Legacy lesson source persisted');
   check(docs.find(x=>x.version==='1.18.1')?.source.lessons.length===109,'historical source preserved');
   check(docs.find(x=>x.version==='1.18.9')?.source.lessons.length===250,'250-lesson fixture persisted');
   check((localStorage.getItem(key)||'').includes('immutable-historic'),'Historic learner attempt missing');
