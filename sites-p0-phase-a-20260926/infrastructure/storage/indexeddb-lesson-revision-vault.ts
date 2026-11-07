@@ -211,6 +211,33 @@ export class BrowserLessonRevisionVault {
   })}finally{db.close()}
  }
 
+ /**
+  * Targeted immutable provenance lookup used by R5a's historical grading
+  * resolver. A missing alias is not permission to fall back to latest.
+  */
+ async historicAlias(version:string,lessonId:string):Promise<RevisionAlias|null>{
+  versionParts(version);
+  if(typeof lessonId!=='string'||!lessonId)throw abortError('Lesson ID missing.');
+  const db=await openDatabase(this.factory);
+  try{return await new Promise<RevisionAlias|null>((resolve,reject)=>{
+   const tx=db.transaction(STORE_ALIASES,'readonly');
+   const request=tx.objectStore(STORE_ALIASES).get(aliasKey(version,lessonId));
+   let result:AliasRow|undefined;
+   request.onsuccess=()=>{result=request.result as AliasRow|undefined};
+   tx.oncomplete=()=>{
+    if(!result){resolve(null);return}
+    if(result.version!==version||result.lessonId!==lessonId||
+     !result.packageId||!result.releaseDigest)
+     reject(abortError('Historical alias has mismatched provenance.'));
+    else{
+     const {key:_key,...alias}=result;
+     resolve(alias);
+    }
+   };
+   tx.onabort=()=>reject(abortError('Historical alias read was aborted.'));
+  })}finally{db.close()}
+ }
+
  private async resolve(lessonId:string,version?:string):Promise<RevisionBlob>{
   if(!lessonId||typeof lessonId!=='string')throw abortError('Lesson ID missing.');
   if(version!==undefined)versionParts(version);
