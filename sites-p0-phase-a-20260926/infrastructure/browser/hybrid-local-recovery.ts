@@ -150,6 +150,46 @@ export async function previewHybridRecoveryV2(text:string,storage:EnumerableStor
  * current full export. Learner attempts, state and all owner-scoped keys are
  * NEVER modified. This is intentionally not an automatic site update.
  */
+/**
+ * Second phase of one-time source cleanup: remove old UNUSED versions from
+ * IndexedDB entirely; turn only versions used by real historic attempts into
+ * exact original-lesson archives. Latest curriculum always remains complete.
+ *
+ * Require the downloaded, verified, exact current V2 backup AND no remaining
+ * legacy full curriculum localStorage key. Never change learner attempts.
+ */
+export async function compactIndexedDBAfterVerifiedBackup(
+ savedText:string,storage:EnumerableStore,
+ vault:Vault&Pick<IndexedDBCurriculumVault,'retainAfterVerifiedBackup'>,
+ confirmed:boolean
+){
+ if(!confirmed)throw Error('Explicit verified-backup confirmation required.');
+ if(storage.getItem(PACKAGE_KEY)!==null)
+  throw Error('Move verified legacy curriculum content to IndexedDB before compacting.');
+ if(storage.getItem(RECOVERY_MARKER))
+  throw Error('An interrupted Restore blocks IndexedDB cleanup.');
+ const verified=await verifyLocalRecoveryV2(savedText);
+ const before=await exportHybridRecoveryV2(storage,vault);
+ if(JSON.parse(before.text).sha256!==verified.sha256)
+  throw Error('Downloaded Recovery no longer matches the current learner data. No source deleted.');
+ const originals=await vault.list();
+ const refs=attemptRows(entriesIn(storage));
+ const plan=retainReferencedLessons(originals,refs);
+ // Prove that removing unreferenced versions will not change what a future
+ // portable backup includes. This check happens BEFORE ANY IDB mutation.
+ const expected=await exportHybridRecoveryV2(storage,{
+  list:async()=>plan.records,
+  putImmutable:async()=>{throw Error('Virtual Recovery preflight must not write content.')},
+ });
+ if(JSON.parse(expected.text).sha256!==verified.sha256)
+  throw Error('IndexedDB cleanup would change the portable Recovery. No source deleted.');
+ const result=await vault.retainAfterVerifiedBackup(originals,refs,true);
+ const after=await exportHybridRecoveryV2(storage,vault);
+ if(JSON.parse(after.text).sha256!==verified.sha256||
+    after.attempts!==before.attempts)
+  throw Error('IndexedDB cleanup readback differs from verified backup. Preserve the downloaded Recovery.');
+ return {...result,attempts:after.attempts,sha256Verified:true as const};
+}
 export async function moveLegacyCurriculumAfterVerifiedBackup(
  savedText:string,storage:EnumerableStore,vault:Vault,confirmed:boolean
 ){
