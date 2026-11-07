@@ -29,10 +29,13 @@ for(const item of r.assets){
  assert.match(item.sha256,/^[0-9a-f]{64}$/);
  assert.equal(item.engine,'Kokoro');
  assert.equal(item.engine_package,'0.9.4');
- assert.equal(item.owner_audio_qa,item.lesson_id==='LIS-A1-06'?'PENDING':'PASS');
- if(item.owner_audio_qa==='PASS'){
+ assert.equal(item.owner_audio_qa,'PASS','Owner reviewed and accepted all three original selected audio assets');
+ assert.match(item.owner_audio_qa_basis,/2026-11-07/);
+ if(item.lesson_id==='LIS-A1-06'){
+  assert.equal(item.sha256,'91f736e9934476b44df0f4ab59eb2b381326bb144acd4475dcfa91e0fbe5bac6');
+  assert(!Object.hasOwn(item,'supersedes_sha256'),'A1 original is not a replacement');
+ }else{
   assert.equal(item.pause_seconds,0.4038);
-  assert(['LIS-A2-07','LIS-B1-08'].includes(item.lesson_id));
   assert.match(item.supersedes_sha256,/^[0-9a-f]{64}$/);
   assert.notEqual(item.sha256,item.supersedes_sha256);
  }
@@ -57,6 +60,6 @@ console.log(JSON.stringify({result:'PASS_METADATA_AND_SOURCE_ONLY',
  audioHashesRecorded:3,
  actualAudioFilesInRepository:present,
  requireMedia,media01:present===3?'BYTES_PRESENT_PLAYBACK_UNVERIFIED':'BLOCKED',
- humanHearing:'A2_B1_OWNER_PASS_A1_PENDING',newAssetRights:'PENDING',
+ humanHearing:'ALL_THREE_OWNER_PASS',newAssetRights:'PENDING',
  realBrowserPlayback:'NOT_TESTED',
  productionRelease:'NO_GO'}));
