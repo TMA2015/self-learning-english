@@ -18,7 +18,7 @@ for(const a of receipts.assets){
  const entry=manifest[a.lesson_id];
  assert(entry,a.lesson_id+' manifest entry missing');
  assert.equal(a.owner_audio_qa,'PASS','Owner hearing must remain separately recorded');
- assert.equal(a.rights_clearance_for_new_assets,'PENDING','This Draft test cannot silently clear rights');
+ assert.equal(a.rights_clearance_for_new_assets,'APPROVED','Owner granted scoped website rights for this exact hash');
  assert.equal(a.browser_playback,'NOT_TESTED','This is a new, independent partial browser check');
  assert.equal(a.source_text,entry.source);
  assert.equal(entry.sha256,a.sha256);
@@ -140,7 +140,7 @@ let receive=()=>{};
   console.log(JSON.stringify({
    result:'PASS',gate:'UNIT10_CHROME_AUDIO_CODEC_PLAY_TO_END',
    browser:path.basename(chrome),decodedAndPlayedToEnd:ids,
-   ownerHearing:'ALL_THREE_PASS',rights:'PENDING',fullMedia01:'NOT_TESTED',
+   ownerHearing:'ALL_THREE_PASS',rights:'SCOPED_OWNER_APPROVED',fullMedia01:'NOT_TESTED',
    actualProductPlayer:'NOT_TESTED',learnerDataTouched:false,productionRelease:'NO_GO'
   }));
  }finally{
