@@ -3,7 +3,7 @@
   "disposition": "NOTEBOOKLM_ADOPTION_GO_AFTER_6_TAG_NORMALIZATIONS",
   "source_curriculum": "1.20.0",
   "target_candidate": "1.21.0",
-  "production": "NO_GO_AUDIO_NOT_PRODUCED",
+  "production": "NO_GO_AUDIO_MEDIA01_AND_RIGHTS_PENDING",
   "media_qa": "NOT_TESTED",
   "required_normalizations": {
     "A2U10-R03": {
