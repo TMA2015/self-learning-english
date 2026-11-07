@@ -24,6 +24,9 @@ if(rights.unit10_draft_assets?.candidate_version==="1.21.0"){
   run(process.execPath,["tests/unit10-audio-owner-receipts.cjs","--require-media"]);
   run(process.execPath,["tests/unit10-staged-manifest-safety.cjs"]);
   run(process.execPath,["tests/unit10-academic-candidate-v121.cjs"]);
+  // Verify version-pinned old attempts and atomic quota failures during the
+  // proposed 1.20.0 -> 1.21.0 upgrade (no production storage touched).
+  run(process.execPath,["tests/unit10-real-upgrade-retention.cjs"]);
   // Chrome loads the three exact MP3 bytes over localhost and must emit ended.
   // This is media-codec evidence, NOT the complete product-player MEDIA-01 gate.
   run(process.execPath,["tests/unit10-chrome-audio-codec.cjs"]);
