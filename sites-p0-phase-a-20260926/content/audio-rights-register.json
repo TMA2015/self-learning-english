@@ -632,8 +632,9 @@
       "source_originality_basis": "New NotebookLM-reviewed Unit-10 text and exact transcript parity are recorded; independent rights/source attribution acceptance still pending.",
       "license_basis": "Official Kokoro 0.9.4 package is Apache licensed (https://pypi.org/project/kokoro/0.9.4/); hexgrad Kokoro-82M weights Apache-2.0 (https://huggingface.co/hexgrad/Kokoro-82M); exact local voicepack download/source must be confirmed.",
       "rights_decision_ref": "docs/curriculum/SLE_UNIT10_KOKORO_AUDIO_RIGHTS_EVIDENCE_20261107.md",
-      "owner_audio_qa": "PENDING",
-      "unit10_lesson_id": "LIS-A1-06"
+      "owner_audio_qa": "PASS",
+      "unit10_lesson_id": "LIS-A1-06",
+      "owner_audio_qa_basis": "Owner heard originally submitted A1-U10 recording, confirmed clear/good quality on 2026-11-07 (hearing QA only)."
     },
     {
       "asset_path": "public/foundation-audio/LIS-A2-07-v1.mp3",
