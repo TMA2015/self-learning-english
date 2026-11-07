@@ -59,3 +59,21 @@ Run `node scripts/compose-unit10-v121-candidate.cjs` for review-only local gener
 - [ ] Owner explicit production authorization and Firebase English-only publish — NOT GRANTED.
 
 Do not merge this Draft content PR automatically. Keep Site live curriculum at approved 1.20.0 until every applicable gate passes. This working note is evidence, not a second project standard.
+
+## 2026-11-07 — Owner-uploaded Kokoro MP3 source QA (not yet Git assets)
+
+The owner has since uploaded **three real MP3 files** and matching producer JSON sidecars to the ChatGPT conversation: `A1-U10-v1.mp3`, `A2-U10-v1.mp3`, `B1-U10-v1.mp3`. The original bytes are available in a separately downloadable **SLE_Unit10_Audio_QA_Handoff_20261107.zip**; they are **not yet committed in this Git branch**. See `content/batches/unit10-owner-audio-receipts-20261107.json` for expected hashes, canonical path, sample rate and provenance.
+
+| Approved Listening Lesson ID | Original user MP3 | Expected SHA-256 | Decoded seconds | Mean words/min (approx.) |
+| --- | --- | --- | ---: | ---: |
+| LIS-A1-06 | A1-U10-v1.mp3 | `91f736e9934476b44df0f4ab59eb2b381326bb144acd4475dcfa91e0fbe5bac6` | 22.200 | 186.5 |
+| LIS-A2-07 | A2-U10-v1.mp3 | `91ba3cc5e3ca9528d07abbcff7c872308bb3a63fb7b41c87ac5aa056824cd514` | 24.375 | 233.8 |
+| LIS-B1-08 | B1-U10-v1.mp3 | `379686f8290915aa437d42a0285be845143e471b30dd5c2c6f3769adbc69410b` | 38.475 | 191.8 |
+
+**Local verification performed:** all 3 byte SHA-256 match supplied sidecar; sidecar `source_text` matches the immutable PR #117 original lesson script character-for-character; MP3 decodes at 24 kHz mono with no clipping; container padding differences are 0.048–0.069 seconds. The producer used Kokoro 0.9.4, local inference, single `bf_emma` voice. Distinguish this source-sidecar parity from **hearing every spoken word**, which is still **pending owner audio QA**.
+
+**Pace warning:** New A2-U10 is approximately 234 words/minute including pauses, considerably faster than the current A2 Listening corpus (about 139–182 WPM). B1-U10 is approximately 192 WPM vs existing B1 corpus ~140–174 WPM. These are not formal CEFR limits, but the difference warrants owner listening acceptance. The downloadable handoff provides two OPTIONAL pitch-preserving slow playback previews (A2 0.77× → ~180 WPM, B1 0.90× → ~173 WPM) for comparison; **previews are not approved final originals** and have different hashes. Rerendering with slower native TTS is preferable if preview processing sounds distorted. A1 pace ~186 WPM is within current A1 corpus spread.
+
+**Next media gate:** After final owner audio QA and selection of ORIGINAL vs renewed recording, put exactly the selected original media bytes under `public/foundation-audio/LIS-A1-06-v1.mp3`, `LIS-A2-07-v1.mp3`, `LIS-B1-08-v1.mp3`; register source+URL+duration+SHA in `content/foundation-audio.json`; reconcile rights register for new assets without automatically inheriting clearance for a different SHA; update current-curriculum audio coverage tests for approved 1.21.0; perform actual browser listen-to-end/Submit/retake/Save/Resume with transcript concealed pre-submit. `node tests/unit10-audio-owner-receipts.cjs --require-media` is deliberately a **strict fail gate** while the MP3 files are absent.
+
+**Current status remains:** Source metadata PASS, AUDIO HEARING PENDING, BINARY REPO INTEGRATION NOT DONE, FIREBASE LIVE NOT CHANGED.
