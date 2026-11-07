@@ -1,4 +1,5 @@
-import type {StoredAcademicPackage} from '../../domain/storage-retention';
+import {retainReferencedLessons,type StoredAcademicPackage} from '../../domain/storage-retention';
+import type {AcademicAttempt} from '../../domain/academic';
 
 /**
  * Phase-1 non-destructive prototype: IndexedDB holds immutable curriculum
@@ -80,6 +81,54 @@ export class IndexedDBCurriculumVault {
     :'Curriculum transaction aborted; no successful write was recorded.'));
   })}finally{db.close()}
  }
+ /**
+  * Explicit, backup-gated historical retention. Keep the latest FULL source,
+  * old lessons needed by saved attempts, and no other old full copies.
+  *
+  * A single readwrite transaction verifies that no other tab changed the
+  * source set, then puts archived records/deletes genuinely unused versions.
+  * Learner keys are never in this database and are never modified here.
+  * Call ONLY after checking a downloaded complete V2 Recovery outside.
+  */
+ async retainAfterVerifiedBackup(
+  expected:readonly StoredAcademicPackage[],
+  protectedAttempts:readonly Pick<AcademicAttempt,'version'|'lessonId'>[],
+  confirmed:boolean,
+ ):Promise<{beforeVersions:number;afterVersions:number;archivedLessons:number}>{
+  if(!confirmed)throw failClosed('A verified portable Recovery and explicit confirmation are required.');
+  if(!expected.length)throw failClosed('No original curriculum sources to protect.');
+  const plan=retainReferencedLessons(expected,protectedAttempts);
+  const permitted=new Map(plan.records.map(x=>[x.version,x]));
+  const original=new Map(expected.map(x=>[x.version,x]));
+  const db=await database(this.factory);
+  try{return await new Promise((resolve,reject)=>{
+   const tx=db.transaction(STORE,'readwrite');
+   const store=tx.objectStore(STORE);
+   const req=store.getAll();
+   let conflict=false;
+   req.onsuccess=()=>{
+    const actual=req.result as StoredAcademicPackage[];
+    const exact=actual.length===expected.length
+     &&actual.every(x=>original.has(x.version)
+       &&JSON.stringify(original.get(x.version))===JSON.stringify(x));
+    if(!exact){conflict=true;tx.abort();return}
+    for(const row of actual){
+     const next=permitted.get(row.version);
+     if(!next){store.delete(row.version);continue}
+     if(JSON.stringify(row)!==JSON.stringify(next))store.put(next);
+    }
+   };
+   tx.oncomplete=()=>resolve({
+    beforeVersions:expected.length,afterVersions:plan.records.length,
+    archivedLessons:plan.protectedLessonCount,
+   });
+   tx.onerror=()=>reject(failClosed('Could not compact curriculum vault atomically.'));
+   tx.onabort=()=>reject(failClosed(conflict
+    ?'IndexedDB changed during verified cleanup. No data removed.'
+    :'IndexedDB retention transaction aborted; no successful cleanup recorded.'));
+  })}finally{db.close()}
+ }
+
 }
 
 export function browserCurriculumVault(){
