@@ -150,6 +150,55 @@ export class BrowserLessonRevisionVault {
   }finally{db.close()}
  }
 
+
+ /**
+  * Call BEFORE an eventual learner attempt is written. First commit its
+  * immutable source alias; if the later learner write fails, an orphan alias
+  * is harmless. Cross-store atomicity must never be assumed.
+  * R2 tests this function but the LIVE academic service does not call it.
+  */
+ async pinCurrentForAttempt(version:string,lessonId:string):Promise<void>{
+  versionParts(version);
+  if(typeof lessonId!=='string'||!lessonId)throw abortError('Lesson ID missing.');
+  const db=await openDatabase(this.factory);
+  try{
+   await new Promise<void>((resolve,reject)=>{
+    const tx=db.transaction([STORE_BLOBS,STORE_ALIASES,STORE_MANIFEST],'readwrite');
+    const aliases=tx.objectStore(STORE_ALIASES);
+    const blobs=tx.objectStore(STORE_BLOBS);
+    const current=tx.objectStore(STORE_MANIFEST).get(MANIFEST_KEY);
+    let conflict='';
+    function fail(message:string){if(!conflict){conflict=message;try{tx.abort()}catch{}}}
+    current.onsuccess=()=>{
+     const active=(current.result as ManifestRow|undefined)?.value;
+     if(!active||active.version!==version){
+      fail('Cannot pin an attempt against a non-current curriculum.');return;
+     }
+     const target=active.lessons.find(x=>x.lessonId===lessonId);
+     if(!target){fail('Cannot pin a missing current lesson.');return}
+     const b=blobs.get(target.revision);
+     b.onsuccess=()=>{
+      if(!b.result||(b.result as RevisionBlob).lesson.id!==lessonId){
+       fail('Cannot pin a missing original source.');return;
+      }
+      const record:AliasRow={key:aliasKey(version,lessonId),
+       version,lessonId,revision:target.revision,
+       packageId:active.packageId,releaseDigest:active.releaseDigest};
+      const existing=aliases.get(record.key);
+      existing.onsuccess=()=>{
+       if(existing.result!==undefined){
+        if(!equal(existing.result,record))fail('Immutable attempted source alias conflict.');
+       }else aliases.add(record);
+      };
+     };
+    };
+    tx.oncomplete=()=>resolve();
+    tx.onabort=()=>reject(abortError(conflict||'Attempt source pin transaction aborted.'));
+    tx.onerror=()=>reject(abortError('Could not pin the attempt source.'));
+   });
+  }finally{db.close()}
+ }
+
  async manifest():Promise<ActiveLessonManifest|null>{
   const db=await openDatabase(this.factory);
   try{return await new Promise((resolve,reject)=>{
