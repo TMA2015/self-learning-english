@@ -23,7 +23,7 @@ The R2 vault has **no delete/clear API** and no read/write access to any learner
 2. Install a 2-lesson baseline, then a 3-lesson newer curriculum. The unchanged Grammar lesson is represented by one blob, while revised Writing rubric produces two distinct revisions.
 3. Verify historic Writing rubric and active rubric resolve to their correct distinct original snapshots; new release does not change the saved learner key.
 4. Prove same-release install is idempotent, input hash tampering fails closed, and older manifest cannot downgrade.
-5. Import a **synthetic** 250-lesson version with 247 new lessons. The expected normalized store contains 251 blobs (250 current + 1 old Writing rubric) and 3 historical aliases — no full repeated cumulative source copies.
+5. Import a **synthetic** 250-lesson version with 247 new lessons. The expected normalized store contains 251 blobs (250 current + 1 old Writing rubric) and 4 historical aliases — no full repeated cumulative source copies.
 6. Attempt a conflicting historical alias; require whole-transaction rollback and no orphan blob.
 
 In a **separate Chromium process**, verify the 250-lesson active manifest, original historic rubric, 251 blobs and exact unchanged localStorage key all persist. Missing old revisions must fail closed.
