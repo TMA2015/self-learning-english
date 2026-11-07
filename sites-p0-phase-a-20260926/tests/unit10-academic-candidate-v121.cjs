@@ -2,6 +2,8 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {execFileSync}=require('node:child_process');
 const root=path.resolve(__dirname,'..');
+// Parse the opt-in media staging helper in PR QA without ever executing or applying it.
+execFileSync(process.execPath,['--check','scripts/stage-unit10-audio-handoff.cjs'],{cwd:root,stdio:'inherit'});
 const original=require('../content/curriculum-1.20.0-candidate.json');
 const authored=require('../content/batches/unit10-a1a2b1-9-lessons-v121-draft.json');
 const {composeUnit10,unitMap}=require('../scripts/compose-unit10-v121-candidate.cjs');
