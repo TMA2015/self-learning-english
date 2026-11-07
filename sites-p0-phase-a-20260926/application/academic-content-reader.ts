@@ -75,9 +75,12 @@ function strictHeader(m:ActiveLessonManifest){
   !header.course||!Array.isArray(header.course.sequence)||
   !header.integrated_journey)
   throw new AcademicError('Normalized curriculum manifest is incomplete.',409);
+ const manifestIds=new Set(m.lessons.map(x=>x.lessonId));
  if(header.course.sequence.length!==m.lessons.length||
-  header.course.sequence.some((id,i)=>id!==m.lessons[i]?.lessonId))
-  throw new AcademicError('Normalized lesson ordering differs from approved curriculum.',409);
+  manifestIds.size!==m.lessons.length||
+  new Set(header.course.sequence).size!==manifestIds.size||
+  header.course.sequence.some(id=>!manifestIds.has(id)))
+  throw new AcademicError('Normalized manifest and approved course sequence disagree.',409);
  return {course:header.course,journey:header.integrated_journey};
 }
 function strictLesson(b:RevisionBlob,id:string):SeedLesson{
