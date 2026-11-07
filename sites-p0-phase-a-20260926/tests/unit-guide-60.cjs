@@ -64,6 +64,8 @@ assert(home.includes('entryMode={view==="units"?"units":"lessons"}'));
 assert(foundation.includes('onOpenLesson={(id,entry)=>void open(id,entry)}'),
  'Unit screen must open the original guarded academic player');
 assert(foundation.includes('routeScope=entryMode==='));
+assert(foundation.includes('selectedId={selectedUnit}')&&unitUi.includes('onSelectUnit:(id:string|null)=>void'),
+ 'After the player closes, the same Unit detail must remain selected');
 assert(unitUi.includes('lessonProgressForLesson(attempts,item.id)'),
  'Every Unit lesson needs the existing saved attempt record');
 assert(unitUi.includes('latestAttemptForLesson(attempts,item.id)'),
