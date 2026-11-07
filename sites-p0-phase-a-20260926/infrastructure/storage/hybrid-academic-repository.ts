@@ -26,6 +26,10 @@ export class HybridBrowserAcademicRepository implements AcademicRepository {
  async packages():Promise<AcademicPackage[]>{
   const local=await this.legacy.packages();
   const vault=await this.vault.list();
+  // A clean browser must bootstrap the first bundled curriculum into IDB.
+  // The source-union validator is intentionally strict for nonempty backups,
+  // but the repository's package listing may legitimately start empty.
+  if(!local.length&&!vault.length)return [];
   const union=reconcileRecoverySources(
    local.map(stripBundle),vault,[]).records;
   return union.map((row:StoredAcademicPackage)=>{
@@ -38,7 +42,7 @@ export class HybridBrowserAcademicRepository implements AcademicRepository {
   const known=(await this.packages()).find(row=>row.version===value.version);
   if(known){
    if(known.digest!==value.digest||known.id!==value.id||
-    !JSON.stringify(known.source)||JSON.stringify(known.source)!==JSON.stringify(value.source))
+    JSON.stringify(known.source)!==JSON.stringify(value.source))
     throw Error('Immutable curriculum conflict: same version is not the same original source.');
    // An existing original package remains accessible; no duplicate localStorage
    // or IDB write is required on every page refresh.
