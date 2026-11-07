@@ -57,9 +57,9 @@ async function openLesson(id:string){
  await wait(()=>document.querySelector('.foundation-lesson')?.textContent?.includes(id),'opening '+id);
  await wait(()=>button('Start practice')||button('Continue saved draft')||button('View saved result'),'lesson overview '+id);
 }
-function chooseAnswers(){
+function chooseAnswers(expected:number){
  const fieldsets=Array.from(document.querySelectorAll<HTMLFieldSetElement>('.foundation-lesson fieldset.foundation-question'));
- assert(fieldsets.length===3,'Unit10 listening expected 3 objective questions, actual '+fieldsets.length);
+ assert(fieldsets.length===expected,'Unit10 question count mismatch: expected '+expected+', actual '+fieldsets.length);
  for(const field of fieldsets){
   const radio=field.querySelector<HTMLInputElement>('input[type="radio"]');
   if(radio){radio.click();continue;}
@@ -122,7 +122,8 @@ async function run(){
   await click('Submit my work');
   await wait(()=>document.querySelector('.foundation-submit-warning')?.textContent?.includes('Please answer all questions'),'incomplete answer notice');
   assert((await recordOf(academic,id,'started'))?.status==='started','Incomplete Listening scored');
-  chooseAnswers();
+  const expectedItems=src.lessons.find(l=>l.id===id)!.activities.length;
+  chooseAnswers(expectedItems);
   await waitAnswersComplete();
   // Complete answers without playback still cannot submit.
   await click('Submit my work');
@@ -132,7 +133,7 @@ async function run(){
   // First lesson also exercises real Save / Back / Resume through the component.
   if(id===ids[0]){
    await click('Save draft');
-   await wait(async()=>{const a=(await academic.attempts(LOCAL_OWNER_ID)).find(x=>x.id===startedId);return a&&Object.keys(a.answers).length===3;},'draft persisted in browser repo');
+   await wait(async()=>{const a=(await academic.attempts(LOCAL_OWNER_ID)).find(x=>x.id===startedId);return a&&Object.keys(a.answers).length===expectedItems;},'draft persisted in browser repo');
    await click('← Back to lessons');
    await wait(()=>lessonButton(id),'catalog after save');
    await openLesson(id);
@@ -153,7 +154,7 @@ async function run(){
   await wait(async()=>!!(await academic.attempts(LOCAL_OWNER_ID)).find(x=>x.id===startedId&&x.status==='scored'),id+' scored attempt',12000);
   const saved=(await academic.attempts(LOCAL_OWNER_ID)).find(x=>x.id===startedId)!;
   assert(saved.playbackCompleted===true,id+' submitted without verified playback');
-  assert(saved.results?.length===3,id+' wrong result count');
+  assert(saved.results?.length===expectedItems,id+' wrong result count');
   await wait(()=>button('Read transcript after submission'),id+' transcript button after scoring');
   await click('Read transcript after submission');
   const source=src.lessons.find(l=>l.id===id)?.audio_asset?.source_text||'';
