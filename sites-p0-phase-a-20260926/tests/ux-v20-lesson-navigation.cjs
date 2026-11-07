@@ -29,13 +29,13 @@ assert.ok(source.includes("if(request!==openingRequest.current)return"),'a stale
 assert.ok(source.includes("loadedLessonVersion.current!==a.version"),'starting same-version practice must reuse loaded lesson');
 assert.equal((source.match(/call\(url\)/g)||[]).length,1,'lesson requests are centralized in the cache');
 assert.ok(source.includes("role=\"status\">Opening {openingId}"),'show immediate accessible feedback while opening a lesson');
-for(const marker of ['async function open(','async function backToCatalog()','async function chooseSkill(','useEffect(()=>{if(previousSkill.current===skill)']){
+for(const marker of ['async function open(','async function backToCatalog()','async function chooseSkill(','useEffect(()=>{if(previousSkill.current===routeScope)']){
  const start=source.indexOf(marker),end=source.indexOf('\n ',start+marker.length);
  assert.ok(start>=0,'missing safe navigation path '+marker);
 }
 const open=source.split('async function open(')[1].split('async function newAttempt(')[0];
 assert.ok(open.indexOf('await saveDraft()')<open.indexOf('await loadLesson('),'draft save must finish before opening another lesson');
-const skill=source.split('useEffect(()=>{if(previousSkill.current===skill)')[1].split('},[skill]);')[0];
+const skill=source.split('useEffect(()=>{if(previousSkill.current===routeScope)')[1].split('},[routeScope]);')[0];
 assert.ok(skill.indexOf('await saveDraft()')<skill.indexOf('void refresh().catch('),'draft persistence must precede background refresh');
 assert.ok(skill.includes("const needsSave=attempt?.status==='started'&&!prepared"),'sidebar navigation continues to guard draft state');
 assert.ok(skill.includes('setBusy(!!needsSave)'),'draft save must keep player controls disabled during sidebar transition');
