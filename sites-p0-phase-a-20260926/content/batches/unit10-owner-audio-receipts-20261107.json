@@ -5,8 +5,8 @@
   "status": "ALL_THREE_COMMITTED_RELEASE_GATES_PENDING",
   "acceptance": "NOT_FOR_PRODUCTION",
   "notes": [
-    "Exact A2/B1 MP3s committed at d31f1c3a4d589e9dbae522b48b7444fc4e9cd810; exact A1 MP3 committed at ff37fdc11086fc1166cdef80e60330ad713b0c79. All three matching manifest entries exist. A1 owner hearing, rights clearance and independent browser MEDIA-01 remain pending.",
-    "Owner selected replacement native Kokoro recordings for A2-U10 and B1-U10 on 2026-11-07 and confirmed clear, good-quality audible playback (owner_audio_qa PASS). A1-U10 owner hearing status remains PENDING.",
+    "Exact A2/B1 MP3s committed at d31f1c3a4d589e9dbae522b48b7444fc4e9cd810; exact A1 MP3 committed at ff37fdc11086fc1166cdef80e60330ad713b0c79. All three matching manifest entries exist. Owner hearing PASS for A1/A2/B1; rights clearance and independent browser MEDIA-01 remain pending.",
+    "Owner selected replacement native Kokoro recordings for A2-U10 and B1-U10 on 2026-11-07 and confirmed clear, good-quality audible playback (owner_audio_qa PASS). A1-U10 owner hearing PASS was confirmed by owner on 2026-11-07 for the original audio.",
     "The uploaded replacement filenames acquired a local '(1)' suffix due to duplication; canonical lesson asset paths do not include that suffix.",
     "Kokoro's UI preset name is a non-authoritative label; real speed and pause_seconds are taken from the producer sidecar.",
     "Source-sidecar text parity and SHA-256 integrity were verified locally; this does not replace independent actual browser playback, human word-for-word transcription, media rights approval or live release authorization.",
@@ -29,12 +29,13 @@
       "mode": "Single voice",
       "voice": "bf_emma",
       "tts_speed": 0.9,
-      "owner_audio_qa": "PENDING",
+      "owner_audio_qa": "PASS",
       "source_parity": "PASS",
       "mp3_integrity": "LOCAL_PASS",
       "in_git_tree": true,
       "rights_clearance_for_new_assets": "PENDING",
-      "browser_playback": "NOT_TESTED"
+      "browser_playback": "NOT_TESTED",
+      "owner_audio_qa_basis": "Project owner confirmed on 2026-11-07 that the originally created and uploaded A1-U10 recording is clear and of good quality; audible quality acceptance only, not word-for-word transcript or browser MEDIA-01 validation."
     },
     {
       "unit": "A2-U10",
