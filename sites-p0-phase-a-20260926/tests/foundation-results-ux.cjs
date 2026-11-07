@@ -21,7 +21,7 @@ assert(!page.includes('<FoundationDemo key={view}'),'Switching skill tabs must n
 assert(page.includes('"pronunciation","writing"] as View[]'),'Writing shares the persistent player');
 assert(page.includes('sharedCatalog={foundationCatalog} onCatalog={setFoundationCatalog}'),'Parent reuses account-scoped in-memory catalog');
 assert(ui.includes('if(!sharedCatalog)void refresh()'),'Fetch catalog only when no parent cache exists');
-assert(ui.includes('previousSkill.current===skill'),'Skill transitions preserve player instance');
+assert(ui.includes('previousSkill.current===routeScope')&&ui.includes("routeScope=entryMode==='units'"),'Skill and Unit transitions preserve the same player instance');
 assert(ui.includes('++recordingGeneration.current;if(media.current?.state===\'recording\')media.current.stop()'),'Switching skills cancels live recordings');
 assert(ui.includes('if(capture!==recordingGeneration.current)return'),'Old recording callbacks cannot leak into a different skill');
 assert(ui.includes("await confirmLatestDraft(()=>draftRevision.current,()=>saveDraftRef.current())"),'Confirm latest draft before sidebar navigation');

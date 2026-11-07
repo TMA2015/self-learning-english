@@ -30,7 +30,7 @@ assert(!page.includes('<FoundationDemo key={view}'),'Do not reintroduce forced p
 assert(page.includes('sharedCatalog={foundationCatalog} onCatalog={setFoundationCatalog}'),'Keep catalog cache');
 assert(ui.includes('summarizeFoundationResults(attempt?.results)'),'Keep server-result score card');
 assert(ui.includes('foundation-result-summary'),'Keep result UI');
-assert(ui.includes('previousSkill.current===skill'),'Keep fast cross-skill navigation');
+assert(ui.includes('previousSkill.current===routeScope')&&ui.includes("routeScope=entryMode==='units'"),'Keep fast guarded cross-skill and Unit navigation without remounting the Foundation player');
 assert(ui.includes("await confirmLatestDraft(()=>draftRevision.current,()=>saveDraftRef.current())"),'Keep server-confirmed latest draft before route transition');
 assert(page.includes('foundationNavigationGuard.current?.(target)'),'All sidebar routes must await the draft guard');
 assert(ui.includes('aria-label="Skill navigation"'),'Keep accessible skill navigation in the focused catalog');

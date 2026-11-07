@@ -12,7 +12,7 @@ assert.ok(!page.includes('view==="writing"&&<WritingHome'),'no separate Writing 
 assert.ok(platform.includes('compact=false'),'Writing Coach must retain standalone default');
 assert.ok(platform.includes('{!compact&&<>'),'compact Writing Coach should not repeat heading');
 assert.ok(player.includes('writingIntro?:ReactNode'),'optional slot must not affect other skills');
-assert.ok(player.includes("screen==='catalog'&&<>"),'Writing Coach only belongs to catalog view');
+assert.ok(player.includes("screen==='catalog'&&(entryMode==='units'?<UnitBrowser")&&player.includes('foundation-writing-coach'),'Writing Coach remains exclusively in the skill-catalog branch, not the new Unit guide');
 const pathTab=player.indexOf('className="foundation-path"');
 const coach=player.indexOf('className="foundation-writing-coach"');
 const recent=player.indexOf('foundation-recent"');
@@ -40,7 +40,7 @@ assert.ok(editableStart>=0&&editableEnd>editableStart&&editableActions.includes(
 assert.ok(player.includes('aria-hidden="true">{draftSaveText}</p></>:<><p>{attempt.status'),'editable JSX branch closes before read-only results');
 assert.ok(css.includes('.foundation-draft-feedback.is-error'),'clear failure visual');
 
-const transitions=player.split("useEffect(()=>{if(previousSkill.current===skill)")[1]?.split("},[skill]);")[0];
+const transitions=player.split("useEffect(()=>{if(previousSkill.current===routeScope)")[1]?.split("},[routeScope]);")[0];
 assert.ok(transitions,'pre-existing v14 skill guard retained');
 assert.equal(transitions.split('void refresh().catch(').length-1,1,'nonblocking single Catalog refresh retained after draft save');
 assert.equal(transitions.split('await refresh()').length-1,0,'do not block navigation on the optional catalog request');

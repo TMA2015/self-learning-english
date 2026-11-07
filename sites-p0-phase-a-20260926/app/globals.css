@@ -357,3 +357,70 @@ body {
 .foundation-stats-check{color:#177a46;font-weight:800}
 .foundation-progress-note{margin:.75rem 0 0;font-size:.83rem;line-height:1.5}
 @media(max-width:600px){.foundation-progress-summary{padding:1rem}.foundation-progress-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem;font-size:.82rem}.foundation-progress-stats>span{white-space:normal}.foundation-progress-mark{min-width:1.35rem;min-height:1.35rem}}
+
+
+/* Learn by Units (60 CEFR Units). Same canonical Lesson player and saved attempts as Skill Library. */
+.sle-unit-browser{max-width:1120px;margin:0 auto 36px;line-height:1.55;color:#20334d}
+.sle-unit-browser button{font:inherit;cursor:pointer}
+.sle-unit-browser button:focus-visible{outline:3px solid #c8a047;outline-offset:3px}
+.sle-unit-browser .unit-browser-hero{border:1px solid #dbe6f2;background:#fff;border-radius:16px;padding:24px 28px}
+.sle-unit-browser .unit-browser-hero h2{font-size:clamp(25px,3vw,36px);line-height:1.23;margin:8px 0 10px}
+.sle-unit-browser .unit-browser-hero>p{color:#5e738d;margin:0 0 18px}
+.sle-unit-browser .unit-browser-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.sle-unit-browser .unit-browser-metrics>div{border:1px solid #e0e9f4;background:#f8fbff;border-radius:11px;padding:13px 15px;min-width:0}
+.sle-unit-browser .unit-browser-metrics strong{display:block;font-size:25px;line-height:1.25;color:#164e89}
+.sle-unit-browser .unit-browser-metrics span{font-size:12px;color:#6b7e97}
+.sle-unit-browser .unit-level-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 14px}
+.sle-unit-browser .unit-level-tabs button{border:1px solid #d4e2f1;background:#fff;color:#42637d;font-weight:700;border-radius:10px;padding:10px 19px;min-height:42px}
+.sle-unit-browser .unit-level-tabs button.is-active{background:#194f91;color:#fff;border-color:#194f91}
+.sle-unit-browser .unit-browser-heading{margin:6px 0 16px}
+.sle-unit-browser .unit-browser-heading h3{font-size:20px;margin:0 0 3px}
+.sle-unit-browser .unit-browser-heading p{color:#657a92;font-size:13px;margin:0}
+.sle-unit-browser .unit-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.sle-unit-browser .unit-card{min-width:0;display:flex;flex-direction:column;gap:11px;text-align:left;border:1px solid #dce6f3;background:#fff;padding:19px;border-radius:15px;min-height:145px;color:#223751;transition:border-color .15s,box-shadow .15s}
+.sle-unit-browser .unit-card:hover{border-color:#477bb1;box-shadow:0 5px 18px #16477815}
+.sle-unit-browser .unit-card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.sle-unit-browser .unit-card-id{font-size:11px;color:#2c6fab;font-weight:750;letter-spacing:.035em}
+.sle-unit-browser .unit-card-tag{background:#e9f3ff;color:#256396;border-radius:99px;font-size:11px;font-weight:750;white-space:nowrap;padding:5px 10px}
+.sle-unit-browser .unit-card-tag.is-planned{background:#f0f3f7;color:#67798f}
+.sle-unit-browser .unit-card>strong{font-size:17px;line-height:1.35;flex:1}
+.sle-unit-browser .unit-card>small{font-size:12px;color:#718299}
+.sle-unit-browser .unit-unmapped-note{color:#687d96;margin:17px 0;font-size:12px}
+.sle-unit-browser .unit-back{margin:6px 0 18px;font-weight:700}
+.sle-unit-browser .unit-detail-heading{padding:23px 26px;margin:0 0 17px;border-radius:15px}
+.sle-unit-browser .unit-detail-heading h2{font-size:clamp(24px,3vw,30px);margin:8px 0;line-height:1.3}
+.sle-unit-browser .unit-detail-heading p{margin:0 0 17px;color:#5c7088}
+.sle-unit-browser .unit-detail-heading>small{display:block;color:#647b94;margin-top:10px}
+.sle-unit-browser .unit-detail-counters{display:flex;gap:9px;flex-wrap:wrap}
+.sle-unit-browser .unit-detail-counters span{border:1px solid #dce6f3;border-radius:9px;padding:7px 10px;font-size:12px;color:#54718d}
+.sle-unit-browser .unit-detail-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(240px,.85fr);align-items:start;gap:16px}
+.sle-unit-browser .unit-detail-grid>.panel,.sle-unit-browser .unit-detail-aside .panel{padding:22px;margin:0 0 14px;border-radius:15px}
+.sle-unit-browser .unit-detail-grid h3{font-size:19px;margin:0 0 13px}
+.sle-unit-browser .unit-lesson-row{display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid #e9eff7;padding:15px 0}
+.sle-unit-browser .unit-lesson-row:first-of-type{border-top:0}
+.sle-unit-browser .unit-lesson-info{min-width:0;display:flex;flex-direction:column;gap:5px}
+.sle-unit-browser .unit-lesson-info strong{font-size:15px;line-height:1.4}
+.sle-unit-browser .unit-lesson-info small{font-size:12px;color:#637b96}
+.sle-unit-browser .unit-lesson-row .secondary-button{flex-shrink:0;white-space:nowrap;padding:10px 12px;min-height:42px}
+.sle-unit-browser .unit-detail-aside{min-width:0}
+.sle-unit-browser .unit-detail-aside ol{padding-left:20px;margin:0 0 13px}
+.sle-unit-browser .unit-detail-aside li{margin-bottom:8px}
+.sle-unit-browser .unit-detail-aside p{font-size:13px;color:#5d7390}
+.sle-unit-browser .unit-checkpoint-note{border-left:4px solid #cfaa51;border-radius:7px;background:#fffaf1;padding:12px 14px}
+.sle-unit-browser .unit-empty-note{padding:18px;border-radius:10px;background:#f4f8fc;color:#607893;line-height:1.6}
+@media(max-width:900px){.sle-unit-browser .unit-detail-grid{grid-template-columns:1fr}}
+@media(max-width:680px){
+ .sle-unit-browser .unit-browser-hero{padding:18px 16px}
+ .sle-unit-browser .unit-browser-metrics{gap:7px}
+ .sle-unit-browser .unit-browser-metrics>div{padding:11px 9px}
+ .sle-unit-browser .unit-browser-metrics strong{font-size:21px}
+ .sle-unit-browser .unit-browser-metrics span{font-size:10px}
+ .sle-unit-browser .unit-level-tabs{gap:6px}
+ .sle-unit-browser .unit-level-tabs button{padding:10px 13px}
+ .sle-unit-browser .unit-card-grid{grid-template-columns:1fr;gap:11px}
+ .sle-unit-browser .unit-card{min-height:110px;padding:15px}
+ .sle-unit-browser .unit-detail-heading{padding:18px 16px}
+ .sle-unit-browser .unit-detail-grid>.panel,.sle-unit-browser .unit-detail-aside .panel{padding:18px 16px}
+ .sle-unit-browser .unit-lesson-row{align-items:stretch;flex-direction:column;gap:10px}
+ .sle-unit-browser .unit-lesson-row .secondary-button{align-self:flex-start}
+}
