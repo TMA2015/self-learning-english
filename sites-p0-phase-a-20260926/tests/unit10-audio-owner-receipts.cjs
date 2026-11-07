@@ -14,7 +14,7 @@ const r=require('../content/batches/unit10-owner-audio-receipts-20261107.json');
 const requireMedia=process.argv.includes('--require-media');
 assert.equal(r.schema,'sle-unit10-uploaded-audio-receipts-v1');
 assert.equal(r.assets.length,3);
-assert.equal(r.status,'ALL_THREE_COMMITTED_RELEASE_GATES_PENDING');
+assert.equal(r.status,'ALL_THREE_COMMITTED_OWNER_RIGHTS_APPROVED_MEDIA01_PENDING');
 assert.equal(r.acceptance,'NOT_FOR_PRODUCTION');
 const expected=['LIS-A1-06','LIS-A2-07','LIS-B1-08'];
 assert.deepEqual(r.assets.map(x=>x.lesson_id),expected);
@@ -40,7 +40,9 @@ for(const item of r.assets){
   assert.notEqual(item.sha256,item.supersedes_sha256);
  }
  assert.equal(item.browser_playback,'NOT_TESTED');
- assert.equal(item.rights_clearance_for_new_assets,'PENDING');
+ assert.equal(item.rights_clearance_for_new_assets,'APPROVED');
+ assert.equal(item.owner_rights_attestation_on,'2026-11-07');
+ assert.equal(item.owner_rights_decision_ref,'docs/curriculum/SLE_UNIT10_OWNER_AUDIO_RIGHTS_DECISION_20261107.md');
  assert.equal(item.canonical_asset_path,
   'public/foundation-audio/'+item.lesson_id+'-v1.mp3');
  assert.equal(item.in_git_tree,true);
@@ -60,6 +62,6 @@ console.log(JSON.stringify({result:'PASS_METADATA_AND_SOURCE_ONLY',
  audioHashesRecorded:3,
  actualAudioFilesInRepository:present,
  requireMedia,media01:present===3?'BYTES_PRESENT_PLAYBACK_UNVERIFIED':'BLOCKED',
- humanHearing:'ALL_THREE_OWNER_PASS',newAssetRights:'PENDING',
+ humanHearing:'ALL_THREE_OWNER_PASS',newAssetRights:'THREE_SCOPED_OWNER_APPROVED',
  realBrowserPlayback:'NOT_TESTED',
  productionRelease:'NO_GO'}));
