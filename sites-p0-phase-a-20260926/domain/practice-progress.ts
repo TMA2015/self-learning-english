@@ -9,7 +9,7 @@ const identity=(a:AcademicAttempt,qid:string)=>`${a.packageId}\u001f${a.version}
 export type PracticeProgress=ReturnType<typeof derivePracticeProgress>;
 
 /** Read-only projection of saved results; no answer keys, regrading, or evidence inserts. */
-export function derivePracticeProgress(attempts:AcademicAttempt[],packages:AcademicPackage[],submissions:WritingSubmission[]=[],evaluations:WritingEvaluation[]=[]){
+export function derivePracticeProgress(attempts:AcademicAttempt[],packages:AcademicPackage[],submissions:WritingSubmission[]=[],evaluations:WritingEvaluation[]=[],questionIdentity:(attempt:AcademicAttempt,questionId:string)=>string=identity){
  const overall=bucket(),skills=new Map<string,Bucket>(),tags=new Map<string,Bucket>();
  const byQuestion=new Map<string,{incorrect:number;total:number;skill:string;tag:string;lessonId:string;version:string}>();
  const byPackage=new Map(packages.map(p=>[`${p.id}\u001f${p.version}`,p]));
@@ -27,7 +27,7 @@ export function derivePracticeProgress(attempts:AcademicAttempt[],packages:Acade
    if(result.outcome==='format-only'){if(!seen.has(result.id)){formatOnly++;seen.add(result.id)}continue;}
    if(result.correct===null||typeof result.correct!=='boolean'||seen.has(result.id))continue;
    seen.add(result.id);
-   const question=identity(attempt,result.id),answer=Number(result.correct);
+   const question=questionIdentity(attempt,result.id),answer=Number(result.correct);
    overall.total++;overall.correct+=answer;overall.questions.add(question);
    let skillBucket=skills.get(skill);if(!skillBucket){skillBucket=bucket();skills.set(skill,skillBucket)}
    skillBucket.total++;skillBucket.correct+=answer;skillBucket.questions.add(question);
