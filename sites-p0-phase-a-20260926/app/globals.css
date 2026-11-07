@@ -424,3 +424,11 @@ body {
  .sle-unit-browser .unit-lesson-row{align-items:stretch;flex-direction:column;gap:10px}
  .sle-unit-browser .unit-lesson-row .secondary-button{align-self:flex-start}
 }
+
+/* A submission belongs to the Lesson ID, including scores from older curriculum releases. */
+.foundation-recent-grid button .foundation-recent-top,
+.sle-unit-browser .unit-lesson-status-head{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%}
+.foundation-recent-grid button .foundation-recent-top .foundation-progress-mark>span,
+.sle-unit-browser .unit-lesson-status-head .foundation-progress-mark>span{color:inherit;font-size:inherit}
+.foundation-recent-grid button .foundation-recent-top>.foundation-lesson-id{font-size:.82rem}
+.sle-unit-browser .unit-lesson-status-head{margin-bottom:2px}
