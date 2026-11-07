@@ -1,6 +1,6 @@
 'use strict';
 /**
- * Receipt parity: selected A2/B1 MP3s are committed; A1 is still absent.
+ * Receipt parity: all three exact MP3s are committed.
  * MEDIA-01 remains BLOCKED until all required media and independent
  * actual browser playback are verified.
  *
@@ -14,7 +14,7 @@ const r=require('../content/batches/unit10-owner-audio-receipts-20261107.json');
 const requireMedia=process.argv.includes('--require-media');
 assert.equal(r.schema,'sle-unit10-uploaded-audio-receipts-v1');
 assert.equal(r.assets.length,3);
-assert.equal(r.status,'A2_B1_COMMITTED_A1_PENDING');
+assert.equal(r.status,'ALL_THREE_COMMITTED_RELEASE_GATES_PENDING');
 assert.equal(r.acceptance,'NOT_FOR_PRODUCTION');
 const expected=['LIS-A1-06','LIS-A2-07','LIS-B1-08'];
 assert.deepEqual(r.assets.map(x=>x.lesson_id),expected);
@@ -40,7 +40,7 @@ for(const item of r.assets){
  assert.equal(item.rights_clearance_for_new_assets,'PENDING');
  assert.equal(item.canonical_asset_path,
   'public/foundation-audio/'+item.lesson_id+'-v1.mp3');
- assert.equal(item.in_git_tree,item.lesson_id!=='LIS-A1-06');
+ assert.equal(item.in_git_tree,true);
  const f=path.join(root,item.canonical_asset_path);
  if(item.in_git_tree)assert(fs.existsSync(f),'Committed audio missing: '+item.lesson_id);
  if(fs.existsSync(f)){
