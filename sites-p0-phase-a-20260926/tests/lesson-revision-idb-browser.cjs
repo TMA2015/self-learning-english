@@ -116,7 +116,7 @@ async function until(fn,ms=12000){
   const second=await visit(host+'/?phase=reload');
   assert.match(first,/^PASS_WRITE/);assert.match(second,/^PASS_RELOAD/);
   console.log(JSON.stringify({result:'PASS',gate:'lesson-revision-idb-r2-real-browser',
-   realChromiumIndexedDB:true,currentLessons:250,historicAliases:3,
+   realChromiumIndexedDB:true,currentLessons:250,historicAliases:4,
    persistedAcrossBrowserProcesses:true,oldAttemptsByteIdentical:true,changedRubricPinned:true,
    recoveryV3:'NOT_TESTED',liveRuntimeIntegration:'NOT_TESTED',
    realSafariAcceptance:'NOT_TESTED'}));
