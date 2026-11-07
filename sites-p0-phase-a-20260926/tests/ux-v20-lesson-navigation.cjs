@@ -6,7 +6,7 @@ const source=fs.readFileSync(path.join(root,'app/foundation.tsx'),'utf8');
 const css=fs.readFileSync(path.join(root,'app/globals.css'),'utf8');
 const page=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8')+fs.readFileSync(path.join(root,'app/home-client.tsx'),'utf8');
 assert.equal((source.match(/className="foundation-lesson-id"/g)||[]).length,4,'IDs must appear in Recent Work, both Catalog layouts and lesson overview/practice');
-assert.ok(source.includes('<span className="foundation-lesson-id">{l.id}</span><strong>{l.title}</strong>'),'catalog titles preserve names and expose IDs');
+assert.ok(source.includes('<span className="foundation-lesson-id">{l.id}</span><LessonProgressMark {...lessonProgressForLesson(catalog.attempts,l.id)}/></span><strong>{l.title}</strong>'),'Recent Work preserves ID/title and now shows the same history-derived tick as the submitted catalog');
 assert.ok(source.includes('<span className="foundation-lesson-id">{lesson.id}</span> · {lesson.module}'),'focused player displays source ID');
 assert.ok(css.includes('.foundation-lesson-id{')&&css.includes('overflow-wrap:anywhere'),'readable IDs must fit mobile cards');
 // Preserve all three original prefetch sites (Recent Work plus both Catalog layouts).
