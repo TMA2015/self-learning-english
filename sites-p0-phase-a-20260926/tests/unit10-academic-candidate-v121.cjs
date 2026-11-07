@@ -49,7 +49,7 @@ for(const [unit,ids] of Object.entries(unitMap)){
  assert.equal(w.rubric_id,'RUBRIC-WRITING-'+unit.split('-')[0]);
  assert.equal(w.word_range_guidance.not_a_quality_score,true);
 }
-assert.equal(authored.production,'NO_GO_AUDIO_NOT_PRODUCED');
+assert.equal(authored.production,'NO_GO_AUDIO_MEDIA01_AND_RIGHTS_PENDING');
 const manifest=require('../content/foundation-audio.json');
 const ownerReceipts=require('../content/batches/unit10-owner-audio-receipts-20261107.json');
 let verifiedDraftMP3s=0;
