@@ -116,5 +116,11 @@
     "url": "/foundation-audio/LIS-B1-08-v1.mp3",
     "duration": 39.625,
     "sha256": "9082966b597522148eac25d618eff6e698990168a42305110ede1298f384ac82"
+  },
+  "LIS-A1-06": {
+    "source": "Good morning, everyone. The school music room is open for a short song workshop this Saturday. Please come to Music Room 2 at eleven o'clock. We will practise two easy songs. Bring a pencil. You do not need to bring an instrument because our school has drums and keyboards. The workshop ends at twelve o'clock. To join, write your name on the music list near the office by Friday.",
+    "url": "/foundation-audio/LIS-A1-06-v1.mp3",
+    "duration": 22.2,
+    "sha256": "91f736e9934476b44df0f4ab59eb2b381326bb144acd4475dcfa91e0fbe5bac6"
   }
 }
