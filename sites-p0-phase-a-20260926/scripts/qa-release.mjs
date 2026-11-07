@@ -27,6 +27,10 @@ if(rights.unit10_draft_assets?.candidate_version==="1.21.0"){
   // Chrome loads the three exact MP3 bytes over localhost and must emit ended.
   // This is media-codec evidence, NOT the complete product-player MEDIA-01 gate.
   run(process.execPath,["tests/unit10-chrome-audio-codec.cjs"]);
+  // QA-only: real FoundationDemo + real browser-local AcademicService with
+  // v1.21.0 seeded into a throwaway localhost Chrome profile.
+  // Never imports into any production browser, nor tests the live site.
+  run(process.execPath,["tests/unit10-media01-real-browser.cjs"]);
   run(process.execPath,["tests/storage-chromium-smoke.cjs"]);
   run(process.execPath,["tests/storage-ui-browser.cjs"]);
 }
