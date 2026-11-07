@@ -76,6 +76,7 @@ const fullRegressionTests=[
   "curriculum-1190-release.cjs",
   "curriculum-1200-release.cjs",
   "unit10-academic-candidate-v121.cjs",
+  "unit10-audio-owner-receipts.cjs",
   "c1c2-importer-compat.cjs",
   "c1c2-draft-source.cjs",
   "c1c2-authored-content-schema.cjs",
