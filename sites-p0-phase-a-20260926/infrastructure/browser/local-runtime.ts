@@ -5,6 +5,9 @@ import {mapSeed,validateSeed,compareVersions,type Seed} from '../../domain/acade
 import {derivePracticeProgress} from '../../domain/practice-progress';
 import {myCourses} from '../../domain/course-p1';
 import {BrowserLocalAcademicRepository,BrowserLocalCourseSelectionRepository,BrowserLocalLearningRepository,type BrowserKeyValueStorage} from '../storage/browser-local-repositories';
+import {HybridBrowserAcademicRepository} from '../storage/hybrid-academic-repository';
+import {browserCurriculumVault} from '../storage/indexeddb-curriculum-vault';
+import {hybridStorageEnabled} from './hybrid-storage-mode';
 
 export const LOCAL_OWNER_ID='local-family';
 export const LOCAL_LEARNER_ID='primary';
@@ -16,6 +19,7 @@ let cached:{
   storage:BrowserKeyValueStorage;
   learning:BrowserLocalLearningRepository;
   academic:BrowserLocalAcademicRepository;
+  hybrid:HybridBrowserAcademicRepository|null;
   courses:BrowserLocalCourseSelectionRepository;
 }|null=null;
 
@@ -35,13 +39,16 @@ function repositories(){
     storage,
     learning:new BrowserLocalLearningRepository(storage),
     academic:new BrowserLocalAcademicRepository(storage),
+    hybrid:hybridStorageEnabled()
+      ?new HybridBrowserAcademicRepository(storage,browserCurriculumVault()):null,
     courses:new BrowserLocalCourseSelectionRepository(storage),
   };
   return cached;
 }
 
 async function ensureCurriculum(){
-  const {academic,storage}=repositories();
+  const {academic:legacy,hybrid,storage}=repositories();
+  const academic=hybrid??legacy;
   if(storage.getItem('g-learning:english:v1:recovery-pending-v2'))
     throw new Error('An interrupted local recovery was detected. Do not edit or clear learning data; contact the project owner.');
 
@@ -96,18 +103,19 @@ export async function localLearningRuntime(){
 
 export async function localAcademicRuntime(){
   await ensureCurriculum();
-  const {learning,academic}=repositories();
+  const {learning,academic,hybrid}=repositories();
   return {
     learning,
-    academic,
-    service:academicService(academic,learning,LOCAL_OWNER_ID),
+    academic, // Legacy storage methods remain available for backed-up cleanup.
+    service:academicService(hybrid??academic,learning,LOCAL_OWNER_ID),
     warning:curriculumWarning,
   };
 }
 
 export async function localPracticeProgress(){
   await ensureCurriculum();
-  const {academic}=repositories();
+  const {academic:legacy,hybrid}=repositories();
+  const academic=hybrid??legacy;
   const [attempts,packages]=await Promise.all([
     academic.attempts(LOCAL_OWNER_ID),
     academic.packages(),
