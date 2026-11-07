@@ -1,6 +1,7 @@
 'use client';
 import {useMemo} from 'react';
 import type {AcademicAttempt} from '../domain/academic';
+import {LessonProgressMark} from './lesson-progress-mark';
 import {
  UNIT_LEVELS,unitGuideForCatalog,type UnitCatalogLesson,type UnitLevel
 } from '../domain/unit-guide-60';
@@ -97,10 +98,10 @@ export function UnitBrowser({lessons,attempts,courseOrder,level,selectedId,onLev
       const latest=latestAttemptForLesson(attempts,item.id);
       return <div className="unit-lesson-row" key={item.id}>
        <div className="unit-lesson-info">
-        <span className="unit-card-id">LESSON {index+1} · {item.id}</span>
+        <span className="unit-lesson-status-head"><span className="unit-card-id">LESSON {index+1} · {item.id}</span><LessonProgressMark {...progress}/></span>
         <strong>{item.title}</strong>
         <small>{item.module} · {item.minutes} min · {attemptStatusLabel(latest)}
-         {progress.hasDraft&&progress.kind==='submitted'?' · draft also open':''}
+         {progress.hasDraft&&progress.kind==='submitted'?' · previous submission also saved':''}
         </small>
        </div>
        <button type="button" className="secondary-button" disabled={disabled}

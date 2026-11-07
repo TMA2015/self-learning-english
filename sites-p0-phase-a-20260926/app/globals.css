@@ -424,3 +424,21 @@ body {
  .sle-unit-browser .unit-lesson-row{align-items:stretch;flex-direction:column;gap:10px}
  .sle-unit-browser .unit-lesson-row .secondary-button{align-self:flex-start}
 }
+
+/* A submission belongs to the Lesson ID, including scores from older curriculum releases. */
+.foundation-recent-grid button .foundation-recent-top,
+.sle-unit-browser .unit-lesson-status-head{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%}
+.foundation-recent-grid button .foundation-recent-top .foundation-progress-mark>span,
+.sle-unit-browser .unit-lesson-status-head .foundation-progress-mark>span{color:inherit;font-size:inherit}
+.foundation-recent-grid button .foundation-recent-top>.foundation-lesson-id{font-size:.82rem}
+.sle-unit-browser .unit-lesson-status-head{margin-bottom:2px}
+
+/* Specialist courses are actual enrollable programmes, not a shortcut to all lessons. */
+.course-choice-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:16px;margin-top:18px}
+.course-choice-card{background:#fff;border:1px solid #d9e5f3;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.course-choice-card h3{font-size:21px;line-height:1.35;margin:0;color:#163b69}
+.course-choice-card p{color:#627a94;line-height:1.6;margin:0}
+.course-choice-card .course-choice-progress{border-left:3px solid #5b87bb;background:#f3f8ff;padding:10px 12px;border-radius:4px;color:#2d5277}
+.course-choice-card .learning-choices{margin:3px 0 0}
+.course-choice-card button{min-height:42px}
+@media(max-width:600px){.course-choice-card{padding:17px}.course-choice-card .learning-choices button{flex:1;min-width:fit-content}}
