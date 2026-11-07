@@ -28,6 +28,7 @@ const coreTests=[
   "lesson-revision-restore-v3b.cjs",
   "verified-v2-to-v3-conversion.cjs",
   "normalized-recovery-real-browser.cjs",
+  "normalized-academic-service-r5a.cjs",
   "local-recovery-v2.cjs",
   "restore-v2-auto-retention-quota.cjs",
   "storage-chromium-smoke.cjs",
