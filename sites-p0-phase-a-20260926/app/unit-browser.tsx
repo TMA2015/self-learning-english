@@ -1,5 +1,5 @@
 'use client';
-import {useMemo,useState} from 'react';
+import {useMemo} from 'react';
 import type {AcademicAttempt} from '../domain/academic';
 import {
  UNIT_LEVELS,unitGuideForCatalog,type UnitCatalogLesson,type UnitLevel
@@ -12,6 +12,10 @@ type Props={
  lessons:UnitCatalogLesson[];
  attempts:AcademicAttempt[];
  courseOrder:string[];
+ level:UnitLevel;
+ selectedId:string|null;
+ onLevel:(level:UnitLevel)=>void;
+ onSelectUnit:(id:string|null)=>void;
  disabled:boolean;
  onOpenLesson:(lessonId:string,attempt?:AcademicAttempt)=>void;
 };
@@ -20,9 +24,7 @@ type Props={
  * Uses the SAME canonical player, attempts, rubrics and audio as Skill Library.
  * The Unit screen never writes a second learner-progress record.
  */
-export function UnitBrowser({lessons,attempts,courseOrder,disabled,onOpenLesson}:Props){
- const [level,setLevel]=useState<UnitLevel>('A1');
- const [selectedId,setSelectedId]=useState<string|null>(null);
+export function UnitBrowser({lessons,attempts,courseOrder,level,selectedId,onLevel,onSelectUnit,disabled,onOpenLesson}:Props){
  const guide=useMemo(()=>unitGuideForCatalog(lessons,courseOrder),[lessons,courseOrder]);
  const selected=guide.units.find(u=>u.id===selectedId)??null;
  const levelUnits=guide.units.filter(u=>u.level===level);
@@ -45,7 +47,7 @@ export function UnitBrowser({lessons,attempts,courseOrder,disabled,onOpenLesson}
   </div>
   <div className="unit-level-tabs" role="group" aria-label="Choose CEFR target">
    {UNIT_LEVELS.map(v=><button type="button" className={v===level?'is-active':''}
-    aria-pressed={v===level} key={v} onClick={()=>setLevel(v)}>{v}</button>)}
+    aria-pressed={v===level} key={v} onClick={()=>onLevel(v)}>{v}</button>)}
   </div>
   <div className="unit-browser-heading"><h3>{level} · 10 Units</h3>
    <p>Lesson counts are availability indicators, not proficiency or completion certificates.</p>
@@ -54,7 +56,7 @@ export function UnitBrowser({lessons,attempts,courseOrder,disabled,onOpenLesson}
    {levelUnits.map(u=>{
     const count=summary(u.lessons);
     return <button key={u.id} type="button" className="unit-card"
-     onClick={()=>setSelectedId(u.id)}>
+     onClick={()=>onSelectUnit(u.id)}>
      <span className="unit-card-top"><span className="unit-card-id">{u.id}</span>
       <span className={'unit-card-tag '+(u.available?'':'is-planned')}>
        {u.available?u.lessonCount+' lesson'+(u.lessonCount===1?'':'s'):'Planned'}
@@ -71,7 +73,7 @@ export function UnitBrowser({lessons,attempts,courseOrder,disabled,onOpenLesson}
   {guide.unmappedLessons.length>0&&<p className="unit-unmapped-note" role="note">
    {guide.unmappedLessons.length} current lesson{guide.unmappedLessons.length===1?' has':'s have'} no approved primary Unit assignment yet. {guide.unmappedLessons.map(x=>x.id).join(', ')} remain available in Skill Library.
   </p>}
-  </>:<><button type="button" className="text-button unit-back" onClick={()=>setSelectedId(null)}>
+  </>:<><button type="button" className="text-button unit-back" onClick={()=>onSelectUnit(null)}>
    ← Back to {selected.level} Units
   </button>
   <section className="panel unit-detail-heading">
