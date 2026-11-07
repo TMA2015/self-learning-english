@@ -7,10 +7,10 @@ This note is provenance evidence, **not** a legal opinion or a declaration that 
 
 - Engine: local Kokoro, Python package `kokoro==0.9.4`.
 - Render voice: `bf_emma` (single voice) for all three; no remote audio service indicated in sidecar.
-- A1: `speed=0.9`, exact producer pause not present in the current receipt; 22.200s decoded, SHA-256 `91f736e9934476b44df0f4ab59eb2b381326bb144acd4475dcfa91e0fbe5bac6`. A1 owner hearing remains **PENDING**.
+- A1: `speed=0.9`, exact producer pause not present in the current receipt; 22.200s decoded, SHA-256 `91f736e9934476b44df0f4ab59eb2b381326bb144acd4475dcfa91e0fbe5bac6`. A1 owner hearing is now **PASS** (owner confirmed the original file is clear and of good quality on 2026-11-07).
 - A2: `speed=0.9`, `pause_seconds=0.4038`, SHA-256 `04937096a911d5db09b470e97e459ded6e973c970a2ba388a6274883bf82064e`.
 - B1: `speed=0.9486`, `pause_seconds=0.4038`, SHA-256 `9082966b597522148eac25d618eff6e698990168a42305110ede1298f384ac82`.
-- The owner listened to the A2 and B1 recordings and accepted their audible clarity/quality (owner QA PASS). That is distinct from browser playback or word-by-word transcription verification.
+- The owner confirmed clarity and sound quality for all three A1, A2 and B1 recordings (Owner Audio QA PASS). That is distinct from browser playback or word-by-word transcription verification.
 
 ## Primary-source license references
 
@@ -34,13 +34,13 @@ This note is provenance evidence, **not** a legal opinion or a declaration that 
 - `content/audio-rights-register.json` retains the 41 historical individually approved MP3 rights records unmodified, and adds **three new records with `release_clearance: PENDING`, `source_originality: PENDING`, and no approver/date**. The scoped draft metadata is `unit10_draft_assets`.
 - `tests/audio-rights-release-gate.cjs` recognizes the 41 prior + exactly 3 reviewed Unit-10 media files, rejects unknown/missing assets and verifies the three candidate SHAs against receipts. Its strict `--require-clearance` mode **must continue to fail** while any candidate rights record remains pending. A passing byte-integrity check is not a license approval.
 - Source-model license confirmation: the upstream Apache-2.0 package/model sources support permitted deployment in general; actual local voicepack/model download provenance and owner rights decision for these three newly generated assets are not yet fully evidenced.
-- Owner's hearing acceptance is recorded for A2/B1 only. Do not infer A1 hearing PASS from uploading its file.
+- Owner's hearing acceptance is recorded for A1/A2/B1 as a separate, explicit quality decision on 2026-11-07, including the original A1 recording; do not infer browser playback or rights clearance from owner hearing.
 
 ## Remaining independent gates
 
 1. Confirm original local `bf_emma` model/voicepack source and owner rights/source attribution for **these three exact audio SHAs**. Record a scoped, dated decision; do not inherit historical approvals by analogy.
-2. Owner A1-U10 sound/clarity check: `LIS-A1-06` currently remains **PENDING**.
+2. Owner A1-U10 sound/clarity check: **PASS**, confirmed 2026-11-07 for the exact original SHA. No need to regenerate or resubmit it.
 3. MEDIA-01 real-browser play-to-end/submit/retry, transcript hidden before submit, missing-media safety, and iPad/Safari QA where applicable. Previous Work execution lacked Chromium; no actual browser PASS evidence exists.
 4. Exact-head candidate QA/release gates, independent learner-data safeguards, and explicit owner authorization before curriculum import, merge or deployment.
 
-Status: **THREE ORIGINAL MP3s IN GIT DRAFT; RIGHTS / A1 HEARING / BROWSER MEDIA-01 PENDING; PRODUCTION NO-GO**.
+Status: **THREE ORIGINAL MP3s IN GIT DRAFT; OWNER HEARING ALL THREE PASS; RIGHTS / BROWSER MEDIA-01 PENDING; PRODUCTION NO-GO**.
