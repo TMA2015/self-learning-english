@@ -3,7 +3,7 @@ import {useState} from 'react';
 import {browserLearningEnabled} from '../infrastructure/browser/client-services';
 import {exportLocalBackup,LOCAL_RESTORE_LIMITATION} from '../infrastructure/browser/local-backup';
 import {exportLocalRecoveryV2,verifyLocalRecoveryV2,previewLocalRecoveryV2,restoreLocalRecoveryV2} from '../infrastructure/browser/local-recovery';
-import {exportHybridRecoveryV2,previewHybridRecoveryV2,restoreHybridRecoveryV2,moveLegacyCurriculumAfterVerifiedBackup} from '../infrastructure/browser/hybrid-local-recovery';
+import {exportHybridRecoveryV2,previewHybridRecoveryV2,restoreHybridRecoveryV2,moveLegacyCurriculumAfterVerifiedBackup,compactIndexedDBAfterVerifiedBackup} from '../infrastructure/browser/hybrid-local-recovery';
 import {hybridStorageEnabled} from '../infrastructure/browser/hybrid-storage-mode';
 import {browserCurriculumVault} from '../infrastructure/storage/indexeddb-curriculum-vault';
 import {localAcademicRuntime} from '../infrastructure/browser/local-runtime';
@@ -93,12 +93,20 @@ export function LocalBackupPanel(){
    const sha=(JSON.parse(current.text) as {sha256:string}).sha256;
    if(sha!==backupExpected)
     throw Error('Learning data changed after verifying the backup. Download and verify a new complete V2 Recovery first.');
+   const vault=browserCurriculumVault();
    const summary=await moveLegacyCurriculumAfterVerifiedBackup(
-    current.text,window.localStorage,browserCurriculumVault(),true);
+    current.text,window.localStorage,vault,true);
+   // A single parent-confirmed operation: full legacy content is copied into
+   // IndexedDB, then obsolete unattempted versions are removed atomically;
+   // attempted old sources become exact immutable-lesson archives.
+   const retained=await compactIndexedDBAfterVerifiedBackup(
+    current.text,window.localStorage,vault,true);
    setFullBackupExported(false);setBackupExpected('');
-   setStatus(summary.moved
-    ?'Historical curriculum content moved to the verified IndexedDB vault. '+summary.attempts+' learner attempts remain unchanged. Keep the downloaded complete Recovery file.'
-    :'The legacy curriculum key was already empty. All learner records remain unchanged.');
+   setStatus('Verified storage cleanup finished: '+retained.attempts+
+    ' saved attempts preserved; '+retained.afterVersions+' curriculum versions remain ('+
+    retained.archivedLessons+' original historic lessons protected). '+
+    (summary.moved?'Legacy full curriculum was freed from localStorage. ':'')+
+    'Keep the verified downloaded Recovery V2 file.');
   });
  }
  async function chooseRestore(file:File|undefined){
@@ -138,7 +146,7 @@ export function LocalBackupPanel(){
   {hybridStorageEnabled()&&<div className="foundation-storage-inspection">
    <p><strong>One-time verified migration:</strong> Keep a complete downloaded V2 Recovery before freeing old curriculum content from this device. Lesson answers and all other learner keys will not be deleted.</p>
    <button className="secondary-button" disabled={busy||!fullBackupExported}
-    onClick={()=>void migrateLegacySource()}>Move old curriculum storage to IndexedDB (verified backup required)</button>
+    onClick={()=>void migrateLegacySource()}>Move and safely compact old curriculum versions (verified backup required)</button>
    {!fullBackupExported&&<small>First download and re-select the complete V2 Recovery above to verify the file.</small>}
   </div>}
   {!hybridStorageEnabled()&&retention&&<div className="foundation-storage-inspection" aria-label="Storage cleanup preview">
