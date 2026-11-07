@@ -1,5 +1,5 @@
 'use strict';
-const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {execFileSync}=require('node:child_process');
 const root=path.resolve(__dirname,'..');
 const original=require('../content/curriculum-1.20.0-candidate.json');
@@ -49,10 +49,29 @@ for(const [unit,ids] of Object.entries(unitMap)){
 }
 assert.equal(authored.production,'NO_GO_AUDIO_NOT_PRODUCED');
 const manifest=require('../content/foundation-audio.json');
+const ownerReceipts=require('../content/batches/unit10-owner-audio-receipts-20261107.json');
+let verifiedDraftMP3s=0;
 for(const id of ['LIS-A1-06','LIS-A2-07','LIS-B1-08']){
- assert(!manifest[id],id+' must NOT have a fake audio manifest entry');
- assert(!fs.existsSync(path.join(root,'public/foundation-audio',id+'-v1.mp3')),
-  id+' must NOT be declared produced');
+ const receipt=ownerReceipts.assets.find(x=>x.lesson_id===id);
+ assert(receipt && receipt.sha256 && receipt.source_text);
+ const file=path.join(root,'public/foundation-audio',id+'-v1.mp3');
+ const filePresent=fs.existsSync(file);
+ const registered=Object.hasOwn(manifest,id);
+ // No manifest-only URL or unregistered physical MP3 may pass a candidate test.
+ assert.equal(registered,filePresent,id+' manifest/physical MP3 mismatch');
+ if(registered){
+  assert.deepEqual(manifest[id],{
+   source:receipt.source_text,
+   url:'/foundation-audio/'+id+'-v1.mp3',
+   duration:receipt.decoded_seconds,
+   sha256:receipt.sha256
+  },id+' must use the OWNER-selected real asset');
+  const bytes=fs.readFileSync(file);
+  assert.equal(bytes.length,receipt.byte_size,id+' byte count');
+  assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),
+   receipt.sha256,id+' MP3 SHA-256');
+  verifiedDraftMP3s++;
+ }
 }
 const out='.sites-runtime/unit10-ts-schema';
 fs.mkdirSync(path.join(root,'.sites-runtime'),{recursive:true});
@@ -91,5 +110,5 @@ console.log(JSON.stringify({result:'PASS',gate:'UNIT10-ACADEMIC-RECONCILIATION-V
  lessonCount:pack.lessons.length,activityCount:pack.lessons.flatMap(l=>l.activities).length,
  newUnitCount:3,newLessons:9,newObjective:27,newUnassessedWriting:3,
  historicalLessonsUnchanged:true,realSchemaPassed:true,shuffleCases:shuffled,
- listeningPhysicalMP3:'NOT_PRODUCED',med01:'NO_GO',
+ listeningPhysicalMP3:verifiedDraftMP3s,med01:verifiedDraftMP3s===3?'BYTES_PRESENT_BROWSER_AND_OWNER_GATES_PENDING':'NO_GO_MISSING_MEDIA',
  realSafariQA:'NOT_TESTED',productionImport:'BLOCKED',learnerWrites:0}));
