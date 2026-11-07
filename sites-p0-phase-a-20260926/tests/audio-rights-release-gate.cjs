@@ -29,7 +29,10 @@ if(draft){
  assert.equal(draft.candidate_version,'1.21.0');
  assert.equal(draft.parent_clearance_release,'1.18.1');
  assert.equal(draft.prior_rights_cleared_count,baselineCount);
- assert.equal(draft.status,'3_REGISTERED_PENDING_RIGHTS_AND_MEDIA01_NOT_CLEARED');
+ assert.equal(draft.release_authorized,false,'Owner cleared only audio rights, not production release');
+ assert.equal(draft.owner_rights_confirmed_on,'2026-11-07');
+ assert.equal(draft.owner_rights_decision_ref,'docs/curriculum/SLE_UNIT10_OWNER_AUDIO_RIGHTS_DECISION_20261107.md');
+ assert.equal(draft.status,'3_OWNER_RIGHTS_APPROVED_MEDIA01_NOT_CLEARED');
  const receipts=require('../content/batches/unit10-owner-audio-receipts-20261107.json');
  assert.deepEqual(draft.ids,['LIS-A1-06','LIS-A2-07','LIS-B1-08']);
  assert.equal(receipts.assets.length,3);
@@ -44,6 +47,13 @@ if(draft){
   assert.equal(match[0].sha256,a.sha256,a.lesson_id+' rights record must pin exact audio');
   assert.equal(match[0].unit10_lesson_id,a.lesson_id);
   assert.equal(match[0].owner_audio_qa,a.owner_audio_qa);
+  assert.equal(a.rights_clearance_for_new_assets,'APPROVED');
+  assert.equal(match[0].release_clearance,'APPROVED');
+  assert.equal(match[0].source_originality,'VERIFIED');
+  assert.equal(match[0].approved_on,'2026-11-07');
+  assert.match(match[0].approved_by,/Project owner/);
+  assert.equal(match[0].rights_decision_ref,draft.owner_rights_decision_ref);
+  assert.match(match[0].source_originality_basis,/owner attestation/i);
  }
 }
 const expectedCount=baselineCount+newAudio.length;
