@@ -51,12 +51,35 @@ const phase=new URL(location.href).searchParams.get('phase');
   check(localStorage.getItem(key)===exact,'learner attempts must remain byte-identical');
   check(localStorage.getItem(packageKey)===legacy,
    'Prototype must not alter or expand legacy localStorage content');
+  // A complete verified V2 backup and its SHA must be checked by the
+  // caller; the vault itself never reads/writes learner records.
+  let denied=false;
+  try{await vault.retainAfterVerifiedBackup(docs,
+   [{version:'1.18.1',lessonId:'GRA-A2-0001'}],false)}
+  catch(e){denied=String(e).includes('verified portable Recovery')}
+  check(denied,'Unverified deletion of old sources must be denied');
+  check((await vault.list()).length===10,'Refused cleanup must not mutate IndexedDB');
+  const savedBefore=localStorage.getItem(key);
+  const cleaned=await vault.retainAfterVerifiedBackup(docs,
+   [{version:'1.18.1',lessonId:'GRA-A2-0001'}],true);
+  check(cleaned.beforeVersions===10&&cleaned.afterVersions===2,
+   'No-work old versions should be completely removed');
+  const compacted=await vault.list();
+  check(compacted.length===2,'Only latest full and the attempted historic source are retained');
+  check(compacted.find(x=>x.version==='1.18.1')?.archive==='referenced-lessons'
+   &&compacted.find(x=>x.version==='1.18.1')?.source.lessons.length===1,
+   'Preserve exact old version source for historical work, not all 109 lessons');
+  check(compacted.find(x=>x.version==='1.18.9')?.source.lessons.length===250,
+   'Active 250-lesson content must remain complete');
+  check(localStorage.getItem(key)===savedBefore,'One-time IndexedDB cleanup cannot mutate attempts');
   result.textContent='PASS_WRITE';
  }else if(phase==='reload'){
   const docs=await vault.list();
-  check(docs.length===10,'Ten packages including legacy mirror must survive browser restart');
-  check(docs.find(x=>x.version==='1.17.0')?.source.lessons.length===10,'Legacy lesson source persisted');
-  check(docs.find(x=>x.version==='1.18.1')?.source.lessons.length===109,'historical source preserved');
+  check(docs.length===2,'Only required historic and latest versions must survive browser restart');
+  check(!docs.find(x=>x.version==='1.17.0'),'Unused old source must stay removed');
+  check(docs.find(x=>x.version==='1.18.1')?.archive==='referenced-lessons'
+   &&docs.find(x=>x.version==='1.18.1')?.source.lessons.length===1,
+   'Version-pinned attempted old lesson must remain after process restart');
   check(docs.find(x=>x.version==='1.18.9')?.source.lessons.length===250,'250-lesson fixture persisted');
   check((localStorage.getItem(key)||'').includes('immutable-historic'),'Historic learner attempt missing');
   result.textContent='PASS_RELOAD';
