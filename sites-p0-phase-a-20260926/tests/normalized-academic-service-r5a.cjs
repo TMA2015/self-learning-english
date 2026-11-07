@@ -12,6 +12,7 @@ cp.execFileSync(process.execPath,[
  path.join(root,'node_modules/typescript/bin/tsc'),
  'application/academic-service.ts','application/academic-content-reader.ts',
  'domain/lesson-revision-plan.ts',
+ 'infrastructure/storage/browser-local-repositories.ts',
  '--outDir',out,'--rootDir','.','--module','commonjs','--target','es2022',
  '--resolveJsonModule','--esModuleInterop','--skipLibCheck','--lib','es2022,dom'
 ],{cwd:root,stdio:'inherit'});
