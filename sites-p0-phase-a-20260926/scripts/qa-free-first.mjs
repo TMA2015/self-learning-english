@@ -22,6 +22,8 @@ const coreTests=[
   "stage3-browser-storage-compact.cjs",
   "stage3-quota-readonly-fallback.cjs",
   "storage-retention-v2.cjs",
+  "lesson-revision-plan.cjs",
+  "lesson-revision-idb-browser.cjs",
   "local-recovery-v2.cjs",
   "restore-v2-auto-retention-quota.cjs",
   "storage-chromium-smoke.cjs",
