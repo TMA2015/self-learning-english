@@ -12,6 +12,7 @@ fs.writeFileSync(path.join(root,out,'package.json'),'{"type":"commonjs"}');
 const recovery=require('../'+out+'/infrastructure/browser/hybrid-local-recovery.js');
 const v2=require('../'+out+'/infrastructure/browser/local-recovery.js');
 const {HybridBrowserAcademicRepository}=require('../'+out+'/infrastructure/storage/hybrid-academic-repository.js');
+const {retainReferencedLessons}=require('../'+out+'/domain/storage-retention.js');
 const {mapSeed}=require('../'+out+'/domain/academic.js');
 const {academicService}=require('../'+out+'/application/academic-service.js');
 const {BrowserLocalLearningRepository}=require('../'+out+'/infrastructure/storage/browser-local-repositories.js');
@@ -46,6 +47,15 @@ class Vault {
    return 'identical';
   }
   this.rows.set(p.version,JSON.parse(JSON.stringify(p)));return 'added';
+ }
+ async retainAfterVerifiedBackup(expected,refs,confirmed){
+  assert(confirmed);
+  const actual=await this.list();
+  assert.deepEqual(actual,expected,'Simulated IDB transaction must re-check original sources');
+  const plan=retainReferencedLessons(expected,refs);
+  this.rows=new Map(plan.records.map(x=>[x.version,JSON.parse(JSON.stringify(x))]));
+  return {beforeVersions:expected.length,afterVersions:plan.records.length,
+   archivedLessons:plan.protectedLessonCount};
  }
 }
 const attempts=Array.from({length:73},(_,i)=>{
@@ -97,6 +107,22 @@ const attempts=Array.from({length:73},(_,i)=>{
   'A move between stores must not silently change the portable V2 Recovery SHA');
  assert.equal((await new HybridBrowserAcademicRepository(old,vault)
   .attempts('local-family')).length,73);
+ const preCompact=await vault.list();
+ await assert.rejects(()=>recovery.compactIndexedDBAfterVerifiedBackup(
+  hybrid.text,old,vault,false),/Explicit verified-backup confirmation/);
+ assert.deepEqual(await vault.list(),preCompact,'No cleanup without verified consent');
+ const retained=await recovery.compactIndexedDBAfterVerifiedBackup(
+  hybrid.text,old,vault,true);
+ assert.equal(retained.afterVersions,2,'Delete only unused complete older versions');
+ const remaining=await vault.list();
+ assert.deepEqual(remaining.map(x=>x.version),['1.18.0','1.20.0']);
+ assert.equal(remaining.find(x=>x.version==='1.18.0').archive,'referenced-lessons');
+ assert.equal(remaining.find(x=>x.version==='1.18.0').source.lessons.length,11);
+ assert.equal(remaining.find(x=>x.version==='1.20.0').source.lessons.length,123);
+ assert.equal(old.getItem(learner),oldSnapshot.get(learner));
+ assert.equal(old.getItem(state),oldSnapshot.get(state));
+ assert.equal(JSON.parse((await recovery.exportHybridRecoveryV2(old,vault)).text).sha256,
+  JSON.parse(hybrid.text).sha256,'Compact IDB must not alter the portable V2 Recovery SHA');
  const file=JSON.parse(hybrid.text);
  const versionDocs=JSON.parse(file.entries.find(x=>x.key===key).value).records;
  assert.equal(versionDocs.find(x=>x.version==='1.18.0').archive,'referenced-lessons');
@@ -175,7 +201,8 @@ const attempts=Array.from({length:73},(_,i)=>{
   pageReloadDraftSurvives:true,
   freshBrowserQuotaBytes:5*1024*1024,
   recoveryPortableAfterIdbMove:true,contentLocalStorageBytes:0,
-  verifiedSourceMigration:true,originalLearnerKeysBytePreserved:true,
+  verifiedSourceMigration:true,verifiedOldVersionDeletion:true,
+  sourceVersionsAfterCleanup:2,originalLearnerKeysBytePreserved:true,
   repeatedRestorePrevented:true,quotaFailureRollback:true,
   realSafariAcceptance:'NOT_TESTED',productionWrites:0}));
 })().catch(err=>{console.error(err);process.exitCode=1});
