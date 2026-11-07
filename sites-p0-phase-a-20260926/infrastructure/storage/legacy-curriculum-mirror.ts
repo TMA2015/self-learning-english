@@ -1,4 +1,5 @@
 import {decodePackageDocument,type StoredAcademicPackage} from '../../domain/storage-retention';
+import {reconcileRecoverySources} from '../../domain/recovery-source-union';
 import type {BrowserKeyValueStorage} from './browser-local-repositories';
 import type {IndexedDBCurriculumVault} from './indexeddb-curriculum-vault';
 
@@ -64,17 +65,29 @@ export async function mirrorLegacyCurriculumToVault(
 ){
  const preview=inspectLegacyCurriculumMirror(storage);
  const added:string[]=[];
+ const before=await vault.list();
  for(const row of preview.records){
+  const present=before.find(x=>x.version===row.version);
+  if(present){
+   // A full IDB source may legitimately contain a verified older local
+   // referenced-lessons archive. Never overwrite the existing IDB version.
+   const combined=reconcileRecoverySources([present],[row],[]).records[0];
+   if(combined.source.lessons.some(l=>!present.source.lessons.some(p=>
+     p.id===l.id&&JSON.stringify(p)===JSON.stringify(l))))
+    throw Error('IndexedDB contains fewer historic lessons than local storage. Migration blocked.');
+   continue;
+  }
   const action=await vault.putImmutable(row);
   if(action==='added')added.push(row.version);
  }
  const copied=await vault.list();
  for(const row of preview.records){
   const match=copied.find(x=>x.version===row.version);
-  if(!match||match.digest!==row.digest||match.id!==row.id
-   ||JSON.stringify(match.source)!==JSON.stringify(row.source)
-   ||match.archive!==row.archive)
-   throw Error('IndexedDB readback mismatch. Legacy content remains untouched.');
+  if(!match)throw Error('IndexedDB readback missing source. Legacy content remains untouched.');
+  const merged=reconcileRecoverySources([match],[row],[]).records[0];
+  if(merged.source.lessons.some(l=>!match.source.lessons.some(p=>
+    p.id===l.id&&JSON.stringify(p)===JSON.stringify(l))))
+   throw Error('IndexedDB readback lacks a referenced lesson. Legacy content remains untouched.');
  }
  return {added,verifiedVersions:preview.versions,
   historicalAttemptsChecked:preview.attempts,
