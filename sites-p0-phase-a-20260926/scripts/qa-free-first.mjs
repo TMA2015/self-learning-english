@@ -25,6 +25,7 @@ const coreTests=[
   "lesson-revision-plan.cjs",
   "lesson-revision-idb-browser.cjs",
   "lesson-revision-recovery-v3.cjs",
+  "lesson-revision-restore-v3b.cjs",
   "local-recovery-v2.cjs",
   "restore-v2-auto-retention-quota.cjs",
   "storage-chromium-smoke.cjs",
