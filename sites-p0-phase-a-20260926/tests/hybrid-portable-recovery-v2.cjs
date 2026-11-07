@@ -5,6 +5,7 @@ const out='.sites-runtime/hybrid-portable-recovery';
 cp.execFileSync(process.execPath,['node_modules/typescript/bin/tsc',
  'infrastructure/browser/hybrid-local-recovery.ts',
  'infrastructure/storage/hybrid-academic-repository.ts',
+ 'application/academic-service.ts',
  '--outDir',out,'--module','commonjs','--target','es2022',
  '--resolveJsonModule','--esModuleInterop','--skipLibCheck','--lib','es2022,dom'],
  {cwd:root,stdio:'inherit'});
