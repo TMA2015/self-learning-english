@@ -55,6 +55,18 @@ const attempts=Array.from({length:73},(_,i)=>{
   ...(i<52?{submittedAt:i+100,results:[]}:{}) ,evidence:[]};
 });
 (async()=>{
+ // A first-time visitor must be able to read an empty catalog and install
+ // the currently shipped curriculum into IDB without localStorage content.
+ const brandNew=new Store(),brandNewVault=new Vault();
+ const boot=new HybridBrowserAcademicRepository(brandNew,brandNewVault);
+ assert.deepEqual(await boot.packages(),[]);
+ await boot.addPackage({...pkg(c),bundle:mapSeed(c)});
+ assert.equal((await boot.packages()).length,1);
+ assert.equal((await boot.packages())[0].version,'1.20.0');
+ assert.equal(brandNew.getItem(key),null,'Bootstrap cannot write a full localStorage curriculum');
+ const freshOriginal=new Map(brandNew.items);
+ await boot.addPackage({...pkg(c),bundle:mapSeed(c)});
+ assert.deepEqual(brandNew.items,freshOriginal,'Refresh must not alter learner localStorage');
  const old=new Store();
  old.setItem(key,JSON.stringify([pkg(a),pkg(b)]));
  old.setItem(learner,JSON.stringify(attempts));
