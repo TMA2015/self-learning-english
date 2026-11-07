@@ -76,7 +76,7 @@ const candidatePackage=async()=>({
  // Guaranteed low-quota failure: no document may be partially overwritten.
  store.max=baselineSize+64;
  store.writes=[];
- await assert.rejects(()=>repo.addPackage(await candidatePackage()),
+ await assert.rejects(async()=>repo.addPackage(await candidatePackage()),
   /no storage space|quota/i,'New candidate must reject quota instead of deleting history');
  assert.deepEqual(store.map,baselineSnapshot,'Quota failure changed old browser bytes');
  assert.deepEqual(store.writes,[],'Quota failure must not write any storage key');
