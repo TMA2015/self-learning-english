@@ -12,7 +12,7 @@ const httpJSON=url=>new Promise((resolve,reject)=>{
   res.on('end',()=>{try{resolve(JSON.parse(buf))}catch(e){reject(e)}});
  }).on('error',reject);
 });
-async function until(fn,ms=12000){
+async function until(fn,ms=30000){
  const end=Date.now()+ms,last={};
  while(Date.now()<end){try{const value=await fn();if(value)return value}catch(e){last.error=e}await delay(150)}
  throw Error('CDP readiness timeout: '+String(last.error||'no browser response'));
@@ -112,8 +112,14 @@ async function until(fn,ms=12000){
  try{
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
   const host='http://127.0.0.1:'+server.address().port;
-  const first=await visit(host+'/?phase=write');
-  const second=await visit(host+'/?phase=reload');
+  async function visitWithStartupRetry(url){
+   try{return await visit(url)}catch(error){
+    if(!/CDP readiness timeout/.test(String(error)))throw error;
+    return visit(url); // re-launch a fresh Chromium process, never skip the gate
+   }
+  }
+  const first=await visitWithStartupRetry(host+'/?phase=write');
+  const second=await visitWithStartupRetry(host+'/?phase=reload');
   assert.match(first,/^PASS_WRITE/);assert.match(second,/^PASS_RELOAD/);
   console.log(JSON.stringify({result:'PASS',gate:'lesson-revision-idb-r2-real-browser',
    realChromiumIndexedDB:true,currentLessons:250,historicAliases:4,
