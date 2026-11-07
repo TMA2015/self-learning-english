@@ -72,6 +72,17 @@ const vault=browserLessonRevisionVault();
   check(JSON.stringify(await vault.snapshot())===JSON.stringify(previous),
    'Failed hash and downgrade must leave storage unchanged');
 
+  // A newly started attempt must pin the current exact original source
+  // BEFORE the future owner-scoped attempt write; no cross-store atomicity.
+  await vault.pinCurrentForAttempt('1.20.0','REA-A2-01');
+  await vault.pinCurrentForAttempt('1.20.0','REA-A2-01'); // idempotent
+  check((await vault.snapshot()).aliases.length===4,
+   'An in-progress lesson pins one small alias without duplicating content');
+  let stalePinRejected=false;
+  try{await vault.pinCurrentForAttempt('1.18.1','REA-A2-01')}
+  catch{stalePinRejected=true}
+  check(stalePinRejected,'Old active version cannot be pinned after an upgrade');
+
   // Real browser storage stress with 250 synthetic lessons, but not importer QA.
   const three=await planLessonRevisions([v1,v2,v3],[old,second,newAttempt]);
   const scaled=await vault.install(three);
@@ -79,7 +90,7 @@ const vault=browserLessonRevisionVault();
   const result=await vault.snapshot();
   check(result.active?.lessons.length===250&&result.blobs.length===251,
    '250 current unique lesson revisions plus 1 old Writing rubric');
-  check(result.aliases.length===3,'Keep precisely original referenced aliases');
+  check(result.aliases.length===4,'Keep historical aliases plus newly pinned attempt');
   node.textContent='STORED_250_LESSONS';
   const invalidOld=structuredClone(v1);
   invalidOld.source.lessons[0].title='Same lesson ID, different original content';
@@ -95,11 +106,13 @@ const vault=browserLessonRevisionVault();
   const snap=await vault.snapshot();
   check(snap.active?.version==='1.21.0'&&snap.active.lessons.length===250,
    'Active manifest survives a fresh Chromium browser process');
-  check(snap.blobs.length===251&&snap.aliases.length===3,
+  check(snap.blobs.length===251&&snap.aliases.length===4,
    'Deduplicated historical/active source persists');
   const historic=await vault.resolveHistoric('1.18.1','WRI-A2-01');
   check((historic.rubrics['RUBRIC-WRITING-A2'] as {guidance:string}).guidance==='Old rubric',
    'Exact original Writing rubric survived a process restart');
+  const pinned=await vault.resolveHistoric('1.20.0','REA-A2-01');
+  check(pinned.lesson.id==='REA-A2-01','Pre-attempt pin survives the curriculum upgrade');
   const grammar=await vault.resolveCurrent('GRA-A2-01');
   check(grammar.lesson.id==='GRA-A2-01','Current lesson resolves after restart');
   check(localStorage.getItem(sentinel)===original,'Learner attempt key survived unchanged');
