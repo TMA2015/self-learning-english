@@ -29,7 +29,13 @@ for(const item of r.assets){
  assert.match(item.sha256,/^[0-9a-f]{64}$/);
  assert.equal(item.engine,'Kokoro');
  assert.equal(item.engine_package,'0.9.4');
- assert.equal(item.owner_audio_qa,'PENDING');
+ assert.equal(item.owner_audio_qa,item.lesson_id==='LIS-A1-06'?'PENDING':'PASS');
+ if(item.owner_audio_qa==='PASS'){
+  assert.equal(item.pause_seconds,0.4038);
+  assert(['LIS-A2-07','LIS-B1-08'].includes(item.lesson_id));
+  assert.match(item.supersedes_sha256,/^[0-9a-f]{64}$/);
+  assert.notEqual(item.sha256,item.supersedes_sha256);
+ }
  assert.equal(item.browser_playback,'NOT_TESTED');
  assert.equal(item.rights_clearance_for_new_assets,'PENDING');
  assert.equal(item.canonical_asset_path,
@@ -49,6 +55,6 @@ console.log(JSON.stringify({result:'PASS_METADATA_AND_SOURCE_ONLY',
  audioHashesRecorded:3,
  actualAudioFilesInRepository:present,
  requireMedia,media01:present===3?'BYTES_PRESENT_PLAYBACK_UNVERIFIED':'BLOCKED',
- humanHearing:'PENDING',newAssetRights:'PENDING',
+ humanHearing:'A2_B1_OWNER_PASS_A1_PENDING',newAssetRights:'PENDING',
  realBrowserPlayback:'NOT_TESTED',
  productionRelease:'NO_GO'}));
