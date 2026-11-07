@@ -2,15 +2,17 @@
   "schema": "sle-unit10-uploaded-audio-receipts-v1",
   "review_packet": "SLE-UNIT10-A1A2B1-TRANSFER-20261107-R1",
   "candidate_version": "1.21.0",
-  "status": "ALL_THREE_COMMITTED_RELEASE_GATES_PENDING",
+  "status": "ALL_THREE_COMMITTED_OWNER_RIGHTS_APPROVED_MEDIA01_PENDING",
   "acceptance": "NOT_FOR_PRODUCTION",
   "notes": [
-    "Exact A2/B1 MP3s committed at d31f1c3a4d589e9dbae522b48b7444fc4e9cd810; exact A1 MP3 committed at ff37fdc11086fc1166cdef80e60330ad713b0c79. All three matching manifest entries exist. Owner hearing PASS for A1/A2/B1; rights clearance and independent browser MEDIA-01 remain pending.",
+    "Exact A2/B1 MP3s committed at d31f1c3a4d589e9dbae522b48b7444fc4e9cd810; exact A1 MP3 committed at ff37fdc11086fc1166cdef80e60330ad713b0c79. All three matching manifest entries exist. Owner hearing PASS for A1/A2/B1; exact-SHA owner website-use rights were approved on 2026-11-07; independent application-browser MEDIA-01 and explicit release authorization remain pending.",
     "Owner selected replacement native Kokoro recordings for A2-U10 and B1-U10 on 2026-11-07 and confirmed clear, good-quality audible playback (owner_audio_qa PASS). A1-U10 owner hearing PASS was confirmed by owner on 2026-11-07 for the original audio.",
     "The uploaded replacement filenames acquired a local '(1)' suffix due to duplication; canonical lesson asset paths do not include that suffix.",
     "Kokoro's UI preset name is a non-authoritative label; real speed and pause_seconds are taken from the producer sidecar.",
     "Source-sidecar text parity and SHA-256 integrity were verified locally; this does not replace independent actual browser playback, human word-for-word transcription, media rights approval or live release authorization.",
-    "The two older A2/B1 SHA values are retained per asset in supersedes_sha256; do NOT integrate the superseded MP3 bytes."
+    "The two older A2/B1 SHA values are retained per asset in supersedes_sha256; do NOT integrate the superseded MP3 bytes.",
+    "Project owner expressly confirmed the three original Kokoro bf_emma recordings were self-created without external voice cloning and approved G Learning website use on 2026-11-07; rights-decision scope is exactly the three recorded SHA-256 values. This does not authorize merging, deploying, or production curriculum import.",
+    "Chrome HTMLAudioElement codec/play-to-end isolated QA passed on the Draft; full product player, submit/save/resume and Safari MEDIA-01 not yet verified."
   ],
   "assets": [
     {
@@ -33,9 +35,12 @@
       "source_parity": "PASS",
       "mp3_integrity": "LOCAL_PASS",
       "in_git_tree": true,
-      "rights_clearance_for_new_assets": "PENDING",
+      "rights_clearance_for_new_assets": "APPROVED",
       "browser_playback": "NOT_TESTED",
-      "owner_audio_qa_basis": "Project owner confirmed on 2026-11-07 that the originally created and uploaded A1-U10 recording is clear and of good quality; audible quality acceptance only, not word-for-word transcript or browser MEDIA-01 validation."
+      "owner_audio_qa_basis": "Project owner confirmed on 2026-11-07 that the originally created and uploaded A1-U10 recording is clear and of good quality; audible quality acceptance only, not word-for-word transcript or browser MEDIA-01 validation.",
+      "owner_rights_attestation_on": "2026-11-07",
+      "owner_rights_attestation_scope": "G Learning educational website; locally owner-generated Kokoro bf_emma, no external voice clone, exact audio SHA only.",
+      "owner_rights_decision_ref": "docs/curriculum/SLE_UNIT10_OWNER_AUDIO_RIGHTS_DECISION_20261107.md"
     },
     {
       "unit": "A2-U10",
@@ -57,12 +62,15 @@
       "source_parity": "PASS",
       "mp3_integrity": "LOCAL_PASS",
       "in_git_tree": true,
-      "rights_clearance_for_new_assets": "PENDING",
+      "rights_clearance_for_new_assets": "APPROVED",
       "browser_playback": "NOT_TESTED",
       "supersedes_sha256": "91ba3cc5e3ca9528d07abbcff7c872308bb3a63fb7b41c87ac5aa056824cd514",
       "pause_seconds": 0.4038,
       "owner_audio_qa_basis": "Owner listened to replacement MP3 and accepted clarity/sound quality on 2026-11-07",
-      "uploaded_filename": "A2-U10-v1(1).mp3"
+      "uploaded_filename": "A2-U10-v1(1).mp3",
+      "owner_rights_attestation_on": "2026-11-07",
+      "owner_rights_attestation_scope": "G Learning educational website; locally owner-generated Kokoro bf_emma, no external voice clone, exact audio SHA only.",
+      "owner_rights_decision_ref": "docs/curriculum/SLE_UNIT10_OWNER_AUDIO_RIGHTS_DECISION_20261107.md"
     },
     {
       "unit": "B1-U10",
@@ -84,12 +92,16 @@
       "source_parity": "PASS",
       "mp3_integrity": "LOCAL_PASS",
       "in_git_tree": true,
-      "rights_clearance_for_new_assets": "PENDING",
+      "rights_clearance_for_new_assets": "APPROVED",
       "browser_playback": "NOT_TESTED",
       "supersedes_sha256": "379686f8290915aa437d42a0285be845143e471b30dd5c2c6f3769adbc69410b",
       "pause_seconds": 0.4038,
       "owner_audio_qa_basis": "Owner listened to replacement MP3 and accepted clarity/sound quality on 2026-11-07",
-      "uploaded_filename": "B1-U10-v1(1).mp3"
+      "uploaded_filename": "B1-U10-v1(1).mp3",
+      "owner_rights_attestation_on": "2026-11-07",
+      "owner_rights_attestation_scope": "G Learning educational website; locally owner-generated Kokoro bf_emma, no external voice clone, exact audio SHA only.",
+      "owner_rights_decision_ref": "docs/curriculum/SLE_UNIT10_OWNER_AUDIO_RIGHTS_DECISION_20261107.md"
     }
-  ]
+  ],
+  "rights_decision_ref": "docs/curriculum/SLE_UNIT10_OWNER_AUDIO_RIGHTS_DECISION_20261107.md"
 }
