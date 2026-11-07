@@ -44,7 +44,8 @@ for (const lessonId of selected) {
   const lesson = authored.lessons.find(l=>l.id===lessonId);
   assert(receipt && delivered && lesson && lesson.module==='listening');
   assert.equal(receipt.owner_audio_qa,'PASS');
-  assert.equal(receipt.rights_clearance_for_new_assets,'PENDING');
+  assert.equal(receipt.rights_clearance_for_new_assets,'APPROVED');
+  assert.equal(receipt.owner_rights_attestation_on,'2026-11-07');
   assert.equal(receipt.sha256,delivered.sha256);
   assert.equal(receipt.canonical_asset_path,delivered.canonical_asset_path);
   assert.equal(receipt.source_text,delivered.source_text);
@@ -98,7 +99,7 @@ if (apply) {
 console.log(JSON.stringify({
   outcome:apply?'STAGED_IN_LOCAL_DRAFT_WORKTREE':'HANDOFF_VERIFIED_NO_WRITES',
   selected:staged.map(a=>({lessonId:a.lessonId,sha256:a.proposed.sha256,size:a.bytes.length})),
-  audioOwnerQA:'A2_AND_B1_PASS_A1_PENDING',
-  A1FileStaged:false, rights:'PENDING', browserQA:'NOT_TESTED',
+  audioOwnerQA:'ALL_THREE_OWNER_PASS',
+  A1FileStaged:false, rights:'OWNER_APPROVED_FOR_EXACT_THREE_SHA_ONLY', browserQA:'NOT_TESTED',
   commitsCreated:0, productionRelease:'NO_GO', learnerDataWrites:0
 },null,2));
