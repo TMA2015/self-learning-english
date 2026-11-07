@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 1,
+  "source": "SLE_MASTER_CURRICULUM_FRAMEWORK_v1.0.md",
+  "levels": [
+    "A1",
+    "A2",
+    "B1",
+    "B2",
+    "C1",
+    "C2"
+  ],
+  "units": [
+    {
+      "id": "A1-U01",
+      "title": "People and first exchanges"
+    },
+    {
+      "id": "A1-U02",
+      "title": "Family and descriptions"
+    },
+    {
+      "id": "A1-U03",
+      "title": "School, time and routines"
+    },
+    {
+      "id": "A1-U04",
+      "title": "Daily life and frequency"
+    },
+    {
+      "id": "A1-U05",
+      "title": "Food, objects and quantities"
+    },
+    {
+      "id": "A1-U06",
+      "title": "Home, town and directions"
+    },
+    {
+      "id": "A1-U07",
+      "title": "Hobbies, ability and invitations"
+    },
+    {
+      "id": "A1-U08",
+      "title": "Questions and everyday instructions"
+    },
+    {
+      "id": "A1-U09",
+      "title": "Messages, notices and evidence"
+    },
+    {
+      "id": "A1-U10",
+      "title": "A1 integrated task and self-check"
+    },
+    {
+      "id": "A2-U01",
+      "title": "Actions now versus routines"
+    },
+    {
+      "id": "A2-U02",
+      "title": "Past events and simple stories"
+    },
+    {
+      "id": "A2-U03",
+      "title": "Shopping, food and quantities"
+    },
+    {
+      "id": "A2-U04",
+      "title": "Choices, comparisons and reasons"
+    },
+    {
+      "id": "A2-U05",
+      "title": "Plans, arrangements and predictions"
+    },
+    {
+      "id": "A2-U06",
+      "title": "Rules, problems and advice"
+    },
+    {
+      "id": "A2-U07",
+      "title": "Experiences and recent changes"
+    },
+    {
+      "id": "A2-U08",
+      "title": "Travel and community information"
+    },
+    {
+      "id": "A2-U09",
+      "title": "Relevant ideas, messages and paragraphs"
+    },
+    {
+      "id": "A2-U10",
+      "title": "A2 integrated transfer checkpoint"
+    },
+    {
+      "id": "B1-U01",
+      "title": "Connected narratives and experiences"
+    },
+    {
+      "id": "B1-U02",
+      "title": "Opinions, claims and evidence"
+    },
+    {
+      "id": "B1-U03",
+      "title": "Reading between lines"
+    },
+    {
+      "id": "B1-U04",
+      "title": "Listening to viewpoints and intentions"
+    },
+    {
+      "id": "B1-U05",
+      "title": "Hypotheticals and responsible advice"
+    },
+    {
+      "id": "B1-U06",
+      "title": "Community, environment and information"
+    },
+    {
+      "id": "B1-U07",
+      "title": "Digital information and critical reading"
+    },
+    {
+      "id": "B1-U08",
+      "title": "Functional conversations and mediation"
+    },
+    {
+      "id": "B1-U09",
+      "title": "Opinion writing, structure and revision"
+    },
+    {
+      "id": "B1-U10",
+      "title": "B1 integrated transfer checkpoint"
+    },
+    {
+      "id": "B2-U01",
+      "title": "Complex time, modality and nuance"
+    },
+    {
+      "id": "B2-U02",
+      "title": "Precision vocabulary and register"
+    },
+    {
+      "id": "B2-U03",
+      "title": "Analytical reading and source evaluation"
+    },
+    {
+      "id": "B2-U04",
+      "title": "Lecture and discussion listening"
+    },
+    {
+      "id": "B2-U05",
+      "title": "Comparing and synthesising sources"
+    },
+    {
+      "id": "B2-U06",
+      "title": "Argument, counterargument and qualification"
+    },
+    {
+      "id": "B2-U07",
+      "title": "Academic-style organised writing"
+    },
+    {
+      "id": "B2-U08",
+      "title": "Explaining and facilitating discussions"
+    },
+    {
+      "id": "B2-U09",
+      "title": "Society, technology and global challenges"
+    },
+    {
+      "id": "B2-U10",
+      "title": "B2 synthesis checkpoint and exam transfer"
+    },
+    {
+      "id": "C1-U01",
+      "title": "Coherent extended discourse and information flow"
+    },
+    {
+      "id": "C1-U02",
+      "title": "Implicit meaning and complex reading"
+    },
+    {
+      "id": "C1-U03",
+      "title": "Lectures, debates and speaker positioning"
+    },
+    {
+      "id": "C1-U04",
+      "title": "Lexical range, collocation and register"
+    },
+    {
+      "id": "C1-U05",
+      "title": "Grammar for precision, stance and emphasis"
+    },
+    {
+      "id": "C1-U06",
+      "title": "Critical argument, counterclaims and qualification"
+    },
+    {
+      "id": "C1-U07",
+      "title": "Synthesis and mediation across sources"
+    },
+    {
+      "id": "C1-U08",
+      "title": "Reports, proposals and specialist communication"
+    },
+    {
+      "id": "C1-U09",
+      "title": "High-level interaction and intercultural pragmatics"
+    },
+    {
+      "id": "C1-U10",
+      "title": "C1 integrated performance and revision"
+    },
+    {
+      "id": "C2-U01",
+      "title": "Fine shades of meaning and pragmatic precision"
+    },
+    {
+      "id": "C2-U02",
+      "title": "Dense texts, rhetoric and layered interpretation"
+    },
+    {
+      "id": "C2-U03",
+      "title": "Complex spoken language across contexts"
+    },
+    {
+      "id": "C2-U04",
+      "title": "Rhetorical strategy and audience adaptation"
+    },
+    {
+      "id": "C2-U05",
+      "title": "Flexible syntax and stylistic control"
+    },
+    {
+      "id": "C2-U06",
+      "title": "Evaluating reasoning and conflicting evidence"
+    },
+    {
+      "id": "C2-U07",
+      "title": "Advanced mediation and reconstruction"
+    },
+    {
+      "id": "C2-U08",
+      "title": "Sophisticated writing and genre versatility"
+    },
+    {
+      "id": "C2-U09",
+      "title": "Diplomacy, disagreement and intercultural nuance"
+    },
+    {
+      "id": "C2-U10",
+      "title": "C2 integrated synthesis and lifelong transfer"
+    }
+  ]
+}
