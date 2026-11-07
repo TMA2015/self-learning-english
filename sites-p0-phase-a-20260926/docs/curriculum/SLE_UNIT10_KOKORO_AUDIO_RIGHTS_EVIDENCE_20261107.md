@@ -6,10 +6,11 @@ This note is provenance evidence, **not** a legal opinion or a declaration that 
 ## Producer metadata (the actual sidecars, not the preset UI label)
 
 - Engine: local Kokoro, Python package `kokoro==0.9.4`.
-- Render voice: `bf_emma` (single voice) for both; no remote audio service indicated in sidecar.
-- A1: `speed=0.9`, exact producer pause not present in the current receipt; 22.200s decoded, SHA-256 `91f736e9934476b44df0f4ab59eb2b381326bb144acd4475dcfa91e0fbe5bac6`. A1 owner hearing remains **PENDING**.\n- A2: `speed=0.9`, `pause_seconds=0.4038`, SHA-256 `04937096a911d5db09b470e97e459ded6e973c970a2ba388a6274883bf82064e`.
+- Render voice: `bf_emma` (single voice) for all three; no remote audio service indicated in sidecar.
+- A1: `speed=0.9`, exact producer pause not present in the current receipt; 22.200s decoded, SHA-256 `91f736e9934476b44df0f4ab59eb2b381326bb144acd4475dcfa91e0fbe5bac6`. A1 owner hearing remains **PENDING**.
+- A2: `speed=0.9`, `pause_seconds=0.4038`, SHA-256 `04937096a911d5db09b470e97e459ded6e973c970a2ba388a6274883bf82064e`.
 - B1: `speed=0.9486`, `pause_seconds=0.4038`, SHA-256 `9082966b597522148eac25d618eff6e698990168a42305110ede1298f384ac82`.
-- The owner listened to these two recordings and accepted their audible clarity/quality (owner QA PASS). That is distinct from browser playback or word-by-word transcription verification.
+- The owner listened to the A2 and B1 recordings and accepted their audible clarity/quality (owner QA PASS). That is distinct from browser playback or word-by-word transcription verification.
 
 ## Primary-source license references
 
