@@ -15,7 +15,10 @@ function isEnumerable(value:BrowserKeyValueStorage):value is EnumerableStorage{
  * Read-only preflight. It enumerates ALL owner-scoped attempt keys, so content
  * cannot be moved by assuming one learner/owner is the only source of history.
  */
-export function inspectLegacyCurriculumMirror(storage:BrowserKeyValueStorage){
+export function inspectLegacyCurriculumMirror(
+ storage:BrowserKeyValueStorage,
+ alreadyInVault:readonly StoredAcademicPackage[]=[],
+){
  if(!isEnumerable(storage))
   throw Error('Cannot inventory every local owner. Content mirror blocked.');
  const raw=storage.getItem(PACKAGE_KEY);
@@ -24,8 +27,12 @@ export function inspectLegacyCurriculumMirror(storage:BrowserKeyValueStorage){
  try{rows=decodePackageDocument(JSON.parse(raw)).records}
  catch{throw Error('Legacy curriculum packages are invalid. Preserve current storage.')}
  if(!rows.length)throw Error('No source versions available for content mirroring.');
+ // Active learner attempts may already reference a newer source stored
+ // ONLY in IndexedDB. Preflight MUST check the union, not mistake those
+ // legitimate attempts for missing historical content.
+ const combined=reconcileRecoverySources(rows,alreadyInVault,[]).records;
  const versions=new Map<string,StoredAcademicPackage>();
- for(const row of rows){
+ for(const row of combined){
   if(!row||typeof row.version!=='string'||!row.digest||
     !Array.isArray(row.source?.lessons)||versions.has(row.version))
    throw Error('Invalid or duplicated legacy curriculum version; mirroring blocked.');
@@ -63,9 +70,9 @@ export async function mirrorLegacyCurriculumToVault(
  storage:BrowserKeyValueStorage,
  vault:Pick<IndexedDBCurriculumVault,'putImmutable'|'list'>
 ){
- const preview=inspectLegacyCurriculumMirror(storage);
- const added:string[]=[];
  const before=await vault.list();
+ const preview=inspectLegacyCurriculumMirror(storage,before);
+ const added:string[]=[];
  for(const row of preview.records){
   const present=before.find(x=>x.version===row.version);
   if(present){
