@@ -3,10 +3,22 @@ import {useState} from 'react';
 import {browserLearningEnabled} from '../infrastructure/browser/client-services';
 import {exportLocalBackup,LOCAL_RESTORE_LIMITATION} from '../infrastructure/browser/local-backup';
 import {exportLocalRecoveryV2,verifyLocalRecoveryV2,previewLocalRecoveryV2,restoreLocalRecoveryV2} from '../infrastructure/browser/local-recovery';
+import {exportHybridRecoveryV2,previewHybridRecoveryV2,restoreHybridRecoveryV2} from '../infrastructure/browser/hybrid-local-recovery';
+import {hybridStorageEnabled} from '../infrastructure/browser/hybrid-storage-mode';
+import {browserCurriculumVault} from '../infrastructure/storage/indexeddb-curriculum-vault';
 import {localAcademicRuntime} from '../infrastructure/browser/local-runtime';
 
 type RetentionPreview=Awaited<ReturnType<Awaited<ReturnType<typeof localAcademicRuntime>>['academic']['previewRetention']>>;
 type RecoveryPreview=Awaited<ReturnType<typeof previewLocalRecoveryV2>>;
+const activeExport=()=>hybridStorageEnabled()
+ ?exportHybridRecoveryV2(window.localStorage,browserCurriculumVault())
+ :exportLocalRecoveryV2();
+const activePreview=(text:string)=>hybridStorageEnabled()
+ ?previewHybridRecoveryV2(text,window.localStorage,browserCurriculumVault())
+ :previewLocalRecoveryV2(text);
+const activeRestore=(text:string,token:string,confirmed:boolean)=>hybridStorageEnabled()
+ ?restoreHybridRecoveryV2(text,token,confirmed,window.localStorage,browserCurriculumVault())
+ :restoreLocalRecoveryV2(text,token,confirmed);
 function download(text:string,filename:string){
  const url=URL.createObjectURL(new Blob([text],{type:'application/json'}));
  const a=document.createElement('a');a.href=url;a.download=filename;
@@ -35,7 +47,7 @@ export function LocalBackupPanel(){
  }
  async function exportComplete(){
   await run(async()=>{
-   const file=await exportLocalRecoveryV2();
+   const file=await activeExport();
    download(file.text,file.filename);
    setBackupExpected((JSON.parse(file.text) as {sha256:string}).sha256);
    setFullBackupExported(false);
@@ -64,7 +76,7 @@ export function LocalBackupPanel(){
  async function compact(){
   if(!retention||!fullBackupExported)return;
   await run(async()=>{
-   const current=await exportLocalRecoveryV2();
+   const current=await activeExport();
    if(!backupExpected||(JSON.parse(current.text) as {sha256:string}).sha256!==backupExpected)
     throw Error('Learner data changed since backup. Download and verify a fresh complete V2 recovery file.');
    const {academic}=await localAcademicRuntime();
@@ -79,7 +91,7 @@ export function LocalBackupPanel(){
   if(!file)return;
   await run(async()=>{
    const content=await file.text();
-   const result=await previewLocalRecoveryV2(content);
+   const result=await activePreview(content);
    setRecoveryText(content);setRestorePreview(result);
    setStatus(result.valid
     ?'Recovery file verified. This will restore '+result.attempts+' attempts into an otherwise empty learner profile. Review before confirming.'
@@ -89,7 +101,7 @@ export function LocalBackupPanel(){
  async function restore(){
   if(!recoveryText||!restorePreview?.valid)return;
   await run(async()=>{
-   const result=await restoreLocalRecoveryV2(recoveryText,restorePreview.token,true);
+   const result=await activeRestore(recoveryText,restorePreview.token,true);
    setStatus('Recovery verified: '+result.attempts+' attempts. Reload the page to see restored lessons.');
    setRestorePreview(null);setRecoveryText('');
   });
@@ -99,15 +111,16 @@ export function LocalBackupPanel(){
   <h2>Storage and recovery</h2>
   <p>Progress stays in this browser. No email, cloud account or personal data upload is required.</p>
   <p>Keep a <strong>complete V2 recovery file</strong> privately before changing content storage. The older reference-only JSON cannot restore historical lessons.</p>
+  {hybridStorageEnabled()&&<p className="muted">Staged IndexedDB curriculum vault: complete V2 backups include both stored lesson versions and learner work. Automatic cleanup of old browser data is disabled.</p>}
   <div className="foundation-controls">
    <button className="secondary-button" disabled={busy} onClick={()=>void exportComplete()}>Download complete recovery JSON</button>
    <button className="secondary-button" disabled={busy} onClick={()=>void exportReference()}>Export old reference JSON</button>
-   <button className="secondary-button" disabled={busy} onClick={()=>void inspect()}>Preview storage cleanup</button>
+   {!hybridStorageEnabled()&&<button className="secondary-button" disabled={busy} onClick={()=>void inspect()}>Preview storage cleanup</button>}
   </div>
   <label htmlFor="sle-v2-verify-file">Verify downloaded complete recovery file (before cleanup)</label>
   <input id="sle-v2-verify-file" type="file" accept=".json,application/json" disabled={busy||!backupExpected}
    onChange={e=>void verifyDownloaded(e.target.files?.[0])}/>
-  {retention&&<div className="foundation-storage-inspection" aria-label="Storage cleanup preview">
+  {!hybridStorageEnabled()&&retention&&<div className="foundation-storage-inspection" aria-label="Storage cleanup preview">
    <p><strong>Current curriculum:</strong> {retention.activeVersion}. Full historical versions: {retention.beforeVersions.length}; versions still required: {retention.retainedVersions.length}. Historical lessons with actual work: {retention.protectedLessonCount}.</p>
    <p>Estimated curriculum storage: {Math.ceil(retention.estimatedBeforeBytes/1024)} → {Math.ceil(retention.estimatedAfterBytes/1024)} KiB. Browser space varies.</p>
    <p>Only curriculum sources not used by saved attempts can be reduced. Actual attempts, scores and drafts are not deleted.</p>
