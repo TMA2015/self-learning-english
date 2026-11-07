@@ -100,7 +100,8 @@ assert(foundation.includes('summarizeLessonProgress(section.lessons,catalog.atte
  'Grouped lesson headings must match green submitted ticks and not count unassessed work');
 assert(!foundation.includes('section.attempted} attempted'),
  'Do not label unfinished/unassessed work as submitted');
-assert.equal((foundation.match(/<LessonProgressMark \{\.\.\.lessonProgressForLesson/g)||[]).length,2);
+assert.equal((foundation.match(/<LessonProgressMark \{\.\.\.lessonProgressForLesson/g)||[]).length,3,
+ 'Catalog, grouped sections and Recent Work all expose the same historical submitted status');
 console.log(JSON.stringify({result:'PASS',gate:'read-only-today-learning-path',canonicalLessonMap:109,
  candidateGuard:12,pilotUnit:'A2-U09',historicalDraftVersionPreserved:true,
  oldMistakeNonCarryover:true,unassessedWritingNotProficiency:true,
