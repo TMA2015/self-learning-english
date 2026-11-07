@@ -20,6 +20,7 @@ fs.writeFileSync(path.join(dest,'package.json'),'{"type":"commonjs"}');
 const {academicService}=require(path.join(dest,'application/academic-service.js'));
 const {normalizedAcademicContentReader}=require(path.join(dest,'application/academic-content-reader.js'));
 const {planLessonRevisions}=require(path.join(dest,'domain/lesson-revision-plan.js'));
+const {createOptionOrder,optionOrderEnabled}=require(path.join(dest,'domain/option-order.js'));
 const {
  BrowserLocalAcademicRepository,BrowserLocalLearningRepository
 }=require(path.join(dest,'infrastructure/storage/browser-local-repositories.js'));
@@ -82,7 +83,8 @@ function correctAnswers(lesson){
 }
 function started(id,lesson,version,answers={}){
  return {id,rootId:id,packageId:old.package_id,version,
-  lessonId:lesson.id,status:'started',answers,createdAt:1000,evidence:[]};
+  lessonId:lesson.id,status:'started',answers,createdAt:1000,evidence:[],
+  ...(optionOrderEnabled(version)?{optionOrder:createOptionOrder(lesson.activities)}:{})};
 }
 const tracked=[
  {id:'prior-reading',version:old.schema_version,lessonId:oldReading.id,
