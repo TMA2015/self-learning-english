@@ -77,3 +77,16 @@ The owner has since uploaded **three real MP3 files** and matching producer JSON
 **Next media gate:** After final owner audio QA and selection of ORIGINAL vs renewed recording, put exactly the selected original media bytes under `public/foundation-audio/LIS-A1-06-v1.mp3`, `LIS-A2-07-v1.mp3`, `LIS-B1-08-v1.mp3`; register source+URL+duration+SHA in `content/foundation-audio.json`; reconcile rights register for new assets without automatically inheriting clearance for a different SHA; update current-curriculum audio coverage tests for approved 1.21.0; perform actual browser listen-to-end/Submit/retake/Save/Resume with transcript concealed pre-submit. `node tests/unit10-audio-owner-receipts.cjs --require-media` is deliberately a **strict fail gate** while the MP3 files are absent.
 
 **Current status remains:** Source metadata PASS, AUDIO HEARING PENDING, BINARY REPO INTEGRATION NOT DONE, FIREBASE LIVE NOT CHANGED.
+
+## 2026-11-07 — Owner-final A2/B1 re-render QA (supersedes earlier A2/B1 hash rows)
+
+The owner has since uploaded replacement **native Kokoro** MP3s for A2-U10 and B1-U10 with real speed 0.90 and 0.9486 respectively, plus producer sidecars. The owner listened to both and accepted intelligibility/recording quality. UI `preset` labels are not authoritative; only actual `speed` and `pause_seconds` values should govern.
+
+| Lesson | Selected canonical asset | Final SHA-256 | Reported duration | Owner audio QA |
+| --- | --- | --- | ---: | --- |
+| `LIS-A2-07` | `public/foundation-audio/LIS-A2-07-v1.mp3` | `04937096a911d5db09b470e97e459ded6e973c970a2ba388a6274883bf82064e` | 25.150 s | PASS |
+| `LIS-B1-08` | `public/foundation-audio/LIS-B1-08-v1.mp3` | `9082966b597522148eac25d618eff6e698990168a42305110ede1298f384ac82` | 39.625 s | PASS |
+
+**Handoff:** `SLE_Unit10_Final_A2_B1_Audio_Handoff_20261107.zip` contains the selected canonical MP3 bytes, sidecars and SHA manifest. The previous A2/B1 SHA values are historical and **must not** be used for final integration. Uploaded `(1)` suffixes have been normalized away only in canonical asset paths; actual MP3 bytes are unchanged.
+
+**Unresolved gates:** A1-U10 original remains owner hearing **PENDING** (not re-rendered); the actual MP3 binaries remain **outside Git** until handoff integration; new-media rights clearance, real Safari/browser MEDIA-01, transcript-before-submit concealment, academic scored submit/retry, exact-head QA and explicit owner English release authorization are all still required. Do not merge/deploy this Draft based solely on audio QA PASS.
