@@ -21,7 +21,7 @@ function composeUnit10(){
  assert.equal(base.lessons.length,123);
  assert.equal(sum(base),1025);
  assert.equal(authored.packet_id,'SLE-UNIT10-A1A2B1-TRANSFER-20261107-R1');
- assert.equal(authored.production,'NO_GO_AUDIO_NOT_PRODUCED');
+ assert.equal(authored.production,'NO_GO_AUDIO_MEDIA01_AND_RIGHTS_PENDING');
  assert.equal(Object.keys(authored.required_normalizations).length,6);
  assert.deepEqual(authored.unit_lesson_ids,unitMap);
  assert.equal(authored.lessons.length,9);
