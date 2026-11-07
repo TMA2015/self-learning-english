@@ -13,6 +13,8 @@ const recovery=require('../'+out+'/infrastructure/browser/hybrid-local-recovery.
 const v2=require('../'+out+'/infrastructure/browser/local-recovery.js');
 const {HybridBrowserAcademicRepository}=require('../'+out+'/infrastructure/storage/hybrid-academic-repository.js');
 const {mapSeed}=require('../'+out+'/domain/academic.js');
+const {academicService}=require('../'+out+'/application/academic-service.js');
+const {BrowserLocalLearningRepository}=require('../'+out+'/infrastructure/storage/browser-local-repositories.js');
 const a=require('../content/curriculum-1.18.0-candidate.json');
 const b=require('../content/curriculum-1.18.1-candidate.json');
 const c=require('../content/curriculum-1.20.0-candidate.json');
@@ -111,9 +113,32 @@ const attempts=Array.from({length:73},(_,i)=>{
  assert(pkgs.some(p=>p.version==='1.20.0'));
  assert(pkgs.some(p=>p.version==='1.18.0'&&p.source.lessons.length>0));
  assert.equal((await readThrough.attempts('local-family')).length,73);
+ // Real academic service (not only storage mocks): start a new lesson,
+ // persist draft, recreate service (page reload), submit and re-export.
+ const practice=c.lessons.find(l=>l.module==='grammar'&&
+  l.activities.length&&l.activities.every(q=>q.type!=='extended_response'));
+ assert(practice,'Reviewed 1.20 curriculum needs an objective Grammar lesson');
+ const attemptId='idb-post-restore-attempt-0001';
+ const acad=academicService(readThrough,new BrowserLocalLearningRepository(fresh),'local-family');
+ const started=await acad.start(practice.id,attemptId);
+ assert.equal(started.version,'1.20.0');
+ const answers=Object.fromEntries(practice.activities.map(q=>[
+  q.id,q.type==='single_choice'?q.answer.correct_option_id:q.answer.accepted_answers[0]
+ ]));
+ const savedDraft=await acad.draft(attemptId,answers);
+ assert.deepEqual(savedDraft.answers,answers);
+ const newAcad=academicService(new HybridBrowserAcademicRepository(fresh,freshVault),
+  new BrowserLocalLearningRepository(fresh),'local-family');
+ const reloaded=(await newAcad.catalog()).attempts.find(x=>x.id===attemptId);
+ assert(reloaded&&reloaded.status==='started'&&reloaded.version==='1.20.0');
+ const completed=await newAcad.submit(attemptId);
+ assert.equal(completed.status,'scored');
+ assert.equal(completed.version,'1.20.0');
+ assert.equal((await newAcad.catalog()).attempts.length,74);
+ assert.equal(fresh.getItem(key),null,'Learner Save/Submit must not grow the curriculum localStorage key');
  const second=await recovery.exportHybridRecoveryV2(fresh,freshVault);
- assert.equal((await v2.verifyLocalRecoveryV2(second.text)).attempts,73,
-  'Roundtrip must retain all original source/attempt relationships');
+ assert.equal((await v2.verifyLocalRecoveryV2(second.text)).attempts,74,
+  'Roundtrip must retain all original and newly submitted attempt/source relationships');
  const duplicate=await recovery.previewHybridRecoveryV2(hybrid.text,fresh,freshVault);
  assert.equal(duplicate.valid,false,'Restore must never overwrite an occupied learner');
  // Quota error after IDB content put: localStorage rollback must restore
@@ -128,7 +153,9 @@ const attempts=Array.from({length:73},(_,i)=>{
  assert.equal(narrow.getItem(v2.RECOVERY_MARKER),null);
  assert((await narrowVault.list()).length>=0);
  console.log(JSON.stringify({result:'PASS',gate:'hybrid-v2-portable-recovery',
-  originalFileSchema:2,attempts:73,protectedScored:52,protectedDrafts:21,
+  originalFileSchema:2,restoredAttempts:73,postRestoreAttempts:74,
+  protectedScored:52,protectedDrafts:21,postRestoreSubmission:true,
+  pageReloadDraftSurvives:true,
   freshBrowserQuotaBytes:5*1024*1024,
   recoveryPortableAfterIdbMove:true,contentLocalStorageBytes:0,
   repeatedRestorePrevented:true,quotaFailureRollback:true,
