@@ -2,6 +2,7 @@ import {decodePackageDocument,retainReferencedLessons,type StoredAcademicPackage
 import {reconcileRecoverySources} from '../../domain/recovery-source-union';
 import {verifyLocalRecoveryV2,RECOVERY_FILENAME,RECOVERY_MAX_BYTES,RECOVERY_MARKER} from './local-recovery';
 import type {IndexedDBCurriculumVault} from '../storage/indexeddb-curriculum-vault';
+import {mirrorLegacyCurriculumToVault} from '../storage/legacy-curriculum-mirror';
 
 const PREFIX='g-learning:english:v1';
 const PACKAGE_KEY=PREFIX+':academic:packages';
@@ -141,6 +142,52 @@ export async function previewHybridRecoveryV2(text:string,storage:EnumerableStor
  * This cross-store operation is NOT a single atomic multi-database transaction.
  * It therefore requires the marker and a post-restore source/attempt check.
  */
+/**
+ * One-time, explicit and verified content migration.
+ *
+ * Only removes the large LEGACY curriculum key after a parent has downloaded
+ * and re-selected a complete cross-store V2 Recovery whose SHA equals the
+ * current full export. Learner attempts, state and all owner-scoped keys are
+ * NEVER modified. This is intentionally not an automatic site update.
+ */
+export async function moveLegacyCurriculumAfterVerifiedBackup(
+ savedText:string,storage:EnumerableStore,vault:Vault,confirmed:boolean
+){
+ if(!confirmed)throw Error('Explicit one-time migration confirmation required.');
+ if(storage.getItem(RECOVERY_MARKER))throw Error('Recovery is interrupted; migration blocked.');
+ const verified=await verifyLocalRecoveryV2(savedText);
+ const pre=await exportHybridRecoveryV2(storage,vault);
+ if(JSON.parse(pre.text).sha256!==verified.sha256)
+  throw Error('Saved V2 backup no longer matches this browser. Download and verify again before any cleanup.');
+ const content=storage.getItem(PACKAGE_KEY);
+ if(!content)return {moved:false,attempts:pre.attempts,versions:pre.versions};
+ const before=entriesIn(storage);
+ const copied=await mirrorLegacyCurriculumToVault(storage,vault);
+ if(!valuesMatch(entriesIn(storage),before))
+  throw Error('Browser learning data changed during migration. Original source was not removed.');
+ // Now ALL legacy versions have been read back from the immutable IDB vault.
+ // The portable V2 export must remain identical before freeing any bytes.
+ const ready=await exportHybridRecoveryV2(storage,vault);
+ if(JSON.parse(ready.text).sha256!==verified.sha256)
+  throw Error('Migration changed portable lesson sources. No local data was removed.');
+ try{
+  storage.removeItem(PACKAGE_KEY);
+  const after=await exportHybridRecoveryV2(storage,vault);
+  if(JSON.parse(after.text).sha256!==verified.sha256
+    ||after.attempts!==pre.attempts||after.versions!==pre.versions)
+   throw Error('Post-migration Recovery mismatch.');
+  if(entriesIn(storage).some(e=>e.key===PACKAGE_KEY))
+   throw Error('Legacy source cleanup was not committed.');
+  return {moved:true,attempts:after.attempts,versions:after.versions,
+   removedLegacyChars:content.length,verifiedCopiedVersions:copied.verifiedVersions,
+   learnerKeysPreserved:true as const};
+ }catch(error){
+  // The only allowed compensating write is the exact old curriculum key.
+  try{if(storage.getItem(PACKAGE_KEY)===null)storage.setItem(PACKAGE_KEY,content)}
+  catch{throw Error('Legacy cleanup could not be rolled back. Preserve the verified downloaded V2 file and all remaining browser data.')}
+  throw error;
+ }
+}
 export async function restoreHybridRecoveryV2(
  text:string,token:string,confirmed:boolean,storage:EnumerableStore,vault:Vault
 ){
