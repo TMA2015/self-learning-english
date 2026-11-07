@@ -19,11 +19,11 @@ window.addEventListener('error',e=>errors.push('window: '+String(e.error?.stack|
 window.addEventListener('unhandledrejection',e=>errors.push('unhandled: '+String(e.reason?.stack||e.reason)));
 const assert=(value:unknown,message:string)=>{if(!value)throw Error(message)};
 const sleep=(ms:number)=>new Promise<void>(resolve=>setTimeout(resolve,ms));
-async function wait<T>(f:()=>T|undefined|null|false,message:string,ms=15000):Promise<T>{
+async function wait<T>(f:()=>T|Promise<T>|undefined|null|false,message:string,ms=15000):Promise<T>{
  const start=Date.now();
  while(Date.now()-start<ms){
   if(errors.length)throw Error('JavaScript error: '+errors.join(' | '));
-  const value=f();if(value)return value;
+  const value=await f();if(value)return value as T;
   await sleep(70);
  }
  throw Error('UI timeout: '+message+'; UI: '+document.body.innerText.slice(-1800));
