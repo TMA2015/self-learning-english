@@ -184,6 +184,22 @@ const attempts=Array.from({length:73},(_,i)=>{
   'Roundtrip must retain all original and newly submitted attempt/source relationships');
  const duplicate=await recovery.previewHybridRecoveryV2(hybrid.text,fresh,freshVault);
  assert.equal(duplicate.valid,false,'Restore must never overwrite an occupied learner');
+ // Future release regression: after 73 old attempts + one scored answer,
+ // a newly approved cumulative version must become the active catalog
+ // without rewriting version-pinned history or any curriculum localStorage key.
+ const nextSource={...c,schema_version:'1.21.0'};
+ await readThrough.addPackage({...pkg(nextSource),bundle:mapSeed(nextSource)});
+ const nextService=academicService(readThrough,new BrowserLocalLearningRepository(fresh),'local-family');
+ const upgraded=await nextService.catalog();
+ assert.equal(upgraded.version,'1.21.0');
+ assert.equal(upgraded.lessons.length,123);
+ assert.equal(upgraded.attempts.length,74);
+ assert.equal(upgraded.attempts.find(x=>x.id===attemptId).version,'1.20.0');
+ assert.equal(upgraded.attempts[0].version,'1.18.0');
+ assert.equal(fresh.getItem(key),null,'Curriculum updates must not grow localStorage');
+ const afterUpgrade=await recovery.exportHybridRecoveryV2(fresh,freshVault);
+ assert.equal((await v2.verifyLocalRecoveryV2(afterUpgrade.text)).attempts,74);
+ assert.equal(afterUpgrade.versions,3,'Historic versions and future current content remain portable');
  // Quota error after IDB content put: localStorage rollback must restore
  // all prior keys byte-for-byte and no interrupted marker may be left.
  const narrow=new Store(200),narrowVault=new Vault();
@@ -199,6 +215,7 @@ const attempts=Array.from({length:73},(_,i)=>{
   originalFileSchema:2,restoredAttempts:73,postRestoreAttempts:74,
   protectedScored:52,protectedDrafts:21,postRestoreSubmission:true,
   pageReloadDraftSurvives:true,
+  futureContentUpgradePreservesHistoricAttempts:true,
   freshBrowserQuotaBytes:5*1024*1024,
   recoveryPortableAfterIdbMove:true,contentLocalStorageBytes:0,
   verifiedSourceMigration:true,verifiedOldVersionDeletion:true,
