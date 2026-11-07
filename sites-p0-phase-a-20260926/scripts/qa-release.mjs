@@ -14,6 +14,19 @@ function run(command,args,env=process.env){
 run(process.execPath,["tests/stage3-release-activation-gate.cjs"]);
 run(process.execPath,["tests/stage3-multiversion-storage-gate.cjs"]);
 run(process.execPath,["tests/nov-2026-content-preflight.cjs"]);
+
+// Draft-only diagnostic preflight: run real browser and media checks BEFORE the
+// mandatory rights gate. This does NOT permit or trigger any release.
+// Without this, rights PENDING stops CI before browser tests can produce evidence.
+// No extra browser data is touched: the tests use disposable localhost profiles.
+const rights=JSON.parse((await import("node:fs")).readFileSync("content/audio-rights-register.json","utf8"));
+if(rights.unit10_draft_assets?.candidate_version==="1.21.0"){
+  run(process.execPath,["tests/unit10-audio-owner-receipts.cjs","--require-media"]);
+  run(process.execPath,["tests/unit10-staged-manifest-safety.cjs"]);
+  run(process.execPath,["tests/unit10-academic-candidate-v121.cjs"]);
+  run(process.execPath,["tests/storage-chromium-smoke.cjs"]);
+  run(process.execPath,["tests/storage-ui-browser.cjs"]);
+}
 run(process.execPath,["tests/audio-rights-release-gate.cjs","--require-clearance"]);
 run(process.execPath,["tests/writing-ai-on-demand.cjs"]);
 run(process.execPath,["tests/english-tutor-knowledge-only.cjs"]);
