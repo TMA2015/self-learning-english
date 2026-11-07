@@ -80,6 +80,23 @@ const attempts=Array.from({length:73},(_,i)=>{
  assert.equal(hybrid.versions,2,'only latest full + referenced historic source');
  assert.equal((await v2.verifyLocalRecoveryV2(hybrid.text)).attempts,73);
  assert.deepEqual(old.items,oldSnapshot,'export must not edit source keys');
+ // The family can free large legacy content ONLY after reselecting a verified
+ // backup with the exact same entry checksum. Never delete learner keys.
+ await assert.rejects(()=>recovery.moveLegacyCurriculumAfterVerifiedBackup(
+  '{"format":"not-a-recovery"}',old,vault,true),/Unsupported recovery file/);
+ assert.deepEqual(old.items,oldSnapshot,'Invalid backup cannot authorize cleanup');
+ const moved=await recovery.moveLegacyCurriculumAfterVerifiedBackup(
+  hybrid.text,old,vault,true);
+ assert.equal(moved.moved,true);
+ assert.equal(moved.attempts,73);
+ assert.equal(old.getItem(key),null,'Only old curriculum localStorage key may be removed');
+ assert.equal(old.getItem(learner),oldSnapshot.get(learner));
+ assert.equal(old.getItem(state),oldSnapshot.get(state));
+ const movedBackup=await recovery.exportHybridRecoveryV2(old,vault);
+ assert.equal(JSON.parse(movedBackup.text).sha256,JSON.parse(hybrid.text).sha256,
+  'A move between stores must not silently change the portable V2 Recovery SHA');
+ assert.equal((await new HybridBrowserAcademicRepository(old,vault)
+  .attempts('local-family')).length,73);
  const file=JSON.parse(hybrid.text);
  const versionDocs=JSON.parse(file.entries.find(x=>x.key===key).value).records;
  assert.equal(versionDocs.find(x=>x.version==='1.18.0').archive,'referenced-lessons');
@@ -158,6 +175,7 @@ const attempts=Array.from({length:73},(_,i)=>{
   pageReloadDraftSurvives:true,
   freshBrowserQuotaBytes:5*1024*1024,
   recoveryPortableAfterIdbMove:true,contentLocalStorageBytes:0,
+  verifiedSourceMigration:true,originalLearnerKeysBytePreserved:true,
   repeatedRestorePrevented:true,quotaFailureRollback:true,
   realSafariAcceptance:'NOT_TESTED',productionWrites:0}));
 })().catch(err=>{console.error(err);process.exitCode=1});
