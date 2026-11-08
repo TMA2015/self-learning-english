@@ -26,7 +26,7 @@ const api=(body:unknown)=>call('/api/foundation',body);
 export type Catalog={version:string;imported:boolean;warning?:string;course?:{sequence:string[]};journey:{steps:string[];title:string};lessons:{id:string;title:string;module:string;cefr:string;minutes:number}[];attempts:(AcademicAttempt&{hasAudio?:boolean})[]};
 type LessonView={version:string;lesson:SeedLesson;audio:{url:string;duration:number}|null;pronunciationAudio:{url:string;duration:number}|null};
 export function FoundationDemo({showVi=false,onEvidence,skill,entryMode='lessons',sharedCatalog,onCatalog,onSelectSkill,onNavigationGuard,browserRoute,onBrowserRoute,writingIntro}:{showVi?:boolean;onEvidence?:()=>void;skill?:string;entryMode?:'units'|'lessons';sharedCatalog?:Catalog|null;onCatalog?:(next:Catalog)=>void;onSelectSkill?:(next:string)=>void;onNavigationGuard?:(guard:((target:string)=>Promise<boolean>)|null)=>void;browserRoute?:BrowserRoute;onBrowserRoute?:(next:BrowserRoute)=>void;writingIntro?:ReactNode}){
- const routeScope=(entryMode==='units'?'units':(skill??'foundation')) as BrowserRoute['view'];
+ const routeScope=entryMode==='units'?'units':(skill??'foundation');
  const [draftFeedback,setDraftFeedback]=useState<{kind:'idle'|'restored'|'unsaved'|'saving'|'saved'|'error';at?:number}>({kind:'idle'}),[screen,setScreen]=useState<'catalog'|'overview'|'practice'>('catalog'),[cefrFilter,setCefrFilter]=useState('all'),[hintSteps,setHintSteps]=useState<Record<string,number>>({}),[catalog,setCatalog]=useState<Catalog|null>(sharedCatalog??null),[selected,setSelected]=useState(''),[lesson,setLesson]=useState<SeedLesson|null>(null),[attempt,setAttempt]=useState<AcademicAttempt|null>(null),[answers,setAnswers]=useState<Record<string,string>>({}),[pronunciationAudio,setPronunciationAudio]=useState<{url:string;duration:number}|null>(null),[audioInfo,setAudioInfo]=useState<{url:string;duration:number}|null>(null),[recording,setRecording]=useState<AcademicAttempt['audio']>(),[recordingURL,setRecordingURL]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState(''),[submitError,setSubmitError]=useState(''),[showMissing,setShowMissing]=useState(false),[showAudioWarning,setShowAudioWarning]=useState(false),[saved,setSaved]=useState(''),[transcript,setTranscript]=useState(''),[recordingNow,setRecordingNow]=useState(false),[playing,setPlaying]=useState(false),[openingId,setOpeningId]=useState('');
  const [formatNotice,setFormatNotice]=useState<{id:string;revision:number;ids:string[]}|null>(null);
  const [todayUnit,setTodayUnit]=useState('auto');
@@ -44,7 +44,7 @@ export function FoundationDemo({showVi=false,onEvidence,skill,entryMode='lessons
  function announceRoute(lessonId?:string,nextScreen:'overview'|'practice'='overview'){
   const next:BrowserRoute=routeScope==='units'
    ?{view:'units',level:unitLevel,...(selectedUnit?{unitId:selectedUnit}:{})}
-   :{view:routeScope};
+   :{view:routeScope as BrowserRoute['view']};
   if(lessonId){next.lessonId=lessonId;next.screen=nextScreen}
   onBrowserRoute?.(next);
  }
