@@ -12,6 +12,7 @@ import {sourceDigest} from '../application/academic-service';
 import {createOptionOrder} from '../domain/option-order';
 import curriculum from '../content/curriculum-1.21.0-candidate.json';
 const id='LIS-A1-06',attemptId='issue119-preserved-draft';
+const firstAnswer=(q:{options?:{id:string}[]})=>q.options?.[0]?.id??'qa-restored-answer';
 const errors:string[]=[];
 window.addEventListener('error',e=>errors.push(String(e.error?.stack||e.message)));
 window.addEventListener('unhandledrejection',e=>errors.push(String(e.reason?.stack||e.reason)));
@@ -68,7 +69,7 @@ async function run(){
   await repo.start('local-family',{
    id:attemptId,rootId:attemptId,packageId:seed.package_id,version:seed.schema_version,
    lessonId:id,status:'started',optionOrder:createOptionOrder(lesson.activities,n=>0),
-   answers:{[lesson.activities[0].id]:'qa-restored-answer'},
+   answers:{[lesson.activities[0].id]:firstAnswer(lesson.activities[0])},
    evidence:[],createdAt:Date.now()
   });
   history.replaceState({issue119:true},'',browserRouteHash({view:'listening',lessonId:id,screen:'practice'}));
@@ -94,7 +95,7 @@ async function run(){
   renderRoot=createRoot(app);renderRoot.render(React.createElement(Shell));
   const a=await restored();
   const lesson=curriculum.lessons.find(l=>l.id===id)!;
-  assert(a.answers[lesson.activities[0].id]==='qa-restored-answer','Saved answer was changed on browser reload');
+  assert(a.answers[lesson.activities[0].id]===firstAnswer(lesson.activities[0]),'Saved answer was changed on browser reload');
   assert((await repo.packages()).length===1,'Reload installed extra content versions');
   const result={suite:'ISSUE119_CHROME_ROUTE_REFRESH_BACK_FORWARD',savedAttempt:attemptId,
    realBrowserBack:true,realBrowserForward:true,actualLocationReload:true,
