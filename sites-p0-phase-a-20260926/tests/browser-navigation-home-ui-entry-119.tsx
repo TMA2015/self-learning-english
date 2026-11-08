@@ -6,7 +6,9 @@
 import React from 'react';
 import {createRoot} from 'react-dom/client';
 import Home from '../app/home-client';
+import {loadLearnerState} from '../infrastructure/browser/client-services';
 const errors:string[]=[];
+const writingMarker='SLE_ISSUE119_SAFE_WRITING_DRAFT_20261108';
 window.addEventListener('error',e=>errors.push('window: '+String(e.error?.stack||e.message)));
 window.addEventListener('unhandledrejection',e=>errors.push('unhandled: '+String(e.reason?.stack||e.reason)));
 const sleep=(ms:number)=>new Promise<void>(resolve=>setTimeout(resolve,ms));
@@ -44,6 +46,17 @@ async function run(){
   history.replaceState(null,'','#/writing-week/4/main');
   const root=createRoot(q('#app')!);root.render(React.createElement(Home));
   await wait(()=>checkWriting('Main Practice'),'Home hydrated deep link to Week 4 Main Practice');
+  await wait(()=>document.body.innerText.includes('Saved on this device'),'Writing local profile loaded');
+  const field=await wait(()=>document.querySelector<HTMLTextAreaElement>('textarea[name^="week4-"]'),
+   'Week 4 editable writing draft');
+  const nativeSetter=Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value')?.set;
+  if(!nativeSetter)throw Error('Native textarea setter unavailable');
+  nativeSetter.call(field,writingMarker);
+  field.dispatchEvent(new Event('input',{bubbles:true}));
+  await wait(async()=>{
+   const stored=await loadLearnerState();
+   return JSON.stringify((stored.state as any)?.writingCourseV2B?.weeks?.['4']?.fields??{}).includes(writingMarker);
+  },'durable Writing draft saved before navigation',20000);
   const learn=Array.from(document.querySelectorAll<HTMLButtonElement>('nav[aria-label="Week 4 learning steps"] button'))
    .find(b=>b.textContent?.trim()==='Learn');
   if(!learn)throw Error('Writing Week 4 Learn step missing');
@@ -51,6 +64,8 @@ async function run(){
   await wait(()=>location.hash==='#/writing-week/4/learn'&&checkWriting('Learn'),'Writing Learn URL + UI');
   history.back();
   await wait(()=>location.hash==='#/writing-week/4/main'&&checkWriting('Main Practice'),'browser Back to Writing Main');
+  await wait(()=>Array.from(document.querySelectorAll<HTMLTextAreaElement>('textarea[name^="week4-"]'))
+    .some(t=>t.value===writingMarker),'Writing draft intact on browser Back');
   history.forward();
   await wait(()=>location.hash==='#/writing-week/4/learn'&&checkWriting('Learn'),'browser Forward to Writing Learn');
   clickSidebar('Listening');
@@ -72,11 +87,18 @@ async function run(){
   await wait(()=>location.hash==='#/dashboard'&&activeNav()==='Dashboard','Navigate Dashboard with URL');
   history.back();
   await wait(()=>location.hash==='#/listening'&&activeNav()==='Listening','Back to Listening after reload');
+  history.back();
+  await wait(()=>location.hash==='#/writing-week/4/learn'&&checkWriting('Learn'),'Back to Writing after full reload');
+  history.back();
+  await wait(()=>location.hash==='#/writing-week/4/main'&&checkWriting('Main Practice'),'Back to Writing Main after reload');
+  await wait(()=>Array.from(document.querySelectorAll<HTMLTextAreaElement>('textarea[name^="week4-"]'))
+   .some(t=>t.value===writingMarker),'saved Writing text recovered after full reload',20000);
   const info={
    suite:'ISSUE119_REAL_HOME_CHROME_NAVIGATION',
    nativeHomeComponent:true,week4DeepLink:true,
    writingMainToLearn:true,browserBack:true,browserForward:true,
    crossSkillNavigation:true,realFullReload:true,restoredListening:true,
+   writingDraftPreservedAfterReload:true,
    noProductionData:true,noCurriculumMutation:true,safari:'NOT_TESTED'
   };
   await report('PASS',info);
