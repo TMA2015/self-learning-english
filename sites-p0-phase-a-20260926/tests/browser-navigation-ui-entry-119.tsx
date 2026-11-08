@@ -9,6 +9,7 @@ import {parseBrowserRoute,browserRouteHash,type BrowserRoute} from '../domain/br
 import {BrowserLocalAcademicRepository} from '../infrastructure/storage/browser-local-repositories';
 import {mapSeed,validateSeed,type Seed} from '../domain/academic';
 import {sourceDigest} from '../application/academic-service';
+import {createOptionOrder} from '../domain/option-order';
 import curriculum from '../content/curriculum-1.21.0-candidate.json';
 const id='LIS-A1-06',attemptId='issue119-preserved-draft';
 const errors:string[]=[];
@@ -23,7 +24,7 @@ async function wait<T>(fn:()=>T|Promise<T>|undefined|null|false,name:string,limi
   const x=await fn();if(x)return x as T;
   await sleep(80);
  }
- throw Error('Timeout waiting '+name+': '+document.body.innerText.slice(-1100));
+ throw Error('Timeout waiting '+name+': '+JSON.stringify({url:location.href,notices:Array.from(document.querySelectorAll('[role="alert"],[role="status"]')).map(el=>el.textContent).slice(0,12),lesson:!!document.querySelector('.foundation-lesson'),text:document.body.innerText.slice(-1050)}));
 }
 const repo=new BrowserLocalAcademicRepository(localStorage);
 const app=document.getElementById('app')!;
@@ -66,7 +67,8 @@ async function run(){
   const lesson=seed.lessons.find(l=>l.id===id)!;
   await repo.start('local-family',{
    id:attemptId,rootId:attemptId,packageId:seed.package_id,version:seed.schema_version,
-   lessonId:id,status:'started',answers:{[lesson.activities[0].id]:'qa-restored-answer'},
+   lessonId:id,status:'started',optionOrder:createOptionOrder(lesson.activities,n=>0),
+   answers:{[lesson.activities[0].id]:'qa-restored-answer'},
    evidence:[],createdAt:Date.now()
   });
   history.replaceState({issue119:true},'',browserRouteHash({view:'listening',lessonId:id,screen:'practice'}));
