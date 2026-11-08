@@ -34,6 +34,9 @@ if(rights.unit10_draft_assets?.candidate_version==="1.21.0"){
   // v1.21.0 seeded into a throwaway localhost Chrome profile.
   // Never imports into any production browser, nor tests the live site.
   run(process.execPath,["tests/unit10-media01-real-browser.cjs"]);
+  // Actual native Chrome Back/Forward and full reload restore only a saved
+  // Listening attempt in a disposable localhost profile. No live data touched.
+  run(process.execPath,["tests/browser-navigation-real-browser-119.cjs"]);
   run(process.execPath,["tests/storage-chromium-smoke.cjs"]);
   run(process.execPath,["tests/storage-ui-browser.cjs"]);
 }
