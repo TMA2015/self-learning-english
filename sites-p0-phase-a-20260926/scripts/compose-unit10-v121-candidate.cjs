@@ -3,7 +3,7 @@
  * Source-only Unit 10 candidate composer, NEVER auto-imported or auto-deployed.
  * Source authority: NotebookLM packet SLE-UNIT10-A1A2B1-TRANSFER-20261107-R1
  * Verdict: PASS_WITH_REQUIRED_CHANGES; 6 canonical tags reconciled.
- * Audio/production: HARD NO-GO pending physical rights-cleared verified MP3s.
+ * Audio/production: 3 real MP3s & scoped rights verified in Draft;\n * production activation requires exact-head QA and owner release approval.
  */
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path');
@@ -28,7 +28,7 @@ function composeUnit10(){
  assert.equal(authored.lessons.reduce((n,l)=>n+l.activities.length,0),30);
  const candidate=structuredClone(base);
  candidate.schema_version='1.21.0';
- candidate.status='CANDIDATE_ONLY_MEDIA_NOT_CLEARED_NOT_FOR_PRODUCTION';
+ candidate.status='academic_pass_unit10_audio_verified_rights_approved_pending_explicit_release';
  const existing=new Set(candidate.lessons.map(l=>l.id));
  const globalItems=new Set(candidate.lessons.flatMap(l=>l.activities.map(a=>a.id)));
  for(const l of authored.lessons){
