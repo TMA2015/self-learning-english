@@ -125,14 +125,30 @@ export default function Home(){
    }
   }
   routeRef.current=next;setBrowserRoute(next);setView(next.view);setMenu(false);
+  if(next.view==='writing-week'&&next.writingWeek&&next.writingStep){
+   setBlockWeek(next.writingWeek as WritingWeek);setBlockScreen(next.writingStep);
+  }else if(next.view==='writing-later-week'&&next.writingWeek&&next.writingStep){
+   setLaterWeek(next.writingWeek as LaterWeek);setLaterScreen(next.writingStep);
+  }
   if(mode!=='pop')window.scrollTo({top:0,behavior:'auto'});
  }
  function updateFoundationRoute(next:BrowserRoute){
   if(!equalBrowserRoutes(routeRef.current,next))applyRoute(next,'push');
  }
- async function navigate(v:View):Promise<boolean>{
-  return navigationGate.current(v,confirmLeave,target=>applyRoute({view:target},'push'));
+ async function navigateRoute(next:BrowserRoute):Promise<boolean>{
+  return navigationGate.current(next.view,confirmLeave,()=>applyRoute(next,'push'));
  }
+ async function navigate(v:View):Promise<boolean>{return navigateRoute({view:v})}
+ // Warn rather than silently discard pending Writing edits on a full reload.
+ // Local browser drafts are saved asynchronously; Safari may ignore this dialog.
+ useEffect(()=>{
+  const warn=(event:BeforeUnloadEvent)=>{
+   if(!dirty.current)return;
+   event.preventDefault();event.returnValue='';
+  };
+  window.addEventListener('beforeunload',warn);
+  return()=>window.removeEventListener('beforeunload',warn);
+ },[]);
  // Hash routes support a static Firebase site. No learner answers go in URLs.
  useEffect(()=>{
   const first=parseBrowserRoute(window.location.hash);
@@ -174,7 +190,7 @@ export default function Home(){
  async function blockGo(week:WritingWeek,screen:WeekScreen){
   if(blockNavigationPending.current)return;blockNavigationPending.current=true;setNavigating(true);
   try{if(!await confirmWeekNavigation(()=>latestState.current,()=>dirty.current,saveNow)){setBlockError('Your changes could not be saved. Stay here and retry.');return;}
-   if(await navigate('writing-week')){setBlockWeek(week);setBlockScreen(screen);setBlockError('');window.scrollTo({top:0,behavior:'smooth'});}}
+   if(await navigateRoute({view:'writing-week',writingWeek:week,writingStep:screen})){setBlockError('');window.scrollTo({top:0,behavior:'smooth'});}}
   finally{blockNavigationPending.current=false;setNavigating(false)}
  }
  function changeBlock(work:WeekWork){const current=latestState.current;update({writingCourseV2B:{...current.writingCourseV2B,weeks:{...current.writingCourseV2B?.weeks,[blockWeek]:work}}})}
@@ -183,13 +199,13 @@ export default function Home(){
  async function submitBlock(){if(blockCheckPending.current)return;blockCheckPending.current=true;setBusy(true);setBlockError('');try{
   // Save learner-owned draft before recording a completed progress-only snapshot. No AI request.
   if(!await confirmWeekNavigation(()=>latestState.current,()=>dirty.current,saveNow))throw Error('Save failed. Your work is still here.');
-  const work=weekWork(latestState.current.writingCourseV2B,blockWeek);await persistBlock(blockWeek,submitWeek(blockWeek,work));setBlockScreen('feedback');
+  const work=weekWork(latestState.current.writingCourseV2B,blockWeek);await persistBlock(blockWeek,submitWeek(blockWeek,work));applyRoute({view:'writing-week',writingWeek:blockWeek,writingStep:'feedback'},'push');
  }catch(e){setBlockError(e instanceof Error?e.message:'Could not save your attempt.')}finally{blockCheckPending.current=false;setBusy(false)}}
  async function finishBlock(){if(blockCheckPending.current)return;const work=weekWork(latestState.current.writingCourseV2B,blockWeek);if(!canCompareWeek(blockWeek,work,'review')||weekGuidedProgress(blockWeek,work.guided).finished!==4)return;blockCheckPending.current=true;setBusy(true);try{await persistBlock(blockWeek,finishWeekReview(blockWeek,work));setBlockError('');}catch(e){setBlockError(e instanceof Error?e.message:'Could not save review.')}finally{blockCheckPending.current=false;setBusy(false)}}
  async function laterGo(week:LaterWeek,screen:WeekScreen){
   if(laterNavigationPending.current||laterPending.current)return;laterNavigationPending.current=true;setNavigating(true);
   try{if(!await confirmWeekNavigation(()=>latestState.current,()=>dirty.current,saveNow)){setLaterError('Your changes could not be saved. Stay here and retry.');return;}
-   if(await navigate('writing-later-week')){setLaterWeek(week);setLaterScreen(screen);setLaterError('');window.scrollTo({top:0,behavior:'smooth'});}}
+   if(await navigateRoute({view:'writing-later-week',writingWeek:week,writingStep:screen})){setLaterError('');window.scrollTo({top:0,behavior:'smooth'});}}
   finally{laterNavigationPending.current=false;setNavigating(false)}
  }
  function changeLater(work:LaterWork){const current=latestState.current;update({writingCourseV2C:{...current.writingCourseV2C,weeks:{...current.writingCourseV2C?.weeks,[laterWeek]:work}}})}
@@ -199,7 +215,7 @@ export default function Home(){
  async function submitLaterWork(){if(laterPending.current)return;laterPending.current=true;setBusy(true);setLaterError('');try{
   // Save learner work first. Completed snapshots are progress-only and never request AI.
   if(!await confirmWeekNavigation(()=>latestState.current,()=>dirty.current,saveNow))throw Error('Save failed. Your work is still here.');
-  const work=laterWork(latestState.current.writingCourseV2C,laterWeek);await persistLater(laterWeek,submitLater(laterWeek,work));setLaterScreen('feedback');
+  const work=laterWork(latestState.current.writingCourseV2C,laterWeek);await persistLater(laterWeek,submitLater(laterWeek,work));applyRoute({view:'writing-later-week',writingWeek:laterWeek,writingStep:'feedback'},'push');
  }catch(e){setLaterError(e instanceof Error?e.message:'Could not save your attempt.')}finally{laterPending.current=false;setBusy(false)}}
  async function finishLater(){if(laterPending.current)return;laterPending.current=true;setBusy(true);try{const work=laterWork(latestState.current.writingCourseV2C,laterWeek);await persistLater(laterWeek,finishLaterReview(laterWeek,work));setLaterError('')}catch(e){setLaterError(e instanceof Error?e.message:'Could not save review.')}finally{laterPending.current=false;setBusy(false)}}
  async function checkPilot(id:string,answer:number){if(busy||pilotCheckPending.current)return;pilotCheckPending.current=true;setBusy(true);setPilotError('');try{const current=latestState.current;const saved=current.writingCourseV2??emptyPilot();const record=checkGuided(saved.guided,id,answer);const next={...current,writingCourseV2:{...saved,guided:[...saved.guided,record]}};dirty.current=true;latestState.current=next;setState(next);if(!await saveNow(next))throw Error('Your answer is still here. Retry save before leaving.')}catch(e){setPilotError(e instanceof Error?e.message:'Could not save this answer.')}finally{pilotCheckPending.current=false;setBusy(false)}}
