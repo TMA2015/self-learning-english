@@ -11,6 +11,7 @@ import {type DiagnosticV2,type Evidence,type LearnerModel,type LearningPlanModel
 import {DeveloperView,type LearningChoice} from "./core-panels";
 import {Progress} from "@/components/ui/progress";
 import {createNavigationGate} from "../domain/navigation-gate";
+import {parseBrowserRoute,browserRouteHash,equalBrowserRoutes,type BrowserRoute,type AppView} from "../domain/browser-route";
 import {loadLearnerState,saveLearnerState,loadPracticeProgress,loadMyCourses,selectMyCourse,loadCapabilities,finishDiagnosticAssessment,evaluateWritingProcess,saveGardenRelevantIdea,browserLearningEnabled} from "../infrastructure/browser/client-services";
 import {MyCourses,type MyCoursesData} from './my-courses';
 import {WRITING_COURSE_ID} from '../domain/course-p1';
@@ -27,7 +28,7 @@ import {LATER_WEEKS,laterWork,editLater,copyLaterSource,learnerSources,submitLat
 import {WRITING_WEEKS,weekWork,editWeek,submitWeek,weekGuidedProgress,checkWeekGuided,canCompareWeek,finishWeekReview,confirmWeekNavigation,type WritingWeek,type WeekScreen,type WeekWork,type WritingBlockState} from '../domain/writing-course-v2-b';
 import {weeks,task,stages,skillLabels,demoHistory} from "./content";
 
-type View="units"|"writing-later-week"|"writing-week"|"writing-overview"|"writing-foundations"|"writing-learn"|"writing-guided"|"writing-review"|"foundation"|"debug"|"dashboard"|"diagnostic"|"profile"|"plan"|"courses"|"writing-course"|"skillmap"|"errorbank"|"writing"|"curriculum"|"lesson"|"progress"|"parent"|"grammar"|"reading"|"listening"|"speaking"|"vocabulary"|"pronunciation"|"specialization"|"tutor";
+type View=AppView;
 type Feedback={summary:string;strengths:string[];improvements:string[];exercise:string;scores:Record<string,number>|null;corrections:{original:string;revised:string;why:string;tag:string}[];tags:string[]};
 type Entry={learnerModel?:LearnerModel;learningPlan?:LearningPlanModel;submissionId?:string;evaluationStatus?:string;aiFailureReason?:string;evidence?:Evidence[];mode:"ai"|"guided";feedback:Feedback;rating?:WritingRating;evaluation?:{provider?:string;model?:string}};
 type State={writingCourseV2C?:LaterBlock;writingCourseV2B?:WritingBlockState;writingCourseV2?:PilotState;learningChoice?:LearningChoice;week:number;stage:number;analysis:{topic:string;task:string;keywords:string;limits:string;offtopic:string};brainstorm:{ideas:string;selected:string;support:string;example:string};outline:{opening:string;reason1:string;detail:string;example:string;ending:string};writing:string;miniAnswer:string;miniDone:boolean;completed:number[];feedbacks:Record<string,Entry>;history:typeof demoHistory;revision:string;profile?:Profile;diagnostic?:Diagnostic;diagnosticV2?:DiagnosticV2;diagnosticArchive?:DiagnosticV2[];evidence?:Evidence[];learnerModel?:LearnerModel;learningPlan?:LearningPlanModel;vietnameseSupport?:boolean};
@@ -56,6 +57,9 @@ export default function Home(){
  const courseRequestGeneration=useRef(0);
  const foundationNavigationGuard=useRef<((target:string)=>Promise<boolean>)|null>(null);
  const navigationGate=useRef(createNavigationGate<View>());
+ const [browserRoute,setBrowserRoute]=useState<BrowserRoute>({view:"dashboard"});
+ const routeRef=useRef<BrowserRoute>({view:"dashboard"});
+ const routeReady=useRef(false),historyIndex=useRef(0),ignorePop=useRef(false);
  const registerFoundationNavigationGuard=useCallback((guard:((target:string)=>Promise<boolean>)|null)=>{foundationNavigationGuard.current=guard},[]);
  async function refreshCourses(){const request=++courseRequestGeneration.current;try{const data=await loadMyCourses() as MyCoursesData;if(request===courseRequestGeneration.current){setCourseData(data);setCourseError('')}}catch(e){if(request===courseRequestGeneration.current)setCourseError(e instanceof Error?e.message:'My Courses unavailable')}}
  useEffect(()=>{void refreshCourses()},[]);
@@ -91,17 +95,80 @@ export default function Home(){
  }
  function receiveWriting(result:WritingReply){const current=latestState.current;const evidence=[...new Map([...(current.evidence??[]),...result.evidence].map(e=>[e.id,e])).values()];update({evidence,learnerModel:result.learnerModel??current.learnerModel,learningPlan:result.learningPlan??current.learningPlan,completed:[...new Set([...current.completed,4])]})}
  function updateProfile(profile:Profile){const learnerModel=state.learnerModel?{...state.learnerModel,goals:profile.goal,updatedAt:Date.now()}:undefined;const learningPlan=learnerModel?derivePlan(learnerModel):state.learningPlan;update({profile,learnerModel,learningPlan})}
- async function navigate(v:View):Promise<boolean>{
-  // Same-skill clicks must reach the mounted Foundation catalog guard.
-  return navigationGate.current(v,async target=>{
-   setNavigating(true);
-   try{if(!await (foundationNavigationGuard.current?.(target)??Promise.resolve(true)))return false;
-    // The legacy Writing editor also has pending debounced saves. Confirm its latest snapshot.
-    if(dirty.current){let snapshot:State;do{snapshot=latestState.current;if(!await saveNow(snapshot)){setCourseError('Writing changes could not be saved. Stay here and retry.');return false}}while(snapshot!==latestState.current)}
-    return true}
-   finally{setNavigating(false)}
-  },target=>{setView(target);setMenu(false);window.scrollTo({top:0,behavior:"smooth"})});
+ async function confirmLeave(target:View):Promise<boolean>{
+  setNavigating(true);
+  try{
+   if(!await (foundationNavigationGuard.current?.(target)??Promise.resolve(true)))return false;
+   if(dirty.current){
+    let snapshot:State;
+    do{
+     snapshot=latestState.current;
+     if(!await saveNow(snapshot)){
+      setCourseError('Writing changes could not be saved. Stay here and retry.');
+      return false;
+     }
+    }while(snapshot!==latestState.current)
+   }
+   return true;
+  }finally{setNavigating(false)}
  }
+ function applyRoute(next:BrowserRoute,mode:'push'|'replace'|'pop'='push'){
+  if(mode!=='pop'&&routeReady.current){
+   const state=window.history.state??{};
+   if(mode==='push'){
+    if(!equalBrowserRoutes(routeRef.current,next)){
+     historyIndex.current+=1;
+     window.history.pushState({...state,__sleNavigationIndex:historyIndex.current},'',browserRouteHash(next));
+    }
+   }else{
+    window.history.replaceState({...state,__sleNavigationIndex:historyIndex.current},'',browserRouteHash(next));
+   }
+  }
+  routeRef.current=next;setBrowserRoute(next);setView(next.view);setMenu(false);
+  if(mode!=='pop')window.scrollTo({top:0,behavior:'auto'});
+ }
+ function updateFoundationRoute(next:BrowserRoute){
+  if(!equalBrowserRoutes(routeRef.current,next))applyRoute(next,'push');
+ }
+ async function navigate(v:View):Promise<boolean>{
+  return navigationGate.current(v,confirmLeave,target=>applyRoute({view:target},'push'));
+ }
+ // Hash routes support a static Firebase site. No learner answers go in URLs.
+ useEffect(()=>{
+  const first=parseBrowserRoute(window.location.hash);
+  const old=window.history.state??{};
+  const initial=Number.isSafeInteger(old.__sleNavigationIndex)?old.__sleNavigationIndex:0;
+  historyIndex.current=initial;
+  window.history.replaceState({...old,__sleNavigationIndex:initial},'',browserRouteHash(first));
+  routeReady.current=true;applyRoute(first,'pop');
+  let handling=false;
+  async function onPop(event:PopStateEvent){
+   if(ignorePop.current){ignorePop.current=false;return}
+   const next=parseBrowserRoute(window.location.hash);
+   const previous=routeRef.current;
+   const proposed=event.state?.__sleNavigationIndex;
+   const targetIndex=Number.isSafeInteger(proposed)?proposed:historyIndex.current;
+   const delta=targetIndex-historyIndex.current;
+   if(equalBrowserRoutes(previous,next)){historyIndex.current=targetIndex;return}
+   if(handling){
+    if(delta){ignorePop.current=true;window.history.go(-delta)}
+    else window.history.replaceState({...window.history.state,__sleNavigationIndex:historyIndex.current},'',browserRouteHash(previous));
+    return;
+   }
+   handling=true;
+   try{
+    const accepted=await navigationGate.current(next.view,confirmLeave,()=>{
+     historyIndex.current=targetIndex;applyRoute(next,'pop');
+    });
+    if(!accepted){
+     if(delta){ignorePop.current=true;window.history.go(-delta)}
+     else window.history.replaceState({...window.history.state,__sleNavigationIndex:historyIndex.current},'',browserRouteHash(previous));
+    }
+   }finally{handling=false}
+  }
+  window.addEventListener('popstate',onPop);
+  return()=>{window.removeEventListener('popstate',onPop);routeReady.current=false};
+ },[]);
  const pilot=state.writingCourseV2??emptyPilot();
  async function pilotGo(route:PilotRoute,unit?:string){const target:View=route==='writing'?'writing':route==='overview'?'writing-overview':route==='foundations'?'writing-foundations':route==='learn'?'writing-learn':route==='guided'?'writing-guided':route==='review'?'writing-review':route==='main'?'lesson':'writing-course';if(await navigate(target)){if(unit)setFoundationUnit(unit);if(route==='main'&&latestState.current.week!==0)update({week:0})}}
  async function blockGo(week:WritingWeek,screen:WeekScreen){
@@ -140,7 +207,7 @@ export default function Home(){
  async function finishReview(){const current=latestState.current;const saved=current.writingCourseV2??emptyPilot();if(!completeOwnAttempt(current)||saved.submission?.signature!==workSignature(current))return;const next={...current,writingCourseV2:{...saved,reviewDone:true}};dirty.current=true;latestState.current=next;setState(next);await saveNow(next)}
  async function submit(stage=state.stage){const labels=["analysis","brainstorm","outline","writing"];if(stage>3)return;const answer=stage===3?{writing:state.writing}:stage===0?currentAnalysis(state.analysis):state[labels[stage] as "brainstorm"|"outline"];
  if(countWords(Object.values(answer).join(" "))<4){alert("Write at least one of your own ideas before checking.");return}
- setBusy(true);try{const submittedState=latestState.current;if(!await saveNow(submittedState))throw Error("Save failed before checking.");const submittedSignature=workSignature(submittedState);const result=await evaluateWritingProcess(labels[stage] as "analysis"|"brainstorm"|"outline"|"writing",answer) as Entry;const currentState=latestState.current;if(workSignature(currentState)!==submittedSignature)throw Error("Your work changed while checking. Check the current version again.");const newEvidence=result.evidence??[];const evidence=[...new Map([...(currentState.evidence??[]),...newEvidence].map(e=>[e.id,e])).values()];const baseline=currentState.diagnosticV2?.result??currentState.diagnosticArchive?.slice().reverse().find(d=>d.result)?.result;const learnerModel=result.learnerModel??(baseline?deriveLearner(baseline,evidence,currentState.profile?.goal??initialProfile.goal):currentState.learnerModel);const learningPlan=result.learningPlan??(learnerModel?derivePlan(learnerModel):currentState.learningPlan);const next={...currentState,writingCourseV2:stage===3?{...(currentState.writingCourseV2??emptyPilot()),submission:{signature:submittedSignature,at:Date.now()},reviewDone:false}:currentState.writingCourseV2,feedbacks:{...currentState.feedbacks,[stage]:result},stage:stage===3?4:stage,completed:[...new Set([...currentState.completed,stage])],evidence,learnerModel,learningPlan};dirty.current=true;latestState.current=next;setState(next);if(!await saveNow(next))throw Error("Save failed after checking.");if(stage===3)setView("lesson")}catch{alert("Your work was not submitted. It is still here for you to retry.")}finally{setBusy(false)}}
+ setBusy(true);try{const submittedState=latestState.current;if(!await saveNow(submittedState))throw Error("Save failed before checking.");const submittedSignature=workSignature(submittedState);const result=await evaluateWritingProcess(labels[stage] as "analysis"|"brainstorm"|"outline"|"writing",answer) as Entry;const currentState=latestState.current;if(workSignature(currentState)!==submittedSignature)throw Error("Your work changed while checking. Check the current version again.");const newEvidence=result.evidence??[];const evidence=[...new Map([...(currentState.evidence??[]),...newEvidence].map(e=>[e.id,e])).values()];const baseline=currentState.diagnosticV2?.result??currentState.diagnosticArchive?.slice().reverse().find(d=>d.result)?.result;const learnerModel=result.learnerModel??(baseline?deriveLearner(baseline,evidence,currentState.profile?.goal??initialProfile.goal):currentState.learnerModel);const learningPlan=result.learningPlan??(learnerModel?derivePlan(learnerModel):currentState.learningPlan);const next={...currentState,writingCourseV2:stage===3?{...(currentState.writingCourseV2??emptyPilot()),submission:{signature:submittedSignature,at:Date.now()},reviewDone:false}:currentState.writingCourseV2,feedbacks:{...currentState.feedbacks,[stage]:result},stage:stage===3?4:stage,completed:[...new Set([...currentState.completed,stage])],evidence,learnerModel,learningPlan};dirty.current=true;latestState.current=next;setState(next);if(!await saveNow(next))throw Error("Save failed after checking.");if(stage===3)applyRoute({view:"lesson"},"push")}catch{alert("Your work was not submitted. It is still here for you to retry.")}finally{setBusy(false)}}
  async function saveSmallActivity(kind:"revision"|"mini"){
   const current=latestState.current;if(kind==="revision"&&!current.revision.trim()){alert("Revise one sentence first.");return}if(kind==="mini"&&!current.miniAnswer){alert("Choose an answer first.");return}
   setBusy(true);try{const data=kind==="revision"?await evaluateWritingProcess("revision",{writing:current.revision}):await saveGardenRelevantIdea(current.miniAnswer);const latest=latestState.current;const evidence=[...new Map([...(latest.evidence??[]),...(data.evidence??[])].map(e=>[e.id,e])).values()];const baseline=latest.diagnosticV2?.result??latest.diagnosticArchive?.slice().reverse().find(d=>d.result)?.result;const learnerModel=baseline?deriveLearner(baseline,evidence,latest.profile?.goal??initialProfile.goal):latest.learnerModel;const next={...latest,evidence,learnerModel,learningPlan:learnerModel?derivePlan(learnerModel):latest.learningPlan,...(kind==="revision"?{completed:[...new Set([...latest.completed,4])]}:{miniDone:true})};dirty.current=true;setState(next);await saveNow(next)}catch(e){alert(e instanceof Error?e.message:"Please retry.")}finally{setBusy(false)}
@@ -150,7 +217,7 @@ export default function Home(){
  <div className="layout"><aside className={'sidebar '+(menu?'open':'')}><nav aria-label="Main navigation">{navGroups.map(group=><div className="nav-group" key={group.heading}><div className="side-label">{group.heading}</div>{group.items.map(n=><button key={n.key} className={'nav-item '+(view===n.key?'active':'')} disabled={navigating} onClick={()=>void navigate(n.key)}><n.icon size={18}/>{n.label}{view===n.key&&<span className="nav-active"/>}</button>)}</div>)}</nav>{navigating&&<p className="notice" role="status">Saving your draft before navigating…</p>}<div className="side-bottom"><div className="side-label">YOUR JOURNEY</div>{courseData?.activeCourse?<><strong>{courseData.activeCourse.title}</strong><div className="side-progress"><span>{courseData.activeCourse.progressLabel}</span><strong>{Math.round(courseData.activeCourse.completedRequired/courseData.activeCourse.availableRequired*100)}%</strong></div><Progress value={courseData.activeCourse.completedRequired/courseData.activeCourse.availableRequired*100} className="h-2 mt-3"/><p>Next Week 1 step: {courseData.activeCourse.nextActivity}</p><p>Week 1 process summary only. See each week in the course for its saved progress.</p><button className="text-button" onClick={()=>void navigate("writing-course")}>Continue course</button></>:<><p>{courseData?'Choose a course to show your journey.':'Loading your courses…'}</p><button className="text-button" onClick={()=>void navigate("courses")}>Choose a course</button></>}</div></aside>
  <main className="main-content">{view==="debug"&&isAdmin&&<DeveloperView/>}{view==="dashboard"&&<><div className="eyebrow">SELF-LEARNING ENGLISH · YOUR JOURNEY</div><div className="page-heading"><div><h1>{state.profile?.name?`Welcome, ${state.profile.name}`:"Your learning journey"}</h1><p>{courseData?.activeCourse?`Continue ${courseData.activeCourse.title} or explore independent lessons.`:"Choose a course or explore independent lessons."}</p></div><button className="primary-button" onClick={()=>navigate("courses")}>My Courses <ArrowRight size={17}/></button></div><button className="secondary-button" onClick={()=>navigate("foundation")}>Open learning path · 7 skills</button><section className="stats-grid"><div className="stat-card feature"><div className="stat-icon"><Target/></div><span>{courseData?.activeCourse?"ACTIVE COURSE":"CHOOSE A COURSE"}</span><strong>{courseData?.activeCourse?.title??"No active course"}</strong><div className="card-foot"><Progress value={courseData?.activeCourse?courseData.activeCourse.completedRequired*25:0} className="h-2"/><b>{courseData?.activeCourse?.progressLabel??"Choose in My Courses"}</b></div></div><div className="stat-card"><span>NEXT AVAILABLE</span><strong>{courseData?.activeCourse?.nextActivity??"Choose a course"}</strong><p>{courseData?.activeCourse?"Week 1 next step · Weeks 1–12 available":"Free practice remains in Course Catalog"}</p></div><div className="stat-card"><span>STARTING LEVEL</span><strong className="big-number">{state.learnerModel?.displayLevel??state.learnerModel?.level??"—"}</strong><p>{state.learnerModel?"Provisional CEFR estimate":"Take the Diagnostic Assessment"}</p></div></section><div className="two-col"><section className="panel"><div className="section-head"><div><span className="eyebrow">YOUR PATH</span><h2>{courseData?.activeCourse?"Continue your course":"Choose your course"}</h2></div><span className="soft-icon"><ClipboardList/></span></div><p className="panel-intro">{courseData?.activeCourse?.progressLabel??"Choose a course to keep a clear learning journey. You can still practise any skill."}</p><button className="text-button" onClick={()=>navigate(courseData?.activeCourse?"writing-course":"courses")}>{courseData?.activeCourse?"Open course":"Open My Courses"} <ArrowRight size={16}/></button></section><PracticeSummary data={practiceData} error={practiceError} onRefresh={()=>void refreshPractice()} onSkill={skill=>void navigate(skill.toLowerCase() as View)}/></div></>}
 
-  {(["units","foundation","grammar","vocabulary","reading","listening","speaking","pronunciation","writing"] as View[]).includes(view)&&<FoundationDemo onNavigationGuard={registerFoundationNavigationGuard} sharedCatalog={foundationCatalog} onCatalog={setFoundationCatalog} onSelectSkill={next=>navigate(next as View)} skill={view==="foundation"||view==="units"?undefined:view} entryMode={view==="units"?"units":"lessons"} writingIntro={view==="writing"?<WritingHome compact showVi={!!state.vietnameseSupport} completed={state.completed.length} onCurriculum={()=>navigate("curriculum")} onPractice={()=>navigate("lesson")} onOverview={()=>void pilotGo("overview")} onFoundations={()=>void pilotGo("foundations")} onCourse={()=>void pilotGo("course")}/>:undefined} showVi={!!state.vietnameseSupport} onEvidence={()=>{void refreshPractice();void fetch("/api/state").then(r=>r.json()).then((v:any)=>{if(v.state)setState(s=>({...s,evidence:v.state.evidence,learnerModel:v.state.learnerModel,learningPlan:v.state.learningPlan}))})}}/>}
+  {(["units","foundation","grammar","vocabulary","reading","listening","speaking","pronunciation","writing"] as View[]).includes(view)&&<FoundationDemo onNavigationGuard={registerFoundationNavigationGuard} sharedCatalog={foundationCatalog} onCatalog={setFoundationCatalog} browserRoute={browserRoute} onBrowserRoute={updateFoundationRoute} onSelectSkill={next=>navigate(next as View)} skill={view==="foundation"||view==="units"?undefined:view} entryMode={view==="units"?"units":"lessons"} writingIntro={view==="writing"?<WritingHome compact showVi={!!state.vietnameseSupport} completed={state.completed.length} onCurriculum={()=>navigate("curriculum")} onPractice={()=>navigate("lesson")} onOverview={()=>void pilotGo("overview")} onFoundations={()=>void pilotGo("foundations")} onCourse={()=>void pilotGo("course")}/>:undefined} showVi={!!state.vietnameseSupport} onEvidence={()=>{void refreshPractice();void fetch("/api/state").then(r=>r.json()).then((v:any)=>{if(v.state)setState(s=>({...s,evidence:v.state.evidence,learnerModel:v.state.learnerModel,learningPlan:v.state.learningPlan}))})}}/>}
  {view==="diagnostic"&&<DiagnosticAssessment value={state.diagnosticV2} archive={state.diagnosticArchive??[]} onChange={diagnosticV2=>update({diagnosticV2,...(state.diagnosticV2&&state.diagnosticV2.startedAt!==diagnosticV2.startedAt?{diagnosticArchive:[...(state.diagnosticArchive??[]),state.diagnosticV2]}:{})})} onFinish={finishDiagnostic} showVi={!!state.vietnameseSupport}/>}
  {view==="profile"&&<LearnerProfile profile={state.profile??initialProfile} model={state.learnerModel} onChange={updateProfile} showVi={!!state.vietnameseSupport}/>}
  {view==="courses"&&<MyCourses data={courseData} error={courseError} busy={courseBusy} onSelect={id=>void selectCourse(id)} onContinue={()=>void (async()=>{if(await selectCourse(WRITING_COURSE_ID))await navigate('writing-course')})()} onRecommendations={()=>void navigate("plan")}/>}
