@@ -12,18 +12,22 @@ export const APP_VIEWS=[
 ] as const;
 export type AppView=typeof APP_VIEWS[number];
 export type LessonScreen='overview'|'practice';
+export type WritingRouteStep='learn'|'guided'|'main'|'feedback'|'review';
 export type BrowserRoute={
  view:AppView;
  level?:'A1'|'A2'|'B1'|'B2'|'C1'|'C2';
  unitId?:string;
  lessonId?:string;
  screen?:LessonScreen;
+ writingWeek?:number;
+ writingStep?:WritingRouteStep;
 };
 export const FOUNDATION_VIEWS=new Set<AppView>([
  'units','foundation','grammar','reading','writing','listening','speaking',
  'vocabulary','pronunciation'
 ]);
 const views=new Set<string>(APP_VIEWS);
+const writingSteps=new Set(['learn','guided','main','feedback','review']);
 const levels=new Set(['A1','A2','B1','B2','C1','C2']);
 const lessonPattern=/^[A-Z0-9]+(?:-[A-Z0-9]+){2,}$/;
 const unitPattern=/^(A1|A2|B1|B2|C1|C2)-U(0[1-9]|10)$/;
@@ -35,6 +39,13 @@ export function parseBrowserRoute(hash:string):BrowserRoute{
  if(!parts.length||!views.has(parts[0]))return {view:'dashboard'};
  const view=parts[0] as AppView;
  if(parts.length===1)return {view};
+ if(view==='writing-week'||view==='writing-later-week'){
+  const week=Number(parts[1]);
+  const minimum=view==='writing-week'?2:7,maximum=view==='writing-week'?6:12;
+  if(parts.length===3&&Number.isInteger(week)&&week>=minimum&&week<=maximum&&writingSteps.has(parts[2]))
+   return {view,writingWeek:week,writingStep:parts[2] as WritingRouteStep};
+  return {view};
+ }
  if(view==='units'){
   const level=parts[1];
   if(!levels.has(level))return {view};
@@ -58,6 +69,12 @@ export function parseBrowserRoute(hash:string):BrowserRoute{
 }
 export function browserRouteHash(route:BrowserRoute):string{
  let path='#/'+route.view;
+ if(route.view==='writing-week'||route.view==='writing-later-week'){
+  const first=route.view==='writing-week'?2:7,last=route.view==='writing-week'?6:12;
+  if(Number.isInteger(route.writingWeek)&&route.writingWeek!>=first&&route.writingWeek!<=last
+    &&route.writingStep&&writingSteps.has(route.writingStep))
+   return path+'/'+route.writingWeek+'/'+route.writingStep;
+ }
  if(route.view==='units'&&route.level&&levels.has(route.level)){
   path+='/'+route.level;
   if(route.unitId&&unitPattern.test(route.unitId)
