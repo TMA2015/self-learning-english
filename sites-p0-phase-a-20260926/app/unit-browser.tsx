@@ -41,7 +41,7 @@ export function UnitBrowser({lessons,attempts,courseOrder,level,selectedId,onLev
    <h2>Your English learning path</h2>
    <p>Choose a level, open a Unit and study its available lessons. Every lesson also remains accessible from the Skill Library.</p>
    <div className="unit-browser-metrics" aria-label="Available programme overview">
-    <div><strong>60</strong><span>Planned Units</span></div>
+    <div><strong>60</strong><span>Curriculum Units</span></div>
     <div><strong>{activeUnits}</strong><span>Units with lessons</span></div>
     <div><strong>{guide.mappedLessonCount}</strong><span>Mapped available lessons</span></div>
    </div>
