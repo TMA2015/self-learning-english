@@ -129,8 +129,8 @@ if(!chrome)throw Error('No native Chrome installed — real MEDIA-01 is NOT veri
   const detail=await result;
   assert.equal(detail?.suite,'ISSUE119_REAL_HOME_CHROME_NAVIGATION');
   assert.equal(detail.nativeHomeComponent,true);
-  assert.equal(detail.realBrowserBack,true);
-  assert.equal(detail.realBrowserForward,true);
+  assert.equal(detail.browserBack,true);
+  assert.equal(detail.browserForward,true);
   assert.equal(detail.realFullReload,true);
   assert.equal(detail.writingMainToLearn,true);
   assert.equal(detail.week4DeepLink,true);
