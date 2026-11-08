@@ -51,16 +51,19 @@ for(const [taskId,m] of Object.entries(diagnosticManifest)){
 // but the built browser must activate the latest reviewed cumulative package.
 const baseline=require('../content/curriculum-1.18.0-candidate.json');
 const stage3=require('../content/curriculum-1.18.1-candidate.json');
-const active=require('../content/curriculum-1.20.0-candidate.json');
+const archived1200=require('../content/curriculum-1.20.0-candidate.json');
+const active=require('../content/curriculum-1.21.0-candidate.json');
+assert.equal(archived1200.lessons.length,123);
+assert.deepEqual(active.lessons.slice(0,123),archived1200.lessons,'All 123 prior lessons unchanged');
 assert.equal(baseline.schema_version,'1.18.0');
 assert.equal(stage3.schema_version,'1.18.1');
 assert.equal(stage3.lessons.length,109);
-assert.equal(active.schema_version,'1.20.0');
-assert.equal(active.lessons.length,123);
-assert.equal(active.lessons.flatMap(l=>l.activities).length,1025);
+assert.equal(active.schema_version,'1.21.0');
+assert.equal(active.lessons.length,132);
+assert.equal(active.lessons.flatMap(l=>l.activities).length,1055);
 const runtimeSource=fs.readFileSync(path.join(root,'infrastructure','browser','local-runtime.ts'),'utf8');
-assert(runtimeSource.includes("import curriculum1200 from '../../content/curriculum-1.20.0-candidate.json'"),
-  'Static browser runtime must bundle the currently approved 1.20.0 curriculum');
+assert(runtimeSource.includes("import curriculum1210 from '../../content/curriculum-1.21.0-candidate.json'"),
+  'Static browser runtime must bundle the reviewed v1.21.0 curriculum');
 const raw=fs.readFileSync(path.join(root,'content/curriculum-1.15.0-candidate.json'));const canonical=v=>Array.isArray(v)?v.map(canonical):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,canonical(v[k])])):v;const sha=v=>crypto.createHash('sha256').update(v).digest('hex');assert.equal(sha(raw),'981a7273a9158c9e53a0e3336de1a88892024f617330d797d534f9e293dc4426');assert.equal(sha(JSON.stringify(canonical(JSON.parse(raw)))),'66663bb61cf60b266d25e8abd890e81ad27398d3ebee9b7cd5cd211de878b1e8');
 const html=fs.readFileSync(path.join(out,'index.html'),'utf8');
 assert(!html.includes('/self-learning-english/self-learning-english/'),'Firebase build must not duplicate a GitHub Pages base path');
@@ -119,7 +122,7 @@ console.log(JSON.stringify({
   output:'dist/client',
   hosting:'g-learning-english',
   curriculum:active.schema_version,
-  staticAudioFiles:41,
+  staticAudioFiles:44,
   criticalBrowserWritingServerFree:true,
   secretShapeScan:true,
   publicFirebaseWebApiKeyAllowlisted:true,
