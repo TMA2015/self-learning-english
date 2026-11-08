@@ -86,6 +86,8 @@ assert(foundation.includes('onOpenLesson={(id,entry)=>void open(id,entry)}'),
 assert(foundation.includes('routeScope=entryMode==='));
 assert(foundation.includes('selectedId={selectedUnit}')&&unitUi.includes('onSelectUnit:(id:string|null)=>void'),
  'After the player closes, the same Unit detail must remain selected');
+assert(unitUi.includes('<span>Curriculum Units</span>')&&!unitUi.includes('<span>Planned Units</span>'),
+ 'Framework heading must not imply every Unit remains planned');
 assert(unitUi.includes('lessonProgressForLesson(attempts,item.id)'),
  'Every Unit lesson needs the existing saved attempt record');
 assert(unitUi.includes('latestAttemptForLesson(attempts,item.id)'),
