@@ -139,10 +139,11 @@ if(!chrome)throw Error('No native Chrome installed — real MEDIA-01 is NOT veri
   assert.equal(detail.noProductionData,true);
   assert.equal(detail.safari,'NOT_TESTED');
   assert.equal(detail.noCurriculumMutation,true);
+  assert.equal(detail.writingDraftPreservedAfterReload,true);
   console.log(JSON.stringify({
    result:'PASS',gate:'ISSUE119_REAL_HOME_CHROME_NAVIGATION',
    realHomeUI:true,actualChromeHistory:true,actualLocationReload:true,
-   deepLinkWritingWeek4:true,writingStepRoundtrip:true,skillSwitchVerified:true,
+   deepLinkWritingWeek4:true,writingStepRoundtrip:true,skillSwitchVerified:true,writingDraftSurvivesReload:true,
    staticLessonVersion:'1.21.0',safari:'NOT_TESTED',liveDeployment:false
   }));
  }finally{
