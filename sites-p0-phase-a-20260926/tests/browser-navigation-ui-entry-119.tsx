@@ -62,8 +62,8 @@ async function run(){
  if(stage==='start'){
   localStorage.clear();sessionStorage.clear();
   const seed=curriculum as Seed;
-  assert(seed.schema_version==='1.21.0'&&seed.lessons.length===132);
-  assert(validateSeed(seed).length===0);
+  assert(seed.schema_version==='1.21.0'&&seed.lessons.length===132,'Use only reviewed 1.21.0 catalogue');
+  assert(validateSeed(seed).length===0,'Review-approved seed must validate');
   await repo.addPackage({id:seed.package_id,version:seed.schema_version,digest:await sourceDigest(seed),source:seed,bundle:mapSeed(seed),at:Date.now()});
   const lesson=seed.lessons.find(l=>l.id===id)!;
   await repo.start('local-family',{
