@@ -37,6 +37,9 @@ if(rights.unit10_draft_assets?.candidate_version==="1.21.0"){
   // Actual native Chrome Back/Forward and full reload restore only a saved
   // Listening attempt in a disposable localhost profile. No live data touched.
   run(process.execPath,["tests/browser-navigation-real-browser-119.cjs"]);
+  // Full Home navigation (not a routing mock) including Writing week/step,
+  // browser Back/Forward, cross-skill transitions and actual full reload.
+  run(process.execPath,["tests/browser-navigation-home-real-browser-119.cjs"]);
   run(process.execPath,["tests/storage-chromium-smoke.cjs"]);
   run(process.execPath,["tests/storage-ui-browser.cjs"]);
 }
