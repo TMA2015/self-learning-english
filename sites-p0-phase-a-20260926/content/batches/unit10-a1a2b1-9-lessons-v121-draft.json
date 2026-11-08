@@ -1,0 +1,1455 @@
+{
+  "packet_id": "SLE-UNIT10-A1A2B1-TRANSFER-20261107-R1",
+  "disposition": "NOTEBOOKLM_ADOPTION_GO_AFTER_6_TAG_NORMALIZATIONS",
+  "source_curriculum": "1.20.0",
+  "target_candidate": "1.21.0",
+  "production": "NO_GO_AUDIO_MEDIA01_AND_RIGHTS_PENDING",
+  "media_qa": "NOT_TESTED",
+  "required_normalizations": {
+    "A2U10-R03": {
+      "from": "reading.inference/detail distinction",
+      "to": "reading.detail",
+      "candidate_item": "REA-A2-08-Q3"
+    },
+    "A2U10-R04": {
+      "from": "reading.detail/condition",
+      "to": "reading.detail",
+      "candidate_item": "REA-A2-08-Q4"
+    },
+    "A2U10-L01": {
+      "from": "listening.gist/detail",
+      "to": "listening.gist",
+      "candidate_item": "LIS-A2-07-Q1"
+    },
+    "B1U10-R03": {
+      "from": "reading.inference/evidence limit",
+      "to": "reading.inference",
+      "candidate_item": "REA-B1-07-Q3"
+    },
+    "B1U10-R04": {
+      "from": "reading.evidence_limits",
+      "to": "reading.inference",
+      "candidate_item": "REA-B1-07-Q4"
+    },
+    "B1U10-L04": {
+      "from": "listening.stance",
+      "to": "listening.speaker_intention",
+      "candidate_item": "LIS-B1-08-Q4"
+    }
+  },
+  "unit_lesson_ids": {
+    "A1-U10": [
+      "REA-A1-05",
+      "LIS-A1-06",
+      "WRI-A1-05"
+    ],
+    "A2-U10": [
+      "REA-A2-08",
+      "LIS-A2-07",
+      "WRI-A2-07"
+    ],
+    "B1-U10": [
+      "REA-B1-07",
+      "LIS-B1-08",
+      "WRI-B1-08"
+    ]
+  },
+  "review_id_mapping": {
+    "A1U10-R01": {
+      "item_id": "REA-A1-05-Q1",
+      "tag": "reading.gist",
+      "requires_verified_audio": false
+    },
+    "A1U10-R02": {
+      "item_id": "REA-A1-05-Q2",
+      "tag": "reading.detail",
+      "requires_verified_audio": false
+    },
+    "A1U10-R03": {
+      "item_id": "REA-A1-05-Q3",
+      "tag": "reading.detail",
+      "requires_verified_audio": false
+    },
+    "A1U10-R04": {
+      "item_id": "REA-A1-05-Q4",
+      "tag": "reading.detail",
+      "requires_verified_audio": false
+    },
+    "A1U10-L01": {
+      "item_id": "LIS-A1-06-Q1",
+      "tag": "listening.detail",
+      "requires_verified_audio": true
+    },
+    "A1U10-L02": {
+      "item_id": "LIS-A1-06-Q2",
+      "tag": "listening.detail",
+      "requires_verified_audio": true
+    },
+    "A1U10-L03": {
+      "item_id": "LIS-A1-06-Q3",
+      "tag": "listening.detail",
+      "requires_verified_audio": true
+    },
+    "A1U10-L04": {
+      "item_id": "LIS-A1-06-Q4",
+      "tag": "listening.detail",
+      "requires_verified_audio": true
+    },
+    "A1U10-X01": {
+      "item_id": "LIS-A1-06-Q5",
+      "tag": "listening.inference",
+      "requires_verified_audio": true
+    },
+    "A1U10-W01": {
+      "item_id": "WRI-A1-05-Q1",
+      "tag": "writing.task_understanding",
+      "requires_verified_audio": true,
+      "review_required": true
+    },
+    "A2U10-R01": {
+      "item_id": "REA-A2-08-Q1",
+      "tag": "reading.detail",
+      "requires_verified_audio": false
+    },
+    "A2U10-R02": {
+      "item_id": "REA-A2-08-Q2",
+      "tag": "reading.detail",
+      "requires_verified_audio": false
+    },
+    "A2U10-R03": {
+      "item_id": "REA-A2-08-Q3",
+      "tag": "reading.detail",
+      "requires_verified_audio": false
+    },
+    "A2U10-R04": {
+      "item_id": "REA-A2-08-Q4",
+      "tag": "reading.detail",
+      "requires_verified_audio": false
+    },
+    "A2U10-L01": {
+      "item_id": "LIS-A2-07-Q1",
+      "tag": "listening.gist",
+      "requires_verified_audio": true
+    },
+    "A2U10-L02": {
+      "item_id": "LIS-A2-07-Q2",
+      "tag": "listening.detail",
+      "requires_verified_audio": true
+    },
+    "A2U10-L03": {
+      "item_id": "LIS-A2-07-Q3",
+      "tag": "listening.detail",
+      "requires_verified_audio": true
+    },
+    "A2U10-L04": {
+      "item_id": "LIS-A2-07-Q4",
+      "tag": "listening.detail",
+      "requires_verified_audio": true
+    },
+    "A2U10-X01": {
+      "item_id": "LIS-A2-07-Q5",
+      "tag": "listening.inference",
+      "requires_verified_audio": true
+    },
+    "A2U10-W01": {
+      "item_id": "WRI-A2-07-Q1",
+      "tag": "writing.task_understanding",
+      "requires_verified_audio": true,
+      "review_required": true
+    },
+    "B1U10-R01": {
+      "item_id": "REA-B1-07-Q1",
+      "tag": "reading.gist",
+      "requires_verified_audio": false
+    },
+    "B1U10-R02": {
+      "item_id": "REA-B1-07-Q2",
+      "tag": "reading.detail",
+      "requires_verified_audio": false
+    },
+    "B1U10-R03": {
+      "item_id": "REA-B1-07-Q3",
+      "tag": "reading.inference",
+      "requires_verified_audio": false
+    },
+    "B1U10-R04": {
+      "item_id": "REA-B1-07-Q4",
+      "tag": "reading.inference",
+      "requires_verified_audio": false
+    },
+    "B1U10-L01": {
+      "item_id": "LIS-B1-08-Q1",
+      "tag": "listening.gist",
+      "requires_verified_audio": true
+    },
+    "B1U10-L02": {
+      "item_id": "LIS-B1-08-Q2",
+      "tag": "listening.inference",
+      "requires_verified_audio": true
+    },
+    "B1U10-L03": {
+      "item_id": "LIS-B1-08-Q3",
+      "tag": "listening.detail",
+      "requires_verified_audio": true
+    },
+    "B1U10-L04": {
+      "item_id": "LIS-B1-08-Q4",
+      "tag": "listening.speaker_intention",
+      "requires_verified_audio": true
+    },
+    "B1U10-X01": {
+      "item_id": "LIS-B1-08-Q5",
+      "tag": "listening.inference",
+      "requires_verified_audio": true
+    },
+    "B1U10-W01": {
+      "item_id": "WRI-B1-08-Q1",
+      "tag": "writing.task_understanding",
+      "requires_verified_audio": true,
+      "review_required": true
+    }
+  },
+  "audio_scripts_status": {
+    "LIS-A1-06": {
+      "script": "Good morning, everyone. The school music room is open for a short song workshop this Saturday. Please come to Music Room 2 at eleven o'clock. We will practise two easy songs. Bring a pencil. You do not need to bring an instrument because our school has drums and keyboards. The workshop ends at twelve o'clock. To join, write your name on the music list near the office by Friday.",
+      "produced": false,
+      "verification": "NOT_TESTED",
+      "proposed_id": "AUD-LIS-A1-06"
+    },
+    "LIS-A2-07": {
+      "script": "Hi! Can you help me choose something to do this weekend? The zip on my school bag is broken, and I'd rather repair the bag than buy a new one. I can only go out on Sunday afternoon, after two. My aunt can come with me. I'd like to be indoors because the weather might be rainy. I don't mind making a small donation, but I don't want to pay a fixed entry fee. Could you tell me which event would be useful? And please let me know if they can definitely fix the bag.",
+      "produced": false,
+      "verification": "NOT_TESTED",
+      "proposed_id": "AUD-LIS-A2-07"
+    },
+    "LIS-B1-08": {
+      "script": "I think the Quiet Study Zone is the more practical first pilot. Students have told me that a calm place after class would help them prepare for assessments, and the annex already has desks. Still, we must be careful about the questionnaire. It was sent just before exam week, when students might have been thinking more about silent study than they usually do. I also see the value of a Project Studio for teamwork. Because we can fund only one room, I'd begin with the quiet annex and ask students how often they actually use it. After four weeks, we could collect feedback from students who wanted a project room, too. Then the council would have better evidence before choosing any permanent plan.",
+      "produced": false,
+      "verification": "NOT_TESTED",
+      "proposed_id": "AUD-LIS-B1-08"
+    }
+  },
+  "lessons": [
+    {
+      "id": "REA-A1-05",
+      "module": "reading",
+      "cefr_target": "A1",
+      "title": "Saturday Garden Morning — read a new notice",
+      "estimated_minutes": 20,
+      "objectives": [
+        "Read a short school notice for gist, details and changes caused by weather.",
+        "Compare both events and write a friendly original invitation."
+      ],
+      "explanation": {
+        "en": "Start with the purpose of a notice; then read the time, place and conditions carefully. A rain alternative is not the usual meeting location. The chess-club example below is deliberately unrelated to the checkpoint. Read for gist, then verify where, when, who and any condition. Independent objective practice is not a CEFR award.",
+        "vi": "Đọc ý chính trước rồi kiểm tra thông tin và điều kiện trong chính văn bản; điểm bài tập không phải chứng nhận CEFR."
+      },
+      "examples": [
+        "INDEPENDENT MODEL: The chess club meets on Monday in Room 4 at 3:15. Bring a notebook. Students can borrow chess sets.",
+        "THINK ALOUD: Room 4 answers WHERE; 3:15 answers WHEN; bring a notebook is required while a chess set can be borrowed. The word borrow does not mean buy."
+      ],
+      "activities": [
+        {
+          "id": "REA-A1-05-Q1",
+          "type": "single_choice",
+          "prompt": "What is the main purpose of the notice?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Sell gardening tools"
+            },
+            {
+              "id": "B",
+              "text": "Give information about a garden event"
+            },
+            {
+              "id": "C",
+              "text": "Cancel the sports club"
+            },
+            {
+              "id": "D",
+              "text": "Announce a school exam"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "It explains when, where and how to join the garden event; mentioning tools does not mean they are sold. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "reading.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-05-Q2",
+          "type": "single_choice",
+          "prompt": "Where do students meet if the weather is fine?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Room 6"
+            },
+            {
+              "id": "B",
+              "text": "Outside the library"
+            },
+            {
+              "id": "C",
+              "text": "At the small gate near the gym"
+            },
+            {
+              "id": "D",
+              "text": "At Music Room 2"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The normal meeting point is the gate; Room 6 is the rain alternative. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-05-Q3",
+          "type": "single_choice",
+          "prompt": "What happens if it rains?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Students make plant labels in Room 6"
+            },
+            {
+              "id": "B",
+              "text": "Students have to bring tools"
+            },
+            {
+              "id": "C",
+              "text": "The activity starts at 11:00"
+            },
+            {
+              "id": "D",
+              "text": "New students cannot join"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The if it rains condition changes the location and activity, not the joining rule. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-05-Q4",
+          "type": "single_choice",
+          "prompt": "What does a student need to bring?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Gardening tools"
+            },
+            {
+              "id": "B",
+              "text": "Paint"
+            },
+            {
+              "id": "C",
+              "text": "Money"
+            },
+            {
+              "id": "D",
+              "text": "A bottle of water"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "The notice specifically says bring water and shoes; the club provides tools. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-A1-05",
+        "title": "Saturday Garden Morning",
+        "body": "Our school garden is open this Saturday from 9:00 to 10:30 in the morning. Meet at the small gate near the gym. We will plant flowers and water vegetables. You do not need to bring tools; the club has them. Bring a bottle of water and wear comfortable shoes. New students can join. If it rains, meet in Room 6 and make plant labels instead. Tell Ms Mai by Friday if you plan to come.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "LIS-A1-06",
+      "module": "listening",
+      "cefr_target": "A1",
+      "title": "Saturday music workshop — listen and compare",
+      "estimated_minutes": 17,
+      "objectives": [
+        "Understand a short school announcement using verified audio.",
+        "Compare both events and write a friendly original invitation."
+      ],
+      "explanation": {
+        "en": "Listen once for the main event and once for location, time, materials and deadlines. Compare with the written garden notice only AFTER hearing verified audio. The listening script cannot be used as a pre-submit substitute for playback. The written source for the mixed-source question is displayed below. The transcript remains hidden before verified audio playback and submission. If audio is missing, this is NOT a scored Listening lesson.",
+        "vi": "Chỉ chấm nghe khi có MP3 thật đã được kiểm tra phát; không được dùng bản chữ để thay cho nghe."
+      },
+      "examples": [
+        "UNASSESSED TEACHING MODEL: The painting group begins at two in Art Room 1. Please bring an old shirt.",
+        "THINK ALOUD: A first listen identifies the activity. A second listen checks the exact time and location. Do not transfer a number from another text to this announcement."
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-A1-05",
+        "title": "Saturday Garden Morning",
+        "body": "Our school garden is open this Saturday from 9:00 to 10:30 in the morning. Meet at the small gate near the gym. We will plant flowers and water vegetables. You do not need to bring tools; the club has them. Bring a bottle of water and wear comfortable shoes. New students can join. If it rains, meet in Room 6 and make plant labels instead. Tell Ms Mai by Friday if you plan to come.",
+        "display_to_learner": true
+      },
+      "audio_asset": {
+        "id": "AUD-LIS-A1-06",
+        "source_text": "Good morning, everyone. The school music room is open for a short song workshop this Saturday. Please come to Music Room 2 at eleven o'clock. We will practise two easy songs. Bring a pencil. You do not need to bring an instrument because our school has drums and keyboards. The workshop ends at twelve o'clock. To join, write your name on the music list near the office by Friday.",
+        "language": "en",
+        "roles": [
+          "teacher"
+        ],
+        "transcript_reveal": "after_submission",
+        "requires_real_playback": true,
+        "fallback": "If verified audio playback is unavailable, Listening and cross-source items must not be scored. Do not reveal transcript before submission."
+      },
+      "activities": [
+        {
+          "id": "LIS-A1-06-Q1",
+          "type": "single_choice",
+          "prompt": "Where is the workshop?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Room 6"
+            },
+            {
+              "id": "B",
+              "text": "Music Room 2"
+            },
+            {
+              "id": "C",
+              "text": "The gym"
+            },
+            {
+              "id": "D",
+              "text": "The library"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "\"Music Room 2\"; Room 6 belongs to the written rain alternative, not this announcement. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-06-Q2",
+          "type": "single_choice",
+          "prompt": "When does the workshop begin?",
+          "options": [
+            {
+              "id": "A",
+              "text": "9:00"
+            },
+            {
+              "id": "B",
+              "text": "10:30"
+            },
+            {
+              "id": "C",
+              "text": "11:00"
+            },
+            {
+              "id": "D",
+              "text": "12:30"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Eleven o'clock starts the event; twelve is the end time. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-06-Q3",
+          "type": "single_choice",
+          "prompt": "What do students NOT need to bring?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A pencil"
+            },
+            {
+              "id": "B",
+              "text": "An instrument"
+            },
+            {
+              "id": "C",
+              "text": "Their name"
+            },
+            {
+              "id": "D",
+              "text": "A friend"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The school provides instruments; bring a pencil. \"Not need\" is not \"not allowed.\" Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-06-Q4",
+          "type": "single_choice",
+          "prompt": "When must students put their name on the music list?",
+          "options": [
+            {
+              "id": "A",
+              "text": "By Friday"
+            },
+            {
+              "id": "B",
+              "text": "On Sunday"
+            },
+            {
+              "id": "C",
+              "text": "After the workshop"
+            },
+            {
+              "id": "D",
+              "text": "Next month"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The speaker says \"by Friday\"; it is a deadline, not the workshop day. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A1-06-Q5",
+          "type": "single_choice",
+          "prompt": "Alex can arrive at school only at 10:45 on Saturday and has no musical instrument. Which activity can Alex join from the given information?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Only the garden event"
+            },
+            {
+              "id": "B",
+              "text": "The music workshop"
+            },
+            {
+              "id": "C",
+              "text": "Neither activity"
+            },
+            {
+              "id": "D",
+              "text": "Both events from their starts"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Garden Morning is 9:00–10:30, before arrival. Music starts at 11 and instruments are provided. Requires both stimuli; score only when Listening audio is verified. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "WRI-A1-05",
+      "module": "writing",
+      "cefr_target": "A1",
+      "title": "Invite a friend using two sources",
+      "estimated_minutes": 20,
+      "objectives": [
+        "Compare both events and write a friendly original invitation.",
+        "Analyse the task, brainstorm evidence-based details, outline, draft and self-revise."
+      ],
+      "explanation": {
+        "en": "Identify Topic, Task, Must Include and Boundary. Choose an event, check the actual time/place and supplied materials, then draft a short greeting, invitation, supporting detail and question. Check capital letters, wording and practical accuracy. Review the actual sources first in REA-A1-05 and LIS-A1-06. Your original response is unassessed until trusted human or independently verified optional AI review. Do not claim a complete integrated checkpoint without genuine audio.",
+        "vi": "Bài viết phải dựa trên hai nguồn, được lưu nháp và chờ đánh giá nội dung thật; không suy ra trình độ CEFR chỉ từ độ dài."
+      },
+      "examples": [
+        "DIFFERENT TASK: Invite a classmate to an art exhibition on Tuesday, not to one of the assessed Saturday events. State the day, place and a reason.",
+        "INDEPENDENT MODEL: Hi Jo! There is an art exhibition at our school on Tuesday. It starts at four in the main hall. I want to see the drawings. Would you like to come with me?",
+        "SELF-CHECK: Find the greeting, event, time, place, reason and invitation question; then plan a different message for the actual task."
+      ],
+      "activities": [
+        {
+          "id": "WRI-A1-05-Q1",
+          "type": "extended_response",
+          "prompt": "Write a friendly message of about 30–50 words to Alex inviting them to one Saturday activity. Say which event you choose, when and where it starts, and one thing Alex should bring or does not need to bring. Use fictional names; do not write a real address or phone number.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted writing review. No automatic writing-quality or CEFR score. Revise one sentence after feedback."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-A1",
+          "word_range_guidance": {
+            "min": 30,
+            "max": 50,
+            "not_a_quality_score": true
+          },
+          "review_mode": "assisted_ai_or_human"
+        }
+      ]
+    },
+    {
+      "id": "REA-A2-08",
+      "module": "reading",
+      "cefr_target": "A2",
+      "title": "Community events — compare conditions",
+      "estimated_minutes": 24,
+      "objectives": [
+        "Find relevant schedules, locations and explicit limits in a community notice.",
+        "Recommend a realistic action using both sources without inventing guarantees."
+      ],
+      "explanation": {
+        "en": "Read each event and compare days, hours, venues and conditions. Possible repair is not guaranteed repair; a welcome donation is not an entry fee. A book-exchange example models how to reason about missing information. Read for gist, then verify where, when, who and any condition. Independent objective practice is not a CEFR award.",
+        "vi": "Đọc ý chính trước rồi kiểm tra thông tin và điều kiện trong chính văn bản; điểm bài tập không phải chứng nhận CEFR."
+      },
+      "examples": [
+        "INDEPENDENT NOTICE: The book exchange opens on Wednesday at four in West Hall; borrowing is free but a student card is needed. Some books may be unavailable.",
+        "THINK ALOUD: The closing time is unknown, so a five o'clock visit cannot be guaranteed. There may be no mystery novels; a possibility is not proof of availability."
+      ],
+      "activities": [
+        {
+          "id": "REA-A2-08-Q1",
+          "type": "single_choice",
+          "prompt": "Which event takes place at the Community Hall?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Riverside Clean-up"
+            },
+            {
+              "id": "B",
+              "text": "Repair Café"
+            },
+            {
+              "id": "C",
+              "text": "Seed Swap"
+            },
+            {
+              "id": "D",
+              "text": "All three"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Only Repair Café names the Community Hall. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-08-Q2",
+          "type": "single_choice",
+          "prompt": "What happens to Riverside Clean-up in heavy rain?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It moves to the garden"
+            },
+            {
+              "id": "B",
+              "text": "Volunteers must buy gloves"
+            },
+            {
+              "id": "C",
+              "text": "It is cancelled"
+            },
+            {
+              "id": "D",
+              "text": "It starts at 2 p.m."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The rain condition says cancelled, not moved or rescheduled. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-08-Q3",
+          "type": "single_choice",
+          "prompt": "Which statement is accurately supported about Repair Café?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Every broken zip will be repaired"
+            },
+            {
+              "id": "B",
+              "text": "A donation is required"
+            },
+            {
+              "id": "C",
+              "text": "Helpers can look at simple problems, but results are not guaranteed"
+            },
+            {
+              "id": "D",
+              "text": "All repairs finish in ten minutes"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "It offers examination/help but explicitly says there is no guarantee. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-08-Q4",
+          "type": "single_choice",
+          "prompt": "Can someone without spare seeds attend Seed Swap?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Yes, they may ask questions"
+            },
+            {
+              "id": "B",
+              "text": "No, only paid members can enter"
+            },
+            {
+              "id": "C",
+              "text": "Yes, but only on Saturday"
+            },
+            {
+              "id": "D",
+              "text": "No, they must bring gloves"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The last sentence explicitly permits questions without seeds. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-A2-08",
+        "title": "Three Ways to Help or Learn This Weekend",
+        "body": "Riverside Clean-up — Saturday, 9:00–11:00 a.m. Meet at the footbridge. The team provides rubbish bags and gloves. Please wear closed shoes. If there is heavy rain, the clean-up will be cancelled. Young volunteers can join with a responsible adult.   Repair Café — Sunday, 2:00–4:00 p.m. Bring a small broken household item or bag to the Community Hall. Volunteer helpers can examine simple problems, including some broken zips. They cannot guarantee that every item can be repaired. A donation is welcome but is not required. Please stay with your item while a volunteer examines it.   Seed Swap — Sunday, 10:00–11:00 a.m. Meet at the community garden. Exchange spare seeds or ask for advice about growing plants in small spaces. Entry is free; if you have no seeds, you can still ask questions.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "LIS-A2-07",
+      "module": "listening",
+      "cefr_target": "A2",
+      "title": "Mia's weekend needs — listen and decide",
+      "estimated_minutes": 20,
+      "objectives": [
+        "Identify a caller's availability, needs and uncertainty through verified audio.",
+        "Recommend a realistic action using both sources without inventing guarantees."
+      ],
+      "explanation": {
+        "en": "Listen once for the situation and again for availability, weather preference, payment conditions and required help. Compare these needs with the displayed notice. Only genuine verified playback may support assessed audio questions. The written source for the mixed-source question is displayed below. The transcript remains hidden before verified audio playback and submission. If audio is missing, this is NOT a scored Listening lesson.",
+        "vi": "Chỉ chấm nghe khi có MP3 thật đã được kiểm tra phát; không được dùng bản chữ để thay cho nghe."
+      },
+      "examples": [
+        "DIFFERENT CALLER: A reader wants to borrow a mystery novel and can go on Wednesday at five; this is not Mia's broken-bag question.",
+        "THINK ALOUD: Check source conditions, actual opening times and available services before promising a result. If a limitation is stated, mention it explicitly."
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-A2-08",
+        "title": "Three Ways to Help or Learn This Weekend",
+        "body": "Riverside Clean-up — Saturday, 9:00–11:00 a.m. Meet at the footbridge. The team provides rubbish bags and gloves. Please wear closed shoes. If there is heavy rain, the clean-up will be cancelled. Young volunteers can join with a responsible adult.   Repair Café — Sunday, 2:00–4:00 p.m. Bring a small broken household item or bag to the Community Hall. Volunteer helpers can examine simple problems, including some broken zips. They cannot guarantee that every item can be repaired. A donation is welcome but is not required. Please stay with your item while a volunteer examines it.   Seed Swap — Sunday, 10:00–11:00 a.m. Meet at the community garden. Exchange spare seeds or ask for advice about growing plants in small spaces. Entry is free; if you have no seeds, you can still ask questions.",
+        "display_to_learner": true
+      },
+      "audio_asset": {
+        "id": "AUD-LIS-A2-07",
+        "source_text": "Hi! Can you help me choose something to do this weekend? The zip on my school bag is broken, and I'd rather repair the bag than buy a new one. I can only go out on Sunday afternoon, after two. My aunt can come with me. I'd like to be indoors because the weather might be rainy. I don't mind making a small donation, but I don't want to pay a fixed entry fee. Could you tell me which event would be useful? And please let me know if they can definitely fix the bag.",
+        "language": "en",
+        "roles": [
+          "Mia, a friend"
+        ],
+        "transcript_reveal": "after_submission",
+        "requires_real_playback": true,
+        "fallback": "If verified audio playback is unavailable, Listening and cross-source items must not be scored. Do not reveal transcript before submission."
+      },
+      "activities": [
+        {
+          "id": "LIS-A2-07-Q1",
+          "type": "single_choice",
+          "prompt": "What is Mia's main problem?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A missing pencil"
+            },
+            {
+              "id": "B",
+              "text": "A broken bag zip"
+            },
+            {
+              "id": "C",
+              "text": "A lost phone"
+            },
+            {
+              "id": "D",
+              "text": "A bus ticket"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "She says the bag zip is broken and prefers repair. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "listening.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-07-Q2",
+          "type": "single_choice",
+          "prompt": "When is Mia available?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Saturday morning"
+            },
+            {
+              "id": "B",
+              "text": "Sunday before 11"
+            },
+            {
+              "id": "C",
+              "text": "Sunday after two"
+            },
+            {
+              "id": "D",
+              "text": "Monday evening"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "\"Sunday afternoon, after two.\" Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-07-Q3",
+          "type": "single_choice",
+          "prompt": "What does Mia prefer about the venue?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Outdoors by the river"
+            },
+            {
+              "id": "B",
+              "text": "Indoors"
+            },
+            {
+              "id": "C",
+              "text": "On a mountain"
+            },
+            {
+              "id": "D",
+              "text": "At a school exam"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "She mentions wanting to be indoors because of rain. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-07-Q4",
+          "type": "single_choice",
+          "prompt": "Which payment condition does Mia say she accepts?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A compulsory ticket"
+            },
+            {
+              "id": "B",
+              "text": "A fixed monthly fee"
+            },
+            {
+              "id": "C",
+              "text": "Buying a new bag"
+            },
+            {
+              "id": "D",
+              "text": "An optional small donation"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "She accepts a small donation but rejects a fixed entry fee. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-A2-07-Q5",
+          "type": "single_choice",
+          "prompt": "Which recommendation is best supported by BOTH sources?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Choose Riverside Clean-up; it guarantees a repaired zip"
+            },
+            {
+              "id": "B",
+              "text": "Choose Seed Swap; it repairs bags for free"
+            },
+            {
+              "id": "C",
+              "text": "Visit Repair Café on Sunday after 2 p.m.; the helpers may help but cannot guarantee a repair"
+            },
+            {
+              "id": "D",
+              "text": "Buy a new bag at the Community Hall"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "It matches Mia's day/time, purpose and preferred optional fee; the repair is possible, not guaranteed. Only score after verified audio. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "WRI-A2-07",
+      "module": "writing",
+      "cefr_target": "A2",
+      "title": "Write Mia a helpful evidence-based reply",
+      "estimated_minutes": 24,
+      "objectives": [
+        "Recommend a realistic action using both sources without inventing guarantees.",
+        "Analyse the task, brainstorm evidence-based details, outline, draft and self-revise."
+      ],
+      "explanation": {
+        "en": "Analyse Topic, Task, Must Include and Boundary. State a recommendation, two source-based reasons, where and when, and a relevant limitation. Separate what the notice guarantees from what might happen. Review the actual sources first in REA-A2-08 and LIS-A2-07. Your original response is unassessed until trusted human or independently verified optional AI review. Do not claim a complete integrated checkpoint without genuine audio.",
+        "vi": "Bài viết phải dựa trên hai nguồn, được lưu nháp và chờ đánh giá nội dung thật; không suy ra trình độ CEFR chỉ từ độ dài."
+      },
+      "examples": [
+        "DIFFERENT WRITING MODEL: Advise a friend about a book exchange, not the assessed weekend services.",
+        "PLAN: greeting → recommendation → source-based reasons → known limitation → friendly closing.",
+        "SELF-CHECK: Do your stated reasons match the source? Have you turned uncertainty into a false promise?"
+      ],
+      "activities": [
+        {
+          "id": "WRI-A2-07-Q1",
+          "type": "extended_response",
+          "prompt": "Write Mia a helpful reply of about 65–90 words. Recommend one event and explain two reasons from the written notice and her message. Include where and when to go and one important limitation or condition. Do not promise that a repair will succeed.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted writing review. No automatic writing-quality or CEFR score. Revise one sentence after feedback."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-A2",
+          "word_range_guidance": {
+            "min": 65,
+            "max": 90,
+            "not_a_quality_score": true
+          },
+          "review_mode": "assisted_ai_or_human"
+        }
+      ]
+    },
+    {
+      "id": "REA-B1-07",
+      "module": "reading",
+      "cefr_target": "B1",
+      "title": "One-room pilot — evaluate source evidence",
+      "estimated_minutes": 28,
+      "objectives": [
+        "Compare proposed uses of a school room and identify limits of survey evidence.",
+        "Write a supported recommendation that respects counterarguments, evidence limits and feasible next steps."
+      ],
+      "explanation": {
+        "en": "Distinguish sourced facts, options, survey interest and unsupported attendance predictions. Survey groups can overlap. A separate water-station model demonstrates why expressed interest is not certainty about uptake. Read for gist, then verify where, when, who and any condition. Independent objective practice is not a CEFR award.",
+        "vi": "Đọc ý chính trước rồi kiểm tra thông tin và điều kiện trong chính văn bản; điểm bài tập không phải chứng nhận CEFR."
+      },
+      "examples": [
+        "INDEPENDENT SOURCE: In a 60-student water-station survey, 38 expressed interest. Weekly maintenance would still require staff checks.",
+        "THINK ALOUD: Interest among respondents is not proof that everyone will attend or that maintenance is free. State what the source supports, not what it cannot establish."
+      ],
+      "activities": [
+        {
+          "id": "REA-B1-07-Q1",
+          "type": "single_choice",
+          "prompt": "What decision must the school council make?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Fund both rooms permanently"
+            },
+            {
+              "id": "B",
+              "text": "Run one eight-week pilot and review it"
+            },
+            {
+              "id": "C",
+              "text": "Close both school libraries"
+            },
+            {
+              "id": "D",
+              "text": "Replace every afternoon lesson"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The first paragraph explicitly limits funding to one trial. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "reading.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-07-Q2",
+          "type": "single_choice",
+          "prompt": "Which limitation applies specifically to Proposal Q?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It cannot accommodate lively group presentations"
+            },
+            {
+              "id": "B",
+              "text": "It has no desks"
+            },
+            {
+              "id": "C",
+              "text": "It opens every evening"
+            },
+            {
+              "id": "D",
+              "text": "It requires students to buy equipment"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Quiet Study Zone restricts group work, not access to desks. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-07-Q3",
+          "type": "single_choice",
+          "prompt": "Why should the 62 and 51 questionnaire figures NOT be added as separate people?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The questionnaire was anonymous"
+            },
+            {
+              "id": "B",
+              "text": "The room has 20 desks"
+            },
+            {
+              "id": "C",
+              "text": "The same student could choose both interests"
+            },
+            {
+              "id": "D",
+              "text": "Only teachers answered"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Overlap is explicit; 113 is not a valid unique-student count. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-07-Q4",
+          "type": "single_choice",
+          "prompt": "Which conclusion does the questionnaire NOT establish?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Some students reported interest in each activity"
+            },
+            {
+              "id": "B",
+              "text": "Quiet study attracted more selections than group projects"
+            },
+            {
+              "id": "C",
+              "text": "Interest is not the same as regular attendance"
+            },
+            {
+              "id": "D",
+              "text": "Exactly 62 students will regularly use the quiet room"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Expressed interest does not guarantee actual attendance. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-B1-07",
+        "title": "School Council: One Room, Eight Weeks",
+        "body": "The school has enough staff funding to run one eight-week after-school room pilot. The council must select one plan and review its value before asking for a permanent space.   Proposal Q: Quiet Study Zone. The library annex could offer 20 desks on Tuesday and Thursday afternoons. A staff member would supervise independent study. This may help students who cannot work quietly at home. However, group presentations and lively collaboration would not be allowed in this room.   Proposal P: Project Studio. An unused classroom could open on three afternoons each week. Movable tables would support group projects and short presentations. However, supervising equipment and managing noise could cost more staff time.   In a recent questionnaire of 100 students, 62 selected an interest in quiet study and 51 selected an interest in group projects. Students could select both interests, so the figures must not be added together as if the two groups were separate. The questionnaire gives useful feedback but does not prove how many students would attend either room regularly.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "LIS-B1-08",
+      "module": "listening",
+      "cefr_target": "B1",
+      "title": "Student council viewpoint — listen and evaluate",
+      "estimated_minutes": 22,
+      "objectives": [
+        "Interpret a qualified spoken viewpoint and proposed evaluation plan.",
+        "Write a supported recommendation that respects counterarguments, evidence limits and feasible next steps."
+      ],
+      "explanation": {
+        "en": "Listen for the speaker's position, qualifications, possible bias and evidence-gathering proposals. Compare the spoken argument with the displayed written briefing. Do not score if verified actual audio is absent. The written source for the mixed-source question is displayed below. The transcript remains hidden before verified audio playback and submission. If audio is missing, this is NOT a scored Listening lesson.",
+        "vi": "Chỉ chấm nghe khi có MP3 thật đã được kiểm tra phát; không được dùng bản chữ để thay cho nghe."
+      },
+      "examples": [
+        "INDEPENDENT COMMENT: A student supports the water station but wants maintenance costs checked before a permanent decision.",
+        "THINK ALOUD: Separate the speaker's preference from their condition. A reasoned decision recognises limits and asks what trial data could confirm the hypothesis."
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-B1-07",
+        "title": "School Council: One Room, Eight Weeks",
+        "body": "The school has enough staff funding to run one eight-week after-school room pilot. The council must select one plan and review its value before asking for a permanent space.   Proposal Q: Quiet Study Zone. The library annex could offer 20 desks on Tuesday and Thursday afternoons. A staff member would supervise independent study. This may help students who cannot work quietly at home. However, group presentations and lively collaboration would not be allowed in this room.   Proposal P: Project Studio. An unused classroom could open on three afternoons each week. Movable tables would support group projects and short presentations. However, supervising equipment and managing noise could cost more staff time.   In a recent questionnaire of 100 students, 62 selected an interest in quiet study and 51 selected an interest in group projects. Students could select both interests, so the figures must not be added together as if the two groups were separate. The questionnaire gives useful feedback but does not prove how many students would attend either room regularly.",
+        "display_to_learner": true
+      },
+      "audio_asset": {
+        "id": "AUD-LIS-B1-08",
+        "source_text": "I think the Quiet Study Zone is the more practical first pilot. Students have told me that a calm place after class would help them prepare for assessments, and the annex already has desks. Still, we must be careful about the questionnaire. It was sent just before exam week, when students might have been thinking more about silent study than they usually do. I also see the value of a Project Studio for teamwork. Because we can fund only one room, I'd begin with the quiet annex and ask students how often they actually use it. After four weeks, we could collect feedback from students who wanted a project room, too. Then the council would have better evidence before choosing any permanent plan.",
+        "language": "en",
+        "roles": [
+          "student council representative"
+        ],
+        "transcript_reveal": "after_submission",
+        "requires_real_playback": true,
+        "fallback": "If verified audio playback is unavailable, Listening and cross-source items must not be scored. Do not reveal transcript before submission."
+      },
+      "activities": [
+        {
+          "id": "LIS-B1-08-Q1",
+          "type": "single_choice",
+          "prompt": "Which first pilot does the speaker favour?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A Project Studio"
+            },
+            {
+              "id": "B",
+              "text": "A Quiet Study Zone"
+            },
+            {
+              "id": "C",
+              "text": "Both rooms at once"
+            },
+            {
+              "id": "D",
+              "text": "No trial at all"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The speaker directly calls the quiet room the more practical first pilot. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "listening.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-08-Q2",
+          "type": "single_choice",
+          "prompt": "Why does the speaker question how representative the survey is?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It was sent shortly before exam week"
+            },
+            {
+              "id": "B",
+              "text": "It was completed only by teachers"
+            },
+            {
+              "id": "C",
+              "text": "It asked about sports, not rooms"
+            },
+            {
+              "id": "D",
+              "text": "No students answered"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Timing might have influenced preferences; the speaker does not claim the survey is fabricated. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-08-Q3",
+          "type": "single_choice",
+          "prompt": "What does the speaker propose after four weeks?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Permanently close the library"
+            },
+            {
+              "id": "B",
+              "text": "Buy new computers immediately"
+            },
+            {
+              "id": "C",
+              "text": "Review actual use and gather feedback from both interest groups"
+            },
+            {
+              "id": "D",
+              "text": "Cancel the pilot without evidence"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Review of real use and different preferences is the stated plan. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "listening.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-08-Q4",
+          "type": "single_choice",
+          "prompt": "Which view of Proposal P does the speaker express?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It has no educational value"
+            },
+            {
+              "id": "B",
+              "text": "It would always be cheaper"
+            },
+            {
+              "id": "C",
+              "text": "It must be funded simultaneously"
+            },
+            {
+              "id": "D",
+              "text": "It could support teamwork even though another pilot is preferred first"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "The speaker acknowledges its value but prioritises Q. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "listening.speaker_intention"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "LIS-B1-08-Q5",
+          "type": "single_choice",
+          "prompt": "Which statement best synthesises the briefing and the speaker without overstating either source?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The survey proves 113 different students will use two rooms"
+            },
+            {
+              "id": "B",
+              "text": "The speaker rejects all group projects as pointless"
+            },
+            {
+              "id": "C",
+              "text": "A quiet-room trial is defensible, but the survey's limits and actual attendance should be reviewed before a permanent decision"
+            },
+            {
+              "id": "D",
+              "text": "The school has already funded both rooms permanently"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Respects one-room funding, speaker's conditional preference and reading's survey limitations. Gate on genuine audio. Next step: review the exact source condition or limitation and try a fresh example."
+          },
+          "skill_tags": [
+            "listening.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "WRI-B1-08",
+      "module": "writing",
+      "cefr_target": "B1",
+      "title": "Write a balanced school-pilot recommendation",
+      "estimated_minutes": 30,
+      "objectives": [
+        "Write a supported recommendation that respects counterarguments, evidence limits and feasible next steps.",
+        "Analyse the task, brainstorm evidence-based details, outline, draft and self-revise."
+      ],
+      "explanation": {
+        "en": "Analyse Topic, Task, Must Include and Boundary. State a position, compare both room plans fairly, use written evidence and a distinct spoken qualification, acknowledge one drawback and propose a feasible evaluation. Review the actual sources first in REA-B1-07 and LIS-B1-08. Your original response is unassessed until trusted human or independently verified optional AI review. Do not claim a complete integrated checkpoint without genuine audio.",
+        "vi": "Bài viết phải dựa trên hai nguồn, được lưu nháp và chờ đánh giá nội dung thật; không suy ra trình độ CEFR chỉ từ độ dài."
+      },
+      "examples": [
+        "DIFFERENT ISSUE — WATER STATION: Position → written evidence → spoken qualification → practical evaluation plan.",
+        "MODEL: I recommend a trial because many surveyed students showed interest. However, the survey cannot prove how regularly it will be used. Check maintenance needs and evaluate usage before full rollout.",
+        "SELF-CHECK: Quote evidence accurately, represent alternatives fairly, include a limitation and propose a realistic follow-up."
+      ],
+      "activities": [
+        {
+          "id": "WRI-B1-08-Q1",
+          "type": "extended_response",
+          "prompt": "Write a 130–170 word recommendation for the school council. Choose one eight-week room pilot. Summarise a useful point for each proposal, use at least one relevant fact from the written briefing and one distinct idea or qualification from the spoken comment, explain a limitation of your preferred proposal, and suggest one realistic way to evaluate the pilot. Your recommendation may differ from the speaker's position if it is well supported.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted writing review. No automatic writing-quality or CEFR score. Revise one sentence after feedback."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-B1",
+          "word_range_guidance": {
+            "min": 130,
+            "max": 170,
+            "not_a_quality_score": true
+          },
+          "review_mode": "assisted_ai_or_human"
+        }
+      ]
+    }
+  ]
+}

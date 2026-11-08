@@ -9,7 +9,8 @@ const pkg=require('../content/curriculum-1.18.1-candidate.json');
 const manifest=require('../content/foundation-audio.json');
 const lessons=pkg.lessons.filter(l=>l.module==='listening');
 assert.equal(lessons.length,18,'Current curriculum requires eighteen Listening lessons');
-assert.equal(Object.keys(manifest).length,18,'Listening manifest must cover exactly current lessons');
+const staged=require('./helpers/staged-listening-manifest.cjs')(manifest,lessons);
+assert.equal(Object.keys(manifest).length,18+staged.length,'Current plus strictly validated staged coverage');
 for(const lesson of lessons){
  const entry=manifest[lesson.id];
  assert(entry,lesson.id+' missing manifest entry');

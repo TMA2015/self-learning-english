@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "release": "1.18.1",
-  "notice": "41 versioned MP3 assets (38 original plus three newly owner-supplied Kokoro v2 audio repairs) with individual SHA-256 and educational-use provenance. Old eSpeak v1 files retained for historical replay/rollback, while current manifests serve transcript-matched Kokoro v2. No academic keys or saved attempts changed. Local export metadata says owner_audio_qa=PENDING; live listening acceptance is still an honest separate status.",
+  "notice": "41 versioned MP3 assets (38 original plus three newly owner-supplied Kokoro v2 audio repairs) with individual SHA-256 and educational-use provenance. Old eSpeak v1 files retained for historical replay/rollback, while current manifests serve transcript-matched Kokoro v2. No academic keys or saved attempts changed. Local export metadata says owner_audio_qa=PENDING; live listening acceptance is still an honest separate status. Unit-10 Draft 1.21.0 adds three SHA-pinned owner-generated Kokoro recordings with owner-approved website-use rights for exact SHAs as of 2026-11-07. Baseline 41 historical approvals remain unchanged; this does not approve import, merge, deployment or full MEDIA-01.",
   "entries": [
     {
       "asset_path": "public/foundation-audio/LIS-A1-01-v1.mp3",
@@ -617,6 +617,61 @@
       "source_originality_basis": "Exact normalized transcript parity with immutable curriculum 1.18.1, including 1/7/9 role turns; no modified questions or assessment keys.",
       "license_basis": "Kokoro model and voices: Apache-2.0; https://huggingface.co/hexgrad/Kokoro-82M; owner-generated local audio.",
       "rights_decision_ref": "docs/releases/2026-11-audio-rights-owner-clearance-decision.md"
+    },
+    {
+      "asset_path": "public/foundation-audio/LIS-A1-06-v1.mp3",
+      "sha256": "91f736e9934476b44df0f4ab59eb2b381326bb144acd4475dcfa91e0fbe5bac6",
+      "model_or_engine": "Owner-produced Kokoro 0.9.4 (local inference; exact model checkpoint digest not evidenced)",
+      "voice_or_processing": "bf_emma, 24000 Hz mono MP3; single voice, speed 0.9; pause not captured in existing receipt",
+      "provenance_evidence": "content/batches/unit10-owner-audio-receipts-20261107.json; original owner-uploaded MP3+producer sidecar; exact SHA and authored transcript parity verified in PR #117; docs/curriculum/SLE_UNIT10_OWNER_AUDIO_RIGHTS_DECISION_20261107.md scoped owner attestation for exact SHA",
+      "source_originality": "VERIFIED",
+      "release_clearance": "APPROVED",
+      "approved_by": "Project owner (explicit 2026-11-07 confirmation: owner-created Kokoro bf_emma, no external voice clone, G Learning website use authorized; recorded by ChatGPT)",
+      "approved_on": "2026-11-07",
+      "remaining_rights_gate": "OWNER WEBSITE-USE RIGHTS APPROVED for this exact SHA only. Independent MEDIA-01 product player/Safari QA and explicit merge/deploy authorization NOT GRANTED; local model/voicepack binary digests unavailable.",
+      "source_originality_basis": "Verified PROJECT ORIGIN by owner attestation 2026-11-07, NotebookLM-reviewed original authored lesson, source-sidecar parity and MP3 SHA. Not independent plagiarism screen; exact upstream checkpoint/voicepack SHA not available.",
+      "license_basis": "Official Kokoro 0.9.4 package Apache License (https://pypi.org/project/kokoro/0.9.4/), official hexgrad/Kokoro-82M model/voices Apache-2.0 (https://huggingface.co/hexgrad/Kokoro-82M), bf_emma official listed voice. Actual local model/voicepack file hashes not attested. Owner confirms project-original output, not an external voice clone.",
+      "rights_decision_ref": "docs/curriculum/SLE_UNIT10_OWNER_AUDIO_RIGHTS_DECISION_20261107.md",
+      "owner_audio_qa": "PASS",
+      "unit10_lesson_id": "LIS-A1-06",
+      "owner_audio_qa_basis": "Owner heard originally submitted A1-U10 recording, confirmed clear/good quality on 2026-11-07 (hearing QA only).",
+      "owner_website_use_confirmation": "SCOPE: G Learning educational website only; exact SHA and file path; 2026-11-07; no authorization to merge/deploy"
+    },
+    {
+      "asset_path": "public/foundation-audio/LIS-A2-07-v1.mp3",
+      "sha256": "04937096a911d5db09b470e97e459ded6e973c970a2ba388a6274883bf82064e",
+      "model_or_engine": "Owner-produced Kokoro 0.9.4 (local inference; exact model checkpoint digest not evidenced)",
+      "voice_or_processing": "bf_emma, 24000 Hz mono MP3; single voice, speed  0.9; pause 0.4038 sec",
+      "provenance_evidence": "content/batches/unit10-owner-audio-receipts-20261107.json; original owner-uploaded MP3+producer sidecar; exact SHA and authored transcript parity verified in PR #117; docs/curriculum/SLE_UNIT10_OWNER_AUDIO_RIGHTS_DECISION_20261107.md scoped owner attestation for exact SHA",
+      "source_originality": "VERIFIED",
+      "release_clearance": "APPROVED",
+      "approved_by": "Project owner (explicit 2026-11-07 confirmation: owner-created Kokoro bf_emma, no external voice clone, G Learning website use authorized; recorded by ChatGPT)",
+      "approved_on": "2026-11-07",
+      "remaining_rights_gate": "OWNER WEBSITE-USE RIGHTS APPROVED for this exact SHA only. Independent MEDIA-01 product player/Safari QA and explicit merge/deploy authorization NOT GRANTED; local model/voicepack binary digests unavailable.",
+      "source_originality_basis": "Verified PROJECT ORIGIN by owner attestation 2026-11-07, NotebookLM-reviewed original authored lesson, source-sidecar parity and MP3 SHA. Not independent plagiarism screen; exact upstream checkpoint/voicepack SHA not available.",
+      "license_basis": "Official Kokoro 0.9.4 package Apache License (https://pypi.org/project/kokoro/0.9.4/), official hexgrad/Kokoro-82M model/voices Apache-2.0 (https://huggingface.co/hexgrad/Kokoro-82M), bf_emma official listed voice. Actual local model/voicepack file hashes not attested. Owner confirms project-original output, not an external voice clone.",
+      "rights_decision_ref": "docs/curriculum/SLE_UNIT10_OWNER_AUDIO_RIGHTS_DECISION_20261107.md",
+      "owner_audio_qa": "PASS",
+      "unit10_lesson_id": "LIS-A2-07",
+      "owner_website_use_confirmation": "SCOPE: G Learning educational website only; exact SHA and file path; 2026-11-07; no authorization to merge/deploy"
+    },
+    {
+      "asset_path": "public/foundation-audio/LIS-B1-08-v1.mp3",
+      "sha256": "9082966b597522148eac25d618eff6e698990168a42305110ede1298f384ac82",
+      "model_or_engine": "Owner-produced Kokoro 0.9.4 (local inference; exact model checkpoint digest not evidenced)",
+      "voice_or_processing": "bf_emma, 24000 Hz mono MP3; single voice, speed  0.9486; pause 0.4038 sec",
+      "provenance_evidence": "content/batches/unit10-owner-audio-receipts-20261107.json; original owner-uploaded MP3+producer sidecar; exact SHA and authored transcript parity verified in PR #117; docs/curriculum/SLE_UNIT10_OWNER_AUDIO_RIGHTS_DECISION_20261107.md scoped owner attestation for exact SHA",
+      "source_originality": "VERIFIED",
+      "release_clearance": "APPROVED",
+      "approved_by": "Project owner (explicit 2026-11-07 confirmation: owner-created Kokoro bf_emma, no external voice clone, G Learning website use authorized; recorded by ChatGPT)",
+      "approved_on": "2026-11-07",
+      "remaining_rights_gate": "OWNER WEBSITE-USE RIGHTS APPROVED for this exact SHA only. Independent MEDIA-01 product player/Safari QA and explicit merge/deploy authorization NOT GRANTED; local model/voicepack binary digests unavailable.",
+      "source_originality_basis": "Verified PROJECT ORIGIN by owner attestation 2026-11-07, NotebookLM-reviewed original authored lesson, source-sidecar parity and MP3 SHA. Not independent plagiarism screen; exact upstream checkpoint/voicepack SHA not available.",
+      "license_basis": "Official Kokoro 0.9.4 package Apache License (https://pypi.org/project/kokoro/0.9.4/), official hexgrad/Kokoro-82M model/voices Apache-2.0 (https://huggingface.co/hexgrad/Kokoro-82M), bf_emma official listed voice. Actual local model/voicepack file hashes not attested. Owner confirms project-original output, not an external voice clone.",
+      "rights_decision_ref": "docs/curriculum/SLE_UNIT10_OWNER_AUDIO_RIGHTS_DECISION_20261107.md",
+      "owner_audio_qa": "PASS",
+      "unit10_lesson_id": "LIS-B1-08",
+      "owner_website_use_confirmation": "SCOPE: G Learning educational website only; exact SHA and file path; 2026-11-07; no authorization to merge/deploy"
     }
   ],
   "owner_originality_attestation": {
@@ -711,5 +766,26 @@
       "LIS-A2-02",
       "LIS-B1-02"
     ]
+  },
+  "unit10_draft_assets": {
+    "candidate_version": "1.21.0",
+    "parent_clearance_release": "1.18.1",
+    "prior_rights_cleared_count": 41,
+    "review_packet": "SLE-UNIT10-A1A2B1-TRANSFER-20261107-R1",
+    "receipt_path": "content/batches/unit10-owner-audio-receipts-20261107.json",
+    "ids": [
+      "LIS-A1-06",
+      "LIS-A2-07",
+      "LIS-B1-08"
+    ],
+    "paths": [
+      "public/foundation-audio/LIS-A1-06-v1.mp3",
+      "public/foundation-audio/LIS-A2-07-v1.mp3",
+      "public/foundation-audio/LIS-B1-08-v1.mp3"
+    ],
+    "status": "3_OWNER_RIGHTS_APPROVED_MEDIA01_NOT_CLEARED",
+    "owner_rights_decision_ref": "docs/curriculum/SLE_UNIT10_OWNER_AUDIO_RIGHTS_DECISION_20261107.md",
+    "owner_rights_confirmed_on": "2026-11-07",
+    "release_authorized": false
   }
 }

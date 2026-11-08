@@ -45,7 +45,8 @@ for (const lesson of pronunciation) {
   assert(Array.isArray(lesson.audio_model?.text), `${lesson.id}: invalid ordered model text`);
   validateAudio(lesson, pronunciationManifest[lesson.id], 'Pronunciation', lesson.audio_model.text);
 }
-const required = new Set([...listening, ...pronunciation].map(l=>l.id));
+const staged=require('./helpers/staged-listening-manifest.cjs')(listeningManifest,listening);
+const required = new Set([...listening, ...pronunciation].map(l=>l.id).concat(staged));
 for (const id of [...Object.keys(listeningManifest), ...Object.keys(pronunciationManifest)]) {
   assert(required.has(id), `Manifest has obsolete/unknown lesson id ${id}`);
 }
