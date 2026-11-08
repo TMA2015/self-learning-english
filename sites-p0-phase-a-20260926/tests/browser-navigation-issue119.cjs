@@ -17,7 +17,11 @@ const examples=[
  {view:'units',level:'B1',unitId:'B1-U10',lessonId:'WRI-B1-08',screen:'overview'},
  {view:'listening',lessonId:'LIS-A2-07',screen:'practice'},
  {view:'writing',lessonId:'WRI-A1-05',screen:'overview'},
- {view:'foundation',lessonId:'GRA-A1-01',screen:'overview'}
+ {view:'foundation',lessonId:'GRA-A1-01',screen:'overview'},
+ {view:'writing-week',writingWeek:4,writingStep:'guided'},
+ {view:'writing-week',writingWeek:6,writingStep:'feedback'},
+ {view:'writing-later-week',writingWeek:9,writingStep:'main'},
+ {view:'writing-later-week',writingWeek:12,writingStep:'review'}
 ];
 for(const route of examples){
  assert.deepEqual(parseBrowserRoute(browserRouteHash(route)),route);
@@ -25,16 +29,19 @@ for(const route of examples){
 }
 for(const invalid of ['#/', '#/evil', '#/units/A9', '#/units/A1/A2-U10',
  '#/units/A1/A1-U99','#/listening/lesson/../../something',
- '#/grammar/lesson/LIS-A1-06/unknown','garbage','%ZZ']){
+ '#/grammar/lesson/LIS-A1-06/unknown','#/writing-week/7/main',
+ '#/writing-later-week/6/learn','#/writing-week/3/unknown','garbage','%ZZ']){
  const parsed=parseBrowserRoute(invalid);
  assert.equal(parsed.lessonId,undefined,'Invalid deep link loaded a lesson: '+invalid);
+ assert.equal(parsed.writingWeek,undefined,'Invalid Writing deep link activated a week: '+invalid);
 }
 const home=fs.readFileSync(path.join(root,'app/home-client.tsx'),'utf8');
 const foundation=fs.readFileSync(path.join(root,'app/foundation.tsx'),'utf8');
 const gate=fs.readFileSync(path.join(root,'domain/navigation-gate.ts'),'utf8');
 for(const term of ['browserRouteHash','parseBrowserRoute','history.pushState','history.replaceState',
  "addEventListener('popstate'","navigationGate.current(next.view,confirmLeave",
- 'onBrowserRoute={updateFoundationRoute}',"routeReady.current=true;applyRoute(first,'pop')"]){
+ 'onBrowserRoute={updateFoundationRoute}',
+ 'navigateRoute({view:',"setBlockWeek(next.writingWeek as WritingWeek)","setLaterWeek(next.writingWeek as LaterWeek)","routeReady.current=true;applyRoute(first,'pop')"]){
  assert(home.includes(term),'Parent browser routing contract missing '+term);
 }
 for(const term of ['A deep link never creates a new attempt','routeGuardRef.current',
