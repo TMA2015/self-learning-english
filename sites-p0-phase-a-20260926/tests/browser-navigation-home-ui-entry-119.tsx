@@ -47,7 +47,7 @@ async function run(){
   const root=createRoot(q('#app')!);root.render(React.createElement(Home));
   await wait(()=>checkWriting('Main Practice'),'Home hydrated deep link to Week 4 Main Practice');
   await wait(()=>document.body.innerText.includes('Saved on this device'),'Writing local profile loaded');
-  const field=await wait(()=>document.querySelector<HTMLTextAreaElement>('textarea[name^="week4-"]'),
+  const field=await wait(()=>document.querySelector<HTMLTextAreaElement>('textarea[name^="week-4-"]'),
    'Week 4 editable writing draft');
   const nativeSetter=Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value')?.set;
   if(!nativeSetter)throw Error('Native textarea setter unavailable');
@@ -64,7 +64,7 @@ async function run(){
   await wait(()=>location.hash==='#/writing-week/4/learn'&&checkWriting('Learn'),'Writing Learn URL + UI');
   history.back();
   await wait(()=>location.hash==='#/writing-week/4/main'&&checkWriting('Main Practice'),'browser Back to Writing Main');
-  await wait(()=>Array.from(document.querySelectorAll<HTMLTextAreaElement>('textarea[name^="week4-"]'))
+  await wait(()=>Array.from(document.querySelectorAll<HTMLTextAreaElement>('textarea[name^="week-4-"]'))
     .some(t=>t.value===writingMarker),'Writing draft intact on browser Back');
   history.forward();
   await wait(()=>location.hash==='#/writing-week/4/learn'&&checkWriting('Learn'),'browser Forward to Writing Learn');
@@ -91,7 +91,7 @@ async function run(){
   await wait(()=>location.hash==='#/writing-week/4/learn'&&checkWriting('Learn'),'Back to Writing after full reload');
   history.back();
   await wait(()=>location.hash==='#/writing-week/4/main'&&checkWriting('Main Practice'),'Back to Writing Main after reload');
-  await wait(()=>Array.from(document.querySelectorAll<HTMLTextAreaElement>('textarea[name^="week4-"]'))
+  await wait(()=>Array.from(document.querySelectorAll<HTMLTextAreaElement>('textarea[name^="week-4-"]'))
    .some(t=>t.value===writingMarker),'saved Writing text recovered after full reload',20000);
   const info={
    suite:'ISSUE119_REAL_HOME_CHROME_NAVIGATION',
