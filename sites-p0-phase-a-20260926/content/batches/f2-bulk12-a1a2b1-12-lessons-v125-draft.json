@@ -1,0 +1,1590 @@
+{
+  "packet_id": "SLE-F2-BULK12-A1A2B1-AUTHORED-20261109-R1",
+  "source_packet_sha256": "5de3c0c2b7f85420a804f5c6201b07912776501584bb598e0446fd26301da5c9",
+  "source_review": "Independent NotebookLM verdict PASS, AUTHORED_CONTENT_ITEM_LEVEL: 40/40 items, zero blocking corrections",
+  "review_scope": "AUTHORED_CONTENT_ITEM_LEVEL",
+  "academic_disposition": "GO_FOR_MACHINE_SCHEMA_DRAFT",
+  "production": "NO_GO_PENDING_TECHNICAL_CI_AND_OWNER_RELEASE",
+  "baseline_version": "1.24.0",
+  "proposed_version": "1.25.0",
+  "unit_assignments": {
+    "A1-U03": [
+      "REA-A1-08",
+      "WRI-A1-08"
+    ],
+    "A1-U06": [
+      "REA-A1-09",
+      "WRI-A1-09"
+    ],
+    "A2-U02": [
+      "REA-A2-11",
+      "WRI-A2-10"
+    ],
+    "A2-U04": [
+      "REA-A2-12",
+      "WRI-A2-11"
+    ],
+    "B1-U01": [
+      "REA-B1-09",
+      "WRI-B1-10"
+    ],
+    "B1-U05": [
+      "REA-B1-10",
+      "WRI-B1-11"
+    ]
+  },
+  "lessons": [
+    {
+      "id": "REA-A1-08",
+      "module": "reading",
+      "cefr_target": "A1",
+      "title": "New School Timetable — Classes and Club",
+      "estimated_minutes": 22,
+      "objectives": [
+        "Find explicit days, start times and rooms in a two-part school timetable.",
+        "Distinguish a normal lesson from an after-school club and notice one missing detail.",
+        "Choose a question that asks for information the texts do not give."
+      ],
+      "activities": [
+        {
+          "id": "REA-A1-08-Q1",
+          "type": "single_choice",
+          "prompt": "Which activity starts at 9:00 a.m. on Monday?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Science in Lab 1"
+            },
+            {
+              "id": "B",
+              "text": "Art in Room 3"
+            },
+            {
+              "id": "C",
+              "text": "Reading in Room 5"
+            },
+            {
+              "id": "D",
+              "text": "Music in Room 4"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "SOURCE A places Reading in Room 5 at 9:00 a.m. on Monday; the other options use a different activity, time or day. Next step: Check day, start time and room as a single set."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-08-Q2",
+          "type": "single_choice",
+          "prompt": "Where does Science begin on Wednesday?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Lab 1"
+            },
+            {
+              "id": "B",
+              "text": "Room 5"
+            },
+            {
+              "id": "C",
+              "text": "Playground"
+            },
+            {
+              "id": "D",
+              "text": "Room 3"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "SOURCE A lists Wednesday Science at 8:00 a.m. in Lab 1. The other places belong to other lessons. Next step: Use the Wednesday row, not the Monday row."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-08-Q3",
+          "type": "single_choice",
+          "prompt": "When does the after-school Art Club meet?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Monday at 10:15 a.m."
+            },
+            {
+              "id": "B",
+              "text": "Wednesday at 9:00 a.m."
+            },
+            {
+              "id": "C",
+              "text": "Monday at 3:30 p.m."
+            },
+            {
+              "id": "D",
+              "text": "Wednesday at 3:30 p.m."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "SOURCE B says Art Club meets Wednesday at 3:30 p.m., separately from the Monday Art lesson. Next step: Distinguish the club notice from the morning timetable."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-08-Q4",
+          "type": "single_choice",
+          "prompt": "Which statement describes a regular morning lesson, not the after-school club?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Art Club needs students to bring paint."
+            },
+            {
+              "id": "B",
+              "text": "Art starts at 10:15 a.m. on Monday in Room 3."
+            },
+            {
+              "id": "C",
+              "text": "Art Club meets on Monday at 3:30 p.m."
+            },
+            {
+              "id": "D",
+              "text": "Art Club ends at 4:00 p.m."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The Monday Art entry is in SOURCE A’s morning timetable. SOURCE B identifies Wednesday Art Club as a separate after-school event; its end time is not stated. Next step: Look for which source labels the activity."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-08-Q5",
+          "type": "single_choice",
+          "prompt": "Which question asks for a detail NOT provided in either source?",
+          "options": [
+            {
+              "id": "A",
+              "text": "What time does Wednesday Music finish?"
+            },
+            {
+              "id": "B",
+              "text": "Where does Monday Reading start?"
+            },
+            {
+              "id": "C",
+              "text": "When does Wednesday Art Club start?"
+            },
+            {
+              "id": "D",
+              "text": "Where does Wednesday Science start?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "SOURCE A explicitly provides start times only, not Music’s finishing time. The other three facts are written in the sources. Next step: Ask about an actual missing fact instead of repeating a known one."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — A new student needs to understand a class schedule and a club notice. Read the day, time and place together: an activity with the same name can be a lesson or a club on another day. Do not assume a starting time is also the finishing time.\n\nCORE-2 — INDEPENDENT MODEL — A community swimming pool notice says: Tuesday, beginners, 4:00 p.m., Pool B. A separate note says a family swim is on Sunday at 10:00 a.m. The beginners class is not the family session. Since the notice does not say when Tuesday’s class ends, a polite question is: “What time does the beginners class finish?” This example is NOT about the school timetable.\n\nCORE-3 — Read SOURCE A as the regular morning timetable and SOURCE B as the separate after-school notice. For each question, underline the day, time and room in the relevant source. Treat “not given” as different from “probably”.\n\nCORE-4 — After submission, feedback may identify the evidence that supports the keyed answer and a specific next action. Explain the answer independently of option letter and shuffling; do not award a CEFR level from five or six practice answers."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — A community swimming pool notice says: Tuesday, beginners, 4:00 p.m., Pool B. A separate note says a family swim is on Sunday at 10:00 a.m. The beginners class is not the family session. Since the notice does not say when Tuesday’s class ends, a polite question is: “What time does the beginners class finish?” This example is NOT about the school timetable.",
+        "TRANSFER STRATEGY — Read SOURCE A as the regular morning timetable and SOURCE B as the separate after-school notice. For each question, underline the day, time and room in the relevant source. Treat “not given” as different from “probably”."
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-A1-08",
+        "title": "New School Timetable — Classes and Club",
+        "body": "SOURCE A — School morning timetable\n\nMONDAY\n8:00 a.m. — Maths — Room 2\n9:00 a.m. — Reading — Room 5\n10:15 a.m. — Art — Room 3\n\nWEDNESDAY\n8:00 a.m. — Science — Lab 1\n9:00 a.m. — Music — Room 4\n10:15 a.m. — PE — Playground\n\nAll times on this card are START times.\n\nSOURCE B — After-school club note\n\nArt Club meets on Wednesday at 3:30 p.m. in Room 3. You do not need to bring your own paint. Ask the teacher if you want to know when the club finishes. The club is separate from Monday's Art lesson.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-A1-08",
+      "module": "writing",
+      "cefr_target": "A1",
+      "title": "Explain a School Morning and Ask One Question",
+      "estimated_minutes": 20,
+      "objectives": [
+        "Select exact time and room facts from the timetable without mixing days.",
+        "Write a short friendly message with one useful question about missing information.",
+        "Review accuracy and politeness before saving a draft for trusted feedback."
+      ],
+      "activities": [
+        {
+          "id": "WRI-A1-08-Q1",
+          "type": "extended_response",
+          "prompt": "Write 35–50 words to a fictional new student. Use SOURCE A and SOURCE B: say when and where Monday Reading starts; say when and where Wednesday Art Club starts; explain that Art Club is different from Monday Art; and ask one polite question about a finishing time not given in the notices. Do not invent the answer or include real student names or contact details.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted review. Your draft is not automatically given a Writing quality score or CEFR level. Word count helps with planning but is not a grade."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-A1",
+          "review_mode": "assisted_ai_or_human",
+          "word_range_guidance": {
+            "min": 35,
+            "max": 50,
+            "not_a_quality_score": true
+          }
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — TOPIC: the school timetable and club notice. TASK: explain two confirmed details to a new student and ask one question. MUST INCLUDE: correct Monday Reading fact, correct Wednesday Art Club fact, the class-versus-club distinction and one missing-finish-time question. BOUNDARY: 35–50 words, friendly tone, no invented time or personal information. Word range is planning guidance, never a quality score.\n\nCORE-2 — INDEPENDENT MODEL — A town library poster says the children’s reading group begins on Saturday at 10 a.m. in the upstairs room but does not give an ending time. A useful message might say: “The reading group starts at ten on Saturday in the upstairs room. Could you tell me when it finishes?” This model does not use the school timetable.\n\nCORE-3 — Write: greeting → two accurate day/time/place details → clarify club versus class → one question. Check the day names before submitting; a friendly ending is optional.\n\nAssessed source material (read before drafting; reproduced verbatim from the paired Reading lesson):\nSOURCE A — School morning timetable\n\nMONDAY\n8:00 a.m. — Maths — Room 2\n9:00 a.m. — Reading — Room 5\n10:15 a.m. — Art — Room 3\n\nWEDNESDAY\n8:00 a.m. — Science — Lab 1\n9:00 a.m. — Music — Room 4\n10:15 a.m. — PE — Playground\n\nAll times on this card are START times.\n\nSOURCE B — After-school club note\n\nArt Club meets on Wednesday at 3:30 p.m. in Room 3. You do not need to bring your own paint. Ask the teacher if you want to know when the club finishes. The club is separate from Monday's Art lesson.\n\nCORE-4 — Check that the message has no unsupported finishing time. Await trusted review and revise a linked copy if feedback arrives; Save/Resume must retain the original attempt and no automatic Writing CEFR claim is generated."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — A town library poster says the children’s reading group begins on Saturday at 10 a.m. in the upstairs room but does not give an ending time. A useful message might say: “The reading group starts at ten on Saturday in the upstairs room. Could you tell me when it finishes?” This model does not use the school timetable.",
+        "TRANSFER STRATEGY — Write: greeting → two accurate day/time/place details → clarify club versus class → one question. Check the day names before submitting; a friendly ending is optional."
+      ]
+    },
+    {
+      "id": "REA-A1-09",
+      "module": "reading",
+      "cefr_target": "A1",
+      "title": "Brook Town — Follow a Short Route",
+      "estimated_minutes": 22,
+      "objectives": [
+        "Identify positions of places from a written map key.",
+        "Follow short east/north and south directions from a given starting point.",
+        "Distinguish a described route from a guessed travel distance or time."
+      ],
+      "activities": [
+        {
+          "id": "REA-A1-09-Q1",
+          "type": "single_choice",
+          "prompt": "Which place comes directly after the bus stop when travelling east on River Street?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The library"
+            },
+            {
+              "id": "B",
+              "text": "The clinic"
+            },
+            {
+              "id": "C",
+              "text": "The school"
+            },
+            {
+              "id": "D",
+              "text": "The café"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "SOURCE A lists the library immediately after the bus stop from west to east. Next step: Follow the stated order from the chosen starting point."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-09-Q2",
+          "type": "single_choice",
+          "prompt": "Where is the park relative to the library?",
+          "options": [
+            {
+              "id": "A",
+              "text": "South of the library"
+            },
+            {
+              "id": "B",
+              "text": "West of the library"
+            },
+            {
+              "id": "C",
+              "text": "North of the library"
+            },
+            {
+              "id": "D",
+              "text": "East of the clinic"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "SOURCE A places the park immediately north of the library. Next step: Read the relation between the exact two named places."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-09-Q3",
+          "type": "single_choice",
+          "prompt": "From the bus stop, which two directions reach the park using SOURCE B?",
+          "options": [
+            {
+              "id": "A",
+              "text": "West, then south"
+            },
+            {
+              "id": "B",
+              "text": "East to the library, then north"
+            },
+            {
+              "id": "C",
+              "text": "North, then east to the clinic"
+            },
+            {
+              "id": "D",
+              "text": "South to the café, then west"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "SOURCE B says go east to the library before turning north to the park. Next step: Separate the first move from the second turn."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-09-Q4",
+          "type": "single_choice",
+          "prompt": "A visitor is at the bakery. Which direction reaches the café?",
+          "options": [
+            {
+              "id": "A",
+              "text": "North"
+            },
+            {
+              "id": "B",
+              "text": "West"
+            },
+            {
+              "id": "C",
+              "text": "East"
+            },
+            {
+              "id": "D",
+              "text": "South"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "SOURCE A puts the café immediately south of the bakery. Next step: Use the place directly above or below the destination."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-09-Q5",
+          "type": "single_choice",
+          "prompt": "Which fact cannot be found from either source?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The exact walking time from the bus stop to the park"
+            },
+            {
+              "id": "B",
+              "text": "The road order of the library and bakery"
+            },
+            {
+              "id": "C",
+              "text": "The direction of the school from the clinic"
+            },
+            {
+              "id": "D",
+              "text": "The direction to the park from the library"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The sources explicitly say they give no distances or travel times. The other location facts are provided. Next step: Do not turn a route description into a guessed time."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — A written map key can tell you where to go even without a picture. Begin at the stated place; follow the street order, and only then turn north or south. Do not invent distances, crossing points or walking times.\n\nCORE-2 — INDEPENDENT MODEL — In a small garden, the tool shed is east of the gate and the fountain is north of the shed. From the gate, walk east to the shed, then north to the fountain. This demonstration is about a garden, NOT Brook Town.\n\nCORE-3 — Read SOURCE A for the relative positions of places, then SOURCE B for the named route. Use the words east, north and south consistently and answer using only the text.\n\nCORE-4 — After submission, feedback may identify the evidence that supports the keyed answer and a specific next action. Explain the answer independently of option letter and shuffling; do not award a CEFR level from five or six practice answers."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — In a small garden, the tool shed is east of the gate and the fountain is north of the shed. From the gate, walk east to the shed, then north to the fountain. This demonstration is about a garden, NOT Brook Town.",
+        "TRANSFER STRATEGY — Read SOURCE A for the relative positions of places, then SOURCE B for the named route. Use the words east, north and south consistently and answer using only the text."
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-A1-09",
+        "title": "Brook Town — Follow a Short Route",
+        "body": "SOURCE A — Brook Town written map key\n\nAlong River Street, from WEST to EAST, these places appear in this order:\nBUS STOP → LIBRARY → BAKERY → CLINIC.\nThe park is immediately NORTH of the library.\nThe café is immediately SOUTH of the bakery.\nThe school is immediately NORTH of the clinic.\nOn this written map, EAST means RIGHT and NORTH means UP. The places on River Street are on the same straight road. No distances or travel times are shown.\n\nSOURCE B — Visitor help note\n\nTo reach the park from the bus stop, travel EAST along River Street until you reach the library. From the library, turn NORTH to the park. To reach the clinic from the bus stop, continue EAST past the library and the bakery. Ask a helper if you need the walking time: the map key does not provide it.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-A1-09",
+      "module": "writing",
+      "cefr_target": "A1",
+      "title": "Send Clear Directions to the Park",
+      "estimated_minutes": 20,
+      "objectives": [
+        "Explain a two-step route from a fixed starting point.",
+        "Use place names and directional words in order.",
+        "Avoid asserting unsupported travel times."
+      ],
+      "activities": [
+        {
+          "id": "WRI-A1-09-Q1",
+          "type": "extended_response",
+          "prompt": "Write 35–50 words to a fictional visitor. Starting at the Brook Town bus stop, explain how to reach the park. Name River Street and the library, give the east-then-north route in order, and add one friendly sentence saying that the exact walking time is not shown. Do not invent street names, distances or real personal information.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted review. Your draft is not automatically given a Writing quality score or CEFR level. Word count helps with planning but is not a grade."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-A1",
+          "review_mode": "assisted_ai_or_human",
+          "word_range_guidance": {
+            "min": 35,
+            "max": 50,
+            "not_a_quality_score": true
+          }
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — TOPIC: the Brook Town visitor map. TASK: send a helpful written direction. MUST INCLUDE: correct bus-stop start, River Street, library, east movement then north turn, and honest note about unknown walking time. BOUNDARY: 35–50 words, clear and polite, no estimated minutes or invented map places.\n\nCORE-2 — INDEPENDENT MODEL — A community garden visitor starts at a gate, walks straight to a greenhouse, and then turns left towards a fountain. A direction message says: “Go straight to the greenhouse. Turn left there to find the fountain.” The garden has no connection with Brook Town.\n\nCORE-3 — Start → first direction and landmark → second turn and destination → what the map does not say. Verify that “north” comes after reaching the library.\n\nAssessed source material (read before drafting; reproduced verbatim from the paired Reading lesson):\nSOURCE A — Brook Town written map key\n\nAlong River Street, from WEST to EAST, these places appear in this order:\nBUS STOP → LIBRARY → BAKERY → CLINIC.\nThe park is immediately NORTH of the library.\nThe café is immediately SOUTH of the bakery.\nThe school is immediately NORTH of the clinic.\nOn this written map, EAST means RIGHT and NORTH means UP. The places on River Street are on the same straight road. No distances or travel times are shown.\n\nSOURCE B — Visitor help note\n\nTo reach the park from the bus stop, travel EAST along River Street until you reach the library. From the library, turn NORTH to the park. To reach the clinic from the bus stop, continue EAST past the library and the bakery. Ask a helper if you need the walking time: the map key does not provide it.\n\nCORE-4 — Read the instructions aloud and check the east/north sequence; await trusted Writing review, not a machine-generated language score."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — A community garden visitor starts at a gate, walks straight to a greenhouse, and then turns left towards a fountain. A direction message says: “Go straight to the greenhouse. Turn left there to find the fountain.” The garden has no connection with Brook Town.",
+        "TRANSFER STRATEGY — Start → first direction and landmark → second turn and destination → what the map does not say. Verify that “north” comes after reaching the library."
+      ]
+    },
+    {
+      "id": "REA-A2-11",
+      "module": "reading",
+      "cefr_target": "A2",
+      "title": "Garden Open Day — What Happened First?",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Read a short past event account for exact time order.",
+        "Differentiate an ongoing background action from an interrupting event.",
+        "Check the organiser note against a diary without inventing consequences."
+      ],
+      "activities": [
+        {
+          "id": "REA-A2-11-Q1",
+          "type": "single_choice",
+          "prompt": "What were volunteers doing when Noor arrived at 8:30 a.m.?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Packing away tools"
+            },
+            {
+              "id": "B",
+              "text": "Putting up signs"
+            },
+            {
+              "id": "C",
+              "text": "Planting with visitors"
+            },
+            {
+              "id": "D",
+              "text": "Moving the tables indoors"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "SOURCE A says volunteers were putting up signs at Noor’s arrival. The other actions happened later. Next step: Pair the time stamp with its ongoing action."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-11-Q2",
+          "type": "single_choice",
+          "prompt": "What started while Mia was carrying boxes?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A concert"
+            },
+            {
+              "id": "B",
+              "text": "The visitors’ planting"
+            },
+            {
+              "id": "C",
+              "text": "The rain"
+            },
+            {
+              "id": "D",
+              "text": "The open-day lunch"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "At 9:00 a.m. rain started while Mia was carrying boxes, a new event interrupting an ongoing action. Next step: Look for “while” plus the past-simple interruption."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-11-Q3",
+          "type": "single_choice",
+          "prompt": "Which event happened before the visitors arrived?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The team moved tables into the hall"
+            },
+            {
+              "id": "B",
+              "text": "The tools were packed away"
+            },
+            {
+              "id": "C",
+              "text": "The seedlings were planted with visitors"
+            },
+            {
+              "id": "D",
+              "text": "The event was cancelled"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Tables moved indoors at 9:20, before the visitors arrived at 10:00. The other events were later or did not happen. Next step: Check 9:20 against 10:00 on the timeline."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-11-Q4",
+          "type": "single_choice",
+          "prompt": "Which sequence matches SOURCE A?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Rain → Noor arrived → visitors → tables moved"
+            },
+            {
+              "id": "B",
+              "text": "Visitors → rain → tables moved → packing away"
+            },
+            {
+              "id": "C",
+              "text": "Noor arrived → visitors → rain → planting"
+            },
+            {
+              "id": "D",
+              "text": "Noor arrived → rain → tables moved → visitors"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "The times are 8:30 arrival, 9:00 rain, 9:20 moving tables, and 10:00 visitors. Next step: Build the order using exact times rather than word order alone."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-11-Q5",
+          "type": "single_choice",
+          "prompt": "Which claim does SOURCE B explicitly reject?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The team moved the tables indoors"
+            },
+            {
+              "id": "B",
+              "text": "The event was cancelled because of the rain"
+            },
+            {
+              "id": "C",
+              "text": "The visitors arrived at 10:00"
+            },
+            {
+              "id": "D",
+              "text": "The planting happened after visitors arrived"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The organiser says the team did NOT cancel the event. Both sources describe the move indoors and later planting. Next step: Notice explicit negative statements."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-11-Q6",
+          "type": "single_choice",
+          "prompt": "Which sentence best represents the timing of the rain and Mia’s task?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Mia has carried boxes since the rain starts."
+            },
+            {
+              "id": "B",
+              "text": "Mia will carry boxes after the rain began."
+            },
+            {
+              "id": "C",
+              "text": "Mia was carrying boxes when the rain started."
+            },
+            {
+              "id": "D",
+              "text": "Mia carries boxes every time it rains."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The diary reports a background activity in progress and an interrupting rain event in the past. Next step: Use the time relation, not an isolated tense rule."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — A true-to-source recount places finished events in time order. Past continuous describes an action in progress; a past-simple event can interrupt it. When reading two sources, use their times before drawing a conclusion.\n\nCORE-2 — INDEPENDENT MODEL — At a youth concert, the helpers were arranging chairs at 5:00 when the lights went off. At 5:10 the lights returned and the singer began at 5:30. The model shows ongoing action + interruption and later steps. This is NOT the garden event.\n\nCORE-3 — Use SOURCE A for the diary times and SOURCE B to check the organiser’s summary. Draw a five-event timeline before answering; do not confuse the plan with what happened.\n\nCORE-4 — After submission, feedback may identify the evidence that supports the keyed answer and a specific next action. Explain the answer independently of option letter and shuffling; do not award a CEFR level from five or six practice answers."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — At a youth concert, the helpers were arranging chairs at 5:00 when the lights went off. At 5:10 the lights returned and the singer began at 5:30. The model shows ongoing action + interruption and later steps. This is NOT the garden event.",
+        "TRANSFER STRATEGY — Use SOURCE A for the diary times and SOURCE B to check the organiser’s summary. Draw a five-event timeline before answering; do not confuse the plan with what happened."
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-A2-11",
+        "title": "Garden Open Day — What Happened First?",
+        "body": "SOURCE A — Noor’s open-day diary\n\nSATURDAY, 8:30 a.m. — I arrived at the community garden. Volunteers were putting up signs.\n9:00 a.m. — Rain started while Mia was carrying boxes to the outdoor tables.\n9:20 a.m. — We moved the tables into the hall.\n10:00 a.m. — The rain stopped, and our visitors arrived.\n11:00 a.m. — We planted seedlings with the visitors.\n12:10 p.m. — We packed away the tools.\n\nSOURCE B — Organiser’s note\n\nWe did NOT cancel the garden open day. After the rain began, we moved the tables indoors before the visitors arrived. The visitors came at 10:00 a.m., and the planting activity took place later. We did not count the number of seedlings planted.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-A2-10",
+      "module": "writing",
+      "cefr_target": "A2",
+      "title": "Write a Short Garden Open-Day Recount",
+      "estimated_minutes": 27,
+      "objectives": [
+        "Plan and tell a past event story in chronological order.",
+        "Explain an ongoing action interrupted by rain using while or when.",
+        "Avoid inventing a cancelled event or a seedling count."
+      ],
+      "activities": [
+        {
+          "id": "WRI-A2-10-Q1",
+          "type": "extended_response",
+          "prompt": "Write 70–95 words for a fictional class newsletter about the garden open day. Include Noor’s arrival, the rain starting while Mia was carrying boxes, the move to the hall, the visitors arriving, and the planting activity. Give a clear time order and one accurate while/when sentence. Do not say the event was cancelled, invent a seedling total, or add real names or addresses.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted review. Your draft is not automatically given a Writing quality score or CEFR level. Word count helps with planning but is not a grade."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.idea_development",
+            "writing.organization",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-A2",
+          "review_mode": "assisted_ai_or_human",
+          "word_range_guidance": {
+            "min": 70,
+            "max": 95,
+            "not_a_quality_score": true
+          }
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — TOPIC: a community garden open day. TASK: recount the event to a class newsletter. MUST INCLUDE: 8:30 arrival, Mia/rain relation, 9:20 move, 10:00 visitors, planting, outcome. BOUNDARY: 70–95 words, a factual chronology, no invented number of seedlings or cancellation claim. Length alone does not determine quality.\n\nCORE-2 — INDEPENDENT MODEL — A school sports team reached the field at two. The coach was checking the equipment when a ball rolled into a nearby pond. A helper collected another ball, and practice started later. The model shows timeline and when/while, but it is not the garden open-day account.\n\nCORE-3 — Make a five-event timeline and group it into beginning → interruption → response → continuation → ending. Check past simple versus past continuous.\n\nAssessed source material (read before drafting; reproduced verbatim from the paired Reading lesson):\nSOURCE A — Noor’s open-day diary\n\nSATURDAY, 8:30 a.m. — I arrived at the community garden. Volunteers were putting up signs.\n9:00 a.m. — Rain started while Mia was carrying boxes to the outdoor tables.\n9:20 a.m. — We moved the tables into the hall.\n10:00 a.m. — The rain stopped, and our visitors arrived.\n11:00 a.m. — We planted seedlings with the visitors.\n12:10 p.m. — We packed away the tools.\n\nSOURCE B — Organiser’s note\n\nWe did NOT cancel the garden open day. After the rain began, we moved the tables indoors before the visitors arrived. The visitors came at 10:00 a.m., and the planting activity took place later. We did not count the number of seedlings planted.\n\nCORE-4 — After human/assisted review, repair one order or tense error using a new linked revision; the saved original draft and its evidence remain intact."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — A school sports team reached the field at two. The coach was checking the equipment when a ball rolled into a nearby pond. A helper collected another ball, and practice started later. The model shows timeline and when/while, but it is not the garden open-day account.",
+        "TRANSFER STRATEGY — Make a five-event timeline and group it into beginning → interruption → response → continuation → ending. Check past simple versus past continuous."
+      ]
+    },
+    {
+      "id": "REA-A2-12",
+      "module": "reading",
+      "cefr_target": "A2",
+      "title": "Choose an Arts Workshop — Compare the Facts",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Compare time, price, duration and equipment information across two options.",
+        "Match a learner’s stated constraints to an available option.",
+        "Make a cautious recommendation without inventing quality ratings."
+      ],
+      "activities": [
+        {
+          "id": "REA-A2-12-Q1",
+          "type": "single_choice",
+          "prompt": "Which workshop has the lower session price?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Wood Craft at $6"
+            },
+            {
+              "id": "B",
+              "text": "Both cost $6"
+            },
+            {
+              "id": "C",
+              "text": "Digital Photography at $4"
+            },
+            {
+              "id": "D",
+              "text": "Neither workshop has a stated price"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Photography costs $4, compared with $6 for Wood Craft; both prices are explicitly stated. Next step: Compare the same price unit for both choices."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-12-Q2",
+          "type": "single_choice",
+          "prompt": "Which workshop has the longer session?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Digital Photography is 90 minutes; Wood Craft is 60 minutes."
+            },
+            {
+              "id": "B",
+              "text": "Wood Craft is 90 minutes; Photography is 60 minutes."
+            },
+            {
+              "id": "C",
+              "text": "They each last exactly one hour."
+            },
+            {
+              "id": "D",
+              "text": "The timetable does not show either duration."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Photography runs 10:00–11:30 (90 minutes), while Wood Craft runs 4:00–5:00 (60 minutes). Next step: Subtract starting time from finishing time for each option."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-12-Q3",
+          "type": "single_choice",
+          "prompt": "Which option fits Sam’s day and price limit, if equipment is arranged correctly?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Thursday Wood Craft, because tools are included"
+            },
+            {
+              "id": "B",
+              "text": "Either class, because Sam is 12"
+            },
+            {
+              "id": "C",
+              "text": "Thursday Wood Craft, because it is shorter"
+            },
+            {
+              "id": "D",
+              "text": "Saturday Digital Photography, if Sam requests a camera in advance"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Only Photography runs Saturday morning within $5. Sam can borrow a camera free if requested 48 hours ahead. Next step: Check every constraint before recommending."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-12-Q4",
+          "type": "single_choice",
+          "prompt": "What must Sam do to use a borrowed camera?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Pay an extra $6 at the session"
+            },
+            {
+              "id": "B",
+              "text": "Request it at least 48 hours before the session"
+            },
+            {
+              "id": "C",
+              "text": "Bring a wood-craft toolkit"
+            },
+            {
+              "id": "D",
+              "text": "Attend on Thursday evening"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The notice requires a free camera loan request at least 48 hours before the photography session. Next step: Do not omit a condition printed in a notice."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-12-Q5",
+          "type": "single_choice",
+          "prompt": "Which comparison is directly supported by SOURCE A?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Wood Craft costs more but includes tools."
+            },
+            {
+              "id": "B",
+              "text": "Digital Photography has higher teacher ratings."
+            },
+            {
+              "id": "C",
+              "text": "Wood Craft meets on Saturday morning."
+            },
+            {
+              "id": "D",
+              "text": "Both workshops provide free cameras."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Wood Craft costs $6 and includes tools; Photography costs $4, and its camera may be borrowed only after advance request. No ratings are provided. Next step: Choose a comparison of facts, not assumed quality."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-12-Q6",
+          "type": "single_choice",
+          "prompt": "Why is Wood Craft unsuitable for Sam’s current constraints?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It requires every student to bring tools."
+            },
+            {
+              "id": "B",
+              "text": "It is only for adults over 18."
+            },
+            {
+              "id": "C",
+              "text": "It is on Thursday and costs more than Sam’s $5 limit."
+            },
+            {
+              "id": "D",
+              "text": "Its instructor is not available at the centre."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Wood Craft is Thursday 4–5 p.m. and costs $6; Sam can attend Saturday mornings only and has a $5 limit. Next step: State the exact constraints that fail."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — A good recommendation depends on a person’s real needs. Compare each option using the same criteria: day, price, duration and equipment. “Cheaper” does not automatically mean “better for everyone”; an option must match the learner’s actual schedule and budget.\n\nCORE-2 — INDEPENDENT MODEL — A public library offers a Friday board-game hour for $2 with games provided, and a Sunday drawing session for $3 where pencils are required. A learner free only on Sunday could choose drawing if they have pencils. This example is not an arts-workshop assessment.\n\nCORE-3 — Read SOURCE A as workshop facts and SOURCE B as Sam’s constraints. Keep “the option costs less” distinct from “the option meets Sam’s needs”. Do not invent places or ratings.\n\nCORE-4 — After submission, feedback may identify the evidence that supports the keyed answer and a specific next action. Explain the answer independently of option letter and shuffling; do not award a CEFR level from five or six practice answers."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — A public library offers a Friday board-game hour for $2 with games provided, and a Sunday drawing session for $3 where pencils are required. A learner free only on Sunday could choose drawing if they have pencils. This example is not an arts-workshop assessment.",
+        "TRANSFER STRATEGY — Read SOURCE A as workshop facts and SOURCE B as Sam’s constraints. Keep “the option costs less” distinct from “the option meets Sam’s needs”. Do not invent places or ratings."
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-A2-12",
+        "title": "Choose an Arts Workshop — Compare the Facts",
+        "body": "SOURCE A — Arts centre workshop notice\n\nWOOD CRAFT: Thursday, 4:00–5:00 p.m.; $6 per session; tools included; ages 11 and above.\nDIGITAL PHOTOGRAPHY: Saturday, 10:00–11:30 a.m.; $4 per session; bring a camera. A camera can be borrowed free if requested at least 48 hours before the session; ages 11 and above.\nThe notice does not rate the quality of either class. The centre does not offer the two classes at any other times.\n\nSOURCE B — Sam’s message\n\nI am 12. I can attend ONLY on Saturday mornings. I can spend no more than $5 per class, and I do not own a camera. I can contact the centre several days before a class if equipment can be borrowed. I would like to try a practical creative activity.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-A2-11",
+      "module": "writing",
+      "cefr_target": "A2",
+      "title": "Recommend the Right Workshop for Sam",
+      "estimated_minutes": 27,
+      "objectives": [
+        "Select relevant, source-supported criteria for a recommendation.",
+        "Compare two options without inventing quality claims.",
+        "Include the advance equipment condition and a useful next step."
+      ],
+      "activities": [
+        {
+          "id": "WRI-A2-11-Q1",
+          "type": "extended_response",
+          "prompt": "Write a 70–95 word reply to fictional Sam recommending an arts workshop. Compare the two options using exact days, prices and one duration fact. Explain why one fits Sam’s schedule and budget. Mention the camera-loan condition and give a practical next step. Do not invent course quality ratings, discounts or personal contact information.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted review. Your draft is not automatically given a Writing quality score or CEFR level. Word count helps with planning but is not a grade."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.idea_development",
+            "writing.organization",
+            "writing.cohesion",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-A2",
+          "review_mode": "assisted_ai_or_human",
+          "word_range_guidance": {
+            "min": 70,
+            "max": 95,
+            "not_a_quality_score": true
+          }
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — TOPIC: choosing an arts workshop. TASK: recommend the most suitable class for Sam. MUST INCLUDE: a choice, correct day/price and duration comparison, Sam’s constraints, camera borrowing requirement and next action. BOUNDARY: 70–95 words, helpful tone and source-only facts; do not claim that either teacher is better without evidence.\n\nCORE-2 — INDEPENDENT MODEL — A town library offers a free Saturday reading group, whereas a Monday bookbinding session costs $5 and requires scissors. Someone available on Saturday with no money for materials should choose the reading group; the choice follows access constraints, not a claim that reading is more enjoyable for everyone.\n\nCORE-3 — Outline choice → two evidence-backed comparisons → Sam-specific reason → equipment condition → next step. Check the 48-hour rule and distinguish more expensive from better.\n\nAssessed source material (read before drafting; reproduced verbatim from the paired Reading lesson):\nSOURCE A — Arts centre workshop notice\n\nWOOD CRAFT: Thursday, 4:00–5:00 p.m.; $6 per session; tools included; ages 11 and above.\nDIGITAL PHOTOGRAPHY: Saturday, 10:00–11:30 a.m.; $4 per session; bring a camera. A camera can be borrowed free if requested at least 48 hours before the session; ages 11 and above.\nThe notice does not rate the quality of either class. The centre does not offer the two classes at any other times.\n\nSOURCE B — Sam’s message\n\nI am 12. I can attend ONLY on Saturday mornings. I can spend no more than $5 per class, and I do not own a camera. I can contact the centre several days before a class if equipment can be borrowed. I would like to try a practical creative activity.\n\nCORE-4 — After trusted review, replace unsupported adjectives with verifiable criteria. No automatic Writing semantic or CEFR score."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — A town library offers a free Saturday reading group, whereas a Monday bookbinding session costs $5 and requires scissors. Someone available on Saturday with no money for materials should choose the reading group; the choice follows access constraints, not a claim that reading is more enjoyable for everyone.",
+        "TRANSFER STRATEGY — Outline choice → two evidence-backed comparisons → Sam-specific reason → equipment condition → next step. Check the 48-hour rule and distinguish more expensive from better."
+      ]
+    },
+    {
+      "id": "REA-B1-09",
+      "module": "reading",
+      "cefr_target": "B1",
+      "title": "Exhibition Morning — The Missing Labels",
+      "estimated_minutes": 29,
+      "objectives": [
+        "Reconstruct an earlier-than-past action from past perfect.",
+        "Connect background activity, later events and the final exhibition opening.",
+        "Distinguish what two witnesses recorded from an unsupported accusation."
+      ],
+      "activities": [
+        {
+          "id": "REA-B1-09-Q1",
+          "type": "single_choice",
+          "prompt": "What had Alex done before Saturday morning?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Printed the labels and left their envelope at home"
+            },
+            {
+              "id": "B",
+              "text": "Asked his sister to print new labels on Saturday"
+            },
+            {
+              "id": "C",
+              "text": "Opened the exhibition to visitors"
+            },
+            {
+              "id": "D",
+              "text": "Moved the labels into a new folder at the hall"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Alex printed the labels on Friday and left the envelope on his kitchen table before arriving on Saturday. Next step: Connect the earlier Friday actions with Saturday’s discovery."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-09-Q2",
+          "type": "single_choice",
+          "prompt": "What was Alex doing when his sister found the envelope?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Checking the Saturday guest list"
+            },
+            {
+              "id": "B",
+              "text": "Putting labels beside the displays"
+            },
+            {
+              "id": "C",
+              "text": "Calling his sister"
+            },
+            {
+              "id": "D",
+              "text": "Greeting the 9:00 visitors"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "SOURCE A says she found the envelope while Alex was calling her at 8:10. Next step: Look for the ongoing background action marked by “while”."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-09-Q3",
+          "type": "single_choice",
+          "prompt": "Which order best matches the diary?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Visitors arrived → sister delivered → labels were printed"
+            },
+            {
+              "id": "B",
+              "text": "Labels printed Friday → missing Saturday → sister delivered → visitors arrived"
+            },
+            {
+              "id": "C",
+              "text": "Sister delivered → labels printed → Alex arrived → visitors arrived"
+            },
+            {
+              "id": "D",
+              "text": "Labels missing → guests arrived → sister called → labels printed"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Friday printing came before Saturday’s discovery; the sister arrived at 8:45 and visitors at 9:00. Next step: Build the timeline before selecting a sequence."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-09-Q4",
+          "type": "single_choice",
+          "prompt": "What does “I had left the envelope at home” explain?",
+          "options": [
+            {
+              "id": "A",
+              "text": "That Alex had not printed anything on Friday"
+            },
+            {
+              "id": "B",
+              "text": "That the guests had already seen the missing labels"
+            },
+            {
+              "id": "C",
+              "text": "That his sister had taken the envelope on Friday"
+            },
+            {
+              "id": "D",
+              "text": "Why Alex could not find the printed labels when he arrived"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "The earlier action of leaving the envelope on the table explains the later discovery at the hall. Next step: Ask which earlier event caused the later problem."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-09-Q5",
+          "type": "single_choice",
+          "prompt": "Which conclusion would be unsupported by either source?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The exhibition opened at 9:00 a.m."
+            },
+            {
+              "id": "B",
+              "text": "Alex used to keep exhibition materials together."
+            },
+            {
+              "id": "C",
+              "text": "Visitors saw the missing labels and complained."
+            },
+            {
+              "id": "D",
+              "text": "Alex’s sister brought the envelope at 8:45."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Both sources confirm the labels were in place before visitors arrived; neither reports complaints or visitors seeing the problem. Next step: Separate an imagined consequence from a recorded fact."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-09-Q6",
+          "type": "single_choice",
+          "prompt": "Which statement correctly distinguishes Alex’s past habit from this year’s situation?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Alex used to keep materials together, but this year he separated the labels."
+            },
+            {
+              "id": "B",
+              "text": "Alex has never organised an exhibition before this year."
+            },
+            {
+              "id": "C",
+              "text": "Alex always stores labels at the community hall."
+            },
+            {
+              "id": "D",
+              "text": "Alex’s sister used to print every exhibition label."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Alex says he used to keep all materials in one folder, but this year the labels were separate. Other claims are not in the text. Next step: Check whose habit is described and whether it changed."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — A clear narrative distinguishes what had already happened, what someone was doing during another event, and what happened later. Past perfect helps explain why a discovery makes sense. Two written accounts may confirm an outcome without proving a person is to blame.\n\nCORE-2 — INDEPENDENT MODEL — Before a charity cycle ride, Mia had placed the water bottles in a bag. When volunteers arrived, she was fixing a sign, and the bottles were still inside her bag. The event began once the bottles had been unpacked. The model shows earlier preparation, ongoing action and resolution; it is NOT about exhibition labels.\n\nCORE-3 — Read SOURCE A as Alex’s first-person account and SOURCE B as a brief organiser record. Draw a Friday → Saturday timeline; check who did what before making any causal accusation.\n\nCORE-4 — After submission, feedback may identify the evidence that supports the keyed answer and a specific next action. Explain the answer independently of option letter and shuffling; do not award a CEFR level from five or six practice answers."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — Before a charity cycle ride, Mia had placed the water bottles in a bag. When volunteers arrived, she was fixing a sign, and the bottles were still inside her bag. The event began once the bottles had been unpacked. The model shows earlier preparation, ongoing action and resolution; it is NOT about exhibition labels.",
+        "TRANSFER STRATEGY — Read SOURCE A as Alex’s first-person account and SOURCE B as a brief organiser record. Draw a Friday → Saturday timeline; check who did what before making any causal accusation."
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-B1-09",
+        "title": "Exhibition Morning — The Missing Labels",
+        "body": "SOURCE A — Alex’s exhibition diary\n\nOn Friday afternoon, I printed the exhibition labels and put them in an envelope. That evening, I checked the guest list, but I left the envelope on the kitchen table.\nOn Saturday, I arrived at the community hall at 8:00 a.m. and discovered the labels were missing. I realised I had left the envelope at home. While I was calling my sister at 8:10, she found it on the kitchen table. She brought the envelope to the hall at 8:45. We put the labels beside the displays before visitors arrived at 9:00.\nWhen I was younger, I used to keep all exhibition materials in one folder. This year I had separated the labels from the other papers.\n\nSOURCE B — Organiser’s short report\n\nThe Saturday exhibition opened on time at 9:00 a.m. The labels were in place before the visitors came in. Alex printed the labels on Friday; his sister delivered the envelope on Saturday morning. The report does not say that Alex’s sister printed the labels or that visitors saw the temporary problem.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-B1-10",
+      "module": "writing",
+      "cefr_target": "B1",
+      "title": "Retell the Exhibition Problem Accurately",
+      "estimated_minutes": 31,
+      "objectives": [
+        "Reconstruct a coherent narrative with multiple time relationships.",
+        "Use earlier-past and background-time markers meaningfully.",
+        "Avoid inventing a complaint or blaming an unsupported person."
+      ],
+      "activities": [
+        {
+          "id": "WRI-B1-10-Q1",
+          "type": "extended_response",
+          "prompt": "Write 120–160 words for a fictional exhibition team explaining what happened to the labels. Include Friday preparation, the envelope left at home, Saturday discovery, the phone call and the sister’s delivery, and the opening outcome. Show the order using suitable past forms (including at least one earlier-past relation and one while/when clause). You may mention Alex’s changed habit. Do not invent visitor complaints, rewrite who printed the labels, or include real addresses.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted review. Your draft is not automatically given a Writing quality score or CEFR level. Word count helps with planning but is not a grade."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.idea_development",
+            "writing.organization",
+            "writing.cohesion",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-B1",
+          "review_mode": "assisted_ai_or_human",
+          "word_range_guidance": {
+            "min": 120,
+            "max": 160,
+            "not_a_quality_score": true
+          }
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — TOPIC: a community exhibition. TASK: give a reliable connected event account. MUST INCLUDE: Friday printing, earlier forgotten envelope, Saturday discovery, while-calling episode, 8:45 delivery and 9:00 opening. BOUNDARY: 120–160 words, clear chronological evidence with no unsupported consequences or personal data.\n\nCORE-2 — INDEPENDENT MODEL — For a charity bike ride, organisers had filled water bottles on Friday. On Saturday morning, a volunteer was checking signs when the bottles were found in a storage cupboard. The team delivered them before riders arrived. This shows earlier past and later resolution without providing wording about exhibition labels.\n\nCORE-3 — Plan four paragraphs or clear stages: prior preparation → problem discovered → explanation and response → outcome. Use past perfect only for truly earlier events; do not add a visitor reaction absent from both sources.\n\nAssessed source material (read before drafting; reproduced verbatim from the paired Reading lesson):\nSOURCE A — Alex’s exhibition diary\n\nOn Friday afternoon, I printed the exhibition labels and put them in an envelope. That evening, I checked the guest list, but I left the envelope on the kitchen table.\nOn Saturday, I arrived at the community hall at 8:00 a.m. and discovered the labels were missing. I realised I had left the envelope at home. While I was calling my sister at 8:10, she found it on the kitchen table. She brought the envelope to the hall at 8:45. We put the labels beside the displays before visitors arrived at 9:00.\nWhen I was younger, I used to keep all exhibition materials in one folder. This year I had separated the labels from the other papers.\n\nSOURCE B — Organiser’s short report\n\nThe Saturday exhibition opened on time at 9:00 a.m. The labels were in place before the visitors came in. Alex printed the labels on Friday; his sister delivered the envelope on Saturday morning. The report does not say that Alex’s sister printed the labels or that visitors saw the temporary problem.\n\nCORE-4 — After trusted review, highlight one misleading time relation or unsupported inference and improve a revised draft; original attempt and source version remain preserved."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — For a charity bike ride, organisers had filled water bottles on Friday. On Saturday morning, a volunteer was checking signs when the bottles were found in a storage cupboard. The team delivered them before riders arrived. This shows earlier past and later resolution without providing wording about exhibition labels.",
+        "TRANSFER STRATEGY — Plan four paragraphs or clear stages: prior preparation → problem discovered → explanation and response → outcome. Use past perfect only for truly earlier events; do not add a visitor reaction absent from both sources."
+      ]
+    },
+    {
+      "id": "REA-B1-10",
+      "module": "reading",
+      "cefr_target": "B1",
+      "title": "Courtyard Project — What Could the Council Do?",
+      "estimated_minutes": 29,
+      "objectives": [
+        "Separate a proposed possibility from an approved action.",
+        "Evaluate two options using budget, safety, time and purpose.",
+        "Identify the qualified next step without asserting uncertain outcomes as fact."
+      ],
+      "activities": [
+        {
+          "id": "REA-B1-10-Q1",
+          "type": "single_choice",
+          "prompt": "Which statement is already confirmed by the sources?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The shade sails have been installed."
+            },
+            {
+              "id": "B",
+              "text": "The council has a $120 maximum budget and will vote on Tuesday."
+            },
+            {
+              "id": "C",
+              "text": "The rainwater tank was approved yesterday."
+            },
+            {
+              "id": "D",
+              "text": "The caretaker has confirmed that both projects are safe."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "SOURCE A gives the $120 budget and SOURCE B schedules the vote for Tuesday. The other statements wrongly treat proposals as completed decisions. Next step: Label proposals and confirmed facts separately."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-10-Q2",
+          "type": "single_choice",
+          "prompt": "Which conditional recommendation is consistent with the two sources?",
+          "options": [
+            {
+              "id": "A",
+              "text": "If the council voted for the tank, it would give shade next Friday."
+            },
+            {
+              "id": "B",
+              "text": "If staff approved shade sails, they must already be installed."
+            },
+            {
+              "id": "C",
+              "text": "If students wished for shade, no safety check would be needed."
+            },
+            {
+              "id": "D",
+              "text": "If the council chose shade sails and safety approval came in time, they might help by Friday."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "The note permits a conditional possibility for shade sails if approval and conditions work, not a guaranteed result. Next step: Use if plus a realistic condition and qualified outcome."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-10-Q3",
+          "type": "single_choice",
+          "prompt": "Why is the rainwater tank not a direct answer to the immediate shade request?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It provides no shade and cannot be installed this week."
+            },
+            {
+              "id": "B",
+              "text": "It costs more than the $120 budget."
+            },
+            {
+              "id": "C",
+              "text": "It has already been removed from the site."
+            },
+            {
+              "id": "D",
+              "text": "Students have voted to cancel the reading sessions."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "SOURCE A says the tank does not give shade; SOURCE B says the installer cannot attend this week. Next step: Match an option to the actual stated need and time frame."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-10-Q4",
+          "type": "single_choice",
+          "prompt": "Which statement would go beyond the evidence?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The council has two proposals."
+            },
+            {
+              "id": "B",
+              "text": "Shade sails would cost $110."
+            },
+            {
+              "id": "C",
+              "text": "The courtyard shade project has definitely been approved and will work by Friday."
+            },
+            {
+              "id": "D",
+              "text": "The caretaker must confirm safety before purchase."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The vote has not occurred, safety is unconfirmed and Friday completion is only possible, not guaranteed. Next step: Watch for unjustified certainty such as “definitely”."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-10-Q5",
+          "type": "single_choice",
+          "prompt": "Which next step is most responsible before the council buys anything?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Spend the full budget before the vote."
+            },
+            {
+              "id": "B",
+              "text": "Ask the caretaker to check safety and confirm staff feasibility before deciding."
+            },
+            {
+              "id": "C",
+              "text": "Assume the rainwater tank will arrive tomorrow."
+            },
+            {
+              "id": "D",
+              "text": "Promise students that shade is guaranteed next Friday."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The decision note explicitly requires a safety check; feasibility must be assessed rather than promised before approval. Next step: Connect source limits to an actionable check."
+          },
+          "skill_tags": [
+            "reading.author_purpose"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-10-Q6",
+          "type": "single_choice",
+          "prompt": "Which statement fairly compares the two purposes?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Both choices provide guaranteed shade by next Friday."
+            },
+            {
+              "id": "B",
+              "text": "The rainwater tank costs less and gives instant shade."
+            },
+            {
+              "id": "C",
+              "text": "Neither project could ever help the school."
+            },
+            {
+              "id": "D",
+              "text": "Shade sails target the nearer reading-seat need; the tank might help garden watering later."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Only the sails may address shade soon, conditionally. The tank might help watering later but has no immediate shade benefit. Next step: Compare timing and goals without declaring one option universally better."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — Responsible advice uses facts, conditions and uncertainty correctly. A choice that might help is not the same as a choice the council has already approved. When several needs compete, a clear proposal states which need comes first, what conditions must be met and what still needs checking.\n\nCORE-2 — INDEPENDENT MODEL — A community club could buy extra bike racks for $80 or a new notice board for $50. If the club chose the racks, it might reduce clutter, but nobody has measured the number of bicycles yet. The responsible next step is to count bicycles and check safety before promising a result. This demonstration is NOT about the courtyard projects.\n\nCORE-3 — Read the proposed projects in SOURCE A and the decision note in SOURCE B. Mark FACT, POSSIBILITY, CONDITION and UNDECIDED; avoid claiming a vote or a safe installation has already happened.\n\nCORE-4 — After submission, feedback may identify the evidence that supports the keyed answer and a specific next action. Explain the answer independently of option letter and shuffling; do not award a CEFR level from five or six practice answers."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — A community club could buy extra bike racks for $80 or a new notice board for $50. If the club chose the racks, it might reduce clutter, but nobody has measured the number of bicycles yet. The responsible next step is to count bicycles and check safety before promising a result. This demonstration is NOT about the courtyard projects.",
+        "TRANSFER STRATEGY — Read the proposed projects in SOURCE A and the decision note in SOURCE B. Mark FACT, POSSIBILITY, CONDITION and UNDECIDED; avoid claiming a vote or a safe installation has already happened."
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-B1-10",
+        "title": "Courtyard Project — What Could the Council Do?",
+        "body": "SOURCE A — Student council project options\n\nThe school council has a maximum budget of $120 for ONE courtyard project this term.\nOPTION A — Portable shade sails: $110. School staff estimate installation could take two days AFTER safety approval. They may offer shade near outdoor reading seats, but installation depends on weather and staff availability.\nOPTION B — Small rainwater tank: $115. It might support garden watering in dry weeks. A licensed installer is required and cannot attend until next month. The tank does NOT provide shade.\nOutdoor reading sessions begin next Friday. Some students have requested shade for those sessions. Garden volunteers also say watering is difficult in dry months.\n\nSOURCE B — Chair’s decision note\n\nThe council will vote on Tuesday. No project has been approved yet. Before buying either option, the caretaker must confirm that the proposed site and equipment are safe. If staff approved the shade sails and conditions were suitable, installation might finish in time for Friday, but there is no guarantee. The tank cannot be installed this week and would not solve the immediate shade problem.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-B1-11",
+      "module": "writing",
+      "cefr_target": "B1",
+      "title": "Write a Responsible Council Recommendation",
+      "estimated_minutes": 32,
+      "objectives": [
+        "Make a balanced recommendation with two verifiable project details.",
+        "Use a hypothetical if-clause and appropriate uncertainty language.",
+        "Propose a practical safety/feasibility check before a decision."
+      ],
+      "activities": [
+        {
+          "id": "WRI-B1-11-Q1",
+          "type": "extended_response",
+          "prompt": "Write 120–160 words to a fictional school council before its Tuesday vote. Recommend which courtyard project should be prioritised for the next-Friday reading sessions, compare the other project fairly, and include the exact budget, prices and timing constraints. Write at least one cautious if-clause, explain why a result cannot yet be guaranteed, and propose a safety/feasibility next step. Do not claim that a vote, installation or caretaker approval has already happened.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted review. Your draft is not automatically given a Writing quality score or CEFR level. Word count helps with planning but is not a grade."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.idea_development",
+            "writing.organization",
+            "writing.cohesion",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-B1",
+          "review_mode": "assisted_ai_or_human",
+          "word_range_guidance": {
+            "min": 120,
+            "max": 160,
+            "not_a_quality_score": true
+          }
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — TOPIC: the student council’s courtyard project. TASK: propose a responsible choice for next Friday. MUST INCLUDE: a reasoned position, correct budget and project amounts, a fair other-option comparison, an if-clause, explicit uncertainty and a safety check. BOUNDARY: 120–160 words; no invented votes, guaranteed outcomes, additional funding or personal identifiers.\n\nCORE-2 — INDEPENDENT MODEL — A youth club could spend $70 on a bike rack or $40 on extra chairs. If the club chose the bike rack, the entrance might become tidier, but the club has not counted how many bikes arrive. A responsible memo would request a bike count and a safety check before purchasing. No courtyard price or shade fact is used in this example.\n\nCORE-3 — Claim → precise need → comparison with evidence → hypothetical condition and limitation → safety/feasibility next step. Keep “might help” distinct from “has been approved”.\n\nAssessed source material (read before drafting; reproduced verbatim from the paired Reading lesson):\nSOURCE A — Student council project options\n\nThe school council has a maximum budget of $120 for ONE courtyard project this term.\nOPTION A — Portable shade sails: $110. School staff estimate installation could take two days AFTER safety approval. They may offer shade near outdoor reading seats, but installation depends on weather and staff availability.\nOPTION B — Small rainwater tank: $115. It might support garden watering in dry weeks. A licensed installer is required and cannot attend until next month. The tank does NOT provide shade.\nOutdoor reading sessions begin next Friday. Some students have requested shade for those sessions. Garden volunteers also say watering is difficult in dry months.\n\nSOURCE B — Chair’s decision note\n\nThe council will vote on Tuesday. No project has been approved yet. Before buying either option, the caretaker must confirm that the proposed site and equipment are safe. If staff approved the shade sails and conditions were suitable, installation might finish in time for Friday, but there is no guarantee. The tank cannot be installed this week and would not solve the immediate shade problem.\n\nCORE-4 — After trusted feedback, revise one unsupported claim or unclear if-clause without deleting original attempts or treating a word count as a proficiency score."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — A youth club could spend $70 on a bike rack or $40 on extra chairs. If the club chose the bike rack, the entrance might become tidier, but the club has not counted how many bikes arrive. A responsible memo would request a bike count and a safety check before purchasing. No courtyard price or shade fact is used in this example.",
+        "TRANSFER STRATEGY — Claim → precise need → comparison with evidence → hypothetical condition and limitation → safety/feasibility next step. Keep “might help” distinct from “has been approved”."
+      ]
+    }
+  ]
+}
