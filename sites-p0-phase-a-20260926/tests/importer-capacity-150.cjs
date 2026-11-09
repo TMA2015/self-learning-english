@@ -64,7 +64,9 @@ const {validateSeed,mapSeed,MAX_CURRICULUM_LESSONS}=require('../.sites-runtime/c
 const {validateContent}=require('../.sites-runtime/capacity-150-js/domain/content-model.js');
 const {academicService}=require('../.sites-runtime/capacity-150-js/application/academic-service.js');
 
-assert.equal(MAX_CURRICULUM_LESSONS,150);
+// This legacy regression still imports exactly 150 lessons; the separate
+// capacity preflight exercises 151, 200, 250 and rejects 251.
+assert.equal(MAX_CURRICULUM_LESSONS,250,'Bounded importer cap must be 250 on this QA branch');
 assert.deepEqual(validateSeed(candidate),[]);
 assert.deepEqual(validateContent(mapSeed(candidate)),[]);
 
