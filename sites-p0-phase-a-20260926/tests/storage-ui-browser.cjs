@@ -60,8 +60,25 @@ const root=path.resolve(__dirname,'..');
  try{
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
   const host='http://127.0.0.1:'+server.address().port;
-  const first=await open(host+'/?phase=backup');
-  const second=await open(host+'/?phase=recovery');
+  // Native --dump-dom can occasionally capture the STARTED shell before
+  // React's async file verification finishes. Retry *only* incomplete DOM
+  // snapshots; never retry an actual FAIL_* result, an exit error, or a timeout.
+  // Each run exits Chrome naturally, ensuring the same temporary on-disk
+  // browser profile is retained between backup and recovery phases.
+  async function openWithIncompleteSnapshotRetry(url,phase){
+   for(let attempt=1;attempt<=3;attempt++){
+    try{return await open(url)}
+    catch(e){
+     const reason=String(e);
+     if(attempt===3||!reason.includes('React UI browser FAIL: STARTED'))throw e;
+     console.log(JSON.stringify({gate:'storage-react-panel-chromium',
+      phase,nonTerminalDomSnapshot:true,retry:attempt,maxAttempts:3}));
+    }
+   }
+   throw Error('Storage UI never reached a terminal browser result');
+  }
+  const first=await openWithIncompleteSnapshotRetry(host+'/?phase=backup','backup');
+  const second=await openWithIncompleteSnapshotRetry(host+'/?phase=recovery','recovery');
   assert.match(first,/^PASS_BACKUP_PANEL/);
   assert.match(second,/^PASS_RESTORE_PANEL/);
   console.log(JSON.stringify({result:'PASS',gate:'storage-react-panel-chromium',

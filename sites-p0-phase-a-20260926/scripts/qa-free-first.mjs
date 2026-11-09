@@ -99,6 +99,7 @@ const fullRegressionTests=[
   "listening-submit-feedback.cjs",
   "listening-writing-density-wave2-draft.cjs",
   "ux-v20-lesson-navigation.cjs",
+  "browser-navigation-issue119.cjs",
   "v20-route-draft-safety.cjs",
   "vocab-reading-b1-density-wave1-draft.cjs",
   "writing-nav-save-feedback.cjs",
