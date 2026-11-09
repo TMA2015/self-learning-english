@@ -52,20 +52,22 @@ for(const [taskId,m] of Object.entries(diagnosticManifest)){
 const baseline=require('../content/curriculum-1.18.0-candidate.json');
 const stage3=require('../content/curriculum-1.18.1-candidate.json');
 const archived1200=require('../content/curriculum-1.20.0-candidate.json');
-const active=require('../content/curriculum-1.24.0-candidate.json');
+const active=require('../content/curriculum-1.25.0-candidate.json');
 assert.equal(archived1200.lessons.length,123);
 assert.deepEqual(active.lessons.slice(0,123),archived1200.lessons,'All 123 prior lessons unchanged');
 assert.equal(baseline.schema_version,'1.18.0');
 assert.equal(stage3.schema_version,'1.18.1');
 assert.equal(stage3.lessons.length,109);
-assert.equal(active.schema_version,'1.24.0');
-assert.equal(active.lessons.length,142);
-assert.equal(active.lessons.flatMap(l=>l.activities).length,1085);
-const source1230=require('../content/curriculum-1.23.0-candidate.json');
-assert.deepEqual(active.lessons.slice(0,138),source1230.lessons,'Old 138 lessons must remain immutable');
+assert.equal(active.schema_version,'1.25.0');
+assert.equal(active.lessons.length,154);
+assert.equal(active.lessons.flatMap(l=>l.activities).length,1125);
+const source1240=require('../content/curriculum-1.24.0-candidate.json');
+assert.deepEqual(active.lessons.slice(0,142),source1240.lessons,'All 142 previously released lessons must remain immutable');
+assert.deepEqual(active.course.sequence.slice(0,142),source1240.course.sequence,'Historical course order must not move');
+assert.deepEqual(active.rubrics,source1240.rubrics,'Historical rubrics must remain immutable');
 const runtimeSource=fs.readFileSync(path.join(root,'infrastructure','browser','local-runtime.ts'),'utf8');
-assert(runtimeSource.includes("import curriculum1240 from '../../content/curriculum-1.24.0-candidate.json'"),
-  'Static browser runtime must bundle the reviewed v1.24.0 curriculum');
+assert(runtimeSource.includes("import curriculum1250 from '../../content/curriculum-1.25.0-candidate.json'"),
+  'Static browser runtime must bundle the reviewed v1.25.0 curriculum');
 const raw=fs.readFileSync(path.join(root,'content/curriculum-1.15.0-candidate.json'));const canonical=v=>Array.isArray(v)?v.map(canonical):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,canonical(v[k])])):v;const sha=v=>crypto.createHash('sha256').update(v).digest('hex');assert.equal(sha(raw),'981a7273a9158c9e53a0e3336de1a88892024f617330d797d534f9e293dc4426');assert.equal(sha(JSON.stringify(canonical(JSON.parse(raw)))),'66663bb61cf60b266d25e8abd890e81ad27398d3ebee9b7cd5cd211de878b1e8');
 const html=fs.readFileSync(path.join(out,'index.html'),'utf8');
 assert(!html.includes('/self-learning-english/self-learning-english/'),'Firebase build must not duplicate a GitHub Pages base path');
@@ -111,6 +113,12 @@ assert(builtJS.some(file=>{const t=fs.readFileSync(file,'utf8');return t.include
  'Firebase built JavaScript must include reviewed B1-U02 Reading content');
 assert(builtJS.some(file=>{const t=fs.readFileSync(file,'utf8');return t.includes('Sports Day Snack Table')&&t.includes('Harbour Market');}),
  'Firebase built JS must contain new reviewed F2 A1/A2 Reading lessons');
+assert(builtJS.some(file=>{const t=fs.readFileSync(file,'utf8');return t.includes('Brook Town')&&t.includes('New School Timetable');}),
+ 'Firebase built JS must contain reviewed A1-U03/A1-U06 v1.25.0 reading');
+assert(builtJS.some(file=>{const t=fs.readFileSync(file,'utf8');return t.includes('Garden Open Day')&&t.includes('Arts Workshop');}),
+ 'Firebase built JS must contain reviewed A2-U02/A2-U04 v1.25.0 reading');
+assert(builtJS.some(file=>{const t=fs.readFileSync(file,'utf8');return t.includes('Exhibition Morning')&&t.includes('Courtyard Project');}),
+ 'Firebase built JS must contain reviewed B1-U01/B1-U05 v1.25.0 reading');
 const allowedPublicFirebaseWebApiKeys=new Set([
   'AIzaSyAnCa-t04dmwFHLARYN77o866tomq4RUBg',
 ]);
