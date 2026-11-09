@@ -39,20 +39,20 @@ jobs:
           const assert=require('node:assert/strict'),fs=require('node:fs');
           const cfg=JSON.parse(fs.readFileSync('firebase.json','utf8'));
           const rc=JSON.parse(fs.readFileSync('.firebaserc','utf8'));
-          const candidate=require('./content/curriculum-1.22.0-candidate.json');
-          const baseline=require('./content/curriculum-1.21.0-candidate.json');
-          assert.equal(candidate.schema_version,'1.22.0');
-          assert.equal(baseline.schema_version,'1.21.0');
-          assert.equal(baseline.lessons.length,132);
-          assert.deepEqual(candidate.lessons.slice(0,132),baseline.lessons,'Historical lessons must remain unchanged');
-          assert.equal(candidate.lessons.length,136);
-          assert.equal(candidate.lessons.reduce((s,l)=>s+l.activities.length,0),1066);
+          const candidate=require('./content/curriculum-1.23.0-candidate.json');
+          const baseline=require('./content/curriculum-1.22.0-candidate.json');
+          assert.equal(candidate.schema_version,'1.23.0');
+          assert.equal(baseline.schema_version,'1.22.0');
+          assert.equal(baseline.lessons.length,136);
+          assert.deepEqual(candidate.lessons.slice(0,136),baseline.lessons,'Historical lessons must remain unchanged');
+          assert.equal(candidate.lessons.length,138);
+          assert.equal(candidate.lessons.reduce((s,l)=>s+l.activities.length,0),1072);
           assert.equal(cfg.hosting.target,'english');
           assert.equal(cfg.hosting.public,'dist/client');
           assert.equal(rc.projects.default,'roadmap-toan-ai');
           assert.deepEqual(rc.targets['roadmap-toan-ai'].hosting.english,['g-learning-english']);
           assert(fs.existsSync('docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md'));
-          console.log('ENGLISH_RELEASE_SCOPE_PASS: v1.22.0 / English only');
+          console.log('ENGLISH_RELEASE_SCOPE_PASS: v1.23.0 / English only');
           NODE
           node ../scripts/verify-actions-policy.cjs
           node tests/nov-2026-content-preflight.cjs
