@@ -1,4 +1,4 @@
-import curriculum1230 from '../../content/curriculum-1.23.0-candidate.json';
+import curriculum1240 from '../../content/curriculum-1.24.0-candidate.json';
 import {academicService,sourceDigest} from '../../application/academic-service';
 import {learningService} from '../../application/learning-service';
 import {mapSeed,validateSeed,compareVersions,type Seed} from '../../domain/academic';
@@ -49,7 +49,7 @@ async function ensureCurriculum(){
   // ensures this version is available locally; no downloaded JSON or Recovery
   // import is required. Existing lesson attempts stay pinned to their original
   // source versions and this code never deletes learner storage.
-  const source=curriculum1230 as unknown as Seed;
+  const source=curriculum1240 as unknown as Seed;
   const errors=validateSeed(source);
   if(errors.length)throw new Error('Bundled curriculum is invalid: '+errors.join(' '));
   const available=await academic.packages();
