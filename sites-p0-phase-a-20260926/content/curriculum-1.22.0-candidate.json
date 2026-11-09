@@ -5,7 +5,7 @@
   "language": "en",
   "support_language": "vi",
   "content_note": "Newly authored instructional content. Does not reproduce copyrighted textbook exercises. CEFR tags are curricular targets, not certified difficulty calibrations.",
-  "status": "academic_item_pass_f2_a1u05_a2u03_technical_draft_no_release",
+  "status": "academic_item_pass_tech_qa_verified_owner_release_approved",
   "import_contract": {
     "idempotency_key": "package_id + schema_version",
     "on_collision": "never_overwrite_user_data; update_seed_content_only_if_matching_content_id_and_explicit_admin_confirmation",
