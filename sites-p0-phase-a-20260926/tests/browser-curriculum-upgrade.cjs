@@ -64,5 +64,5 @@ class MemoryStorage{
  assert.equal((await again.academic.attempts(runtime.LOCAL_OWNER_ID)).find(a=>a.id===historical1180.id).version,'1.18.0');
  assert.deepEqual((await again.academic.attempts(runtime.LOCAL_OWNER_ID)).filter(a=>oldAttempts.some(o=>o.id===a.id)),oldAttempts);
  await assert.rejects(()=>again.academic.addPackage({...pkg,digest:'conflict'}),/Immutable/);
- console.log('PASS: immutable 1.11 -> 1.18.0 -> 1.21.0 auto upgrade; 132/1066, historical draft/results/Reading notes preserved; one package key write; reload idempotent; course/state/evidence unchanged.');
+ console.log('PASS: immutable 1.11 -> 1.18.0 -> 1.22.0 auto upgrade; 136/1066, historical draft/results/Reading notes preserved; one package key write; reload idempotent; course/state/evidence unchanged.');
 })().catch(e=>{console.error(e);process.exitCode=1});
