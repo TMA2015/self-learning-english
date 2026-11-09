@@ -1,4 +1,4 @@
-import curriculum1210 from '../../content/curriculum-1.21.0-candidate.json';
+import curriculum1220 from '../../content/curriculum-1.22.0-candidate.json';
 import {academicService,sourceDigest} from '../../application/academic-service';
 import {learningService} from '../../application/learning-service';
 import {mapSeed,validateSeed,compareVersions,type Seed} from '../../domain/academic';
@@ -9,7 +9,7 @@ import {BrowserLocalAcademicRepository,BrowserLocalCourseSelectionRepository,Bro
 export const LOCAL_OWNER_ID='local-family';
 export const LOCAL_LEARNER_ID='primary';
 // Bundled candidate metadata only; not a production deployment timestamp.
-const CURRICULUM_IMPORTED_AT=Date.parse('2026-11-08T00:00:00.000Z');
+const CURRICULUM_IMPORTED_AT=Date.parse('2026-11-09T00:00:00.000Z');
 let curriculumWarning:string|undefined;
 
 let cached:{
@@ -49,7 +49,7 @@ async function ensureCurriculum(){
   // ensures this version is available locally; no downloaded JSON or Recovery
   // import is required. Existing lesson attempts stay pinned to their original
   // source versions and this code never deletes learner storage.
-  const source=curriculum1210 as unknown as Seed;
+  const source=curriculum1220 as unknown as Seed;
   const errors=validateSeed(source);
   if(errors.length)throw new Error('Bundled curriculum is invalid: '+errors.join(' '));
   const available=await academic.packages();
