@@ -59,7 +59,7 @@ assert.deepEqual(w.skill_tags,[
  'writing.task_understanding','writing.idea_development','writing.organization',
  'writing.cohesion','writing.vocabulary'
 ]);
-assert(w.prompt.includes('September/October')&&w.prompt.includes('do not prove causation'));
+assert(w.prompt.includes('September/October')&&w.prompt.includes('does not prove causation'));
 assert(wr.examples.some(s=>s.includes('sports club')),'Independent Writing worked model');
 const compiled='.sites-runtime/b1u02-v123-test';
 fs.mkdirSync(path.join(root,'.sites-runtime'),{recursive:true});
