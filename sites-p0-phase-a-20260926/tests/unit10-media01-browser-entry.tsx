@@ -106,7 +106,7 @@ async function run(){
  root.render(React.createElement(FoundationDemo,{skill:'listening'}));
  await wait(()=>lessonButton(ids[0]),'real listening catalog for candidate');
  const runtime=await localAcademicRuntime();
- assert((await runtime.service.catalog()).version==='1.23.0','Actual browser AcademicService must serve latest v1.23 while preserving the reviewed Unit10 lessons');
+ assert((await runtime.service.catalog()).version==='1.24.0','Actual browser AcademicService must serve latest v1.24 while preserving the reviewed Unit10 lessons');
  const summary:{id:string,played:boolean,answered:boolean,submitted:boolean,retake:boolean}[]=[];
  for(const id of ids){
   await openLesson(id);
