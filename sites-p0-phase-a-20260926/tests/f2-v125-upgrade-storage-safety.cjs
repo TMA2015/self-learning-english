@@ -125,7 +125,7 @@ class Storage{
  assert.equal((await repo.attempts(owner)).filter(a=>a.status==='scored').length,52);
  assert.equal((await repo.attempts(owner)).filter(a=>a.status==='started').length,21);
  console.log(JSON.stringify({
-  result:'PASS',gate:'F2_A1U08_A2U07_V123_TO_V125_LOCALSTORAGE_SAFETY',
+  result:'PASS',gate:'F2_BULK12_V124_TO_V125_LOCALSTORAGE_SAFETY',
   preview:preview.counts,immutableHistoricalAttemptCount:73,
   scoredPreserved:52,draftsPreserved:21,originalWritingPreserved:true,
   lowQuotaFailClosed:true,storageDeletionCount:0,
