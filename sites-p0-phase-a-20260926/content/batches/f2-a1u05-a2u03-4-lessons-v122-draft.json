@@ -1,0 +1,471 @@
+{
+  "packet_id": "SLE-F2-A1U05-A2U03-AUTHORED-CONTENT-20261109-R2",
+  "source_review": "NotebookLM owner-supplied independent R2 authored-content item-level verdict PASS 2026-11-09",
+  "review_scope": "AUTHORED_CONTENT_ITEM_LEVEL",
+  "reconciled_corrections": [
+    "COR-01",
+    "COR-02",
+    "COR-03",
+    "COR-04"
+  ],
+  "baseline_version": "1.21.0",
+  "proposed_version": "1.22.0",
+  "production": "NO_GO_PENDING_TECHNICAL_QA_STORAGE_SAFARI_OWNER_RELEASE",
+  "units": {
+    "A1-U05": [
+      "REA-A1-06",
+      "WRI-A1-06"
+    ],
+    "A2-U03": [
+      "REA-A2-09",
+      "WRI-A2-08"
+    ]
+  },
+  "lessons": [
+    {
+      "id": "REA-A1-06",
+      "module": "reading",
+      "cefr_target": "A1",
+      "title": "Sports Day Snack Table — read a menu",
+      "estimated_minutes": 20,
+      "objectives": [
+        "Read a short written menu to find each item, price and quantity.",
+        "Use a/an and plurals to distinguish one item from several.",
+        "Match an affordable choice and a polite request to exact menu lines without mistaking a menu-line price for a price per item."
+      ],
+      "explanation": {
+        "en": "Goal and context: Read the whole line of a school snack menu, including the food name, quantity and printed price. Each price belongs to the complete printed line, not to an imagined single item. The word a or an refers to one countable item; two bananas refers to two. For a small budget, find the two listed prices before making one simple addition. Recognise the request Can I have ... please? but this Reading exercise is not a Speaking assessment. Read the different worked example first, then use only the independent Sports Day menu for the four objective questions. After feedback, check the exact line that supports your choice.",
+        "vi": "Đọc cả tên món, số lượng và giá của dòng menu. Một dòng hai quả chuối có giá cho cả hai; bài chỉ yêu cầu một phép cộng đơn giản. Đây là bài luyện đọc, không phải kiểm tra năng lực nói hay chứng nhận CEFR."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — Museum kiosk: a muffin — $6; a juice — $7. Ken has $7. The juice costs $7, so he can buy the juice.",
+        "THINKING — Read the item and price together; do not guess from a picture. The model foods and prices are different from the assessed Sports Day menu."
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-A1-06",
+        "title": "Sports Day Snack Table — Saturday",
+        "body": "Sports Day Snack Table — Saturday\n\na pear — $2\nan egg wrap — $3\ntwo bananas — $4 (price for both bananas together)\na yogurt — $1\n\nAll prices are for the full menu line. Students can choose one line or more. Please ask politely at the table.",
+        "display_to_learner": true
+      },
+      "activities": [
+        {
+          "id": "REA-A1-06-Q1",
+          "type": "single_choice",
+          "prompt": "Which item costs $3?",
+          "options": [
+            {
+              "id": "A",
+              "text": "a pear"
+            },
+            {
+              "id": "B",
+              "text": "an egg wrap"
+            },
+            {
+              "id": "C",
+              "text": "two bananas"
+            },
+            {
+              "id": "D",
+              "text": "a yogurt"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The line an egg wrap — $3 gives the item and price. A pear is $2, two bananas together are $4, and a yogurt is $1. Next step: Find the price beside the named item before choosing."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-06-Q2",
+          "type": "single_choice",
+          "prompt": "Which menu line names more than one item?",
+          "options": [
+            {
+              "id": "A",
+              "text": "a pear"
+            },
+            {
+              "id": "B",
+              "text": "an egg wrap"
+            },
+            {
+              "id": "C",
+              "text": "two bananas"
+            },
+            {
+              "id": "D",
+              "text": "a yogurt"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Two bananas names two items; the other lines use a/an for one. The $4 price covers both bananas. Next step: Underline a, an or two before interpreting quantity."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-06-Q3",
+          "type": "single_choice",
+          "prompt": "Lea has $5. She wants a pear and an egg wrap. What does the menu show?",
+          "options": [
+            {
+              "id": "A",
+              "text": "She can buy both; together they cost exactly $5."
+            },
+            {
+              "id": "B",
+              "text": "She can buy both; together they cost $3."
+            },
+            {
+              "id": "C",
+              "text": "She needs $6 to buy both."
+            },
+            {
+              "id": "D",
+              "text": "Neither item is on the menu."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The text lists a pear — $2 and an egg wrap — $3; $2 + $3 = $5. Next step: First locate both prices, then add only those two amounts."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-06-Q4",
+          "type": "single_choice",
+          "prompt": "Lea wants exactly the $4 menu entry. Which polite request matches that entry?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Can I have a pear and a yogurt, please?"
+            },
+            {
+              "id": "B",
+              "text": "Can I have two bananas, please?"
+            },
+            {
+              "id": "C",
+              "text": "Can I have an egg wrap, please?"
+            },
+            {
+              "id": "D",
+              "text": "Can I have one banana, please?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The only complete $4 line is two bananas. A requests two different lines costing $3 in total, C requests the $3 line, and D asks for one banana rather than the line priced for two. Next step: Match both item and quantity to the printed menu."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "WRI-A1-06",
+      "module": "writing",
+      "cefr_target": "A1",
+      "title": "Write a polite Sports Day snack request",
+      "estimated_minutes": 20,
+      "objectives": [
+        "Analyse a short request using Topic, Task, Must Include and Boundary.",
+        "Plan and draft a polite snack message with accurate quantities and a friendly thanks.",
+        "Self-check the draft before seeking trusted review, without treating length as a score."
+      ],
+      "explanation": {
+        "en": "Topic: a fictional Sports Day snack table. Task: ask a helper politely for one or two menu items. Must include an item, the correct quantity, a courteous request and a friendly thanks. Boundary: about 25–40 words with no real names, addresses or contact details. Brainstorm the items and quantities from the menu in REA-A1-06; outline the greeting, request and thanks; draft and self-check. The independent museum map example below is not a model answer to this assessment. Your original Writing answer remains pending trusted review and has zero automatic semantic or CEFR assessment weight.",
+        "vi": "Bài viết cần xác định chủ đề, nhiệm vụ, các ý phải có và giới hạn. Không nhập dữ liệu cá nhân thật. Bản nháp được lưu để chờ người có thẩm quyền đánh giá, không tự động chấm trình độ."
+      },
+      "examples": [
+        "DIFFERENT TASK — Write a polite request to borrow a map during a museum visit, not to request snacks.",
+        "INDEPENDENT MODEL — Hello! Could I borrow one map for the museum visit, please? I will bring it back this afternoon. Thank you for your help.",
+        "SELF-CHECK — Does your real snack request name the item, correct quantity, polite question and thanks? Do not copy the museum request as the snack-table answer."
+      ],
+      "activities": [
+        {
+          "id": "WRI-A1-06-Q1",
+          "type": "extended_response",
+          "prompt": "Write 25–40 words to a fictional helper at the Sports Day Snack Table. Ask politely for items shown on the menu, state the quantities and thank the helper. Do not use real personal details.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted review. No automatic Writing-quality or CEFR score."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-A1",
+          "word_range_guidance": {
+            "min": 25,
+            "max": 40,
+            "not_a_quality_score": true
+          },
+          "review_mode": "assisted_ai_or_human"
+        }
+      ]
+    },
+    {
+      "id": "REA-A2-09",
+      "module": "reading",
+      "cefr_target": "A2",
+      "title": "Club Picnic Order — check two sources",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Compare a printed receipt and a customer message to find a quantity discrepancy.",
+        "Distinguish billed, ordered and received quantities without inferring missing delivery details.",
+        "Understand quantifiers in context and select a precise, polite correction."
+      ],
+      "explanation": {
+        "en": "Goal and context: Read two different written sources before deciding whether a club's picnic order is billed correctly. Start with the receipt: identify the quantity, price per pack, line total and grand total. Then read the customer's message: identify what was ordered and received, and which facts are not confirmed. The words some, any, much and how many matter in their complete sentences. Correct only the line that both sources show is wrong. The independent arts-shop worked example concerns a book size, not the picnic quantities, so it does not provide any assessed answer. This is Reading practice, not a real financial transaction or CEFR certification.",
+        "vi": "Đối chiếu hóa đơn và tin nhắn khách hàng để phát hiện sai lệch về số lượng. Chỉ sửa dòng đã được cả hai nguồn xác nhận; không suy đoán tình trạng giao hàng mà văn bản chưa nói rõ."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — Arts shop receipt: one A5 sketchbook — $10. Customer message: I asked for an A4 sketchbook. I received an A5 one. Could you check the size, please?",
+        "THINKING — Both sources mention one sketchbook. The mismatch is A4 versus A5 size, not the quantity or price. This unrelated example must not supply the answer to the assessed Harbour Market receipt."
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-A2-09",
+        "title": "Harbour Market — Club Picnic Receipt and Customer Message",
+        "body": "SOURCE 1 — HARBOUR MARKET: CLUB PICNIC RECEIPT\n\n1 carton of juice — $4 each — $4\n2 bags of rice — $3 each — $6\n3 packs of paper cups — $2 each — $6\nTOTAL PAID: $16\n\nSOURCE 2 — CUSTOMER MESSAGE\n\nHello. I ordered two packs of paper cups, and I received two, but my receipt lists three. We have some rice for the picnic, but we don't have any spare cup packs. We don't need much more juice. Could you check how many cup packs you charged us for, please? I think the total should be lower. Thank you.",
+        "display_to_learner": true
+      },
+      "activities": [
+        {
+          "id": "REA-A2-09-Q1",
+          "type": "single_choice",
+          "prompt": "What is the disagreement between the receipt and the customer's message?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The receipt lists three cup packs, but the customer ordered and received two."
+            },
+            {
+              "id": "B",
+              "text": "The receipt lists no juice, but the customer ordered juice."
+            },
+            {
+              "id": "C",
+              "text": "The customer received three bags of rice instead of two."
+            },
+            {
+              "id": "D",
+              "text": "The customer did not receive any paper cups."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Source 1 bills three cup packs; Source 2 says two were ordered and received. The other choices do not match both sources. Next step: Underline the quantity in each source before answering."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-09-Q2",
+          "type": "single_choice",
+          "prompt": "Which detail CANNOT be confirmed from the receipt and the customer message?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Whether the customer received two paper-cup packs."
+            },
+            {
+              "id": "B",
+              "text": "Whether the two bags of rice on the receipt were actually delivered."
+            },
+            {
+              "id": "C",
+              "text": "How many paper-cup packs appear on the receipt."
+            },
+            {
+              "id": "D",
+              "text": "The total amount printed on the receipt."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The receipt records two billed rice bags, but the message never says whether they were delivered. The customer confirms receiving two cup packs, and the receipt explicitly shows three packs and $16 total. Next step: Distinguish a purchase record from actual confirmation of delivery."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-09-Q3",
+          "type": "single_choice",
+          "prompt": "If the shop changes only the paper-cup quantity from three packs to two, what should the corrected total be?",
+          "options": [
+            {
+              "id": "A",
+              "text": "$12"
+            },
+            {
+              "id": "B",
+              "text": "$14"
+            },
+            {
+              "id": "C",
+              "text": "$16"
+            },
+            {
+              "id": "D",
+              "text": "$18"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Two packs cost $2 each, so the corrected cup charge is $4 instead of $6. Keeping juice $4 and rice $6 gives $4 + $6 + $4 = $14. Next step: Correct only the disputed line, not every receipt item."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-09-Q4",
+          "type": "single_choice",
+          "prompt": "Which action best solves the problem described by both sources?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Change the cup line to two packs and reduce the total by $2."
+            },
+            {
+              "id": "B",
+              "text": "Add another bag of rice to the bill."
+            },
+            {
+              "id": "C",
+              "text": "Increase the juice price because the customer has some rice."
+            },
+            {
+              "id": "D",
+              "text": "Request a different shirt size."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The receipt overstates the number of cup packs by one at $2 per pack. The supported correction is narrowly limited to the cup quantity. Other actions introduce unrelated purchases. Next step: Name the item, mismatch and correction in one sentence."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-09-Q5",
+          "type": "single_choice",
+          "prompt": "Which statement is supported by the customer's message?",
+          "options": [
+            {
+              "id": "A",
+              "text": "They have many spare cup packs and no rice."
+            },
+            {
+              "id": "B",
+              "text": "They need much more juice and have no paper cups at all."
+            },
+            {
+              "id": "C",
+              "text": "They have some rice, no extra cup packs, and do not need much more juice."
+            },
+            {
+              "id": "D",
+              "text": "They ordered three packs and received only one."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The customer says they have some rice, do not have any spare cup packs, and do not need much more juice. Next step: Compare each quantifier with the full source sentence."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "WRI-A2-08",
+      "module": "writing",
+      "cefr_target": "A2",
+      "title": "Ask Harbour Market for an order correction",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Analyse a two-source receipt problem using Topic, Task, Must Include and Boundary.",
+        "Write a respectful message explaining the quantity discrepancy and the correction requested.",
+        "Self-check the supporting facts and revise only after trusted feedback."
+      ],
+      "explanation": {
+        "en": "Topic: a fictional club purchase with a billing error. Task: write a courteous message requesting a corrected receipt. Must include what the receipt shows, what was ordered and received, the requested correction and an appropriate closing. Boundary: about 55–80 words; do not include real order numbers, payment details or personal information. Before drafting, reread the receipt and message in REA-A2-09, then brainstorm and outline evidence-supported points. Compare your draft with an unrelated ticket-desk example below, not an answer to the picnic task. Keep the response pending trusted review; word count alone is not a score, and no automatic CEFR proficiency claim is earned.",
+        "vi": "Đọc lại cả hai nguồn; xác định thông tin sai, yêu cầu sửa và lời kết lịch sự. Không nhập dữ liệu thanh toán hay thông tin cá nhân thật. Bài viết mở chỉ được lưu và chờ đánh giá đáng tin cậy."
+      },
+      "examples": [
+        "DIFFERENT TASK — A ticket desk incorrectly listed three seats rather than the two seats a group requested.",
+        "INDEPENDENT MODEL — Dear Ticket Desk, our booking says three seats, but we requested two for Friday. Could you check the seat count and send an updated confirmation, please? Thank you.",
+        "SELF-CHECK — State what the sources truly confirm. Avoid inventing a real order number or claiming unverified deliveries."
+      ],
+      "activities": [
+        {
+          "id": "WRI-A2-08-Q1",
+          "type": "extended_response",
+          "prompt": "Write 55–80 words to Harbour Market about the club's picnic order. Explain the difference between the cup packs on the receipt and the packs ordered/received; request a clear correction and finish politely. Do not include real personal information.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted review. No automatic Writing-quality or CEFR score."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-A2",
+          "word_range_guidance": {
+            "min": 55,
+            "max": 80,
+            "not_a_quality_score": true
+          },
+          "review_mode": "assisted_ai_or_human"
+        }
+      ]
+    }
+  ]
+}
