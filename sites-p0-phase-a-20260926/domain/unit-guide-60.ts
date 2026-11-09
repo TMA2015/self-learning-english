@@ -23,6 +23,7 @@ const assignments:Record<string,string>={
  ...primaryAssignments.conditional_v119,
  ...primaryAssignments.confirmed_v121,
  ...primaryAssignments.confirmed_v122,
+ ...primaryAssignments.confirmed_v123,
 };
 export const UNIT_LEVELS:UnitLevel[]=['A1','A2','B1','B2','C1','C2'];
 export const UNIT_DEFINITIONS=authoredUnits.units;
