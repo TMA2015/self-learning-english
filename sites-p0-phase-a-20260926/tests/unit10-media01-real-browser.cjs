@@ -1,7 +1,7 @@
 'use strict';
 /**
  * Draft-only MEDIA-01: Vite builds the REAL FoundationDemo and real
- * browser-local AcademicService against a dry-run v1.21.0 candidate.
+ * browser-local AcademicService on v1.22 with immutable v1.21 Unit10 media fixture.
  *
  * Chrome uses a disposable profile and the original bytes via localhost only.
  * No Firestore, production deployment, external web requests or learner data.
@@ -134,7 +134,7 @@ if(!chrome)throw Error('No native Chrome installed — real MEDIA-01 is NOT veri
   assert.equal(detail.releaseAuthorized,false);
   console.log(JSON.stringify({
     result:'PASS',gate:'UNIT10_MEDIA01_PRODUCT_CHROME',
-    actualFoundationComponent:true,actualAcademicService:true,version:'1.21.0',
+    actualFoundationComponent:true,actualAcademicService:true,version:'1.22.0',
     originalMedia:ids,fullRealPlaySubmitAndRetake:true,draftResume:true,
     transcriptBeforeSubmissionBlocked:true,olderAttemptPreserved:true,
     realSafariIpad:'NOT_TESTED',
