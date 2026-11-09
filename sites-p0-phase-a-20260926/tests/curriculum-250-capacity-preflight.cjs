@@ -17,7 +17,7 @@ fs.writeFileSync(path.join(root,target,'package.json'),'{"type":"commonjs"}\n');
 const {MAX_CURRICULUM_LESSONS,validateSeed,mapSeed}
  =require(path.join(root,target,'domain/academic.js'));
 const {validateContent}=require(path.join(root,target,'domain/content-model.js'));
-const {BrowserLocalAcademicRepository}
+const {BrowserLocalAcademicRepository,BrowserLocalLearningRepository}
  =require(path.join(root,target,'infrastructure/storage/browser-local-repositories.js'));
 const {academicService,sourceDigest}
  =require(path.join(root,target,'application/academic-service.js'));
@@ -98,7 +98,7 @@ class Storage{
  const stateKey='g-learning:english:v1:owner:local-family:learner:primary:state';
  store.setItem(stateKey,JSON.stringify({writing:'Keep original Writing draft for all releases'}));
  const originalState=store.getItem(stateKey),before=new Map(store.map),beforeSize=bytes(store);
- const candidate=make(250),svc=academicService(repo,null,'local-family');
+ const candidate=make(250),svc=academicService(repo,new BrowserLocalLearningRepository(store),'local-family');
  const preview=await svc.preview(candidate);
  assert.deepEqual(preview.errors,[]);
  assert.deepEqual(preview.counts,{add:108,update:0,skip:142,conflict:0});
