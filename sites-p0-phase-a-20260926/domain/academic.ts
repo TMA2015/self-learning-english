@@ -34,7 +34,10 @@ export const tagMap:Record<string,string>={
 export const skillFor=(module:string)=>module[0].toUpperCase()+module.slice(1) as Skill;
 const nonempty=(s:unknown,max=12000)=>typeof s==='string'&&s.trim().length>0&&s.length<=max;
 const strings=(a:unknown,maxItems=100)=>Array.isArray(a)&&a.length<=maxItems&&a.every(x=>nonempty(x));
-export const MAX_CURRICULUM_LESSONS=150;
+// The published catalog currently has 142 lessons; bounded capacity expansion is
+// tested independently before any 10-20 lesson learning-content release.
+// This limit does not relax activity, ID, rubric or learner-data checks.
+export const MAX_CURRICULUM_LESSONS=250;
 const moduleForPrefix:Record<string,string>={GRA:'grammar',VOC:'vocabulary',REA:'reading',LIS:'listening',WRI:'writing',SPE:'speaking',PRO:'pronunciation'};
 export function validateSeed(raw:unknown):string[]{try{return validateShape(raw)}catch{return ['Malformed nested content fields. No changes made.']}}
 function validateShape(raw:unknown):string[]{
