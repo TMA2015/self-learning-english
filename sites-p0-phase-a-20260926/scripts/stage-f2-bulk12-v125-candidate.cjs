@@ -96,7 +96,7 @@ function compose(packetPath,authoredPath,baselinePath){
   for(const q of l.activities)assert(!oldItems.has(q.id),'ITEM_COLLISION: '+q.id);
  }
  const next=structuredClone(baseline);
- next.schema_version='1.25.0';next.status='notebooklm_bulk12_draft_NO_RELEASE_AUTHORIZATION';
+ next.schema_version='1.25.0';next.status='notebooklm_bulk12_pass_qa_pending_NO_LIVE_RELEASE';
  next.lessons.push(...structuredClone(authored.lessons));
  next.course.sequence.push(...authored.lessons.map(l=>l.id));
  assert.deepEqual([next.lessons.length,activityCount(next)],[154,1125]);
