@@ -69,6 +69,7 @@ const fullRegressionTests=[
   "f2-bulk12-v125-intake-contract.cjs",
   "f2-bulk12-v125-machine-schema.cjs",
   "f2-v125-upgrade-storage-safety.cjs",
+  "f2-v125-long-history-quota-fallback.cjs",
   "lesson-status-course-cards-plan.cjs",
   "a2-unit-guide-pilot.cjs",
   "batch02-v11-release.cjs",
