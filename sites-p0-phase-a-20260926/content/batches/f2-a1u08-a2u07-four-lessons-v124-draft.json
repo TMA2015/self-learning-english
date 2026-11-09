@@ -1,0 +1,526 @@
+{
+  "packet_id": "SLE-F2-A1U08-A2U07-AUTHORED-20261109-R1",
+  "source_review": "Independent NotebookLM verdict PASS, AUTHORED_CONTENT_ITEM_LEVEL: 13/13 items, zero blocking corrections",
+  "review_scope": "AUTHORED_CONTENT_ITEM_LEVEL",
+  "academic_disposition": "GO_FOR_MACHINE_SCHEMA_DRAFT",
+  "production": "NO_GO_PENDING_TECHNICAL_CI_AND_OWNER_RELEASE",
+  "baseline_version": "1.23.0",
+  "proposed_version": "1.24.0",
+  "unit_assignments": {
+    "A1-U08": [
+      "REA-A1-07",
+      "WRI-A1-07"
+    ],
+    "A2-U07": [
+      "REA-A2-10",
+      "WRI-A2-09"
+    ]
+  },
+  "lessons": [
+    {
+      "id": "REA-A1-07",
+      "module": "reading",
+      "cefr_target": "A1",
+      "title": "Museum Audio Guide — Read, Follow, Ask",
+      "estimated_minutes": 22,
+      "objectives": [
+        "Find explicit pick-up information, time limit and steps in a short two-part visitor notice.",
+        "Distinguish instructions (do/do not) from information not supplied.",
+        "Choose a useful, correctly formed question for a missing fact instead of guessing."
+      ],
+      "activities": [
+        {
+          "id": "REA-A1-07-Q1",
+          "type": "single_choice",
+          "prompt": "According to Source A, which detail is clearly stated?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The audio guide is free."
+            },
+            {
+              "id": "B",
+              "text": "The audio guide costs two dollars."
+            },
+            {
+              "id": "C",
+              "text": "The guide offers four languages."
+            },
+            {
+              "id": "D",
+              "text": "The guide must be returned in Room 3."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Source A says “Pick up a free audio guide”; no cost is charged. Neither the available languages nor Room 3 is specified. Next step: Find the exact word that supports the claim instead of guessing from typical museums."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-07-Q2",
+          "type": "single_choice",
+          "prompt": "What should a visitor do FIRST to start using the guide?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Press Play before choosing a tour."
+            },
+            {
+              "id": "B",
+              "text": "Choose a tour on the screen."
+            },
+            {
+              "id": "C",
+              "text": "Take the guide into the café."
+            },
+            {
+              "id": "D",
+              "text": "Return the guide before using it."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The card states “First, choose a tour on the screen. Then press the green Play button.” Next step: Mark First and Then before choosing an action."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-07-Q3",
+          "type": "single_choice",
+          "prompt": "Which action breaks the museum instructions?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Keep the guide inside the museum."
+            },
+            {
+              "id": "B",
+              "text": "Bring the guide back before 4:00 p.m."
+            },
+            {
+              "id": "C",
+              "text": "Use the guide in the café."
+            },
+            {
+              "id": "D",
+              "text": "Choose a tour before pressing Play."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Source A explicitly says “Do not use it in the café.” The other actions follow the card. Next step: Underline negative instructions such as Do not, not just action verbs."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-07-Q4",
+          "type": "single_choice",
+          "prompt": "Which detail is NOT given in either source?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Where to pick up the guide."
+            },
+            {
+              "id": "B",
+              "text": "Whether a helper is available."
+            },
+            {
+              "id": "C",
+              "text": "When the guide must be brought back."
+            },
+            {
+              "id": "D",
+              "text": "The exact place to return the guide."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "The cards provide the pick-up desk, a helper and the before-4:00 deadline. Source B says the helper can explain the return place, but never states that place. Next step: Do not confuse where to PICK UP with where to RETURN."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A1-07-Q5",
+          "type": "single_choice",
+          "prompt": "A visitor wants to know what languages the guide offers. Which question should the visitor ask?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Where do I pick up the guide?"
+            },
+            {
+              "id": "B",
+              "text": "What languages can I choose?"
+            },
+            {
+              "id": "C",
+              "text": "When must I bring the guide back?"
+            },
+            {
+              "id": "D",
+              "text": "Is the guide free?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Neither source lists available languages, so “What languages can I choose?” asks the missing fact. The other grammatically valid questions ask facts already supplied. Next step: Match the question to the missing INFORMATION, not only to its grammar."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — Goal and context: An imaginary city museum has simple instructions for visitors who borrow an audio guide. A useful reader must find the correct action and place, notice the order of instructions, and ask for facts that are not printed. A rule such as ‘Don't use the guide in the café’ tells you what not to do. If the return LOCATION is not written, do not invent one.\n\nCORE-2 — Independent worked model: **Different situation, not scored:** A community garden tool sign says: ‘Collect a rake from the shed. Wash the rake before returning it.’ The sign does not tell you **when** to return the rake. Good thinking: collection place and cleaning step are stated; return TIME is missing. A polite, helpful question is ‘When should I return the rake?’ The example is not about a museum, tour, languages or guide-return location.\n\nCORE-3 — Independent practice: Read BOTH museum cards before answering Q1–Q5. Underline what is explicitly stated. Label anything you still need to ask a helper. Questions and options must be answered from the assessed museum cards, not from the garden example.\n\nCORE-4 — Feedback and next action: After submission, for each answer return to the exact relevant museum sentence or identify that both cards omit the fact. Read the ‘Next step’ guidance and then try writing a different relevant question, without scoring speech or awarding CEFR proficiency."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — **Different situation, not scored:** A community garden tool sign says: ‘Collect a rake from the shed. Wash the rake before returning it.’ The sign does not tell you **when** to return the rake. Good thinking: collection place and cleaning step are stated; return TIME is missing. A polite, helpful question is ‘When should I return the rake?’ The example is not about a museum, tour, languages or guide-return location.",
+        "TRANSFER STRATEGY — Read BOTH museum cards before answering Q1–Q5. Underline what is explicitly stated. Label anything you still need to ask a helper. Questions and options must be answered from the assessed museum cards, not from the garden example."
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-A1-07",
+        "title": "City Museum — Audio Guide and Help Card",
+        "body": "SOURCE A — CITY MUSEUM AUDIO GUIDE CARD\n\nPick up a free audio guide at the Welcome Desk in Room 1.\nFirst, choose a tour on the screen. Then press the green Play button.\nKeep the guide inside the museum. Do not use it in the café.\nBring the guide back before 4:00 p.m.\n\nSOURCE B — VISITOR HELP CARD\n\nA helper is at the Welcome Desk in Room 1. Ask the helper about things you cannot find on the guide card, including the exact return place and which languages the guide offers.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-A1-07",
+      "module": "writing",
+      "cefr_target": "A1",
+      "title": "Ask a Museum Helper for Missing Information",
+      "estimated_minutes": 20,
+      "objectives": [
+        "Analyse Topic, Task, Must Include and Boundary before writing.",
+        "Ask two accurate, polite questions about facts missing from the museum cards.",
+        "Mention one genuine instruction without inventing a return location or language list."
+      ],
+      "activities": [
+        {
+          "id": "WRI-A1-07-Q1",
+          "type": "extended_response",
+          "prompt": "Write 35–50 words to a fictional City Museum helper. Ask politely (1) where to return the audio guide and (2) what languages the guide offers. Include one correct instruction from the museum cards and thank the helper. Do not invent the missing answers or use real personal information.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted review. No automatic Writing-quality or CEFR score. Word count is planning guidance, not a grade."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-A1",
+          "review_mode": "assisted_ai_or_human",
+          "word_range_guidance": {
+            "min": 35,
+            "max": 50,
+            "not_a_quality_score": true
+          }
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — Goal and context: **TOPIC:** a fictional visitor at City Museum wants to borrow an audio guide. **TASK:** write a polite short message to a museum helper. **MUST INCLUDE:** greeting, TWO distinct questions about the missing exact return place and available guide languages, ONE accurate instruction you will follow, and thanks. **BOUNDARY:** approximately 35–50 words, no real name, email address, contact number, payment information or invented return location/language list. The number of words is planning guidance only.\n\nCORE-2 — Independent worked model: **Different situation, not scored:** A local chess club website says practice is on Saturday, but it does not give the finishing time or whether visitors need their own board. **Independent worked message:** ‘Hello! I want to visit the Saturday chess club. What time does practice finish? Do I need to bring my own board? I will arrive on Saturday. Thank you for your help!’ **THINKING:** The writer asks two real missing facts without guessing and uses a polite request; the club example does not supply museum answers.\n\nCORE-3 — Independent practice: Read the actual Museum SOURCE A/B in REA-A1-07. Brainstorm exactly what is missing, write a greeting and two different questions, add one accurate guide rule, and close politely. Do not put a guessed answer in your own message.\n\nCORE-4 — Feedback and next action: Self-check the 4-part task boundary and the two information gaps. This original Writing task is SAVED / PENDING TRUSTED REVIEW, not automatically awarded a Writing-quality or CEFR proficiency score; revise only after trusted feedback."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — **Different situation, not scored:** A local chess club website says practice is on Saturday, but it does not give the finishing time or whether visitors need their own board. **Independent worked message:** ‘Hello! I want to visit the Saturday chess club. What time does practice finish? Do I need to bring my own board? I will arrive on Saturday. Thank you for your help!’ **THINKING:** The writer asks two real missing facts without guessing and uses a polite request; the club example does not supply museum answers.",
+        "TRANSFER STRATEGY — Read the actual Museum SOURCE A/B in REA-A1-07. Brainstorm exactly what is missing, write a greeting and two different questions, add one accurate guide rule, and close politely. Do not put a guessed answer in your own message."
+      ]
+    },
+    {
+      "id": "REA-A2-10",
+      "module": "reading",
+      "cefr_target": "A2",
+      "title": "Photography Club — Experience and Progress Update",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Identify an unspecified previous experience versus an event at a finished past time.",
+        "Read just, already and yet in a coherent two-source progress update.",
+        "Distinguish completed work from pending work and infer only what the sources support."
+      ],
+      "activities": [
+        {
+          "id": "REA-A2-10-Q1",
+          "type": "single_choice",
+          "prompt": "Which experience does Tara say she has NEVER had?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Visited Green Park with her cousin."
+            },
+            {
+              "id": "B",
+              "text": "Used the photo club shared folder."
+            },
+            {
+              "id": "C",
+              "text": "Joined an organised club photo walk."
+            },
+            {
+              "id": "D",
+              "text": "Taken photographs outdoors."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Tara says she has never joined an organised club photo walk; that does not erase her personal park visit or photographs. Next step: Read what never modifies, not just the word never."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-10-Q2",
+          "type": "single_choice",
+          "prompt": "Which action clearly happened at a stated, finished past time?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Tara visited Green Park last Sunday."
+            },
+            {
+              "id": "B",
+              "text": "Tara has never joined an organised club photo walk."
+            },
+            {
+              "id": "C",
+              "text": "Tara has just uploaded three photographs."
+            },
+            {
+              "id": "D",
+              "text": "Sam has already made an exhibition poster."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "“I visited Green Park with my cousin last Sunday” supplies a finished past time. The other statements describe experiences or current relevance without a dated time in their sentence. Next step: Underline the explicit past-time phrase before interpreting the report."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-10-Q3",
+          "type": "single_choice",
+          "prompt": "What has Tara JUST done?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Finished writing all the captions."
+            },
+            {
+              "id": "B",
+              "text": "Joined her first organised photo walk."
+            },
+            {
+              "id": "C",
+              "text": "Made the exhibition poster."
+            },
+            {
+              "id": "D",
+              "text": "Uploaded three photographs to the shared folder."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Tara says she has just uploaded three photos; Source B confirms they are in the folder. The captions are not complete. Next step: Distinguish an upload from the separate caption-writing task."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-10-Q4",
+          "type": "single_choice",
+          "prompt": "What remains unfinished according to BOTH sources?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Sam making the exhibition poster."
+            },
+            {
+              "id": "B",
+              "text": "Tara writing and sending the photo captions."
+            },
+            {
+              "id": "C",
+              "text": "Tara uploading the three photos."
+            },
+            {
+              "id": "D",
+              "text": "The organiser checking the poster size."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Tara says she has not written the captions yet and the organiser has not received them. The other listed tasks are already reported as done. Next step: Join corresponding status details across sources before reporting an unfinished task."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-10-Q5",
+          "type": "single_choice",
+          "prompt": "Can the organiser conclude that Tara has never taken photographs outdoors?",
+          "options": [
+            {
+              "id": "A",
+              "text": "No. She says she took three photos at Green Park last Sunday."
+            },
+            {
+              "id": "B",
+              "text": "Yes. She has never used a camera."
+            },
+            {
+              "id": "C",
+              "text": "Yes. She has never joined an organised photo walk."
+            },
+            {
+              "id": "D",
+              "text": "There is no named place in the chat."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A park visit with three photographs is expressly reported. Never joining an organised club walk is a different claim and cannot be expanded to no outdoor photos. Next step: Check the SCOPE of a negative experience claim."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-A2-10-Q6",
+          "type": "single_choice",
+          "prompt": "Which message to the organiser accurately separates finished and unfinished tasks?",
+          "options": [
+            {
+              "id": "A",
+              "text": "All photographs, captions and posters are finished."
+            },
+            {
+              "id": "B",
+              "text": "Tara has not uploaded any photographs yet."
+            },
+            {
+              "id": "C",
+              "text": "Tara has uploaded three photos and Sam has made the poster, but Tara’s captions are still missing."
+            },
+            {
+              "id": "D",
+              "text": "Tara joined an organised walk last Sunday and all work is complete."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The upload and poster are reported as completed. Tara has not yet written the captions, which the organiser has not received. Next step: Write one current-status sentence with a completed action and a pending action."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — Goal and context: In a fictional photo club, classmates share what they have or have not experienced, what happened at a stated past time and what has just been finished. A dated past event (last Sunday, on Monday) is different from an unspecified life experience (never joined an organised walk). A recent upload is not the same as finishing the captions. Check both the club chat and the organiser note before reporting progress.\n\nCORE-2 — Independent worked model: **Different situation, not scored:** At a community cooking session, Noor says ‘I have visited a bakery before. I visited one last Tuesday.’ A volunteer says ‘The recipe cards have already arrived, but the cooking has not started yet.’ Thinking: the experience has no date, the Tuesday visit has a finished time, and arrived/started are different current task statuses. This example contains no photographs, poster, captions, Green Park or assessed dates.\n\nCORE-3 — Independent practice: Read the Thursday club chat (Source A) and the organiser update (Source B). Use the exact people, times and status words when answering six Reading questions. Do not read new facts into a missing status.\n\nCORE-4 — Feedback and next action: After submitting, examine the supporting phrase for each correct answer and learn why the other statements overclaim. Separate ‘never joined an organised club walk’ from ‘never taken outdoor photographs’. Next step: summarise one completed and one unfinished action without inventing a new completion time."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — **Different situation, not scored:** At a community cooking session, Noor says ‘I have visited a bakery before. I visited one last Tuesday.’ A volunteer says ‘The recipe cards have already arrived, but the cooking has not started yet.’ Thinking: the experience has no date, the Tuesday visit has a finished time, and arrived/started are different current task statuses. This example contains no photographs, poster, captions, Green Park or assessed dates.",
+        "TRANSFER STRATEGY — Read the Thursday club chat (Source A) and the organiser update (Source B). Use the exact people, times and status words when answering six Reading questions. Do not read new facts into a missing status."
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-A2-10",
+        "title": "Photo Club — Thursday Chat and Organiser Update",
+        "body": "SOURCE A — PHOTO CLUB CHAT, THURSDAY AFTERNOON\n\nTara: I have never joined an organised club photo walk. I visited Green Park with my cousin last Sunday and took three photos. I've just uploaded those three photos to our shared folder. I haven't written the captions yet.\n\nSam: I've already made the exhibition poster. I made the title card on Monday. I've never tried photographing at night.\n\nSOURCE B — ORGANISER UPDATE, THURSDAY 4:00 P.M.\n\nWe have already checked the poster size. Tara's three photos are in the shared folder, but her captions have not arrived yet. Please send the captions by Friday at 5:00 p.m. The exhibition opens on Saturday.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-A2-09",
+      "module": "writing",
+      "cefr_target": "A2",
+      "title": "Write a Clear Photo Club Progress Message",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Analyse a practical progress-update task before writing.",
+        "Separate an un-dated experience, a dated past event and recent/current task states.",
+        "Write a clear and respectful organiser message using evidence from the two sources; avoid inventing completion."
+      ],
+      "activities": [
+        {
+          "id": "WRI-A2-09-Q1",
+          "type": "extended_response",
+          "prompt": "Write 70–95 words to the fictional photo club organiser. Use the chat and update in REA-A2-10. Include one true experience (ever/never), one completed action at a stated past time, one just/already completed task, one not-yet-completed task, and a realistic next action with the supplied deadline. Be clear about who did what; do not invent facts or use real personal information.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted review. No automatic Writing-quality or CEFR score. Word count is planning guidance, not a grade."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-A2",
+          "review_mode": "assisted_ai_or_human",
+          "word_range_guidance": {
+            "min": 70,
+            "max": 95,
+            "not_a_quality_score": true
+          }
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — Goal and context: **TOPIC:** fictional photography club preparing for an exhibition. **TASK:** send an accurate progress message to the organiser. **MUST INCLUDE:** ONE correctly attributed experience about Tara or Sam, ONE finished event with its supplied past-time reference, ONE recently completed action with just/already, ONE action still pending with yet/not yet, and ONE feasible next action/deadline. **BOUNDARY:** approximately 70–95 words in a friendly but clear register. Do not claim the captions are already done or write real student details; word count alone is not a grade.\n\nCORE-2 — Independent worked model: **Different situation, not scored:** A community sports centre is replacing the floor signs. ‘The caretaker replaced the first sign last Friday. Staff have just checked the entrance lights, but they have not put up the new timetable yet. They plan to do that by Sunday.’ **THINKING:** last Friday is a completed dated event; just checked is a recent result; timetable not yet posted is unfinished. This is not a photo club, poster or caption task and does not leak the scored response.\n\nCORE-3 — Independent practice: Read both Photography Club sources. Brainstorm the supported experiences, past dates and statuses. Outline an opening, accurate completed work, pending work and one next action. Write an original 70–95 word message to the fictional organiser; do not add an invented task completion or personal profile.\n\nCORE-4 — Feedback and next action: After drafting, check dated past versus current relevance, already/just/yet and the fact that Tara has never joined an organised club photo walk rather than never taken outdoor photos. Save for human or independently verified optional AI review; original Writing semantic evidence weight stays ZERO pending trusted review."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — **Different situation, not scored:** A community sports centre is replacing the floor signs. ‘The caretaker replaced the first sign last Friday. Staff have just checked the entrance lights, but they have not put up the new timetable yet. They plan to do that by Sunday.’ **THINKING:** last Friday is a completed dated event; just checked is a recent result; timetable not yet posted is unfinished. This is not a photo club, poster or caption task and does not leak the scored response.",
+        "TRANSFER STRATEGY — Read both Photography Club sources. Brainstorm the supported experiences, past dates and statuses. Outline an opening, accurate completed work, pending work and one next action. Write an original 70–95 word message to the fictional organiser; do not add an invented task completion or personal profile."
+      ]
+    }
+  ]
+}
