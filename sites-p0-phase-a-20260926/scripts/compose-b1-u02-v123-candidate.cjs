@@ -19,7 +19,7 @@ function composeB1U02(){
  assert.deepEqual(authored.lessons.map(l=>l.activities.length),[5,1]);
  const next=structuredClone(base);
  next.schema_version='1.23.0';
- next.status='academic_b1u02_r1_pass_machine_draft_qa_pending_no_release';
+ next.status='academic_b1u02_r1_pass_additive_release_authorized';
  const existing=new Set(next.lessons.map(l=>l.id));
  const existingItems=new Set(next.lessons.flatMap(l=>l.activities.map(q=>q.id)));
  for(const l of authored.lessons){

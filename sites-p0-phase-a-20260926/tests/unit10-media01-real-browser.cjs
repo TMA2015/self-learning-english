@@ -134,7 +134,7 @@ if(!chrome)throw Error('No native Chrome installed — real MEDIA-01 is NOT veri
   assert.equal(detail.releaseAuthorized,false);
   console.log(JSON.stringify({
     result:'PASS',gate:'UNIT10_MEDIA01_PRODUCT_CHROME',
-    actualFoundationComponent:true,actualAcademicService:true,version:'1.22.0',
+    actualFoundationComponent:true,actualAcademicService:true,version:'1.23.0',
     originalMedia:ids,fullRealPlaySubmitAndRetake:true,draftResume:true,
     transcriptBeforeSubmissionBlocked:true,olderAttemptPreserved:true,
     realSafariIpad:'NOT_TESTED',
