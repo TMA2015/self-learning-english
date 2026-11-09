@@ -63,6 +63,8 @@ const fullRegressionTests=[
   "f2-v122-upgrade-storage-safety.cjs",
   "b1-u02-v123.cjs",
   "b1-u02-v123-upgrade-storage-safety.cjs",
+  "f2-a1u08-a2u07-v124.cjs",
+  "f2-v124-upgrade-storage-safety.cjs",
   "lesson-status-course-cards-plan.cjs",
   "a2-unit-guide-pilot.cjs",
   "batch02-v11-release.cjs",
