@@ -1,0 +1,259 @@
+{
+  "packet_id": "SLE-F2-B1U02-CLAIM-EVIDENCE-AUTHORED-20261109-R1",
+  "source_review": "Owner-supplied NotebookLM independent PASS (AUTHORED_CONTENT_ITEM_LEVEL): 5/5 objective Reading, 1/1 unscored Writing, no mandatory corrections",
+  "review_scope": "AUTHORED_CONTENT_ITEM_LEVEL",
+  "academic_disposition": "GO_FOR_MACHINE_SCHEMA_DRAFT",
+  "production": "NO_GO_PENDING_CANDIDATE_COMPOSITION_CI_AND_RELEASE",
+  "source_baseline_version": "1.22.0",
+  "proposed_version": "1.23.0",
+  "unit_assignment": {
+    "B1-U02": [
+      "REA-B1-08",
+      "WRI-B1-09"
+    ]
+  },
+  "lessons": [
+    {
+      "id": "REA-B1-08",
+      "module": "reading",
+      "cefr_target": "B1",
+      "title": "Library Reminders — What Does the Evidence Show?",
+      "estimated_minutes": 26,
+      "objectives": [
+        "Distinguish a recommendation from a reason and a recorded observation.",
+        "Compare two written sources and identify an alternative possible explanation.",
+        "Choose a cautious and fair recommendation without treating a correlation as proven causation."
+      ],
+      "explanation": {
+        "en": "CORE 1 — Meaning and situation. A community library is deciding how to help readers return borrowed books on time. Two written sources include a short proposal and a record of what happened. Read each source carefully. Remember: a smaller count of late returns is an observation; without a fair comparison it may not prove what caused the change. A good recommendation states a plausible benefit, recognises uncertainty, and gives a practical next step.\n\nCORE 2 — Independent worked demonstration. In a tennis club, more pupils arrived before practice after an extra timetable sign was added. However, practice also started later that week. The sign alone is not proven to have caused earlier arrivals. Read the unrelated example below before analysing the library sources.\n\nCORE 3 — Independent Reading. Examine SOURCE A and SOURCE B. Distinguish the proposed action, the observed counts, the unrecorded data and the other change made in October. Do not see explanations or correct answers before submitting.\n\nCORE 4 — Feedback and transfer. After submission, return to the exact evidence for any incorrect answer; identify the claim, observation, alternative, limit and practical next step. These five Reading items are deterministic practice, not certification of B1 proficiency.",
+        "vi": "Đọc hai nguồn về việc nhắc trả sách, phân biệt đề xuất, số liệu quan sát và các nguyên nhân khả dĩ. Ví dụ mẫu về câu lạc bộ tennis là tình huống khác. Sau khi nộp mới xem đáp án và gợi ý; điểm bài tập không chứng nhận trình độ B1."
+      },
+      "examples": [
+        "INDEPENDENT MODEL — The tennis club put an extra timetable sign beside the school gate. During one week, more pupils arrived before the practice began. The club leader thinks the sign helped. However, the practice also started later that week. The leader suggests keeping the sign and checking arrival times over several weeks.",
+        "MODEL REASONING — CLAIM: the sign might help. OBSERVATION: earlier arrivals in one week. ALTERNATIVE: practice started later. FAIR NEXT STEP: observe more weeks with comparable practice times. The sign alone is not proved to be the cause.",
+        "TRANSFER — Read the library sources independently and mark their recommendation, observation, limitation and fair follow-up; do not copy the tennis-club example into your answer."
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-B1-08",
+        "title": "Library Reminders — Two Written Sources",
+        "body": "SOURCE A — Student suggestion\n\nSome students forget their books when they are busy with other homework. A short reminder before the return date could help us plan. I recommend offering optional library reminders, but students should be able to choose email or a paper note. Not everyone has a phone. The library could ask readers which method they prefer.\n\nSOURCE B — Librarian's note\n\nIn September, 40 borrowed books were returned late. In October, after a trial email reminder was introduced, 25 books were returned late. The change looks encouraging. However, the library also extended its opening hours in October, and we did not record which readers opened the emails. These two months alone cannot show that the reminders caused the reduction. We should compare several more weeks, record which options readers choose, and keep a paper alternative.",
+        "display_to_learner": true
+      },
+      "activities": [
+        {
+          "id": "REA-B1-08-Q1",
+          "type": "single_choice",
+          "prompt": "What does the student in Source A mainly recommend?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Offer optional reminders with a paper alternative."
+            },
+            {
+              "id": "B",
+              "text": "Fine every late reader immediately."
+            },
+            {
+              "id": "C",
+              "text": "Stop lending books in October."
+            },
+            {
+              "id": "D",
+              "text": "Require every student to own a phone."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Source A proposes optional reminders and explicitly notes that some students need a paper note; it does not require phone ownership or introduce fines. Next step: Underline the recommended action, not just the problem."
+          },
+          "skill_tags": [
+            "reading.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-08-Q2",
+          "type": "single_choice",
+          "prompt": "Which observation is stated in Source B?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Every student read the email."
+            },
+            {
+              "id": "B",
+              "text": "The library closed earlier in October."
+            },
+            {
+              "id": "C",
+              "text": "Late books numbered 40 in September and 25 in October."
+            },
+            {
+              "id": "D",
+              "text": "No borrowed books were late after the trial."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The librarian gives the two observed late-return counts. The other alternatives either contradict the note or claim information that was not collected. Next step: Separate recorded counts from guessed causes."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-08-Q3",
+          "type": "single_choice",
+          "prompt": "Why can the librarian NOT conclude that the email reminder alone caused the change?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The library recorded no late returns in September."
+            },
+            {
+              "id": "B",
+              "text": "Opening hours also changed, and email-opening data were not recorded."
+            },
+            {
+              "id": "C",
+              "text": "The paper notes were banned for everyone."
+            },
+            {
+              "id": "D",
+              "text": "Books cannot be returned late in a library."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A second change (opening hours) could influence returns, and there is no record of which emails were read. The reduction is observed but its cause is not established. Next step: Ask what else changed between the two periods."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-08-Q4",
+          "type": "single_choice",
+          "prompt": "Which claim goes beyond the evidence in the two sources?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The student wants people to have a choice of reminder type."
+            },
+            {
+              "id": "B",
+              "text": "The librarian observed fewer late books in October."
+            },
+            {
+              "id": "C",
+              "text": "The librarian wants a longer comparison."
+            },
+            {
+              "id": "D",
+              "text": "Email reminders have proved that all students will return books on time."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Neither all students nor an email-only cause was established; the note explicitly says these months cannot prove causation. Next step: Check whether a conclusion uses words such as 'all', 'always' or 'proved' without sufficient evidence."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B1-08-Q5",
+          "type": "single_choice",
+          "prompt": "Which next step best fits BOTH sources?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Keep paper notes, but stop checking actual returns."
+            },
+            {
+              "id": "B",
+              "text": "Offer optional email or paper reminders and review more weeks of results."
+            },
+            {
+              "id": "C",
+              "text": "Require a phone and stop recording return dates."
+            },
+            {
+              "id": "D",
+              "text": "Treat the October count as proof that reminders work for everyone."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Both sources support reader choice, and Source B requests a longer evidence check. A cautious follow-up preserves fairness while testing the idea. Next step: Combine the proposal with the source's own uncertainty before choosing a recommendation."
+          },
+          "skill_tags": [
+            "reading.author_purpose"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "WRI-B1-09",
+      "module": "writing",
+      "cefr_target": "B1",
+      "title": "Write a cautious library recommendation",
+      "estimated_minutes": 28,
+      "objectives": [
+        "Analyse a balanced recommendation with Topic, Task, Must Include and Boundary.",
+        "Brainstorm and outline Claim → Reason → Evidence → Limitation → Action from two written sources.",
+        "Draft, self-check and revise a fair, source-based recommendation; await trusted review rather than an automatic B1 Writing score."
+      ],
+      "explanation": {
+        "en": "CORE 1 — Writing task analysis. TOPIC: A fictional library wants to reduce late returns. TASK: Write a short balanced recommendation to the library team. MUST INCLUDE: a position, one accurately attributed observation from Source B, one access concern from Source A, a limitation on causal claims, and a fair future check. BOUNDARY: 120–160 words in a respectful tone, with no real names, phone numbers, addresses, borrowed-book records, emails or invented research statistics. Word count is guidance, not an automatic quality score.\n\nCORE 2 — Independent worked example. A neighbourhood sports club wants to explain rules with a poster. See the independent model below, which is about a different issue and does not provide an answer to the library task. Brainstorm and outline your own Claim → Reason → Evidence → Limitation → Action using both library sources from REA-B1-08.\n\nCORE 3 — Independent Writing. Draft your own recommendation. Check that the September/October numbers are exact, phone-less readers are considered, and you have not claimed that the reminder itself was proven to cause the change.\n\nCORE 4 — Feedback and revision. An original Writing submission remains pending trusted human or independently verified optional AI review; the semantic quality and CEFR level are not automatically scored. After trusted feedback, identify one place to improve, and revise as a new linked attempt while keeping the earlier attempt unchanged.",
+        "vi": "Xác định Chủ đề, Nhiệm vụ, Nội dung bắt buộc và Giới hạn. Lập dàn ý Nhận định → Lý do → Bằng chứng → Hạn chế → Hành động; không tự tạo số liệu hoặc đưa thông tin cá nhân thật. Bài viết để chờ đánh giá đáng tin cậy, không tự động chấm trình độ."
+      },
+      "examples": [
+        "DIFFERENT ISSUE — A neighbourhood sports club wants to explain the rules with a poster. Several new members said they did not see the existing notice.",
+        "INDEPENDENT MODEL — A larger poster may help, although a few comments do not prove it will solve every problem. I recommend trying a clearer notice and asking new members whether they can find the rules. The club should keep a staff member available for questions while checking what works.",
+        "MODEL THINKING — This sports-club rule-poster example has a position, a source-limited reason, uncertainty and a practical next step; it contains no late-book numbers and cannot be copied as the library response.",
+        "SELF-CHECK — Is my claim supported by the observed numbers? Have I mistaken a possible cause for proof? Can readers without phones participate? Is the next step cautious and practical? Revise after verified feedback."
+      ],
+      "activities": [
+        {
+          "id": "WRI-B1-09-Q1",
+          "type": "extended_response",
+          "prompt": "Write 120–160 words to the fictional community library team. Recommend whether and how to offer reminders. Use the two written sources: include the exact September/October observation, one access concern, one reason the change does not prove causation, and a fair next step. Organise a clear Claim → Reason → Evidence → Limitation → Action paragraph. Do not invent research or include real personal information.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted review. No automatic Writing-quality or CEFR score. Word count is planning guidance, not a grade."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.idea_development",
+            "writing.organization",
+            "writing.cohesion",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "review_mode": "assisted_ai_or_human",
+          "rubric_id": "RUBRIC-WRITING-B1",
+          "word_range_guidance": {
+            "min": 120,
+            "max": 160,
+            "not_a_quality_score": true
+          }
+        }
+      ]
+    }
+  ]
+}
