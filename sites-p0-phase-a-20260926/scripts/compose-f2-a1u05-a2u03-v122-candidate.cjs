@@ -27,7 +27,7 @@ function composeF2(){
  assert.deepEqual(authored.lessons.map(l=>l.activities.length),[4,1,5,1]);
  const result=structuredClone(base);
  result.schema_version='1.22.0';
- result.status='academic_item_pass_f2_a1u05_a2u03_technical_draft_no_release';
+ result.status='academic_item_pass_tech_qa_verified_owner_release_approved';
  const ids=new Set(result.lessons.map(l=>l.id));
  const activities=new Set(result.lessons.flatMap(l=>l.activities.map(q=>q.id)));
  for(const lesson of authored.lessons){
