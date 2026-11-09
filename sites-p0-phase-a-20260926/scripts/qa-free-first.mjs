@@ -59,6 +59,7 @@ const fullRegressionTests=[
   "attempt-navigation-ui.cjs",
   "today-learning-path.cjs",
   "unit-guide-60.cjs",
+  "f2-a1u05-a2u03-v122.cjs",
   "lesson-status-course-cards-plan.cjs",
   "a2-unit-guide-pilot.cjs",
   "batch02-v11-release.cjs",
