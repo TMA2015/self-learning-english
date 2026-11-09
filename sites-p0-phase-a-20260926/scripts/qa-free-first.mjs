@@ -67,6 +67,8 @@ const fullRegressionTests=[
   "f2-v124-upgrade-storage-safety.cjs",
   "curriculum-250-capacity-preflight.cjs",
   "f2-bulk12-v125-intake-contract.cjs",
+  "f2-bulk12-v125-machine-schema.cjs",
+  "f2-v125-upgrade-storage-safety.cjs",
   "lesson-status-course-cards-plan.cjs",
   "a2-unit-guide-pilot.cjs",
   "batch02-v11-release.cjs",
