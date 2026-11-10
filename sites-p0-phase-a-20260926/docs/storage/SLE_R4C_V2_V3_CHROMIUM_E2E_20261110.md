@@ -134,6 +134,14 @@ R4i/R4j/R4k use real Chromium, but close the browser **gracefully**. R4l creates
 
 **Boundary:** This is a **real Linux process-level SIGKILL** but still not a machine power cut, filesystem crash or iPad WebKit kill. It measures **one particular timing** (first-key browser readback) rather than the entire crash window. A PASS would mean the specific observed durable state was safe under the gate; it **cannot** prove localStorage journal+marker ordering/durability in general or shipping transaction atomicity. An UNSAFE/FAIL result should be recorded openly as a blocker. Journal/marker remain in a **detached, non-production research adapter**, not active learner-writer code. The test never inspects family records.
 
+## R4m — repeated native SIGKILL with staggered post-readback timing (research only)
+
+R4l classified one sudden Linux Chromium process-group kill immediately after a verified half-written learner pair. R4m repeats the same strict acceptance in **four additional fresh disposable Chrome profiles**, at delays of **100 ms, 100 ms, 1,500 ms and 1,500 ms after successful renderer readback** of the full preimage journal, SHA-256 marker and first learner key. No Browser.close is called for any kill phase.
+
+Each run independently creates a previously cleanly closed, checksum-verified public V2→V3 baseline (curricula 1.18.0 / 1.18.1 / 1.20.0, 73 completely fabricated attempts, fake Writing feedback/course state, original historical content revisions and rubrics). The external Node driver requires actual OS SIGKILL, and the next Chrome process classifies persisted bytes without assuming localStorage durability from readback. Unsafe torn data lacking the matching complete journal and marker, missing revision source or a misleading backup **FAIL CLOSED**; valid observed states must preserve all 73 original fake attempts, old Writing/course strings and historical revision blobs, and permit a verified full V3 export plus another browser process restart.
+
+The per-run outcome is logged (not presumed). **CI PENDING** until an exact-head full workflow SUCCESS. Even if all four scenarios PASS, they do not prove every interleaving, fsync ordering, machine power-cut, Safari/iPad, actual IndexedDB eviction, real family Recovery or production LIVE learner writer safety. PR #129 stays Draft, Issue #103 OPEN and release v1.26 remains NO_GO.
+
 ## Explicit non-claims / blockers
 
 - SHA verifies integrity of archived JSON, but it is **not a cryptographic signature proving the real provenance of the original learner data**.
