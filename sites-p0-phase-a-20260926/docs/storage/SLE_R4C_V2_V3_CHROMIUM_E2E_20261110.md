@@ -55,11 +55,23 @@ A **fourth, completely disposable Chromium profile** tests native IndexedDB sche
 
 **Strict boundary:** This uses genuine Chromium blocked-versionchange semantics, but the deliberately held connection is in the same test origin/document, **not a demonstrated two-tab app race**. The test deliberately upgrades the schema of **only a throwaway research database** and never deletes or rewrites source object stores. Actual Safari blocked/eviction behavior, version-migration compatibility, Safari multiple-tab races and real family recovery remain untested. It proves refusal and preservation, not successful migration to newer IDB schema.
 
+## R4g extension — two independent native Chromium page targets
+
+R4f held two IndexedDB connections **inside one document**. R4g closes this specific gap by running a controlled multi-page Chromium scenario in a **fifth throwaway browser profile**:
+
+1. The first Chromium page restores a checksum-verified V2→V3 file containing the same three genuine public curriculum sources and **73 fake attempts**. It pins original learner strings and source counts in a real `localStorage` and IndexedDB database.
+2. The first page opens a **second, independent same-origin Chromium page** using `window.open`. A test-only Chromium `--disable-popup-blocking` launch flag permits page creation without a user gesture; it does **not** bypass IndexedDB or Recovery validations. The Node driver independently enumerates CDP `/json/list` targets and must confirm **two distinct real page target IDs**, not merely two connections in one tab.
+3. The first page deliberately holds its real IDB v1 connection open and handles `versionchange` without closing. The second page requests v2. Native `onblocked` fires **on the second page**, and native `versionchange` fires on the first. The driver checks both via CDP and only then invokes the owner page's test-only release callback. Any early completion, missing second page, or missing blocked event fails the gate.
+4. Once the first tab releases the native old connection, the second page completes a **metadata-only** v2 schema transition. It checks exact original source blobs and aliases (not just counts), the 123 current lessons, identical original synthetic attempts/Writing/course state and the version-1-only adapter's refusal to read or export from the unknown schema.
+5. After both page targets close normally, another Chrome process reopens the same disposable profile. It verifies original learner entry bytes, source inventory, and fail-closed response to incompatible IndexedDB schema.
+
+**Strict scope:** This demonstrates genuine *two independent Chromium page contexts* contending for an IndexedDB version change. It does **not** prove concurrent learner writing/merge resolution, Safari/iPad multi-tab lifecycle, IDB eviction, crash/power-loss durability, or the production UI's own multi-tab coordination. No original family profile or Recovery file is used.
+
 ## Explicit non-claims / blockers
 
 - SHA verifies integrity of archived JSON, but it is **not a cryptographic signature proving the real provenance of the original learner data**.
 - Real **MP3 binary digests and source-specific audio provenance** are not verified by this test. Transcript persistence is not evidence of actual audio playback.
-- No true iPad/Safari quota, IDB eviction, Safari lifecycle, genuine app multi-tab race or power-loss/crash behavior is proved here. **Only Chromium native blocked-versionchange for a disposable test-held connection is exercised in R4f.**
+- No true iPad/Safari quota, IDB eviction, Safari lifecycle, concurrent learner write race or power-loss/crash behavior is proved here. **R4f uses one document; R4g uses two genuine Chromium page targets, but neither demonstrates production user-tab concurrency or Safari acceptance.**
 - No private family Recovery V2 or original 73 iPad attempt records were opened. The generated 73 rows and feedback are fake.
 - No production UI entrypoint to V3, no owner acceptance, no approval for source deletion or auto-migration.
 
