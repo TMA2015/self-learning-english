@@ -40,6 +40,7 @@ async function until(fn,ms=30000){
  const nativeQuotaProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4e-native-quota-'));
  const blockedUpgradeProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4f-idb-blocked-'));
  const twoTabProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4g-two-tab-'));
+ const learnerRaceProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4h-learner-writes-'));
  const server=http.createServer((_req,res)=>{
   res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'});
   res.end(html);
@@ -51,7 +52,7 @@ async function until(fn,ms=30000){
   if(fs.existsSync(oldPortFile))fs.rmSync(oldPortFile,{force:true});
   const child=cp.spawn(chrome,['--headless=new','--no-sandbox','--disable-dev-shm-usage',
    '--disable-extensions','--disable-background-networking',
-   ...(url.includes('phase=multi-owner')?['--disable-popup-blocking']:[]),
+   ...((url.includes('phase=multi-owner')||url.includes('phase=write-race-owner'))?['--disable-popup-blocking']:[]),
    '--no-first-run','--remote-debugging-port=0','--remote-allow-origins=*',
    '--user-data-dir='+profilePath,url],{stdio:['ignore','ignore','pipe']});
   let stderr='',socket;
@@ -92,7 +93,8 @@ async function until(fn,ms=30000){
      }}));
     });
    }
-   const isTwoTab=url.includes('phase=multi-owner');
+   const isWriteRace=url.includes('phase=write-race-owner');
+   const isTwoTab=url.includes('phase=multi-owner')||isWriteRace;
    let twoPageTargetsVerified=false,oldConnectionReleased=false;
    let workerTarget=null;
    async function evalOtherPage(target,expression){
@@ -122,6 +124,25 @@ async function until(fn,ms=30000){
     last=String(await evaluate()||'');
     if(isTwoTab&&last.startsWith('FAIL_R4G'))
      throw Error('R4g owner test failed: '+last);
+    if(isWriteRace&&last.startsWith('FAIL_R4H'))
+     throw Error('R4h owner failed: '+last);
+    if(isWriteRace&&last==='READY_R4H_LOCK_QUEUE'&&!oldConnectionReleased){
+     const pages=await httpJSON('http://127.0.0.1:'+port+'/json/list');
+     const owner=pages.find(p=>p.type==='page'&&p.url.includes('phase=write-race-owner'));
+     const worker=pages.find(p=>p.type==='page'&&p.url.includes('phase=write-race-worker'));
+     assert(owner&&worker&&owner.id!==worker.id,
+      'R4h must have two independent real Chromium page targets');
+     workerTarget=worker;
+     const status=await evalOtherPage(worker,
+      "document.getElementById('sle-idb-result')?.textContent");
+     assert.equal(status,'READY_R4H_WORKER_LOCK_PENDING',
+      'Second real Chromium page did not queue guarded learner write');
+     twoPageTargetsVerified=true;
+     const released=await evaluate('window.__sleR4hRelease()');
+     assert.equal(released,'RELEASED_R4H_NATIVE_WEB_LOCK',
+      'R4h must release first-tab native lock only after second tab is queued');
+     oldConnectionReleased=true;
+    }
     if(isTwoTab&&last==='READY_R4G_TWO_TABS_BLOCKED'&&!oldConnectionReleased){
      const pages=await httpJSON('http://127.0.0.1:'+port+'/json/list');
      const owner=pages.find(p=>p.type==='page'&&p.url.includes('phase=multi-owner'));
@@ -145,8 +166,8 @@ async function until(fn,ms=30000){
         'No R4g PASS before real two-page CDP proof and explicit release');
        const workerStatus=await evalOtherPage(workerTarget,
         "document.getElementById('sle-idb-result')?.textContent");
-       assert.equal(workerStatus,'PASS_R4G_WORKER',
-        'Second Chromium page did not finish checking source/history');
+       assert.equal(workerStatus,isWriteRace?'PASS_R4H_WORKER':'PASS_R4G_WORKER',
+        'Second Chromium page did not finish cross-tab acceptance');
       }
       // Use Chrome's own normal shutdown protocol. Earlier SIGTERM-based
       // test shutdown could abandon the unflushed localStorage LevelDB journal
@@ -222,6 +243,32 @@ async function until(fn,ms=30000){
   assert.equal(twoTabProof.nativeTwoPageVersionchange,true);
   assert.equal(twoTabProof.nativeSecondTabOnblocked,true);
   assert.equal(twoTabProof.originalSyntheticAttempts,73);
+  const learnerRace=await visitWithStartupRetry(
+   host+'/?phase=write-race-owner',learnerRaceProfile);
+  const learnerRaceReload=await visitWithStartupRetry(
+   host+'/?phase=write-race-reload',learnerRaceProfile);
+  assert.match(learnerRace,/^PASS_R4H_OWNER\b/);
+  assert.match(learnerRaceReload,/^PASS_R4H_RELOAD\b/);
+  const raceProof=JSON.parse(learnerRace.slice(learnerRace.indexOf('{')));
+  assert.equal(raceProof.twoPageTargetsVerifiedExternally,true);
+  assert.equal(raceProof.nativeNaiveScratchLostOwnerAttemptAndReview,true);
+  assert.equal(raceProof.nativeWebLockQueueObserved,true);
+  assert.equal(raceProof.staleWorkerWriteRejected,true);
+  assert.equal(raceProof.protectedOriginalAttempts,73);
+  console.log(JSON.stringify({result:'PASS',gate:'r4h-two-tab-learner-writing-loss-prevention-research',
+   twoIndependentChromiumPageTargets:true,
+   nativeLocalStorageNaiveLostUpdateDemonstratedOnScratchKey:true,
+   nativeWebLocksExclusiveQueueObserved:true,
+   staleTabRejectedWithoutWriting:true,
+   refreshedSecondTabMerged:true,
+   bothDraftEditsAndWritingReviewsPreserved:true,
+   untouchedOriginal71AttemptsExact:true,
+   originalHistoricalSourceUnchanged:true,
+   fullV3ReexportVerified:true,
+   statePersistedAcrossNewChromeProcess:true,
+   liveRuntimeUsesWebLocks:false,
+   productionConcurrentWritingSafety:'NOT_PROVEN',
+   safari:'NOT_TESTED',realLearnerData:'NOT_TOUCHED',deploy:false}));
   console.log(JSON.stringify({result:'PASS',gate:'r4g-two-independent-chromium-tabs-indexeddb-contention',
    actualTwoDistinctCDPPageTargets:true,
    nativeCrossTabVersionchange:true,nativeSecondTabOnblocked:true,
@@ -265,5 +312,5 @@ async function until(fn,ms=30000){
    persistedAcrossBrowserProcesses:true,realIndexedDBRestore:true,oldAttemptsByteIdentical:true,changedRubricPinned:true,occupiedRestoreBlocked:true,tamperedV2Blocked:true,
    recoveryV3:'BROWSER_SYNTHETIC_PASS',liveRuntimeIntegration:'NOT_TESTED',
    realSafariAcceptance:'NOT_TESTED'}));
- }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true})}
+ }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});
