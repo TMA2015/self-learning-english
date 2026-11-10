@@ -82,6 +82,48 @@ async function fixture(){
  },null,2)+'\n';
  return {v2,rows,attempts};
 }
+/** R4h test-only helpers. The deployed SLE app does NOT use these locks. */
+const R4H_LOCK='sle-issue103-r4h-disposable-learner-writes';
+const R4H_CHANNEL='sle-issue103-r4h-two-page-learner-writes';
+const R4H_SCRATCH='__sle_issue103_r4h_naive_collision_scratch__';
+function r4hAnswer(raw:string,index:number,value:string){
+ const entries=JSON.parse(raw) as Array<{answers:Record<string,string>}>;
+ check(entries.length===73&&entries[index]?.answers,
+  'R4h must keep all 73 original synthetic attempt records');
+ const answerId=Object.keys(entries[index].answers)[0];
+ check(!!answerId,'R4h synthetic attempt answer key missing');
+ entries[index].answers[answerId]=value;
+ return JSON.stringify(entries);
+}
+function r4hReview(raw:string,id:string){
+ const source=JSON.parse(raw) as {reviews:Array<{id:string;feedback:string}>};
+ check(Array.isArray(source.reviews)&&source.reviews.length>=1,
+  'R4h must preserve the original synthetic Writing review');
+ source.reviews.push({id,feedback:'R4h synthetic feedback from '+id});
+ return JSON.stringify(source);
+}
+function r4hAssertMerged(
+ original:string,attemptsRaw:string,writingRaw:string
+){
+ const originalEntries=JSON.parse(original) as Array<{answers:Record<string,string>}>;
+ const actual=JSON.parse(attemptsRaw) as Array<{answers:Record<string,string>}>;
+ check(actual.length===73,'R4h merged attempt cardinality changed');
+ for(let i=0;i<73;i++){
+  if(i===71||i===72)continue;
+  check(JSON.stringify(actual[i])===JSON.stringify(originalEntries[i]),
+   'R4h changed an unrelated original attempt at '+i);
+ }
+ const a=Object.keys(actual[71].answers)[0],b=Object.keys(actual[72].answers)[0];
+ check(actual[71].answers[a]==='R4H_OWNER_DRAFT_EDIT'&&
+  actual[72].answers[b]==='R4H_WORKER_DRAFT_EDIT',
+  'R4h concurrent owner/worker answer edits were not both retained');
+ const writing=JSON.parse(writingRaw) as {reviews:Array<{id:string;feedback:string}>};
+ check(writing.reviews.length===3&&writing.reviews[0].id==='test-review'&&
+  writing.reviews[1].id==='r4h-owner-review'&&
+  writing.reviews[2].id==='r4h-worker-review',
+  'R4h lost or reordered the original and two new Writing reviews');
+}
+
 const vault=browserLessonRevisionVault();
 (async()=>{
  dom.textContent='RUNNING_'+phase;
@@ -861,6 +903,276 @@ const vault=browserLessonRevisionVault();
    read.aliases.length===verified.file.aliases.length,
    'Original source inventory changed after two-tab test and Chrome restart');
   dom.textContent='PASS_R4G_RELOAD';
+ }else if(phase==='write-race-owner'){
+  // True two-page test. No production learner profile is used. Demonstrate
+  // naive lost update on a SCRATCH key, never overwrite baseline learner keys.
+  check(localStorage.length===0,'R4h requires a fresh disposable Chrome profile');
+  check((await vault.snapshot()).active===null,'R4h requires empty test IDB');
+  check(typeof navigator.locks?.request==='function'&&
+   typeof navigator.locks?.query==='function',
+   'Native Chromium Web Locks API is required; cannot fake R4h gate');
+  const {v2,rows}=await fixture();
+  const v3=await convertVerifiedV2ToRevisionV3(v2);
+  const verified=await verifyRevisionRecoveryV3(v3.text);
+  check(verified.attempts===73,'R4h original V2 archive must be checksum-valid');
+  const preview=await previewNormalizedV3Restore(v3.text,localStorage,vault);
+  check(preview.valid,'R4h initial verified V3 empty-profile preview failed');
+  check((await restoreNormalizedV3(v3.text,preview.token,true,localStorage,vault))
+   .attempts===73,'R4h initial source/history restore failed');
+  const baselineA=rows.find(r=>r.key===attemptKey)!.value;
+  const baselineW=permanentTestValues.writing;
+  check(localStorage.getItem(attemptKey)===baselineA&&
+   localStorage.getItem(writingKey)===baselineW,
+   'R4h original learner source differs from verified V2');
+  localStorage.setItem(R4H_SCRATCH,JSON.stringify({
+   attempts:baselineA,writing:baselineW
+  }));
+  const baselineSource=await vault.snapshot();
+  check(baselineSource.active?.lessons.length===123&&baselineSource.aliases.length>0,
+   'R4h original historical source not present');
+  let workerReady=false,rawPrepared=false,rawLost=false;
+  let ownerHoldingLock=false,workerLockPending=false,releaseGranted=false;
+  let staleRejected=false,workerMerged=false;
+  const release:{go?:()=>void}={};
+  const channel=new BroadcastChannel(R4H_CHANNEL);
+  const failure=(v:unknown)=>{dom.textContent='FAIL_R4H_OWNER '+String(v)};
+  channel.onmessage=async event=>{
+   try{
+    const msg=event.data as {type?:string;message?:string;
+     baselineDigest?:string;writingDigest?:string};
+    if(msg.type==='WORKER_READY'){
+     check(!workerReady,'Duplicate second-page R4h init');
+     check(msg.baselineDigest===await digest(baselineA)&&
+      msg.writingDigest===await digest(baselineW),
+      'Two tabs did not start with identical learner snapshots');
+     workerReady=true;
+     channel.postMessage({type:'START_RAW'});
+    }else if(msg.type==='RAW_PREPARED'){
+     check(workerReady&&!rawPrepared,'Naive worker was not ready');
+     rawPrepared=true;
+     const scratch=JSON.parse(localStorage.getItem(R4H_SCRATCH)!);
+     scratch.attempts=r4hAnswer(scratch.attempts,71,'R4H_OWNER_DRAFT_EDIT');
+     scratch.writing=r4hReview(scratch.writing,'r4h-owner-review');
+     localStorage.setItem(R4H_SCRATCH,JSON.stringify(scratch));
+     channel.postMessage({type:'RAW_OWNER_WRITTEN'});
+    }else if(msg.type==='RAW_WORKER_OVERWROTE'){
+     check(rawPrepared&&!rawLost,'Naive collision ordering invalid');
+     const naive=JSON.parse(localStorage.getItem(R4H_SCRATCH)!);
+     const first=JSON.parse(naive.attempts) as Array<{answers:Record<string,string>}>;
+     const firstKey=Object.keys(first[71].answers)[0];
+     const secondKey=Object.keys(first[72].answers)[0];
+     check(first[71].answers[firstKey]!== 'R4H_OWNER_DRAFT_EDIT'&&
+      first[72].answers[secondKey]==='R4H_WORKER_DRAFT_EDIT',
+      'Actual native localStorage scratch overwrite failed to show lost update');
+     const reviews=(JSON.parse(naive.writing) as {
+      reviews:Array<{id:string}>
+     }).reviews;
+     check(!reviews.some(x=>x.id==='r4h-owner-review')&&
+      reviews.some(x=>x.id==='r4h-worker-review'),
+      'Naive scratch collision did not lose owner Writing feedback');
+     check(localStorage.getItem(attemptKey)===baselineA&&
+      localStorage.getItem(writingKey)===baselineW,
+      'Naive scratch test accidentally changed protected learner data');
+     localStorage.removeItem(R4H_SCRATCH); // only disposable scratch
+     rawLost=true;
+     channel.postMessage({type:'START_GUARDED'});
+    }else if(msg.type==='GUARDED_WORKER_READY'){
+     check(rawLost&&!ownerHoldingLock,'Guarded initialization not ordered');
+     // Hold real cross-tab exclusive Web Lock until driver checks that
+     // second page is ACTUALLY waiting. Test-only lock, no live code path.
+     const task=navigator.locks.request(R4H_LOCK,{mode:'exclusive'},async()=>{
+      ownerHoldingLock=true;
+      channel.postMessage({type:'OWNER_LOCK_HELD'});
+      await new Promise<void>(resolve=>{release.go=resolve});
+      check(localStorage.getItem(attemptKey)===baselineA&&
+       localStorage.getItem(writingKey)===baselineW,
+       'Guarded owner snapshot already changed while lock held');
+      localStorage.setItem(attemptKey,r4hAnswer(
+       baselineA,71,'R4H_OWNER_DRAFT_EDIT'));
+      localStorage.setItem(writingKey,r4hReview(
+       baselineW,'r4h-owner-review'));
+     });
+     task.catch(failure);
+    }else if(msg.type==='WORKER_LOCK_REQUESTED'){
+     check(ownerHoldingLock&&!releaseGranted,
+      'Second-tab write must begin while first tab holds Web Lock');
+     let actuallyPending=false;
+     for(let i=0;i<30;i++){
+      const status=await navigator.locks.query();
+      actuallyPending=(status.pending??[]).some(x=>x.name===R4H_LOCK);
+      if(actuallyPending)break;
+      await new Promise(resolve=>setTimeout(resolve,25));
+     }
+     check(actuallyPending,'Actual Chrome Web Locks queue never showed other tab pending');
+     workerLockPending=true;
+     dom.textContent='READY_R4H_LOCK_QUEUE';
+    }else if(msg.type==='STALE_REJECTED'){
+     check(workerLockPending&&releaseGranted&&!staleRejected,
+      'Stale second-tab write was not serialized after owner release');
+     staleRejected=true;
+     check(localStorage.getItem(attemptKey)===
+      r4hAnswer(baselineA,71,'R4H_OWNER_DRAFT_EDIT')&&
+      localStorage.getItem(writingKey)===
+      r4hReview(baselineW,'r4h-owner-review'),
+      'Stale queued writer modified winner or original Writing feedback');
+     channel.postMessage({type:'REFRESH_RETRY'});
+    }else if(msg.type==='WORKER_MERGED'){
+     check(staleRejected&&!workerMerged,'Worker retried without conflict detection');
+     const actualA=localStorage.getItem(attemptKey)!;
+     const actualW=localStorage.getItem(writingKey)!;
+     r4hAssertMerged(baselineA,actualA,actualW);
+     check(localStorage.getItem(extraKey)===permanentTestValues.course,
+      'Concurrent test modified original course selection');
+     check(localStorage.getItem(R4H_SCRATCH)===null&&
+      localStorage.getItem(RECOVERY_V3_MARKER)===null,
+      'Concurrent writer left test scratch or interrupted Recovery marker');
+     const after=await vault.snapshot();
+     check(canonicalLessonJSON(after)===canonicalLessonJSON(baselineSource),
+      'Concurrent learner edits modified historical content-addressed source');
+     const exported=await exportNormalizedBrowserRecoveryV3(
+      localStorage,vault,'2026-11-10T16:30:00.000Z');
+     const confirm=await verifyRevisionRecoveryV3(exported.text);
+     check(confirm.attempts===73&&
+      confirm.file.entries.find(x=>x.key===attemptKey)?.value===actualA&&
+      confirm.file.entries.find(x=>x.key===writingKey)?.value===actualW,
+      'Completed guarded edits cannot be fully re-exported with exact learner bytes');
+     workerMerged=true;
+     dom.textContent='PASS_R4H_OWNER '+JSON.stringify({
+      twoPageTargetsVerifiedExternally:true,
+      nativeNaiveScratchLostOwnerAttemptAndReview:true,
+      nativeWebLockQueueObserved:true,
+      staleWorkerWriteRejected:true,
+      refreshAndMergeRetainedBothAttemptsAndReviews:true,
+      protectedOriginalAttempts:73,
+      historicSourceFullyUnchanged:true,
+      fullV3ExportVerified:true
+     });
+     channel.close();
+    }else if(msg.type==='WORKER_ERROR')failure(msg.message);
+   }catch(e){failure(e)}
+  };
+  (window as Window&{__sleR4hRelease?:()=>string}).__sleR4hRelease=()=>{
+   check(ownerHoldingLock&&workerLockPending&&!!release.go&&!releaseGranted,
+    'R4h driver must prove second page is queued before releasing native lock');
+   releaseGranted=true;release.go!();
+   return 'RELEASED_R4H_NATIVE_WEB_LOCK';
+  };
+  dom.textContent='READY_R4H_OWNER';
+  const second=window.open(location.origin+'/?phase=write-race-worker','_blank','');
+  check(second!==null&&second!==window,
+   'R4h requires two separate real Chromium page targets');
+ }else if(phase==='write-race-worker'){
+  check(window.opener!==null&&window.opener!==window,
+   'R4h worker must be a separate Chrome tab opened by owner');
+  check(typeof navigator.locks?.request==='function',
+   'R4h worker lacks native Web Locks');
+  const expectedA=localStorage.getItem(attemptKey);
+  const expectedW=localStorage.getItem(writingKey);
+  const scratch=localStorage.getItem(R4H_SCRATCH);
+  check(expectedA!==null&&expectedW!==null&&scratch!==null,
+   'Worker must snapshot real original attempt, Writing and scratch bytes');
+  const rawCached=JSON.parse(scratch) as {attempts:string;writing:string};
+  check(rawCached.attempts===expectedA&&rawCached.writing===expectedW,
+   'Second-tab initial scratch/source mismatch');
+  const channel=new BroadcastChannel(R4H_CHANNEL);
+  const failure=(v:unknown)=>{
+   const message=String(v);
+   dom.textContent='FAIL_R4H_WORKER '+message;
+   channel.postMessage({type:'WORKER_ERROR',message});
+  };
+  let rawDone=false,guardRequested=false,staleRejected=false;
+  channel.onmessage=async event=>{
+   try{
+    const msg=event.data as {type?:string};
+    if(msg.type==='START_RAW'){
+     channel.postMessage({type:'RAW_PREPARED'});
+    }else if(msg.type==='RAW_OWNER_WRITTEN'){
+     check(!rawDone,'Worker raw scratch write repeated');
+     const naive={
+      attempts:r4hAnswer(rawCached.attempts,72,'R4H_WORKER_DRAFT_EDIT'),
+      writing:r4hReview(rawCached.writing,'r4h-worker-review')
+     };
+     // Native browser localStorage: last writer wins, no compare-and-swap.
+     localStorage.setItem(R4H_SCRATCH,JSON.stringify(naive));
+     rawDone=true;
+     channel.postMessage({type:'RAW_WORKER_OVERWROTE'});
+    }else if(msg.type==='START_GUARDED'){
+     check(rawDone&&!guardRequested,'Guard must run after native naive collision');
+     guardRequested=true;
+     channel.postMessage({type:'GUARDED_WORKER_READY'});
+    }else if(msg.type==='OWNER_LOCK_HELD'){
+     check(guardRequested&&!staleRejected,'Owner lock arrived unexpectedly');
+     const queued=navigator.locks.request(R4H_LOCK,{mode:'exclusive'},async()=>{
+      // Both keys are guarded by the SAME lock. Compare exact expected
+      // snapshots and fail closed on stale values; never silently overwrite.
+      if(localStorage.getItem(attemptKey)!==expectedA||
+         localStorage.getItem(writingKey)!==expectedW)return 'STALE';
+      const updatedA=r4hAnswer(expectedA,72,'R4H_WORKER_DRAFT_EDIT');
+      const updatedW=r4hReview(expectedW,'r4h-worker-review');
+      localStorage.setItem(attemptKey,updatedA);
+      localStorage.setItem(writingKey,updatedW);
+      return 'UNEXPECTED_STALE_ACCEPT';
+     });
+     dom.textContent='READY_R4H_WORKER_LOCK_PENDING';
+     channel.postMessage({type:'WORKER_LOCK_REQUESTED'});
+     const result=await queued;
+     check(result==='STALE',
+      'Stale second-tab writer must refuse to overwrite owner attempt/review');
+     staleRejected=true;
+     channel.postMessage({type:'STALE_REJECTED'});
+    }else if(msg.type==='REFRESH_RETRY'){
+     check(staleRejected,'Cannot retry before genuine stale-write rejection');
+     const freshA=localStorage.getItem(attemptKey)!;
+     const freshW=localStorage.getItem(writingKey)!;
+     const result=await navigator.locks.request(R4H_LOCK,{mode:'exclusive'},async()=>{
+      check(localStorage.getItem(attemptKey)===freshA&&
+       localStorage.getItem(writingKey)===freshW,
+       'Refreshed learner state changed before merged write');
+      const updatedA=r4hAnswer(freshA,72,'R4H_WORKER_DRAFT_EDIT');
+      const updatedW=r4hReview(freshW,'r4h-worker-review');
+      localStorage.setItem(attemptKey,updatedA);
+      localStorage.setItem(writingKey,updatedW);
+      return 'MERGED';
+     });
+     check(result==='MERGED','Refreshed cross-tab write failed');
+     dom.textContent='PASS_R4H_WORKER';
+     channel.postMessage({type:'WORKER_MERGED'});
+     channel.close();
+    }
+   }catch(e){failure(e)}
+  };
+  channel.postMessage({type:'WORKER_READY',
+   baselineDigest:await digest(expectedA),
+   writingDigest:await digest(expectedW)});
+  dom.textContent='READY_R4H_WORKER';
+ }else if(phase==='write-race-reload'){
+  const {v2,rows}=await fixture();
+  const baselineA=rows.find(x=>x.key===attemptKey)!.value;
+  const actualA=localStorage.getItem(attemptKey);
+  const actualW=localStorage.getItem(writingKey);
+  check(actualA!==null&&actualW!==null,'R4h merged learner state missing on restart');
+  r4hAssertMerged(baselineA,actualA,actualW);
+  check(localStorage.getItem(R4H_SCRATCH)===null&&
+   localStorage.getItem(RECOVERY_V3_MARKER)===null&&
+   localStorage.getItem(extraKey)===permanentTestValues.course,
+   'R4h restart has scratch, pending marker or changed course selection');
+  const original=(await verifyRevisionRecoveryV3(
+   (await convertVerifiedV2ToRevisionV3(v2)).text)).file;
+  const source=await vault.snapshot();
+  check(canonicalLessonJSON(source.active)===canonicalLessonJSON(original.active)&&
+   source.blobs.length===original.blobs.length&&
+   source.aliases.length===original.aliases.length,
+   'R4h restart changed original source inventory');
+  check((await vault.resolveHistoric('1.18.0','WRI-A2-01')).lesson.id===
+   'WRI-A2-01','R4h historic Writing source missing after restart');
+  const backup=await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T16:40:00.000Z');
+  const verified=await verifyRevisionRecoveryV3(backup.text);
+  check(verified.attempts===73&&
+   verified.file.entries.find(x=>x.key===attemptKey)?.value===actualA&&
+   verified.file.entries.find(x=>x.key===writingKey)?.value===actualW,
+   'R4h recovery export after browser restart lost merged edits');
+  dom.textContent='PASS_R4H_RELOAD';
  }else throw Error('Unsupported R4c browser phase');
 })().catch(e=>{
  dom.textContent='FAIL '+String(e)+' '+String((e as Error)?.stack).slice(0,1100);
