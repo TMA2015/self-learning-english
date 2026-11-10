@@ -45,6 +45,7 @@ const coreTests=[
 ];
 
 const fullRegressionTests=[
+  "storage-r0-public-inventory.cjs",
   "writing-course-v2-a.cjs",
   "writing-course-v2-b.cjs",
   "writing-course-v2-c.cjs",
