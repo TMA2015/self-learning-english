@@ -495,13 +495,14 @@ const vault=browserLessonRevisionVault();
   check(held.version===1,'Unexpected original research vault version');
   let versionchangeSeen=false,upgradeBlocked=false,upgradeComplete=false;
   held.onversionchange=()=>{versionchangeSeen=true;/* deliberate old-handle hold */};
-  let upgraded:IDBDatabase|null=null,upgradeFailure='';
+  const upgraded:{connection?:IDBDatabase}={};
+  let upgradeFailure='';
   const finished=new Promise<void>(resolve=>{
    const request=indexedDB.open(dbName,2);
    request.onblocked=()=>{upgradeBlocked=true};
    request.onupgradeneeded=()=>{}; // Never change/remove the three data stores.
    request.onsuccess=()=>{
-    upgraded=request.result;upgradeComplete=true;resolve();
+    upgraded.connection=request.result;upgradeComplete=true;resolve();
    };
    request.onerror=()=>{
     upgradeFailure=String(request.error);resolve();
@@ -522,9 +523,9 @@ const vault=browserLessonRevisionVault();
    new Promise<never>((_,reject)=>setTimeout(
     ()=>reject(Error('Native blocked upgrade never completed after closing v1')),5000))
   ]);
-  check(!upgradeFailure&&upgradeComplete&&upgraded?.version===2,
+  check(!upgradeFailure&&upgradeComplete&&upgraded.connection?.version===2,
    'Native versionchange did not complete after test handle release: '+upgradeFailure);
-  upgraded!.close();
+  upgraded.connection!.close();
 
   // The version-1-only R2 vault MUST reject an unexpected newer IDB schema;
   // do not treat a missing source as permission to load the latest lesson.
