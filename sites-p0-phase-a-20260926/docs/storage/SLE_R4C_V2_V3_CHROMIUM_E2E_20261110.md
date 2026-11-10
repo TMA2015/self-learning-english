@@ -18,7 +18,7 @@ R4c exercises that missing boundary. The initial research branch was stacked on 
 - Uses real throwaway localhost Chromium profile and IndexedDB, initially empty. Proves invalid original V2 checksum is rejected; occupied-profile restore preview is rejected without overwriting the synthetic sentinel.
 - Performs confirmed restore only into empty **disposable** profile. Checks the exact serialized attempts, Writing/review and course-state entries; requires the old cumulative package key is not recreated.
 - Reads original historic Vocabulary, Reading and Writing lesson/rubric content from IndexedDB aliases; distinguishes original changed lessons from the latest revision; re-exports a verified complete V3.
-- Fully closes/reopens a separate Chromium process and checks that 123 active public lessons, historical aliases, serialized attempts and verified V3 export remain available.
+- Fully closes/reopens a separate Chromium process and checks that 123 active public lessons, historical aliases, serialized attempts and verified V3 export remain available. The driver permits a short controlled write-flush interval before browser shutdown; it does not simulate a power-loss or abrupt crash. A failed restart comparison reports only synthetic lengths, hashes and storage key names.
 
 The test is registered as one additional test under the existing `qa:core`/`qa:full`. It does not create workflows, alter web app runtime, change current LIVE curriculum, enable background migration, or touch Firebase.
 
