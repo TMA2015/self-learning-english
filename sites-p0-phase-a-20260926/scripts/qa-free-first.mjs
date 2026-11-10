@@ -71,6 +71,7 @@ const fullRegressionTests=[
   "f3-b2-bulk12-v126-machine-schema.cjs",
   "f3-b2-bulk12-v126-storage-safety.cjs",
   "f3-v126-multi-version-quota-fallback.cjs",
+  "f3-v126-chromium-long-history.cjs",
   "f2-v125-upgrade-storage-safety.cjs",
   "f2-v125-long-history-quota-fallback.cjs",
   "lesson-status-course-cards-plan.cjs",
