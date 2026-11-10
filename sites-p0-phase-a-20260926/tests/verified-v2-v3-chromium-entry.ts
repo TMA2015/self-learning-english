@@ -83,6 +83,10 @@ async function fixture(){
  return {v2,rows,attempts};
 }
 /** R4h test-only helpers. The deployed SLE app does NOT use these locks. */
+function r4hRequiredString(value:string|null,label:string):string{
+ if(value===null)throw Error('R4h required original data missing: '+label);
+ return value;
+}
 const R4H_LOCK='sle-issue103-r4h-disposable-learner-writes';
 const R4H_CHANNEL='sle-issue103-r4h-two-page-learner-writes';
 const R4H_SCRATCH='__sle_issue103_r4h_naive_collision_scratch__';
@@ -1066,9 +1070,9 @@ const vault=browserLessonRevisionVault();
    'R4h worker must be a separate Chrome tab opened by owner');
   check(typeof navigator.locks?.request==='function',
    'R4h worker lacks native Web Locks');
-  const expectedA=localStorage.getItem(attemptKey);
-  const expectedW=localStorage.getItem(writingKey);
-  const scratch=localStorage.getItem(R4H_SCRATCH);
+  const expectedA=r4hRequiredString(localStorage.getItem(attemptKey),'attempts');
+  const expectedW=r4hRequiredString(localStorage.getItem(writingKey),'Writing');
+  const scratch=r4hRequiredString(localStorage.getItem(R4H_SCRATCH),'scratch');
   check(expectedA!==null&&expectedW!==null&&scratch!==null,
    'Worker must snapshot real original attempt, Writing and scratch bytes');
   const rawCached=JSON.parse(scratch) as {attempts:string;writing:string};
@@ -1148,9 +1152,8 @@ const vault=browserLessonRevisionVault();
  }else if(phase==='write-race-reload'){
   const {v2,rows}=await fixture();
   const baselineA=rows.find(x=>x.key===attemptKey)!.value;
-  const actualA=localStorage.getItem(attemptKey);
-  const actualW=localStorage.getItem(writingKey);
-  check(actualA!==null&&actualW!==null,'R4h merged learner state missing on restart');
+  const actualA=r4hRequiredString(localStorage.getItem(attemptKey),'restarted attempts');
+  const actualW=r4hRequiredString(localStorage.getItem(writingKey),'restarted Writing');
   r4hAssertMerged(baselineA,actualA,actualW);
   check(localStorage.getItem(R4H_SCRATCH)===null&&
    localStorage.getItem(RECOVERY_V3_MARKER)===null&&
