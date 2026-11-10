@@ -442,3 +442,34 @@ body {
 .course-choice-card .learning-choices{margin:3px 0 0}
 .course-choice-card button{min-height:42px}
 @media(max-width:600px){.course-choice-card{padding:17px}.course-choice-card .learning-choices button{flex:1;min-width:fit-content}}
+
+
+/* Parent View on-device storage UX: separate backup, safe cleanup, and restore. */
+.sle-storage-panel{max-width:920px;min-width:0}
+.sle-storage-intro{line-height:1.65}
+.sle-storage-section{padding:16px 0;border-top:1px solid #e4ebf5}
+.sle-storage-action-row{display:grid;grid-template-columns:minmax(205px,265px) minmax(0,1fr);align-items:center;gap:12px 22px}
+.sle-storage-action-row>.secondary-button{width:100%;min-height:46px;white-space:normal;text-align:center;line-height:1.4}
+.sle-storage-action-row p{margin:0;font-size:14px;line-height:1.65;overflow-wrap:anywhere}
+.sle-storage-preview{margin:15px 0 0;padding:16px;border:1px solid #dce7f3;border-radius:12px;background:#f7faff}
+.sle-storage-preview h3,.sle-cleanup-steps h3{font-size:16px;color:#1d426d;margin:0 0 11px}
+.sle-storage-preview p{font-size:14px;margin:8px 0;line-height:1.65}
+.sle-storage-no-savings{margin-top:14px!important;border-left:3px solid #6e8ea8;padding:11px 13px;background:#fff;color:#345571!important}
+.sle-cleanup-steps{display:grid;gap:9px;margin-top:16px;padding-top:14px;border-top:1px solid #dce6f1}
+.sle-cleanup-step{display:grid;grid-template-columns:minmax(205px,265px) minmax(0,1fr);gap:6px 22px;align-items:center;padding:8px 0}
+.sle-cleanup-step>.secondary-button{width:100%;min-height:46px;white-space:normal;line-height:1.4}
+.sle-cleanup-step p{margin:0;font-size:14px;line-height:1.6}
+.sle-storage-verified-file{grid-column:2;color:#237a58;font-size:13px;overflow-wrap:anywhere}
+.sle-storage-filename{font-size:13px;margin:8px 0 0;overflow-wrap:anywhere}
+.sle-restore-confirmation{margin-top:12px;padding:14px;background:#f7faff;border:1px solid #dce7f3;border-radius:10px}
+.sle-restore-confirmation p{margin:0 0 10px;font-size:14px}
+.sle-storage-footnote{margin:14px 0 0!important;line-height:1.65}
+.sle-storage-status{margin:13px 0 0;padding:12px 14px;border:1px solid #d3e3f4;border-radius:9px;background:#f2f7fd;overflow-wrap:anywhere}
+.sle-storage-hidden-file{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;overflow:hidden!important;pointer-events:none!important}
+.sle-storage-panel .secondary-button:focus-visible{outline:3px solid #80a8e5;outline-offset:3px}
+@media(max-width:680px){
+ .sle-storage-action-row,.sle-cleanup-step{grid-template-columns:minmax(0,1fr);gap:7px}
+ .sle-storage-action-row>.secondary-button,.sle-cleanup-step>.secondary-button{width:100%;text-align:center}
+ .sle-storage-verified-file{grid-column:1}
+ .sle-storage-preview{padding:13px}
+}
