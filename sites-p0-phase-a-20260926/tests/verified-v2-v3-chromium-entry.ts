@@ -336,6 +336,132 @@ const vault=browserLessonRevisionVault();
   check((await vault.resolveHistoric('1.18.0','REA-A1-01')).lesson.id==='REA-A1-01',
    'Historical source disappeared after resumed restart');
   dom.textContent='PASS_RESUME_RELOAD';
+ }else if(phase==='native-quota'){
+  // Real Chromium localStorage QuotaExceededError, not a fake adapter.
+  // The scratch key is not part of the English learner namespace.
+  const paddingKey='__sle_issue103_r4e_disposable_quota_padding__';
+  check(localStorage.length===0,'Native quota test requires empty disposable Chrome profile');
+  check((await vault.snapshot()).active===null,
+   'Native quota test requires empty disposable IndexedDB');
+  const {v2}=await fixture();
+  const v3=await convertVerifiedV2ToRevisionV3(v2);
+  const verified=await verifyRevisionRecoveryV3(v3.text);
+  check(verified.attempts===73,'Native quota test must protect 73 synthetic attempts');
+  const preview=await previewNormalizedV3Restore(v3.text,localStorage,vault);
+  check(preview.valid&&!preview.resuming,'Empty profile preview must validate before scratch padding');
+  // Measure actual browser quota by overwriting the same scratch key.
+  // Bounds are deliberate; if Chromium's policy is different, fail,
+  // do not silently convert this into a synthetic quota test.
+  let low=0,high=8_000_000,nativeExceeded=false;
+  while(low+256<high){
+   const mid=Math.floor((low+high)/2);
+   try{localStorage.setItem(paddingKey,'x'.repeat(mid));low=mid}
+   catch(e){
+    check((e as Error)?.name==='QuotaExceededError',
+     'Unexpected native Chromium storage error during quota measurement');
+    nativeExceeded=true;high=mid;
+   }
+  }
+  check(nativeExceeded&&low>=1_000_000&&high<8_000_000,
+   'Native quota boundary was not measured inside required range');
+  const headroom=4096;
+  check(low>headroom,'Measured native quota is too small');
+  localStorage.setItem(paddingKey,'x'.repeat(low-headroom));
+  check(localStorage.getItem(paddingKey)?.length===low-headroom,
+   'Actual near-quota filler could not be stored');
+  // Recompute preview AFTER adding only a non-English test-owned key.
+  // The preview is tied to browser-visible learner/source state.
+  const ready=await previewNormalizedV3Restore(v3.text,localStorage,vault);
+  check(ready.valid&&ready.attempts===73,'Quota padding must not alter learner state');
+  let nativeFailure='';
+  try{await restoreNormalizedV3(v3.text,ready.token,true,localStorage,vault)}
+  catch(e){nativeFailure=String(e)}
+  check(nativeFailure.includes('QuotaExceededError')&&
+   nativeFailure.includes('interrupted marker preserved'),
+   'Native Chromium quota must reject restore and preserve interruption marker: '+
+    nativeFailure.slice(0,240));
+  check(localStorage.getItem(RECOVERY_V3_MARKER)===verified.file.sha256,
+   'Native quota failure must retain correct V3 checksum marker');
+  check(localStorage.getItem(attemptKey)===null&&
+   localStorage.getItem(extraKey)===null&&
+   localStorage.getItem(writingKey)===null,
+   'Native quota failure may not leave partial learner history');
+  check(localStorage.getItem(paddingKey)?.length===low-headroom,
+   'Failure must not unexpectedly delete test quota filler');
+  check((await vault.snapshot()).active?.lessons.length===123,
+   'Original revision data must survive native quota failure in IndexedDB');
+  let failedBackup=false;
+  try{await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T12:00:00.000Z')}
+  catch(e){failedBackup=/interrupted Recovery blocks new exports/i.test(String(e))}
+  check(failedBackup,'Incomplete quota-blocked profile may not export a backup');
+  dom.textContent='PASS_NATIVE_QUOTA '+JSON.stringify({
+   nativeQuotaExceeded:true,measuredAcceptedPaddingChars:low,
+   headroomChars:headroom,restoredAttempts:0,
+   original73HistoryNotPartiallyWritten:true,
+   pendingMarkerRetained:true,realIDBStillComplete:true
+  });
+ }else if(phase==='native-quota-resume'){
+  const paddingKey='__sle_issue103_r4e_disposable_quota_padding__';
+  const {v2,rows}=await fixture();
+  const v3=await convertVerifiedV2ToRevisionV3(v2);
+  const verified=await verifyRevisionRecoveryV3(v3.text);
+  check(localStorage.getItem(RECOVERY_V3_MARKER)===verified.file.sha256,
+   'Native quota interruption marker lost over Chrome restart');
+  check(localStorage.getItem(paddingKey)!==null,
+   'Quota padding was not persisted over graceful Chrome restart');
+  check(localStorage.getItem(attemptKey)===null,
+   'Native quota failure wrote a partial attempt before recovery');
+  const current=await vault.snapshot();
+  check(current.active?.lessons.length===123&&current.aliases.length>0,
+   'Historic IndexedDB source disappeared after native quota restart');
+  // Remove ONLY the uniquely named scratch padding key from a disposable
+  // Chromium profile. Never touch real user or owner-scoped keys.
+  localStorage.removeItem(paddingKey);
+  check(localStorage.getItem(paddingKey)===null,
+   'Test-only quota padding was not removed');
+  const preview=await previewNormalizedV3Restore(v3.text,localStorage,vault);
+  check(preview.valid&&preview.resuming&&preview.attempts===73,
+   'Only matching original verified V3 may resume after quota recovery');
+  const restored=await restoreNormalizedV3(
+   v3.text,preview.token,true,localStorage,vault);
+  check(restored.attempts===73,
+   'Native quota recovered profile did not restore 73 attempts');
+  check(localStorage.getItem(attemptKey)===
+   rows.find(x=>x.key===attemptKey)!.value,
+   'Native quota recovery modified serialized attempt/grade history');
+  check(localStorage.getItem(writingKey)===permanentTestValues.writing&&
+   localStorage.getItem(extraKey)===permanentTestValues.course,
+   'Native quota recovery modified original Writing/course state');
+  check(localStorage.getItem(RECOVERY_V3_MARKER)===null,
+   'Completed native quota recovery must clear interrupted marker');
+  const historic=await vault.resolveHistoric('1.18.0','WRI-A2-01');
+  const oldWriting=source('1.18.0').lessons.find(l=>l.id==='WRI-A2-01');
+  check(canonicalLessonJSON(historic.lesson)===canonicalLessonJSON(oldWriting),
+   'Native quota resume changed historical Writing source');
+  const backup=await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T12:30:00.000Z');
+  check((await verifyRevisionRecoveryV3(backup.text)).attempts===73,
+   'Recovered native quota profile does not export complete V3');
+  dom.textContent='PASS_NATIVE_QUOTA_RESUME';
+ }else if(phase==='native-quota-reload'){
+  const {rows}=await fixture();
+  const paddingKey='__sle_issue103_r4e_disposable_quota_padding__';
+  check(localStorage.getItem(paddingKey)===null,
+   'Disposal test padding reappeared after resumed recovery');
+  check(localStorage.getItem(RECOVERY_V3_MARKER)===null,
+   'Quota recovered profile remained marked incomplete after restart');
+  check(localStorage.getItem(attemptKey)===
+   rows.find(x=>x.key===attemptKey)!.value,
+   'Recovered 73-attempt bytes lost after second Chromium restart');
+  check(localStorage.getItem(writingKey)===permanentTestValues.writing&&
+   localStorage.getItem(extraKey)===permanentTestValues.course,
+   'Writing/course source changed after quota recovery restart');
+  const current=await vault.snapshot();
+  check(current.active?.lessons.length===123,'Current lessons vanished on restart');
+  check((await vault.resolveHistoric('1.18.0','REA-A1-01')).lesson.id==='REA-A1-01',
+   'Historical Reading source missing after quota recovery');
+  dom.textContent='PASS_NATIVE_QUOTA_RELOAD';
  }else throw Error('Unsupported R4c browser phase');
 })().catch(e=>{
  dom.textContent='FAIL '+String(e)+' '+String((e as Error)?.stack).slice(0,1100);
