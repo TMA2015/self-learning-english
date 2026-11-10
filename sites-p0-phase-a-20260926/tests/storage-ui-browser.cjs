@@ -62,11 +62,15 @@ const root=path.resolve(__dirname,'..');
   const host='http://127.0.0.1:'+server.address().port;
   const first=await open(host+'/?phase=backup');
   const second=await open(host+'/?phase=recovery');
+  const third=await open(host+'/?phase=no-savings');
   assert.match(first,/^PASS_BACKUP_PANEL/);
   assert.match(second,/^PASS_RESTORE_PANEL/);
+  assert.match(third,/^PASS_NO_SAVINGS_PANEL/);
   console.log(JSON.stringify({result:'PASS',gate:'storage-react-panel-chromium',
-   realReactUI:true,realFileInput:true,downloadAndVerify:true,compactClick:true,
-   realChromeProcesses:2,freshProfileRestore:true,duplicateRestoreBlocked:true,
+   realReactUI:true,visibleFilePickerButtons:true,realFileInput:true,
+   downloadAndVerify:true,threeStepCompactClick:true,zeroSavingsExplained:true,
+   obsoleteReferenceButtonRemoved:true,realChromeProcesses:3,
+   freshProfileRestore:true,duplicateRestoreBlocked:true,
    liveSiteTouched:false,realLearnerDataTouched:false}));
  }finally{server.close();fs.rmSync(profile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1;});
