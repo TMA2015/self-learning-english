@@ -92,10 +92,14 @@ async function until(fn,ms=30000){
    while(Date.now()-start<45000){
     last=String(await evaluate()||'');
     if(last.startsWith('PASS_')){
-      // Controlled process restart: allow Chrome to flush the acknowledged
-      // localStorage/IndexedDB writes before normal browser shutdown.
-      // This is NOT a power-loss/crash-durability test.
-      await delay(1200);
+      // Use Chrome's own normal shutdown protocol. Earlier SIGTERM-based
+      // test shutdown could abandon the unflushed localStorage LevelDB journal
+      // even while IndexedDB had persisted; this MUST NOT mask data loss.
+      // Crash/power-loss durability remains a separate, unverified gate.
+      const cleanClose=new Promise(resolve=>child.once('close',()=>resolve(true)));
+      socket.send(JSON.stringify({id:++id,method:'Browser.close'}));
+      if(!await Promise.race([cleanClose,delay(6000).then(()=>false)]))
+        throw Error('Chromium Browser.close failed; durable restart not verified');
       return last;
     }
     if(last.startsWith('FAIL'))throw Error(last);
