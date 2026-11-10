@@ -462,6 +462,161 @@ const vault=browserLessonRevisionVault();
   check((await vault.resolveHistoric('1.18.0','REA-A1-01')).lesson.id==='REA-A1-01',
    'Historical Reading source missing after quota recovery');
   dom.textContent='PASS_NATIVE_QUOTA_RELOAD';
+ }else if(phase==='idb-blocked-upgrade'){
+  // R4f: real native IndexedDB versionchange/onblocked, one disposable
+  // profile only. Simulates an uncooperative older connection (e.g. old
+  // document holding v1 open). Does not prove actual Safari multi-tab races.
+  const dbName='g-learning-english-lesson-revisions-r2';
+  check(localStorage.length===0,'R4f requires a completely empty disposable profile');
+  check((await vault.snapshot()).active===null,
+   'R4f requires an initially empty disposable IDB');
+  const {v2,rows}=await fixture();
+  const normalized=await convertVerifiedV2ToRevisionV3(v2);
+  const complete=await verifyRevisionRecoveryV3(normalized.text);
+  check(complete.attempts===73,'R4f requires 73 checksum-verified synthetic attempts');
+  const preview=await previewNormalizedV3Restore(normalized.text,localStorage,vault);
+  check(preview.valid&&!preview.resuming,'Initial empty-profile preview failed');
+  const restored=await restoreNormalizedV3(
+   normalized.text,preview.token,true,localStorage,vault);
+  check(restored.attempts===73,'Initial R4f restore did not preserve 73 attempts');
+  const before=await vault.snapshot();
+  check(before.active?.lessons.length===123&&before.blobs.length>=123,
+   'Initial normalized content snapshot incomplete');
+  const expectedAttempts=rows.find(x=>x.key===attemptKey)!.value;
+  check(localStorage.getItem(attemptKey)===expectedAttempts,
+   'Original R4f history unexpectedly changed before versionchange');
+
+  // Hold a native v1 handle open even when it receives "versionchange".
+  const held=await new Promise<IDBDatabase>((resolve,reject)=>{
+   const request=indexedDB.open(dbName,1);
+   request.onsuccess=()=>resolve(request.result);
+   request.onerror=()=>reject(request.error);
+  });
+  check(held.version===1,'Unexpected original research vault version');
+  let versionchangeSeen=false,upgradeBlocked=false,upgradeComplete=false;
+  held.onversionchange=()=>{versionchangeSeen=true;/* deliberate old-handle hold */};
+  let upgraded:IDBDatabase|null=null,upgradeFailure='';
+  const finished=new Promise<void>(resolve=>{
+   const request=indexedDB.open(dbName,2);
+   request.onblocked=()=>{upgradeBlocked=true};
+   request.onupgradeneeded=()=>{}; // Never change/remove the three data stores.
+   request.onsuccess=()=>{
+    upgraded=request.result;upgradeComplete=true;resolve();
+   };
+   request.onerror=()=>{
+    upgradeFailure=String(request.error);resolve();
+   };
+  });
+  try{
+   await new Promise<void>(resolve=>setTimeout(resolve,250));
+   check(versionchangeSeen&&upgradeBlocked&&!upgradeComplete,
+    'Native IndexedDB onblocked/versionchange was not observed while v1 open');
+   check(localStorage.getItem(attemptKey)===expectedAttempts&&
+    localStorage.getItem(writingKey)===permanentTestValues.writing,
+    'Native blocked upgrade changed original learner bytes');
+  }finally{
+   held.close(); // Only close disposable raw test connection, never delete IDB.
+  }
+  await Promise.race([
+   finished,
+   new Promise<never>((_,reject)=>setTimeout(
+    ()=>reject(Error('Native blocked upgrade never completed after closing v1')),5000))
+  ]);
+  check(!upgradeFailure&&upgradeComplete&&upgraded?.version===2,
+   'Native versionchange did not complete after test handle release: '+upgradeFailure);
+  upgraded!.close();
+
+  // The version-1-only R2 vault MUST reject an unexpected newer IDB schema;
+  // do not treat a missing source as permission to load the latest lesson.
+  let rejectedRead=false;
+  try{await vault.snapshot()}catch(e){
+   rejectedRead=/Cannot open lesson revision database/.test(String(e));
+  }
+  check(rejectedRead,'Research V3 reader must fail closed on unknown IDB version');
+  let rejectedBackup=false;
+  try{await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T14:00:00.000Z')}
+  catch(e){rejectedBackup=/Cannot open lesson revision database/.test(String(e))}
+  check(rejectedBackup,'An unknown IDB version may not create an incomplete V3 backup');
+  let rejectedRestore=false;
+  try{await previewNormalizedV3Restore(normalized.text,localStorage,vault)}
+  catch(e){rejectedRestore=/Cannot open lesson revision database/.test(String(e))}
+  check(rejectedRestore,'An unknown IDB version must block Restore preview');
+  check(localStorage.getItem(attemptKey)===expectedAttempts&&
+   localStorage.getItem(writingKey)===permanentTestValues.writing&&
+   localStorage.getItem(extraKey)===permanentTestValues.course,
+   'Blocked version upgrade unexpectedly modified learner storage');
+  check(localStorage.getItem(RECOVERY_V3_MARKER)===null,
+   'Unknown schema cannot create a false interrupted Restore marker');
+
+  // Read the same raw IndexedDB v2 stores without using the v1-only adapter:
+  // this verifies content preservation, NOT runtime compatibility.
+  const latest=await new Promise<IDBDatabase>((resolve,reject)=>{
+   const request=indexedDB.open(dbName);
+   request.onsuccess=()=>resolve(request.result);
+   request.onerror=()=>reject(request.error);
+  });
+  check(latest.version===2,'IndexedDB did not persist upgraded test schema');
+  const sourceAfter=await new Promise<{
+   manifest:unknown;blobs:unknown[];aliases:unknown[]
+  }>((resolve,reject)=>{
+   const tx=latest.transaction(
+    ['active-manifest','revision-blobs','historic-aliases'],'readonly');
+   const mr=tx.objectStore('active-manifest').get('current');
+   const bs=tx.objectStore('revision-blobs').getAll();
+   const as=tx.objectStore('historic-aliases').getAll();
+   tx.oncomplete=()=>resolve({
+    manifest:mr.result,blobs:bs.result,aliases:as.result
+   });
+   tx.onabort=()=>reject(tx.error??Error('Raw IndexedDB verification aborted'));
+   tx.onerror=()=>reject(tx.error??Error('Raw IndexedDB verification failed'));
+  });
+  latest.close();
+  const activeValue=(sourceAfter.manifest as {value?:unknown})?.value;
+  check(canonicalLessonJSON(activeValue)===canonicalLessonJSON(before.active)&&
+   sourceAfter.blobs.length===before.blobs.length&&
+   sourceAfter.aliases.length===before.aliases.length,
+   'Native schema versionchange altered the immutable source inventory');
+  dom.textContent='PASS_IDB_BLOCKED '+JSON.stringify({
+   actualNativeVersionchange:true,actualNativeBlockedEvent:true,
+   heldV1Connection:true,upgradeCompletedOnlyAfterHandleClosed:true,
+   unknownV2SchemaRejectedByV1Adapter:true,unsafeBackupBlocked:true,
+   unsafeRestorePreviewBlocked:true,syntheticAttemptsUnchanged:73,
+   rawBlobsPreserved:sourceAfter.blobs.length,
+   rawAliasesPreserved:sourceAfter.aliases.length
+  });
+ }else if(phase==='idb-blocked-reload'){
+  const {rows}=await fixture();
+  const original=rows.find(x=>x.key===attemptKey)!.value;
+  check(localStorage.getItem(attemptKey)===original&&
+   localStorage.getItem(writingKey)===permanentTestValues.writing&&
+   localStorage.getItem(extraKey)===permanentTestValues.course,
+   'Original synthetic learner data lost across upgraded IndexedDB restart');
+  check(localStorage.getItem(RECOVERY_V3_MARKER)===null,
+   'Blocked IDB versionchange left a false partial Restore marker');
+  let rejected=false;
+  try{await vault.resolveHistoric('1.18.0','WRI-A2-01')}
+  catch(e){rejected=/Cannot open lesson revision database/.test(String(e))}
+  check(rejected,'Version-1-only research reader wrongly accepted newer IDB after restart');
+  const db=await new Promise<IDBDatabase>((resolve,reject)=>{
+   const req=indexedDB.open('g-learning-english-lesson-revisions-r2');
+   req.onsuccess=()=>resolve(req.result);
+   req.onerror=()=>reject(req.error);
+  });
+  check(db.version===2&&db.objectStoreNames.contains('revision-blobs')&&
+   db.objectStoreNames.contains('historic-aliases')&&
+   db.objectStoreNames.contains('active-manifest'),
+   'Raw immutable IndexedDB stores missing after upgraded-profile restart');
+  const current=await new Promise<{value?:{lessons?:unknown[]}}|undefined>((resolve,reject)=>{
+   const tx=db.transaction('active-manifest','readonly');
+   const req=tx.objectStore('active-manifest').get('current');
+   tx.oncomplete=()=>resolve(req.result);
+   tx.onabort=()=>reject(tx.error??Error('Raw manifest read aborted'));
+  });
+  db.close();
+  check(current?.value?.lessons?.length===123,
+   'Original current curriculum not preserved after blocked upgrade restart');
+  dom.textContent='PASS_IDB_BLOCKED_RELOAD';
  }else throw Error('Unsupported R4c browser phase');
 })().catch(e=>{
  dom.textContent='FAIL '+String(e)+' '+String((e as Error)?.stack).slice(0,1100);
