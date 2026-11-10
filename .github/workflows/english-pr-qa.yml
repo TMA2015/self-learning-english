@@ -68,8 +68,17 @@ jobs:
                    install -y --no-install-recommends ffmpeg; then
                 break
               fi
-              if [[ "$attempt" == 2 ]]; then
-                echo '::error::FFmpeg unavailable for mandatory audio QA'
+              if [[ "$attempt" == 1 ]]; then
+                # Official Ubuntu packages, alternate mirror. Do not bypass the
+                # mandatory FFmpeg/FFprobe existence and playback validation.
+                echo '::warning::FFmpeg installation incomplete from Azure mirror; retry official Ubuntu archive'
+                for source in /etc/apt/sources.list /etc/apt/sources.list.d/ubuntu.sources; do
+                  if [[ -f "$source" ]]; then
+                    sudo sed -i 's@azure.archive.ubuntu.com@archive.ubuntu.com@g' "$source"
+                  fi
+                done
+              else
+                echo '::error::FFmpeg unavailable for mandatory audio QA after bounded mirror fallback'
                 exit 1
               fi
               sleep 3

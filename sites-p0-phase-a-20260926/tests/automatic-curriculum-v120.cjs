@@ -28,7 +28,7 @@ class Storage {
  const {academicService,sourceDigest}=require('../'+out+'/application/academic-service.js');
  const {mapSeed}=require('../'+out+'/domain/academic.js');
  const old=require('../content/curriculum-1.18.1-candidate.json');
- const latest=require('../content/curriculum-1.24.0-candidate.json');
+ const latest=require('../content/curriculum-1.25.0-candidate.json');
  const repo=new BrowserLocalAcademicRepository(storage);
  await repo.addPackage({id:old.package_id,version:old.schema_version,digest:await sourceDigest(old),source:old,bundle:mapSeed(old),at:1});
  const svc=academicService(repo,new BrowserLocalLearningRepository(storage),'local-family');
@@ -53,8 +53,8 @@ class Storage {
  storage.max=Infinity;
  const upgraded=await browser.localAcademicRuntime();
  const catalog=await upgraded.service.catalog();
- assert.equal(catalog.version,'1.24.0');
- assert.equal(catalog.lessons.length,142);
+ assert.equal(catalog.version,'1.25.0');
+ assert.equal(catalog.lessons.length,154);
  assert(catalog.lessons.some(l=>l.id==='REA-C1-01'));
  assert(catalog.lessons.some(l=>l.id==='VOC-C2-01'));
  assert.equal(upgraded.warning,undefined);
@@ -69,7 +69,7 @@ class Storage {
  // Idempotence: a later visit does NOT rewrite any key.
  storage.writes=[];
  const again=await browser.localAcademicRuntime();
- assert.equal((await again.service.catalog()).version,'1.24.0');
+ assert.equal((await again.service.catalog()).version,'1.25.0');
  assert.deepEqual(storage.writes,[]);
- console.log(JSON.stringify({result:'PASS',gate:'automatic-v124-curriculum-upgrade',previous:109,current:142,protectedOldAttempt:true,quotaFailClosed:true,storageDeletions:0}));
+ console.log(JSON.stringify({result:'PASS',gate:'automatic-v125-curriculum-upgrade',previous:109,current:154,protectedOldAttempt:true,quotaFailClosed:true,storageDeletions:0}));
 })().catch(e=>{console.error(e);process.exitCode=1});

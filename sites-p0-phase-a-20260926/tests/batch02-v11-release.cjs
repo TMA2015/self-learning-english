@@ -22,7 +22,9 @@ for(const id of next.course.sequence)assert(byId.has(id),'Missing course node '+
 assert(Buffer.byteLength(source('content/curriculum-1.2.0-candidate.json'),'utf8')<1_000_000,'Cumulative import limit');
 const academic=source('domain/academic.ts');
 for(const tag of ['grammar.articles','grammar.plural_nouns','grammar.there_is_are','grammar.prepositions_place'])assert(academic.includes("'"+tag+"'"),'Missing skill tag '+tag);
-assert(academic.includes('MAX_CURRICULUM_LESSONS=150'),'Scaled generalized curriculum importer must be retained');
+const cap=academic.match(/export const MAX_CURRICULUM_LESSONS=(\d+);/);
+assert(cap&&Number(cap[1])>=150&&Number(cap[1])<=250,
+ 'Scaled generalized importer must retain an explicit reviewed 150–250 lesson bound');
 const routePage=source('app/page.tsx'),page=source('app/home-client.tsx'),ui=source('app/foundation.tsx'),helper=source('domain/foundation-summary.ts'),css=source('app/globals.css'),metadata=source('app/layout.tsx');
 assert(routePage.includes('<HomeClient/>'),'Static route wrapper must retain the interactive HomeClient');
 assert.equal((page.match(/<FoundationDemo\b/g)||[]).length,1,'Keep one v11 Foundation player');
