@@ -67,11 +67,24 @@ R4f held two IndexedDB connections **inside one document**. R4g closes this spec
 
 **Strict scope:** This demonstrates genuine *two independent Chromium page contexts* contending for an IndexedDB version change. It does **not** prove concurrent learner writing/merge resolution, Safari/iPad multi-tab lifecycle, IDB eviction, crash/power-loss durability, or the production UI's own multi-tab coordination. No original family profile or Recovery file is used.
 
+## R4h extension — genuine two-tab learner progress + Writing collision research
+
+R4g exercises two Chromium tabs for IndexedDB **schema** contention, not concurrent user writes. R4h addresses the user-level lost-update risk in a **sixth disposable Chromium profile**, using exactly the same shape of English `academic-attempts` and learner `state` localStorage keys as a synthetic V2→V3 restore. **No production runtime writer is changed.**
+
+1. Restore the public curriculum versions 1.18.0/1.18.1/1.20.0 and **73 entirely fictitious attempts** into real Chromium localStorage and IndexedDB. The original Writing review, original attempt evidence, score status, current source and historical rubrics are preserved.
+2. Open a **second Chromium tab** of the same origin, verify two distinct DevTools `page` target IDs and matching original SHA-256 attempt/Writing snapshots. Both tabs hold stale in-memory values.
+3. **Demonstrate the actual vulnerability, but only on a non-learner scratch key:** first tab writes its draft answer and Writing review, then second tab writes its own edits from the stale snapshot. Real `localStorage.setItem` performs last-writer-wins, causing loss of the first tab's changes. The real synthetic `academic-attempts` and Writing keys are **not touched** by this intentionally destructive step; the uniquely named scratch key is immediately removed.
+4. **Test-only guarded proof:** both tabs use one native Chromium Web Locks exclusive name around the paired attempt+Writing keys. The first tab deliberately holds the lock; second tab queues a conflicting write. The CDP driver independently verifies its real second-page status, first-tab lock ownership and a **native Web Locks pending request** before releasing the first tab. The first tab writes its draft answer (attempt #72 of 73) and one review.
+5. On acquiring the lock, the second tab's **stale snapshot compare** detects the changed source and **rejects without overwriting either key**. It then re-reads the winner, retries within the same exclusive lock and merges a distinct draft answer (attempt #73) and another Writing review. Explicit tests require original 71 unaffected attempts be **byte-equivalent**, both edits and both new reviews retained, original review retained in order, full normalized historical source untouched and verified V3 re-export including the updated synthetic records.
+6. After a normal Chromium shutdown and fresh process, the merged learner bytes, history and complete V3 export must still verify. A missing real second tab, missing native Web Lock queue, silent stale overwrite or missing original data makes the gate **FAIL**.
+
+**Research boundary:** This proves a cross-tab lost-update vulnerability of unguarded browser `localStorage` and a *prototype* serialization + stale-write veto/refresh strategy. The guarded writer exists **only inside this isolated test**. Existing LIVE app writers do not use this Web Locks prototype; therefore **production multi-tab safety remains UNPROVEN**. Native Web Locks availability across iPad Safari, multi-key atomicity under errors, actual simultaneous user submission semantics, UI reconciliation, restore interleaving, cross-device data and owner acceptance remain open. It is not a production bug fix or deployment authorization.
+
 ## Explicit non-claims / blockers
 
 - SHA verifies integrity of archived JSON, but it is **not a cryptographic signature proving the real provenance of the original learner data**.
 - Real **MP3 binary digests and source-specific audio provenance** are not verified by this test. Transcript persistence is not evidence of actual audio playback.
-- No true iPad/Safari quota, IDB eviction, Safari lifecycle, concurrent learner write race or power-loss/crash behavior is proved here. **R4f uses one document; R4g uses two genuine Chromium page targets, but neither demonstrates production user-tab concurrency or Safari acceptance.**
+- No true iPad/Safari quota, IDB eviction, Safari lifecycle, production concurrent learner write safety or power-loss/crash behavior is proved here. **R4h measures native two-tab localStorage lost updates and a test-only Web Locks guarded writer; it is not deployed in the app.**
 - No private family Recovery V2 or original 73 iPad attempt records were opened. The generated 73 rows and feedback are fake.
 - No production UI entrypoint to V3, no owner acceptance, no approval for source deletion or auto-migration.
 
