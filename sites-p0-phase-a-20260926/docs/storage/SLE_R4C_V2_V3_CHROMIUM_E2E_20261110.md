@@ -106,6 +106,18 @@ R4i proved a scripted interruption between learner attempts and Writing; R4j ext
 
 **Strict non-claims:** The native quota failure is genuine Chromium `localStorage`, but near-quota conditions are engineered with disposable scratch padding. This is neither Safari/iPad quota acceptance nor native IndexedDB quota/eviction. Chromium is shut down *normally* once the quota-induced interrupted state is reached: no real hard SIGKILL, crash or power-loss durability is claimed. The journal/marker lock writer is still an **isolated research fixture, not integrated into LIVE**, and the two-key localStorage operation is **not atomic**. Real quota may even prevent writing a full journal/marker before an update; that case remains a separate unresolved gate. No real family Recovery or attempts are touched.
 
+## R4k — native quota BEFORE preimage journal or incomplete-write marker
+
+R4j found recoverability when a full SHA-256-pinned journal and pending marker already exist **before** the second learner/Writing key fails. R4k addresses two earlier storage-failure boundaries **before a protected learner write can begin**, on a ninth independently disposable Chromium profile.
+
+1. Restore verified authentic-format V2→V3 fixture from committed **public** 1.18.0/1.18.1/1.20.0 sources into actual Chromium IndexedDB and `localStorage`. Preserve **73 entirely fictitious** attempts, the original invented Writing review, course selection and historical revisions.
+2. Under native Chromium Web Locks, fill **only a test-owned scratch key outside the learner namespace** to the *actual measured* `localStorage` capacity. Require a genuine browser `QuotaExceededError` on writing the full preimage journal. **Do not attempt marker or learner writes** if this journal cannot be durably recorded. Verify no marker/journal, no changed learner bytes, no damaged source; release only the test-owned scratch padding.
+3. In the same isolated profile, store and read back the full preimage journal *successfully*; again measure real native scratch-key capacity. Now require a genuine `QuotaExceededError` specifically when attempting to write the smaller pending learner-write marker. **Abort before touching either learner key**, safely discard **only** the test-owned abandoned journal and then test padding. Confirm no false pending/partial recovery marker or changed learner bytes.
+4. Verify that the full original V3 backup remains checksum-valid with exactly 73 original synthetic attempts, unchanged Writing/course state and original source/rubrics: unlike R4i–R4j, where learner keys truly diverged, **safe early preflight abort allows original complete backup**.
+5. Close Chromium normally, restart a wholly independent browser process with the same disposable profile and independently verify original learner and IDB data, no scratch or pending journal/marker, and full verified V3 Recovery export.
+
+**Boundary:** These are native Chromium localStorage quota errors created by **synthetic scratch padding**, not false injected exceptions. The test checks safety of a *test-only preflight sequence*. It does **not** establish that the existing production writer performs such preflight, that localStorage gives atomicity across multiple keys, or that a journal/marker is durable after abrupt OS kill or power loss. Safari/iPad, real household Recovery, original iPad attempts, actual IDB disk eviction and audio rights remain outside scope.
+
 ## Explicit non-claims / blockers
 
 - SHA verifies integrity of archived JSON, but it is **not a cryptographic signature proving the real provenance of the original learner data**.
