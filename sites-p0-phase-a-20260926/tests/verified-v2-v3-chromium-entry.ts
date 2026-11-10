@@ -12,7 +12,7 @@ import {verifyRevisionRecoveryV3,createRevisionRecoveryV3} from '../domain/lesso
 import {canonicalLessonJSON} from '../domain/lesson-revision-plan';
 import {browserLessonRevisionVault} from '../infrastructure/storage/indexeddb-lesson-revision-vault';
 import {previewNormalizedV3Restore,restoreNormalizedV3,
- exportNormalizedBrowserRecoveryV3,RECOVERY_V3_MARKER
+ exportNormalizedBrowserRecoveryV3,RECOVERY_V3_MARKER,LEARNER_WRITE_V3_MARKER
 } from '../infrastructure/browser/lesson-revision-portable-recovery';
 
 const dom=document.querySelector('#sle-idb-result') as HTMLElement;
@@ -1176,6 +1176,212 @@ const vault=browserLessonRevisionVault();
    verified.file.entries.find(x=>x.key===writingKey)?.value===actualW,
    'R4h recovery export after browser restart lost merged edits');
   dom.textContent='PASS_R4H_RELOAD';
+ }else if(phase==='paired-write-pending'){
+  // R4i: deliberately stop AFTER the first real localStorage learner-key
+  // write, BEFORE the paired Writing key. This is a controlled synthetic
+  // interruption, NOT a genuine SIGKILL, disk power loss or Safari test.
+  const journalKey='__sle_issue103_r4i_disposable_write_journal__';
+  const lockName='sle-issue103-r4i-disposable-pair-lock';
+  check(localStorage.length===0,'R4i requires a completely disposable empty Chrome profile');
+  check((await vault.snapshot()).active===null,'R4i IndexedDB must initially be empty');
+  check(typeof navigator.locks?.request==='function',
+   'R4i requires real Chromium navigator.locks; do not substitute a fake lock');
+  const {v2,rows}=await fixture();
+  const normalized=await convertVerifiedV2ToRevisionV3(v2);
+  const verified=await verifyRevisionRecoveryV3(normalized.text);
+  check(verified.attempts===73,'R4i requires exactly 73 fabricated attempts');
+  const preview=await previewNormalizedV3Restore(normalized.text,localStorage,vault);
+  check(preview.valid,'R4i original checksum-verified V3 must preview on empty browser');
+  check((await restoreNormalizedV3(normalized.text,preview.token,true,localStorage,vault))
+   .attempts===73,'R4i source/original attempt installation failed');
+  const beforeA=rows.find(x=>x.key===attemptKey)!.value;
+  const beforeW=permanentTestValues.writing;
+  check(localStorage.getItem(attemptKey)===beforeA&&
+   localStorage.getItem(writingKey)===beforeW,
+   'R4i original attempt/Writing bytes differ from verified V2');
+  const intendedA=r4hAnswer(beforeA,71,'R4I_PENDING_FIRST_KEY_ONLY');
+  const intendedW=r4hReview(beforeW,'r4i-unfinished-second-key');
+  const journal={kind:'R4I_DISPOSABLE_TEST_ONLY',
+   beforeA,beforeW,intendedA,intendedW,
+   beforeAHash:await digest(beforeA),beforeWHash:await digest(beforeW)};
+  const token=await digest(JSON.stringify(journal));
+  await navigator.locks.request(lockName,{mode:'exclusive'},()=>{
+   // The snapshot journal is deliberately stored outside the English
+   // learner namespace; the blocker marker is inside the V3 safety scope.
+   localStorage.setItem(journalKey,JSON.stringify(journal));
+   localStorage.setItem(LEARNER_WRITE_V3_MARKER,token);
+   localStorage.setItem(attemptKey,intendedA);
+   // Interrupt intentionally: do NOT write intendedW or clean the marker.
+  });
+  check(localStorage.getItem(attemptKey)===intendedA&&
+   localStorage.getItem(writingKey)===beforeW&&
+   localStorage.getItem(LEARNER_WRITE_V3_MARKER)===token,
+   'R4i failed to stage exactly the intended half-written learner transaction');
+  let exportRejected=false;
+  try{await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T17:30:00.000Z')}
+  catch(e){exportRejected=/incomplete paired learner write blocks Recovery/i.test(String(e))}
+  check(exportRejected,'Half-written learner and Writing state must NOT export as a valid V3');
+  const unsafePreview=await previewNormalizedV3Restore(
+   normalized.text,localStorage,vault);
+  check(!unsafePreview.valid&&
+   unsafePreview.errors.some(x=>/incomplete paired learner write/i.test(x)),
+   'V3 restore preview must explicitly reject pending paired learner write');
+  const originalSource=await vault.snapshot();
+  check(originalSource.active?.lessons.length===123&&originalSource.aliases.length>0,
+   'Half-written learner transaction changed original IndexedDB source');
+  dom.textContent='PASS_R4I_PENDING '+JSON.stringify({
+   realChromiumLocalStorage:true,nativeExclusiveWebLock:true,
+   actualFirstLearnerKeyWritten:true,secondWritingKeyNotWritten:true,
+   pendingWriteMarkerPersistable:true,journalPreparedWithOriginalSHA256:true,
+   incompleteV3ExportBlocked:true,restorePreviewBlocked:true,
+   original73SyntheticAttemptsPresent:true
+  });
+ }else if(phase==='paired-write-recover'){
+  // New browser process, SAME disposable profile, checksum-pinned journal.
+  // Recover the old pair before allowing export or a new paired write.
+  const journalKey='__sle_issue103_r4i_disposable_write_journal__';
+  const lockName='sle-issue103-r4i-disposable-pair-lock';
+  const {v2,rows}=await fixture();
+  const beforeA=rows.find(x=>x.key===attemptKey)!.value;
+  const beforeW=permanentTestValues.writing;
+  const encoded=r4hRequiredString(localStorage.getItem(journalKey),
+   'pending paired-write journal after restart');
+  const journal=JSON.parse(encoded) as {
+   kind:string;beforeA:string;beforeW:string;
+   intendedA:string;intendedW:string;
+   beforeAHash:string;beforeWHash:string;
+  };
+  check(journal.kind==='R4I_DISPOSABLE_TEST_ONLY',
+   'R4i refuses an unknown interrupted journal');
+  check(localStorage.getItem(LEARNER_WRITE_V3_MARKER)===
+   await digest(JSON.stringify(journal)),
+   'R4i mismatched pending write marker; cannot recover an unverified journal');
+  check(journal.beforeA===beforeA&&journal.beforeW===beforeW&&
+   journal.beforeAHash===await digest(beforeA)&&
+   journal.beforeWHash===await digest(beforeW),
+   'R4i journal does not contain the authentic synthetic original snapshots');
+  check(localStorage.getItem(attemptKey)===journal.intendedA&&
+   localStorage.getItem(writingKey)===journal.beforeW,
+   'R4i interrupted profile differs from the one-key staged state');
+  let blocked=true;
+  try{await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T17:40:00.000Z');blocked=false}
+  catch(e){check(/incomplete paired learner write blocks Recovery/i.test(String(e)),
+   'R4i export rejected for an unexpected reason')}
+  check(blocked,'Pending paired write must remain export-blocked after Chrome restart');
+  await navigator.locks.request(lockName,{mode:'exclusive'},async()=>{
+   // No blind overwrite: the current bytes MUST be the journal's known
+   // half-write state. Any different bytes leave both marker and journal.
+   check(localStorage.getItem(attemptKey)===journal.intendedA&&
+    localStorage.getItem(writingKey)===journal.beforeW&&
+    localStorage.getItem(LEARNER_WRITE_V3_MARKER)!==null,
+    'Unsafe or concurrent change while trying to roll back paired write');
+   localStorage.setItem(attemptKey,journal.beforeA);
+   localStorage.setItem(writingKey,journal.beforeW);
+   check(localStorage.getItem(attemptKey)===journal.beforeA&&
+    localStorage.getItem(writingKey)===journal.beforeW,
+    'R4i paired-write recovery did not restore exact original bytes');
+   // Clear the blocking marker only AFTER exact byte verification.
+   localStorage.removeItem(LEARNER_WRITE_V3_MARKER);
+   localStorage.removeItem(journalKey);
+  });
+  check(localStorage.getItem(attemptKey)===beforeA&&
+   localStorage.getItem(writingKey)===beforeW&&
+   localStorage.getItem(LEARNER_WRITE_V3_MARKER)===null&&
+   localStorage.getItem(journalKey)===null,
+   'R4i original two-key data was not recovered cleanly');
+  const reverted=await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T17:50:00.000Z');
+  const revertedVerified=await verifyRevisionRecoveryV3(reverted.text);
+  check(revertedVerified.attempts===73&&
+   revertedVerified.file.entries.find(x=>x.key===attemptKey)?.value===beforeA&&
+   revertedVerified.file.entries.find(x=>x.key===writingKey)?.value===beforeW,
+   'Recovered backup did not preserve exact 73 original attempts and Writing');
+
+  // Test successful two-key writing with the same journal, marker and lock.
+  const committedA=r4hAnswer(beforeA,71,'R4I_COMMITTED_DRAFT_EDIT');
+  const committedW=r4hReview(beforeW,'r4i-committed-writing-review');
+  const commitJournal={kind:'R4I_DISPOSABLE_TEST_ONLY',
+   beforeA,beforeW,intendedA:committedA,intendedW:committedW,
+   beforeAHash:await digest(beforeA),beforeWHash:await digest(beforeW)};
+  const commitToken=await digest(JSON.stringify(commitJournal));
+  await navigator.locks.request(lockName,{mode:'exclusive'},()=>{
+   check(localStorage.getItem(attemptKey)===beforeA&&
+    localStorage.getItem(writingKey)===beforeW,
+    'R4i cannot commit over unexpected learner state');
+   localStorage.setItem(journalKey,JSON.stringify(commitJournal));
+   localStorage.setItem(LEARNER_WRITE_V3_MARKER,commitToken);
+   localStorage.setItem(attemptKey,committedA);
+   localStorage.setItem(writingKey,committedW);
+   check(localStorage.getItem(attemptKey)===committedA&&
+    localStorage.getItem(writingKey)===committedW,
+    'R4i pair completion verification failed');
+   localStorage.removeItem(LEARNER_WRITE_V3_MARKER);
+   localStorage.removeItem(journalKey);
+  });
+  check(localStorage.getItem(attemptKey)===committedA&&
+   localStorage.getItem(writingKey)===committedW,
+   'R4i successful paired commit changed unexpectedly');
+  const original=JSON.parse(beforeA) as unknown[];
+  const completed=JSON.parse(committedA) as unknown[];
+  check(original.length===73&&completed.length===73&&
+   original.every((x,i)=>i===71||canonicalLessonJSON(x)===canonicalLessonJSON(completed[i])),
+   'R4i changed any attempt other than the intended synthetic draft');
+  const w=JSON.parse(committedW) as {reviews:Array<{id:string}>};
+  check(w.reviews.length===2&&w.reviews[0].id==='test-review'&&
+   w.reviews[1].id==='r4i-committed-writing-review',
+   'R4i successful pair lost the historical original Writing review');
+  const backup=await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T18:00:00.000Z');
+  const completedBackup=await verifyRevisionRecoveryV3(backup.text);
+  check(completedBackup.attempts===73&&
+   completedBackup.file.entries.find(x=>x.key===attemptKey)?.value===committedA&&
+   completedBackup.file.entries.find(x=>x.key===writingKey)?.value===committedW,
+   'R4i completed paired write cannot export verified V3 with original history');
+  check((await vault.resolveHistoric('1.18.0','WRI-A2-01')).lesson.id==='WRI-A2-01',
+   'R4i historical Writing source changed after paired write recovery');
+  dom.textContent='PASS_R4I_RECOVER '+JSON.stringify({
+   interruptedMarkerSurvivedRestart:true,
+   sha256PinnedJournalVerified:true,
+   interruptedV3ExportBlockedAfterRestart:true,
+   recovered73OriginalSyntheticAttemptsByteExact:true,
+   originalWritingReviewRestored:true,
+   completedJournaledPairedWrite:true,
+   completeV3ExportVerified:true,
+   historicWritingSourcePinned:true
+  });
+ }else if(phase==='paired-write-reload'){
+  // Third independent normal browser process verifies completed pair.
+  const journalKey='__sle_issue103_r4i_disposable_write_journal__';
+  const {v2,rows}=await fixture();
+  const originalA=rows.find(x=>x.key===attemptKey)!.value;
+  const expectedA=r4hAnswer(originalA,71,'R4I_COMMITTED_DRAFT_EDIT');
+  const expectedW=r4hReview(
+   permanentTestValues.writing,'r4i-committed-writing-review');
+  check(localStorage.getItem(attemptKey)===expectedA&&
+   localStorage.getItem(writingKey)===expectedW&&
+   localStorage.getItem(extraKey)===permanentTestValues.course,
+   'R4i completed paired synthetic write was lost on restart');
+  check(localStorage.getItem(LEARNER_WRITE_V3_MARKER)===null&&
+   localStorage.getItem(journalKey)===null,
+   'R4i restart found an incomplete pending write marker or journal');
+  const source=await vault.snapshot();
+  const restored=await verifyRevisionRecoveryV3(
+   (await convertVerifiedV2ToRevisionV3(v2)).text);
+  check(canonicalLessonJSON(source.active)===
+   canonicalLessonJSON(restored.file.active)&&
+   source.blobs.length===restored.file.blobs.length&&
+   source.aliases.length===restored.file.aliases.length,
+   'R4i immutable original source inventory changed after restart');
+  const backup=await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T18:10:00.000Z');
+  const verified=await verifyRevisionRecoveryV3(backup.text);
+  check(verified.attempts===73&&
+   verified.file.entries.find(x=>x.key===attemptKey)?.value===expectedA&&
+   verified.file.entries.find(x=>x.key===writingKey)?.value===expectedW,
+   'R4i completed paired edits do not survive a new Chromium process');
+  dom.textContent='PASS_R4I_RELOAD';
  }else throw Error('Unsupported R4c browser phase');
 })().catch(e=>{
  dom.textContent='FAIL '+String(e)+' '+String((e as Error)?.stack).slice(0,1100);
