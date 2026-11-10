@@ -618,6 +618,248 @@ const vault=browserLessonRevisionVault();
   check(current?.value?.lessons?.length===123,
    'Original current curriculum not preserved after blocked upgrade restart');
   dom.textContent='PASS_IDB_BLOCKED_RELOAD';
+ }else if(phase==='multi-owner'){
+  // R4g: TWO genuine independent Chromium page targets, same origin/profile.
+  // Owner page holds v1; second page must encounter native blocked upgrade.
+  const dbName='g-learning-english-lesson-revisions-r2';
+  const channelName='sle-r4g-two-page-native-versionchange';
+  check(localStorage.length===0,'R4g requires new disposable browser profile');
+  check((await vault.snapshot()).active===null,'R4g requires empty test IndexedDB');
+  const {v2,rows}=await fixture();
+  const normalized=await convertVerifiedV2ToRevisionV3(v2);
+  const verified=await verifyRevisionRecoveryV3(normalized.text);
+  check(verified.attempts===73,'R4g synthetic V2 source count wrong');
+  const preview=await previewNormalizedV3Restore(normalized.text,localStorage,vault);
+  check(preview.valid&&!preview.resuming,'R4g first restore preview must pass');
+  const done=await restoreNormalizedV3(normalized.text,preview.token,true,localStorage,vault);
+  check(done.attempts===73,'R4g must restore 73 synthetic attempts before contention');
+  const original=rows.find(x=>x.key===attemptKey)!.value;
+  check(localStorage.getItem(attemptKey)===original,
+   'R4g initial synthetic answers have changed');
+  const sourceBefore=await vault.snapshot();
+  check(sourceBefore.active?.lessons.length===123&&sourceBefore.aliases.length>0,
+   'R4g requires historical source aliases before launching another page');
+  const held=await new Promise<IDBDatabase>((resolve,reject)=>{
+   const req=indexedDB.open(dbName,1);
+   req.onsuccess=()=>resolve(req.result);
+   req.onerror=()=>reject(req.error??Error('Cannot open old-tab v1 connection'));
+  });
+  check(held.version===1,'Owner page must hold actual version 1 IndexedDB');
+  let versionchangeSeen=false,workerReady=false,workerBlocked=false;
+  let releaseGranted=false,workerCompleted=false;
+  held.onversionchange=()=>{versionchangeSeen=true};
+  const channel=new BroadcastChannel(channelName);
+  const failure=(value:unknown)=>{
+   dom.textContent='FAIL_R4G_OWNER '+String(value);
+  };
+  channel.onmessage=async event=>{
+   try{
+    const msg=event.data as {type?:string;rawBlobs?:number;rawAliases?:number;
+     attempts?:number;workerTab?:boolean;unknownSchemaBlocked?:boolean};
+    if(msg.type==='WORKER_READY'){
+     check(!workerReady,'Duplicate R4g worker readiness');
+     workerReady=true;channel.postMessage({type:'BEGIN_UPGRADE'});
+    }else if(msg.type==='WORKER_BLOCKED'){
+     check(workerReady&&!workerBlocked&&!releaseGranted,
+      'Upgrade did not report the expected blocked order');
+     check(versionchangeSeen,'Actual old-tab versionchange event missing');
+     check(localStorage.getItem(attemptKey)===original,
+      'Historical attempt payload changed during native cross-tab blocking');
+     check(localStorage.getItem(writingKey)===permanentTestValues.writing,
+      'Writing source changed while another tab is blocked');
+     workerBlocked=true;
+     dom.textContent='READY_R4G_TWO_TABS_BLOCKED';
+    }else if(msg.type==='WORKER_DONE'){
+     check(workerBlocked&&releaseGranted&&!workerCompleted,
+      'Upgrade completed without waiting for separate-page release');
+     check(msg.workerTab&&msg.unknownSchemaBlocked&&msg.attempts===73,
+      'Second page did not validate fail-closed recovery and 73 attempts');
+     check(msg.rawBlobs===sourceBefore.blobs.length&&
+      msg.rawAliases===sourceBefore.aliases.length,
+      'Second page lost original revision/alias inventory');
+     check(localStorage.getItem(attemptKey)===original&&
+      localStorage.getItem(writingKey)===permanentTestValues.writing&&
+      localStorage.getItem(extraKey)===permanentTestValues.course,
+      'Cross-tab IndexedDB upgrade modified original learner bytes');
+     let failClosed=false;
+     try{await vault.snapshot()}catch(e){
+      failClosed=/Cannot open lesson revision database/.test(String(e));
+     }
+     check(failClosed,'First page failed to reject unexpectedly upgraded schema');
+     check(localStorage.getItem(RECOVERY_V3_MARKER)===null,
+      'Cross-tab contention produced false incomplete Recovery marker');
+     workerCompleted=true;
+     dom.textContent='PASS_R4G_OWNER '+JSON.stringify({
+      nativeTwoPageVersionchange:versionchangeSeen,
+      separateWorkerTargetConfirmedByDriver:true,
+      nativeSecondTabOnblocked:workerBlocked,
+      upgradeWaitedForFirstTabClose:true,
+      completedWorkerOriginalSources:true,
+      originalSyntheticAttempts:73,
+      rawOriginalBlobs:sourceBefore.blobs.length,
+      rawHistoricalAliases:sourceBefore.aliases.length,
+      versionOneAdapterRejectedVersionTwo:true
+     });
+     channel.close();
+    }else if(msg.type==='WORKER_ERROR')failure(msg.message);
+   }catch(e){failure(e)}
+  };
+  (window as Window&{__sleR4gRelease?:()=>string}).__sleR4gRelease=()=>{
+   check(workerReady&&workerBlocked&&versionchangeSeen,
+    'Owner cannot release until actual other-page onblocked event');
+   check(!releaseGranted,'R4g old-tab connection already released');
+   check(localStorage.getItem(attemptKey)===original,
+    'Original learner bytes changed before releasing old-tab connection');
+   releaseGranted=true;
+   held.close(); // ONLY the throwaway test-held native connection
+   return 'RELEASED_R4G_OLD_CONNECTION';
+  };
+  const other=window.open(location.origin+'/?phase=multi-worker',
+   '_blank',''); // Test-only flag disables popup blocking in this profile.
+  check(other!==null&&other!==window,
+   'Could not create independent second Chromium page target');
+  dom.textContent='READY_R4G_OWNER';
+ }else if(phase==='multi-worker'){
+  // Second distinct browser document, not a second handle in the owner tab.
+  const dbName='g-learning-english-lesson-revisions-r2';
+  check(window.opener!==null&&window.opener!==window,
+   'Second page must be opened by the independent owner tab');
+  const channel=new BroadcastChannel('sle-r4g-two-page-native-versionchange');
+  let requested=false,blocked=false,upgradeSeen=false;
+  const error=(value:unknown)=>{
+   const message=String(value);
+   dom.textContent='FAIL_R4G_WORKER '+message;
+   channel.postMessage({type:'WORKER_ERROR',message});
+  };
+  channel.onmessage=event=>{
+   if(event.data?.type!=='BEGIN_UPGRADE')return;
+   try{
+    check(!requested,'Worker may request upgrade exactly once');
+    requested=true;
+    const request=indexedDB.open(dbName,2);
+    request.onblocked=()=>{
+     blocked=true;
+     dom.textContent='READY_R4G_WORKER_BLOCKED';
+     channel.postMessage({type:'WORKER_BLOCKED'});
+    };
+    request.onupgradeneeded=()=>{
+     upgradeSeen=true;
+     // NO store mutation; this test only upgrades schema metadata.
+    };
+    request.onerror=()=>error(request.error??'Native worker upgrade failed');
+    request.onsuccess=async()=>{
+     const db=request.result;
+     try{
+      check(blocked&&upgradeSeen&&db.version===2,
+       'Worker upgraded without actual native cross-page block/release');
+      const raw=await new Promise<{
+       active:unknown;blobs:unknown[];aliases:unknown[]
+      }>((resolve,reject)=>{
+       const tx=db.transaction(
+        ['active-manifest','revision-blobs','historic-aliases'],'readonly');
+       const current=tx.objectStore('active-manifest').get('current');
+       const bs=tx.objectStore('revision-blobs').getAll();
+       const as=tx.objectStore('historic-aliases').getAll();
+       tx.oncomplete=()=>resolve({
+        active:(current.result as {value?:unknown}|undefined)?.value,
+        blobs:bs.result as unknown[],aliases:as.result as unknown[]
+       });
+       tx.onabort=()=>reject(tx.error??Error('Worker raw read aborted'));
+       tx.onerror=()=>reject(tx.error??Error('Worker raw read errored'));
+      });
+      const {v2,rows}=await fixture();
+      const v3=await convertVerifiedV2ToRevisionV3(v2);
+      const verified=await verifyRevisionRecoveryV3(v3.text);
+      const byRevision=new Map((raw.blobs as Array<{revision:string}>)
+       .map(b=>[b.revision,b]));
+      check(canonicalLessonJSON(raw.active)===
+       canonicalLessonJSON(verified.file.active),
+       'Worker raw manifest changed from verified original source');
+      check(raw.blobs.length===verified.file.blobs.length&&
+       verified.file.blobs.every(b=>canonicalLessonJSON(byRevision.get(b.revision))===
+        canonicalLessonJSON(b)),
+       'Worker found a changed or missing original content-addressed blob');
+      const aliases=new Map((raw.aliases as Array<{
+       key:string;version:string;lessonId:string
+      }>).map(a=>[a.key,a]));
+      check(raw.aliases.length===verified.file.aliases.length,
+       'Worker historical alias cardinality changed');
+      for(const a of verified.file.aliases){
+       const stored=aliases.get(JSON.stringify([a.version,a.lessonId]));
+       check(!!stored,'Worker missing original historic alias');
+       const {key:_key,...withoutKey}=stored!;
+       check(canonicalLessonJSON(withoutKey)===canonicalLessonJSON(a),
+        'Worker found changed historic alias source');
+      }
+      check(localStorage.getItem(attemptKey)===
+       rows.find(x=>x.key===attemptKey)!.value&&
+       localStorage.getItem(writingKey)===permanentTestValues.writing&&
+       localStorage.getItem(extraKey)===permanentTestValues.course,
+       'Other Chromium tab changed original learner record bytes');
+      let readerRejected=false,backupRejected=false;
+      try{await vault.snapshot()}catch(e){
+       readerRejected=/Cannot open lesson revision database/.test(String(e));
+      }
+      try{await exportNormalizedBrowserRecoveryV3(
+       localStorage,vault,'2026-11-10T15:00:00.000Z')}
+      catch(e){
+       backupRejected=/Cannot open lesson revision database/.test(String(e));
+      }
+      check(readerRejected&&backupRejected,
+       'Old adapter in second tab must reject newer IDB and unsafe V3 export');
+      dom.textContent='PASS_R4G_WORKER';
+      channel.postMessage({type:'WORKER_DONE',workerTab:true,
+       unknownSchemaBlocked:true,attempts:73,
+       rawBlobs:raw.blobs.length,rawAliases:raw.aliases.length});
+     }catch(e){error(e)}
+     finally{db.close()}
+    };
+   }catch(e){error(e)}
+  };
+  channel.postMessage({type:'WORKER_READY'});
+  dom.textContent='READY_R4G_WORKER';
+ }else if(phase==='multi-reload'){
+  // Fresh Chrome process after two independent same-origin page contexts.
+  const {v2,rows}=await fixture();
+  const verified=await verifyRevisionRecoveryV3(
+   (await convertVerifiedV2ToRevisionV3(v2)).text);
+  check(localStorage.getItem(attemptKey)===
+   rows.find(x=>x.key===attemptKey)!.value&&
+   localStorage.getItem(writingKey)===permanentTestValues.writing&&
+   localStorage.getItem(extraKey)===permanentTestValues.course,
+   'Historical synthetic attempts/writing/course were lost across Chrome restart');
+  check(localStorage.getItem(RECOVERY_V3_MARKER)===null,
+   'Cross-tab upgrade left a false partial Restore marker');
+  let incompatibleVersionRejected=false;
+  try{await vault.snapshot()}catch(e){
+   incompatibleVersionRejected=/Cannot open lesson revision database/.test(String(e));
+  }
+  check(incompatibleVersionRejected,
+   'Unexpected version 2 schema was incorrectly accepted after browser restart');
+  const db=await new Promise<IDBDatabase>((resolve,reject)=>{
+   const req=indexedDB.open('g-learning-english-lesson-revisions-r2');
+   req.onsuccess=()=>resolve(req.result);
+   req.onerror=()=>reject(req.error);
+  });
+  check(db.version===2,'Two-tab schema update did not persist after restart');
+  const read=await new Promise<{active?:{lessons?:unknown[]};blobs:unknown[];
+   aliases:unknown[]}>((resolve,reject)=>{
+   const tx=db.transaction(['active-manifest','revision-blobs','historic-aliases'],'readonly');
+   const active=tx.objectStore('active-manifest').get('current');
+   const bs=tx.objectStore('revision-blobs').getAll();
+   const as=tx.objectStore('historic-aliases').getAll();
+   tx.oncomplete=()=>resolve({
+    active:(active.result as {value?:{lessons?:unknown[]}}|undefined)?.value,
+    blobs:bs.result as unknown[],aliases:as.result as unknown[]
+   });
+   tx.onabort=()=>reject(tx.error??Error('Restart source read aborted'));
+  });
+  db.close();
+  check(read.active?.lessons?.length===123&&
+   read.blobs.length===verified.file.blobs.length&&
+   read.aliases.length===verified.file.aliases.length,
+   'Original source inventory changed after two-tab test and Chrome restart');
+  dom.textContent='PASS_R4G_RELOAD';
  }else throw Error('Unsupported R4c browser phase');
 })().catch(e=>{
  dom.textContent='FAIL '+String(e)+' '+String((e as Error)?.stack).slice(0,1100);
