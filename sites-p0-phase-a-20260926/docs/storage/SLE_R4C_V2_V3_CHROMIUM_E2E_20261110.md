@@ -8,7 +8,7 @@
 
 Draft #108 proves original-format V2→V3 transformation with public curriculum and 73 synthetic attempts in Node. Draft #109 independently proves normalized V3 export/restore with real Chromium IndexedDB using a generated synthetic source. Neither individually demonstrates an end-to-end restore **starting with an original-format V2 backup** inside a real browser.
 
-R4c exercises that missing boundary. It is based on the unmerged research branch #111 and shares its earlier R1–R5b experimental code. This PR is therefore **stacked research**, not a direct main-ready change; never merge the combined diff into production without separate reconciliation.
+R4c exercises that missing boundary. The initial research branch was stacked on Draft #111, but the scope has been reconciled to the current `main` base: this PR now copies **only five isolated R1–R4 recovery-support modules**, two new browser-test files, the existing QA-list registration, and the bounded FFmpeg mirror fallback. It does **not** include the unmerged R5 AcademicService or progress changes. These copied research modules are still **not wired to the production runtime** and cannot authorize merging or migration.
 
 ## Exact scope
 
