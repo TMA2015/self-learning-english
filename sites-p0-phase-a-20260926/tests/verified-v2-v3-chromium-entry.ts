@@ -1794,6 +1794,209 @@ const vault=browserLessonRevisionVault();
    complete.file.entries.find(x=>x.key===writingKey)?.value===beforeW,
    'R4k preserved old backups but lost exact learner values on restart');
   dom.textContent='PASS_R4K_RELOAD';
+ }else if(phase==='hard-crash-baseline'){
+  // R4l only: create a verified baseline with NORMAL browser shutdown
+  // before the SIGKILL experiment. Never expose family data to this gate.
+  check(localStorage.length===0,'R4l requires a new disposable Chromium profile');
+  check((await vault.snapshot()).active===null,
+   'R4l requires a new empty disposable normalized IndexedDB');
+  const {v2,rows}=await fixture();
+  const v3=await convertVerifiedV2ToRevisionV3(v2);
+  check((await verifyRevisionRecoveryV3(v3.text)).attempts===73,
+   'R4l must verify the real-format V2 fixture with 73 fake attempts');
+  const preview=await previewNormalizedV3Restore(v3.text,localStorage,vault);
+  check(preview.valid,'R4l empty-profile preview invalid');
+  check((await restoreNormalizedV3(v3.text,preview.token,true,localStorage,vault))
+   .attempts===73,'R4l baseline restore missed fake attempts');
+  const originalA=rows.find(x=>x.key===attemptKey)!.value;
+  check(localStorage.getItem(attemptKey)===originalA&&
+   localStorage.getItem(writingKey)===permanentTestValues.writing&&
+   localStorage.getItem(extraKey)===permanentTestValues.course,
+   'R4l clean baseline learner bytes differ from verified V2');
+  check((await vault.snapshot()).active?.lessons.length===123,
+   'R4l original historical sources missing before crash');
+  const backup=await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T21:00:00.000Z');
+  check((await verifyRevisionRecoveryV3(backup.text)).attempts===73,
+   'R4l clean baseline backup failed checksum verification');
+  dom.textContent='PASS_R4L_BASELINE';
+ }else if(phase==='hard-crash-stage'){
+  // Driver executes real Linux SIGKILL against the entire Chromium process
+  // group AFTER it has observed the staged state. No Browser.close call.
+  const journalKey='__sle_issue103_r4l_crash_preimage_journal__';
+  const lockName='sle-issue103-r4l-hard-crash-pair';
+  check(typeof navigator.locks?.request==='function',
+   'R4l requires real Chromium native Web Locks');
+  const {rows}=await fixture();
+  const originalA=rows.find(x=>x.key===attemptKey)!.value;
+  const originalW=permanentTestValues.writing;
+  check(localStorage.getItem(attemptKey)===originalA&&
+   localStorage.getItem(writingKey)===originalW&&
+   localStorage.getItem(extraKey)===permanentTestValues.course&&
+   localStorage.getItem(journalKey)===null&&
+   localStorage.getItem(LEARNER_WRITE_V3_MARKER)===null,
+   'R4l crash must start from precisely the clean, previously closed browser');
+  const intendedA=r4hAnswer(originalA,71,'R4L_KILLED_AFTER_FIRST_KEY');
+  const intendedW=r4hReview(originalW,'r4l-unwritten-writing-review');
+  const journal={kind:'R4L_SIGKILL_RESEARCH_ONLY',
+   beforeA:originalA,beforeW:originalW,intendedA,intendedW,
+   beforeAHash:await digest(originalA),beforeWHash:await digest(originalW)};
+  const token=await digest(JSON.stringify(journal));
+  await navigator.locks.request(lockName,{mode:'exclusive'},()=>{
+   localStorage.setItem(journalKey,JSON.stringify(journal));
+   localStorage.setItem(LEARNER_WRITE_V3_MARKER,token);
+   localStorage.setItem(attemptKey,intendedA);
+   // Deliberately DO NOT write the second Writing key.
+   check(localStorage.getItem(attemptKey)===intendedA&&
+    localStorage.getItem(writingKey)===originalW&&
+    localStorage.getItem(journalKey)===JSON.stringify(journal)&&
+    localStorage.getItem(LEARNER_WRITE_V3_MARKER)===token,
+    'R4l cannot arm SIGKILL without exact stage marker and half-write bytes');
+  });
+  let blocked=false;
+  try{await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T21:10:00.000Z')}
+  catch(e){blocked=/incomplete paired learner write blocks Recovery/i.test(String(e))}
+  check(blocked,'R4l incomplete paired write must block recovery export before crash');
+  dom.textContent='PASS_R4L_KILL_ARMED '+JSON.stringify({
+   original73FakeAttemptsStaged:true,
+   preimageJournalAndMarkerReadableBeforeKill:true,
+   actualFirstKeyWritten:true,writingStillOriginal:true,
+   recoveryExportBlockedWhilePending:true
+  });
+ }else if(phase==='hard-crash-inspect'){
+  // First distinct Chromium process AFTER SIGKILL; do not blindly repair.
+  // Classify the *actually durable* bytes rather than assuming synchronous
+  // localStorage.setItem guarantees fsync durability under an OS signal.
+  const journalKey='__sle_issue103_r4l_crash_preimage_journal__';
+  const lockName='sle-issue103-r4l-hard-crash-pair';
+  const {v2,rows}=await fixture();
+  const originalA=rows.find(x=>x.key===attemptKey)!.value;
+  const originalW=permanentTestValues.writing;
+  const intendedA=r4hAnswer(originalA,71,'R4L_KILLED_AFTER_FIRST_KEY');
+  const intendedW=r4hReview(originalW,'r4l-unwritten-writing-review');
+  const journal={kind:'R4L_SIGKILL_RESEARCH_ONLY',
+   beforeA:originalA,beforeW:originalW,intendedA,intendedW,
+   beforeAHash:await digest(originalA),beforeWHash:await digest(originalW)};
+  const expectedJournal=JSON.stringify(journal);
+  const expectedToken=await digest(expectedJournal);
+  const actualA=localStorage.getItem(attemptKey);
+  const actualW=localStorage.getItem(writingKey);
+  const actualJournal=localStorage.getItem(journalKey);
+  const actualMarker=localStorage.getItem(LEARNER_WRITE_V3_MARKER);
+  check(localStorage.getItem(extraKey)===permanentTestValues.course,
+   'R4l SIGKILL lost original course selection: unsafe crash outcome');
+  const source=await vault.snapshot();
+  const original=(await verifyRevisionRecoveryV3(
+   (await convertVerifiedV2ToRevisionV3(v2)).text)).file;
+  check(canonicalLessonJSON(source.active)===canonicalLessonJSON(original.active)&&
+   source.blobs.length===original.blobs.length&&
+   source.aliases.length===original.aliases.length,
+   'R4l SIGKILL damaged original immutable revision source: FAIL CLOSED');
+  const noLearnerChange=actualA===originalA&&actualW===originalW;
+  const exactlyHalfWritten=actualA===intendedA&&actualW===originalW;
+  const fullJournal=actualJournal===expectedJournal;
+  const fullMarker=actualMarker===expectedToken;
+  const allPending=fullJournal&&fullMarker;
+  const noPending=actualJournal===null&&actualMarker===null;
+  // IMPORTANT: If any changed learner byte survived but either protective
+  // key was lost, we have demonstrably unsafe torn persistence. HARD FAIL.
+  check(noLearnerChange||exactlyHalfWritten,
+   'R4l UNSAFE hard-crash storage state: learner keys are neither original nor recoverable intended half-write');
+  if(exactlyHalfWritten){
+   check(allPending,
+    'R4l UNSAFE SIGKILL: changed learner attempt survived without BOTH SHA-pinned journal and marker');
+  }else if(!noPending){
+   check(fullJournal&&(fullMarker||actualMarker===null),
+    'R4l UNSAFE SIGKILL: orphan or incorrect recovery marker/journal');
+  }
+  let outcome:'ORIGINAL_ALL_ABSENT'|
+   'ORIGINAL_WITH_VERIFIED_JOURNAL'|'PENDING_PAIR_VERIFIED'='ORIGINAL_ALL_ABSENT';
+  if(exactlyHalfWritten){
+   outcome='PENDING_PAIR_VERIFIED';
+   let exportBlocked=false;
+   try{await exportNormalizedBrowserRecoveryV3(
+    localStorage,vault,'2026-11-10T21:20:00.000Z')}
+   catch(e){exportBlocked=/incomplete paired learner write blocks Recovery/i.test(String(e))}
+   check(exportBlocked,'R4l marker survived crash but invalid mixed backup was not blocked');
+   const blockedPreview=await previewNormalizedV3Restore(
+    (await convertVerifiedV2ToRevisionV3(v2)).text,localStorage,vault);
+   check(!blockedPreview.valid&&!blockedPreview.token&&
+    blockedPreview.errors.some(x=>/incomplete paired learner write/i.test(x)),
+    'R4l SIGKILL pending pair incorrectly allowed Recovery V3 Restore token');
+  }else if(!noPending){
+   outcome='ORIGINAL_WITH_VERIFIED_JOURNAL';
+   if(fullMarker){
+    let blocked=false;
+    try{await exportNormalizedBrowserRecoveryV3(
+     localStorage,vault,'2026-11-10T21:21:00.000Z')}
+    catch(e){blocked=/incomplete paired learner write blocks Recovery/i.test(String(e))}
+    check(blocked,'R4l signed pending marker did not block backup after crash');
+   }
+  }
+  await navigator.locks.request(lockName,{mode:'exclusive'},()=>{
+   check(localStorage.getItem(attemptKey)===actualA&&
+    localStorage.getItem(writingKey)===actualW&&
+    localStorage.getItem(journalKey)===actualJournal&&
+    localStorage.getItem(LEARNER_WRITE_V3_MARKER)===actualMarker,
+    'R4l learner data changed between hard-crash inspection and recovery');
+   if(exactlyHalfWritten)localStorage.setItem(attemptKey,originalA);
+   check(localStorage.getItem(attemptKey)===originalA&&
+    localStorage.getItem(writingKey)===originalW,
+    'R4l cannot prove exact original learner pair after SIGKILL');
+   if(!noPending){
+    localStorage.removeItem(LEARNER_WRITE_V3_MARKER);
+    localStorage.removeItem(journalKey);
+   }
+  });
+  check(localStorage.getItem(attemptKey)===originalA&&
+   localStorage.getItem(writingKey)===originalW&&
+   localStorage.getItem(journalKey)===null&&
+   localStorage.getItem(LEARNER_WRITE_V3_MARKER)===null,
+   'R4l did not recover clean original two-key state after hard SIGKILL');
+  const restored=await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T21:30:00.000Z');
+  const verified=await verifyRevisionRecoveryV3(restored.text);
+  check(verified.attempts===73&&
+   verified.file.entries.find(x=>x.key===attemptKey)?.value===originalA&&
+   verified.file.entries.find(x=>x.key===writingKey)?.value===originalW,
+   'R4l verified Recovery V3 does not preserve all 73 original fake attempts');
+  dom.textContent='PASS_R4L_INSPECT '+JSON.stringify({
+   actualDurabilityOutcome:outcome,
+   unchangedOriginalPair:noLearnerChange,
+   fullyVerifiedPendingMarker:allPending,
+   noOrphanUnverifiableMarker:true,
+   original73FakeLearnerAttemptsRestoredExact:true,
+   originalWritingReviewAndCourseUnchanged:true,
+   historicalSourceAndRubricIntact:true,
+   originalVerifiedV3BackupAvailable:true
+  });
+ }else if(phase==='hard-crash-reload'){
+  const {v2,rows}=await fixture();
+  const originalA=rows.find(x=>x.key===attemptKey)!.value;
+  const originalW=permanentTestValues.writing;
+  check(localStorage.getItem(attemptKey)===originalA&&
+   localStorage.getItem(writingKey)===originalW&&
+   localStorage.getItem(extraKey)===permanentTestValues.course&&
+   localStorage.getItem(LEARNER_WRITE_V3_MARKER)===null&&
+   localStorage.getItem('__sle_issue103_r4l_crash_preimage_journal__')===null,
+   'R4l second restart after hard crash lost exact original learner values');
+  const previous=await verifyRevisionRecoveryV3(
+   (await convertVerifiedV2ToRevisionV3(v2)).text);
+  const source=await vault.snapshot();
+  check(canonicalLessonJSON(source.active)===
+   canonicalLessonJSON(previous.file.active)&&
+   source.blobs.length===previous.file.blobs.length&&
+   source.aliases.length===previous.file.aliases.length,
+   'R4l second browser restart damaged historic revisions');
+  const backup=await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T21:40:00.000Z');
+  const full=await verifyRevisionRecoveryV3(backup.text);
+  check(full.attempts===73&&
+   full.file.entries.find(x=>x.key===attemptKey)?.value===originalA&&
+   full.file.entries.find(x=>x.key===writingKey)?.value===originalW,
+   'R4l verified learner data does not survive a second independent restart');
+  dom.textContent='PASS_R4L_RELOAD';
  }else throw Error('Unsupported R4c browser phase');
 })().catch(e=>{
  dom.textContent='FAIL '+String(e)+' '+String((e as Error)?.stack).slice(0,1100);
