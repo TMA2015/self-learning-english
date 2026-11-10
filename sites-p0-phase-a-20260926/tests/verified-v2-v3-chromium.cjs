@@ -38,6 +38,7 @@ async function until(fn,ms=30000){
  const profile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-normalized-recovery-'));
  const interruptionProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4d-interrupted-'));
  const nativeQuotaProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4e-native-quota-'));
+ const blockedUpgradeProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4f-idb-blocked-'));
  const server=http.createServer((_req,res)=>{
   res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'});
   res.end(html);
@@ -148,6 +149,24 @@ async function until(fn,ms=30000){
   const proof=JSON.parse(realQuota.slice(realQuota.indexOf('{')));
   assert(proof.measuredAcceptedPaddingChars>=1_000_000);
   assert.equal(proof.nativeQuotaExceeded,true);
+  const blocked=await visitWithStartupRetry(
+   host+'/?phase=idb-blocked-upgrade',blockedUpgradeProfile);
+  const blockedReload=await visitWithStartupRetry(
+   host+'/?phase=idb-blocked-reload',blockedUpgradeProfile);
+  assert.match(blocked,/^PASS_IDB_BLOCKED\b/);
+  assert.match(blockedReload,/^PASS_IDB_BLOCKED_RELOAD\b/);
+  const blockedProof=JSON.parse(blocked.slice(blocked.indexOf('{')));
+  assert.equal(blockedProof.actualNativeBlockedEvent,true);
+  assert.equal(blockedProof.unsafeBackupBlocked,true);
+  assert.equal(blockedProof.syntheticAttemptsUnchanged,73);
+  console.log(JSON.stringify({result:'PASS',gate:'r4f-real-chromium-indexeddb-versionchange-blocked',
+   nativeIndexedDBBlockedEvent:true,nativeVersionchange:true,
+   refusedUnknownSchema:true,refusedUnsafeV3Backup:true,
+   refusedUnsafeRestorePreview:true,rawRevisionsAndAliasesPreserved:true,
+   original73SyntheticLearnerAttemptsUnchanged:true,
+   persistedAcrossGracefulBrowserRestart:true,
+   actualMultiTabRace:'NOT_TESTED',Safari:'NOT_TESTED',
+   nativeIDBQuota:'NOT_TESTED',liveIntegration:false,deploy:false}));
   console.log(JSON.stringify({result:'PASS',gate:'r4e-native-chromium-quota-v3-recovery',
    realNativeChromiumLocalStorageQuota:true,
    quotaPaddingChars:proof.measuredAcceptedPaddingChars,
@@ -172,5 +191,5 @@ async function until(fn,ms=30000){
    persistedAcrossBrowserProcesses:true,realIndexedDBRestore:true,oldAttemptsByteIdentical:true,changedRubricPinned:true,occupiedRestoreBlocked:true,tamperedV2Blocked:true,
    recoveryV3:'BROWSER_SYNTHETIC_PASS',liveRuntimeIntegration:'NOT_TESTED',
    realSafariAcceptance:'NOT_TESTED'}));
- }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true})}
+ }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});
