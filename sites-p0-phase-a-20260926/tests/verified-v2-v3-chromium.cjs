@@ -39,6 +39,7 @@ async function until(fn,ms=30000){
  const interruptionProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4d-interrupted-'));
  const nativeQuotaProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4e-native-quota-'));
  const blockedUpgradeProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4f-idb-blocked-'));
+ const twoTabProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4g-two-tab-'));
  const server=http.createServer((_req,res)=>{
   res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'});
   res.end(html);
@@ -50,6 +51,7 @@ async function until(fn,ms=30000){
   if(fs.existsSync(oldPortFile))fs.rmSync(oldPortFile,{force:true});
   const child=cp.spawn(chrome,['--headless=new','--no-sandbox','--disable-dev-shm-usage',
    '--disable-extensions','--disable-background-networking',
+   ...(url.includes('phase=multi-owner')?['--disable-popup-blocking']:[]),
    '--no-first-run','--remote-debugging-port=0','--remote-allow-origins=*',
    '--user-data-dir='+profilePath,url],{stdio:['ignore','ignore','pipe']});
   let stderr='',socket;
@@ -71,7 +73,7 @@ async function until(fn,ms=30000){
     socket.addEventListener('error',reject,{once:true});
    });
    let id=0;
-   function evaluate(){
+   function evaluate(expression="document.getElementById('sle-idb-result')?.textContent"){
     return new Promise((resolve,reject)=>{
      const current=++id;
      const timer=setTimeout(()=>reject(Error('CDP evaluate timed out')),4000);
@@ -81,20 +83,71 @@ async function until(fn,ms=30000){
       clearTimeout(timer);
       socket.removeEventListener('message',listener);
       if(response.error)reject(Error(response.error.message));
+      else if(response.result?.exceptionDetails)reject(Error('CDP page evaluate threw: '+JSON.stringify(response.result.exceptionDetails)));
       else resolve(response.result?.result?.value);
      };
      socket.addEventListener('message',listener);
      socket.send(JSON.stringify({id:current,method:'Runtime.evaluate',params:{
-      expression:"document.getElementById('sle-idb-result')?.textContent",
-      returnByValue:true
+      expression,returnByValue:true
      }}));
     });
+   }
+   const isTwoTab=url.includes('phase=multi-owner');
+   let twoPageTargetsVerified=false,oldConnectionReleased=false;
+   let workerTarget=null;
+   async function evalOtherPage(target,expression){
+    const connection=new WebSocket(target.webSocketDebuggerUrl);
+    await new Promise((resolve,reject)=>{
+     connection.addEventListener('open',resolve,{once:true});
+     connection.addEventListener('error',reject,{once:true});
+    });
+    try{return await new Promise((resolve,reject)=>{
+     const timer=setTimeout(()=>reject(Error('Second Chromium page CDP timeout')),5000);
+     const onMessage=ev=>{
+      const payload=JSON.parse(ev.data);
+      if(payload.id!==1)return;
+      connection.removeEventListener('message',onMessage);clearTimeout(timer);
+      if(payload.error||payload.result?.exceptionDetails)
+       reject(Error('Second tab could not be evaluated: '+JSON.stringify(payload.error||payload.result.exceptionDetails)));
+      else resolve(payload.result?.result?.value);
+     };
+     connection.addEventListener('message',onMessage);
+     connection.send(JSON.stringify({id:1,method:'Runtime.evaluate',
+      params:{expression,returnByValue:true}}));
+    })}finally{connection.close()}
    }
    const start=Date.now();
    let last='';
    while(Date.now()-start<45000){
     last=String(await evaluate()||'');
+    if(isTwoTab&&last.startsWith('FAIL_R4G'))
+     throw Error('R4g owner test failed: '+last);
+    if(isTwoTab&&last==='READY_R4G_TWO_TABS_BLOCKED'&&!oldConnectionReleased){
+     const pages=await httpJSON('http://127.0.0.1:'+port+'/json/list');
+     const owner=pages.find(p=>p.type==='page'&&p.url.includes('phase=multi-owner'));
+     const worker=pages.find(p=>p.type==='page'&&p.url.includes('phase=multi-worker'));
+     assert(owner&&worker&&owner.id!==worker.id,
+      'Two independent real Chromium tab/page CDP targets are required');
+     workerTarget=worker;
+     const workerStatus=await evalOtherPage(worker,
+      "document.getElementById('sle-idb-result')?.textContent");
+     assert.equal(workerStatus,'READY_R4G_WORKER_BLOCKED',
+      'Second independent page must observe a native onblocked event');
+     twoPageTargetsVerified=true;
+     const released=await evaluate('window.__sleR4gRelease()');
+     assert.equal(released,'RELEASED_R4G_OLD_CONNECTION',
+      'Only driver-verified second-tab blocking may release first-tab IDB handle');
+     oldConnectionReleased=true;
+    }
     if(last.startsWith('PASS_')){
+      if(isTwoTab){
+       assert(twoPageTargetsVerified&&oldConnectionReleased&&workerTarget,
+        'No R4g PASS before real two-page CDP proof and explicit release');
+       const workerStatus=await evalOtherPage(workerTarget,
+        "document.getElementById('sle-idb-result')?.textContent");
+       assert.equal(workerStatus,'PASS_R4G_WORKER',
+        'Second Chromium page did not finish checking source/history');
+      }
       // Use Chrome's own normal shutdown protocol. Earlier SIGTERM-based
       // test shutdown could abandon the unflushed localStorage LevelDB journal
       // even while IndexedDB had persisted; this MUST NOT mask data loss.
@@ -159,6 +212,27 @@ async function until(fn,ms=30000){
   assert.equal(blockedProof.actualNativeBlockedEvent,true);
   assert.equal(blockedProof.unsafeBackupBlocked,true);
   assert.equal(blockedProof.syntheticAttemptsUnchanged,73);
+  const twoTab=await visitWithStartupRetry(
+   host+'/?phase=multi-owner',twoTabProfile);
+  const twoTabReload=await visitWithStartupRetry(
+   host+'/?phase=multi-reload',twoTabProfile);
+  assert.match(twoTab,/^PASS_R4G_OWNER\b/);
+  assert.match(twoTabReload,/^PASS_R4G_RELOAD\b/);
+  const twoTabProof=JSON.parse(twoTab.slice(twoTab.indexOf('{')));
+  assert.equal(twoTabProof.nativeTwoPageVersionchange,true);
+  assert.equal(twoTabProof.nativeSecondTabOnblocked,true);
+  assert.equal(twoTabProof.originalSyntheticAttempts,73);
+  console.log(JSON.stringify({result:'PASS',gate:'r4g-two-independent-chromium-tabs-indexeddb-contention',
+   actualTwoDistinctCDPPageTargets:true,
+   nativeCrossTabVersionchange:true,nativeSecondTabOnblocked:true,
+   driverControlledReleaseAfterBlocked:true,
+   original73SyntheticLearnerAttemptsUnchanged:true,
+   normalizedHistoricBlobsAndAliasesPreserved:true,
+   version1ReaderFailClosedOnVersion2:true,
+   realChromeRestartAfterTwoTabContention:true,
+   actualLearnerConcurrentWrites:'NOT_TESTED',
+   safari:'NOT_TESTED',powerLoss:'NOT_TESTED',realLearnerData:'NOT_TOUCHED',
+   productionMigration:false,deploy:false}));
   console.log(JSON.stringify({result:'PASS',gate:'r4f-real-chromium-indexeddb-versionchange-blocked',
    nativeIndexedDBBlockedEvent:true,nativeVersionchange:true,
    refusedUnknownSchema:true,refusedUnsafeV3Backup:true,
@@ -191,5 +265,5 @@ async function until(fn,ms=30000){
    persistedAcrossBrowserProcesses:true,realIndexedDBRestore:true,oldAttemptsByteIdentical:true,changedRubricPinned:true,occupiedRestoreBlocked:true,tamperedV2Blocked:true,
    recoveryV3:'BROWSER_SYNTHETIC_PASS',liveRuntimeIntegration:'NOT_TESTED',
    realSafariAcceptance:'NOT_TESTED'}));
- }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true})}
+ }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});
