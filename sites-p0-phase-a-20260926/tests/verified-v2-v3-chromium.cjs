@@ -91,7 +91,13 @@ async function until(fn,ms=30000){
    let last='';
    while(Date.now()-start<45000){
     last=String(await evaluate()||'');
-    if(last.startsWith('PASS_'))return last;
+    if(last.startsWith('PASS_')){
+      // Controlled process restart: allow Chrome to flush the acknowledged
+      // localStorage/IndexedDB writes before normal browser shutdown.
+      // This is NOT a power-loss/crash-durability test.
+      await delay(1200);
+      return last;
+    }
     if(last.startsWith('FAIL'))throw Error(last);
     await delay(250);
    }
