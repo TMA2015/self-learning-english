@@ -43,11 +43,23 @@ After a graceful `Browser.close` and fresh Chrome process, the test verifies tha
 
 **Meaning and limits:** This is a **native Chromium localStorage quota** test, not actual Safari quota, not actual IndexedDB write-quota exhaustion, not an iPad test, and not an abrupt crash/power-loss test. The first failure is a native browser quota error, while the extra padding and learner records are test-owned and disposable. Real family Recovery and real learner data remain untouched.
 
+## R4f extension — real IndexedDB blocked versionchange / fail-closed
+
+A **fourth, completely disposable Chromium profile** tests native IndexedDB schema-version contention, separate from R4c–R4e:
+
+1. Build checksum-verified V2 from three *public* curriculum sources with **73 fake attempts**; convert to V3 and restore to empty localStorage plus actual IndexedDB. Save source/learner reference values.
+2. Open an additional raw IndexedDB **version 1** connection and deliberately hold it open when native `versionchange` is received, emulating an older document/tab that has not released its database connection. Request a native upgrade to version 2 **without changing or deleting any object store**.
+3. Require actual `onblocked` and `versionchange` events, and prove the upgrade cannot complete until the held connection is closed. A missing blocked event is a test failure—not a simulated success.
+4. Once the test-owned handle is closed, the upgrade proceeds. The isolated **version-1-only research adapter must refuse** an unknown newer version; it must not export an incomplete backup or suggest a Restore based on missing source data. Raw direct IndexedDB reads at version 2 must show original manifest, revision blob and historical alias records unchanged, with exact learner strings still present.
+5. Close Chrome normally and launch a second independent Chrome process. It must still reject the unexpected schema version, while raw IndexedDB contains the original data and 73 synthetic attempts survive in localStorage.
+
+**Strict boundary:** This uses genuine Chromium blocked-versionchange semantics, but the deliberately held connection is in the same test origin/document, **not a demonstrated two-tab app race**. The test deliberately upgrades the schema of **only a throwaway research database** and never deletes or rewrites source object stores. Actual Safari blocked/eviction behavior, version-migration compatibility, Safari multiple-tab races and real family recovery remain untested. It proves refusal and preservation, not successful migration to newer IDB schema.
+
 ## Explicit non-claims / blockers
 
 - SHA verifies integrity of archived JSON, but it is **not a cryptographic signature proving the real provenance of the original learner data**.
 - Real **MP3 binary digests and source-specific audio provenance** are not verified by this test. Transcript persistence is not evidence of actual audio playback.
-- No true iPad/Safari quota, IDB eviction, blocked-versionchange, Safari lifecycle, multitab race or recovery from interleaved dual-store failures is proved here.
+- No true iPad/Safari quota, IDB eviction, Safari lifecycle, genuine app multi-tab race or power-loss/crash behavior is proved here. **Only Chromium native blocked-versionchange for a disposable test-held connection is exercised in R4f.**
 - No private family Recovery V2 or original 73 iPad attempt records were opened. The generated 73 rows and feedback are fake.
 - No production UI entrypoint to V3, no owner acceptance, no approval for source deletion or auto-migration.
 
