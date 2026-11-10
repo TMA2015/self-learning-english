@@ -45,11 +45,17 @@ async function until(fn,ms=30000){
  const writingQuotaProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4j-writing-quota-'));
  const preflightProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4k-preflight-quota-'));
  const sigkillProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4l-hard-sigkill-'));
+ // Four separate test-only profiles: no family profile or live browser.
+ const r4mCases=[
+  {name:'FAST_A',delayMs:100},{name:'FAST_B',delayMs:100},
+  {name:'SLOW_A',delayMs:1500},{name:'SLOW_B',delayMs:1500}
+ ].map(item=>({...item,profile:fs.mkdtempSync(
+  path.join(os.tmpdir(),'sle-r4m-'+item.name.toLowerCase()+'-'))}));
  const server=http.createServer((_req,res)=>{
   res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'});
   res.end(html);
  });
- async function visit(url,profilePath=profile,crashKill=false){
+ async function visit(url,profilePath=profile,crashKill=false,crashKillDelayMs=0){
   if(crashKill&&process.platform!=='linux')throw Error('R4l SIGKILL process-group test requires Linux');
   // Chrome may leave a stale DevToolsActivePort after an earlier process
   // exits. Never connect a new QA session to the previous process port.
@@ -184,6 +190,9 @@ async function until(fn,ms=30000){
        // graceful Browser.close protocol. This is a real OS SIGKILL.
        const killed=new Promise(resolve=>child.once('close',
         (code,signal)=>resolve({code,signal})));
+       // R4m varies the delay AFTER browser readback of the pending write.
+       // No normal Browser.close or additional learner write is permitted.
+       if(crashKillDelayMs>0)await delay(crashKillDelayMs);
        process.kill(-child.pid,'SIGKILL');
        const evidence=await Promise.race([killed,delay(7000).then(()=>null)]);
        assert(evidence&&evidence.signal==='SIGKILL',
@@ -224,10 +233,10 @@ async function until(fn,ms=30000){
  try{
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
   const host='http://127.0.0.1:'+server.address().port;
-  async function visitWithStartupRetry(url,profilePath=profile,crashKill=false){
-   try{return await visit(url,profilePath,crashKill)}catch(error){
+  async function visitWithStartupRetry(url,profilePath=profile,crashKill=false,crashKillDelayMs=0){
+   try{return await visit(url,profilePath,crashKill,crashKillDelayMs)}catch(error){
     if(!/CDP readiness timeout/.test(String(error)))throw error;
-    return visit(url,profilePath,crashKill); // re-launch and repeat the full gate
+    return visit(url,profilePath,crashKill,crashKillDelayMs); // re-launch and repeat the full gate
    }
   }
   const first=await visitWithStartupRetry(host+'/?phase=write');
@@ -340,6 +349,43 @@ async function until(fn,ms=30000){
   assert.equal(r4lProof.noOrphanUnverifiableMarker,true);
   assert.equal(r4lProof.original73FakeLearnerAttemptsRestoredExact,true);
   assert.equal(r4lProof.originalVerifiedV3BackupAvailable,true);
+  // R4m: two independent repetitions at each additional crash timing.
+  // Unsafe persisted torn storage MUST fail the entire protected CI gate.
+  const r4mOutcomes=[];
+  for(const scenario of r4mCases){
+   const baseline=await visitWithStartupRetry(
+    host+'/?phase=hard-crash-baseline',scenario.profile);
+   const kill=await visitWithStartupRetry(
+    host+'/?phase=hard-crash-stage',scenario.profile,true,scenario.delayMs);
+   const inspect=await visitWithStartupRetry(
+    host+'/?phase=hard-crash-inspect',scenario.profile);
+   const reload=await visitWithStartupRetry(
+    host+'/?phase=hard-crash-reload',scenario.profile);
+   assert.equal(baseline,'PASS_R4L_BASELINE');
+   assert.match(kill,/^SIGKILL_CONFIRMED PASS_R4L_KILL_ARMED\b/);
+   assert.match(inspect,/^PASS_R4L_INSPECT\b/);
+   assert.equal(reload,'PASS_R4L_RELOAD');
+   const proof=JSON.parse(inspect.slice(inspect.indexOf('{')));
+   assert(['ORIGINAL_ALL_ABSENT','ORIGINAL_WITH_VERIFIED_JOURNAL',
+    'PENDING_PAIR_VERIFIED'].includes(proof.actualDurabilityOutcome));
+   assert.equal(proof.noOrphanUnverifiableMarker,true);
+   assert.equal(proof.original73FakeLearnerAttemptsRestoredExact,true);
+   assert.equal(proof.originalVerifiedV3BackupAvailable,true);
+   r4mOutcomes.push({name:scenario.name,killDelayMs:scenario.delayMs,
+    actualDurabilityOutcome:proof.actualDurabilityOutcome});
+  }
+  assert.equal(r4mOutcomes.length,4);
+  console.log(JSON.stringify({result:'PASS',
+   gate:'r4m-repeated-hard-sigkill-crash-window-classification',
+   additionalIndependentDisposableProfiles:4,
+   realLinuxSIGKILLCount:4,
+   crashDelaysMs:[100,100,1500,1500],
+   actualObservedDurabilityOutcomes:r4mOutcomes,
+   failedClosedOnAnyUnsafeTornState:true,
+   all73SyntheticAttemptsAndHistoricSourcesVerified:true,
+   powerLoss:'NOT_TESTED',safari:'NOT_TESTED',
+   productionWriterIntegrated:false,realLearnerData:'NOT_TOUCHED',
+   deploy:false}));
   console.log(JSON.stringify({result:'PASS',
    gate:'r4l-native-linux-sigkill-learner-pair-crash-recovery',
    realLinuxSIGKILLToDetachedChromiumProcessGroup:true,
@@ -455,5 +501,5 @@ async function until(fn,ms=30000){
    persistedAcrossBrowserProcesses:true,realIndexedDBRestore:true,oldAttemptsByteIdentical:true,changedRubricPinned:true,occupiedRestoreBlocked:true,tamperedV2Blocked:true,
    recoveryV3:'BROWSER_SYNTHETIC_PASS',liveRuntimeIntegration:'NOT_TESTED',
    realSafariAcceptance:'NOT_TESTED'}));
- }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true});fs.rmSync(pairedWriteProfile,{recursive:true,force:true});fs.rmSync(writingQuotaProfile,{recursive:true,force:true});fs.rmSync(preflightProfile,{recursive:true,force:true});fs.rmSync(sigkillProfile,{recursive:true,force:true})}
+ }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true});fs.rmSync(pairedWriteProfile,{recursive:true,force:true});fs.rmSync(writingQuotaProfile,{recursive:true,force:true});fs.rmSync(preflightProfile,{recursive:true,force:true});fs.rmSync(sigkillProfile,{recursive:true,force:true});for(const scenario of r4mCases)fs.rmSync(scenario.profile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});
