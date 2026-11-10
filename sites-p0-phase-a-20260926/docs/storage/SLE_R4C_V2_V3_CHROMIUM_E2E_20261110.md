@@ -33,6 +33,16 @@ The existing R4c harness now performs a second, isolated three-process scenario 
 
 **Strict boundary:** The interruption is **fault-injected into a localStorage adapter**, *not* a genuine native Safari/Chromium quota exhaustion, a process crash, or a power-loss test. Real browser IndexedDB transactions, browser restarts, localStorage persistence and actual recovery code are exercised, but cross-browser Safari acceptance remains open. A failed test must remain blocking; no QA gate or backup validation may be loosened to obtain PASS.
 
+## R4e extension — **actual native Chromium localStorage quota**
+
+This further extends the same disposable browser harness with a **third, separate ephemeral Chromium profile**; R4c and R4d retain their existing QA assertions. A scratch key outside the English learner namespace is populated by binary-searching native `Storage.setItem` capacity. The test **must observe a real `QuotaExceededError` thrown by Chromium** with the original browser storage implementation, not a fault-injecting wrapper. If the runner has no observable native quota boundary inside the test range, this test **FAILS** rather than falsely reporting PASS.
+
+With roughly 4,096 code units of headroom, the R4e test performs the verified V2→V3 empty-profile Restore using the actual `localStorage` and real IndexedDB. It requires a native quota exception during the 73-attempt payload write; it then proves that there are no half-written learner entries, the correct V3 interrupted marker persists, normalized history remains available in real IndexedDB, and incomplete backup export is blocked.
+
+After a graceful `Browser.close` and fresh Chrome process, the test verifies that the interrupted state persisted. It removes **only its own scratch padding key**, does not touch owner-scoped learner data, and resumes **the same checksum-verified V3**. It then checks 73 byte-identical synthetic attempts, Writing/reviews, course state, original historical Writing rubric, cleared marker, and complete V3 export. One more independent Chrome restart confirms persistence.
+
+**Meaning and limits:** This is a **native Chromium localStorage quota** test, not actual Safari quota, not actual IndexedDB write-quota exhaustion, not an iPad test, and not an abrupt crash/power-loss test. The first failure is a native browser quota error, while the extra padding and learner records are test-owned and disposable. Real family Recovery and real learner data remain untouched.
+
 ## Explicit non-claims / blockers
 
 - SHA verifies integrity of archived JSON, but it is **not a cryptographic signature proving the real provenance of the original learner data**.
