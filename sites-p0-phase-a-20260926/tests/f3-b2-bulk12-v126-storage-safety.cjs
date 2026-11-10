@@ -19,7 +19,7 @@ const {BrowserLocalAcademicRepository,BrowserLocalLearningRepository}
 const {academicService,sourceDigest}
  =require(path.join(root,out,'application/academic-service.js'));
 const {validateSeed,mapSeed}=require(path.join(root,out,'domain/academic.js'));
-const prev=require('../content/curriculum-1.26.0-candidate.json');
+const prev=require('../content/curriculum-1.25.0-candidate.json');
 const next=require('../content/curriculum-1.26.0-candidate.json');
 const owner='local-family',quota=5*1024*1024;
 const size=store=>[...store.map].reduce((n,[k,v])=>n+2*(k.length+v.length),0);
