@@ -23,7 +23,8 @@ assert(result.repeatedIdenticalRevisionCopies>0);
 assert(result.normalizedStoredRevisionBlobs>=result.activeLessonCount);
 assert(result.normalizedStoredRevisionBlobs<=result.distinctRevisionHashesAcrossAllReleases);
 assert(result.potentialPayloadSavingsVsThreeFullUtf16>0);
-assert(result.potentialPayloadSavingsVsV2Utf16>0);
+assert(Number.isInteger(result.potentialPayloadSavingsVsV2Utf16),
+ 'R0 must report signed V2 delta even when normalized metadata costs more');
 assert.equal(result.privateRecovery,'NOT_ACCESSED');
 assert.equal(result.audioBinaryDigests,'NOT_VERIFIED');
 assert.equal(result.learnerDataChanged,false);
@@ -42,7 +43,7 @@ assert.notEqual(a.revision,b.revision,'A question prompt edit must create a new 
 const changedRubric=structuredClone(original);
 const w=changedRubric.lessons.find(l=>l.id===writing.id);
 const id=w.activities.find(q=>q.rubric_id).rubric_id;
-changedRubric.rubrics[id].guidance+=' revised';
+changedRubric.rubrics[id]={...changedRubric.rubrics[id],r0_test_revision:'changed'};
 assert.notEqual(a.revision,revisionFor({source:changedRubric},w).revision,
  'Referenced rubric edits require a new revision');
 delete changedRubric.rubrics[id];
