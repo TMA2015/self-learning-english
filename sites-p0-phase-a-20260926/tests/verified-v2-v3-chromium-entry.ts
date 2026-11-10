@@ -655,7 +655,8 @@ const vault=browserLessonRevisionVault();
   channel.onmessage=async event=>{
    try{
     const msg=event.data as {type?:string;rawBlobs?:number;rawAliases?:number;
-     attempts?:number;workerTab?:boolean;unknownSchemaBlocked?:boolean};
+     attempts?:number;workerTab?:boolean;unknownSchemaBlocked?:boolean;
+     message?:string};
     if(msg.type==='WORKER_READY'){
      check(!workerReady,'Duplicate R4g worker readiness');
      workerReady=true;channel.postMessage({type:'BEGIN_UPGRADE'});
@@ -714,11 +715,11 @@ const vault=browserLessonRevisionVault();
    held.close(); // ONLY the throwaway test-held native connection
    return 'RELEASED_R4G_OLD_CONNECTION';
   };
+  dom.textContent='READY_R4G_OWNER';
   const other=window.open(location.origin+'/?phase=multi-worker',
    '_blank',''); // Test-only flag disables popup blocking in this profile.
   check(other!==null&&other!==window,
    'Could not create independent second Chromium page target');
-  dom.textContent='READY_R4G_OWNER';
  }else if(phase==='multi-worker'){
   // Second distinct browser document, not a second handle in the owner tab.
   const dbName='g-learning-english-lesson-revisions-r2';
