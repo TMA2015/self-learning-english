@@ -25,6 +25,7 @@ const coreTests=[
   "local-recovery-v2.cjs",
   "restore-v2-auto-retention-quota.cjs",
   "storage-chromium-smoke.cjs",
+  "verified-v2-v3-chromium.cjs",
   "storage-ui-browser.cjs",
   "content-quality.cjs",
   "version-aware-attempt-ux.cjs",
