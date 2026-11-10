@@ -36,24 +36,25 @@ async function until(fn,ms=30000){
  if(!chrome)throw Error('Actual Chromium unavailable — IndexedDB pilot cannot be verified');
  if(typeof WebSocket!=='function')throw Error('Node 22+ built-in WebSocket is required for CDP browser QA');
  const profile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-normalized-recovery-'));
+ const interruptionProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4d-interrupted-'));
  const server=http.createServer((_req,res)=>{
   res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'});
   res.end(html);
  });
- async function visit(url){
+ async function visit(url,profilePath=profile){
   // Chrome may leave a stale DevToolsActivePort after an earlier process
   // exits. Never connect a new QA session to the previous process port.
-  const oldPortFile=path.join(profile,'DevToolsActivePort');
+  const oldPortFile=path.join(profilePath,'DevToolsActivePort');
   if(fs.existsSync(oldPortFile))fs.rmSync(oldPortFile,{force:true});
   const child=cp.spawn(chrome,['--headless=new','--no-sandbox','--disable-dev-shm-usage',
    '--disable-extensions','--disable-background-networking',
    '--no-first-run','--remote-debugging-port=0','--remote-allow-origins=*',
-   '--user-data-dir='+profile,url],{stdio:['ignore','ignore','pipe']});
+   '--user-data-dir='+profilePath,url],{stdio:['ignore','ignore','pipe']});
   let stderr='',socket;
   child.stderr.on('data',data=>{stderr=(stderr+String(data)).slice(-5000)});
   try{
    const port=await until(()=>{
-    const file=path.join(profile,'DevToolsActivePort');
+    const file=path.join(profilePath,'DevToolsActivePort');
     if(!fs.existsSync(file))return false;
     const value=Number(fs.readFileSync(file,'utf8').split(/\r?\n/)[0]);
     return Number.isSafeInteger(value)&&value>0?value:false;
@@ -122,19 +123,34 @@ async function until(fn,ms=30000){
  try{
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
   const host='http://127.0.0.1:'+server.address().port;
-  async function visitWithStartupRetry(url){
-   try{return await visit(url)}catch(error){
+  async function visitWithStartupRetry(url,profilePath=profile){
+   try{return await visit(url,profilePath)}catch(error){
     if(!/CDP readiness timeout/.test(String(error)))throw error;
-    return visit(url); // re-launch a fresh Chromium process, never skip the gate
+    return visit(url,profilePath); // re-launch and repeat the full gate
    }
   }
   const first=await visitWithStartupRetry(host+'/?phase=write');
   const second=await visitWithStartupRetry(host+'/?phase=reload');
   assert.match(first,/^PASS_WRITE/);assert.match(second,/^PASS_RELOAD/);
+  const interrupted=await visitWithStartupRetry(host+'/?phase=interrupted',interruptionProfile);
+  const resumed=await visitWithStartupRetry(host+'/?phase=resume',interruptionProfile);
+  const reloaded=await visitWithStartupRetry(host+'/?phase=resume-reload',interruptionProfile);
+  assert.match(interrupted,/^PASS_INTERRUPTED/);
+  assert.match(resumed,/^PASS_RESUME/);
+  assert.match(reloaded,/^PASS_RESUME_RELOAD/);
+  console.log(JSON.stringify({result:'PASS',gate:'r4d-v3-real-chromium-interrupted-restore',
+   originalV2Format:true,realChromiumIndexedDB:true,realLocalStorage:true,
+   syntheticQuotaFaultInjected:true,interruptedMarkerPersisted:true,
+   rollbackOfNewAttempts:true,wrongRecoveryBlocked:true,
+   partialBackupExportBlocked:true,sameFileResumeAfterRestart:true,
+   original73AttemptsExact:true,historicWritingSourcePinned:true,
+   reexportVerified:true,postResumeRestartVerified:true,
+   realNativeQuota:'NOT_TESTED',powerLoss:'NOT_TESTED',
+   Safari:'NOT_TESTED',realLearnerData:'NOT_TOUCHED',deploy:false}));
   console.log(JSON.stringify({result:'PASS',gate:'verified-v2-v3-real-chromium-e2e',
    realChromiumIndexedDB:true,originalV2ChecksumVerified:true,normalizationV3Verified:true,currentLessons:123,restoredSyntheticAttempts:73,
    persistedAcrossBrowserProcesses:true,realIndexedDBRestore:true,oldAttemptsByteIdentical:true,changedRubricPinned:true,occupiedRestoreBlocked:true,tamperedV2Blocked:true,
    recoveryV3:'BROWSER_SYNTHETIC_PASS',liveRuntimeIntegration:'NOT_TESTED',
    realSafariAcceptance:'NOT_TESTED'}));
- }finally{server.close();fs.rmSync(profile,{recursive:true,force:true})}
+ }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});
