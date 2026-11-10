@@ -1270,6 +1270,13 @@ const vault=browserLessonRevisionVault();
   catch(e){check(/incomplete paired learner write blocks Recovery/i.test(String(e)),
    'R4i export rejected for an unexpected reason')}
   check(blocked,'Pending paired write must remain export-blocked after Chrome restart');
+  const recoveredV2=await fixture();
+  const previewWhilePending=await previewNormalizedV3Restore(
+   (await convertVerifiedV2ToRevisionV3(recoveredV2.v2)).text,localStorage,vault);
+  check(!previewWhilePending.valid&&
+   previewWhilePending.errors.some(x=>/incomplete paired learner write/i.test(x))&&
+   !previewWhilePending.token,
+   'Restarted half-written profile must never receive a valid Restore preview token');
   await navigator.locks.request(lockName,{mode:'exclusive'},async()=>{
    // No blind overwrite: the current bytes MUST be the journal's known
    // half-write state. Any different bytes leave both marker and journal.
