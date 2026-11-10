@@ -13,6 +13,9 @@ import {canonicalLessonJSON,type ActiveLessonManifest,type RevisionAlias,type Re
  */
 const PREFIX='g-learning:english:v1:';
 export const RECOVERY_V3_MARKER=PREFIX+'recovery-pending-v3';
+/** R4i research-only fail-closed signal for a paired learner/assessment write.
+ * This adapter is NOT installed in the production learner writer. */
+export const LEARNER_WRITE_V3_MARKER=PREFIX+'learner-write-pending-v3';
 type Snapshot={active:ActiveLessonManifest|null;aliases:RevisionAlias[];blobs:RevisionBlob[]};
 export type EnumerableStore={
  length:number;key(index:number):string|null;
@@ -33,7 +36,7 @@ function scanEnglish(storage:EnumerableStore):LearnerEntry[]{
  for(let i=0;i<storage.length;i++){
   const key=storage.key(i);
   if(!key||!key.startsWith(PREFIX))continue;
-  if(key===RECOVERY_V3_MARKER)continue;
+  if(key===RECOVERY_V3_MARKER||key===LEARNER_WRITE_V3_MARKER)continue;
   const value=storage.getItem(key);
   if(value!==null)out.push({key,value});
  }
@@ -51,6 +54,10 @@ function checksumState(file:RevisionRecoveryV3,existing:LearnerEntry[],
 function entriesMatch(file:RevisionRecoveryV3,found:LearnerEntry[]){
  const allowed=new Map(file.entries.map(x=>[x.key,x.value]));
  return found.every(x=>allowed.has(x.key)&&allowed.get(x.key)===x.value);
+}
+function rejectPendingLearnerWrite(storage:EnumerableStore){
+ if(storage.getItem(LEARNER_WRITE_V3_MARKER))
+  throw error('An incomplete paired learner write blocks Recovery export/restore. Recover the original two keys first.');
 }
 function sourceClosure(file:RevisionRecoveryV3,snapshot:Snapshot){
  if(!snapshot.active||!equal(snapshot.active,file.active))
@@ -75,11 +82,14 @@ function sourceClosure(file:RevisionRecoveryV3,snapshot:Snapshot){
 export async function exportNormalizedBrowserRecoveryV3(
  storage:EnumerableStore,vault:NormalizedVault,exportedAt:string
 ){
+ rejectPendingLearnerWrite(storage);
  if(storage.getItem(RECOVERY_V3_MARKER)||
   storage.getItem(PREFIX+'recovery-pending-v2'))
   throw error('An interrupted Recovery blocks new exports.');
  const sourceA=await vault.snapshot(),entriesA=scanEnglish(storage);
+ rejectPendingLearnerWrite(storage);
  const sourceB=await vault.snapshot(),entriesB=scanEnglish(storage);
+ rejectPendingLearnerWrite(storage);
  if(!equal(sourceA,sourceB)||!equal(entriesA,entriesB))
   throw error('Learner records or lesson sources changed while exporting.');
  const result=await createRevisionRecoveryV3(sourceB,entriesB,exportedAt);
@@ -87,9 +97,11 @@ export async function exportNormalizedBrowserRecoveryV3(
  if(confirmed.file.sha256!==result.sha256)
   throw error('Recovery file failed its own checksum.');
  // Detect change again after potentially expensive crypto and serialization.
+ rejectPendingLearnerWrite(storage);
  if(!equal(sourceB,await vault.snapshot())||
   !equal(entriesB,scanEnglish(storage)))
   throw error('Browser data changed while finishing Recovery export.');
+ rejectPendingLearnerWrite(storage);
  return result;
 }
 /**
@@ -105,9 +117,12 @@ export async function previewNormalizedV3Restore(
  const verified=await verifyRevisionRecoveryV3(fileText);
  const file=verified.file;
  const marker=storage.getItem(RECOVERY_V3_MARKER);
+ const pendingWrite=storage.getItem(LEARNER_WRITE_V3_MARKER);
  const present=scanEnglish(storage);
  const source=await vault.snapshot();
  const problems:string[]=[];
+ if(pendingWrite)
+  problems.push('An incomplete paired learner write must be repaired before Restore.');
  if(marker&&marker!==file.sha256)
   problems.push('Interrupted restore uses a different Recovery V3 file.');
  if(!marker&&present.length)
@@ -137,6 +152,7 @@ export async function restoreNormalizedV3(
 ):Promise<{attempts:number;sourceRevisions:number;restoredKeys:number}>{
  if(!confirmed||!token)throw error('Explicit empty-profile Restore confirmation required.');
  const preview=await previewNormalizedV3Restore(fileText,storage,vault);
+ rejectPendingLearnerWrite(storage);
  if(!preview.valid||preview.token!==token)
   throw error('Restore source/profile changed; preview again. '+preview.errors.join(' '));
  const verified=await verifyRevisionRecoveryV3(fileText),file=verified.file;
