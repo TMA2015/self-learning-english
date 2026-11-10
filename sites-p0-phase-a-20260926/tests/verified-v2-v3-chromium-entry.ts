@@ -1425,6 +1425,7 @@ const vault=browserLessonRevisionVault();
    beforeAHash:await digest(beforeA),beforeWHash:await digest(beforeW)};
   const token=await digest(JSON.stringify(journal));
   let nativeQuotaExceeded=false,low=0,high=8_000_000;
+  const headroom=1024;
   await navigator.locks.request(lockName,{mode:'exclusive'},()=>{
    localStorage.setItem(journalKey,JSON.stringify(journal));
    localStorage.setItem(LEARNER_WRITE_V3_MARKER,token);
@@ -1444,7 +1445,6 @@ const vault=browserLessonRevisionVault();
     'No real Chromium quota boundary found with second key still unwritten');
    // Leave native storage almost full, so the second learner key must
    // trigger native quota rather than a simulated/monkey-patched throw.
-   const headroom=1024;
    check(low>headroom,'R4j native quota headroom is invalid');
    localStorage.setItem(paddingKey,'q'.repeat(low-headroom));
    check(localStorage.getItem(paddingKey)?.length===low-headroom,
