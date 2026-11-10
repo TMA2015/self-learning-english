@@ -41,6 +41,7 @@ async function until(fn,ms=30000){
  const blockedUpgradeProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4f-idb-blocked-'));
  const twoTabProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4g-two-tab-'));
  const learnerRaceProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4h-learner-writes-'));
+ const pairedWriteProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4i-paired-write-'));
  const server=http.createServer((_req,res)=>{
   res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'});
   res.end(html);
@@ -255,6 +256,38 @@ async function until(fn,ms=30000){
   assert.equal(raceProof.nativeWebLockQueueObserved,true);
   assert.equal(raceProof.staleWorkerWriteRejected,true);
   assert.equal(raceProof.protectedOriginalAttempts,73);
+  const pendingPair=await visitWithStartupRetry(
+   host+'/?phase=paired-write-pending',pairedWriteProfile);
+  const recoveredPair=await visitWithStartupRetry(
+   host+'/?phase=paired-write-recover',pairedWriteProfile);
+  const reloadedPair=await visitWithStartupRetry(
+   host+'/?phase=paired-write-reload',pairedWriteProfile);
+  assert.match(pendingPair,/^PASS_R4I_PENDING\b/);
+  assert.match(recoveredPair,/^PASS_R4I_RECOVER\b/);
+  assert.match(reloadedPair,/^PASS_R4I_RELOAD\b/);
+  const staged=JSON.parse(pendingPair.slice(pendingPair.indexOf('{')));
+  const recovered=JSON.parse(recoveredPair.slice(recoveredPair.indexOf('{')));
+  assert.equal(staged.incompleteV3ExportBlocked,true);
+  assert.equal(staged.secondWritingKeyNotWritten,true);
+  assert.equal(recovered.interruptedMarkerSurvivedRestart,true);
+  assert.equal(recovered.completedJournaledPairedWrite,true);
+  console.log(JSON.stringify({result:'PASS',
+   gate:'r4i-two-key-learner-writing-journaled-interruption-recovery',
+   realChromiumLocalStorage:true,
+   realChromiumWebLocks:true,
+   interruptedAfterFirstOfTwoLearnerKeys:true,
+   explicitPendingWriteMarker:true,
+   interruptedBackupExportBlocked:true,
+   interruptedRestorePreviewBlocked:true,
+   original73AttemptsRecoveredByteForByte:true,
+   originalWritingReviewRecovered:true,
+   successfulPairedCommitVerified:true,
+   restartAndFullRecoveryV3ExportVerified:true,
+   browserShutdownDuringInterruption:'GRACEFUL_SIMULATED_STOP',
+   suddenSIGKILL:'NOT_TESTED',nativeQuota:'NOT_TESTED',
+   atomicAcrossTwoLocalStorageKeys:'NOT_PROVEN',
+   productionLearnerWriterIntegration:false,
+   safari:'NOT_TESTED',realLearnerData:'NOT_TOUCHED',deploy:false}));
   console.log(JSON.stringify({result:'PASS',gate:'r4h-two-tab-learner-writing-loss-prevention-research',
    twoIndependentChromiumPageTargets:true,
    nativeLocalStorageNaiveLostUpdateDemonstratedOnScratchKey:true,
@@ -312,5 +345,5 @@ async function until(fn,ms=30000){
    persistedAcrossBrowserProcesses:true,realIndexedDBRestore:true,oldAttemptsByteIdentical:true,changedRubricPinned:true,occupiedRestoreBlocked:true,tamperedV2Blocked:true,
    recoveryV3:'BROWSER_SYNTHETIC_PASS',liveRuntimeIntegration:'NOT_TESTED',
    realSafariAcceptance:'NOT_TESTED'}));
- }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true})}
+ }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true});fs.rmSync(pairedWriteProfile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});
