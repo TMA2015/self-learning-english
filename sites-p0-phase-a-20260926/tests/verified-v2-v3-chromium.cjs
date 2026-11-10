@@ -43,6 +43,7 @@ async function until(fn,ms=30000){
  const learnerRaceProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4h-learner-writes-'));
  const pairedWriteProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4i-paired-write-'));
  const writingQuotaProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4j-writing-quota-'));
+ const preflightProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4k-preflight-quota-'));
  const server=http.createServer((_req,res)=>{
   res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'});
   res.end(html);
@@ -288,6 +289,30 @@ async function until(fn,ms=30000){
   assert.equal(r4jProof.originalWritingSecondKeyPreserved,true);
   assert.equal(r4jRestored.genuineQuotaInterruptedJournalSurvivedRestart,true);
   assert.equal(r4jRestored.original73AttemptsAndOriginalReviewRecoveredByteForByte,true);
+  const preflight=await visitWithStartupRetry(
+   host+'/?phase=journal-preflight',preflightProfile);
+  const preflightReload=await visitWithStartupRetry(
+   host+'/?phase=journal-preflight-reload',preflightProfile);
+  assert.match(preflight,/^PASS_R4K_PREFLIGHT\b/);
+  assert.match(preflightReload,/^PASS_R4K_RELOAD\b/);
+  const r4kProof=JSON.parse(preflight.slice(preflight.indexOf('{')));
+  assert.equal(r4kProof.nativeChromiumJournalQuotaError,true);
+  assert.equal(r4kProof.nativeChromiumMarkerQuotaError,true);
+  assert.equal(r4kProof.bothLearnerKeysUntouched,true);
+  assert.equal(r4kProof.fullOriginalV3BackupStillValid,true);
+  console.log(JSON.stringify({result:'PASS',
+   gate:'r4k-native-chromium-journal-marker-preflight-quota',
+   genuineChromiumQuotaBeforeWritingJournal:true,
+   genuineChromiumQuotaBeforeWritingMarker:true,
+   abortedBeforeAnyLearnerKeyMutation:true,
+   original73AttemptRecordsByteIdentical:true,
+   originalWritingCourseAndHistoricRevisionsUnchanged:true,
+   completeV3BackupStillVerifiable:true,
+   originalValuesSurvivedNormalBrowserRestart:true,
+   quotaFillerAndTestJournalCleaned:true,
+   testOnlyGuardNotDeployed:true,
+   safari:'NOT_TESTED',hardCrash:'NOT_TESTED',realFamilyData:'NOT_TOUCHED',
+   productionMigration:false,deploy:false}));
   console.log(JSON.stringify({result:'PASS',
    gate:'r4j-native-chromium-quota-on-second-writing-key',
    nativeChromiumQuotaExceededErrorOnWritingKey:true,
@@ -376,5 +401,5 @@ async function until(fn,ms=30000){
    persistedAcrossBrowserProcesses:true,realIndexedDBRestore:true,oldAttemptsByteIdentical:true,changedRubricPinned:true,occupiedRestoreBlocked:true,tamperedV2Blocked:true,
    recoveryV3:'BROWSER_SYNTHETIC_PASS',liveRuntimeIntegration:'NOT_TESTED',
    realSafariAcceptance:'NOT_TESTED'}));
- }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true});fs.rmSync(pairedWriteProfile,{recursive:true,force:true});fs.rmSync(writingQuotaProfile,{recursive:true,force:true})}
+ }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true});fs.rmSync(pairedWriteProfile,{recursive:true,force:true});fs.rmSync(writingQuotaProfile,{recursive:true,force:true});fs.rmSync(preflightProfile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});
