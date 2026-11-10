@@ -22,6 +22,17 @@ R4c exercises that missing boundary. The initial research branch was stacked on 
 
 The test is registered as one additional test under the existing `qa:core`/`qa:full`. It does not create workflows, alter web app runtime, change current LIVE curriculum, enable background migration, or touch Firebase.
 
+## R4d extension — interrupted cross-store restore on real disposable Chromium
+
+The existing R4c harness now performs a second, isolated three-process scenario on a separate ephemeral browser profile:
+
+1. A deterministic, checksum-correct V2 **test fixture** is converted to V3 and verified. A scoped test adapter delegates to real Chromium `localStorage` but raises a **synthetic `QuotaExceededError` once** at the course-selection key, **after** the 73-attempt key was written.
+2. The interrupted V3 adapter must roll back the newly written attempt key without overwriting any learner record, preserve the V3 `recovery-pending-v3` marker, and preserve the atomic original revision and alias content in **real IndexedDB**. The partially restored profile must reject V3 exports and an independently valid but different V3 file.
+3. Chromium is shut down **normally** using `Browser.close`; a new process must find the same pending marker and original IDB sources. Re-selecting only the identical verified V3 file completes the restore. The test then checks 73 original synthetic attempt strings, Writing/reviews, course selection and historic Writing source/rubric; a complete V3 re-export must succeed.
+4. A third independent Chromium process verifies that the completed learner and IDB sources persist, with **no remaining interrupted marker**.
+
+**Strict boundary:** The interruption is **fault-injected into a localStorage adapter**, *not* a genuine native Safari/Chromium quota exhaustion, a process crash, or a power-loss test. Real browser IndexedDB transactions, browser restarts, localStorage persistence and actual recovery code are exercised, but cross-browser Safari acceptance remains open. A failed test must remain blocking; no QA gate or backup validation may be loosened to obtain PASS.
+
 ## Explicit non-claims / blockers
 
 - SHA verifies integrity of archived JSON, but it is **not a cryptographic signature proving the real provenance of the original learner data**.
