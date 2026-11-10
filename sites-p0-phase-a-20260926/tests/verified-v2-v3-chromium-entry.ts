@@ -1389,6 +1389,245 @@ const vault=browserLessonRevisionVault();
    verified.file.entries.find(x=>x.key===writingKey)?.value===expectedW,
    'R4i completed paired edits do not survive a new Chromium process');
   dom.textContent='PASS_R4I_RELOAD';
+ }else if(phase==='native-writing-quota'){
+  // R4j: real Chromium native quota failure on the SECOND learner key,
+  // not an injected error. Scratch padding is disposable test-owned data.
+  const journalKey='__sle_issue103_r4j_quota_pair_journal__';
+  const paddingKey='__sle_issue103_r4j_native_quota_padding__';
+  const lockName='sle-issue103-r4j-disposable-learner-pair';
+  check(localStorage.length===0,'R4j requires an empty disposable Chrome profile');
+  check((await vault.snapshot()).active===null,'R4j requires empty disposable IDB');
+  check(typeof navigator.locks?.request==='function',
+   'R4j requires actual Chromium native Web Locks');
+  const {v2,rows}=await fixture();
+  const transformed=await convertVerifiedV2ToRevisionV3(v2);
+  const verified=await verifyRevisionRecoveryV3(transformed.text);
+  check(verified.attempts===73,'R4j must start with 73 invented attempts');
+  const preview=await previewNormalizedV3Restore(transformed.text,localStorage,vault);
+  check(preview.valid&&!preview.resuming,'R4j empty-profile V3 preview must validate');
+  check((await restoreNormalizedV3(transformed.text,preview.token,true,localStorage,vault))
+   .attempts===73,'R4j initial verified V3 restore did not preserve 73 attempts');
+  const beforeA=rows.find(x=>x.key===attemptKey)!.value;
+  const beforeW=permanentTestValues.writing;
+  check(localStorage.getItem(attemptKey)===beforeA&&
+   localStorage.getItem(writingKey)===beforeW,
+   'R4j initial learner/assessment strings mismatch original V2');
+  const afterA=r4hAnswer(beforeA,71,'R4J_NATIVE_SECOND_KEY_QUOTA');
+  const afterW=r4hReview(beforeW,'r4j-writing-quota')
+   + ' '; // No source record can be omitted due to serialized test payload.
+  // Make the SECOND key big enough to require more space than any remaining
+  // headroom, while preserving a valid JSON value with original review.
+  const expanded=JSON.parse(afterW.trim()) as {reviews:Array<{id:string;feedback:string}>};
+  expanded.reviews[1].feedback='R4j native quota payload '+('Q'.repeat(32_768));
+  const intendedW=JSON.stringify(expanded);
+  const journal={kind:'R4J_QUOTA_TEST_ONLY',beforeA,beforeW,
+   intendedA:afterA,intendedW,
+   beforeAHash:await digest(beforeA),beforeWHash:await digest(beforeW)};
+  const token=await digest(JSON.stringify(journal));
+  let nativeQuotaExceeded=false,low=0,high=8_000_000;
+  await navigator.locks.request(lockName,{mode:'exclusive'},()=>{
+   localStorage.setItem(journalKey,JSON.stringify(journal));
+   localStorage.setItem(LEARNER_WRITE_V3_MARKER,token);
+   localStorage.setItem(attemptKey,afterA);
+   // Fill ONLY the disposable scratch namespace after first-key write.
+   // Find Chrome's actual capacity; no mocked QuotaExceededError allowed.
+   while(low+256<high){
+    const mid=Math.floor((low+high)/2);
+    try{localStorage.setItem(paddingKey,'q'.repeat(mid));low=mid}
+    catch(e){
+     check((e as Error)?.name==='QuotaExceededError',
+      'R4j quota boundary must come from native Chromium');
+     nativeQuotaExceeded=true;high=mid;
+    }
+   }
+   check(nativeQuotaExceeded&&low>=1_000_000&&high<8_000_000,
+    'No real Chromium quota boundary found with second key still unwritten');
+   // Leave native storage almost full, so the second learner key must
+   // trigger native quota rather than a simulated/monkey-patched throw.
+   const headroom=1024;
+   check(low>headroom,'R4j native quota headroom is invalid');
+   localStorage.setItem(paddingKey,'q'.repeat(low-headroom));
+   check(localStorage.getItem(paddingKey)?.length===low-headroom,
+    'R4j scratch padding not retained at measured native quota');
+   let secondWriteRejected=false;
+   try{localStorage.setItem(writingKey,intendedW)}
+   catch(e){
+    check((e as Error)?.name==='QuotaExceededError',
+     'R4j second Writing key failed for a reason other than native quota');
+    secondWriteRejected=true;
+   }
+   check(secondWriteRejected,'R4j must observe native QuotaExceededError on Writing key');
+   check(localStorage.getItem(attemptKey)===afterA&&
+    localStorage.getItem(writingKey)===beforeW&&
+    localStorage.getItem(LEARNER_WRITE_V3_MARKER)===token,
+    'Native quota may not erase original Writing or pending journal marker');
+  });
+  let exportBlocked=false;
+  try{await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T19:00:00.000Z')}
+  catch(e){
+   exportBlocked=/incomplete paired learner write blocks Recovery/i.test(String(e));
+  }
+  check(exportBlocked,'Native second-key quota may not produce a falsely complete V3');
+  const pending=await previewNormalizedV3Restore(
+   transformed.text,localStorage,vault);
+  check(!pending.valid&&!pending.token&&
+   pending.errors.some(x=>/incomplete paired learner write/i.test(x)),
+   'Native second-key quota must also block V3 Restore preview');
+  check((await vault.snapshot()).active?.lessons.length===123,
+   'Native quota unexpectedly altered normalized academic source');
+  dom.textContent='PASS_R4J_NATIVE_QUOTA '+JSON.stringify({
+   realNativeChromiumQuotaExceededOnSecondLearnerKey:true,
+   nativePaddingChars:low-headroom,
+   firstLearnerKeyWritten:true,originalWritingSecondKeyPreserved:true,
+   fullPreimageJournalAndPendingMarkerPresent:true,
+   blockedV3Export:true,blockedV3RestorePreview:true,
+   original73SyntheticAttemptsCount:73
+  });
+ }else if(phase==='native-writing-quota-recover'){
+  const journalKey='__sle_issue103_r4j_quota_pair_journal__';
+  const paddingKey='__sle_issue103_r4j_native_quota_padding__';
+  const lockName='sle-issue103-r4j-disposable-learner-pair';
+  const {v2,rows}=await fixture();
+  const beforeA=rows.find(x=>x.key===attemptKey)!.value;
+  const beforeW=permanentTestValues.writing;
+  const encoded=r4hRequiredString(localStorage.getItem(journalKey),
+   'R4j native quota journal after Chromium restart');
+  const journal=JSON.parse(encoded) as {
+   kind:string;beforeA:string;beforeW:string;
+   intendedA:string;intendedW:string;
+   beforeAHash:string;beforeWHash:string
+  };
+  check(journal.kind==='R4J_QUOTA_TEST_ONLY'&&
+   journal.beforeA===beforeA&&journal.beforeW===beforeW&&
+   journal.beforeAHash===await digest(beforeA)&&
+   journal.beforeWHash===await digest(beforeW),
+   'R4j pending quota journal fails original byte/sha256 verification');
+  const token=await digest(JSON.stringify(journal));
+  check(localStorage.getItem(LEARNER_WRITE_V3_MARKER)===token&&
+   localStorage.getItem(attemptKey)===journal.intendedA&&
+   localStorage.getItem(writingKey)===beforeW&&
+   (localStorage.getItem(paddingKey)?.length??0)>1_000_000,
+   'R4j quota-interrupted first-key state or native scratch was lost on restart');
+  let exportBlocked=false;
+  try{await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T19:10:00.000Z')}
+  catch(e){
+   exportBlocked=/incomplete paired learner write blocks Recovery/i.test(String(e));
+  }
+  check(exportBlocked,'R4j reopened native-quota profile must reject incomplete backup');
+  const normalized=await convertVerifiedV2ToRevisionV3(v2);
+  const preview=await previewNormalizedV3Restore(normalized.text,localStorage,vault);
+  check(!preview.valid&&!preview.token&&
+   preview.errors.some(x=>/incomplete paired learner write/i.test(x)),
+   'R4j native-quota Restore preview still must fail after restart');
+  await navigator.locks.request(lockName,{mode:'exclusive'},()=>{
+   check(localStorage.getItem(LEARNER_WRITE_V3_MARKER)===token&&
+    localStorage.getItem(attemptKey)===journal.intendedA&&
+    localStorage.getItem(writingKey)===journal.beforeW,
+    'R4j refuses rollback over an unexpected modified learner pair');
+   // Restoring the original first key reduces storage usage under quota.
+   localStorage.setItem(attemptKey,journal.beforeA);
+   check(localStorage.getItem(attemptKey)===journal.beforeA&&
+    localStorage.getItem(writingKey)===journal.beforeW,
+    'R4j native quota rollback cannot prove original two-key bytes');
+   localStorage.removeItem(LEARNER_WRITE_V3_MARKER);
+   localStorage.removeItem(journalKey);
+   // Remove ONLY the test-owned native quota padding AFTER exact rollback.
+   localStorage.removeItem(paddingKey);
+  });
+  check(localStorage.getItem(attemptKey)===beforeA&&
+   localStorage.getItem(writingKey)===beforeW&&
+   localStorage.getItem(paddingKey)===null&&
+   localStorage.getItem(journalKey)===null&&
+   localStorage.getItem(LEARNER_WRITE_V3_MARKER)===null,
+   'R4j rollback left incomplete learner state or scratch data');
+  const oldBackup=await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T19:20:00.000Z');
+  const oldVerified=await verifyRevisionRecoveryV3(oldBackup.text);
+  check(oldVerified.attempts===73&&
+   oldVerified.file.entries.find(x=>x.key===attemptKey)?.value===beforeA&&
+   oldVerified.file.entries.find(x=>x.key===writingKey)?.value===beforeW,
+   'R4j rollback did not produce exact complete historical V3 backup');
+  // After removing only disposable quota filler, commit the same intended
+  // second-key Writing revision, under a fresh test-owned journal+Web Lock.
+  const committedA=r4hAnswer(beforeA,71,'R4J_NATIVE_QUOTA_RECOVERED');
+  const committedW=r4hReview(beforeW,'r4j-post-quota-writing-review');
+  const commitJournal={kind:'R4J_QUOTA_TEST_ONLY',beforeA,beforeW,
+   intendedA:committedA,intendedW:committedW,
+   beforeAHash:await digest(beforeA),beforeWHash:await digest(beforeW)};
+  await navigator.locks.request(lockName,{mode:'exclusive'},()=>{
+   check(localStorage.getItem(attemptKey)===beforeA&&
+    localStorage.getItem(writingKey)===beforeW,
+    'R4j paired commit cannot overwrite unexpected source');
+   localStorage.setItem(journalKey,JSON.stringify(commitJournal));
+   localStorage.setItem(LEARNER_WRITE_V3_MARKER,
+    'verified-'+commitJournal.kind);
+   localStorage.setItem(attemptKey,committedA);
+   localStorage.setItem(writingKey,committedW);
+   check(localStorage.getItem(attemptKey)===committedA&&
+    localStorage.getItem(writingKey)===committedW,
+    'R4j complete pair did not persist both keys');
+   localStorage.removeItem(LEARNER_WRITE_V3_MARKER);
+   localStorage.removeItem(journalKey);
+  });
+  const parsedOriginal=JSON.parse(beforeA) as unknown[];
+  const parsedCommit=JSON.parse(committedA) as unknown[];
+  check(parsedOriginal.length===73&&parsedCommit.length===73&&
+   parsedOriginal.every((a,i)=>i===71||
+    canonicalLessonJSON(a)===canonicalLessonJSON(parsedCommit[i])),
+   'R4j modified a non-target original attempt after quota recovery');
+  const writing=JSON.parse(committedW) as {reviews:Array<{id:string}>};
+  check(writing.reviews.length===2&&writing.reviews[0].id==='test-review'&&
+   writing.reviews[1].id==='r4j-post-quota-writing-review',
+   'R4j successful paired write lost the original Writing review');
+  const completed=await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T19:30:00.000Z');
+  const complete=await verifyRevisionRecoveryV3(completed.text);
+  check(complete.attempts===73&&
+   complete.file.entries.find(x=>x.key===attemptKey)?.value===committedA&&
+   complete.file.entries.find(x=>x.key===writingKey)?.value===committedW,
+   'R4j successful post-quota pair is missing from verified complete V3');
+  check((await vault.resolveHistoric('1.18.0','WRI-A2-01')).lesson.id===
+   'WRI-A2-01','R4j original historic Writing source/rubric lost');
+  dom.textContent='PASS_R4J_RECOVER '+JSON.stringify({
+   genuineQuotaInterruptedJournalSurvivedRestart:true,
+   incompleteRecoveryExportBlockedAfterRestart:true,
+   original73AttemptsAndOriginalReviewRecoveredByteForByte:true,
+   onlyTestPaddingRemovedAfterExactRollback:true,
+   newPairedWriteSucceededWithoutQuotaPadding:true,
+   historyAndCompleteV3ExportVerified:true
+  });
+ }else if(phase==='native-writing-quota-reload'){
+  const {v2,rows}=await fixture();
+  const beforeA=rows.find(x=>x.key===attemptKey)!.value;
+  const expectedA=r4hAnswer(beforeA,71,'R4J_NATIVE_QUOTA_RECOVERED');
+  const expectedW=r4hReview(
+   permanentTestValues.writing,'r4j-post-quota-writing-review');
+  check(localStorage.getItem(attemptKey)===expectedA&&
+   localStorage.getItem(writingKey)===expectedW&&
+   localStorage.getItem(extraKey)===permanentTestValues.course,
+   'R4j completed post-quota learner/Writing pair lost across Chrome restart');
+  check(localStorage.getItem(LEARNER_WRITE_V3_MARKER)===null&&
+   localStorage.getItem('__sle_issue103_r4j_quota_pair_journal__')===null&&
+   localStorage.getItem('__sle_issue103_r4j_native_quota_padding__')===null,
+   'R4j successful restart retained pending marker or quota scratch');
+  const verifiedSource=await verifyRevisionRecoveryV3(
+   (await convertVerifiedV2ToRevisionV3(v2)).text);
+  const source=await vault.snapshot();
+  check(canonicalLessonJSON(source.active)===
+   canonicalLessonJSON(verifiedSource.file.active)&&
+   source.blobs.length===verifiedSource.file.blobs.length&&
+   source.aliases.length===verifiedSource.file.aliases.length,
+   'R4j native quota experience changed original immutable source inventory');
+  const backup=await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T19:40:00.000Z');
+  const output=await verifyRevisionRecoveryV3(backup.text);
+  check(output.attempts===73&&
+   output.file.entries.find(x=>x.key===attemptKey)?.value===expectedA&&
+   output.file.entries.find(x=>x.key===writingKey)?.value===expectedW,
+   'R4j completed learner edits are not recoverable after second restart');
+  dom.textContent='PASS_R4J_RELOAD';
  }else throw Error('Unsupported R4c browser phase');
 })().catch(e=>{
  dom.textContent='FAIL '+String(e)+' '+String((e as Error)?.stack).slice(0,1100);
