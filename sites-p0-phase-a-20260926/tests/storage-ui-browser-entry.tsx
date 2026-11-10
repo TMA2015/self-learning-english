@@ -1,6 +1,7 @@
 import React from 'react';
 import {createRoot} from 'react-dom/client';
 import {LocalBackupPanel} from '../app/local-backup-panel';
+import {localAcademicRuntime} from '../infrastructure/browser/local-runtime';
 import {BrowserLocalAcademicRepository} from '../infrastructure/storage/browser-local-repositories';
 import {sourceDigest} from '../application/academic-service';
 import {mapSeed,type Seed} from '../domain/academic';
@@ -74,7 +75,9 @@ const pkg=async(version:string)=>{
    localStorage.setItem(savedFileKey,file!);
   }else if(mode==='no-savings'){
    localStorage.clear(); // LOCALHOST-only disposable profile
-   await repo.addPackage(await pkg('1.18.1'));
+   // Bootstrap the *actual* current v1.25.0 bundle; a legacy package would
+   // correctly be eligible for cleanup and would not model the user screenshot.
+   await localAcademicRuntime();
   }else throw Error('Unknown UI phase');
   const domRoot=createRoot(document.getElementById('app')!);
   domRoot.render(React.createElement(LocalBackupPanel));
