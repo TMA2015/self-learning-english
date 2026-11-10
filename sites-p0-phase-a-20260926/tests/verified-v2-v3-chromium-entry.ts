@@ -8,7 +8,7 @@ import curriculum1181 from '../content/curriculum-1.18.1-candidate.json';
 import curriculum1200 from '../content/curriculum-1.20.0-candidate.json';
 import {convertVerifiedV2ToRevisionV3} from '../infrastructure/browser/v2-to-lesson-revision-v3';
 import {verifyLocalRecoveryV2} from '../infrastructure/browser/local-recovery';
-import {verifyRevisionRecoveryV3} from '../domain/lesson-revision-recovery-v3';
+import {verifyRevisionRecoveryV3,createRevisionRecoveryV3} from '../domain/lesson-revision-recovery-v3';
 import {canonicalLessonJSON} from '../domain/lesson-revision-plan';
 import {browserLessonRevisionVault} from '../infrastructure/storage/indexeddb-lesson-revision-vault';
 import {previewNormalizedV3Restore,restoreNormalizedV3,
@@ -218,6 +218,124 @@ const vault=browserLessonRevisionVault();
   check((await verifyRevisionRecoveryV3(verified.text)).attempts===73,
    'Recovered browser could not export another complete V3');
   dom.textContent='PASS_RELOAD';
+ }else if(phase==='interrupted'){
+  // Disposable profile only. Native IndexedDB is real; the injected quota
+  // failure in the localStorage adapter is synthetic, not a Safari quota test.
+  check(localStorage.length===0,'Interrupted fixture must start empty');
+  check((await vault.snapshot()).active===null,'Interrupted fixture IDB must start empty');
+  const {v2}=await fixture();
+  const v3=await convertVerifiedV2ToRevisionV3(v2);
+  const verified=await verifyRevisionRecoveryV3(v3.text);
+  check(verified.attempts===73,'Interrupt fixture must have 73 attempts');
+  const preview=await previewNormalizedV3Restore(v3.text,localStorage,vault);
+  check(preview.valid&&!preview.resuming,'Fresh interrupted preview not valid');
+  let injected=false;
+  const failingStorage={
+   get length(){return localStorage.length},
+   key:(i:number)=>localStorage.key(i),
+   getItem:(key:string)=>localStorage.getItem(key),
+   removeItem:(key:string)=>localStorage.removeItem(key),
+   setItem:(key:string,value:string)=>{
+    // The file entries sort attempts before course selection. Force failure
+    // after the large 73-attempt key has been written, to prove rollback.
+    if(key===extraKey&&!injected){
+     injected=true;
+     check(localStorage.getItem(attemptKey)!==null,
+      'Fault must occur after the first attempt payload write');
+     const failure=new Error('R4d synthetic quota interruption');
+     failure.name='QuotaExceededError';
+     throw failure;
+    }
+    localStorage.setItem(key,value);
+   }
+  };
+  let blocked=false;
+  try{await restoreNormalizedV3(v3.text,preview.token,true,failingStorage,vault)}
+  catch(e){blocked=/restore incomplete|interrupted marker preserved/i.test(String(e))}
+  check(injected&&blocked,'Injected localStorage write failure must fail closed');
+  check(localStorage.getItem(RECOVERY_V3_MARKER)===verified.file.sha256,
+   'Interrupted marker must pin the same V3 archive');
+  check(localStorage.getItem(attemptKey)===null,
+   'Newly written 73-attempt payload must be rolled back');
+  check(localStorage.getItem(extraKey)===null&&
+   localStorage.getItem(writingKey)===null,
+   'No incomplete original learner keys may remain');
+  check(localStorage.length===1,'Only recovery marker may survive rollback');
+  const partial=await vault.snapshot();
+  check(partial.active?.version==='1.20.0'&&
+   partial.active.lessons.length===123&&partial.aliases.length>0,
+   'Atomic indexedDB source install must be preserved for same-file resume');
+  let exportBlocked=false;
+  try{await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T10:01:00.000Z')}
+  catch(e){exportBlocked=/interrupted Recovery blocks new exports/i.test(String(e))}
+  check(exportBlocked,'Incomplete restore must not be exported as a full backup');
+  const alternate=await createRevisionRecoveryV3({
+   active:verified.file.active,aliases:verified.file.aliases,blobs:verified.file.blobs
+  },verified.file.entries,'2026-11-10T11:01:00.000Z');
+  const wrong=await previewNormalizedV3Restore(alternate.text,localStorage,vault);
+  check(!wrong.valid&&wrong.errors.some(x=>/different Recovery V3 file/.test(x)),
+   'Pending marker must reject a different but checksum-valid backup');
+  dom.textContent='PASS_INTERRUPTED '+JSON.stringify({
+   syntheticQuotaInjected:true,attemptsRolledBack:true,
+   markerRetained:true,realIDBContentsPreserved:true,
+   partialExportBlocked:true,wrongValidFileBlocked:true
+  });
+ }else if(phase==='resume'){
+  // New Chromium process, same disposable profile and exact original V2.
+  const {v2,rows}=await fixture();
+  const v3=await convertVerifiedV2ToRevisionV3(v2);
+  const verified=await verifyRevisionRecoveryV3(v3.text);
+  check(localStorage.getItem(RECOVERY_V3_MARKER)===verified.file.sha256,
+   'Interrupted marker did not persist over graceful Chrome restart');
+  check(localStorage.getItem(attemptKey)===null,
+   'Failed first restore must not leave partial attempts');
+  const before=await vault.snapshot();
+  check(before.active?.version==='1.20.0'&&before.active.lessons.length===123,
+   'Previous IDB source transaction did not persist');
+  const preview=await previewNormalizedV3Restore(v3.text,localStorage,vault);
+  check(preview.valid&&preview.resuming&&preview.attempts===73,
+   'Same-file restore must be resumable after Chromium restart');
+  const restored=await restoreNormalizedV3(
+   v3.text,preview.token,true,localStorage,vault);
+  check(restored.attempts===73,'Resumed restore did not finish all attempts');
+  check(localStorage.getItem(attemptKey)===
+   rows.find(x=>x.key===attemptKey)!.value,'Resumed attempts differ byte-for-byte');
+  check(localStorage.getItem(extraKey)===permanentTestValues.course,
+   'Course selection changed after resume');
+  check(localStorage.getItem(writingKey)===permanentTestValues.writing,
+   'Writing/reviews changed after resume');
+  check(localStorage.getItem(RECOVERY_V3_MARKER)===null,
+   'Successful resume must clear interrupted marker');
+  const history=await vault.resolveHistoric('1.18.0','WRI-A2-01');
+  const sourceWriting=source('1.18.0').lessons.find(l=>l.id==='WRI-A2-01');
+  check(canonicalLessonJSON(history.lesson)===canonicalLessonJSON(sourceWriting),
+   'Original Writing source changed during resumed restore');
+  const backup=await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T11:12:00.000Z');
+  check((await verifyRevisionRecoveryV3(backup.text)).attempts===73,
+   'Completed resume cannot export full verified V3');
+  dom.textContent='PASS_RESUME '+JSON.stringify({
+   resumingMarkerVerified:true,idbReinstallIdempotent:true,
+   restoredAttempts:73,originalWritingSourcePinned:true,
+   resumedBackupVerified:true
+  });
+ }else if(phase==='resume-reload'){
+  const {rows}=await fixture();
+  check(localStorage.getItem(RECOVERY_V3_MARKER)===null,
+   'Second restart must have no pending marker');
+  check(localStorage.getItem(attemptKey)===
+   rows.find(x=>x.key===attemptKey)!.value,
+   'Resumed original attempt payload not durable across second restart');
+  check(localStorage.getItem(extraKey)===permanentTestValues.course&&
+   localStorage.getItem(writingKey)===permanentTestValues.writing,
+   'Writing/course learner entries lost after second restart');
+  const snapshot=await vault.snapshot();
+  check(snapshot.active?.lessons.length===123,
+   'Original normalized current source not retained after resumed restart');
+  check((await vault.resolveHistoric('1.18.0','REA-A1-01')).lesson.id==='REA-A1-01',
+   'Historical source disappeared after resumed restart');
+  dom.textContent='PASS_RESUME_RELOAD';
  }else throw Error('Unsupported R4c browser phase');
 })().catch(e=>{
  dom.textContent='FAIL '+String(e)+' '+String((e as Error)?.stack).slice(0,1100);
