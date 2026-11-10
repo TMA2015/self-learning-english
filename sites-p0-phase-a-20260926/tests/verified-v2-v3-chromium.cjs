@@ -42,6 +42,7 @@ async function until(fn,ms=30000){
  const twoTabProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4g-two-tab-'));
  const learnerRaceProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4h-learner-writes-'));
  const pairedWriteProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4i-paired-write-'));
+ const writingQuotaProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4j-writing-quota-'));
  const server=http.createServer((_req,res)=>{
   res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'});
   res.end(html);
@@ -271,6 +272,36 @@ async function until(fn,ms=30000){
   assert.equal(staged.secondWritingKeyNotWritten,true);
   assert.equal(recovered.interruptedMarkerSurvivedRestart,true);
   assert.equal(recovered.completedJournaledPairedWrite,true);
+  const secondNativeQuota=await visitWithStartupRetry(
+   host+'/?phase=native-writing-quota',writingQuotaProfile);
+  const secondNativeRecovered=await visitWithStartupRetry(
+   host+'/?phase=native-writing-quota-recover',writingQuotaProfile);
+  const secondNativeReload=await visitWithStartupRetry(
+   host+'/?phase=native-writing-quota-reload',writingQuotaProfile);
+  assert.match(secondNativeQuota,/^PASS_R4J_NATIVE_QUOTA\b/);
+  assert.match(secondNativeRecovered,/^PASS_R4J_RECOVER\b/);
+  assert.match(secondNativeReload,/^PASS_R4J_RELOAD\b/);
+  const r4jProof=JSON.parse(secondNativeQuota.slice(secondNativeQuota.indexOf('{')));
+  const r4jRestored=JSON.parse(secondNativeRecovered.slice(secondNativeRecovered.indexOf('{')));
+  assert.equal(r4jProof.realNativeChromiumQuotaExceededOnSecondLearnerKey,true);
+  assert(r4jProof.nativePaddingChars>=1_000_000);
+  assert.equal(r4jProof.originalWritingSecondKeyPreserved,true);
+  assert.equal(r4jRestored.genuineQuotaInterruptedJournalSurvivedRestart,true);
+  assert.equal(r4jRestored.original73AttemptsAndOriginalReviewRecoveredByteForByte,true);
+  console.log(JSON.stringify({result:'PASS',
+   gate:'r4j-native-chromium-quota-on-second-writing-key',
+   nativeChromiumQuotaExceededErrorOnWritingKey:true,
+   firstAttemptKeyWrittenBeforeFailure:true,
+   originalWritingKeyPreserved:true,
+   preimageJournalAndMarkerSurvivedBrowserRestart:true,
+   incompleteV3ExportAndPreviewBlocked:true,
+   original73SyntheticAttemptsRecoveredExact:true,
+   originalWritingFeedbackRecoveredExact:true,
+   testPaddingRemovedOnlyAfterVerifiedRollback:true,
+   fullPairedWriteAndV3ExportAfterQuotaRecovery:true,
+   secondBrowserRestartVerified:true,
+   realLearnerData:'NOT_TOUCHED',safari:'NOT_TESTED',
+   abruptCrash:'NOT_TESTED',productionIntegration:false,deploy:false}));
   console.log(JSON.stringify({result:'PASS',
    gate:'r4i-two-key-learner-writing-journaled-interruption-recovery',
    realChromiumLocalStorage:true,
@@ -345,5 +376,5 @@ async function until(fn,ms=30000){
    persistedAcrossBrowserProcesses:true,realIndexedDBRestore:true,oldAttemptsByteIdentical:true,changedRubricPinned:true,occupiedRestoreBlocked:true,tamperedV2Blocked:true,
    recoveryV3:'BROWSER_SYNTHETIC_PASS',liveRuntimeIntegration:'NOT_TESTED',
    realSafariAcceptance:'NOT_TESTED'}));
- }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true});fs.rmSync(pairedWriteProfile,{recursive:true,force:true})}
+ }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true});fs.rmSync(pairedWriteProfile,{recursive:true,force:true});fs.rmSync(writingQuotaProfile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});
