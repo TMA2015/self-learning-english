@@ -37,6 +37,7 @@ async function until(fn,ms=30000){
  if(typeof WebSocket!=='function')throw Error('Node 22+ built-in WebSocket is required for CDP browser QA');
  const profile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-normalized-recovery-'));
  const interruptionProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4d-interrupted-'));
+ const nativeQuotaProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4e-native-quota-'));
  const server=http.createServer((_req,res)=>{
   res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'});
   res.end(html);
@@ -138,6 +139,25 @@ async function until(fn,ms=30000){
   assert.match(interrupted,/^PASS_INTERRUPTED/);
   assert.match(resumed,/^PASS_RESUME/);
   assert.match(reloaded,/^PASS_RESUME_RELOAD/);
+  const realQuota=await visitWithStartupRetry(host+'/?phase=native-quota',nativeQuotaProfile);
+  const quotaResumed=await visitWithStartupRetry(host+'/?phase=native-quota-resume',nativeQuotaProfile);
+  const quotaReloaded=await visitWithStartupRetry(host+'/?phase=native-quota-reload',nativeQuotaProfile);
+  assert.match(realQuota,/^PASS_NATIVE_QUOTA\b/);
+  assert.match(quotaResumed,/^PASS_NATIVE_QUOTA_RESUME\b/);
+  assert.match(quotaReloaded,/^PASS_NATIVE_QUOTA_RELOAD\b/);
+  const proof=JSON.parse(realQuota.slice(realQuota.indexOf('{')));
+  assert(proof.measuredAcceptedPaddingChars>=1_000_000);
+  assert.equal(proof.nativeQuotaExceeded,true);
+  console.log(JSON.stringify({result:'PASS',gate:'r4e-native-chromium-quota-v3-recovery',
+   realNativeChromiumLocalStorageQuota:true,
+   quotaPaddingChars:proof.measuredAcceptedPaddingChars,
+   nativeQuotaExceeded:true,originalV2ChecksumVerified:true,
+   preserved73SyntheticAttempts:true,partialRollback:true,
+   pendingV3MarkerPersisted:true,originalIndexedDBPersisted:true,
+   sameVerifiedV3Resume:true,postResumeChromiumRestart:true,
+   sourceHistoryByteIdentical:true,
+   safari:'NOT_TESTED',powerLoss:'NOT_TESTED',
+   realLearnerData:'NOT_TOUCHED',productionMigration:false,deploy:false}));
   console.log(JSON.stringify({result:'PASS',gate:'r4d-v3-real-chromium-interrupted-restore',
    originalV2Format:true,realChromiumIndexedDB:true,realLocalStorage:true,
    syntheticQuotaFaultInjected:true,interruptedMarkerPersisted:true,
@@ -152,5 +172,5 @@ async function until(fn,ms=30000){
    persistedAcrossBrowserProcesses:true,realIndexedDBRestore:true,oldAttemptsByteIdentical:true,changedRubricPinned:true,occupiedRestoreBlocked:true,tamperedV2Blocked:true,
    recoveryV3:'BROWSER_SYNTHETIC_PASS',liveRuntimeIntegration:'NOT_TESTED',
    realSafariAcceptance:'NOT_TESTED'}));
- }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true})}
+ }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});
