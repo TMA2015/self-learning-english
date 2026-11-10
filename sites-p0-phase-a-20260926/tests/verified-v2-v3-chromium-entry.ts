@@ -1638,6 +1638,162 @@ const vault=browserLessonRevisionVault();
    output.file.entries.find(x=>x.key===writingKey)?.value===expectedW,
    'R4j completed learner edits are not recoverable after second restart');
   dom.textContent='PASS_R4J_RELOAD';
+ }else if(phase==='journal-preflight'){
+  // R4k: genuine Chromium storage quotas BEFORE a learner write. No
+  // synthetic quota wrapper, no storage clear, and no changes to real data.
+  const journalKey='__sle_issue103_r4k_disposable_preimage_journal__';
+  const paddingKey='__sle_issue103_r4k_native_preflight_padding__';
+  const lockName='sle-issue103-r4k-journal-preflight';
+  check(localStorage.length===0,'R4k must start with empty throwaway Chrome profile');
+  check((await vault.snapshot()).active===null,'R4k needs initially empty test IDB');
+  check(typeof navigator.locks?.request==='function',
+   'R4k requires a real native Chromium exclusive Web Lock');
+  const {v2,rows}=await fixture();
+  const converted=await convertVerifiedV2ToRevisionV3(v2);
+  check((await verifyRevisionRecoveryV3(converted.text)).attempts===73,
+   'R4k fixture must contain 73 authentic-shape synthetic attempts');
+  const preview=await previewNormalizedV3Restore(converted.text,localStorage,vault);
+  check(preview.valid,'R4k checksum-verified V3 must preview on empty browser');
+  check((await restoreNormalizedV3(converted.text,preview.token,true,localStorage,vault))
+   .attempts===73,'R4k requires complete initial 73 synthetic attempt restore');
+  const beforeA=rows.find(x=>x.key===attemptKey)!.value;
+  const beforeW=permanentTestValues.writing;
+  const beforeCourse=permanentTestValues.course;
+  const sourceBefore=await vault.snapshot();
+  check(localStorage.getItem(attemptKey)===beforeA&&
+   localStorage.getItem(writingKey)===beforeW&&
+   localStorage.getItem(extraKey)===beforeCourse&&
+   sourceBefore.active?.lessons.length===123,
+   'R4k original learner/course/content reference mismatched V2');
+  const afterA=r4hAnswer(beforeA,71,'R4K_SHOULD_NEVER_BE_WRITTEN');
+  const afterW=r4hReview(beforeW,'r4k-should-never-be-written');
+  const journal={kind:'R4K_PREFLIGHT_TEST_ONLY',
+   beforeA,beforeW,intendedA:afterA,intendedW:afterW,
+   beforeAHash:await digest(beforeA),beforeWHash:await digest(beforeW)};
+  const serialized=JSON.stringify(journal);
+  const token=await digest(serialized);
+  check(serialized.length>10_000,'R4k should test an authentic full preimage journal');
+  let journalNativeQuota=false,markerNativeQuota=false;
+  let journalBoundary=0,markerBoundary=0;
+  // Maximize ONLY non-English padding; native Storage.setItem determines
+  // capacity. The required native QuotaExceededError is never faked.
+  function saturateNativeScratch(){
+   let low=0,high=8_000_000,nativeBoundary=false;
+   while(low+1<high){
+    const mid=Math.floor((low+high)/2);
+    try{localStorage.setItem(paddingKey,'p'.repeat(mid));low=mid}
+    catch(e){
+     check((e as Error)?.name==='QuotaExceededError',
+      'R4k scratch capacity probe failed for a non-quota reason');
+     nativeBoundary=true;high=mid;
+    }
+   }
+   check(nativeBoundary&&low>1_000_000&&high<8_000_000,
+    'R4k did not establish actual Chromium quota boundary');
+   localStorage.setItem(paddingKey,'p'.repeat(low));
+   check(localStorage.getItem(paddingKey)?.length===low,
+    'R4k scratch data did not reach measured native capacity');
+   return low;
+  }
+  await navigator.locks.request(lockName,{mode:'exclusive'},async()=>{
+   // Scenario A: no journal can be written. Abort before even attempting
+   // marker and learner writes. A safe complete old V3 remains exportable.
+   journalBoundary=saturateNativeScratch();
+   try{localStorage.setItem(journalKey,serialized)}
+   catch(e){
+    check((e as Error)?.name==='QuotaExceededError',
+     'R4k preimage journal must fail with genuine Chromium quota');
+    journalNativeQuota=true;
+   }
+   check(journalNativeQuota,'R4k journal unexpectedly fit under native quota');
+   check(localStorage.getItem(journalKey)===null&&
+    localStorage.getItem(LEARNER_WRITE_V3_MARKER)===null&&
+    localStorage.getItem(attemptKey)===beforeA&&
+    localStorage.getItem(writingKey)===beforeW,
+    'R4k journal quota failure modified original learner records or left a marker');
+   // Removing only our scratch padding is necessary before scenario B.
+   localStorage.removeItem(paddingKey);
+
+   // Scenario B: journal fits and is persisted, but setting the marker
+   // must FAIL natively. Abort and remove only this test-owned journal;
+   // do NOT touch either learner value. No orphan marker may survive.
+   localStorage.setItem(journalKey,serialized);
+   check(localStorage.getItem(journalKey)===serialized,
+    'R4k cannot test marker failure without a complete preimage journal');
+   markerBoundary=saturateNativeScratch();
+   try{localStorage.setItem(LEARNER_WRITE_V3_MARKER,token)}
+   catch(e){
+    check((e as Error)?.name==='QuotaExceededError',
+     'R4k marker failure must be native Chromium quota');
+    markerNativeQuota=true;
+   }
+   check(markerNativeQuota,'R4k marker unexpectedly fit with native quota full');
+   check(localStorage.getItem(LEARNER_WRITE_V3_MARKER)===null&&
+    localStorage.getItem(journalKey)===serialized&&
+    localStorage.getItem(attemptKey)===beforeA&&
+    localStorage.getItem(writingKey)===beforeW,
+    'R4k failed to protect old learner values during blocked marker write');
+   localStorage.removeItem(journalKey);
+   check(localStorage.getItem(journalKey)===null&&
+    localStorage.getItem(LEARNER_WRITE_V3_MARKER)===null,
+    'R4k failed to safely discard abandoned journal after native quota');
+   localStorage.removeItem(paddingKey);
+  });
+  check(journalNativeQuota&&markerNativeQuota&&
+   journalBoundary>1_000_000&&markerBoundary>1_000_000&&
+   localStorage.getItem(attemptKey)===beforeA&&
+   localStorage.getItem(writingKey)===beforeW&&
+   localStorage.getItem(extraKey)===beforeCourse&&
+   localStorage.getItem(LEARNER_WRITE_V3_MARKER)===null&&
+   localStorage.getItem(journalKey)===null&&
+   localStorage.getItem(paddingKey)===null,
+   'R4k failed to restore a clean unmodified original profile');
+  check(canonicalLessonJSON(await vault.snapshot())===
+   canonicalLessonJSON(sourceBefore),
+   'R4k native journal/marker failures changed immutable original IDB content');
+  const backup=await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T20:00:00.000Z');
+  const complete=await verifyRevisionRecoveryV3(backup.text);
+  check(complete.attempts===73&&
+   complete.file.entries.find(x=>x.key===attemptKey)?.value===beforeA&&
+   complete.file.entries.find(x=>x.key===writingKey)?.value===beforeW,
+   'R4k failed to export complete unchanged prior V3 after safe early abort');
+  dom.textContent='PASS_R4K_PREFLIGHT '+JSON.stringify({
+   nativeChromiumJournalQuotaError:journalNativeQuota,
+   nativeChromiumMarkerQuotaError:markerNativeQuota,
+   journalBoundaryChars:journalBoundary,markerBoundaryChars:markerBoundary,
+   bothLearnerKeysUntouched:true,original73SyntheticAttemptsExact:true,
+   originalWritingAndCourseStateExact:true,entireNormalizedIDBUnchanged:true,
+   abandonedJournalSafelyCleared:true,fullOriginalV3BackupStillValid:true
+  });
+ }else if(phase==='journal-preflight-reload'){
+  const {v2,rows}=await fixture();
+  const beforeA=rows.find(x=>x.key===attemptKey)!.value;
+  const beforeW=permanentTestValues.writing;
+  check(localStorage.getItem(attemptKey)===beforeA&&
+   localStorage.getItem(writingKey)===beforeW&&
+   localStorage.getItem(extraKey)===permanentTestValues.course,
+   'R4k early quota abort lost synthetic data on normal Chrome restart');
+  check(localStorage.getItem(LEARNER_WRITE_V3_MARKER)===null&&
+   localStorage.getItem('__sle_issue103_r4k_disposable_preimage_journal__')===null&&
+   localStorage.getItem('__sle_issue103_r4k_native_preflight_padding__')===null,
+   'R4k restart left a dangerous pending marker or test-owned scratch record');
+  const normalized=await verifyRevisionRecoveryV3(
+   (await convertVerifiedV2ToRevisionV3(v2)).text);
+  const current=await vault.snapshot();
+  check(canonicalLessonJSON(current.active)===
+   canonicalLessonJSON(normalized.file.active)&&
+   current.blobs.length===normalized.file.blobs.length&&
+   current.aliases.length===normalized.file.aliases.length,
+   'R4k original historical source closure changed across Chromium processes');
+  const backup=await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-10T20:15:00.000Z');
+  const complete=await verifyRevisionRecoveryV3(backup.text);
+  check(complete.attempts===73&&
+   complete.file.entries.find(x=>x.key===attemptKey)?.value===beforeA&&
+   complete.file.entries.find(x=>x.key===writingKey)?.value===beforeW,
+   'R4k preserved old backups but lost exact learner values on restart');
+  dom.textContent='PASS_R4K_RELOAD';
  }else throw Error('Unsupported R4c browser phase');
 })().catch(e=>{
  dom.textContent='FAIL '+String(e)+' '+String((e as Error)?.stack).slice(0,1100);
