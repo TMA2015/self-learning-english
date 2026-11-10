@@ -44,11 +44,13 @@ async function until(fn,ms=30000){
  const pairedWriteProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4i-paired-write-'));
  const writingQuotaProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4j-writing-quota-'));
  const preflightProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4k-preflight-quota-'));
+ const sigkillProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4l-hard-sigkill-'));
  const server=http.createServer((_req,res)=>{
   res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'});
   res.end(html);
  });
- async function visit(url,profilePath=profile){
+ async function visit(url,profilePath=profile,crashKill=false){
+  if(crashKill&&process.platform!=='linux')throw Error('R4l SIGKILL process-group test requires Linux');
   // Chrome may leave a stale DevToolsActivePort after an earlier process
   // exits. Never connect a new QA session to the previous process port.
   const oldPortFile=path.join(profilePath,'DevToolsActivePort');
@@ -57,7 +59,7 @@ async function until(fn,ms=30000){
    '--disable-extensions','--disable-background-networking',
    ...((url.includes('phase=multi-owner')||url.includes('phase=write-race-owner'))?['--disable-popup-blocking']:[]),
    '--no-first-run','--remote-debugging-port=0','--remote-allow-origins=*',
-   '--user-data-dir='+profilePath,url],{stdio:['ignore','ignore','pipe']});
+   '--user-data-dir='+profilePath,url],{stdio:['ignore','ignore','pipe'],detached:crashKill});
   let stderr='',socket;
   child.stderr.on('data',data=>{stderr=(stderr+String(data)).slice(-5000)});
   try{
@@ -172,6 +174,22 @@ async function until(fn,ms=30000){
        assert.equal(workerStatus,isWriteRace?'PASS_R4H_WORKER':'PASS_R4G_WORKER',
         'Second Chromium page did not finish cross-tab acceptance');
       }
+      if(crashKill){
+       assert(last.startsWith('PASS_R4L_KILL_ARMED '),
+        'SIGKILL is permitted only for the exact R4l half-written stage');
+       assert(Number.isSafeInteger(child.pid)&&child.pid>0,
+        'R4l child process group PID is missing');
+       // Child launched detached => its own POSIX process group.
+       // Terminate browser+renderer+storage subprocesses without Chrome's
+       // graceful Browser.close protocol. This is a real OS SIGKILL.
+       const killed=new Promise(resolve=>child.once('close',
+        (code,signal)=>resolve({code,signal})));
+       process.kill(-child.pid,'SIGKILL');
+       const evidence=await Promise.race([killed,delay(7000).then(()=>null)]);
+       assert(evidence&&evidence.signal==='SIGKILL',
+        'R4l must confirm actual Linux SIGKILL; graceful shutdown is forbidden');
+       return 'SIGKILL_CONFIRMED '+last;
+      }
       // Use Chrome's own normal shutdown protocol. Earlier SIGTERM-based
       // test shutdown could abandon the unflushed localStorage LevelDB journal
       // even while IndexedDB had persisted; this MUST NOT mask data loss.
@@ -188,12 +206,16 @@ async function until(fn,ms=30000){
    throw Error('IndexedDB browser phase timed out; last progress='+last);
   }finally{
    if(socket&&socket.readyState===WebSocket.OPEN)socket.close();
-   if(child.exitCode===null){
+   if(child.exitCode===null&&child.signalCode===null){
     const stopped=new Promise(resolve=>child.once('close',resolve));
-    child.kill('SIGTERM');
+    if(crashKill&&child.pid&&process.platform==='linux'){
+     try{process.kill(-child.pid,'SIGKILL')}catch(e){if(e.code!=='ESRCH')throw e}
+    }else child.kill('SIGTERM');
     await Promise.race([stopped,delay(2000)]);
-    if(child.exitCode===null){
-     child.kill('SIGKILL');
+    if(child.exitCode===null&&child.signalCode===null){
+     if(crashKill&&child.pid&&process.platform==='linux'){
+      try{process.kill(-child.pid,'SIGKILL')}catch(e){if(e.code!=='ESRCH')throw e}
+     }else child.kill('SIGKILL');
      await Promise.race([stopped,delay(2000)]);
     }
    }
@@ -202,10 +224,10 @@ async function until(fn,ms=30000){
  try{
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
   const host='http://127.0.0.1:'+server.address().port;
-  async function visitWithStartupRetry(url,profilePath=profile){
-   try{return await visit(url,profilePath)}catch(error){
+  async function visitWithStartupRetry(url,profilePath=profile,crashKill=false){
+   try{return await visit(url,profilePath,crashKill)}catch(error){
     if(!/CDP readiness timeout/.test(String(error)))throw error;
-    return visit(url,profilePath); // re-launch and repeat the full gate
+    return visit(url,profilePath,crashKill); // re-launch and repeat the full gate
    }
   }
   const first=await visitWithStartupRetry(host+'/?phase=write');
@@ -300,6 +322,38 @@ async function until(fn,ms=30000){
   assert.equal(r4kProof.nativeChromiumMarkerQuotaError,true);
   assert.equal(r4kProof.bothLearnerKeysUntouched,true);
   assert.equal(r4kProof.fullOriginalV3BackupStillValid,true);
+  const crashBaseline=await visitWithStartupRetry(
+   host+'/?phase=hard-crash-baseline',sigkillProfile);
+  const sigkill=await visitWithStartupRetry(
+   host+'/?phase=hard-crash-stage',sigkillProfile,true);
+  const crashInspected=await visitWithStartupRetry(
+   host+'/?phase=hard-crash-inspect',sigkillProfile);
+  const crashReloaded=await visitWithStartupRetry(
+   host+'/?phase=hard-crash-reload',sigkillProfile);
+  assert.equal(crashBaseline,'PASS_R4L_BASELINE');
+  assert.match(sigkill,/^SIGKILL_CONFIRMED PASS_R4L_KILL_ARMED\b/);
+  assert.match(crashInspected,/^PASS_R4L_INSPECT\b/);
+  assert.equal(crashReloaded,'PASS_R4L_RELOAD');
+  const r4lProof=JSON.parse(crashInspected.slice(crashInspected.indexOf('{')));
+  assert(['ORIGINAL_ALL_ABSENT','ORIGINAL_WITH_VERIFIED_JOURNAL',
+   'PENDING_PAIR_VERIFIED'].includes(r4lProof.actualDurabilityOutcome));
+  assert.equal(r4lProof.noOrphanUnverifiableMarker,true);
+  assert.equal(r4lProof.original73FakeLearnerAttemptsRestoredExact,true);
+  assert.equal(r4lProof.originalVerifiedV3BackupAvailable,true);
+  console.log(JSON.stringify({result:'PASS',
+   gate:'r4l-native-linux-sigkill-learner-pair-crash-recovery',
+   realLinuxSIGKILLToDetachedChromiumProcessGroup:true,
+   browserCloseNotCalledForKillPhase:true,
+   actualDurabilityOutcome:r4lProof.actualDurabilityOutcome,
+   unexpectedTornStorageFailsClosed:true,
+   original73SyntheticLearnerAttemptsExact:true,
+   oldWritingCourseAndHistoricalSourcePreserved:true,
+   fullVerifiedV3BackupAfterCrashAndNormalRestart:true,
+   genuinePowerLoss:'NOT_TESTED',
+   crashTiming:'AFTER_FIRST_KEY_BROWSER_READBACK',
+   filesystemFsyncDurability:'NOT_PROVEN',safari:'NOT_TESTED',
+   productionLearnerWriterIntegration:false,realLearnerData:'NOT_TOUCHED',
+   deploy:false}));
   console.log(JSON.stringify({result:'PASS',
    gate:'r4k-native-chromium-journal-marker-preflight-quota',
    genuineChromiumQuotaBeforeWritingJournal:true,
@@ -401,5 +455,5 @@ async function until(fn,ms=30000){
    persistedAcrossBrowserProcesses:true,realIndexedDBRestore:true,oldAttemptsByteIdentical:true,changedRubricPinned:true,occupiedRestoreBlocked:true,tamperedV2Blocked:true,
    recoveryV3:'BROWSER_SYNTHETIC_PASS',liveRuntimeIntegration:'NOT_TESTED',
    realSafariAcceptance:'NOT_TESTED'}));
- }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true});fs.rmSync(pairedWriteProfile,{recursive:true,force:true});fs.rmSync(writingQuotaProfile,{recursive:true,force:true});fs.rmSync(preflightProfile,{recursive:true,force:true})}
+ }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true});fs.rmSync(pairedWriteProfile,{recursive:true,force:true});fs.rmSync(writingQuotaProfile,{recursive:true,force:true});fs.rmSync(preflightProfile,{recursive:true,force:true});fs.rmSync(sigkillProfile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});
