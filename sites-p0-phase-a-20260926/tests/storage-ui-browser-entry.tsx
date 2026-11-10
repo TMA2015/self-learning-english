@@ -72,16 +72,30 @@ const pkg=async(version:string)=>{
    localStorage.clear(); // LOCALHOST ONLY + unique Chrome QA temporary profile
    await repo.addPackage(await pkg('1.18.1'));
    localStorage.setItem(savedFileKey,file!);
+  }else if(mode==='no-savings'){
+   localStorage.clear(); // LOCALHOST-only disposable profile
+   await repo.addPackage(await pkg('1.18.1'));
   }else throw Error('Unknown UI phase');
   const domRoot=createRoot(document.getElementById('app')!);
   domRoot.render(React.createElement(LocalBackupPanel));
   await wait(()=>!!findButton('Preview storage cleanup'),'panel mount');
+  assert(!findButton('Export old reference JSON'),'Obsolete reference-only export must not appear in Parent View');
+  assert(!!findButton('Choose recovery JSON file'),'Restore must have a visible file-picker button');
+  assert(!!document.querySelector('.sle-storage-action-row'),'Actions must have adjacent descriptions');
   if(mode==='backup'){
    await action('Preview storage cleanup');
    await wait(()=>!!document.querySelector('.foundation-storage-inspection'),'retention preview');
    assert(findButton('Confirm compact storage')?.disabled,'Must not permit cleanup without verified saved backup');
+   assert(findButton('2. Chọn đúng file vừa tải')?.disabled,'File verification must remain gated until download');
+   assert(!!findButton('1. Tải file sao lưu đầy đủ'),'Step 1 must be adjacent to Preview');
    await action('Download complete recovery JSON');
    await wait(()=>status().includes('Complete V2 recovery JSON prepared'),'download action');
+   assert(!findButton('2. Chọn đúng file vừa tải')?.disabled,'File picker should activate after backup download');
+   const verifyPicker=document.getElementById('sle-v2-verify-file') as HTMLInputElement;
+   let verifyClick=false;
+   verifyPicker.addEventListener('click',()=>{verifyClick=true},{once:true});
+   await action('2. Chọn đúng file vừa tải');
+   assert(verifyClick,'Visible step-2 button must open its real file input');
    assert(downloadBlob,'Download actually generated browser Blob');
    const content=await downloadBlob!.text();
    localStorage.setItem(savedFileKey,content);
@@ -90,6 +104,7 @@ const pkg=async(version:string)=>{
    await upload('sle-v2-verify-file',content,'test-downloaded-recovery-v2.json');
    await wait(()=>status().includes('Saved recovery file verified'),'file selection and verification');
    assert(!findButton('Confirm compact storage')?.disabled,'Verified complete recovery must unlock cleanup');
+   assert(!!document.querySelector('.sle-storage-verified-file'),'Selected and verified filename must be visible');
    const before=localStorage.getItem(key)!.length;
    await action('Confirm compact storage');
    await wait(()=>status().includes('Curriculum storage compacted safely'),'compact UI finished');
@@ -99,7 +114,12 @@ const pkg=async(version:string)=>{
    assert((await repo.attempts(owner)).length===1,'learner attempt intact');
    report('PASS_BACKUP_PANEL',{before,after:localStorage.getItem(key)!.length,
      attempts:1,savedFile:true,buttonGate:true});
-  }else{
+  }else if(mode==='recovery'){
+   const chooser=document.getElementById('sle-v2-recovery-file') as HTMLInputElement;
+   let restoreClick=false;
+   chooser.addEventListener('click',()=>{restoreClick=true},{once:true});
+   await action('Choose recovery JSON file');
+   assert(restoreClick,'Restore button must trigger its real native file input');
    const content=localStorage.getItem(savedFileKey)!;
    await upload('sle-v2-recovery-file',content,'test-downloaded-recovery-v2.json');
    await wait(()=>!!findButton('Confirm recovery into this empty profile'),'restore preview');
@@ -116,7 +136,17 @@ const pkg=async(version:string)=>{
    assert(localStorage.getItem(PREFIX+':recovery-pending-v2')===null,'no pending transaction marker');
    await upload('sle-v2-recovery-file',content,'test-downloaded-recovery-v2.json');
    await wait(()=>status().includes('already contains learner data'),'restore duplicate blocked');
-   report('PASS_RESTORE_PANEL',{attempts:1,versions:lessons.length,duplicateBlocked:true});
+   report('PASS_RESTORE_PANEL',{attempts:1,versions:lessons.length,duplicateBlocked:true,visibleFileButton:true});
+  }else if(mode==='no-savings'){
+   const before=localStorage.getItem(key);
+   await action('Preview storage cleanup');
+   await wait(()=>!!document.querySelector('.sle-storage-no-savings'),'zero-savings summary');
+   const message=document.querySelector('.sle-storage-no-savings')?.textContent??'';
+   assert(message.includes('Chưa cần dọn'),'Zero-savings preview must explain no cleanup needed');
+   assert(!findButton('Confirm compact storage'),'No-op cleanup must not offer a confirm button');
+   assert(!findButton('2. Chọn đúng file vừa tải'),'No-op cleanup must not demand a file picker');
+   assert(localStorage.getItem(key)===before,'Preview-only must not change the saved curriculum');
+   report('PASS_NO_SAVINGS_PANEL',{notePresent:true,cleanupBlocked:true,previewReadOnly:true,obsoleteExportHidden:true});
   }
  }finally{
   URL.createObjectURL=originalURL;
