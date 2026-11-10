@@ -188,8 +188,20 @@ const vault=browserLessonRevisionVault();
   const saved=await vault.snapshot();
   check(saved.active?.version==='1.20.0'&&saved.active.lessons.length===123,
    'Current manifest did not survive Chromium process restart');
-  check(localStorage.getItem(attemptKey)===rows.find(e=>e.key===attemptKey)!.value,
-   'History changed across restart');
+  const expectedAttempts=rows.find(e=>e.key===attemptKey)!.value;
+  const storedAttempts=localStorage.getItem(attemptKey);
+  if(storedAttempts!==expectedAttempts){
+   const firstMismatch=storedAttempts===null?-1:[...expectedAttempts].findIndex(
+    (c,i)=>storedAttempts[i]!==c);
+   throw Error('History changed across restart '+JSON.stringify({
+    actualLength:storedAttempts?.length??-1,
+    expectedLength:expectedAttempts.length,
+    actualDigest:storedAttempts===null?'MISSING':await digest(storedAttempts),
+    expectedDigest:await digest(expectedAttempts),
+    firstMismatch,
+    storageKeys:Array.from({length:localStorage.length},(_,i)=>localStorage.key(i))
+   }));
+  }
   check(localStorage.getItem(writingKey)===permanentTestValues.writing,
    'Writing and reviews changed across restart');
   check(localStorage.getItem(extraKey)===permanentTestValues.course,
