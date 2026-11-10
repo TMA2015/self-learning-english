@@ -1413,11 +1413,11 @@ const vault=browserLessonRevisionVault();
    localStorage.getItem(writingKey)===beforeW,
    'R4j initial learner/assessment strings mismatch original V2');
   const afterA=r4hAnswer(beforeA,71,'R4J_NATIVE_SECOND_KEY_QUOTA');
-  const afterW=r4hReview(beforeW,'r4j-writing-quota')
-   + ' '; // No source record can be omitted due to serialized test payload.
-  // Make the SECOND key big enough to require more space than any remaining
-  // headroom, while preserving a valid JSON value with original review.
-  const expanded=JSON.parse(afterW.trim()) as {reviews:Array<{id:string;feedback:string}>};
+  // Make the SECOND key large enough to exceed native headroom, while
+  // keeping an independently parseable Writing JSON and the old review.
+  const expanded=JSON.parse(r4hReview(beforeW,'r4j-writing-quota')) as {
+   reviews:Array<{id:string;feedback:string}>
+  };
   expanded.reviews[1].feedback='R4j native quota payload '+('Q'.repeat(32_768));
   const intendedW=JSON.stringify(expanded);
   const journal={kind:'R4J_QUOTA_TEST_ONLY',beforeA,beforeW,
@@ -1503,6 +1503,16 @@ const vault=browserLessonRevisionVault();
    journal.beforeAHash===await digest(beforeA)&&
    journal.beforeWHash===await digest(beforeW),
    'R4j pending quota journal fails original byte/sha256 verification');
+  check(journal.intendedA===r4hAnswer(beforeA,71,'R4J_NATIVE_SECOND_KEY_QUOTA'),
+   'R4j interrupted journal first-key plan does not match verified test intent');
+  const plannedW=JSON.parse(journal.intendedW) as {
+   reviews:Array<{id:string;feedback:string}>
+  };
+  check(plannedW.reviews.length===2&&
+   plannedW.reviews[0].id==='test-review'&&
+   plannedW.reviews[1].id==='r4j-writing-quota'&&
+   plannedW.reviews[1].feedback==='R4j native quota payload '+('Q'.repeat(32_768)),
+   'R4j interrupted journal Writing plan is missing original review or quota payload');
   const token=await digest(JSON.stringify(journal));
   check(localStorage.getItem(LEARNER_WRITE_V3_MARKER)===token&&
    localStorage.getItem(attemptKey)===journal.intendedA&&
