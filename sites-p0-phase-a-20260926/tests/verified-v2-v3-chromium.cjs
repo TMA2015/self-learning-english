@@ -49,6 +49,7 @@ async function until(fn,ms=30000){
  const r4oProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4o-idb-atomic-pair-'));
  const scale2000Profile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4p-scale2000-'));
  const shadowProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4r-shadow-v2-'));
+ const segmentedProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4t-large-segmented-'));
  // Four separate test-only profiles: no family profile or live browser.
  const r4mCases=[
   {name:'FAST_A',delayMs:100},{name:'FAST_B',delayMs:100},
@@ -135,7 +136,7 @@ async function until(fn,ms=30000){
    }
    const start=Date.now();
    let last='';
-   const phaseTimeout=url.includes('phase=r4p-scale-2000')?120000:45000;
+   const phaseTimeout=url.includes('phase=r4p-scale-2000')||url.includes('phase=r4t-segmented-large-backup')?120000:45000;
    while(Date.now()-start<phaseTimeout){
     last=String(await evaluate()||'');
     if(isTwoTab&&last.startsWith('FAIL_R4G'))
@@ -544,6 +545,34 @@ async function until(fn,ms=30000){
    safari:'NOT_TESTED',powerLoss:'NOT_TESTED',
    realLearnerData:'NOT_TOUCHED',deploy:false
   }));
+  // R4t: a large (>25MB) completely synthetic normalized archive must
+  // remain portable in fully verified bounded parts without dropping old
+  // fabricated learner attempts/aliases/rubrics.
+  const segmented=await visitWithStartupRetry(
+   host+'/?phase=r4t-segmented-large-backup',segmentedProfile);
+  assert.match(segmented,/^PASS_R4T_LARGE_SEGMENTED\b/);
+  const seg=JSON.parse(segmented.slice(segmented.indexOf('{')));
+  assert(seg.totalPortableArchiveBytes>25_000_000,
+   'R4t must genuinely exceed legacy 25MB single-file cap');
+  assert.equal(seg.activeLessons,2123);
+  assert.equal(seg.originalSyntheticLearnerAttempts,73);
+  assert(seg.verifiedPartCount>25);
+  assert.equal(seg.allSixAdversarialIncompleteArchivesRejected,true);
+  assert.equal(seg.noAttemptOrWritingBytesLost,true);
+  console.log(JSON.stringify({
+   result:'PASS',gate:'r4t-segmented-large-recovery-research',
+   totalArchiveBytes:seg.totalPortableArchiveBytes,
+   boundedParts:seg.verifiedPartCount,
+   maxPartBytes:seg.maximumPartBytes,
+   syntheticLessons:seg.activeLessons,
+   originalFakeAttemptsExact:73,
+   allSixTamperAndMissingChunkNegativeCasesRejected:true,
+   noHistoryTruncation:true,
+   simulatedSafariDevice:'NOT_TESTED',
+   downloadableFileProtocol:'NOT_TESTED',
+   productionBackupIntegration:false,
+   realLearnerData:'NOT_TOUCHED',deploy:false
+  }));
   console.log(JSON.stringify({result:'PASS',
    gate:'r4m-repeated-hard-sigkill-crash-window-classification',
    additionalIndependentDisposableProfiles:4,
@@ -670,5 +699,5 @@ async function until(fn,ms=30000){
    persistedAcrossBrowserProcesses:true,realIndexedDBRestore:true,oldAttemptsByteIdentical:true,changedRubricPinned:true,occupiedRestoreBlocked:true,tamperedV2Blocked:true,
    recoveryV3:'BROWSER_SYNTHETIC_PASS',liveRuntimeIntegration:'NOT_TESTED',
    realSafariAcceptance:'NOT_TESTED'}));
- }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true});fs.rmSync(pairedWriteProfile,{recursive:true,force:true});fs.rmSync(writingQuotaProfile,{recursive:true,force:true});fs.rmSync(preflightProfile,{recursive:true,force:true});fs.rmSync(sigkillProfile,{recursive:true,force:true});fs.rmSync(r4nProfile,{recursive:true,force:true});fs.rmSync(r4oProfile,{recursive:true,force:true});fs.rmSync(scale2000Profile,{recursive:true,force:true});fs.rmSync(shadowProfile,{recursive:true,force:true});for(const scenario of r4mCases)fs.rmSync(scenario.profile,{recursive:true,force:true})}
+ }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true});fs.rmSync(pairedWriteProfile,{recursive:true,force:true});fs.rmSync(writingQuotaProfile,{recursive:true,force:true});fs.rmSync(preflightProfile,{recursive:true,force:true});fs.rmSync(sigkillProfile,{recursive:true,force:true});fs.rmSync(r4nProfile,{recursive:true,force:true});fs.rmSync(r4oProfile,{recursive:true,force:true});fs.rmSync(scale2000Profile,{recursive:true,force:true});fs.rmSync(shadowProfile,{recursive:true,force:true});fs.rmSync(segmentedProfile,{recursive:true,force:true});for(const scenario of r4mCases)fs.rmSync(scenario.profile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});
