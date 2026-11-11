@@ -8,7 +8,7 @@ const home=fs.readFileSync(path.join(root,'app/home-client.tsx'),'utf8');
 const runner=fs.readFileSync(path.join(root,'scripts/qa-free-first.mjs'),'utf8');
 const get=(pattern)=>Array.from(view.matchAll(pattern));
 assert.equal(get(/<textarea\b/g).length,2,'Exactly two writing input textareas');
-assert.equal(get(/<textarea\b[^>]*\brequired\b[^>]*\/>/g).length,2,'Both writing textareas must be required');
+assert.equal(get(/<textarea\b[^>]*\brequired\b/g).length,2,'Both writing textareas must be required');
 assert.match(view,/name="writing-topic"/);
 assert.match(view,/name="student-written-content"/);
 assert.match(view,/DRAFT_KEY/);
