@@ -41,6 +41,7 @@ const coreTests=[
   "listening-audio-manifest-coverage.cjs",
   "legacy-listening-kokoro-repair-preflight.cjs",
   "writing-step-feedback-ux.cjs",
+  "any-topic-writing-review-shell.cjs",
   "pronunciation-runtime-audio.cjs",
 ];
 
