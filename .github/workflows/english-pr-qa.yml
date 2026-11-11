@@ -54,6 +54,16 @@ jobs:
         working-directory: sites-p0-phase-a-20260926
         run: pnpm install --frozen-lockfile
 
+      # Fixed audited upstream action, with existing apt fallback below if unavailable.
+      # Both actual codecs remain mandatory; this is a PR-only reliability fix.
+      - name: Setup pinned FFmpeg and FFprobe binaries
+        if: ${{ steps.app.outputs.present == 'true' }}
+        continue-on-error: true
+        uses: FedericoCarboni/setup-ffmpeg@37062fbf7149fc5578d6c57e08aed62458b375d6
+        with:
+          ffmpeg-version: release
+          linking-type: static
+
       - name: Ensure FFmpeg and FFprobe for audio validation
         if: ${{ steps.app.outputs.present == 'true' }}
         run: |
