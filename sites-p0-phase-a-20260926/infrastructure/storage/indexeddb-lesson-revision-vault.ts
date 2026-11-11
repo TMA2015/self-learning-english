@@ -272,6 +272,67 @@ export class BrowserLessonRevisionVault {
   await verifyBlob(selected!);
   return selected!;
  }
+ /**
+  * R4q NON-PRODUCTION single-Unit loader. Reads only requested immutable
+  * Lesson bodies in one native IDB read transaction, not getAll().
+  * The lightweight manifest is read to map IDs -> immutable revisions.
+  * Does not touch learner writes, V2 Recovery or the live Site catalog.
+  */
+ async resolveCurrentBatch(lessonIds:readonly string[]):Promise<RevisionBlob[]>{
+  if(!Array.isArray(lessonIds)||lessonIds.length===0||lessonIds.length>100||
+   lessonIds.some(id=>typeof id!=='string'||!id)||
+   new Set(lessonIds).size!==lessonIds.length)
+   throw abortError('Invalid or duplicate single-Unit Lesson IDs.');
+  const db=await openDatabase(this.factory);
+  const selected:Array<RevisionBlob|undefined>=new Array(lessonIds.length);
+  try{
+   await new Promise<void>((resolve,reject)=>{
+    const tx=db.transaction([STORE_MANIFEST,STORE_BLOBS],'readonly');
+    const source=tx.objectStore(STORE_MANIFEST).get(MANIFEST_KEY);
+    const bodies=tx.objectStore(STORE_BLOBS);
+    let failure='';
+    const fail=(message:string)=>{
+     if(!failure){
+      failure=message;
+      try{tx.abort()}catch{}
+     }
+    };
+    source.onsuccess=()=>{
+     const manifest=(source.result as ManifestRow|undefined)?.value;
+     if(!manifest){fail('No active Lesson manifest.');return}
+     const revisionById=new Map(manifest.lessons.map(item=>[
+      item.lessonId,item.revision
+     ]));
+     for(let i=0;i<lessonIds.length;i++){
+      const id=lessonIds[i],revision=revisionById.get(id);
+      if(!revision){fail('Requested current Lesson revision missing.');return}
+      const request=bodies.get(revision);
+      request.onsuccess=()=>{
+       const blob=request.result as RevisionBlob|undefined;
+       if(!blob||blob.revision!==revision||blob.lesson.id!==id){
+        fail('Requested immutable Lesson body missing or mismatched.');
+        return;
+       }
+       selected[i]=blob;
+      };
+     }
+    };
+    source.onerror=()=>fail('Cannot read active Lesson manifest.');
+    tx.onabort=()=>reject(abortError(failure||
+     'Targeted Lesson batch transaction aborted.'));
+    tx.onerror=()=>reject(abortError(failure||
+     'Targeted Lesson batch transaction failed.'));
+    tx.oncomplete=()=>{
+     if(selected.some(row=>!row))reject(abortError(
+      'A requested Lesson body was not read; no partial Unit returned.'));
+     else resolve();
+    };
+   });
+  }finally{db.close()}
+  const result=selected as RevisionBlob[];
+  for(const blob of result)await verifyBlob(blob);
+  return result;
+ }
  async resolveCurrent(lessonId:string){return this.resolve(lessonId)}
  async resolveHistoric(version:string,lessonId:string){return this.resolve(lessonId,version)}
 
