@@ -69,6 +69,7 @@ const fullRegressionTests=[
   "f2-bulk12-v125-intake-contract.cjs",
   "f2-bulk12-v125-machine-schema.cjs",
   "f3-b2-bulk12-v126-machine-schema.cjs",
+  "b2-u05u06-wave2-v127-machine-schema.cjs",
   "f3-b2-bulk12-v126-storage-safety.cjs",
   "f3-v126-multi-version-quota-fallback.cjs",
   "f3-v126-chromium-long-history.cjs",
