@@ -58,6 +58,7 @@ const fullRegressionTests=[
   "assisted-review.cjs",
   "attempt-navigation-ui.cjs",
   "today-learning-path.cjs",
+  "offline-lesson-postfeedback.cjs",
   "unit-guide-60.cjs",
   "f2-a1u05-a2u03-v122.cjs",
   "f2-v122-upgrade-storage-safety.cjs",
