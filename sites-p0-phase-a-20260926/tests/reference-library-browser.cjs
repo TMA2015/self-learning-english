@@ -26,6 +26,7 @@ const root=path.resolve(__dirname,'..');
   '<div id="app"></div><div id="sle-test-result">STARTED</div>'+
   '<script>window.addEventListener("error",e=>document.getElementById("sle-test-result").textContent="FAIL_SCRIPT "+e.message);'+
   'window.addEventListener("unhandledrejection",e=>document.getElementById("sle-test-result").textContent="FAIL_REJECTION "+e.reason);</script>'+
+  '<script>window.process={env:{NODE_ENV:"production",NEXT_PUBLIC_LEARNING_RUNTIME:"browser"}};</script>'+
   '<script>'+bundle.replaceAll('</script>','<\\/script>')+'</script></body></html>';
  const server=http.createServer((_req,res)=>{
   res.writeHead(200,{'Content-Type':'text/html;charset=utf-8','Cache-Control':'no-store'});
