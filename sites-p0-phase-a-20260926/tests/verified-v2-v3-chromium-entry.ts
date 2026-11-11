@@ -2823,6 +2823,11 @@ const vault=browserLessonRevisionVault();
   check(committed.status==='COMMITTED'&&committed.lessons===2123&&
    committed.attempts===73&&committed.parts===completed.partCount,
    'R4u complete verified multi-part Recovery could not commit');
+  let occupiedRejected=false;
+  try{await restoreR4uVerifiedParts(indexedDB,packet,false)}
+  catch(e){occupiedRejected=/Destination is occupied/.test(String(e))}
+  check(occupiedRejected,
+   'R4u must refuse overwriting an already restored learner profile');
   check(localStorage.length===0,
    'R4u isolated restore must never stage learner data in localStorage');
   check(localStorage.length===0,
