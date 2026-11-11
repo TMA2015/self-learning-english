@@ -231,6 +231,20 @@ A separate \`r4s-shadow-learner-candidate.ts\` research module:
 
 **Exact-head CI PENDING.** Until external Safari and complete restore gates, PR #129 stays Draft, Issue #103 OPEN, main legacy single-package importer cap remains 250, and LIVE release is NO_GO.
 
+## R4u — fully verified >25MB archive restore into a disposable empty Chrome profile (research only)
+
+R4t demonstrated that a **45.3 MB synthetic backup with 2,123 Lessons and 73 entirely invented learner attempts** can be constructed as 46 independently checksummed parts. A mere valid archive is not enough: R4u checks whether those original bytes and historical grading source can **actually be reconstructed** after a browser process restart.
+
+The detached \`r4u-segmented-disposable-restore.ts\` pilot introduces a separate throwaway IndexedDB database. Before opening that destination, it verifies **every** R4t manifest checksum, part/order/size/hash, each immutable Lesson+rubric digest, all active source references and each 73 synthetic saved attempt's historical original rubric/version. Incomplete, tampered or maliciously re-checksummed missing-source backups must be rejected **without creating any destination database**. It refuses a non-empty destination, rather than merging histories or silently overwriting learner data.
+
+For a verified complete archive and empty disposable profile, it writes the **entire restored source, historical aliases and learner/Writing/course records in one native IndexedDB transaction across four stores**, requesting strict durability. It explicitly aborts a negative-control transaction **after 64 successfully processed Lesson-body insertions** and demands an entirely empty destination afterwards, then retries the same full verified archive and requires all data to commit. A second import into the occupied restored profile must refuse. Neither a completed nor aborted test is allowed to write any legacy localStorage key.
+
+A separate **fresh real Chromium process** opens the restored database, checks original Writing text, 73 attempts, the exact active 2,123-Lesson catalog and all historical aliases, reconstructs the full segmented archive from the stored immutable source, verifies every part/manifest and compares the rebuilt manifest SHA to the original. This is a deliberate **full restore integrity audit**, NOT a proposed whole-library read during routine Unit navigation.
+
+**Non-claims:** R4u does not create a real downloadable ZIP/multi-file UI, streaming import/download, multi-tab production writer, authenticated provenance signatures, portable Safari/iPad recovery, quota eviction guarantees, interrupted **OS power-loss** durability or original media binary verification. It does not import the family's private backups or replace production V2 Recovery. The original 25 MB V3 guard and 250-Lesson cumulative importer limit remain unchanged. NO release, merge, deploy, learner-storage rewrite or automatic cleanup is authorized.
+
+**Exact-head CI PENDING:** A green test must be observed in GitHub's full application workflow before declaring R4u PASS. Draft PR #129 / Issue #103 remain OPEN, v1.26 release NO_GO.
+
 ## Explicit non-claims / blockers
 
 - SHA verifies integrity of archived JSON, but it is **not a cryptographic signature proving the real provenance of the original learner data**.
