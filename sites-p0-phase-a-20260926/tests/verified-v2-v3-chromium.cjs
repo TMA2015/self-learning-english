@@ -45,6 +45,7 @@ async function until(fn,ms=30000){
  const writingQuotaProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4j-writing-quota-'));
  const preflightProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4k-preflight-quota-'));
  const sigkillProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4l-hard-sigkill-'));
+ const r4nProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4n-markerless-torn-'));
  // Four separate test-only profiles: no family profile or live browser.
  const r4mCases=[
   {name:'FAST_A',delayMs:100},{name:'FAST_B',delayMs:100},
@@ -375,6 +376,31 @@ async function until(fn,ms=30000){
     actualDurabilityOutcome:proof.actualDurabilityOutcome});
   }
   assert.equal(r4mOutcomes.length,4);
+  // R4n intentionally reproduces an unsafe FALSE-COMPLETE backup: this
+  // documents an unresolved blocker, NOT a successful security control.
+  const r4nStage=await visitWithStartupRetry(
+   host+'/?phase=r4n-markerless-stage',r4nProfile);
+  const r4nInspect=await visitWithStartupRetry(
+   host+'/?phase=r4n-markerless-inspect',r4nProfile);
+  const r4nReload=await visitWithStartupRetry(
+   host+'/?phase=r4n-markerless-reload',r4nProfile);
+  assert.equal(r4nStage,'PASS_R4N_NEGATIVE_STAGE');
+  assert.match(r4nInspect,/^PASS_R4N_VULNERABILITY_REPRODUCED\b/);
+  assert.equal(r4nReload,'PASS_R4N_CLEAN_RELOAD');
+  const r4nProof=JSON.parse(r4nInspect.slice(r4nInspect.indexOf('{')));
+  assert.equal(r4nProof.checksumValidYetInconsistentPairedSnapshot,true);
+  assert.equal(r4nProof.actualSIGKILLProducedThisState,false);
+  assert.equal(r4nProof.original73FabricatedAttemptsRecovered,true);
+  assert.equal(r4nProof.securityVerdict,'BLOCKER_NOT_FIXED');
+  console.log(JSON.stringify({
+   result:'NEGATIVE_CONTROL_REPRODUCED',
+   gate:'r4n-markerless-torn-pair-false-complete-export',
+   blocker:'UNSAFE_MARKER_ONLY_RECOVERY_EXPORT',
+   wasRealCrash:false,wasRealChromiumStorage:true,
+   completeSelfChecksumDoesNotProvePairedSnapshot:true,
+   productionSafety:'NOT_ESTABLISHED',
+   realLearnerData:'NOT_TOUCHED',deploy:false
+  }));
   console.log(JSON.stringify({result:'PASS',
    gate:'r4m-repeated-hard-sigkill-crash-window-classification',
    additionalIndependentDisposableProfiles:4,
@@ -501,5 +527,5 @@ async function until(fn,ms=30000){
    persistedAcrossBrowserProcesses:true,realIndexedDBRestore:true,oldAttemptsByteIdentical:true,changedRubricPinned:true,occupiedRestoreBlocked:true,tamperedV2Blocked:true,
    recoveryV3:'BROWSER_SYNTHETIC_PASS',liveRuntimeIntegration:'NOT_TESTED',
    realSafariAcceptance:'NOT_TESTED'}));
- }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true});fs.rmSync(pairedWriteProfile,{recursive:true,force:true});fs.rmSync(writingQuotaProfile,{recursive:true,force:true});fs.rmSync(preflightProfile,{recursive:true,force:true});fs.rmSync(sigkillProfile,{recursive:true,force:true});for(const scenario of r4mCases)fs.rmSync(scenario.profile,{recursive:true,force:true})}
+ }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true});fs.rmSync(pairedWriteProfile,{recursive:true,force:true});fs.rmSync(writingQuotaProfile,{recursive:true,force:true});fs.rmSync(preflightProfile,{recursive:true,force:true});fs.rmSync(sigkillProfile,{recursive:true,force:true});fs.rmSync(r4nProfile,{recursive:true,force:true});for(const scenario of r4mCases)fs.rmSync(scenario.profile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});
