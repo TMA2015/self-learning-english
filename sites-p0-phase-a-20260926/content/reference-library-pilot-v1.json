@@ -1,0 +1,324 @@
+{
+  "packet_id": "SLE-REFERENCE-LIBRARY-PILOT-R1-20261112",
+  "review_status": "NOTEBOOKLM_REVIEW_PENDING",
+  "source": "original authored reference material; no external commercial source",
+  "notice": "Suggested CEFR levels are learning-guide tags, not CEFR certification. These entries have no quiz keys or scoring evidence.",
+  "entries": [
+    {
+      "id": "REF-IRR-01",
+      "kind": "irregular_verbs",
+      "level": "A1",
+      "register": "neutral",
+      "term": "go",
+      "meaning": "move to another place",
+      "example": "Yesterday we went to the sports centre after lunch.",
+      "note": "go — went — gone; use went for the simple past; gone commonly follows have/has.",
+      "skill": "grammar",
+      "forms": {
+        "base": "go",
+        "past": "went",
+        "participle": "gone"
+      }
+    },
+    {
+      "id": "REF-IRR-02",
+      "kind": "irregular_verbs",
+      "level": "A1",
+      "register": "neutral",
+      "term": "see",
+      "meaning": "notice something with your eyes",
+      "example": "I saw a colourful bird outside my window.",
+      "note": "see — saw — seen; avoid 'have saw' in standard English.",
+      "skill": "grammar",
+      "forms": {
+        "base": "see",
+        "past": "saw",
+        "participle": "seen"
+      }
+    },
+    {
+      "id": "REF-IRR-03",
+      "kind": "irregular_verbs",
+      "level": "A2",
+      "register": "neutral",
+      "term": "buy",
+      "meaning": "get something by paying for it",
+      "example": "Nina bought a second-hand dictionary last week.",
+      "note": "buy — bought — bought; the past and past participle are the same.",
+      "skill": "grammar",
+      "forms": {
+        "base": "buy",
+        "past": "bought",
+        "participle": "bought"
+      }
+    },
+    {
+      "id": "REF-IRR-04",
+      "kind": "irregular_verbs",
+      "level": "A2",
+      "register": "neutral",
+      "term": "write",
+      "meaning": "make words on paper or a screen",
+      "example": "We have written three short reviews this month.",
+      "note": "write — wrote — written; use the participle after have/has.",
+      "skill": "grammar",
+      "forms": {
+        "base": "write",
+        "past": "wrote",
+        "participle": "written"
+      }
+    },
+    {
+      "id": "REF-IRR-05",
+      "kind": "irregular_verbs",
+      "level": "A2",
+      "register": "neutral",
+      "term": "choose",
+      "meaning": "decide between possibilities",
+      "example": "The class chose a new team name on Monday.",
+      "note": "choose — chose — chosen; don't confuse present choose with past chose.",
+      "skill": "grammar",
+      "forms": {
+        "base": "choose",
+        "past": "chose",
+        "participle": "chosen"
+      }
+    },
+    {
+      "id": "REF-IRR-06",
+      "kind": "irregular_verbs",
+      "level": "B1",
+      "register": "neutral",
+      "term": "grow",
+      "meaning": "become larger or develop",
+      "example": "The plants have grown quickly in the sunny room.",
+      "note": "grow — grew — grown; grown often follows have/has.",
+      "skill": "grammar",
+      "forms": {
+        "base": "grow",
+        "past": "grew",
+        "participle": "grown"
+      }
+    },
+    {
+      "id": "REF-COL-01",
+      "kind": "collocations",
+      "level": "A1",
+      "register": "neutral",
+      "term": "catch a bus",
+      "meaning": "get onto a bus you planned to travel on",
+      "example": "If we leave now, we can catch the early bus.",
+      "note": "We usually say catch a bus, not take hold of a bus.",
+      "skill": "vocabulary"
+    },
+    {
+      "id": "REF-COL-02",
+      "kind": "collocations",
+      "level": "A2",
+      "register": "neutral",
+      "term": "take notes",
+      "meaning": "write short points while listening or reading",
+      "example": "I take notes during science videos to remember key ideas.",
+      "note": "Take notes is a common verb–noun combination.",
+      "skill": "vocabulary"
+    },
+    {
+      "id": "REF-COL-03",
+      "kind": "collocations",
+      "level": "A2",
+      "register": "neutral",
+      "term": "make progress",
+      "meaning": "improve or move towards a goal",
+      "example": "Her reading is difficult, but she is making progress.",
+      "note": "We say make progress; progress is normally uncountable here.",
+      "skill": "vocabulary"
+    },
+    {
+      "id": "REF-COL-04",
+      "kind": "collocations",
+      "level": "B1",
+      "register": "neutral",
+      "term": "meet a deadline",
+      "meaning": "finish work by the required time",
+      "example": "The team divided the tasks so they could meet the deadline.",
+      "note": "Meet a deadline means finish on time, not meet a person.",
+      "skill": "vocabulary"
+    },
+    {
+      "id": "REF-COL-05",
+      "kind": "collocations",
+      "level": "B1",
+      "register": "neutral",
+      "term": "strong argument",
+      "meaning": "reasoning supported by good reasons or evidence",
+      "example": "Their proposal gives a strong argument for a quieter library.",
+      "note": "Strong describes the quality of reasoning, not speaking loudly.",
+      "skill": "vocabulary"
+    },
+    {
+      "id": "REF-PHR-01",
+      "kind": "phrasal_verbs",
+      "level": "A2",
+      "register": "neutral",
+      "term": "look up",
+      "meaning": "search for information in a reference source",
+      "example": "You can look up a new word in a dictionary.",
+      "note": "Separable: look the word up is possible; look up the word is also possible.",
+      "skill": "vocabulary"
+    },
+    {
+      "id": "REF-PHR-02",
+      "kind": "phrasal_verbs",
+      "level": "A2",
+      "register": "neutral",
+      "term": "run out of",
+      "meaning": "have no more of something left",
+      "example": "We ran out of paper before the art lesson finished.",
+      "note": "Run out of something does not mean run outdoors.",
+      "skill": "vocabulary"
+    },
+    {
+      "id": "REF-PHR-03",
+      "kind": "phrasal_verbs",
+      "level": "B1",
+      "register": "neutral",
+      "term": "turn down",
+      "meaning": "reject an offer or request",
+      "example": "Kai turned down the invitation because he had another plan.",
+      "note": "Turn down is also used for lowering volume; context changes its meaning.",
+      "skill": "vocabulary"
+    },
+    {
+      "id": "REF-PHR-04",
+      "kind": "phrasal_verbs",
+      "level": "B1",
+      "register": "neutral",
+      "term": "set up",
+      "meaning": "organize or prepare something so it can start",
+      "example": "Students set up a small exhibition in the hallway.",
+      "note": "Set up can be separable: set the display up.",
+      "skill": "vocabulary"
+    },
+    {
+      "id": "REF-IDI-01",
+      "kind": "idioms",
+      "level": "B1",
+      "register": "informal",
+      "term": "break the ice",
+      "meaning": "help people feel more relaxed when first meeting",
+      "example": "A simple question about music helped break the ice at the club.",
+      "note": "This is figurative: no real ice needs to break.",
+      "skill": "vocabulary"
+    },
+    {
+      "id": "REF-IDI-02",
+      "kind": "idioms",
+      "level": "B1",
+      "register": "informal",
+      "term": "under the weather",
+      "meaning": "feeling slightly ill",
+      "example": "I felt under the weather, so I rested after school.",
+      "note": "A conversational idiom, not a medical diagnosis.",
+      "skill": "vocabulary"
+    },
+    {
+      "id": "REF-IDI-03",
+      "kind": "idioms",
+      "level": "B2",
+      "register": "neutral",
+      "term": "on the same page",
+      "meaning": "agree on the basic understanding or plan",
+      "example": "Before starting, the group checked they were on the same page.",
+      "note": "Common in teamwork; it is not about reading one literal page.",
+      "skill": "vocabulary"
+    },
+    {
+      "id": "REF-MIS-01",
+      "kind": "common_mistakes",
+      "level": "A2",
+      "register": "neutral",
+      "term": "many vs much",
+      "meaning": "many with countable plural nouns; much with uncountable nouns",
+      "example": "How many pencils do you need? How much water is left?",
+      "note": "Ask whether the noun can be counted as individual items.",
+      "skill": "grammar"
+    },
+    {
+      "id": "REF-MIS-02",
+      "kind": "common_mistakes",
+      "level": "A2",
+      "register": "neutral",
+      "term": "since vs for",
+      "meaning": "since names a starting point; for gives a duration",
+      "example": "I have lived here since 2022. I have lived here for four years.",
+      "note": "Since and for express different kinds of time information.",
+      "skill": "grammar"
+    },
+    {
+      "id": "REF-MIS-03",
+      "kind": "common_mistakes",
+      "level": "A2",
+      "register": "neutral",
+      "term": "borrow vs lend",
+      "meaning": "borrow means receive temporarily; lend means give temporarily",
+      "example": "Can I borrow your ruler? Yes, I can lend it to you.",
+      "note": "Check who receives the object and who gives it.",
+      "skill": "grammar"
+    },
+    {
+      "id": "REF-MIS-04",
+      "kind": "common_mistakes",
+      "level": "B1",
+      "register": "neutral",
+      "term": "fewer vs less",
+      "meaning": "fewer usually modifies countable plurals; less usually modifies uncountable nouns",
+      "example": "This version has fewer errors and needs less time.",
+      "note": "These are useful general writing conventions; some real-world usage varies.",
+      "skill": "grammar"
+    },
+    {
+      "id": "REF-TIP-01",
+      "kind": "learning_tips",
+      "level": "A1",
+      "register": "neutral",
+      "term": "Reading: gist before detail",
+      "meaning": "first identify what the whole passage is about",
+      "example": "Before checking dates, read the headline and ask what the notice is for.",
+      "note": "A gist answer should describe the main message, not repeat one small fact.",
+      "skill": "reading"
+    },
+    {
+      "id": "REF-TIP-02",
+      "kind": "learning_tips",
+      "level": "B1",
+      "register": "neutral",
+      "term": "Reading: evidence vs assumption",
+      "meaning": "separate what a text supports from what you only suppose",
+      "example": "If a poster says places are limited, do not assume every applicant is accepted.",
+      "note": "Point to an actual sentence before making a strong inference.",
+      "skill": "reading"
+    },
+    {
+      "id": "REF-TIP-03",
+      "kind": "learning_tips",
+      "level": "A2",
+      "register": "neutral",
+      "term": "Grammar: meaning before form",
+      "meaning": "decide what a sentence needs to express before choosing a grammar pattern",
+      "example": "If an action ended yesterday, check whether a simple past form is appropriate.",
+      "note": "Compare meanings first; then check forms and common exceptions.",
+      "skill": "grammar"
+    },
+    {
+      "id": "REF-TIP-04",
+      "kind": "learning_tips",
+      "level": "A2",
+      "register": "neutral",
+      "term": "Writing: analyse the task",
+      "meaning": "identify Topic, Task, Must Include and Boundary before drafting",
+      "example": "For a school invitation, note who will read it and which details they need.",
+      "note": "Brainstorm useful ideas, outline briefly, then check whether the final text answers the task.",
+      "skill": "writing"
+    }
+  ]
+}
