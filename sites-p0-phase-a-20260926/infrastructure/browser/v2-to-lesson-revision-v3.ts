@@ -1,6 +1,6 @@
 import {verifyLocalRecoveryV2} from './local-recovery';
 import {decodePackageDocument} from '../../domain/storage-retention';
-import {planLessonRevisions,type ReleaseRecord,type SavedReference} from '../../domain/lesson-revision-plan';
+import {canonicalLessonJSON,planLessonRevisions,type ReleaseRecord,type SavedReference} from '../../domain/lesson-revision-plan';
 import {createRevisionRecoveryV3,verifyRevisionRecoveryV3,type LearnerEntry} from '../../domain/lesson-revision-recovery-v3';
 
 /**
@@ -74,4 +74,81 @@ export async function convertVerifiedV2ToRevisionV3(text:string):Promise<{
   uniqueLessonRevisions:check.uniqueRevisions,
   v2Bytes:new TextEncoder().encode(text).length,
   v3Bytes:new TextEncoder().encode(v3.text).length};
+}
+
+/**
+ * R4r READ-ONLY shadow migration preflight.
+ * This is NOT a writer and NEVER authorizes clearing legacy records.
+ * It requires an exact browser English-key snapshot matching the verified
+ * V2 portable archive before constructing a test-only normalized V3 copy.
+ */
+export type ReadOnlyLegacyEnglishStore={
+ readonly length:number;
+ key(index:number):string|null;
+ getItem(key:string):string|null;
+};
+const ENGLISH_PREFIX='g-learning:english:v1:';
+function readLegacyEnglishKeys(storage:ReadOnlyLegacyEnglishStore):LearnerEntry[]{
+ const rows:LearnerEntry[]=[];
+ const keys=new Set<string>();
+ for(let i=0;i<storage.length;i++){
+  const key=storage.key(i);
+  if(!key||!key.startsWith(ENGLISH_PREFIX))continue;
+  if(keys.has(key))throw Error('Duplicate scoped legacy key. Shadow preflight blocked.');
+  keys.add(key);
+  const value=storage.getItem(key);
+  if(value===null)throw Error('Legacy key disappeared during shadow preflight.');
+  rows.push({key,value});
+ }
+ return rows.sort((a,b)=>a.key.localeCompare(b.key));
+}
+export async function previewReadOnlyV2ShadowMigration(
+ originalV2Text:string,storage:ReadOnlyLegacyEnglishStore
+):Promise<{
+ normalizedV3Text:string;oldSha256:string;newSha256:string;
+ oldAttempts:number;currentLessonCount:number;oldSourceVersions:number;
+ legacySnapshotDigest:string;
+}>{
+ // Verify the ORIGINAL downloaded V2 archive; no arbitrary source JSON.
+ await verifyLocalRecoveryV2(originalV2Text);
+ let original:V2File;
+ try{original=JSON.parse(originalV2Text) as V2File}
+ catch{blocked('Legacy V2 archive is unreadable')}
+ if(original?.format!=='g-learning-english.recovery'||
+  original.schemaVersion!==2||!Array.isArray(original.entries))
+  blocked('Verified V2 file shape differs from expected archive');
+ const originalRows=original.entries.map(row=>({key:row.key,value:row.value}))
+  .sort((a,b)=>a.key.localeCompare(b.key));
+ if(originalRows.filter(row=>row.key===PACKAGE_KEY).length!==1)
+  blocked('Exactly one original curriculum package source is required');
+ const before=readLegacyEnglishKeys(storage);
+ if(canonicalLessonJSON(before)!==canonicalLessonJSON(originalRows))
+  blocked('Downloaded V2 differs from current browser English records');
+ const normalized=await convertVerifiedV2ToRevisionV3(originalV2Text);
+ const checked=await verifyRevisionRecoveryV3(normalized.text);
+ const after=readLegacyEnglishKeys(storage);
+ if(canonicalLessonJSON(before)!==canonicalLessonJSON(after))
+  blocked('Browser learner records changed while checking the shadow copy');
+ const learnerRows=before.filter(row=>row.key!==PACKAGE_KEY);
+ if(canonicalLessonJSON(learnerRows)!==
+  canonicalLessonJSON(checked.file.entries)||
+  checked.attempts!==normalized.attempts||
+  normalized.originalV2Sha256!==original.sha256)
+  blocked('Normalized shadow differs from original learner history or hash');
+ if(typeof crypto==='undefined'||!crypto.subtle)
+  blocked('Secure digest unavailable for legacy snapshot');
+ const hash=await crypto.subtle.digest('SHA-256',
+  new TextEncoder().encode(canonicalLessonJSON(before)));
+ const legacySnapshotDigest=Array.from(new Uint8Array(hash),b=>
+  b.toString(16).padStart(2,'0')).join('');
+ // One final read after async SHA. There is NO write token here; any
+ // future staged install must independently recheck the old bytes.
+ if(canonicalLessonJSON(readLegacyEnglishKeys(storage))!==
+  canonicalLessonJSON(before))
+  blocked('Browser data changed after normalized shadow verification');
+ return {normalizedV3Text:normalized.text,
+  oldSha256:original.sha256,newSha256:normalized.normalizedV3Sha256,
+  oldAttempts:checked.attempts,
+  currentLessonCount:checked.file.active.lessons.length,
+  oldSourceVersions:normalized.historicVersions,legacySnapshotDigest};
 }
