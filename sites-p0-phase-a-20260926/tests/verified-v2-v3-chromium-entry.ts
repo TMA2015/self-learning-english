@@ -165,9 +165,9 @@ async function r4oRaw(db:IDBDatabase){
 }
 async function r4oPair(db:IDBDatabase):Promise<R4OPair>{
  const raw=await r4oRaw(db);
- check(typeof raw.attempts==='string'&&typeof raw.writing==='string'&&
-  !!raw.commit&&typeof raw.commit==='object',
-  'R4o missing a committed IDB paired snapshot: FAIL CLOSED');
+ if(typeof raw.attempts!=='string'||typeof raw.writing!=='string'||
+  !raw.commit||typeof raw.commit!=='object')
+  throw Error('R4o missing a committed IDB paired snapshot: FAIL CLOSED');
  const meta=raw.commit as {sequence?:number;checksum?:string};
  check(Number.isSafeInteger(meta.sequence)&&typeof meta.checksum==='string',
   'R4o missing committed IDB sequence/checksum: FAIL CLOSED');
