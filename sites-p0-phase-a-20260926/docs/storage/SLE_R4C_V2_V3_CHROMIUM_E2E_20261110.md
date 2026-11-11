@@ -142,6 +142,16 @@ Each run independently creates a previously cleanly closed, checksum-verified pu
 
 The per-run outcome is logged (not presumed). **CI PENDING** until an exact-head full workflow SUCCESS. Even if all four scenarios PASS, they do not prove every interleaving, fsync ordering, machine power-cut, Safari/iPad, actual IndexedDB eviction, real family Recovery or production LIVE learner writer safety. PR #129 stays Draft, Issue #103 OPEN and release v1.26 remains NO_GO.
 
+## R4n — missing-marker adversarial paired-write negative control
+
+**Safety question.** A full V3 checksum confirms self-consistent serialization, not that a two-key learner/Writing snapshot represents a committed academic operation. The detached research adapter checks a pending marker, but cannot identify a torn write if the new learner value persists while marker and journal are entirely absent.
+
+R4n constructs that **specific unsafe state artificially** in a new disposable, real Chromium origin. It restores a verified original-format synthetic V2→V3 fixture built from public v1.18.0/1.18.1/1.20.0 curriculum, exactly **73 invented attempts**, fake Writing/course state and historical lesson/rubric blobs. It modifies only the fabricated attempts key, deliberately leaves Writing at its original bytes and omits any pending journal/marker. After a **normal browser shutdown** and fresh Chromium process, the test checks whether the current detached export can generate a **checksum-valid but logically torn** V3 snapshot; it compares its learner bytes to the original verified V2 source. Finally, it restores the synthetic baseline and validates another complete export plus browser restart.
+
+The test emits \`NEGATIVE_CONTROL_REPRODUCED\` and **\`BLOCKER_NOT_FIXED\`**, not a green security claim, if a false-complete export is possible. R4n never claims SIGKILL created this state: its persistence uses a graceful shutdown. It is not a product fix, and does not connect the research adapter to LIVE. Resolving this requires separately reviewed and tested durable commit evidence/transaction semantics and fail-closed unknown-state UX; marker absence alone must not be construed as proof of a complete update.
+
+**CI PENDING until the exact-head full workflow completes.** Safari/iPad, true power loss, filesystem fsync, IDB eviction, original family Recovery, and historic audio binary/source permissions remain untested. Keep Issue #103 OPEN, PR #129 Draft and v1.26 release NO_GO.
+
 ## Explicit non-claims / blockers
 
 - SHA verifies integrity of archived JSON, but it is **not a cryptographic signature proving the real provenance of the original learner data**.
