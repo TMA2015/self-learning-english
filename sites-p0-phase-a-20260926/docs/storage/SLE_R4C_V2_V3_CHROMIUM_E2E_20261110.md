@@ -205,6 +205,20 @@ A new disposable real Chromium profile uses the original-format public historica
 
 **Exact-head Full QA PENDING**. Draft PR #129, Issue #103 OPEN and v1.26 release NO_GO.
 
+## R4s — one-record shadow learner candidate with legacy still authoritative (synthetic, real Chromium)
+
+R4r validated a **read-only** original V2 snapshot and staged only immutable lesson/rubric source in a detached IndexedDB vault. R4s extends the same disposable test profile with a separate **candidate-only** IndexedDB database for all original learner attempts, Writing feedback and course selection. These original English-scoped keys remain in legacy \`localStorage\`, **never rewritten or deleted**; a shadow candidate does **not** change which store the product trusts.
+
+A separate \`r4s-shadow-learner-candidate.ts\` research module:
+1. Accepts a verified V2-derived **complete V3** file and checksum of the original exact English-key browser snapshot. Refuses a stale current browser state both before and after committing.
+2. Writes **one** complete candidate record containing all original learner/Writing/course entries and its own SHA-256 commit checksum into **one** IndexedDB \`readwrite\` transaction requesting \`durability:'strict'\`. It refuses overwriting an existing candidate. There is no localStorage pair/journal to pretend is atomic.
+3. Independently reads the one committed record, verifies its checksum, source V3 provenance and exact original entries; combines the candidate with independently checked immutable lesson/rubric sources into a portable normalized V3 archive, then verifies that archive and historical source closure. It rechecks that the old browser source has not changed.
+4. Uses a fresh Chromium process to show an uncommitted artificial single Writing-value mutation **inside the disposable shadow record** fails the checksum/complete export gate. Restores only the fake test record to its exact original bytes and checks again. A subsequent independent restart re-verifies the complete candidate and all 73 invented original attempts.
+
+**This is not a LIVE cutover.** No deployed learner writer uses the candidate. The test does not yet protect a multi-tab real product session, impose a cross-DB transactional snapshot on content+learner source, grant real-device migration approval, prove Safari/iPad quota, demonstrate OS power-cut durability, handle 25MB+ segmented backups or provide a rollback UX. A strict durability request is only a browser persistence hint. Failing a shadow consistency check leaves old data unchanged and authoritative; it does **not** authorize clearing legacy source. Real family records and private Recovery are never loaded.
+
+**Exact-head full QA PENDING.** Draft PR #129 and Issue #103 remain open; production release stays NO_GO.
+
 ## Explicit non-claims / blockers
 
 - SHA verifies integrity of archived JSON, but it is **not a cryptographic signature proving the real provenance of the original learner data**.
