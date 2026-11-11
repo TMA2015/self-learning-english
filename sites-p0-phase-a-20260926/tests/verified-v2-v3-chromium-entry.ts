@@ -16,6 +16,9 @@ import {
 import {canonicalLessonJSON,planLessonRevisions, type ReleaseRecord, type SavedReference} from '../domain/lesson-revision-plan';
 import {browserLessonRevisionVault} from '../infrastructure/storage/indexeddb-lesson-revision-vault';
 import {
+ restoreR4uVerifiedParts,inspectR4uRestoredFullArchive,R4U_DB
+} from '../infrastructure/storage/r4u-segmented-disposable-restore';
+import {
  stageR4sShadowCandidate,verifyR4sShadowCandidate,R4S_SHADOW_DB
 } from '../infrastructure/storage/r4s-shadow-learner-candidate';
 import {previewNormalizedV3Restore,restoreNormalizedV3,
@@ -2795,6 +2798,33 @@ const vault=browserLessonRevisionVault();
    check(rejected,
     'R4t must fail closed for an incomplete/tampered archive '+item.name);
   }
+  // R4u: A verified 45MB+ backup must RESTORE all source + all learner
+  // records into one atomic native IDB transaction in an EMPTY test profile.
+  // Invalid backup must be rejected BEFORE the destination DB is opened.
+  const absentBefore=await indexedDB.databases();
+  check(!absentBefore.some(db=>db.name===R4U_DB),
+   'R4u must begin with no existing disposable restore database');
+  let invalidRejectedBeforeWrite=false;
+  try{await restoreR4uVerifiedParts(indexedDB,cases[0].packet)}
+  catch(e){invalidRejectedBeforeWrite=/R4t segmented research Recovery blocked/.test(String(e))}
+  check(invalidRejectedBeforeWrite,
+   'R4u rejected missing part did not fail before touching destination');
+  const absentAfter=await indexedDB.databases();
+  check(!absentAfter.some(db=>db.name===R4U_DB),
+   'R4u malformed backup opened destination database before verification');
+  // Deliberately abort after 64 real successful IDB add requests. The
+  // entire restore must roll back; next valid import into SAME database
+  // must observe EMPTY (otherwise the second restore is forbidden).
+  const aborted=await restoreR4uVerifiedParts(indexedDB,packet,true);
+  check(aborted.status==='ABORTED'&&aborted.lessons===2123&&
+   aborted.attempts===73,
+   'R4u native partial-write abort was not rolled back atomically');
+  const committed=await restoreR4uVerifiedParts(indexedDB,packet,false);
+  check(committed.status==='COMMITTED'&&committed.lessons===2123&&
+   committed.attempts===73&&committed.parts===completed.partCount,
+   'R4u complete verified multi-part Recovery could not commit');
+  check(localStorage.length===0,
+   'R4u isolated restore must never stage learner data in localStorage');
   check(localStorage.length===0,
    'R4t research test must not touch real or synthetic learner localStorage');
   dom.textContent='PASS_R4T_LARGE_SEGMENTED '+JSON.stringify({
@@ -2811,6 +2841,31 @@ const vault=browserLessonRevisionVault();
    actualStreamingFileDownloads:'NOT_TESTED',
    simulatedMobileSafariQuota:'NOT_TESTED',
    productIntegration:false,realLearnerData:'NOT_TOUCHED'
+  });
+ }else if(phase==='r4u-restored-reopen'){
+  // A NEW native Chromium process independently reopens the complete
+  // 45MB+ restored database and reconstructs all original backup parts
+  // from verified immutable blobs + learner/Writing/course records.
+  check(localStorage.length===0,
+   'R4u must not have written old learner localStorage');
+  const result=await inspectR4uRestoredFullArchive(indexedDB);
+  check(result.lessons===2123&&result.attempts===73&&
+   result.parts===46&&result.bytes>25_000_000&&
+   result.learnerKeys===3&&
+   result.oldWritingValue===permanentTestValues.writing,
+   'R4u restarted Chromium did not restore full original synthetic history');
+  dom.textContent='PASS_R4U_RESTORED_REOPEN '+JSON.stringify({
+   fullLargeBackupRestored:true,
+   activeSyntheticLessons:result.lessons,
+   originalSyntheticAttempts:result.attempts,
+   originalWritingPreserved:true,
+   historicalSourceAliases:result.historyAliases,
+   completeBackupReverifiedAfterRestart:true,
+   sourceParts:result.parts,
+   reconstructedBytes:result.bytes,
+   noLearnerLocalStorageTouched:true,
+   noRealLearnerData:'NOT_TOUCHED',safari:'NOT_TESTED',
+   noProductUIOrNetworkFileDownloads:true
   });
  }else throw Error('Unsupported R4c browser phase');
 })().catch(e=>{
