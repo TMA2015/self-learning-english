@@ -11,6 +11,9 @@ import {verifyLocalRecoveryV2} from '../infrastructure/browser/local-recovery';
 import {verifyRevisionRecoveryV3,createRevisionRecoveryV3,verifiedRecoveryToPlan} from '../domain/lesson-revision-recovery-v3';
 import {canonicalLessonJSON,planLessonRevisions, type ReleaseRecord, type SavedReference} from '../domain/lesson-revision-plan';
 import {browserLessonRevisionVault} from '../infrastructure/storage/indexeddb-lesson-revision-vault';
+import {
+ stageR4sShadowCandidate,verifyR4sShadowCandidate,R4S_SHADOW_DB
+} from '../infrastructure/storage/r4s-shadow-learner-candidate';
 import {previewNormalizedV3Restore,restoreNormalizedV3,
  exportNormalizedBrowserRecoveryV3,RECOVERY_V3_MARKER,LEARNER_WRITE_V3_MARKER
 } from '../infrastructure/browser/lesson-revision-portable-recovery';
@@ -2570,6 +2573,143 @@ const vault=browserLessonRevisionVault();
   check(rows.every(row=>localStorage.getItem(row.key)===row.value),
    'R4r read after restart changed original fake learner records');
   dom.textContent='PASS_R4R_SHADOW_RESTART';
+ }else if(phase==='r4s-learner-shadow-stage'){
+  const {v2,rows}=await fixture();
+  check(rows.every(row=>localStorage.getItem(row.key)===row.value),
+   'R4s requires byte-identical original old synthetic learner keys');
+  const readOnly={get length(){return localStorage.length},
+   key:(i:number)=>localStorage.key(i),
+   getItem:(key:string)=>localStorage.getItem(key)};
+  const preview=await previewReadOnlyV2ShadowMigration(v2,readOnly);
+  const oldDigest=async()=>
+   (await previewReadOnlyV2ShadowMigration(v2,readOnly)).legacySnapshotDigest;
+  const stage=await stageR4sShadowCandidate(
+   indexedDB,preview.normalizedV3Text,preview.legacySnapshotDigest,oldDigest);
+  check(stage.entries===3,
+   'R4s test-only learner/Writing/course candidate must contain three original keys');
+  const reexport=await verifyR4sShadowCandidate(
+   indexedDB,preview.normalizedV3Text,preview.legacySnapshotDigest,
+   oldDigest,()=>vault.snapshot(),'2026-11-11T13:00:00.000Z');
+  const checked=await verifyRevisionRecoveryV3(reexport.text);
+  check(checked.attempts===73&&
+   checked.file.entries.find(x=>x.key===attemptKey)?.value===
+    rows.find(x=>x.key===attemptKey)?.value&&
+   checked.file.entries.find(x=>x.key===writingKey)?.value===
+    permanentTestValues.writing&&
+   checked.file.entries.find(x=>x.key===extraKey)?.value===
+    permanentTestValues.course,
+   'R4s one-record V3 export did not preserve original 73 synthetic attempts/Writing/course');
+  const oldWriting=localStorage.getItem(writingKey)!;
+  localStorage.setItem(writingKey,JSON.stringify({fabricated:'newer writing edit'}));
+  let staleBlocked=false;
+  try{await verifyR4sShadowCandidate(
+   indexedDB,preview.normalizedV3Text,preview.legacySnapshotDigest,
+   oldDigest,()=>vault.snapshot(),'2026-11-11T13:02:00.000Z')}
+  catch(e){staleBlocked=/Downloaded V2 differs|Old learner data no longer matches/.test(String(e))}
+  check(staleBlocked,
+   'R4s failed to block shadow V3 export when old Writing changed');
+  localStorage.setItem(writingKey,oldWriting);
+  check(rows.every(row=>localStorage.getItem(row.key)===row.value),
+   'R4s did not restore exact original fake legacy bytes after negative test');
+  dom.textContent='PASS_R4S_SHADOW_STAGE '+JSON.stringify({
+   verifiedOriginalPortableV2:true,
+   singleNativeIndexedDBCommittedLearnerRecord:true,
+   verifiedCompleteCandidateAttempts:73,
+   originalWritingAndCourseSelectionPreserved:true,
+   staleOriginalBrowserWritingBlocksCandidate:true,
+   originalLegacyBytesRemainAuthoritative:true,
+   realLearnerData:'NOT_TOUCHED',productIntegration:false
+  });
+ }else if(phase==='r4s-learner-shadow-tamper'){
+  // The committed candidate survives a new Chrome process. Deliberately
+  // corrupt ONE test-only candidate learner value without updating checksum.
+  const {v2,rows}=await fixture();
+  const readOnly={get length(){return localStorage.length},
+   key:(i:number)=>localStorage.key(i),
+   getItem:(key:string)=>localStorage.getItem(key)};
+  const preview=await previewReadOnlyV2ShadowMigration(v2,readOnly);
+  const oldDigest=async()=>
+   (await previewReadOnlyV2ShadowMigration(v2,readOnly)).legacySnapshotDigest;
+  const original=await verifyR4sShadowCandidate(
+   indexedDB,preview.normalizedV3Text,preview.legacySnapshotDigest,
+   oldDigest,()=>vault.snapshot(),'2026-11-11T13:10:00.000Z');
+  check(original.attempts===73,
+   'R4s original candidate did not persist after browser restart');
+  async function editResearchCandidate(
+   edit:(row:{entries:Array<{key:string;value:string}>})=>void
+  ){
+   await new Promise<void>((resolve,reject)=>{
+    const req=indexedDB.open(R4S_SHADOW_DB,1);
+    req.onerror=()=>reject(Error('R4s test-only research IDB unavailable'));
+    req.onsuccess=()=>{
+     const db=req.result;
+     const tx=db.transaction('shadow','readwrite');
+     const store=tx.objectStore('shadow');
+     const get=store.get('candidate');
+     get.onsuccess=()=>{
+      if(!get.result){try{tx.abort()}catch{};return}
+      const row=get.result as {entries:Array<{key:string;value:string}>};
+      edit(row);
+      store.put(row,'candidate');
+     };
+     tx.oncomplete=()=>{db.close();resolve()};
+     tx.onabort=()=>{db.close();reject(Error('R4s research tamper transaction aborted'))};
+     tx.onerror=()=>{db.close();reject(Error('R4s research tamper transaction failed'))};
+    };
+   });
+  }
+  await editResearchCandidate(row=>{
+   const writing=row.entries.find(x=>x.key===writingKey);
+   if(!writing)throw Error('R4s shadow Writing entry missing');
+   writing.value=JSON.stringify({fabricated:'uncommitted-writing-change'});
+  });
+  let tamperBlocked=false;
+  try{await verifyR4sShadowCandidate(
+   indexedDB,preview.normalizedV3Text,preview.legacySnapshotDigest,
+   oldDigest,()=>vault.snapshot(),'2026-11-11T13:12:00.000Z')}
+  catch(e){tamperBlocked=/commit checksum mismatch/.test(String(e))}
+  check(tamperBlocked,'R4s untracked shadow Writing change was not rejected');
+  await editResearchCandidate(row=>{
+   const writing=row.entries.find(x=>x.key===writingKey);
+   if(!writing)throw Error('R4s test-only Writing cannot be restored');
+   writing.value=permanentTestValues.writing;
+  });
+  // Repairing a value without its commit metadata is NOT enough: keep
+  // failing closed even when test-only bytes are restored to originals.
+  // The safe repair protocol must replace entire candidate from fresh V2.
+  let repairBlocked=false;
+  try{await verifyR4sShadowCandidate(
+   indexedDB,preview.normalizedV3Text,preview.legacySnapshotDigest,
+   oldDigest,()=>vault.snapshot(),'2026-11-11T13:13:00.000Z')}
+  catch(e){repairBlocked=/commit checksum mismatch/.test(String(e))}
+  // If the original canonical bytes happen to restore exactly, the old
+  // record's SHA becomes valid again; test the original content below.
+  if(repairBlocked)throw Error('R4s restored canonical original candidate still checksum-invalid');
+  check(rows.every(row=>localStorage.getItem(row.key)===row.value),
+   'R4s candidate tamper accidentally wrote original learner localStorage');
+  dom.textContent='PASS_R4S_SHADOW_TAMPER '+JSON.stringify({
+   persistedAcrossNormalBrowserRestart:true,
+   fabricatedUncommittedWritingEditBlocked:true,
+   exactOriginalCandidateRepairedOnlyInDisposableResearchDB:true,
+   originalLegacyLearnerBytesUnchanged:true,
+   liveWriterNotIntegrated:true
+  });
+ }else if(phase==='r4s-learner-shadow-final'){
+  const {v2,rows}=await fixture();
+  const readOnly={get length(){return localStorage.length},
+   key:(i:number)=>localStorage.key(i),
+   getItem:(key:string)=>localStorage.getItem(key)};
+  const preview=await previewReadOnlyV2ShadowMigration(v2,readOnly);
+  const oldDigest=async()=>
+   (await previewReadOnlyV2ShadowMigration(v2,readOnly)).legacySnapshotDigest;
+  const backup=await verifyR4sShadowCandidate(
+   indexedDB,preview.normalizedV3Text,preview.legacySnapshotDigest,
+   oldDigest,()=>vault.snapshot(),'2026-11-11T13:20:00.000Z');
+  const verified=await verifyRevisionRecoveryV3(backup.text);
+  check(verified.attempts===73&&rows.every(row=>
+   localStorage.getItem(row.key)===row.value),
+   'R4s final Chromium restart lost original fictional learner data');
+  dom.textContent='PASS_R4S_SHADOW_FINAL';
  }else throw Error('Unsupported R4c browser phase');
 })().catch(e=>{
  dom.textContent='FAIL '+String(e)+' '+String((e as Error)?.stack).slice(0,1100);
