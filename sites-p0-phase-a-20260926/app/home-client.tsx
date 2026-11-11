@@ -11,7 +11,7 @@ import {type DiagnosticV2,type Evidence,type LearnerModel,type LearningPlanModel
 import {DeveloperView,type LearningChoice} from "./core-panels";
 import {Progress} from "@/components/ui/progress";
 import {createNavigationGate} from "../domain/navigation-gate";
-import {loadLearnerState,saveLearnerState,loadPracticeProgress,loadMyCourses,selectMyCourse,loadCapabilities,finishDiagnosticAssessment,evaluateWritingProcess,saveGardenRelevantIdea,browserLearningEnabled} from "../infrastructure/browser/client-services";
+import {loadLearnerState,saveLearnerState,loadPracticeProgress,loadMyCourses,selectMyCourse,loadCapabilities,finishDiagnosticAssessment,evaluateWritingProcess,saveGardenRelevantIdea,browserLearningEnabled,foundationRequest} from "../infrastructure/browser/client-services";
 import {MyCourses,type MyCoursesData} from './my-courses';
 import {WRITING_COURSE_ID} from '../domain/course-p1';
 import {PracticeSummary} from './practice-progress';
@@ -47,7 +47,7 @@ export default function Home(){
  const browserMode=browserLearningEnabled();
  const [isAdmin,setIsAdmin]=useState(false);useEffect(()=>{void loadCapabilities().then(d=>setIsAdmin(d.isAdmin)).catch(()=>setIsAdmin(false))},[]);
 
- const [foundationCatalog,setFoundationCatalog]=useState<FoundationCatalog|null>(null);const [view,setView]=useState<View>("dashboard");const [state,setState]=useState<State>(seed);const [loaded,setLoaded]=useState(false);const [saving,setSaving]=useState("Loading progress...");const [busy,setBusy]=useState(false);const [menu,setMenu]=useState(false);const [hint,setHint]=useState(false);const [navigating,setNavigating]=useState(false);const latestState=useRef(state);latestState.current=state;const storageReady=useRef(false);const dirty=useRef(false);const saveQueue=useRef<Promise<boolean>>(Promise.resolve(true));
+ const [foundationCatalog,setFoundationCatalog]=useState<FoundationCatalog|null>(null);const [planFoundationLoading,setPlanFoundationLoading]=useState(false);const [planFoundationError,setPlanFoundationError]=useState("");const [view,setView]=useState<View>("dashboard");const [state,setState]=useState<State>(seed);const [loaded,setLoaded]=useState(false);const [saving,setSaving]=useState("Loading progress...");const [busy,setBusy]=useState(false);const [menu,setMenu]=useState(false);const [hint,setHint]=useState(false);const [navigating,setNavigating]=useState(false);const latestState=useRef(state);latestState.current=state;const storageReady=useRef(false);const dirty=useRef(false);const saveQueue=useRef<Promise<boolean>>(Promise.resolve(true));
  const [courseData,setCourseData]=useState<MyCoursesData|null>(null),[courseError,setCourseError]=useState(''),[courseBusy,setCourseBusy]=useState(false);
  const [blockWeek,setBlockWeek]=useState<WritingWeek>(2);const [blockScreen,setBlockScreen]=useState<WeekScreen>("learn");const [blockError,setBlockError]=useState("");const blockCheckPending=useRef(false);const blockNavigationPending=useRef(false);
  const [laterWeek,setLaterWeek]=useState<LaterWeek>(7);const [laterScreen,setLaterScreen]=useState<WeekScreen>("learn");const [laterError,setLaterError]=useState("");const laterPending=useRef(false);const laterNavigationPending=useRef(false);
@@ -62,6 +62,18 @@ export default function Home(){
  useEffect(()=>{void refreshCourses()},[]);
  async function refreshPractice(){try{const data=await loadPracticeProgress() as PracticeProgress;setPracticeData(data);setPracticeError('')}catch(e){setPracticeError(e instanceof Error?e.message:'Practice progress unavailable')}}
  useEffect(()=>{void refreshPractice()},[]);
+ // Read-only Foundation catalog shared by Learning Plan and the existing player.
+ useEffect(()=>{
+  if(view!=='plan')return;
+  let active=true;
+  setPlanFoundationLoading(true);setPlanFoundationError('');
+  void foundationRequest('/api/foundation').then((data:FoundationCatalog)=>{
+   if(active){setFoundationCatalog(data);setPlanFoundationError('')}
+  }).catch(()=>{
+   if(active){setPlanFoundationError('Could not load saved objective attempts');setFoundationCatalog(null)}
+  }).finally(()=>{if(active)setPlanFoundationLoading(false)});
+  return ()=>{active=false};
+ },[view]);
  async function selectCourse(activeCourseId:string|null):Promise<boolean>{
   if(!courseData||courseBusy)return false;
   if(courseData.activeCourseId===activeCourseId)return true;
@@ -164,7 +176,7 @@ export default function Home(){
  {view==="writing-week"&&<WritingWeekPage key={`${blockWeek}:${blockScreen}`} week={blockWeek} screen={blockScreen} work={weekWork(state.writingCourseV2B,blockWeek)} busy={busy||navigating} error={blockError} showVi={!!state.vietnameseSupport} actions={{go:s=>void blockGo(blockWeek,s),back:()=>void navigate('writing-course'),foundation:id=>void pilotGo('foundations',id),edit:(key,value)=>changeBlock(editWeek(weekWork(latestState.current.writingCourseV2B,blockWeek),key,value)),confirm:checked=>changeBlock({...weekWork(latestState.current.writingCourseV2B,blockWeek),confirmedOwnWork:checked,reviewDone:false}),check:(id,answer)=>void checkBlock(id,answer),submit:()=>void submitBlock(),reflect:(key,value)=>{const work=weekWork(latestState.current.writingCourseV2B,blockWeek);changeBlock({...work,reviewDone:false,reflections:{...work.reflections,[key]:value}})},review:()=>void finishBlock(),retrySave:()=>{void confirmWeekNavigation(()=>latestState.current,()=>dirty.current,saveNow).then(saved=>{if(saved)setBlockError('')})}}}/>}
  {view==="writing-later-week"&&<LaterWeekPage key={`${laterWeek}:${laterScreen}`} week={laterWeek} screen={laterScreen} work={laterWork(state.writingCourseV2C,laterWeek)} sources={laterWeek===9||laterWeek===10?learnerSources(state.writingCourseV2C,laterWeek):[]} busy={busy||navigating} error={laterError} showVi={!!state.vietnameseSupport} actions={{go:s=>void laterGo(laterWeek,s),back:()=>void navigate('writing-course'),foundation:id=>void pilotGo('foundations',id),edit:(key,value)=>changeLater(editLater(laterWork(latestState.current.writingCourseV2C,laterWeek),key,value)),confirm:v=>changeLater({...laterWork(latestState.current.writingCourseV2C,laterWeek),confirmed:v,reviewDone:false}),copy:chooseLaterSource,check:(id,answer)=>void checkLater(id,answer),submit:()=>void submitLaterWork(),reflect:(key,value)=>{const work=laterWork(latestState.current.writingCourseV2C,laterWeek);changeLater({...work,reviewDone:false,reflections:{...work.reflections,[key]:value}})},review:()=>void finishLater(),retrySave:()=>{void confirmWeekNavigation(()=>latestState.current,()=>dirty.current,saveNow).then(saved=>{if(saved)setLaterError('')})}}}/>}
  {view==="writing-review"&&<WeekReview key={pilot.submission?.signature??"unsubmitted"} pilot={pilot} work={state} onReflection={reflect} onDone={()=>void finishReview()} onGo={(r,u)=>void pilotGo(r,u)}/>}
- {view==="plan"&&<LearningPlan choice={state.learningChoice??"ai"} onChoice={learningChoice=>update({learningChoice})} onNavigate={v=>navigate(v as View)} plan={state.learningPlan} courses={courseData} model={state.learnerModel} onDiagnostic={()=>navigate("diagnostic")} onWriting={()=>navigate("writing")}/>}
+ {view==="plan"&&<LearningPlan choice={state.learningChoice??"ai"} onChoice={learningChoice=>update({learningChoice})} onNavigate={v=>navigate(v as View)} plan={state.learningPlan} courses={courseData} foundationCatalog={foundationCatalog} foundationLoading={planFoundationLoading} foundationError={planFoundationError} model={state.learnerModel} onDiagnostic={()=>navigate("diagnostic")} onWriting={()=>navigate("writing")}/>}
  {view==="skillmap"&&<><SkillMap model={state.learnerModel} onWriting={()=>navigate("writing")}/><section className="panel"><h2>Writing task understanding · objective practice</h2><p>{guidedProgress(pilot.guided).correct}/{guidedProgress(pilot.guided).total} guided answers correct · writing.task_understanding. Evidence weight 1; proficiency weight 0. This does not set a CEFR level.</p></section>{LATER_WEEKS.filter(w=>w.week!==12).map(w=>{const p=laterGuidedProgress(w.week,laterWork(state.writingCourseV2C,w.week).guided);return <section className="panel" key={w.week}><h2>Week {w.week} · objective practice</h2><p>{p.correct}/{p.total} answers correct · {w.tag}. Practice weight 1; proficiency weight 0. Free-form work is provisional progress only.</p></section>})}{WRITING_WEEKS.map(w=>{const p=weekGuidedProgress(w.week,weekWork(state.writingCourseV2B,w.week).guided);return <section className="panel" key={w.week}><h2>Week {w.week} · objective practice</h2><p>{p.correct}/{p.total} answers correct · {w.tag}. Evidence weight 1; proficiency weight 0. Saved free-form work records progress only.</p></section>})}</>}
  {view==="errorbank"&&<ErrorBank evidence={state.evidence??[]} demoHistory={state.history}/>}
  {view==="tutor"&&<TutorOverview onWriting={()=>navigate("lesson")}/>}
