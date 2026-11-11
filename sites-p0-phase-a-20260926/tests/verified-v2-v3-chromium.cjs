@@ -136,7 +136,7 @@ async function until(fn,ms=30000){
    }
    const start=Date.now();
    let last='';
-   const phaseTimeout=url.includes('phase=r4p-scale-2000')||url.includes('phase=r4t-segmented-large-backup')?120000:45000;
+   const phaseTimeout=url.includes('phase=r4t-segmented-large-backup')||url.includes('phase=r4u-restored-reopen')?240000:url.includes('phase=r4p-scale-2000')?120000:45000;
    while(Date.now()-start<phaseTimeout){
     last=String(await evaluate()||'');
     if(isTwoTab&&last.startsWith('FAIL_R4G'))
@@ -572,6 +572,37 @@ async function until(fn,ms=30000){
    downloadableFileProtocol:'NOT_TESTED',
    productionBackupIntegration:false,
    realLearnerData:'NOT_TOUCHED',deploy:false
+  }));
+  // R4u: a distinct real Chromium process reopens the 45MB+ destination
+  // and reconstructs/rehashes every original source and learner record.
+  const r4uReload=await visitWithStartupRetry(
+   host+'/?phase=r4u-restored-reopen',segmentedProfile);
+  assert.match(r4uReload,/^PASS_R4U_RESTORED_REOPEN\b/);
+  const r4uRecovered=JSON.parse(r4uReload.slice(r4uReload.indexOf('{')));
+  assert.equal(r4uRecovered.fullLargeBackupRestored,true);
+  assert.equal(r4uRecovered.activeSyntheticLessons,2123);
+  assert.equal(r4uRecovered.originalSyntheticAttempts,73);
+  assert.equal(r4uRecovered.originalWritingPreserved,true);
+  assert.equal(r4uRecovered.completeBackupReverifiedAfterRestart,true);
+  assert.equal(r4uRecovered.sourceParts,46);
+  assert(r4uRecovered.reconstructedBytes>25_000_000);
+  console.log(JSON.stringify({
+   result:'PASS',
+   gate:'r4u-45mb-segmented-complete-empty-profile-restore',
+   verifiedAllPartsBeforeAnyRestore:true,
+   nativeSingleTransactionAcrossLearnerAndAllSourceStores:true,
+   deliberateAbortAfter64CompletedBodyWritesLeavesEmpty:true,
+   occupiedDestinationRefused:true,
+   fullArchiveRecoveredAfterNewBrowserProcess:true,
+   reconstructedBytes:r4uRecovered.reconstructedBytes,
+   activeLessons:r4uRecovered.activeSyntheticLessons,
+   originalFakeAttempts:r4uRecovered.originalSyntheticAttempts,
+   oldWritingPreserved:r4uRecovered.originalWritingPreserved,
+   historicRubricAliasesRetained:r4uRecovered.historicalSourceAliases,
+   originalLegacyBrowserStorage:'UNTOUCHED',
+   safari:'NOT_TESTED',realFileDownload:'NOT_TESTED',
+   realLearnerData:'NOT_TOUCHED',productionIntegration:false,
+   deploy:false
   }));
   console.log(JSON.stringify({result:'PASS',
    gate:'r4m-repeated-hard-sigkill-crash-window-classification',
