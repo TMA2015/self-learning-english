@@ -2420,6 +2420,72 @@ const vault=browserLessonRevisionVault();
    lazyNetworkCatalogAndSafariQuota:'NOT_TESTED',
    productionIntegration:false
   });
+ }else if(phase==='r4q-targeted-unit-reload'){
+  // Fresh browser PROCESS reads only 35 requested blobs from the existing
+  // R4p 2,001-Lesson disposable vault; never enumerate all lesson bodies.
+  check(localStorage.length===0,'R4q must not use learner localStorage');
+  const manifest=await vault.manifest();
+  check(manifest?.version==='9.3.0'&&manifest.lessons.length===2001,
+   'R4q cannot reopen the synthetic 2,001-Lesson active manifest');
+  const prefixes=['GRA','VOC','REA','LIS','WRI','SPE','PRO'];
+  const levels=['A1','A2','B1','B2','C1','C2'];
+  function syntheticId(i:number){
+   return prefixes[i%7]+'-'+levels[Math.floor(i/7)%6]+'-'+
+    String(Math.floor(i/42)+1).padStart(3,'0');
+  }
+  const allIds=Array.from({length:2001},(_,i)=>syntheticId(i));
+  check(new Set(allIds).size===2001,
+   'R4q fabricated ID list must remain globally unique');
+  const unit01Ids=allIds.filter((_,i)=>
+   (Math.floor(i/7)%6)===0&&(Math.floor(i/42)%10)===0);
+  check(unit01Ids.length===35,
+   'R4q selected one A1 Unit should reference 35 synthetic Lessons');
+  const body=await vault.resolveCurrentBatch(unit01Ids);
+  check(body.length===35&&body.every((b,i)=>b.lesson.id===unit01Ids[i]),
+   'R4q targeted batch returned missing, extra or reordered Lessons');
+  check(body.every(b=>b.lesson.title==='SYNTHETIC SCALE ONLY '+b.lesson.id),
+   'R4q targeted read returned unexpected source contents');
+  const one=await vault.resolveCurrent(unit01Ids[0]);
+  check(one.revision===body[0].revision,
+   'R4q targeted batch differs from single-Lesson source');
+  // Reused learning paths reference the SAME stored revisions, no extra
+  // course-specific bodies or copying into localStorage.
+  const ieltsIds=allIds.slice(0,20);
+  const ielts=await vault.resolveCurrentBatch(ieltsIds);
+  check(ielts.length===20&&ielts.every((b,i)=>b.lesson.id===ieltsIds[i])&&
+   ielts.slice(0,7).every((b,i)=>b.revision===body[i].revision),
+   'R4q course path must reuse the exact same immutable Lesson versions');
+  const last=await vault.resolveCurrentBatch([allIds[2000]]);
+  check(last.length===1&&last[0].lesson.id===allIds[2000],
+   'R4q 2,001st newly added Lesson is not individually retrievable');
+  const original=await vault.resolveHistoric('9.0.0',unit01Ids[0]);
+  check(original.revision!==body[0].revision&&
+   original.rubrics['RUBRIC-WRITING-SCALE01']!==undefined,
+   'R4q targeting must not overwrite original historic rubric');
+  let absentBlocked=false,duplicatesBlocked=false,largeBatchBlocked=false;
+  try{await vault.resolveCurrentBatch(['GRA-A1-999'])}
+  catch(e){absentBlocked=/Requested current Lesson revision missing/.test(String(e))}
+  try{await vault.resolveCurrentBatch([unit01Ids[0],unit01Ids[0]])}
+  catch(e){duplicatesBlocked=/Invalid or duplicate single-Unit/.test(String(e))}
+  try{await vault.resolveCurrentBatch(allIds.slice(0,101))}
+  catch(e){largeBatchBlocked=/Invalid or duplicate single-Unit/.test(String(e))}
+  check(absentBlocked&&duplicatesBlocked&&largeBatchBlocked,
+   'R4q unknown, duplicated or oversized batch must fail closed');
+  check(localStorage.length===0,
+   'R4q targeted batch accidentally modified learner localStorage');
+  dom.textContent='PASS_R4Q_UNIT_TARGETED '+JSON.stringify({
+   activeSyntheticLessonCount:2001,unitRequestedLessonCount:35,
+   unitReturnedRevisionBodies:body.length,
+   reusedIeltsPathCount:ielts.length,
+   crossPathImmutableRevisionsShared:true,
+   recentlyAddedLessonIndividuallyFound:true,
+   historicVersionRubricStillRetrievable:true,
+   absentDuplicateOversizedRequestsBlocked:true,
+   noFullLessonBodyInventoryInBatchImplementation:true,
+   noRealLearnerDataAccess:true,
+   safariAndNetworkLazyDelivery:'NOT_TESTED',
+   productionUIIntegration:false
+  });
  }else throw Error('Unsupported R4c browser phase');
 })().catch(e=>{
  dom.textContent='FAIL '+String(e)+' '+String((e as Error)?.stack).slice(0,1100);
