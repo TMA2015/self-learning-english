@@ -48,6 +48,7 @@ async function until(fn,ms=30000){
  const r4nProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4n-markerless-torn-'));
  const r4oProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4o-idb-atomic-pair-'));
  const scale2000Profile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4p-scale2000-'));
+ const shadowProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4r-shadow-v2-'));
  // Four separate test-only profiles: no family profile or live browser.
  const r4mCases=[
   {name:'FAST_A',delayMs:100},{name:'FAST_B',delayMs:100},
@@ -486,6 +487,32 @@ async function until(fn,ms=30000){
    safari:'NOT_TESTED',realLearnerData:'NOT_TOUCHED',
    productionIntegration:false,deploy:false
   }));
+  // R4r keeps old invented legacy keys byte-identical while shadow
+  // immutable source is staged; any stale portable backup must be refused.
+  const shadowStage=await visitWithStartupRetry(
+   host+'/?phase=r4r-shadow-v2-stage',shadowProfile);
+  const shadowReload=await visitWithStartupRetry(
+   host+'/?phase=r4r-shadow-restart',shadowProfile);
+  assert.match(shadowStage,/^PASS_R4R_SHADOW_STAGE\b/);
+  assert.equal(shadowReload,'PASS_R4R_SHADOW_RESTART');
+  const shadowProof=JSON.parse(shadowStage.slice(shadowStage.indexOf('{')));
+  assert.equal(shadowProof.originalSyntheticAttempts,73);
+  assert.equal(shadowProof.staleBackupRefused,true);
+  assert.equal(shadowProof.shadowSourceStagedWithoutLegacyChanges,true);
+  assert.equal(shadowProof.legacyRemainsAuthoritative,true);
+  assert.equal(shadowProof.incompleteHybridV3ExportBlocked,true);
+  console.log(JSON.stringify({
+   result:'PASS',gate:'r4r-readonly-v2-shadow-migration-preflight',
+   verifiedOriginalV2BeforeShadow:true,
+   stalePortableBackupRefused:true,
+   legacyEntriesByteIdentical:true,
+   stageOnlyImmutableShadowSource:true,
+   incompleteHybridV3ExportFailsClosed:true,
+   independentBrowserRestartVerified:true,
+   realLearnerRecords:'NOT_TOUCHED',
+   finalV2ToV3Cutover:'NOT_TESTED',safari:'NOT_TESTED',
+   productionIntegration:false,deploy:false
+  }));
   console.log(JSON.stringify({result:'PASS',
    gate:'r4m-repeated-hard-sigkill-crash-window-classification',
    additionalIndependentDisposableProfiles:4,
@@ -612,5 +639,5 @@ async function until(fn,ms=30000){
    persistedAcrossBrowserProcesses:true,realIndexedDBRestore:true,oldAttemptsByteIdentical:true,changedRubricPinned:true,occupiedRestoreBlocked:true,tamperedV2Blocked:true,
    recoveryV3:'BROWSER_SYNTHETIC_PASS',liveRuntimeIntegration:'NOT_TESTED',
    realSafariAcceptance:'NOT_TESTED'}));
- }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true});fs.rmSync(pairedWriteProfile,{recursive:true,force:true});fs.rmSync(writingQuotaProfile,{recursive:true,force:true});fs.rmSync(preflightProfile,{recursive:true,force:true});fs.rmSync(sigkillProfile,{recursive:true,force:true});fs.rmSync(r4nProfile,{recursive:true,force:true});fs.rmSync(r4oProfile,{recursive:true,force:true});fs.rmSync(scale2000Profile,{recursive:true,force:true});for(const scenario of r4mCases)fs.rmSync(scenario.profile,{recursive:true,force:true})}
+ }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true});fs.rmSync(pairedWriteProfile,{recursive:true,force:true});fs.rmSync(writingQuotaProfile,{recursive:true,force:true});fs.rmSync(preflightProfile,{recursive:true,force:true});fs.rmSync(sigkillProfile,{recursive:true,force:true});fs.rmSync(r4nProfile,{recursive:true,force:true});fs.rmSync(r4oProfile,{recursive:true,force:true});fs.rmSync(scale2000Profile,{recursive:true,force:true});fs.rmSync(shadowProfile,{recursive:true,force:true});for(const scenario of r4mCases)fs.rmSync(scenario.profile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});
