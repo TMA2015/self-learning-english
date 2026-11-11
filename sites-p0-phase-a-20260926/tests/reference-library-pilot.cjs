@@ -9,11 +9,10 @@ const root=path.resolve(__dirname,'..');
 const read=(p)=>fs.readFileSync(path.join(root,p),'utf8');
 const raw=JSON.parse(read('content/reference-library-pilot-v1.json'));
 const packet=read('notebooklm/SLE_REFERENCE_LIBRARY_PILOT_R1_20261112.md');
-const start=packet.indexOf('BEGIN_REFERENCE_LIBRARY_JSON'),end=packet.indexOf('END_REFERENCE_LIBRARY_JSON');
-assert(start>=0&&end>start,'Packet must contain the exact reference source data');
-const between=packet.slice(start,end);
-const source=between.slice(between.indexOf('{'),between.lastIndexOf('}')+1);
-assert.deepEqual(JSON.parse(source),raw,'Review packet and bundled source must be identical');
+assert(packet.includes('## Item-by-item human-readable academic review source'),
+ 'NotebookLM packet must be human-readable Markdown, not a raw JSON source');
+assert(!packet.includes('BEGIN_REFERENCE_LIBRARY_JSON')&&!packet.includes('"""json'),
+ 'Do not submit machine-only JSON as NotebookLM source');
 assert.equal(raw.review_status,'NOTEBOOKLM_REVIEW_PENDING','No false academic PASS claim');
 assert.equal(raw.entries.length,26,'Keep bounded pilot before substantive content review');
 const kinds={irregular_verbs:6,collocations:5,phrasal_verbs:4,idioms:3,
@@ -22,6 +21,23 @@ assert.equal(new Set(raw.entries.map(e=>e.id)).size,raw.entries.length,'Unique I
 for(const [kind,n] of Object.entries(kinds))
  assert.equal(raw.entries.filter(e=>e.kind===kind).length,n,'Wrong count for '+kind);
 for(const e of raw.entries){
+ const header='### '+e.id+' — '+e.term;
+ const index=packet.indexOf(header);
+ assert(index>=0&&packet.indexOf(header,index+header.length)<0,
+  e.id+' must appear exactly once in human-readable review packet');
+ const next=packet.indexOf('\n### ',index+header.length);
+ const body=packet.slice(index,next>=0?next:packet.indexOf('## Independent academic audit questions',index));
+ const fields=[
+  ['Category',e.kind],['Suggested learning level',e.level],
+  ['Register',e.register],['Related skill',e.skill],
+  ['Meaning or strategy',e.meaning],['Original example',e.example],
+  ['Usage note',e.note],
+ ];
+ if(e.forms)fields.push(['Irregular forms',
+  'base='+e.forms.base+'; past='+e.forms.past+'; past participle='+e.forms.participle]);
+ for(const [label,value] of fields)
+  assert(body.includes('- **'+label+':** '+value),
+   e.id+' review mirror does not match the machine source: '+label);
  assert(/^REF-(IRR|COL|PHR|IDI|MIS|TIP)-\d{2}$/.test(e.id),e.id+' must be stable');
  for(const k of ['term','meaning','example','note','register','skill','level'])
   assert(typeof e[k]==='string'&&e[k].trim().length>1,e.id+' missing '+k);
