@@ -167,6 +167,18 @@ This demonstrates **transactional all-or-nothing semantics and post-graceful-res
 
 **Exact-HEAD CI PENDING** for R4o until the full workflow finishes. Retain PR Draft, Issue #103 OPEN, v1.26 NO_GO, no merge/deploy or original data modification.
 
+## R4p — 2,000 synthetic Lesson normalized-storage scale gate (capacity research only)
+
+**Owner goal:** 60 existing A1–C2 Units may ultimately contain roughly 480 core Lessons at eight per Unit, with added 12-week Writing, IELTS and TOEFL paths. The new *engineering design target* is at least **2,000 Lesson identities across the entire catalog**, not 2,000 individually authored learning tasks and not a single mandatory browser import package.
+
+**Independent synthetic stress setup:** The R4p fixture constructs 2,000 **invented** but uniquely named Lesson IDs using the existing skill/CEFR naming pattern, mapped across 60 synthetic Unit references; Writing12/IELTS/TOEFL path lists reuse existing Lesson IDs instead of duplicating full bodies. It simulates cumulative 1,960 → 1,980 → 2,000 lesson-source snapshots, 73 fake historical attempt references and a rubric change affecting exactly 12 historically referenced Lessons. The existing pure revision planner must yield **2,000 current Lessons, 2,012 unique immutable lesson+rubric bodies and 73 protected aliases**, not three stored cumulative copies.
+
+The proof installs this model into a wholly disposable **real Chromium IndexedDB** normalized vault, reads back the 2,000-Lesson active manifest, checks targeted current/historic source lookup and the original Writing rubric, and then simulates an additive **2,001st** synthetic Lesson. The second install must add **exactly one** new revision blob, reuse all previous 2,012 and preserve all 73 historical aliases. A missing original versioned source must fail closed. The test records serialized input/normalized-plan sizes for observation without treating artificial sizes as real academic content.
+
+**Important boundaries:** This test does **not** enter the current production 250-Lesson cumulative importer, does not wire the app to lazy catalog loading, and does not prove on-device 2,000-Lesson caching, actual iPad Safari storage quota/eviction, media download, full portable Recovery at 2,000 Lesson scale, responsive navigation latency or the user's historical 73 real attempts. A green result demonstrates the isolated normalized data model and Chromium store can accept this synthetic volume without duplicating unchanged lesson bodies. Product-scale capability still requires segmented delivery, Safari acceptance and independently authorized deployment.
+
+**Exact-head CI PENDING.** Preserve PR #129 Draft, Issue #103 OPEN, v1.26 NO_GO, V2 Recovery and all real learner scores unchanged.
+
 ## Explicit non-claims / blockers
 
 - SHA verifies integrity of archived JSON, but it is **not a cryptographic signature proving the real provenance of the original learner data**.
