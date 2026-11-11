@@ -53,7 +53,7 @@ assert.match(oral.boundary,/not speaking fluency/);
 const noScoring=buildOfflineLessonReview(lesson,{...old,results:[]});
 assert.equal(noScoring,null);
 const ui=fs.readFileSync(path.join(root,'app/foundation.tsx'),'utf8');
-assert(ui.includes("!editable&&attempt?.results?.length>0&&<OfflineLessonReview"),
+assert(ui.includes("!editable&&attempt&&(attempt.results?.length??0)>0&&<OfflineLessonReview"),
  'No feedback must be exposed before submit');
 assert(ui.includes("import {OfflineLessonReview} from './offline-lesson-review'"));
 const display=fs.readFileSync(path.join(root,'app/offline-lesson-review.tsx'),'utf8');
