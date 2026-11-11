@@ -47,6 +47,7 @@ const coreTests=[
 ];
 
 const fullRegressionTests=[
+  "p0-writing-review-browser.cjs",
   "writing-course-v2-a.cjs",
   "writing-course-v2-b.cjs",
   "writing-course-v2-c.cjs",
