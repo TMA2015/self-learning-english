@@ -179,6 +179,18 @@ The proof installs this model into a wholly disposable **real Chromium IndexedDB
 
 **Exact-head CI PENDING.** Preserve PR #129 Draft, Issue #103 OPEN, v1.26 NO_GO, V2 Recovery and all real learner scores unchanged.
 
+## R4q — target one Unit without reading 2,001 full Lesson bodies (research only)
+
+R4p showed the normalized IndexedDB vault can hold 2,000 synthetic lessons and later add a 2,001st without copying 2,000 old bodies. R4q tests the **next required read behavior**, in a new Chromium process reusing R4p's **disposable** profile after a normal browser restart.
+
+The non-production vault gains \`resolveCurrentBatch(lessonIds)\`. It reads the **lightweight active manifest** (2,001 identifiers and revision pointers), then loads **only** the specifically requested immutable Lesson bodies in **one read-only IndexedDB transaction** by their revision keys; it does not call \`getAll()\` to materialize the whole library. Each returned body is independently SHA-256-verified after the transaction finishes. Empty, duplicate, unknown and oversized batches fail closed without returning a partial Unit; a conservative 100-Lesson per-request bound is imposed only on this research interface.
+
+The Chromium gate requests **35 fabricated Lessons** belonging to one A1 Unit, checks order/content and single-Lesson equivalence; requests the 20-Lesson synthetic IELTS path and checks shared immutable references, then individually retrieves the synthetic 2,001st Lesson. It verifies the originally referenced historical rubric is still available and rejects unknown, duplicate and oversized requests. The research fixture uses no real learner data and never overwrites localStorage.
+
+**Boundaries:** This establishes targeted **local IndexedDB read behavior** against an invented library, not a production Unit UI, download-on-demand packaging, network caching, offline synchronization, browser quota/eviction, performance on slow Safari/iPad hardware, or end-to-end family backup/restore. Protected LIVE cumulative importer still enforces 250. Actual content segmentation, cross-course navigation, Safari device acceptance and fully gated V2-to-V3 cutover are separate remaining work.
+
+**Exact-head CI PENDING** until the new full workflow confirms this test. Keep Draft, NO_GO, no merge/deploy or learner-data migration.
+
 ## Explicit non-claims / blockers
 
 - SHA verifies integrity of archived JSON, but it is **not a cryptographic signature proving the real provenance of the original learner data**.
