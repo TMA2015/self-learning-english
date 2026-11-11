@@ -21,338 +21,249 @@ Does this draft genuinely help young English learners find accurate reference in
 - Prohibit any disclosure of active Foundation answer keys, transcripts, future listening audio, attempts, student drafts or scoring criteria in the Reference Library.
 - After reviewer PASS / PASS_WITH_REQUIRED_CHANGES, reconcile literal entry text and levels in this one JSON source, then rerun exact-head QA. If FAIL, keep route out of production.
 
-## Source data for item-level review
+## Item-by-item human-readable academic review source
 
-The following JSON is exactly the same candidate content submitted in `content/reference-library-pilot-v1.json`. The source-format markers let automated QA assert packet/source parity.
+The following 26 Markdown entries mirror the actual static JSON candidate exactly. All IDs, term forms, levels, register labels, original examples, meanings and notes are present. They are **not yet independently reviewed**. GitHub retains the machine JSON separately; NotebookLM receives ONLY this human-readable Markdown packet.
 
-BEGIN_REFERENCE_LIBRARY_JSON
-```json
-{
-  "packet_id": "SLE-REFERENCE-LIBRARY-PILOT-R1-20261112",
-  "review_status": "NOTEBOOKLM_REVIEW_PENDING",
-  "source": "original authored reference material; no external commercial source",
-  "notice": "Suggested CEFR levels are learning-guide tags, not CEFR certification. These entries have no quiz keys or scoring evidence.",
-  "entries": [
-    {
-      "id": "REF-IRR-01",
-      "kind": "irregular_verbs",
-      "level": "A1",
-      "register": "neutral",
-      "term": "go",
-      "meaning": "move to another place",
-      "example": "Yesterday we went to the sports centre after lunch.",
-      "note": "go — went — gone; use went for the simple past; gone commonly follows have/has.",
-      "skill": "grammar",
-      "forms": {
-        "base": "go",
-        "past": "went",
-        "participle": "gone"
-      }
-    },
-    {
-      "id": "REF-IRR-02",
-      "kind": "irregular_verbs",
-      "level": "A1",
-      "register": "neutral",
-      "term": "see",
-      "meaning": "notice something with your eyes",
-      "example": "I saw a colourful bird outside my window.",
-      "note": "see — saw — seen; avoid 'have saw' in standard English.",
-      "skill": "grammar",
-      "forms": {
-        "base": "see",
-        "past": "saw",
-        "participle": "seen"
-      }
-    },
-    {
-      "id": "REF-IRR-03",
-      "kind": "irregular_verbs",
-      "level": "A2",
-      "register": "neutral",
-      "term": "buy",
-      "meaning": "get something by paying for it",
-      "example": "Nina bought a second-hand dictionary last week.",
-      "note": "buy — bought — bought; the past and past participle are the same.",
-      "skill": "grammar",
-      "forms": {
-        "base": "buy",
-        "past": "bought",
-        "participle": "bought"
-      }
-    },
-    {
-      "id": "REF-IRR-04",
-      "kind": "irregular_verbs",
-      "level": "A2",
-      "register": "neutral",
-      "term": "write",
-      "meaning": "make words on paper or a screen",
-      "example": "We have written three short reviews this month.",
-      "note": "write — wrote — written; use the participle after have/has.",
-      "skill": "grammar",
-      "forms": {
-        "base": "write",
-        "past": "wrote",
-        "participle": "written"
-      }
-    },
-    {
-      "id": "REF-IRR-05",
-      "kind": "irregular_verbs",
-      "level": "A2",
-      "register": "neutral",
-      "term": "choose",
-      "meaning": "decide between possibilities",
-      "example": "The class chose a new team name on Monday.",
-      "note": "choose — chose — chosen; don't confuse present choose with past chose.",
-      "skill": "grammar",
-      "forms": {
-        "base": "choose",
-        "past": "chose",
-        "participle": "chosen"
-      }
-    },
-    {
-      "id": "REF-IRR-06",
-      "kind": "irregular_verbs",
-      "level": "B1",
-      "register": "neutral",
-      "term": "grow",
-      "meaning": "become larger or develop",
-      "example": "The plants have grown quickly in the sunny room.",
-      "note": "grow — grew — grown; grown often follows have/has.",
-      "skill": "grammar",
-      "forms": {
-        "base": "grow",
-        "past": "grew",
-        "participle": "grown"
-      }
-    },
-    {
-      "id": "REF-COL-01",
-      "kind": "collocations",
-      "level": "A1",
-      "register": "neutral",
-      "term": "catch a bus",
-      "meaning": "get onto a bus you planned to travel on",
-      "example": "If we leave now, we can catch the early bus.",
-      "note": "We usually say catch a bus, not take hold of a bus.",
-      "skill": "vocabulary"
-    },
-    {
-      "id": "REF-COL-02",
-      "kind": "collocations",
-      "level": "A2",
-      "register": "neutral",
-      "term": "take notes",
-      "meaning": "write short points while listening or reading",
-      "example": "I take notes during science videos to remember key ideas.",
-      "note": "Take notes is a common verb–noun combination.",
-      "skill": "vocabulary"
-    },
-    {
-      "id": "REF-COL-03",
-      "kind": "collocations",
-      "level": "A2",
-      "register": "neutral",
-      "term": "make progress",
-      "meaning": "improve or move towards a goal",
-      "example": "Her reading is difficult, but she is making progress.",
-      "note": "We say make progress; progress is normally uncountable here.",
-      "skill": "vocabulary"
-    },
-    {
-      "id": "REF-COL-04",
-      "kind": "collocations",
-      "level": "B1",
-      "register": "neutral",
-      "term": "meet a deadline",
-      "meaning": "finish work by the required time",
-      "example": "The team divided the tasks so they could meet the deadline.",
-      "note": "Meet a deadline means finish on time, not meet a person.",
-      "skill": "vocabulary"
-    },
-    {
-      "id": "REF-COL-05",
-      "kind": "collocations",
-      "level": "B1",
-      "register": "neutral",
-      "term": "strong argument",
-      "meaning": "reasoning supported by good reasons or evidence",
-      "example": "Their proposal gives a strong argument for a quieter library.",
-      "note": "Strong describes the quality of reasoning, not speaking loudly.",
-      "skill": "vocabulary"
-    },
-    {
-      "id": "REF-PHR-01",
-      "kind": "phrasal_verbs",
-      "level": "A2",
-      "register": "neutral",
-      "term": "look up",
-      "meaning": "search for information in a reference source",
-      "example": "You can look up a new word in a dictionary.",
-      "note": "Separable: look the word up is possible; look up the word is also possible.",
-      "skill": "vocabulary"
-    },
-    {
-      "id": "REF-PHR-02",
-      "kind": "phrasal_verbs",
-      "level": "A2",
-      "register": "neutral",
-      "term": "run out of",
-      "meaning": "have no more of something left",
-      "example": "We ran out of paper before the art lesson finished.",
-      "note": "Run out of something does not mean run outdoors.",
-      "skill": "vocabulary"
-    },
-    {
-      "id": "REF-PHR-03",
-      "kind": "phrasal_verbs",
-      "level": "B1",
-      "register": "neutral",
-      "term": "turn down",
-      "meaning": "reject an offer or request",
-      "example": "Kai turned down the invitation because he had another plan.",
-      "note": "Turn down is also used for lowering volume; context changes its meaning.",
-      "skill": "vocabulary"
-    },
-    {
-      "id": "REF-PHR-04",
-      "kind": "phrasal_verbs",
-      "level": "B1",
-      "register": "neutral",
-      "term": "set up",
-      "meaning": "organize or prepare something so it can start",
-      "example": "Students set up a small exhibition in the hallway.",
-      "note": "Set up can be separable: set the display up.",
-      "skill": "vocabulary"
-    },
-    {
-      "id": "REF-IDI-01",
-      "kind": "idioms",
-      "level": "B1",
-      "register": "informal",
-      "term": "break the ice",
-      "meaning": "help people feel more relaxed when first meeting",
-      "example": "A simple question about music helped break the ice at the club.",
-      "note": "This is figurative: no real ice needs to break.",
-      "skill": "vocabulary"
-    },
-    {
-      "id": "REF-IDI-02",
-      "kind": "idioms",
-      "level": "B1",
-      "register": "informal",
-      "term": "under the weather",
-      "meaning": "feeling slightly ill",
-      "example": "I felt under the weather, so I rested after school.",
-      "note": "A conversational idiom, not a medical diagnosis.",
-      "skill": "vocabulary"
-    },
-    {
-      "id": "REF-IDI-03",
-      "kind": "idioms",
-      "level": "B2",
-      "register": "neutral",
-      "term": "on the same page",
-      "meaning": "agree on the basic understanding or plan",
-      "example": "Before starting, the group checked they were on the same page.",
-      "note": "Common in teamwork; it is not about reading one literal page.",
-      "skill": "vocabulary"
-    },
-    {
-      "id": "REF-MIS-01",
-      "kind": "common_mistakes",
-      "level": "A2",
-      "register": "neutral",
-      "term": "many vs much",
-      "meaning": "many with countable plural nouns; much with uncountable nouns",
-      "example": "How many pencils do you need? How much water is left?",
-      "note": "Ask whether the noun can be counted as individual items.",
-      "skill": "grammar"
-    },
-    {
-      "id": "REF-MIS-02",
-      "kind": "common_mistakes",
-      "level": "A2",
-      "register": "neutral",
-      "term": "since vs for",
-      "meaning": "since names a starting point; for gives a duration",
-      "example": "I have lived here since 2022. I have lived here for four years.",
-      "note": "Since and for express different kinds of time information.",
-      "skill": "grammar"
-    },
-    {
-      "id": "REF-MIS-03",
-      "kind": "common_mistakes",
-      "level": "A2",
-      "register": "neutral",
-      "term": "borrow vs lend",
-      "meaning": "borrow means receive temporarily; lend means give temporarily",
-      "example": "Can I borrow your ruler? Yes, I can lend it to you.",
-      "note": "Check who receives the object and who gives it.",
-      "skill": "grammar"
-    },
-    {
-      "id": "REF-MIS-04",
-      "kind": "common_mistakes",
-      "level": "B1",
-      "register": "neutral",
-      "term": "fewer vs less",
-      "meaning": "fewer usually modifies countable plurals; less usually modifies uncountable nouns",
-      "example": "This version has fewer errors and needs less time.",
-      "note": "These are useful general writing conventions; some real-world usage varies.",
-      "skill": "grammar"
-    },
-    {
-      "id": "REF-TIP-01",
-      "kind": "learning_tips",
-      "level": "A1",
-      "register": "neutral",
-      "term": "Reading: gist before detail",
-      "meaning": "first identify what the whole passage is about",
-      "example": "Before checking dates, read the headline and ask what the notice is for.",
-      "note": "A gist answer should describe the main message, not repeat one small fact.",
-      "skill": "reading"
-    },
-    {
-      "id": "REF-TIP-02",
-      "kind": "learning_tips",
-      "level": "B1",
-      "register": "neutral",
-      "term": "Reading: evidence vs assumption",
-      "meaning": "separate what a text supports from what you only suppose",
-      "example": "If a poster says places are limited, do not assume every applicant is accepted.",
-      "note": "Point to an actual sentence before making a strong inference.",
-      "skill": "reading"
-    },
-    {
-      "id": "REF-TIP-03",
-      "kind": "learning_tips",
-      "level": "A2",
-      "register": "neutral",
-      "term": "Grammar: meaning before form",
-      "meaning": "decide what a sentence needs to express before choosing a grammar pattern",
-      "example": "If an action ended yesterday, check whether a simple past form is appropriate.",
-      "note": "Compare meanings first; then check forms and common exceptions.",
-      "skill": "grammar"
-    },
-    {
-      "id": "REF-TIP-04",
-      "kind": "learning_tips",
-      "level": "A2",
-      "register": "neutral",
-      "term": "Writing: analyse the task",
-      "meaning": "identify Topic, Task, Must Include and Boundary before drafting",
-      "example": "For a school invitation, note who will read it and which details they need.",
-      "note": "Brainstorm useful ideas, outline briefly, then check whether the final text answers the task.",
-      "skill": "writing"
-    }
-  ]
-}
-```
-END_REFERENCE_LIBRARY_JSON
+### REF-IRR-01 — go
+- **Category:** irregular_verbs
+- **Suggested learning level:** A1
+- **Register:** neutral
+- **Related skill:** grammar
+- **Meaning or strategy:** move to another place
+- **Original example:** Yesterday we went to the sports centre after lunch.
+- **Usage note:** go — went — gone; use went for the simple past; gone commonly follows have/has.
+- **Irregular forms:** base=go; past=went; past participle=gone
+
+### REF-IRR-02 — see
+- **Category:** irregular_verbs
+- **Suggested learning level:** A1
+- **Register:** neutral
+- **Related skill:** grammar
+- **Meaning or strategy:** notice something with your eyes
+- **Original example:** I saw a colourful bird outside my window.
+- **Usage note:** see — saw — seen; avoid 'have saw' in standard English.
+- **Irregular forms:** base=see; past=saw; past participle=seen
+
+### REF-IRR-03 — buy
+- **Category:** irregular_verbs
+- **Suggested learning level:** A2
+- **Register:** neutral
+- **Related skill:** grammar
+- **Meaning or strategy:** get something by paying for it
+- **Original example:** Nina bought a second-hand dictionary last week.
+- **Usage note:** buy — bought — bought; the past and past participle are the same.
+- **Irregular forms:** base=buy; past=bought; past participle=bought
+
+### REF-IRR-04 — write
+- **Category:** irregular_verbs
+- **Suggested learning level:** A2
+- **Register:** neutral
+- **Related skill:** grammar
+- **Meaning or strategy:** make words on paper or a screen
+- **Original example:** We have written three short reviews this month.
+- **Usage note:** write — wrote — written; use the participle after have/has.
+- **Irregular forms:** base=write; past=wrote; past participle=written
+
+### REF-IRR-05 — choose
+- **Category:** irregular_verbs
+- **Suggested learning level:** A2
+- **Register:** neutral
+- **Related skill:** grammar
+- **Meaning or strategy:** decide between possibilities
+- **Original example:** The class chose a new team name on Monday.
+- **Usage note:** choose — chose — chosen; don't confuse present choose with past chose.
+- **Irregular forms:** base=choose; past=chose; past participle=chosen
+
+### REF-IRR-06 — grow
+- **Category:** irregular_verbs
+- **Suggested learning level:** B1
+- **Register:** neutral
+- **Related skill:** grammar
+- **Meaning or strategy:** become larger or develop
+- **Original example:** The plants have grown quickly in the sunny room.
+- **Usage note:** grow — grew — grown; grown often follows have/has.
+- **Irregular forms:** base=grow; past=grew; past participle=grown
+
+### REF-COL-01 — catch a bus
+- **Category:** collocations
+- **Suggested learning level:** A1
+- **Register:** neutral
+- **Related skill:** vocabulary
+- **Meaning or strategy:** get onto a bus you planned to travel on
+- **Original example:** If we leave now, we can catch the early bus.
+- **Usage note:** We usually say catch a bus, not take hold of a bus.
+
+### REF-COL-02 — take notes
+- **Category:** collocations
+- **Suggested learning level:** A2
+- **Register:** neutral
+- **Related skill:** vocabulary
+- **Meaning or strategy:** write short points while listening or reading
+- **Original example:** I take notes during science videos to remember key ideas.
+- **Usage note:** Take notes is a common verb–noun combination.
+
+### REF-COL-03 — make progress
+- **Category:** collocations
+- **Suggested learning level:** A2
+- **Register:** neutral
+- **Related skill:** vocabulary
+- **Meaning or strategy:** improve or move towards a goal
+- **Original example:** Her reading is difficult, but she is making progress.
+- **Usage note:** We say make progress; progress is normally uncountable here.
+
+### REF-COL-04 — meet a deadline
+- **Category:** collocations
+- **Suggested learning level:** B1
+- **Register:** neutral
+- **Related skill:** vocabulary
+- **Meaning or strategy:** finish work by the required time
+- **Original example:** The team divided the tasks so they could meet the deadline.
+- **Usage note:** Meet a deadline means finish on time, not meet a person.
+
+### REF-COL-05 — strong argument
+- **Category:** collocations
+- **Suggested learning level:** B1
+- **Register:** neutral
+- **Related skill:** vocabulary
+- **Meaning or strategy:** reasoning supported by good reasons or evidence
+- **Original example:** Their proposal gives a strong argument for a quieter library.
+- **Usage note:** Strong describes the quality of reasoning, not speaking loudly.
+
+### REF-PHR-01 — look up
+- **Category:** phrasal_verbs
+- **Suggested learning level:** A2
+- **Register:** neutral
+- **Related skill:** vocabulary
+- **Meaning or strategy:** search for information in a reference source
+- **Original example:** You can look up a new word in a dictionary.
+- **Usage note:** Separable: look the word up is possible; look up the word is also possible.
+
+### REF-PHR-02 — run out of
+- **Category:** phrasal_verbs
+- **Suggested learning level:** A2
+- **Register:** neutral
+- **Related skill:** vocabulary
+- **Meaning or strategy:** have no more of something left
+- **Original example:** We ran out of paper before the art lesson finished.
+- **Usage note:** Run out of something does not mean run outdoors.
+
+### REF-PHR-03 — turn down
+- **Category:** phrasal_verbs
+- **Suggested learning level:** B1
+- **Register:** neutral
+- **Related skill:** vocabulary
+- **Meaning or strategy:** reject an offer or request
+- **Original example:** Kai turned down the invitation because he had another plan.
+- **Usage note:** Turn down is also used for lowering volume; context changes its meaning.
+
+### REF-PHR-04 — set up
+- **Category:** phrasal_verbs
+- **Suggested learning level:** B1
+- **Register:** neutral
+- **Related skill:** vocabulary
+- **Meaning or strategy:** organize or prepare something so it can start
+- **Original example:** Students set up a small exhibition in the hallway.
+- **Usage note:** Set up can be separable: set the display up.
+
+### REF-IDI-01 — break the ice
+- **Category:** idioms
+- **Suggested learning level:** B1
+- **Register:** informal
+- **Related skill:** vocabulary
+- **Meaning or strategy:** help people feel more relaxed when first meeting
+- **Original example:** A simple question about music helped break the ice at the club.
+- **Usage note:** This is figurative: no real ice needs to break.
+
+### REF-IDI-02 — under the weather
+- **Category:** idioms
+- **Suggested learning level:** B1
+- **Register:** informal
+- **Related skill:** vocabulary
+- **Meaning or strategy:** feeling slightly ill
+- **Original example:** I felt under the weather, so I rested after school.
+- **Usage note:** A conversational idiom, not a medical diagnosis.
+
+### REF-IDI-03 — on the same page
+- **Category:** idioms
+- **Suggested learning level:** B2
+- **Register:** neutral
+- **Related skill:** vocabulary
+- **Meaning or strategy:** agree on the basic understanding or plan
+- **Original example:** Before starting, the group checked they were on the same page.
+- **Usage note:** Common in teamwork; it is not about reading one literal page.
+
+### REF-MIS-01 — many vs much
+- **Category:** common_mistakes
+- **Suggested learning level:** A2
+- **Register:** neutral
+- **Related skill:** grammar
+- **Meaning or strategy:** many with countable plural nouns; much with uncountable nouns
+- **Original example:** How many pencils do you need? How much water is left?
+- **Usage note:** Ask whether the noun can be counted as individual items.
+
+### REF-MIS-02 — since vs for
+- **Category:** common_mistakes
+- **Suggested learning level:** A2
+- **Register:** neutral
+- **Related skill:** grammar
+- **Meaning or strategy:** since names a starting point; for gives a duration
+- **Original example:** I have lived here since 2022. I have lived here for four years.
+- **Usage note:** Since and for express different kinds of time information.
+
+### REF-MIS-03 — borrow vs lend
+- **Category:** common_mistakes
+- **Suggested learning level:** A2
+- **Register:** neutral
+- **Related skill:** grammar
+- **Meaning or strategy:** borrow means receive temporarily; lend means give temporarily
+- **Original example:** Can I borrow your ruler? Yes, I can lend it to you.
+- **Usage note:** Check who receives the object and who gives it.
+
+### REF-MIS-04 — fewer vs less
+- **Category:** common_mistakes
+- **Suggested learning level:** B1
+- **Register:** neutral
+- **Related skill:** grammar
+- **Meaning or strategy:** fewer usually modifies countable plurals; less usually modifies uncountable nouns
+- **Original example:** This version has fewer errors and needs less time.
+- **Usage note:** These are useful general writing conventions; some real-world usage varies.
+
+### REF-TIP-01 — Reading: gist before detail
+- **Category:** learning_tips
+- **Suggested learning level:** A1
+- **Register:** neutral
+- **Related skill:** reading
+- **Meaning or strategy:** first identify what the whole passage is about
+- **Original example:** Before checking dates, read the headline and ask what the notice is for.
+- **Usage note:** A gist answer should describe the main message, not repeat one small fact.
+
+### REF-TIP-02 — Reading: evidence vs assumption
+- **Category:** learning_tips
+- **Suggested learning level:** B1
+- **Register:** neutral
+- **Related skill:** reading
+- **Meaning or strategy:** separate what a text supports from what you only suppose
+- **Original example:** If a poster says places are limited, do not assume every applicant is accepted.
+- **Usage note:** Point to an actual sentence before making a strong inference.
+
+### REF-TIP-03 — Grammar: meaning before form
+- **Category:** learning_tips
+- **Suggested learning level:** A2
+- **Register:** neutral
+- **Related skill:** grammar
+- **Meaning or strategy:** decide what a sentence needs to express before choosing a grammar pattern
+- **Original example:** If an action ended yesterday, check whether a simple past form is appropriate.
+- **Usage note:** Compare meanings first; then check forms and common exceptions.
+
+### REF-TIP-04 — Writing: analyse the task
+- **Category:** learning_tips
+- **Suggested learning level:** A2
+- **Register:** neutral
+- **Related skill:** writing
+- **Meaning or strategy:** identify Topic, Task, Must Include and Boundary before drafting
+- **Original example:** For a school invitation, note who will read it and which details they need.
+- **Usage note:** Brainstorm useful ideas, outline briefly, then check whether the final text answers the task.
 
 ## Independent academic audit questions
 
