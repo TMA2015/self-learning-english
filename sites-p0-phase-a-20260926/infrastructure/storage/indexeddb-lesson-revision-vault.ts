@@ -284,7 +284,9 @@ export class BrowserLessonRevisionVault {
    new Set(lessonIds).size!==lessonIds.length)
    throw abortError('Invalid or duplicate single-Unit Lesson IDs.');
   const db=await openDatabase(this.factory);
-  const selected:Array<RevisionBlob|undefined>=new Array(lessonIds.length);
+  // Initialize every slot: Array.some() skips holes in sparse arrays.
+  const selected:Array<RevisionBlob|undefined>=Array.from(
+   {length:lessonIds.length},()=>undefined);
   try{
    await new Promise<void>((resolve,reject)=>{
     const tx=db.transaction([STORE_MANIFEST,STORE_BLOBS],'readonly');
