@@ -15,6 +15,7 @@ import type {LearnerEntry} from '../../domain/lesson-revision-recovery-v3';
  * Neither the format nor these stores are installed in the live Site.
  */
 export const R4U_DB='sle-issue103-r4u-disposable-segmented-restore';
+export const R4V_DB='sle-issue103-r4v-disposable-ui-file-restore';
 const STORES=['meta','blobs','aliases','entries'];
 type Control={
  key:'manifest';manifestText:string;blobOrder:string[];
@@ -27,9 +28,11 @@ type Stored={
 const fail=(message:string)=>Error('R4u disposable restore blocked: '+message);
 const aliasKey=(v:string,l:string)=>JSON.stringify([v,l]);
 
-async function open(factory:IDBFactory):Promise<IDBDatabase>{
+async function open(factory:IDBFactory,name=R4U_DB):Promise<IDBDatabase>{
+ if(name!==R4U_DB&&name!==R4V_DB)
+  throw fail('Unexpected non-research destination name');
  return await new Promise((resolve,reject)=>{
-  const req=factory.open(R4U_DB,1);
+  const req=factory.open(name,1);
   req.onupgradeneeded=()=>{
    const db=req.result;
    if(!db.objectStoreNames.contains('meta'))db.createObjectStore('meta',{keyPath:'key'});
@@ -63,12 +66,12 @@ async function inventory(db:IDBDatabase):Promise<{
 /** Verified *complete* multipart archive FIRST; then one all-store write. */
 export async function restoreR4uVerifiedParts(
  factory:IDBFactory,packet:R4tPacket,
- deliberatelyAbortAfter64Bodies=false
+ deliberatelyAbortAfter64Bodies=false,name=R4U_DB
 ):Promise<{status:'ABORTED'|'COMMITTED';lessons:number;attempts:number;parts:number}>{
  // A missing, corrupted or checksum-valid but semantically incomplete
  // archive must fail before even opening or changing a destination.
  const {source,attempts,partCount}=await verifyR4tSegmentedResearchBackup(packet);
- const db=await open(factory);
+ const db=await open(factory,name);
  try{
   const initial=await inventory(db);
   if(Object.values(initial).some(n=>n!==0))
@@ -138,10 +141,10 @@ async function readStored(db:IDBDatabase):Promise<Stored>{
  });
 }
 /** Deliberate FULL post-restart readback, not a routine Unit navigation API. */
-export async function inspectR4uRestoredFullArchive(factory:IDBFactory):
+export async function inspectR4uRestoredFullArchive(factory:IDBFactory,name=R4U_DB):
  Promise<{lessons:number;attempts:number;parts:number;bytes:number;
   learnerKeys:number;historyAliases:number;oldWritingValue:string|null}>{
- const db=await open(factory);
+ const db=await open(factory,name);
  let stored:Stored;
  try{stored=await readStored(db)}finally{db.close()}
  const meta=stored.control;
@@ -191,4 +194,57 @@ export async function inspectR4uRestoredFullArchive(factory:IDBFactory):
   parts:check.partCount,bytes:check.bytes,
   learnerKeys:stored.entries.length,
   historyAliases:aliases.length,oldWritingValue:writing};
+}
+
+/**
+ * Reconstruct verified R4t parts from an already-restored disposable origin.
+ * Full inventory operation for one explicit user export ONLY, never navigation.
+ * Refuses missing/extra blobs, aliases, or learner records.
+ */
+export async function exportR4uRestoredResearchPacket(
+ factory:IDBFactory,name=R4U_DB
+):Promise<R4tPacket>{
+ const db=await open(factory,name);
+ let stored:Stored;
+ try{stored=await readStored(db)}finally{db.close()}
+ const meta=stored.control;
+ if(!meta||!Array.isArray(meta.blobOrder)||
+  meta.blobOrder.length!==stored.blobs.length)
+  throw fail('No complete source to export from research profile');
+ const header=JSON.parse(meta.manifestText) as {
+  active:ActiveLessonManifest;aliases:RevisionAlias[];
+  entries:LearnerEntry[];exportedAt:string;
+ };
+ const revisions=new Map(stored.blobs.map(row=>[row.revision,row]));
+ if(revisions.size!==stored.blobs.length||
+  new Set(meta.blobOrder).size!==meta.blobOrder.length)
+  throw fail('Duplicated immutable body while exporting');
+ const blobs=meta.blobOrder.map(hash=>{
+  const blob=revisions.get(hash);
+  if(!blob)throw fail('Original current/historical Lesson source missing');
+  return blob;
+ });
+ const byAlias=new Map(stored.aliases.map(a=>
+  [aliasKey(a.version,a.lessonId),a]));
+ if(byAlias.size!==stored.aliases.length||
+  byAlias.size!==header.aliases.length)
+  throw fail('Unexpected number of original versioned source aliases');
+ const aliases=header.aliases.map(a=>{
+  const record=byAlias.get(aliasKey(a.version,a.lessonId));
+  if(!record)throw fail('A protected grading source alias is unavailable');
+  const {key:_key,...entry}=record;
+  if(canonicalLessonJSON(entry)!==canonicalLessonJSON(a))
+   throw fail('Protected grading source differs from original');
+  return entry;
+ });
+ if(canonicalLessonJSON(stored.entries)!==
+  canonicalLessonJSON([...header.entries].sort((a,b)=>a.key.localeCompare(b.key))))
+  throw fail('Original learner, Writing, or course bytes differ');
+ const parts=await buildR4tSegmentedResearchBackup({
+  active:header.active,aliases,entries:stored.entries,blobs
+ },header.exportedAt);
+ if(parts.manifestText!==meta.manifestText)
+  throw fail('Complete re-export does not match original source manifest');
+ await verifyR4tSegmentedResearchBackup(parts);
+ return parts;
 }
