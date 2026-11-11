@@ -22,7 +22,12 @@ export type TodayPlan<T extends TodayAttempt=TodayAttempt> = {
  emptyReason:string|undefined;
 };
 const allUnits:{[lessonId:string]:string}={
- ...lessonUnits.baseline,...lessonUnits.conditional_v119
+ ...lessonUnits.baseline,...lessonUnits.conditional_v119,
+ ...lessonUnits.confirmed_v121,...lessonUnits.confirmed_v122,
+ ...lessonUnits.confirmed_v123,...lessonUnits.confirmed_v124,
+ ...lessonUnits.confirmed_v125,...lessonUnits.confirmed_v126,
+ ...lessonUnits.confirmed_v127,
+ ...lessonUnits.confirmed_v128
 };
 export function primaryUnitForLesson(id:string):string|undefined{return allUnits[id]}
 /**

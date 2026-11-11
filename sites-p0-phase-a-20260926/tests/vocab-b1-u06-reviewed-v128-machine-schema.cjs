@@ -1,0 +1,91 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const {execFileSync}=require('node:child_process');
+const root=path.resolve(__dirname,'..');
+const source=fs.readFileSync(path.join(root,'content/review-packets/SLE_VOC_B1_U06_RICH_PILOT_NOTEBOOKLM_R1_20261111.md'),'utf8');
+const verdict=fs.readFileSync(path.join(root,'content/review-packets/SLE_VOC_B1_U06_RICH_PILOT_NOTEBOOKLM_VERDICT_20261111.txt'),'utf8');
+const hash=crypto.createHash('sha1').update('blob '+Buffer.byteLength(source)+'\0').update(source).digest('hex');
+assert.equal(hash,'247741588ad47f2c832cfab3a4a2dc0014de12cb');
+for(const s of ['PACKET_ID: SLE-VOC-B1-U06-RICH-PILOT-20261111-R1','BANK_ENTRIES_REVIEWED: 14/14','OBJECTIVE_MCQS_REVIEWED: 10/10','SHORT_ANSWER_ITEMS_REVIEWED: 2/2','ACADEMIC_VERDICT: PASS','REQUIRED_CORRECTIONS: NONE','SCHEMA_AND_BROWSER_QA: NOT_PERFORMED','PRODUCTION_RELEASE: NO_GO'])assert(verdict.includes(s),s);
+const old=require('../content/curriculum-1.27.0-candidate.json');
+const next=require('../content/curriculum-1.28.0-candidate.json');
+const batch=require('../content/batches/vocab-b1-u06-rich-v128-draft.json');
+const map=require('../content/sle-unit-navigation-map-v1.json');
+assert.deepEqual([old.lessons.length,next.lessons.length,next.lessons.reduce((n,l)=>n+l.activities.length,0)],[174,176,1224]);
+assert.equal(next.schema_version,'1.28.0');
+assert.deepEqual(next.lessons.slice(0,174),old.lessons);
+assert.deepEqual(next.course.sequence.slice(0,174),old.course.sequence);
+assert.deepEqual(next.rubrics,old.rubrics);
+assert.deepEqual(next.lessons.slice(174),batch.lessons);
+const vocab=next.lessons[174],writer=next.lessons[175];
+assert.equal(vocab.id,'VOC-B1-07');assert.equal(writer.id,'WRI-B1-12');
+assert.equal(vocab.module,'vocabulary');assert.equal(writer.module,'writing');
+assert.equal(map.confirmed_v128[vocab.id],'B1-U06');
+assert.equal(map.confirmed_v128[writer.id],'B1-U06');
+assert.deepEqual(next.course.sequence.slice(174),[vocab.id,writer.id]);
+const bank=[...source.matchAll(/^\|\s*(\d{1,2})\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|$/gm)].filter(x=>+x[1]>=1&&+x[1]<=14);
+assert.equal(bank.length,14);assert.equal(vocab.examples.length,15);
+for(let i=0;i<14;i++){
+ const x=bank[i];assert.equal(+x[1],i+1);
+ assert(vocab.examples[i].startsWith(x[2].trim()+' · '));
+ assert(vocab.examples[i].includes(x[3].trim()));
+ assert(vocab.examples[i].includes(x[4].trim()));
+}
+assert(vocab.examples[14].startsWith('INDEPENDENT WORKED MODEL · '));
+for(let k=1;k<=4;k++){assert(vocab.explanation.en.includes('CORE-'+k));assert(writer.explanation.en.includes('CORE-'+k))}
+assert(!vocab.explanation.en.includes('Reviewer-only answer key'));
+const part=source.slice(source.indexOf('### Objective MCQ items'),source.indexOf('### Unscored personal transfer'));
+const questions=[...part.matchAll(/^\*\*(VOC-B1-07-Q(?:0[1-9]|1[0-2]))\.\*\* (.+)$/gm)];
+const keys=[...source.matchAll(/^\|\s*Q(\d{2})\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|$/gm)];
+assert.equal(questions.length,12);assert.equal(keys.length,12);
+const clean=t=>t.replace(/\*\*/g,'').replace(/\x60/g,'').replace(/\*/g,'').trim();
+for(let i=0;i<12;i++){
+ const h=questions[i],k=keys[i],a=vocab.activities[i];
+ const src=part.slice(h.index+h[0].length,questions[i+1]?.index??part.length);
+ assert.equal(a.id,h[1]);assert.equal(a.prompt,clean(h[2]));
+ assert.equal(k[1],String(i+1).padStart(2,'0'));
+ assert.equal(a.feedback.explanation_en,clean(k[3])+' Next step: '+clean(k[4]));
+ assert.equal(a.evidence_weight,1);assert(a.skill_tags.every(t=>t.startsWith('vocabulary.')));
+ const opt=[...src.matchAll(/^- ([A-D])\. (.+)$/gm)];
+ if(i<10){
+  assert.equal(a.type,'single_choice');assert.equal(a.options.length,4);assert.equal(opt.length,4);
+  for(let j=0;j<4;j++)assert.deepEqual(a.options[j],{id:opt[j][1],text:clean(opt[j][2])});
+  assert.equal(a.answer.correct_option_id,k[2].trim());
+ }else{
+  assert.equal(a.type,'short_answer');assert.equal(opt.length,0);
+  assert.deepEqual(a.answer.accepted_answers,[k[2].trim()]);
+  assert.deepEqual(a.answer.normalization,['trim','casefold','collapse_spaces','strip_terminal_punctuation']);
+ }
+}
+assert.deepEqual(vocab.activities.map(q=>q.answer.correct_option_id??q.answer.accepted_answers[0]),['B','A','C','D','B','C','A','D','B','C','raise','down']);
+const transfer=source.slice(source.indexOf('### Unscored personal transfer'),source.indexOf('## 5. CORE-4')).split('\n').filter(s=>s.trim()&&!s.startsWith('###')).join(' ').trim();
+const response=writer.activities[0];
+assert.equal(response.id,'WRI-B1-12-Q1');assert.equal(response.type,'extended_response');
+assert.equal(response.answer,null);assert.equal(response.evidence_weight,0);
+assert.equal(response.rubric_id,'RUBRIC-WRITING-B1');assert.equal(response.review_mode,'assisted_ai_or_human');
+assert.equal(response.prompt,clean(transfer));assert.equal(response.word_range_guidance,undefined);
+assert.equal(new Set(next.lessons.map(l=>l.id)).size,176);
+assert.equal(new Set(next.lessons.flatMap(l=>l.activities.map(a=>a.id))).size,1224);
+fs.mkdirSync(path.join(root,'.sites-runtime'),{recursive:true});
+const out='.sites-runtime/vocab-b1-u06-v128-check';
+execFileSync(process.execPath,['node_modules/typescript/bin/tsc','domain/academic.ts','domain/content-model.ts','domain/option-order.ts','domain/unit-guide-60.ts','domain/today-learning-path.ts','--outDir',out,'--rootDir','.','--module','commonjs','--target','es2022','--resolveJsonModule','--esModuleInterop','--skipLibCheck','--lib','es2022,dom'],{cwd:root,stdio:'inherit'});
+fs.writeFileSync(path.join(root,out,'package.json'),'{"type":"commonjs"}\n');
+const {validateSeed,mapSeed,MAX_CURRICULUM_LESSONS}=require(path.join(root,out,'domain/academic.js'));
+const {validateContent}=require(path.join(root,out,'domain/content-model.js'));
+const {createOptionOrder,orderedOptions,validateOptionOrder}=require(path.join(root,out,'domain/option-order.js'));
+const {unitGuideForCatalog,primaryUnitForLessonId}=require(path.join(root,out,'domain/unit-guide-60.js'));
+const {todayLearningPath}=require(path.join(root,out,'domain/today-learning-path.js'));
+assert.equal(MAX_CURRICULUM_LESSONS,250);
+assert.deepEqual(validateSeed(next),[]);assert.deepEqual(validateContent(mapSeed(next)),[]);
+const order=createOptionOrder(vocab.activities,()=>0);
+validateOptionOrder(vocab.activities,{version:'1.28.0',optionOrder:order});
+for(const q of vocab.activities.filter(x=>x.type==='single_choice'))assert.equal(orderedOptions(q,{optionOrder:order}).find(x=>x.id===q.answer.correct_option_id).text,q.options.find(x=>x.id===q.answer.correct_option_id).text);
+const catalog=next.lessons.map(l=>({id:l.id,title:l.title,module:l.module,cefr:l.cefr_target,minutes:l.estimated_minutes}));
+const guide=unitGuideForCatalog(catalog,next.course.sequence);
+assert.equal(guide.units.length,60);assert.equal(guide.mappedLessonCount,174);
+assert.deepEqual(guide.unmappedLessons.map(l=>l.id).sort(),['REA-C1-01','VOC-C2-01']);
+assert.equal(primaryUnitForLessonId(vocab.id),'B1-U06');assert.equal(primaryUnitForLessonId(writer.id),'B1-U06');
+const plan=todayLearningPath({lessons:catalog,attempts:[],course:{sequence:next.course.sequence}},undefined,'B1-U06');
+assert.equal(plan.focusUnit,'B1-U06');
+console.log(JSON.stringify({result:'PASS',gate:'VOC_B1_U06_RICH_V128_MACHINE_SCHEMA',reviewedBank:14,objectiveMcq:10,shortAnswer:2,unscoredTransfer:1,optionsVerified:40,courseLessons:176,activities:1224,unchangedPriorLessons:174,originalSourceBlob:hash,reviewerVerdict:'PASS',release:'NO_GO'}));

@@ -1,0 +1,2322 @@
+{
+  "packet_id": "SLE-F3-B2-U01U03-BULK12-AUTHORED-20261110-R1",
+  "source_file": "SLE_B2_BULK12_U01_U03_NOTEBOOKLM_R1_20261110.md",
+  "source_sha256": "dbf432cd788b865a55ca8c0e6c03321374968743c1b0af12ebfc2a647a6a07b9",
+  "academic_review": "NotebookLM PASS / AUTHORED_CONTENT_ITEM_LEVEL / 62 of 62 / zero mandatory corrections",
+  "review_disposition": "GO_FOR_MACHINE_SCHEMA_DRAFT_ONLY",
+  "production_status": "NOT_AUTHORIZED_NO_MERGE_NO_DEPLOY",
+  "base": "1.25.0",
+  "candidate": "1.26.0",
+  "prior_pr91": "SUPERSEDED_UNREVIEWED_DRAFT_NOT_IMPORTED",
+  "approved_rubric": "RUBRIC-WRITING-B2_FROM_APPENDIX_A",
+  "unit_assignments": {
+    "B2-U01": [
+      "GRA-B2-01",
+      "GRA-B2-02",
+      "REA-B2-02",
+      "WRI-B2-01"
+    ],
+    "B2-U02": [
+      "VOC-B2-02",
+      "VOC-B2-03",
+      "REA-B2-03",
+      "WRI-B2-02"
+    ],
+    "B2-U03": [
+      "REA-B2-04",
+      "REA-B2-05",
+      "VOC-B2-04",
+      "WRI-B2-03"
+    ]
+  },
+  "keys_from_independent_verdict": {
+    "GRA-B2-01": "BCADBCD",
+    "GRA-B2-02": "BACDBAC",
+    "REA-B2-02": "BCADBC",
+    "VOC-B2-02": "BACDBAC",
+    "VOC-B2-03": "CBDACBD",
+    "REA-B2-03": "CADBCA",
+    "REA-B2-04": "BDACBA",
+    "REA-B2-05": "CADBCA",
+    "VOC-B2-04": "ACBDACB"
+  },
+  "lessons": [
+    {
+      "id": "GRA-B2-01",
+      "module": "grammar",
+      "cefr_target": "B2",
+      "title": "How sure is the evidence? Present and past deduction",
+      "estimated_minutes": 30,
+      "objectives": [
+        "By the end, distinguish evidence-based certainty (`must`, `might/could`, `cannot`) from instructions, and select present or perfect infinitive forms when referring to now versus earlier events. The aim is to calibrate a claim, not merely insert a modal."
+      ],
+      "activities": [
+        {
+          "id": "GRA-B2-01-Q1",
+          "type": "single_choice",
+          "prompt": "A secure lending system confirms a projector was returned at 14:05 and shows no further checkout before 14:40. A note claims it remained on loan throughout that period. Assuming the record is accurate, which conclusion is justified?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It must still have been on loan at 14:40."
+            },
+            {
+              "id": "B",
+              "text": "It cannot have remained continuously on loan throughout that period."
+            },
+            {
+              "id": "C",
+              "text": "It might be returned next week."
+            },
+            {
+              "id": "D",
+              "text": "It must not be returned tomorrow."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The verified return, with no subsequent checkout, contradicts the claim of continuous loan status. Misconception: Ignoring the order of events or using a prohibition modal for a conclusion. Next step: Put the two timestamps in order and identify which later claim the record rules out."
+          },
+          "skill_tags": [
+            "grammar.modal_deduction"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-01-Q2",
+          "type": "single_choice",
+          "prompt": "A laptop is missing from a classroom. Three people used the room and nobody recorded who moved it. Which claim matches the available evidence?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The caretaker must have taken it."
+            },
+            {
+              "id": "B",
+              "text": "No one can have moved it."
+            },
+            {
+              "id": "C",
+              "text": "One of several people might have moved it."
+            },
+            {
+              "id": "D",
+              "text": "The computer must have stopped working."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Several explanations remain possible because no direct mover or cause is documented. Misconception: Mistaking access or opportunity for evidence of actual action. Next step: List two alternative explanations before using a strong deduction modal."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-01-Q3",
+          "type": "single_choice",
+          "prompt": "At 10:00 a verified live camera feed shows the team in Building A. A poster claims the team is meeting in Building B at exactly 10:00. Which inference is warranted?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The team cannot be in Building B at that moment."
+            },
+            {
+              "id": "B",
+              "text": "The team must not go into Building B."
+            },
+            {
+              "id": "C",
+              "text": "The team cannot have met yesterday."
+            },
+            {
+              "id": "D",
+              "text": "The team must be in Building B later."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Reliable simultaneous evidence rules out two distinct locations at the same time. Misconception: Confusing a present deduction with a prohibition or a past statement. Next step: Identify the time of the claim before selecting be or have been."
+          },
+          "skill_tags": [
+            "grammar.modal_deduction"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-01-Q4",
+          "type": "single_choice",
+          "prompt": "A notice states, “All participants must sign the attendance sheet before entering.” What does must express?",
+          "options": [
+            {
+              "id": "A",
+              "text": "An uncertain prediction."
+            },
+            {
+              "id": "B",
+              "text": "A strong conclusion from indirect evidence."
+            },
+            {
+              "id": "C",
+              "text": "A guess about an earlier event."
+            },
+            {
+              "id": "D",
+              "text": "An obligation established by the notice."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "The notice requires an action; it does not infer what participants did. Misconception: Treating every must as a degree of certainty. Next step: Ask whether must is based on an instruction or on observed evidence."
+          },
+          "skill_tags": [
+            "grammar.modals_obligation"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-01-Q5",
+          "type": "single_choice",
+          "prompt": "The meeting room is quiet and the lights are off. The group sometimes works without overhead lighting. Which statement avoids overclaiming?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The group must have finished already."
+            },
+            {
+              "id": "B",
+              "text": "The group might have finished, but could still be working quietly."
+            },
+            {
+              "id": "C",
+              "text": "The group cannot still be there."
+            },
+            {
+              "id": "D",
+              "text": "The group must not have held a meeting."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Quietness and darkness are compatible with several states, so a possibility claim is safer. Misconception: Using the absence of an expected signal as conclusive evidence. Next step: Describe one alternative that fits the observation before concluding."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-01-Q6",
+          "type": "single_choice",
+          "prompt": "A dated, independently verified photo shows a model completed on Monday. Someone says the model was first completed on Wednesday. Which conclusion follows?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The model must be built next Monday."
+            },
+            {
+              "id": "B",
+              "text": "The model might never have existed."
+            },
+            {
+              "id": "C",
+              "text": "The model cannot have been first completed on Wednesday."
+            },
+            {
+              "id": "D",
+              "text": "The model must not be shown in a photo."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "A verified complete state on Monday contradicts the claim of first completion on Wednesday. Misconception: Losing the importance of the word first and the earlier evidence. Next step: Underline the precise event claimed and locate the contradictory timestamp."
+          },
+          "skill_tags": [
+            "grammar.modal_deduction"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-01-Q7",
+          "type": "single_choice",
+          "prompt": "A teacher has not replied to a message. Which statement is the most defensible?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The teacher must have deleted it."
+            },
+            {
+              "id": "B",
+              "text": "The teacher cannot have seen it."
+            },
+            {
+              "id": "C",
+              "text": "The teacher must not check messages."
+            },
+            {
+              "id": "D",
+              "text": "The teacher might have read it but not replied."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Failure to reply does not show whether the message was read. Misconception: Confusing no evidence of a reply with evidence of no reading. Next step: Separate the observable fact from possible but unobserved actions."
+          },
+          "skill_tags": [
+            "grammar.modal_possibility"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — By the end, distinguish evidence-based certainty (`must`, `might/could`, `cannot`) from instructions, and select present or perfect infinitive forms when referring to now versus earlier events. The aim is to calibrate a claim, not merely insert a modal.\n\n**Why this matters:** Claims about school records, online messages and project decisions can sound confident without being supported.\n\nCORE-2 — **Step 1 — identify the proposition and its time.** `must be` / `cannot be` interpret a present state; `must have + past participle` / `might have + past participle` interpret an earlier event. **Step 2 — inspect evidence:** direct and trustworthy records can justify stronger deduction; a suggestive clue usually permits several explanations. **Step 3 — choose strength:** `must` = strong reasonable conclusion, `might/could` = possibility, `cannot` = ruled out by evidence. **Step 4 — separate obligation:** in `You must wear a badge`, the word expresses a rule, not evidence-based confidence. `Mustn't` normally expresses prohibition, not 'impossible in the past'.\n\n**Independent worked model (not used in any graded stem or source):**\n\nA community garden gate was photographed securely closed at 18:00, and a verified staff record shows it was locked at 17:45. A reasonable past deduction is: “The caretaker must have locked it before the photo.” Without that record, the photograph alone would support “Someone might have locked it earlier”; it does not identify who did it. The model explains the evidence, the timing and the alternative.\n\n**Typical pitfall and contrast:**\n\n“Nobody answered the invitation, so they can't have read it” incorrectly turns absence of a reply into proof of non-reading. “They might have read it without replying” is more defensible.\n\nCORE-3 — Complete the distinct original scenarios independently without revealing answer keys.\n\nCORE-4 — "
+      },
+      "examples": [
+        "INDEPENDENT MODEL — A community garden gate was photographed securely closed at 18:00, and a verified staff record shows it was locked at 17:45. A reasonable past deduction is: “The caretaker must have locked it before the photo.” Without that record, the photograph alone would support “Someone might have locked it earlier”; it does not identify who did it. The model explains the evidence, the timing and the alternative.",
+        "TRANSFER STRATEGY — Step 1 — identify the proposition and its time. `must be` / `cannot be` interpret a present state; `must have + past participle` / `might have + past participle` interpret an earlier event. Step 2 — inspect evidence: direct and trustworthy records can justify stronger deduction; a suggestive clue usua"
+      ]
+    },
+    {
+      "id": "GRA-B2-02",
+      "module": "grammar",
+      "cefr_target": "B2",
+      "title": "If things had happened differently: counterfactual meaning",
+      "estimated_minutes": 32,
+      "objectives": [
+        "Interpret second, third and mixed conditional meanings; distinguish a proposed future change from an imaginary past event, and use qualifications instead of presenting hypothetical outcomes as documented facts."
+      ],
+      "activities": [
+        {
+          "id": "GRA-B2-02-Q1",
+          "type": "single_choice",
+          "prompt": "The debate team did not record its rehearsal last week. Which sentence correctly imagines a different past outcome?",
+          "options": [
+            {
+              "id": "A",
+              "text": "If they recorded it, they will review it tomorrow."
+            },
+            {
+              "id": "B",
+              "text": "If they had recorded it, they could have reviewed their mistakes."
+            },
+            {
+              "id": "C",
+              "text": "If they record it, they reviewed their mistakes."
+            },
+            {
+              "id": "D",
+              "text": "If they have recorded it, they would review yesterday."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Past perfect in the if-clause and could have + past participle show an unreal past possibility. Misconception: Mixing actual future planning with an earlier counterfactual. Next step: Mark each event as past actual, past imaginary or future possible."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-02-Q2",
+          "type": "single_choice",
+          "prompt": "The club did not train new volunteers in September; as a result it is short of helpers now. Which form connects the past condition with a present consequence?",
+          "options": [
+            {
+              "id": "A",
+              "text": "If the club had trained volunteers in September, it might have more helpers now."
+            },
+            {
+              "id": "B",
+              "text": "If the club trains volunteers in September, it had more helpers now."
+            },
+            {
+              "id": "C",
+              "text": "If the club would train volunteers, it has more helpers yesterday."
+            },
+            {
+              "id": "D",
+              "text": "If the club will train volunteers, it would have helpers last week."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Had trained refers to an unreal past condition; might have refers to a possible present result. Misconception: Assuming both clauses of a mixed conditional refer to the same time. Next step: Identify the earlier cause and present effect separately."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-02-Q3",
+          "type": "single_choice",
+          "prompt": "The library might extend weekend hours next month. Which sentence describes a realistic future possibility rather than an unreal past?",
+          "options": [
+            {
+              "id": "A",
+              "text": "If it had extended its hours, visitors would have come last month."
+            },
+            {
+              "id": "B",
+              "text": "If it extended its hours yesterday, more people come tomorrow."
+            },
+            {
+              "id": "C",
+              "text": "If it extends weekend hours, some visitors may find it easier to attend."
+            },
+            {
+              "id": "D",
+              "text": "If it were extending its hours last year, visitors will attend."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Present simple in the conditional clause with may gives a possible future consequence. Misconception: Using a past counterfactual for an open future decision. Next step: Ask whether the condition can still happen."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-02-Q4",
+          "type": "single_choice",
+          "prompt": "A student writes, “If we had used a different font, everyone would have understood the poster.” What is the strongest criticism?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The grammar proves the font caused the misunderstanding."
+            },
+            {
+              "id": "B",
+              "text": "The past perfect means the poster was never printed."
+            },
+            {
+              "id": "C",
+              "text": "The sentence necessarily describes a future plan."
+            },
+            {
+              "id": "D",
+              "text": "The grammar is possible, but everyone would have understood is too certain without evidence."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "A past counterfactual can be grammatical while its claimed consequence remains unverified. Misconception: Treating a correct conditional form as evidence that the outcome was inevitable. Next step: Replace certainty with might/could where the result is speculative."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-02-Q5",
+          "type": "single_choice",
+          "prompt": "The school has no quiet room at present. Which sentence describes an imaginary change in the present?",
+          "options": [
+            {
+              "id": "A",
+              "text": "If the school had built a quiet room in 2019, it would have used it then."
+            },
+            {
+              "id": "B",
+              "text": "If the school had a quiet room now, some students could study there."
+            },
+            {
+              "id": "C",
+              "text": "If the school has a quiet room now, it would have had one yesterday."
+            },
+            {
+              "id": "D",
+              "text": "If the school will have a quiet room, it would have had one."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Past-form had with could expresses an imagined present situation. Misconception: Reading past grammatical form as necessarily past time. Next step: Check whether now or last year is the actual time reference."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-02-Q6",
+          "type": "single_choice",
+          "prompt": "The organisers did not publish directions before an event. They are now answering extra messages. Which wording uses a cautious mixed conditional?",
+          "options": [
+            {
+              "id": "A",
+              "text": "If they had posted clear directions, they might be answering fewer messages now."
+            },
+            {
+              "id": "B",
+              "text": "If they post directions yesterday, they answer fewer messages now."
+            },
+            {
+              "id": "C",
+              "text": "If they would post directions, they answered fewer messages today."
+            },
+            {
+              "id": "D",
+              "text": "If they have posted directions, they would answer messages last month."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "An unreal past condition can plausibly influence a present workload, but might signals uncertainty. Misconception: Combining incompatible time references or implying a certain causal result. Next step: Underline the past decision and the present consequence."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-02-Q7",
+          "type": "single_choice",
+          "prompt": "Which sentence is appropriate in a cautious proposal about next term?",
+          "options": [
+            {
+              "id": "A",
+              "text": "If we had survey replies tomorrow, we proved our plan."
+            },
+            {
+              "id": "B",
+              "text": "If we would survey students, we know their thoughts yesterday."
+            },
+            {
+              "id": "C",
+              "text": "If we survey more groups next term, we could make a better-informed decision."
+            },
+            {
+              "id": "D",
+              "text": "If we had surveyed more groups, the proposal will certainly succeed."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The proposed survey is still possible, and could avoids claiming a guaranteed result. Misconception: Using an unreal past construction for future plans or asserting certainty. Next step: Keep the condition open and match the modal to the evidence."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — Interpret second, third and mixed conditional meanings; distinguish a proposed future change from an imaginary past event, and use qualifications instead of presenting hypothetical outcomes as documented facts.\n\n**Why this matters:** Planning improvements means discussing what might change without falsely claiming the outcome already happened.\n\nCORE-2 — **Future-real option:** `If + present, will/can + verb` concerns a possible later outcome, not a certainty. **Imaginary present:** `If + past form, would/could + verb` imagines a present situation that differs from reality. **Past counterfactual:** `If + past perfect, would/could have + past participle` imagines an earlier unreal condition and its earlier outcome. **Mixed past→present:** `If + past perfect, would/could + verb now` links an unreal earlier condition to an imagined present consequence. In scientific or school recommendations, a grammatical hypothetical is NOT evidence that the consequence would definitely occur; use might/could where uncertainty matters.\n\n**Independent worked model (not used in any graded stem or source):**\n\nA youth orchestra had no rehearsal room last term and currently lacks a recorded concert. An honest counterfactual is “If the group had secured a room last term, it might have recorded a concert.” The form expresses a possible unreal earlier outcome, not proof that a recording was inevitable. “If it secures a room next term, it could plan a recording” expresses a real future option.\n\n**Typical pitfall and contrast:**\n\n“If we collected more data yesterday, we will prove the idea” mixes an unreal past situation with an unjustified certainty. Decide the time of each clause before choosing a form; a conditional does not validate causation.\n\nCORE-3 — Complete the distinct original scenarios independently without revealing answer keys.\n\nCORE-4 — "
+      },
+      "examples": [
+        "INDEPENDENT MODEL — A youth orchestra had no rehearsal room last term and currently lacks a recorded concert. An honest counterfactual is “If the group had secured a room last term, it might have recorded a concert.” The form expresses a possible unreal earlier outcome, not proof that a recording was inevitable. “If it secures a room next term, it could plan a recording” expresses a real future option.",
+        "TRANSFER STRATEGY — Future-real option: `If + present, will/can + verb` concerns a possible later outcome, not a certainty. Imaginary present: `If + past form, would/could + verb` imagines a present situation that differs from reality. Past counterfactual: `If + past perfect, would/could have + past participle` imagi"
+      ]
+    },
+    {
+      "id": "REA-B2-02",
+      "module": "reading",
+      "cefr_target": "B2",
+      "title": "Read cautious proposals: what has been decided?",
+      "estimated_minutes": 32,
+      "objectives": [
+        "Identify conditional decisions, distinguish a measured finding from a prediction, and compare how two sources qualify a proposed school-community service change."
+      ],
+      "activities": [
+        {
+          "id": "REA-B2-02-Q1",
+          "type": "single_choice",
+          "prompt": "What is the library’s position on later Thursday opening?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It has permanently changed opening hours."
+            },
+            {
+              "id": "B",
+              "text": "It is considering a limited trial subject to conditions."
+            },
+            {
+              "id": "C",
+              "text": "It has rejected the idea after a full census."
+            },
+            {
+              "id": "D",
+              "text": "It has confirmed a trial starting next month."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The proposal discusses a six-week trial and explicitly says key arrangements still need confirmation. Misconception: Confusing a possible pilot with an approved permanent decision. Next step: Underline every conditional or possibility word in Source A."
+          },
+          "skill_tags": [
+            "reading.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-02-Q2",
+          "type": "single_choice",
+          "prompt": "Why should the online poll not be treated as the view of all local students?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It included no preferences at all."
+            },
+            {
+              "id": "B",
+              "text": "Every response was submitted by library staff."
+            },
+            {
+              "id": "C",
+              "text": "The link went only to families on the library news list."
+            },
+            {
+              "id": "D",
+              "text": "The library asked for views on Saturday opening."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The distribution method excluded students and families who were not subscribed. Misconception: Ignoring how a voluntary sample was recruited. Next step: Identify the invitation route and whom it could miss."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-02-Q3",
+          "type": "single_choice",
+          "prompt": "Which additional measure does Source B most directly recommend?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Track attendance by time band and compare staffing costs."
+            },
+            {
+              "id": "B",
+              "text": "Use exam results alone to prove the pilot caused improvements."
+            },
+            {
+              "id": "C",
+              "text": "Cancel afternoon study rooms throughout the trial."
+            },
+            {
+              "id": "D",
+              "text": "Record every visitor’s exact home address."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The advisory group proposes time-band usage and staffing comparisons; it avoids mandatory location details. Misconception: Substituting a sensitive data requirement or a causation claim for the suggested measures. Next step: List proposed measurements separately from predicted benefits."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-02-Q4",
+          "type": "single_choice",
+          "prompt": "How do the two sources relate to each other?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Source A argues that staffing never matters, while Source B agrees."
+            },
+            {
+              "id": "B",
+              "text": "Source B says a poll proves permanent opening is necessary."
+            },
+            {
+              "id": "C",
+              "text": "Source A bans a trial; Source B demands immediate implementation."
+            },
+            {
+              "id": "D",
+              "text": "Both allow a pilot, while Source B gives extra safeguards and measures."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Both favour testing rather than making a permanent commitment, but Source B adds access and measurement concerns. Misconception: Mistaking a qualification for outright opposition. Next step: Write one shared claim and one difference between the sources."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-02-Q5",
+          "type": "single_choice",
+          "prompt": "Which claim is explicitly NOT established by the sources?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Some survey respondents favoured later hours."
+            },
+            {
+              "id": "B",
+              "text": "Later opening would definitely improve exam outcomes."
+            },
+            {
+              "id": "C",
+              "text": "Thursday staffing arrangements are not yet settled."
+            },
+            {
+              "id": "D",
+              "text": "Some students have longer journeys home."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Neither source demonstrates an effect on examination results; both treat benefits as questions to investigate. Misconception: Turning a plausible advantage into a measured causal outcome. Next step: Separate observed facts, predictions and causal claims."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-02-Q6",
+          "type": "single_choice",
+          "prompt": "Which final decision is most consistent with the evidence?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Make later opening permanent without recording outcomes."
+            },
+            {
+              "id": "B",
+              "text": "Reject any further consultation because the poll exists."
+            },
+            {
+              "id": "C",
+              "text": "Check staffing and access, run a limited pilot, then review results."
+            },
+            {
+              "id": "D",
+              "text": "Replace all afternoon services with Thursday evenings."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "A conditional, measured trial respects both sources’ uncertainties and safeguards. Misconception: Choosing a confident recommendation that exceeds the available evidence. Next step: Match the strength of an action to the quality of the supporting evidence."
+          },
+          "skill_tags": [
+            "reading.author_purpose"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — Identify conditional decisions, distinguish a measured finding from a prediction, and compare how two sources qualify a proposed school-community service change.\n\n**Why this matters:** Well-written proposals often distinguish evidence already gathered from benefits that still need testing.\n\nCORE-2 — **Read in four passes:** (1) locate what has already happened; (2) identify modal verbs and if-clauses marking a possible future; (3) find sample limits or missing measurements; (4) compare recommendations and who might be excluded. A qualified recommendation such as “test for six weeks” is neither a rejection nor a confirmed permanent change. Distinguish response percentages among participants from claims about a whole community.\n\n**Independent worked model (not used in any graded stem or source):**\n\nIndependent model: A sports centre report says 38 of 50 survey respondents liked a pilot, but the survey was offered only to people attending the pilot. The cautious conclusion is that most *respondents* were positive, not that most neighbourhood residents would favour it. This model uses a different location, population and policy from the assessed sources.\n\n**Typical pitfall and contrast:**\n\n“Most poll respondents preferred it” does not mean “most eligible users preferred it”; also, might extend is not an announcement that opening hours have already changed.\n\nCORE-3 — Read both original sources below, distinguish observed facts and cautious inferences, then answer independently.\n\nCORE-4 — "
+      },
+      "examples": [
+        "INDEPENDENT MODEL — Independent model: A sports centre report says 38 of 50 survey respondents liked a pilot, but the survey was offered only to people attending the pilot. The cautious conclusion is that most *respondents* were positive, not that most neighbourhood residents would favour it. This model uses a different location, population and policy from the assessed sources.",
+        "TRANSFER STRATEGY — Read in four passes: (1) locate what has already happened; (2) identify modal verbs and if-clauses marking a possible future; (3) find sample limits or missing measurements; (4) compare recommendations and who might be excluded. A qualified recommendation such as “test for six weeks” is neither a rejectio"
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-B2-02",
+        "title": "Read cautious proposals: what has been decided?",
+        "body": "SOURCE A — Original source\n\nThe Brookfield Youth Library is considering a six-week trial of later opening on Thursdays. Its planning team currently knows that 46 of 72 respondents to a voluntary online poll preferred later hours. However, only families already signed up for library news received the link; the team has not measured preferences among students who rarely visit. Two volunteers are available on Thursday evenings, but the library has not tested whether the later shift would affect weekend staffing. A librarian argues that a limited pilot could reveal actual attendance patterns without requiring a permanent decision. The proposal says the library **might** extend Thursday hours if volunteers and safety arrangements are confirmed. It does not promise that the trial will begin next month.\n\nSOURCE B — Original source\n\nIn a separate note, the student advisory group supports testing later Thursday opening but raises a qualification: “A timetable that helps current visitors may still overlook students with long journeys home.” The group recommends recording the number of visitors by time band, collecting anonymous travel-time categories only when people choose to share them, and comparing staffing costs with the same period last term. Its note adds that a trial should keep one afternoon study room available, rather than making every service dependent on late opening. Some members believe later access would help examination preparation; others warn that exam results would not by themselves establish that opening hours caused any improvement. The group asks for a review meeting before any long-term commitment.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-B2-01",
+      "module": "writing",
+      "cefr_target": "B2",
+      "title": "Recommend a conditional library trial without overclaiming",
+      "estimated_minutes": 35,
+      "objectives": [
+        "Write a balanced advisory email that distinguishes a proposal from an approved plan and uses appropriate conditional language to recommend an evidence-gathering next step."
+      ],
+      "activities": [
+        {
+          "id": "WRI-B2-01-Q1",
+          "type": "extended_response",
+          "prompt": "Write a 170–220 word formal email to the fictional Brookfield Youth Library committee. Using Sources A and B below, recommend whether it should test later Thursday opening. Include at least two precise facts, one evidence limitation, one conditional/appropriately qualified statement, and two measurable safeguards for a short trial. You may support or oppose a trial if your reasoning matches the texts. Do not claim guaranteed academic outcomes. Write your own email; no model answer is provided.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted Writing review. Your writing is not automatically scored or certified as B2. The word range is guidance, not a grade."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.cohesion",
+            "writing.register",
+            "writing.idea_development",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-B2",
+          "review_mode": "assisted_ai_or_human",
+          "word_range_guidance": {
+            "min": 170,
+            "max": 220,
+            "not_a_quality_score": true
+          }
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — Write a balanced advisory email that distinguishes a proposal from an approved plan and uses appropriate conditional language to recommend an evidence-gathering next step.\n\nCORE-2 — **Plan:** (1) state the decision still open; (2) cite one fact from each source; (3) distinguish reliable observation from uncertain interpretation; (4) propose a feasible, reversible trial with named measurements; (5) explain one access or staffing safeguard; (6) revise modal strength and register before submission. Use “may/could/might” for forecast benefits and clear conditionals for recommendations.\n\n**Independent worked demonstration (unrelated task; NOT a model answer for assessed prompt):**\n\nIndependent miniature example (different topic): A youth museum considers moving its guided tour to Friday. A short outline would acknowledge the current visitor counts, explain uncertainty about families who attend on Saturdays, and propose a four-week trial with anonymous attendance counts. This is an outline of *reasoning steps*, not a prepared answer about the library.\n\n**Common pitfall and revision contrast:** “The poll proves all students need late opening” misstates the population; revise to “The poll suggests a preference among respondents, but other students were not reached.”\n\nCORE-3 — Read the exact paired Source texts before writing:\nSOURCE A\nThe Brookfield Youth Library is considering a six-week trial of later opening on Thursdays. Its planning team currently knows that 46 of 72 respondents to a voluntary online poll preferred later hours. However, only families already signed up for library news received the link; the team has not measured preferences among students who rarely visit. Two volunteers are available on Thursday evenings, but the library has not tested whether the later shift would affect weekend staffing. A librarian argues that a limited pilot could reveal actual attendance patterns without requiring a permanent decision. The proposal says the library **might** extend Thursday hours if volunteers and safety arrangements are confirmed. It does not promise that the trial will begin next month.\n\nSOURCE B\nIn a separate note, the student advisory group supports testing later Thursday opening but raises a qualification: “A timetable that helps current visitors may still overlook students with long journeys home.” The group recommends recording the number of visitors by time band, collecting anonymous travel-time categories only when people choose to share them, and comparing staffing costs with the same period last term. Its note adds that a trial should keep one afternoon study room available, rather than making every service dependent on late opening. Some members believe later access would help examination preparation; others warn that exam results would not by themselves establish that opening hours caused any improvement. The group asks for a review meeting before any long-term commitment.\n\nCORE-4 — "
+      },
+      "examples": [
+        "INDEPENDENT MODEL — Independent miniature example (different topic): A youth museum considers moving its guided tour to Friday. A short outline would acknowledge the current visitor counts, explain uncertainty about families who attend on Saturdays, and propose a four-week trial with anonymous attendance counts. This is an outline of *reasoning steps*, not a prepared answer about the library.",
+        "TRANSFER STRATEGY — Plan: (1) state the decision still open; (2) cite one fact from each source; (3) distinguish reliable observation from uncertain interpretation; (4) propose a feasible, reversible trial with named measurements; (5) explain one access or staffing safeguard; (6) revise modal strength and register before sub"
+      ]
+    },
+    {
+      "id": "VOC-B2-02",
+      "module": "vocabulary",
+      "cefr_target": "B2",
+      "title": "Collocations for balanced proposals and decisions",
+      "estimated_minutes": 27,
+      "objectives": [
+        "Recognise natural formal collocations for evaluating a proposal; distinguish a concern from evidence of failure; select appropriate word families in a new context."
+      ],
+      "activities": [
+        {
+          "id": "VOC-B2-02-Q1",
+          "type": "single_choice",
+          "prompt": "Choose the most natural wording for a formal note: “The student panel ___ a concern about the accessibility of the online form.”",
+          "options": [
+            {
+              "id": "A",
+              "text": "lifted"
+            },
+            {
+              "id": "B",
+              "text": "raised"
+            },
+            {
+              "id": "C",
+              "text": "built"
+            },
+            {
+              "id": "D",
+              "text": "arrived"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Raise a concern is the conventional collocation for bringing a worry to attention. Misconception: Choosing a verb because its literal meaning seems related. Next step: Record the verb together with concern, not as an isolated synonym."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B2-02-Q2",
+          "type": "single_choice",
+          "prompt": "A report says it must ___ a distinction between early opinions and measured results. Which verb completes the expression?",
+          "options": [
+            {
+              "id": "A",
+              "text": "draw"
+            },
+            {
+              "id": "B",
+              "text": "grow"
+            },
+            {
+              "id": "C",
+              "text": "earn"
+            },
+            {
+              "id": "D",
+              "text": "deliver"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Draw a distinction is a standard phrase for marking a conceptual difference. Misconception: Treating verbs with broadly positive meanings as interchangeable. Next step: Reuse the full chunk in a new sentence contrasting two types of evidence."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B2-02-Q3",
+          "type": "single_choice",
+          "prompt": "The board has discussed three alternatives but has not voted. Which phrase best describes its state?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It reached a final decision."
+            },
+            {
+              "id": "B",
+              "text": "It carried out a final decision."
+            },
+            {
+              "id": "C",
+              "text": "It is considering several options."
+            },
+            {
+              "id": "D",
+              "text": "It has confirmed all recommendations."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Considering options preserves the fact that no decision has been reached. Misconception: Using a decision verb before the decision exists. Next step: Separate discussion, recommendation, approval and implementation."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B2-02-Q4",
+          "type": "single_choice",
+          "prompt": "Choose the best completion: “The report should ___ the limitations of the six-week observation period.”",
+          "options": [
+            {
+              "id": "A",
+              "text": "admit in"
+            },
+            {
+              "id": "B",
+              "text": "recognise on"
+            },
+            {
+              "id": "C",
+              "text": "take account for"
+            },
+            {
+              "id": "D",
+              "text": "acknowledge"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Acknowledge limitations means explicitly recognise boundaries in the evidence. Misconception: Building an unidiomatic phrase from a similar verb. Next step: Learn acknowledge + limitations as one useful reporting chunk."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B2-02-Q5",
+          "type": "single_choice",
+          "prompt": "In “We need a more systematic ___ of the complaints,” which word form fits?",
+          "options": [
+            {
+              "id": "A",
+              "text": "assess"
+            },
+            {
+              "id": "B",
+              "text": "assessment"
+            },
+            {
+              "id": "C",
+              "text": "assessed"
+            },
+            {
+              "id": "D",
+              "text": "assessingly"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The determiner a and adjective systematic call for a noun, assessment. Misconception: Selecting a related word without checking sentence grammar. Next step: Identify the word class demanded by the words around the gap."
+          },
+          "skill_tags": [
+            "vocabulary.word_formation"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B2-02-Q6",
+          "type": "single_choice",
+          "prompt": "Which sentence uses address a concern most precisely?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The school addressed a concern by setting up an anonymous feedback channel."
+            },
+            {
+              "id": "B",
+              "text": "The school addressed a concern, so no complaints can exist now."
+            },
+            {
+              "id": "C",
+              "text": "The school addressed a concern by ignoring every report."
+            },
+            {
+              "id": "D",
+              "text": "The school addressed a concern is identical to disproving it."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A response mechanism is a concrete step that addresses a concern without asserting complete resolution. Misconception: Treating response as proof of success or treating inaction as a response. Next step: State the action taken and avoid claiming outcomes that were not measured."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B2-02-Q7",
+          "type": "single_choice",
+          "prompt": "Which collocation best completes: “After comparing the evidence, the working group will ___ a recommendation to the head teacher.”",
+          "options": [
+            {
+              "id": "A",
+              "text": "catch"
+            },
+            {
+              "id": "B",
+              "text": "hit"
+            },
+            {
+              "id": "C",
+              "text": "make"
+            },
+            {
+              "id": "D",
+              "text": "arrive"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Make a recommendation is the expected formal collocation. Misconception: Substituting a verb that may collocate with other nouns. Next step: Practice the pair make a recommendation in a fresh sentence."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — Recognise natural formal collocations for evaluating a proposal; distinguish a concern from evidence of failure; select appropriate word families in a new context.\n\n**Why this matters:** Precise word combinations help readers understand whether you have evidence, a concern, or a recommendation.\n\nCORE-2 — Use **verbs with appropriate nouns**: *raise a concern*, *address a concern*, *reach a decision*, *draw a distinction*, *acknowledge a limitation*, *make a recommendation*, *take a measure*. These combinations are more natural than inventing a close but unusual verb–noun pair. Test each chunk in context: *address* a concern means respond to it, not necessarily eliminate it. Contrast *reach a decision* (settle a matter) with *consider an option* (keep it open). A word family matters: *an assessment* is a noun, *assess* is a verb, *assessable* is an adjective; different forms cannot be swapped without changing sentence structure.\n\n**Independent worked model (not used in any graded stem or source):**\n\nIndependent model: An after-school sports committee writes, “Several parents raised a concern about collection times; we will address that concern by asking clubs to publish accurate finishing times.” “Raised” introduces the concern and “address” specifies an action. It does not claim the problem has been solved. No test stem uses this sport-club scenario.\n\n**Typical pitfall and contrast:**\n\n“The committee made a conclusion” is less natural than “reached a conclusion” or “drew a conclusion”. “We addressed a concern” does not automatically mean “we proved the concern was unfounded.”\n\nCORE-3 — Complete the distinct original scenarios independently without revealing answer keys.\n\nCORE-4 — "
+      },
+      "examples": [
+        "INDEPENDENT MODEL — Independent model: An after-school sports committee writes, “Several parents raised a concern about collection times; we will address that concern by asking clubs to publish accurate finishing times.” “Raised” introduces the concern and “address” specifies an action. It does not claim the problem has been solved. No test stem uses this sport-club scenario.",
+        "TRANSFER STRATEGY — Use verbs with appropriate nouns: *raise a concern*, *address a concern*, *reach a decision*, *draw a distinction*, *acknowledge a limitation*, *make a recommendation*, *take a measure*. These combinations are more natural than inventing a close but unusual verb–noun pair. Test each chunk in context: *add"
+      ]
+    },
+    {
+      "id": "VOC-B2-03",
+      "module": "vocabulary",
+      "cefr_target": "B2",
+      "title": "Choose register and connotation for the audience",
+      "estimated_minutes": 26,
+      "objectives": [
+        "Choose appropriately neutral, formal or informal vocabulary in messages to different audiences; recognise loaded connotations; revise exaggeration without removing necessary meaning."
+      ],
+      "activities": [
+        {
+          "id": "VOC-B2-03-Q1",
+          "type": "single_choice",
+          "prompt": "Which sentence is most appropriate in a formal report with limited feedback data?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Our plan is insanely brilliant."
+            },
+            {
+              "id": "B",
+              "text": "Everybody will definitely love the change."
+            },
+            {
+              "id": "C",
+              "text": "Initial feedback was positive, although the sample was small."
+            },
+            {
+              "id": "D",
+              "text": "People who disagree are completely wrong."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The neutral sentence reports a finding while acknowledging its limited scope. Misconception: Mistaking confident adjectives for professional, justified claims. Next step: Keep one observation and one limitation in your summary."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B2-03-Q2",
+          "type": "single_choice",
+          "prompt": "A committee wants to describe a service that costs relatively little, without suggesting poor quality. Which phrase is usually safer?",
+          "options": [
+            {
+              "id": "A",
+              "text": "a dirt-cheap service"
+            },
+            {
+              "id": "B",
+              "text": "an inexpensive service"
+            },
+            {
+              "id": "C",
+              "text": "a bargain-basement service"
+            },
+            {
+              "id": "D",
+              "text": "a worthless low-cost service"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Inexpensive is a relatively neutral descriptor of cost. Misconception: Ignoring the negative connotations of cheap or dismissive alternatives. Next step: Check whether a synonym changes the writer’s attitude."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B2-03-Q3",
+          "type": "single_choice",
+          "prompt": "Which request best fits an email to a school administrator?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Send us the data now, okay?"
+            },
+            {
+              "id": "B",
+              "text": "You guys need to fix this stuff."
+            },
+            {
+              "id": "C",
+              "text": "Obviously, we deserve every detail."
+            },
+            {
+              "id": "D",
+              "text": "Could you share the attendance summary when it is available?"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "The wording is clear, courteous and specific without being excessively deferential. Misconception: Confusing casual peer language with suitable institutional register. Next step: Identify the audience before revising the opening request."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B2-03-Q4",
+          "type": "single_choice",
+          "prompt": "A report recorded a rise from 42 to 44 responses. Which word most carefully avoids exaggeration if no wider context is given?",
+          "options": [
+            {
+              "id": "A",
+              "text": "a slight increase"
+            },
+            {
+              "id": "B",
+              "text": "an enormous surge"
+            },
+            {
+              "id": "C",
+              "text": "an unbelievable explosion"
+            },
+            {
+              "id": "D",
+              "text": "a revolutionary change"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A two-response increase is small in absolute terms; slight avoids unsupported drama. Misconception: Using dramatic synonyms to make modest numbers sound important. Next step: Pair the descriptive adjective with the number, not with enthusiasm."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B2-03-Q5",
+          "type": "single_choice",
+          "prompt": "The public note should say that a plan is being tested rather than permanently adopted. Which word fits?",
+          "options": [
+            {
+              "id": "A",
+              "text": "guaranteed"
+            },
+            {
+              "id": "B",
+              "text": "implemented permanently"
+            },
+            {
+              "id": "C",
+              "text": "trialled"
+            },
+            {
+              "id": "D",
+              "text": "settled forever"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Trialled distinguishes a reversible test from a long-term commitment. Misconception: Collapsing testing and adoption into the same stage. Next step: Specify whether the action is proposed, tested, approved or completed."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B2-03-Q6",
+          "type": "single_choice",
+          "prompt": "Which revision removes an unsupported insult while keeping an identifiable concern?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The people who run this are clueless."
+            },
+            {
+              "id": "B",
+              "text": "The timetable lacks a clear explanation of its selection criteria."
+            },
+            {
+              "id": "C",
+              "text": "Only a fool would accept this timetable."
+            },
+            {
+              "id": "D",
+              "text": "Every participant knows the timetable is awful."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The revised sentence raises a specific, checkable issue without attacking people. Misconception: Mistaking a strong personal insult for strong evidence. Next step: Turn an emotional judgment into a question that can be investigated."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B2-03-Q7",
+          "type": "single_choice",
+          "prompt": "Which phrase makes a cautious recommendation rather than an instruction pretending the evidence is complete?",
+          "options": [
+            {
+              "id": "A",
+              "text": "There is no possible downside whatsoever."
+            },
+            {
+              "id": "B",
+              "text": "This must be implemented immediately for everyone."
+            },
+            {
+              "id": "C",
+              "text": "No further evaluation could ever be useful."
+            },
+            {
+              "id": "D",
+              "text": "A short trial may be appropriate while additional feedback is gathered."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "May be appropriate and the proposed further feedback keep the recommendation proportionate. Misconception: Using categorical language when the evidence is partial. Next step: Match the strength of a recommendation to the quality of available data."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — Choose appropriately neutral, formal or informal vocabulary in messages to different audiences; recognise loaded connotations; revise exaggeration without removing necessary meaning.\n\n**Why this matters:** An accurate proposal can still be misunderstood if its words sound insulting, overconfident or too casual for the reader.\n\nCORE-2 — **Register depends on audience and purpose.** A chat to a classmate can be direct and relaxed; a report to a public committee usually needs clear, neutral wording. **Connotation is not identical to dictionary meaning:** *inexpensive* describes low cost more neutrally than *cheap* when the latter suggests poor quality; *concern* may be less accusatory than *complaint* but is not always interchangeable. Use degree carefully: *substantial*, *limited*, and *slight* should match measured scale, not sound impressive. Avoid empty intensifiers such as *totally*, *insanely*, or *literally* in evidence-based writing. Politeness can coexist with precision: “The data are incomplete” is both direct and professionally usable.\n\n**Independent worked model (not used in any graded stem or source):**\n\nIndependent model: An arts charity writes to supporters, “The workshops were extremely awesome and everybody loved them.” If only 18 respondents out of 30 rated them positively, a more accurate public summary is: “Eighteen of the 30 respondents reported a positive experience.” The change improves both evidence accuracy and register. No assessed question uses this arts programme.\n\n**Typical pitfall and contrast:**\n\nReplacing all emotional words with long words does not automatically create suitable B2 register. A precise short sentence often works better than a grand but unsupported claim.\n\nCORE-3 — Complete the distinct original scenarios independently without revealing answer keys.\n\nCORE-4 — "
+      },
+      "examples": [
+        "INDEPENDENT MODEL — Independent model: An arts charity writes to supporters, “The workshops were extremely awesome and everybody loved them.” If only 18 respondents out of 30 rated them positively, a more accurate public summary is: “Eighteen of the 30 respondents reported a positive experience.” The change improves both evidence accuracy and register. No assessed question uses this arts programme.",
+        "TRANSFER STRATEGY — Register depends on audience and purpose. A chat to a classmate can be direct and relaxed; a report to a public committee usually needs clear, neutral wording. Connotation is not identical to dictionary meaning: *inexpensive* describes low cost more neutrally than *cheap* when the latter suggests poor"
+      ]
+    },
+    {
+      "id": "REA-B2-03",
+      "module": "reading",
+      "cefr_target": "B2",
+      "title": "Audience, evidence and register in two school messages",
+      "estimated_minutes": 31,
+      "objectives": [
+        "Identify purpose, implied audience and register; compare a promotional claim with a qualified report; distinguish accessible consultation from proof of representativeness."
+      ],
+      "activities": [
+        {
+          "id": "REA-B2-03-Q1",
+          "type": "single_choice",
+          "prompt": "What is the main weakness of the student-facing first draft?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It asks students to read the timetable."
+            },
+            {
+              "id": "B",
+              "text": "It offers a paper alternative."
+            },
+            {
+              "id": "C",
+              "text": "It treats an uncompleted trial as proof of guaranteed success."
+            },
+            {
+              "id": "D",
+              "text": "It gives too much numerical detail."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The claims of total success and immediate download go beyond a short voluntary trial. Misconception: Assuming an enthusiastic style guarantees an accurate message. Next step: Contrast what was tested with what the draft promises."
+          },
+          "skill_tags": [
+            "reading.author_purpose"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-03-Q2",
+          "type": "single_choice",
+          "prompt": "Which statement accurately describes the four-day trial?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Twenty-four students participated and some reported access difficulties."
+            },
+            {
+              "id": "B",
+              "text": "Every student in the school downloaded the app."
+            },
+            {
+              "id": "C",
+              "text": "The committee decided to remove printed timetables."
+            },
+            {
+              "id": "D",
+              "text": "No students reported difficulties with their devices."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The source gives 24 participants and documents difficulties on older phones. Misconception: Inferring a population-wide result from a small trial. Next step: Name the actual participants before drawing conclusions."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-03-Q3",
+          "type": "single_choice",
+          "prompt": "Why is Source B more suitable for an external family audience?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It hides the difficulties and promises instant success."
+            },
+            {
+              "id": "B",
+              "text": "It insults non-users to encourage participation."
+            },
+            {
+              "id": "C",
+              "text": "It includes only a casual call to download."
+            },
+            {
+              "id": "D",
+              "text": "It uses measured claims, states uncertainty and offers paper feedback."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "The revised text makes scope and alternative channels explicit without overpromising. Misconception: Equating formality with complex vocabulary rather than useful precision. Next step: Find one concrete wording change and one accessibility improvement."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-03-Q4",
+          "type": "single_choice",
+          "prompt": "What is still uncertain after reading both sources?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Whether 24 participants took part in the four-day trial."
+            },
+            {
+              "id": "B",
+              "text": "Whether a permanent switch to the app will be approved."
+            },
+            {
+              "id": "C",
+              "text": "Whether any student had difficulty on older phones."
+            },
+            {
+              "id": "D",
+              "text": "Whether printed schedules exist during evaluation."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The committee has not approved a permanent change. Misconception: Reading consideration or testing as a final institutional decision. Next step: Underline words that mark decisions as open."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-03-Q5",
+          "type": "single_choice",
+          "prompt": "Which claim about the longer trial would be unjustified?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It can collect feedback from people outside the first sample."
+            },
+            {
+              "id": "B",
+              "text": "It may identify problems missed during the short test."
+            },
+            {
+              "id": "C",
+              "text": "It guarantees that every family will be represented."
+            },
+            {
+              "id": "D",
+              "text": "It can preserve paper schedules while testing the app."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Inviting feedback does not guarantee representative responses from all families. Misconception: Confusing opportunity to respond with universal response or statistical representativeness. Next step: Separate access to a survey from actual participation."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-03-Q6",
+          "type": "single_choice",
+          "prompt": "What is the best description of Source B’s underlying stance?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Cautious evaluation with accessible alternatives."
+            },
+            {
+              "id": "B",
+              "text": "Total rejection of all digital tools."
+            },
+            {
+              "id": "C",
+              "text": "Immediate mandatory replacement of printed materials."
+            },
+            {
+              "id": "D",
+              "text": "Proof that every student prefers paper."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The second draft offers a balanced evaluation and preserves access routes. Misconception: Reading a measured limitation as automatic opposition. Next step: Summarise the writer’s purpose without inflating its certainty."
+          },
+          "skill_tags": [
+            "reading.gist"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — Identify purpose, implied audience and register; compare a promotional claim with a qualified report; distinguish accessible consultation from proof of representativeness.\n\n**Why this matters:** A school announcement must be not only engaging but also honest about what has been tested and how families can respond.\n\nCORE-2 — **Read beyond topic.** Find the implied audience, the writer’s purpose and emotionally loaded words. Look for exact sample size, what was measured and what is only planned. Compare informal direct address with neutral institutional register without assuming formal = always better. Identify accessible routes: a survey available only online may exclude some families. Notice what the revision *does not* claim as well as what it says.\n\n**Independent worked model (not used in any graded stem or source):**\n\nIndependent worked model: A community theatre poster says “Every seat offers the perfect view,” whereas a ticket notice says “Views vary by row; ask staff for accessibility details.” For ticket purchasers, the second message is more precise and actionable. This example concerns a theatre, not the assessed timetable sources.\n\n**Typical pitfall and contrast:**\n\nDo not mistake “18 of 24 participants” for “three-quarters of the entire school.” Likewise, a polite tone is not sufficient if the statement promises outcomes that have not been demonstrated.\n\nCORE-3 — Read both original sources below, distinguish observed facts and cautious inferences, then answer independently.\n\nCORE-4 — "
+      },
+      "examples": [
+        "INDEPENDENT MODEL — Independent worked model: A community theatre poster says “Every seat offers the perfect view,” whereas a ticket notice says “Views vary by row; ask staff for accessibility details.” For ticket purchasers, the second message is more precise and actionable. This example concerns a theatre, not the assessed timetable sources.",
+        "TRANSFER STRATEGY — Read beyond topic. Find the implied audience, the writer’s purpose and emotionally loaded words. Look for exact sample size, what was measured and what is only planned. Compare informal direct address with neutral institutional register without assuming formal = always better. Identify accessible routes: "
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-B2-03",
+        "title": "Audience, evidence and register in two school messages",
+        "body": "SOURCE A — Original source\n\nRiverton School is preparing a message about a proposed digital timetable. The draft for students reads: “Hey everyone! The new timetable app is super cool and will totally fix timetable confusion. Download it immediately!” Yet the committee has only completed a four-day voluntary trial with 24 students. Six students reported that the app was difficult to use on older phones, and three preferred a printed weekly schedule. The committee has not decided whether the app will become the primary timetable service. Its actual recommendation is to extend the trial, keep a printed alternative and gather feedback from students who did not volunteer for the first test. A communications teacher warns that the draft describes possible advantages as guaranteed results.\n\nSOURCE B — Original source\n\nA second draft is addressed to parents and carers: “The school is evaluating an optional digital timetable tool. In a four-day trial, 18 of 24 participating students found it helpful, while some reported access difficulties. No permanent change has been approved. The school will review compatibility with older devices and retain printed schedules during a longer trial. Families may provide feedback using the paper form available in the office, or through a voluntary online survey.” A teacher notes that this version is more suitable for external communication because it separates a limited result from future action, provides an alternative access route and avoids blaming students for not using the app. The note does not claim the online survey will represent every family.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-B2-02",
+      "module": "writing",
+      "cefr_target": "B2",
+      "title": "Turn a promotional claim into a precise family notice",
+      "estimated_minutes": 33,
+      "objectives": [
+        "Produce a clear, audience-appropriate informational notice, retaining all essential facts and avoiding invented certainty about a proposed digital school service."
+      ],
+      "activities": [
+        {
+          "id": "WRI-B2-02-Q1",
+          "type": "extended_response",
+          "prompt": "Write a 170–220 word notice for Riverton School’s family newsletter, using both source passages below. Clearly explain the status of the digital timetable project, give two findings from the short trial with correct numbers, identify one access concern, state what the school plans next and explain at least one non-digital feedback option. Use appropriate neutral register and do not invent a rollout date or outcome. Finish with a concise invitation to respond.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted Writing review. Your writing is not automatically scored or certified as B2. The word range is guidance, not a grade."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.cohesion",
+            "writing.register",
+            "writing.idea_development",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-B2",
+          "review_mode": "assisted_ai_or_human",
+          "word_range_guidance": {
+            "min": 170,
+            "max": 220,
+            "not_a_quality_score": true
+          }
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — Produce a clear, audience-appropriate informational notice, retaining all essential facts and avoiding invented certainty about a proposed digital school service.\n\nCORE-2 — **Five editing decisions:** (1) identify the audience’s question (what changes now?); (2) replace promotional adjectives with measured facts; (3) retain relevant difficulties and access alternatives; (4) distinguish pilot from confirmed policy; (5) invite feedback through realistic channels without claiming a representative sample. Check that every number and date survives correctly and that no unverified benefit becomes a fact.\n\n**Independent worked demonstration (unrelated task; NOT a model answer for assessed prompt):**\n\nIndependent mini-demonstration: A school garden committee writes “Our fantastic compost bins eliminate all waste.” A careful public note could begin: “The garden is trialling compost bins for food scraps; staff will measure collected material before making a longer-term decision.” This shows the editing method in a different project and is not an answer to the timetable task.\n\n**Common pitfall and revision contrast:** A longer, more formal synonym cannot repair an inaccurate claim. “The digital transition has been successfully completed” is still false if the trial is unfinished.\n\nCORE-3 — Read the exact paired Source texts before writing:\nSOURCE A\nRiverton School is preparing a message about a proposed digital timetable. The draft for students reads: “Hey everyone! The new timetable app is super cool and will totally fix timetable confusion. Download it immediately!” Yet the committee has only completed a four-day voluntary trial with 24 students. Six students reported that the app was difficult to use on older phones, and three preferred a printed weekly schedule. The committee has not decided whether the app will become the primary timetable service. Its actual recommendation is to extend the trial, keep a printed alternative and gather feedback from students who did not volunteer for the first test. A communications teacher warns that the draft describes possible advantages as guaranteed results.\n\nSOURCE B\nA second draft is addressed to parents and carers: “The school is evaluating an optional digital timetable tool. In a four-day trial, 18 of 24 participating students found it helpful, while some reported access difficulties. No permanent change has been approved. The school will review compatibility with older devices and retain printed schedules during a longer trial. Families may provide feedback using the paper form available in the office, or through a voluntary online survey.” A teacher notes that this version is more suitable for external communication because it separates a limited result from future action, provides an alternative access route and avoids blaming students for not using the app. The note does not claim the online survey will represent every family.\n\nCORE-4 — "
+      },
+      "examples": [
+        "INDEPENDENT MODEL — Independent mini-demonstration: A school garden committee writes “Our fantastic compost bins eliminate all waste.” A careful public note could begin: “The garden is trialling compost bins for food scraps; staff will measure collected material before making a longer-term decision.” This shows the editing method in a different project and is not an answer to the timetable task.",
+        "TRANSFER STRATEGY — Five editing decisions: (1) identify the audience’s question (what changes now?); (2) replace promotional adjectives with measured facts; (3) retain relevant difficulties and access alternatives; (4) distinguish pilot from confirmed policy; (5) invite feedback through realistic channels without claiming a"
+      ]
+    },
+    {
+      "id": "REA-B2-04",
+      "module": "reading",
+      "cefr_target": "B2",
+      "title": "Trace an argument from evidence to recommendation",
+      "estimated_minutes": 33,
+      "objectives": [
+        "Distinguish an observation from a causal claim, find concessions and limitations, identify a qualified proposal, and evaluate whether a practical recommendation goes beyond its evidence."
+      ],
+      "activities": [
+        {
+          "id": "REA-B2-04-Q1",
+          "type": "single_choice",
+          "prompt": "Which conclusion is directly supported by Source A’s temperature measurements?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The entire playground became 8°C cooler."
+            },
+            {
+              "id": "B",
+              "text": "Two monitored bench surfaces differed by 5–8°C at 12:30 on three sunny days."
+            },
+            {
+              "id": "C",
+              "text": "Permanent shade sails are the cheapest long-term option."
+            },
+            {
+              "id": "D",
+              "text": "All students would use shaded benches."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The record concerns two specific benches at a specific time on three sunny days. Misconception: Extending a narrowly observed surface result to the whole playground. Next step: Underline measurement location, time and weather conditions."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-04-Q2",
+          "type": "single_choice",
+          "prompt": "What role do the 38 voluntary comments play?",
+          "options": [
+            {
+              "id": "A",
+              "text": "They prove the view of every pupil."
+            },
+            {
+              "id": "B",
+              "text": "They provide temperature readings."
+            },
+            {
+              "id": "C",
+              "text": "They replace the premises safety assessment."
+            },
+            {
+              "id": "D",
+              "text": "They show preferences among respondents, not a representative school-wide vote."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "The group reports preferences from volunteers and explicitly rejects claiming representativeness. Misconception: Confusing self-selected feedback with a census or controlled sample. Next step: Identify the denominator and recruitment method."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-04-Q3",
+          "type": "single_choice",
+          "prompt": "How does the premises manager respond to the group’s proposal?",
+          "options": [
+            {
+              "id": "A",
+              "text": "By acknowledging possible benefits while requesting safety and cost evidence."
+            },
+            {
+              "id": "B",
+              "text": "By denying any observed difference in temperature."
+            },
+            {
+              "id": "C",
+              "text": "By insisting no planting can ever provide shade."
+            },
+            {
+              "id": "D",
+              "text": "By approving a permanent design immediately."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The manager welcomes exploration but adds practical conditions before approving a permanent solution. Misconception: Reading a qualification as outright rejection. Next step: Find one point of agreement and two conditions."
+          },
+          "skill_tags": [
+            "reading.author_purpose"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-04-Q4",
+          "type": "single_choice",
+          "prompt": "Which statement is a fair inference from both sources?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Shade structures are legally forbidden at schools."
+            },
+            {
+              "id": "B",
+              "text": "The current shade trial has already solved all summer heat concerns."
+            },
+            {
+              "id": "C",
+              "text": "A more varied, longer trial could inform a safer permanent decision."
+            },
+            {
+              "id": "D",
+              "text": "Trees would necessarily be more expensive than sails."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Both recommend further measurement and evaluation before a permanent investment. Misconception: Treating a possible option as already established as best or most cost-effective. Next step: Use the sources’ shared next step to frame an inference."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-04-Q5",
+          "type": "single_choice",
+          "prompt": "Which additional evidence would most directly address Source B’s stated uncertainty?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A poster saying pupils love the design."
+            },
+            {
+              "id": "B",
+              "text": "Wind-safety, drainage and multi-location temperature data with cost estimates."
+            },
+            {
+              "id": "C",
+              "text": "A single photo of the cooler bench."
+            },
+            {
+              "id": "D",
+              "text": "More comments only from the students who already volunteered."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The manager specifically requires risk and cost assessment and broader site data. Misconception: Seeking more opinions instead of measurements for a technical constraint. Next step: Match each stated limitation with a specific measurement or assessment."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-04-Q6",
+          "type": "single_choice",
+          "prompt": "Which proposed article title best preserves the sources’ cautious position?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Shade could improve comfort; school plans further tests."
+            },
+            {
+              "id": "B",
+              "text": "New sails proven to cool every school space permanently."
+            },
+            {
+              "id": "C",
+              "text": "Manager bans all shade after a failed trial."
+            },
+            {
+              "id": "D",
+              "text": "Survey shows every pupil wants immediate construction."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The data suggest a local benefit and both sources call for further investigation. Misconception: Replacing uncertainty and practical limits with categorical claims. Next step: Draft a title that preserves both the result and its scope."
+          },
+          "skill_tags": [
+            "reading.gist"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — Distinguish an observation from a causal claim, find concessions and limitations, identify a qualified proposal, and evaluate whether a practical recommendation goes beyond its evidence.\n\n**Why this matters:** At B2, reading an argument includes examining the strength and scope of the evidence, not only locating the author’s opinion.\n\nCORE-2 — **Argument map:** Locate (1) a claim; (2) a directly observed datum; (3) how the writer interprets it; (4) a limitation; (5) an alternative explanation or practical counterpoint; and (6) the next proposed action. A concession accepts a valid point without surrendering the main recommendation. “Promising” is not synonymous with “proven”. If measurements were taken at only two places, a statement about an entire site needs more evidence.\n\n**Independent worked model (not used in any graded stem or source):**\n\nIndependent worked example: A school hallway gets brighter after extra lighting is installed, according to measurements at one spot. The readings support that location, not every corridor. An appropriate recommendation is to test lighting at several additional positions before buying fittings for the whole building. This hallway model is not used in the scored playground material.\n\n**Typical pitfall and contrast:**\n\nThe pattern “A rose after B, therefore B caused A everywhere” omits rival explanations and the measurement boundary; the source’s actual recommendation may be a further test rather than immediate adoption.\n\nCORE-3 — Read both original sources below, distinguish observed facts and cautious inferences, then answer independently.\n\nCORE-4 — "
+      },
+      "examples": [
+        "INDEPENDENT MODEL — Independent worked example: A school hallway gets brighter after extra lighting is installed, according to measurements at one spot. The readings support that location, not every corridor. An appropriate recommendation is to test lighting at several additional positions before buying fittings for the whole building. This hallway model is not used in the scored playground material.",
+        "TRANSFER STRATEGY — Argument map: Locate (1) a claim; (2) a directly observed datum; (3) how the writer interprets it; (4) a limitation; (5) an alternative explanation or practical counterpoint; and (6) the next proposed action. A concession accepts a valid point without surrendering the main recommendation. “Promising” is n"
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-B2-04",
+        "title": "Trace an argument from evidence to recommendation",
+        "body": "SOURCE A — Original source\n\nNorthbank School installed temporary shade sails over half its playground in June. A six-day observation recorded that, at 12:30 on the three sunny days, a shaded bench surface was between 5°C and 8°C cooler than a nearby uncovered bench. The student environment group argues that the result supports studying permanent shade options. Its report explicitly limits the observation: only two bench locations were compared, cloud cover changed during the week, and no long-term measurements or whole-playground averages were taken. The group also received 38 voluntary student comments, of which 29 favoured more shaded seating; it does not treat those replies as representative of all pupils. Its proposed next step is a longer trial across several sites and weather conditions.\n\nSOURCE B — Original source\n\nThe premises manager welcomes the potential comfort benefit but points out that a permanent shade structure would require a drainage and wind-safety assessment. A new planting scheme could offer shade later, yet it would take time to establish and might affect outdoor games if positioned badly. The manager proposes comparing maintenance costs, accessibility and safety, then consulting classes that use the space at different times. The note says, “The bench measurements are promising, but they neither demonstrate a reduction in every part of the playground nor establish which permanent option would be best.” The manager is not opposed to additional shade; the objection is to approving one expensive design before its practical constraints and evidence have been checked.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "REA-B2-05",
+      "module": "reading",
+      "cefr_target": "B2",
+      "title": "Compare two accounts without inventing a winner",
+      "estimated_minutes": 34,
+      "objectives": [
+        "Evaluate two partial reports, interpret denominators, identify an alternative explanation, and select a balanced conclusion despite conflicting priorities."
+      ],
+      "activities": [
+        {
+          "id": "REA-B2-05-Q1",
+          "type": "single_choice",
+          "prompt": "What do the volunteer counts in Source C directly show?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Traffic accidents fell to zero across the town."
+            },
+            {
+              "id": "B",
+              "text": "All vehicles took safer alternative routes."
+            },
+            {
+              "id": "C",
+              "text": "The recorded crossing conflicts fell from 11 to six across the comparison periods."
+            },
+            {
+              "id": "D",
+              "text": "The number of people walking to school doubled."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The counts record one defined kind of conflict at one crossing over two sets of four Fridays. Misconception: Expanding a local count into a town-wide accident or exposure claim. Next step: Name the measured outcome and its denominator before interpreting it."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-05-Q2",
+          "type": "single_choice",
+          "prompt": "Why is the shop survey insufficient to represent every contacted shop?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Only nine of 27 contacted shops responded."
+            },
+            {
+              "id": "B",
+              "text": "The survey recorded no deliveries."
+            },
+            {
+              "id": "C",
+              "text": "All 27 shops approved the lane trial."
+            },
+            {
+              "id": "D",
+              "text": "The association refused to contact any shops."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The response group is a subset of the 27 contacted shops. Misconception: Treating responses as if the full contacted population answered. Next step: Report both the number contacted and the number responding."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-05-Q3",
+          "type": "single_choice",
+          "prompt": "Which claim about the shop association is supported?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It states the trial caused more accidents."
+            },
+            {
+              "id": "B",
+              "text": "It denies that volunteers recorded fewer conflicts."
+            },
+            {
+              "id": "C",
+              "text": "It demands an immediate permanent ban on all deliveries."
+            },
+            {
+              "id": "D",
+              "text": "It asks for clearer delivery arrangements while recognising the recorded conflict result."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "The association requests safeguards and does not deny the volunteers’ measured reduction. Misconception: Inventing an exaggerated opposition not present in Source D. Next step: Separate what the group disputes from what it accepts."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-05-Q4",
+          "type": "single_choice",
+          "prompt": "Which missing measurement could most affect interpretation of the conflict-count change?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The colour of the school’s crossing sign."
+            },
+            {
+              "id": "B",
+              "text": "Pedestrian counts during the before-and-during periods."
+            },
+            {
+              "id": "C",
+              "text": "How many volunteers liked the lane name."
+            },
+            {
+              "id": "D",
+              "text": "The number of books borrowed from a nearby library."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Exposure data help determine whether fewer conflicts occurred because fewer people used the crossing. Misconception: Treating a raw count as a risk rate without a measure of exposure. Next step: Ask “per how many crossings or pedestrians?” before evaluating safety."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-05-Q5",
+          "type": "single_choice",
+          "prompt": "What is the most accurate comparison of the groups’ positions?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Both groups have proved that the trial must be permanent."
+            },
+            {
+              "id": "B",
+              "text": "One group shows data, while the other makes no relevant observation."
+            },
+            {
+              "id": "C",
+              "text": "They emphasise different harms and benefits, but both recommend further measurement."
+            },
+            {
+              "id": "D",
+              "text": "Neither group acknowledges uncertainty."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Both records describe limitations and call for a better monitored pilot. Misconception: Assuming disagreement in priorities means disagreement about every fact. Next step: Find the shared future action before summarising the conflict."
+          },
+          "skill_tags": [
+            "reading.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-05-Q6",
+          "type": "single_choice",
+          "prompt": "Which recommendation fits both sources without fabricating a result?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Test agreed delivery slots and count crossing users plus nearby-road traffic during an extended pilot."
+            },
+            {
+              "id": "B",
+              "text": "Permanently ban deliveries because the crossing counts prove shop effects are trivial."
+            },
+            {
+              "id": "C",
+              "text": "Cancel all safety monitoring because nine shops responded."
+            },
+            {
+              "id": "D",
+              "text": "Declare the trial universally successful from four Fridays of data."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The joint proposal addresses safety exposure, diversion and deliveries before making a permanent decision. Misconception: Overclaiming from limited data or dismissing an affected group. Next step: Pair each practical concern with the evidence needed to assess it."
+          },
+          "skill_tags": [
+            "reading.author_purpose"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — Evaluate two partial reports, interpret denominators, identify an alternative explanation, and select a balanced conclusion despite conflicting priorities.\n\n**Why this matters:** Public decisions often need a synthesis of evidence gathered by different groups with different interests.\n\nCORE-2 — **Source comparison routine:** Make a mini-ledger: “claim / who observed it / what was measured / what was not measured.” A reduction in a recorded count is not automatically a proven reduction in risk per person; the number of people passing through may also have changed. Similarly, a small survey of responding shops cannot prove the view of all businesses. Good synthesis attributes both evidence streams and proposes the next discriminating measurement. Avoid claiming that caution means the trial was useless.\n\n**Independent worked model (not used in any graded stem or source):**\n\nIndependent worked model: A weekend library says book loans rose after it added new signs; a neighbouring café says visits to the street fell. Both can be true because they measure different outcomes. The next test would compare changes over similar periods and possible external factors, not declare one report false. This separate scenario is not the graded road-safety case.\n\n**Typical pitfall and contrast:**\n\nDo not interpret “six of nine respondents” as “two thirds of all 27 shops”. Also, fewer observed conflicts across four Fridays do not by themselves establish how the change affected risk per pedestrian.\n\nCORE-3 — Read both original sources below, distinguish observed facts and cautious inferences, then answer independently.\n\nCORE-4 — "
+      },
+      "examples": [
+        "INDEPENDENT MODEL — Independent worked model: A weekend library says book loans rose after it added new signs; a neighbouring café says visits to the street fell. Both can be true because they measure different outcomes. The next test would compare changes over similar periods and possible external factors, not declare one report false. This separate scenario is not the graded road-safety case.",
+        "TRANSFER STRATEGY — Source comparison routine: Make a mini-ledger: “claim / who observed it / what was measured / what was not measured.” A reduction in a recorded count is not automatically a proven reduction in risk per person; the number of people passing through may also have changed. Similarly, a small survey of respond"
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-B2-05",
+        "title": "Compare two accounts without inventing a winner",
+        "body": "SOURCE A — Original source\n\nThe Brookgate Safe Routes group trialled a traffic-free lane outside one primary school on four Friday mornings. Volunteers recorded 11 vehicle conflicts at the crossing over four comparison Fridays before the trial and six over four Fridays during the trial. The group describes a conflict as a moment when a volunteer saw a vehicle and pedestrian approach the same crossing space and one changed course abruptly. It argues that the reduction is encouraging, but it has not measured total pedestrian traffic, traffic diversions to nearby roads, or whether the comparison periods had similar weather and school events. It recommends a longer monitored pilot rather than a permanent restriction immediately.\n\nSOURCE B — Original source\n\nA local shop association notes that some deliveries were delayed during the four trial mornings. Its short survey includes replies from nine of the 27 shops contacted; six respondents reported inconvenience, while three noticed no change. The association asks for clearer delivery windows and checks on nearby roads before any extension. It does not claim that the trial increased accidents, and it does not deny that the volunteers recorded fewer conflicts at the crossing. A joint meeting proposes testing fixed delivery slots and collecting both pedestrian counts and vehicle movements on surrounding streets. The two groups disagree about practical priorities but both favour gathering better information before making a permanent decision.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "VOC-B2-04",
+      "module": "vocabulary",
+      "cefr_target": "B2",
+      "title": "Words that clarify the structure of an argument",
+      "estimated_minutes": 29,
+      "objectives": [
+        "Use argument-analysis vocabulary precisely: premise, qualification, counterclaim, implication, limitation, and conclusion; choose natural related word forms in context without confusing a concern with a refutation."
+      ],
+      "activities": [
+        {
+          "id": "VOC-B2-04-Q1",
+          "type": "single_choice",
+          "prompt": "A report says, “The benefits may apply only to schools with reliable internet.” This sentence mainly adds a ...",
+          "options": [
+            {
+              "id": "A",
+              "text": "qualification"
+            },
+            {
+              "id": "B",
+              "text": "congratulation"
+            },
+            {
+              "id": "C",
+              "text": "guarantee"
+            },
+            {
+              "id": "D",
+              "text": "contradiction of every prior figure"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "May apply only limits the scope of the earlier claim, so it is a qualification. Misconception: Mistaking a scope restriction for total rejection. Next step: Look for words that narrow rather than negate a statement."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B2-04-Q2",
+          "type": "single_choice",
+          "prompt": "In “The argument rests on a false ___ about travel time,” which noun fits best?",
+          "options": [
+            {
+              "id": "A",
+              "text": "qualified"
+            },
+            {
+              "id": "B",
+              "text": "imply"
+            },
+            {
+              "id": "C",
+              "text": "premise"
+            },
+            {
+              "id": "D",
+              "text": "conceding"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "A premise is a statement the reasoning depends on. Misconception: Selecting a related verb or adjective without checking function. Next step: Identify the claim that must be true for the conclusion to follow."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B2-04-Q3",
+          "type": "single_choice",
+          "prompt": "Which sentence uses refute most carefully?",
+          "options": [
+            {
+              "id": "A",
+              "text": "One student dislikes the idea, so the whole statistical report is refuted."
+            },
+            {
+              "id": "B",
+              "text": "A single verified exception refutes the claim that every class submitted its form."
+            },
+            {
+              "id": "C",
+              "text": "A question alone refutes all possible explanations."
+            },
+            {
+              "id": "D",
+              "text": "A limited survey automatically refutes every alternative."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "One genuine exception disproves a universal every claim. Misconception: Treating objections or questions as full logical disproof. Next step: Find the precise word (e.g., every/always) a counterexample contradicts."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B2-04-Q4",
+          "type": "single_choice",
+          "prompt": "Choose the most precise description: “The new estimate implies a higher cost, but that cost has not yet been paid.”",
+          "options": [
+            {
+              "id": "A",
+              "text": "An implication is the same as an observed payment."
+            },
+            {
+              "id": "B",
+              "text": "A qualified estimate must be false."
+            },
+            {
+              "id": "C",
+              "text": "The word implies proves a current transaction."
+            },
+            {
+              "id": "D",
+              "text": "An implication is a possible consequence, not necessarily an observed event."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "A projected consequence can follow from assumptions without already occurring. Misconception: Equating projected impact with completed activity. Next step: Separate future consequence from a recorded observation."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B2-04-Q5",
+          "type": "single_choice",
+          "prompt": "Which sentence shows a concession followed by a qualified criticism?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The pilot produced useful feedback; however, the survey did not reach every class."
+            },
+            {
+              "id": "B",
+              "text": "The pilot is perfect and therefore cannot be questioned."
+            },
+            {
+              "id": "C",
+              "text": "The pilot is wrong because someone disagrees."
+            },
+            {
+              "id": "D",
+              "text": "The survey proves every student will benefit."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The writer acknowledges a genuine benefit while retaining a specific scope limitation. Misconception: Treating concession as total acceptance or criticism as blanket rejection. Next step: Build a sentence with one fair acknowledgment and one precise caveat."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B2-04-Q6",
+          "type": "single_choice",
+          "prompt": "Which form correctly completes “The small sample ___ the report’s ability to generalise”?",
+          "options": [
+            {
+              "id": "A",
+              "text": "limitedness"
+            },
+            {
+              "id": "B",
+              "text": "limitingly"
+            },
+            {
+              "id": "C",
+              "text": "limits"
+            },
+            {
+              "id": "D",
+              "text": "limitedly"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The singular subject small sample needs the present-tense verb limits. Misconception: Using a word-family member with the wrong grammatical role. Next step: Check the subject and required finite verb form."
+          },
+          "skill_tags": [
+            "vocabulary.word_formation"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B2-04-Q7",
+          "type": "single_choice",
+          "prompt": "Two reports make different recommendations but share the same measured figures. What is the most useful next analytical step?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Assume one group secretly changed the figures."
+            },
+            {
+              "id": "B",
+              "text": "Examine their assumptions and priorities before treating the conclusions as contradictory facts."
+            },
+            {
+              "id": "C",
+              "text": "Ignore both recommendations because the numbers match."
+            },
+            {
+              "id": "D",
+              "text": "Declare the report with longer words correct."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Different values and assumptions may produce different recommendations from the same observations. Misconception: Confusing disagreement in interpretation with disagreement about observed facts. Next step: Separate observations, assumptions and final actions in a short ledger."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — Use argument-analysis vocabulary precisely: premise, qualification, counterclaim, implication, limitation, and conclusion; choose natural related word forms in context without confusing a concern with a refutation.\n\n**Why this matters:** A reader needs to know whether a sentence supplies evidence, limits a claim, challenges it or asks for a decision.\n\nCORE-2 — **Premise** = a statement used to support reasoning; it may be true or false and is not automatically evidence. **Qualification** = a limit or condition on the strength/scope of a claim. **Counterclaim** = a different position; it must be evaluated rather than simply dismissed. **Implication** = what may follow if the claim is accepted; it is not necessarily an observed outcome. **Limitation** = a weakness in the scope, measurement or applicability of evidence. **Refute** is stronger than question: a genuine counterexample can refute a universal claim, but merely raising a concern does not. A **concession** acknowledges something reasonable in a different view without conceding the entire argument.\n\n**Independent worked model (not used in any graded stem or source):**\n\nIndependent model: A town website says “Every evening bus arrives on time.” One verified late arrival is a counterexample that refutes the universal word every. A note saying some passengers dislike the timetable raises a separate concern but does not logically refute the punctuality claim. The model concerns transport, not the school-community sources in these assessed items.\n\n**Typical pitfall and contrast:**\n\n“I have a counterclaim, therefore your data are false” is a non sequitur. A counterclaim may introduce a different explanation without disproving the original observation.\n\nCORE-3 — Complete the distinct original scenarios independently without revealing answer keys.\n\nCORE-4 — "
+      },
+      "examples": [
+        "INDEPENDENT MODEL — Independent model: A town website says “Every evening bus arrives on time.” One verified late arrival is a counterexample that refutes the universal word every. A note saying some passengers dislike the timetable raises a separate concern but does not logically refute the punctuality claim. The model concerns transport, not the school-community sources in these assessed items.",
+        "TRANSFER STRATEGY — Premise = a statement used to support reasoning; it may be true or false and is not automatically evidence. Qualification = a limit or condition on the strength/scope of a claim. Counterclaim = a different position; it must be evaluated rather than simply dismissed. Implication = what may foll"
+      ]
+    },
+    {
+      "id": "WRI-B2-03",
+      "module": "writing",
+      "cefr_target": "B2",
+      "title": "Synthesise limited evidence into a joint recommendation",
+      "estimated_minutes": 36,
+      "objectives": [
+        "Write a balanced recommendation that reports two stakeholders’ findings accurately, identifies what remains unknown and proposes a fair next data-collection step."
+      ],
+      "activities": [
+        {
+          "id": "WRI-B2-03-Q1",
+          "type": "extended_response",
+          "prompt": "Write a 180–230 word recommendation memo to the fictional Brookgate local council. Using the two reports below, explain the recorded crossing result and the shop feedback with their correct sample limits. Offer one fair counterargument and a specific plan for an extended pilot that tests both pedestrian safety and business access. You may recommend continuing, modifying or pausing the trial if your reasoning is consistent with the sources. Do not invent accident counts, proof of causation or the views of non-respondents.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted Writing review. Your writing is not automatically scored or certified as B2. The word range is guidance, not a grade."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.cohesion",
+            "writing.register",
+            "writing.idea_development",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-B2",
+          "review_mode": "assisted_ai_or_human",
+          "word_range_guidance": {
+            "min": 180,
+            "max": 230,
+            "not_a_quality_score": true
+          }
+        }
+      ],
+      "explanation": {
+        "en": "CORE-1 — Write a balanced recommendation that reports two stakeholders’ findings accurately, identifies what remains unknown and proposes a fair next data-collection step.\n\nCORE-2 — **Reasoned synthesis plan:** introduce the policy decision; attribute one confirmed measurement to Source C and one limitation or stakeholder concern to Source D; explain why the figures answer different questions; identify one alternative explanation that remains open; recommend a reversible next test with a specific measure. Use concession and cautious conclusion, not a winner-takes-all opinion. Do not equate opinion frequency, incident counts and proven causal outcomes.\n\n**Independent worked demonstration (unrelated task; NOT a model answer for assessed prompt):**\n\nIndependent example: A fictional museum’s visitor queue became shorter while two stalls complained about fewer passing customers. The writer would acknowledge both measurements, ask whether opening hours or visitor routes changed, then propose measuring foot traffic at several points. This independent example deliberately avoids the crossing scenario.\n\n**Common pitfall and revision contrast:** “Six shops complained, so the road must be unsafe” confuses an inconvenience report with a safety measurement. “The lane proved accident prevention” also goes beyond the crossing count.\n\nCORE-3 — Read the exact paired Source texts before writing:\nSOURCE C\nThe Brookgate Safe Routes group trialled a traffic-free lane outside one primary school on four Friday mornings. Volunteers recorded 11 vehicle conflicts at the crossing over four comparison Fridays before the trial and six over four Fridays during the trial. The group describes a conflict as a moment when a volunteer saw a vehicle and pedestrian approach the same crossing space and one changed course abruptly. It argues that the reduction is encouraging, but it has not measured total pedestrian traffic, traffic diversions to nearby roads, or whether the comparison periods had similar weather and school events. It recommends a longer monitored pilot rather than a permanent restriction immediately.\n\nSOURCE D\nA local shop association notes that some deliveries were delayed during the four trial mornings. Its short survey includes replies from nine of the 27 shops contacted; six respondents reported inconvenience, while three noticed no change. The association asks for clearer delivery windows and checks on nearby roads before any extension. It does not claim that the trial increased accidents, and it does not deny that the volunteers recorded fewer conflicts at the crossing. A joint meeting proposes testing fixed delivery slots and collecting both pedestrian counts and vehicle movements on surrounding streets. The two groups disagree about practical priorities but both favour gathering better information before making a permanent decision.\n\nCORE-4 — "
+      },
+      "examples": [
+        "INDEPENDENT MODEL — Independent example: A fictional museum’s visitor queue became shorter while two stalls complained about fewer passing customers. The writer would acknowledge both measurements, ask whether opening hours or visitor routes changed, then propose measuring foot traffic at several points. This independent example deliberately avoids the crossing scenario.",
+        "TRANSFER STRATEGY — Reasoned synthesis plan: introduce the policy decision; attribute one confirmed measurement to Source C and one limitation or stakeholder concern to Source D; explain why the figures answer different questions; identify one alternative explanation that remains open; recommend a reversible next test with a"
+      ]
+    }
+  ]
+}

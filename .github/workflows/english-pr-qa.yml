@@ -54,6 +54,27 @@ jobs:
         working-directory: sites-p0-phase-a-20260926
         run: pnpm install --frozen-lockfile
 
+      - name: B1-U06 Vocabulary NotebookLM-reviewed schema preflight (full QA still required)
+        if: ${{ steps.app.outputs.present == 'true' }}
+        working-directory: sites-p0-phase-a-20260926
+        run: node tests/vocab-b1-u06-reviewed-v128-machine-schema.cjs
+
+      - name: B2 Wave2 reviewed schema preflight (does not replace full release QA)
+        if: ${{ steps.app.outputs.present == 'true' }}
+        working-directory: sites-p0-phase-a-20260926
+        run: node tests/b2-u05u06-wave2-v127-machine-schema.cjs
+
+      # Pinned FFmpeg/FFprobe binary setup avoids unreliable Ubuntu apt mirrors.
+      # Fall through to the original bounded apt path if this setup cannot run.
+      # The mandatory media validation and full QA below are unchanged.
+      - name: Setup pinned FFmpeg and FFprobe binaries
+        if: ${{ steps.app.outputs.present == 'true' }}
+        continue-on-error: true
+        uses: FedericoCarboni/setup-ffmpeg@37062fbf7149fc5578d6c57e08aed62458b375d6
+        with:
+          ffmpeg-version: release
+          linking-type: static
+
       - name: Ensure FFmpeg and FFprobe for audio validation
         if: ${{ steps.app.outputs.present == 'true' }}
         run: |
@@ -72,7 +93,7 @@ jobs:
                 # Official Ubuntu packages, alternate mirror. Do not bypass the
                 # mandatory FFmpeg/FFprobe existence and playback validation.
                 echo '::warning::FFmpeg installation incomplete from Azure mirror; retry official Ubuntu archive'
-                for source in /etc/apt/sources.list /etc/apt/sources.list.d/ubuntu.sources; do
+                for source in /etc/apt/apt-mirrors.txt /etc/apt/sources.list /etc/apt/sources.list.d/ubuntu.sources; do
                   if [[ -f "$source" ]]; then
                     sudo sed -i 's@azure.archive.ubuntu.com@archive.ubuntu.com@g' "$source"
                   fi
