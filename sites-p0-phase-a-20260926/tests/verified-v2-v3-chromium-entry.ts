@@ -2919,8 +2919,9 @@ const vault=browserLessonRevisionVault();
   button.click();
   await waitStatus('EXPORTED');
   const fileBlob=ui.getLastExportBlob();
-  check(fileBlob&&fileBlob.size>45_000_000&&
-   fileBlob.size<50_000_000,
+  if(!(fileBlob instanceof Blob))throw Error(
+   'R4v expected a real browser Blob after Export');
+  check(fileBlob.size>45_000_000&&fileBlob.size<50_000_000,
    'R4v actual single-file Blob did not preserve 45MB+ archive');
   check(!!root.querySelector<HTMLAnchorElement>('[data-r4v="download"]')&&
    root.querySelector<HTMLAnchorElement>('[data-r4v="download"]')!.download.endsWith(
