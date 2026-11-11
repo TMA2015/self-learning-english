@@ -41,6 +41,7 @@ const coreTests=[
   "listening-audio-manifest-coverage.cjs",
   "legacy-listening-kokoro-repair-preflight.cjs",
   "writing-step-feedback-ux.cjs",
+  "offline-lesson-postfeedback.cjs",
   "any-topic-writing-review-shell.cjs",
   "pronunciation-runtime-audio.cjs",
 ];
@@ -59,6 +60,7 @@ const fullRegressionTests=[
   "assisted-review.cjs",
   "attempt-navigation-ui.cjs",
   "today-learning-path.cjs",
+  "foundation-practice-plan.cjs",
   "unit-guide-60.cjs",
   "f2-a1u05-a2u03-v122.cjs",
   "f2-v122-upgrade-storage-safety.cjs",
