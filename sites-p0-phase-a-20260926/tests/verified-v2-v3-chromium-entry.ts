@@ -6,9 +6,9 @@
 import curriculum1180 from '../content/curriculum-1.18.0-candidate.json';
 import curriculum1181 from '../content/curriculum-1.18.1-candidate.json';
 import curriculum1200 from '../content/curriculum-1.20.0-candidate.json';
-import {convertVerifiedV2ToRevisionV3} from '../infrastructure/browser/v2-to-lesson-revision-v3';
+import {convertVerifiedV2ToRevisionV3,previewReadOnlyV2ShadowMigration} from '../infrastructure/browser/v2-to-lesson-revision-v3';
 import {verifyLocalRecoveryV2} from '../infrastructure/browser/local-recovery';
-import {verifyRevisionRecoveryV3,createRevisionRecoveryV3} from '../domain/lesson-revision-recovery-v3';
+import {verifyRevisionRecoveryV3,createRevisionRecoveryV3,verifiedRecoveryToPlan} from '../domain/lesson-revision-recovery-v3';
 import {canonicalLessonJSON,planLessonRevisions, type ReleaseRecord, type SavedReference} from '../domain/lesson-revision-plan';
 import {browserLessonRevisionVault} from '../infrastructure/storage/indexeddb-lesson-revision-vault';
 import {previewNormalizedV3Restore,restoreNormalizedV3,
@@ -2486,6 +2486,90 @@ const vault=browserLessonRevisionVault();
    safariAndNetworkLazyDelivery:'NOT_TESTED',
    productionUIIntegration:false
   });
+ }else if(phase==='r4r-shadow-v2-stage'){
+  // A fresh disposable profile with a full original-format V2 archive.
+  // Legacy learner bytes stay authoritative. Only test-owned source IDB
+  // receives immutable lesson/rubric data after rigorous READ-ONLY preflight.
+  check(localStorage.length===0,'R4r requires a disposable empty legacy profile');
+  check((await vault.snapshot()).active===null,
+   'R4r requires empty test-only normalized source vault');
+  const {v2,rows}=await fixture();
+  for(const row of rows)localStorage.setItem(row.key,row.value);
+  const sourceBefore=rows.map(x=>({key:x.key,value:x.value}));
+  const readOnly={get length(){return localStorage.length},
+   key:(i:number)=>localStorage.key(i),
+   getItem:(key:string)=>localStorage.getItem(key)};
+  const first=await previewReadOnlyV2ShadowMigration(v2,readOnly);
+  check(first.oldAttempts===73&&first.oldSourceVersions===3&&
+   first.currentLessonCount===123,
+   'R4r full V2 preview lost original 73 invented attempts/source');
+  check(first.oldSha256!=='undefined'&&first.newSha256.length===64,
+   'R4r shadow archive checksums missing');
+  check(canonicalLessonJSON(sourceBefore)===
+   canonicalLessonJSON(rows.map(x=>({key:x.key,value:localStorage.getItem(x.key)}))),
+   'R4r read-only preflight mutated legacy values');
+  // Simulate a NEW fake learner edit after portable backup. Stale backup
+  // must be REJECTED, not interpreted as permission to overwrite newer data.
+  const originalWriting=localStorage.getItem(writingKey)!;
+  localStorage.setItem(writingKey,JSON.stringify({syntheticNewWriting:'stale backup test'}));
+  let staleBlocked=false;
+  try{await previewReadOnlyV2ShadowMigration(v2,readOnly)}
+  catch(e){staleBlocked=/Downloaded V2 differs from current browser/.test(String(e))}
+  check(staleBlocked,'R4r stale V2 source was not refused');
+  check((await vault.snapshot()).active===null,
+   'R4r failed preflight must not install any normalized source');
+  localStorage.setItem(writingKey,originalWriting);
+  const second=await previewReadOnlyV2ShadowMigration(v2,readOnly);
+  check(second.legacySnapshotDigest===first.legacySnapshotDigest&&
+   second.newSha256===first.newSha256,
+   'R4r restored synthetic legacy source does not match original V2');
+  const verified=await verifyRevisionRecoveryV3(second.normalizedV3Text);
+  const staged=await vault.install(verifiedRecoveryToPlan(verified.file));
+  check(staged.activeVersion===verified.file.active.version&&
+   staged.addedRevisions===verified.file.blobs.length,
+   'R4r cannot stage immutable shadow source after complete preflight');
+  for(const row of sourceBefore)check(localStorage.getItem(row.key)===row.value,
+   'R4r shadow install modified a single original legacy key');
+  // A legacy+shadow mixed browser state is NOT a committed V3 learner store.
+  // Existing detached V3 exporter must refuse its unnormalized package key.
+  let mixedExportBlocked=false;
+  try{await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-11T12:00:00.000Z')}
+  catch(e){mixedExportBlocked=/Unexpected or duplicate learner storage key/.test(String(e))}
+  check(mixedExportBlocked,
+   'R4r shadow source must NOT masquerade as fully migrated V3 Recovery');
+  dom.textContent='PASS_R4R_SHADOW_STAGE '+JSON.stringify({
+   originalSyntheticAttempts:73,
+   originalV2Verified:true,staleBackupRefused:true,
+   readOnlyPreflightNeverWrites:true,
+   shadowSourceStagedWithoutLegacyChanges:true,
+   legacyRemainsAuthoritative:true,
+   incompleteHybridV3ExportBlocked:true,
+   privateFamilyBackupUsed:false,liveMigration:false
+  });
+ }else if(phase==='r4r-shadow-restart'){
+  // Independent Chrome process: prove original fake learner/localStorage
+  // records and normalized read-only source persist side by side.
+  const {v2,rows}=await fixture();
+  check(rows.every(row=>localStorage.getItem(row.key)===row.value)&&
+   localStorage.length===rows.length,
+   'R4r original legacy learner bytes changed after browser restart');
+  const readOnly={get length(){return localStorage.length},
+   key:(i:number)=>localStorage.key(i),
+   getItem:(key:string)=>localStorage.getItem(key)};
+  const p=await previewReadOnlyV2ShadowMigration(v2,readOnly);
+  check(p.oldAttempts===73&&p.oldSourceVersions===3,
+   'R4r read-only V2 preflight not repeatable after restart');
+  const verified=await verifyRevisionRecoveryV3(p.normalizedV3Text);
+  const shadow=await vault.snapshot();
+  check(canonicalLessonJSON(shadow.active)===
+   canonicalLessonJSON(verified.file.active)&&
+   shadow.blobs.length===verified.file.blobs.length&&
+   shadow.aliases.length===verified.file.aliases.length,
+   'R4r shadow source mismatch after new Chromium process');
+  check(rows.every(row=>localStorage.getItem(row.key)===row.value),
+   'R4r read after restart changed original fake learner records');
+  dom.textContent='PASS_R4R_SHADOW_RESTART';
  }else throw Error('Unsupported R4c browser phase');
 })().catch(e=>{
  dom.textContent='FAIL '+String(e)+' '+String((e as Error)?.stack).slice(0,1100);
