@@ -46,6 +46,7 @@ async function until(fn,ms=30000){
  const preflightProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4k-preflight-quota-'));
  const sigkillProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4l-hard-sigkill-'));
  const r4nProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4n-markerless-torn-'));
+ const r4oProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4o-idb-atomic-pair-'));
  // Four separate test-only profiles: no family profile or live browser.
  const r4mCases=[
   {name:'FAST_A',delayMs:100},{name:'FAST_B',delayMs:100},
@@ -401,6 +402,33 @@ async function until(fn,ms=30000){
    productionSafety:'NOT_ESTABLISHED',
    realLearnerData:'NOT_TOUCHED',deploy:false
   }));
+  // R4o: native IDB transaction atomically aborts or commits the pair.
+  const atomicAbort=await visitWithStartupRetry(
+   host+'/?phase=r4o-atomic-baseline-abort',r4oProfile);
+  const atomicCommit=await visitWithStartupRetry(
+   host+'/?phase=r4o-atomic-commit',r4oProfile);
+  const atomicVerify=await visitWithStartupRetry(
+   host+'/?phase=r4o-atomic-verify',r4oProfile);
+  assert.equal(atomicAbort,'PASS_R4O_ATOMIC_ABORT');
+  assert.equal(atomicCommit,'PASS_R4O_ATOMIC_COMMIT');
+  assert.match(atomicVerify,/^PASS_R4O_ATOMIC_VERIFY\b/);
+  const r4oProof=JSON.parse(atomicVerify.slice(atomicVerify.indexOf('{')));
+  assert.equal(r4oProof.strictDurabilityHintAccepted,true);
+  assert.equal(r4oProof.abortedTwoKeyTransactionAllOrNothing,true);
+  assert.equal(r4oProof.committedTwoKeyPairSurvivedNormalRestart,true);
+  assert.equal(r4oProof.untrackedOneKeyTamperFailsClosed,true);
+  assert.equal(r4oProof.syntheticV3ArchiveFromCommittedPairVerified,true);
+  console.log(JSON.stringify({
+   result:'PASS',gate:'r4o-strict-indexeddb-atomic-learner-pair-research',
+   actualIndexedDBSingleReadwriteTransaction:true,
+   requestedNativeStrictDurability:true,
+   abortedPairRemainsOriginal:true,committedPairPersistedNormalRestart:true,
+   untrackedSingleKeyChangeRejectedByDigest:true,
+   normalizedV3ProofFromCommittedPair:true,
+   noLiveStorageOrProductionWriterIntegration:true,
+   powerCutAndRealSIGKILL:'NOT_TESTED',safari:'NOT_TESTED',
+   realLearnerData:'NOT_TOUCHED',deploy:false
+  }));
   console.log(JSON.stringify({result:'PASS',
    gate:'r4m-repeated-hard-sigkill-crash-window-classification',
    additionalIndependentDisposableProfiles:4,
@@ -527,5 +555,5 @@ async function until(fn,ms=30000){
    persistedAcrossBrowserProcesses:true,realIndexedDBRestore:true,oldAttemptsByteIdentical:true,changedRubricPinned:true,occupiedRestoreBlocked:true,tamperedV2Blocked:true,
    recoveryV3:'BROWSER_SYNTHETIC_PASS',liveRuntimeIntegration:'NOT_TESTED',
    realSafariAcceptance:'NOT_TESTED'}));
- }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true});fs.rmSync(pairedWriteProfile,{recursive:true,force:true});fs.rmSync(writingQuotaProfile,{recursive:true,force:true});fs.rmSync(preflightProfile,{recursive:true,force:true});fs.rmSync(sigkillProfile,{recursive:true,force:true});fs.rmSync(r4nProfile,{recursive:true,force:true});for(const scenario of r4mCases)fs.rmSync(scenario.profile,{recursive:true,force:true})}
+ }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true});fs.rmSync(pairedWriteProfile,{recursive:true,force:true});fs.rmSync(writingQuotaProfile,{recursive:true,force:true});fs.rmSync(preflightProfile,{recursive:true,force:true});fs.rmSync(sigkillProfile,{recursive:true,force:true});fs.rmSync(r4nProfile,{recursive:true,force:true});fs.rmSync(r4oProfile,{recursive:true,force:true});for(const scenario of r4mCases)fs.rmSync(scenario.profile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});
