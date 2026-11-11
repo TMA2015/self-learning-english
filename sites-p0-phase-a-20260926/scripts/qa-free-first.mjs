@@ -6,6 +6,7 @@ const root=process.cwd();
 
 const coreTests=[
   "typescript-syntax.cjs",
+  "verified-v2-v3-chromium.cjs",
   "run.cjs",
   "academic.cjs",
   "pedagogy-v1181.cjs",
