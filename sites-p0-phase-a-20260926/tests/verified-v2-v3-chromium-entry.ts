@@ -16,8 +16,12 @@ import {
 import {canonicalLessonJSON,planLessonRevisions, type ReleaseRecord, type SavedReference} from '../domain/lesson-revision-plan';
 import {browserLessonRevisionVault} from '../infrastructure/storage/indexeddb-lesson-revision-vault';
 import {
- restoreR4uVerifiedParts,inspectR4uRestoredFullArchive,R4U_DB
+ restoreR4uVerifiedParts,inspectR4uRestoredFullArchive,
+ exportR4uRestoredResearchPacket,R4U_DB,R4V_DB
 } from '../infrastructure/storage/r4u-segmented-disposable-restore';
+import {
+ mountR4vIsolatedDemoUI,R4V_FILE_EXTENSION
+} from '../infrastructure/browser/r4v-portable-file-ui-research';
 import {
  stageR4sShadowCandidate,verifyR4sShadowCandidate,R4S_SHADOW_DB
 } from '../infrastructure/storage/r4s-shadow-learner-candidate';
@@ -2871,6 +2875,131 @@ const vault=browserLessonRevisionVault();
    noLearnerLocalStorageTouched:true,
    noRealLearnerData:'NOT_TOUCHED',safari:'NOT_TESTED',
    noProductUIOrNetworkFileDownloads:true
+  });
+ }else if(phase==='r4v-file-ui-roundtrip'){
+  // Source is an independently verified 45.3MB R4u restored database.
+  // This phase simulates user DOM clicks and a REAL File input selection,
+  // no private backup, no network upload, no production UI wiring.
+  check(localStorage.length===0,'R4v requires isolated empty localStorage');
+  const existing=await indexedDB.databases();
+  check(existing.some(x=>x.name===R4U_DB)&&
+   !existing.some(x=>x.name===R4V_DB),
+   'R4v requires verified prior R4u source and a fresh demo destination');
+  const packet=await exportR4uRestoredResearchPacket(indexedDB);
+  const root=document.createElement('section');
+  root.id='sle-r4v-test-ui';
+  document.body.appendChild(root);
+  const ui=mountR4vIsolatedDemoUI(root,packet,indexedDB);
+  const button=root.querySelector<HTMLButtonElement>('[data-r4v="export"]')!;
+  const choose=root.querySelector<HTMLInputElement>('[data-r4v="file"]')!;
+  const restore=root.querySelector<HTMLButtonElement>('[data-r4v="restore"]')!;
+  const status=root.querySelector<HTMLElement>('[data-r4v="status"]')!;
+  check(!!button&&!!choose&&!!restore&&!!status&&restore.disabled,
+   'R4v recovery control must initially be disabled');
+  async function waitStatus(
+   expected:string,limit=90000
+  ):Promise<void>{
+   const began=Date.now();
+   while(Date.now()-began<limit){
+    if(status.dataset.state===expected)return;
+    if((status.dataset.state||'').endsWith('FAILED')||
+     status.dataset.state==='FILE_INVALID')
+     throw Error('R4v UI rejected unexpected step: '+status.textContent);
+    await new Promise(resolve=>setTimeout(resolve,80));
+   }
+   throw Error('R4v UI step timeout: expected '+expected+
+    ', last='+status.dataset.state+' '+status.textContent);
+  }
+  function selectFile(file:File){
+   const transfer=new DataTransfer();
+   transfer.items.add(file);
+   choose.files=transfer.files;
+   choose.dispatchEvent(new Event('change',{bubbles:true}));
+  }
+  button.click();
+  await waitStatus('EXPORTED');
+  const fileBlob=ui.getLastExportBlob();
+  check(fileBlob&&fileBlob.size>45_000_000&&
+   fileBlob.size<50_000_000,
+   'R4v actual single-file Blob did not preserve 45MB+ archive');
+  check(!!root.querySelector<HTMLAnchorElement>('[data-r4v="download"]')&&
+   root.querySelector<HTMLAnchorElement>('[data-r4v="download"]')!.download.endsWith(
+    R4V_FILE_EXTENSION),'R4v download link lacks portable file name');
+  // User choosing an incomplete file MUST NOT enable Restore or create DB.
+  const truncated=new File([fileBlob.slice(0,fileBlob.size-17)],
+   'truncated'+R4V_FILE_EXTENSION,{type:'application/octet-stream'});
+  selectFile(truncated);
+  const first=Date.now();
+  while(status.dataset.state==='VERIFYING'&&Date.now()-first<15000)
+   await new Promise(resolve=>setTimeout(resolve,50));
+  check(status.dataset.state==='FILE_INVALID'&&restore.disabled,
+   'R4v truncated archive was not rejected before Restore');
+  check(!(await indexedDB.databases()).some(x=>x.name===R4V_DB),
+   'R4v rejected file opened the destination IDB');
+  // Same-size, deliberately invalid header also must be refused.
+  const badHeader=new File([new TextEncoder().encode('BADFILE!'),
+   fileBlob.slice(8)],'badheader'+R4V_FILE_EXTENSION);
+  selectFile(badHeader);
+  const start2=Date.now();
+  while(status.dataset.state==='VERIFYING'&&Date.now()-start2<15000)
+   await new Promise(resolve=>setTimeout(resolve,50));
+  check(status.dataset.state==='FILE_INVALID'&&restore.disabled,
+   'R4v malformed format enabled Restore unexpectedly');
+  check(!(await indexedDB.databases()).some(x=>x.name===R4V_DB),
+   'R4v malformed header created a restore destination');
+  const originalFile=new File([fileBlob],
+   'SLE-SYNTHETIC-ONLY'+R4V_FILE_EXTENSION,
+   {type:'application/octet-stream'});
+  selectFile(originalFile);
+  await waitStatus('FILE_VERIFIED',120000);
+  check(!restore.disabled&&
+   status.textContent?.includes('2123')&&
+   status.textContent?.includes('73'),
+   'R4v did not display verified original lesson and attempt counts');
+  check(!(await indexedDB.databases()).some(x=>x.name===R4V_DB),
+   'R4v preview unexpectedly created destination before consent');
+  restore.click();
+  await waitStatus('RESTORE_OK',180000);
+  check(restore.disabled,
+   'R4v permitted repeated Restore after successful commit');
+  check(localStorage.length===0,
+   'R4v UI unexpectedly wrote into old learner localStorage');
+  dom.textContent='PASS_R4V_FILE_UI '+JSON.stringify({
+   actualBrowserBlobAndFileRoundtrip:true,
+   onePortableFileMoreThan45MB:true,
+   packageContains46VerifiedParts:true,
+   recoveryDisabledUntilFileValidated:true,
+   actualUserInputChangeEventExercised:true,
+   malformedHeaderAndTruncatedFileRefused:true,
+   noPreconsentDestinationCreated:true,
+   selectedValidFileExplicitlyRestored:true,
+   original2123LessonsAnd73AttemptsRestored:true,
+   researchDestinationIsolated:true,
+   realOSDownloadAndSafariFiles:'NOT_TESTED',
+   actualProductUIIntegration:false,
+   actualFamilyData:'NOT_TOUCHED'
+  });
+ }else if(phase==='r4v-file-ui-reopen'){
+  // New independent Chromium process proves the selected File's committed
+  // test-only destination persisted and can reconstruct exact original V3
+  // history without reading/modifying product learner localStorage.
+  check(localStorage.length===0,'R4v never writes into localStorage');
+  const [source,copy]=await Promise.all([
+   inspectR4uRestoredFullArchive(indexedDB,R4U_DB),
+   inspectR4uRestoredFullArchive(indexedDB,R4V_DB)
+  ]);
+  check(source.lessons===2123&&copy.lessons===source.lessons&&
+   source.attempts===73&&copy.attempts===source.attempts&&
+   source.bytes===copy.bytes&&copy.parts===source.parts&&
+   copy.oldWritingValue===source.oldWritingValue&&
+   source.historyAliases===copy.historyAliases,
+   'R4v selected portable File was not identical after Chromium restart');
+  dom.textContent='PASS_R4V_UI_REOPEN '+JSON.stringify({
+   fullSyntheticArchivePersists:true,lessons:copy.lessons,
+   attempts:copy.attempts,parts:copy.parts,
+   bytes:copy.bytes,originalWritingByteIdentical:true,
+   historicAliasesExact:true,noLocalStorageWrites:true,
+   noProductionMigration:true
   });
  }else throw Error('Unsupported R4c browser phase');
 })().catch(e=>{
