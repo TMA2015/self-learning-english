@@ -152,6 +152,21 @@ The test emits \`NEGATIVE_CONTROL_REPRODUCED\` and **\`BLOCKER_NOT_FIXED\`**, no
 
 **CI PENDING until the exact-head full workflow completes.** Safari/iPad, true power loss, filesystem fsync, IDB eviction, original family Recovery, and historic audio binary/source permissions remain untested. Keep Issue #103 OPEN, PR #129 Draft and v1.26 release NO_GO.
 
+## R4o — real Chromium atomic learner pair via one IndexedDB transaction (research only)
+
+**Reason:** R4n showed that when the localStorage marker is absent, a mixed attempts/Writing snapshot can be serialized with a valid V3 checksum. No snapshot-only checksum can prove that two independent localStorage keys were committed as one logical operation. R4o examines a fundamentally different primitive: store the two values **plus their version/checksum commit metadata in a single IndexedDB object store** under **one native \`readwrite\` transaction**. This is not activated in the app.
+
+An eleventh isolated, disposable Chromium profile uses the same verified public V2→V3 fixture (1.18.0, 1.18.1, 1.20.0, 73 wholly invented attempts, fake Writing and course selection, original revision/rubric source) and a **separate test-only IndexedDB database**. No original learner key is overwritten by the experimental writer.
+
+Three independent browser processes test:
+1. **Baseline + abort:** store both original invented learner values and a SHA-256-linked transaction sequence in one IDB transaction with \`{durability:'strict'}\`. Stage changed attempts and Writing together in another native transaction, then explicitly \`abort()\` the transaction. Confirm **neither** change survives and the previous valid commit metadata remains.
+2. **Commit after restart:** require both original values from the previous abort, then write new attempts, new Writing and updated commit metadata in **one** native \`readwrite\` transaction. Require the \`complete\` event and exact same-transaction pair/checksum readback.
+3. **Verify after another restart:** require both new values and the matching commit digest; use the existing V3 serializer to build an **illustrative normalized backup from the committed IDB pair** and unchanged original public historical revisions, then verify all 73 fabricated attempts and both updated values. Deliberately alter **only** the experiment's first IDB value without updating its commit metadata; require the research-only paired reader to **fail closed** on checksum mismatch. Restore the invented pair using a new single transaction.
+
+This demonstrates **transactional all-or-nothing semantics and post-graceful-restart persistence** in Chromium, including a single-record tamper rejection. Native \`strict\` is a *durability hint*, not a universal power-loss warranty. It does **not** test SIGKILL during a native IDB transaction, OS power cut/fsync, IDB eviction/quota, Safari/iPad, real learner attempts, production multi-tab writer integration, or actual V2-to-IDB data cutover. The existing V3 browser exporter still reads legacy localStorage; the proof's manually assembled V3 archive **does not mean the production Recovery route has been upgraded**. A separately gated migration must protect localStorage old bytes, ensure cross-store revision/learner closure, rollback and Safari acceptance before any activation.
+
+**Exact-HEAD CI PENDING** for R4o until the full workflow finishes. Retain PR Draft, Issue #103 OPEN, v1.26 NO_GO, no merge/deploy or original data modification.
+
 ## Explicit non-claims / blockers
 
 - SHA verifies integrity of archived JSON, but it is **not a cryptographic signature proving the real provenance of the original learner data**.
