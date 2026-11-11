@@ -28,7 +28,7 @@ function write(t:HTMLTextAreaElement|null,value:string){
  await wait(()=>!!textarea('writing-topic')&&!!textarea('student-written-content'),'mount');
  const topic=textarea('writing-topic')!,writing=textarea('student-written-content')!;
  assert(topic.required&&writing.required,'Both fields required');
- assert(!find('Open self-review checklist')?.disabled===false,'button exists');
+ assert(!!find('Open self-review checklist'),'checklist button exists');
  if(phase==='save'){
   assert(find('Open self-review checklist')?.disabled,'Empty input cannot review');
   write(topic,'Should students read every day? Give reasons.');
