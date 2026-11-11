@@ -54,6 +54,11 @@ jobs:
         working-directory: sites-p0-phase-a-20260926
         run: pnpm install --frozen-lockfile
 
+      - name: B1-U06 Vocabulary NotebookLM-reviewed schema preflight (full QA still required)
+        if: ${{ steps.app.outputs.present == 'true' }}
+        working-directory: sites-p0-phase-a-20260926
+        run: node tests/vocab-b1-u06-reviewed-v128-machine-schema.cjs
+
       - name: B2 Wave2 reviewed schema preflight (does not replace full release QA)
         if: ${{ steps.app.outputs.present == 'true' }}
         working-directory: sites-p0-phase-a-20260926
