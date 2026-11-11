@@ -1,0 +1,1079 @@
+{
+  "packet_id": "SLE-B2-W2-U05U06-20261111-R1",
+  "source_sha256": "5b0eb90ed047fc20850f291b9ec1483cf626b5fdf3eb8b7e63d0c1df6aa16e81",
+  "review_file": "SLE_B2_U05_U06_WAVE2_NOTEBOOKLM_VERDICT_20261111.txt",
+  "academic_verdict": "PASS_WITH_ZERO_REQUIRED_CORRECTIONS",
+  "base": "1.26.0",
+  "candidate": "1.27.0",
+  "release_status": "NO_GO",
+  "conversion": "4 reviewed multi-skill pedagogical lessons -> 4 separate REA and 4 WRI data records. Avoids mixed REA+WRI submissions being marked entirely pending_review, and preserves correct optional Writing AI availability.",
+  "unit_assignments": {
+    "REA-B2-06": "B2-U05",
+    "WRI-B2-04": "B2-U05",
+    "REA-B2-07": "B2-U05",
+    "WRI-B2-05": "B2-U05",
+    "REA-B2-08": "B2-U06",
+    "WRI-B2-06": "B2-U06",
+    "REA-B2-09": "B2-U06",
+    "WRI-B2-07": "B2-U06"
+  },
+  "source_to_canonical": [
+    {
+      "old": "L01-Q01",
+      "new": "REA-B2-06-Q1",
+      "key": "B"
+    },
+    {
+      "old": "L01-Q02",
+      "new": "REA-B2-06-Q2",
+      "key": "C"
+    },
+    {
+      "old": "L01-Q03",
+      "new": "REA-B2-06-Q3",
+      "key": "C"
+    },
+    {
+      "old": "L01-Q04",
+      "new": "REA-B2-06-Q4",
+      "key": "C"
+    },
+    {
+      "old": "L01-Q05",
+      "new": "REA-B2-06-Q5",
+      "key": "B"
+    },
+    {
+      "old": "L01-Q06",
+      "new": "WRI-B2-04-Q1",
+      "key": null
+    },
+    {
+      "old": "L02-Q01",
+      "new": "REA-B2-07-Q1",
+      "key": "A"
+    },
+    {
+      "old": "L02-Q02",
+      "new": "REA-B2-07-Q2",
+      "key": "B"
+    },
+    {
+      "old": "L02-Q03",
+      "new": "REA-B2-07-Q3",
+      "key": "C"
+    },
+    {
+      "old": "L02-Q04",
+      "new": "REA-B2-07-Q4",
+      "key": "C"
+    },
+    {
+      "old": "L02-Q05",
+      "new": "REA-B2-07-Q5",
+      "key": "C"
+    },
+    {
+      "old": "L02-Q06",
+      "new": "WRI-B2-05-Q1",
+      "key": null
+    },
+    {
+      "old": "L03-Q01",
+      "new": "REA-B2-08-Q1",
+      "key": "A"
+    },
+    {
+      "old": "L03-Q02",
+      "new": "REA-B2-08-Q2",
+      "key": "C"
+    },
+    {
+      "old": "L03-Q03",
+      "new": "REA-B2-08-Q3",
+      "key": "B"
+    },
+    {
+      "old": "L03-Q04",
+      "new": "REA-B2-08-Q4",
+      "key": "C"
+    },
+    {
+      "old": "L03-Q05",
+      "new": "REA-B2-08-Q5",
+      "key": "D"
+    },
+    {
+      "old": "L03-Q06",
+      "new": "WRI-B2-06-Q1",
+      "key": null
+    },
+    {
+      "old": "L04-Q01",
+      "new": "REA-B2-09-Q1",
+      "key": "B"
+    },
+    {
+      "old": "L04-Q02",
+      "new": "REA-B2-09-Q2",
+      "key": "C"
+    },
+    {
+      "old": "L04-Q03",
+      "new": "REA-B2-09-Q3",
+      "key": "A"
+    },
+    {
+      "old": "L04-Q04",
+      "new": "REA-B2-09-Q4",
+      "key": "A"
+    },
+    {
+      "old": "L04-Q05",
+      "new": "REA-B2-09-Q5",
+      "key": "B"
+    },
+    {
+      "old": "L04-Q06",
+      "new": "WRI-B2-07-Q1",
+      "key": null
+    }
+  ],
+  "lessons": [
+    {
+      "id": "REA-B2-06",
+      "module": "reading",
+      "cefr_target": "B2",
+      "estimated_minutes": 30,
+      "objectives": [
+        "I can tell the difference between a measured observation, a survey preference and an unsupported conclusion. I can combine two sources without claiming they prove more than they do."
+      ],
+      "examples": [
+        "INDEPENDENT MODEL — Independent demonstration — classroom plants, NOT part of scored practice.\n\n- Notice A: “In week three, five of the eight classroom plants had new leaves.” This records an observation; it does not prove which change caused the growth.\n- Notice B: “In an optional class poll, 18 of 25 respondents preferred plants near the windows.” This reports the preferences of respondents, not growth outcomes.\n- Model thinking: “The notices concern the same classroom but measure different things: plant growth and student preference. It would be inaccurate to write, ‘Students proved window placement makes plants grow faster.’”\n- Typical mistake: Treating preference as causal evidence. Repair: State the method and the limit alongside each claim.",
+        "TRANSFER STRATEGY — When you compare two sources, create a four-column note: source → what was measured or reported → the exact result → what remains unknown. First find agreement and difference. Then write one sentence that clearly attributes each finding. An observation of more people doing something is not automatically proof that the new policy caused it; a survey of preferences does not measure actual behaviour."
+      ],
+      "title": "What do two sources actually show?",
+      "explanation": {
+        "en": "CORE-1 — I can tell the difference between a measured observation, a survey preference and an unsupported conclusion. I can combine two sources without claiming they prove more than they do.\n\nContext: A student council needs a fair summary before deciding how to make journeys to school easier.\n\nCORE-2 — When you compare two sources, create a four-column note: **source → what was measured or reported → the exact result → what remains unknown**. First find agreement and difference. Then write one sentence that clearly attributes each finding. An observation of more people doing something is not automatically proof that the new policy caused it; a survey of preferences does not measure actual behaviour.\n\n**Independent demonstration — classroom plants, NOT part of scored practice.**\n\n- Notice A: “In week three, five of the eight classroom plants had new leaves.” This records an observation; it does not prove which change caused the growth.\n- Notice B: “In an optional class poll, 18 of 25 respondents preferred plants near the windows.” This reports the preferences of respondents, not growth outcomes.\n- **Model thinking:** “The notices concern the same classroom but measure different things: plant growth and student preference. It would be inaccurate to write, ‘Students proved window placement makes plants grow faster.’”\n- **Typical mistake:** Treating preference as causal evidence. **Repair:** State the method and the limit alongside each claim.\n\nCORE-3 — Analyse the supplied source evidence. Complete five independent scored reading-strategy items. The companion Writing transfer task is separately unscored.\n\nCORE-4 — After the five MCQs, explain each choice with the feedback above. For Writing, show an unscored checklist: (1) A observation attributed accurately; (2) B questionnaire attributed accurately; (3) non-respondent/safety or causal limit stated; (4) no invented accident claim; (5) readable synthesis. Suggest reviewing the worked example if the learner confuses *preference* with *measured outcome*. An unreviewed paragraph remains **pending review**, not “mastered.”\n\n---"
+      },
+      "activities": [
+        {
+          "id": "REA-B2-06-Q1",
+          "type": "single_choice",
+          "prompt": "Which statement describes the main relationship between the two sources?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Both experimentally tested whether crossings prevent road accidents."
+            },
+            {
+              "id": "B",
+              "text": "Both concern school travel improvements, but one counts bicycles and the other reports preferences."
+            },
+            {
+              "id": "C",
+              "text": "Both surveyed exactly the same parents before and after the trial."
+            },
+            {
+              "id": "D",
+              "text": "They describe unrelated parts of the school curriculum."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Text A records parked bicycles; Text B reports what respondents prefer. A and C invent methods; D misses the shared travel issue. Next step: Label the method beside each source."
+          },
+          "skill_tags": [
+            "reading.gist"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-06-Q2",
+          "type": "single_choice",
+          "prompt": "Which figure is directly supported by Text A alone?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Ninety families were questioned about road crossings."
+            },
+            {
+              "id": "B",
+              "text": "Fifty-four respondents chose a safer crossing."
+            },
+            {
+              "id": "C",
+              "text": "Average Wednesday bicycle counts rose from 42 to 65 during the trial."
+            },
+            {
+              "id": "D",
+              "text": "Accidents fell by 23 during the trial."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The observed counts are the only figure listed in Text A. The respondent figures belong to B; no accident reduction was measured. Next step: Match each number to its original source."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-06-Q3",
+          "type": "single_choice",
+          "prompt": "Which caution is justified when interpreting Text B?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The 90 respondents necessarily represent every family at the school."
+            },
+            {
+              "id": "B",
+              "text": "The responses show that no family uses a bicycle."
+            },
+            {
+              "id": "C",
+              "text": "An optional survey may not represent the preferences of non-respondents."
+            },
+            {
+              "id": "D",
+              "text": "Survey preferences prove that extra stands made cycling less safe."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Selection into the optional survey may affect representativeness. Nothing in B establishes behaviour, safety causation or unanimous views. Next step: Ask who was invited and who answered."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-06-Q4",
+          "type": "single_choice",
+          "prompt": "Which conclusion would go beyond what either text can justify?",
+          "options": [
+            {
+              "id": "A",
+              "text": "There were more counted bicycles during the parking-stand trial."
+            },
+            {
+              "id": "B",
+              "text": "A majority of questionnaire respondents selected a safer crossing as their first improvement."
+            },
+            {
+              "id": "C",
+              "text": "The trial definitely reduced accidents because bicycle counts increased."
+            },
+            {
+              "id": "D",
+              "text": "The two sources address different aspects of travel to school."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Neither text contains accident measurements or a causal safety study. A, B and D are supported within their stated bounds. Next step: Underline the missing measurement in any claim containing “definitely.”"
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-06-Q5",
+          "type": "single_choice",
+          "prompt": "Which sentence best combines both sources without distorting them?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Adding parking stands solved every travel problem, as all parents agreed."
+            },
+            {
+              "id": "B",
+              "text": "Increased bicycle counts during the stand trial suggest use rose, while an optional parent survey placed greater priority on a safer crossing; neither source establishes accident outcomes."
+            },
+            {
+              "id": "C",
+              "text": "The parent survey measured 65 cyclists and showed 42 road accidents."
+            },
+            {
+              "id": "D",
+              "text": "Since some parents preferred crossings, the bicycle counts in Text A must be inaccurate."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "This attributes the sources separately and avoids inventing causation. A exaggerates, C combines incompatible numbers, and D assumes contradiction where none exists. Next step: Write a synthesis using “while” or “however” and a limitation."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-B2-06",
+        "title": "What do two sources actually show? · Original evidence",
+        "body": "Text A — Bicycle parking trial: site count note.  \nFor four weeks, volunteers counted bicycles parked at the school's main entrance at 8:00 a.m. on each Wednesday. The average was 42 bicycles before a trial of additional parking stands and 65 during the trial. Volunteers used the same entrance and counting time, but did not record the weather, the number of students attending, or how the cyclists travelled to the school gate. The note says the counts increased while the trial was running. It does not claim that the stands alone caused the increase or that road accidents became less common.\n\nText B — Parent travel questionnaire: summary.  \nA parent association invited families to answer an optional online questionnaire about journeys to school. Ninety parents responded. Of those respondents, 54 selected “a safer crossing near the gate” as their top improvement, while 23 selected “more bicycle stands”; the others selected different ideas. This was a preference questionnaire, not a count of bicycles or a study of accidents. Families who did not answer might have different views. The association recommended examining crossing safety before making another large spending decision.\n\nQuestion format: Choose one best answer for each. Questions use only the two texts above. Options will be shuffled in the website; explanatory feedback must refer to *meaning*, not an option letter.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-B2-04",
+      "module": "writing",
+      "cefr_target": "B2",
+      "estimated_minutes": 20,
+      "objectives": [
+        "I can tell the difference between a measured observation, a survey preference and an unsupported conclusion. I can combine two sources without claiming they prove more than they do."
+      ],
+      "examples": [
+        "INDEPENDENT MODEL — Independent demonstration — classroom plants, NOT part of scored practice.\n\n- Notice A: “In week three, five of the eight classroom plants had new leaves.” This records an observation; it does not prove which change caused the growth.\n- Notice B: “In an optional class poll, 18 of 25 respondents preferred plants near the windows.” This reports the preferences of respondents, not growth outcomes.\n- Model thinking: “The notices concern the same classroom but measure different things: plant growth and student preference. It would be inaccurate to write, ‘Students proved window placement makes plants grow faster.’”\n- Typical mistake: Treating preference as causal evidence. Repair: State the method and the limit alongside each claim.",
+        "TRANSFER STRATEGY — When you compare two sources, create a four-column note: source → what was measured or reported → the exact result → what remains unknown. First find agreement and difference. Then write one sentence that clearly attributes each finding. An observation of more people doing something is not automatically proof that the new policy caused it; a survey of preferences does not measure actual behaviour."
+      ],
+      "title": "Writing transfer · What do two sources actually show?",
+      "explanation": {
+        "en": "CORE-1 — I can tell the difference between a measured observation, a survey preference and an unsupported conclusion. I can combine two sources without claiming they prove more than they do.\n\nContext: A student council needs a fair summary before deciding how to make journeys to school easier.\n\nCORE-2 — When you compare two sources, create a four-column note: **source → what was measured or reported → the exact result → what remains unknown**. First find agreement and difference. Then write one sentence that clearly attributes each finding. An observation of more people doing something is not automatically proof that the new policy caused it; a survey of preferences does not measure actual behaviour.\n\n**Independent demonstration — classroom plants, NOT part of scored practice.**\n\n- Notice A: “In week three, five of the eight classroom plants had new leaves.” This records an observation; it does not prove which change caused the growth.\n- Notice B: “In an optional class poll, 18 of 25 respondents preferred plants near the windows.” This reports the preferences of respondents, not growth outcomes.\n- **Model thinking:** “The notices concern the same classroom but measure different things: plant growth and student preference. It would be inaccurate to write, ‘Students proved window placement makes plants grow faster.’”\n- **Typical mistake:** Treating preference as causal evidence. **Repair:** State the method and the limit alongside each claim.\n\nOriginal source evidence:\nText A — Bicycle parking trial: site count note.  \nFor four weeks, volunteers counted bicycles parked at the school's main entrance at 8:00 a.m. on each Wednesday. The average was 42 bicycles before a trial of additional parking stands and 65 during the trial. Volunteers used the same entrance and counting time, but did not record the weather, the number of students attending, or how the cyclists travelled to the school gate. The note says the counts increased while the trial was running. It does not claim that the stands alone caused the increase or that road accidents became less common.\n\nText B — Parent travel questionnaire: summary.  \nA parent association invited families to answer an optional online questionnaire about journeys to school. Ninety parents responded. Of those respondents, 54 selected “a safer crossing near the gate” as their top improvement, while 23 selected “more bicycle stands”; the others selected different ideas. This was a preference questionnaire, not a count of bicycles or a study of accidents. Families who did not answer might have different views. The association recommended examining crossing safety before making another large spending decision.\n\nQuestion format: Choose one best answer for each. Questions use only the two texts above. Options will be shuffled in the website; explanatory feedback must refer to *meaning*, not an option letter.\n\nCORE-3 — Compose an original response following the task. This is unscored pending trusted review.\n\nCORE-4 — After the five MCQs, explain each choice with the feedback above. For Writing, show an unscored checklist: (1) A observation attributed accurately; (2) B questionnaire attributed accurately; (3) non-respondent/safety or causal limit stated; (4) no invented accident claim; (5) readable synthesis. Suggest reviewing the worked example if the learner confuses *preference* with *measured outcome*. An unreviewed paragraph remains **pending review**, not “mastered.”\n\n---"
+      },
+      "activities": [
+        {
+          "id": "WRI-B2-04-Q1",
+          "type": "extended_response",
+          "prompt": "Write 80–110 words for the student council. Summarise the evidence from both texts, identify one point of difference and state one important thing neither source can prove. Attribute each figure or preference to its source. This task has no exact-match answer, percentage score or automatic B2 judgement.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted Writing review. Writing stays unscored pending review; length is not a quality score or CEFR certification."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.cohesion",
+            "writing.idea_development",
+            "writing.grammar",
+            "writing.vocabulary",
+            "writing.register"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-B2",
+          "review_mode": "assisted_ai_or_human",
+          "word_range_guidance": {
+            "min": 80,
+            "max": 110,
+            "not_a_quality_score": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "REA-B2-07",
+      "module": "reading",
+      "cefr_target": "B2",
+      "estimated_minutes": 30,
+      "objectives": [
+        "I can report what two sources agree about and where their emphasis differs. I can preserve uncertainty, rather than copying sentences or inventing a stronger shared conclusion."
+      ],
+      "examples": [
+        "INDEPENDENT MODEL — Independent demonstration — festival signs, NOT scored text.\n\n- Festival organiser's note: “A shorter sign was read by more visitors at the information desk, based on a 20-minute observation.”\n- Two volunteers' comments: “We preferred the detailed sign because it explained accessibility routes.”\n- Model synthesis: “A brief observation suggests the shorter sign attracted attention, whereas the volunteers valued the longer sign's detail. The evidence does not establish which format helped visitors find their destinations.”\n- Mistake: “Everyone thought the short sign was better.” Repair: Respect different measures and the limited sample.",
+        "TRANSFER STRATEGY — A source synthesis is not two disconnected summaries. It answers a question by relating the sources: common issue → finding from each → difference/limitation → cautious overall implication. Use attribution words such as *according to*, *the count indicates*, and *respondents reported*. If two groups could overlap, do not subtract one from the other unless the source explicitly says they are separate."
+      ],
+      "title": "Synthesis without erasing a disagreement",
+      "explanation": {
+        "en": "CORE-1 — I can report what two sources agree about and where their emphasis differs. I can preserve uncertainty, rather than copying sentences or inventing a stronger shared conclusion.\n\nContext: The school council is examining whether longer study-room hours are helpful and practical.\n\nCORE-2 — A source synthesis is not two disconnected summaries. It answers a question by relating the sources: **common issue → finding from each → difference/limitation → cautious overall implication**. Use attribution words such as *according to*, *the count indicates*, and *respondents reported*. If two groups could overlap, do not subtract one from the other unless the source explicitly says they are separate.\n\n**Independent demonstration — festival signs, NOT scored text.**\n\n- Festival organiser's note: “A shorter sign was read by more visitors at the information desk, based on a 20-minute observation.”\n- Two volunteers' comments: “We preferred the detailed sign because it explained accessibility routes.”\n- **Model synthesis:** “A brief observation suggests the shorter sign attracted attention, whereas the volunteers valued the longer sign's detail. The evidence does not establish which format helped visitors find their destinations.”\n- **Mistake:** “Everyone thought the short sign was better.” **Repair:** Respect different measures and the limited sample.\n\nCORE-3 — Analyse the supplied source evidence. Complete five independent scored reading-strategy items. The companion Writing transfer task is separately unscored.\n\nCORE-4 — For objective items use source-based explanations above. Writing self-check: distinct attribution, no falsely exclusive respondent categories, measured visits not individual achievement, one workable evidence-based next step. Recommend rewriting unsupported “proved” statements as bounded claims.\n\n---"
+      },
+      "activities": [
+        {
+          "id": "REA-B2-07-Q1",
+          "type": "single_choice",
+          "prompt": "What does the numerical comparison in Text A actually measure?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The change in average recorded visits per afternoon during two periods."
+            },
+            {
+              "id": "B",
+              "text": "The percentage of all students whose grades improved."
+            },
+            {
+              "id": "C",
+              "text": "The number of pupils who stayed until exactly 6 p.m. every day."
+            },
+            {
+              "id": "D",
+              "text": "The success of the school bus timetable."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The log compares visits, not unique people, grades or buses. Next step: Distinguish event counts from people counts."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-07-Q2",
+          "type": "single_choice",
+          "prompt": "Why would it be wrong to conclude that exactly 42 respondents both benefited and had no transport concerns?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Text A says no student ever used the extended hours."
+            },
+            {
+              "id": "B",
+              "text": "Text B explicitly allows respondents to select overlapping statements."
+            },
+            {
+              "id": "C",
+              "text": "Every response in Text B was anonymous."
+            },
+            {
+              "id": "D",
+              "text": "The school library was open only in the morning."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The groups can overlap, so subtracting 31 from 73 does not identify a separate subgroup. The other options do not follow from either text. Next step: Check whether categories are mutually exclusive before doing arithmetic."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-07-Q3",
+          "type": "single_choice",
+          "prompt": "Which claim can be attributed only to Text B?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The average rose from 18 to 28 recorded visits per extended afternoon."
+            },
+            {
+              "id": "B",
+              "text": "Staff noticed students revising in small groups."
+            },
+            {
+              "id": "C",
+              "text": "Some respondents were concerned about getting home later."
+            },
+            {
+              "id": "D",
+              "text": "The previous observation period lasted six weeks."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Travel concerns appear in the feedback form; visit counts and staff observations are from the log. Next step: Put source labels beside each evidence fragment."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-07-Q4",
+          "type": "single_choice",
+          "prompt": "Which sentence preserves both an apparent benefit and a practical constraint?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Later library hours guaranteed better examination results for the whole school."
+            },
+            {
+              "id": "B",
+              "text": "Because 31 students had transport concerns, nobody gained study time."
+            },
+            {
+              "id": "C",
+              "text": "Recorded visits were higher in the pilot period and many respondents found the hours useful, although transport concerns and limits in the comparisons remain."
+            },
+            {
+              "id": "D",
+              "text": "The committee proved that every student was counted once in both data sets."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "C integrates both sources with appropriate caution. A and D claim unmeasured outcomes; B ignores the 73 reported benefits and potential overlap. Next step: Use an evidence-plus-limitation sentence."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-07-Q5",
+          "type": "single_choice",
+          "prompt": "What further evidence would most directly help decide whether the extension is practical for students who depend on buses?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The colour of the library walls."
+            },
+            {
+              "id": "B",
+              "text": "The number of dictionaries in the building."
+            },
+            {
+              "id": "C",
+              "text": "Verified after-school bus schedules and students' available travel options."
+            },
+            {
+              "id": "D",
+              "text": "The number of pages in the student handbook."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Transport feasibility requires timetable/access evidence, not unrelated school facts. Next step: Connect the decision question to the missing information."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-B2-07",
+        "title": "Synthesis without erasing a disagreement · Original evidence",
+        "body": "Text A — Library service pilot log.  \nFor six weeks, the school library stayed open until 6 p.m. on Tuesdays and Thursdays. Staff recorded an average of 28 visits per extended afternoon, compared with 18 visits during the same weekday time slots in an earlier six-week period. These figures count visits rather than unique students. Staff frequently saw learners revising in small groups. The log does not record how many visitors would have studied elsewhere, whether grades changed, or whether the previous six weeks had the same examination timetable.\n\nText B — Student feedback form.  \nA student committee collected 120 voluntary responses after the pilot. Seventy-three students marked “later hours helped me find study time,” and 31 marked “getting home later can be difficult.” Respondents could select more than one statement, so the groups may overlap. Sixteen selected “no strong view” as one of their responses. Several comments recommended publishing the bus timetable beside the opening times. The form measured reported experience and concerns, not the number of distinct visitors to the library.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-B2-05",
+      "module": "writing",
+      "cefr_target": "B2",
+      "estimated_minutes": 20,
+      "objectives": [
+        "I can report what two sources agree about and where their emphasis differs. I can preserve uncertainty, rather than copying sentences or inventing a stronger shared conclusion."
+      ],
+      "examples": [
+        "INDEPENDENT MODEL — Independent demonstration — festival signs, NOT scored text.\n\n- Festival organiser's note: “A shorter sign was read by more visitors at the information desk, based on a 20-minute observation.”\n- Two volunteers' comments: “We preferred the detailed sign because it explained accessibility routes.”\n- Model synthesis: “A brief observation suggests the shorter sign attracted attention, whereas the volunteers valued the longer sign's detail. The evidence does not establish which format helped visitors find their destinations.”\n- Mistake: “Everyone thought the short sign was better.” Repair: Respect different measures and the limited sample.",
+        "TRANSFER STRATEGY — A source synthesis is not two disconnected summaries. It answers a question by relating the sources: common issue → finding from each → difference/limitation → cautious overall implication. Use attribution words such as *according to*, *the count indicates*, and *respondents reported*. If two groups could overlap, do not subtract one from the other unless the source explicitly says they are separate."
+      ],
+      "title": "Writing transfer · Synthesis without erasing a disagreement",
+      "explanation": {
+        "en": "CORE-1 — I can report what two sources agree about and where their emphasis differs. I can preserve uncertainty, rather than copying sentences or inventing a stronger shared conclusion.\n\nContext: The school council is examining whether longer study-room hours are helpful and practical.\n\nCORE-2 — A source synthesis is not two disconnected summaries. It answers a question by relating the sources: **common issue → finding from each → difference/limitation → cautious overall implication**. Use attribution words such as *according to*, *the count indicates*, and *respondents reported*. If two groups could overlap, do not subtract one from the other unless the source explicitly says they are separate.\n\n**Independent demonstration — festival signs, NOT scored text.**\n\n- Festival organiser's note: “A shorter sign was read by more visitors at the information desk, based on a 20-minute observation.”\n- Two volunteers' comments: “We preferred the detailed sign because it explained accessibility routes.”\n- **Model synthesis:** “A brief observation suggests the shorter sign attracted attention, whereas the volunteers valued the longer sign's detail. The evidence does not establish which format helped visitors find their destinations.”\n- **Mistake:** “Everyone thought the short sign was better.” **Repair:** Respect different measures and the limited sample.\n\nOriginal source evidence:\nText A — Library service pilot log.  \nFor six weeks, the school library stayed open until 6 p.m. on Tuesdays and Thursdays. Staff recorded an average of 28 visits per extended afternoon, compared with 18 visits during the same weekday time slots in an earlier six-week period. These figures count visits rather than unique students. Staff frequently saw learners revising in small groups. The log does not record how many visitors would have studied elsewhere, whether grades changed, or whether the previous six weeks had the same examination timetable.\n\nText B — Student feedback form.  \nA student committee collected 120 voluntary responses after the pilot. Seventy-three students marked “later hours helped me find study time,” and 31 marked “getting home later can be difficult.” Respondents could select more than one statement, so the groups may overlap. Sixteen selected “no strong view” as one of their responses. Several comments recommended publishing the bus timetable beside the opening times. The form measured reported experience and concerns, not the number of distinct visitors to the library.\n\nCORE-3 — Compose an original response following the task. This is unscored pending trusted review.\n\nCORE-4 — For objective items use source-based explanations above. Writing self-check: distinct attribution, no falsely exclusive respondent categories, measured visits not individual achievement, one workable evidence-based next step. Recommend rewriting unsupported “proved” statements as bounded claims.\n\n---"
+      },
+      "activities": [
+        {
+          "id": "WRI-B2-05-Q1",
+          "type": "extended_response",
+          "prompt": "Write 90–120 words for a school newsletter: “Should the library pilot continue?” Combine one finding from each source, explain a limitation of at least one measure, and propose one practical next step. Do not assume every survey respondent used the library. No automatic quality grade.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted Writing review. Writing stays unscored pending review; length is not a quality score or CEFR certification."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.cohesion",
+            "writing.idea_development",
+            "writing.grammar",
+            "writing.vocabulary",
+            "writing.register"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-B2",
+          "review_mode": "assisted_ai_or_human",
+          "word_range_guidance": {
+            "min": 90,
+            "max": 120,
+            "not_a_quality_score": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "REA-B2-08",
+      "module": "reading",
+      "cefr_target": "B2",
+      "estimated_minutes": 30,
+      "objectives": [
+        "I can identify a claim, a relevant reason, the limits of its evidence, and a fair counterargument. I can answer the counterargument without ignoring it."
+      ],
+      "examples": [
+        "INDEPENDENT MODEL — Independent demonstration — project groups, NOT scored text.\n\n- Position: “Let students choose a project partner for one short task.”\n- Reason: “Some pairs may be more willing to ask questions and revise their work.”\n- Fair objection: “Students who are new to the class may be left without a partner.”\n- Qualified response: “Trial choice for one task while the teacher checks that everyone is included; then review participation.”\n- Why this works: It takes the strongest plausible objection seriously and proposes a testable safeguard. It does not claim group choice always improves grades.",
+        "TRANSFER STRATEGY — A defensible argument has position → relevant evidence/reason → fair alternative view → proportionate response. A counterargument is not a silly position invented to make your claim look stronger. The response should directly address the concern, possibly with a condition or a request for evidence. Do not replace evidence with decorative linking words."
+      ],
+      "title": "Build an argument that answers a fair objection",
+      "explanation": {
+        "en": "CORE-1 — I can identify a claim, a relevant reason, the limits of its evidence, and a fair counterargument. I can answer the counterargument without ignoring it.\n\nContext: A student committee proposes a new shared learning space.\n\nCORE-2 — A defensible argument has **position → relevant evidence/reason → fair alternative view → proportionate response**. A counterargument is not a silly position invented to make your claim look stronger. The response should directly address the concern, possibly with a condition or a request for evidence. Do not replace evidence with decorative linking words.\n\n**Independent demonstration — project groups, NOT scored text.**\n\n- Position: “Let students choose a project partner for one short task.”\n- Reason: “Some pairs may be more willing to ask questions and revise their work.”\n- Fair objection: “Students who are new to the class may be left without a partner.”\n- Qualified response: “Trial choice for one task while the teacher checks that everyone is included; then review participation.”\n- **Why this works:** It takes the strongest plausible objection seriously and proposes a testable safeguard. It does not claim group choice always improves grades.\n\nCORE-3 — Analyse the supplied source evidence. Complete five independent scored reading-strategy items. The companion Writing transfer task is separately unscored.\n\nCORE-4 — Use the five objective-item explanations. For the outline, show a checklist for presence and fairness of each component, but do **not** convert checkbox completion into a B2 grade. A learner who gives an implausible objection should review the independent project-group demonstration and revise one line.\n\n---"
+      },
+      "activities": [
+        {
+          "id": "REA-B2-08-Q1",
+          "type": "single_choice",
+          "prompt": "Which claim is most defensible from this brief?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A supervised lunchtime room may be useful to a group of students, provided staff time is planned."
+            },
+            {
+              "id": "B",
+              "text": "Every student wants the room every day."
+            },
+            {
+              "id": "C",
+              "text": "The room caused all hallway noise to disappear."
+            },
+            {
+              "id": "D",
+              "text": "Supervision has no cost because seats are available."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Some use is documented and a practical staffing concern is reported. B, C and D overstate or ignore the evidence. Next step: Align strength of claim to strength of data."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-08-Q2",
+          "type": "single_choice",
+          "prompt": "Which detail most directly supports the narrower claim that *some students used the room*?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Staff could not measure a comparison school."
+            },
+            {
+              "id": "B",
+              "text": "The school changed its timetable during the month."
+            },
+            {
+              "id": "C",
+              "text": "Entry counts ranged from 22 to 40 per day."
+            },
+            {
+              "id": "D",
+              "text": "Some staff were unsure about supervision."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Recorded entries show use, but not unique students or demand across the whole school. Next step: Identify the exact conclusion a number can support."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-08-Q3",
+          "type": "single_choice",
+          "prompt": "Which is a fair counterargument to continuing the room?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Students should never learn during lunchtime because studying is bad."
+            },
+            {
+              "id": "B",
+              "text": "A supervised room could compete with other duties for staff time."
+            },
+            {
+              "id": "C",
+              "text": "Any student who disagrees must have ignored the trial."
+            },
+            {
+              "id": "D",
+              "text": "Quiet rooms always increase noise complaints."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Staffing was an actual concern in the brief. The other choices are unreasonable, personal or unsupported. Next step: Represent an opposing view in its strongest fair form."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-08-Q4",
+          "type": "single_choice",
+          "prompt": "What is the best response to the staff-time objection?",
+          "options": [
+            {
+              "id": "A",
+              "text": "State that all staff comments are false."
+            },
+            {
+              "id": "B",
+              "text": "Remove supervision immediately so that staffing costs disappear."
+            },
+            {
+              "id": "C",
+              "text": "Continue the room only if a workable rota is available, and review the demand and staffing burden after another short trial."
+            },
+            {
+              "id": "D",
+              "text": "Claim that a fall in complaints proves staff members have free time."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "A workable condition addresses the actual objection and avoids inventing resources. The other responses dismiss concerns or rely on invalid inference. Next step: Make a counterargument response conditional and testable."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-08-Q5",
+          "type": "single_choice",
+          "prompt": "Which sentence most clearly confuses correlation with causation?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The school received fewer hallway noise complaints during the trial month."
+            },
+            {
+              "id": "B",
+              "text": "Other timetable changes could also have affected hallway behaviour."
+            },
+            {
+              "id": "C",
+              "text": "Complaint counts alone cannot identify a single cause."
+            },
+            {
+              "id": "D",
+              "text": "The quiet room definitely caused the drop from six complaints to two."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Other changes occurred, so the observation does not isolate the room's effect. Next step: Replace “definitely caused” with a bounded observation."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-B2-08",
+        "title": "Build an argument that answers a fair objection · Original evidence",
+        "body": "For four weeks, one school trialled opening a supervised quiet study room at lunchtime, with 60 available seats. Daily entry counts ranged from 22 to 40; the counts did not identify repeat visitors. During the same month, recorded hallway noise complaints dropped from six to two, but other timetable changes occurred too. Ten staff members submitted comments; several thought the room was valuable, and some warned that reliable supervision would take time away from other duties. No comparison school or long-term outcomes were measured.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-B2-06",
+      "module": "writing",
+      "cefr_target": "B2",
+      "estimated_minutes": 20,
+      "objectives": [
+        "I can identify a claim, a relevant reason, the limits of its evidence, and a fair counterargument. I can answer the counterargument without ignoring it."
+      ],
+      "examples": [
+        "INDEPENDENT MODEL — Independent demonstration — project groups, NOT scored text.\n\n- Position: “Let students choose a project partner for one short task.”\n- Reason: “Some pairs may be more willing to ask questions and revise their work.”\n- Fair objection: “Students who are new to the class may be left without a partner.”\n- Qualified response: “Trial choice for one task while the teacher checks that everyone is included; then review participation.”\n- Why this works: It takes the strongest plausible objection seriously and proposes a testable safeguard. It does not claim group choice always improves grades.",
+        "TRANSFER STRATEGY — A defensible argument has position → relevant evidence/reason → fair alternative view → proportionate response. A counterargument is not a silly position invented to make your claim look stronger. The response should directly address the concern, possibly with a condition or a request for evidence. Do not replace evidence with decorative linking words."
+      ],
+      "title": "Writing transfer · Build an argument that answers a fair objection",
+      "explanation": {
+        "en": "CORE-1 — I can identify a claim, a relevant reason, the limits of its evidence, and a fair counterargument. I can answer the counterargument without ignoring it.\n\nContext: A student committee proposes a new shared learning space.\n\nCORE-2 — A defensible argument has **position → relevant evidence/reason → fair alternative view → proportionate response**. A counterargument is not a silly position invented to make your claim look stronger. The response should directly address the concern, possibly with a condition or a request for evidence. Do not replace evidence with decorative linking words.\n\n**Independent demonstration — project groups, NOT scored text.**\n\n- Position: “Let students choose a project partner for one short task.”\n- Reason: “Some pairs may be more willing to ask questions and revise their work.”\n- Fair objection: “Students who are new to the class may be left without a partner.”\n- Qualified response: “Trial choice for one task while the teacher checks that everyone is included; then review participation.”\n- **Why this works:** It takes the strongest plausible objection seriously and proposes a testable safeguard. It does not claim group choice always improves grades.\n\nOriginal source evidence:\nFor four weeks, one school trialled opening a supervised quiet study room at lunchtime, with 60 available seats. Daily entry counts ranged from 22 to 40; the counts did not identify repeat visitors. During the same month, recorded hallway noise complaints dropped from six to two, but other timetable changes occurred too. Ten staff members submitted comments; several thought the room was valuable, and some warned that reliable supervision would take time away from other duties. No comparison school or long-term outcomes were measured.\n\nCORE-3 — Compose an original response following the task. This is unscored pending trusted review.\n\nCORE-4 — Use the five objective-item explanations. For the outline, show a checklist for presence and fairness of each component, but do **not** convert checkbox completion into a B2 grade. A learner who gives an implausible objection should review the independent project-group demonstration and revise one line.\n\n---"
+      },
+      "activities": [
+        {
+          "id": "WRI-B2-06-Q1",
+          "type": "extended_response",
+          "prompt": "Write a five-line argument outline recommending whether to extend the quiet-room trial. Include (1) your position, (2) one measured observation, (3) one fair staffing counterargument, (4) a direct and feasible response, (5) one unanswered question. You may take either position if the evidence is used fairly. Do not score writing quality automatically.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted Writing review. Writing stays unscored pending review; length is not a quality score or CEFR certification."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.cohesion",
+            "writing.idea_development",
+            "writing.grammar",
+            "writing.vocabulary",
+            "writing.register"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-B2",
+          "review_mode": "assisted_ai_or_human"
+        }
+      ]
+    },
+    {
+      "id": "REA-B2-09",
+      "module": "reading",
+      "cefr_target": "B2",
+      "estimated_minutes": 30,
+      "objectives": [
+        "I can choose language that matches the certainty of evidence, acknowledge a reasonable limitation and still make a clear recommendation."
+      ],
+      "examples": [
+        "INDEPENDENT MODEL — Independent demonstration — club timetable, NOT scored text.\n\n- Unsupported claim: “Starting a club 15 minutes earlier will make everyone arrive on time.”\n- Available information: “At two trial meetings, late arrivals decreased, but one meeting was on a school holiday.”\n- Better claim: “The earlier start coincided with fewer late arrivals in a very short trial, though the unusual timetable limits the comparison. A longer trial under ordinary conditions would be more informative.”\n- Thinking: Preserve what was observed, explain why it is weak and propose proportionate follow-up.",
+        "TRANSFER STRATEGY — Use precise qualifications: *in this short pilot*, *among respondents*, *may have contributed*, *although this did not measure...*. Hedging does not mean saying “maybe” in every sentence; the strongest bounded conclusion is usually better than either absolute certainty or complete indecision. A useful concession acknowledges a real limit, then explains whether and why the main proposal can still be tested."
+      ],
+      "title": "Qualify a claim without making it empty",
+      "explanation": {
+        "en": "CORE-1 — I can choose language that matches the certainty of evidence, acknowledge a reasonable limitation and still make a clear recommendation.\n\nContext: A department is deciding whether to use peer feedback on first drafts more widely.\n\nCORE-2 — Use precise qualifications: *in this short pilot*, *among respondents*, *may have contributed*, *although this did not measure...*. Hedging does not mean saying “maybe” in every sentence; the strongest bounded conclusion is usually better than either absolute certainty or complete indecision. A useful concession acknowledges a real limit, then explains whether and why the main proposal can still be tested.\n\n**Independent demonstration — club timetable, NOT scored text.**\n\n- Unsupported claim: “Starting a club 15 minutes earlier will make everyone arrive on time.”\n- Available information: “At two trial meetings, late arrivals decreased, but one meeting was on a school holiday.”\n- Better claim: “The earlier start coincided with fewer late arrivals in a very short trial, though the unusual timetable limits the comparison. A longer trial under ordinary conditions would be more informative.”\n- **Thinking:** Preserve what was observed, explain why it is weak and propose proportionate follow-up.\n\nCORE-3 — Analyse the supplied source evidence. Complete five independent scored reading-strategy items. The companion Writing transfer task is separately unscored.\n\nCORE-4 — Use item-specific feedback above. For extended writing, provide a self-check for precise observation, fair qualification, counterargument, coherent recommendation and no false causal claim. A trusted reviewer may comment on clarity and source fidelity; without review, state **Unassessed / Pending Review**. Suggest rewriting one overconfident sentence after comparing it with the separate club-timetable demonstration.\n\n---"
+      },
+      "activities": [
+        {
+          "id": "REA-B2-09-Q1",
+          "type": "single_choice",
+          "prompt": "Which claim best matches the available evidence?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Peer feedback guaranteed higher writing proficiency for every student."
+            },
+            {
+              "id": "B",
+              "text": "In this short, non-random pilot, second-draft submission was higher in the peer-comment group, but the result alone cannot show better writing quality or a causal effect."
+            },
+            {
+              "id": "C",
+              "text": "The second-draft figures measure the accuracy of every sentence written."
+            },
+            {
+              "id": "D",
+              "text": "The classes followed identical deadlines and conditions."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "B preserves the observed comparison while naming key design limitations. A, C and D claim outcomes or controls not in the brief. Next step: Separate behaviour measured from ability not measured."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-09-Q2",
+          "type": "single_choice",
+          "prompt": "Which information most directly weakens a confident causal conclusion?",
+          "options": [
+            {
+              "id": "A",
+              "text": "There were eight classes in total."
+            },
+            {
+              "id": "B",
+              "text": "Both approaches involved comments on drafts."
+            },
+            {
+              "id": "C",
+              "text": "The classes were not randomly allocated and deadlines differed slightly."
+            },
+            {
+              "id": "D",
+              "text": "A second draft was submitted by some students in each group."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Group differences create alternative explanations for submission rates. A and D are factual but less diagnostic; B does not eliminate confounding. Next step: Look for important differences between comparison groups."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-09-Q3",
+          "type": "single_choice",
+          "prompt": "Which limitation is missing from the percentage comparison?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Whether the second drafts were actually better written."
+            },
+            {
+              "id": "B",
+              "text": "Whether the school has any classrooms."
+            },
+            {
+              "id": "C",
+              "text": "Whether the students used paper at any time."
+            },
+            {
+              "id": "D",
+              "text": "Whether 92 is a larger number than 86."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Submission rate is not a measure of written accuracy, coherence or argument quality. Next step: Name the intended outcome and its proper measure."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-09-Q4",
+          "type": "single_choice",
+          "prompt": "Which sentence provides the fairest concession before recommending another trial?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Although some peer comments were superficial and the pilot groups differed, a more carefully designed trial could test whether structured feedback improves revision quality."
+            },
+            {
+              "id": "B",
+              "text": "Peer comments were always perfect, so no further evidence is needed."
+            },
+            {
+              "id": "C",
+              "text": "Teachers who disliked the trial should not be allowed to comment."
+            },
+            {
+              "id": "D",
+              "text": "Because the pilot was imperfect, the school can never study peer feedback."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "It acknowledges a concrete weakness and proposes evidence to address it. B and C dismiss concerns; D wrongly rules out further inquiry. Next step: Make the concession relevant to your next recommendation."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-B2-09-Q5",
+          "type": "single_choice",
+          "prompt": "Which further measurement would be most useful for the school's stated decision?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The number of commas in the timetable."
+            },
+            {
+              "id": "B",
+              "text": "Independent assessment of draft quality before and after feedback, with comparable tasks and consistent deadlines."
+            },
+            {
+              "id": "C",
+              "text": "The colour students prefer for peer-comment forms."
+            },
+            {
+              "id": "D",
+              "text": "The number of pages in the school magazine last year."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A stronger trial would measure actual revision quality and reduce differences unrelated to the feedback method. Next step: Match evidence-gathering to the claim you wish to make."
+          },
+          "skill_tags": [
+            "reading.author_purpose"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "TXT-REA-B2-09",
+        "title": "Qualify a claim without making it empty · Original evidence",
+        "body": "Eight classes tried two approaches for four weeks. Four classes offered optional, structured peer comments on first drafts; four continued with teacher comments alone. Classes were not assigned at random. In the peer-comment group, 92% of students submitted a second draft, compared with 86% in the other group. These percentages do not measure draft quality. Teachers reported that some peer comments were specific and useful but others were too general. The peer-comment classes also had slightly different assignment deadlines. The school wants to decide whether to run another pilot, not declare a proven academic improvement.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-B2-07",
+      "module": "writing",
+      "cefr_target": "B2",
+      "estimated_minutes": 20,
+      "objectives": [
+        "I can choose language that matches the certainty of evidence, acknowledge a reasonable limitation and still make a clear recommendation."
+      ],
+      "examples": [
+        "INDEPENDENT MODEL — Independent demonstration — club timetable, NOT scored text.\n\n- Unsupported claim: “Starting a club 15 minutes earlier will make everyone arrive on time.”\n- Available information: “At two trial meetings, late arrivals decreased, but one meeting was on a school holiday.”\n- Better claim: “The earlier start coincided with fewer late arrivals in a very short trial, though the unusual timetable limits the comparison. A longer trial under ordinary conditions would be more informative.”\n- Thinking: Preserve what was observed, explain why it is weak and propose proportionate follow-up.",
+        "TRANSFER STRATEGY — Use precise qualifications: *in this short pilot*, *among respondents*, *may have contributed*, *although this did not measure...*. Hedging does not mean saying “maybe” in every sentence; the strongest bounded conclusion is usually better than either absolute certainty or complete indecision. A useful concession acknowledges a real limit, then explains whether and why the main proposal can still be tested."
+      ],
+      "title": "Writing transfer · Qualify a claim without making it empty",
+      "explanation": {
+        "en": "CORE-1 — I can choose language that matches the certainty of evidence, acknowledge a reasonable limitation and still make a clear recommendation.\n\nContext: A department is deciding whether to use peer feedback on first drafts more widely.\n\nCORE-2 — Use precise qualifications: *in this short pilot*, *among respondents*, *may have contributed*, *although this did not measure...*. Hedging does not mean saying “maybe” in every sentence; the strongest bounded conclusion is usually better than either absolute certainty or complete indecision. A useful concession acknowledges a real limit, then explains whether and why the main proposal can still be tested.\n\n**Independent demonstration — club timetable, NOT scored text.**\n\n- Unsupported claim: “Starting a club 15 minutes earlier will make everyone arrive on time.”\n- Available information: “At two trial meetings, late arrivals decreased, but one meeting was on a school holiday.”\n- Better claim: “The earlier start coincided with fewer late arrivals in a very short trial, though the unusual timetable limits the comparison. A longer trial under ordinary conditions would be more informative.”\n- **Thinking:** Preserve what was observed, explain why it is weak and propose proportionate follow-up.\n\nOriginal source evidence:\nEight classes tried two approaches for four weeks. Four classes offered optional, structured peer comments on first drafts; four continued with teacher comments alone. Classes were not assigned at random. In the peer-comment group, 92% of students submitted a second draft, compared with 86% in the other group. These percentages do not measure draft quality. Teachers reported that some peer comments were specific and useful but others were too general. The peer-comment classes also had slightly different assignment deadlines. The school wants to decide whether to run another pilot, not declare a proven academic improvement.\n\nCORE-3 — Compose an original response following the task. This is unscored pending trusted review.\n\nCORE-4 — Use item-specific feedback above. For extended writing, provide a self-check for precise observation, fair qualification, counterargument, coherent recommendation and no false causal claim. A trusted reviewer may comment on clarity and source fidelity; without review, state **Unassessed / Pending Review**. Suggest rewriting one overconfident sentence after comparing it with the separate club-timetable demonstration.\n\n---"
+      },
+      "activities": [
+        {
+          "id": "WRI-B2-07-Q1",
+          "type": "extended_response",
+          "prompt": "Write a 110–150-word recommendation to the head teacher on whether to continue testing structured peer feedback. Include (i) the observed 92% versus 86% submission result accurately, (ii) two limitations, (iii) a reasonable counterargument and (iv) the next evidence the school should collect. You may recommend continuing or pausing the experiment if your reasoning is defensible. No automated semantic score.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Saved for trusted Writing review. Writing stays unscored pending review; length is not a quality score or CEFR certification."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.cohesion",
+            "writing.idea_development",
+            "writing.grammar",
+            "writing.vocabulary",
+            "writing.register"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-B2",
+          "review_mode": "assisted_ai_or_human",
+          "word_range_guidance": {
+            "min": 110,
+            "max": 150,
+            "not_a_quality_score": true
+          }
+        }
+      ]
+    }
+  ]
+}
