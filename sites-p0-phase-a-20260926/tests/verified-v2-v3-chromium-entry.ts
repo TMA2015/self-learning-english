@@ -9,6 +9,10 @@ import curriculum1200 from '../content/curriculum-1.20.0-candidate.json';
 import {convertVerifiedV2ToRevisionV3,previewReadOnlyV2ShadowMigration} from '../infrastructure/browser/v2-to-lesson-revision-v3';
 import {verifyLocalRecoveryV2} from '../infrastructure/browser/local-recovery';
 import {verifyRevisionRecoveryV3,createRevisionRecoveryV3,verifiedRecoveryToPlan} from '../domain/lesson-revision-recovery-v3';
+import {
+ buildR4tSegmentedResearchBackup,verifyR4tSegmentedResearchBackup,
+ R4T_MAX_PART_BYTES
+} from '../domain/lesson-revision-segmented-backup-r4t';
 import {canonicalLessonJSON,planLessonRevisions, type ReleaseRecord, type SavedReference} from '../domain/lesson-revision-plan';
 import {browserLessonRevisionVault} from '../infrastructure/storage/indexeddb-lesson-revision-vault';
 import {
@@ -2710,6 +2714,104 @@ const vault=browserLessonRevisionVault();
    localStorage.getItem(row.key)===row.value),
    'R4s final Chromium restart lost original fictional learner data');
   dom.textContent='PASS_R4S_SHADOW_FINAL';
+ }else if(phase==='r4t-segmented-large-backup'){
+  // Real browser WebCrypto; >25MB invented data, no family backup/source.
+  // 2,000 fabricated bulky Lessons plus the original 123 public curriculum
+  // Lessons and 73 wholly synthetic historical learner attempts.
+  check(localStorage.length===0&&
+   (await vault.snapshot()).active===null,
+   'R4t must use a fresh isolated empty browser profile');
+  const {v2}=await fixture();
+  const base=(await verifyRevisionRecoveryV3(
+   (await convertVerifiedV2ToRevisionV3(v2)).text)).file;
+  check(base.active.lessons.length===123,
+   'R4t expected 123 public curriculum Lessons in original source');
+  const revisions=base.blobs.slice();
+  const current=base.active.lessons.slice();
+  for(let i=0;i<2000;i++){
+   const id='SCALE-LARGE-'+String(i).padStart(4,'0');
+   // Synthetic bulk only; this is NOT an academic lesson or audio content.
+   const lesson={
+    id,title:'SYNTHETIC LARGE BACKUP '+id,module:'reading',
+    activities:[{id:id+'-TEST-001',
+     prompt:('NOT REAL EDUCATIONAL CONTENT. Candidate '+i+
+      ' synthetic illustration for portable backup size testing. ').repeat(215)}]
+   };
+   const rubrics={};
+   const revision=await digest(canonicalLessonJSON({lesson,rubrics}));
+   revisions.push({revision,lesson,rubrics});
+   current.push({lessonId:id,revision});
+  }
+  const source={
+   active:{...base.active,lessons:current},
+   aliases:base.aliases,blobs:revisions,entries:base.entries
+  };
+  const packet=await buildR4tSegmentedResearchBackup(
+   source,'2026-11-11T15:00:00.000Z');
+  const completed=await verifyR4tSegmentedResearchBackup(packet);
+  check(completed.bytes>25_000_000&&completed.activeLessons===2123&&
+   completed.attempts===73&&completed.partCount>25&&
+   completed.source.blobs.length===revisions.length&&
+   packet.parts.every(x=>new TextEncoder().encode(x.text).byteLength<=
+    R4T_MAX_PART_BYTES),
+   'R4t >25MB segmented Recovery did not preserve full fabricated history');
+  const entriesExact=canonicalLessonJSON(completed.source.entries)===
+   canonicalLessonJSON(base.entries);
+  check(entriesExact&&completed.source.aliases.length===base.aliases.length,
+   'R4t segmented backup did not preserve original synthetic learner bytes');
+  const cases:Array<{name:string;packet:typeof packet}>=[
+   {name:'MISSING_CHUNK',packet:{
+    ...packet,parts:packet.parts.slice(0,-1)}},
+   {name:'REORDERED_CHUNKS',packet:{
+    ...packet,parts:[packet.parts[1],packet.parts[0],...packet.parts.slice(2)]}},
+   {name:'DUPLICATED_CHUNK',packet:{
+    ...packet,parts:[...packet.parts,packet.parts[0]]}},
+   {name:'MUTATED_CHUNK',packet:{
+    ...packet,parts:packet.parts.map((p,i)=>i!==0?p:{
+     ...p,text:p.text+' '})}},
+   {name:'MANIFEST_TAMPER',packet:{
+    ...packet,manifestText:packet.manifestText.replace(
+     '"totalRevisions":', '"invalidTotalRevisions":')}}
+  ];
+  const originalManifest=JSON.parse(packet.manifestText) as {
+   aliases:Array<{version:string;lessonId:string;revision:string;
+    packageId:string;releaseDigest:string}>;
+   sha256:string;[k:string]:unknown
+  };
+  // Independent hostile input can recompute the outer checksum. It still
+  // MUST NOT evade missing historical lesson/rubric closure validation.
+  check(originalManifest.aliases.length>0,
+   'R4t fixture has no historical references to protect');
+  const removed={...originalManifest,
+   aliases:originalManifest.aliases.slice(1)};
+  const {sha256:_oldChecksum,...core}=removed;
+  removed.sha256=await digest(canonicalLessonJSON(core));
+  cases.push({name:'RECHECKSUMMED_MISSING_OLD_RUBRIC_ALIAS',packet:{
+   ...packet,manifestText:canonicalLessonJSON(removed)}});
+  for(const item of cases){
+   let rejected=false;
+   try{await verifyR4tSegmentedResearchBackup(item.packet)}
+   catch(e){rejected=/R4t segmented research Recovery blocked/.test(String(e))}
+   check(rejected,
+    'R4t must fail closed for an incomplete/tampered archive '+item.name);
+  }
+  check(localStorage.length===0,
+   'R4t research test must not touch real or synthetic learner localStorage');
+  dom.textContent='PASS_R4T_LARGE_SEGMENTED '+JSON.stringify({
+   totalPortableArchiveBytes:completed.bytes,
+   verifiedPartCount:completed.partCount,
+   maximumPartBytes:R4T_MAX_PART_BYTES,
+   activeLessons:completed.activeLessons,
+   originalSyntheticLearnerAttempts:completed.attempts,
+   originalHistoricalAliases:completed.source.aliases.length,
+   noAttemptOrWritingBytesLost:entriesExact,
+   allSixAdversarialIncompleteArchivesRejected:true,
+   noSingle25MBRecoveryFileNeeded:true,
+   browserSHA256:true,
+   actualStreamingFileDownloads:'NOT_TESTED',
+   simulatedMobileSafariQuota:'NOT_TESTED',
+   productIntegration:false,realLearnerData:'NOT_TOUCHED'
+  });
  }else throw Error('Unsupported R4c browser phase');
 })().catch(e=>{
  dom.textContent='FAIL '+String(e)+' '+String((e as Error)?.stack).slice(0,1100);
