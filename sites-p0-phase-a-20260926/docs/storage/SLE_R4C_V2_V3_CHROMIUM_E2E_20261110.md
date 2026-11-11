@@ -191,6 +191,20 @@ The Chromium gate requests **35 fabricated Lessons** belonging to one A1 Unit, c
 
 **Exact-head CI PENDING** until the new full workflow confirms this test. Keep Draft, NO_GO, no merge/deploy or learner-data migration.
 
+## R4r — READ-ONLY V2 shadow migration preflight (real Chromium, synthetic data)
+
+Moving the academic app's real learner records is **not** permitted merely because its storage model supports 2,000 Lessons. The first useful cutover component is **read-only**: \`previewReadOnlyV2ShadowMigration(originalV2Text, readOnlyStorage)\`, a detached research helper in the verified V2→V3 converter. It accepts a checksum-verified original portable V2 archive, inspects the browser's English-scoped key/value bytes WITHOUT calling any storage writer, requires exact agreement of every original curriculum/learner key (no extra keys or stale versions), converts to verified V3 and checks the snapshot did not change before, during or after conversion. It returns a digest of the old bytes and a complete verified candidate file, **not an authorization token to delete or overwrite anything**.
+
+A new disposable real Chromium profile uses the original-format public historical curricula v1.18.0/1.18.1/1.20.0 and 73 completely invented attempts, fake Writing review and course selection:
+1. Populate the test-only OLD localStorage with an original verified V2 fixture. Require an exact current-browser V2/V3 read-only preview with no changed learner bytes.
+2. Simulate a **newer fabricated Writing edit** after the backup was taken. Require the outdated portable V2 file to be **rejected** and no shadow source to be written. Restore only test-owned invented Writing bytes and repeat the preview.
+3. Stage **only immutable lesson/rubric source revisions** into the separate research IDB vault; keep every legacy localStorage key byte-identical and authoritative. A mixed old+shadow browser still contains the legacy package key; a detached V3 backup must **fail closed**, not claim a complete normalized learner migration.
+4. Shut down the browser normally; another full Chromium process independently verifies original old key bytes, preserved 73 invented attempts and consistent normalized shadow source, without claiming the new IDB paired writer is integrated.
+
+**Boundaries:** No REAL family backup/learner data. No new product UI, live writer switch or real old→new learner pair cutover. The helper does not guarantee multi-tab locks or post-return immutability and cannot turn a stale saved V2 file into current data. Machine power loss, IndexedDB quota/eviction, Safari/iPad, real media provenance, actual user verification and rollback after real migration remain outside scope. A green result demonstrates only a conservative read-only preflight and isolated shadow source staging. No legacy key may be automatically deleted even after a green gate.
+
+**Exact-head Full QA PENDING**. Draft PR #129, Issue #103 OPEN and v1.26 release NO_GO.
+
 ## Explicit non-claims / blockers
 
 - SHA verifies integrity of archived JSON, but it is **not a cryptographic signature proving the real provenance of the original learner data**.
