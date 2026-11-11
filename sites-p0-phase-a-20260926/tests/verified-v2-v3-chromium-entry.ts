@@ -128,6 +128,96 @@ function r4hAssertMerged(
   'R4h lost or reordered the original and two new Writing reviews');
 }
 
+
+/**
+ * R4o — ISOLATED research-only two-value atomic transaction proof.
+ * This database is never opened by the production academic service.
+ * No original learner/profile key is written by this helper.
+ */
+const R4O_DB='sle-issue103-r4o-test-atomic-learner-pair';
+type R4OPair={attempts:string;writing:string;sequence:number;checksum:string};
+async function r4oOpenDB():Promise<IDBDatabase>{
+ return await new Promise((resolve,reject)=>{
+  const req=indexedDB.open(R4O_DB,1);
+  req.onupgradeneeded=()=>{
+   const db=req.result;
+   if(!db.objectStoreNames.contains('paired'))
+    db.createObjectStore('paired');
+  };
+  req.onerror=()=>reject(req.error??Error('R4o could not open isolated IDB'));
+  req.onblocked=()=>reject(Error('R4o test-only IDB open blocked'));
+  req.onsuccess=()=>resolve(req.result);
+ });
+}
+async function r4oRaw(db:IDBDatabase){
+ return await new Promise<{attempts:unknown;writing:unknown;commit:unknown}>(
+  (resolve,reject)=>{
+   const tx=db.transaction(['paired'],'readonly');
+   const store=tx.objectStore('paired');
+   const a=store.get('attempts'),w=store.get('writing'),
+    c=store.get('commit');
+   tx.oncomplete=()=>resolve({
+    attempts:a.result,writing:w.result,commit:c.result
+   });
+   tx.onabort=()=>reject(tx.error??Error('R4o IDB read aborted'));
+   tx.onerror=()=>reject(tx.error??Error('R4o IDB read failed'));
+  });
+}
+async function r4oPair(db:IDBDatabase):Promise<R4OPair>{
+ const raw=await r4oRaw(db);
+ check(typeof raw.attempts==='string'&&typeof raw.writing==='string'&&
+  !!raw.commit&&typeof raw.commit==='object',
+  'R4o missing a committed IDB paired snapshot: FAIL CLOSED');
+ const meta=raw.commit as {sequence?:number;checksum?:string};
+ check(Number.isSafeInteger(meta.sequence)&&typeof meta.checksum==='string',
+  'R4o missing committed IDB sequence/checksum: FAIL CLOSED');
+ const actual=await digest(canonicalLessonJSON({
+  attempts:raw.attempts,writing:raw.writing,sequence:meta.sequence
+ }));
+ check(actual===meta.checksum,
+  'R4o IDB paired snapshot does not match commit digest: FAIL CLOSED');
+ return {attempts:raw.attempts,writing:raw.writing,
+  sequence:meta.sequence!,checksum:meta.checksum!};
+}
+async function r4oWritePair(
+ db:IDBDatabase,attempts:string,writing:string,sequence:number,
+ abortDeliberately:boolean
+):Promise<'ABORTED'|'COMMITTED'>{
+ const checksum=await digest(canonicalLessonJSON({
+  attempts,writing,sequence
+ }));
+ return await new Promise((resolve,reject)=>{
+  // Strict is a durability HINT, not a machine-power-loss guarantee.
+  const tx=db.transaction(['paired'],'readwrite',{durability:'strict'});
+  if(tx.durability!=='strict'){
+   try{tx.abort()}catch{}
+   reject(Error('R4o native IDB strict durability option unavailable'));
+   return;
+  }
+  const store=tx.objectStore('paired');
+  store.put(attempts,'attempts');
+  store.put(writing,'writing');
+  store.put({sequence,checksum},'commit');
+  tx.oncomplete=()=>abortDeliberately?
+   reject(Error('R4o expected abort but transaction committed')):
+   resolve('COMMITTED');
+  tx.onabort=()=>abortDeliberately?resolve('ABORTED'):
+   reject(tx.error??Error('R4o unexpected IDB write abort'));
+  tx.onerror=()=>{if(!abortDeliberately)
+   reject(tx.error??Error('R4o unexpected IDB write failure'))};
+  if(abortDeliberately)tx.abort();
+ });
+}
+async function r4oTamperOneTestKey(db:IDBDatabase,value:string){
+ await new Promise<void>((resolve,reject)=>{
+  const tx=db.transaction(['paired'],'readwrite',{durability:'strict'});
+  tx.objectStore('paired').put(value,'attempts');
+  tx.oncomplete=()=>resolve();
+  tx.onabort=()=>reject(tx.error??Error('R4o test-only corrupt write aborted'));
+  tx.onerror=()=>reject(tx.error??Error('R4o test-only corrupt write failed'));
+ });
+}
+
 const vault=browserLessonRevisionVault();
 (async()=>{
  dom.textContent='RUNNING_'+phase;
@@ -2082,6 +2172,127 @@ const vault=browserLessonRevisionVault();
    ?.value===original&&(await vault.snapshot()).active?.lessons.length===123,
    'R4n complete synthetic backup not preserved after another restart');
   dom.textContent='PASS_R4N_CLEAN_RELOAD';
+ }else if(phase==='r4o-atomic-baseline-abort'){
+  check(localStorage.length===0,'R4o must use a fresh throwaway profile');
+  check((await vault.snapshot()).active===null,
+   'R4o must not touch an occupied lesson vault');
+  const {v2,rows}=await fixture();
+  const v3=await convertVerifiedV2ToRevisionV3(v2);
+  check((await verifyRevisionRecoveryV3(v3.text)).attempts===73,
+   'R4o must load 73 fictional attempts and original public source');
+  const preview=await previewNormalizedV3Restore(v3.text,localStorage,vault);
+  check(preview.valid,'R4o synthetic V3 restore preview invalid');
+  check((await restoreNormalizedV3(v3.text,preview.token,true,localStorage,vault))
+   .attempts===73,'R4o synthetic V3 restore failed');
+  const originalA=rows.find(x=>x.key===attemptKey)!.value;
+  const originalW=permanentTestValues.writing;
+  check(localStorage.getItem(attemptKey)===originalA&&
+   localStorage.getItem(writingKey)===originalW,
+   'R4o source baseline must preserve original invented learner values');
+  const db=await r4oOpenDB();
+  try{
+   check((await r4oWritePair(db,originalA,originalW,0,false))==='COMMITTED',
+    'R4o initial IDB paired fixture not committed');
+   const old=await r4oPair(db);
+   check(old.attempts===originalA&&old.writing===originalW&&old.sequence===0,
+    'R4o original committed IDB pair differs from fabricated history');
+   const newA=r4hAnswer(originalA,71,'R4O_ATOMIC_DRAFT_EDIT');
+   const newW=r4hReview(originalW,'r4o-atomic-writing-review');
+   check((await r4oWritePair(db,newA,newW,1,true))==='ABORTED',
+    'R4o scripted native IndexedDB transaction was not aborted');
+   const after=await r4oPair(db);
+   check(after.attempts===originalA&&after.writing===originalW&&
+    after.sequence===0,'R4o aborted IDB transaction leaked one learner change');
+   check(localStorage.getItem(attemptKey)===originalA&&
+    localStorage.getItem(writingKey)===originalW,
+    'R4o research illegally touched original synthetic localStorage pair');
+  }finally{db.close()}
+  dom.textContent='PASS_R4O_ATOMIC_ABORT';
+ }else if(phase==='r4o-atomic-commit'){
+  // Fresh Chromium PROCESS after a normal close. The prior abort must be
+  // truly durable as the original all-or-nothing state.
+  const {rows}=await fixture();
+  const originalA=rows.find(x=>x.key===attemptKey)!.value;
+  const originalW=permanentTestValues.writing;
+  const newA=r4hAnswer(originalA,71,'R4O_ATOMIC_DRAFT_EDIT');
+  const newW=r4hReview(originalW,'r4o-atomic-writing-review');
+  const db=await r4oOpenDB();
+  try{
+   const before=await r4oPair(db);
+   check(before.sequence===0&&before.attempts===originalA&&
+    before.writing===originalW,
+    'R4o aborted transaction did not survive browser restart atomically');
+   check((await r4oWritePair(db,newA,newW,1,false))==='COMMITTED',
+    'R4o strict native IDB paired transaction did not commit');
+   const after=await r4oPair(db);
+   check(after.sequence===1&&after.attempts===newA&&after.writing===newW,
+    'R4o committed paired attempts and Writing did not match');
+   check(localStorage.getItem(attemptKey)===originalA&&
+    localStorage.getItem(writingKey)===originalW,
+    'R4o test IDB write must not alter existing synthetic localStorage');
+  }finally{db.close()}
+  dom.textContent='PASS_R4O_ATOMIC_COMMIT';
+ }else if(phase==='r4o-atomic-verify'){
+  // A THIRD Chrome process proves the new IDB pair can be read and verified
+  // as one committed version after graceful shutdown and restart.
+  const {v2,rows}=await fixture();
+  const originalA=rows.find(x=>x.key===attemptKey)!.value;
+  const originalW=permanentTestValues.writing;
+  const newA=r4hAnswer(originalA,71,'R4O_ATOMIC_DRAFT_EDIT');
+  const newW=r4hReview(originalW,'r4o-atomic-writing-review');
+  const db=await r4oOpenDB();
+  try{
+   const pair=await r4oPair(db);
+   check(pair.sequence===1&&pair.attempts===newA&&pair.writing===newW,
+    'R4o pair not durable after second normal Chromium restart');
+   const source=await vault.snapshot();
+   const verifiedOriginal=(await verifyRevisionRecoveryV3(
+    (await convertVerifiedV2ToRevisionV3(v2)).text)).file;
+   check(canonicalLessonJSON(source.active)===
+    canonicalLessonJSON(verifiedOriginal.active)&&
+    source.aliases.length===verifiedOriginal.aliases.length&&
+    source.blobs.length===verifiedOriginal.blobs.length,
+    'R4o source/rubrics or normalized aliases were lost');
+   // Read a consistent verified IDB pair; build an illustrative V3 archive
+   // with the existing V3 serializer, NOT the current LIVE/adapter exporter.
+   const entries=rows.filter(x=>x.key!==packageKey).map(x=>({
+    key:x.key,value:x.key===attemptKey?pair.attempts:
+     x.key===writingKey?pair.writing:x.value
+   }));
+   const archived=await createRevisionRecoveryV3({
+    active:source.active!,aliases:source.aliases,blobs:source.blobs
+   },entries,'2026-11-11T11:00:00.000Z');
+   const complete=await verifyRevisionRecoveryV3(archived.text);
+   check(complete.attempts===73&&
+    complete.file.entries.find(x=>x.key===attemptKey)?.value===newA&&
+    complete.file.entries.find(x=>x.key===writingKey)?.value===newW,
+    'R4o demonstration V3 serialization did not include the committed IDB pair');
+   // Adversarial out-of-transaction tamper ONLY in throwaway research DB;
+   // the checksum-linked reader must fail CLOSED rather than bless new A+old W.
+   await r4oTamperOneTestKey(db,originalA);
+   let corruptBlocked=false;
+   try{await r4oPair(db)}
+   catch(e){corruptBlocked=/does not match commit digest/i.test(String(e))}
+   check(corruptBlocked,'R4o untracked one-key edit was not rejected');
+   check((await r4oWritePair(db,newA,newW,1,false))==='COMMITTED',
+    'R4o test-only pair was not restored atomically after tamper');
+   check((await r4oPair(db)).attempts===newA,
+    'R4o restored test-only committed pair invalid');
+   check(localStorage.getItem(attemptKey)===originalA&&
+    localStorage.getItem(writingKey)===originalW,
+    'R4o must not switch existing V2/localStorage LIVE representation');
+  }finally{db.close()}
+  dom.textContent='PASS_R4O_ATOMIC_VERIFY '+JSON.stringify({
+   realNativeIndexedDB:true,strictDurabilityHintAccepted:true,
+   abortedTwoKeyTransactionAllOrNothing:true,
+   committedTwoKeyPairSurvivedNormalRestart:true,
+   untrackedOneKeyTamperFailsClosed:true,
+   syntheticV3ArchiveFromCommittedPairVerified:true,
+   original73InventedAttemptsUsed:true,
+   oldLocalStorageRouteUnchanged:true,productionIntegration:false,
+   sigkillOrPowerLoss:'NOT_TESTED',safari:'NOT_TESTED',
+   realLearnerData:'NOT_TOUCHED'
+  });
  }else throw Error('Unsupported R4c browser phase');
 })().catch(e=>{
  dom.textContent='FAIL '+String(e)+' '+String((e as Error)?.stack).slice(0,1100);
