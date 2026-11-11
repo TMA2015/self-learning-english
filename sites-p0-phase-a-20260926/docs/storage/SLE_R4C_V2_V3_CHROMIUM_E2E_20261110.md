@@ -245,6 +245,20 @@ A separate **fresh real Chromium process** opens the restored database, checks o
 
 **Exact-head CI PENDING:** A green test must be observed in GitHub's full application workflow before declaring R4u PASS. Draft PR #129 / Issue #103 remain OPEN, v1.26 release NO_GO.
 
+## R4v — single-file local browser UI for a segmented 45.3 MB research backup
+
+This pilot addresses the impracticality of asking a family to manage **46 independent files** by hand. It is an isolated, Vietnamese-language **test-only UI**, not a production migration page or a supported original V2/V3 export. It appears only inside the disposable Chromium test harness.
+
+**One-file format:** \`r4v-portable-file-ui-research.ts\` packages the previously fully validated R4t segmented archive into one \`.slepack\` Blob, with an 8-byte research magic marker, 4-byte manifest byte length, complete checksummed manifest and the exact ordered 46 existing source parts. The browser uses a normal download-named \`<a>\` and a normal \`<input type=file>\`, so the user-facing affordances are simple. Before reading any of the large parts, the file parser checks the marker, manifest length, bounded part count/byte sizes, exact *total* File size and absence of trailing/short bytes; then it separately validates **every part's SHA-256, source closure, old Lesson/rubric aliases and all learner keys** using R4t. No part of an unverified File is written to IndexedDB.
+
+**Gated UI:** Clicking "Tải bản sao lưu mẫu" merely prepares a local download of **invented** test data. Selecting a file triggers a read-only complete preview of the number of Lessons, attempt records and parts; **the Restore button starts disabled** and is enabled only after a verified File selection. Clicking Restore then explicitly imports the fully verified archive into a distinct, empty \`R4V_DB\` test-only IndexedDB database, reusing R4u's one-transaction all-or-nothing source+learner restore. Existing R4u source remains untouched, and no old learner \`localStorage\` key is ever changed. Attempting Restore before preview is impossible through the demo UI.
+
+**Automated Chromium acceptance gate:** In a fresh Chrome process reopen the prior restored synthetic 2,123-Lesson / 73-attempt / 45.3 MB source, render real DOM controls, click the export button, construct a browser \`File\` from the output Blob, use a \`DataTransfer\`/change event as the user's file selection, and verify that **both** a truncated file and same-sized invalid-header file fail with Restore disabled and **no destination DB creation**. The valid selected file must present exact counts without writing first; then a click of the enabled Restore button must commit all 46 verified parts. A further independent Chromium process fully re-verifies source and destination catalogs, attempts, Writing and historical aliases byte-for-byte.
+
+**Explicit nonclaims:** Browser Blob + File object roundtrip is **not** proof that a file appeared in the operating system's Downloads/Files app or that Safari's native picker works. The in-memory R4t/R4u source still materializes all blobs for backup verification; peak iPad Safari RAM/quota/eviction, actual mobile UI and download reliability remain **NOT TESTED**. No real learner backup is accepted by this synthetic \`.slepack\` format. No ZIP standard or cloud uploader is involved. Exporting a file is not an authenticity signature or permission to delete legacy data. User-device acceptance and separate explicit production integration approval remain mandatory.
+
+**Exact-head CI PENDING.** PR #129 Draft / Issue #103 OPEN / release NO_GO; no main merge, LIVE deployment or real-family data change.
+
 ## Explicit non-claims / blockers
 
 - SHA verifies integrity of archived JSON, but it is **not a cryptographic signature proving the real provenance of the original learner data**.
