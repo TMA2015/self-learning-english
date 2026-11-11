@@ -120,7 +120,12 @@ export function mountR4vIsolatedDemoUI(
  status.dataset.state='IDLE';
  status.setAttribute('aria-live','polite');
  status.textContent='Chọn tệp chỉ để kiểm tra; khôi phục cần thao tác xác nhận riêng.';
- root.append(h,notice,exportButton,fileInput,previewButton,status);
+ root.appendChild(h);
+ root.appendChild(notice);
+ root.appendChild(exportButton);
+ root.appendChild(fileInput);
+ root.appendChild(previewButton);
+ root.appendChild(status);
  let lastExport:Blob|null=null,selected:Preview|null=null;
  let generation=0,restoring=false,finished=false;
  function state(code:string,message:string){
