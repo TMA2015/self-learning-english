@@ -54,6 +54,22 @@ jobs:
         working-directory: sites-p0-phase-a-20260926
         run: pnpm install --frozen-lockfile
 
+      - name: Offline post-lesson feedback preflight (full release QA still mandatory)
+        if: ${{ steps.app.outputs.present == 'true' }}
+        working-directory: sites-p0-phase-a-20260926
+        run: node tests/offline-lesson-postfeedback.cjs
+
+      # Pinned upstream FFmpeg binary setup avoids unstable Ubuntu apt mirrors.
+      # If unavailable, fall back to the existing bounded apt path below.
+      # Neither outcome bypasses mandatory ffmpeg/ffprobe and MEDIA-01 gates.
+      - name: Setup pinned FFmpeg and FFprobe binaries
+        if: ${{ steps.app.outputs.present == 'true' }}
+        continue-on-error: true
+        uses: FedericoCarboni/setup-ffmpeg@37062fbf7149fc5578d6c57e08aed62458b375d6
+        with:
+          ffmpeg-version: release
+          linking-type: static
+
       - name: Ensure FFmpeg and FFprobe for audio validation
         if: ${{ steps.app.outputs.present == 'true' }}
         run: |
