@@ -12,7 +12,7 @@ const wait=async(fn:()=>boolean,label:string)=>{
   if(fn())return;
   await new Promise(r=>setTimeout(r,25));
  }
- fail('Timeout '+label+' / '+document.body.innerText.slice(0,350));
+ fail('Timeout '+label+' / '+document.getElementById('app')?.innerText.slice(0,350));
 };
 const select=(label:string,value:string)=>{
  const e=document.querySelector('select[aria-label="'+label+'"]') as HTMLSelectElement|null;
@@ -52,9 +52,9 @@ let selection='';
   await wait(()=>getCount().includes('3 reference entries'),'idioms filter');
   search('ice');
   await wait(()=>getCount().includes('1 reference entry'),'term search');
-  assert(document.body.textContent?.includes('break the ice'),'expected idiom shown');
+  assert(document.getElementById('app')?.textContent?.includes('break the ice'),'expected idiom shown');
   search('this-never-matches-any-entry');
-  await wait(()=>document.body.textContent?.includes('No matching entries')??false,'honest empty state');
+  await wait(()=>document.getElementById('app')?.textContent?.includes('No matching entries')??false,'honest empty state');
   const clear=[...document.querySelectorAll('button')].find(x=>x.textContent?.includes('Clear filters'));
   clear?.click();
   await wait(()=>getCount().includes('26 reference entries'),'clear filters');
@@ -64,11 +64,11 @@ let selection='';
   assert(first,'available real catalog lesson should show button');
   first!.click();
   await wait(()=>selection==='GRA-A1-01 grammar','catalog-grounded callback');
-  assert(!document.body.textContent?.includes('CEFR certification awarded'),'no fake badge');
+  assert(!document.getElementById('app')?.textContent?.includes('CEFR certification awarded'),'no fake badge');
   report('PASS_CATALOG_LINK');
  }else if(phase==='missing'){
   assert(document.querySelectorAll('.sle-reference-practice button').length===0,'no false links on missing catalog');
-  assert((document.body.textContent??'').includes('not imported on this device'),'clear missing catalog reason');
+  assert((document.getElementById('app')?.textContent??'').includes('not imported on this device'),'clear missing catalog reason');
   report('PASS_MISSING_CATALOG');
  }else fail('unknown phase');
 })().catch(e=>report('FAIL '+String(e)+' '+String((e as Error).stack).slice(0,800)));
