@@ -136,7 +136,7 @@ async function until(fn,ms=30000){
    }
    const start=Date.now();
    let last='';
-   const phaseTimeout=url.includes('phase=r4t-segmented-large-backup')||url.includes('phase=r4u-restored-reopen')?240000:url.includes('phase=r4p-scale-2000')?120000:45000;
+   const phaseTimeout=url.includes('phase=r4t-segmented-large-backup')||url.includes('phase=r4u-restored-reopen')||url.includes('phase=r4v-file-ui-roundtrip')||url.includes('phase=r4v-file-ui-reopen')?240000:url.includes('phase=r4p-scale-2000')?120000:45000;
    while(Date.now()-start<phaseTimeout){
     last=String(await evaluate()||'');
     if(isTwoTab&&last.startsWith('FAIL_R4G'))
@@ -603,6 +603,45 @@ async function until(fn,ms=30000){
    safari:'NOT_TESTED',realFileDownload:'NOT_TESTED',
    realLearnerData:'NOT_TOUCHED',productionIntegration:false,
    deploy:false
+  }));
+  // R4v: exercise a genuine single-File Blob download link + File input UI
+  // on a disposable source already containing the verified 46-part archive.
+  // No custom production import, no host upload or real family records.
+  const r4vOneFileUI=await visitWithStartupRetry(
+   host+'/?phase=r4v-file-ui-roundtrip',segmentedProfile);
+  assert.match(r4vOneFileUI,/^PASS_R4V_FILE_UI\b/);
+  const r4vFileResult=JSON.parse(r4vOneFileUI.slice(r4vOneFileUI.indexOf('{')));
+  assert.equal(r4vFileResult.actualBrowserBlobAndFileRoundtrip,true);
+  assert.equal(r4vFileResult.onePortableFileMoreThan45MB,true);
+  assert.equal(r4vFileResult.packageContains46VerifiedParts,true);
+  assert.equal(r4vFileResult.recoveryDisabledUntilFileValidated,true);
+  assert.equal(r4vFileResult.malformedHeaderAndTruncatedFileRefused,true);
+  assert.equal(r4vFileResult.noPreconsentDestinationCreated,true);
+  assert.equal(r4vFileResult.original2123LessonsAnd73AttemptsRestored,true);
+  const r4vAfterUIRestart=await visitWithStartupRetry(
+   host+'/?phase=r4v-file-ui-reopen',segmentedProfile);
+  assert.match(r4vAfterUIRestart,/^PASS_R4V_UI_REOPEN\b/);
+  const r4vReopenProof=JSON.parse(r4vAfterUIRestart.slice(r4vAfterUIRestart.indexOf('{')));
+  assert.equal(r4vReopenProof.fullSyntheticArchivePersists,true);
+  assert.equal(r4vReopenProof.lessons,2123);
+  assert.equal(r4vReopenProof.attempts,73);
+  assert.equal(r4vReopenProof.parts,46);
+  assert.equal(r4vReopenProof.originalWritingByteIdentical,true);
+  assert.equal(r4vReopenProof.noProductionMigration,true);
+  console.log(JSON.stringify({
+   result:'PASS',gate:'r4v-45mb-single-file-local-browser-preview-restore-ui',
+   oneFileDownloadAndInputDOMExercised:true,
+   browserFileApiRoundtrip:true,
+   original46PartsVerifiedBeforeRestore:true,
+   fileTruncationAndHeaderCorruptionFailClosed:true,
+   restoreDisabledUntilExplicitVerifiedFileSelection:true,
+   noDestinationWriteBeforeRestoreClick:true,
+   restoredFullArchiveAfterIndependentBrowserRestart:true,
+   syntheticActiveLessons:2123,syntheticAttempts:73,
+   testOnlySafariFilesUX:'NOT_TESTED',
+   OSFileDownloadSuccess:'NOT_TESTED',
+   productionSiteIntegration:false,
+   realLearnerData:'NOT_TOUCHED',deploy:false
   }));
   console.log(JSON.stringify({result:'PASS',
    gate:'r4m-repeated-hard-sigkill-crash-window-classification',
