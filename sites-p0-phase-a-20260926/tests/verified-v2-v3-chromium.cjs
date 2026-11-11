@@ -461,6 +461,31 @@ async function until(fn,ms=30000){
    realIpadQuotaAndLazyNetworkLoading:'NOT_TESTED',
    realLearnerData:'NOT_TOUCHED',productionIntegration:false,
    deploy:false}));
+  // R4q reuses R4p's browser profile after a graceful process restart.
+  // Only 35 selected Unit blobs are loaded; no full 2,001-body inventory.
+  const target=await visitWithStartupRetry(
+   host+'/?phase=r4q-targeted-unit-reload',scale2000Profile);
+  assert.match(target,/^PASS_R4Q_UNIT_TARGETED\b/);
+  const q=JSON.parse(target.slice(target.indexOf('{')));
+  assert.equal(q.activeSyntheticLessonCount,2001);
+  assert.equal(q.unitRequestedLessonCount,35);
+  assert.equal(q.unitReturnedRevisionBodies,35);
+  assert.equal(q.crossPathImmutableRevisionsShared,true);
+  assert.equal(q.historicVersionRubricStillRetrievable,true);
+  assert.equal(q.absentDuplicateOversizedRequestsBlocked,true);
+  console.log(JSON.stringify({
+   result:'PASS',gate:'r4q-targeted-single-unit-batch-idb-retrieval',
+   activeSyntheticCatalogSize:2001,
+   requestedUnitLessonBodies:35,
+   reusedExistingLessonSourceAcrossCoursePaths:true,
+   historicalRubricPreserved:true,
+   unknownDuplicateOversizedUnitFailClosed:true,
+   noFullLessonBodyInventory:true,
+   afterFreshChromiumRestart:true,
+   actualBrowserLazyNetworkDelivery:'NOT_TESTED',
+   safari:'NOT_TESTED',realLearnerData:'NOT_TOUCHED',
+   productionIntegration:false,deploy:false
+  }));
   console.log(JSON.stringify({result:'PASS',
    gate:'r4m-repeated-hard-sigkill-crash-window-classification',
    additionalIndependentDisposableProfiles:4,
