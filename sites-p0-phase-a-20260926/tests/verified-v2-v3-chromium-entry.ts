@@ -9,7 +9,7 @@ import curriculum1200 from '../content/curriculum-1.20.0-candidate.json';
 import {convertVerifiedV2ToRevisionV3} from '../infrastructure/browser/v2-to-lesson-revision-v3';
 import {verifyLocalRecoveryV2} from '../infrastructure/browser/local-recovery';
 import {verifyRevisionRecoveryV3,createRevisionRecoveryV3} from '../domain/lesson-revision-recovery-v3';
-import {canonicalLessonJSON} from '../domain/lesson-revision-plan';
+import {canonicalLessonJSON,planLessonRevisions, type ReleaseRecord, type SavedReference} from '../domain/lesson-revision-plan';
 import {browserLessonRevisionVault} from '../infrastructure/storage/indexeddb-lesson-revision-vault';
 import {previewNormalizedV3Restore,restoreNormalizedV3,
  exportNormalizedBrowserRecoveryV3,RECOVERY_V3_MARKER,LEARNER_WRITE_V3_MARKER
@@ -2292,6 +2292,133 @@ const vault=browserLessonRevisionVault();
    oldLocalStorageRouteUnchanged:true,productionIntegration:false,
    sigkillOrPowerLoss:'NOT_TESTED',safari:'NOT_TESTED',
    realLearnerData:'NOT_TOUCHED'
+  });
+ }else if(phase==='r4p-scale-2000'){
+  // Capacity-only research: 2,000 completely invented Lessons, NOT 2,000
+  // reviewed academic lessons and NOT a live 250-lesson importer bypass.
+  check(localStorage.length===0,'R4p must use an empty disposable Chrome profile');
+  check((await vault.snapshot()).active===null,
+   'R4p must not open an occupied normalized source profile');
+  const prefixes=['GRA','VOC','REA','LIS','WRI','SPE','PRO'];
+  const levels=['A1','A2','B1','B2','C1','C2'];
+  const moduleMap:Record<string,string>={
+   GRA:'grammar',VOC:'vocabulary',REA:'reading',LIS:'listening',
+   WRI:'writing',SPE:'speaking',PRO:'pronunciation'
+  };
+  const unitFor=(i:number)=>{
+   const level=levels[Math.floor(i/7)%6];
+   return level+'-U'+String(Math.floor(i/42)%10+1).padStart(2,'0');
+  };
+  function fakeLesson(i:number){
+   const prefix=prefixes[i%7],level=levels[Math.floor(i/7)%6];
+   const serial=String(Math.floor(i/42)+1).padStart(3,'0');
+   const id=prefix+'-'+level+'-'+serial;
+   return {id,module:moduleMap[prefix],title:'SYNTHETIC SCALE ONLY '+id,
+    activities:[{id:id+'-Q1',prompt:'INVENTED non-academic scale data',
+     ...(i<12?{rubric_id:'RUBRIC-WRITING-SCALE01'}:{})}]};
+  }
+  const fakeLessons=Array.from({length:2000},(_,i)=>fakeLesson(i));
+  const uniqueIds=new Set(fakeLessons.map(x=>x.id));
+  const unitAssignments=fakeLessons.map((l,i)=>({unitId:unitFor(i),lessonId:l.id}));
+  const distinctUnits=new Set(unitAssignments.map(x=>x.unitId));
+  check(uniqueIds.size===2000&&distinctUnits.size===60,
+   'R4p synthetic 2,000 Lesson IDs must span exactly 60 course units');
+  const sharedPaths={
+   writing12:fakeLessons.slice(0,12).map(l=>l.id),
+   IELTS:fakeLessons.slice(0,20).map(l=>l.id),
+   TOEFL:fakeLessons.slice(0,20).map(l=>l.id)
+  };
+  check(sharedPaths.writing12.every(id=>sharedPaths.IELTS.includes(id))&&
+   sharedPaths.TOEFL.every(id=>sharedPaths.IELTS.includes(id)),
+   'R4p reused course references must not generate copies of Lesson bodies');
+  function makeRecord(version:string,count:number,rubricText:string):ReleaseRecord{
+   return {id:'synthetic-scale-research-package',version,
+    digest:'SYNTHETIC-NONPROVENANCE-'+version,
+    source:{
+     lessons:Array.from({length:count},(_,i)=>i<2000?fakeLessons[i]:fakeLesson(i)),
+     rubrics:{'RUBRIC-WRITING-SCALE01':{criteria:rubricText}},
+     unitAssignments:unitAssignments.slice(0,count),
+     sharedPaths
+    }
+   };
+  }
+  const old1=makeRecord('9.0.0',1960,'HISTORIC_RUBRIC');
+  const old2=makeRecord('9.1.0',1980,'HISTORIC_RUBRIC');
+  const current=makeRecord('9.2.0',2000,'CURRENT_RUBRIC');
+  const refs:SavedReference[]=Array.from({length:73},(_,i)=>({
+   version:i<24?'9.0.0':i<49?'9.1.0':'9.2.0',
+   lessonId:fakeLessons[i].id,packageId:'synthetic-scale-research-package'
+  }));
+  const plan=await planLessonRevisions([old1,old2,current],refs);
+  check(plan.active.lessons.length===2000&&
+   plan.protectedAttemptCount===73&&plan.aliases.length===73&&
+   plan.blobs.length===2012,
+   'R4p normalized 2,000 Lesson + 12 immutable historical revisions failed');
+  const first=await vault.install(plan);
+  check(first.addedRevisions===2012&&first.addedAliases===73&&
+   first.activeVersion==='9.2.0',
+   'R4p original 2,000 Lesson revision transaction failed');
+  const source=await vault.snapshot();
+  check(source.active?.lessons.length===2000&&source.blobs.length===2012&&
+   source.aliases.length===73,
+   'R4p normalized 2,000 Lesson readback failed');
+  const firstId=fakeLessons[0].id;
+  const original=await vault.resolveHistoric('9.0.0',firstId);
+  const updated=await vault.resolveCurrent(firstId);
+  check(original.revision!==updated.revision&&
+   original.rubrics['RUBRIC-WRITING-SCALE01']!==undefined&&
+   canonicalLessonJSON(original.rubrics['RUBRIC-WRITING-SCALE01'])!==
+   canonicalLessonJSON(updated.rubrics['RUBRIC-WRITING-SCALE01']),
+   'R4p must preserve the original rubric for an older referenced attempt');
+  check((await vault.resolveCurrent(fakeLessons[1999].id)).lesson.id===
+   fakeLessons[1999].id,'R4p targeted last-lesson read failed');
+  const incremental=makeRecord('9.3.0',2001,'CURRENT_RUBRIC');
+  const incrementalPlan=await planLessonRevisions(
+   [old1,old2,current,incremental],refs);
+  check(incrementalPlan.blobs.length===2013&&
+   incrementalPlan.active.lessons.length===2001&&
+   incrementalPlan.aliases.length===73,
+   'R4p additive lesson must create exactly one new immutable body');
+  const added=await vault.install(incrementalPlan);
+  check(added.addedRevisions===1&&added.addedAliases===0&&
+   added.activeVersion==='9.3.0',
+   'R4p one new lesson must add only one blob, not copy 2,000 old lessons');
+  const final=await vault.snapshot();
+  check(final.active?.lessons.length===2001&&
+   final.blobs.length===2013&&final.aliases.length===73,
+   'R4p incremental normalized library lost protected sources');
+  check((await vault.resolveHistoric('9.0.0',firstId)).revision===
+   original.revision,'R4p additive release modified historical answer source');
+  let missingRejected=false;
+  try{
+   await planLessonRevisions([old1,old2,current],[
+    {version:'9.0.0',lessonId:'GRA-A1-999',
+     packageId:'synthetic-scale-research-package'}
+   ]);
+  }catch(e){missingRejected=/Original versioned lesson missing/.test(String(e))}
+  check(missingRejected,'R4p missing historical original source must FAIL CLOSED');
+  check(localStorage.length===0,'R4p stress test wrote to learner localStorage');
+  const cumulativeBytes=new TextEncoder().encode(JSON.stringify([
+   old1,old2,current
+  ])).length;
+  const normalizedBytes=new TextEncoder().encode(JSON.stringify(plan)).length;
+  dom.textContent='PASS_R4P_SCALE2000 '+JSON.stringify({
+   syntheticLessonCount:2000,syntheticUnitCount:60,
+   originalHistoricalAttemptReferences:73,
+   historicDistinctRubricRevisions:12,
+   originalStoredRevisionBlobs:2012,
+   finalStoredRevisionBlobs:2013,
+   incrementalAddedLessonBlobs:added.addedRevisions,
+   noDuplicateBodiesForWritingIELTSTOEFL:true,
+   lastLessonTargetedLookupSucceeded:true,
+   originalHistoricRubricPinned:true,
+   missingOriginalSourceBlocked:true,
+   cumulativeSourceBytes:cumulativeBytes,
+   normalizedPlanBytes:normalizedBytes,
+   noRealLearnerDataTouched:true,
+   productionImporterStill250:true,
+   lazyNetworkCatalogAndSafariQuota:'NOT_TESTED',
+   productionIntegration:false
   });
  }else throw Error('Unsupported R4c browser phase');
 })().catch(e=>{
