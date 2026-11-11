@@ -37,8 +37,8 @@ export function AnyTopicWritingReview(){
     }finally{setReady(true)}
   },[]);
 
-  // Local autosave only. There is intentionally no fetch(), remote SDK,
-  // account history write, AI request or change to an AcademicAttempt.
+  // Local autosave only. No network call, remote SDK, account history write,
+  // AI request, or alteration of existing graded attempts.
   useEffect(()=>{
     if(!ready)return;
     try{
