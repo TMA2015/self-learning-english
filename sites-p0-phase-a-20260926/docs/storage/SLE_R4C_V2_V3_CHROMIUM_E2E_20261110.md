@@ -219,6 +219,18 @@ A separate \`r4s-shadow-learner-candidate.ts\` research module:
 
 **Exact-head full QA PENDING.** Draft PR #129 and Issue #103 remain open; production release stays NO_GO.
 
+## R4t — bounded multi-part Recovery proof beyond the existing 25 MB single-file limit
+
+**Why:** The non-production \`lesson-revision-recovery-v3.ts\` caps a whole JSON backup at **25,000,000 bytes**. R4p's small, fake 2,000 Lessons are insufficient to prove that real-sized curricula plus historical Writing/source could fit this cap. Deleting original lesson/rubric records to fit is unacceptable.
+
+**Research-only prototype:** \`domain/lesson-revision-segmented-backup-r4t.ts\` defines an independent **segmented V4-like research format**, not a shipping replacement for V2/V3. It stores a checksummed manifest containing the full active manifest, all historical aliases, all learner-entry bytes, ordered parts and their sizes/digests; every distinct immutable lesson/rubric source revision is assigned to an independently checksum-verified part (maximum **1 MB per part**). A complete archive is accepted **only after** all parts are present in exact order, byte lengths/hash/record counts match, every original immutable body hash validates, the current full catalog is closed, and every saved attempt retains the exact old \`(version, Lesson ID, package)\` rubric/source reference. Limits: at most 512 parts and 256 MB total for this bounded research format, not a product quota guarantee.
+
+**Chromium test:** Uses publicly committed 1.18.0/1.18.1/1.20.0 curriculum source + 73 wholly invented attempts, fake Writing and course selection. Adds **2,000 fabricated large Lesson bodies** (2,123 active Lessons in total), producing an aggregate portable archive greater than **25 MB** without truncating history or exceeding the per-part 1 MB limit. Verify full assembly, unchanged learner-entry bytes, all old historical aliases and extra lesson revisions. Six negative cases MUST fail closed: missing part, reordered parts, duplicated part, mutated part, changed manifest, and a validly re-checksummed manifest that **silently removes one old historical alias**. This last test demonstrates that an internally checksum-valid file without original grading provenance is still unacceptable.
+
+**Not yet a shippable backup:** Both packaging and verification are **in-memory** proof-of-format operations: this is **not** browser File System streaming, multi-file export/download UX, import/restore, resumable chunk transfer, identity-authenticated signature, real media binary digest/rights coverage or on-device iPad Safari memory/quota. The prototype has no production entrypoint and no write/delete API. It is not connected to the atomic R4s learner writer nor the existing V2 export. No real learner records or original family recovery file were accessed.
+
+**Exact-head CI PENDING.** Until external Safari and complete restore gates, PR #129 stays Draft, Issue #103 OPEN, main legacy single-package importer cap remains 250, and LIVE release is NO_GO.
+
 ## Explicit non-claims / blockers
 
 - SHA verifies integrity of archived JSON, but it is **not a cryptographic signature proving the real provenance of the original learner data**.
