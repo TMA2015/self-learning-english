@@ -513,6 +513,37 @@ async function until(fn,ms=30000){
    finalV2ToV3Cutover:'NOT_TESTED',safari:'NOT_TESTED',
    productionIntegration:false,deploy:false
   }));
+  // R4s: stage ALL synthetic learner/Writing/course values in one separate
+  // candidate record; old V2 localStorage stays authoritative.
+  const learnerStage=await visitWithStartupRetry(
+   host+'/?phase=r4s-learner-shadow-stage',shadowProfile);
+  const learnerTamper=await visitWithStartupRetry(
+   host+'/?phase=r4s-learner-shadow-tamper',shadowProfile);
+  const learnerFinal=await visitWithStartupRetry(
+   host+'/?phase=r4s-learner-shadow-final',shadowProfile);
+  assert.match(learnerStage,/^PASS_R4S_SHADOW_STAGE\b/);
+  assert.match(learnerTamper,/^PASS_R4S_SHADOW_TAMPER\b/);
+  assert.equal(learnerFinal,'PASS_R4S_SHADOW_FINAL');
+  const stageResult=JSON.parse(learnerStage.slice(learnerStage.indexOf('{')));
+  const tamperResult=JSON.parse(learnerTamper.slice(learnerTamper.indexOf('{')));
+  assert.equal(stageResult.verifiedCompleteCandidateAttempts,73);
+  assert.equal(stageResult.originalWritingAndCourseSelectionPreserved,true);
+  assert.equal(stageResult.staleOriginalBrowserWritingBlocksCandidate,true);
+  assert.equal(tamperResult.fabricatedUncommittedWritingEditBlocked,true);
+  assert.equal(tamperResult.originalLegacyLearnerBytesUnchanged,true);
+  console.log(JSON.stringify({
+   result:'PASS',gate:'r4s-single-idb-record-v2-shadow-learner-candidate',
+   atomicSingleRecordShadowStaging:true,
+   currentLegacyV2StillAuthoritative:true,
+   original73SyntheticAttemptsWritingCourseExact:true,
+   staleLegacyWritingRejected:true,
+   uncommittedShadowWritingTamperFailsClosed:true,
+   fullyVerifiedV3FromCandidateAndImmutableSource:true,
+   twoIndependentChromiumRestartsVerified:true,
+   actualProductLearnerWriter:'NOT_INTEGRATED',
+   safari:'NOT_TESTED',powerLoss:'NOT_TESTED',
+   realLearnerData:'NOT_TOUCHED',deploy:false
+  }));
   console.log(JSON.stringify({result:'PASS',
    gate:'r4m-repeated-hard-sigkill-crash-window-classification',
    additionalIndependentDisposableProfiles:4,
