@@ -1997,6 +1997,91 @@ const vault=browserLessonRevisionVault();
    full.file.entries.find(x=>x.key===writingKey)?.value===originalW,
    'R4l verified learner data does not survive a second independent restart');
   dom.textContent='PASS_R4L_RELOAD';
+ }else if(phase==='r4n-markerless-stage'){
+  // Negative control: deliberately torn SYNTHETIC pair without journal/marker.
+  // This is NOT a real crash or an edit to a real learner profile.
+  check(localStorage.length===0,'R4n requires disposable empty profile');
+  check((await vault.snapshot()).active===null,'R4n requires empty IDB');
+  const {v2,rows}=await fixture();
+  const v3=await convertVerifiedV2ToRevisionV3(v2);
+  check((await verifyRevisionRecoveryV3(v3.text)).attempts===73,
+   'R4n fixture must have exactly 73 fabricated learner records');
+  const preview=await previewNormalizedV3Restore(v3.text,localStorage,vault);
+  check(preview.valid,'R4n empty-profile preview failed');
+  check((await restoreNormalizedV3(v3.text,preview.token,true,localStorage,vault))
+   .attempts===73,'R4n synthetic baseline restore failed');
+  const original=rows.find(x=>x.key===attemptKey)!.value;
+  check(localStorage.getItem(attemptKey)===original&&
+   localStorage.getItem(writingKey)===permanentTestValues.writing,
+   'R4n original fabricated learner bytes missing');
+  const changed=r4hAnswer(original,71,'R4N_UNPROTECTED_FIRST_KEY_CHANGE');
+  check(changed!==original,'R4n requires a changed synthetic first key');
+  localStorage.setItem(attemptKey,changed);
+  check(localStorage.getItem(attemptKey)===changed&&
+   localStorage.getItem(writingKey)===permanentTestValues.writing&&
+   localStorage.getItem(LEARNER_WRITE_V3_MARKER)===null&&
+   localStorage.getItem(RECOVERY_V3_MARKER)===null,
+   'R4n did not construct the controlled markerless torn state');
+  dom.textContent='PASS_R4N_NEGATIVE_STAGE';
+ }else if(phase==='r4n-markerless-inspect'){
+  // A fresh real Chromium process after GRACEFUL shutdown, not SIGKILL.
+  const {v2,rows}=await fixture();
+  const original=rows.find(x=>x.key===attemptKey)!.value;
+  const changed=r4hAnswer(original,71,'R4N_UNPROTECTED_FIRST_KEY_CHANGE');
+  check(localStorage.getItem(attemptKey)===changed&&
+   localStorage.getItem(writingKey)===permanentTestValues.writing&&
+   localStorage.getItem(extraKey)===permanentTestValues.course&&
+   localStorage.getItem(LEARNER_WRITE_V3_MARKER)===null&&
+   localStorage.getItem(RECOVERY_V3_MARKER)===null,
+   'R4n markerless torn pair not durable over normal restart');
+  const base=(await verifyRevisionRecoveryV3(
+   (await convertVerifiedV2ToRevisionV3(v2)).text)).file;
+  const current=await vault.snapshot();
+  check(canonicalLessonJSON(current.active)===canonicalLessonJSON(base.active)&&
+   current.blobs.length===base.blobs.length&&
+   current.aliases.length===base.aliases.length,
+   'R4n original historical lesson content lost');
+  // Expected negative result: checksummed backup can include mismatched pair.
+  const backup=await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-11T08:10:00.000Z');
+  const verified=await verifyRevisionRecoveryV3(backup.text);
+  check(verified.attempts===73&&
+   verified.file.entries.find(x=>x.key===attemptKey)?.value===changed&&
+   verified.file.entries.find(x=>x.key===writingKey)?.value===
+   permanentTestValues.writing,
+   'R4n did not reproduce false-complete markerless V3 backup');
+  check(verified.file.entries.find(x=>x.key===attemptKey)?.value!==original,
+   'R4n backup must demonstrably differ from the known original V2');
+  // Cleanup is restricted to the fictional disposable learner value.
+  localStorage.setItem(attemptKey,original);
+  const clean=await verifyRevisionRecoveryV3((await exportNormalizedBrowserRecoveryV3(
+   localStorage,vault,'2026-11-11T08:12:00.000Z')).text);
+  check(clean.attempts===73&&clean.file.entries.find(x=>x.key===attemptKey)
+   ?.value===original,'R4n failed to restore original fabricated values');
+  dom.textContent='PASS_R4N_VULNERABILITY_REPRODUCED '+JSON.stringify({
+   scriptedMarkerlessTornState:true,actualSIGKILLProducedThisState:false,
+   persistedAcrossNormalBrowserRestart:true,
+   checksumValidYetInconsistentPairedSnapshot:true,
+   original73FabricatedAttemptsRecovered:true,
+   originalHistoricalLessonAndRubricPreserved:true,
+   securityVerdict:'BLOCKER_NOT_FIXED',productionWriterTouched:false,
+   realLearnerData:'NOT_TOUCHED'
+  });
+ }else if(phase==='r4n-markerless-reload'){
+  const {rows}=await fixture();
+  const original=rows.find(x=>x.key===attemptKey)!.value;
+  check(localStorage.getItem(attemptKey)===original&&
+   localStorage.getItem(writingKey)===permanentTestValues.writing&&
+   localStorage.getItem(extraKey)===permanentTestValues.course&&
+   localStorage.getItem(LEARNER_WRITE_V3_MARKER)===null,
+   'R4n after-cleanup restart lost original fictional learner bytes');
+  const exported=await verifyRevisionRecoveryV3((await
+   exportNormalizedBrowserRecoveryV3(
+    localStorage,vault,'2026-11-11T08:20:00.000Z')).text);
+  check(exported.attempts===73&&exported.file.entries.find(x=>x.key===attemptKey)
+   ?.value===original&&(await vault.snapshot()).active?.lessons.length===123,
+   'R4n complete synthetic backup not preserved after another restart');
+  dom.textContent='PASS_R4N_CLEAN_RELOAD';
  }else throw Error('Unsupported R4c browser phase');
 })().catch(e=>{
  dom.textContent='FAIL '+String(e)+' '+String((e as Error)?.stack).slice(0,1100);
