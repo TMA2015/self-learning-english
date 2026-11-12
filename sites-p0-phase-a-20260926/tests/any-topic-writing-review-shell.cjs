@@ -21,6 +21,8 @@ assert.doesNotMatch(view,/\bfetch\s*\(|XMLHttpRequest|sendBeacon|requestWritingA
 assert.doesNotMatch(view,/AcademicAttempt|setEvidence\(|writingEvidence\(|RUBRIC-|score\s*:/,'No grade or Foundation attempt mutation');
 assert.match(view,/no AI submission or automatic scoring/i);
 assert.match(view,/This browser only|this browser only/i);
+assert.match(view,/Writing Draft &amp; Self-Check/);
+assert.match(view,/same for every draft/i,'Self-check must disclose it is not personalized');
 assert.match(view,/Task response:/);
 assert.match(view,/Ideas:/);
 assert.match(view,/Organization:/);
@@ -28,6 +30,6 @@ assert.match(view,/Language:/);
 assert.match(home,/import \{AnyTopicWritingReview\}/);
 assert.match(home,/view==="writing-any-topic"&&<AnyTopicWritingReview\/>/);
 assert.match(home,/onAnyTopic=\{\(\)=>void navigate\("writing-any-topic"\)\}/);
-assert.match(platform,/Open independent Writing Review/);
+assert.match(platform,/Open Writing Draft & Self-Check \(No AI\)/);
 assert.match(runner,/any-topic-writing-review-shell\.cjs/,'Register mandatory QA in full suite');
 console.log('PASS any-topic-writing-review-shell: 2 required fields, local restore, isolated route, no AI/no scoring');
