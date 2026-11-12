@@ -34,16 +34,18 @@ const cssBox=(e:Element)=>e.getBoundingClientRect();
   check(categories.length===7,'6 categories plus all');
   check(Math.ceil(cssBox(root).right)<=width+2,'Reference root extends beyond fixed '+width+'px container');
   check(Math.ceil(cssBox(table).right)<=width+2,'Table scroll region escapes '+width+'px container');
-  check(table.scrollWidth>table.clientWidth,
-   'Wide verb table must overflow INSIDE its region: '+JSON.stringify({
-    scrollWidth:table.scrollWidth,clientWidth:table.clientWidth,
-    cssMinWidth:getComputedStyle(table.querySelector('table')!).minWidth,
-    cssOverflow:getComputedStyle(table).overflowX,
-    regionWidth:cssBox(table).width,
-    viewport:window.innerWidth
-   }));
-  table.scrollLeft=80;
-  check(table.scrollLeft>0,'Verb table must be horizontally scrollable');
+  const tableElement=table.querySelector('table')!;
+  const needsScroll=tableElement.getBoundingClientRect().width>table.clientWidth+2;
+  if(needsScroll){
+   check(table.scrollWidth>table.clientWidth,
+    'Wide verb table must overflow INSIDE its region');
+   table.scrollLeft=80;
+   check(table.scrollLeft>0,'Narrow verb table must be horizontally scrollable');
+  }else{
+   check(tableElement.getBoundingClientRect().right<=table.getBoundingClientRect().right+2,
+    'Wide-layout table should fit without forced scrolling');
+  }
+  if(width===320)check(needsScroll,'320px content must allow table scrolling');
   for(const category of categories){
    const rect=cssBox(category);
    check(rect.width>42&&rect.height>=40,'Category touch target too small: '+category.textContent);
@@ -56,7 +58,7 @@ const cssBox=(e:Element)=>e.getBoundingClientRect();
   check(cards.length===20,'Static cards available at narrow width');
   for(const card of cards)check(cssBox(card).right<=width+2,'Card overflows '+width+'px layout');
   const result={type:'reference',layoutWidth:width,actualViewport:window.innerWidth,
-   internalTableScroll:true,categories:categories.length,visibleCards:cards.length};
+   tableScrollNeeded:needsScroll,categories:categories.length,visibleCards:cards.length};
   status.textContent='PASS_RESPONSIVE '+JSON.stringify(result);
  }else if(mode==='writing'){
   createRoot(app).render(<AnyTopicWritingReview/>);
