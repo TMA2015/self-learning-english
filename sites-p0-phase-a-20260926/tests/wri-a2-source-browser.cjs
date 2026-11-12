@@ -77,7 +77,8 @@ const root=path.resolve(__dirname,'..');
  try{
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
   const base='http://127.0.0.1:'+server.address().port;
-  const results=await Promise.all(['ok','missing','unavailable'].map(x=>run(base,x)));
+  const results=[];
+  for(const phase of ['ok','missing','unavailable'])results.push(await run(base,phase));
   assert.deepEqual(results,['PASS_SOURCES_VISIBLE','PASS_SOURCE_FAIL_CLOSED','PASS_MISSING_CATALOG']);
   console.log(JSON.stringify({result:'PASS',gate:'WRI-A2-07-Canonical-Sources-real-Chromium',
    originalReadingNotice:true,originalListeningLinks:true,
