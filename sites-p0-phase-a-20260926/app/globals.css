@@ -558,3 +558,24 @@ body {
  .writing-source-step audio{max-width:100%}
  .writing-source-optional-lessons .learning-choices button{width:100%}
 }
+
+
+/* Reviewed Vocabulary A1/A2/B1 pilot: compact instructional cards, no scored mutation. */
+.sle-vocab-pilot{margin:1rem 0 1.25rem;max-width:920px;min-width:0}
+.sle-vocab-pilot>p{overflow-wrap:anywhere;line-height:1.65}
+.sle-vocab-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:.7rem;margin:.9rem 0}
+.sle-vocab-card{background:#fff;border:1px solid #d6e4f3;border-radius:10px;padding:.9rem;min-width:0}
+.sle-vocab-card h4{font-size:1rem;margin:0 0 .5rem;color:#184d86;overflow-wrap:anywhere}
+.sle-vocab-card p{margin:.4rem 0;line-height:1.5;overflow-wrap:anywhere}
+.sle-vocab-card .sle-vocab-contrast{font-size:.92rem;color:#49627d}
+.sle-vocab-demo{padding:.9rem;border-left:3px solid #527fb9;background:#edf4fd;border-radius:6px}
+.sle-vocab-demo h4{margin:0 0 .45rem;font-size:1rem}
+.sle-vocab-demo p{margin:0;line-height:1.65}
+.sle-vocab-self-practice{margin:1rem 0;border:1px solid #d6e4f3;border-radius:9px;padding:.85rem;background:#fff}
+.sle-vocab-self-practice summary{cursor:pointer;min-height:44px;font-weight:650}
+.sle-vocab-self-practice summary:focus-visible{outline:3px solid #316cba;outline-offset:2px}
+.sle-vocab-self-practice p{margin:.7rem 0;line-height:1.55;overflow-wrap:anywhere}
+.sle-vocab-repair{border-top:1px solid #d6e4f3;margin-top:.75rem;padding:.65rem 0}
+.sle-vocab-repair p{margin:.35rem 0;line-height:1.55}
+.sle-vocab-repair small{display:block;color:#526c84}
+@media(max-width:380px){.sle-vocab-card{padding:.75rem}.sle-vocab-demo{padding:.75rem}}
