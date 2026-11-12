@@ -1,6 +1,7 @@
 /** Static SLE Reference Library selectors only.
  * No scoring, learner data writes, AI calls, or runtime network requests.
- * Source content still requires independent NotebookLM academic review.
+ * The 26 reference entries were independently reviewed: NotebookLM academic PASS.
+ * Additional search keywords are optional frontend-only discovery metadata.
  */
 export const REFERENCE_KINDS=[
  {id:'irregular_verbs',label:'Irregular verbs'},
@@ -18,6 +19,7 @@ export type ReferenceEntry={
  id:string;kind:ReferenceKind;level:ReferenceLevel;register:ReferenceRegister;
  term:string;meaning:string;example:string;note:string;skill:ReferenceSkill;
  forms?:{base:string;past:string;participle:string};
+ search_keywords?:string[];
 };
 export type ReferenceFilters={
  query:string;kind:'all'|ReferenceKind;level:'all'|ReferenceLevel;
@@ -34,7 +36,7 @@ export function filterReferenceEntries(
   if(filter.level!=='all'&&e.level!==filter.level)return false;
   if(filter.register!=='all'&&e.register!==filter.register)return false;
   const text=[e.term,e.meaning,e.example,e.note,e.forms?.base,
-   e.forms?.past,e.forms?.participle].filter(Boolean)
+   e.forms?.past,e.forms?.participle,...(e.search_keywords??[])].filter(Boolean)
    .join(' ').normalize('NFKC').toLocaleLowerCase('en');
   return words.every(w=>text.includes(w));
  });
