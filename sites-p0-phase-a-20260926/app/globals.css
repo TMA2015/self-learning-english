@@ -540,11 +540,21 @@ body {
  .sle-reference .sle-reference-category-filter.is-selected{padding:7px 9px}
 }
 
-/* WRI-A2-07: preserve the exact canonical Reading source in the Writing player. */
-.a2-writing-sources{margin:1rem 0 1.25rem;min-width:0}
-.a2-writing-sources>p{line-height:1.65;overflow-wrap:anywhere}
-.a2-writing-sources .foundation-passage{max-width:100%;margin:.8rem 0;overflow-wrap:anywhere}
-.a2-writing-sources .foundation-passage h4{margin:0 0 .65rem;color:#214c7c}
-.a2-writing-sources .learning-choices{margin:.85rem 0;gap:.6rem}
-.a2-writing-sources .learning-choices button{white-space:normal;min-height:44px;max-width:100%;text-align:left}
-@media(max-width:680px){.a2-writing-sources .learning-choices button{width:100%}}
+/* Integrated Writing: canonical sources displayed where the answer is entered. */
+.writing-source-bundle{margin:1rem 0 1.25rem;min-width:0}
+.writing-source-bundle>p{line-height:1.65;overflow-wrap:anywhere}
+.writing-source-step{min-width:0;margin:1rem 0;padding:.85rem 0;border-top:1px solid #dce7f5}
+.writing-source-step h4{font-size:1rem;color:#163c66;margin:0 0 .65rem}
+.writing-source-step .foundation-passage{max-width:100%;margin:.8rem 0;overflow-wrap:anywhere}
+.writing-source-step .foundation-passage h5{font-size:.94rem;margin:0 0 .65rem;color:#214c7c}
+.writing-source-step audio{display:block;width:100%;max-width:480px;margin:.6rem 0}
+.writing-source-step>p{margin:.35rem 0;line-height:1.65}
+.writing-source-optional-lessons{margin-top:1rem;border-top:1px solid #dce7f5;padding-top:.8rem}
+.writing-source-optional-lessons summary{cursor:pointer;color:#245aa8;font-weight:650;line-height:1.5}
+.writing-source-optional-lessons .learning-choices{margin:.65rem 0;gap:.6rem}
+.writing-source-optional-lessons .learning-choices button{white-space:normal;min-height:44px;max-width:100%;text-align:left}
+@media(max-width:680px){
+ .writing-source-step .foundation-passage{padding:.9rem}
+ .writing-source-step audio{max-width:100%}
+ .writing-source-optional-lessons .learning-choices button{width:100%}
+}

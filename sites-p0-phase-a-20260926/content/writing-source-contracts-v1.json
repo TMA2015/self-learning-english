@@ -1,0 +1,85 @@
+{
+  "schema": "sle-writing-source-contracts-v1",
+  "curriculumVersion": "1.25.0",
+  "purpose": "Only source-dependent integrated Writing tasks use this approved mapping; sources are loaded at the same curriculum version and displayed without changing assessments.",
+  "sourcePolicies": {
+    "reading": "Show the canonical approved REA reading passage inside Writing, not copied text.",
+    "listening": "Show the original manifest-backed MP3 inline as reference only; do not reveal transcript or award Listening credit.",
+    "standalone": "Other Writing tasks have self-contained prompts; no unrelated sibling source is added."
+  },
+  "lessons": {
+    "WRI-A1-05": {
+      "unit": "A1-U10",
+      "readingLessonId": "REA-A1-05",
+      "readingAssetId": "TXT-REA-A1-05",
+      "listeningLessonId": "LIS-A1-06"
+    },
+    "WRI-A2-07": {
+      "unit": "A2-U10",
+      "readingLessonId": "REA-A2-08",
+      "readingAssetId": "TXT-REA-A2-08",
+      "listeningLessonId": "LIS-A2-07"
+    },
+    "WRI-B1-08": {
+      "unit": "B1-U10",
+      "readingLessonId": "REA-B1-07",
+      "readingAssetId": "TXT-REA-B1-07",
+      "listeningLessonId": "LIS-B1-08"
+    },
+    "WRI-A1-06": {
+      "unit": "A1-U05",
+      "readingLessonId": "REA-A1-06",
+      "readingAssetId": "TXT-REA-A1-06"
+    },
+    "WRI-A2-08": {
+      "unit": "A2-U03",
+      "readingLessonId": "REA-A2-09",
+      "readingAssetId": "TXT-REA-A2-09"
+    },
+    "WRI-B1-09": {
+      "unit": "B1-U02",
+      "readingLessonId": "REA-B1-08",
+      "readingAssetId": "TXT-REA-B1-08"
+    },
+    "WRI-A1-07": {
+      "unit": "A1-U08",
+      "readingLessonId": "REA-A1-07",
+      "readingAssetId": "TXT-REA-A1-07"
+    },
+    "WRI-A2-09": {
+      "unit": "A2-U07",
+      "readingLessonId": "REA-A2-10",
+      "readingAssetId": "TXT-REA-A2-10"
+    },
+    "WRI-A1-08": {
+      "unit": "A1-U03",
+      "readingLessonId": "REA-A1-08",
+      "readingAssetId": "TXT-REA-A1-08"
+    },
+    "WRI-A1-09": {
+      "unit": "A1-U06",
+      "readingLessonId": "REA-A1-09",
+      "readingAssetId": "TXT-REA-A1-09"
+    },
+    "WRI-A2-10": {
+      "unit": "A2-U02",
+      "readingLessonId": "REA-A2-11",
+      "readingAssetId": "TXT-REA-A2-11"
+    },
+    "WRI-A2-11": {
+      "unit": "A2-U04",
+      "readingLessonId": "REA-A2-12",
+      "readingAssetId": "TXT-REA-A2-12"
+    },
+    "WRI-B1-10": {
+      "unit": "B1-U01",
+      "readingLessonId": "REA-B1-09",
+      "readingAssetId": "TXT-REA-B1-09"
+    },
+    "WRI-B1-11": {
+      "unit": "B1-U05",
+      "readingLessonId": "REA-B1-10",
+      "readingAssetId": "TXT-REA-B1-10"
+    }
+  }
+}
