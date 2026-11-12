@@ -473,3 +473,69 @@ body {
  .sle-storage-verified-file{grid-column:1}
  .sle-storage-preview{padding:13px}
 }
+
+/* SLE P1 Reference Library: static lookup UI, no learner-scoring state. */
+.sle-reference{min-width:0}
+.sle-reference .sle-reference-intro{line-height:1.55}
+.sle-reference .sle-reference-filter-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.sle-reference .sle-reference-filter-grid label{display:flex;flex-direction:column;gap:7px;font-weight:600;min-width:0}
+.sle-reference .sle-reference-filter-grid input,
+.sle-reference .sle-reference-filter-grid select{width:100%;min-width:0;box-sizing:border-box;padding:12px;border:1px solid #b1bfd1;border-radius:9px;background:#fff;color:#183451;font:inherit}
+.sle-reference .sle-reference-search-summary{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:9px;margin-top:12px}
+.sle-reference .sle-reference-section{margin-top:20px;min-width:0}
+.sle-reference .sle-reference-table-scroll{max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain;border:1px solid #d7e1ed;border-radius:9px}
+.sle-reference .sle-reference-table-scroll:focus-visible{outline:3px solid #2a6cac;outline-offset:2px}
+.sle-reference table{width:100%;min-width:690px;border-collapse:collapse;line-height:1.48}
+.sle-reference th,.sle-reference td{padding:12px;text-align:left;vertical-align:top;border-bottom:1px solid #e1e8f0}
+.sle-reference th{font-weight:700}
+.sle-reference thead{background:#e9f2fb}
+.sle-reference tbody tr:last-child>*{border-bottom:0}
+.sle-reference td p{margin:7px 0}
+.sle-reference .sle-reference-card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px;margin-top:13px}
+.sle-reference .sle-reference-card{min-width:0;overflow-wrap:anywhere}
+.sle-reference .sle-reference-card h3{font-size:1.14rem;margin:10px 0}
+.sle-reference .sle-reference-card p{line-height:1.55}
+.sle-reference .sle-reference-tags{display:flex;flex-wrap:wrap;gap:7px}
+.sle-reference .sle-reference-tags span{font-size:.79rem;background:#eff5fc;border-radius:16px;padding:4px 9px;color:#315479}
+.sle-reference .sle-reference-practice{margin-top:10px;overflow-wrap:anywhere}
+.sle-reference .sle-reference-practice .text-button{text-align:left;white-space:normal;min-height:40px}
+.sle-reference .sle-reference-footer{margin-top:18px;line-height:1.5}
+@media(max-width:680px){
+ .sle-reference .sle-reference-filter-grid{grid-template-columns:1fr}
+ .sle-reference .sle-reference-search-summary .secondary-button{min-height:42px}
+ .sle-reference table{min-width:640px}
+ .sle-reference th,.sle-reference td{padding:10px}
+}
+
+/* Reference category chips: color reinforces the printed text, never the only cue. */
+.sle-reference .sle-reference-category-filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.sle-reference .sle-reference-category-filter{
+ --ref-kind-bg:#eef1f5;--ref-kind-fg:#253c55;--ref-kind-border:#a6b2bf;
+ background:var(--ref-kind-bg);color:var(--ref-kind-fg);
+ border:1px solid var(--ref-kind-border);border-radius:999px;
+ padding:9px 13px;min-height:42px;font:inherit;font-size:.88rem;font-weight:650;
+ line-height:1.2;cursor:pointer;white-space:normal;text-align:center
+}
+.sle-reference .is-irregular_verbs{--ref-kind-bg:#e4eeff;--ref-kind-fg:#164883;--ref-kind-border:#6f97cc}
+.sle-reference .is-collocations{--ref-kind-bg:#e0f5eb;--ref-kind-fg:#13603d;--ref-kind-border:#77ad8d}
+.sle-reference .is-phrasal_verbs{--ref-kind-bg:#fff0dd;--ref-kind-fg:#78420c;--ref-kind-border:#c6985f}
+.sle-reference .is-idioms{--ref-kind-bg:#f2e9ff;--ref-kind-fg:#60348c;--ref-kind-border:#ab91c9}
+.sle-reference .is-common_mistakes{--ref-kind-bg:#ffe9e8;--ref-kind-fg:#8a3437;--ref-kind-border:#ce8e90}
+.sle-reference .is-learning_tips{--ref-kind-bg:#dff5f6;--ref-kind-fg:#155c67;--ref-kind-border:#78b1bb}
+.sle-reference .sle-reference-category-filter:hover{filter:brightness(.95)}
+.sle-reference .sle-reference-category-filter.is-selected{
+ border-width:2px;padding:8px 12px;box-shadow:0 0 0 1px var(--ref-kind-fg);
+ text-decoration:underline;text-underline-offset:3px
+}
+.sle-reference .sle-reference-category-filter:focus-visible{
+ outline:3px solid #254f84;outline-offset:3px
+}
+.sle-reference .sle-reference-kind-label{
+ color:var(--ref-kind-fg);background:var(--ref-kind-bg);
+ border:1px solid var(--ref-kind-border);font-weight:700
+}
+@media(max-width:400px){
+ .sle-reference .sle-reference-category-filters{gap:7px}
+ .sle-reference .sle-reference-category-filter{padding:8px 10px;min-height:44px;font-size:.82rem}
+ .sle-reference .sle-reference-category-filter.is-selected{padding:7px 9px}
+}
