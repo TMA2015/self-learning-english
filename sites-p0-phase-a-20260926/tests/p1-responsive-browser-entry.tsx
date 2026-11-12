@@ -34,7 +34,14 @@ const cssBox=(e:Element)=>e.getBoundingClientRect();
   check(categories.length===7,'6 categories plus all');
   check(Math.ceil(cssBox(root).right)<=width+2,'Reference root extends beyond fixed '+width+'px container');
   check(Math.ceil(cssBox(table).right)<=width+2,'Table scroll region escapes '+width+'px container');
-  check(table.scrollWidth>table.clientWidth,'Wide verb table must overflow INSIDE its region');
+  check(table.scrollWidth>table.clientWidth,
+   'Wide verb table must overflow INSIDE its region: '+JSON.stringify({
+    scrollWidth:table.scrollWidth,clientWidth:table.clientWidth,
+    cssMinWidth:getComputedStyle(table.querySelector('table')!).minWidth,
+    cssOverflow:getComputedStyle(table).overflowX,
+    regionWidth:cssBox(table).width,
+    viewport:window.innerWidth
+   }));
   table.scrollLeft=80;
   check(table.scrollLeft>0,'Verb table must be horizontally scrollable');
   for(const category of categories){
