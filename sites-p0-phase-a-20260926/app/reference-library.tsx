@@ -60,7 +60,7 @@ export function ReferenceLibrary({
   <section className="panel sle-reference-intro" aria-label="How to use this library">
    <p>Use these examples to understand a pattern, then try a different example of your own.
     The levels are suggested learning tags, not a CEFR test or proof of mastery.</p>
-   <p><small>Offline-first static reference pilot · academic content review pending.
+   <p><small>Offline-first static reference pilot · 26/26 entries academically reviewed.
     No answers, tests, AI evaluation or learner scores are stored here.
     Related-skill lesson links appear only if those lessons are in this device's imported catalog.</small></p>
   </section>
@@ -68,7 +68,7 @@ export function ReferenceLibrary({
    <div className="sle-reference-filter-grid">
     <label>Search words and examples
      <input type="search" value={query} onChange={e=>setQuery(e.target.value)}
-      placeholder="e.g. written, progress, evidence" aria-label="Search reference entries"/>
+      placeholder="e.g. written, decline, feel unwell" aria-label="Search reference entries"/>
     </label>
     <label>Reference type
      <select value={kind} onChange={e=>setKind(e.target.value as 'all'|ReferenceKind)} aria-label="Reference type">
@@ -90,6 +90,15 @@ export function ReferenceLibrary({
       <option value="formal">Formal</option>
      </select>
     </label>
+   </div>
+   <div className="sle-reference-category-filters" role="group" aria-label="Quick category filters">
+    <button type="button" className={'sle-reference-category-filter is-all'+(kind==='all'?' is-selected':'')}
+     aria-pressed={kind==='all'} onClick={()=>setKind('all')}>All categories</button>
+    {REFERENCE_KINDS.map(group=><button type="button" key={group.id}
+     className={'sle-reference-category-filter is-'+group.id+(kind===group.id?' is-selected':'')}
+     aria-pressed={kind===group.id} onClick={()=>setKind(group.id)}>
+      {group.label}
+    </button>)}
    </div>
    <div className="sle-reference-search-summary" role="status" aria-live="polite">
     <span>{results.length} reference {results.length===1?'entry':'entries'} found</span>
@@ -122,7 +131,7 @@ export function ReferenceLibrary({
    <div className="sle-reference-card-grid">
     {others.map(entry=><article className="panel sle-reference-card" key={entry.id}>
      <div className="sle-reference-tags">
-      <span>{kindLabel(entry.kind)}</span><span>Suggested {entry.level}</span><span>{entry.register}</span>
+      <span className={'sle-reference-kind-label is-'+entry.kind}>{kindLabel(entry.kind)}</span><span>Suggested {entry.level}</span><span>{entry.register}</span>
      </div>
      <h3>{entry.term}</h3>
      <p><strong>Meaning or strategy:</strong> {entry.meaning}</p>
