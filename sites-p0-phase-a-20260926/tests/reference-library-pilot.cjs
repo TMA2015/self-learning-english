@@ -13,8 +13,9 @@ assert(packet.includes('## Item-by-item human-readable academic review source'),
  'NotebookLM packet must be human-readable Markdown, not a raw JSON source');
 assert(!packet.includes('BEGIN_REFERENCE_LIBRARY_JSON')&&!packet.includes('"""json'),
  'Do not submit machine-only JSON as NotebookLM source');
-assert.equal(raw.review_status,'NOTEBOOKLM_REVIEW_PENDING','No false academic PASS claim');
-assert.equal(raw.entries.length,26,'Keep bounded pilot before substantive content review');
+assert.equal(raw.review_status,'NOTEBOOKLM_PASS_26_OF_26','Owner-supplied academic verdict must match reviewed 26 entries');
+assert.equal(raw.entries.length,26,'The NotebookLM-reviewed 26-entry pilot must remain immutable in meaning');
+assert.match(raw.review_evidence,/zero mandatory corrections/i);
 const kinds={irregular_verbs:6,collocations:5,phrasal_verbs:4,idioms:3,
  common_mistakes:4,learning_tips:4};
 assert.equal(new Set(raw.entries.map(e=>e.id)).size,raw.entries.length,'Unique IDs required');
@@ -44,6 +45,12 @@ for(const e of raw.entries){
  assert(['A1','A2','B1','B2','C1','C2'].includes(e.level));
  assert(['neutral','informal','formal'].includes(e.register));
  assert(['grammar','vocabulary','reading','writing'].includes(e.skill));
+ if(e.search_keywords!==undefined){
+  assert(['phrasal_verbs','idioms'].includes(e.kind),'Synonym index is allowed only for reviewed phrasal verbs and idioms');
+  assert(Array.isArray(e.search_keywords)&&e.search_keywords.length>0,e.id+' synonyms must be a non-empty array');
+  assert(new Set(e.search_keywords.map(s=>s.toLowerCase())).size===e.search_keywords.length,e.id+' synonym duplicates');
+  for(const word of e.search_keywords)assert(/^[a-z][a-z -]{1,48}$/.test(word),e.id+' invalid synonym keyword');
+ }
  if(e.kind==='irregular_verbs'){
   assert(e.forms&&e.forms.base===e.term&&e.forms.past&&e.forms.participle,
    e.id+' must contain all three verb forms');
@@ -58,6 +65,7 @@ const out=path.join(root,'.sites-runtime/reference-library-selector.cjs');
 fs.mkdirSync(path.dirname(out),{recursive:true});fs.writeFileSync(out,code);
 const {filterReferenceEntries,availableRelatedLessons,REFERENCE_KINDS}=require(out);
 assert.equal(REFERENCE_KINDS.length,6);
+assert.equal(raw.entries.filter(e=>e.search_keywords).length,7,'Exactly four phrasal verbs and three idioms have optional discovery synonyms');
 const base={query:'',kind:'all',level:'all',register:'all'};
 assert.equal(filterReferenceEntries(raw.entries,base).length,26);
 assert.deepEqual(filterReferenceEntries(raw.entries,{...base,query:'HAVE  WRITTEN'}).map(e=>e.id),
@@ -70,6 +78,16 @@ assert.deepEqual(filterReferenceEntries(raw.entries,{...base,kind:'irregular_ver
 assert.deepEqual(filterReferenceEntries(raw.entries,{...base,register:'informal'}).map(x=>x.id),
  ['REF-IDI-01','REF-IDI-02']);
 assert.deepEqual(filterReferenceEntries(raw.entries,{...base,query:'this-phrase-is-not-here'}),[]);
+assert.deepEqual(filterReferenceEntries(raw.entries,{...base,query:'DECLINE'}).map(e=>e.id),
+ ['REF-PHR-03'],'Indexed synonyms should discover turn down without external calls');
+assert.deepEqual(filterReferenceEntries(raw.entries,{...base,query:'feel unwell'}).map(e=>e.id),
+ ['REF-IDI-02'],'Multiword synonym should find under the weather');
+assert.deepEqual(filterReferenceEntries(raw.entries,{...base,query:'reduce awkwardness'}).map(e=>e.id),
+ ['REF-IDI-01'],'Multiword synonym should find break the ice');
+assert.deepEqual(filterReferenceEntries(raw.entries,{...base,query:'refuse',kind:'idioms'}),[],
+ 'Category filters must also constrain synonym matches');
+assert.deepEqual(filterReferenceEntries(raw.entries,{...base,query:'REJECT',kind:'phrasal_verbs'}).map(e=>e.id),
+ ['REF-PHR-03'],'Search should be insensitive to case');
 const frozen=JSON.stringify(raw);
 const catalog=[{id:'VOC-A2-03',title:'School vocabulary',module:'vocabulary',cefr:'A2'},
  {id:'GRA-A1-01',title:'Be in the present',module:'grammar',cefr:'A1'},
@@ -103,8 +121,16 @@ for(const s of [ui,tsSource]){
  assert.doesNotMatch(s,/\bfetch\s*\(.*(query|search)|requestWritingAI|evaluateWritingProcess|Gemini|localStorage\.setItem/);
 }
 assert(ui.includes('Suggested ')&&ui.includes('not a CEFR test'));
+assert(ui.includes('26/26 entries academically reviewed'),'UI should no longer claim verdict pending');
+assert(ui.includes('aria-pressed={kind===group.id}')&&ui.includes('onClick={()=>setKind(group.id)}'),
+ 'Text-labelled category chips must be interactive and stateful');
+for(const kind of Object.keys(kinds))
+ assert(css.includes('.sle-reference .is-'+kind),
+  'Accessible distinct category colors must be present for '+kind);
+assert(css.includes('.sle-reference-category-filter:focus-visible'),
+ 'Keyboard users need visible category focus');
 assert(!home.includes('heading:"REFERENCE LIBRARY"'),'Avoid creating a second independent site navigation architecture');
 console.log(JSON.stringify({result:'PASS',gate:'reference-library-26-item-static-pilot',
  sourceParity:true,entries:26,kindCounts:kinds,noLearnerWrites:true,
- liveCatalogOnly:true,academicVerdict:'PENDING_NOTEBOOKLM',
+ liveCatalogOnly:true,academicVerdict:'PASS_26_OF_26',
  actualSafariIpad:'NOT_TESTED',mergeOrDeploy:false}));
