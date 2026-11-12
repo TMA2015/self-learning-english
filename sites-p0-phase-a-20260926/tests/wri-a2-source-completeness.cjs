@@ -31,7 +31,7 @@ assert(guide.includes('Mia\'s request is a voice message, not a written letter.'
 assert(guide.includes('Do not guess')||guide.includes('Do not guess missing details'));
 assert(!guide.includes(lis.audio_asset.source_text),
  'The protected original Mia audio transcript must not appear in rendered Writing code');
-assert(!guide.includes('audio_asset.source_text')&&!guide.includes('transcript='+'),
+assert(!guide.includes('audio_asset.source_text')&&!guide.includes('transcript='),
  'Never expose the audio source text in Writing');
 assert(!/localStorage|setItem\(|score\s*=|saveAttempt|submit\(|evaluateWritingProcess|Gemini API|requestWritingAI/.test(guide),
  'Source guide must remain a read-only display, not AI, data writes or scoring');
