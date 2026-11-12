@@ -28,6 +28,24 @@ assert(guide.includes("encodeURIComponent(version)"),'Fetch the source at origin
 assert(guide.includes("onOpenSource('LIS-A2-07')"));
 assert(guide.includes("onOpenSource('REA-A2-08')"));
 assert(guide.includes('Mia\'s request is a voice message, not a written letter.'));
+assert(guide.includes('1. Read')&&guide.includes('2. Listen')&&guide.includes('3. Write'),
+ 'WRI lesson must keep Read → Listen → Write on ONE screen');
+assert(guide.includes('<audio controls preload="none" src={miaAudio.url}'),
+ 'Playable original audio must be inline with Writing, not a forced route change');
+assert(guide.includes("lesson=LIS-A2-07&version="),
+ 'Load original Mia audio at the Writing attempt content version');
+assert(guide.includes("result.lesson?.id!=='LIS-A2-07'"),
+ 'Validate audio source identity before showing a player');
+assert(guide.includes('result.version!==version'),
+ 'Reject a mismatched curriculum version to protect original task meaning');
+assert(guide.includes("result.lesson.module!=='listening'")&&
+ guide.includes('audio.duration<=0'),
+ 'Reject wrong-source or invalid audio');
+assert(guide.includes('a2-writing-optional-lessons'),
+ 'Original separate lessons must be optional, not the normal task flow');
+assert(!guide.includes("action:'play'")&&!guide.includes("action:'start'")&&
+ !guide.includes("action:'submit'"),
+ 'Inline source listening must not grant credit or mutate a Listening attempt');
 assert(guide.includes('Do not guess')||guide.includes('Do not guess missing details'));
 assert(!guide.includes(lis.audio_asset.source_text),
  'The protected original Mia audio transcript must not appear in rendered Writing code');
@@ -46,5 +64,5 @@ assert(player.includes("Play the full audio for this attempt before submitting."
  'Preserve Listening full-playback scoring gate');
 assert(css.includes('.a2-writing-sources'), 'Provide mobile-friendly source display');
 console.log(JSON.stringify({result:'PASS',gate:'WRI-A2-07-CANONICAL-SOURCES',
- canonicalReader:'REA-A2-08',miaSpokenSource:'LIS-A2-07',
+ canonicalReader:'REA-A2-08',miaSpokenSource:'LIS-A2-07',inlineAudio:true,forcedNavigation:false,
  transcriptBeforeListening:false,lessonMutation:false,scoreWrites:0,productionWrites:0}));
