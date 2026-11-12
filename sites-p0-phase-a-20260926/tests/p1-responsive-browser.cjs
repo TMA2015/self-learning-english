@@ -20,9 +20,11 @@ const root=path.resolve(__dirname,'..');
     name:'SleResponsiveTest',fileName:()=> 'bundle.js'}}});
  const bundle=fs.readFileSync(path.join(out,'bundle.js'),'utf8');
  const originalCSS=fs.readFileSync(path.join(root,'app/globals.css'),'utf8');
- const start=originalCSS.indexOf('/* SLE P1 Reference Library:');
- if(start<0)throw Error('Reference CSS section missing');
- const referenceCSS=originalCSS.slice(start);
+ const start=originalCSS.indexOf(':root {');
+ if(start<0||!originalCSS.includes('/* SLE P1 Reference Library:'))
+  throw Error('Original SLE stylesheet and Reference rules missing');
+ // Remove build-only Tailwind imports, but exercise actual committed CSS rules.
+ const siteCSS=originalCSS.slice(start);
  const bin=['google-chrome','google-chrome-stable','chromium','chromium-browser']
   .map(name=>{try{return cp.execFileSync('which',[name],{encoding:'utf8'}).trim()}
    catch{return ''}}).find(Boolean);
@@ -30,13 +32,7 @@ const root=path.resolve(__dirname,'..');
  const profile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-p1-responsive-'));
  const html='<!doctype html><html><head><meta charset="utf-8">'+
   '<meta name="viewport" content="width=device-width,initial-scale=1">'+
-  '<style>*,*::before,*::after{box-sizing:border-box}body{margin:0;font:16px Arial,sans-serif}'+
-  '.panel{padding:12px;border:1px solid #dae4ef;border-radius:8px}.muted{color:#536579}'+
-  '.any-topic-writing-review{max-width:100%;padding:12px}.any-topic-writing-review .field{display:block;margin:12px 0}'+
-  '.any-topic-writing-review textarea{display:block;box-sizing:border-box;max-width:100%;width:100%;padding:9px}'+
-  '.any-topic-writing-review .learning-choices{display:flex;flex-wrap:wrap;gap:8px}'+
-  '.any-topic-writing-review button{max-width:100%;white-space:normal;min-height:42px}'+
-  referenceCSS.replaceAll('</style>','<\\/style>')+'</style></head><body>'+
+  '<style>'+siteCSS.replaceAll('</style>','<\\/style>')+'</style></head><body>'+
   '<div id="app"></div><div id="sle-test-result">STARTED</div>'+
   '<script>window.addEventListener("error",e=>document.getElementById("sle-test-result").textContent="FAIL_SCRIPT "+e.message);'+
   'window.addEventListener("unhandledrejection",e=>document.getElementById("sle-test-result").textContent="FAIL_REJECTION "+e.reason);</script>'+
