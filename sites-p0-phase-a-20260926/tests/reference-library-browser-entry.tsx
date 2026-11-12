@@ -47,12 +47,25 @@ let selection='';
  assert(document.querySelectorAll('.sle-reference-table-scroll tbody tr').length===6,'six verb rows');
  assert(document.querySelectorAll('.sle-reference-card').length===20,'20 phrase/strategy cards');
  assert(!!document.querySelector('input[type="search"]'),'search is native search input');
+ assert(document.querySelectorAll('.sle-reference-category-filter').length===7,
+  'Six text-labelled category buttons plus All');
  if(phase==='search'){
-  select('Reference type','idioms');
+  const badge=(kind:string)=>document.querySelector('.sle-reference-category-filter.is-'+kind) as HTMLButtonElement|null;
+  assert(!!badge('idioms'),'Idioms category exists');
+  badge('idioms')!.click();
+  await wait(()=>badge('idioms')?.getAttribute('aria-pressed')==='true','category selected');
+  assert(badge('phrasal_verbs')?.getAttribute('aria-pressed')==='false','other category not selected');
   await wait(()=>getCount().includes('3 reference entries'),'idioms filter');
   search('ice');
   await wait(()=>getCount().includes('1 reference entry'),'term search');
   assert(document.getElementById('app')?.textContent?.includes('break the ice'),'expected idiom shown');
+  badge('phrasal_verbs')!.click();
+  await wait(()=>badge('phrasal_verbs')?.getAttribute('aria-pressed')==='true','other category selected');
+  search('DECLINE');
+  await wait(()=>getCount().includes('1 reference entry'),'local synonym indexed');
+  assert(document.getElementById('app')?.textContent?.includes('turn down'),'decline finds turn down');
+  select('Reference type','idioms');
+  await wait(()=>getCount().includes('0 reference entries'),'synonym respects category filter');
   search('this-never-matches-any-entry');
   await wait(()=>document.getElementById('app')?.textContent?.includes('No matching entries')??false,'honest empty state');
   const clear=[...document.querySelectorAll('button')].find(x=>x.textContent?.includes('Clear filters'));
