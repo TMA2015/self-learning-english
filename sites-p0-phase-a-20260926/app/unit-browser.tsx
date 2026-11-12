@@ -2,6 +2,7 @@
 import {useMemo} from 'react';
 import type {AcademicAttempt} from '../domain/academic';
 import {LessonProgressMark} from './lesson-progress-mark';
+import {a2Unit10TransferSummary} from '../domain/a2-u10-transfer-summary';
 import {
  UNIT_LEVELS,unitGuideForCatalog,type UnitCatalogLesson,type UnitLevel
 } from '../domain/unit-guide-60';
@@ -30,6 +31,7 @@ export function UnitBrowser({lessons,attempts,courseOrder,level,selectedId,onLev
  const selected=guide.units.find(u=>u.id===selectedId)??null;
  const levelUnits=guide.units.filter(u=>u.level===level);
  const activeUnits=guide.units.filter(u=>u.available).length;
+ const transfer=selected?.id==='A2-U10'?a2Unit10TransferSummary(selected.id,selected.lessons,attempts):null;
  function summary(items:UnitCatalogLesson[]){
   const submitted=items.filter(x=>lessonProgressForLesson(attempts,x.id).kind==='submitted').length;
   const draft=items.filter(x=>lessonProgressForLesson(attempts,x.id).hasDraft).length;
@@ -88,6 +90,21 @@ export function UnitBrowser({lessons,attempts,courseOrder,level,selectedId,onLev
    </div>
    <small>Submitted means an attempt was saved, not that the Unit or CEFR level has been mastered.</small>
   </section>
+  {transfer&&<section className="panel" aria-label="A2-U10 transfer learning review">
+   <h3>A2-U10 · Review your transfer practice</h3>
+   <p>Use the existing Reading, Listening and Writing lessons together.
+    This is a summary of saved work, not a new test or a Unit pass grade.</p>
+   <p><strong>{transfer.available} of {transfer.total} reviewed lessons available</strong> in this device's imported catalog.</p>
+   <ul className="unit-transfer-summary-list">
+    {transfer.rows.map(row=><li key={row.id}>
+     <strong>{row.skill} · {row.id}</strong>
+     <p>{row.description}</p>
+     {row.hasDraft&&row.submitted&&<small>There is also an unfinished draft. An earlier submission is preserved.</small>}
+    </li>)}
+   </ul>
+   <p><strong>Suggested next step:</strong> {transfer.nextAction}</p>
+   <small>{transfer.boundary}</small>
+  </section>}
   <div className="unit-detail-grid">
    <section className="panel unit-lesson-list" aria-label={'Lessons in '+selected.id}>
     <h3>Study in a suggested order</h3>
