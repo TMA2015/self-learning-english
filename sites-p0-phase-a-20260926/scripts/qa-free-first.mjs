@@ -43,13 +43,13 @@ const coreTests=[
   "writing-step-feedback-ux.cjs",
   "offline-lesson-postfeedback.cjs",
   "any-topic-writing-review-shell.cjs",
-  "wri-a2-source-completeness.cjs",
+  "writing-source-corpus-audit.cjs",
   "pronunciation-runtime-audio.cjs",
 ];
 
 const fullRegressionTests=[
   "p0-writing-review-browser.cjs",
-  "wri-a2-source-browser.cjs",
+  "writing-source-bundle-browser.cjs",
   "writing-course-v2-a.cjs",
   "writing-course-v2-b.cjs",
   "writing-course-v2-c.cjs",
