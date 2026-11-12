@@ -54,6 +54,43 @@ jobs:
         working-directory: sites-p0-phase-a-20260926
         run: pnpm install --frozen-lockfile
 
+      - name: Offline Writing Review safety preflight (full release QA still mandatory)
+        if: ${{ steps.app.outputs.present == 'true' }}
+        working-directory: sites-p0-phase-a-20260926
+        run: node tests/any-topic-writing-review-shell.cjs
+
+      # Reuse the fixed-hash FFmpeg setup already validated in Draft PR #132.
+      # The existing mandatory codec/audio validation and apt fallback stay intact.
+      - name: Post-lesson feedback and Learning Plan preflight (full QA remains mandatory)
+        if: ${{ steps.app.outputs.present == 'true' }}
+        working-directory: sites-p0-phase-a-20260926
+        run: |
+          node tests/offline-lesson-postfeedback.cjs
+          node tests/foundation-practice-plan.cjs
+
+      - name: Real Chromium Writing Review save and restore preflight (full release QA mandatory)
+        if: ${{ steps.app.outputs.present == 'true' }}
+        working-directory: sites-p0-phase-a-20260926
+        run: node tests/p0-writing-review-browser.cjs
+
+      - name: Combined P0 and P1 source contracts and Reference browser preflight
+        if: ${{ steps.app.outputs.present == 'true' }}
+        working-directory: sites-p0-phase-a-20260926
+        run: |
+          node tests/a2-u10-transfer-summary.cjs
+          node tests/reference-library-pilot.cjs
+          node tests/p0-p1-union-integration.cjs
+          node tests/reference-library-browser.cjs
+          node tests/p1-responsive-browser.cjs
+
+      - name: Setup pinned FFmpeg and FFprobe binaries
+        if: ${{ steps.app.outputs.present == 'true' }}
+        continue-on-error: true
+        uses: FedericoCarboni/setup-ffmpeg@37062fbf7149fc5578d6c57e08aed62458b375d6
+        with:
+          ffmpeg-version: release
+          linking-type: static
+
       - name: Ensure FFmpeg and FFprobe for audio validation
         if: ${{ steps.app.outputs.present == 'true' }}
         run: |

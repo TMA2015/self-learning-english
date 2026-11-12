@@ -1,0 +1,31 @@
+'use strict';
+/** P0 integration source-contract QA. Run with full app regression and release build. */
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const root=path.resolve(__dirname,'..');
+const read=file=>fs.readFileSync(path.join(root,file),'utf8');
+const home=read('app/home-client.tsx');
+const player=read('app/foundation.tsx');
+const plan=read('app/core-panels.tsx');
+const writing=read('app/any-topic-writing-review.tsx');
+const review=read('app/offline-lesson-review.tsx');
+const runner=read('scripts/qa-free-first.mjs');
+const workflow=read('../.github/workflows/english-pr-qa.yml');
+assert.equal((home.match(/<WritingHome\b/g)||[]).length,1,'Existing WritingHome reused exactly once');
+assert.match(home,/onAnyTopic=\{\(\)=>void navigate\("writing-any-topic"\)\}/);
+assert.match(home,/view==="writing-any-topic"&&<AnyTopicWritingReview\/>/);
+assert.match(home,/foundationRequest\('\/api\/foundation'\)/);
+assert.match(home,/foundationCatalog=\{foundationCatalog\}/);
+assert.match(plan,/foundationPracticeAdvice\(foundationCatalog\)/);
+assert.match(plan,/not a generative AI recommendation/);
+assert.match(player,/OfflineLessonReview/);
+assert.match(player,/attempt\.status===['"]scored['"]|attempt\.status==='scored'/);
+assert.match(writing,/localStorage\.setItem/);
+assert.doesNotMatch(writing,/requestWritingAI|evaluateWritingProcess|\bfetch\(/);
+assert.doesNotMatch(review,/requestWritingAI|explainEnglishLessonAI|\bfetch\(/);
+for(const file of ['offline-lesson-postfeedback.cjs','any-topic-writing-review-shell.cjs','foundation-practice-plan.cjs'])
+  assert(runner.includes('"'+file+'"'),file+' must be mandatory');
+assert(workflow.includes('Setup pinned FFmpeg and FFprobe binaries'));
+assert(workflow.includes('Ensure FFmpeg and FFprobe for audio validation'));
+console.log('PASS P0 integration source contracts: current writing route, independent review, post-submit feedback, plan, audio gate');
