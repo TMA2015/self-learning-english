@@ -81,6 +81,7 @@ jobs:
           node tests/reference-library-pilot.cjs
           node tests/p0-p1-union-integration.cjs
           node tests/reference-library-browser.cjs
+          node tests/p1-responsive-browser.cjs
 
       - name: Setup pinned FFmpeg and FFprobe binaries
         if: ${{ steps.app.outputs.present == 'true' }}
