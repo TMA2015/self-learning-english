@@ -1,6 +1,6 @@
 {
   "packet_id": "SLE-REFERENCE-LIBRARY-PILOT-R1-20261112",
-  "review_status": "NOTEBOOKLM_REVIEW_PENDING",
+  "review_status": "NOTEBOOKLM_PASS_26_OF_26",
   "source": "original authored reference material; no external commercial source",
   "notice": "Suggested CEFR levels are learning-guide tags, not CEFR certification. These entries have no quiz keys or scoring evidence.",
   "entries": [
@@ -164,7 +164,13 @@
       "meaning": "search for information in a reference source",
       "example": "You can look up a new word in a dictionary.",
       "note": "Separable: look the word up is possible; look up the word is also possible.",
-      "skill": "vocabulary"
+      "skill": "vocabulary",
+      "search_keywords": [
+        "search",
+        "consult",
+        "find information",
+        "dictionary"
+      ]
     },
     {
       "id": "REF-PHR-02",
@@ -175,7 +181,13 @@
       "meaning": "have no more of something left",
       "example": "We ran out of paper before the art lesson finished.",
       "note": "Run out of something does not mean run outdoors.",
-      "skill": "vocabulary"
+      "skill": "vocabulary",
+      "search_keywords": [
+        "use up",
+        "finish supplies",
+        "nothing left",
+        "exhaust"
+      ]
     },
     {
       "id": "REF-PHR-03",
@@ -186,7 +198,13 @@
       "meaning": "reject an offer or request",
       "example": "Kai turned down the invitation because he had another plan.",
       "note": "Turn down is also used for lowering volume; context changes its meaning.",
-      "skill": "vocabulary"
+      "skill": "vocabulary",
+      "search_keywords": [
+        "reject",
+        "decline",
+        "refuse",
+        "say no"
+      ]
     },
     {
       "id": "REF-PHR-04",
@@ -197,7 +215,13 @@
       "meaning": "organize or prepare something so it can start",
       "example": "Students set up a small exhibition in the hallway.",
       "note": "Set up can be separable: set the display up.",
-      "skill": "vocabulary"
+      "skill": "vocabulary",
+      "search_keywords": [
+        "organize",
+        "prepare",
+        "arrange",
+        "establish"
+      ]
     },
     {
       "id": "REF-IDI-01",
@@ -208,7 +232,13 @@
       "meaning": "help people feel more relaxed when first meeting",
       "example": "A simple question about music helped break the ice at the club.",
       "note": "This is figurative: no real ice needs to break.",
-      "skill": "vocabulary"
+      "skill": "vocabulary",
+      "search_keywords": [
+        "start conversation",
+        "feel relaxed",
+        "reduce awkwardness",
+        "introductions"
+      ]
     },
     {
       "id": "REF-IDI-02",
@@ -219,7 +249,13 @@
       "meaning": "feeling slightly ill",
       "example": "I felt under the weather, so I rested after school.",
       "note": "A conversational idiom, not a medical diagnosis.",
-      "skill": "vocabulary"
+      "skill": "vocabulary",
+      "search_keywords": [
+        "unwell",
+        "slightly ill",
+        "not feeling well",
+        "sick"
+      ]
     },
     {
       "id": "REF-IDI-03",
@@ -230,7 +266,13 @@
       "meaning": "agree on the basic understanding or plan",
       "example": "Before starting, the group checked they were on the same page.",
       "note": "Common in teamwork; it is not about reading one literal page.",
-      "skill": "vocabulary"
+      "skill": "vocabulary",
+      "search_keywords": [
+        "agree",
+        "shared understanding",
+        "same understanding",
+        "in agreement"
+      ]
     },
     {
       "id": "REF-MIS-01",
@@ -320,5 +362,6 @@
       "note": "Brainstorm useful ideas, outline briefly, then check whether the final text answers the task.",
       "skill": "writing"
     }
-  ]
+  ],
+  "review_evidence": "Owner-supplied NotebookLM item-level audit: PASS, ACADEMIC_ADOPTION GO, zero mandatory corrections; production release NO_GO"
 }
