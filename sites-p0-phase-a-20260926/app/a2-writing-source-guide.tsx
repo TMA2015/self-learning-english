@@ -66,8 +66,8 @@ export function A2WritingSourceGuide({
    setAudioError("Mia's Listening source is not imported on this device.");
    return ()=>{active=false};
   }
-  // The validated lesson service removes audio_asset.source_text, question
-  // answers and feedback. Only the rights-checked playable URL is rendered.
+  // The validated lesson service strips protected source transcripts and
+  // assessment keys. Only the rights-checked playable URL is rendered.
   void foundationRequest<LessonSourceView>('/api/foundation?lesson=LIS-A2-07&version='+encodeURIComponent(version))
    .then(result=>{
     if(!active)return;
