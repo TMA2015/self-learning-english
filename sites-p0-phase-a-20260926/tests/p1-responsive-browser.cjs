@@ -141,7 +141,7 @@ const root=path.resolve(__dirname,'..');
     const results=[];
     for(const width of [320,768]){
      await command('Emulation.setDeviceMetricsOverride',{
-      width,height:844,deviceScaleFactor:1,mobile:true,screenWidth:width,screenHeight:844
+      width,height:844,deviceScaleFactor:1,mobile:false,screenWidth:width,screenHeight:844
      });
      await command('Emulation.setTouchEmulationEnabled',{enabled:true,maxTouchPoints:1});
      for(const mode of ['reference','writing']){
@@ -149,11 +149,12 @@ const root=path.resolve(__dirname,'..');
       let result=null;
       for(let i=0;i<200;i++){
        const evaluation=await command('Runtime.evaluate',{
-        expression:'({status:document.getElementById("sle-test-result")?.textContent||"",viewport:innerWidth,media400:matchMedia("(max-width:400px)").matches,media680:matchMedia("(max-width:680px)").matches,touch:navigator.maxTouchPoints})',
+        expression:'({status:document.getElementById("sle-test-result")?.textContent||"",href:location.href,viewport:innerWidth,media400:matchMedia("(max-width:400px)").matches,media680:matchMedia("(max-width:680px)").matches,touch:navigator.maxTouchPoints})',
         returnByValue:true
        });
        const value=evaluation.result?.value;
-       if(value?.status?.startsWith('PASS_RESPONSIVE')){
+       if(value?.status?.startsWith('PASS_RESPONSIVE')&&
+         value?.href?.includes('mode='+mode+'&width='+width)){
         result=value;break;
        }
        if(value?.status?.startsWith('FAIL'))throw Error('Real '+width+'px viewport '+mode+' failed: '+value.status.slice(0,1200));
@@ -186,7 +187,7 @@ const root=path.resolve(__dirname,'..');
    cases:results,trueViewportCases:genuineViewportResults,
    syntheticOnly:true,catalogWrites:0,productionWrites:0,
    actualSafariIpad:'NOT_TESTED',
-   viewportNote:'CDP emulated true 320px/768px mobile viewports and touch; actual Safari/iPad still NOT TESTED'
+   viewportNote:'CDP emulated true 320px/768px CSS viewports and touch; actual Safari/iPad still NOT TESTED'
   }));
  }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});}
 })().catch(e=>{console.error(e);process.exitCode=1;});
