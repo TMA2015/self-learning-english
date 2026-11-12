@@ -25,7 +25,7 @@ async function call(url:string,body?:unknown){return foundationRequest(url,body)
 const api=(body:unknown)=>call('/api/foundation',body);
 export type Catalog={version:string;imported:boolean;warning?:string;course?:{sequence:string[]};journey:{steps:string[];title:string};lessons:{id:string;title:string;module:string;cefr:string;minutes:number}[];attempts:(AcademicAttempt&{hasAudio?:boolean})[]};
 type LessonView={version:string;lesson:SeedLesson;audio:{url:string;duration:number}|null;pronunciationAudio:{url:string;duration:number}|null};
-export function FoundationDemo({showVi=false,onEvidence,skill,entryMode='lessons',sharedCatalog,onCatalog,onSelectSkill,onNavigationGuard,writingIntro}:{showVi?:boolean;onEvidence?:()=>void;skill?:string;entryMode?:'units'|'lessons';sharedCatalog?:Catalog|null;onCatalog?:(next:Catalog)=>void;onSelectSkill?:(next:string)=>void;onNavigationGuard?:(guard:((target:string)=>Promise<boolean>)|null)=>void;writingIntro?:ReactNode}){
+export function FoundationDemo({showVi=false,onEvidence,skill,entryMode='lessons',sharedCatalog,onCatalog,onSelectSkill,onNavigationGuard,writingIntro,requestedLessonId,onRequestedLessonHandled}:{showVi?:boolean;onEvidence?:()=>void;skill?:string;entryMode?:'units'|'lessons';sharedCatalog?:Catalog|null;onCatalog?:(next:Catalog)=>void;onSelectSkill?:(next:string)=>void;onNavigationGuard?:(guard:((target:string)=>Promise<boolean>)|null)=>void;writingIntro?:ReactNode;requestedLessonId?:string|null;onRequestedLessonHandled?:(id:string)=>void}){
  const routeScope=entryMode==='units'?'units':(skill??'foundation');
  const [draftFeedback,setDraftFeedback]=useState<{kind:'idle'|'restored'|'unsaved'|'saving'|'saved'|'error';at?:number}>({kind:'idle'}),[screen,setScreen]=useState<'catalog'|'overview'|'practice'>('catalog'),[cefrFilter,setCefrFilter]=useState('all'),[hintSteps,setHintSteps]=useState<Record<string,number>>({}),[catalog,setCatalog]=useState<Catalog|null>(sharedCatalog??null),[selected,setSelected]=useState(''),[lesson,setLesson]=useState<SeedLesson|null>(null),[attempt,setAttempt]=useState<AcademicAttempt|null>(null),[answers,setAnswers]=useState<Record<string,string>>({}),[pronunciationAudio,setPronunciationAudio]=useState<{url:string;duration:number}|null>(null),[audioInfo,setAudioInfo]=useState<{url:string;duration:number}|null>(null),[recording,setRecording]=useState<AcademicAttempt['audio']>(),[recordingURL,setRecordingURL]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState(''),[submitError,setSubmitError]=useState(''),[showMissing,setShowMissing]=useState(false),[showAudioWarning,setShowAudioWarning]=useState(false),[saved,setSaved]=useState(''),[transcript,setTranscript]=useState(''),[recordingNow,setRecordingNow]=useState(false),[playing,setPlaying]=useState(false),[openingId,setOpeningId]=useState('');
  const [formatNotice,setFormatNotice]=useState<{id:string;revision:number;ids:string[]}|null>(null);
@@ -57,6 +57,14 @@ export function FoundationDemo({showVi=false,onEvidence,skill,entryMode='lessons
   void loadLesson(id,version).catch(()=>{/* opening the lesson will retry and show its real error */});
  }
  useEffect(()=>{if(!sharedCatalog)void refresh().catch(e=>setError(e.message));return()=>{media.current?.stream.getTracks().forEach(t=>t.stop());if(stopTimer.current)clearTimeout(stopTimer.current)}},[]);
+ // Reference Library can open only canonical lessons in the imported skill.
+ // Navigation into this component has already passed the unsaved-draft guard.
+ useEffect(()=>{
+  if(!requestedLessonId||!catalog?.imported||!catalog.lessons.some(l=>
+   l.id===requestedLessonId&&(!skill||l.module===skill)))return;
+  onRequestedLessonHandled?.(requestedLessonId);
+  void open(requestedLessonId);
+ },[requestedLessonId,catalog,skill]);
  useEffect(()=>()=>{if(recordingURL.startsWith('blob:'))URL.revokeObjectURL(recordingURL)},[recordingURL]);
  async function open(id:string,entry?:AcademicAttempt){
   const request=++openingRequest.current;
