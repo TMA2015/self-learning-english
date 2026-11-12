@@ -65,10 +65,10 @@ export function AnyTopicWritingReview(){
   const currentReview=reviewed?.topic===topic&&reviewed?.writing===writing?reviewed:null;
   return <section className="panel any-topic-writing-review" aria-label="Independent Writing Review">
     <div className="page-heading"><div>
-      <h1>Writing Review · Any Topic</h1>
-      <p>Write about a topic of your choice. Save your work and use the revision checklist. This space is separate from English Writing Coach · 12 Weeks and graded Foundation lessons.</p>
+      <h1>Writing Draft &amp; Self-Check · Any Topic</h1>
+      <p>Write about a topic of your choice, save a draft and check your own revision steps. This space is separate from English Writing Coach · 12 Weeks and graded Foundation lessons. No AI or teacher analyses the text you enter here.</p>
     </div></div>
-    <p className="notice"><strong>Offline-first pilot:</strong> no AI submission or automatic scoring is enabled. The checklist is guidance, not feedback from a language assessor or a CEFR judgment.</p>
+    <p className="notice"><strong>Static self-check only:</strong> no AI submission or automatic scoring is enabled. These general questions are the same for every draft. They do not assess your specific ideas, correct grammar, or provide a CEFR judgment.</p>
     <form onSubmit={event=>{
       event.preventDefault();
       if(!valid)return;
@@ -95,7 +95,7 @@ export function AnyTopicWritingReview(){
       </div>
     </form>
     {currentReview&&<section className="panel" aria-label="Provisional self-review checklist" aria-live="polite">
-      <h2>Revision checklist · not an assessed score</h2>
+      <h2>Self-revision checklist · not individual feedback</h2>
       <p>Your draft has {currentReview.words} words across {currentReview.paragraphs} text block(s). These counts describe length only; they do not measure writing quality or CEFR proficiency.</p>
       <ol>
         <li><strong>Task response:</strong> Re-read your exact topic. Underline the task verb and check whether every required part is addressed.</li>
@@ -103,7 +103,7 @@ export function AnyTopicWritingReview(){
         <li><strong>Organization:</strong> Check the order of ideas, paragraph breaks and whether the conclusion follows from the response.</li>
         <li><strong>Language:</strong> Read each sentence aloud and check verb forms, agreement, word choice, punctuation and unclear references.</li>
       </ol>
-      <p><strong>Next revision:</strong> Choose the most important item above, revise the draft yourself, and open the checklist again. No writing is automatically judged or sent for review.</p>
+      <p><strong>Next revision:</strong> Choose the most important item above, revise the draft yourself, and open the checklist again. Your sentences have not been evaluated or corrected by AI or a teacher.</p>
     </section>}
   </section>;
 }
