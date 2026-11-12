@@ -44,6 +44,7 @@ const coreTests=[
   "offline-lesson-postfeedback.cjs",
   "any-topic-writing-review-shell.cjs",
   "writing-source-corpus-audit.cjs",
+  "vocabulary-pilot-contract.cjs",
   "pronunciation-runtime-audio.cjs",
 ];
 
