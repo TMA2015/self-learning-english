@@ -66,6 +66,7 @@ const fullRegressionTests=[
   "a2-u10-transfer-summary.cjs",
   "reference-library-pilot.cjs",
   "reference-library-browser.cjs",
+  "p1-responsive-browser.cjs",
   "p0-p1-union-integration.cjs",
   "unit-guide-60.cjs",
   "f2-a1u05-a2u03-v122.cjs",
