@@ -33,20 +33,35 @@ const root=path.resolve(__dirname,'..');
   'window.addEventListener("unhandledrejection",e=>document.getElementById("sle-test-result").textContent="FAIL_REJECTION "+e.reason);</script>'+
   '<script>window.process={env:{NODE_ENV:"production",NEXT_PUBLIC_LEARNING_RUNTIME:"server"}};</script>'+
   '<script>'+bundle.replaceAll('</script>','<\\/script>')+'</script></body></html>';
+ let mutationRequests=0;
  const server=http.createServer((req,res)=>{
   const url=new URL(req.url,'http://127.0.0.1');
   if(url.pathname==='/api/foundation'){
-   const broken=url.searchParams.get('phase')==='missing';
-   const valid=url.searchParams.get('lesson')==='REA-A2-08'&&
-    url.searchParams.get('version')==='1.25.0';
-   res.writeHead(broken||!valid?500:200,{'Content-Type':'application/json'});
-   res.end(broken||!valid?JSON.stringify({error:'Synthetic source unavailable'}):
-    JSON.stringify({lesson:{id:'REA-A2-08',
-     reading_asset:{id:'TXT-REA-A2-08',title:'Three Ways to Help or Learn This Weekend',
-      body:'Repair Café at the Community Hall cannot guarantee repairs.',
-      display_to_learner:true},
-     audio_asset:{source_text:'MIA_PRIVATE_TRANSCRIPT'}}}));
-   return;
+   if(req.method!=='GET'){
+    mutationRequests++;
+    res.writeHead(405).end('Source guide is strictly read-only');return;
+   }
+   const phase=url.searchParams.get('phase');
+   const id=url.searchParams.get('lesson');
+   const validVersion=url.searchParams.get('version')==='1.25.0';
+   if(phase==='missing'||!validVersion||!['REA-A2-08','LIS-A2-07'].includes(id)){
+    res.writeHead(503,{'Content-Type':'application/json'});
+    res.end(JSON.stringify({error:'Synthetic source unavailable'}));return;
+   }
+   const result=id==='REA-A2-08'
+    ?{version:'1.25.0',lesson:{id:'REA-A2-08',module:'reading',
+       reading_asset:{id:'TXT-REA-A2-08',
+        title:'Three Ways to Help or Learn This Weekend',
+        body:'Repair Café at the Community Hall cannot guarantee repairs.',
+        display_to_learner:true}}}
+    :{version:'1.25.0',lesson:{id:'LIS-A2-07',module:'listening',
+       audio_asset:{source_text:'MIA_PRIVATE_TRANSCRIPT'}},
+      audio:phase==='audioMissing'?null:{
+       url:phase==='audioWrongUrl'?'https://invalid.example/evil.mp3':
+        '/foundation-audio/LIS-A2-07-v1.mp3',
+       duration:25.15}};
+   res.writeHead(200,{'Content-Type':'application/json'});
+   res.end(JSON.stringify(result));return;
   }
   res.writeHead(200,{'Content-Type':'text/html;charset=utf-8','Cache-Control':'no-store'});
   res.end(html);
@@ -78,11 +93,16 @@ const root=path.resolve(__dirname,'..');
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
   const base='http://127.0.0.1:'+server.address().port;
   const results=[];
-  for(const phase of ['ok','missing','unavailable'])results.push(await run(base,phase));
-  assert.deepEqual(results,['PASS_SOURCES_VISIBLE','PASS_SOURCE_FAIL_CLOSED','PASS_MISSING_CATALOG']);
-  console.log(JSON.stringify({result:'PASS',gate:'WRI-A2-07-Canonical-Sources-real-Chromium',
-   originalReadingNotice:true,originalListeningLinks:true,
-   missingSourceFailClosed:true,transcriptLeak:false,originalScoresUntouched:true,
-   realIphoneSafari:'NOT_TESTED',productionWrites:0}));
+  for(const phase of ['ok','missing','audioMissing','audioWrongUrl','unavailable'])
+   results.push(await run(base,phase));
+  assert.deepEqual(results,[
+   'PASS_INLINE_READ_LISTEN_WRITE','PASS_SOURCE_FAIL_CLOSED',
+   'PASS_AUDIO_FAIL_CLOSED','PASS_AUDIO_FAIL_CLOSED','PASS_MISSING_CATALOG']);
+  assert.equal(mutationRequests,0,'WRI source guide must never mutate assessments');
+  console.log(JSON.stringify({result:'PASS',gate:'WRI-A2-07-Read-Listen-Write-inline-real-Chromium',
+   originalReadingNotice:true,inlineOriginalAudio:true,forcedNavigation:false,
+   optionalOriginalLinks:true,missingSourceFailClosed:true,invalidAudioFailClosed:true,
+   transcriptLeak:false,listeningCredit:false,originalScoresUntouched:true,
+   realIphoneSafari:'NOT_TESTED',productionWrites:mutationRequests}));
  }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});}
 })().catch(e=>{console.error(e);process.exitCode=1;});
