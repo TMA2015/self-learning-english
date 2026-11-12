@@ -539,3 +539,12 @@ body {
  .sle-reference .sle-reference-category-filter{padding:8px 10px;min-height:44px;font-size:.82rem}
  .sle-reference .sle-reference-category-filter.is-selected{padding:7px 9px}
 }
+
+/* WRI-A2-07: preserve the exact canonical Reading source in the Writing player. */
+.a2-writing-sources{margin:1rem 0 1.25rem;min-width:0}
+.a2-writing-sources>p{line-height:1.65;overflow-wrap:anywhere}
+.a2-writing-sources .foundation-passage{max-width:100%;margin:.8rem 0;overflow-wrap:anywhere}
+.a2-writing-sources .foundation-passage h4{margin:0 0 .65rem;color:#214c7c}
+.a2-writing-sources .learning-choices{margin:.85rem 0;gap:.6rem}
+.a2-writing-sources .learning-choices button{white-space:normal;min-height:44px;max-width:100%;text-align:left}
+@media(max-width:680px){.a2-writing-sources .learning-choices button{width:100%}}
