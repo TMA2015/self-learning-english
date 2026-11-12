@@ -13,6 +13,14 @@ const wait=async(test:()=>boolean,msg:string)=>{
 };
 const select=(id:string)=>[...document.querySelectorAll('button')].find(x=>x.textContent?.includes(id)) as HTMLButtonElement|undefined;
 const opened:string[]=[];
+if(phase==='missing'){
+ const originalFetch=window.fetch.bind(window);
+ window.fetch=(input,init)=>{
+  if(typeof input==='string'&&input.includes('/api/foundation?lesson='))
+   return originalFetch(input+'&phase=missing',init);
+  return originalFetch(input,init);
+ };
+}
 (async()=>{
  createRoot(document.getElementById('app')!).render(
   <A2WritingSourceGuide version="1.25.0"
