@@ -31,7 +31,7 @@ assert.equal(got.actions.length,2);
 assert.equal(got.actions[0].questionId,'GRA-A2-07-Q2');
 assert.equal(got.actions[0].advice,'Compare time meaning before choosing the form.');
 assert.match(got.actions[1].advice,/Compare the rule/);
-assert.match(got.boundary,/not a certified CEFR level/);
+assert(!('boundary' in got),'No repeated CEFR disclaimer in every result');
 assert.equal(JSON.stringify(old),original,'Read-only post-review cannot mutate original attempt');
 const good=buildOfflineLessonReview(lesson,{
  ...old,results:old.results.filter(x=>x.correct===true)
@@ -49,7 +49,7 @@ assert.match(open.headline,/trusted review/);
 const oral=buildOfflineLessonReview({id:'SPE-A2-02',module:'speaking',title:'Speaking preparation'},{
  status:'scored',version:'1.18.0',results:[{id:'SPE-A2-02-Q1',correct:true}]
 });
-assert.match(oral.boundary,/not speaking fluency/);
+assert(!('boundary' in oral),'Objective result advice must not repeat a generic proficiency caveat');
 const noScoring=buildOfflineLessonReview(lesson,{...old,results:[]});
 assert.equal(noScoring,null);
 const ui=fs.readFileSync(path.join(root,'app/foundation.tsx'),'utf8');
@@ -57,7 +57,13 @@ assert(ui.includes("!editable&&attempt&&(attempt.results?.length??0)>0&&<Offline
  'No feedback must be exposed before submit');
 assert(ui.includes("import {OfflineLessonReview} from './offline-lesson-review'"));
 const display=fs.readFileSync(path.join(root,'app/offline-lesson-review.tsx'),'utf8');
-assert(display.includes('The advice is based on reviewed answer'));
+assert(display.includes('What to practise next'));
+assert(display.includes('Go to question'));
+assert(!display.includes('not a certified CEFR'));
+const voc=buildOfflineLessonReview({id:'VOC-A2-01',module:'vocabulary',title:'Daily routines'},{status:'scored',version:'1.25.0',results:[{id:'VOC-A2-01-Q11',correct:false,explanation:'Set or lay the table.'}]});
+assert.equal(voc.actions.length,1);
+assert.match(voc.actions[0].advice,/set the table and lay the table/i);
+assert.doesNotMatch(voc.actions[0].advice,/place, an object, an action/i);
 assert(!/requestWritingAI|firebase|fetch\(/i.test(display),
  'Offline feedback UI must make no AI/network calls');
 console.log(JSON.stringify({
