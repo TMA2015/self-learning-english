@@ -15,6 +15,10 @@ assert.equal((home.match(/Understanding your results/g)||[]).length,1,
  'Score guidance heading appears exactly once on Dashboard');
 assert.match(home,/Lesson scores reflect your submitted answers and help you track improvement/);
 assert.match(home,/CEFR labels show each lesson's target level/);
+assert(home.includes("Lesson scores reflect your submitted answers and help you track improvement. CEFR labels show each lesson's target level; any broader level estimate is approximate and depends on available evidence across skills."),
+ 'NotebookLM R2 COR-DASH-01 exact copy must remain unchanged');
+assert(!home.includes("your overall level is estimated from evidence across skills"),
+ 'Original overconfident Dashboard copy must be absent');
 for(const [name,src] of [
  ['Foundation',foundation],['OfflineLessonReview',offline],['PostLessonDomain',domain],
  ['VocabularyPilot',pilot],['Dashboard',home]
