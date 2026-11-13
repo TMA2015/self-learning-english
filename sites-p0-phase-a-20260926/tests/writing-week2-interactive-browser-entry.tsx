@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {createRoot} from 'react-dom/client';
 import {
   Week2IdeaWorkspace, Week2InteractiveLearn, Week2PracticeSort,
   Week2SavedVersionComparison
 } from '../app/writing-week2-interactive';
 import {editWeek,emptyWeekWork,type WeekWork} from '../domain/writing-course-v2-b';
+import {BrowserLocalLearningRepository} from '../infrastructure/storage/browser-local-repositories';
 
 const args=new URL(location.href).searchParams;
 const phase=args.get('phase')??'editor';
@@ -30,6 +31,10 @@ const writeInput=(element:HTMLInputElement,value:string)=>{
   set.call(element,value);
   element.dispatchEvent(new Event('input',{bubbles:true}));
 };
+// Dedicated synthetic browser namespace. No production keys or real learner accounts.
+const testPrefix='sle-w2-qa-isolated';
+const testScope={ownerId:'synthetic-browser',learnerId:'w2'};
+const persistence=new BrowserLocalLearningRepository(window.localStorage,testPrefix);
 const savedFields=[
   {ideas:'art club\nreading club',reject:'reading club',best:'art club',fit:'participants make drawings'},
   {ideas:'writing workshop\nart club',reject:'writing workshop',best:'art club',fit:'teenagers can create together'}
@@ -48,6 +53,17 @@ function initial():WeekWork {
 function App(){
   const [work,setWork]=useState<WeekWork>(initial);
   (window as unknown as {qaGetWork:()=>WeekWork}).qaGetWork=()=>work;
+  (window as unknown as {qaReadPersisted:()=>Promise<WeekWork|undefined>}).qaReadPersisted=async()=>{
+    const saved=await new BrowserLocalLearningRepository(window.localStorage,testPrefix).readState(testScope);
+    return saved?.writingCourseV2B?.weeks?.[2] as WeekWork|undefined;
+  };
+  useEffect(()=>{
+    // The fixture exercises SLE's actual local repository, not an invented JSON storage contract.
+    void persistence.writeState(testScope,{
+      writingCourseV2B:{weeks:{2:work}},
+      legacyUnrelatedField:{sentinel:'preserved'},
+    }).catch(error=>{status.textContent='FAIL_REPOSITORY '+String(error)});
+  },[work]);
   return <section className="panel wcv2 wcv2-b">
     {phase==='editor'||phase==='legacy'?
       <Week2IdeaWorkspace work={work} disabled={false}
@@ -68,6 +84,7 @@ async function run(){
   await wait(()=>!!host.querySelector('.wcv2-card'),'React mounted');
   await tick();
   const getWork=()=>(window as unknown as {qaGetWork:()=>WeekWork}).qaGetWork();
+  const readSaved=()=>(window as unknown as {qaReadPersisted:()=>Promise<WeekWork|undefined>}).qaReadPersisted();
   if(phase==='learn'){
     check(host.textContent?.includes('Topic:'),'four-part task model');
     check(host.textContent?.includes('neighbourhood park'),'independent example');
@@ -127,6 +144,7 @@ async function run(){
     remove[1].click();
     await wait(()=>getWork().fields.ideas==='Art and drawing club','removed second canonical idea');
     check(getWork().fields.best==='Book exchange','selection remains explicitly user-controlled after edits');
+    check(host.textContent?.includes('does not exactly match a current idea card'),'stale selection prompts review without rewriting');
   }
   const checkBounds=()=>{
     const elements=[host,...host.querySelectorAll('section,article,button,input,select,textarea,li')];
@@ -138,7 +156,19 @@ async function run(){
     check(host.scrollWidth<=width+3,'host horizontal overflow');
   };
   checkBounds();
+  await wait(()=>{
+    const state=window.localStorage.getItem(
+      testPrefix+':owner:synthetic-browser:learner:w2:state');
+    if(!state)return false;
+    try{return JSON.parse(state)?.writingCourseV2B?.weeks?.[2]?.fields?.ideas===getWork().fields.ideas}catch{return false}
+  },'canonical Week 2 state persisted via real local repository');
+  const roundTrip=await readSaved();
+  check(roundTrip?.fields.ideas===getWork().fields.ideas,'new repository instance recovers same idea text');
+  check(roundTrip?.fields.best===getWork().fields.best,'new repository instance recovers selection');
+  check(JSON.stringify(roundTrip?.history)===JSON.stringify(getWork().history),'old saved versions recovered byte-for-byte');
+  const snapshot=await persistence.readState(testScope);
+  check(snapshot?.legacyUnrelatedField?.sentinel==='preserved','unrelated learning state not discarded');
   status.textContent='PASS_W2 '+JSON.stringify({phase,width,ideaCount:(getWork().fields.ideas??'').split('\n').filter(Boolean).length,
-    browser:'native Chromium synthetic UI',writes:0,realSafari:'NOT_TESTED'});
+    browser:'native Chromium synthetic UI',isolatedRepositoryRoundTrip:true,productionWrites:0,realSafari:'NOT_TESTED'});
 }
 run().catch(e=>{status.textContent='FAIL '+String(e)+' '+String((e as Error).stack).slice(0,800)});
