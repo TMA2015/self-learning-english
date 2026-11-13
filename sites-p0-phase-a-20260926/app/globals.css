@@ -579,3 +579,26 @@ body {
 .sle-vocab-repair p{margin:.35rem 0;line-height:1.55}
 .sle-vocab-repair small{display:block;color:#526c84}
 @media(max-width:380px){.sle-vocab-card{padding:.75rem}.sle-vocab-demo{padding:.75rem}}
+
+
+/* Learner results: one explanation on Dashboard, useful next steps in result cards. */
+.dashboard-progress-guidance{margin:18px 0 22px;border:1px solid #d5e3f2;border-radius:12px;background:#f7faff;padding:15px 18px;color:#294969;font-size:16px;line-height:1.55}
+.dashboard-progress-guidance strong{font-size:16px;font-weight:750}
+.dashboard-progress-guidance p{margin:5px 0 0;font-size:16px;line-height:1.55}
+.foundation-offline-review{max-width:920px;margin:1.25rem 0;padding:23px 26px;font-size:16px;line-height:1.6}
+.foundation-offline-review h3{font-size:20px;line-height:1.4;margin:0 0 13px;color:#193b61}
+.foundation-offline-review p,.foundation-offline-review li,.foundation-offline-review strong{font-size:16px;line-height:1.6}
+.foundation-offline-review p{margin:8px 0}
+.foundation-review-actions{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:12px}
+.foundation-review-actions>li{background:#f5f9ff;border:1px solid #d6e5f5;border-radius:11px;padding:14px 17px;min-width:0}
+.foundation-review-action-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.foundation-review-action-head strong{color:#204c7d;font-weight:750}
+.foundation-review-action-head .secondary-button{font-size:16px;min-height:42px;white-space:normal}
+.foundation-review-actions>li p{margin:7px 0 0;overflow-wrap:anywhere}
+.foundation-lesson .exercise>strong,.foundation-lesson .sle-vocab-repair>strong{font-size:16px}
+@media(max-width:600px){
+ .dashboard-progress-guidance{padding:13px 14px}
+ .foundation-offline-review{padding:16px}
+ .foundation-review-actions>li{padding:12px}
+ .foundation-review-action-head{align-items:flex-start}
+}
