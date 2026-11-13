@@ -51,8 +51,11 @@ assert(!/createAttempt|saveAttempt|fetch\(|localStorage|mediaRequest/i.test(unit
 // Reference Library: sibling route in same shell, not another site.
 exactly(home,/<ReferenceLibrary\b/g,1,'Exactly one reference route');
 assert(home.includes('key:"reference",label:"Reference Library"'));
-assert(home.includes('if(await navigate(skill))setRequestedLessonId(id)'),
+assert(home.includes('if(await navigate(skill as View))setRequestedLessonId(id)'),
  'Reference-to-lesson jump must respect global navigation guard');
+assert(home.includes('await openCatalogLesson(id,skill)')&&
+ home.includes('foundationCatalog.lessons.some(lesson=>lesson.id===id&&lesson.module===skill)'),
+ 'Reference and Learning Plan must share exact-catalog, draft-safe navigation');
 assert(home.includes('requestedLessonId={requestedLessonId}'));
 assert(home.includes('onRequestedLessonHandled='));
 assert(player.includes('!requestedLessonId||!catalog?.imported'),
