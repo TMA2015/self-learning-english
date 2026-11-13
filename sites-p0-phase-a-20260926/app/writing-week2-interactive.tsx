@@ -93,7 +93,7 @@ function Week2IdeaEditor({idea,onSave,disabled,index}:{idea:string;onSave:(value
     <label className="field"><span>Idea {index+1}</span>
       <input type="text" value={draft} disabled={disabled} onChange={e=>setDraft(e.target.value)} aria-label={`Edit idea ${index+1}`}/>
     </label>
-    <button type="button" disabled={disabled||!draft.trim()||draft.trim()===idea||/[\\r\\n]/.test(draft)} onClick={()=>onSave(draft.trim())}>Apply edit</button>
+    <button type="button" disabled={disabled||!draft.trim()||draft.trim()===idea||/[\r\n]/.test(draft)} onClick={()=>onSave(draft.trim())}>Apply edit</button>
   </div>;
 }
 
