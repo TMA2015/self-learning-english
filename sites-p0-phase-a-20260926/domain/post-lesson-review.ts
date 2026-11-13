@@ -19,7 +19,7 @@ export type LearningRepair={questionId:string;advice:string};
 export type OfflineLessonReview={
  correct:number;objectiveTotal:number;incorrect:number;
  reviewOnly:number;formatOnly:number;
- headline:string;actions:LearningRepair[];boundary:string;
+ headline:string;actions:LearningRepair[];
 };
 const safe=(value:string)=>value.replace(/\s+/g,' ').trim();
 function authoredAction(explanation:string):string|null{
@@ -46,11 +46,6 @@ export function buildOfflineLessonReview(
   advice:authoredAction(r.explanation??'')??
    nextActionForIncorrect(lesson.module,r.id,attempt.version)
  }));
- const boundary=lesson.module==='speaking'
-  ?'This assesses language-preparation choices, not speaking fluency, pronunciation or a CEFR level.'
-  :lesson.module==='pronunciation'
-   ?'Text or listening awareness does not measure spoken pronunciation proficiency.'
-   :'These results describe this attempt only, not a certified CEFR level.';
  const headline=incorrect>0
   ?'Review the missed questions, then try a new example.'
   :objective.length>0
@@ -59,5 +54,5 @@ export function buildOfflineLessonReview(
     ?'Your open response is saved. It still needs a trusted review.'
     :'Your submission is saved. No objective knowledge score was awarded.';
  return {correct,objectiveTotal:objective.length,incorrect,reviewOnly,
-  formatOnly,headline,actions,boundary};
+  formatOnly,headline,actions};
 }

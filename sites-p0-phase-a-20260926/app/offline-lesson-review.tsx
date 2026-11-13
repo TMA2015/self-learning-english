@@ -2,36 +2,38 @@ import {
  buildOfflineLessonReview,type PriorAttempt,type PriorLesson
 } from '../domain/post-lesson-review';
 
-/** Read-only instructional summary appended AFTER the saved submission. */
+/** After-submit, read-only next steps. The result summary already shows the score. */
 export function OfflineLessonReview({
- lesson,attempt
-}:{lesson:PriorLesson;attempt:PriorAttempt}){
+ lesson,attempt,onReviewQuestion
+}:{
+ lesson:PriorLesson;
+ attempt:PriorAttempt;
+ onReviewQuestion?:(questionId:string)=>void;
+}){
  const report=buildOfflineLessonReview(lesson,attempt);
  if(!report)return null;
  return <section className="panel foundation-offline-review"
-  aria-label="Your next learning steps" role="region">
-  <h3>Your next learning steps</h3>
-  <p>{report.headline}</p>
-  {report.objectiveTotal>0&&<p>
-   <strong>{report.correct}/{report.objectiveTotal}</strong>
-   {' '}objective answers correct. This is not a measure of proficiency.
-  </p>}
-  {report.actions.length>0&&<ol>
-   {report.actions.map(a=><li key={a.questionId}>
-    <strong>{a.questionId}:</strong> {a.advice}
-   </li>)}
-  </ol>}
+  aria-label="What to practise next" role="region">
+  <h3>What to practise next</h3>
+  {report.actions.length>0?<>
+   <p className="foundation-review-intro">Focus on the {report.actions.length===1?'question':'questions'} you missed:</p>
+   <ol className="foundation-review-actions">
+    {report.actions.map(a=><li key={a.questionId}>
+     <div className="foundation-review-action-head">
+      <strong>Question {a.questionId.split('-').at(-1)?.replace(/^Q/,'')}</strong>
+      {onReviewQuestion&&<button type="button" className="secondary-button"
+       onClick={()=>onReviewQuestion(a.questionId)}
+       aria-label={'Go to '+a.questionId}>Go to question</button>}
+     </div>
+     <p>{a.advice}</p>
+    </li>)}
+   </ol>
+  </>:<p>{report.headline}</p>}
   {report.reviewOnly>0&&<p>
-   {report.reviewOnly} open response{report.reviewOnly===1?' is':'s are'}
-   {' '}not included in this objective score. Any Writing evaluation
-   remains pending trusted review.
+   {report.reviewOnly} open response{report.reviewOnly===1?' is':'s are'} saved for review.
   </p>}
   {report.formatOnly>0&&<p>
-   {report.formatOnly} format-only response(s) were excluded from
-   scored results and knowledge-error evidence.
+   {report.formatOnly} response{report.formatOnly===1?' needs':'s need'} an answer-format correction.
   </p>}
-  <small>{report.boundary} The advice is based on reviewed answer
-   explanations stored with your attempt. It works without AI and
-   does not modify your saved results.</small>
  </section>;
 }

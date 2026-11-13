@@ -53,7 +53,7 @@ function Fixture(){
  check(!!document.querySelector('.sle-vocab-demo'),'independent worked example required');
  const opt=document.querySelector('.sle-vocab-self-practice') as HTMLDetailsElement;
  check(!!opt&&!opt.open,'original sentences optional and collapsed by default');
- check((opt.textContent??'').includes('not collected, saved or graded'),'unscored practice must be clear');
+ check((opt.textContent??'').includes('Optional practice is not submitted or graded'),'unscored practice must be clear');
  check(!document.querySelector('input, textarea'),'unscored original writing is not collected');
  check(!document.body.innerText.includes('You have mastered'),'no unsupported proficiency claim');
  check(!document.body.innerText.includes('correct_option_id'),'no hidden scored key leak');
@@ -65,20 +65,13 @@ function Fixture(){
   check(document.body.innerText.includes('handing in'),'A1 minimal new model');
  }
  const repair=document.querySelector('.sle-vocab-repair');
- if(phase==='teaching'){
-  check(!repair,'teaching stage cannot expose post-submit repair');
- }else if(phase==='format'){
-  check(!repair,'format-only remains unscored with no misconception label');
- }else if(phase==='otherwrong'){
-  check(!repair,'unknown distractor must not receive invented specific diagnosis');
+ if(['teaching','format','otherwrong','a2correct','variant'].includes(phase)){
+  check(!repair,'No repeated feedback for correct/unsupported cases');
  }else{
   check(!!repair,'reviewed result should receive a specific repair');
   const text=repair!.textContent??'';
-  check(text.includes('Next step:'),'actionable next step required');
-  check(text.includes('not an AI review'),'honest deterministic feedback required');
   if(phase==='a2wrong')check(text.includes('Do breakfast is not the standard phrase'),'known wrong option ID must map correctly');
   if(phase==='b1wrong')check(text.includes('does not say the object is made'),'known wrong B1 option ID must map correctly');
-  if(phase==='variant')check(text.includes('Set the table and lay the table'),'accepted variant treated correctly');
   if(phase==='shortwrong')check(text.includes('does not tell us why'),'unknown short-answer intent not invented');
  }
  const maxRight=Math.max(...[...document.querySelectorAll('.sle-vocab-card,.sle-vocab-demo,.sle-vocab-self-practice')]

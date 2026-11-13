@@ -23,9 +23,11 @@ for(const skill of ['reading','vocabulary','grammar','listening','writing','spea
  assert(!/certified|mastery achieved/i.test(tip),'Unsupported proficiency claim');
 }
 const foundation=fs.readFileSync(path.join(root,'app/foundation.tsx'),'utf8');
-assert(foundation.includes("import {nextActionForIncorrect} from '../domain/foundation-recovery-tip'"));
-assert(foundation.includes('result.correct===false&&<><p>Answer: {result.answer}</p><p className="foundation-recovery-tip"'),'Feedback tip must be graded and incorrect only');
-assert(foundation.includes('nextActionForIncorrect(lesson.module,q.id,attempt?.version)'));
+const reviewDomain=fs.readFileSync(path.join(root,'domain/post-lesson-review.ts'),'utf8');
+assert(reviewDomain.includes("import {nextActionForIncorrect} from './foundation-recovery-tip'"));
+assert(reviewDomain.includes("objective.filter(r=>r.correct===false)"),'Only missed graded items receive advice');
+assert(foundation.includes('!editable&&attempt&&(attempt.results?.length??0)>0&&<OfflineLessonReview'),'Recommendation only after saved submission');
+assert(foundation.includes('result.correct===false&&<p>Answer: {result.answer}</p>'),'Keep original wrong-answer explanation in the question');
 assert(foundation.includes('<p>{result.explanation}</p>'),'Keep stored explanation');
 assert(foundation.includes("result.correct===null?'Pending review'"));
 const speaking=compile('app/speaking-preparation-guide.tsx',true);

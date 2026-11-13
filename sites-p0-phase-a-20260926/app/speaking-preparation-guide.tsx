@@ -23,7 +23,7 @@ export function SpeakingPreparationGuide(){
   <div className="foundation-learn-block">
    <h3>Speaking · Prepare &amp; Practise</h3>
    <p><strong>Goal:</strong> Prepare ideas and polite expressions, then practise asking for help aloud.</p>
-   <p className="muted">This is optional guided preparation, not a speaking test. No microphone, AI or account is required.</p>
+   <p className="muted">Practise useful expressions aloud at your own pace. No microphone or account is required.</p>
   </div>
   <div className="foundation-learn-block">
    <h3>1. Situation</h3>
@@ -61,23 +61,23 @@ export function SpeakingPreparationGuide(){
      <input type="text" maxLength={160} value={notes[key]} onChange={event=>setNotes(previous=>({...previous,[key]:event.target.value}))} placeholder="Write a few words, not a full script"/>
     </label>
    )}
-   <p className="muted">These notes stay on this screen only and are not saved, submitted or scored.</p>
+   <p className="muted">Your keyword notes stay on this screen and disappear when you leave.</p>
   </div>
   <div className="foundation-learn-block">
    <h3>5. Speak aloud without reading</h3>
    <button type="button" className="secondary-button" onClick={()=>{setModelOpen(false);setRehearsing(true)}}>
     {rehearsing?'Restart speaking practice':'Start speaking practice — hide the model'}
    </button>
-   {rehearsing?<p role="status">The worked model is closed. Speak from your keywords for about 20–40 seconds; include the problem, a detail and a polite request. This is unassessed practice.</p>:<p>When you are ready, start speaking practice. This will close the worked model so you can speak from your keywords instead of reading a script.</p>}
+   {rehearsing?<p role="status">The worked model is closed. Speak from your keywords for about 20–40 seconds; include the problem, a detail and a polite request. </p>:<p>When you are ready, start speaking practice. This will close the worked model so you can speak from your keywords instead of reading a script.</p>}
    <p className="muted">You may practise again. Reopening the worked model ends this rehearsal; start speaking practice again when ready.</p>
   </div>
   <div className="foundation-learn-block">
-   <h3>6. Self-check (not assessed)</h3>
+   <h3>6. Self-check</h3>
    {checks.map((text,index)=><label key={text} className="foundation-option">
     <input type="checkbox" checked={selfReport[index]} onChange={event=>setSelfReport(previous=>previous.map((value,i)=>i===index?event.target.checked:value))}/>
     {text}
    </label>)}
-   {selfReport.some(Boolean)&&<p role="status">Self-Reported Practice (this screen only). This is <strong>not</strong> a speaking score. Pronunciation, fluency and CEFR level have not been assessed.</p>}
+   {selfReport.some(Boolean)&&<p role="status">Self-Reported Practice (this screen only). Use your self-check to improve your next request.</p>}
    <p className="muted">Tip: A good request says what is wrong, adds one useful detail and asks for help. If you wrote a script, reduce it to three keywords and try again.</p>
   </div>
  </section>;

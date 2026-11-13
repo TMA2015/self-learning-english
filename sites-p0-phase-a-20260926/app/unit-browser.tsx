@@ -53,7 +53,7 @@ export function UnitBrowser({lessons,attempts,courseOrder,level,selectedId,onLev
     aria-pressed={v===level} key={v} onClick={()=>onLevel(v)}>{v}</button>)}
   </div>
   <div className="unit-browser-heading"><h3>{level} · 10 Units</h3>
-   <p>Lesson counts are availability indicators, not proficiency or completion certificates.</p>
+   <p>Lesson counts show the available lessons in each Unit.</p>
   </div>
   <div className="unit-card-grid">
    {levelUnits.map(u=>{
@@ -138,8 +138,8 @@ export function UnitBrowser({lessons,attempts,courseOrder,level,selectedId,onLev
       <li>Use an integrated transfer checkpoint when reviewed content is available.</li>
      </ol>
      <p className="unit-checkpoint-note">{selected.isCheckpoint?
-      'This is an integrated transfer Unit. A genuine independent checkpoint requires reviewed materials; it is not a score inferred from ordinary lessons.':
-      'Transfer checkpoint: planned or subject to academic review. No automatic mastery score is assigned.'}
+      'This is an integrated transfer Unit. An independent transfer checkpoint will be available after its materials are reviewed.':
+      'Transfer checkpoint: planned or awaiting academic review.'}
      </p>
     </section>
     <section className="panel">

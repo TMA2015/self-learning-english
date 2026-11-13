@@ -30,6 +30,7 @@ assert(ui.includes('resultSummary=summarizeFoundationResults(attempt?.results)')
 assert(ui.includes('!editable&&attempt&&(attempt.results?.length??0)>0'),'Do not display a score before submission');
 assert(ui.includes('resultSummary.correct}/{resultSummary.total} · {resultSummary.percent}%'),'Visible correct/total and percent');
 assert(ui.includes('not included in the objective score'),'Open responses are excluded');
-assert(ui.includes('not a CEFR level'),'Do not misrepresent one attempt as a CEFR assessment');
+assert(!ui.includes('These are results for this attempt, not a CEFR level.'),'Avoid repeating generic caveats on scored results');
+assert(page.includes('Understanding your results'),'A single positive score interpretation belongs on Dashboard');
 assert(css.includes('.foundation-result-summary')&&css.includes('@media(max-width:600px){.foundation-result-summary'),'Result panel is responsive');
 console.log(JSON.stringify({result:'PASS',objectiveScores:['8/10 80%','10/10 100%','0/10 0%','3/4 75% + pending'],unassessedNoScore:true,persistentSkillPlayer:true,draftSaveGuard:true,browserQA:'OWNER PENDING'}));

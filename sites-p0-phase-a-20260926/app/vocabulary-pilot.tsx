@@ -75,9 +75,9 @@ export function VocabularyPilotTeaching({lessonId,version}:{lessonId:string;vers
       <summary>Optional: remember and use it yourself (unscored)</summary>
       <p><strong>Recall:</strong> {teaching.retrieval}</p>
       <p><strong>New situation:</strong> {teaching.newContext}</p>
-      <p className="muted">Try this in your notebook. These original sentences are not collected, saved or graded here. No writing-quality or CEFR score is awarded.</p>
+      <p className="muted">Try these examples in your notebook. Optional practice is not submitted or graded.</p>
     </details>
-    <p className="muted">The lesson questions are graded using their existing reviewed keys. This toolkit adds teaching, not extra scored questions.</p>
+    <p className="muted">When you are ready, start the lesson quiz below.</p>
   </section>;
 }
 
@@ -85,34 +85,21 @@ export function VocabularyPilotTeaching({lessonId,version}:{lessonId:string;vers
 export function VocabularyPilotRepair({itemId,version,correct,outcome,chosen}:{
  itemId:string;version:string;correct:boolean|null;outcome:string;chosen?:string
 }){
- if(version!=='1.25.0'||outcome==='format-only'||correct===null)return null;
- let label='';let explanation='';let next='';
- if(itemId==='VOC-A2-01-Q1'&&correct){
-   label='Verb choice';
-   explanation='Make breakfast is the natural verb–noun combination.';
-   next='In another setting, try make a plan.';
- }else if(itemId==='VOC-A2-01-Q1'&&!correct&&chosen==='A'){
+ if(version!=='1.25.0'||outcome==='format-only'||correct!==false)return null;
+ let label='';let explanation='';
+ if(itemId==='VOC-A2-01-Q1'&&chosen==='A'){
    label='Verb choice';
    explanation='Do breakfast is not the standard phrase for preparing breakfast. Compare make breakfast with do homework: the noun affects the verb.';
-   next='Invent a sentence with make a plan.';
- }else if(itemId==='VOC-B1-01-Q2'&&!correct&&chosen==='C'){
+ }else if(itemId==='VOC-B1-01-Q2'&&chosen==='C'){
    label='Word formation';
    explanation='Reusable describes something that can be used again; it does not say the object is made from only one material.';
-   next='Explain the prefix re- using a different familiar word.';
- }else if(itemId==='VOC-A2-01-Q9'&&!correct){
+ }else if(itemId==='VOC-A2-01-Q9'){
    label='Collocation review';
    explanation='The submitted response does not match the approved fixed-answer variants for this sentence. It does not tell us why you chose that response.';
-   next='Compare wash the dishes and do the dishes, then practise a different household action.';
- }else if(itemId==='VOC-A2-01-Q11'&&correct){
-   label='Natural alternatives';
-   explanation='Set the table and lay the table are both accepted ways to describe arranging plates and cutlery.';
-   next='Use one of those phrases in a different family routine.';
  }
  if(!explanation)return null;
  return <div className="sle-vocab-repair" role="note" aria-label="Vocabulary next step">
    <strong>{label} · Reviewed practice guidance</strong>
    <p>{explanation}</p>
-   <p><strong>Next step:</strong> {next}</p>
-   <small>This is fixed-answer feedback, not an AI review or proof of productive vocabulary mastery.</small>
  </div>;
 }

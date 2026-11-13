@@ -59,7 +59,7 @@ export function ReferenceLibrary({
   </div></div>
   <section className="panel sle-reference-intro" aria-label="How to use this library">
    <p>Use these examples to understand a pattern, then try a different example of your own.
-    The levels are suggested learning tags, not a CEFR test or proof of mastery.</p>
+    Choose a topic or level, then open a linked lesson to practise.</p>
    <p><small>Offline-first static reference pilot · 26/26 entries academically reviewed.
     No answers, tests, AI evaluation or learner scores are stored here.
     Related-skill lesson links appear only if those lessons are in this device's imported catalog.</small></p>

@@ -5,11 +5,11 @@ const foundation=fs.readFileSync(path.join(__dirname,'../app/foundation.tsx'),'u
 const guide=fs.readFileSync(path.join(__dirname,'../app/speaking-preparation-guide.tsx'),'utf8');
 assert(foundation.includes("lesson.id==='SPE-A2-02'&&compareVersions(loadedLessonVersion.current,'1.18.1')>=0&&<SpeakingPreparationGuide/>"));
 assert(foundation.includes("lesson.module==='speaking'?'Language preparation knowledge · Objective practice'"));
-assert(foundation.includes("These choices check language preparation knowledge."));
+assert(!foundation.includes("These choices check language preparation knowledge."),'The scored result uses its skill label without repeated warnings');
 assert(!foundation.includes("loadedLessonVersion.current==='1.18.1'"),'Do not disable speaking coaching on future content versions');
 assert(guide.includes('Self-Reported Practice (this screen only)'));
-assert(guide.includes('not</strong> a speaking score'));
-assert(guide.includes('not saved, submitted or scored'));
+assert(guide.includes('Use your self-check to improve your next request.'));
+assert(guide.includes('keyword notes stay on this screen'));
 assert(guide.includes('lost your library card'));
 assert(guide.includes('forgot your sports shoes'));
 assert(!/fetch\(|localStorage|indexedDB|Gemini|score\s*=|evidence_weight\s*=/.test(guide),'Unreviewed data/scoring integration');
