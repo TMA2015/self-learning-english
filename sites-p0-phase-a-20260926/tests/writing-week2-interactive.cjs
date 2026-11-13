@@ -61,7 +61,7 @@ check('Unscored idea classifications and live map remain session-only',()=>{
     'My live idea map',
     'Process coach',
     'This map reflects your own words',
-    'No completed saved versions to compare'
+    'There are no completed saved versions to compare yet.'
   ]) assert(ui.includes(phrase),phrase);
   assert(ui.includes('setSessionLabels'));
   assert(!ui.includes("onEdit('sessionLabels'"));
@@ -71,7 +71,7 @@ check('New Week 2 guidance remains honest about evidence and transfer',()=>{
   const ui=fs.readFileSync(path.join(root,'app/writing-week2-interactive.tsx'),'utf8');
   assert(ui.includes('unscored self-practice'));
   assert(ui.includes('These optional scratchpad notes are not saved'));
-  assert(ui.includes('does not automatically score the meaning'));
+  assert(ui.includes('do not automatically score the meaning'));
   const core=fs.readFileSync(path.join(root,'domain/writing-course-v2-b.ts'),'utf8');
   assert(core.includes("contentVersion:'wcv2-b.1'"));
   assert(core.includes('evidenceWeight:0,proficiencyWeight:0'));
