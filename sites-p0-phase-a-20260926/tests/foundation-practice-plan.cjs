@@ -54,8 +54,10 @@ assert.doesNotMatch(source,/\bfetch\(|requestWritingAI|Gemini\.|setItem\(|Academ
 const core=fs.readFileSync(path.join(root,'app/core-panels.tsx'),'utf8');
 const home=fs.readFileSync(path.join(root,'app/home-client.tsx'),'utf8');
 assert.match(core,/foundationPracticeAdvice\(foundationCatalog\)/);
-assert.match(core,/not a generative AI recommendation/);
-assert.match(core,/Saved Foundation objective answers are summarized separately/);
+assert.match(core,/These skill priorities use saved Diagnostic and reviewed Writing evidence/);
+assert.match(core,/The lesson-review actions above use your saved Foundation answers/);
+assert.match(core,/Review this lesson/);
+assert.match(home,/openCatalogLesson/);
 assert.match(home,/foundationRequest\('\/api\/foundation'\)/);
 assert.match(home,/foundationCatalog=\{foundationCatalog\}/);
 console.log('PASS foundation-practice-plan: real scored misses only, no stale/pending/unscored/foreign evidence, no new grading/AI or storage');
