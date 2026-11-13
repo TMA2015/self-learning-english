@@ -602,3 +602,31 @@ body {
  .foundation-review-actions>li{padding:12px}
  .foundation-review-action-head{align-items:flex-start}
 }
+
+
+/* Independent academic R/G/W depth pilot: reviewed teaching only, no scoring UI. */
+.sle-rgw-pilot{margin:1rem 0 1.2rem;max-width:920px;min-width:0;font-size:16px;line-height:1.6}
+.sle-rgw-pilot>p{margin:.6rem 0;overflow-wrap:anywhere}
+.sle-rgw-strategies{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:.7rem;margin:1rem 0}
+.sle-rgw-strategy{min-width:0;background:white;border:1px solid #d6e4f3;border-radius:10px;padding:14px 16px}
+.sle-rgw-strategy h4{font-size:16px;line-height:1.45;margin:0 0 .4rem;color:#194c83}
+.sle-rgw-strategy p,.sle-rgw-pilot li{font-size:16px;line-height:1.6;margin:.35rem 0;overflow-wrap:anywhere}
+.sle-rgw-model{border-left:3px solid #4277b9;background:#edf4fc;border-radius:8px;padding:14px 16px;min-width:0}
+.sle-rgw-model h4,.sle-rgw-brainstorm h4{font-size:16px;margin:0 0 .55rem;color:#194c83}
+.sle-rgw-model p{font-size:16px;line-height:1.6;margin:.45rem 0;overflow-wrap:anywhere}
+.sle-rgw-model-thinking{white-space:pre-line}
+.sle-rgw-brainstorm{margin:.8rem 0;padding:14px 16px;background:#f5f9ff;border:1px solid #d6e4f3;border-radius:10px}
+.sle-rgw-brainstorm ol{padding-left:23px;margin:.45rem 0}
+.sle-rgw-self-practice{margin:1rem 0;background:white;border:1px solid #d6e4f3;border-radius:10px;padding:13px 16px}
+.sle-rgw-self-practice summary{cursor:pointer;min-height:44px;display:list-item;font-size:16px;font-weight:700;line-height:1.6}
+.sle-rgw-self-practice summary:focus-visible,.sle-rgw-checklist input:focus-visible{outline:3px solid #3272bc;outline-offset:3px}
+.sle-rgw-self-practice p{font-size:16px;line-height:1.6}
+.sle-rgw-checklist{display:grid;gap:9px}
+.sle-rgw-checklist label{display:flex;align-items:flex-start;gap:10px;line-height:1.55;font-size:16px;cursor:pointer}
+.sle-rgw-checklist input{width:18px;height:18px;flex-shrink:0;margin:4px 0 0}
+.sle-rgw-unscored,.sle-rgw-start-note{color:#4d667f;font-size:15px;line-height:1.5}
+@media(max-width:380px){
+ .sle-rgw-pilot,.sle-rgw-strategy,.sle-rgw-model,.sle-rgw-self-practice{min-width:0}
+ .sle-rgw-strategy,.sle-rgw-model,.sle-rgw-brainstorm,.sle-rgw-self-practice{padding:11px 12px}
+ .sle-rgw-strategies{gap:.5rem}
+}

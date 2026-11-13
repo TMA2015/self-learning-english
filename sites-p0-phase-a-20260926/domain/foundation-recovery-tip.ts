@@ -50,9 +50,34 @@ const vocabulary125Tips:Readonly<Record<string,string>>={
  'VOC-B1-01-Q5':'Compare public transport with private transport. Name two options students might use.'
 };
 
+/** Reviewed R/G/W v1.25.0 remedial cues; duplicated from schema for standalone TypeScript QA. */
+const rgw125Recovery:Readonly<Record<string,string>>={
+ "REA-B1-03-Q1":"Reread the opening and ending; identify the main message and any qualification.",
+ "REA-B1-03-Q2":"Find the specific fact in the passage and reread the entire sentence before choosing.",
+ "REA-B1-03-Q3":"Find the specific fact in the passage and reread the entire sentence before choosing.",
+ "REA-B1-03-Q4":"Find the specific fact in the passage and reread the entire sentence before choosing.",
+ "REA-B1-03-Q5":"Use the surrounding sentence to check the word's meaning in context.",
+ "REA-B1-03-Q6":"Return to the two source clues, then state what they support without adding an extra assumption.",
+ "REA-B1-03-Q7":"Read the sentence before and after the contrast word. Explain how the second idea limits the first.",
+ "REA-B1-03-Q8":"Find the specific fact in the passage and reread the entire sentence before choosing.",
+ "REA-B1-03-Q9":"Return to the two source clues, then state what they support without adding an extra assumption.",
+ "REA-B1-03-Q10":"Use the surrounding sentence to check the word's meaning in context.",
+ "GRA-B1-05-Q1":"Underline the actual clue. Ask whether it strongly supports, merely allows or rules out the proposed conclusion.",
+ "GRA-B1-05-Q2":"Decide whether the sentence describes evidence or a rule. Try a new example of each.",
+ "GRA-B1-05-Q3":"Underline the actual clue. Ask whether it strongly supports, merely allows or rules out the proposed conclusion.",
+ "GRA-B1-05-Q4":"Underline the actual clue. Ask whether it strongly supports, merely allows or rules out the proposed conclusion.",
+ "GRA-B1-05-Q5":"Underline the actual clue. Ask whether it strongly supports, merely allows or rules out the proposed conclusion.",
+ "GRA-B1-05-Q6":"Underline the actual clue. Ask whether it strongly supports, merely allows or rules out the proposed conclusion.",
+ "GRA-B1-05-Q7":"Decide whether the sentence describes evidence or a rule. Try a new example of each.",
+ "GRA-B1-05-Q8":"Underline the actual clue. Ask whether it strongly supports, merely allows or rules out the proposed conclusion.",
+ "GRA-B1-05-Q9":"Underline the actual clue. Ask whether it strongly supports, merely allows or rules out the proposed conclusion.",
+ "GRA-B1-05-Q10":"Underline the actual clue. Ask whether it strongly supports, merely allows or rules out the proposed conclusion.",
+};
+
 /** Returns one actionable next learning step, never a proficiency claim. */
 export function nextActionForIncorrect(module:string,itemId:string,version?:string):string{
  if(module==='vocabulary'&&version==='1.25.0'&&vocabulary125Tips[itemId])return vocabulary125Tips[itemId];
+ if(version==='1.25.0'&&['reading','grammar'].includes(module)&&itemId.startsWith(module==='reading'?'REA-B1-03-Q':'GRA-B1-05-Q')&&rgw125Recovery[itemId])return rgw125Recovery[itemId];
  if((version==='1.18.0'||version==='1.18.1')&&reviewed118xTips[itemId]){
    return reviewed118xTips[itemId];
  }
