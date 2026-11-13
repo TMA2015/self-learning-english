@@ -109,8 +109,24 @@ async function run(){
     await wait(()=>!([...(host.querySelectorAll('button'))].find(x=>x.textContent?.trim()==='Add idea card') as HTMLButtonElement).disabled,'second idea accepted');
     clickText('Add idea card');
     await wait(()=>getWork().fields.ideas==='Drama club\nBook exchange','second canonical idea');
-    clickText('Move up');
-    // The first card's move-up is disabled, so choose the enabled one by explicit query.
+    const enabledMoveUp=[...host.querySelectorAll('button')].find(b=>b.textContent?.trim()==='Move up'&&!b.disabled);
+    check(!!enabledMoveUp,'second card can move up');
+    (enabledMoveUp as HTMLButtonElement).click();
+    await wait(()=>getWork().fields.ideas==='Book exchange\nDrama club','reordering canonical idea lines');
+    const choose=[...host.querySelectorAll('button')].find(b=>b.textContent?.trim()==='Choose as best');
+    check(!!choose,'choose button exists');
+    (choose as HTMLButtonElement).click();
+    await wait(()=>getWork().fields.best==='Book exchange','chosen idea saved in canonical field');
+    const edit=q('input[aria-label="Edit idea 1"]') as HTMLInputElement;
+    writeInput(edit,'Art and drawing club');
+    await wait(()=>!![...host.querySelectorAll('button')].find(b=>b.textContent?.trim()==='Apply edit'&&!b.disabled),'apply edit activated');
+    clickText('Apply edit');
+    await wait(()=>getWork().fields.ideas.startsWith('Art and drawing club'),'edit canonical idea');
+    const remove=[...host.querySelectorAll('button')].filter(b=>b.textContent?.trim()==='Remove');
+    check(remove.length===2,'two remove controls');
+    remove[1].click();
+    await wait(()=>getWork().fields.ideas==='Art and drawing club','removed second canonical idea');
+    check(getWork().fields.best==='Book exchange','selection remains explicitly user-controlled after edits');
   }
   const checkBounds=()=>{
     const elements=[host,...host.querySelectorAll('section,article,button,input,select,textarea,li')];
