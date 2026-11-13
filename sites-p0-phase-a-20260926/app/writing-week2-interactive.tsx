@@ -104,6 +104,8 @@ export function Week2IdeaWorkspace({work,onEdit,disabled}:MainProps) {
   const parsed = readIdeaLines(ideas);
   const [newIdea,setNewIdea] = useState('');
   const [message,setMessage] = useState('');
+  // Optional, non-graded reflection labels. Never stored as proficiency evidence.
+  const [sessionLabels,setSessionLabels] = useState<Record<string,string>>({});
   function apply(change:()=>string, description:string) {
     try {
       onEdit('ideas',change());
@@ -119,6 +121,15 @@ export function Week2IdeaWorkspace({work,onEdit,disabled}:MainProps) {
     {parsed.safe ? <ol>
       {parsed.lines.map((idea,i)=><li key={i}>
         <Week2IdeaEditor key={`edit-${i}:${idea}`} idea={idea} index={i} disabled={disabled} onSave={value=>apply(()=>editWeek2Idea(ideas,i,value),'Idea edited')}/>
+        <label className="field"><span>My provisional judgement (this visit only, not saved)</span>
+          <select disabled={disabled} aria-label={`My tentative classification for idea ${i+1}`} value={sessionLabels[idea]??''}
+            onChange={e=>setSessionLabels(v=>({...v,[idea]:e.target.value}))}>
+            <option value="">Not classified</option>
+            <option value="Promising">Promising</option>
+            <option value="Needs explanation">Needs explanation</option>
+            <option value="Maybe off topic">Maybe off topic</option>
+          </select>
+        </label>
         <div className="learning-choices">
           <button type="button" disabled={disabled||i===0} onClick={()=>apply(()=>moveWeek2Idea(ideas,i,-1),'Idea moved up')}>Move up</button>
           <button type="button" disabled={disabled||i===parsed.lines.length-1} onClick={()=>apply(()=>moveWeek2Idea(ideas,i,1),'Idea moved down')}>Move down</button>
@@ -137,6 +148,22 @@ export function Week2IdeaWorkspace({work,onEdit,disabled}:MainProps) {
     }}>Add idea card</button>
     <p role="status" aria-live="polite">{message}</p>
     <p><strong>Filter:</strong> Which idea is unrelated or needs to change? Record the idea and why in “One idea I will reject”. <strong>Select:</strong> Choose the best idea and explain its fit using the existing fields below.</p>
+    <details><summary>My live idea map · see how my notes connect</summary>
+      <p><strong>Task:</strong> Suggest an after-school activity and explain why it fits.</p>
+      <p><strong>Possible ideas:</strong> {parsed.safe&&parsed.lines.length?parsed.lines.join(' · '):'See your original idea notes below.'}</p>
+      <p><strong>Selected:</strong> {work.fields.best||'Choose an idea in the Main Practice form.'}</p>
+      <p><strong>Reason:</strong> {work.fields.fit||'Explain why this idea answers the task.'}</p>
+      <p>This map reflects your own words. It does not judge their quality or save the provisional card labels.</p>
+    </details>
+    <details><summary>Process coach · What can I try next?</summary>
+      <ul>
+        {parsed.safe&&parsed.lines.length<2&&<li>Could you think of another possible activity before deciding? Two ideas are a suggestion, not a requirement.</li>}
+        {!work.fields.reject?.trim()&&<li>After comparing ideas, identify one weaker option and explain your decision.</li>}
+        {!work.fields.best?.trim()&&<li>Choose an idea that you can support with at least one clear reason.</li>}
+        {!work.fields.fit?.trim()&&<li>Write a short explanation of how your selected idea meets the task.</li>}
+        <li>Check relevance yourself: the software cannot infer whether an original idea is genuinely on topic from its length or a label.</li>
+      </ul>
+    </details>
     {work.fields.best&&<p><strong>Current selected idea:</strong> {work.fields.best}</p>}
     <details><summary>Self-check before submitting</summary><ul>
       <li>Did I name at least one actual activity, not only isolated words?</li>
