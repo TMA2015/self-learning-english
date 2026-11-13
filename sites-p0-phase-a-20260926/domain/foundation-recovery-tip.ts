@@ -1,3 +1,5 @@
+import rgwPilot from '../content/rwg-depth-pilot-r1.json';
+
 /**
  * Read-only, post-submission guidance. This function never changes grades,
  * persisted attempts, answer keys or evidence. Do not invoke it before
@@ -53,6 +55,10 @@ const vocabulary125Tips:Readonly<Record<string,string>>={
 /** Returns one actionable next learning step, never a proficiency claim. */
 export function nextActionForIncorrect(module:string,itemId:string,version?:string):string{
  if(module==='vocabulary'&&version==='1.25.0'&&vocabulary125Tips[itemId])return vocabulary125Tips[itemId];
+ if(version===rgwPilot.source_curriculum_version&&['reading','grammar'].includes(module)&&itemId.startsWith(module==='reading'?'REA-B1-03-Q':'GRA-B1-05-Q')){
+   const recovery=rgwPilot.recovery_by_item as Record<string,string>;
+   if(recovery[itemId])return recovery[itemId];
+ }
  if((version==='1.18.0'||version==='1.18.1')&&reviewed118xTips[itemId]){
    return reviewed118xTips[itemId];
  }
