@@ -56,7 +56,7 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
      {feedback.strengths.length>0&&<><strong>What worked well</strong><ul>{feedback.strengths.map((s,i)=><li key={i}>{s}</li>)}</ul></>}
      {feedback.improvements.length>0&&<><strong>What to improve</strong><ul>{feedback.improvements.map((s,i)=><li key={i}>{s}</li>)}</ul></>}
      {feedback.scores&&!sourceSample&&<div><strong>AI rubric observations · provisional (0–10)</strong><ul>{Object.entries(feedback.scores).map(([k,v])=><li key={k}>{k.replaceAll('-',' ')}: {v}/10</li>)}</ul></div>}
-     {feedback.level&&!sourceSample&&<p>Provisional CEFR screening: {feedback.level}. This is not a certified level.</p>}
+     {feedback.level&&!sourceSample&&<p>Writing practice estimate: {feedback.level}.</p>}
      {feedback.corrections.length>0&&<><strong>Revision hints</strong><ul>{feedback.corrections.map((c,i)=><li key={i}>“{c.original}” — {c.hint}</li>)}</ul></>}
      <p><strong>Next practice:</strong> {feedback.exercise}</p>
      <button type="button" className="secondary-button" disabled={busy||!enabled} onClick={()=>void request()}>Request updated AI feedback</button>
