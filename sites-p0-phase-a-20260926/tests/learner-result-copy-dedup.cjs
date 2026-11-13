@@ -36,7 +36,8 @@ assert.match(offline,/Go to question/,'Useful action on missed-question review')
 assert(!offline.includes('report.objectiveTotal'),'Do not repeat scores below their own result header');
 assert(!offline.includes('<small>'),'No tiny legalese text inside recommendation card');
 assert(!domain.includes('boundary:string'),'Domain report no longer injects generic CEFR caveat');
-const ids=[...tips.matchAll(/'VOC-(?:A1|A2|B1)-\d\d-Q\d+':/g)].map(x=>x[0]);
+const pilotTips=tips.slice(tips.indexOf('const vocabulary125Tips:'),tips.indexOf('/** Returns one actionable next learning step'));
+const ids=[...pilotTips.matchAll(/'VOC-(?:A1|A2|B1)-\d\d-Q\d+':/g)].map(x=>x[0]);
 assert.equal(ids.length,24,'Every reviewed Vocabulary pilot item has a specific next action');
 assert.match(tips,/VOC-A2-01-Q11':'.*set the table and lay the table/);
 assert.match(css,/\.foundation-offline-review p,.foundation-offline-review li,.foundation-offline-review strong\{font-size:16px/);
