@@ -87,6 +87,16 @@ export function Week2PracticeSort() {
   </section>;
 }
 
+function Week2IdeaEditor({idea,onSave,disabled,index}:{idea:string;onSave:(value:string)=>void;disabled:boolean;index:number}) {
+  const [draft,setDraft]=useState(idea);
+  return <div>
+    <label className="field"><span>Idea {index+1}</span>
+      <input type="text" value={draft} disabled={disabled} onChange={e=>setDraft(e.target.value)} aria-label={`Edit idea ${index+1}`}/>
+    </label>
+    <button type="button" disabled={disabled||!draft.trim()||draft.trim()===idea||/[\\r\\n]/.test(draft)} onClick={()=>onSave(draft.trim())}>Apply edit</button>
+  </div>;
+}
+
 type MainProps = {work:WeekWork; onEdit:(key:string,value:string)=>void; disabled:boolean};
 
 export function Week2IdeaWorkspace({work,onEdit,disabled}:MainProps) {
@@ -108,10 +118,7 @@ export function Week2IdeaWorkspace({work,onEdit,disabled}:MainProps) {
     <p>Generate a few ideas before choosing one. Two to four ideas are a suggestion, not a requirement. The original four text fields below remain your saved work.</p>
     {parsed.safe ? <ol>
       {parsed.lines.map((idea,i)=><li key={i}>
-        <label className="field">
-          <span>Idea {i+1}</span>
-          <input type="text" value={idea} disabled={disabled} onChange={e=>apply(()=>editWeek2Idea(ideas,i,e.target.value.trim()||idea),'Idea edited')} aria-label={`Edit idea ${i+1}`}/>
-        </label>
+        <Week2IdeaEditor key={`edit-${i}:${idea}`} idea={idea} index={i} disabled={disabled} onSave={value=>apply(()=>editWeek2Idea(ideas,i,value),'Idea edited')}/>
         <div className="learning-choices">
           <button type="button" disabled={disabled||i===0} onClick={()=>apply(()=>moveWeek2Idea(ideas,i,-1),'Idea moved up')}>Move up</button>
           <button type="button" disabled={disabled||i===parsed.lines.length-1} onClick={()=>apply(()=>moveWeek2Idea(ideas,i,1),'Idea moved down')}>Move down</button>
