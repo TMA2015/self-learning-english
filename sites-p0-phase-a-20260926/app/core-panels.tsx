@@ -10,11 +10,11 @@ type AvailableCourse={
 };
 type CourseChoices={courses:AvailableCourse[];activeCourseId:string|null};
 export function LearningPlan({
- plan,model,onDiagnostic,onWriting,choice='ai',onChoice,onNavigate,courses,foundationCatalog,foundationLoading=false,foundationError=''
+ plan,model,onDiagnostic,onWriting,choice='ai',onChoice,onNavigate,onOpenLesson,courses,foundationCatalog,foundationLoading=false,foundationError=''
 }:{
  plan?:LearningPlanModel;model?:LearnerModel;onDiagnostic:()=>void;
  onWriting:()=>void;choice?:LearningChoice;onChoice?:(c:LearningChoice)=>void;
- onNavigate?:(view:string)=>void;courses?:CourseChoices|null;
+ onNavigate?:(view:string)=>void;onOpenLesson?:(lessonId:string,module:string)=>void;courses?:CourseChoices|null;
  foundationCatalog?:FoundationPracticeCatalog|null;foundationLoading?:boolean;foundationError?:string;
 }){
  return <>
@@ -30,18 +30,20 @@ export function LearningPlan({
   </div>
   {choice==='ai'?<><section className="panel" aria-label="Practice priorities from saved Foundation results">
     <h2>Review based on your saved Foundation answers</h2>
-    <p className="muted">This read-only list uses the latest objectively checked submissions from currently imported lessons. It does not change grades, determine CEFR level, or call AI.</p>
+    <p className="muted">Use your saved answers to see which available lesson is worth reviewing next.</p>
     {foundationLoading?<p role="status">Loading saved Foundation results…</p>:
      foundationError?<p role="status">Foundation results unavailable: {foundationError}. The Diagnostic plan below is unchanged.</p>:
      foundationPracticeAdvice(foundationCatalog).length>0?<div className="plan-grid">{foundationPracticeAdvice(foundationCatalog).map(item=><div key={item.skill} className="plan-card">
        <strong>{item.skill} · {item.missed}/{item.total} answers to revisit</strong>
-       <p>{item.reason}</p><button className="text-button" type="button" onClick={()=>onNavigate?.(item.module)}>Open {item.skill} Library</button>
+       <p>{item.reason}</p><div className="learning-choices">
+       <button className="primary-button" type="button" onClick={()=>onOpenLesson?.(item.lessonId,item.module)} disabled={!onOpenLesson}>Review this lesson ({item.lessonId})</button>
+       <button className="text-button" type="button" onClick={()=>onNavigate?.(item.module)}>Browse {item.skill} Library</button>
+       </div>
      </div>)}</div>:
-     <p>No saved objectively scored mistakes are available from the imported catalog. This does not establish mastery; continue with your next lesson or Diagnostic.</p>}
+     <p>No missed answers to review from your latest scored lessons. Continue with your next lesson or Diagnostic.</p>}
    </section>{plan&&model?<><p className="notice">
    Recommended order: {plan.items.filter(i=>i.priority==='Focus').map(i=>i.skill).join(' → ')}.
-   This is a rule-based learning plan from saved Diagnostic and Writing assessment evidence, not a generative AI recommendation.
-   Saved Foundation objective answers are summarized separately above; the general ranking below still uses Diagnostic and reviewed Writing evidence.
+   These skill priorities use saved Diagnostic and reviewed Writing evidence. The lesson-review actions above use your saved Foundation answers.
   </p>
   <div className="plan-grid">{plan.items.map((item,i)=>
    <section className="panel plan-card" key={item.skill}>
@@ -55,7 +57,7 @@ export function LearningPlan({
    </section>)}</div>
   <p className="muted">Estimated overall: {model.displayLevel??model.level} · {model.confidence} confidence
    {model.confidencePercent!==undefined?' ('+model.confidencePercent+'%)':''}.
-   Stronger skills stay in the plan for maintenance. This is not a formal CEFR award.</p>
+   Stronger skills stay in the plan for maintenance.</p>
   </>:<section className="panel">
    <h2>Find your starting point</h2>
    <p>Complete the Diagnostic Assessment to receive evidence-based skill priorities.</p>
