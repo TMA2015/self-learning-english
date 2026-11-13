@@ -47,6 +47,7 @@ const coreTests=[
   "writing-source-corpus-audit.cjs",
   "vocabulary-pilot-contract.cjs",
   "rgw-depth-pilot-contract.cjs",
+  "highlight-left-edge-contract.cjs",
   "pronunciation-runtime-audio.cjs",
 ];
 
@@ -55,6 +56,7 @@ const fullRegressionTests=[
   "writing-source-bundle-browser.cjs",
   "vocabulary-pilot-browser.cjs",
   "rgw-depth-pilot-browser.cjs",
+  "highlight-left-edge-browser.cjs",
   "learner-result-browser.cjs",
   "writing-course-v2-a.cjs",
   "writing-course-v2-b.cjs",
