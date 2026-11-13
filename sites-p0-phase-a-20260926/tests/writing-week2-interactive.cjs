@@ -56,13 +56,27 @@ check('React integration remains scoped to Week 2, Gemini not activated for Week
 });
 check('Unscored idea classifications and live map remain session-only',()=>{
   const ui=fs.readFileSync(path.join(root,'app/writing-week2-interactive.tsx'),'utf8');
+  const map=fs.readFileSync(path.join(root,'app/writing-week2-idea-map.tsx'),'utf8');
+  const css=fs.readFileSync(path.join(root,'app/globals.css'),'utf8');
   for(const phrase of [
     'provisional judgement (this visit only, not saved)',
-    'My live idea map',
     'Process coach',
-    'This map reflects your own words',
     'There are no completed saved versions to compare yet.'
   ]) assert(ui.includes(phrase),phrase);
+  for(const phrase of [
+    'My live idea map',
+    'This map reflects your own words',
+    'Visual brainstorming map',
+    'Select idea ',
+    'writingWeek(2).prompt'
+  ])assert(map.includes(phrase),phrase);
+  assert(ui.includes('<Week2IdeaMap work={work}'));
+  assert(css.includes('.w2-map-branches'));
+  assert(css.includes('.w2-map-root'));
+  assert(!map.includes('localStorage')&&!map.includes('sessionStorage'));
+  assert(!map.includes('fetch('));
+  const compiledMap=ts.transpileModule(map,{compilerOptions:{jsx:ts.JsxEmit.ReactJSX,module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022},reportDiagnostics:true});
+  assert.equal((compiledMap.diagnostics||[]).length,0,'visual map React transpiles');
   assert(ui.includes('setSessionLabels'));
   assert(!ui.includes("onEdit('sessionLabels'"));
   assert(!ui.includes('localStorage')&&!ui.includes('sessionStorage'));
