@@ -67,6 +67,6 @@ export function foundationPracticeAdvice(catalog:FoundationPracticeCatalog|null|
       const target=x.target!;
       return {skill:titleCase(x.module),module:x.module,missed:x.missed,total:x.total,
         lessonId:target.lessonId,lessonTitle:target.lessonTitle,
-        reason:`${x.missed} of ${x.total} objectively checked answers in the latest submitted ${titleCase(x.module)} practice were incorrect. Review the saved explanation for “${target.lessonTitle}” before trying another practice. This is a practice suggestion, not a proficiency estimate.`};
+        reason:`${x.missed} of ${x.total} objectively checked answers in the latest submitted ${titleCase(x.module)} practice were incorrect. Start with the saved explanation for “${target.lessonTitle}”, then try a new example.`};
     });
 }
