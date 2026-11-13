@@ -107,8 +107,11 @@ assert(ui.includes("foundationRequest('/api/foundation')")&&ui.includes('catalog
  'Links grounded in live/local imported catalog, not optimistic hardcoded data');
 assert(ui.includes('onOpenLesson(linked.id,entry.skill)'),'Linked lesson IDs must come from real catalog');
 assert(home.includes('key:"reference",label:"Reference Library"'),'Existing sidebar integration');
-assert(home.includes('if(await navigate(skill))setRequestedLessonId(id)'),
+assert(home.includes('if(await navigate(skill as View))setRequestedLessonId(id)'),
  'Full navigation guard before any canonical lesson jump');
+assert(home.includes('await openCatalogLesson(id,skill)')&&
+ home.includes('foundationCatalog.lessons.some(lesson=>lesson.id===id&&lesson.module===skill)'),
+ 'Reference Library reuses the same exact-catalog, draft-guarded lesson navigation');
 assert(player.includes('!requestedLessonId||'),
  'Original player must handle guarded related-lesson open requests');
 assert(player.includes('void open(requestedLessonId)'),
