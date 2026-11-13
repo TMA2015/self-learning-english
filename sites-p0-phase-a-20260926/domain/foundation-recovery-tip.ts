@@ -22,8 +22,37 @@ const reviewed118xTips:Readonly<Record<string,string>>={
  'VOC-A1-01-Q8':'Recall the natural verb–noun combination for schoolwork, not a word-for-word translation.',
 };
 
+/** Original v1.25.0 Vocabulary items: meaningful practice after a missed answer. */
+const vocabulary125Tips:Readonly<Record<string,string>>={
+ 'VOC-A1-01-Q1':'Review where students can borrow books. Then make a new sentence about returning a book.',
+ 'VOC-A1-01-Q2':'Practise a polite request for someone to repeat an instruction. Say why the polite form fits.',
+ 'VOC-A1-01-Q3':'Recall the school place where students have lunch. Use the place in a new sentence.',
+ 'VOC-A1-01-Q4':'Compare two classroom tools and name what each is used for.',
+ 'VOC-A1-01-Q5':'Review what people do in a science lab. Choose a different safe learning activity.',
+ 'VOC-A1-01-Q6':'Compare borrow from and lend to. Write a sentence that shows who owns the item.',
+ 'VOC-A1-01-Q7':'Recall what a corridor is. Write a new instruction for keeping a shared space safe.',
+ 'VOC-A1-01-Q8':'Review the verb used with homework. Compare it with a different natural school phrase.',
+ 'VOC-A2-01-Q1':'Compare make breakfast and do homework. Then use make a plan in a fresh sentence.',
+ 'VOC-A2-01-Q2':'Contrast catch the bus with miss the bus. Describe what happens if you arrive too late.',
+ 'VOC-A2-01-Q3':'Practise take a break in a new situation, such as studying for a test.',
+ 'VOC-A2-01-Q4':'Recall the phrase go for a walk. Write one sentence about a weekend activity.',
+ 'VOC-A2-01-Q5':'Think of three actions you do regularly. Describe them as part of your daily routine.',
+ 'VOC-A2-01-Q6':'Review brush your teeth. Put the phrase in a complete morning-routine sentence.',
+ 'VOC-A2-01-Q7':'Compare catching and missing the bus. Explain which phrase fits when the bus leaves first.',
+ 'VOC-A2-01-Q8':'Practise take turns with a new example of two classmates sharing a resource.',
+ 'VOC-A2-01-Q9':'Compare wash the dishes and do the dishes; both work here. Try a different household chore.',
+ 'VOC-A2-01-Q10':'Use make the bed in a new morning-routine sentence.',
+ 'VOC-A2-01-Q11':'Review set the table and lay the table; both are accepted. Write a new sentence about preparing dinner.',
+ 'VOC-B1-01-Q1':'Use reduce waste in a different school or home situation and explain the intended action.',
+ 'VOC-B1-01-Q2':'Review how re- changes the meaning of reusable. Name a different thing that can be used again.',
+ 'VOC-B1-01-Q3':'Use save energy in a practical suggestion and explain what action would help.',
+ 'VOC-B1-01-Q4':'Practise make a difference in a new example. Explain what effect you expect and why.',
+ 'VOC-B1-01-Q5':'Compare public transport with private transport. Name two options students might use.'
+};
+
 /** Returns one actionable next learning step, never a proficiency claim. */
 export function nextActionForIncorrect(module:string,itemId:string,version?:string):string{
+ if(module==='vocabulary'&&version==='1.25.0'&&vocabulary125Tips[itemId])return vocabulary125Tips[itemId];
  if((version==='1.18.0'||version==='1.18.1')&&reviewed118xTips[itemId]){
    return reviewed118xTips[itemId];
  }
