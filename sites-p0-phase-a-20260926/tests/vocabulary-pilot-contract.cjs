@@ -35,13 +35,13 @@ const overlay=read('app/vocabulary-pilot.tsx');
 const player=read('app/foundation.tsx');
 assert.match(overlay,/version==='1\.25\.0'\?PILOT\[lessonId\]/,
  'Teaching must be version-pinned to immutable source');
-assert.match(overlay,/version!=='1\.25\.0'\|\|outcome==='format-only'\|\|correct===null/,
+assert.match(overlay,/version!=='1\.25\.0'\|\|outcome==='format-only'\|\|correct!==false/,
  'Repair must not classify format-only or unassessed answers');
 assert.match(overlay,/chosen==='A'/,'Known A2 distractor identified by canonical option ID');
 assert.match(overlay,/chosen==='C'/,'Known B1 distractor identified by canonical option ID');
 assert.doesNotMatch(overlay,/correct_option_id|accepted_answers|evidence_weight\s*:/,
  'Overlay cannot change or embed official scored keys/evidence');
-assert.match(overlay,/not collected, saved or graded/,'Honest unscored self-practice');
+assert.match(overlay,/Optional practice is not submitted or graded/,'Honest unscored self-practice');
 assert.match(player,/VocabularyPilotTeaching lessonId=\{lesson.id\}/,
  'Reviewed teaching must render in existing overview only');
 assert.match(player,/\{result&&<div className="exercise">/,
