@@ -105,6 +105,8 @@ async function run(){
   }
   if(phase==='legacy'){
     check(host.textContent?.includes('complex or historical formatting'),'legacy guard');
+    check(!!q('.w2-map-original'),'original complex notes displayed without conversion');
+    check(host.textContent?.includes('Original notes preserved exactly'),'legacy map explains read-only rendering');
     const original=getWork().fields.ideas;
     const input=q('input[placeholder="Write one short activity idea"]') as HTMLInputElement;
     check(!!input,'add idea field');
@@ -126,14 +128,19 @@ async function run(){
     await wait(()=>!([...(host.querySelectorAll('button'))].find(x=>x.textContent?.trim()==='Add idea card') as HTMLButtonElement).disabled,'second idea accepted');
     clickText('Add idea card');
     await wait(()=>getWork().fields.ideas==='Drama club\nBook exchange','second canonical idea');
+    check(!!q('.w2-map-root'),'task centre visible in visual map');
+    check(host.querySelectorAll('.w2-map-branch').length===3,'three connected branches visible');
+    check(host.querySelectorAll('.w2-map-idea').length===2,'both idea nodes visible');
+    check(host.textContent?.includes('Your school can add one new after-school activity'),'exact canonical task displayed');
     const enabledMoveUp=[...host.querySelectorAll('button')].find(b=>b.textContent?.trim()==='Move up'&&!b.disabled);
     check(!!enabledMoveUp,'second card can move up');
     (enabledMoveUp as HTMLButtonElement).click();
     await wait(()=>getWork().fields.ideas==='Book exchange\nDrama club','reordering canonical idea lines');
-    const choose=[...host.querySelectorAll('button')].find(b=>b.textContent?.trim()==='Choose as best');
-    check(!!choose,'choose button exists');
-    (choose as HTMLButtonElement).click();
-    await wait(()=>getWork().fields.best==='Book exchange','chosen idea saved in canonical field');
+    const mapChoice=q('button[aria-label="Select idea 1 from map"]') as HTMLButtonElement;
+    check(!!mapChoice&&!mapChoice.disabled,'map choose button is enabled');
+    mapChoice.click();
+    await wait(()=>getWork().fields.best==='Book exchange','map selection updates original canonical field');
+    check(!!q('.w2-map-chosen'),'selected map node displays a non-color label');
     const edit=q('input[aria-label="Edit idea 1"]') as HTMLInputElement;
     writeInput(edit,'Art and drawing club');
     await wait(()=>!![...host.querySelectorAll('button')].find(b=>b.textContent?.trim()==='Apply edit'&&!b.disabled),'apply edit activated');
