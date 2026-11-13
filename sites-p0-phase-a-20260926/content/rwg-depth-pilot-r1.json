@@ -1,0 +1,150 @@
+{
+  "schema_version": "1.0",
+  "packet_id": "SLE-RGW-DEPTH-PILOT-R1-20261113",
+  "source_curriculum_version": "1.25.0",
+  "source_curriculum_git_blob": "eb6016669023b4a4d75df7278408da1e60894369",
+  "content_type": "read_only_instructional_overlay",
+  "assessment_mutations": false,
+  "ai_provider_required": false,
+  "review": {
+    "academic_verdict": "PASS",
+    "source_fidelity": "PASS",
+    "required_corrections": [],
+    "engineering_release": "NO_GO_PENDING_TECHNICAL_QA_AND_OWNER"
+  },
+  "lessons": {
+    "REA-B1-03": {
+      "module": "reading",
+      "cefr_target": "B1",
+      "scored_item_count": 10,
+      "unscored_item_count": 0,
+      "goal": "Today you will read a viewpoint text, find the writer's main claim, and support your inferences using words from the passage. A strong answer explains what the text actually supports — not just what sounds sensible.",
+      "cards": [
+        {
+          "title": "Gist — What is the main message?",
+          "body": "Read the opening and ending; find what the writer broadly supports, then watch for a qualification. Do not use one detail as the whole message."
+        },
+        {
+          "title": "Scan — Where is the stated fact?",
+          "body": "Look for the key idea in the question; locate the matching part of the passage; reread the full sentence before choosing."
+        },
+        {
+          "title": "Inference — What follows from the clues?",
+          "body": "Join two relevant clues, then check whether your conclusion goes beyond what was written."
+        },
+        {
+          "title": "Writer's purpose — Why this word here?",
+          "body": "Words like however, although, may can limit or contrast a claim. Identify the two ideas they connect."
+        }
+      ],
+      "model": {
+        "title": "Independent worked example — school garden",
+        "situation": "A school garden can help pupils learn about plants. However, rainy days sometimes interrupt outdoor activities. Teachers may therefore need an indoor backup task.",
+        "thinking": "The first sentence makes a positive claim. “However” introduces a limit, not a contradiction that gardens are useless. The text supports the conclusion that backup activities may help. It does not prove that every school has the money, space, or staff for a garden."
+      },
+      "self_practice": {
+        "title": "Optional: find the claim and evidence (unscored)",
+        "description": "Read a short notice or article outside the test. Write (or think through) one main claim, one precise supporting detail and one uncertainty that the text does not settle. Compare each statement against its supporting sentence."
+      }
+    },
+    "GRA-B1-05": {
+      "module": "grammar",
+      "cefr_target": "B1",
+      "scored_item_count": 10,
+      "unscored_item_count": 0,
+      "goal": "Choose a modal by weighing what the available evidence really shows. This is deduction, not a school rule or an order.",
+      "cards": [
+        {
+          "title": "Strong support for one explanation",
+          "body": "must + base verb. Example: Someone must be nearby. This is a strong deduction, not certainty guaranteed by a number."
+        },
+        {
+          "title": "Plausible explanation; alternatives remain",
+          "body": "may / might / could + base verb. Example: It might belong to someone in this room. More than one explanation may still fit."
+        },
+        {
+          "title": "Evidence rules out the explanation",
+          "body": "can't + base verb. Example: That can't be the right room. Remember: mustn't normally means prohibition, not this deduction."
+        }
+      ],
+      "model": {
+        "title": "Independent worked example — art room",
+        "situation": "At 10:00 a.m., the art-room timetable says the club meets elsewhere today. The room is locked and no students are inside.",
+        "thinking": "The timetable and locked room together strongly suggest that the art club cannot be meeting in this room now. Say “They can't be meeting in this room” rather than “They mustn't be meeting here” if you are describing evidence rather than giving a rule. This conclusion is about the room at this time; it does not say the whole club is cancelled."
+      },
+      "self_practice": {
+        "title": "Optional: weigh uncertain evidence (unscored)",
+        "description": "Choose a new situation in which the evidence is incomplete, such as seeing one parcel without a name label. Form two plausible explanations with may/might/could, and identify the extra information needed to make a stronger conclusion. Self-check the verb form and whether your claim exceeds the facts."
+      }
+    },
+    "WRI-B1-05": {
+      "module": "writing",
+      "cefr_target": "B1",
+      "scored_item_count": 7,
+      "unscored_item_count": 1,
+      "goal": "Analyse an opinion-writing task, brainstorm two distinct reasons and plan an outline before writing.",
+      "cards": [
+        {
+          "title": "Topic",
+          "body": "Identify the actual proposal, who is affected and whether it is optional or required."
+        },
+        {
+          "title": "Task",
+          "body": "Choose and defend agree / partly agree / disagree, consistently."
+        },
+        {
+          "title": "Must Include",
+          "body": "Two genuinely different reasons, one specific example, one practical difficulty, and a conclusion that matches the opening position. Keep to the stated word range."
+        },
+        {
+          "title": "Boundary",
+          "body": "Do not present invented survey results, compulsory participation or unverified facts as though the prompt supplied them."
+        }
+      ],
+      "brainstorm": [
+        "Who would gain from the proposed change? Name one possible benefit.",
+        "What other kind of benefit or cost is distinct from the first? Avoid expressing the same reason twice.",
+        "What specific, plausible school-life example could illustrate one reason? Do not invent measured evidence.",
+        "What could make the proposal difficult? Think about time, resources, fairness or safety when relevant.",
+        "Does your planned closing still reflect agree/partly/disagree?"
+      ],
+      "model": {
+        "title": "Independent worked outline — monthly art exhibition",
+        "situation": "Should a school let pupils propose the theme for a monthly art exhibition?",
+        "thinking": "Position: Partly agree: pupil suggestions are valuable, with staff checking practical constraints.\nReason 1: The exhibition could reflect pupils' interests. Example: ask different year groups for theme suggestions.\nReason 2: A planning role could help pupils practise cooperation. Example: a small mixed-year organising team.\nLimitation: Staff need to check display space, costs and time before agreeing.\nConclusion direction: Welcome pupil ideas, but combine them with practical checks.\nWhy the model works: two distinct benefits, plausible examples, an appropriate limitation and a conclusion consistent with the position. This is an outline, not an assessed response."
+      },
+      "self_practice": {
+        "title": "Optional: check your outline (unscored)",
+        "description": "I can state my position; my reasons are distinct; my example supports one reason; I have addressed a difficulty; I finish consistently; I checked the actual task limits."
+      }
+    }
+  },
+  "recovery_by_item": {
+    "REA-B1-03-Q1": "Reread the opening and ending; identify the main message and any qualification.",
+    "REA-B1-03-Q2": "Find the specific fact in the passage and reread the entire sentence before choosing.",
+    "REA-B1-03-Q3": "Find the specific fact in the passage and reread the entire sentence before choosing.",
+    "REA-B1-03-Q4": "Find the specific fact in the passage and reread the entire sentence before choosing.",
+    "REA-B1-03-Q5": "Use the surrounding sentence to check the word's meaning in context.",
+    "REA-B1-03-Q6": "Return to the two source clues, then state what they support without adding an extra assumption.",
+    "REA-B1-03-Q7": "Read the sentence before and after the contrast word. Explain how the second idea limits the first.",
+    "REA-B1-03-Q8": "Find the specific fact in the passage and reread the entire sentence before choosing.",
+    "REA-B1-03-Q9": "Return to the two source clues, then state what they support without adding an extra assumption.",
+    "REA-B1-03-Q10": "Use the surrounding sentence to check the word's meaning in context.",
+    "GRA-B1-05-Q1": "Underline the actual clue. Ask whether it strongly supports, merely allows or rules out the proposed conclusion.",
+    "GRA-B1-05-Q2": "Decide whether the sentence describes evidence or a rule. Try a new example of each.",
+    "GRA-B1-05-Q3": "Underline the actual clue. Ask whether it strongly supports, merely allows or rules out the proposed conclusion.",
+    "GRA-B1-05-Q4": "Underline the actual clue. Ask whether it strongly supports, merely allows or rules out the proposed conclusion.",
+    "GRA-B1-05-Q5": "Underline the actual clue. Ask whether it strongly supports, merely allows or rules out the proposed conclusion.",
+    "GRA-B1-05-Q6": "Underline the actual clue. Ask whether it strongly supports, merely allows or rules out the proposed conclusion.",
+    "GRA-B1-05-Q7": "Decide whether the sentence describes evidence or a rule. Try a new example of each.",
+    "GRA-B1-05-Q8": "Underline the actual clue. Ask whether it strongly supports, merely allows or rules out the proposed conclusion.",
+    "GRA-B1-05-Q9": "Underline the actual clue. Ask whether it strongly supports, merely allows or rules out the proposed conclusion.",
+    "GRA-B1-05-Q10": "Underline the actual clue. Ask whether it strongly supports, merely allows or rules out the proposed conclusion."
+  },
+  "writing_open_response": {
+    "item_id": "WRI-B1-05-Q8",
+    "answer": null,
+    "evidence_weight": 0,
+    "pending_status": "Your draft has been saved for review. You can use the planning checklist to revise while waiting."
+  }
+}
