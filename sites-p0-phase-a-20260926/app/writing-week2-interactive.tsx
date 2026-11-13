@@ -165,6 +165,8 @@ export function Week2IdeaWorkspace({work,onEdit,disabled}:MainProps) {
       </ul>
     </details>
     {work.fields.best&&<p><strong>Current selected idea:</strong> {work.fields.best}</p>}
+    {work.fields.best?.trim()&&parsed.safe&&parsed.lines.length>0&&!parsed.lines.some(idea=>idea.trim().toLocaleLowerCase()===work.fields.best.trim().toLocaleLowerCase())&&
+      <p className="notice" role="status">Your selected idea does not exactly match a current idea card. You may have expanded its wording, or changed the cards after selecting. Check that your choice and its reason still fit the task. Your saved selection has not been changed automatically.</p>}
     <details><summary>Self-check before submitting</summary><ul>
       <li>Did I name at least one actual activity, not only isolated words?</li>
       <li>Did I compare an alternative, if I could think of one?</li>
