@@ -52,7 +52,11 @@ assert(ui.includes('Optional self-practice: not submitted or graded.'));
 assert(!/correct_option_id|accepted_answers|fetch\(|localStorage|indexedDB|\bsubmit\(/.test(ui));
 assert(!Object.values(overlay.lessons).some(l=>/correct_option_id|accepted_answers/.test(JSON.stringify(l))));
 assert(foundation.includes('<RgwDepthTeaching lessonId={lesson.id} version={loadedLessonVersion.current}/>'));
-assert(tip.includes('version===rgwPilot.source_curriculum_version'));
+assert(tip.includes("version==='1.25.0'"),'Read-only recovery must remain version-pinned');
+for(const [id,advice] of Object.entries(overlay.recovery_by_item)){
+ assert(tip.includes(JSON.stringify(id)+':'+JSON.stringify(advice)),
+  'Compiled standalone recovery must match approved schema '+id);
+}
 assert(review.includes("if(attempt.status==='started'"),'Advice must be post-submit only');
 assert(!Object.keys(overlay.recovery_by_item).some(k=>k.startsWith('WRI-')),'Open Writing must not be auto graded');
 console.log(JSON.stringify({result:'PASS',gate:'RGW_DEPTH_R1_SOURCE_AND_NO_LEAKAGE',
