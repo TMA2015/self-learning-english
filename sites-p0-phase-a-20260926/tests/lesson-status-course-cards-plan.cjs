@@ -46,8 +46,8 @@ assert(unit.includes("import {LessonProgressMark} from './lesson-progress-mark'"
 assert(unit.includes('<LessonProgressMark {...progress}/>'));
 assert(badge.includes("kind==='submitted'?'✓'"),'Historic submissions need a shared visible tick');
 assert(plan.includes("'Recommended Learning Plan'"));
-assert(plan.includes('not a generative AI recommendation'));
-assert(plan.includes('Saved Foundation objective answers are summarized separately'));
+assert(plan.includes('These skill priorities use saved Diagnostic and reviewed Writing evidence.'));
+assert(plan.includes('The lesson-review actions above use your saved Foundation answers.'));
 assert(plan.includes('Review based on your saved Foundation answers'), 'Real saved objective feedback supplements, but does not override, Diagnostic priorities');
 assert(!plan.includes('Follow my AI Plan'), 'Label must not claim external AI');
 assert(!plan.includes('Browse Foundation lessons'),'Specialist course picker must not contain skill catalog');
