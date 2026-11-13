@@ -11,8 +11,8 @@ const domain=read('domain/post-lesson-review.ts');
 const tips=read('domain/foundation-recovery-tip.ts');
 const css=read('app/globals.css');
 const pilot=read('app/vocabulary-pilot.tsx');
-assert.equal((home.match(/Understanding your results/g)||[]).length,2,
- 'One Dashboard card: one heading and one aria-label, never repeated in lesson results');
+assert.equal((home.match(/Understanding your results/g)||[]).length,1,
+ 'Score guidance heading appears exactly once on Dashboard');
 assert.match(home,/Lesson scores reflect your submitted answers and help you track improvement/);
 assert.match(home,/CEFR labels show each lesson's target level/);
 for(const [name,src] of [
