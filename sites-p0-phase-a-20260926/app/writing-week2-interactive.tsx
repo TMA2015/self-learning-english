@@ -2,6 +2,7 @@
 
 import {useState} from 'react';
 import type {WeekWork} from '../domain/writing-course-v2-b';
+import {Week2IdeaMap} from './writing-week2-idea-map';
 import {addWeek2Idea, editWeek2Idea, moveWeek2Idea, readIdeaLines, removeWeek2Idea} from '../domain/writing-week2-interactive';
 
 const ART_PROMPT = 'A community art exhibition wants one weekend activity that helps visitors join in.';
@@ -148,13 +149,9 @@ export function Week2IdeaWorkspace({work,onEdit,disabled}:MainProps) {
     }}>Add idea card</button>
     <p role="status" aria-live="polite">{message}</p>
     <p><strong>Filter:</strong> Which idea is unrelated or needs to change? Record the idea and why in “One idea I will reject”. <strong>Select:</strong> Choose the best idea and explain its fit using the existing fields below.</p>
-    <details><summary>My live idea map · see how my notes connect</summary>
-      <p><strong>Task:</strong> Suggest an after-school activity and explain why it fits.</p>
-      <p><strong>Possible ideas:</strong> {parsed.safe&&parsed.lines.length?parsed.lines.join(' · '):'See your original idea notes below.'}</p>
-      <p><strong>Selected:</strong> {work.fields.best||'Choose an idea in the Main Practice form.'}</p>
-      <p><strong>Reason:</strong> {work.fields.fit||'Explain why this idea answers the task.'}</p>
-      <p>This map reflects your own words. It does not judge their quality or save the provisional card labels.</p>
-    </details>
+    <Week2IdeaMap work={work} ideas={parsed.safe?parsed.lines:null}
+      provisionalLabels={sessionLabels} disabled={disabled}
+      onSelect={idea=>{onEdit('best',idea);setMessage('Main idea selected from the map. Add your explanation below.');}} />
     <details><summary>Process coach · What can I try next?</summary>
       <ul>
         {parsed.safe&&parsed.lines.length<2&&<li>Could you think of another possible activity before deciding? Two ideas are a suggestion, not a requirement.</li>}
