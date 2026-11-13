@@ -138,7 +138,7 @@ async function run(){
     check(host.scrollWidth<=width+3,'host horizontal overflow');
   };
   checkBounds();
-  status.textContent='PASS_W2 '+JSON.stringify({phase,width,ideaCount:getWork().fields.ideas.split('\n').filter(Boolean).length,
+  status.textContent='PASS_W2 '+JSON.stringify({phase,width,ideaCount:(getWork().fields.ideas??'').split('\n').filter(Boolean).length,
     browser:'native Chromium synthetic UI',writes:0,realSafari:'NOT_TESTED'});
 }
 run().catch(e=>{status.textContent='FAIL '+String(e)+' '+String((e as Error).stack).slice(0,800)});
