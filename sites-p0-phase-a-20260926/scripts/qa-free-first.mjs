@@ -76,6 +76,7 @@ const fullRegressionTests=[
   "learning-plan-direct-review-contract.cjs",
   "p0-integration-safety.cjs",
   "a2-u10-transfer-summary.cjs",
+  "a1b1-u10-transfer-summary.cjs",
   "reference-library-pilot.cjs",
   "reference-library-browser.cjs",
   "p1-responsive-browser.cjs",

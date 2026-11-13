@@ -1,0 +1,20 @@
+{
+  "A1-U10": {
+    "guidance": "You will use a short written notice and a spoken announcement to make a friendly invitation. First check the event, when and where it happens, what a student needs, and whether a condition changes the plan. Then choose the event that fits your message and check those details again before you send it.",
+    "repairs": [
+      "Look again for the event's usual details and its *if* condition. Separate the normal plan from the change.",
+      "Replay the original announcement. Check the time, place and what is provided before comparing it with the written notice.",
+      "Check that your invitation is friendly and includes the chosen event, the correct time and place, and one accurate bring/not-bring detail.",
+      "Reading and Listening results are saved. Open the original Writing response and revise the invitation; it has not received a Writing-quality assessment."
+    ]
+  },
+  "B1-U10": {
+    "guidance": "You will combine a written briefing and a spoken point of view to make a balanced recommendation. In the text, distinguish the available options, evidence and limitations. In the recording, distinguish the speaker's preference from their reasons and qualifications. Your recommendation can differ from the speaker's if you support it with evidence and a practical way to review the result.",
+    "repairs": [
+      "Separate what the briefing reports from what it cannot prove. Recheck which conditions apply to each option.",
+      "Replay the speaker's viewpoint. Identify the preference, one qualification and what additional evidence could improve the decision.",
+      "Check that both proposals are represented fairly, your own position uses both sources, and a limitation leads to a realistic evaluation step.",
+      "Your source-comprehension results are saved. Revisit your recommendation and request trusted review for its reasoning and language."
+    ]
+  }
+}
