@@ -182,6 +182,7 @@ export function Week2SavedVersionComparison({work}: {work:WeekWork}) {
   const validLeft = Math.min(left,history.length-1);
   const validRight = Math.min(right,history.length-1);
   const fields = [['ideas','Possible ideas'],['reject','Rejected idea and reason'],['best','Best idea'],['fit','Why this idea fits']] as const;
+  const changedFields = fields.filter(([key])=>history[validLeft].fields[key]!==history[validRight].fields[key]).map(([,label])=>label);
   const view = (index:number) => <article className="wcv2-card">
     <h4>Saved version {index+1}</h4>
     {fields.map(([key,label])=><p key={key}><strong>{label}:</strong> <span style={{whiteSpace:'pre-wrap'}}>{history[index].fields[key]||'—'}</span></p>)}
@@ -194,6 +195,7 @@ export function Week2SavedVersionComparison({work}: {work:WeekWork}) {
       <label className="field"><span>Later version</span><select value={validRight} onChange={e=>setRight(Number(e.target.value))}>{history.map((_,i)=><option key={i} value={i}>Version {i+1}</option>)}</select></label>
     </div>
     <div className="wcv2-grid">{view(validLeft)}{view(validRight)}</div>
+    <p role="status"><strong>Changed sections:</strong> {changedFields.length?changedFields.join(' · '):'No text changes between these versions.'}</p>
     <p>What changed between your choices or explanations? Did the revision make your task fit clearer?</p>
   </section>;
 }
