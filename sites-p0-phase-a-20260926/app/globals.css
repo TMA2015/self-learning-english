@@ -631,3 +631,7 @@ body {
  .sle-rgw-strategy,.sle-rgw-model,.sle-rgw-brainstorm,.sle-rgw-self-practice{padding:11px 12px}
  .sle-rgw-strategies{gap:.5rem}
 }
+.a1b1-transfer-panel{min-width:0;overflow-wrap:anywhere}
+.a1b1-transfer-panel .unit-transfer-summary-list{padding-inline-start:1.25rem}
+.a1b1-transfer-panel li{margin-block:1rem}
+.a1b1-transfer-panel .secondary-button{max-width:100%;white-space:normal}

@@ -1,5 +1,6 @@
 'use client';
 import {useMemo} from 'react';
+import {A1B1Unit10TransferPanel} from './a1b1-u10-transfer-panel';
 import type {AcademicAttempt} from '../domain/academic';
 import {LessonProgressMark} from './lesson-progress-mark';
 import {a2Unit10TransferSummary} from '../domain/a2-u10-transfer-summary';
@@ -105,6 +106,7 @@ export function UnitBrowser({lessons,attempts,courseOrder,level,selectedId,onLev
    <p><strong>Suggested next step:</strong> {transfer.nextAction}</p>
    <small>{transfer.boundary}</small>
   </section>}
+  <A1B1Unit10TransferPanel unitId={selected.id} lessons={selected.lessons} attempts={attempts} disabled={disabled} onOpenLesson={onOpenLesson}/>
   <div className="unit-detail-grid">
    <section className="panel unit-lesson-list" aria-label={'Lessons in '+selected.id}>
     <h3>Study in a suggested order</h3>
