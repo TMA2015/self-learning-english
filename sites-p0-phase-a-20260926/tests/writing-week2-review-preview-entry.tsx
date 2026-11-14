@@ -32,7 +32,7 @@ function sampleWeek2():WeekWork{
  }};
 }
 function ReviewApp(){
- const [stage,setStage]=useState<Stage>('learn');
+ const [stage,setStage]=useState<Stage>(()=>new URLSearchParams(location.search).get('phase')==='main'?'main':'learn');
  const [work,setWork]=useState<WeekWork>(()=>new URLSearchParams(location.search).has('sample')?sampleWeek2():emptyWeekWork());
  const onEdit=(key:string,value:string)=>setWork(prev=>editWeek(prev,key,value));
  const lesson=writingWeek(2);
