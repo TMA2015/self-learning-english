@@ -176,8 +176,8 @@ export function Week2IdeaWorkspace({work,onEdit,disabled}:MainProps) {
 
 export function Week2SavedVersionComparison({work}: {work:WeekWork}) {
   const history = work.history??[];
-  const [left,setLeft] = useState(Math.max(0,history.length-2));
-  const [right,setRight] = useState(Math.max(0,history.length-1));
+  const [left,setLeft] = useState<number|null>(null);
+  const [right,setRight] = useState<number|null>(null);
   const [reflection,setReflection] = useState('');
   if (!history.length) return <p className="notice">There are no completed saved versions to compare yet.</p>;
   if (history.length===1) return <section className="wcv2-card" aria-label="Prepare a second saved version">
@@ -185,8 +185,8 @@ export function Week2SavedVersionComparison({work}: {work:WeekWork}) {
     <p>Your first completed version is preserved. Review a weaker part, revise the original answer fields, then save another completed attempt to compare two real versions.</p>
     <p>Comparison requires two completed saves. No second version is invented from an unsaved draft.</p>
   </section>;
-  const validLeft = Math.min(Math.max(left,0),history.length-1);
-  const validRight = Math.min(Math.max(right,0),history.length-1);
+  const validLeft = Math.min(Math.max(left??history.length-2,0),history.length-1);
+  const validRight = Math.min(Math.max(right??history.length-1,0),history.length-1);
   const fields = [['ideas','Possible ideas'],['reject','Rejected idea and reason'],['best','Best idea'],['fit','Why this idea fits']] as const;
   const changedFields = fields.filter(([key])=>history[validLeft].fields[key]!==history[validRight].fields[key]).map(([,label])=>label);
   const view = (index:number) => <article className="wcv2-card">
