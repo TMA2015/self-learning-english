@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import {writingWeek,emptyWeekWork,editWeek,type WeekWork} from '../domain/writing-course-v2-b';
+import {Week2ThinkBeforeReveal,Week2RepairBridge,Week2RevisionCoach} from '../app/writing-week2-learning-lab';
 import {
  Week2InteractiveLearn, Week2PracticeSort, Week2IdeaWorkspace,
  Week2SavedVersionComparison, Week2TransferPractice
@@ -53,8 +54,9 @@ function ReviewApp(){
      {stage==='learn'&&<>
        <p className="w2-review-prompt">Objective: {lesson.goal}</p>
        <Week2InteractiveLearn/>
-     </>}
-     {stage==='sort'&&<Week2PracticeSort/>}
+       <Week2ThinkBeforeReveal/>
+     </>
+     {stage==='sort'&&<><Week2PracticeSort/><Week2RepairBridge/></>}
      {stage==='main'&&<>
        <h2>My brainstorming workspace</h2>
        <p><strong>Main Practice task:</strong> {lesson.prompt}</p>
@@ -71,6 +73,7 @@ function ReviewApp(){
      </>}
      {stage==='compare'&&<>
        <p className="w2-review-prompt">These two versions are synthetic examples, not your saved submissions.</p>
+       <Week2RevisionCoach work={work}/>
        <Week2SavedVersionComparison work={{...work,history:sampleHistory}}/>
      </>}
      {stage==='transfer'&&<Week2TransferPractice/>}
