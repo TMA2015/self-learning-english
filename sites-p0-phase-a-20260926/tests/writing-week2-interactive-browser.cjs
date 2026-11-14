@@ -94,9 +94,15 @@ const root=path.resolve(__dirname,'..');
         const id=++seq;pending.set(id,{resolve,reject});
         socket.send(JSON.stringify({id,method,params}));
       });
-      const evaluate=async expression=>{
+      const evaluate=async(expression,allowTransient=false)=>{
         const a=await command('Runtime.evaluate',{expression,returnByValue:true});
-        if(a.exceptionDetails)throw Error('CDP evaluation exception '+a.exceptionDetails.text);
+        if(a.exceptionDetails){
+          // Navigation can transiently expose an empty document before the
+          // fixture's body/script exists; only readiness polling may retry.
+          if(allowTransient)return null;
+          const detail=a.exceptionDetails.exception?.description||a.exceptionDetails.text;
+          throw Error('CDP evaluation exception '+detail);
+        }
         return a.result?.value;
       };
       try{
@@ -149,7 +155,7 @@ const root=path.resolve(__dirname,'..');
           await command('Page.navigate',{url:base+suffix});
           let ready;
           for(let i=0;i<220;i++){
-            const value=await evaluate('({status:document.getElementById("sle-test-result")?.textContent||"",href:location.href,inner:innerWidth,touch:navigator.maxTouchPoints,media400:matchMedia("(max-width:400px)").matches,htmlWidth:document.documentElement.scrollWidth,bodyWidth:document.body.scrollWidth,mapWidth:document.querySelector(".w2-map")?.getBoundingClientRect().width||0})');
+            const value=await evaluate('({status:document.getElementById("sle-test-result")?.textContent||"",href:location.href,inner:innerWidth,touch:navigator.maxTouchPoints,media400:matchMedia("(max-width:400px)").matches,htmlWidth:document.documentElement?.scrollWidth||0,bodyWidth:document.body?.scrollWidth||0,mapWidth:document.querySelector(".w2-map")?.getBoundingClientRect().width||0})',true);
             if(value?.status?.startsWith('FAIL'))throw Error('W2 '+inputMode+' viewport '+width+': '+value.status.slice(0,900));
             if(value?.status?.startsWith('PASS_W2 ')&&value.href.endsWith(suffix)){
               ready=value;break;
