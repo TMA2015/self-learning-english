@@ -76,8 +76,126 @@ const root=path.resolve(__dirname,'..');
     }
     assert.equal(results.length,6);
     assert.equal(writes,0,'Browser fixture must not make POST or mutate learner data');
+
+    // CDP verifies the true CSS viewport, a real touch gesture and keyboard activation.
+    // Chrome's --window-size=320 alone can retain a wider minimum innerWidth.
+    async function verifyRealDeviceViewport(){
+      if(typeof WebSocket!=='function')throw Error('Node 24 native WebSocket required for W2 device-emulated QA');
+      const debugProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-w2-cdp-'));
+      const browser=cp.spawn(chrome,['--headless=new','--no-sandbox','--disable-dev-shm-usage',
+        '--disable-extensions','--disable-background-networking','--no-first-run',
+        '--remote-debugging-port=0','--remote-debugging-address=127.0.0.1',
+        '--remote-allow-origins=*','--window-size=900,900',
+        '--user-data-dir='+debugProfile,'about:blank'],{stdio:'ignore'});
+      const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+      let socket=null,seq=0;
+      const pending=new Map();
+      const command=(method,params={})=>new Promise((resolve,reject)=>{
+        const id=++seq;pending.set(id,{resolve,reject});
+        socket.send(JSON.stringify({id,method,params}));
+      });
+      const evaluate=async expression=>{
+        const a=await command('Runtime.evaluate',{expression,returnByValue:true});
+        if(a.exceptionDetails)throw Error('CDP evaluation exception '+a.exceptionDetails.text);
+        return a.result?.value;
+      };
+      try{
+        const activePort=path.join(debugProfile,'DevToolsActivePort');
+        let port=0;
+        for(let i=0;i<240;i++){
+          if(browser.exitCode!==null)throw Error('Chromium CDP exited');
+          if(fs.existsSync(activePort)){
+            port=Number(fs.readFileSync(activePort,'utf8').split('\n')[0]);
+            if(Number.isInteger(port)&&port>0)break;
+          }
+          await pause(40);
+        }
+        if(!port)throw Error('CDP debugging port unavailable');
+        let page;
+        for(let i=0;i<100;i++){
+          const res=await fetch('http://127.0.0.1:'+port+'/json/list');
+          const targets=await res.json();
+          page=targets.find(t=>t.type==='page'&&t.webSocketDebuggerUrl);
+          if(page)break;
+          await pause(40);
+        }
+        if(!page)throw Error('CDP page target unavailable');
+        socket=new WebSocket(page.webSocketDebuggerUrl);
+        await new Promise((resolve,reject)=>{
+          socket.addEventListener('open',resolve,{once:true});
+          socket.addEventListener('error',reject,{once:true});
+        });
+        socket.addEventListener('message',event=>{
+          const value=JSON.parse(String(event.data));
+          if(!value.id||!pending.has(value.id))return;
+          const p=pending.get(value.id);pending.delete(value.id);
+          if(value.error)p.reject(Error('CDP '+value.error.message));
+          else p.resolve(value.result);
+        });
+        socket.addEventListener('close',()=>{
+          for(const p of pending.values())p.reject(Error('CDP disconnected'));
+          pending.clear();
+        });
+        await command('Page.enable');
+        await command('Runtime.enable');
+        const results=[];
+        for(const [width,inputMode] of [[320,'touch'],[768,'keyboard']]){
+          await command('Emulation.setDeviceMetricsOverride',{
+            width,height:844,deviceScaleFactor:1,mobile:false,
+            screenWidth:width,screenHeight:844
+          });
+          await command('Emulation.setTouchEmulationEnabled',{enabled:true,maxTouchPoints:1});
+          const suffix='/?phase=editor&width='+width;
+          await command('Page.navigate',{url:base+suffix});
+          let ready;
+          for(let i=0;i<220;i++){
+            const value=await evaluate('({status:document.getElementById("sle-test-result")?.textContent||"",href:location.href,inner:innerWidth,touch:navigator.maxTouchPoints,media400:matchMedia("(max-width:400px)").matches,htmlWidth:document.documentElement.scrollWidth,bodyWidth:document.body.scrollWidth,mapWidth:document.querySelector(".w2-map")?.getBoundingClientRect().width||0})');
+            if(value?.status?.startsWith('FAIL'))throw Error('W2 '+inputMode+' viewport '+width+': '+value.status.slice(0,900));
+            if(value?.status?.startsWith('PASS_W2 ')&&value.href.endsWith(suffix)){
+              ready=value;break;
+            }
+            await pause(35);
+          }
+          if(!ready)throw Error('W2 true viewport '+width+' fixture did not complete');
+          if(ready.inner!==width||ready.media400!==(width<=400)||ready.touch<1)
+            throw Error('W2 CDP emulated viewport/touch mismatch '+JSON.stringify(ready));
+          if(ready.htmlWidth>width+3||ready.bodyWidth>width+3)
+            throw Error('W2 actual CSS viewport horizontal overflow '+width+'px: '+ready.htmlWidth+'/'+ready.bodyWidth);
+          const target=await evaluate('(()=>{const b=document.querySelector(".w2-map-idea button:not(:disabled)");if(!b)return {error:"no enabled map choice"};b.scrollIntoView({block:"center"});b.focus();const r=b.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,width:r.width,height:r.height,visible:r.x>=0&&r.right<=innerWidth&&r.y>=0&&r.bottom<=innerHeight,focused:document.activeElement===b}})()');
+          if(target.error||!target.visible||!target.focused||target.height<38)
+            throw Error('W2 map input not accessible at '+width+': '+JSON.stringify(target));
+          if(inputMode==='touch'){
+            await command('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:target.x,y:target.y,id:1}]});
+            await command('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+          }else{
+            await command('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+            await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+          }
+          let selected=false;
+          for(let i=0;i<100;i++){
+            const actual=await evaluate('window.qaGetWork?.()?.fields?.best');
+            if(actual==='Art and drawing club'){selected=true;break}
+            await pause(40);
+          }
+          if(!selected)throw Error('W2 '+inputMode+' did not select canonical idea at '+width+'px');
+          results.push({width,inputMode,verifiedCssViewport:ready.inner,
+            touchEmulation:true,activatedMapButton:true,noHorizontalOverflow:true,
+            savedCanonicalSelection:true});
+        }
+        return results;
+      }finally{
+        if(socket&&socket.readyState===WebSocket.OPEN)socket.close();
+        browser.kill('SIGTERM');
+        for(let i=0;i<40&&browser.exitCode===null;i++)await pause(50);
+        if(browser.exitCode===null)browser.kill('SIGKILL');
+        fs.rmSync(debugProfile,{recursive:true,force:true,maxRetries:5,retryDelay:60});
+      }
+    }
+    const trueViewportCases=await verifyRealDeviceViewport();
+    assert.equal(trueViewportCases.length,2);
+
     console.log(JSON.stringify({result:'PASS',gate:'W2_INTERACTIVE_NATIVE_CHROMIUM',
-      cases:results,cssContentWidths:[320,768],actualTouchDevice:'NOT_TESTED',
+      cases:results,trueViewportCases,cssContentWidths:[320,768],actualTouchDevice:'NOT_TESTED',
       realSafari:'NOT_TESTED',realStorage:'NOT_TESTED',serverWrites:0,
       productionWrites:0,syntheticOnly:true}));
   }finally{
