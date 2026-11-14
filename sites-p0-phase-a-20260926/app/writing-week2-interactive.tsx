@@ -119,6 +119,10 @@ export function Week2IdeaWorkspace({work,onEdit,disabled}:MainProps) {
     <h3>Build your own idea bank</h3>
     <p>First read the Main Practice prompt above. Check it using these questions: <strong>Topic</strong> — what is it about? <strong>Task</strong> — what must I suggest? <strong>Must include</strong> — what explanation is requested? <strong>Boundary</strong> — where, when, or for whom must the idea work?</p>
     <p>Generate a few ideas before choosing one. Two to four ideas are a suggestion, not a requirement. The original four text fields below remain your saved work.</p>
+    <p><strong>Use the map while you think:</strong> Add an idea below and watch it appear here. Compare options before choosing; the map does not choose or grade for you.</p>
+    <Week2IdeaMap work={work} ideas={parsed.safe?parsed.lines:null}
+      provisionalLabels={sessionLabels} disabled={disabled}
+      onSelect={idea=>{onEdit('best',idea);setMessage('Main idea selected from the map. Add your explanation below.');}} />
     {parsed.safe ? <ol>
       {parsed.lines.map((idea,i)=><li key={i}>
         <Week2IdeaEditor key={`edit-${i}:${idea}`} idea={idea} index={i} disabled={disabled} onSave={value=>apply(()=>editWeek2Idea(ideas,i,value),'Idea edited')}/>
@@ -149,9 +153,6 @@ export function Week2IdeaWorkspace({work,onEdit,disabled}:MainProps) {
     }}>Add idea card</button>
     <p role="status" aria-live="polite">{message}</p>
     <p><strong>Filter:</strong> Which idea is unrelated or needs to change? Record the idea and why in “One idea I will reject”. <strong>Select:</strong> Choose the best idea and explain its fit using the existing fields below.</p>
-    <Week2IdeaMap work={work} ideas={parsed.safe?parsed.lines:null}
-      provisionalLabels={sessionLabels} disabled={disabled}
-      onSelect={idea=>{onEdit('best',idea);setMessage('Main idea selected from the map. Add your explanation below.');}} />
     <details><summary>Process coach · What can I try next?</summary>
       <ul>
         {parsed.safe&&parsed.lines.length<2&&<li>Could you think of another possible activity before deciding? Two ideas are a suggestion, not a requirement.</li>}
@@ -175,11 +176,17 @@ export function Week2IdeaWorkspace({work,onEdit,disabled}:MainProps) {
 
 export function Week2SavedVersionComparison({work}: {work:WeekWork}) {
   const history = work.history??[];
-  const [left,setLeft] = useState(0);
+  const [left,setLeft] = useState(Math.max(0,history.length-2));
   const [right,setRight] = useState(Math.max(0,history.length-1));
+  const [reflection,setReflection] = useState('');
   if (!history.length) return <p className="notice">There are no completed saved versions to compare yet.</p>;
-  const validLeft = Math.min(left,history.length-1);
-  const validRight = Math.min(right,history.length-1);
+  if (history.length===1) return <section className="wcv2-card" aria-label="Prepare a second saved version">
+    <h3>One saved version so far</h3>
+    <p>Your first completed version is preserved. Review a weaker part, revise the original answer fields, then save another completed attempt to compare two real versions.</p>
+    <p>Comparison requires two completed saves. No second version is invented from an unsaved draft.</p>
+  </section>;
+  const validLeft = Math.min(Math.max(left,0),history.length-1);
+  const validRight = Math.min(Math.max(right,0),history.length-1);
   const fields = [['ideas','Possible ideas'],['reject','Rejected idea and reason'],['best','Best idea'],['fit','Why this idea fits']] as const;
   const changedFields = fields.filter(([key])=>history[validLeft].fields[key]!==history[validRight].fields[key]).map(([,label])=>label);
   const view = (index:number) => <article className="wcv2-card">
@@ -190,12 +197,16 @@ export function Week2SavedVersionComparison({work}: {work:WeekWork}) {
     <h3>Compare your own saved versions</h3>
     <p>Past submissions are read-only. Comparing a version does not rewrite history or assign a Writing grade.</p>
     <div className="wcv2-grid">
-      <label className="field"><span>Earlier version</span><select value={validLeft} onChange={e=>setLeft(Number(e.target.value))}>{history.map((_,i)=><option key={i} value={i}>Version {i+1}</option>)}</select></label>
-      <label className="field"><span>Later version</span><select value={validRight} onChange={e=>setRight(Number(e.target.value))}>{history.map((_,i)=><option key={i} value={i}>Version {i+1}</option>)}</select></label>
+      <label className="field"><span>Earlier version</span><select value={validLeft} onChange={e=>{setLeft(Number(e.target.value));setReflection('');}}>{history.map((_,i)=><option key={i} value={i}>Version {i+1}</option>)}</select></label>
+      <label className="field"><span>Later version</span><select value={validRight} onChange={e=>{setRight(Number(e.target.value));setReflection('');}}>{history.map((_,i)=><option key={i} value={i}>Version {i+1}</option>)}</select></label>
     </div>
     <div className="wcv2-grid">{view(validLeft)}{view(validRight)}</div>
     <p role="status"><strong>Changed sections:</strong> {changedFields.length?changedFields.join(' · '):'No text changes between these versions.'}</p>
-    <p>What changed between your choices or explanations? Did the revision make your task fit clearer?</p>
+    <p><strong>Think beyond the text difference:</strong> Which change makes the answer more relevant, clearer or easier to explain? A changed word is not automatically an improvement.</p>
+    <label className="field"><span>My explanation of one improvement (optional, unsaved reflection)</span>
+      <textarea rows={2} value={reflection} onChange={e=>setReflection(e.target.value)} placeholder="I changed ... because it now answers the task more clearly by ..."/>
+    </label>
+    <p className="muted">The comparison shows factual changes only. Your written judgement is not saved or graded. If the change did not help, return to your Main Practice notes and revise again.</p>
   </section>;
 }
 
@@ -203,13 +214,33 @@ export function Week2TransferPractice() {
   const [candidates,setCandidates] = useState('');
   const [chosen,setChosen] = useState('');
   const [reason,setReason] = useState('');
+  const [showHints,setShowHints] = useState(false);
+  const [selfChecks,setSelfChecks] = useState<Record<string,boolean>>({});
+  const attempted=Boolean(candidates.trim()&&chosen.trim()&&reason.trim());
+  const checkItems=[
+    ['activity','I described an actual activity rather than a general change.'],
+    ['place','It makes sense at a community centre on Saturday.'],
+    ['people','It helps newcomers participate, not only watch others.'],
+    ['explain','My reason explains how or why it suits newcomers.']
+  ] as const;
   return <section className="wcv2-card" aria-label="Optional independent transfer">
     <h3>Optional independent transfer · New situation</h3>
     <p>A local community centre would like one short Saturday activity for newcomers. Suggest an activity and explain why it helps newcomers take part.</p>
+    <p><strong>Try independently first:</strong> Analyse the task, generate alternatives, select an idea and justify your choice without copying the earlier examples.</p>
     <p>Try two ideas, select one, and add a short reason. This is unscored self-practice. <strong>These optional scratchpad notes are not saved</strong>; use your own notebook if you want to keep them.</p>
-    <label className="field"><span>Two possible activities</span><textarea rows={3} value={candidates} onChange={e=>setCandidates(e.target.value)}/></label>
-    <label className="field"><span>My selected activity</span><textarea rows={2} value={chosen} onChange={e=>setChosen(e.target.value)}/></label>
-    <label className="field"><span>Why it helps newcomers take part</span><textarea rows={2} value={reason} onChange={e=>setReason(e.target.value)}/></label>
-    <details><summary>Self-check my transfer</summary><p>Does my idea involve an activity, happen on Saturday, suit a community centre and help newcomers participate? Does the reason explain how?</p></details>
+    <label className="field"><span>Two possible activities</span><textarea rows={3} value={candidates} onChange={e=>{setCandidates(e.target.value);setShowHints(false);}}/></label>
+    <label className="field"><span>My selected activity</span><textarea rows={2} value={chosen} onChange={e=>{setChosen(e.target.value);setShowHints(false);}}/></label>
+    <label className="field"><span>Why it helps newcomers take part</span><textarea rows={2} value={reason} onChange={e=>{setReason(e.target.value);setShowHints(false);}}/></label>
+    <button type="button" className="secondary-button" disabled={!attempted} onClick={()=>setShowHints(v=>!v)}>
+      {showHints?'Hide optional process help':'Check my process after attempting'}
+    </button>
+    {showHints&&<div className="notice" role="status"><p>Consider the <strong>audience</strong> (newcomers), the <strong>setting</strong> (Saturday, community centre), and what participants will <strong>do</strong>. Can you name one concrete reason that connects your idea to their participation?</p>
+    <p>This is a process reminder, not an answer key. Several activities can fit.</p></div>}
+    <fieldset className="w2-reflection-choice"><legend>My own transfer checklist (self-reported, not scored)</legend>
+      {checkItems.map(([key,label])=><label className="wcv2-option" key={key}>
+        <input type="checkbox" checked={!!selfChecks[key]} onChange={e=>setSelfChecks(prev=>({...prev,[key]:e.target.checked}))}/>{label}
+      </label>)}
+    </fieldset>
+    <p className="muted">Checking a box does not prove mastery. If you need support, return to the Learn or Guided Practice steps, then try another new task later.</p>
   </section>;
 }
