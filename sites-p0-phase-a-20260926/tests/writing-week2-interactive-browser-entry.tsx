@@ -130,7 +130,7 @@ async function run(){
     check(nodes.length>=2,'keyboard focus sequence has multiple controls');
     check(nodes.every(el=>!el.hasAttribute('tabindex')||Number(el.getAttribute('tabindex'))>=0),
       'no focusable controls excluded from normal tab order');
-    check(nodes.some(el=>el.tagName==='INPUT'||el.tagName==='SELECT'),
+    check(nodes.some(el=>['INPUT','SELECT','TEXTAREA'].includes(el.tagName)),
       'decision input is keyboard-reachable');
     const first=nodes[0] as unknown as HTMLInputElement;
     first.focus();
