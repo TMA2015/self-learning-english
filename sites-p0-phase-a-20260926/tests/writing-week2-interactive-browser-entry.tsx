@@ -150,7 +150,7 @@ async function run(){
   if(phase==='revise'){
     check(host.querySelectorAll('select').length===5,'four criteria and one revision focus');
     check(host.textContent?.includes('not an automatic assessment')===false,'no automatic semantic assessment claim');
-    const first=q('select') as HTMLSelectElement;
+    const first=host.querySelector<HTMLSelectElement>('select')!;
     setValue(first,'not yet');
     await wait(()=>first.value==='not yet','learner self-judgement changed');
     check(!getWork().fields.ideas,'self-ratings do not write learner evidence');
