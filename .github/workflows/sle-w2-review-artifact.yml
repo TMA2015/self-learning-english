@@ -1,0 +1,55 @@
+name: SLE W2 Review Artifact (NO DEPLOY)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - '.github/workflows/sle-w2-review-artifact.yml'
+      - 'sites-p0-phase-a-20260926/app/writing-week2-*.tsx'
+      - 'sites-p0-phase-a-20260926/app/globals.css'
+      - 'sites-p0-phase-a-20260926/domain/writing-week2-interactive.ts'
+      - 'sites-p0-phase-a-20260926/scripts/build-w2-review-preview.cjs'
+      - 'sites-p0-phase-a-20260926/scripts/capture-w2-review-preview.cjs'
+      - 'sites-p0-phase-a-20260926/tests/writing-week2-review-preview-entry.tsx'
+
+permissions:
+  contents: read
+
+jobs:
+  isolated-review:
+    if: github.event.pull_request.number == 153
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout PR code without stored credentials
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install pinned pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: '11.25.0'
+          run_install: false
+      - name: Frozen dependencies for isolated preview compilation
+        working-directory: sites-p0-phase-a-20260926
+        run: pnpm install --frozen-lockfile
+      - name: Build offline single-file component preview
+        working-directory: sites-p0-phase-a-20260926
+        run: node scripts/build-w2-review-preview.cjs
+      - name: Capture Chromium review screenshots (NO production)
+        working-directory: sites-p0-phase-a-20260926
+        run: node scripts/capture-w2-review-preview.cjs
+      - name: Upload reviewable HTML and PNG screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: SLE-W2-Review-PR153
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            sites-p0-phase-a-20260926/.sites-runtime/w2-review-artifact/index.html
+            sites-p0-phase-a-20260926/.sites-runtime/w2-review-artifact/README.txt
+            sites-p0-phase-a-20260926/.sites-runtime/w2-review-artifact/*.png
