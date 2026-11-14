@@ -49,8 +49,8 @@ const savedFields=[
 function initial():WeekWork {
   const work=emptyWeekWork();
   if(phase==='legacy')work.fields.ideas='Old idea\n\n  a carefully indented note';
-  if(phase==='compare'){
-    work.history=savedFields.map((fields,i)=>({
+  if(phase==='compare'||phase==='oneversion'){
+    work.history=savedFields.slice(0,phase==='oneversion'?1:2).map((fields,i)=>({
       at:100+i,signature:JSON.stringify(fields),fields,kind:'progress',
       evidenceWeight:0,proficiencyWeight:0,provisional:true
     }));
@@ -76,7 +76,7 @@ function App(){
       <Week2IdeaWorkspace work={work} disabled={false}
         onEdit={(key,value)=>setWork(prev=>editWeek(prev,key,value))}/>:
       phase==='sort'?<Week2PracticeSort/>:
-      phase==='compare'?<Week2SavedVersionComparison work={work}/>:
+      phase==='compare'||phase==='oneversion'?<Week2SavedVersionComparison work={work}/>: 
       phase==='predict'?<Week2ThinkBeforeReveal/>:
       phase==='repair'?<Week2RepairBridge/>:
       phase==='revise'?<Week2RevisionCoach work={work}/>:
@@ -107,6 +107,11 @@ async function run(){
     clickText('Compare with reviewed explanations');
     await wait(()=>!!host.textContent?.includes('One defensible reading'),'comparison rendered');
     check(host.textContent?.includes('does not award a score'),'no fake grade');
+  }
+  if(phase==='oneversion'){
+    check(host.textContent?.includes('One saved version so far'),'one version is not fake comparison');
+    check(!host.textContent?.includes('Saved version 2'),'no fabricated history');
+    check(getWork().history.length===1,'exactly one original saved attempt');
   }
   if(phase==='compare'){
     check(host.textContent?.includes('Saved version 1'),'prior version visible');
