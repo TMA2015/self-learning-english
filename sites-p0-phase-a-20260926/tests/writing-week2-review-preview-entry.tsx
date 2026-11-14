@@ -55,7 +55,7 @@ function ReviewApp(){
        <p className="w2-review-prompt">Objective: {lesson.goal}</p>
        <Week2InteractiveLearn/>
        <Week2ThinkBeforeReveal/>
-     </>
+     </>}
      {stage==='sort'&&<><Week2PracticeSort/><Week2RepairBridge/></>}
      {stage==='main'&&<>
        <h2>My brainstorming workspace</h2>
