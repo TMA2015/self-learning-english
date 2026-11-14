@@ -150,7 +150,7 @@ const root=path.resolve(__dirname,'..');
             width,height:844,deviceScaleFactor:1,mobile:false,
             screenWidth:width,screenHeight:844
           });
-          await command('Emulation.setTouchEmulationEnabled',{enabled:true,maxTouchPoints:1});
+          await command('Emulation.setTouchEmulationEnabled',{enabled:inputMode==='touch',maxTouchPoints:1});
           const suffix='/?phase=editor&width='+width;
           await command('Page.navigate',{url:base+suffix});
           let ready;
@@ -163,7 +163,7 @@ const root=path.resolve(__dirname,'..');
             await pause(35);
           }
           if(!ready)throw Error('W2 true viewport '+width+' fixture did not complete');
-          if(ready.inner!==width||ready.media400!==(width<=400)||ready.touch<1)
+          if(ready.inner!==width||ready.media400!==(width<=400)||(inputMode==='touch'&&ready.touch<1))
             throw Error('W2 CDP emulated viewport/touch mismatch '+JSON.stringify(ready));
           if(ready.htmlWidth>width+3||ready.bodyWidth>width+3){
             const overflow=await evaluate('Array.from(document.querySelectorAll("#app,#app *")).map(e=>({tag:e.tagName,cls:String(e.className).slice(0,70),right:Math.ceil(e.getBoundingClientRect().right),width:Math.ceil(e.getBoundingClientRect().width)})).filter(e=>e.right>innerWidth+3).sort((a,b)=>b.right-a.right).slice(0,6)');
@@ -184,8 +184,12 @@ const root=path.resolve(__dirname,'..');
             await command('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:target.x,y:target.y,id:1}]});
             await command('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
           }else{
-            await command('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
-            await command('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+            // CDP Enter should act like a real keyboard key, not a synthetic DOM click.
+            await command('Page.bringToFront');
+            const keyProps={key:'Enter',code:'Enter',windowsVirtualKeyCode:13,nativeVirtualKeyCode:13};
+            await command('Input.dispatchKeyEvent',{type:'rawKeyDown',...keyProps});
+            await command('Input.dispatchKeyEvent',{type:'char',text:'\r',unmodifiedText:'\r',...keyProps});
+            await command('Input.dispatchKeyEvent',{type:'keyUp',...keyProps});
           }
           let selected=false;
           for(let i=0;i<100;i++){
@@ -195,7 +199,7 @@ const root=path.resolve(__dirname,'..');
           }
           if(!selected)throw Error('W2 '+inputMode+' did not select canonical idea at '+width+'px');
           results.push({width,inputMode,verifiedCssViewport:ready.inner,
-            touchEmulation:true,activatedMapButton:true,noHorizontalOverflow:true,
+            touchEmulation:inputMode==='touch',activatedMapButton:true,noHorizontalOverflow:true,
             savedCanonicalSelection:true});
         }
         return results;
