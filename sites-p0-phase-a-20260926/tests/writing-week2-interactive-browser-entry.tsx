@@ -2,8 +2,9 @@ import React, {useState,useEffect} from 'react';
 import {createRoot} from 'react-dom/client';
 import {
   Week2IdeaWorkspace, Week2InteractiveLearn, Week2PracticeSort,
-  Week2SavedVersionComparison
+  Week2SavedVersionComparison,Week2TransferPractice
 } from '../app/writing-week2-interactive';
+import {Week2ThinkBeforeReveal,Week2RepairBridge,Week2RevisionCoach} from '../app/writing-week2-learning-lab';
 import {editWeek,emptyWeekWork,type WeekWork} from '../domain/writing-course-v2-b';
 import {BrowserLocalLearningRepository} from '../infrastructure/storage/browser-local-repositories';
 
@@ -35,6 +36,12 @@ const writeInput=(element:HTMLInputElement,value:string)=>{
 const testPrefix='sle-w2-qa-isolated';
 const testScope={ownerId:'synthetic-browser',learnerId:'w2'};
 const persistence=new BrowserLocalLearningRepository(window.localStorage,testPrefix);
+const setValue=(element:HTMLTextAreaElement|HTMLSelectElement,value:string)=>{
+  const descriptor=Object.getOwnPropertyDescriptor(element instanceof HTMLTextAreaElement?HTMLTextAreaElement.prototype:HTMLSelectElement.prototype,'value')!;
+  descriptor.set!.call(element,value);
+  element.dispatchEvent(new Event('input',{bubbles:true}));
+  element.dispatchEvent(new Event('change',{bubbles:true}));
+};
 const savedFields=[
   {ideas:'art club\nreading club',reject:'reading club',best:'art club',fit:'participants make drawings'},
   {ideas:'writing workshop\nart club',reject:'writing workshop',best:'art club',fit:'teenagers can create together'}
@@ -70,6 +77,10 @@ function App(){
         onEdit={(key,value)=>setWork(prev=>editWeek(prev,key,value))}/>:
       phase==='sort'?<Week2PracticeSort/>:
       phase==='compare'?<Week2SavedVersionComparison work={work}/>:
+      phase==='predict'?<Week2ThinkBeforeReveal/>:
+      phase==='repair'?<Week2RepairBridge/>:
+      phase==='revise'?<Week2RevisionCoach work={work}/>:
+      phase==='transfer'?<Week2TransferPractice/>:
       <Week2InteractiveLearn/>}
   </section>;
 }
@@ -101,7 +112,57 @@ async function run(){
     check(host.textContent?.includes('Saved version 1'),'prior version visible');
     check(host.textContent?.includes('Saved version 2'),'later version visible');
     check(host.textContent?.includes('Changed sections:'),'read-only comparison');
-    check(!host.querySelector('textarea'),'no history editing');
+    const savedHistory=JSON.stringify(getWork().history);
+    check(host.querySelectorAll('textarea').length===1,'single unsaved reflection, no history editor');
+    const reflection=q('textarea') as HTMLTextAreaElement;
+    setValue(reflection,'I made the reason more specific to the task.');
+    await wait(()=>!!host.textContent?.includes('not saved or graded'),'unsaved comparison explanation');
+    check(JSON.stringify(getWork().history)===savedHistory,'history remains byte-for-byte unchanged');
+  }
+  if(phase==='predict'){
+    const reveal=[...host.querySelectorAll('button')].find(b=>b.textContent?.trim()==='Compare my reasoning') as HTMLButtonElement;
+    check(!!reveal&&reveal.disabled,'worked feedback gated by own attempt');
+    check(!host.textContent?.includes('One defensible choice:'),'no early answer');
+    (q('input[value="magnet"]') as HTMLInputElement).click();
+    setValue(q('textarea') as HTMLTextAreaElement,'Children can try it themselves in fifteen minutes.');
+    await wait(()=>!reveal.disabled,'feedback unlocked after reasoning');
+    reveal.click();
+    await wait(()=>!!host.textContent?.includes('One defensible choice:'),'explanation revealed after attempt');
+    check(!getWork().fields.ideas,'prediction did not write canonical Week 2 notes');
+  }
+  if(phase==='repair'){
+    const example=[...host.querySelectorAll('button')].find(b=>b.textContent?.trim()==='Compare with one possible repair') as HTMLButtonElement;
+    check(!!example&&example.disabled,'repair model hidden before trying');
+    const notes=[...host.querySelectorAll('textarea')] as HTMLTextAreaElement[];
+    check(notes.length===2,'independent repair and explanation fields');
+    setValue(notes[0],'Visitors play a short game matching clean items to recycling bins.');
+    setValue(notes[1],'It involves sorting and could be finished in ten minutes.');
+    await wait(()=>!example.disabled,'repair model unlocked after both attempts');
+    example.click();
+    await wait(()=>!!host.textContent?.includes('One possible repair:'),'model available after attempt');
+    check(!getWork().fields.ideas,'bridge is unscored and does not change canonical draft');
+  }
+  if(phase==='revise'){
+    check(host.querySelectorAll('select').length===5,'four criteria and one revision focus');
+    check(host.textContent?.includes('not an automatic assessment')===false,'no automatic semantic assessment claim');
+    const first=q('select') as HTMLSelectElement;
+    setValue(first,'not yet');
+    await wait(()=>first.value==='not yet','learner self-judgement changed');
+    check(!getWork().fields.ideas,'self-ratings do not write learner evidence');
+  }
+  if(phase==='transfer'){
+    check(host.textContent?.includes('Try independently first'),'transfer starts without answers');
+    const help=[...host.querySelectorAll('button')].find(b=>b.textContent?.trim()==='Check my process after attempting') as HTMLButtonElement;
+    check(!!help&&help.disabled,'transfer hints gated by independent attempt');
+    const notes=[...host.querySelectorAll('textarea')] as HTMLTextAreaElement[];
+    check(notes.length===3,'three independent transfer fields');
+    setValue(notes[0],'Welcome games; group treasure clue hunt');
+    setValue(notes[1],'A group welcome game');
+    setValue(notes[2],'Newcomers introduce themselves in small pairs.');
+    await wait(()=>!help.disabled,'transfer process self-check unlocked');
+    help.click();
+    await wait(()=>!!host.textContent?.includes('process reminder, not an answer key'),'transfer no model leakage');
+    check(!getWork().fields.ideas,'optional transfer remains outside canonical saved state');
   }
   if(phase==='legacy'){
     check(host.textContent?.includes('complex or historical formatting'),'legacy guard');
