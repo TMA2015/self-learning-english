@@ -53,6 +53,7 @@ const coreTests=[
 
 const fullRegressionTests=[
   "writing-week2-interactive-browser.cjs",
+  "writing-week2-review-export-once.cjs", // ONE-TIME PREVIEW BUILD, REVIEW BRANCH ONLY
   "p0-writing-review-browser.cjs",
   "writing-source-bundle-browser.cjs",
   "vocabulary-pilot-browser.cjs",
