@@ -673,3 +673,25 @@ body {
     border-top:2px solid #b9d0e6}
   .w2-map-branch::before {left:50%;top:-10px;width:2px;height:10px}
 }
+
+/* Week 2 reviewer suggestion: compact task map on narrow screens only. */
+.w2-map-drawer {min-width:0}
+.w2-map-drawer>summary {display:none}
+@media (max-width:379px) {
+  .w2-map-drawer>summary {
+    display:list-item;
+    cursor:pointer;
+    min-height:44px;
+    padding:12px 13px;
+    border:1px solid #b9d0e6;
+    background:#eef5ff;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:700;
+    line-height:1.5;
+    color:#234d79;
+    overflow-wrap:anywhere;
+  }
+  .w2-map-drawer>summary:focus-visible {outline:3px solid #266dc3;outline-offset:3px}
+  .w2-map-drawer[open]>summary {margin-bottom:8px}
+}
