@@ -25,7 +25,7 @@ const sampleHistory:NonNullable<WeekWork['history']>=[
 
 function sampleWeek2():WeekWork{
  return {...emptyWeekWork(),fields:{
-   ideas:'Drawing club\\nBook exchange\\nBoard game afternoon',
+   ideas:'Drawing club\nBook exchange\nBoard game afternoon',
    reject:'Board game afternoon — it may need a quieter alternative for some students.',
    best:'Drawing club',
    fit:'Students can share simple materials and display their drawings together.'
