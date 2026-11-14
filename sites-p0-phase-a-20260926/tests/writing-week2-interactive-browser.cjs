@@ -35,7 +35,7 @@ const root=path.resolve(__dirname,'..');
   const html='<!doctype html><html lang="en"><head><meta charset="utf-8">'+
     '<meta name="viewport" content="width=device-width,initial-scale=1">'+
     '<style>'+originalCSS.slice(index).replaceAll('</style>','<\\/style>')+'</style></head><body>'+
-    '<div id="app"></div><div id="sle-test-result">STARTED</div>'+
+    '<div id="app"></div><div id="sle-test-result" style="display:none">STARTED</div>'+
     '<script>window.addEventListener("error",e=>document.getElementById("sle-test-result").textContent="FAIL_JS "+e.message);'+
     'window.addEventListener("unhandledrejection",e=>document.getElementById("sle-test-result").textContent="FAIL_REJECTION "+e.reason);</script>'+
     '<script>'+bundle.replaceAll('</script>','<\\/script>')+'</script></body></html>';
@@ -165,8 +165,10 @@ const root=path.resolve(__dirname,'..');
           if(!ready)throw Error('W2 true viewport '+width+' fixture did not complete');
           if(ready.inner!==width||ready.media400!==(width<=400)||ready.touch<1)
             throw Error('W2 CDP emulated viewport/touch mismatch '+JSON.stringify(ready));
-          if(ready.htmlWidth>width+3||ready.bodyWidth>width+3)
-            throw Error('W2 actual CSS viewport horizontal overflow '+width+'px: '+ready.htmlWidth+'/'+ready.bodyWidth);
+          if(ready.htmlWidth>width+3||ready.bodyWidth>width+3){
+            const overflow=await evaluate('Array.from(document.querySelectorAll("#app,#app *")).map(e=>({tag:e.tagName,cls:String(e.className).slice(0,70),right:Math.ceil(e.getBoundingClientRect().right),width:Math.ceil(e.getBoundingClientRect().width)})).filter(e=>e.right>innerWidth+3).sort((a,b)=>b.right-a.right).slice(0,6)');
+            throw Error('W2 actual UI CSS viewport horizontal overflow '+width+'px: '+ready.htmlWidth+'/'+ready.bodyWidth+' offending='+JSON.stringify(overflow));
+          }
           const target=await evaluate('(()=>{const b=document.querySelector(".w2-map-idea button:not(:disabled)");if(!b)return {error:"no enabled map choice"};b.scrollIntoView({block:"center"});b.focus();const r=b.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,width:r.width,height:r.height,visible:r.x>=0&&r.right<=innerWidth&&r.y>=0&&r.bottom<=innerHeight,focused:document.activeElement===b}})()');
           if(target.error||!target.visible||!target.focused||target.height<38)
             throw Error('W2 map input not accessible at '+width+': '+JSON.stringify(target));
