@@ -197,7 +197,10 @@ const root=path.resolve(__dirname,'..');
             if(actual==='Art and drawing club'){selected=true;break}
             await pause(40);
           }
-          if(!selected)throw Error('W2 '+inputMode+' did not select canonical idea at '+width+'px');
+          if(!selected){
+            const trace=await evaluate('(()=>{const b=document.querySelector(".w2-map-idea button:not(:disabled)");const r=b?.getBoundingClientRect();const hit=r?document.elementFromPoint(r.x+r.width/2,r.y+r.height/2):null;const drawer=document.querySelector(".w2-map-drawer");return {drawerOpen:drawer?.open,selected:window.qaGetWork?.()?.fields?.best,hitTag:hit?.tagName,hitClass:typeof hit?.className==="string"?hit.className.slice(0,70):null,hitIsButton:hit===b||!!b?.contains(hit),buttonText:b?.textContent,buttonDisabled:b?.disabled}})()');
+            throw Error('W2 '+inputMode+' did not select canonical idea at '+width+'px; trace='+JSON.stringify(trace));
+          }
           results.push({width,inputMode,verifiedCssViewport:ready.inner,
             touchEmulation:inputMode==='touch',activatedMapButton:true,noHorizontalOverflow:true,
             savedCanonicalSelection:true});
