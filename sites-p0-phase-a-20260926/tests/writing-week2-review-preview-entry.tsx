@@ -23,9 +23,17 @@ const sampleHistory:NonNullable<WeekWork['history']>=[
     best:'Art club',fit:'Students can join with simple materials and make one display together'}}
 ];
 
+function sampleWeek2():WeekWork{
+ return {...emptyWeekWork(),fields:{
+   ideas:'Drawing club\\nBook exchange\\nBoard game afternoon',
+   reject:'Board game afternoon — it may need a quieter alternative for some students.',
+   best:'Drawing club',
+   fit:'Students can share simple materials and display their drawings together.'
+ }};
+}
 function ReviewApp(){
  const [stage,setStage]=useState<Stage>('learn');
- const [work,setWork]=useState<WeekWork>(()=>emptyWeekWork());
+ const [work,setWork]=useState<WeekWork>(()=>new URLSearchParams(location.search).has('sample')?sampleWeek2():emptyWeekWork());
  const onEdit=(key:string,value:string)=>setWork(prev=>editWeek(prev,key,value));
  const lesson=writingWeek(2);
  return <main className="w2-review-shell">
@@ -50,6 +58,7 @@ function ReviewApp(){
      {stage==='main'&&<>
        <h2>My brainstorming workspace</h2>
        <p><strong>Main Practice task:</strong> {lesson.prompt}</p>
+       <button type="button" className="secondary-button" onClick={()=>setWork(sampleWeek2())}>Load clearly labelled sample ideas</button>
        <Week2IdeaWorkspace work={work} onEdit={onEdit} disabled={false}/>
        <h3>The four original saved fields</h3>
        <p>These fields, rather than a separate Mind Map database, contain the actual Week 2 answers.</p>
