@@ -181,14 +181,21 @@ const root=path.resolve(__dirname,'..');
           if(target.error||!target.visible||!target.focused||target.height<38)
             throw Error('W2 map input not accessible at '+width+': '+JSON.stringify(target));
           if(inputMode==='touch'){
-            // A real tap begins and ends on a visible target while the page is foregrounded.
-            // Capture delivered DOM input events to distinguish a browser-gesture
-            // failure from a Week 2 React selection failure.
+            // Bring the page to the foreground BEFORE sampling tap coordinates.
+            // Expanding <details> and focusing an offscreen control can change
+            // scroll geometry. Stale coords previously hit the SECTION, not BUTTON.
             await command('Page.bringToFront');
+            await pause(90);
+            const tap=await evaluate('(()=>{const b=document.querySelector(".w2-map-idea button:not(:disabled)");if(!b)return {error:"missing target"};b.scrollIntoView({behavior:"instant",block:"center"});const r=b.getBoundingClientRect();const x=r.left+r.width/2,y=r.top+r.height/2;const hit=document.elementFromPoint(x,y);return {x,y,width:r.width,height:r.height,scrollY:window.scrollY,viewport:window.innerWidth,hitTag:hit?.tagName,hitButton:hit===b||b.contains(hit),visible:r.left>=0&&r.right<=innerWidth&&r.top>=0&&r.bottom<=innerHeight}})()');
+            if(!tap.visible||!tap.hitButton||tap.height<38)
+              throw Error('W2 CDP touch target must be an actual visible map button, not surrounding section: '+JSON.stringify(tap));
             await evaluate('(()=>{window.__w2TouchProbe=[];for(const name of ["pointerdown","pointerup","touchstart","touchend","click"])document.addEventListener(name,e=>{if(window.__w2TouchProbe.length<20)window.__w2TouchProbe.push({event:name,target:e.target?.tagName,button:e.target?.textContent?.slice(0,40)});},{capture:true,once:true})})()');
-            await command('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:target.x,y:target.y,id:1}]});
+            await command('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:tap.x,y:tap.y,id:1}]});
             await pause(85);
             await command('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+            const events=await evaluate('window.__w2TouchProbe??[]');
+            if(!events.some(e=>e.event==='click'&&e.target==='BUTTON'))
+              throw Error('W2 touch did not deliver a click to the target BUTTON: '+JSON.stringify({tap,events}));
           }else{
             // CDP Enter should act like a real keyboard key, not a synthetic DOM click.
             await command('Page.bringToFront');
