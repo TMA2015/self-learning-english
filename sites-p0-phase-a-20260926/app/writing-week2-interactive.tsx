@@ -1,6 +1,6 @@
 'use client';
 
-import {useState} from 'react';
+import {useEffect,useState} from 'react';
 import type {WeekWork} from '../domain/writing-course-v2-b';
 import {Week2IdeaMap} from './writing-week2-idea-map';
 import {addWeek2Idea, editWeek2Idea, moveWeek2Idea, readIdeaLines, removeWeek2Idea} from '../domain/writing-week2-interactive';
@@ -105,6 +105,17 @@ export function Week2IdeaWorkspace({work,onEdit,disabled}:MainProps) {
   const parsed = readIdeaLines(ideas);
   const [newIdea,setNewIdea] = useState('');
   const [message,setMessage] = useState('');
+  // The native disclosure reduces cognitive load at phone width while
+  // preserving the same canonical data, buttons and keyboard access.
+  const [narrowMap,setNarrowMap] = useState(false);
+  const [mapOpen,setMapOpen] = useState(false);
+  useEffect(()=>{
+    const media=window.matchMedia('(max-width: 379px)');
+    const sync=()=>setNarrowMap(media.matches);
+    sync();
+    media.addEventListener('change',sync);
+    return ()=>media.removeEventListener('change',sync);
+  },[]);
   // Optional, non-graded reflection labels. Never stored as proficiency evidence.
   const [sessionLabels,setSessionLabels] = useState<Record<string,string>>({});
   function apply(change:()=>string, description:string) {
@@ -120,9 +131,13 @@ export function Week2IdeaWorkspace({work,onEdit,disabled}:MainProps) {
     <p>First read the Main Practice prompt above. Check it using these questions: <strong>Topic</strong> — what is it about? <strong>Task</strong> — what must I suggest? <strong>Must include</strong> — what explanation is requested? <strong>Boundary</strong> — where, when, or for whom must the idea work?</p>
     <p>Generate a few ideas before choosing one. Two to four ideas are a suggestion, not a requirement. The original four text fields below remain your saved work.</p>
     <p><strong>Use the map while you think:</strong> Add an idea below and watch it appear here. Compare options before choosing; the map does not choose or grade for you.</p>
-    <Week2IdeaMap work={work} ideas={parsed.safe?parsed.lines:null}
-      provisionalLabels={sessionLabels} disabled={disabled}
-      onSelect={idea=>{onEdit('best',idea);setMessage('Main idea selected from the map. Add your explanation below.');}} />
+    <details className="w2-map-drawer" open={!narrowMap||mapOpen}
+      onToggle={event=>{if(narrowMap)setMapOpen(event.currentTarget.open);}}>
+      <summary>My live idea map · Show or hide the brainstorm branches</summary>
+      <Week2IdeaMap work={work} ideas={parsed.safe?parsed.lines:null}
+        provisionalLabels={sessionLabels} disabled={disabled}
+        onSelect={idea=>{onEdit('best',idea);setMessage('Main idea selected from the map. Add your explanation below.');}} />
+    </details>
     {parsed.safe ? <ol>
       {parsed.lines.map((idea,i)=><li key={i}>
         <Week2IdeaEditor key={`edit-${i}:${idea}`} idea={idea} index={i} disabled={disabled} onSave={value=>apply(()=>editWeek2Idea(ideas,i,value),'Idea edited')}/>
