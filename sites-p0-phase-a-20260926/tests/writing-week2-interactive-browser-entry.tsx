@@ -200,7 +200,9 @@ async function run(){
     check(!!drawer,'native idea map disclosure exists');
     const summary=q('.w2-map-drawer > summary') as unknown as HTMLButtonElement;
     check(!!summary,'accessible idea map summary exists');
-    if(width===320){
+    if(window.matchMedia('(max-width: 379px)').matches){
+      // Fixed-width fixture cases may have a wider real CSS viewport;
+      // CDP true-viewport cases exercise actual 320px collapse.
       await wait(()=>!drawer!.hasAttribute('open'),'narrow view defaults to compact closed map');
       check(!!q('input[placeholder="Write one short activity idea"]'),'idea editor remains available when map closed');
       summary.click();
