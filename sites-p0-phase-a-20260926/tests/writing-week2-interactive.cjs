@@ -90,4 +90,27 @@ check('New Week 2 guidance remains honest about evidence and transfer',()=>{
   assert(core.includes("contentVersion:'wcv2-b.1'"));
   assert(core.includes('evidenceWeight:0,proficiencyWeight:0'));
 });
+check('Pedagogical progression: predict, repair, revise, transfer, with no answer leakage',()=>{
+  const lab=fs.readFileSync(path.join(root,'app/writing-week2-learning-lab.tsx'),'utf8');
+  const lesson=fs.readFileSync(path.join(root,'app/writing-course-v2-b.tsx'),'utf8');
+  const ui=fs.readFileSync(path.join(root,'app/writing-week2-interactive.tsx'),'utf8');
+  const checkpoints=['Week2ThinkBeforeReveal','Week2RepairBridge','Week2RevisionCoach'];
+  for(const name of checkpoints){
+    assert(lab.includes('export function '+name));
+    assert(lesson.includes('week===2')&&lesson.includes('<'+name));
+  }
+  for(const phrase of ['Compare my reasoning','disabled={!selected||!reason.trim()}',
+    'Compare with one possible repair','disabled={!attempted}',
+    'learner self-reports only','A science museum','A school recycling team']){
+      assert(lab.includes(phrase),'Required teaching strategy: '+phrase);
+  }
+  assert(ui.includes('My explanation of one improvement'));
+  assert(ui.includes('Two possible activities'));
+  assert(ui.includes('Try independently first'));
+  assert(ui.includes('These optional scratchpad notes are not saved'));
+  assert(ui.includes('if (history.length===1)'));
+  assert(!lab.includes('fetch(')&&!lab.includes('localStorage')&&!lab.includes('sessionStorage'));
+  const compiled=ts.transpileModule(lab,{compilerOptions:{jsx:ts.JsxEmit.ReactJSX,module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022},reportDiagnostics:true});
+  assert.equal((compiled.diagnostics||[]).length,0,'Week 2 teaching lab TSX transpiles');
+});
 console.log(JSON.stringify({result:'PASS',checks:count,scope:'Week 2 interactive deterministic contract'}));
