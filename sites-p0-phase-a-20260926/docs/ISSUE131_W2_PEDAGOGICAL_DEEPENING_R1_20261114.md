@@ -26,6 +26,10 @@ Transform five existing stages into a connected path in which the learner does t
 - Gemini provider activation and transmission of new learner-authored Week 2 data remain disabled.
 - No changes to Weeks 3–12, `domain/writing-course-v2-b.ts`, canonical question IDs/answers, data format, Firebase, 44 MP3 or the curriculum v1.25.0.
 
+## Implementation refinement
+
+Week 2's previously authored lunchtime-club examples are retained inside an optional expandable section, reducing mandatory reading length on narrow screens. The original five stage buttons remain unchanged. The comparison view defaults to the latest two saved attempts when history becomes available, and a single saved attempt is never presented as a two-version comparison.
+
 ## Technical evidence to collect on exact HEAD
 
 - Typescript/static build, existing full `qa:full`, original Writing Weeks 2–12 regression.
