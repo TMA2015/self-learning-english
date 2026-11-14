@@ -60,7 +60,7 @@ const root=path.resolve(__dirname,'..');
       child.on('close',code=>{
         clearTimeout(timer);
         if(timedOut||code!==0)return reject(Error('Chromium '+code+' '+stderr.slice(-450)));
-        const result=stdout.match(/<div id="sle-test-result">([\s\S]*?)<\/div>/)?.[1]??'';
+        const result=stdout.match(/<div id="sle-test-result"[^>]*>([\s\S]*?)<\/div>/)?.[1]??'';
         if(!result.startsWith('PASS_W2 '))return reject(Error('Week 2 Chromium failure: '+result.slice(0,1300)));
         try{resolve(JSON.parse(result.slice('PASS_W2 '.length)))}catch(e){reject(e)}
       });
