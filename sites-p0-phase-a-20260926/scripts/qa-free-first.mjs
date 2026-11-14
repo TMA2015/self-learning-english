@@ -52,6 +52,7 @@ const coreTests=[
 ];
 
 const fullRegressionTests=[
+  "writing-week2-interactive-browser.cjs",
   "p0-writing-review-browser.cjs",
   "writing-source-bundle-browser.cjs",
   "vocabulary-pilot-browser.cjs",
@@ -61,6 +62,7 @@ const fullRegressionTests=[
   "learning-plan-direct-review-browser.cjs",
   "writing-course-v2-a.cjs",
   "writing-course-v2-b.cjs",
+  "writing-week2-interactive.cjs",
   "writing-course-v2-c.cjs",
   "g3e-firebase-reliability.cjs",
   "issue64-task-b.cjs",

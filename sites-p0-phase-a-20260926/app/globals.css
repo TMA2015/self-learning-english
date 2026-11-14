@@ -631,3 +631,67 @@ body {
  .sle-rgw-strategy,.sle-rgw-model,.sle-rgw-brainstorm,.sle-rgw-self-practice{padding:11px 12px}
  .sle-rgw-strategies{gap:.5rem}
 }
+
+
+/* SLE Writing Week 2: learner-owned visual idea map, no graph library or scoring. */
+.w2-map {overflow-wrap:anywhere}
+.w2-map .muted {margin:0 0 16px}
+.w2-map-root {position:relative;margin:12px auto 0;padding:16px 18px;max-width:520px;
+  border:2px solid #3d73b6;background:#eaf3ff;border-radius:15px;text-align:center;min-width:0}
+.w2-map-root p {font-weight:700;line-height:1.45;margin:5px 0 0;color:#21496f}
+.w2-map-kicker {display:block;font-size:11px;font-weight:800;letter-spacing:.07em;color:#345e8c}
+.w2-map-branches {display:grid;grid-template-columns:minmax(0,1fr);gap:12px;min-width:0;
+  margin:0;padding:20px 0 0 14px;border-left:2px solid #b9d0e6}
+.w2-map-branch {position:relative;min-width:0;border:1px solid #b9d0e6;border-radius:13px;
+  background:#f8fbff;padding:14px;overflow-wrap:anywhere}
+.w2-map-branch::before {content:"";position:absolute;left:-16px;top:25px;width:15px;
+  height:2px;background:#b9d0e6}
+.w2-map-branch h4 {margin:0 0 12px;color:#234d79}
+.w2-map-decision {border-color:#7bb8a4;background:#f3faf6}
+.w2-map-filtered {border-color:#d6c39c;background:#fffaf1}
+.w2-map-idea-list {list-style:none;display:grid;gap:8px;margin:0;padding:0;min-width:0}
+.w2-map-idea {border:1px solid #d6e4f2;border-radius:9px;padding:10px;
+  display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;min-width:0;background:#fff}
+.w2-map-idea.w2-map-chosen {border-color:#6bae96;background:#ecf8f0}
+.w2-map-idea-text {display:block;flex:1 1 100%;font-weight:600;min-width:0;overflow-wrap:anywhere}
+.w2-map-tag {font-size:12px;color:#34567b;background:#eaf3ff;padding:2px 7px;border-radius:999px}
+.w2-map-idea button {min-height:40px;border:1px solid #a9c8e1;background:#f8fcff;
+  border-radius:8px;padding:7px 10px;color:#234f7b;white-space:normal;font-weight:700}
+.w2-map-idea button:focus-visible {outline:3px solid #266dc3;outline-offset:2px}
+.w2-map-idea button:disabled {background:#e7f5ed;color:#2b6d55}
+.w2-map-note {font-size:13px;color:#47627e;margin:8px 0}
+.w2-map-value {font-weight:600;white-space:pre-wrap;overflow-wrap:anywhere}
+.w2-map-original {white-space:pre-wrap;overflow-wrap:anywhere;margin:6px 0}
+.w2-map-subnode {margin-top:14px;padding:12px;border-left:3px solid #77ad91;border-radius:7px;background:#fff}
+.w2-map-subnode p {margin:5px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.w2-map-footnote {margin:12px 0 0;font-size:13px;color:#546e87}
+@media (min-width:900px) {
+  .w2-map-root::after {content:"";position:absolute;left:50%;bottom:-20px;height:18px;width:2px;background:#b9d0e6}
+  .w2-map-branches {grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border-left:0;
+    padding:28px 0 0;position:relative}
+  .w2-map-branches::before {content:"";position:absolute;top:19px;left:16.66%;right:16.66%;
+    border-top:2px solid #b9d0e6}
+  .w2-map-branch::before {left:50%;top:-10px;width:2px;height:10px}
+}
+
+/* Week 2 reviewer suggestion: compact task map on narrow screens only. */
+.w2-map-drawer {min-width:0}
+.w2-map-drawer>summary {display:none}
+@media (max-width:379px) {
+  .w2-map-drawer>summary {
+    display:list-item;
+    cursor:pointer;
+    min-height:44px;
+    padding:12px 13px;
+    border:1px solid #b9d0e6;
+    background:#eef5ff;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:700;
+    line-height:1.5;
+    color:#234d79;
+    overflow-wrap:anywhere;
+  }
+  .w2-map-drawer>summary:focus-visible {outline:3px solid #266dc3;outline-offset:3px}
+  .w2-map-drawer[open]>summary {margin-bottom:8px}
+}
