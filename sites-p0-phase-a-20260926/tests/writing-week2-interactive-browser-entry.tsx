@@ -124,6 +124,18 @@ async function run(){
     await wait(()=>!!host.textContent?.includes('not saved or graded'),'unsaved comparison explanation');
     check(JSON.stringify(getWork().history)===savedHistory,'history remains byte-for-byte unchanged');
   }
+  if(phase==='predict'||phase==='repair'||phase==='sort'){
+    // Native DOM order is an accessibility baseline for keyboard tabbing.
+    const nodes=[...host.querySelectorAll('input,textarea,select,button')].filter(el=>!el.hasAttribute('disabled')&&!el.hasAttribute('hidden'));
+    check(nodes.length>=2,'keyboard focus sequence has multiple controls');
+    check(nodes.every(el=>!el.hasAttribute('tabindex')||Number(el.getAttribute('tabindex'))>=0),
+      'no focusable controls excluded from normal tab order');
+    check(nodes.some(el=>el.tagName==='INPUT'||el.tagName==='SELECT'),
+      'decision input is keyboard-reachable');
+    const first=nodes[0] as unknown as HTMLInputElement;
+    first.focus();
+    check(document.activeElement===first,'first control accepts keyboard focus');
+  }
   if(phase==='predict'){
     const reveal=[...host.querySelectorAll('button')].find(b=>b.textContent?.trim()==='Compare my reasoning') as HTMLButtonElement;
     check(!!reveal&&reveal.disabled,'worked feedback gated by own attempt');
@@ -184,6 +196,18 @@ async function run(){
     check(host.textContent?.includes('complex or historical formatting'),'still no destructive parse');
   }
   if(phase==='editor'){
+    const drawer=q('.w2-map-drawer');
+    check(!!drawer,'native idea map disclosure exists');
+    const summary=q('.w2-map-drawer > summary') as unknown as HTMLButtonElement;
+    check(!!summary,'accessible idea map summary exists');
+    if(width===320){
+      await wait(()=>!drawer!.hasAttribute('open'),'narrow view defaults to compact closed map');
+      check(!!q('input[placeholder="Write one short activity idea"]'),'idea editor remains available when map closed');
+      summary.click();
+      await wait(()=>!!drawer!.hasAttribute('open'),'narrow view can expand map');
+    }else{
+      await wait(()=>!!drawer!.hasAttribute('open'),'non-narrow map remains expanded');
+    }
     const input=q('input[placeholder="Write one short activity idea"]') as HTMLInputElement;
     check(!!input,'add idea input');
     writeInput(input,'Drama club');
