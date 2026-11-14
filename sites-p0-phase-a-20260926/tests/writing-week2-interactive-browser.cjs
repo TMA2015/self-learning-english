@@ -169,7 +169,15 @@ const root=path.resolve(__dirname,'..');
             const overflow=await evaluate('Array.from(document.querySelectorAll("#app,#app *")).map(e=>({tag:e.tagName,cls:String(e.className).slice(0,70),right:Math.ceil(e.getBoundingClientRect().right),width:Math.ceil(e.getBoundingClientRect().width)})).filter(e=>e.right>innerWidth+3).sort((a,b)=>b.right-a.right).slice(0,6)');
             throw Error('W2 actual UI CSS viewport horizontal overflow '+width+'px: '+ready.htmlWidth+'/'+ready.bodyWidth+' offending='+JSON.stringify(overflow));
           }
-          const target=await evaluate('(()=>{const b=document.querySelector(".w2-map-idea button:not(:disabled)");if(!b)return {error:"no enabled map choice"};b.scrollIntoView({block:"center"});b.focus();const r=b.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,width:r.width,height:r.height,visible:r.x>=0&&r.right<=innerWidth&&r.y>=0&&r.bottom<=innerHeight,focused:document.activeElement===b}})()');
+          // CSS globally enables smooth scrolling. Wait for the actual target to
+          // reach the emulated viewport before sending a physical touch/keyboard event.
+          await evaluate('(()=>{const b=document.querySelector(".w2-map-idea button:not(:disabled)");if(!b)return false;document.documentElement.style.scrollBehavior="auto";document.body.style.scrollBehavior="auto";b.scrollIntoView({behavior:"instant",block:"center"});b.focus({preventScroll:true});return true})()');
+          let target=null;
+          for(let k=0;k<75;k++){
+            target=await evaluate('(()=>{const b=document.querySelector(".w2-map-idea button:not(:disabled)");if(!b)return {error:"no enabled map choice"};const r=b.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,width:r.width,height:r.height,scrollY:scrollY,visible:r.x>=0&&r.right<=innerWidth&&r.y>=0&&r.bottom<=innerHeight,focused:document.activeElement===b}})()');
+            if(target.visible&&target.focused)break;
+            await pause(40);
+          }
           if(target.error||!target.visible||!target.focused||target.height<38)
             throw Error('W2 map input not accessible at '+width+': '+JSON.stringify(target));
           if(inputMode==='touch'){
