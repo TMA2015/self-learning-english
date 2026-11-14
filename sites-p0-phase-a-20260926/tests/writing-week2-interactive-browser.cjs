@@ -69,12 +69,12 @@ const root=path.resolve(__dirname,'..');
   try{
     await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
     const base='http://127.0.0.1:'+server.address().port;
-    const cases=[['learn',320],['predict',320],['sort',320],['repair',320],['editor',320],['editor',768],['legacy',320],['compare',320],['oneversion',320],['revise',320],['transfer',320]];
+    const cases=[['learn',320],['predict',320],['predict',768],['sort',320],['sort',768],['repair',320],['repair',768],['editor',320],['editor',768],['legacy',320],['compare',320],['oneversion',320],['revise',320],['transfer',320]];
     const results=[];
     for(const [phase,width] of cases){
       results.push(await run(base+'/?phase='+phase+'&width='+width));
     }
-    assert.equal(results.length,11);
+    assert.equal(results.length,14);
     assert.equal(writes,0,'Browser fixture must not make POST or mutate learner data');
 
     // CDP verifies the true CSS viewport, a real touch gesture and keyboard activation.
