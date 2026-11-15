@@ -15,7 +15,8 @@ const root=path.resolve(__dirname,'..');
  fs.rmSync(out,{recursive:true,force:true});
  await build({root,configFile:false,logLevel:'error',define:{
   'process.env.NODE_ENV':JSON.stringify('production'),
-  'process.env.NEXT_PUBLIC_LEARNING_RUNTIME':JSON.stringify('browser')
+  'process.env.NEXT_PUBLIC_LEARNING_RUNTIME':JSON.stringify('browser'),
+  'process.env.NEXT_PUBLIC_BASE_PATH':JSON.stringify('')
  },build:{outDir:out,emptyOutDir:true,target:'es2022',minify:false,
   lib:{entry:path.join(root,'tests/writing-week2-r1-browser-entry.tsx'),
    formats:['iife'],name:'SLEWeek2R1Browser',fileName:()=> 'bundle.js'}}});
@@ -35,6 +36,7 @@ const root=path.resolve(__dirname,'..');
   '<div id="app"></div><div id="sle-test-result">STARTED</div>'+
   '<script>window.addEventListener("error",e=>document.getElementById("sle-test-result").textContent="FAIL_W2_R1 "+e.message);'+
   'window.addEventListener("unhandledrejection",e=>document.getElementById("sle-test-result").textContent="FAIL_W2_R1 "+e.reason);</script>'+
+  '<script>window.process={env:{NODE_ENV:"production",NEXT_PUBLIC_LEARNING_RUNTIME:"browser",NEXT_PUBLIC_BASE_PATH:""}};</script>'+
   '<script>'+bundle.replaceAll('</script>','<\\/script>')+'</script></body></html>';
  let writes=0;
  const server=http.createServer((req,res)=>{
