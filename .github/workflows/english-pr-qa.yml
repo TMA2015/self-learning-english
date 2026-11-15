@@ -138,3 +138,21 @@ jobs:
           else
             echo 'Repository policy QA passed. No application source on this PR; full QA not run.' >> "$GITHUB_STEP_SUMMARY"
           fi
+
+      # TEMPORARY READ-ONLY EXPORT ON THIS DISPOSABLE PR BRANCH ONLY.
+      # Unchanged production workflows, Firebase and PR #155.
+      - name: Build isolated R2 offline HTML download
+        if: ${{ steps.app.outputs.present == 'true' }}
+        working-directory: sites-p0-phase-a-20260926
+        run: node scripts/build-w2-r2-review.cjs
+
+      - name: Upload R2 offline HTML for download
+        if: ${{ steps.app.outputs.present == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: SLE-Writing-Week2-R2-Standalone-HTML
+          retention-days: 7
+          if-no-files-found: error
+          path: |
+            sites-p0-phase-a-20260926/.sites-runtime/w2-r2-review/index.html
+            sites-p0-phase-a-20260926/.sites-runtime/w2-r2-review/README.txt
