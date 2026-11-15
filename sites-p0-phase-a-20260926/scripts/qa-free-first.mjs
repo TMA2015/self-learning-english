@@ -63,6 +63,7 @@ const fullRegressionTests=[
   "writing-course-v2-b.cjs",
   "writing-week2-course-simplified.cjs",
   "writing-week2-preview-acceptance.cjs",
+  "writing-week2-r1-browser.cjs",
   "writing-course-v2-c.cjs",
   "g3e-firebase-reliability.cjs",
   "issue64-task-b.cjs",
