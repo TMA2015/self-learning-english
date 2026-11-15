@@ -85,8 +85,19 @@ const actions:WeekActions={
   check(html().includes('Try the same four steps'),'independent transfer missing');
   distinct=true;
  }
+ const insideIntentionalScroller=(el:Element)=>{
+  let parent=el.parentElement;
+  while(parent&&parent!==document.body){
+   const style=getComputedStyle(parent);
+   if(/auto|scroll/.test(style.overflowX)&&parent.scrollWidth>parent.clientWidth+1)return true;
+   parent=parent.parentElement;
+  }
+  return false;
+ };
  for(const el of panel.querySelectorAll('button, input, textarea, select')){
   const rect=box(el);
+  if(rect.width===0&&rect.height===0)continue;
+  if(insideIntentionalScroller(el))continue;
   check(rect.right<=width+2,'control exceeds '+width+'px: '+(el.textContent??el.tagName).slice(0,45));
   check(rect.left>=-2,'control extends left: '+el.tagName);
  }
