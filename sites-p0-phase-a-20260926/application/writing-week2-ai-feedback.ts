@@ -28,7 +28,7 @@ export const WEEK2_AI_UNAVAILABLE=fallback;
 export function validateWeek2SavedAIInput(value:unknown):Week2SavedAIInput|null{
  if(!value||typeof value!=='object'||Array.isArray(value))return null;
  const body=value as Record<string,unknown>,fields=body.fields;
- if(!Number.isInteger(body.version)||!(Number(body.version)>=1)||Number(body.version)>10000||
+ if(typeof body.version!=='number'||!Number.isInteger(body.version)||body.version<1||body.version>10000||
   typeof body.signature!=='string'||!fields||typeof fields!=='object'||Array.isArray(fields))return null;
  const f=fields as Record<string,unknown>,keys=Object.keys(f);
  if(keys.some(k=>!['ideas','reject','best','fit'].includes(k)))return null;
