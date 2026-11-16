@@ -15,6 +15,7 @@ const coreTests=[
   "speaking-notes-stage3.cjs",
   "ai-tutor-stage3.cjs",
   "issue114-provider-policy-gate.cjs",
+  "issue114-server-provider-policy-gate.cjs",
   "ai-tutor-language-stage3.cjs",
   "ai-tutor-stale-request-stage3.cjs",
   "ai-tutor-markdown-stage3.cjs",
