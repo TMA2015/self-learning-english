@@ -29,7 +29,7 @@ const write=async(e:HTMLTextAreaElement,value:string)=>{
 };
 const full=async()=>{
  await toWeek();
- if(document.querySelector('.english-lesson-ai-launch')||document.querySelector('.writing-ai-review'))throw Error('Issue114 AI UI exposed');
+ if(!document.querySelector('.english-lesson-ai-launch'))throw Error('Gemini AI Tutor control missing on Learn screen');
  const vi=document.querySelector<HTMLInputElement>('.support-toggle input');
  if(!vi)throw Error('Vietnamese Support missing');
  if(!vi.checked)vi.click();
