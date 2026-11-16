@@ -280,3 +280,32 @@ export function Week2CourseTransfer(){
   <p className="notice">This optional scratchpad is not saved. It is simply another chance to practise the four steps.</p>
  </details>;
 }
+
+
+export function Week2CourseReflect({work,busy,error,finished,canCompare,actions}:{
+ work:WeekWork;busy:boolean;error:string;finished:number;canCompare:boolean;
+ actions:{reflect:(key:string,value:string)=>void;review:()=>void;go:(screen:WeekScreen)=>void};
+}){
+ const oldLabels=writingWeek(2).reflections;
+ const historical=oldLabels.map((label,i)=>({label,value:work.reflections[String(i)]??''})).filter(x=>x.value.trim());
+ const historicalComplete=historical.length===oldLabels.length;
+ const selection=work.reflections.selection??'';
+ const validReflection=!!selection.trim()||historicalComplete;
+ return <section aria-label="Week 2: reflect and finish">
+  <p>Think about how you selected your idea. One short answer is enough to finish the week.</p>
+  <label className="field"><span>What helped you choose the idea that best answers the task?{historicalComplete?' (optional — earlier reflection kept)':''}</span>
+   <textarea rows={3} disabled={busy} value={selection} onChange={e=>actions.reflect('selection',e.target.value)} placeholder="I chose this idea because..."/>
+  </label>
+  {historical.length>0&&<details className="wcv2-card">
+   <summary>My earlier Week 2 reflections · {historical.length} saved</summary>
+   <p>These are earlier answers under their original questions. They are preserved, not rewritten.</p>
+   {historical.map(v=><section key={v.label}><h4>{v.label}</h4><p style={{whiteSpace:'pre-wrap'}}>{v.value}</p></section>)}
+  </details>}
+  <button type="button" className="primary-button" disabled={busy||!!error||!canCompare||finished!==4||!validReflection} onClick={actions.review}>
+   {work.reviewDone?'Week complete · Save reflection':'Save reflection & finish Week 2'}
+  </button>
+  {!canCompare?<p>First save your plan in Main Practice.</p>:finished!==4?<p>Finish the four Guided Practice questions to complete this week.</p>:!validReflection?<p>Write one short reflection to finish.</p>:null}
+  {work.reviewDone&&<p role="status">Week 2 has been completed. You may review your plan again whenever you like.</p>}
+  <button type="button" className="secondary-button" disabled={busy} onClick={()=>actions.go('main')}>Edit my plan in Main Practice</button>
+ </section>;
+}
