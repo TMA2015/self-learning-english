@@ -6,7 +6,8 @@ execFileSync(process.execPath,[path.join(root,'node_modules/typescript/bin/tsc')
  '--jsx','react-jsx','--resolveJsonModule','--esModuleInterop','--skipLibCheck'],
  {cwd:root,stdio:'inherit'});
 fs.writeFileSync(path.join(out,'package.json'),'{"type":"commonjs"}');
-const d=require(path.join(out,'domain/writing-course-v2-b.js'));
+const domainFile=fs.existsSync(path.join(out,'domain/writing-course-v2-b.js'))?'domain/writing-course-v2-b.js':'writing-course-v2-b.js';
+const d=require(path.join(out,domainFile));
 const w=d.writingWeek(2);
 const keys=w.fields.map(f=>f.key);
 assert.deepEqual(keys,['ideas','reject','best','fit'],'Canonical four-key schema');
