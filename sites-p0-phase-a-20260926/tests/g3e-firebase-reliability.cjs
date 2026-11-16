@@ -75,7 +75,11 @@ const valid={summary:'Clear idea',strengths:['Relevant'],improvements:['Add an e
    'firebase/remote-config':{isSupported:async()=>true,getRemoteConfig:a=>{assert.equal(a,app);return remote},fetchAndActivate:async()=>{calls.remote++},getString:()=> 'gemini-3.5-flash-lite'},
   };
   Module._load=function(name,...args){return mocks[name]??original.call(this,name,...args)};
+  const gate=require(path.join(out,'domain/learner-external-ai-gate.js'));
+  const gateOriginal=gate.learnerExternalAiEnabled;
   try{
+   // Test-only: exercise legacy provider mechanics. Shipping gate remains closed.
+   gate.learnerExternalAiEnabled=()=>true;
    const bridge=require(path.join(out,'infrastructure/browser/firebase-ai-browser.js'));
    const tutor=bridge.browserTutorService();assert(await tutor.coach('analysis','task',{}));await flush();
    assert.equal(calls.init[0].config.appId,'1:789845564404:web:26cfae781851ee7758b7a1');
@@ -85,7 +89,7 @@ const valid={summary:'Clear idea',strengths:['Relevant'],improvements:['Add an e
    assert.equal(calls.appCheck[0].isTokenAutoRefreshEnabled,true);
    assert.equal(calls.appCheckTokens,1,'AI must await App Check attestation');
    assert.equal(global.FIREBASE_APPCHECK_DEBUG_TOKEN,undefined);
-  }finally{Module._load=original;global.window=priorWindow;global.location=priorLocation}
+  }finally{gate.learnerExternalAiEnabled=gateOriginal;Module._load=original;global.window=priorWindow;global.location=priorLocation}
  });
  await test('save-before-AI, unchanged App Check guard, unchanged model configuration',async()=>{
   const read=p=>fs.readFileSync(path.join(root,p),'utf8');
