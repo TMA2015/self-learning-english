@@ -64,3 +64,9 @@ function EnabledEnglishLessonTutor({lesson,focus}:{lesson:string;focus?:string})
   </section>}
  </div>;
 }
+
+// Issue #114: no learner-accessible AI controls unless a separately reviewed policy gate opens.
+export function EnglishLessonTutor(props:{lesson:string;focus?:string}){
+ if(!learnerExternalAiEnabled())return null;
+ return <EnabledEnglishLessonTutor {...props}/>;
+}
