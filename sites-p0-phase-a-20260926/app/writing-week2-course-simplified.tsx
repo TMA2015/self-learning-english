@@ -202,7 +202,7 @@ export function Week2CourseMain({work,busy,error,saved,showVi,actions}:CoursePro
    <p>Use the same four thinking moves you saw in Learn. These are your own notes, not a full essay.</p>
    <div style={separated}>{definition.fields.map((field,i)=><label key={field.key} className="field">
     <strong>{steps[i].title}</strong>
-    <span>{field.label} · {field.required?'Required':'Optional'}</span>
+    <span>{field.label}{field.required?' · Required':field.label.includes('(optional)')?'':' · Optional'}</span>
     <p className="muted">{steps[i].help}</p>
     <textarea rows={3} name={'week-2-'+field.key} disabled={busy} value={work.fields[field.key]??''} onChange={e=>actions.edit(field.key,e.target.value)} placeholder="Write your own words..."/>
    </label>)}</div>
