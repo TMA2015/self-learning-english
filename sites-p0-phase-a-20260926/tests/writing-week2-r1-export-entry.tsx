@@ -5,9 +5,9 @@ import {emptyWeekWork,editWeek,submitWeek,checkWeekGuided,finishWeekReview,confi
 import {BrowserLocalLearningRepository} from '../infrastructure/storage/browser-local-repositories';
 import '../app/globals.css';
 
-const sourceHead='8d2ad8b71531a60387560f6382b8d833c31a53cb';
+const sourceHead=process.env.NEXT_PUBLIC_SOURCE_HEAD??'unknown';
 const storageScope={ownerId:'preview-only-owner',learnerId:'fictional-week2'};
-const storagePrefix='sle:pr158:week2-r1:preview-only:20261115';
+const storagePrefix='sle:pr158:week2-r2:preview-only:20261115';
 const storage=new BrowserLocalLearningRepository({
  getItem:k=>window.localStorage.getItem(k),
  setItem:(k,v)=>window.localStorage.setItem(k,v),
@@ -56,7 +56,7 @@ function Preview(){
  });
  return <div>
   <aside style={{padding:'14px 18px',background:'#eaf3ff',borderBottom:'1px solid #bcd5f2',fontFamily:'system-ui',lineHeight:1.5}} aria-label="Isolated preview controls">
-   <strong>Self-Learning English · Writing Course Week 2 · R1 React Preview</strong>
+   <strong>Self-Learning English · Writing Course Week 2 · R2 React Preview</strong>
    <p style={{margin:'4px 0',fontSize:13}}>PR #158 · source HEAD <code>{sourceHead.slice(0,12)}</code> · isolated offline preview · synthetic data only · no Gemini · NOT production.</p>
    <div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}>
     <label style={{display:'inline-flex',gap:6,alignItems:'center'}}><input type="checkbox" checked={vi} onChange={e=>setVi(e.target.checked)}/> Vietnamese Support</label>
