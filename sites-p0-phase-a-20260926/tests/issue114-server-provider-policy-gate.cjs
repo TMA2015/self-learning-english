@@ -5,11 +5,12 @@
  */
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
-const Module=require('node:module');
+const ts=require(path.join(__dirname,'../node_modules/typescript'));
+
 const root=path.resolve(__dirname,'..'),out=path.join(root,'.sites-runtime/issue114-server-gate');
 fs.rmSync(out,{recursive:true,force:true});
 execFileSync(process.execPath,[path.join(root,'node_modules/typescript/bin/tsc'),
- 'infrastructure/ai/runtime.ts','infrastructure/ai/openai-http.ts',
+ 'infrastructure/ai/openai-http.ts','ai/service.ts',
  '--outDir',out,'--module','commonjs','--target','es2022',
  '--resolveJsonModule','--esModuleInterop','--skipLibCheck'],
  {cwd:root,stdio:'inherit'});
@@ -34,8 +35,14 @@ const forbiddenFetch=async()=>{outboundCalls++;throw Error('Network request must
 const provider=new OpenAIHTTPProvider('SYNTHETIC_TEST_KEY','not-a-real-model',forbiddenFetch);
 assert.equal(provider.available,false,'Even a configured server credential must not enable provider');
 assert.equal((new OpenAIHTTPProvider(undefined,'unused',forbiddenFetch)).available,false);
-const originalLoad=Module._load;
-let providerService;
+// Transpile the actual server composition using a synthetic runtimeConfig
+// fixture; Cloudflare Workers and D1 types are covered by the full app build.
+const serverRuntimeSource=load('infrastructure/ai/runtime.ts');
+const serverRuntimeJs=ts.transpileModule(serverRuntimeSource,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
+fs.mkdirSync(compiled('infrastructure/ai'),{recursive:true});
+fs.writeFileSync(compiled('infrastructure/ai/runtime.js'),serverRuntimeJs);
+fs.mkdirSync(compiled('infrastructure'),{recursive:true});
+fs.writeFileSync(compiled('infrastructure/runtime.js'),"exports.runtimeConfig=()=>({OPENAI_API_KEY:'SYNTHETIC_SERVER_KEY',AI_MODEL:'fake-test-model'});");
 (async()=>{
  try{
   assert.equal(await provider.generate(request),null,'Server provider must fail closed before HTTP call');
@@ -46,15 +53,9 @@ let providerService;
   assert.equal(await service.teachWriting('SYNTHETIC_PRIVATE_TEXT','task',{}),null);
   assert.equal(outboundCalls,0,'Server tutor must never call external provider');
 
-  // Load the real server composition root with an isolated Cloudflare Workers
-  // environment. No D1 operations and no actual provider or network requests.
-  const env={OPENAI_API_KEY:'SYNTHETIC_SERVER_KEY',AI_MODEL:'fake-test-model'};
-  Module._load=function(name,...args){
-   if(name==='cloudflare:workers')return {env};
-   return originalLoad.call(this,name,...args);
-  };
+  // Real server composition root; only the Cloudflare hosting adapter is fake.
   const {tutorService}=require(compiled('infrastructure/ai/runtime.js'));
-  providerService=tutorService();
+  const providerService=tutorService();
   assert.equal(providerService.available,false,'Server composition must not expose AI');
   assert.equal(await providerService.evaluateWriting('SYNTHETIC_PRIVATE_TEXT','task'),null);
   assert.equal(await providerService.coach('analysis','task',{answer:'SYNTHETIC_PRIVATE_TEXT'}),null);
@@ -76,7 +77,7 @@ let providerService;
 
   console.log(JSON.stringify({result:'PASS',gate:'ISSUE114_SERVER_PROVIDER_DEFAULT_CLOSED',
    runtimeWithSyntheticKey:'UNAVAILABLE',providerConfiguredButUnavailable:true,
-   serverWritingEvaluation:'DETERMINISTIC_FALLBACK',serverDiagnosticAIRatings:'UNAVAILABLE',
+   serverWritingEvaluation:'AI_PROVIDER_UNAVAILABLE',serverDiagnosticAIRatings:'AI_PROVIDER_UNAVAILABLE',
    externalHttpCalls:outboundCalls,realLearnerData:'NOT_ACCESSED',realAPIRequests:0}));
- }finally{Module._load=originalLoad}
+ }finally{/* Isolated test files removed on the next run. */}
 })().catch(e=>{console.error(e);process.exitCode=1});
