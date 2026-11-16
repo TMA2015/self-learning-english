@@ -2,6 +2,7 @@
 
 import {useState} from 'react';
 import {completeWeek,weekStructureCheck,writingWeek,type WeekScreen,type WeekWork} from '../domain/writing-course-v2-b';
+import {Week2OptionalAIReview} from './writing-week2-ai-feedback';
 
 /**
  * Writing Week 2 R1: three stable worked examples across four thinking moves.
@@ -253,6 +254,7 @@ export function Week2CourseFeedback({work,busy,error,saved,actions}:CourseProps)
     <p>All essential boxes have text. Use the questions below to check whether your choices make sense.</p>}
   </article>
   <Week2CourseSelfCheck/>
+  <Week2OptionalAIReview work={work} saved={saved} busy={busy} error={error} showVi={showVi}/>
   {error&&<p role="alert">Your latest save was not confirmed. Return to Main Practice and retry.</p>}
   <div style={{display:'flex',gap:'0.75rem',flexWrap:'wrap'}}>
    <button type="button" className="primary-button" disabled={busy} onClick={()=>actions.go('main')}>Edit my ideas</button>
