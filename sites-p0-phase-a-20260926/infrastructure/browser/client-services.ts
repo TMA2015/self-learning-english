@@ -10,6 +10,7 @@ import {pilotProgressEvidence} from '../../domain/writing-course-v2';
 import {guidedWritingFeedback} from '../../application/guided-writing';
 import {gardenRelevantIdeaResult} from '../../application/writing-practice';
 import {browserTutorConfigured,browserTutorService,readAIFailure,resetAIFailure} from './firebase-ai-browser';
+import {learnerExternalAiEnabled,LEARNER_EXTERNAL_AI_GATE_REASON} from '../../domain/learner-external-ai-gate';
 import writingCourse from '../../content/writing-course.json';
 import type {TeachingRating,WritingContext} from '../../domain/writing';
 
@@ -302,6 +303,7 @@ const aiFailureMessage=(code:string|null)=>{
   }
 };
 export async function requestWritingAI(task:string,fields:Record<string,string>,kind:'draft'|'planning'):Promise<OnDemandWritingResult>{
+  if(!learnerExternalAiEnabled())return {status:'unavailable',reason:LEARNER_EXTERNAL_AI_GATE_REASON};
   if(!browserLearningEnabled())return {status:'unavailable',reason:'AI feedback is only available in the browser learning runtime.'};
   if(!task.trim()||Object.values(fields).some(v=>typeof v!=='string'))return {status:'unavailable',reason:'The writing task is incomplete.'};
   const answer=Object.entries(fields).filter(([,v])=>v.trim()).map(([k,v])=>k+': '+v.trim()).join('\n');
