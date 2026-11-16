@@ -71,30 +71,30 @@ let count=0;async function test(name,fn){await fn();count++;console.log('PASS '+
   const main=page('main',full),feedback=page('feedback',full);
   assert(main.includes('YOUR IDEAS · WRITE HERE')&&main.includes('YOUR WRITING TASK'));
   assert.equal((main.match(/<textarea/g)||[]).length,4);
-  assert(feedback.includes('YOUR DRAFT · READ-ONLY')&&feedback.includes('BASIC COMPLETION CHECK')&&feedback.includes('Edit my ideas'));
+  assert(feedback.includes('YOUR PLAN · READ-ONLY')&&feedback.includes('PLANNING PARTS')&&feedback.includes('Edit my ideas'));
   assert.equal((feedback.match(/<textarea/g)||[]).length,0);
   assert.equal((feedback.match(/type="checkbox"/g)||[]).length,3);
   assert(feedback.includes('Chess: fewer shared materials')&&feedback.includes('Learners can share materials'));
  });
  await test('Transfer is unsaved and has no imaginary Lab link',()=>{
   const html=renderToStaticMarkup(React.createElement(c.Week2CourseTransfer));
-  assert(html.includes('NOT saved'));assert(!html.includes('Idea Explorer'));
+  assert(html.includes('not saved'));assert(!html.includes('Idea Explorer'));
   assert(!html.includes('<a '));assert.equal((html.match(/<textarea/g)||[]).length,4);
  });
  await test('History shows genuine saved versions; model comparison is separately gated',()=>{
   const a=d.submitWeek(2,full,1),b=d.submitWeek(2,{...d.editWeek(a,'fit','A revised reason'),confirmedOwnWork:true},2);
   const h=page('review',b);assert(h.includes('Saved version 1')&&h.includes('Saved version 2'));
-  assert(h.includes('Compare with a model')&&!h.includes('VersionDiffViewer'));
+  assert(h.includes('See one example plan (optional)')&&!h.includes('VersionDiffViewer'));
  });
  await test('Pending or failed saves never unlock model or invent confirmed history',()=>{
   const a=d.submitWeek(2,full,1),b=d.submitWeek(2,{...d.editWeek(a,'fit','A revised reason'),confirmedOwnWork:true},2);
   for(const extra of [{busy:true},{error:'Save failed'}]){
    const review=page('review',b,extra);
-   assert(!review.includes('Compare with a model'));assert(review.includes('Saved version 1'));assert(!review.includes('A revised reason'));
+   assert(!review.includes('See one example plan (optional)'));assert(review.includes('Saved version 1'));assert(!review.includes('A revised reason'));
    const main=page('main',b,extra);assert(main.includes(extra.busy?'Saving —':'Save not confirmed.'));
-   const feedback=page('feedback',b,extra);assert(feedback.includes('Unsaved edits are not a completed attempt.'));
+   const feedback=page('feedback',b,extra);assert(feedback.includes('Save your plan in Main Practice before finishing.'));
   }
-  assert(page('review',b).includes('Compare with a model'));
+  assert(page('review',b).includes('See one example plan (optional)'));
  });
  await test('Synthetic canonical save/reload preserves legacy fields and quota rollback',async()=>{
   const data=new Map(),storage={getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v),removeItem:k=>data.delete(k)},scope={ownerId:'qa',learnerId:'synthetic'},repo=new BrowserLocalLearningRepository(storage,'test-only-pr158');
@@ -110,5 +110,5 @@ let count=0;async function test(name,fn){await fn();count++;console.log('PASS '+
   let state={draft:1};assert.equal(await d.confirmWeekNavigation(()=>state,()=>true,async()=>false),false);
   let n=0;assert(await d.confirmWeekNavigation(()=>state,()=>true,async()=>{if(++n===1)state={draft:2};return true}));assert.equal(n,2);
  });
- console.log(JSON.stringify({result:'PASS',tests:count,scope:'Week 2 R1 synthetic SSR/React handlers and repository adapter',nativeBrowser:'NOT_TESTED',screenshots:0,realAIRequests:0}));
+ console.log(JSON.stringify({result:'PASS',tests:count,scope:'Week 2 R2 synthetic SSR/React handlers and repository adapter',nativeBrowser:'NOT_TESTED',screenshots:0,realAIRequests:0}));
 })().catch(e=>{console.error(e);process.exitCode=1});
