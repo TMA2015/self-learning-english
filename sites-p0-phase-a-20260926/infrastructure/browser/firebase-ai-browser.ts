@@ -5,7 +5,7 @@ import {SafeProviderError,type ProviderDiagnostic} from '../../ai/provider-diagn
 import {getToken,initializeAppCheck,ReCaptchaEnterpriseProvider} from 'firebase/app-check';
 import {getAI,getGenerativeModel,GoogleAIBackend} from 'firebase/ai';
 import {createTutorService} from '../../ai/service';
-import {reviewWeek2SavedPlan,type Week2SavedAIInput,type Week2AIAdvice} from '../../application/writing-week2-ai-feedback';
+import {reviewWeek2SavedPlan,type Week2AIAdvice} from '../../application/writing-week2-ai-feedback';
 import type {AITutor} from '../../ai/contracts';
 import {
   FirebaseAILogicProvider,
@@ -129,7 +129,7 @@ export function browserTutorService():AITutor{
  * Reuses App Check, Gemini model and the academically approved Option A prompt.
  * No remote persistence, score write or automatic provider request.
  */
-export async function reviewWeek2PlanWithGemini(input:Week2SavedAIInput):Promise<Week2AIAdvice|null>{
+export async function reviewWeek2PlanWithGemini(input:unknown):Promise<Week2AIAdvice|null>{
  const config=readFirebasePublicAIConfig();
  if(!config||typeof window==='undefined')return null;
  const provider=new FirebaseAILogicProvider(new FirebaseBrowserAILogicTransport(config),safeDiagnostic);
