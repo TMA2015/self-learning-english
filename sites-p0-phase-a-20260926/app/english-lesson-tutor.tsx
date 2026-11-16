@@ -1,6 +1,5 @@
 "use client";
 import {useEffect,useRef,useState} from 'react';
-import {learnerExternalAiEnabled} from '../domain/learner-external-ai-gate';
 import {Sparkles,X} from 'lucide-react';
 import {TeachingBlocks} from './teaching-blocks';
 import {LatestTutorRequest} from '../domain/tutor-request-gate';
@@ -15,7 +14,7 @@ const starters=[
 
 /* Mirrors the Math tutor's knowledge-page-only policy: no assessment,
  * quiz, Diagnostic or unsubmitted learner answers are sent to Gemini. */
-function EnabledEnglishLessonTutor({lesson,focus}:{lesson:string;focus?:string}){
+export function EnglishLessonTutor({lesson,focus}:{lesson:string;focus?:string}){
  const [open,setOpen]=useState(false),[question,setQuestion]=useState('');
  const [answer,setAnswer]=useState(''),[error,setError]=useState('');
  const [model,setModel]=useState(''),[pending,setPending]=useState(false);
@@ -65,8 +64,3 @@ function EnabledEnglishLessonTutor({lesson,focus}:{lesson:string;focus?:string})
  </div>;
 }
 
-// Issue #114: no learner-accessible AI controls unless a separately reviewed policy gate opens.
-export function EnglishLessonTutor(props:{lesson:string;focus?:string}){
- if(!learnerExternalAiEnabled())return null;
- return <EnabledEnglishLessonTutor {...props}/>;
-}
