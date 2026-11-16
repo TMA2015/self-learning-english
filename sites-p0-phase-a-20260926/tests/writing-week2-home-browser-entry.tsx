@@ -66,10 +66,10 @@ const full=async()=>{
  await click('Save my plan & check it');
  await wait(()=>text(panel()).includes('YOUR PLAN · READ-ONLY'),'save to feedback');
  const ai=panel()?.querySelector('article[aria-label="Optional AI review of saved Week 2 plan"]');
- if(!ai||!text(ai).includes('saved only on this device'))throw Error('Local persistence AI explanation missing');
+ if(!ai||!text(ai).includes('Ready for Gemini review'))throw Error('Saved local plan is not ready for Gemini');
  const aiButton=ai.querySelector<HTMLButtonElement>('button');
- if(!aiButton?.disabled)throw Error('Browser-only AI request enabled');
- aiButton.click();await pause(100); // Disabled native button must not send HTTP requests.
+ if(!aiButton||aiButton.disabled)throw Error('Gemini review button should be enabled after local save');
+ // No click here: real HomeClient QA must not call the live provider. Mock handler coverage is separate.
 
  await step('Reflect & Finish');
  const reflection=panel()?.querySelector<HTMLTextAreaElement>('textarea');
