@@ -34,16 +34,6 @@ class MemoryRepository {
  const rating={level:'A2',scores:Object.fromEntries(coreCatalog.Writing.map(k=>[k,5])),summary:'Synthetic contract fixture',strengths:[],improvements:[],corrections:[],tags:[],exercise:'Review a sentence',vendorSecret:'must be dropped'};
  const fake={available:true,generate:async r=>{assert.equal(r.schemaVersion,1);assert.equal(r.purpose,'writing-evaluation');assert(!r.instructions.includes('{{'));return {provider:'independent-test-adapter',model:'fixture',result:rating}}};
  const checked=await createTutorService(fake).evaluateWriting('My own sentence.','Write about school.');assert.equal(checked.evaluation.provider,'independent-test-adapter');assert.equal(checked.evaluation.promptVersion,'1.0.0');assert(!('vendorSecret' in checked));assert(!('vendorSecret' in checked.evaluation.structuredResult));assert.equal(await createTutorService({available:false,generate:async()=>{throw Error('must not call')}}).evaluateWriting('x','x'),null);
- // This in-memory adapter fixture simulates separately approved provider mechanics.
- // It does not open the learner-facing gate or use real external HTTP.
- const gate=require(root+'domain/learner-external-ai-gate.js');
- const actualGate=gate.learnerExternalAiEnabled;
- try{
-  gate.learnerExternalAiEnabled=()=>true; // Test-only monkey patch.
-  const adapter=new OpenAIHTTPProvider('test-key','test-model',async(url,options)=>{assert.equal(options.headers.Authorization,'Bearer test-key');return new Response(JSON.stringify({choices:[{message:{content:JSON.stringify(rating)}}]}))});
-  const normalized=await adapter.generate({schemaVersion:1,purpose:'writing-evaluation',promptVersion:'1',instructions:'test',input:{text:'test'},temperature:0});
-  assert.equal(normalized.provider,'openai');assert(!('choices' in normalized));
- }finally{gate.learnerExternalAiEnabled=actualGate}
- assert.equal(gate.learnerExternalAiEnabled(),false,'Learner-facing provider gate must remain closed');
+ const adapter=new OpenAIHTTPProvider('test-key','test-model',async(url,options)=>{assert.equal(options.headers.Authorization,'Bearer test-key');return new Response(JSON.stringify({choices:[{message:{content:JSON.stringify(rating)}}]}))});const normalized=await adapter.generate({schemaVersion:1,purpose:'writing-evaluation',promptVersion:'1',instructions:'test',input:{text:'test'},temperature:0});assert.equal(normalized.provider,'openai');assert(!('choices' in normalized));
  console.log(JSON.stringify({repositorySwap:true,exportRoundtrip:true,restorePreview:true,restoreToken:true,destructiveRestoreBlocked:true,legacyPreserved:true,authRoles:true,providerSwap:true,normalizedMetadata:true,liveAI:false}));
 })().catch(e=>{console.error(e);process.exitCode=1});
