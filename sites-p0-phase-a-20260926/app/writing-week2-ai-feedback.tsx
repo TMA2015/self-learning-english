@@ -3,6 +3,7 @@
 import {useEffect,useRef,useState} from 'react';
 import type {WeekWork} from '../domain/writing-course-v2-b';
 import type {Week2AIAdvice} from '../application/writing-week2-ai-feedback';
+import {reviewWeek2PlanWithGemini} from '../infrastructure/browser/firebase-ai-browser';
 
 const unavailable="AI feedback isn't available right now. Your plan is saved; you can still edit or finish the lesson.";
 
@@ -15,8 +16,10 @@ export function Week2OptionalAIReview({work,saved,busy,error,showVi}:{
 }){
  const current=work.submission;
  const version=work.history.findIndex(h=>h.signature===current?.signature&&h.at===current?.at)+1;
- const serverPersistence=process.env.NEXT_PUBLIC_LEARNING_RUNTIME==='server';
- const ready=serverPersistence&&!!saved&&!busy&&!error&&!!current&&version>0;
+ const runtime=process.env.NEXT_PUBLIC_LEARNING_RUNTIME;
+ const browserPersistence=runtime==='browser';
+ const serverPersistence=runtime==='server';
+ const ready=(browserPersistence||serverPersistence)&&!!saved&&!busy&&!error&&!!current&&version>0;
  const signature=current?.signature??'unsaved';
  const identity=signature+':'+(current?.at??0)+':'+version;
  const latest=useRef(identity);
@@ -32,20 +35,28 @@ export function Week2OptionalAIReview({work,saved,busy,error,showVi}:{
  },[identity]);
 
  async function request(){
-  if(!serverPersistence||!ready||pending||!current)return;
+  if(!ready||pending||!current)return;
   const requestedIdentity=identity;
   const payload={version,signature:current.signature,fields:current.fields};
   setPending(true);setMessage('');setResult(null);
   try{
-   const response=await fetch('/api/writing-week2-ai',{
-    method:'POST',credentials:'same-origin',cache:'no-store',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify(payload),
-   });
-   const body=await response.json() as {feedback?:Week2AIAdvice};
+   let f:Week2AIAdvice|null|undefined;
+   if(browserPersistence){
+    // Firebase static uses the existing App-Check-protected Gemini SDK.
+    // The learner's completed plan is already persisted locally by submitBlock.
+    f=await reviewWeek2PlanWithGemini(payload);
+   }else{
+    // Authenticated Sites retains independent server-snapshot verification.
+    const response=await fetch('/api/writing-week2-ai',{
+     method:'POST',credentials:'same-origin',cache:'no-store',
+     headers:{'Content-Type':'application/json'},
+     body:JSON.stringify(payload),
+    });
+    const body=await response.json() as {feedback?:Week2AIAdvice};
+    f=response.ok?body.feedback:null;
+   }
    if(latest.current!==requestedIdentity)return;
-   const f=body.feedback;
-   if(!response.ok||!f||f.version!==version||f.evidence_weight!==0||
+   if(!f||f.version!==version||f.evidence_weight!==0||
      !f.provisional||!f.strength||!Array.isArray(f.suggestions)||
      f.suggestions.length>2||!f.nextAction){
     setMessage(unavailable);return;
@@ -62,9 +73,10 @@ export function Week2OptionalAIReview({work,saved,busy,error,showVi}:{
   <h3>Ask AI to review my ideas (optional)</h3>
   <p>AI can suggest improvements to your plan. It may be mistaken; you decide what to change.</p>
   {showVi&&<p className="vi-help">AI chỉ góp ý cho bản kế hoạch đã lưu; bạn tự quyết định điều chỉnh. Đây không phải điểm hay đánh giá trình độ chính thức.</p>}
-  <p className="muted">Pressing this button sends your saved notes to our configured AI provider, subject to the site's data notice. AI feedback is provisional advice, not an official grade.</p>
-  {!serverPersistence?<p className="muted">Your plan is saved only on this device. AI review requires an authenticated server-saved version and is unavailable in this browser-only app. You can still edit and finish Week 2.</p>:ready?<p className="muted">Saved version {version} is ready for an optional review.</p>:
-   <p className="muted">Save your Main Practice plan successfully before requesting AI feedback. Your lesson does not depend on AI.</p>}
+  <p className="muted">Pressing this button sends your saved planning notes to Gemini for feedback. No AI request occurs until you click. Feedback is advice, not an official grade.</p>
+  {browserPersistence&&saved&&<p className="muted">Saved on this device · Version {version} · Ready for Gemini review.</p>}
+  {serverPersistence&&ready&&<p className="muted">Saved version {version} is ready for an optional review.</p>}
+  {!ready&&<p className="muted">Save your Main Practice plan successfully before requesting AI feedback. Your lesson does not depend on AI.</p>}
   <button type="button" className="secondary-button"
    disabled={!ready||pending} onClick={()=>void request()}>
    {pending?'Reviewing your saved plan…':'Check my saved plan with AI'}
