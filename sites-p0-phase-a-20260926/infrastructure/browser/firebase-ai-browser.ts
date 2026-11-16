@@ -1,5 +1,4 @@
 import {getApps,initializeApp} from 'firebase/app';
-import {learnerExternalAiEnabled,LEARNER_EXTERNAL_AI_GATE_REASON} from '../../domain/learner-external-ai-gate';
 import {FirebaseRequestLifecycle} from '../ai/firebase-request-lifecycle';
 import {detectTutorQuestionLanguage} from '../../domain/tutor-question-language';
 import {SafeProviderError,type ProviderDiagnostic} from '../../ai/provider-diagnostics';
@@ -40,7 +39,6 @@ function localDebugAllowed(){
 }
 
 function ensureAI(config:FirebasePublicAIConfig){
-  if(!learnerExternalAiEnabled())throw new Error(LEARNER_EXTERNAL_AI_GATE_REASON);
   if(typeof window==='undefined')throw new Error('Firebase AI Logic is browser-only.');
   const app=getApps().find(candidate=>candidate.name===APP_NAME)??initializeApp({
     apiKey:config.apiKey,
@@ -75,7 +73,6 @@ class FirebaseBrowserAILogicTransport implements FirebaseAILogicTransport{
   }
 
   async generateJSON(input:FirebaseAILogicGenerateInput):Promise<unknown>{
-    if(!learnerExternalAiEnabled())return null;
     return this.lifecycle.run(async()=>{
       const ai=ensureAI(this.config);
       // Math has a verified real-world pattern: obtain Firebase App Check
@@ -106,13 +103,10 @@ class FirebaseBrowserAILogicTransport implements FirebaseAILogicTransport{
 }
 
 export function browserTutorConfigured(){
-  return learnerExternalAiEnabled()&&readFirebasePublicAIConfig()!==null;
+  return readFirebasePublicAIConfig()!==null;
 }
 
 export function browserTutorService():AITutor{
-  if(!learnerExternalAiEnabled())return createTutorService(new FirebaseAILogicProvider({
-    available:false,model:'policy-gated',async generateJSON(){return null},
-  }));
   if(cachedTutor)return cachedTutor;
   const config=readFirebasePublicAIConfig();
   if(!config){
@@ -138,7 +132,6 @@ export function browserTutorService():AITutor{
 export async function explainEnglishLessonAI(input:{
   lesson:string;focus:string;question:string;
 }):Promise<{status:'answered';text:string;model:string}|{status:'unavailable';reason:string}>{
- if(!learnerExternalAiEnabled())return {status:'unavailable',reason:LEARNER_EXTERNAL_AI_GATE_REASON};
  const config=readFirebasePublicAIConfig();
  if(!config||typeof window==='undefined')return {status:'unavailable',reason:'Firebase AI is not configured.'};
  const lesson=input.lesson.trim().slice(0,120);
