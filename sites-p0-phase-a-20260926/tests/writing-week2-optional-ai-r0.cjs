@@ -23,6 +23,8 @@ const input={version:1,signature:work.submission.signature,fields:{...work.submi
 const valid=service.validateWeek2SavedAIInput(input);
 assert(valid);
 assert.equal(valid.fields.reject,undefined,'Optional reject remains absent; no fabricated rejected idea');
+assert.equal(Object.hasOwn(valid.fields,'reject'),false,'Do not invent optional reject key during normalization');
+assert.deepEqual(service.validateWeek2SavedAIInput(valid),valid,'Normalized saved plan must validate a second time before provider call');
 const blank={...notes,reject:''};
 assert(service.validateWeek2SavedAIInput({version:1,signature:JSON.stringify(blank),fields:blank}));
 assert.equal(service.validateWeek2SavedAIInput({...input,signature:'stale'}),null);
