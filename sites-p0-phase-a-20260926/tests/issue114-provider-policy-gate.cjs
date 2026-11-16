@@ -37,7 +37,7 @@ Module._load=function(name,...args){return mocks[name]??original.call(this,name,
   const result=await bridge.explainEnglishLessonAI({
    lesson:'Week 2',focus:'Learn',question:'Private learner authored question'
   });
-  assert.equal(result.status,'unavailable');assert.match(result.reason,/provider-policy review/);
+  assert.equal(result.status,'unavailable');assert.match(result.reason,/provider eligibility review/);
   assert.deepEqual(calls,{firebaseApp:0,appCheck:0,getAI:0,getModel:0,send:0},
    'No Firebase AI SDK initialized or provider request made');
   const home=read('app/home-client.tsx'),
