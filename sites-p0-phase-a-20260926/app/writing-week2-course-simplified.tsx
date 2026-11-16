@@ -234,7 +234,7 @@ function Week2CourseSelfCheck(){
  </article>;
 }
 
-export function Week2CourseFeedback({work,busy,error,saved,actions}:CourseProps){
+export function Week2CourseFeedback({work,busy,error,saved,showVi,actions}:CourseProps){
  const definition=writingWeek(2);
  const checks=weekStructureCheck(2,work);
  const missing=checks.filter(c=>!c.present);
