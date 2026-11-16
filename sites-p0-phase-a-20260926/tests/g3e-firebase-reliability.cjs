@@ -64,6 +64,7 @@ const valid={summary:'Clear idea',strengths:['Relevant'],improvements:['Add an e
  await test('browser bridge uses English App, protected SDK, selected model without Remote Config or model change',async()=>{
   const Module=require('node:module'),original=Module._load;
   const calls={init:[],appCheck:[],models:[],remote:0,ai:0};
+  const week2Advice={strength:'The idea fits the task.',suggestions:['Explain why the activity helps.'],nextAction:'Add a specific reason.'};
   const app={name:'self-learning-english-ai'};
   const remote={settings:{},defaultConfig:{}};
   const priorWindow=global.window,priorLocation=global.location;
@@ -71,7 +72,7 @@ const valid={summary:'Clear idea',strengths:['Relevant'],improvements:['Add an e
   const mocks={
    'firebase/app':{getApps:()=>[],initializeApp:(config,name)=>{calls.init.push({config,name});return app}},
    'firebase/app-check':{ReCaptchaEnterpriseProvider:class {constructor(key){this.key=key}},initializeAppCheck:(a,config)=>{assert.equal(a,app);calls.appCheck.push(config);return {valid:true}},getToken:async check=>{assert(check.valid);calls.appCheckTokens=(calls.appCheckTokens||0)+1;return {token:'fake-firebase-app-check-token'}}},
-   'firebase/ai':{GoogleAIBackend:class {},getAI:a=>{assert.equal(a,app);return {}},getGenerativeModel:(ai,config)=>{calls.models.push(config.model);return {generateContent:async()=>{calls.ai++;return {response:{text:()=>JSON.stringify(valid)}}}}}},
+   'firebase/ai':{GoogleAIBackend:class {},getAI:a=>{assert.equal(a,app);return {}},getGenerativeModel:(ai,config)=>{calls.models.push(config.model);return {generateContent:async()=>{calls.ai++;return {response:{text:()=>JSON.stringify(config.systemInstruction?.includes('saved short planning notes')?week2Advice:valid)}}}}}},
    'firebase/remote-config':{isSupported:async()=>true,getRemoteConfig:a=>{assert.equal(a,app);return remote},fetchAndActivate:async()=>{calls.remote++},getString:()=> 'gemini-3.5-flash-lite'},
   };
   Module._load=function(name,...args){return mocks[name]??original.call(this,name,...args)};
@@ -84,6 +85,17 @@ const valid={summary:'Clear idea',strengths:['Relevant'],improvements:['Add an e
    assert.deepEqual(remote.settings,{});
    assert.equal(calls.appCheck[0].isTokenAutoRefreshEnabled,true);
    assert.equal(calls.appCheckTokens,1,'AI must await App Check attestation');
+   const d=require(path.join(out,'domain/writing-course-v2-b.js'));
+   const work=d.submitWeek(2,{...d.emptyWeekWork(),confirmedOwnWork:true,
+    fields:{ideas:'Drawing club\\nScience club',reject:'',best:'Drawing club',fit:'We can share pencils.'}},100);
+   const result=await bridge.reviewWeek2PlanWithGemini({
+    version:1,signature:work.submission.signature,fields:work.submission.fields});
+   assert(result,'Saved Week 2 input must receive mocked Gemini advice');
+   assert.equal(result.provider,'firebase-ai-logic');
+   assert.equal(result.evidence_weight,0);
+   assert.equal(result.strength,week2Advice.strength);
+   assert.equal(calls.ai,2,'Generic Writing and Week 2 Gemini requests use existing SDK');
+   assert.equal(calls.appCheckTokens,2,'Week 2 must also verify App Check');
    assert.equal(global.FIREBASE_APPCHECK_DEBUG_TOKEN,undefined);
   }finally{Module._load=original;global.window=priorWindow;global.location=priorLocation}
  });
