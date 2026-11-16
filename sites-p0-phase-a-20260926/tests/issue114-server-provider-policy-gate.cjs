@@ -1,12 +1,12 @@
 'use strict';
 /**
- * SLE Issue #114: server-side (OpenAIHTTPProvider) policy fail-closed contract.
- * All credentials/payloads in this suite are synthetic. No remote HTTP.
+ * General-audience SLE: server OpenAI AI writing is an available capability
+ * when a SERVER-ONLY API key is configured, while Gemini browser policy gate
+ * remains separate and closed. Mocked transport; NO live HTTP or learner data.
  */
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
 const ts=require(path.join(__dirname,'../node_modules/typescript'));
-
 const root=path.resolve(__dirname,'..'),out=path.join(root,'.sites-runtime/issue114-server-gate');
 fs.rmSync(out,{recursive:true,force:true});
 execFileSync(process.execPath,[path.join(root,'node_modules/typescript/bin/tsc'),
@@ -16,68 +16,75 @@ execFileSync(process.execPath,[path.join(root,'node_modules/typescript/bin/tsc')
  {cwd:root,stdio:'inherit'});
 fs.writeFileSync(path.join(out,'package.json'),'{"type":"commonjs"}');
 const compiled=p=>path.join(out,p);
-const gate=require(compiled('domain/learner-external-ai-gate.js'));
 const {OpenAIHTTPProvider}=require(compiled('infrastructure/ai/openai-http.js'));
 const {createTutorService}=require(compiled('ai/service.js'));
 const load=p=>fs.readFileSync(path.join(root,p),'utf8');
-const previous=process.env.NEXT_PUBLIC_SLE_LEARNER_AI_APPROVED;
-process.env.NEXT_PUBLIC_SLE_LEARNER_AI_APPROVED='1';
-assert.equal(gate.learnerExternalAiEnabled(),false,'Build-time or env variable must not open policy gate');
-if(previous===undefined)delete process.env.NEXT_PUBLIC_SLE_LEARNER_AI_APPROVED;
-else process.env.NEXT_PUBLIC_SLE_LEARNER_AI_APPROVED=previous;
-const request={
- schemaVersion:1,purpose:'feedback',promptVersion:'test',
- instructions:'No real instructions',input:{studentWriting:'SYNTHETIC_PRIVATE_TEXT'},
- temperature:0
+let mockCalls=0,realCalls=0;
+const mockFetch=async(url,options)=>{
+ mockCalls++;
+ assert.equal(url,'https://api.openai.com/v1/chat/completions');
+ assert.equal(options.headers.Authorization,'Bearer SYNTHETIC_TEST_KEY');
+ const body=JSON.parse(options.body);
+ assert.equal(body.model,'synthetic-test-model');
+ assert.equal(body.messages.length,2);
+ assert.equal(body.messages[1].content.includes('SYNTHETIC_WRITING'),true);
+ return new Response(JSON.stringify({choices:[{message:{content:JSON.stringify({
+  summary:'Example only',strengths:[],improvements:[],exercise:'Add a reason',tags:[],
+ })}}]}),{status:200,headers:{'Content-Type':'application/json'}});
 };
-let outboundCalls=0;
-const forbiddenFetch=async()=>{outboundCalls++;throw Error('Network request must never be made')};
-const provider=new OpenAIHTTPProvider('SYNTHETIC_TEST_KEY','not-a-real-model',forbiddenFetch);
-assert.equal(provider.available,false,'Even a configured server credential must not enable provider');
-assert.equal((new OpenAIHTTPProvider(undefined,'unused',forbiddenFetch)).available,false);
-// Transpile the actual server composition using a synthetic runtimeConfig
-// fixture; Cloudflare Workers and D1 types are covered by the full app build.
-const serverRuntimeSource=load('infrastructure/ai/runtime.ts');
-const serverRuntimeJs=ts.transpileModule(serverRuntimeSource,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
-fs.mkdirSync(compiled('infrastructure/ai'),{recursive:true});
-fs.writeFileSync(compiled('infrastructure/ai/runtime.js'),serverRuntimeJs);
-fs.mkdirSync(compiled('infrastructure'),{recursive:true});
-fs.writeFileSync(compiled('infrastructure/runtime.js'),"exports.runtimeConfig=()=>({OPENAI_API_KEY:'SYNTHETIC_SERVER_KEY',AI_MODEL:'fake-test-model'});");
+const provider=new OpenAIHTTPProvider('SYNTHETIC_TEST_KEY','synthetic-test-model',mockFetch);
+assert.equal(provider.available,true,'Server AI must not be blocked globally when configured');
+const unavailable=new OpenAIHTTPProvider(undefined,'unused',async()=>{realCalls++;throw Error('Never called')});
+assert.equal(unavailable.available,false,'No-key server remains unavailable');
 (async()=>{
+ const result=await provider.generate({
+  schemaVersion:1,purpose:'feedback',promptVersion:'synthetic',
+  instructions:'Never log learner data',input:{studentWriting:'SYNTHETIC_WRITING'},temperature:0,
+ });
+ assert.equal(result.provider,'openai');
+ assert.equal(result.result.summary,'Example only');
+ assert.equal(mockCalls,1);
+ assert.equal(await unavailable.generate({
+  schemaVersion:1,purpose:'feedback',promptVersion:'synthetic',
+  instructions:'',input:{studentWriting:'SYNTHETIC_WRITING'},temperature:0,
+ }),null);
+ assert.equal(realCalls,0);
+ const service=createTutorService(provider);
+ assert.equal(service.available,true);
+
+ // Execute the ACTUAL server composition root with a fake hosting adapter,
+ // not an actual Cloudflare environment or network.
+ const source=load('infrastructure/ai/runtime.ts');
+ const compiledSource=ts.transpileModule(source,{compilerOptions:{
+  module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,
+ }}).outputText;
+ fs.mkdirSync(compiled('infrastructure/ai'),{recursive:true});
+ fs.writeFileSync(compiled('infrastructure/ai/runtime.js'),compiledSource);
+ fs.mkdirSync(compiled('infrastructure'),{recursive:true});
+ fs.writeFileSync(compiled('infrastructure/runtime.js'),
+  "exports.runtimeConfig=()=>({OPENAI_API_KEY:'SYNTHETIC_TEST_KEY',AI_MODEL:'synthetic-test-model'});");
+ const originalFetch=global.fetch;
  try{
-  assert.equal(await provider.generate(request),null,'Server provider must fail closed before HTTP call');
-  const service=createTutorService(provider);
-  assert.equal(service.available,false,'No AI capability should be advertised to server routes');
-  assert.equal(await service.coach('analysis','Synthetic prompt',{answer:'SYNTHETIC_PRIVATE_TEXT'}),null);
-  assert.equal(await service.evaluateWriting('SYNTHETIC_PRIVATE_TEXT','task'),null);
-  assert.equal(await service.teachWriting('SYNTHETIC_PRIVATE_TEXT','task',{}),null);
-  assert.equal(outboundCalls,0,'Server tutor must never call external provider');
-
-  // Real server composition root; only the Cloudflare hosting adapter is fake.
+  global.fetch=mockFetch;
   const {tutorService}=require(compiled('infrastructure/ai/runtime.js'));
-  const providerService=tutorService();
-  assert.equal(providerService.available,false,'Server composition must not expose AI');
-  assert.equal(await providerService.evaluateWriting('SYNTHETIC_PRIVATE_TEXT','task'),null);
-  assert.equal(await providerService.coach('analysis','task',{answer:'SYNTHETIC_PRIVATE_TEXT'}),null);
-  assert.equal(outboundCalls,0,'No server request made despite synthetic configured secret');
+  const configured=tutorService();
+  assert.equal(configured.available,true,'Server OpenAI Writing capability restored');
+  const advice=await configured.coach('analysis','Practice topic',{answer:'SYNTHETIC_WRITING'});
+  assert(advice,'Synthetic OpenAI server Writing coach should return valid structured guidance');
+  assert.equal(advice.structuredResult.summary,'Example only');
+  assert.equal(mockCalls,2);
+ }finally{global.fetch=originalFetch}
 
-  // Routes and services must use the shared gated server tutor root.
-  const serverRoot=load('infrastructure/ai/runtime.ts');
-  const providerSource=load('infrastructure/ai/openai-http.ts');
-  assert(serverRoot.includes('learnerExternalAiEnabled()?config.OPENAI_API_KEY:undefined'));
-  assert(providerSource.includes('if(!learnerExternalAiEnabled()||!this.available)return null'));
-  for(const file of ['infrastructure/writing-runtime.ts','app/api/writing-review.ts',
-                     'app/api/evaluate/route.ts']){
-   assert(load(file).includes('tutorService'),'Expected server-side tutor reference: '+file);
-  }
-  assert(load('app/api/diagnostic/route.ts').includes('reviewWriting'),
-   'Diagnostic must use shared gated writing review');
-  assert(load('app/api/writing/route.ts').includes('learnerWriting'),
-   'Server writing must use shared writingTutor composition');
-
-  console.log(JSON.stringify({result:'PASS',gate:'ISSUE114_SERVER_PROVIDER_DEFAULT_CLOSED',
-   runtimeWithSyntheticKey:'UNAVAILABLE',providerConfiguredButUnavailable:true,
-   serverWritingEvaluation:'AI_PROVIDER_UNAVAILABLE',serverDiagnosticAIRatings:'AI_PROVIDER_UNAVAILABLE',
-   externalHttpCalls:outboundCalls,realLearnerData:'NOT_ACCESSED',realAPIRequests:0}));
- }finally{/* Isolated test files removed on the next run. */}
+ assert(load('infrastructure/ai/runtime.ts').includes('config.OPENAI_API_KEY'));
+ assert(!load('infrastructure/ai/openai-http.ts').includes('learnerExternalAiEnabled'));
+ assert(load('domain/learner-external-ai-gate.ts').includes('GEMINI_DEVELOPER_API_APPROVED_FOR_SLE = false'),
+   'Gemini under-18 provider restriction still needs separate resolution');
+ for(const file of ['infrastructure/writing-runtime.ts','app/api/writing-review.ts',
+  'app/api/evaluate/route.ts']){
+  assert(load(file).includes('tutorService'),'Shared Writing server provider missing: '+file);
+ }
+ console.log(JSON.stringify({result:'PASS',gate:'SLE_GENERAL_AUDIENCE_SERVER_AI_AVAILABLE',
+  configuredServerOpenAI:true,unconfiguredOpenAI:false,geminiSeparateHold:true,
+  mockedOpenAIRequests:mockCalls,realOpenAIRequests:realCalls,
+  syntheticDataOnly:true,productionDeployment:false}));
 })().catch(e=>{console.error(e);process.exitCode=1});
