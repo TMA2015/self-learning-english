@@ -34,11 +34,13 @@ export function validateWeek2SavedAIInput(value:unknown):Week2SavedAIInput|null{
  if(keys.some(k=>!['ideas','reject','best','fit'].includes(k)))return null;
  if(!['ideas','best','fit'].every(k=>typeof f[k]==='string'&&!!(f[k] as string).trim()))return null;
  if(f.reject!==undefined&&typeof f.reject!=='string')return null;
- if(keys.some(k=>(f[k] as string).length>1800)||JSON.stringify(f).length>5300)return null;
- // Preserve the canonical four storage keys *as supplied*; blank reject is valid.
+ if(keys.some(k=>typeof f[k]==='string'&&(f[k] as string).length>1800)||
+    JSON.stringify(f).length>5300)return null;
+ // Preserve absent optional keys; never invent "reject: undefined".
  if(body.signature!==JSON.stringify(f))return null;
- return {version:Number(body.version),signature:body.signature,fields:{
-  ideas:f.ideas as string,reject:f.reject as string|undefined,
+ return {version:body.version,signature:body.signature,fields:{
+  ideas:f.ideas as string,
+  ...(typeof f.reject==='string'?{reject:f.reject}:{}),
   best:f.best as string,fit:f.fit as string,
  }};
 }
