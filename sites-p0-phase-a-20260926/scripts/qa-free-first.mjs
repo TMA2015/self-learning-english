@@ -14,6 +14,7 @@ const coreTests=[
   "sle-release-safety.cjs",
   "speaking-notes-stage3.cjs",
   "ai-tutor-stage3.cjs",
+  "workers-ai-provider-spike.cjs",
   "ai-tutor-language-stage3.cjs",
   "ai-tutor-stale-request-stage3.cjs",
   "ai-tutor-markdown-stage3.cjs",
