@@ -16,7 +16,7 @@ for(const component of ['Week2CourseLearn','Week2CourseGuidedIntro','Week2Course
  assert(app.includes(component),'New Week 2 component not integrated: '+component);
 assert(!app.includes('Week2CourseRepair')&&!app.includes('Week2CourseMainGuide'),'Obsolete R0 components still wired');
 assert(app.includes("week===2?(screen==='main'?<Week2CourseMain"),'Main and Feedback must be distinct');
-assert(guide.includes('YOUR DRAFT · READ-ONLY')&&guide.includes('YOUR IDEAS · WRITE HERE'));
+assert(guide.includes('YOUR PLAN · READ-ONLY')&&guide.includes('YOUR IDEAS · WRITE HERE'));
 for(const [id,label] of [['park','E1 · Park'],['museum','E2 · Museum'],['library','E3 · Library']])
  assert(guide.includes("id:'"+id+"'")&&guide.includes(label),'Missing tracked example '+label);
 for(const word of ['Topic','Task','Must include','Boundary','Fits the task','Needs explanation → Repair','Off topic','One possible sentence:'])
@@ -27,8 +27,9 @@ assert(!guide.includes('Optional extra check · Science museum'),'No repeated mu
 assert(!app.includes('Optional older lunchtime-club examples'),'No obsolete club examples');
 assert(!guide.includes('(not a test question)'),'No redundant exam disclaimer');
 assert(!/fetch\s*\(|GoogleAIBackend|Gemini|localStorage|sessionStorage|indexedDB/.test(guide),'No learner text egress');
-assert(guide.includes('NOT saved')&&guide.includes('not saved or graded'),'Honest ephemeral work');
+assert(guide.includes('not saved')&&guide.includes('not saved or graded'),'Honest ephemeral work');
 for(const unsupported of ['70%','30% retention','C1/C2','consequently','furthermore'])
  assert(!guide.toLowerCase().includes(unsupported.toLowerCase()),'Unsupported claim/vocabulary: '+unsupported);
+assert(guide.includes('export function Week2CourseReflect'),'R2 reflection component required');
 assert(app.includes("<Week2CourseFeedback")&&app.includes('WeekModelComparison'),'Keep model gate and real history');
-console.log(JSON.stringify({result:'PASS',test:'writing-week2-course-simplified',version:'R1',guards:['canonical Week 2','3 stable examples','four thinking steps','real read-only feedback','global Vietnamese','default-OFF AI','clean instructional UI']}));
+console.log(JSON.stringify({result:'PASS',test:'writing-week2-course-simplified',version:'R2',guards:['canonical Week 2','3 stable examples','four thinking steps','real read-only feedback','global Vietnamese','default-OFF AI','clean instructional UI']}));
