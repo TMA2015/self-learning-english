@@ -59,7 +59,7 @@ function WorkedThinking({example,step}:{example:Example;step:number}){
  if(step===2)return <div style={separated}>
   <section className="wcv2-card"><h4>Fits the task</h4><p>{example.fits}</p></section>
   <section className="wcv2-card"><h4>Needs explanation → Repair</h4><p>{example.repair}</p></section>
-  <section className="wcv2-card"><h4>Off topic</h4><p>{example.offTopic}</p></section>
+  <section className="wcv2-card"><h4>Off topic</h4><p>{example.offTopic}</p><p className="muted">Sometimes all your ideas fit. You do not have to invent an off-topic idea.</p></section>
  </div>;
  return <div>
   <div style={cards}>
@@ -67,7 +67,7 @@ function WorkedThinking({example,step}:{example:Example;step:number}){
    <section className="wcv2-card"><h4>Reason (why)</h4><p>{example.reason}</p></section>
    <section className="wcv2-card"><h4>Small example (optional)</h4><p>{example.detail}</p></section>
   </div>
-  <p><strong>One possible sentence:</strong> {example.sentence}</p>
+  <p><strong>One possible sentence:</strong> {example.sentence}</p><p>Two ideas may both fit. You can still choose the one that best supports your goal.</p>
   <p className="muted">Idea → reason → example is a planning aid, not a fixed essay template.</p>
  </div>;
 }
@@ -113,7 +113,13 @@ export function Week2CourseLearn({showVi}:{showVi:boolean}){
   </section>
   <article className="wcv2-card">
    <h4>Remember</h4><p>{current.takeaway}</p>
-   {step===3&&<p><strong>Optional words:</strong> work together · share ideas · learn new skills · feel more confident.</p>}
+   {step===3&&<><p><strong>Optional words:</strong> work together · share ideas · learn new skills · feel more confident.</p>
+    <details><summary>How this method also helps with longer writing</summary>
+      <p><strong>Short response:</strong> Three possible ideas → choose one → give a reason and a small example.</p>
+      <p><strong>Longer plan:</strong> Five or six ideas → group them into two or three themes → select two main ideas with a reason and example for each.</p>
+      <p><strong>Example — a school garden:</strong> Group watering and plant care under "Caring for plants"; group garden signs and sharing seeds under "Working together". Choose a point from each group.</p>
+      <p>Only planning is required here. Week 3 develops reasons, Week 4 adds examples, and Week 6 teaches outlines.</p>
+    </details></>}
   </article>
   <nav aria-label="Move through the worked lesson" style={{display:'flex',justifyContent:'space-between',gap:'0.75rem',flexWrap:'wrap'}}>
    <button type="button" className="secondary-button" disabled={step===0} onClick={()=>setStep(x=>Math.max(0,x-1))}>← Previous step</button>
@@ -160,7 +166,7 @@ export function Week2CourseGuidedBridge({showVi}:{showVi:boolean}){
    {showVi&&<p className="vi-help">Chọn một hoạt động do em nghĩ ra và nêu một lý do phù hợp với đề.</p>}
    <label className="field"><span>My activity</span><input type="text" value={choice} onChange={e=>setChoice(e.target.value)} placeholder="One activity..."/></label>
    <label className="field"><span>My reason</span><textarea rows={2} value={reason} onChange={e=>setReason(e.target.value)} placeholder="This activity fits because..."/></label>
-   <p className="muted">These short notes are not saved or scored. Main Practice uses a new prompt.</p>
+   <p className="muted">These short notes are not saved. If two activities both fit, choose the one with the clearer reason.</p>
   </article>
   <details className="wcv2-card">
    <summary>Need more practice? Repair an idea that misses the task</summary>
@@ -180,7 +186,7 @@ export function Week2CourseMain({work,busy,error,saved,showVi,actions}:CoursePro
  const definition=writingWeek(2);
  const steps=[
   {title:'1 · A2 Collect',help:'Write short after-school activity ideas, one per line. Do not judge them yet.'},
-  {title:'2 · A3 Set aside',help:'Choose an idea you will not use. A short reason helps.'},
+  {title:'2 · A3 Compare (optional)',help:'If useful, note another idea you considered. If all your ideas fit, leave this blank.'},
   {title:'3 · A4 Choose',help:'Pick one suitable activity from your list.'},
   {title:'4 · A4 Explain',help:'Why does your choice answer the prompt? Give a reason; a small example is optional.'}
  ];
@@ -202,8 +208,8 @@ export function Week2CourseMain({work,busy,error,saved,showVi,actions}:CoursePro
    </label>)}</div>
   </article>
   <article className="wcv2-card">
-   <label className="wcv2-option"><input type="checkbox" disabled={busy} checked={work.confirmedOwnWork} onChange={e=>actions.confirm(e.target.checked)}/>I have checked my required parts. This is my own work. A basic check cannot judge meaning or language quality.</label>
-   <button type="button" className="primary-button" disabled={busy||!completeWeek(2,work)} onClick={actions.submit}>{saved?'Save completed attempt again':'Save completed attempt & show basic check'}</button>
+   <label className="wcv2-option"><input type="checkbox" disabled={busy} checked={work.confirmedOwnWork} onChange={e=>actions.confirm(e.target.checked)}/>I have checked my own planning notes.</label>
+   <button type="button" className="primary-button" disabled={busy||!completeWeek(2,work)} onClick={actions.submit}>{saved?'Save my updated plan':'Save my plan & check it'}</button>
    <p role="status">{busy?'Saving — please wait.':error?'Save not confirmed. Keep this page open and retry.':saved?'Completed attempt saved.':'Current edits are not a completed saved attempt.'}</p>
    <button type="button" className="secondary-button" disabled={busy} onClick={()=>actions.go('feedback')}>Review my ideas →</button>
   </article>
@@ -214,53 +220,52 @@ function Week2CourseSelfCheck(){
  const [checks,setChecks]=useState<Record<string,boolean>>({});
  const [aim,setAim]=useState('');
  const questions=[
-  'My chosen activity answers the after-school task.',
-  'I considered another idea and can explain why I set it aside.',
-  'My explanation gives a specific reason for my choice.'
+  'Task fit: Does my chosen activity answer the after-school activity question?',
+  'Selection: If several ideas fit, why did I choose this one?',
+  'Reason: Does my explanation give a concrete reason?'
  ];
  return <article className="wcv2-card">
   <h3>CHECK YOUR THINKING</h3>
-  <p>Decide for yourself; these answers do not become a score.</p>
+  <p>This is a self-check to help you edit your notes. Your ideas have not been graded by AI or a teacher.</p>
   {questions.map((question,i)=><label key={question} className="wcv2-option"><input type="checkbox" checked={!!checks[String(i)]} onChange={e=>setChecks(x=>({...x,[String(i)]:e.target.checked}))}/>{question}</label>)}
-  <label className="field"><span>What will I improve?</span><input type="text" value={aim} onChange={e=>setAim(e.target.value)} placeholder="e.g. explain my reason more clearly"/></label>
-  <p className="muted">Self-checks are temporary and ungraded. Make changes in Main Practice and save again.</p>
+  <label className="field"><span>What will I improve? (optional)</span><input type="text" value={aim} onChange={e=>setAim(e.target.value)} placeholder="e.g. give a clearer reason"/></label>
+  <p className="muted">To change your plan, choose Edit my ideas below. Revise in Main Practice and save again.</p>
  </article>;
 }
 
 export function Week2CourseFeedback({work,busy,error,saved,actions}:CourseProps){
  const definition=writingWeek(2);
  const checks=weekStructureCheck(2,work);
- return <section aria-label="Week 2: review and revise your ideas">
+ const missing=checks.filter(c=>!c.present);
+ return <section aria-label="Week 2: check and improve your ideas">
   <article className="wcv2-card">
-   <h3>YOUR DRAFT · READ-ONLY</h3>
-   <p>Read what you wrote. You are reviewing your own ideas here; use Main Practice to edit them.</p>
+   <h3>YOUR PLAN · READ-ONLY</h3>
+   <p>Read your planning notes. To change anything, choose Edit my ideas below.</p>
    <div style={separated}>{definition.fields.map(field=><section className="wcv2-card" key={field.key}>
     <h4>{field.label}</h4>
-    <p style={{whiteSpace:'pre-wrap'}}>{work.fields[field.key]?.trim()||'Not written yet.'}</p>
+    <p style={{whiteSpace:'pre-wrap'}}>{work.fields[field.key]?.trim()||(field.required?'Not written yet.':'Not needed — you can leave this blank.')}</p>
    </section>)}</div>
   </article>
   <article className="wcv2-card">
-   <h3>BASIC COMPLETION CHECK</h3>
-   <p>This check only reports present or missing parts. It cannot grade your idea, reasoning, English level or IELTS performance.</p>
-   {checks.map(item=><section key={item.label} className="wcv2-card">
-    <h4>{item.label} · {item.present?'Present':'Missing'}</h4>
-    <p>{item.detail}</p><p><strong>Next action:</strong> {item.nextAction}</p>
-   </section>)}
+   <h3>PLANNING PARTS</h3>
+   <p><strong>{checks.length-missing.length} of {checks.length} essential parts filled.</strong> Ideas I set aside: optional.</p>
+   {missing.length>0?<ul>{missing.map(c=><li key={c.label}><strong>{c.label}:</strong> Add your notes in Main Practice.</li>)}</ul>:
+    <p>All essential boxes have text. Use the questions below to check whether your choices make sense.</p>}
   </article>
   <Week2CourseSelfCheck/>
   {error&&<p role="alert">Your latest save was not confirmed. Return to Main Practice and retry.</p>}
   <div style={{display:'flex',gap:'0.75rem',flexWrap:'wrap'}}>
    <button type="button" className="primary-button" disabled={busy} onClick={()=>actions.go('main')}>Edit my ideas</button>
-   <button type="button" className="secondary-button" disabled={busy||!saved} onClick={()=>actions.go('review')}>Continue to Review</button>
+   <button type="button" className="secondary-button" disabled={busy||!saved} onClick={()=>actions.go('review')}>Continue to Reflect & Finish</button>
   </div>
-  <p className="muted">{saved?'Your completed attempt is saved.':'Unsaved edits are not a completed attempt.'} No external AI is used for Week 2.</p>
+  <p className="muted">{saved?'Your plan is saved.':'Save your plan in Main Practice before finishing.'}</p>
  </section>;
 }
 
 export function Week2CourseTransfer(){
  const [notes,setNotes]=useState({ideas:'',reject:'',best:'',fit:''});
  const fields=[
-  ['ideas','Possible activities'],['reject','One I would set aside'],
+  ['ideas','Possible activities'],['reject','Other ideas considered (optional)'],
   ['best','My chosen activity'],['fit','Why it fits']
  ] as const;
  const attempted=Object.values(notes).some(x=>x.trim().length>0);
@@ -271,7 +276,7 @@ export function Week2CourseTransfer(){
   <div style={separated}>{fields.map(([key,label])=><label className="field" key={key}><span>{label}</span>
    <textarea rows={2} value={notes[key]} onChange={e=>setNotes(x=>({...x,[key]:e.target.value}))}/>
   </label>)}</div>
-  {attempted?<details><summary>Show the four-step reminder</summary><p>Understand the task → collect possible activities → set one aside → choose one and explain why newcomers can join.</p></details>:<p className="muted">Write at least one note before opening a process reminder.</p>}
-  <p className="notice">This optional scratchpad is NOT saved and does not affect course completion, grades or CEFR evidence.</p>
+  {attempted?<details><summary>Show the four-step reminder</summary><p>Understand the task → collect possible activities → check which fit → choose one and explain why newcomers can join.</p></details>:<p className="muted">Write at least one note before opening a process reminder.</p>}
+  <p className="notice">This optional scratchpad is not saved. It is simply another chance to practise the four steps.</p>
  </details>;
 }
