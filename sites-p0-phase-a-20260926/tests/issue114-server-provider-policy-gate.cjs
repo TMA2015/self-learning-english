@@ -1,9 +1,5 @@
 'use strict';
-/**
- * General-audience SLE: server OpenAI AI writing is an available capability
- * when a SERVER-ONLY API key is configured, while Gemini browser policy gate
- * remains separate and closed. Mocked transport; NO live HTTP or learner data.
- */
+/** Regression: configured server provider remains available with synthetic requests only. */
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
 const ts=require(path.join(__dirname,'../node_modules/typescript'));
@@ -77,14 +73,14 @@ assert.equal(unavailable.available,false,'No-key server remains unavailable');
 
  assert(load('infrastructure/ai/runtime.ts').includes('config.OPENAI_API_KEY'));
  assert(!load('infrastructure/ai/openai-http.ts').includes('learnerExternalAiEnabled'));
- assert(load('domain/learner-external-ai-gate.ts').includes('GEMINI_DEVELOPER_API_APPROVED_FOR_SLE = false'),
-   'Gemini under-18 provider restriction still needs separate resolution');
+ assert(!load('infrastructure/browser/firebase-ai-browser.ts').includes('learnerExternalAiEnabled'),
+   'Gemini browser provider should not have a blanket deny function');
  for(const file of ['infrastructure/writing-runtime.ts','app/api/writing-review.ts',
   'app/api/evaluate/route.ts']){
   assert(load(file).includes('tutorService'),'Shared Writing server provider missing: '+file);
  }
  console.log(JSON.stringify({result:'PASS',gate:'SLE_GENERAL_AUDIENCE_SERVER_AI_AVAILABLE',
-  configuredServerOpenAI:true,unconfiguredOpenAI:false,geminiSeparateHold:true,
+  configuredServerOpenAI:true,unconfiguredOpenAI:false,geminiSeparateHold:false,
   mockedOpenAIRequests:mockCalls,realOpenAIRequests:realCalls,
   syntheticDataOnly:true,productionDeployment:false}));
 })().catch(e=>{console.error(e);process.exitCode=1});
