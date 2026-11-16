@@ -67,7 +67,7 @@ function WorkedThinking({example,step}:{example:Example;step:number}){
    <section className="wcv2-card"><h4>Reason (why)</h4><p>{example.reason}</p></section>
    <section className="wcv2-card"><h4>Small example (optional)</h4><p>{example.detail}</p></section>
   </div>
-  <p><strong>One possible sentence:</strong> {example.sentence}</p><p>Two ideas may both fit. You can still choose the one that best supports your goal.</p>
+  <p><strong>One possible sentence:</strong> {example.sentence}</p><p><strong>When two ideas both fit:</strong> {example.ideas[0]} and {example.ideas[1]} both answer this task. Choosing {example.chosen} does not make the other idea bad.</p>
   <p className="muted">Idea → reason → example is a planning aid, not a fixed essay template.</p>
  </div>;
 }
