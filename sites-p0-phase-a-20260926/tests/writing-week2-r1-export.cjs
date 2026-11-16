@@ -51,12 +51,26 @@ function zip(filePairs){
    assetsInlineLimit:100000000,cssCodeSplit:false,
    lib:{entry:path.join(root,'tests/writing-week2-r1-export-entry.tsx'),
     formats:['iife'],name:'SLEWeek2R2Export',fileName:()=>'preview.js'}}});
- const script=fs.readFileSync(path.join(out,'preview.js'),'utf8').replaceAll('</script','<\\/script');
- const css=fs.readdirSync(out).filter(n=>n.endsWith('.css')).map(n=>fs.readFileSync(path.join(out,n),'utf8')).join('\n');
+ const brandSvg=fs.readFileSync(path.join(root,'public/branding/english-app-icon.svg'),'utf8');
+ assert(brandSvg.includes('G Learning English icon'),'Canonical SLE brand asset missing');
+ const brandData='data:image/svg+xml;base64,'+Buffer.from(brandSvg,'utf8').toString('base64');
+ let script=fs.readFileSync(path.join(out,'preview.js'),'utf8').replaceAll('</script','<\\/script');
+ assert(script.includes('__SLE_PREVIEW_BRAND_ICON_DATA__'),'Bundled preview branding placeholder missing');
+ script=script.replaceAll('__SLE_PREVIEW_BRAND_ICON_DATA__',brandData);
+ const css=fs.readdirSync(out).filter(n=>n.endsWith('.css')).map(n=>fs.readFileSync(path.join(out,n),'utf8')).join('\n')+
+  '\n/* Preview-only styling. Uses shared SLE topbar, layout, sidebar and main-content classes. */\n'+
+  '.sle-preview-controls{background:#fff;border:1px solid #dce6f1;border-radius:13px;padding:14px 17px;margin-bottom:18px;box-shadow:0 3px 16px #25476c08;}'+
+  '.sle-preview-controls strong{color:#193b61;font-size:14px;}'+
+  '.sle-preview-controls p{font-size:12px;color:#637b94;margin:4px 0 0;overflow-wrap:anywhere;}'+
+  '.sle-preview-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px;}'+
+  '.sle-preview-actions button{min-height:40px;}'+
+  '.sle-preview-status{font-size:12px;margin:9px 0 0;}'+
+  '@media(max-width:750px){.sle-preview-controls{padding:12px}.sle-preview-actions button{flex:1 1 128px}}';
  assert(script.length>60000&&css.length>1500,'Unexpectedly small Vite React/CSS bundle');
  for(const required of ['THE TASK','HOW THE THINKING WORKS','E1 · Park','E2 · Museum','E3 · Library']){
   assert(script.includes(required),'R2 expected text missing in React bundle: '+required);
  }
+ assert(script.includes('sle-preview-shell')&&script.includes('main-content')&&script.includes('topbar'),'Shared SLE shell was not bundled');
  const html='<!doctype html><html lang="en"><head><meta charset="utf-8">'+
   '<meta name="viewport" content="width=device-width, initial-scale=1">'+
   '<meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; script-src &#39;unsafe-inline&#39;; style-src &#39;unsafe-inline&#39;; img-src data:; font-src data:; connect-src &#39;none&#39;; base-uri &#39;none&#39;; form-action &#39;none&#39;">'+
@@ -69,6 +83,7 @@ function zip(filePairs){
  const notes='Self-Learning English · Writing Course Week 2 R2 · PR #158\n'+
   'HOW TO OPEN: extract this ZIP, then double-click PR158_WEEK2_R2_REACT_PREVIEW.html in Chrome or Edge.\n'+
   'This is an isolated, OFFLINE Vite bundle of the real Week 2 R2 React component and SLE CSS.\n'+
+  'Its visual wrapper follows the real SLE topbar, sidebar, brand icon and content layout; other navigation items are noninteractive.\n'+
   'Only fictional/synthetic localStorage namespace. Use Reset fictional work to clear it.\n'+
   'No external AI, cloud writes or links; full website authentication & router not included.\n'+
   'Reference source commit '+sourceHead+'.\n'+
