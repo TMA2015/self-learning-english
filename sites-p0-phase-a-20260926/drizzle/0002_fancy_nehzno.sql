@@ -1,1 +1,0 @@
-ALTER TABLE `learners` ADD `legacy_imported` integer DEFAULT 0 NOT NULL;
