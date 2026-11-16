@@ -75,13 +75,13 @@ const actions:WeekActions={
   check(panel.querySelectorAll('textarea').length===4,'exactly four canonical editable fields');
   distinct=true;
  }else if(screen==='feedback'){
-  check(html().includes('YOUR DRAFT · READ-ONLY'),'read-only summary absent');
-  check(html().includes('BASIC COMPLETION CHECK'),'structural helper absent');
+  check(html().includes('YOUR PLAN · READ-ONLY'),'read-only summary absent');
+  check(html().includes('PLANNING PARTS'),'structural helper absent');
   check(html().includes('Edit my ideas'),'return-to-edit action absent');
   check(panel.querySelectorAll('textarea').length===0,'feedback duplicated editable main form');
   distinct=true;
  }else {
-  check(html().includes('Reflect on your own learning'),'review reflection absent');
+  check(html().includes('What helped you choose the idea'),'review reflection absent');
   check(html().includes('Try the same four steps'),'independent transfer missing');
   distinct=true;
  }
