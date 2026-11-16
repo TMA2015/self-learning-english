@@ -1,19 +1,22 @@
 /**
- * SLE Issue #114: learner-facing third-party generative AI policy gate.
+ * Issue #114 — Gemini Developer API specific provider eligibility hold.
  *
- * CLOSED by default AND at source. The Firebase browser config (which may be
- * populated) and App Check do not constitute provider-policy approval for a
- * product likely accessed by minors. Parental consent alone is not an
- * authorization to use the Gemini Developer API.
+ * This does NOT govern OpenAI or future AI providers. SLE is a general-audience
+ * English platform and AI feedback is a core Writing capability.
  *
- * To re-enable in the future: separate provider/legal review, explicit owner
- * approval, code review of this constant, and a separately approved deployment.
- * A runtime environment variable or localStorage toggle MUST NOT bypass it.
- * No learner text may leave through browser or server AI providers while closed.
+ * The Gemini Developer API's age rule prohibits use in API clients likely
+ * accessed by people under 18. No owner assertion about overall audience
+ * replaces the separate provider approval. We therefore hold only this
+ * particular Gemini-browser route until a compliant arrangement is confirmed.
+ *
+ * OpenAI server Writing can operate using the owner's server-only API key,
+ * subject to its own provider guidance, privacy/age controls, and cost policy
+ * BEFORE production activation. No client-side secrets are used.
  */
-const PROVIDER_POLICY_APPROVED_FOR_MINOR_ACCESS = false;
+const GEMINI_DEVELOPER_API_APPROVED_FOR_SLE = false;
 export const LEARNER_EXTERNAL_AI_GATE_REASON =
-  'External AI is unavailable for learner accounts while provider-policy review is open. Your learning activities and saved work remain available.';
+  'Gemini feedback is unavailable pending provider eligibility review. Other Writing activities remain available.';
+/** Historical function name retained for browser-only call sites. */
 export function learnerExternalAiEnabled():boolean{
-  return PROVIDER_POLICY_APPROVED_FOR_MINOR_ACCESS;
+  return GEMINI_DEVELOPER_API_APPROVED_FOR_SLE;
 }
