@@ -15,6 +15,7 @@ const storage=new BrowserLocalLearningRepository({
 },storagePrefix);
 function Preview(){
  const [work,setWork]=useState<WeekWork>(emptyWeekWork);
+ const [menu,setMenu]=useState(false);
  const current=useRef(work),dirty=useRef(false),pending=useRef(false);
  const [screen,setScreen]=useState<WeekScreen>('learn'),[busy,setBusy]=useState(true),
   [error,setError]=useState(''),[receipt,setReceipt]=useState('Loading isolated preview…'),
@@ -54,19 +55,45 @@ function Preview(){
   setWork(state);setScreen('learn');
   setReceipt('Synthetic preview reset. No actual learner data touched.');
  });
- return <div>
-  <aside style={{padding:'14px 18px',background:'#eaf3ff',borderBottom:'1px solid #bcd5f2',fontFamily:'system-ui',lineHeight:1.5}} aria-label="Isolated preview controls">
-   <strong>Self-Learning English · Writing Course Week 2 · R2 React Preview</strong>
-   <p style={{margin:'4px 0',fontSize:13}}>PR #158 · source HEAD <code>{sourceHead.slice(0,12)}</code> · isolated offline preview · synthetic data only · no Gemini · NOT production.</p>
-   <div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}>
-    <label style={{display:'inline-flex',gap:6,alignItems:'center'}}><input type="checkbox" checked={vi} onChange={e=>setVi(e.target.checked)}/> Vietnamese Support</label>
-    <button type="button" disabled={busy} onClick={()=>void run(async()=>{await saveLatest()})}>Save preview draft</button>
-    <button type="button" disabled={busy} onClick={()=>window.location.reload()}>Reload</button>
-    <button type="button" disabled={busy} onClick={reset}>Reset fictional work</button>
+ return <div className="app-shell sle-preview-shell">
+  <header className="topbar">
+   <button type="button" className="mobile-menu" aria-label={menu?'Close menu':'Open menu'} aria-expanded={menu} onClick={()=>setMenu(v=>!v)}>{menu?'✕':'☰'}</button>
+   <div className="brand">
+    <img className="brand-icon" src="__SLE_PREVIEW_BRAND_ICON_DATA__" alt="G Learning English" width={42} height={42}/>
+    <div><strong>Self-Learning English</strong><small>Learn English, step by step.</small></div>
    </div>
-   <p role="status" style={{margin:'5px 0 0',fontSize:12}}>{receipt}</p>
-  </aside>
-  <main style={{maxWidth:1100,margin:'auto',padding:12}}>
+   <div className="header-right">
+    <label className="support-toggle"><input type="checkbox" checked={vi} onChange={e=>setVi(e.target.checked)}/><span>Vietnamese Support</span></label>
+    <span className="demo-pill" title="Offline preview; AI is unavailable">Preview · Offline</span>
+    <span className="save-status" role="status">{busy?'Saving…':dirty.current?'Unsaved changes':'Local preview'}</span>
+   </div>
+  </header>
+  <div className="layout">
+   <aside className={'sidebar '+(menu?'open':'')} aria-label="Website navigation appearance (preview only)">
+    <nav aria-label="Site navigation example">
+     <div className="nav-group"><div className="side-label">TODAY</div><div className="nav-item">Dashboard</div></div>
+     <div className="nav-group"><div className="side-label">LEARN</div><div className="nav-item">Learn by Units</div><div className="nav-item">My Courses</div></div>
+     <div className="nav-group"><div className="side-label">SKILL LIBRARY</div>
+      <div className="nav-item">Grammar</div><div className="nav-item">Reading</div>
+      <div className="nav-item active" aria-current="page">Writing<span className="nav-active"/></div>
+      <div className="nav-item">Listening</div><div className="nav-item">Vocabulary</div>
+     </div>
+    </nav>
+    <div className="side-bottom"><div className="side-label">YOUR JOURNEY</div><p>Writing Course · Week 2</p><p>Navigation is visual only in this isolated preview.</p></div>
+   </aside>
+   <main className="main-content">
+    <section className="sle-preview-controls" aria-label="Isolated preview controls">
+     <div>
+      <strong>Week 2 R2 · Owner visual preview</strong>
+      <p>PR #158 · source checkout <code>{sourceHead.slice(0,12)}</code> · synthetic local data · no Gemini or production connection.</p>
+     </div>
+     <div className="sle-preview-actions">
+      <button type="button" className="secondary-button" disabled={busy} onClick={()=>void run(async()=>{await saveLatest()})}>Save preview draft</button>
+      <button type="button" className="secondary-button" disabled={busy} onClick={()=>window.location.reload()}>Reload</button>
+      <button type="button" className="secondary-button" disabled={busy} onClick={reset}>Reset fictional work</button>
+     </div>
+     <p role="status" className="sle-preview-status">{receipt}</p>
+    </section>
    <WritingWeekPage key={screen} week={2} screen={screen} work={work} busy={busy} error={error} showVi={vi} actions={{
     go:s=>void run(async()=>{if(await saveLatest()){setScreen(s);window.scrollTo(0,0)}}),
     back:()=>void run(async()=>{if(await saveLatest())setReceipt('Back-to-course is outside this isolated preview.')}),
@@ -91,7 +118,9 @@ function Preview(){
     }),
     retrySave:()=>void run(async()=>{await saveLatest()})
    }}/>
+   <footer className="g-learning-credit"><strong>G Learning</strong><span>Learn · Grow · Go</span><span>· Isolated preview only</span></footer>
   </main>
+  </div>
  </div>;
 }
 createRoot(document.getElementById('root')!).render(<Preview/>);
