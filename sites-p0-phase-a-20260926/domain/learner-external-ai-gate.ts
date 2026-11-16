@@ -9,7 +9,7 @@
  * To re-enable in the future: separate provider/legal review, explicit owner
  * approval, code review of this constant, and a separately approved deployment.
  * A runtime environment variable or localStorage toggle MUST NOT bypass it.
- * No learner text may leave through this client/provider path while closed.
+ * No learner text may leave through browser or server AI providers while closed.
  */
 const PROVIDER_POLICY_APPROVED_FOR_MINOR_ACCESS = false;
 export const LEARNER_EXTERNAL_AI_GATE_REASON =
