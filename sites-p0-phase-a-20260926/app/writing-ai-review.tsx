@@ -1,6 +1,5 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
-import {learnerExternalAiEnabled} from '../domain/learner-external-ai-gate';
 import {requestWritingAI,type OnDemandWritingFeedback} from '../infrastructure/browser/client-services';
 
 /** Independent learner-local feedback cache: never changes the underlying attempt grade.
@@ -10,7 +9,7 @@ function fingerprint(value:string){
  for(let i=0;i<value.length;i++){const c=value.charCodeAt(i);a=Math.imul(a^c,16777619);b=Math.imul(b^c,2246822519);}
  return (a>>>0).toString(16)+(b>>>0).toString(16);
 }
-function EnabledWritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=false}:{
+export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=false}:{
  reviewId:string;task:string;fields:Record<string,string>;
  kind:'draft'|'planning';enabled:boolean;sourceSample?:boolean;
 }){
@@ -69,8 +68,3 @@ function EnabledWritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
  </section>;
 }
 
-// Issue #114: preserve deterministic Writing feedback while blocking external-AI UI.
-export function WritingAIReview(props:Parameters<typeof EnabledWritingAIReview>[0]){
- if(!learnerExternalAiEnabled())return null;
- return <EnabledWritingAIReview {...props}/>;
-}
