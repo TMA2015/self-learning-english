@@ -35,13 +35,18 @@ export async function POST(request:NextRequest){
   const submission=saved.submission;
   const index=saved.history.findIndex(h=>h.signature===checked.signature&&h.at===submission?.at);
   if(!submission||submission.signature!==checked.signature||
-    JSON.stringify(submission.fields)!==checked.signature||!saved.confirmedOwnWork||
-    index+1!==checked.version){
+    JSON.stringify(submission.fields)!==checked.signature||
+    JSON.stringify(saved.fields)!==checked.signature||!saved.confirmedOwnWork||
+    index+1!==checked.version||index!==saved.history.length-1){
    return NextResponse.json({error:'This plan has changed. Save the current version before requesting AI feedback.'},
     {status:409,headers});
   }
   const provider=new OpenAIHTTPProvider(config.OPENAI_API_KEY,config.AI_MODEL);
   const feedback=await reviewWeek2SavedPlan(provider,checked);
+  // A concurrent edit/save invalidates advice for the earlier persisted version.
+  const latest=weekWork((await readState(owner) as {writingCourseV2B?:WritingBlockState}|null)?.writingCourseV2B,2);
+  if(JSON.stringify(latest)!==JSON.stringify(saved))return NextResponse.json(
+   {error:'Your saved work changed. Request feedback for the current version.'},{status:409,headers});
   if(!feedback)return NextResponse.json({error:unavailable},{status:503,headers});
   return NextResponse.json({feedback},{status:200,headers});
  }catch{

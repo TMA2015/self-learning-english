@@ -15,7 +15,8 @@ export function Week2OptionalAIReview({work,saved,busy,error,showVi}:{
 }){
  const current=work.submission;
  const version=work.history.findIndex(h=>h.signature===current?.signature&&h.at===current?.at)+1;
- const ready=!!saved&&!busy&&!error&&!!current&&version>0;
+ const serverPersistence=process.env.NEXT_PUBLIC_LEARNING_RUNTIME!=='browser';
+ const ready=serverPersistence&&!!saved&&!busy&&!error&&!!current&&version>0;
  const signature=current?.signature??'unsaved';
  const identity=signature+':'+(current?.at??0)+':'+version;
  const latest=useRef(identity);
@@ -31,7 +32,7 @@ export function Week2OptionalAIReview({work,saved,busy,error,showVi}:{
  },[identity]);
 
  async function request(){
-  if(!ready||pending||!current)return;
+  if(!serverPersistence||!ready||pending||!current)return;
   const requestedIdentity=identity;
   const payload={version,signature:current.signature,fields:current.fields};
   setPending(true);setMessage('');setResult(null);
@@ -62,7 +63,7 @@ export function Week2OptionalAIReview({work,saved,busy,error,showVi}:{
   <p>AI can suggest improvements to your plan. It may be mistaken; you decide what to change.</p>
   {showVi&&<p className="vi-help">AI chỉ góp ý cho bản kế hoạch đã lưu; bạn tự quyết định điều chỉnh. Đây không phải điểm hay đánh giá trình độ chính thức.</p>}
   <p className="muted">Pressing this button sends your saved notes to our configured AI provider, subject to the site's data notice. AI feedback is provisional advice, not an official grade.</p>
-  {ready?<p className="muted">Saved version {version} is ready for an optional review.</p>:
+  {!serverPersistence?<p className="muted">Your plan is saved only on this device. AI review requires an authenticated server-saved version and is unavailable in this browser-only app. You can still edit and finish Week 2.</p>:ready?<p className="muted">Saved version {version} is ready for an optional review.</p>:
    <p className="muted">Save your Main Practice plan successfully before requesting AI feedback. Your lesson does not depend on AI.</p>}
   <button type="button" className="secondary-button"
    disabled={!ready||pending} onClick={()=>void request()}>
