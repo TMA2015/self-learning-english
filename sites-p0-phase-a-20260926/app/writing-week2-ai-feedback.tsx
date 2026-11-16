@@ -73,7 +73,7 @@ export function Week2OptionalAIReview({work,saved,busy,error,showVi}:{
   <h3>Ask AI to review my ideas (optional)</h3>
   <p>AI can suggest improvements to your plan. It may be mistaken; you decide what to change.</p>
   {showVi&&<p className="vi-help">AI chỉ góp ý cho bản kế hoạch đã lưu; bạn tự quyết định điều chỉnh. Đây không phải điểm hay đánh giá trình độ chính thức.</p>}
-  <p className="muted">Pressing this button sends your saved planning notes to Gemini for feedback. No AI request occurs until you click. Feedback is advice, not an official grade.</p>
+  <p className="muted">Pressing this button sends your saved notes to {browserPersistence?'Gemini':'the configured AI provider'} for feedback. No AI request occurs until you click. Feedback is advice, not an official grade.</p>
   {browserPersistence&&saved&&<p className="muted">Saved on this device · Version {version} · Ready for Gemini review.</p>}
   {serverPersistence&&ready&&<p className="muted">Saved version {version} is ready for an optional review.</p>}
   {!ready&&<p className="muted">Save your Main Practice plan successfully before requesting AI feedback. Your lesson does not depend on AI.</p>}
