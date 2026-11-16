@@ -65,6 +65,12 @@ const full=async()=>{
  if(!own)throw Error('own work checkbox');own.click();await pause(130);
  await click('Save my plan & check it');
  await wait(()=>text(panel()).includes('YOUR PLAN · READ-ONLY'),'save to feedback');
+ const ai=panel()?.querySelector('article[aria-label="Optional AI review of saved Week 2 plan"]');
+ if(!ai||!text(ai).includes('saved only on this device'))throw Error('Local persistence AI explanation missing');
+ const aiButton=ai.querySelector<HTMLButtonElement>('button');
+ if(!aiButton?.disabled)throw Error('Browser-only AI request enabled');
+ aiButton.click();await pause(100); // Disabled native button must not send HTTP requests.
+
  await step('Reflect & Finish');
  const reflection=panel()?.querySelector<HTMLTextAreaElement>('textarea');
  if(!reflection)throw Error('reflection input');await write(reflection,'I chose drawing because it clearly answers the task.');

@@ -70,6 +70,7 @@ const fullRegressionTests=[
   "writing-week2-r2-contract.cjs",
   "writing-week2-optional-ai-r0.cjs",
   "writing-week2-persistence-r1.cjs",
+  "writing-week2-runtime-r2.cjs",
   "writing-week2-home-browser.cjs",
   "writing-course-v2-c.cjs",
   "g3e-firebase-reliability.cjs",

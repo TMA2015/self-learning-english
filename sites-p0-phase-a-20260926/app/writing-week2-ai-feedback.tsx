@@ -15,7 +15,7 @@ export function Week2OptionalAIReview({work,saved,busy,error,showVi}:{
 }){
  const current=work.submission;
  const version=work.history.findIndex(h=>h.signature===current?.signature&&h.at===current?.at)+1;
- const serverPersistence=process.env.NEXT_PUBLIC_LEARNING_RUNTIME!=='browser';
+ const serverPersistence=process.env.NEXT_PUBLIC_LEARNING_RUNTIME==='server';
  const ready=serverPersistence&&!!saved&&!busy&&!error&&!!current&&version>0;
  const signature=current?.signature??'unsaved';
  const identity=signature+':'+(current?.at??0)+':'+version;

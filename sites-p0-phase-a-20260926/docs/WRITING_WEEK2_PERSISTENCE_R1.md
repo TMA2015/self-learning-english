@@ -20,3 +20,8 @@ This is synthetic handler/service integration, NOT actual trusted gateway, D1 or
 
 ## Remaining gates
 Exact-head full QA, TypeScript, build and browser execution outcomes must be reported separately. Passing synthetic tests is not approval to enable the provider. Real authenticated integration, physical device QA, provider/privacy/cost approval and owner release approval remain open. Do not merge or deploy this PR or its dependencies.
+
+## R2 fail-closed configuration
+Only the explicit value `NEXT_PUBLIC_LEARNING_RUNTIME=server` may enable the optional AI UI, and only for successfully saved work. Browser, unset, empty and unknown values disable both the button and its request handler. A legitimate authenticated Sites build must explicitly set `server`; this public build selector is NOT authentication and does not bypass the server identity, snapshot or provider gates. No environment/provider setting is activated by this patch.
+
+The runtime R2 test invokes actual component handlers with synthetic hooks/fetch, including forced invocation of disabled controls and delayed stale responses. This is separate from the existing real HomeClient/CDP test, which runs browser-local persistence at true 320/375/768/1280px viewports and now asserts that a saved plan cannot enable the optional AI button or send HTTP writes. Server-mode component tests are not authenticated Sites/D1 browser evidence.

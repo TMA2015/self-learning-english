@@ -4,6 +4,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path'),Module=require('node:module');
 const cp=require('node:child_process');
 const ts=require(path.join(__dirname,'../node_modules/typescript'));
+process.env.NEXT_PUBLIC_LEARNING_RUNTIME='server'; // Explicit Sites server UI configuration.
 const root=path.resolve(__dirname,'..'),out=path.join(root,'.sites-runtime/w2-optional-ai-r0');
 fs.rmSync(out,{recursive:true,force:true});
 cp.execFileSync(process.execPath,[path.join(root,'node_modules/typescript/bin/tsc'),
