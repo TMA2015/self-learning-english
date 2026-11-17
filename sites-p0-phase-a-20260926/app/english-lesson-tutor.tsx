@@ -14,7 +14,7 @@ const starters=[
 
 /* Mirrors the Math tutor's knowledge-page-only policy: no assessment,
  * quiz, Diagnostic or unsubmitted learner answers are sent to Gemini. */
-export function EnglishLessonTutor({lesson,focus}:{lesson:string;focus?:string}){
+export function EnglishLessonTutor({lesson,focus,cefrTarget}:{lesson:string;focus?:string;cefrTarget?:string}){
  const [open,setOpen]=useState(false),[question,setQuestion]=useState('');
  const [answer,setAnswer]=useState(''),[error,setError]=useState('');
  const [model,setModel]=useState(''),[pending,setPending]=useState(false);
@@ -32,7 +32,7 @@ export function EnglishLessonTutor({lesson,focus}:{lesson:string;focus?:string})
    // Never read arbitrary DOM selection, draft text or a hidden quiz answer.
    const safeFocus=(focus?.trim()||lesson).slice(0,1800);
    try{
-     const result=await explainEnglishLessonAI({lesson,focus:safeFocus,question:prompt});
+     const result=await explainEnglishLessonAI({lesson,focus:safeFocus,question:prompt,cefrTarget});
      if(!requestGate.current.isCurrent(ticket))return;
      if(result.status==='answered'){setAnswer(result.text);setModel(result.model)}
      else{setError(result.reason)}
