@@ -70,10 +70,10 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
      <p><strong>AI response received · {visibleFeedback.model}</strong> · Provisional educational feedback</p>
      {(kind==='revision'||reviewMode==='any-topic')?<TeachingBlocks text={visibleFeedback.summary}/>:<p>{visibleFeedback.summary}</p>}
      {visibleFeedback.strengths.length>0&&<><strong>What worked well</strong><ul>{visibleFeedback.strengths.map((s,i)=><li key={i}>{(kind==='revision'||reviewMode==='any-topic')?<Inline text={s}/>:s}</li>)}</ul></>}
-     {visibleFeedback.improvements.length>0&&<><strong>What to improve</strong><ul>{visibleFeedback.improvements.map((s,i)=><li key={i}>{kind==='revision'?<Inline text={s}/>:s}</li>)}</ul></>}
+     {visibleFeedback.improvements.length>0&&<><strong>What to improve</strong><ul>{visibleFeedback.improvements.map((s,i)=><li key={i}>{(kind==='revision'||reviewMode==='any-topic')?<Inline text={s}/>:s}</li>)}</ul></>}
      {visibleFeedback.scores&&kind!=='revision'&&reviewMode!=='any-topic'&&!sourceSample&&<div><strong>AI rubric observations · provisional (0–10)</strong><ul>{Object.entries(visibleFeedback.scores).map(([k,v])=><li key={k}>{k.replaceAll('-',' ')}: {v}/10</li>)}</ul></div>}
      {visibleFeedback.level&&kind!=='revision'&&reviewMode!=='any-topic'&&!sourceSample&&<p>Writing practice estimate: {visibleFeedback.level}.</p>}
-     {visibleFeedback.corrections.length>0&&<><strong>Revision hints</strong><ul>{visibleFeedback.corrections.map((c,i)=><li key={i}>“{c.original}” — {c.hint}</li>)}</ul></>}
+     {visibleFeedback.corrections.length>0&&<><strong>Revision hints</strong><ul>{visibleFeedback.corrections.map((c,i)=><li key={i}>“{c.original}” — {reviewMode==='any-topic'?<Inline text={c.hint}/>:c.hint}</li>)}</ul></>}
      {(kind==='revision'||reviewMode==='any-topic')?<div><strong>Next practice:</strong><TeachingBlocks text={visibleFeedback.exercise}/></div>:<p><strong>Next practice:</strong> {visibleFeedback.exercise}</p>}
      <button type="button" className="secondary-button" disabled={busy||!enabled} onClick={()=>void request()}>Request updated AI feedback</button>
    </div>:<>
