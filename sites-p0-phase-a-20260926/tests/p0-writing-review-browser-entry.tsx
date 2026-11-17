@@ -54,11 +54,17 @@ function write(t:HTMLTextAreaElement|null,value:string){
   write(textarea('student-written-content'),'Revised, shorter idea.');
   await wait(()=>!document.querySelector('[aria-label="Provisional self-review checklist"]'),'stale review hidden after edits');
   assert(!document.querySelector('[data-qa-optional-gemini]'),'Editing must hide stale AI controls');
+  const aiCache='g-learning:english:ai-feedback:v1:any-topic-writing:synthetic-response';
+  const otherCache='g-learning:english:ai-feedback:v1:week-9:separate';
+  localStorage.setItem(aiCache,'{"summary":"old private feedback"}');
+  localStorage.setItem(otherCache,'{"summary":"another week"}');
   const confirmOriginal=window.confirm;
   window.confirm=()=>true;
   find('Clear local draft')!.click();
   window.confirm=confirmOriginal;
   await wait(()=>!localStorage.getItem(prefix)?.includes('Reading builds vocabulary'),'clear sensitive content');
+  assert(localStorage.getItem(aiCache)===null,'Clearing Any Topic must delete its cached Gemini feedback');
+  assert(localStorage.getItem(otherCache)!==null,'Unrelated Writing Week AI caches must survive');
   assert(textarea('writing-topic')!.value===''&&textarea('student-written-content')!.value==='','fields cleared');
   report('PASS_RESTORE_CLEAR',{restored:true,noStale:true,privacyClear:true});
  }else throw Error('Unknown phase');
