@@ -8,6 +8,19 @@ import {WritingAIReview} from './writing-ai-review';
  * No grade writes, Foundation attempt changes, or certified CEFR result.
  */
 const DRAFT_KEY='g-learning:english:any-topic-writing:draft:v1';
+const ANY_TOPIC_AI_CACHE_PREFIX='g-learning:english:ai-feedback:v1:any-topic-writing:';
+
+/** Clear only the Any Topic draft and its optional Gemini feedback.
+ * Never delete feedback for the 12-week Writing Course or other skills. */
+export function clearAnyTopicBrowserData(storage:Pick<Storage,'length'|'key'|'removeItem'>):void{
+ const feedbackKeys:string[]=[];
+ for(let i=0;i<storage.length;i++){
+  const key=storage.key(i);
+  if(key?.startsWith(ANY_TOPIC_AI_CACHE_PREFIX))feedbackKeys.push(key);
+ }
+ storage.removeItem(DRAFT_KEY);
+ for(const key of feedbackKeys)storage.removeItem(key);
+}
 type Draft={topic:string;writing:string;updatedAt:number};
 type Snapshot=Draft&{words:number;paragraphs:number};
 
@@ -71,10 +84,13 @@ export function AnyTopicWritingReview(){
     }
   }
   function clear(){
-    if(!window.confirm('Clear the local Writing Review draft on this browser? This cannot be undone.'))return;
-    try{localStorage.removeItem(DRAFT_KEY)}catch{/* In-memory clear remains possible. */}
+    if(!window.confirm('Delete the Any Topic draft and its cached Gemini feedback from this browser? Other course records remain. This cannot be undone.'))return;
+    let cleared=true;
+    try{clearAnyTopicBrowserData(localStorage)}catch{cleared=false}
     setTopic('');setWriting('');setReviewed(null);setSavedSignature(null);
-    setSaveStatus('Local draft cleared in this view.');
+    setSaveStatus(cleared
+      ?'Any Topic draft and its Gemini feedback cleared from this browser.'
+      :'Draft cleared from this view, but some browser data could not be deleted. Clear site data in browser settings.');
   }
   const valid=!!topic.trim()&&!!writing.trim();
   const currentReview=reviewed?.topic===topic&&reviewed?.writing===writing?reviewed:null;
@@ -104,7 +120,7 @@ export function AnyTopicWritingReview(){
           placeholder="Write your own response here."/>
       </label>
       <p role="status" aria-live="polite">{saveStatus}</p>
-      <p className="muted">Saved only in this browser, not synchronized across devices. On a shared computer, other browser users may see this draft. You can clear it at any time.</p>
+      <p className="muted">Saved only in this browser, not synchronized across devices. On a shared computer, other browser users may see this draft and cached Gemini feedback. Clear local draft also deletes this workspace’s cached AI responses; it does not delete other course records.</p>
       <div className="learning-choices">
         <button className="primary-button" type="submit" disabled={!ready||!valid}>Open self-review checklist</button>
         <button className="secondary-button" type="button" disabled={!ready} onClick={save}>Save draft</button>
