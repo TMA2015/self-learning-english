@@ -17,10 +17,10 @@ const root=path.resolve(__dirname,'..');
     name:'qa-only-any-topic-gemini-stub',enforce:'pre',
     resolveId(source,importer){
       if(source==='./writing-ai-review'&&importer?.endsWith('/app/any-topic-writing-review.tsx'))
-        return '\\0sle-qa-any-topic-ai';
+        return '\0sle-qa-any-topic-ai';
     },
     load(id){
-      if(id==='\\0sle-qa-any-topic-ai')
+      if(id==='\0sle-qa-any-topic-ai')
         return `import {jsx} from 'react/jsx-runtime';
           export function WritingAIReview({enabled}){
             return jsx('div',{'data-qa-optional-gemini':enabled?'enabled':'disabled',
