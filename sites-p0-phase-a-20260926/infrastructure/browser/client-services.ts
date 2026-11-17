@@ -305,7 +305,13 @@ export async function requestWritingAI(task:string,fields:Record<string,string>,
   if(!browserLearningEnabled())return {status:'unavailable',reason:'AI feedback is only available in the browser learning runtime.'};
   if(!task.trim()||Object.values(fields).some(v=>typeof v!=='string'))return {status:'unavailable',reason:'The writing task is incomplete.'};
   const answer=Object.entries(fields).filter(([,v])=>v.trim()).map(([k,v])=>k+': '+v.trim()).join('\n');
-  if(answer.trim().length<8||answer.length>7000)return {status:'unavailable',reason:'Write your own response (maximum 7,000 characters) before requesting feedback.'};
+  // Any Topic's 7,000-character limit applies to the exact learner draft, not
+  // the internal "draft: " transport label added for other Writing modes.
+  // The UI and provider must agree at the boundary; no truncation is allowed.
+  const reviewText=kind==='draft'&&reviewMode==='any-topic'
+    ?(fields.draft??fields.writing??'')
+    :answer;
+  if(reviewText.trim().length<8||reviewText.length>7000)return {status:'unavailable',reason:'Write your own response (maximum 7,000 characters) before requesting feedback.'};
   const tutor=browserTutorService();
   if(!tutor.available)return {status:'unavailable',reason:'Gemini is not configured in this browser.'};
   resetAIFailure();
