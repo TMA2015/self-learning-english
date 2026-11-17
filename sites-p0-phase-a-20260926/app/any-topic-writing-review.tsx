@@ -28,7 +28,7 @@ function words(value:string):number{
   const trimmed=value.trim();
   return trimmed?trimmed.split(/\s+/u).length:0;
 }
-export function AnyTopicWritingReview(){
+export function AnyTopicWritingReview({showVi=false}:{showVi?:boolean}){
   const [topic,setTopic]=useState('');
   const [writing,setWriting]=useState('');
   const [ready,setReady]=useState(false);
@@ -140,7 +140,7 @@ export function AnyTopicWritingReview(){
       <h3>Optional Gemini Writing feedback</h3>
       {!draftSaved&&<p className="notice">AI review requires a successfully saved copy of this exact draft. Save again after any editing.</p>}
       {writing.length>7000&&<p className="notice">Your full draft is saved. For Gemini feedback, use a shorter draft of up to 7,000 characters. Your longer text remains available for self-review.</p>}
-      <WritingAIReview reviewId="any-topic-writing" task={topic} fields={{draft:writing}} kind="draft" enabled={aiEligible}/>
+      <WritingAIReview reviewId="any-topic-writing" task={topic} fields={{draft:writing}} kind="draft" enabled={aiEligible} reviewMode="any-topic" responseLanguage={showVi ? 'vi' : 'en'}/>
     </section>}
   </section>;
 }
