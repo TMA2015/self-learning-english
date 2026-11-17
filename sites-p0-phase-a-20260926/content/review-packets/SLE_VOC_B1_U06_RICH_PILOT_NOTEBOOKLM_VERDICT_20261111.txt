@@ -1,0 +1,169 @@
+# Independent Academic & Pedagogical Audit Report
+
+**Packet ID:** `SLE-VOC-B1-U06-RICH-PILOT-202611011-R1`  
+**Review Target:** B1-U06 Vocabulary Depth Pilot (`VOC-B1-07` Candidate: *Small environmental choices: useful phrases, not isolated words*)  
+**Governing Standards:** `SLE-MASTER-001 v1.2.0` & *SLE Master Curriculum Framework v1.0*  
+**Permanent Baseline Sources:** `00_NOTEBOOK_ENGLISH_PERMANENT_v3.md` through `06_SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md`  
+
+---
+
+### DECISION MATRIX
+
+```
+┌───────────────────────────────────────────────────────────────────────────────────────────┐
+│                                    DECISION MATRIX                                        │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ PACKET VERDICT:                    PASS                                                   │
+│ REVIEW SCOPE:                      AUTHORED_CONTENT_ITEM_LEVEL (27/27 Components Audited) │
+│ ACADEMIC AUTHORING DISPOSITION:    GO (Approved for candidate v1.27.0 machine drafting)   │
+│ READY FOR MACHINE SCHEMA DRAFT:    YES (Subject to ID collision check & schema QA)        │
+│ PRODUCTION RELEASE DISPOSITION:    NO_GO (Blocked pending technical CI QA & owner release)│
+└───────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### EXECUTIVE SUMMARY & AUDIT SCOPE
+
+An independent academic and pedagogical audit of the **B1-U06 Vocabulary Depth Pilot Packet (`SLE_VOC_B1_U06_RICH_PILOT_NOTEBOOKLM_R1_20261111.md`)** was conducted against the permanent baseline sources (`00_NOTEBOOK_ENGLISH_PERMANENT_v3.md` through `04_GRAMMAR_ADAPTIVE_ROADMAP_v3.md`), the governing master standard `SLE-MASTER-001 v1.1.0` / `v1.2.0`, and the *SLE Master Curriculum Framework v1.0*.
+
+The audit encompassed:
+1. **14 Lexical Bank Entries:** Verified for natural collocation, definition accuracy, naturalness of model sentences, register notes, and cautious evidence handling.
+2. **10 Objective Multiple-Choice Questions (`Q01–Q10`):** Evaluated for single-key correctness, distractor quality, non-leakage from worked models, skill-tag validity, and position-neutral feedback (`CORE-4`).
+3. **2 Short-Answer Retrieval Items (`Q11–Q12`):** Checked for single-word deterministic key uniqueness and normalization safety.
+4. **1 Unscored Transfer Task:** Verified for strict evidence boundaries (`evidence_weight: 0`, `answer: null`, `review_mode: assisted_ai_or_human`).
+5. **Teaching Contract (`CORE-1..4`):** Checked for learner goals, independent worked models, unguided practice, and actionable error-recovery guidance.
+
+The packet **passes academic audit unconditionally** (`REQUIRED_CORRECTIONS: NONE`). It significantly deepens the B1-U06 vocabulary repertoire without overwriting baseline lesson `VOC-B1-01` or generating unearned CEFR level certifications.
+
+---
+
+### 1. AUDIT OF THE 14 LEXICAL BANK ENTRIES
+
+All 14 multiword chunks and collocations were individually audited for accuracy, naturalness, and evidence safety:
+
+1. **`reduce waste`** (*produce less material that is thrown away*): Model sentence (*"The cafeteria wants to reduce waste by offering portions in different sizes"*) is natural, age-appropriate, and accurate.
+2. **`reusable container`** (*a box or bottle that can be used many times*): Model sentence (*"Hana brings her salad in a reusable container instead of a disposable box"*) cleanly contrasts reusable vs. single-use.
+3. **`single-use packaging`** (*wrapping or containers designed to be used once*): Model sentence accurately demonstrates attribution in a school environment.
+4. **`sort waste`** (*separate unwanted material by type*): Model sentence (*"Visitors sort waste into labelled paper and food bins"*) accurately reflects everyday environmental sorting.
+5. **`repair rather than replace`** (*fix something instead of buying a new one*): Model sentence (*"The library chose to repair its older chairs rather than replace them"*) highlights a practical choice.
+6. **`save energy`** (*use less electricity or fuel than necessary*): Model sentence (*"Switching off empty-room lights can save energy"*) provides a clear, actionable example.
+7. **`public transport`** (*buses, trains and similar shared travel services open to the public*): Model sentence accurately frames shared community travel.
+8. **`cut down on`** (*reduce the amount or frequency of something*): Model sentence (*"We could cut down on printing by sharing one timetable per team"*) correctly uses *cut down on + noun/-ing*.
+9. **`have an impact on`** (*affect a person, place or situation*): Explicitly notes that *impact* is neutral (can be positive or negative) and takes the preposition *on*.
+10. **`raise awareness of`** (*help more people learn about an issue*): Correctly highlights the verb-noun collocation (*raise*, not *rise*) and preposition *of*.
+11. **`make a difference`** (*have a noticeable or useful effect*): Accurately notes that *make a difference* describes potential useful effect (*might make a difference*) without claiming absolute proof.
+12. **`take practical steps`** (*do specific, realistic things rather than only discuss an issue*): Model sentence (*"The committee took practical steps such as adding a refill station"*) provides a concrete example.
+13. **`conserve water`** (*use water carefully to avoid wasting it*): Model sentence (*"Rainwater collected from a roof can help conserve water during dry weeks"*) is precise and contextual.
+14. **`long-term effect`** (*a result that continues or appears after a longer time*): Explicitly cautions against treating a short 1-day or 1-week observation as proof of a long-term effect.
+
+---
+
+### 2. AUDIT OF THE 10 MULTIPLE-CHOICE QUESTIONS (MCQS)
+
+- **`VOC-B1-07-Q01`** (*Drama festival food boxes washed and reused*):
+  - **Key:** **B** (`reusable containers`).
+  - **Tag:** `vocabulary.meaning_in_context` | **Weight:** `1`.
+  - **Audit:** Key B is uniquely correct. Distractors A (single-use), C (long-term effects), D (public transport) are clear distractors. **PASS.**
+- **`VOC-B1-07-Q02`** (*Art room fixes broken table instead of buying another*):
+  - **Key:** **A** (`repair rather than replace`).
+  - **Tag:** `vocabulary.meaning_in_context` | **Weight:** `1`.
+  - **Audit:** Key A is uniquely correct. Distractors B, C, D describe completely different actions. **PASS.**
+- **`VOC-B1-07-Q03`** (*Museum asks visitors to put paper in one bin, food in another*):
+  - **Key:** **C** (`sort waste`).
+  - **Tag:** `vocabulary.meaning_in_context` | **Weight:** `1`.
+  - **Audit:** Key C is uniquely correct (*sorting waste* into paper vs. food). **PASS.**
+- **`VOC-B1-07-Q04`** (*Hiking group: "We could ___ printing"*):
+  - **Key:** **D** (`cut down on`).
+  - **Tag:** `vocabulary.collocations` | **Weight:** `1`.
+  - **Audit:** Key D is uniquely correct. Distractor B uses wrong preposition (*impact to*); C uses wrong syntax (*make a difference to* in this context); A is unidiomatic (*take more on*). **PASS.**
+- **`VOC-B1-07-Q05`** (*Exhibition posters explaining river pollution without measuring behavior*):
+  - **Key:** **B** (`raise awareness of river pollution`).
+  - **Tag:** `vocabulary.meaning_in_context` | **Weight:** `1`.
+  - **Audit:** Key B is uniquely correct. Distractors A, C overclaim proof/long-term effects without data; D is unrelated. **PASS.**
+- **`VOC-B1-07-Q06`** (*Environmental statement without claiming more than evidence shows*):
+  - **Key:** **C** (`Clearer labels might make a difference, but the organisers should measure what visitors actually put in the bins`).
+  - **Tag:** `vocabulary.meaning_in_context` | **Weight:** `1`.
+  - **Audit:** Key C is uniquely correct. Distractors A, B, D contain wild overclaims (*proves*, *automatically*, *guaranteed*). Directly tests evidence honesty. **PASS.**
+- **`VOC-B1-07-Q07`** (*New walkway near wildlife area; committee unsure if help or harm*):
+  - **Key:** **A** (`have an impact on local plants`).
+  - **Tag:** `vocabulary.collocations` | **Weight:** `1`.
+  - **Audit:** Key A is uniquely correct (captures neutral effect/uncertainty). Distractors B, C, D are nonsensical or ungrammatical. **PASS.**
+- **`VOC-B1-07-Q08`** (*City buses or local train open to everyone*):
+  - **Key:** **D** (`public transport`).
+  - **Tag:** `vocabulary.meaning_in_context` | **Weight:** `1`.
+  - **Audit:** Key D is uniquely correct. Distractors A, B, C are wrong categories. **PASS.**
+- **`VOC-B1-07-Q09`** (*Less paper for one week; long-term effect unchecked*):
+  - **Key:** **B** (`The long-term effect remains unknown; the school needs information over a longer period`).
+  - **Tag:** `vocabulary.meaning_in_context` | **Weight:** `1`.
+  - **Audit:** Key B is uniquely correct. Distractor A overclaims proof; C falsely restricts *effect* to bad results; D falsely claims zero impact. **PASS.**
+- **`VOC-B1-07-Q10`** (*Response illustrating taking practical steps for rubbish*):
+  - **Key:** **C** (`Set up a water-refill point and count disposable cups before and after the change`).
+  - **Tag:** `vocabulary.meaning_in_context` | **Weight:** `1`.
+  - **Audit:** Key C is uniquely correct (actionable measure + count). Distractors A, B, D are slogans or inaction. **PASS.**
+
+---
+
+### 3. AUDIT OF THE 2 SHORT-ANSWER RETRIEVAL ITEMS
+
+- **`VOC-B1-07-Q11`** (*"The club hopes to ___ awareness of safe battery disposal"*):
+  - **Accepted Key:** `raise`
+  - **Tag:** `vocabulary.collocations` | **Weight:** `1`.
+  - **Audit:** `raise` is the single, uniquely correct verb for the collocation *raise awareness of*. Standard normalization (`trim`, `casefold`, `collapse_spaces`, `strip_terminal_punctuation`) ensures robust exact-match grading. **PASS.**
+- **`VOC-B1-07-Q12`** (*"To reduce rubbish, we should cut ___ on single-use cups"*):
+  - **Accepted Key:** `down`
+  - **Tag:** `vocabulary.collocations` | **Weight:** `1`.
+  - **Audit:** `down` is the single, uniquely correct particle for the phrasal verb *cut down on*. **PASS.**
+
+---
+
+### 4. AUDIT OF THE UNSCORED TRANSFER TASK
+
+- **Task Prompt:** Write 3–4 original sentences recommending realistic changes for an after-school club that wants to use fewer disposable materials, including one sentence explaining what information to collect before claiming success.
+- **Contract Verification:**
+  - `type: extended_response`
+  - `answer: null`
+  - `evidence_weight: 0`
+  - `review_mode: assisted_ai_or_human`
+- **Audit:** Fully compliant with `SLE-MASTER-001 v1.2.0`. Generates zero automated CEFR level claims or percentage grades. The Core-2 worked model (youth sports centre equipment lending) is completely independent, preventing pre-submission prompt copying. **PASS.**
+
+---
+
+### 5. ANSWERS TO SECTION 6 REVIEW QUESTIONS (Q1–Q9)
+
+- **Q1 — Curriculum Fit & CEFR Calibration:**  
+  **YES.** Fits B1-U06 (*Community, environment and information*) perfectly. Calibrated to self-learners aged 12+. Explicitly treats B1 as an instructional target, not a formal language certificate (`SLE-MASTER-001` §4).
+- **Q2 — Teaching Completeness (CORE-1..4):**  
+  **YES.** CORE-1 (Goal/Context: school fair committee), CORE-2 (14 chunks, form/register notes, caution notes, non-leaking worked model on sports equipment lending), CORE-3 (10 MCQs, 2 short-answer recall items, 1 unscored transfer task), and CORE-4 (post-submit explanations + actionable next steps) are fully satisfied.
+- **Q3 — Audit of 14 Lexical Bank Entries:**  
+  **YES.** All 14 entries feature natural collocations, accurate definitions, realistic model sentences, and clear cautions against unevidenced causal overclaims.
+- **Q4 — Audit of 10 MCQs:**  
+  **YES.** All 10 items possess single, unambiguous keys, plausible distractors, and valid skill tags (`vocabulary.meaning_in_context`, `vocabulary.collocations`). Stems use completely distinct scenarios (drama festival, art room, museum, hiking group, river exhibition, walkway, science fair, paper trial, rubbish meeting) from the worked model.
+- **Q5 — Audit of 2 Short-Answer Items:**  
+  **YES.** `Q11` (`raise`) and `Q12` (`down`) have unique, deterministic exact-match keys. No valid alternative English word is unfairly penalized.
+- **Q6 — Feedback and Next Actions (CORE-4):**  
+  **YES.** Feedback is post-submission only, position-neutral (omits option letters A–D to support option shuffling), and includes explicit "Next step" guidance for student error recovery.
+- **Q7 — Depth & Non-Duplication vs. VOC-B1-01:**  
+  **YES.** Extends baseline `VOC-B1-01` (14 min, 5 items) with 14 rich chunks, 12 items, structured 4-Core progression, and a transfer prompt, without overwriting or regrading `VOC-B1-01`.
+- **Q8 — Unscored Transfer & Illustration Specs:**  
+  **YES.** Transfer task strictly carries `evidence_weight: 0` and `answer: null`. The optional illustration spec (Community Fair scene) is non-blocking, copyright-safe, and fully accessible without graphics.
+- **Q9 — Priority Fixes & Verdict:**  
+  **`REQUIRED_CORRECTIONS: NONE`**. Academic Verdict is **`PASS`**. Schema/browser QA remains `NOT_PERFORMED` and production release remains `NO_GO`.
+
+---
+
+### SECTION 7 REQUIRED REVIEW VERDICT
+
+```text
+PACKET_ID: SLE-VOC-B1-U06-RICH-PILOT-20261111-R1
+REVIEW_SCOPE: AUTHORED_CONTENT_ITEM_LEVEL
+BANK_ENTRIES_REVIEWED: 14/14
+OBJECTIVE_MCQS_REVIEWED: 10/10
+SHORT_ANSWER_ITEMS_REVIEWED: 2/2
+ACADEMIC_VERDICT: PASS
+REQUIRED_CORRECTIONS: NONE
+OPTIONAL_IMPROVEMENTS: NONE
+SCHEMA_AND_BROWSER_QA: NOT_PERFORMED
+PRODUCTION_RELEASE: NO_GO
+EVIDENCE_SCOPE: Full academic item-level audit of 1 lesson (VOC-B1-07 candidate), 14 core lexical chunks, 10 deterministic 4-choice MCQs, 2 deterministic short-answer items, and 1 unscored extended writing prompt in packet SLE_VOC_B1_U06_RICH_PILOT_NOTEBOOKLM_R1_20261111.md against permanent baseline sources (00_NOTEBOOK_ENGLISH_PERMANENT_v3.md to 04_GRAMMAR_ADAPTIVE_ROADMAP_v3.md), SLE-MASTER-001 v1.2.0, and the approved 60-Unit CEFR Framework v1.0.
+```
