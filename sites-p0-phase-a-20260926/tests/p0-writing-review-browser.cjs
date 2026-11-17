@@ -12,11 +12,14 @@ const root=path.resolve(__dirname,'..');
   // This standalone Vite harness bypasses the normal Vinext browser env injection.
   // Match its public compile-time environment now that optional Gemini modules
   // are imported by Any Topic; do not add a runtime process shim to the site.
-  define:{'process.env':JSON.stringify({
+  // Vite's standalone IIFE build needs the same compile-time process
+  // replacement as the real Vinext browser build, including SDK dependencies.
+  // This is a bundler define, NOT a window.process shim at runtime.
+  define:{process:JSON.stringify({env:{
     NODE_ENV:'production',
     NEXT_PUBLIC_LEARNING_RUNTIME:'browser',
     NEXT_PUBLIC_FIREBASE_APPCHECK_DEBUG:'0',
-  })},
+  }})},
   build:{outDir:out,emptyOutDir:true,target:'es2022',minify:false,
    lib:{entry:path.join(root,'tests/p0-writing-review-browser-entry.tsx'),formats:['iife'],
     name:'SleP0WritingBrowser',fileName:()=> 'bundle.js'}}});
@@ -28,7 +31,7 @@ const root=path.resolve(__dirname,'..');
  const profile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-p0-writing-qa-'));
  const html='<!doctype html><html><head><meta charset="utf-8"></head><body>'+
   '<div id="app"></div><div id="sle-test-result">STARTED</div>'+
-  '<script>window.addEventListener("error",e=>document.getElementById("sle-test-result").textContent="FAIL_SCRIPT "+e.message);'+
+  '<script>window.addEventListener("error",e=>document.getElementById("sle-test-result").textContent="FAIL_SCRIPT "+e.message+" @"+e.filename+":"+e.lineno+":"+(e.error?.stack||"").slice(0,600));'+
   'window.addEventListener("unhandledrejection",e=>document.getElementById("sle-test-result").textContent="FAIL_REJECTION "+e.reason);</script>'+
   '<script>'+bundle.replaceAll('</script>','<\\/script>')+'</script></body></html>';
  const server=http.createServer((_req,res)=>{
