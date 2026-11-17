@@ -278,7 +278,7 @@ export type OnDemandWritingFeedback={
   model:string;
   provider:'firebase-ai-logic';
   reviewedAt:number;
-  kind:'draft'|'planning';
+  kind:'draft'|'planning'|'revision';
   summary:string;
   strengths:string[];
   improvements:string[];
@@ -301,7 +301,7 @@ const aiFailureMessage=(code:string|null)=>{
     default:return 'The AI service did not return verified feedback. Your work remains saved for review.';
   }
 };
-export async function requestWritingAI(task:string,fields:Record<string,string>,kind:'draft'|'planning'):Promise<OnDemandWritingResult>{
+export async function requestWritingAI(task:string,fields:Record<string,string>,kind:'draft'|'planning'|'revision'):Promise<OnDemandWritingResult>{
   if(!browserLearningEnabled())return {status:'unavailable',reason:'AI feedback is only available in the browser learning runtime.'};
   if(!task.trim()||Object.values(fields).some(v=>typeof v!=='string'))return {status:'unavailable',reason:'The writing task is incomplete.'};
   const answer=Object.entries(fields).filter(([,v])=>v.trim()).map(([k,v])=>k+': '+v.trim()).join('\n');
@@ -324,7 +324,7 @@ export async function requestWritingAI(task:string,fields:Record<string,string>,
       }
     }else{
       const context=await browserWritingContext();
-      const evaluation=await tutor.coach('analysis',task,fields,{estimatedCEFR:context.estimatedCEFR,goals:context.goals});
+      const evaluation=await tutor.coach(kind==='revision'?'revision':'analysis',task,fields,{estimatedCEFR:context.estimatedCEFR,goals:context.goals});
       if(evaluation){
         const raw=evaluation.structuredResult as {summary:string;strengths:string[];improvements:string[];exercise:string};
         return {status:'validated',feedback:{
