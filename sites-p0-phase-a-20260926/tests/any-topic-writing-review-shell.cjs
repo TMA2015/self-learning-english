@@ -37,7 +37,9 @@ assert.match(view,/Ideas:/);
 assert.match(view,/Organization:/);
 assert.match(view,/Language:/);
 assert.match(home,/import \{AnyTopicWritingReview\}/);
-assert.match(home,/view==="writing-any-topic"&&<AnyTopicWritingReview\/>/);
+assert.match(home,/view==="writing-any-topic"&&<AnyTopicWritingReview showVi=\{!!state.vietnameseSupport\}\/>/);
+assert.match(view,/reviewMode="any-topic" responseLanguage=\{showVi \? 'vi' : 'en'\}/);
+
 assert.match(home,/onAnyTopic=\{\(\)=>void navigate\("writing-any-topic"\)\}/);
 assert.match(platform,/Open Any Topic Writing · optional Gemini/);
 assert.match(runner,/any-topic-writing-review-shell\.cjs/,'Register mandatory QA in full suite');
