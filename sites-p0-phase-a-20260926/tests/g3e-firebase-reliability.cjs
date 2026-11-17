@@ -105,6 +105,9 @@ const valid={summary:'Clear idea',strengths:['Relevant'],improvements:['Add an e
    assert.equal(calls.payloads.at(-1).targetCEFR,'C2','The level is a lesson teaching target');
    assert.equal(calls.appCheckTokens,3,'Advanced tutor still requires App Check');
    assert.equal(calls.ai,3,'Existing Gemini SDK handles the advanced teaching request');
+   // The pre-existing FirebaseRequestLifecycle enforces a 1.2 s gap between distinct requests.
+   // Let that interval pass before testing the independent no-CEFR fallback.
+   await new Promise(resolve=>setTimeout(resolve,1300));
    const unspecified=await bridge.explainEnglishLessonAI({
     lesson:'Writing course',focus:'Planning a clear paragraph.',
     question:'Can you explain the difference?',cefrTarget:'unknown'});
