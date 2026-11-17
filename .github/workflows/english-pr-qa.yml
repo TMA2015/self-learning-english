@@ -109,7 +109,7 @@ jobs:
                 # Official Ubuntu packages, alternate mirror. Do not bypass the
                 # mandatory FFmpeg/FFprobe existence and playback validation.
                 echo '::warning::FFmpeg installation incomplete from Azure mirror; retry official Ubuntu archive'
-                for source in /etc/apt/sources.list /etc/apt/sources.list.d/ubuntu.sources; do
+                for source in /etc/apt/apt-mirrors.txt /etc/apt/sources.list /etc/apt/sources.list.d/ubuntu.sources; do
                   if [[ -f "$source" ]]; then
                     sudo sed -i 's@azure.archive.ubuntu.com@archive.ubuntu.com@g' "$source"
                   fi
