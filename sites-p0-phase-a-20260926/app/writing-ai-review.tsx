@@ -1,6 +1,7 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
 import {requestWritingAI,type OnDemandWritingFeedback} from '../infrastructure/browser/client-services';
+import {TeachingBlocks,Inline} from './teaching-blocks';
 
 /** Independent learner-local feedback cache: never changes the underlying attempt grade.
  * The student must explicitly request AI before any writing is sent to Firebase. */
@@ -9,11 +10,11 @@ function fingerprint(value:string){
  for(let i=0;i<value.length;i++){const c=value.charCodeAt(i);a=Math.imul(a^c,16777619);b=Math.imul(b^c,2246822519);}
  return (a>>>0).toString(16)+(b>>>0).toString(16);
 }
-export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=false}:{
+export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=false,responseLanguage='en'}:{
  reviewId:string;task:string;fields:Record<string,string>;
- kind:'draft'|'planning'|'revision';enabled:boolean;sourceSample?:boolean;
+ kind:'draft'|'planning'|'revision';enabled:boolean;sourceSample?:boolean;responseLanguage?:'en'|'vi';
 }){
- const signature=JSON.stringify([task,fields,kind]);
+ const signature=JSON.stringify([task,fields,kind,...(kind==='revision'?[responseLanguage]:[])]);
  const latestSignature=useRef(signature);
  latestSignature.current=signature;
  const storageKey='g-learning:english:ai-feedback:v1:'+reviewId.replace(/[^a-z0-9-]/gi,'')+':'+fingerprint(signature);
@@ -36,7 +37,7 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
    setBusy(true);setReason('');
    const requestedSignature=signature;
    try{
-     const result=await requestWritingAI(task,fields,kind);
+     const result=await requestWritingAI(task,fields,kind,responseLanguage);
      // The learner may edit or navigate while a request is in flight. Never
      // display an old response as an assessment of a newer draft.
      if(latestSignature.current!==requestedSignature)return;
@@ -53,13 +54,13 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
    {sourceSample&&<p>Sample-based revision is practice only; any AI feedback cannot assess your independent writing ability.</p>}
    {feedback?<div aria-live="polite">
      <p><strong>AI response received · {feedback.model}</strong> · Provisional educational feedback</p>
-     <p>{feedback.summary}</p>
-     {feedback.strengths.length>0&&<><strong>What worked well</strong><ul>{feedback.strengths.map((s,i)=><li key={i}>{s}</li>)}</ul></>}
-     {feedback.improvements.length>0&&<><strong>What to improve</strong><ul>{feedback.improvements.map((s,i)=><li key={i}>{s}</li>)}</ul></>}
+     {kind==='revision'?<TeachingBlocks text={feedback.summary}/>:<p>{feedback.summary}</p>}
+     {feedback.strengths.length>0&&<><strong>What worked well</strong><ul>{feedback.strengths.map((s,i)=><li key={i}>{kind==='revision'?<Inline text={s}/>:s}</li>)}</ul></>}
+     {feedback.improvements.length>0&&<><strong>What to improve</strong><ul>{feedback.improvements.map((s,i)=><li key={i}>{kind==='revision'?<Inline text={s}/>:s}</li>)}</ul></>}
      {feedback.scores&&kind!=='revision'&&!sourceSample&&<div><strong>AI rubric observations · provisional (0–10)</strong><ul>{Object.entries(feedback.scores).map(([k,v])=><li key={k}>{k.replaceAll('-',' ')}: {v}/10</li>)}</ul></div>}
      {feedback.level&&kind!=='revision'&&!sourceSample&&<p>Writing practice estimate: {feedback.level}.</p>}
      {feedback.corrections.length>0&&<><strong>Revision hints</strong><ul>{feedback.corrections.map((c,i)=><li key={i}>“{c.original}” — {c.hint}</li>)}</ul></>}
-     <p><strong>Next practice:</strong> {feedback.exercise}</p>
+     {kind==='revision'?<div><strong>Next practice:</strong><TeachingBlocks text={feedback.exercise}/></div>:<p><strong>Next practice:</strong> {feedback.exercise}</p>}
      <button type="button" className="secondary-button" disabled={busy||!enabled} onClick={()=>void request()}>Request updated AI feedback</button>
    </div>:<>
      <button type="button" className="secondary-button" disabled={!enabled||busy} onClick={()=>void request()}>{busy?'Checking with Gemini…':kind==='revision'?'Compare original & revision with Gemini':'Get AI feedback'}</button>
