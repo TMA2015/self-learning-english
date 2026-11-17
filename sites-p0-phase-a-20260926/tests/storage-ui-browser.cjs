@@ -37,11 +37,11 @@ const root=path.resolve(__dirname,'..');
   res.writeHead(200,{'Content-Type':'text/html;charset=utf-8','Cache-Control':'no-store'});
   res.end(html);
  });
- function open(url){
+ function openOnce(url){
   return new Promise((resolve,reject)=>{
    const cmd=cp.spawn(bin,['--headless=new','--no-sandbox','--disable-dev-shm-usage',
     '--disable-extensions','--disable-background-networking',
-    '--no-first-run','--virtual-time-budget=90000','--dump-dom',
+    '--no-first-run','--virtual-time-budget=240000','--dump-dom',
     '--user-data-dir='+profile,url],{stdio:['ignore','pipe','pipe']});
    let stdout='',stderr='',expired=false;
    const timer=setTimeout(()=>{expired=true;cmd.kill('SIGKILL')},55000);
@@ -56,6 +56,20 @@ const root=path.resolve(__dirname,'..');
     resolve(result);
    });
   });
+ }
+ // Chromium can finish a virtual-time dump before browser crypto/file callbacks
+ // complete on a busy runner. Retry a non-verdict (STARTED) once; all actual
+ // FAIL_* outcomes, process errors and a repeated STARTED remain hard failures.
+ async function open(url){
+  for(let attempt=1;attempt<=2;attempt++){
+   try{return await openOnce(url)}
+   catch(err){
+    const premature=String(err).includes('React UI browser FAIL: STARTED ');
+    if(!premature||attempt===2)throw err;
+    console.warn('Chromium exited without an application verdict; retrying phase once',url);
+   }
+  }
+  throw Error('Browser phase did not produce a verdict');
  }
  try{
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
