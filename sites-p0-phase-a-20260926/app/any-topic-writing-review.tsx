@@ -1,12 +1,26 @@
 'use client';
 import {useEffect,useState} from 'react';
+import {WritingAIReview} from './writing-ai-review';
 
 /**
- * Issue #131: independent, local-only any-topic Writing Review shell.
- * This does NOT contact any AI provider, issue a grade, modify Foundation attempts,
- * or claim a CEFR result. A later authorized provider integration is a separate gate.
+ * Independent any-topic Writing: local draft and deterministic self-check first,
+ * plus optional Gemini feedback for the successfully saved text on explicit click.
+ * No grade writes, Foundation attempt changes, or certified CEFR result.
  */
 const DRAFT_KEY='g-learning:english:any-topic-writing:draft:v1';
+const ANY_TOPIC_AI_CACHE_PREFIX='g-learning:english:ai-feedback:v1:any-topic-writing:';
+
+/** Clear only the Any Topic draft and its optional Gemini feedback.
+ * Never delete feedback for the 12-week Writing Course or other skills. */
+export function clearAnyTopicBrowserData(storage:Pick<Storage,'length'|'key'|'removeItem'>):void{
+ const feedbackKeys:string[]=[];
+ for(let i=0;i<storage.length;i++){
+  const key=storage.key(i);
+  if(key?.startsWith(ANY_TOPIC_AI_CACHE_PREFIX))feedbackKeys.push(key);
+ }
+ storage.removeItem(DRAFT_KEY);
+ for(const key of feedbackKeys)storage.removeItem(key);
+}
 type Draft={topic:string;writing:string;updatedAt:number};
 type Snapshot=Draft&{words:number;paragraphs:number};
 
@@ -14,12 +28,13 @@ function words(value:string):number{
   const trimmed=value.trim();
   return trimmed?trimmed.split(/\s+/u).length:0;
 }
-export function AnyTopicWritingReview(){
+export function AnyTopicWritingReview({showVi=false}:{showVi?:boolean}){
   const [topic,setTopic]=useState('');
   const [writing,setWriting]=useState('');
   const [ready,setReady]=useState(false);
   const [saveStatus,setSaveStatus]=useState('Loading browser draft…');
   const [reviewed,setReviewed]=useState<Snapshot|null>(null);
+  const [savedSignature,setSavedSignature]=useState<string|null>(null);
 
   useEffect(()=>{
     try{
@@ -37,38 +52,56 @@ export function AnyTopicWritingReview(){
     }finally{setReady(true)}
   },[]);
 
-  // Local autosave only. No network call, remote SDK, account history write,
-  // AI request, or alteration of existing graded attempts.
+  // Local autosave only. Gemini is never requested on load, edits or save.
+  // A matching successful save is required before the optional AI control is enabled.
   useEffect(()=>{
     if(!ready)return;
     try{
+      if(!topic&&!writing){
+        localStorage.removeItem(DRAFT_KEY);
+        setSavedSignature(null);
+        return;
+      }
       localStorage.setItem(DRAFT_KEY,JSON.stringify({topic,writing,updatedAt:Date.now()} satisfies Draft));
+      setSavedSignature(JSON.stringify([topic,writing]));
       setSaveStatus('Draft saved on this browser only.');
     }catch{
+      setSavedSignature(null);
       setSaveStatus('Could not save on this browser. Copy your text before leaving.');
     }
   },[topic,writing,ready]);
 
-  function save(){
+  function save():boolean{
     try{
       localStorage.setItem(DRAFT_KEY,JSON.stringify({topic,writing,updatedAt:Date.now()} satisfies Draft));
+      setSavedSignature(JSON.stringify([topic,writing]));
       setSaveStatus('Draft saved on this browser only.');
-    }catch{setSaveStatus('Save failed. Copy your text before leaving.')}
+      return true;
+    }catch{
+      setSavedSignature(null);
+      setSaveStatus('Save failed. Copy your text before leaving.');
+      return false;
+    }
   }
   function clear(){
-    if(!window.confirm('Clear the local Writing Review draft on this browser? This cannot be undone.'))return;
-    try{localStorage.removeItem(DRAFT_KEY)}catch{/* In-memory clear remains possible. */}
-    setTopic('');setWriting('');setReviewed(null);
-    setSaveStatus('Local draft cleared in this view.');
+    if(!window.confirm('Delete the Any Topic draft and its cached Gemini feedback from this browser? Other course records remain. This cannot be undone.'))return;
+    let cleared=true;
+    try{clearAnyTopicBrowserData(localStorage)}catch{cleared=false}
+    setTopic('');setWriting('');setReviewed(null);setSavedSignature(null);
+    setSaveStatus(cleared
+      ?'Any Topic draft and its Gemini feedback cleared from this browser.'
+      :'Draft cleared from this view, but some browser data could not be deleted. Clear site data in browser settings.');
   }
   const valid=!!topic.trim()&&!!writing.trim();
   const currentReview=reviewed?.topic===topic&&reviewed?.writing===writing?reviewed:null;
+  const draftSaved=!!currentReview&&savedSignature===JSON.stringify([topic,writing]);
+  const aiEligible=ready&&draftSaved&&writing.trim().length>=8&&writing.length<=7000;
   return <section className="panel any-topic-writing-review" aria-label="Independent Writing Review">
     <div className="page-heading"><div>
       <h1>Writing Draft &amp; Self-Check · Any Topic</h1>
-      <p>Write about a topic of your choice, save a draft and check your own revision steps. This space is separate from English Writing Coach · 12 Weeks and graded Foundation lessons. No AI or teacher analyses the text you enter here.</p>
+      <p>Write about a topic of your choice, save a draft, check your revision steps and optionally ask Gemini for personal writing feedback. This space is separate from English Writing Coach · 12 Weeks and graded Foundation lessons.</p>
     </div></div>
-    <p className="notice"><strong>Static self-check only:</strong> no AI submission or automatic scoring is enabled. These general questions are the same for every draft. They do not assess your specific ideas, correct grammar, or provide a CEFR judgment.</p>
+    <p className="notice"><strong>Your choice:</strong> the self-check is always available without AI, and its questions are the same for every draft. After saving, you may explicitly ask Gemini to review this draft. Gemini feedback is provisional advice, never an official grade or certified CEFR result.</p>
     <form onSubmit={event=>{
       event.preventDefault();
       if(!valid)return;
@@ -87,7 +120,7 @@ export function AnyTopicWritingReview(){
           placeholder="Write your own response here."/>
       </label>
       <p role="status" aria-live="polite">{saveStatus}</p>
-      <p className="muted">Saved only in this browser, not synchronized across devices. On a shared computer, other browser users may see this draft. You can clear it at any time.</p>
+      <p className="muted">Saved only in this browser, not synchronized across devices. On a shared computer, other browser users may see this draft and cached Gemini feedback. Clear local draft also deletes this workspace’s cached AI responses; it does not delete other course records.</p>
       <div className="learning-choices">
         <button className="primary-button" type="submit" disabled={!ready||!valid}>Open self-review checklist</button>
         <button className="secondary-button" type="button" disabled={!ready} onClick={save}>Save draft</button>
@@ -103,7 +136,11 @@ export function AnyTopicWritingReview(){
         <li><strong>Organization:</strong> Check the order of ideas, paragraph breaks and whether the conclusion follows from the response.</li>
         <li><strong>Language:</strong> Read each sentence aloud and check verb forms, agreement, word choice, punctuation and unclear references.</li>
       </ol>
-      <p><strong>Next revision:</strong> Choose the most important item above, revise the draft yourself, and open the checklist again. Your sentences have not been evaluated or corrected by AI or a teacher.</p>
+      <p><strong>Next revision:</strong> Choose the most important item above, revise the draft yourself, and open the checklist again. The checklist itself does not evaluate or correct your sentences.</p>
+      <h3>Optional Gemini Writing feedback</h3>
+      {!draftSaved&&<p className="notice">AI review requires a successfully saved copy of this exact draft. Save again after any editing.</p>}
+      {writing.length>7000&&<p className="notice">Your full draft is saved. For Gemini feedback, use a shorter draft of up to 7,000 characters. Your longer text remains available for self-review.</p>}
+      <WritingAIReview reviewId="any-topic-writing" task={topic} fields={{draft:writing}} kind="draft" enabled={aiEligible} reviewMode="any-topic" responseLanguage={showVi ? 'vi' : 'en'}/>
     </section>}
   </section>;
 }

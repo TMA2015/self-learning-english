@@ -23,7 +23,7 @@ const workflow=read('../.github/workflows/english-pr-qa.yml');
 const exactly=(source,pattern,n,label)=>assert.equal((source.match(pattern)||[]).length,n,label);
 // Existing Writing route must remain a single page and not become a second app.
 exactly(home,/<WritingHome\b/g,1,'Only one existing WritingHome slot');
-exactly(home,/<AnyTopicWritingReview\/>/g,1,'Independent Writing Review opens in current app');
+exactly(home,/<AnyTopicWritingReview showVi=\{!!state.vietnameseSupport\}\/>/g,1,'Independent Writing Review opens once with existing language preference');
 assert(home.includes('onAnyTopic={()=>void navigate("writing-any-topic")}'));
 assert(home.includes('import {OfflineLessonReview')===false,
  'Post-submit component stays inside original Foundation player, not a duplicate shell');
