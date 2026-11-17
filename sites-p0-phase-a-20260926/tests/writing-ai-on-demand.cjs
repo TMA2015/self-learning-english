@@ -19,7 +19,21 @@ assert(component.includes("latestSignature.current!==requestedSignature"),'Stale
 assert(b.includes("<WritingAIReview")&&b.includes("week===5?'draft':'planning'"));
 assert(c.includes("<WritingAIReview")&&c.includes("sourceSample={work.source?.ownership==='sample'}"));
 assert(foundation.includes("<WritingAIReview")&&foundation.includes("attempt.status==='pending_review'"));
-assert(services.includes("tutor.teachWriting(draft,task")&&services.includes("tutor.coach('analysis',task"));
+assert(services.includes("tutor.teachWriting(draft,task")&&services.includes("tutor.coach(kind==='revision'?'revision':'analysis',task"));
+assert(services.includes("scores:null,level:null"),'Revision coaching must not assign scores or level');
+const registry=require('../ai/prompts/registry.json');
+assert.equal(registry['revision-coaching'].status,'active');
+assert.equal(registry['revision-coaching'].version,'1.0.0');
+for(const required of ['sourceOwnership','originalText','revisedText','no-change','No numeric scores','Sample Student Draft']){
+ assert(registry['revision-coaching'].system.includes(required),'Revision AI prompt must cover '+required);
+}
+const serviceSource=read('ai/service.ts');
+assert(serviceSource.includes("stage==='revision'?'revision-coaching':'feedback'"));
+assert(serviceSource.includes("scores:stage!=='revision'"));
+const laterPage=read('app/writing-course-v2-c.tsx');
+assert(laterPage.includes('revisionAIContext(week,work)'));
+assert(laterPage.includes("kind={editing?'revision':'draft'}"));
+assert(laterPage.includes('enabled={saved&&!busy&&!error&&(!editing||!!revision)}'));
 assert(services.includes("status:'unavailable'")&&services.includes("scores:null,level:null"));
 assert(browser.includes("resetAIFailure")&&browser.includes("readAIFailure"));
 assert(browser.includes('await getToken(appCheckInstance)'));
