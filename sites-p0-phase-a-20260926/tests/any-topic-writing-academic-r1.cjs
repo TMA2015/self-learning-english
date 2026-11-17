@@ -48,6 +48,46 @@ const tutor=createTutorService({
  async generate(req){lastRequest=req;return {provider:'firebase-ai-logic',model:'synthetic-model',result:output}},
 });
 async function test(){
+ // Execute the real browser service with a mocked Firebase tutor. The learner
+ // may enter exactly 7,000 characters; an internal "draft: " label must not
+ // reduce the advertised limit or change the text sent for review.
+ {
+  const ts=require('typescript'),vm=require('node:vm');
+  const compiled=ts.transpileModule(read('infrastructure/browser/client-services.ts'),{
+   fileName:'client-services.ts',compilerOptions:{
+    module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,
+   },
+  }).outputText;
+  const holder={exports:{}};
+  let boundaryCalls=0,lastDraft=null;
+  vm.runInNewContext(compiled,{
+   module:holder,exports:holder.exports,Date,
+   process:{env:{NEXT_PUBLIC_LEARNING_RUNTIME:'browser'}},
+   require(name){
+    if(name==='./firebase-ai-browser')return {
+     browserTutorService:()=>({available:true,coach:async(stage,task,fields)=>{
+      assert.equal(stage,'any-topic');
+      boundaryCalls++;lastDraft=fields.draft;
+      return {provider:'firebase-ai-logic',model:'synthetic',structuredResult:{
+       ...good(),corrections:[],
+      }};
+     }}),
+     resetAIFailure:()=>{},readAIFailure:()=>null,
+    };
+    return {};
+   },
+  },{timeout:3000});
+  const send=holder.exports.requestWritingAI;
+  const max='A'.repeat(7000);
+  const allowed=await send('Describe a useful place.',{draft:max},'draft','en','any-topic');
+  assert.equal(allowed.status,'validated',
+   'Exactly 7000 learner characters must not be rejected due to an internal field label');
+  assert.equal(lastDraft,max,'Gemini receives the exact original saved draft, no hidden prefix');
+  assert.equal(boundaryCalls,1);
+  const excess=await send('Describe a useful place.',{draft:max+'B'},'draft','en','any-topic');
+  assert.equal(excess.status,'unavailable','7001 learner characters must remain disabled');
+  assert.equal(boundaryCalls,1,'Over-limit draft must never reach Gemini');
+ }
  const reply=await tutor.coach('any-topic','Describe your last trip.',{draft},{responseLanguage:'vi'});
  assert(reply,'Valid unscored feedback should be accepted');
  assert.equal(lastRequest.purpose,'any-topic-writing');
