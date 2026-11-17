@@ -133,7 +133,7 @@ function makeHarness({failSave=false}={}){
 }
 
 const provider=fs.readFileSync(path.join(root,'app/writing-ai-review.tsx'),'utf8');
-assert(provider.includes('if(!mounted.current||latestSignature.current!==requestedSignature)return;'),
+assert(provider.includes('if(!mounted.current||!currentlyEligible.current||latestSignature.current!==requestedSignature)return;'),
  'Unsubscribed review must ignore late Gemini responses and avoid cache resurrection');
 assert(provider.includes('return ()=>{mounted.current=false};'),
  'Review must invalidate pending AI work on unmount');
