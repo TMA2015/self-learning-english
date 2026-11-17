@@ -14,7 +14,7 @@ assert(tutor.includes('Your question is sent only when you ask'));
 assert(tutor.includes("result.status==='answered'"));
 assert(bridge.includes("await getToken(appCheckInstance)"));
 assert(bridge.includes("model:config.geminiModel"));
-assert(bridge.includes("maxOutputTokens:850"));
+assert(bridge.includes("maxOutputTokens:1400"));
 assert(bridge.includes("lessonLifecycle.run("));
 assert(!tutor.includes("innerHTML"));
 assert(css.includes(".english-lesson-ai-panel"));
