@@ -66,6 +66,10 @@ let count=0;async function test(name,fn){await fn();count++;console.log('PASS '+
   const html=page(9,'feedback',own);
   assert(html.includes('Compare original &amp; revision with Gemini'));
   assert(html.includes('Only clicking this button sends your saved original text'));
+  assert(html.includes('Compare original &amp; revision with Gemini'));
+  assert(page(9,'feedback',own,{showVi:true}).includes('Sample-based revision')===false);
+  const viProps=page(9,'feedback',own,{showVi:true});
+  assert(viProps.includes('Gemini'), 'Vietnamese support still renders the revision action');
   assert.equal(JSON.stringify(own),before,'The Gemini context must not mutate saved work');
   assert.equal(revisionAIContext(9,d.editLater(own,'draft','Changed after save')),null,
    'Unsaved revision must not be eligible for Gemini comparison');
