@@ -17,7 +17,7 @@ assert(component.includes('sourceSample')&&component.includes('provisional'));
 assert(component.includes('localStorage.setItem')&&component.includes('fingerprint(signature)'));
 assert(component.includes("latestSignature.current!==requestedSignature"),'Stale Gemini response must not grade edited text');
 assert(b.includes("<WritingAIReview")&&b.includes("week===5?'draft':'planning'"));
-assert(c.includes("<WritingAIReview")&&c.includes("sourceSample={work.source?.ownership==='sample'}"));
+assert(c.includes("<WritingAIReview")&&c.includes("sourceSample={revision?.sourceSample??work.source?.ownership==='sample'}"),'Sample-based authorship must come from the saved revision when available');
 assert(foundation.includes("<WritingAIReview")&&foundation.includes("attempt.status==='pending_review'"));
 assert(services.includes("tutor.teachWriting(draft,task")&&services.includes("tutor.coach(kind==='revision'?'revision':'analysis',task"));
 assert(services.includes("scores:null,level:null"),'Revision coaching must not assign scores or level');
