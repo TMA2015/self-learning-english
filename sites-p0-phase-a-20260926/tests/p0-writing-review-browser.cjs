@@ -9,11 +9,31 @@ const root=path.resolve(__dirname,'..');
  const out=path.join(root,'.sites-runtime/p0-writing-browser');
  fs.rmSync(out,{recursive:true,force:true});
  await build({root,configFile:false,logLevel:'error',
+  // Scope this P0 Chromium test to real local draft Save/Restore/Clear.
+  // Firebase/provider contract tests separately exercise the real SDK bridge.
+  // Here only, replace the optional AI UI with a visible status stub. No
+  // external requests, browser process polyfills or changes to app code.
+  plugins:[{
+    name:'qa-only-any-topic-gemini-stub',enforce:'pre',
+    resolveId(source,importer){
+      if(source==='./writing-ai-review'&&importer?.endsWith('/app/any-topic-writing-review.tsx'))
+        return '\0sle-qa-any-topic-ai';
+    },
+    load(id){
+      if(id==='\0sle-qa-any-topic-ai')
+        return `import {jsx} from 'react/jsx-runtime';
+          export function WritingAIReview({enabled}){
+            return jsx('div',{'data-qa-optional-gemini':enabled?'enabled':'disabled',
+              children:'Gemini UI stub: no external requests'});
+          }`;
+    },
+  }],
   define:{'process.env.NODE_ENV':JSON.stringify('production')},
   build:{outDir:out,emptyOutDir:true,target:'es2022',minify:false,
    lib:{entry:path.join(root,'tests/p0-writing-review-browser-entry.tsx'),formats:['iife'],
     name:'SleP0WritingBrowser',fileName:()=> 'bundle.js'}}});
  const bundle=fs.readFileSync(path.join(out,'bundle.js'),'utf8');
+ assert(bundle.includes('data-qa-optional-gemini'),'P0 test must retain optional Gemini enabled-state proof');
  const bin=['google-chrome','google-chrome-stable','chromium','chromium-browser']
   .map(name=>{try{return cp.execFileSync('which',[name],{encoding:'utf8'}).trim()}catch{return ''}})
   .find(Boolean);
@@ -21,7 +41,7 @@ const root=path.resolve(__dirname,'..');
  const profile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-p0-writing-qa-'));
  const html='<!doctype html><html><head><meta charset="utf-8"></head><body>'+
   '<div id="app"></div><div id="sle-test-result">STARTED</div>'+
-  '<script>window.addEventListener("error",e=>document.getElementById("sle-test-result").textContent="FAIL_SCRIPT "+e.message);'+
+  '<script>window.addEventListener("error",e=>document.getElementById("sle-test-result").textContent="FAIL_SCRIPT "+e.message+" @"+e.filename+":"+e.lineno+":"+(e.error?.stack||"").slice(0,600));'+
   'window.addEventListener("unhandledrejection",e=>document.getElementById("sle-test-result").textContent="FAIL_REJECTION "+e.reason);</script>'+
   '<script>'+bundle.replaceAll('</script>','<\\/script>')+'</script></body></html>';
  const server=http.createServer((_req,res)=>{

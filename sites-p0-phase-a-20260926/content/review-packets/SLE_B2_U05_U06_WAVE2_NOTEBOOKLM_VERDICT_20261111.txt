@@ -1,0 +1,225 @@
+### ACADEMIC REVIEW VERDICT & AUDIT REPORT
+
+```text
+PACKET_ID: SLE-B2-W2-U05U06-20261111-R1
+REVIEW_SCOPE: AUTHORED_CONTENT_ITEM_LEVEL
+LESSONS_REVIEWED: 4/4
+OBJECTIVE_ITEMS_REVIEWED: 20/20
+UNSCORED_WRITING_TASKS_REVIEWED: 4/4
+ACADEMIC_VERDICT: PASS
+REQUIRED_CORRECTIONS: NONE
+OPTIONAL_IMPROVEMENTS:
+  1. Frontend Card Layout: Render "Text A" and "Text B" in dual-source lessons (L01, L02) inside distinct visual card containers to optimize side-by-side reading on narrow mobile viewports (<380px width).
+  2. Outline Checklist Rendering: In L03-Q06 (5-line argument outline), display a visual 5-box progress guide (Position -> Evidence -> Counterargument -> Response -> Question) in the Core-2 strategy block to assist self-learners during planning.
+SCHEMA_AND_BROWSER_QA: NOT_PERFORMED
+PRODUCTION_RELEASE: NO_GO (until separate GitHub technical QA and owner approval)
+EVIDENCE_SCOPE: Full academic item-level audit of all 4 proposed lessons, 20 deterministic 4-choice Reading MCQs, and 4 unscored extended writing tasks in packet SLE_B2_U05_U06_WAVE2_NOTEBOOKLM_REVIEW_20261111.md against permanent baseline sources (00_NOTEBOOK_ENGLISH_PERMANENT_v3.md to 04_GRAMMAR_ADAPTIVE_ROADMAP_v3.md), SLE-MASTER-001 v1.2.0, and the approved 60-Unit CEFR Framework v1.0.
+```
+
+---
+
+### DECISION MATRIX
+
+```
+┌───────────────────────────────────────────────────────────────────────────────────────────┐
+│                                    DECISION MATRIX                                        │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ PACKET VERDICT:                    PASS                                                   │
+│ REVIEW SCOPE:                      AUTHORED_CONTENT_ITEM_LEVEL (24/24 Activities Audited) │
+│ ACADEMIC AUTHORING DISPOSITION:    GO (Approved for candidate v1.26.0 machine drafting)   │
+│ READY FOR MACHINE SCHEMA DRAFT:    YES (Subject to ID collision resolution & rubric schema)│
+│ PRODUCTION RELEASE DISPOSITION:    NO_GO (Blocked pending technical CI QA & owner release)│
+└───────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### ANSWERS TO SECTION 7 ACADEMIC REVIEW QUESTIONS (Q1–Q9)
+
+#### Q1 — Curriculum Fit & Outcome Alignment
+**PASS.** All 4 lessons directly fulfill their declared Framework Unit learning outcomes:
+- **`B2-U05-W2-L01` & `B2-U05-W2-L02` (`B2-U05`):** Teach multi-source comparison, attribution, sampling bias recognition, and synthesis without distorting evidence or overclaiming causation.
+- **`B2-U06-W2-L01` & `B2-U06-W2-L02` (`B2-U06`):** Teach argument structure (Claim $\rightarrow$ Evidence $\rightarrow$ Counterargument $\rightarrow$ Response), fair representation of opposing views, hedging, and evidence-based rebuttal.
+- *Evidence Boundary:* Neither lesson claims completion of `B2-U04` (Listening) or verified oral mediation/speaking proficiency. All productive writing tasks are explicitly marked `UNSCORED / PENDING_REVIEW` (`evidence_weight: 0`).
+
+#### Q2 — Teaching Completeness (CORE 1–4 & Non-Leaking Worked Models)
+**PASS.** Every lesson fully implements the 4-Core Lesson Contract (`SLE-MASTER-001` v1.2.0 §2):
+- **CORE-1:** Clear learner-facing goals and purposeful school/community contexts.
+- **CORE-2:** Explicit strategy breakdowns and completely independent worked models:
+  - `L01`: Classroom plant growth vs. poll preference $\leftrightarrow$ Bicycle parking counts vs. parent travel survey.
+  - `L02`: Festival sign length observation vs. volunteer comments $\leftrightarrow$ Library opening log vs. student feedback form.
+  - `L03`: Project partner choice & new student objection $\leftrightarrow$ Quiet study room trial & staff supervision objection.
+  - `L04`: Club meeting timetable change $\leftrightarrow$ Structured peer feedback vs. teacher feedback on first drafts.
+- **CORE-3:** Independent learner practice using original assessed sources.
+- **CORE-4:** Post-submission explanatory feedback with actionable "Next step" recovery guidance. Zero pre-submission key leakage exists across all 4 lessons.
+
+#### Q3 — Item-Level Key Check (All 20 MCQs)
+**PASS.** Every one of the 20 objective MCQs (`L01-Q01..Q05`, `L02-Q01..Q05`, `L03-Q01..Q05`, `L04-Q01..Q05`) possesses:
+1. Exactly four options (A–D);
+2. Exactly one uniquely correct answer key;
+3. Valid B2 reading/critical skill tags (`reading.gist`, `reading.detail`, `reading.inference`, `reading.author_purpose`);
+4. `evidence_weight: 1`;
+5. Post-submission explanatory feedback with position-neutral logic and explicit "Next step" guidance.
+
+#### Q4 — Passage Validity & Internal Consistency
+**PASS.** Fictional source texts and numerical figures are 100% internally consistent:
+- `L01`: Wed 8:00 a.m. bike counts (42 to 65 avg over 4 weeks); Parent survey (90 respondents: 54 crossing, 23 stands).
+- `L02`: Library log (28 vs 18 visits over 6 weeks); Student feedback (120 responses: 73 helped, 31 home late, 16 no view; multiple selection explicitly allowed).
+- `L03`: Quiet study room (60 seats, 22–40 daily entries, noise complaints dropped 6 to 2, 10 staff comments).
+- `L04`: Peer feedback trial (8 classes over 4 weeks; 92% vs 86% draft submission rate; non-random allocation).
+- All figures, caveats, and evidence limits are logically sound and properly constrained.
+
+#### Q5 — Learner Appropriateness & Cognitive Calibration
+**PASS.** Contexts (school travel, library hours, study rooms, peer feedback) are age-appropriate for self-learners aged 12+ and represent genuine B2 cognitive demand (distinguishing correlation from causation, recognizing response bias, hedging claims, evaluating counterarguments). The English-first prose is clear, structured, and free of artificial jargon.
+
+#### Q6 — Source and Answer Boundaries
+**PASS.** All items strictly require reasoning from the provided fictional texts. Worked examples operate on completely independent scenarios and supply zero clue or key leakage. Texts are original, fictional teaching materials requiring no external real-world fact-checking or third-party copyright clearance.
+
+#### Q7 — Writing Honesty & Contract Compliance
+**PASS.** All 4 extended writing tasks (`L01-Q06`, `L02-Q06`, `L03-Q06`, `L04-Q06`) strictly adhere to the machine contract: `type: extended_response`, `answer: null`, `evidence_weight: 0`, `review_mode: assisted_ai_or_human`, `rubric_id: RUBRIC-WRITING-B2`, and `word_range_guidance: {not_a_quality_score: true}`. They generate zero automated CEFR levels, percentage scores, or quality certifications.
+
+#### Q8 — Priority Fixes & Corrections
+**PASS.** Zero mandatory academic item-level corrections are required (`REQUIRED_CORRECTIONS: NONE`). All 20 objective items, 4 open writing tasks, 4 worked models, and 4 reading passages meet standard `SLE-MASTER-001 v1.2.0` requirements as written.
+
+#### Q9 — Conditional Import Readiness
+**YES (For Academic Schema Drafting).** The packet is ready for technical machine candidate composition (`v1.26.0 = 166 lessons / 1,187 activities`), provided that:
+1. Provisional lesson IDs (`B2-U05-W2-L01..L02`, `B2-U06-W2-L01..L02`) are resolved to canonical schema IDs without collision against Draft PR #127.
+2. Proposed `RUBRIC-WRITING-B2` (Appendix A) is integrated into the schema rubric registry.
+3. Automated CI schema validation, technical QA, and explicit owner release authorization pass prior to deployment.
+
+---
+
+### ITEM-BY-ITEM AUDIT LEDGER (All 24 Activities)
+
+```
+┌───────────────────────────────────────────────────────────────────────────────────────────┐
+│                                 DETAILED ITEM AUDIT LEDGER                                │
+├──────────────┬──────────────────┬─────────────┬─────────┬────────────────────────┬────────┤
+│ Item ID      │ Module / Domain  │ Skill Tag   │ Weight  │ Correct Key / Contract │ Status │
+├──────────────┼──────────────────┼─────────────┼─────────┼────────────────────────┼────────┤
+│ L01-Q01      │ Reading          │ r.gist      │ 1       │ B                      │ PASS   │
+│ L01-Q02      │ Reading          │ r.detail    │ 1       │ C                      │ PASS   │
+│ L01-Q03      │ Reading          │ r.inference │ 1       │ C                      │ PASS   │
+│ L01-Q04      │ Reading          │ r.inference │ 1       │ C                      │ PASS   │
+│ L01-Q05      │ Reading          │ r.inference │ 1       │ B                      │ PASS   │
+│ L01-Q06      │ Writing          │ w.*         │ 0       │ UNSCORED (ext_resp)    │ PASS   │
+├──────────────┼──────────────────┼─────────────┼─────────┼────────────────────────┼────────┤
+│ L02-Q01      │ Reading          │ r.detail    │ 1       │ A                      │ PASS   │
+│ L02-Q02      │ Reading          │ r.detail    │ 1       │ B                      │ PASS   │
+│ L02-Q03      │ Reading          │ r.detail    │ 1       │ C                      │ PASS   │
+│ L02-Q04      │ Reading          │ r.inference │ 1       │ C                      │ PASS   │
+│ L02-Q05      │ Reading          │ r.inference │ 1       │ C                      │ PASS   │
+│ L02-Q06      │ Writing          │ w.*         │ 0       │ UNSCORED (ext_resp)    │ PASS   │
+├──────────────┼──────────────────┼─────────────┼─────────┼────────────────────────┼────────┤
+│ L03-Q01      │ Reading/Strategy │ r.inference │ 1       │ A                      │ PASS   │
+│ L03-Q02      │ Reading/Strategy │ r.detail    │ 1       │ C                      │ PASS   │
+│ L03-Q03      │ Reading/Strategy │ r.inference │ 1       │ B                      │ PASS   │
+│ L03-Q04      │ Reading/Strategy │ r.inference │ 1       │ C                      │ PASS   │
+│ L03-Q05      │ Reading/Strategy │ r.inference │ 1       │ D                      │ PASS   │
+│ L03-Q06      │ Writing          │ w.*         │ 0       │ UNSCORED (ext_resp)    │ PASS   │
+├──────────────┼──────────────────┼─────────────┼─────────┼────────────────────────┼────────┤
+│ L04-Q01      │ Reading/Strategy │ r.inference │ 1       │ B                      │ PASS   │
+│ L04-Q02      │ Reading/Strategy │### ACADEMIC REVIEW VERDICT & AUDIT REPORT
+
+```text
+PACKET_ID: SLE-B2-W2-U05U06-20261111-R1
+REVIEW_SCOPE: AUTHORED_CONTENT_ITEM_LEVEL
+LESSONS_REVIEWED: 4/4
+OBJECTIVE_ITEMS_REVIEWED: 20/20
+UNSCORED_WRITING_TASKS_REVIEWED: 4/4
+ACADEMIC_VERDICT: PASS
+REQUIRED_CORRECTIONS: NONE
+OPTIONAL_IMPROVEMENTS:
+  1. Frontend Card Layout: Render "Text A" and "Text B" in dual-source lessons (L01, L02) inside distinct visual card containers to optimize side-by-side reading on narrow mobile viewports (<380px width).
+  2. Outline Checklist Rendering: In L03-Q06 (5-line argument outline), display a visual 5-box progress guide (Position -> Evidence -> Counterargument -> Response -> Question) in the Core-2 strategy block to assist self-learners during planning.
+SCHEMA_AND_BROWSER_QA: NOT_PERFORMED
+PRODUCTION_RELEASE: NO_GO (until separate GitHub technical QA and owner approval)
+EVIDENCE_SCOPE: Full academic item-level audit of all 4 proposed lessons, 20 deterministic 4-choice Reading MCQs, and 4 unscored extended writing tasks in packet SLE_B2_U05_U06_WAVE2_NOTEBOOKLM_REVIEW_20261111.md against permanent baseline sources (00_NOTEBOOK_ENGLISH_PERMANENT_v3.md to 04_GRAMMAR_ADAPTIVE_ROADMAP_v3.md), SLE-MASTER-001 v1.2.0, and the approved 60-Unit CEFR Framework v1.0.
+```
+
+---
+
+### DECISION MATRIX
+
+```
+┌───────────────────────────────────────────────────────────────────────────────────────────┐
+│                                    DECISION MATRIX                                        │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ PACKET VERDICT:                    PASS                                                   │
+│ REVIEW SCOPE:                      AUTHORED_CONTENT_ITEM_LEVEL (24/24 Activities Audited) │
+│ ACADEMIC AUTHORING DISPOSITION:    GO (Approved for candidate v1.26.0 machine drafting)   │
+│ READY FOR MACHINE SCHEMA DRAFT:    YES (Subject to ID collision resolution & rubric schema)│
+│ PRODUCTION RELEASE DISPOSITION:    NO_GO (Blocked pending technical CI QA & owner release)│
+└───────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### ANSWERS TO SECTION 7 ACADEMIC REVIEW QUESTIONS (Q1–Q9)
+
+#### Q1 — Curriculum Fit & Outcome Alignment
+**PASS.** All 4 lessons directly fulfill their declared Framework Unit learning outcomes:
+- **`B2-U05-W2-L01` & `B2-U05-W2-L02` (`B2-U05`):** Teach multi-source comparison, attribution, sampling bias recognition, and synthesis without distorting evidence or overclaiming causation.
+- **`B2-U06-W2-L01` & `B2-U06-W2-L02` (`B2-U06`):** Teach argument structure (Claim \\(\rightarrow\\) Evidence \\(\rightarrow\\) Counterargument \\(\rightarrow\\) Response), fair representation of opposing views, hedging, and evidence-based rebuttal.
+- *Evidence Boundary:* Neither lesson claims completion of `B2-U04` (Listening) or verified oral mediation/speaking proficiency. All productive writing tasks are explicitly marked `UNSCORED / PENDING_REVIEW` (`evidence_weight: 0`).
+
+#### Q2 — Teaching Completeness (CORE 1–4 & Non-Leaking Worked Models)
+**PASS.** Every lesson implements the full 4-Core Lesson Contract (`SLE-MASTER-001` v1.2.0 §2):
+- **CORE-1:** Clear learner-facing goals and purposeful school/community contexts.
+- **CORE-2:** Explicit strategy breakdowns and completely independent worked models:
+  - `L01`: Classroom plant growth vs. poll preference \\(\leftrightarrow\\) Bicycle parking counts vs. parent travel survey.
+  - `L02`: Festival sign length observation vs. volunteer comments \\(\leftrightarrow\\) Library extended opening log vs. student feedback form.
+  - `L03`: Project partner choice & new student objection \\(\leftrightarrow\\) Quiet study room trial & staff supervision objection.
+  - `L04`: Club meeting timetable change \\(\leftrightarrow\\) Structured peer feedback vs. teacher feedback on first drafts.
+- **CORE-3:** Independent learner practice using original assessed sources.
+- **CORE-4:** Post-submission explanatory feedback with actionable "Next step" recovery guidance. Zero pre-submission key leakage exists across all 4 lessons.
+
+#### Q3 — Item-Level Key Check (All 20 MCQs)
+**PASS.** Every one of the 20 objective MCQs (`L01-Q01..Q05`, `L02-Q01..Q05`, `L03-Q01..Q05`, `L04-Q01..Q05`) possesses:
+1. Exactly four options (A–D);
+2. Exactly one uniquely correct answer key;
+3. Valid B2 reading/critical skill tags (`reading.gist`, `reading.detail`, `reading.inference`, `reading.author_purpose`);
+4. `evidence_weight: 1`;
+5. Post-submission explanatory feedback with position-neutral logic and explicit "Next step" guidance.
+
+#### Q4 — Passage Validity & Internal Consistency
+**PASS.** Fictional source texts and numerical figures are 100% internally consistent:
+- `L01`: Wed 8:00 a.m. bike counts (42 to 65 avg over 4 weeks); Parent survey (90 respondents: 54 crossing, 23 stands).
+- `L02`: Library log (28 vs 18 visits over 6 weeks); Student feedback (120 responses: 73 helped, 31 home late, 16 no view; multiple selection explicitly allowed).
+- `L03`: Quiet study room (60 seats, 22–40 daily entries, noise complaints dropped 6 to 2, 10 staff comments).
+- `L04`: Peer feedback trial (8 classes over 4 weeks; 92% vs 86% draft submission rate; non-random allocation).
+- All figures, caveats, and evidence limits are logically sound and properly constrained.
+
+#### Q5 — Learner Appropriateness & Cognitive Calibration
+**PASS.** Contexts (school travel, library hours, study rooms, peer feedback) are age-appropriate for self-learners aged 12+ and represent genuine B2 cognitive demand (distinguishing correlation from causation, recognizing response bias, hedging claims, evaluating counterarguments). The English-first prose is clear, structured, and free of artificial jargon.
+
+#### Q6 — Source and Answer Boundaries
+**PASS.** All items strictly require reasoning from the provided fictional texts. Worked examples operate on completely independent scenarios and supply zero clue or key leakage. Texts are original, fictional teaching materials requiring no external real-world fact-checking or third-party copyright clearance.
+
+#### Q7 — Writing Honesty & Contract Compliance
+**PASS.** All 4 extended writing tasks (`L01-Q06`, `L02-Q06`, `L03-Q06`, `L04-Q06`) strictly adhere to the machine contract: `type: extended_response`, `answer: null`, `evidence_weight: 0`, `review_mode: assisted_ai_or_human`, `rubric_id: RUBRIC-WRITING-B2`, and `word_range_guidance: {not_a_quality_score: true}`. They generate zero automated CEFR levels, percentage scores, or quality certifications.
+
+#### Q8 — Priority Fixes & Corrections
+**PASS.** Zero mandatory academic item-level corrections are required (`REQUIRED_CORRECTIONS: NONE`). All 20 objective items, 4 open writing tasks, 4 worked models, and 4 reading passages meet standard `SLE-MASTER-001 v1.2.0` requirements as written.
+
+#### Q9 — Conditional Import Readiness
+**YES (For Academic Schema Drafting).** The packet is ready for technical machine candidate composition (`v1.26.0 = 166 lessons / 1,187 activities`), provided that:
+1. Provisional lesson IDs (`B2-U05-W2-L01..L02`, `B2-U06-W2-L01..L02`) are resolved to canonical schema IDs without collision against Draft PR #127.
+2. Proposed `RUBRIC-WRITING-B2` (Appendix A) is integrated into the schema rubric registry.
+3. Automated CI schema validation, technical QA, and explicit owner release authorization pass prior to deployment.
+
+---
+
+### SUMMARY AUDIT OF LESSONS & ACTIVITIES
+
+- **Lesson 1 (`B2-U05-W2-L01`):** 5 MCQs (Keys: B, C, C, C, B) + 1 Unscored Writing (`L01-Q06`). All PASS.
+- **Lesson 2 (`B2-U05-W2-L02`):** 5 MCQs (Keys: A, B, C, C, C) + 1 Unscored Writing (`L02-Q06`). All PASS.
+- **Lesson 3 (`B2-U06-W2-L01`):** 5 MCQs (Keys: A, C, B, C, D) + 1 Unscored Writing (`L03-Q06`). All PASS.
+- **Lesson 4 (`B2-U06-W2-L02`):** 5 MCQs (Keys: B, C, A, A, B) + 1 Unscored Writing (`L04-Q06`). All PASS.
+
+---
+
+### BOUNDARY & DISPOSITION STATEMENT
+
+- **ACADEMIC AUTHORING DISPOSITION:** **GO (APPROVED).** Academic item-level approval is granted for machine candidate drafting.
+- **PRODUCTION RELEASE DISPOSITION:** **NO_GO (BLOCKED).** Production deployment remains strictly blocked until technical candidate JSON composition, schema validation, automated CI tests, and explicit owner release authorization are completed.

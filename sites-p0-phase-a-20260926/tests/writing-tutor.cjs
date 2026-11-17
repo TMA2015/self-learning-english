@@ -50,7 +50,10 @@ const provider={available:true,async generate(r){calls++;lastContext=r.input.lea
  await assert.rejects(()=>writingTutor(repo,repo,other,createTutorService(provider)).submit({text:'Other learner revision',kind:'revision',parentId:original.submission.id}));
  assert.equal(lastContext.goals,'Explain my ideas with examples');assert(!('ownerId' in lastContext));
  const callsBefore=calls;await service.submit({text:samples[0].text,kind:'draft'});assert.equal(calls,callsBefore);
- const history=JSON.parse(JSON.stringify(await service.history()));assert(history.evaluations.some(e=>e.rating?.corrections[0]?.hint));assert(history.evaluations.every(e=>e.status!=='validated'||e.rating.evaluation.promptVersion==='1.0.0'));
+ const history=JSON.parse(JSON.stringify(await service.history()));assert(history.evaluations.some(e=>e.rating?.corrections[0]?.hint));const writingPrompt=require('../ai/prompts/registry.json')['writing-teaching'];
+ assert.equal(writingPrompt.version,'1.1.0','NotebookLM MF-01 general-audience prompt version must stay explicit');
+ assert(history.evaluations.every(e=>e.status!=='validated'||e.rating.evaluation.promptVersion===writingPrompt.version),
+  'Newly generated synthetic evaluations must record the current Writing prompt version');
  const model=await learningService(repo,scope).rebuild(await repo.readState(scope));assert(model.learnerModel.estimates.Writing.assessed);assert.equal(model.learnerModel.estimates.Grammar.level,'Not assessed');assert.equal(model.learnerModel.level,'Not assessed');
  const exported=await exportLearner(repo,scope,repo);assert.equal(exported.writingRecords.submissions.length,history.submissions.length);assert.deepEqual(JSON.parse(JSON.stringify(exported.writingRecords.evaluations)),history.evaluations);
  console.log(JSON.stringify({writingCases:results,liveAI:false,contextFromRepository:true,accountIsolation:true,originalPreserved:true,exportHistory:true,deterministicScoresUntouched:true}));

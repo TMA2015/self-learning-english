@@ -2,7 +2,7 @@
 
 **Standard ID:** SLE-MASTER-001  
 **Document version:** 1.2.0  
-**Status:** ACTIVE ONLY AFTER THE APPROVED PR #95 MERGE INTO `main`; while this remains a PR branch, SLE-MASTER-001 v1.1.0 on `main` is the SOLE ACTIVE NORMATIVE STANDARD. This is the same canonical file, not a second policy. Academic adoption was completed by merged PR #71 on 2026-11-02; the owner unified SLE project rules on 2026-11-03. The deployed cumulative source is v1.20.0 (123 lessons); the owner has confirmed 123 lessons visible on one browser profile. The screenshot does not establish individual attempt-by-attempt reconciliation or certified CEFR proficiency. This policy revision does not itself change or certify lesson-renderer behavior.  
+**Status:** **ACTIVE on `main` since approved PR #95 merged on 2026-11-06.** SLE-MASTER-001 v1.2.0 is the sole current normative SLE content, QA and release standard. Earlier conditional language for unmerged PR #95, v1.1.0 and old Sites-era releases is historical and must not override the current GitHub + Firebase source of truth. This metadata correction does not alter content, release gates, learner records or actual Firebase deployment.  
 **Prepared:** 2026-11-02; living revision 2026-11-03  
 **Canonical path:** `sites-p0-phase-a-20260926/docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md` in `TMA2015/self-learning-english`. Do not create a second copy under root `docs/`.  
 **Scope:** One unified Self-Learning English (SLE) GitHub + Firebase website/app. This is **not** the independent ChatGPT-in-chat English Tutor project.  

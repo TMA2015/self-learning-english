@@ -1,0 +1,607 @@
+{
+  "packet_id": "SLE-VOC-B1-U06-RICH-PILOT-20261111-R1",
+  "academic_verdict": "PASS",
+  "required_corrections": "NONE",
+  "unit": "B1-U06",
+  "source_filename": "SLE_VOC_B1_U06_RICH_PILOT_NOTEBOOKLM_R1_20261111.md",
+  "reviewer_filename": "SLE_VOC_B1_U06_RICH_PILOT_NOTEBOOKLM_VERDICT_20261111.txt",
+  "base_version": "1.27.0",
+  "candidate_version": "1.28.0",
+  "review_scope": {
+    "bank_entries": 14,
+    "mcq": 10,
+    "short_answer": 2,
+    "unscored_transfer": 1
+  },
+  "review_guard": "The NotebookLM report's introductory Packet ID includes a typo 202611011. Its required Section 7 canonical ID is correct; the full report remains archived unchanged.",
+  "schema_mapping": "One authored multi-skill pedagogical context -> one independently scored VOC-B1-07 (12 objective items) plus unscored WRI-B1-12 companion (1 extended-response transfer). This preserves correct module-specific grading and prevents a mixed objective/unscored attempt.",
+  "image_proposal": "Accessible original Community Fair illustration is optional, not an approved or required asset. No image imported.",
+  "unit_assignments": {
+    "VOC-B1-07": "B1-U06",
+    "WRI-B1-12": "B1-U06"
+  },
+  "answer_ledger": [
+    {
+      "item": "VOC-B1-07-Q01",
+      "key": "B"
+    },
+    {
+      "item": "VOC-B1-07-Q02",
+      "key": "A"
+    },
+    {
+      "item": "VOC-B1-07-Q03",
+      "key": "C"
+    },
+    {
+      "item": "VOC-B1-07-Q04",
+      "key": "D"
+    },
+    {
+      "item": "VOC-B1-07-Q05",
+      "key": "B"
+    },
+    {
+      "item": "VOC-B1-07-Q06",
+      "key": "C"
+    },
+    {
+      "item": "VOC-B1-07-Q07",
+      "key": "A"
+    },
+    {
+      "item": "VOC-B1-07-Q08",
+      "key": "D"
+    },
+    {
+      "item": "VOC-B1-07-Q09",
+      "key": "B"
+    },
+    {
+      "item": "VOC-B1-07-Q10",
+      "key": "C"
+    },
+    {
+      "item": "VOC-B1-07-Q11",
+      "key": "raise"
+    },
+    {
+      "item": "VOC-B1-07-Q12",
+      "key": "down"
+    }
+  ],
+  "lexical_bank": [
+    {
+      "n": 1,
+      "phrase": "reduce waste",
+      "meaning": "produce less material that is thrown away",
+      "sentence": "The cafeteria wants to reduce waste by offering portions in different sizes."
+    },
+    {
+      "n": 2,
+      "phrase": "reusable container",
+      "meaning": "a box or bottle that can be used many times",
+      "sentence": "Hana brings her salad in a reusable container instead of a disposable box."
+    },
+    {
+      "n": 3,
+      "phrase": "single-use packaging",
+      "meaning": "wrapping or containers designed to be used once",
+      "sentence": "The biscuits arrive in single-use packaging, so the club is checking alternatives."
+    },
+    {
+      "n": 4,
+      "phrase": "sort waste",
+      "meaning": "separate unwanted material by type",
+      "sentence": "Visitors sort waste into labelled paper and food bins."
+    },
+    {
+      "n": 5,
+      "phrase": "repair rather than replace",
+      "meaning": "fix something instead of buying a new one",
+      "sentence": "The library chose to repair its older chairs rather than replace them."
+    },
+    {
+      "n": 6,
+      "phrase": "save energy",
+      "meaning": "use less electricity or fuel than necessary",
+      "sentence": "Switching off empty-room lights can save energy."
+    },
+    {
+      "n": 7,
+      "phrase": "public transport",
+      "meaning": "buses, trains and similar shared travel services open to the public",
+      "sentence": "The volunteers used public transport to reach the community event."
+    },
+    {
+      "n": 8,
+      "phrase": "cut down on",
+      "meaning": "reduce the amount or frequency of something",
+      "sentence": "We could cut down on printing by sharing one timetable per team."
+    },
+    {
+      "n": 9,
+      "phrase": "have an impact on",
+      "meaning": "affect a person, place or situation",
+      "sentence": "The new footpath could have an impact on nearby plants."
+    },
+    {
+      "n": 10,
+      "phrase": "raise awareness of",
+      "meaning": "help more people learn about an issue",
+      "sentence": "Students designed a notice to raise awareness of water waste."
+    },
+    {
+      "n": 11,
+      "phrase": "make a difference",
+      "meaning": "have a noticeable or useful effect",
+      "sentence": "Clearer signs might make a difference, but we need to check."
+    },
+    {
+      "n": 12,
+      "phrase": "take practical steps",
+      "meaning": "do specific, realistic things rather than only discuss an issue",
+      "sentence": "The committee took practical steps such as adding a refill station."
+    },
+    {
+      "n": 13,
+      "phrase": "conserve water",
+      "meaning": "use water carefully to avoid wasting it",
+      "sentence": "Rainwater collected from a roof can help conserve water during dry weeks."
+    },
+    {
+      "n": 14,
+      "phrase": "long-term effect",
+      "meaning": "a result that continues or appears after a longer time",
+      "sentence": "The class wants to measure the long-term effect of using refill taps."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "VOC-B1-07",
+      "module": "vocabulary",
+      "cefr_target": "B1",
+      "title": "Small environmental choices: useful phrases, not isolated words",
+      "estimated_minutes": 30,
+      "objectives": [
+        "By the end, you should understand and use several natural English phrases to describe everyday environmental choices, suggest realistic actions and explain their possible effects without claiming that a small change proves a large result."
+      ],
+      "explanation": {
+        "en": "CORE-1 — Goal and Context\nBy the end, you should understand and use several natural English phrases to describe everyday environmental choices, suggest realistic actions and explain their possible effects without claiming that a small change proves a large result.\n\nScenario: Your school is planning a community fair. The committee wants to reduce unwanted materials and help visitors make practical choices. You need to explain what people can do, why it might help, and what information the committee still needs.\n\nCORE-2 — Learn 14 useful word partnerships. Read the phrase cards below. Each card has a plain-English meaning and an original sentence. Notice that the verb and preposition are often part of the meaning.\n\nNotice the chunks: reduce + waste; save + energy; raise + awareness of; have an impact on; cut down on; repair rather than replace. A phrase is not a bag of interchangeable single words.\n\nForm and register: reusable combines re- (again) and usable; single-use is commonly used before nouns such as packaging. Cut down on is natural in everyday discussion; reduce can sound more concise in a formal report. Have an impact on does not say whether the impact is positive or negative.\n\nMeaning caution: might make a difference expresses possibility. A poster, a one-day activity or a few positive comments do not automatically prove a lasting environmental effect. Ask: What changed? Who was observed? For how long?\n\n### B. Independent worked model — different setting from scored tasks\n\nA youth sports centre is deciding whether to lend sports equipment rather than ask each visitor to buy new equipment. A careful suggestion is:\n\n> \"The centre could reuse equipment and repair damaged items where it is safe to do so. These steps might reduce waste. We should record how much equipment is used again before claiming a long-term effect.\"\n\nWhy it works: It names concrete actions, chooses natural collocations, uses might instead of a guaranteed causal claim, and asks for a relevant observation. This centre/equipment example is not assessed in the items below.\n\n### C. How to study this bank in a single session\n\n1. Understand: Read a phrase, its meaning and the model sentence; identify whether it describes an action, an object or an effect.\n2. Notice: Underline the exact word partnership, such as raise awareness of.\n3. Retrieve: Cover the English phrase column; use the meaning and a new situation to say the phrase aloud or write it from memory.\n4. Transfer: Use the phrase in a different school/community situation, not by copying the model sentence.\n5. Revisit: At the start of a later session, try to recall five phrases without viewing the bank. Review the ones you could not retrieve.\n\nCommon pitfalls: make a difference (not do a difference); raise awareness (not rise awareness); cut down on waste (not cut down waste); an impact on (not an impact to).\n\nCORE-3 — Complete 10 four-choice questions and 2 one-word retrieval prompts in new contexts. Then try the separate, unscored Writing transfer practice mapped to this same Unit.\n\nCORE-4 — After submission, study the explanation and next action for each missed item. Only the 12 objective responses count towards this lesson's score; this does not certify B1 proficiency."
+      },
+      "examples": [
+        "reduce waste · produce less material that is thrown away Example: The cafeteria wants to reduce waste by offering portions in different sizes.",
+        "reusable container · a box or bottle that can be used many times Example: Hana brings her salad in a reusable container instead of a disposable box.",
+        "single-use packaging · wrapping or containers designed to be used once Example: The biscuits arrive in single-use packaging, so the club is checking alternatives.",
+        "sort waste · separate unwanted material by type Example: Visitors sort waste into labelled paper and food bins.",
+        "repair rather than replace · fix something instead of buying a new one Example: The library chose to repair its older chairs rather than replace them.",
+        "save energy · use less electricity or fuel than necessary Example: Switching off empty-room lights can save energy.",
+        "public transport · buses, trains and similar shared travel services open to the public Example: The volunteers used public transport to reach the community event.",
+        "cut down on · reduce the amount or frequency of something Example: We could cut down on printing by sharing one timetable per team.",
+        "have an impact on · affect a person, place or situation Example: The new footpath could have an impact on nearby plants.",
+        "raise awareness of · help more people learn about an issue Example: Students designed a notice to raise awareness of water waste.",
+        "make a difference · have a noticeable or useful effect Example: Clearer signs might make a difference, but we need to check.",
+        "take practical steps · do specific, realistic things rather than only discuss an issue Example: The committee took practical steps such as adding a refill station.",
+        "conserve water · use water carefully to avoid wasting it Example: Rainwater collected from a roof can help conserve water during dry weeks.",
+        "long-term effect · a result that continues or appears after a longer time Example: The class wants to measure the long-term effect of using refill taps.",
+        "INDEPENDENT WORKED MODEL · ### B. Independent worked model — different setting from scored tasks\n\nA youth sports centre is deciding whether to lend sports equipment rather than ask each visitor to buy new equipment. A careful suggestion is:\n\n> \"The centre could reuse equipment and repair damaged items where it is safe to do so. These steps might reduce waste. We should record how much equipment is used again before claiming a long-term effect.\"\n\nWhy it works: It names concrete actions, chooses natural collocations, uses might instead of a guaranteed causal claim, and asks for a relevant observation. This centre/equipment example is not assessed in the items below."
+      ],
+      "activities": [
+        {
+          "id": "VOC-B1-07-Q01",
+          "type": "single_choice",
+          "prompt": "At a drama festival, visitors bring food boxes that are washed and used at every rehearsal. What best describes these boxes?",
+          "options": [
+            {
+              "id": "A",
+              "text": "single-use packaging"
+            },
+            {
+              "id": "B",
+              "text": "reusable containers"
+            },
+            {
+              "id": "C",
+              "text": "long-term effects"
+            },
+            {
+              "id": "D",
+              "text": "public transport"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The boxes can be washed and used repeatedly. Next step: Contrast reusable with single-use by naming the number of uses."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-07-Q02",
+          "type": "single_choice",
+          "prompt": "A community art room fixes a broken table and continues using it instead of buying another. Which phrase describes the decision?",
+          "options": [
+            {
+              "id": "A",
+              "text": "repair rather than replace"
+            },
+            {
+              "id": "B",
+              "text": "raise awareness of"
+            },
+            {
+              "id": "C",
+              "text": "sort waste"
+            },
+            {
+              "id": "D",
+              "text": "cut down on travel"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Repairing a usable table avoids replacing it with a new one. Next step: Retell the decision using repair rather than replace."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-07-Q03",
+          "type": "single_choice",
+          "prompt": "A museum asks visitors to put paper in one bin and food scraps in another. What are visitors being asked to do?",
+          "options": [
+            {
+              "id": "A",
+              "text": "conserve energy"
+            },
+            {
+              "id": "B",
+              "text": "save transport"
+            },
+            {
+              "id": "C",
+              "text": "sort waste"
+            },
+            {
+              "id": "D",
+              "text": "make packaging"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Separating unwanted material into categories means sorting waste. Next step: Name two categories and decide how to sort them."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-07-Q04",
+          "type": "single_choice",
+          "prompt": "The hiking group wants to use fewer printed maps while keeping one paper copy for safety. What natural phrase best completes the plan: \"We could ___ printing\"?",
+          "options": [
+            {
+              "id": "A",
+              "text": "take more on"
+            },
+            {
+              "id": "B",
+              "text": "have an impact to"
+            },
+            {
+              "id": "C",
+              "text": "make a difference to"
+            },
+            {
+              "id": "D",
+              "text": "cut down on"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Cut down on naturally means reduce the amount of an activity. Next step: Practise cut down on + noun/-ing in a different sentence."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-07-Q05",
+          "type": "single_choice",
+          "prompt": "An exhibition explains why some rivers become polluted. The posters do not measure whether behaviour changes. What can the exhibition reasonably aim to do?",
+          "options": [
+            {
+              "id": "A",
+              "text": "prove that all pollution has stopped"
+            },
+            {
+              "id": "B",
+              "text": "raise awareness of river pollution"
+            },
+            {
+              "id": "C",
+              "text": "confirm the long-term effect of each poster"
+            },
+            {
+              "id": "D",
+              "text": "replace every public transport service"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The posters can inform visitors; the prompt provides no behaviour measurements. Next step: Separate raise awareness from prove behaviour changed."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-07-Q06",
+          "type": "single_choice",
+          "prompt": "Which statement uses environmental vocabulary without claiming more than the evidence shows?",
+          "options": [
+            {
+              "id": "A",
+              "text": "One recycling poster proves everyone reduced waste permanently."
+            },
+            {
+              "id": "B",
+              "text": "Any change to a bin automatically conserves all local water."
+            },
+            {
+              "id": "C",
+              "text": "Clearer labels might make a difference, but the organisers should measure what visitors actually put in the bins."
+            },
+            {
+              "id": "D",
+              "text": "A single positive comment shows a guaranteed long-term effect."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The cautious modal and proposed measurement respect the evidence limit. Next step: Rewrite a strong claim using might and a measurable follow-up."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-07-Q07",
+          "type": "single_choice",
+          "prompt": "A town is considering a new walkway near a wildlife area. The committee is unsure whether it will help or harm local plants. Which phrase fits the uncertainty?",
+          "options": [
+            {
+              "id": "A",
+              "text": "have an impact on local plants"
+            },
+            {
+              "id": "B",
+              "text": "become a single-use local plant"
+            },
+            {
+              "id": "C",
+              "text": "sort the wildlife into buses"
+            },
+            {
+              "id": "D",
+              "text": "repair the long-term impact rather than replace"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A walkway may affect plants positively or negatively; impact is neutral. Next step: Use have an impact on with a different person/place."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-07-Q08",
+          "type": "single_choice",
+          "prompt": "At a science fair, visitors can travel on city buses or a local train, which are open to everyone. What is this travel category?",
+          "options": [
+            {
+              "id": "A",
+              "text": "a reusable container"
+            },
+            {
+              "id": "B",
+              "text": "a private home delivery"
+            },
+            {
+              "id": "C",
+              "text": "an electrical appliance"
+            },
+            {
+              "id": "D",
+              "text": "public transport"
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Buses and trains open to the public are examples of public transport. Next step: Contrast shared public services with private travel."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-07-Q09",
+          "type": "single_choice",
+          "prompt": "A school has used less paper for one week, but nobody has checked what happens over the next year. Which statement is best supported?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The one-week observation proves the long-term effect."
+            },
+            {
+              "id": "B",
+              "text": "The long-term effect remains unknown; the school needs information over a longer period."
+            },
+            {
+              "id": "C",
+              "text": "The word effect can only describe a bad result."
+            },
+            {
+              "id": "D",
+              "text": "Because the trial lasted one week, it had no possible impact at all."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A short result cannot establish effects over a longer period. Next step: Explain what extra time period you would measure."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-07-Q10",
+          "type": "single_choice",
+          "prompt": "Students agree that their meeting creates too much rubbish. Which response best illustrates taking practical steps?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Announce that the school has solved the problem forever."
+            },
+            {
+              "id": "B",
+              "text": "Say the same slogan each week without changing anything."
+            },
+            {
+              "id": "C",
+              "text": "Set up a water-refill point and count disposable cups before and after the change."
+            },
+            {
+              "id": "D",
+              "text": "Avoid discussing any possible action until the next school year."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Installing a refill point and comparing counts are specific feasible actions. Next step: Name one action and one measurement, not just a slogan."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-07-Q11",
+          "type": "short_answer",
+          "prompt": "Complete with one verb: \"The club hopes to ___ awareness of safe battery disposal.\"",
+          "answer": {
+            "accepted_answers": [
+              "raise"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The collocation is raise awareness of. Next step: Say and write the whole chunk without looking at the Word Bank."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-B1-07-Q12",
+          "type": "short_answer",
+          "prompt": "Complete with one word: \"To reduce rubbish, we should cut ___ on single-use cups.\"",
+          "answer": {
+            "accepted_answers": [
+              "down"
+            ],
+            "normalization": [
+              "trim",
+              "casefold",
+              "collapse_spaces",
+              "strip_terminal_punctuation"
+            ]
+          },
+          "feedback": {
+            "explanation_en": "The phrasal verb is cut down on. Next step: Produce a new example with cut down on + -ing."
+          },
+          "skill_tags": [
+            "vocabulary.collocations"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "WRI-B1-12",
+      "module": "writing",
+      "cefr_target": "B1",
+      "title": "Writing transfer: practical environmental suggestions",
+      "estimated_minutes": 15,
+      "objectives": [
+        "Use three or four B1 environmental phrases to make realistic suggestions and explain what evidence would be needed to measure their effect."
+      ],
+      "explanation": {
+        "en": "CORE-1 — Practise independent transfer of the environmental vocabulary from VOC-B1-07 in the same Unit B1-U06.\n\nCORE-2 — Revisit the topic phrases, their meanings and the independent sports-centre example in the Vocabulary lesson before drafting your own response. Do not copy the model.\n\nCORE-3 — Choose three or four phrases from the Word Bank. Write 3–4 original sentences recommending realistic changes for an after-school club that wants to use fewer disposable materials. Include one sentence explaining what information the club should collect before claiming success. This is a self-practice prompt, not an exact-match scored item; neither word count nor model generation establishes writing ability.\n\nCORE-4 — This is unscored self-practice. Saving your writing does not establish a CEFR level. Any optional feedback requires an authorized trusted reviewer; no automatic score is inferred from word or sentence count."
+      },
+      "examples": [
+        "REMINDER · Use practical recommendations and cautious claims; explain what you would need to measure before claiming success."
+      ],
+      "activities": [
+        {
+          "id": "WRI-B1-12-Q1",
+          "type": "extended_response",
+          "prompt": "Choose three or four phrases from the Word Bank. Write 3–4 original sentences recommending realistic changes for an after-school club that wants to use fewer disposable materials. Include one sentence explaining what information the club should collect before claiming success. This is a self-practice prompt, not an exact-match scored item; neither word count nor model generation establishes writing ability.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "Your original transfer response is saved but is not scored. A trusted writing review is required before any claim about writing quality."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.idea_development",
+            "writing.vocabulary",
+            "writing.register"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-B1",
+          "review_mode": "assisted_ai_or_human"
+        }
+      ]
+    }
+  ],
+  "release": "NO_GO"
+}
