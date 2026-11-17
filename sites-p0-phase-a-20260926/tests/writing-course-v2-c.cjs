@@ -6,6 +6,7 @@ fs.rmSync(out,{recursive:true,force:true});
 execFileSync(process.execPath,[path.join(root,'node_modules/typescript/bin/tsc'),'domain/writing-course-v2-c.ts','app/writing-course-v2-c.tsx','app/writing-course-v2.tsx','domain/navigation-gate.ts','infrastructure/storage/browser-local-repositories.ts','--outDir',out,'--module','commonjs','--target','es2022','--jsx','react-jsx','--resolveJsonModule','--esModuleInterop','--skipLibCheck'],{cwd:root,stdio:'inherit'});
 fs.writeFileSync(path.join(out,'package.json'),'{"type":"commonjs"}');
 const d=require(path.join(out,'domain/writing-course-v2-c.js')),b=require(path.join(out,'domain/writing-course-v2-b.js')),a=require(path.join(out,'domain/writing-course-v2.js'));
+const {revisionAIContext}=require(path.join(out,'domain/writing-revision-ai-context.js'));
 const ui=require(path.join(out,'app/writing-course-v2-c.js')),aui=require(path.join(out,'app/writing-course-v2.js'));
 const {BrowserLocalLearningRepository}=require(path.join(out,'infrastructure/storage/browser-local-repositories.js')),{createNavigationGate}=require(path.join(out,'domain/navigation-gate.js'));
 const home=fs.readFileSync(path.join(root,'app/home-client.tsx'),'utf8'),source=fs.readFileSync(path.join(root,'domain/writing-course-v2-c.ts'),'utf8');
@@ -51,6 +52,57 @@ let count=0;async function test(name,fn){await fn();count++;console.log('PASS '+
  await test('All later models stay locked in active screens and incomplete Review',()=>{for(const w of d.LATER_WEEKS){for(const s of ['learn','guided','main','feedback','review'])for(const model of w.models)assert(!page(w.week,s).includes(model));const saved=d.submitLater(w.week,complete(w.week),1);for(const s of ['learn','guided','main','feedback'])assert(!d.canCompareLater(w.week,saved,s));}});
  await test('Sample reveal needs saved own attempt, Review and explicit action with exact label',()=>{const prior=React.useState;let revealed=null;React.useState=()=>[revealed,x=>revealed=x];try{for(const week of [7,8,9,10,11,12]){revealed=null;const work=d.submitLater(week,complete(week),1);let tree=ui.LaterModel({week,work,screen:'review'});assert(!renderToStaticMarkup(tree).includes(d.SAMPLE_LABEL));const button=walk(tree,e=>e.type==='button'&&e.props.children==='Compare with a model');assert(button);button.props.onClick();tree=ui.LaterModel({week,work,screen:'review'});assert(renderToStaticMarkup(tree).includes(d.SAMPLE_LABEL));assert(!d.canCompareLater(week,d.editLater(work,'draft','Edited own work'),'review'));assert(!renderToStaticMarkup(ui.LaterModel({week,work,screen:'main'})).includes(d.SAMPLE_LABEL));}}finally{React.useState=prior}});
  await test('Week 12 model matches the selected prompt B',()=>{const prior=React.useState,work=d.submitLater(12,{...complete(12),fields:{draft:ownText,prompt:'B'}},1);React.useState=()=>[d.laterSignature(work),noop];try{const s=renderToStaticMarkup(ui.LaterModel({week:12,work,screen:'review'}));assert(s.includes(d.laterDefinition(12).models[1].split('\n')[0]));assert(!s.includes(d.laterDefinition(12).models[0].split('\n')[0]));}finally{React.useState=prior}});
+
+ await test('Week 9 Gemini compares saved original versus edited copy, without fabricated changes',()=>{
+  const own=d.submitLater(9,complete(9),12345),before=JSON.stringify(own);
+  const context=revisionAIContext(9,own);
+  assert(context);
+  assert.equal(context.fields.originalText,own.submission.source.text);
+  assert.equal(context.fields.revisedText,own.submission.fields.draft);
+  assert.equal(context.fields.checkedNoChange,'yes');
+  assert.equal(context.fields.sourceOwnership,'Learner-owned source');
+  assert.equal(context.sourceSample,false);
+  assert(context.task.includes('acknowledge no change'));
+  const html=page(9,'feedback',own);
+  assert(html.includes('Compare original &amp; revision with Gemini'));
+  assert(html.includes('Only clicking this button sends your saved original text'));
+  assert.equal(JSON.stringify(own),before,'The Gemini context must not mutate saved work');
+  assert.equal(revisionAIContext(9,d.editLater(own,'draft','Changed after save')),null,
+   'Unsaved revision must not be eligible for Gemini comparison');
+ });
+ await test('Week 10 Gemini includes the saved revision goal, note, and exact source',()=>{
+  const owned=d.submitLater(10,complete(10),12345);
+  const context=revisionAIContext(10,owned);
+  assert(context);
+  assert.equal(context.fields.originalText,owned.submission.source.text);
+  assert.equal(context.fields.revisionGoal,'Ideas');
+  assert.equal(context.fields.revisionNote,'I checked and kept this part.');
+  assert(!Object.hasOwn(context.fields,'checkedNoChange'));
+  assert(context.task.includes('stated revision goal'));
+  assert(page(10,'feedback',owned).includes('Compare original &amp; revision with Gemini'));
+  assert.equal(revisionAIContext(10,d.emptyLaterWork()),null);
+ });
+ await test('Week 9 sample-derived comparison stays explicitly labelled and unscored',()=>{
+  const sample=d.submitLater(9,complete(9,'sample'),12345);
+  const context=revisionAIContext(9,sample);
+  assert(context);
+  assert.equal(context.sourceSample,true);
+  assert.equal(context.fields.sourceOwnership,'Sample Student Draft');
+  const html=page(9,'feedback',sample);
+  assert(html.includes('Sample-based revision is practice only'));
+  assert(html.includes('This comparison is unscored'));
+  assert(!html.includes('AI rubric observations'));
+  assert(!html.includes('Writing practice estimate'));
+ });
+ await test('Other weeks retain their existing draft Gemini feedback, without revision source payload',()=>{
+  for(const week of [7,8,11,12]){
+   const saved=d.submitLater(week,complete(week),12345);
+   assert.equal(revisionAIContext(week,saved),null);
+   const html=page(week,'feedback',saved);
+   assert(html.includes('Get AI feedback'),'Existing Gemini Writing feedback remains available in Week '+week);
+   assert(!html.includes('Compare original &amp; revision with Gemini'));
+  }
+ });
  await test('Free-form snapshots have zero automated evidence/proficiency and are provisional',()=>{for(const w of d.LATER_WEEKS){const saved=d.submitLater(w.week,complete(w.week),1);assert.equal(saved.submission.kind,'progress');assert.equal(saved.submission.evidenceWeight,0);assert.equal(saved.submission.proficiencyWeight,0);assert(saved.submission.provisional);}});
  await test('Objective ledger is practice weight 1 / proficiency 0 and all-attempt denominators',()=>{const q=d.laterDefinition(7).items[0],r=d.checkLaterGuided(7,[],q.id,1),r2=d.checkLaterGuided(7,[r],q.id,0);for(const x of [r,r2]){assert.equal(x.evidenceWeight,1);assert.equal(x.proficiencyWeight,0);assert.equal(x.kind,'practice');}assert.deepEqual(d.laterGuidedProgress(7,[r,r2,r]),{correct:1,total:2,finished:1});assert.equal(d.laterGuidedProgress(8,[r,r2]).total,0);assert.equal(d.laterGuidedProgress(7,[{...r,contentVersion:'old'}]).total,0);});
  await test('Free-form checks have structural-only disclaimer and no proficiency updates',()=>{for(const w of d.LATER_WEEKS){const s=page(w.week,'feedback',complete(w.week));assert(s.includes(a.GUIDED_CHECK_DISCLAIMER));assert(s.includes('Meaning, organization quality and language accuracy need AI or teacher review'));}assert(!source.includes('deriveLearner'));assert(!source.includes('CEFR'));});
