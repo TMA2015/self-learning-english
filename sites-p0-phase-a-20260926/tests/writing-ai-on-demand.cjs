@@ -40,7 +40,7 @@ assert(laterPage.includes("responseLanguage={showVi?'vi':'en'}"));
 assert(services.includes("...(kind==='revision'?{responseLanguage}:{})"));
 assert(component.includes("const signature=JSON.stringify([task,fields,kind,...(kind==='revision'?[responseLanguage]:[])]);"));
 assert(component.includes('requestWritingAI(task,fields,kind,responseLanguage)'));
-assert(component.includes('<TeachingBlocks text={feedback.summary}/>'));
+assert(component.includes('<TeachingBlocks text={visibleFeedback.summary}/>'));
 assert(component.includes('<Inline text={s}/>'));
 assert(laterPage.includes('enabled={saved&&!busy&&!error&&(!editing||!!revision)}'));
 assert(services.includes("status:'unavailable'")&&services.includes("scores:null,level:null"));
