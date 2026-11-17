@@ -301,7 +301,7 @@ const aiFailureMessage=(code:string|null)=>{
     default:return 'The AI service did not return verified feedback. Your work remains saved for review.';
   }
 };
-export async function requestWritingAI(task:string,fields:Record<string,string>,kind:'draft'|'planning'|'revision',responseLanguage:'en'|'vi'='en'):Promise<OnDemandWritingResult>{
+export async function requestWritingAI(task:string,fields:Record<string,string>,kind:'draft'|'planning'|'revision',responseLanguage:'en'|'vi'='en',reviewMode:'standard'|'any-topic'='standard'):Promise<OnDemandWritingResult>{
   if(!browserLearningEnabled())return {status:'unavailable',reason:'AI feedback is only available in the browser learning runtime.'};
   if(!task.trim()||Object.values(fields).some(v=>typeof v!=='string'))return {status:'unavailable',reason:'The writing task is incomplete.'};
   const answer=Object.entries(fields).filter(([,v])=>v.trim()).map(([k,v])=>k+': '+v.trim()).join('\n');
@@ -310,7 +310,19 @@ export async function requestWritingAI(task:string,fields:Record<string,string>,
   if(!tutor.available)return {status:'unavailable',reason:'Gemini is not configured in this browser.'};
   resetAIFailure();
   try{
-    if(kind==='draft'){
+    if(kind==='draft'&&reviewMode==='any-topic'){
+      // Independent, strictly unscored qualitative feedback; do not use teachWriting's numeric rubric.
+      const review=await tutor.coach('any-topic',task,{draft:fields.draft??fields.writing??answer},{responseLanguage});
+      if(review?.provider==='firebase-ai-logic'){
+        const r=review.structuredResult as {summary:string;strengths:string[];improvements:string[];exercise:string;corrections:{original:string;why:string;hint:string}[];scores:null;level:null;canEstimateLevel:false};
+        if(r.scores!==null||r.level!==null||r.canEstimateLevel!==false)return {status:'unavailable',reason:'Any Topic feedback did not pass qualitative validation.'};
+        return {status:'validated',feedback:{
+          model:review.model,provider:'firebase-ai-logic',reviewedAt:Date.now(),kind,
+          summary:r.summary,strengths:r.strengths,improvements:r.improvements,
+          exercise:r.exercise,scores:null,level:null,corrections:r.corrections,
+        }};
+      }
+    }else if(kind==='draft'){
       const draft=fields.draft??fields.writing??answer;
       const rating=await tutor.teachWriting(draft,task,await browserWritingContext());
       if(rating?.evaluation?.model&&rating.evaluation.provider==='firebase-ai-logic'){
