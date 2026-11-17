@@ -33,6 +33,12 @@ for(const [target,marker] of [
  const prompt=guidance.lessonTutorSystemInstruction(target);
  assert(prompt.includes(marker),'Missing target-specific guidance for '+target);
  assert(prompt.includes('lesson')&&prompt.includes('responseLanguage'));
+ assert(prompt.includes('Do not reveal direct answers or keys to active assessment items'));
+ assert(prompt.includes('if asked to solve an active test item, explain the underlying concept'));
+ assert(prompt.includes('similar, distinct worked example instead'));
+ assert(prompt.includes('English target expressions, key terms, and examples in English'));
+ assert(prompt.includes('Use clean Markdown formatting (bolding, bullet lists)'));
+ assert(prompt.includes('For Reading and Writing contexts, guide evidence discovery or structural planning'));
  assert(!prompt.includes('12-year-old')&&!prompt.includes('A1-B1'));
 }
 for(const invalid of ['',null,undefined,'A3','C3','A1-B2','A10','junk']){
