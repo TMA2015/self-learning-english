@@ -14,7 +14,8 @@ const runner=read('scripts/qa-free-first.mjs');
 const workflow=read('../.github/workflows/english-pr-qa.yml');
 assert.equal((home.match(/<WritingHome\b/g)||[]).length,1,'Existing WritingHome reused exactly once');
 assert.match(home,/onAnyTopic=\{\(\)=>void navigate\("writing-any-topic"\)\}/);
-assert.match(home,/view==="writing-any-topic"&&<AnyTopicWritingReview\/>/);
+assert.match(home,/view==="writing-any-topic"&&<AnyTopicWritingReview showVi=\{!!state.vietnameseSupport\}\/>/,
+  "Independent Any Topic route remains present and inherits learner language preference");
 assert.match(home,/foundationRequest\('\/api\/foundation'\)/);
 assert.match(home,/foundationCatalog=\{foundationCatalog\}/);
 assert.match(plan,/foundationPracticeAdvice\(foundationCatalog\)/);
