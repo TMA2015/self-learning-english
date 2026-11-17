@@ -90,15 +90,20 @@ const {createTutorService}=require(path.join(out,'ai/service.js'));
     originalText:'yesterday we visit a park',
     revisedText:'Yesterday, we visited a park.',
     checkedNoChange:'no',
-  });
+  },{responseLanguage:'vi'});
   assert(revision,'Revision coaching should use the existing provider transport');
   assert.equal(revision.promptId,'revision-coaching');
-  assert.equal(revision.promptVersion,'1.0.0');
+  assert.equal(revision.promptVersion,'1.1.0');
   assert.equal(revision.structuredResult.scores,null,'Revision comparison must not add AI scores');
   assert(lastInput.systemInstruction.includes('Compare the original and saved revised version'));
   assert(lastInput.systemInstruction.includes('Sample Student Draft'));
+  assert(lastInput.systemInstruction.includes('Follow the trusted responseLanguage field if provided'));
+  assert(lastInput.systemInstruction.includes('Use safe Markdown formatting (bolding, bullet lists)'));
+  assert(lastInput.systemInstruction.includes("'corrections' MUST be an empty array []"));
+  assert(lastInput.systemInstruction.includes("'scores' MUST be null"));
   assert.equal(lastInput.userPayload.stage,'revision');
   assert.equal(lastInput.userPayload.studentAnswer.originalText,'yesterday we visit a park');
+  assert.equal(lastInput.userPayload.learnerContext.responseLanguage,'vi');
   assert.equal(calls,3,'Revision is one additional on-demand provider request');
 
   let disabledCalls=0;
