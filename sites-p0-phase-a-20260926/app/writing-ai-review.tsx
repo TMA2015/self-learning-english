@@ -17,6 +17,13 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
  const signature=JSON.stringify([task,fields,kind,...(kind==='revision'?[responseLanguage]:[])]);
  const latestSignature=useRef(signature);
  latestSignature.current=signature;
+ // Prevent an in-flight provider response from restoring a cleared draft's
+ // private AI feedback cache after this view has been unmounted.
+ const mounted=useRef(false);
+ useEffect(()=>{
+   mounted.current=true;
+   return ()=>{mounted.current=false};
+ },[]);
  const storageKey='g-learning:english:ai-feedback:v1:'+reviewId.replace(/[^a-z0-9-]/gi,'')+':'+fingerprint(signature);
  const [feedback,setFeedback]=useState<OnDemandWritingFeedback|null>(null);
  const [reason,setReason]=useState('');
@@ -40,13 +47,13 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
      const result=await requestWritingAI(task,fields,kind,responseLanguage);
      // The learner may edit or navigate while a request is in flight. Never
      // display an old response as an assessment of a newer draft.
-     if(latestSignature.current!==requestedSignature)return;
+     if(!mounted.current||latestSignature.current!==requestedSignature)return;
      if(result.status==='validated'){
        setFeedback(result.feedback);
        try{localStorage.setItem(storageKey,JSON.stringify(result.feedback))}catch{/* storage optional */}
      }else{setFeedback(null);setReason(result.reason)}
-   }catch{if(latestSignature.current===requestedSignature)setReason('AI feedback could not be completed. Your saved work is unchanged.')}
-   finally{setBusy(false)}
+   }catch{if(mounted.current&&latestSignature.current===requestedSignature)setReason('AI feedback could not be completed. Your saved work is unchanged.')}
+   finally{if(mounted.current)setBusy(false)}
  }
  return <section className="writing-ai-review" aria-label="Optional Gemini writing feedback">
    <div className="writing-ai-review-heading"><strong>✦ Gemini AI Writing</strong><span>{feedback?'Verified AI response':busy?'Checking your writing…':'Optional · On demand'}</span></div>
