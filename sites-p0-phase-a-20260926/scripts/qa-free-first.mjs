@@ -46,6 +46,7 @@ const coreTests=[
   "offline-lesson-postfeedback.cjs",
   "learner-result-copy-dedup.cjs",
   "any-topic-writing-review-shell.cjs",
+  "any-topic-writing-academic-r1.cjs",
   "writing-source-corpus-audit.cjs",
   "vocabulary-pilot-contract.cjs",
   "rgw-depth-pilot-contract.cjs",
