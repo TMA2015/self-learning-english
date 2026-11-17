@@ -78,7 +78,7 @@ function makeHarness({failSave=false}={}){
   window:{confirm:()=>true},Date,JSON,
  },{timeout:3000});
  const Component=holder.exports.AnyTopicWritingReview;
- const render=()=>{cursor=0;return Component()};
+ const render=(showVi=false)=>{cursor=0;return Component({showVi})};
  const flush=()=>{for(let i=0;i<8&&effects.length;i++)for(const f of effects.splice(0))f()};
  const walk=(node,pred)=>{if(!node||typeof node!=='object')return null;
   if(pred(node))return node;
@@ -105,6 +105,10 @@ function makeHarness({failSave=false}={}){
  const ai=h.walk(h.render(),e=>e.type===h.StubAI);
  assert(ai&&ai.props.enabled,'Successfully saved reviewed draft must enable optional Gemini');
  assert.equal(ai.props.kind,'draft');
+ assert.equal(ai.props.reviewMode,'any-topic','Qualitative review must use the isolated mode');
+ assert.equal(ai.props.responseLanguage,'en','English should be the default language');
+ const vi=h.walk(h.render(true),e=>e.type===h.StubAI);
+ assert.equal(vi.props.responseLanguage,'vi','Vietnamese preference must reach Gemini UI');
  assert.equal(ai.props.fields.draft,'A quiet reading area helps students focus and discover new books.');
  h.input('any-topic-writing-content','I changed my writing before saving another review.');
  assert.equal(h.walk(h.render(),e=>e.type===h.StubAI),null,'Edited draft invalidates previous review eligibility');
