@@ -85,6 +85,22 @@ const {createTutorService}=require(path.join(out,'ai/service.js'));
   assert.deepEqual(coached.structuredResult.tags,['idea-development']);
   assert.equal(calls,2);
 
+  const revision=await tutor.coach('revision','Compare the saved original and edited text',{
+    sourceOwnership:'Sample Student Draft',
+    originalText:'yesterday we visit a park',
+    revisedText:'Yesterday, we visited a park.',
+    checkedNoChange:'no',
+  });
+  assert(revision,'Revision coaching should use the existing provider transport');
+  assert.equal(revision.promptId,'revision-coaching');
+  assert.equal(revision.promptVersion,'1.0.0');
+  assert.equal(revision.structuredResult.scores,null,'Revision comparison must not add AI scores');
+  assert(lastInput.systemInstruction.includes('Compare the original and saved revised version'));
+  assert(lastInput.systemInstruction.includes('Sample Student Draft'));
+  assert.equal(lastInput.userPayload.stage,'revision');
+  assert.equal(lastInput.userPayload.studentAnswer.originalText,'yesterday we visit a park');
+  assert.equal(calls,3,'Revision is one additional on-demand provider request');
+
   let disabledCalls=0;
   const disabled=new FirebaseAILogicProvider({
     available:false,
