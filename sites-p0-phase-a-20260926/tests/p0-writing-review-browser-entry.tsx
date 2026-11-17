@@ -46,8 +46,14 @@ function write(t:HTMLTextAreaElement|null,value:string){
   const checklist=document.querySelector('[aria-label="Provisional self-review checklist"]')!.textContent??'';
   assert(/Task response|Organization|Language/.test(checklist),'Revision guidance displayed');
   assert(!/Your CEFR|CEFR B1|Score: 9/.test(checklist),'No invented score');
+  const optionalAI=document.querySelector('[data-qa-optional-gemini]');
+  assert(optionalAI?.getAttribute('data-qa-optional-gemini')==='enabled',
+    'Successfully restored saved draft enables the optional Gemini control');
+  assert((optionalAI?.textContent??'').includes('no external requests'),
+    'This storage browser preflight must use the explicit Gemini UI test stub');
   write(textarea('student-written-content'),'Revised, shorter idea.');
   await wait(()=>!document.querySelector('[aria-label="Provisional self-review checklist"]'),'stale review hidden after edits');
+  assert(!document.querySelector('[data-qa-optional-gemini]'),'Editing must hide stale AI controls');
   const confirmOriginal=window.confirm;
   window.confirm=()=>true;
   find('Clear local draft')!.click();
