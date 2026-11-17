@@ -9,7 +9,14 @@ const root=path.resolve(__dirname,'..');
  const out=path.join(root,'.sites-runtime/p0-writing-browser');
  fs.rmSync(out,{recursive:true,force:true});
  await build({root,configFile:false,logLevel:'error',
-  define:{'process.env.NODE_ENV':JSON.stringify('production')},
+  // This standalone Vite harness bypasses the normal Vinext browser env injection.
+  // Match its public compile-time environment now that optional Gemini modules
+  // are imported by Any Topic; do not add a runtime process shim to the site.
+  define:{'process.env':JSON.stringify({
+    NODE_ENV:'production',
+    NEXT_PUBLIC_LEARNING_RUNTIME:'browser',
+    NEXT_PUBLIC_FIREBASE_APPCHECK_DEBUG:'0',
+  })},
   build:{outDir:out,emptyOutDir:true,target:'es2022',minify:false,
    lib:{entry:path.join(root,'tests/p0-writing-review-browser-entry.tsx'),formats:['iife'],
     name:'SleP0WritingBrowser',fileName:()=> 'bundle.js'}}});
