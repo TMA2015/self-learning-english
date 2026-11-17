@@ -15,7 +15,7 @@ assert.match(view,/name="student-written-content"/);
 assert.match(view,/DRAFT_KEY/);
 assert.match(view,/localStorage\.getItem/);
 assert.match(view,/localStorage\.setItem/);
-assert.match(view,/localStorage\.removeItem/);
+assert.match(view,/storage\.removeItem/);
 assert.match(view,/reviewed\?\.topic===topic&&reviewed\?\.writing===writing/,'Never show stale review checklist');
 assert.doesNotMatch(view,/\bfetch\s*\(|XMLHttpRequest|sendBeacon|requestWritingAI|evaluateWritingProcess/i,'The draft shell must not call any provider directly');
 assert.match(view,/import \{WritingAIReview\}/,'Reuse the existing Firebase Gemini AI component');
@@ -59,6 +59,8 @@ function makeHarness({failSave=false}={}){
    if(!old||deps.some((v,n)=>!Object.is(v,old[n]))){values[i]=deps;effects.push(fn)}},
  };
  const memory={
+  get length(){return store.size},
+  key:i=>Array.from(store.keys())[i]??null,
   getItem:k=>store.get(k)??null,
   setItem(k,v){if(failSave)throw Error('quota denied');store.set(k,v)},
   removeItem:k=>store.delete(k),
@@ -105,6 +107,19 @@ function makeHarness({failSave=false}={}){
  h.input('any-topic-writing-content','I changed my writing before saving another review.');
  assert.equal(h.walk(h.render(),e=>e.type===h.StubAI),null,'Edited draft invalidates previous review eligibility');
  assert.equal(h.calls.provider,0,'No provider request before learner click');
+ const prefix='g-learning:english:ai-feedback:v1:';
+ h.store.set(prefix+'any-topic-writing:old-answer','cached private feedback');
+ h.store.set(prefix+'week-9:kept','another course review');
+ const clear=h.walk(h.render(),e=>e.type==='button'&&e.props.children==='Clear local draft');
+ assert(clear,'Clear local draft button must be present');
+ clear.props.onClick();h.render();h.flush();
+ assert(!Array.from(h.store.keys()).some(k=>k.startsWith(prefix+'any-topic-writing:')),
+   'Clearing an Any Topic draft must remove all its cached Gemini feedback');
+ assert.equal(h.store.get(prefix+'week-9:kept'),'another course review',
+   'Clearing Any Topic must never delete another week\'s Gemini feedback');
+ assert(!h.store.has('g-learning:english:any-topic-writing:draft:v1'),
+   'Draft must be removed along with its cached feedback');
+ assert.equal(h.calls.provider,0,'Clearing does not contact Gemini');
 }
 {
  const h=makeHarness({failSave:true});
@@ -116,5 +131,11 @@ function makeHarness({failSave=false}={}){
  assert(ai&&!ai.props.enabled,'A failed local save MUST disable optional Gemini');
  assert.equal(h.calls.provider,0);
 }
+
+const provider=fs.readFileSync(path.join(root,'app/writing-ai-review.tsx'),'utf8');
+assert(provider.includes('if(!mounted.current||latestSignature.current!==requestedSignature)return;'),
+ 'Unsubscribed review must ignore late Gemini responses and avoid cache resurrection');
+assert(provider.includes('return ()=>{mounted.current=false};'),
+ 'Review must invalidate pending AI work on unmount');
 
 console.log('PASS any-topic-writing-review-shell: 2 required fields, save-bound optional Gemini, no automatic requests or official grade');
