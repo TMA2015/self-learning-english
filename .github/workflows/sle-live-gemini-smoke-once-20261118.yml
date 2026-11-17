@@ -1,0 +1,141 @@
+name: SLE One-time LIVE Gemini Browser Smoke (synthetic only)
+
+# Temporary QA branch only. This workflow does not deploy or change main.
+on:
+  push:
+    branches:
+      - qa/sle-live-gemini-browser-smoke-20261118
+
+permissions:
+  contents: read
+
+jobs:
+  live-gemini:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: One-time real English Firebase AI tutor and Any Topic browser smoke
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          'use strict';
+          const fs=require('node:fs'),os=require('node:os'),path=require('node:path'),cp=require('node:child_process');
+          const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+          const clean=s=>String(s||'').replace(/[\r\n]+/g,' ').slice(0,180);
+          const profile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-live-test-'));
+          const chrome=cp.spawn('/usr/bin/google-chrome',[
+            '--headless=new','--no-sandbox','--disable-dev-shm-usage','--no-first-run',
+            '--no-default-browser-check','--remote-debugging-port=0',
+            '--remote-allow-origins=*','--user-data-dir='+profile,'about:blank',
+          ],{stdio:['ignore','ignore','pipe']});
+          let cd=null,deadline=Date.now()+250000;
+          let state={site:'NOT_TESTED',tutor:'NOT_TESTED',writing:'NOT_TESTED',liveRequestsAttempted:0,learnerDataAccess:false};
+          const until=async(fn,ms)=>{
+            const limit=Math.min(Date.now()+ms,deadline);
+            while(Date.now()<limit){
+              try{const v=await fn();if(v)return v}catch(e){}
+              await sleep(550);
+            }
+            throw Error('Bounded browser condition not satisfied');
+          };
+          class CDP {
+            constructor(url){
+              this.seq=0;this.waiting=new Map();this.ws=new WebSocket(url);
+              this.ready=new Promise((resolve,reject)=>{
+                this.ws.addEventListener('open',resolve,{once:true});
+                this.ws.addEventListener('error',reject,{once:true});
+              });
+              this.ws.addEventListener('message',msg=>{
+                let v;try{v=JSON.parse(String(msg.data))}catch{return}
+                const w=this.waiting.get(v.id);if(!w)return;
+                this.waiting.delete(v.id);clearTimeout(w.timer);
+                v.error?w.reject(Error('DevTools error')):w.resolve(v.result);
+              });
+            }
+            async call(method,params={}){
+              await this.ready;const id=++this.seq;
+              const reply=new Promise((resolve,reject)=>{
+                const timer=setTimeout(()=>{this.waiting.delete(id);reject(Error('DevTools timeout'))},12000);
+                this.waiting.set(id,{resolve,reject,timer});
+              });
+              this.ws.send(JSON.stringify({id,method,params}));
+              return reply;
+            }
+            async eval(expression){
+              const v=await this.call('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true,userGesture:true});
+              if(v.exceptionDetails)throw Error('Browser DOM evaluation failed');
+              return v.result?.value;
+            }
+            close(){try{this.ws.close()}catch{}}
+          }
+          async function go(){
+            const port=await until(()=>{
+              const f=path.join(profile,'DevToolsActivePort');
+              if(!fs.existsSync(f))return null;
+              const n=Number(fs.readFileSync(f,'utf8').split('\n')[0]);
+              return n>0?n:null;
+            },20000);
+            const page=await until(async()=>{
+              const response=await fetch('http://127.0.0.1:'+port+'/json/list');
+              return (await response.json()).find(x=>x.type==='page'&&x.webSocketDebuggerUrl);
+            },12000);
+            cd=new CDP(page.webSocketDebuggerUrl);
+            await cd.call('Page.enable');await cd.call('Runtime.enable');
+            await cd.call('Page.navigate',{url:'https://g-learning-english.web.app/'});
+            await until(()=>cd.eval('document.readyState==="complete"&&!!document.querySelector("nav[aria-label=\\"Main navigation\\"]")'),70000);
+            state.site='LIVE_RENDERED';
+            console.log('LIVE_ENGLISH_HTML_JS_RENDERED');
+
+            const tutorNav='(()=>{let b=[...document.querySelectorAll("nav button")].find(x=>x.textContent.trim()==="AI Tutor");if(!b||b.disabled)return false;b.click();return true})()';
+            await until(()=>cd.eval(tutorNav),18000);
+            await until(()=>cd.eval('!!document.querySelector("button[aria-label=\\"Open AI English Tutor\\"]")'),20000);
+            await cd.eval('document.querySelector("button[aria-label=\\"Open AI English Tutor\\"]").click()');
+            await until(()=>cd.eval('!!document.querySelector(".english-lesson-ai-quick button")'),12000);
+            await cd.eval('(()=>{let b=[...document.querySelectorAll(".english-lesson-ai-quick button")].find(x=>x.textContent.trim()==="Explain simply");if(!b)return false;b.click();return true})()');
+            state.liveRequestsAttempted++;
+            try{
+              const t=await until(async()=>{
+                const v=await cd.eval('(()=>({answer:(document.querySelector(".english-lesson-ai-answer")?.textContent||"").trim(),error:(document.querySelector(".english-lesson-ai-panel [role=status]")?.textContent||"").trim()}))()');
+                return v.answer.length>15||v.error?v:null;
+              },82000);
+              state.tutor=t.answer.length>15?'LIVE_PASS':'HEADLESS_UNAVAILABLE';
+              if(t.error)console.log('TUTOR_SAFE_STATUS '+clean(t.error));
+            }catch(e){state.tutor='HEADLESS_NOT_VERIFIED'}
+            console.log('LIVE_TUTOR '+state.tutor);
+
+            await until(()=>cd.eval('(()=>{let b=[...document.querySelectorAll("nav button")].find(x=>x.textContent.trim()==="Writing");if(!b||b.disabled)return false;b.click();return true})()'),23000);
+            await until(()=>cd.eval('[...document.querySelectorAll("button")].some(x=>x.textContent.includes("Open Any Topic Writing"))'),22000);
+            await cd.eval('([...document.querySelectorAll("button")].find(x=>x.textContent.includes("Open Any Topic Writing"))).click()');
+            await until(()=>cd.eval('!!document.getElementById("any-topic-writing-content")'),17000);
+            await cd.eval('(()=>{const setter=Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,"value").set;const set=(id,value)=>{let el=document.getElementById(id);setter.call(el,value);el.dispatchEvent(new Event("input",{bubbles:true}))};set("any-topic-writing-topic","Describe a helpful school library.");set("any-topic-writing-content","Our school library is quiet. It helps students read and discover new books. I think every school should have a library because reading is important for learning.");return true})()');
+            await until(()=>cd.eval('[...document.querySelectorAll("button")].some(x=>x.textContent.includes("Open self-review checklist")&&!x.disabled)'),17000);
+            await cd.eval('([...document.querySelectorAll("button")].find(x=>x.textContent.includes("Open self-review checklist"))).click()');
+            await until(()=>cd.eval('[...document.querySelectorAll(".writing-ai-review button")].some(x=>x.textContent.trim()==="Get AI feedback"&&!x.disabled)'),18000);
+            await cd.eval('([...document.querySelectorAll(".writing-ai-review button")].find(x=>x.textContent.trim()==="Get AI feedback")).click()');
+            state.liveRequestsAttempted++;
+            try{
+              const w=await until(async()=>{
+                const v=await cd.eval('(()=>{let t=document.querySelector(".writing-ai-review")?.textContent||"";return {answer:t.includes("AI response received"),error:t.includes("AI not available:"),reason:t.slice(t.indexOf("AI not available:"),t.indexOf("AI not available:")+190)}})()');
+                return v.answer||v.error?v:null;
+              },82000);
+              state.writing=w.answer?'LIVE_PASS':'HEADLESS_UNAVAILABLE';
+              if(w.error)console.log('WRITING_SAFE_STATUS '+clean(w.reason));
+            }catch(e){state.writing='HEADLESS_NOT_VERIFIED'}
+            console.log('LIVE_ANY_TOPIC_WRITING '+state.writing);
+          }
+          go().catch(e=>{console.log('LIVE_BROWSER_NOT_VERIFIED '+clean(e.message));process.exitCode=1})
+            .finally(async()=>{
+              cd?.close();chrome.kill('SIGTERM');
+              await sleep(350);chrome.kill('SIGKILL');
+              fs.rmSync(profile,{force:true,recursive:true,maxRetries:3});
+              console.log('SLE_LIVE_SMOKE '+JSON.stringify(state));
+              if(state.tutor!=='LIVE_PASS'||state.writing!=='LIVE_PASS')process.exitCode=1;
+            });
+          NODE
