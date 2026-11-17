@@ -36,6 +36,7 @@ jobs:
             '--remote-allow-origins=*','--user-data-dir='+profile,'about:blank',
           ],{stdio:['ignore','ignore','pipe']});
           let cd=null,deadline=Date.now()+250000;
+          const httpEvents=[];
           let state={site:'NOT_TESTED',tutor:'NOT_TESTED',writing:'NOT_TESTED',liveRequestsAttempted:0,learnerDataAccess:false};
           const until=async(fn,ms)=>{
             const limit=Math.min(Date.now()+ms,deadline);
@@ -87,6 +88,18 @@ jobs:
               return (await response.json()).find(x=>x.type==='page'&&x.webSocketDebuggerUrl);
             },12000);
             cd=new CDP(page.webSocketDebuggerUrl);
+            // Host and HTTP status only; never collect headers, cookies, tokens,
+            // request bodies, provider responses, or real learner information.
+            cd.ws.addEventListener('message',message=>{
+              let e;try{e=JSON.parse(String(message.data))}catch{return}
+              if(e.method!=='Network.responseReceived')return;
+              try{
+                const host=new URL(e.params.response.url).hostname;
+                if(/googleapis\.com|recaptcha\.net|gstatic\.com/.test(host))
+                  httpEvents.push({host,status:e.params.response.status});
+              }catch{}
+            });
+            await cd.call('Network.enable');
             await cd.call('Page.enable');await cd.call('Runtime.enable');
             await cd.call('Page.navigate',{url:'https://g-learning-english.web.app/'});
             await until(()=>cd.eval('document.readyState==="complete"&&!!document.querySelector("nav[aria-label=\\"Main navigation\\"]")'),70000);
@@ -136,6 +149,7 @@ jobs:
               await sleep(350);chrome.kill('SIGKILL');
               fs.rmSync(profile,{force:true,recursive:true,maxRetries:3});
               console.log('SLE_LIVE_SMOKE '+JSON.stringify(state));
+              console.log('SAFE_NETWORK_STATUS_ONLY '+JSON.stringify([...new Map(httpEvents.map(x=>[x.host+':'+x.status,x])).values()].slice(0,30)));
               if(state.tutor!=='LIVE_PASS'||state.writing!=='LIVE_PASS')process.exitCode=1;
             });
           NODE
