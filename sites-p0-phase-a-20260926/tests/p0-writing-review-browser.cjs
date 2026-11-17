@@ -9,21 +9,31 @@ const root=path.resolve(__dirname,'..');
  const out=path.join(root,'.sites-runtime/p0-writing-browser');
  fs.rmSync(out,{recursive:true,force:true});
  await build({root,configFile:false,logLevel:'error',
-  // This standalone Vite harness bypasses the normal Vinext browser env injection.
-  // Match its public compile-time environment now that optional Gemini modules
-  // are imported by Any Topic; do not add a runtime process shim to the site.
-  // Vite's standalone IIFE build needs the same compile-time process
-  // replacement as the real Vinext browser build, including SDK dependencies.
-  // This is a bundler define, NOT a window.process shim at runtime.
-  define:{process:JSON.stringify({env:{
-    NODE_ENV:'production',
-    NEXT_PUBLIC_LEARNING_RUNTIME:'browser',
-    NEXT_PUBLIC_FIREBASE_APPCHECK_DEBUG:'0',
-  }})},
+  // Scope this P0 Chromium test to real local draft Save/Restore/Clear.
+  // Firebase/provider contract tests separately exercise the real SDK bridge.
+  // Here only, replace the optional AI UI with a visible status stub. No
+  // external requests, browser process polyfills or changes to app code.
+  plugins:[{
+    name:'qa-only-any-topic-gemini-stub',enforce:'pre',
+    resolveId(source,importer){
+      if(source==='./writing-ai-review'&&importer?.endsWith('/app/any-topic-writing-review.tsx'))
+        return '\\0sle-qa-any-topic-ai';
+    },
+    load(id){
+      if(id==='\\0sle-qa-any-topic-ai')
+        return `import {jsx} from 'react/jsx-runtime';
+          export function WritingAIReview({enabled}){
+            return jsx('div',{'data-qa-optional-gemini':enabled?'enabled':'disabled',
+              children:'Gemini UI stub: no external requests'});
+          }`;
+    },
+  }],
+  define:{'process.env.NODE_ENV':JSON.stringify('production')},
   build:{outDir:out,emptyOutDir:true,target:'es2022',minify:false,
    lib:{entry:path.join(root,'tests/p0-writing-review-browser-entry.tsx'),formats:['iife'],
     name:'SleP0WritingBrowser',fileName:()=> 'bundle.js'}}});
  const bundle=fs.readFileSync(path.join(out,'bundle.js'),'utf8');
+ assert(bundle.includes('data-qa-optional-gemini'),'P0 test must retain optional Gemini enabled-state proof');
  const bin=['google-chrome','google-chrome-stable','chromium','chromium-browser']
   .map(name=>{try{return cp.execFileSync('which',[name],{encoding:'utf8'}).trim()}catch{return ''}})
   .find(Boolean);
