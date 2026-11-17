@@ -23,9 +23,12 @@ assert(services.includes("tutor.teachWriting(draft,task")&&services.includes("tu
 assert(services.includes("scores:null,level:null"),'Revision coaching must not assign scores or level');
 const registry=require('../ai/prompts/registry.json');
 assert.equal(registry['revision-coaching'].status,'active');
-assert.equal(registry['revision-coaching'].version,'1.0.0');
+assert.equal(registry['revision-coaching'].version,'1.1.0');
 for(const required of ['sourceOwnership','originalText','revisedText','no-change','No numeric scores','Sample Student Draft']){
  assert(registry['revision-coaching'].system.includes(required),'Revision AI prompt must cover '+required);
+}
+for(const required of ['Follow the trusted responseLanguage field if provided','Use safe Markdown formatting (bolding, bullet lists)',"'corrections' MUST be an empty array []","'scores' MUST be null",'briefly quote the stated revisionGoal']){
+ assert(registry['revision-coaching'].system.includes(required),'NotebookLM correction missing: '+required);
 }
 const serviceSource=read('ai/service.ts');
 assert(serviceSource.includes("stage==='revision'?'revision-coaching':'feedback'"));
@@ -33,6 +36,12 @@ assert(serviceSource.includes("scores:stage!=='revision'"));
 const laterPage=read('app/writing-course-v2-c.tsx');
 assert(laterPage.includes('revisionAIContext(week,work)'));
 assert(laterPage.includes("kind={editing?'revision':'draft'}"));
+assert(laterPage.includes("responseLanguage={showVi?'vi':'en'}"));
+assert(services.includes("...(kind==='revision'?{responseLanguage}:{})"));
+assert(component.includes("const signature=JSON.stringify([task,fields,kind,...(kind==='revision'?[responseLanguage]:[])]);"));
+assert(component.includes('requestWritingAI(task,fields,kind,responseLanguage)'));
+assert(component.includes('<TeachingBlocks text={feedback.summary}/>'));
+assert(component.includes('<Inline text={s}/>'));
 assert(laterPage.includes('enabled={saved&&!busy&&!error&&(!editing||!!revision)}'));
 assert(services.includes("status:'unavailable'")&&services.includes("scores:null,level:null"));
 assert(browser.includes("resetAIFailure")&&browser.includes("readAIFailure"));
