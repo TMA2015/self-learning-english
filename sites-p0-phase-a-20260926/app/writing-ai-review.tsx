@@ -17,6 +17,8 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
  const signature=JSON.stringify([task,fields,kind,...(kind==='revision'?[responseLanguage]:[])]);
  const latestSignature=useRef(signature);
  latestSignature.current=signature;
+ const currentlyEligible=useRef(enabled);
+ currentlyEligible.current=enabled;
  // Prevent an in-flight provider response from restoring a cleared draft's
  // private AI feedback cache after this view has been unmounted.
  const mounted=useRef(false);
@@ -30,6 +32,7 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
  const [busy,setBusy]=useState(false);
  useEffect(()=>{
    setFeedback(null);setReason('');
+   if(!enabled)return; // Never reveal a cached result for an unsaved or ineligible draft.
    try{
      const stored=localStorage.getItem(storageKey);
      if(stored){
@@ -38,7 +41,7 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
          (kind!=='revision'||(parsed.scores===null&&parsed.level===null)))setFeedback(parsed);
      }
    }catch{/* local storage can be blocked; feedback still works without it */}
- },[storageKey]);
+ },[storageKey,enabled]);
  async function request(){
    if(busy||!enabled)return;
    setBusy(true);setReason('');
@@ -47,27 +50,28 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
      const result=await requestWritingAI(task,fields,kind,responseLanguage);
      // The learner may edit or navigate while a request is in flight. Never
      // display an old response as an assessment of a newer draft.
-     if(!mounted.current||latestSignature.current!==requestedSignature)return;
+     if(!mounted.current||!currentlyEligible.current||latestSignature.current!==requestedSignature)return;
      if(result.status==='validated'){
        setFeedback(result.feedback);
        try{localStorage.setItem(storageKey,JSON.stringify(result.feedback))}catch{/* storage optional */}
      }else{setFeedback(null);setReason(result.reason)}
-   }catch{if(mounted.current&&latestSignature.current===requestedSignature)setReason('AI feedback could not be completed. Your saved work is unchanged.')}
+   }catch{if(mounted.current&&currentlyEligible.current&&latestSignature.current===requestedSignature)setReason('AI feedback could not be completed. Your saved work is unchanged.')}
    finally{if(mounted.current)setBusy(false)}
  }
+ const visibleFeedback=enabled?feedback:null;
  return <section className="writing-ai-review" aria-label="Optional Gemini writing feedback">
-   <div className="writing-ai-review-heading"><strong>✦ Gemini AI Writing</strong><span>{feedback?'Verified AI response':busy?'Checking your writing…':'Optional · On demand'}</span></div>
-   {!feedback&&<p>{kind==='revision'?'Compare your saved original and revised text with Gemini. Get evidence-based feedback on actual changes and one next revision action; no grade or CEFR estimate is assigned.':'Get feedback on relevance, ideas, organization and language. This is separate from the saved exercise and is not an official CEFR score.'}</p>}
+   <div className="writing-ai-review-heading"><strong>✦ Gemini AI Writing</strong><span>{visibleFeedback?'Verified AI response':busy?'Checking your writing…':'Optional · On demand'}</span></div>
+   {!visibleFeedback&&<p>{kind==='revision'?'Compare your saved original and revised text with Gemini. Get evidence-based feedback on actual changes and one next revision action; no grade or CEFR estimate is assigned.':'Get feedback on relevance, ideas, organization and language. This is separate from the saved exercise and is not an official CEFR score.'}</p>}
    {sourceSample&&<p>Sample-based revision is practice only; any AI feedback cannot assess your independent writing ability.</p>}
-   {feedback?<div aria-live="polite">
-     <p><strong>AI response received · {feedback.model}</strong> · Provisional educational feedback</p>
-     {kind==='revision'?<TeachingBlocks text={feedback.summary}/>:<p>{feedback.summary}</p>}
-     {feedback.strengths.length>0&&<><strong>What worked well</strong><ul>{feedback.strengths.map((s,i)=><li key={i}>{kind==='revision'?<Inline text={s}/>:s}</li>)}</ul></>}
-     {feedback.improvements.length>0&&<><strong>What to improve</strong><ul>{feedback.improvements.map((s,i)=><li key={i}>{kind==='revision'?<Inline text={s}/>:s}</li>)}</ul></>}
-     {feedback.scores&&kind!=='revision'&&!sourceSample&&<div><strong>AI rubric observations · provisional (0–10)</strong><ul>{Object.entries(feedback.scores).map(([k,v])=><li key={k}>{k.replaceAll('-',' ')}: {v}/10</li>)}</ul></div>}
-     {feedback.level&&kind!=='revision'&&!sourceSample&&<p>Writing practice estimate: {feedback.level}.</p>}
-     {feedback.corrections.length>0&&<><strong>Revision hints</strong><ul>{feedback.corrections.map((c,i)=><li key={i}>“{c.original}” — {c.hint}</li>)}</ul></>}
-     {kind==='revision'?<div><strong>Next practice:</strong><TeachingBlocks text={feedback.exercise}/></div>:<p><strong>Next practice:</strong> {feedback.exercise}</p>}
+   {visibleFeedback?<div aria-live="polite">
+     <p><strong>AI response received · {visibleFeedback.model}</strong> · Provisional educational feedback</p>
+     {kind==='revision'?<TeachingBlocks text={visibleFeedback.summary}/>:<p>{visibleFeedback.summary}</p>}
+     {visibleFeedback.strengths.length>0&&<><strong>What worked well</strong><ul>{visibleFeedback.strengths.map((s,i)=><li key={i}>{kind==='revision'?<Inline text={s}/>:s}</li>)}</ul></>}
+     {visibleFeedback.improvements.length>0&&<><strong>What to improve</strong><ul>{visibleFeedback.improvements.map((s,i)=><li key={i}>{kind==='revision'?<Inline text={s}/>:s}</li>)}</ul></>}
+     {visibleFeedback.scores&&kind!=='revision'&&!sourceSample&&<div><strong>AI rubric observations · provisional (0–10)</strong><ul>{Object.entries(visibleFeedback.scores).map(([k,v])=><li key={k}>{k.replaceAll('-',' ')}: {v}/10</li>)}</ul></div>}
+     {visibleFeedback.level&&kind!=='revision'&&!sourceSample&&<p>Writing practice estimate: {visibleFeedback.level}.</p>}
+     {visibleFeedback.corrections.length>0&&<><strong>Revision hints</strong><ul>{visibleFeedback.corrections.map((c,i)=><li key={i}>“{c.original}” — {c.hint}</li>)}</ul></>}
+     {kind==='revision'?<div><strong>Next practice:</strong><TeachingBlocks text={visibleFeedback.exercise}/></div>:<p><strong>Next practice:</strong> {visibleFeedback.exercise}</p>}
      <button type="button" className="secondary-button" disabled={busy||!enabled} onClick={()=>void request()}>Request updated AI feedback</button>
    </div>:<>
      <button type="button" className="secondary-button" disabled={!enabled||busy} onClick={()=>void request()}>{busy?'Checking with Gemini…':kind==='revision'?'Compare original & revision with Gemini':'Get AI feedback'}</button>
