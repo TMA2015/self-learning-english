@@ -11,7 +11,7 @@ function fingerprint(value:string){
 }
 export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=false}:{
  reviewId:string;task:string;fields:Record<string,string>;
- kind:'draft'|'planning';enabled:boolean;sourceSample?:boolean;
+ kind:'draft'|'planning'|'revision';enabled:boolean;sourceSample?:boolean;
 }){
  const signature=JSON.stringify([task,fields,kind]);
  const latestSignature=useRef(signature);
@@ -26,7 +26,8 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
      const stored=localStorage.getItem(storageKey);
      if(stored){
        const parsed=JSON.parse(stored) as OnDemandWritingFeedback;
-       if(parsed.provider==='firebase-ai-logic'&&typeof parsed.summary==='string'&&Array.isArray(parsed.strengths))setFeedback(parsed);
+       if(parsed.provider==='firebase-ai-logic'&&parsed.kind===kind&&typeof parsed.summary==='string'&&Array.isArray(parsed.strengths)&&
+         (kind!=='revision'||(parsed.scores===null&&parsed.level===null)))setFeedback(parsed);
      }
    }catch{/* local storage can be blocked; feedback still works without it */}
  },[storageKey]);
@@ -48,21 +49,21 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
  }
  return <section className="writing-ai-review" aria-label="Optional Gemini writing feedback">
    <div className="writing-ai-review-heading"><strong>✦ Gemini AI Writing</strong><span>{feedback?'Verified AI response':busy?'Checking your writing…':'Optional · On demand'}</span></div>
-   {!feedback&&<p>Get feedback on relevance, ideas, organization and language. This is separate from the saved exercise and is not an official CEFR score.</p>}
+   {!feedback&&<p>{kind==='revision'?'Compare your saved original and revised text with Gemini. Get evidence-based feedback on actual changes and one next revision action; no grade or CEFR estimate is assigned.':'Get feedback on relevance, ideas, organization and language. This is separate from the saved exercise and is not an official CEFR score.'}</p>}
    {sourceSample&&<p>Sample-based revision is practice only; any AI feedback cannot assess your independent writing ability.</p>}
    {feedback?<div aria-live="polite">
      <p><strong>AI response received · {feedback.model}</strong> · Provisional educational feedback</p>
      <p>{feedback.summary}</p>
      {feedback.strengths.length>0&&<><strong>What worked well</strong><ul>{feedback.strengths.map((s,i)=><li key={i}>{s}</li>)}</ul></>}
      {feedback.improvements.length>0&&<><strong>What to improve</strong><ul>{feedback.improvements.map((s,i)=><li key={i}>{s}</li>)}</ul></>}
-     {feedback.scores&&!sourceSample&&<div><strong>AI rubric observations · provisional (0–10)</strong><ul>{Object.entries(feedback.scores).map(([k,v])=><li key={k}>{k.replaceAll('-',' ')}: {v}/10</li>)}</ul></div>}
-     {feedback.level&&!sourceSample&&<p>Writing practice estimate: {feedback.level}.</p>}
+     {feedback.scores&&kind!=='revision'&&!sourceSample&&<div><strong>AI rubric observations · provisional (0–10)</strong><ul>{Object.entries(feedback.scores).map(([k,v])=><li key={k}>{k.replaceAll('-',' ')}: {v}/10</li>)}</ul></div>}
+     {feedback.level&&kind!=='revision'&&!sourceSample&&<p>Writing practice estimate: {feedback.level}.</p>}
      {feedback.corrections.length>0&&<><strong>Revision hints</strong><ul>{feedback.corrections.map((c,i)=><li key={i}>“{c.original}” — {c.hint}</li>)}</ul></>}
      <p><strong>Next practice:</strong> {feedback.exercise}</p>
      <button type="button" className="secondary-button" disabled={busy||!enabled} onClick={()=>void request()}>Request updated AI feedback</button>
    </div>:<>
-     <button type="button" className="secondary-button" disabled={!enabled||busy} onClick={()=>void request()}>{busy?'Checking with Gemini…':'Get AI feedback'}</button>
-     <p className="muted">Only clicking this button sends your response to Firebase AI Logic. If AI fails, no AI score is assigned.</p>
+     <button type="button" className="secondary-button" disabled={!enabled||busy} onClick={()=>void request()}>{busy?'Checking with Gemini…':kind==='revision'?'Compare original & revision with Gemini':'Get AI feedback'}</button>
+     <p className="muted">{kind==='revision'?'Only clicking this button sends your saved original text, revised version and revision notes to Gemini via Firebase AI Logic. This comparison is unscored.':'Only clicking this button sends your response to Firebase AI Logic. If AI fails, no AI score is assigned.'}</p>
      {reason&&<p role="status" className="notice">AI not available: {reason} Guided Check and saved work remain available.</p>}
    </>}
  </section>;
