@@ -1,4 +1,4 @@
-// Issue #131: static no-AI/no-grade guard for the independent Writing Review shell.
+// Any Topic: local persistence and explicit-click Gemini feedback remain separate from grades.
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
@@ -17,9 +17,18 @@ assert.match(view,/localStorage\.getItem/);
 assert.match(view,/localStorage\.setItem/);
 assert.match(view,/localStorage\.removeItem/);
 assert.match(view,/reviewed\?\.topic===topic&&reviewed\?\.writing===writing/,'Never show stale review checklist');
-assert.doesNotMatch(view,/\bfetch\s*\(|XMLHttpRequest|sendBeacon|requestWritingAI|evaluateWritingProcess|firebase-ai|Gemini\./i,'No provider or external submission');
+assert.doesNotMatch(view,/\bfetch\s*\(|XMLHttpRequest|sendBeacon|requestWritingAI|evaluateWritingProcess/i,'The draft shell must not call any provider directly');
+assert.match(view,/import \{WritingAIReview\}/,'Reuse the existing Firebase Gemini AI component');
+assert.match(view,/<WritingAIReview\b[^>]*reviewId="any-topic-writing"/,'Gemini is optional on the self-check screen');
+assert.match(view,/kind="draft" enabled=\{aiEligible\}/,'Gemini must be gated by successfully saved content');
 assert.doesNotMatch(view,/AcademicAttempt|setEvidence\(|writingEvidence\(|RUBRIC-|score\s*:/,'No grade or Foundation attempt mutation');
-assert.match(view,/no AI submission or automatic scoring/i);
+assert.match(view,/self-check is always available without AI/i,'No AI dependency for self-check');
+assert.match(view,/explicitly ask Gemini to review this draft/i,'No automatic send');
+assert.match(view,/savedSignature===JSON\.stringify\(\[topic,writing\]\)/,'Only exact persisted draft enables AI');
+assert.match(view,/currentReview&&savedSignature/,'Do not use unsaved or stale drafts for Gemini');
+assert.match(view,/writing\.length<=7000/,'Bound Gemini text while allowing longer local drafts');
+assert.match(view,/setSavedSignature\(null\)/,'A failed save must invalidate AI eligibility');
+assert.match(view,/Save again after any editing/,'Require new saved snapshot after edits');
 assert.match(view,/This browser only|this browser only/i);
 assert.match(view,/Writing Draft &amp; Self-Check/);
 assert.match(view,/same for every draft/i,'Self-check must disclose it is not personalized');
@@ -30,6 +39,6 @@ assert.match(view,/Language:/);
 assert.match(home,/import \{AnyTopicWritingReview\}/);
 assert.match(home,/view==="writing-any-topic"&&<AnyTopicWritingReview\/>/);
 assert.match(home,/onAnyTopic=\{\(\)=>void navigate\("writing-any-topic"\)\}/);
-assert.match(platform,/Open Writing Draft & Self-Check \(No AI\)/);
+assert.match(platform,/Open Any Topic Writing · optional Gemini/);
 assert.match(runner,/any-topic-writing-review-shell\.cjs/,'Register mandatory QA in full suite');
-console.log('PASS any-topic-writing-review-shell: 2 required fields, local restore, isolated route, no AI/no scoring');
+console.log('PASS any-topic-writing-review-shell: 2 required fields, save-bound optional Gemini, no automatic requests or official grade');
