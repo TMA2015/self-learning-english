@@ -63,7 +63,7 @@ const valid={summary:'Clear idea',strengths:['Relevant'],improvements:['Add an e
  });
  await test('browser bridge uses English App, protected SDK, selected model without Remote Config or model change',async()=>{
   const Module=require('node:module'),original=Module._load;
-  const calls={init:[],appCheck:[],models:[],remote:0,ai:0};
+  const calls={init:[],appCheck:[],models:[],prompts:[],payloads:[],remote:0,ai:0};
   const week2Advice={strength:'The idea fits the task.',suggestions:['Explain why the activity helps.'],nextAction:'Add a specific reason.'};
   const app={name:'self-learning-english-ai'};
   const remote={settings:{},defaultConfig:{}};
@@ -72,7 +72,7 @@ const valid={summary:'Clear idea',strengths:['Relevant'],improvements:['Add an e
   const mocks={
    'firebase/app':{getApps:()=>[],initializeApp:(config,name)=>{calls.init.push({config,name});return app}},
    'firebase/app-check':{ReCaptchaEnterpriseProvider:class {constructor(key){this.key=key}},initializeAppCheck:(a,config)=>{assert.equal(a,app);calls.appCheck.push(config);return {valid:true}},getToken:async check=>{assert(check.valid);calls.appCheckTokens=(calls.appCheckTokens||0)+1;return {token:'fake-firebase-app-check-token'}}},
-   'firebase/ai':{GoogleAIBackend:class {},getAI:a=>{assert.equal(a,app);return {}},getGenerativeModel:(ai,config)=>{calls.models.push(config.model);return {generateContent:async()=>{calls.ai++;return {response:{text:()=>JSON.stringify(config.systemInstruction?.includes('saved short planning notes')?week2Advice:valid)}}}}}},
+   'firebase/ai':{GoogleAIBackend:class {},getAI:a=>{assert.equal(a,app);return {}},getGenerativeModel:(ai,config)=>{calls.models.push(config.model);calls.prompts.push(config.systemInstruction);return {generateContent:async(raw)=>{calls.ai++;calls.payloads.push(JSON.parse(raw));return {response:{text:()=>config.generationConfig?.responseMimeType==='application/json'?JSON.stringify(config.systemInstruction?.includes('saved short planning notes')?week2Advice:valid):'A precise example of register and nuance.'}}}}}},
    'firebase/remote-config':{isSupported:async()=>true,getRemoteConfig:a=>{assert.equal(a,app);return remote},fetchAndActivate:async()=>{calls.remote++},getString:()=> 'gemini-3.5-flash-lite'},
   };
   Module._load=function(name,...args){return mocks[name]??original.call(this,name,...args)};
@@ -96,6 +96,23 @@ const valid={summary:'Clear idea',strengths:['Relevant'],improvements:['Add an e
    assert.equal(result.strength,week2Advice.strength);
    assert.equal(calls.ai,2,'Generic Writing and Week 2 Gemini requests use existing SDK');
    assert.equal(calls.appCheckTokens,2,'Week 2 must also verify App Check');
+   const advanced=await bridge.explainEnglishLessonAI({
+    lesson:'Advanced register',focus:'Formal and informal expressions in academic writing.',
+    question:'Why does this wording change the register?',cefrTarget:'C2'});
+   assert.equal(advanced.status,'answered','Advanced Gemini question must remain available');
+   assert(calls.prompts.at(-1).includes('C2 teaching target'));
+   assert(calls.prompts.at(-1).includes('pragmatic implications'));
+   assert.equal(calls.payloads.at(-1).targetCEFR,'C2','The level is a lesson teaching target');
+   assert.equal(calls.appCheckTokens,3,'Advanced tutor still requires App Check');
+   assert.equal(calls.ai,3,'Existing Gemini SDK handles the advanced teaching request');
+   const unspecified=await bridge.explainEnglishLessonAI({
+    lesson:'Writing course',focus:'Planning a clear paragraph.',
+    question:'Can you explain the difference?',cefrTarget:'unknown'});
+   assert.equal(unspecified.status,'answered');
+   assert(calls.prompts.at(-1).includes('No declared CEFR target'));
+   assert.equal(Object.hasOwn(calls.payloads.at(-1),'targetCEFR'),false,
+    'Invalid level must not become an invented teaching target');
+   assert.equal(calls.appCheckTokens,4);
    assert.equal(global.FIREBASE_APPCHECK_DEBUG_TOKEN,undefined);
   }finally{Module._load=original;global.window=priorWindow;global.location=priorLocation}
  });
