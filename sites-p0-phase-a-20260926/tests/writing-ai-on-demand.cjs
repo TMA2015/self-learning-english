@@ -31,7 +31,7 @@ for(const required of ['Follow the trusted responseLanguage field if provided','
  assert(registry['revision-coaching'].system.includes(required),'NotebookLM correction missing: '+required);
 }
 const serviceSource=read('ai/service.ts');
-assert(serviceSource.includes("stage==='revision'?'revision-coaching':'feedback'"));
+assert(serviceSource.includes("stage==='revision'?'revision-coaching':stage==='any-topic'?'any-topic-writing':'feedback'"),'Distinct revision and Any Topic prompts must be routed explicitly');
 assert(serviceSource.includes("scores:stage!=='revision'"));
 const laterPage=read('app/writing-course-v2-c.tsx');
 assert(laterPage.includes('revisionAIContext(week,work)'));
