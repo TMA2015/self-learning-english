@@ -85,7 +85,7 @@ export function AnyTopicWritingReview(){
       <h1>Writing Draft &amp; Self-Check · Any Topic</h1>
       <p>Write about a topic of your choice, save a draft, check your revision steps and optionally ask Gemini for personal writing feedback. This space is separate from English Writing Coach · 12 Weeks and graded Foundation lessons.</p>
     </div></div>
-    <p className="notice"><strong>Your choice:</strong> the self-check is always available without AI. After saving, you may explicitly ask Gemini to review this draft. Gemini feedback is provisional advice, never an official grade or certified CEFR result.</p>
+    <p className="notice"><strong>Your choice:</strong> the self-check is always available without AI, and its questions are the same for every draft. After saving, you may explicitly ask Gemini to review this draft. Gemini feedback is provisional advice, never an official grade or certified CEFR result.</p>
     <form onSubmit={event=>{
       event.preventDefault();
       if(!valid)return;
