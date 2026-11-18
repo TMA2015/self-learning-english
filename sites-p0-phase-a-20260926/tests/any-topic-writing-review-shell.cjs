@@ -40,8 +40,14 @@ assert.match(home,/import \{AnyTopicWritingReview\}/);
 assert.match(home,/view==="writing-any-topic"&&<AnyTopicWritingReview showVi=\{!!state.vietnameseSupport\}\/>/);
 assert.match(view,/reviewMode="any-topic" responseLanguage=\{showVi \? 'vi' : 'en'\}/);
 
-assert.match(home,/onAnyTopic=\{\(\)=>void navigate\("writing-any-topic"\)\}/);
-assert.match(platform,/Open Any Topic Writing · optional Gemini/);
+assert.match(home,/writingIntro=\{view==="writing"\?<button[^\n]*navigate\("writing-any-topic"\)/,
+ 'Writing skill overview must link directly to independent Gemini Writing');
+assert.match(home,/view==="tutor"&&<TutorOverview onWriting=\{\(\)=>navigate\("writing-any-topic"\)\}/,
+ 'AI Tutor Writing-feedback entry must not redirect to 12-week Week 1');
+assert.match(platform,/AI Writing Feedback · Any Topic/,'Explain independent feedback and saved-draft requirement');
+assert.match(platform,/Open AI Writing Feedback/,'Use precise CTA instead of Try Writing practice');
+assert.doesNotMatch(platform.split('export function TutorOverview')[1],/Try Writing practice/,
+ 'Do not route feedback users to Writing Course');
 assert.match(runner,/any-topic-writing-review-shell\.cjs/,'Register mandatory QA in full suite');
 
 // Exercise the real Any Topic React handlers without a network provider.
