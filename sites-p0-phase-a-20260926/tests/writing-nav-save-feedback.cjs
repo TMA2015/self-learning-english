@@ -6,19 +6,23 @@ const root=path.resolve(__dirname,'..');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const page=read('app/page.tsx')+read('app/home-client.tsx'), player=read('app/foundation.tsx'), platform=read('app/platform.tsx'), css=read('app/globals.css');
 
-assert.equal((page.match(/<WritingHome\b/g)||[]).length,1,'Writing Coach renders once');
-assert.ok(page.includes('writingIntro={view==="writing"?<WritingHome compact'),'shared writing intro slot');
-assert.ok(!page.includes('view==="writing"&&<WritingHome'),'no separate Writing section above the player');
-assert.ok(platform.includes('compact=false'),'Writing Coach must retain standalone default');
-assert.ok(platform.includes('{!compact&&<>'),'compact Writing Coach should not repeat heading');
-assert.ok(player.includes('writingIntro?:ReactNode'),'optional slot must not affect other skills');
-assert.ok(player.includes("screen==='catalog'&&(entryMode==='units'?<UnitBrowser")&&player.includes('foundation-writing-coach'),'Writing Coach remains exclusively in the skill-catalog branch, not the new Unit guide');
+assert.equal((page.match(/<WritingHome\b/g)||[]).length,0,'No 12-week Writing Coach block in the Writing skill overview');
+assert.ok(page.includes('writingIntro={view==="writing"?<button'),'Writing skill keeps only a compact independent-feedback action');
+assert.ok(page.includes('Open AI Writing Feedback · Any Topic'),'Writing skill links to the standalone saved-draft Gemini workspace');
+assert.ok(!page.includes('view==="writing"&&<WritingHome'),'no extra course overview above the player');
+assert.ok(platform.includes('compact=false'),'Existing 12-week Writing course component stays available separately');
+assert.ok(platform.includes('{!compact&&<>'),'Existing WritingHome component remains intact for course callers');
+assert.ok(player.includes('writingIntro?:ReactNode'),'optional link slot must not affect other skills');
+assert.ok(player.includes("screen==='catalog'&&(entryMode==='units'?<UnitBrowser"),'Unit Browser and skill catalog remain separate');
+assert.ok(!player.includes('foundation-writing-coach'),'12-week Writing panels must not be embedded in skill overview');
 const pathTab=player.indexOf('className="foundation-path"');
-const coach=player.indexOf('className="foundation-writing-coach"');
+const title=player.indexOf('className="page-heading"');
+const intro=player.indexOf('className="foundation-writing-action"');
 const recent=player.indexOf('foundation-recent"');
 const catalog=player.indexOf('foundation-catalog-panel"');
-assert.ok(pathTab>=0&&pathTab<coach&&coach<recent&&recent<catalog,'skill tabs before optional Writing Coach, recent work and catalog');
-assert.ok(css.includes('.foundation-writing-coach{'),'Writing Coach wrapper styling');
+assert.ok(pathTab>=0&&pathTab<title&&title<intro&&intro<recent&&recent<catalog,
+ 'skill tabs must appear above the skill title, compact Writing link and lesson catalog');
+assert.ok(css.includes('.foundation-writing-action{'),'Small Writing link retains consistent skill layout');
 
 assert.ok(player.includes("markDraftChanged();setAnswers(s=>({...s,[q.id]:o.id}))"),'MCQ updates dirty state');
 assert.ok(player.includes("markDraftChanged();setAnswers(s=>({...s,[q.id]:e.target.value}))"),'text input updates dirty state');
