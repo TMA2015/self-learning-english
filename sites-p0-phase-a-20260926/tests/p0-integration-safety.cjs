@@ -12,8 +12,12 @@ const writing=read('app/any-topic-writing-review.tsx');
 const review=read('app/offline-lesson-review.tsx');
 const runner=read('scripts/qa-free-first.mjs');
 const workflow=read('../.github/workflows/english-pr-qa.yml');
-assert.equal((home.match(/<WritingHome\b/g)||[]).length,1,'Existing WritingHome reused exactly once');
-assert.match(home,/onAnyTopic=\{\(\)=>void navigate\("writing-any-topic"\)\}/);
+assert.equal((home.match(/<WritingHome\b/g)||[]).length,0,
+ 'Independent Writing skill overview does not embed the separate 12-week course');
+assert.match(home,/writingIntro=\{view==="writing"\?<button[^\n]*navigate\("writing-any-topic"\)/,
+ 'Writing skill keeps a compact direct Gemini feedback route');
+assert.match(home,/view==="tutor"&&<TutorOverview onWriting=\{\(\)=>navigate\("writing-any-topic"\)\}/,
+ 'AI feedback must not redirect to Week 1');
 assert.match(home,/view==="writing-any-topic"&&<AnyTopicWritingReview showVi=\{!!state.vietnameseSupport\}\/>/,
   "Independent Any Topic route remains present and inherits learner language preference");
 assert.match(home,/foundationRequest\('\/api\/foundation'\)/);
