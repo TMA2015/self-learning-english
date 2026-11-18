@@ -276,6 +276,7 @@ Use `major.minor.patch`: **major** for a policy redesign or changed evidence mea
 
 | Standard version | Date | Status | Summary | Approval / effective commit |
 | --- | --- | --- | --- | --- |
+| 1.2.1 | 2026-11-18 | EFFECTIVE ONLY AFTER OWNER-APPROVED PR #169 MERGE | Clarify AI Tutor Knowledge vs. post-save Writing Review modes, Issue #114 CLOSED status, provider-specific eligibility (no blanket AI prohibition), and NotebookLM verdict scope; no AI runtime, learner-record or deployment changes | PR #169; proposed until merged into `main` |
 | 1.2.0 | 2026-11-06 | NOTEBOOKLM ACADEMIC GO AFTER COR-STD-01/02; ENGINEERING QA REQUIRED | Add instructional presentation checks (2.1), recurring-defect prevention (10.1), and clarify source vs imported status / A1–C2 authoring scope; no learner-record change or second rulebook | Effective only on owner-approved PR #95 merge; see merge commit |
 | 1.1.0 | 2026-11-03 | ACTIVE SINCE PRIOR ADOPTION | Unified authoring/review/release rules into one canonical standard | Historical 2026-11-03 owner-adopted revision |
 | 1.0.0 | 2026-11-02 | ACADEMIC GO / ADOPTION ON PR #71 MERGE | Unified existing authoring/UX/evidence standards; incorporated NotebookLM mandatory amendments C1–C4 (baseline relationship, legacy Speaking projection, audio gate/masking, bilingual safe AI rendering). No curriculum/code release implied | Owner instructed adoption after review (2026-11-02); effective when GitHub PR #71 merge is confirmed; refer to its merge commit |
