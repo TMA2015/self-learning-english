@@ -17,8 +17,9 @@ const click=async(s:string,selector='button')=>{
 const panel=()=>document.querySelector('section.panel.wcv2.wcv2-b');
 const toWeek=async()=>{
  await wait(()=>text(document.querySelector('.save-status')).includes('Saved on this device'),'local runtime');
- await click('Writing','nav[aria-label="Main navigation"] button.nav-item');
- await click('English Writing Coach · 12 Weeks','main button');
+ await click('My Courses','nav[aria-label="Main navigation"] button.nav-item');
+ await wait(()=>!!document.querySelector('section[aria-label="English Writing Coach course"]'),'dedicated Writing course card');
+ await click('Continue','section[aria-label="English Writing Coach course"] button');
  await click('Open Week 2','main button');
  await wait(()=>text(panel()).includes('Week 2'),'integrated Week 2');
 };
