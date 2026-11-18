@@ -59,7 +59,7 @@ const root=path.resolve(__dirname,'..');
  const profile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-fw-u01-qa-'));
  const html='<!doctype html><html><head><meta charset="utf-8"></head><body>'+
   '<div id="app"></div><div id="sle-test-result">STARTED</div>'+
-  '<script>window.__u01Calls=0;window.addEventListener("error",e=>'+
+  '<script>window.process={env:{NODE_ENV:"production",NEXT_PUBLIC_LEARNING_RUNTIME:"browser"}};window.__u01Calls=0;window.addEventListener("error",e=>'+
   'document.getElementById("sle-test-result").textContent="FAIL_SCRIPT "+String(e.message));'+
   'window.addEventListener("unhandledrejection",e=>'+
   'document.getElementById("sle-test-result").textContent="FAIL_PROMISE "+String(e.reason));</script>'+
