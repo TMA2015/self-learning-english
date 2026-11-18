@@ -1,7 +1,7 @@
 import {getApps,initializeApp} from 'firebase/app';
 import {FirebaseRequestLifecycle} from '../ai/firebase-request-lifecycle';
 import {detectTutorQuestionLanguage} from '../../domain/tutor-question-language';
-import {normalizeLessonCEFR,lessonTutorSystemInstruction} from '../../domain/lesson-tutor-guidance';
+import {normalizeLessonCEFR,lessonTutorSystemInstruction,lessonTutorOutputTokenLimit,type TutorResponseDetail} from '../../domain/lesson-tutor-guidance';
 import {SafeProviderError,type ProviderDiagnostic} from '../../ai/provider-diagnostics';
 import {getToken,initializeAppCheck,ReCaptchaEnterpriseProvider} from 'firebase/app-check';
 import {getAI,getGenerativeModel,GoogleAIBackend} from 'firebase/ai';
@@ -144,7 +144,7 @@ export async function reviewWeek2PlanWithGemini(input:unknown):Promise<Week2AIAd
  * This does NOT certify completion, grade, or learner proficiency.
  */
 export async function explainEnglishLessonAI(input:{
-  lesson:string;focus:string;question:string;cefrTarget?:string;
+  lesson:string;focus:string;question:string;cefrTarget?:string;responseDetail?:TutorResponseDetail;
 }):Promise<{status:'answered';text:string;model:string}|{status:'unavailable';reason:string}>{
  const config=readFirebasePublicAIConfig();
  if(!config||typeof window==='undefined')return {status:'unavailable',reason:'Firebase AI is not configured.'};
@@ -154,6 +154,7 @@ export async function explainEnglishLessonAI(input:{
  if(!question)return {status:'unavailable',reason:'Enter a question first.'};
  const responseLanguage=detectTutorQuestionLanguage(question);
  const targetCEFR=normalizeLessonCEFR(input.cefrTarget);
+ const responseDetail: TutorResponseDetail=input.responseDetail==='detailed'?'detailed':'concise';
  try{
    const ai=ensureAI(config);
    if(!appCheckInstance)throw new SafeProviderError('app-check-permission');
@@ -161,8 +162,8 @@ export async function explainEnglishLessonAI(input:{
    if(!proof.token)throw new SafeProviderError('app-check-permission');
    const model=getGenerativeModel(ai,{
      model:config.geminiModel,
-     systemInstruction:lessonTutorSystemInstruction(targetCEFR),
-     generationConfig:{maxOutputTokens:1400},
+     systemInstruction:lessonTutorSystemInstruction(targetCEFR,responseDetail),
+     generationConfig:{maxOutputTokens:lessonTutorOutputTokenLimit(responseDetail)},
    });
    const response=await lessonLifecycle.run(()=>model.generateContent(JSON.stringify({lesson,focus,question,responseLanguage,...(targetCEFR?{targetCEFR}:{})})));
    const answer=response.response.text().trim().slice(0,5500);
