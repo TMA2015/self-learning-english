@@ -25,19 +25,22 @@ import {WritingWeekPage} from './writing-course-v2-b';
 import {LaterWeekPage} from './writing-course-v2-c';
 import {EnglishLessonTutor} from './english-lesson-tutor';
 import {AnyTopicWritingReview} from './any-topic-writing-review';
+import {FoundationWritingU01} from './foundation-writing-u01';
+import {appendU01Version,emptyFoundationWritingV1,u01Work,
+ type U01Draft,type FoundationWritingV1} from '../domain/foundation-writing-u01';
 import {LATER_WEEKS,laterWork,editLater,copyLaterSource,learnerSources,submitLater,checkLaterGuided,laterGuidedProgress,finishLaterReview,type LaterWeek,type LaterWork,type LaterBlock,type DraftSource} from '../domain/writing-course-v2-c';
 import {WRITING_WEEKS,weekWork,editWeek,submitWeek,weekGuidedProgress,checkWeekGuided,canCompareWeek,finishWeekReview,confirmWeekNavigation,type WritingWeek,type WeekScreen,type WeekWork,type WritingBlockState} from '../domain/writing-course-v2-b';
 import {weeks,task,stages,skillLabels,demoHistory} from "./content";
 
-type View="reference"|"units"|"writing-any-topic"|"writing-later-week"|"writing-week"|"writing-overview"|"writing-foundations"|"writing-learn"|"writing-guided"|"writing-review"|"foundation"|"debug"|"dashboard"|"diagnostic"|"profile"|"plan"|"courses"|"writing-course"|"skillmap"|"errorbank"|"writing"|"curriculum"|"lesson"|"progress"|"parent"|"grammar"|"reading"|"listening"|"speaking"|"vocabulary"|"pronunciation"|"specialization"|"tutor";
+type View="foundation-writing"|"reference"|"units"|"writing-any-topic"|"writing-later-week"|"writing-week"|"writing-overview"|"writing-foundations"|"writing-learn"|"writing-guided"|"writing-review"|"foundation"|"debug"|"dashboard"|"diagnostic"|"profile"|"plan"|"courses"|"writing-course"|"skillmap"|"errorbank"|"writing"|"curriculum"|"lesson"|"progress"|"parent"|"grammar"|"reading"|"listening"|"speaking"|"vocabulary"|"pronunciation"|"specialization"|"tutor";
 type Feedback={summary:string;strengths:string[];improvements:string[];exercise:string;scores:Record<string,number>|null;corrections:{original:string;revised:string;why:string;tag:string}[];tags:string[]};
 type Entry={learnerModel?:LearnerModel;learningPlan?:LearningPlanModel;submissionId?:string;evaluationStatus?:string;aiFailureReason?:string;evidence?:Evidence[];mode:"ai"|"guided";feedback:Feedback;rating?:WritingRating;evaluation?:{provider?:string;model?:string}};
-type State={writingCourseV2C?:LaterBlock;writingCourseV2B?:WritingBlockState;writingCourseV2?:PilotState;learningChoice?:LearningChoice;week:number;stage:number;analysis:{topic:string;task:string;keywords:string;limits:string;offtopic:string};brainstorm:{ideas:string;selected:string;support:string;example:string};outline:{opening:string;reason1:string;detail:string;example:string;ending:string};writing:string;miniAnswer:string;miniDone:boolean;completed:number[];feedbacks:Record<string,Entry>;history:typeof demoHistory;revision:string;profile?:Profile;diagnostic?:Diagnostic;diagnosticV2?:DiagnosticV2;diagnosticArchive?:DiagnosticV2[];evidence?:Evidence[];learnerModel?:LearnerModel;learningPlan?:LearningPlanModel;vietnameseSupport?:boolean};
+type State={foundationWritingV1?:FoundationWritingV1;writingCourseV2C?:LaterBlock;writingCourseV2B?:WritingBlockState;writingCourseV2?:PilotState;learningChoice?:LearningChoice;week:number;stage:number;analysis:{topic:string;task:string;keywords:string;limits:string;offtopic:string};brainstorm:{ideas:string;selected:string;support:string;example:string};outline:{opening:string;reason1:string;detail:string;example:string;ending:string};writing:string;miniAnswer:string;miniDone:boolean;completed:number[];feedbacks:Record<string,Entry>;history:typeof demoHistory;revision:string;profile?:Profile;diagnostic?:Diagnostic;diagnosticV2?:DiagnosticV2;diagnosticArchive?:DiagnosticV2[];evidence?:Evidence[];learnerModel?:LearnerModel;learningPlan?:LearningPlanModel;vietnameseSupport?:boolean};
 const seed:State={week:0,stage:0,analysis:{topic:"",task:"",keywords:"",limits:"",offtopic:""},brainstorm:{ideas:"",selected:"",support:"",example:""},outline:{opening:"",reason1:"",detail:"",example:"",ending:""},writing:"",miniAnswer:"",miniDone:false,completed:[],feedbacks:{},history:demoHistory,revision:"",profile:initialProfile,diagnostic:initialDiagnostic,evidence:[],vietnameseSupport:false};
 const navGroups=[
  {heading:"TODAY",items:[{key:"dashboard",label:"Dashboard",icon:LayoutDashboard}]},
  {heading:"LEARN",items:[{key:"units",label:"Learn by Units",icon:BookOpen},{key:"reference",label:"Reference Library",icon:BookOpen},{key:"courses",label:"My Courses",icon:Target},{key:"tutor",label:"AI Tutor",icon:Sparkles}]},
- {heading:"SKILL LIBRARY",items:[{key:"grammar",label:"Grammar",icon:BookOpen},{key:"reading",label:"Reading",icon:Library},{key:"writing",label:"Writing",icon:PenLine},{key:"listening",label:"Listening",icon:Headphones},{key:"speaking",label:"Speaking",icon:Mic},{key:"vocabulary",label:"Vocabulary",icon:BookOpen},{key:"pronunciation",label:"Pronunciation",icon:Volume2}]},
+ {heading:"SKILL LIBRARY",items:[{key:"grammar",label:"Grammar",icon:BookOpen},{key:"reading",label:"Reading",icon:Library},{key:"writing",label:"Writing",icon:PenLine},{key:"foundation-writing",label:"Foundation Writing · Unit 01",icon:PenLine},{key:"listening",label:"Listening",icon:Headphones},{key:"speaking",label:"Speaking",icon:Mic},{key:"vocabulary",label:"Vocabulary",icon:BookOpen},{key:"pronunciation",label:"Pronunciation",icon:Volume2}]},
  {heading:"ASSESSMENTS & EXAM PREP",items:[{key:"diagnostic",label:"Diagnostic Assessment",icon:ClipboardList},{key:"specialization",label:"IELTS / TOEFL · Planned",icon:GraduationCap}]},
  {heading:"PROGRESS & REVIEW",items:[{key:"progress",label:"Progress",icon:ChartNoAxesCombined},{key:"skillmap",label:"Skill Map",icon:MapIcon},{key:"errorbank",label:"Error Bank",icon:Database}]},
  {heading:"SETTINGS & FAMILY",items:[{key:"profile",label:"Learner Settings",icon:UserRound},{key:"parent",label:"Parent Center",icon:Users}]},
@@ -90,6 +93,22 @@ export default function Home(){
  useEffect(()=>{if(!loaded||!dirty.current)return;const id=setTimeout(()=>{void saveNow(state)},800);return()=>clearTimeout(id)},[state,loaded]);
  function saveNow(next:State):Promise<boolean>{if(!storageReady.current){setSaving("Progress was not loaded — reload before saving");return Promise.resolve(false)}setSaving("Saving...");const operation=saveQueue.current.catch(()=>false).then(async()=>{try{const result=await saveLearnerState(next);if(latestState.current===next)dirty.current=false;setSaving(result.storage==="local-browser"?"Saved on this device":"Saved across devices");void refreshCourses();return true}catch{setSaving("Save failed — retry before closing");return false}});saveQueue.current=operation;return operation}
  function update(p:Partial<State>){dirty.current=true;const previous=latestState.current;let next={...previous,...p};if(p.writing!==undefined&&p.writing!==previous.writing){const feedbacks={...previous.feedbacks};delete feedbacks[3];next={...next,feedbacks,completed:previous.completed.filter(i=>i!==3),writingCourseV2:{...(previous.writingCourseV2??emptyPilot()),reviewDone:false}}}latestState.current=next;setState(next)}
+ function editFoundationU01(draft:U01Draft){
+  const previous=latestState.current.foundationWritingV1??emptyFoundationWritingV1();
+  if(previous.schemaVersion!==1)throw Error('Unknown Foundation Writing version. Existing data was not overwritten.');
+  const existing=u01Work(previous);
+  update({foundationWritingV1:{...previous,units:{...previous.units,'FW-U01':{...existing,draft}}}});
+ }
+ async function saveFoundationU01():Promise<boolean>{
+  const current=latestState.current;
+  const previous=current.foundationWritingV1??emptyFoundationWritingV1();
+  if(previous.schemaVersion!==1)return false;
+  let nextWork;
+  try{nextWork=appendU01Version(u01Work(previous),Date.now())}catch{return false}
+  const next:State={...current,foundationWritingV1:{...previous,units:{...previous.units,'FW-U01':nextWork}}};
+  dirty.current=true;latestState.current=next;setState(next);
+  return saveNow(next);
+ }
  function patch(group:"analysis"|"brainstorm"|"outline",key:string,value:string){dirty.current=true;const previous=latestState.current;const stageIndex=group==="analysis"?0:group==="brainstorm"?1:2;const feedbacks={...previous.feedbacks};delete feedbacks[String(stageIndex)];const next={...previous,feedbacks,completed:previous.completed.filter(item=>item!==stageIndex),[group]:{...previous[group],[key]:value}};latestState.current=next;setState(next)}
  async function finishDiagnostic(diagnosticV2:DiagnosticV2){
   const data=await finishDiagnosticAssessment(diagnosticV2);
@@ -177,6 +196,13 @@ export default function Home(){
 
   {(["units","foundation","grammar","vocabulary","reading","listening","speaking","pronunciation","writing"] as View[]).includes(view)&&<FoundationDemo onNavigationGuard={registerFoundationNavigationGuard} sharedCatalog={foundationCatalog} onCatalog={setFoundationCatalog} onSelectSkill={next=>navigate(next as View)} skill={view==="foundation"||view==="units"?undefined:view} entryMode={view==="units"?"units":"lessons"} requestedLessonId={requestedLessonId} onRequestedLessonHandled={id=>setRequestedLessonId(previous=>previous===id?null:previous)} writingIntro={view==="writing"?<button type="button" className="secondary-button" onClick={()=>void navigate("writing-any-topic")}>Open AI Writing Feedback · Any Topic</button>:undefined} showVi={!!state.vietnameseSupport} onEvidence={()=>{void refreshPractice();void fetch("/api/state").then(r=>r.json()).then((v:any)=>{if(v.state)setState(s=>({...s,evidence:v.state.evidence,learnerModel:v.state.learnerModel,learningPlan:v.state.learningPlan}))})}}/>}
  {view==="writing-any-topic"&&<AnyTopicWritingReview showVi={!!state.vietnameseSupport}/>}
+ {view==="foundation-writing"&&(state.foundationWritingV1&&state.foundationWritingV1.schemaVersion!==1?
+  <section className="panel" role="alert"><h2>Unknown Foundation Writing data version</h2>
+   <p>Preserve your saved learner backup. No data was overwritten.</p></section>:
+  <FoundationWritingU01 work={state.foundationWritingV1?.units?.['FW-U01']}
+   onEdit={editFoundationU01} onSave={saveFoundationU01}
+   onExit={()=>void navigate("writing")} showVi={!!state.vietnameseSupport}/>)}
+
  {view==="reference"&&<ReferenceLibrary catalog={foundationCatalog} onCatalog={setFoundationCatalog} onOpenLesson={(id,skill)=>void openReferenceLesson(id,skill)}/>}
  {view==="diagnostic"&&<DiagnosticAssessment value={state.diagnosticV2} archive={state.diagnosticArchive??[]} onChange={diagnosticV2=>update({diagnosticV2,...(state.diagnosticV2&&state.diagnosticV2.startedAt!==diagnosticV2.startedAt?{diagnosticArchive:[...(state.diagnosticArchive??[]),state.diagnosticV2]}:{})})} onFinish={finishDiagnostic} showVi={!!state.vietnameseSupport}/>}
  {view==="profile"&&<LearnerProfile profile={state.profile??initialProfile} model={state.learnerModel} onChange={updateProfile} showVi={!!state.vietnameseSupport}/>}
