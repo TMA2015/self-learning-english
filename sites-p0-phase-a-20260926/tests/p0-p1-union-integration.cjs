@@ -22,9 +22,14 @@ const workflow=read('../.github/workflows/english-pr-qa.yml');
 
 const exactly=(source,pattern,n,label)=>assert.equal((source.match(pattern)||[]).length,n,label);
 // Existing Writing route must remain a single page and not become a second app.
-exactly(home,/<WritingHome\b/g,1,'Only one existing WritingHome slot');
+exactly(home,/<WritingHome\b/g,0,'The independent Writing skill overview must not embed the 12-week course');
+assert(platform.includes('export function WritingHome'), 'The separate 12-week Writing component is preserved');
+assert(home.includes('view==="writing-course"&&'), 'The existing 12-week Writing Course route is retained');
 exactly(home,/<AnyTopicWritingReview showVi=\{!!state.vietnameseSupport\}\/>/g,1,'Independent Writing Review opens once with existing language preference');
-assert(home.includes('onAnyTopic={()=>void navigate("writing-any-topic")}'));
+assert(home.includes('writingIntro={view==="writing"?<button'),'Writing overview keeps one small AI feedback link');
+assert(home.includes('onClick={()=>void navigate("writing-any-topic")}'),'Writing overview opens independent saved-draft feedback');
+assert(home.includes('view==="tutor"&&<TutorOverview onWriting={()=>navigate("writing-any-topic")}/>'),
+ 'AI feedback landing opens Any Topic instead of Week 1');
 assert(home.includes('import {OfflineLessonReview')===false,
  'Post-submit component stays inside original Foundation player, not a duplicate shell');
 assert(player.includes("import {OfflineLessonReview}"));
@@ -90,7 +95,8 @@ for(const test of [
 assert(workflow.includes('Ensure FFmpeg and FFprobe for audio validation'));
 assert(workflow.includes('ffprobe -hide_banner -version'));
 assert(workflow.includes('Full application release QA and static build (NO DEPLOY)'));
-assert(platform.includes('onAnyTopic'),'WritingHome optional link preserved');
+assert(platform.includes('onAnyTopic'),'The separate 12-week Writing component remains intact');
+assert(platform.includes('Open AI Writing Feedback'),'Standalone AI feedback entry remains explicit');
 console.log(JSON.stringify({
  result:'PASS',gate:'P0-P1-Combined-Routes-Data-Safety',
  composedPRs:[137,139,140],existingPlayer:true,
