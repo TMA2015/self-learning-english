@@ -16,13 +16,13 @@ assert.match(view,/DRAFT_KEY/);
 assert.match(view,/localStorage\.getItem/);
 assert.match(view,/localStorage\.setItem/);
 assert.match(view,/storage\.removeItem/);
-assert.match(view,/reviewed\?\.topic===topic&&reviewed\?\.writing===writing/,'Never show stale review checklist');
+assert.match(view,/reviewed\?\.topic===topic&&reviewed\?\.writing===writing/,'Never show stale AI Tutor review');
 assert.doesNotMatch(view,/\bfetch\s*\(|XMLHttpRequest|sendBeacon|requestWritingAI|evaluateWritingProcess/i,'The draft shell must not call any provider directly');
 assert.match(view,/import \{WritingAIReview\}/,'Reuse the existing Firebase Gemini AI component');
-assert.match(view,/<WritingAIReview\b[^>]*reviewId="any-topic-writing"/,'Gemini is optional on the self-check screen');
+assert.match(view,/<WritingAIReview\b[^>]*reviewId="any-topic-writing"/,'Gemini is optional on the AI Tutor writing screen');
 assert.match(view,/kind="draft" enabled=\{aiEligible\}/,'Gemini must be gated by successfully saved content');
 assert.doesNotMatch(view,/AcademicAttempt|setEvidence\(|writingEvidence\(|RUBRIC-|score\s*:/,'No grade or Foundation attempt mutation');
-assert.match(view,/self-check is always available without AI/i,'No AI dependency for self-check');
+assert.match(view,/Save and revise locally without AI/i,'Writing without AI remains possible');
 assert.match(view,/explicitly ask Gemini to review this draft/i,'No automatic send');
 assert.match(view,/savedSignature===JSON\.stringify\(\[topic,writing\]\)/,'Only exact persisted draft enables AI');
 assert.match(view,/currentReview&&savedSignature/,'Do not use unsaved or stale drafts for Gemini');
@@ -30,12 +30,11 @@ assert.match(view,/writing\.length<=7000/,'Bound Gemini text while allowing long
 assert.match(view,/setSavedSignature\(null\)/,'A failed save must invalidate AI eligibility');
 assert.match(view,/Save again after any editing/,'Require new saved snapshot after edits');
 assert.match(view,/This browser only|this browser only/i);
-assert.match(view,/Writing Draft &amp; Self-Check/);
-assert.match(view,/same for every draft/i,'Self-check must disclose it is not personalized');
-assert.match(view,/Task response:/);
-assert.match(view,/Ideas:/);
-assert.match(view,/Organization:/);
-assert.match(view,/Language:/);
+assert.match(view,/Writing Draft · Any Topic/);
+assert.match(view,/<h2>AI Tutor · Writing Review<\/h2>/,'Saved Writing gets learner-visible AI Tutor review');
+assert.doesNotMatch(view,/Self-revision checklist|Open self-review checklist|Task response:<\/strong>|Organization:<\/strong>/,
+ 'Do not reintroduce a generic checklist masquerading as individualized assessment');
+assert.match(view,/if\(save\(\)\)setReviewed/,'Only successful save may open AI Tutor');
 assert.match(home,/import \{AnyTopicWritingReview\}/);
 assert.match(home,/view==="writing-any-topic"&&<AnyTopicWritingReview showVi=\{!!state.vietnameseSupport\}\/>/);
 assert.match(view,/reviewMode="any-topic" responseLanguage=\{showVi \? 'vi' : 'en'\}/);
@@ -140,7 +139,7 @@ function makeHarness({failSave=false}={}){
  h.input('any-topic-writing-content','A study room would give students a quiet place to read after lunch.');
  h.submit();h.render();h.flush();
  const ai=h.walk(h.render(),e=>e.type===h.StubAI);
- assert(ai&&!ai.props.enabled,'A failed local save MUST disable optional Gemini');
+ assert.equal(ai,null,'Failed save MUST NOT open AI Tutor or request Gemini');
  assert.equal(h.calls.provider,0);
 }
 

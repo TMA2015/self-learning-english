@@ -62,8 +62,8 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
    finally{if(mounted.current)setBusy(false)}
  }
  const visibleFeedback=enabled?feedback:null;
- return <section className="writing-ai-review" aria-label="Optional Gemini writing feedback">
-   <div className="writing-ai-review-heading"><strong>✦ Gemini AI Writing</strong><span>{visibleFeedback?'Provisional AI feedback':busy?'Checking your writing…':'Optional · On demand'}</span></div>
+ return <section className="writing-ai-review" aria-label={reviewMode==='any-topic'?'AI Tutor Writing Review':'Optional Gemini writing feedback'}>
+   <div className="writing-ai-review-heading"><strong>{reviewMode==='any-topic'?'✦ AI Tutor · Writing Review':'✦ Gemini AI Writing'}</strong><span>{visibleFeedback?'Provisional AI feedback':busy?'Checking your writing…':'Optional · On demand'}</span></div>
    {!visibleFeedback&&<p>{kind==='revision'?'Compare your saved original and revised text with Gemini. Get evidence-based feedback on actual changes and one next revision action; no grade or CEFR estimate is assigned.':'Get feedback on relevance, ideas, organization and language. This is separate from the saved exercise and is not an official CEFR score.'}</p>}
    {sourceSample&&<p>Sample-based revision is practice only; any AI feedback cannot assess your independent writing ability.</p>}
    {visibleFeedback?<div aria-live="polite">
@@ -79,7 +79,7 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
    </div>:<>
      <button type="button" className="secondary-button" disabled={!enabled||busy} onClick={()=>void request()}>{busy?'Checking with Gemini…':kind==='revision'?'Compare original & revision with Gemini':'Get AI feedback'}</button>
      <p className="muted">{kind==='revision'?'Only clicking this button sends your saved original text, revised version and revision notes to Gemini via Firebase AI Logic. This comparison is unscored.':'Only clicking this button sends your response to Firebase AI Logic. If AI fails, no AI score is assigned.'}</p>
-     {reason&&<p role="status" className="notice">AI not available: {reason} Guided Check and saved work remain available.</p>}
+     {reason&&<p role="status" className="notice">AI not available: {reason} {reviewMode==='any-topic'?'Your saved draft remains available to edit.':'Guided Check and saved work remain available.'}</p>}
    </>}
  </section>;
 }

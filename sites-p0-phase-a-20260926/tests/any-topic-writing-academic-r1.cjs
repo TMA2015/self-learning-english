@@ -16,6 +16,9 @@ assert.doesNotMatch(registry['writing-teaching'].system,/11.12.year.old learner/
 assert.match(read('app/writing-ai-review.tsx'),/Provisional AI feedback/);
 assert.doesNotMatch(read('app/writing-ai-review.tsx'),/Verified AI response/);
 assert.match(read('app/any-topic-writing-review.tsx'),/reviewMode="any-topic"/);
+assert.match(read('app/any-topic-writing-review.tsx'),/AI Tutor · Writing Review/);
+assert.doesNotMatch(read('app/any-topic-writing-review.tsx'),/Self-revision checklist/);
+assert.match(read('app/writing-ai-review.tsx'),/reviewMode==='any-topic'\?'✦ AI Tutor · Writing Review'/);
 assert.match(read('app/any-topic-writing-review.tsx'),/responseLanguage=\{showVi \? 'vi' : 'en'\}/);
 assert.match(read('app/home-client.tsx'),/AnyTopicWritingReview showVi=\{!!state.vietnameseSupport\}/);
 assert.match(read('app/writing-ai-review.tsx'),/reviewMode!=='any-topic'/);
