@@ -94,7 +94,7 @@ function TestApp(){
    await until(()=>((document.querySelector('textarea[name="FW-U02-practice-b-why-'+i+'"]') as HTMLTextAreaElement)?.value?.startsWith('This activity')),'fit explanation '+i);
   }
   choose('FW-U02-practice-b-chosen','1');
-  await until(()=>((document.getElementById('FW-U02-practice-b-chosen') as HTMLSelectElement)?.value==='1'),'selected one');
+  await until(()=>(document.querySelector<HTMLSelectElement>('#FW-U02-practice-b-chosen')?.value==='1'),'selected one');
   text('FW-U02-practice-b-rationale','Teenagers can share interesting graphic novels together without needing a big room.');
   await until(()=>app().textContent?.includes('Your bank has three distinct notes')===true,'all-valid bank ready');
   check((document.querySelector('textarea[name="FW-U02-practice-b-setaside"]') as HTMLTextAreaElement).value==='',
@@ -133,7 +133,7 @@ function TestApp(){
   await until(()=>!!document.querySelector('textarea[name="FW-U02-practice-b-rationale"]'),'restored U02 bank');
   const v=(document.querySelector('textarea[name="FW-U02-practice-b-rationale"]') as HTMLTextAreaElement).value;
   check(v.startsWith('A revised independent reason'),'U02 restored exactly');
-  const chosen=(document.getElementById('FW-U02-practice-b-chosen') as HTMLSelectElement)?.value;
+  const chosen=document.querySelector<HTMLSelectElement>('#FW-U02-practice-b-chosen')?.value;
   check(chosen==='1','U02 chosen idea remains index 1');
   check((window as any).__aiCalls===0,'No auto request on U02 restore');
   report('PASS_FW_U02_RESTORE',{restored:true,selected:chosen,autoAI:0});
