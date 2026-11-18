@@ -1,0 +1,328 @@
+{
+  "id": "FW-U01",
+  "title": "Understand the Writing Task",
+  "estimatedMinutes": "15–25",
+  "target": "A2–early B1; optional A1 bridge",
+  "source": {
+    "file": "SLE_FOUNDATION_WRITING_AUTHORING_WAVE1_U01-U03_DRAFT_20261118.md",
+    "sha256": "4d0c80a754a68cc2b23be09e55b47741aa09ea25b18accdae72e562d016b7e3b",
+    "packet": "SLE-FW-AUTH-W1-NBLM-R1-20261118",
+    "academicVerdict": "PASS",
+    "requiredChanges": "NONE"
+  },
+  "outcome": "On at least two fresh prompts, identify Topic / Task / Must Include / Boundary, distinguish subject from action, find omitted details, and save an original four-part Task Map plus Task Commitment Note.",
+  "concepts": [
+    {
+      "label": "Topic",
+      "explanation": "What the writing is about.",
+      "caution": "Topic alone is not an instruction to write an essay."
+    },
+    {
+      "label": "Task",
+      "explanation": "What you have to do for the reader, such as invite, request or explain.",
+      "caution": "Do not turn a request into an unrelated story."
+    },
+    {
+      "label": "Must Include",
+      "explanation": "Facts and actions that the prompt explicitly requires.",
+      "caution": "Interesting but unrequested details cannot replace required ones."
+    },
+    {
+      "label": "Boundary",
+      "explanation": "Audience, time, setting, scope, tone or other limits.",
+      "caution": "One phrase can serve more than one defensible role."
+    }
+  ],
+  "demo": {
+    "id": "FW-U01-D01",
+    "instruction": "Before writing, don't ask 'What can I say?' Ask 'What do I need to do for this reader?' Read the whole task.",
+    "prompt": "Write a friendly email to a classmate inviting them to the school art exhibition on Friday. Include the starting time and where to meet.",
+    "steps": [
+      {
+        "label": "Notice the action",
+        "text": "“Write a friendly email ... inviting” is the Task: I must invite, not review a painting."
+      },
+      {
+        "label": "Identify the subject",
+        "text": "“School art exhibition” is the Topic: the event I must talk about."
+      },
+      {
+        "label": "Check non-negotiables",
+        "text": "“Starting time” and “where to meet” are Must Include; “Friday” is a scheduling constraint I must respect."
+      },
+      {
+        "label": "Choose for the reader",
+        "text": "“To a classmate” defines the Boundary: friendly but clear language."
+      },
+      {
+        "label": "Reject and repair",
+        "text": "“I drew a beautiful picture last year” is not an invitation. A task-aligned opening could be “Would you like to come to the school art exhibition on Friday?” It still needs a starting time and meeting place."
+      }
+    ],
+    "thinkQuestion": "Could an email be about the right exhibition but still fail? Why?",
+    "expectedConcept": "Yes. It may omit the invitation, time or place.",
+    "commonError": "If you only identify the exhibition, look at the verbs write and inviting: what is the reader expected to do?",
+    "a1": "invite = ask someone to come; recipient = person who receives the message.",
+    "b1": "Explain why the date and meeting point affect clarity and why a classmate needs a friendly tone."
+  },
+  "cycleA": {
+    "id": "FW-U01-A",
+    "prompt": "Write a short message to your school librarian requesting longer opening hours on Saturday. Explain why students need this and suggest a closing time.",
+    "instructions": "First choose a label, then classify the six exact phrases. Keyboard: tab to the phrase label selector and press the arrow keys. After checking, write the four-part Task Map in your own words. Fixed labels are the most direct role; a phrase can have another defensible role in your own explanation.",
+    "chunks": [
+      {
+        "id": "A-S1",
+        "text": "Write a short message",
+        "key": "Task",
+        "rationale": "Product/form to compose."
+      },
+      {
+        "id": "A-S2",
+        "text": "to your school librarian",
+        "key": "Boundary",
+        "rationale": "Audience; use a respectful tone."
+      },
+      {
+        "id": "A-S3",
+        "text": "requesting longer opening hours",
+        "key": "Task",
+        "rationale": "Communicative action, not just subject."
+      },
+      {
+        "id": "A-S4",
+        "text": "on Saturday",
+        "key": "Boundary",
+        "rationale": "Day constraint, not the full Topic. Its contextual role can also be defended in a free-text explanation."
+      },
+      {
+        "id": "A-S5",
+        "text": "Explain why students need this",
+        "key": "Must Include",
+        "rationale": "The prompt explicitly requires a reason for the request."
+      },
+      {
+        "id": "A-S6",
+        "text": "and suggest a closing time",
+        "key": "Must Include",
+        "rationale": "The prompt explicitly requires a specific proposed closing time."
+      }
+    ],
+    "clarification": "The combined Topic is the school library's opening hours, not Saturday itself. The fixed-label tool checks direct labels only. Original Task Maps are never graded by keyword or exact-string matching.",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "help": "What is the message about?"
+      },
+      {
+        "key": "task",
+        "label": "Task",
+        "help": "What action should my message perform?"
+      },
+      {
+        "key": "mustInclude",
+        "label": "Must Include",
+        "help": "What TWO things must I explain or specify?"
+      },
+      {
+        "key": "boundary",
+        "label": "Boundary",
+        "help": "Who receives it? What day is constrained?"
+      },
+      {
+        "key": "commitment",
+        "label": "Task Commitment Note",
+        "help": "I need to write a message that ..."
+      }
+    ]
+  },
+  "cycleB": {
+    "id": "FW-U01-B",
+    "prompt": "Send a message to a classmate asking them to help prepare a class charity stall. Include the date and two materials to bring.",
+    "question": "Which is the BEST BEGINNING? None of the options is a complete finished message.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Hi Lan, could you help prepare our class charity stall this Friday? We need two materials for the display.",
+        "rationale": "Best beginning: audience, requested action and date align, but it still MISSING names of TWO materials. It is not a complete answer."
+      },
+      {
+        "id": "B",
+        "text": "Last year I visited a charity market with my parents.",
+        "rationale": "This is a past story, not a request to a classmate."
+      },
+      {
+        "id": "C",
+        "text": "Charity events are fun and useful.",
+        "rationale": "This is general praise without the requested action or required details."
+      },
+      {
+        "id": "D",
+        "text": "Dear Principal, I am requesting more funding for the school library.",
+        "rationale": "Wrong audience and unrelated action."
+      }
+    ],
+    "key": "A",
+    "instruction": "Option A is only the best opening. Two specific materials must still be named in your repair.",
+    "repairPrompt": "Write one or two NEW sentences to improve A. Name two specific materials classmates should bring. If you can, briefly explain why each is useful.",
+    "reflectionPrompt": "Which required part did the best beginning still miss? How did you repair it?",
+    "reviewerExamplesOnly": "Please bring coloured paper and tape for our signs. Other feasible materials are acceptable; never require these exact words."
+  },
+  "transfer": {
+    "id": "FW-U01-T",
+    "prompt": "Write a note to the school sports captain asking to move practice to a different day. Propose one new day and give one reason.",
+    "instruction": "Save a new four-part Task Map and one Task Commitment Note for this fresh prompt. Do NOT write the whole message by default.",
+    "fields": [
+      {
+        "key": "topic",
+        "label": "Topic",
+        "help": "What is this note about?"
+      },
+      {
+        "key": "task",
+        "label": "Task",
+        "help": "What action must you ask for?"
+      },
+      {
+        "key": "mustInclude",
+        "label": "Must Include",
+        "help": "What new day and supporting reason must be included?"
+      },
+      {
+        "key": "boundary",
+        "label": "Boundary",
+        "help": "Who receives the note? What contextual limits matter?"
+      },
+      {
+        "key": "commitment",
+        "label": "Task Commitment Note",
+        "help": "Describe the action you will take for this reader."
+      }
+    ]
+  },
+  "supplemental": [
+    {
+      "id": "FW-U01-F01",
+      "title": "Action versus topic",
+      "prompt": "Write a poster reminding classmates to bring reusable water bottles for sports day.",
+      "question": "What is the required action?",
+      "key": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Describe your favourite sports-day game",
+          "rationale": "A personal description is not a reminder."
+        },
+        {
+          "id": "B",
+          "text": "Remind classmates to bring reusable bottles",
+          "rationale": "The verb reminding names the required action."
+        },
+        {
+          "id": "C",
+          "text": "Explain how plastic bottles are manufactured",
+          "rationale": "Interesting but not requested."
+        },
+        {
+          "id": "D",
+          "text": "Write a diary about last year's sports day",
+          "rationale": "Wrong text purpose and tense."
+        }
+      ]
+    },
+    {
+      "id": "FW-U01-F02",
+      "title": "Recipient versus setting",
+      "prompt": "Email the eco-club leader asking permission to hold a seed-swap table after school.",
+      "question": "Who is the intended recipient?",
+      "key": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "The whole town",
+          "rationale": "The prompt specifies a named role, not a public audience."
+        },
+        {
+          "id": "B",
+          "text": "The sports coach",
+          "rationale": "Different school role."
+        },
+        {
+          "id": "C",
+          "text": "The eco-club leader",
+          "rationale": "The person named after Email receives the message."
+        },
+        {
+          "id": "D",
+          "text": "The seed-swap table",
+          "rationale": "A table is the subject of the request, not a reader."
+        }
+      ]
+    },
+    {
+      "id": "FW-U01-F03",
+      "title": "Required versus interesting details",
+      "prompt": "Send your friend a picnic invitation. State the meeting place and what food each person should bring.",
+      "question": "Which details must your message include?",
+      "key": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Meeting place and food to bring",
+          "rationale": "Both details are explicitly requested."
+        },
+        {
+          "id": "B",
+          "text": "Your favourite colour and school subject",
+          "rationale": "Neither is requested."
+        },
+        {
+          "id": "C",
+          "text": "Names of all the teachers in your school",
+          "rationale": "Unrelated details."
+        },
+        {
+          "id": "D",
+          "text": "An exact 150-word explanation",
+          "rationale": "No word limit is given."
+        }
+      ]
+    },
+    {
+      "id": "FW-U01-F04",
+      "title": "Boundary and tone",
+      "prompt": "Write a polite note to your new teacher requesting a few minutes after class to ask about homework.",
+      "question": "Which opening best fits the reader and purpose?",
+      "key": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "“Yo, stop and answer me now!”",
+          "rationale": "Tone and command are inappropriate to the request."
+        },
+        {
+          "id": "B",
+          "text": "“My weekend was full of homework.”",
+          "rationale": "States a fact, not a polite request."
+        },
+        {
+          "id": "C",
+          "text": "“Dear Sir or Madam, I demand an official refund.”",
+          "rationale": "Wrong action and unnecessarily formal audience assumption."
+        },
+        {
+          "id": "D",
+          "text": "“Hello Ms. Hoa, could I ask you a question after class?”",
+          "rationale": "A clear, polite request addressed to a teacher."
+        }
+      ]
+    }
+  ],
+  "aiTutor": {
+    "rule": "Only after exact save. Review only learner-authored Task Map/repair/transfer in this Unit. Do not transmit demo text or answer keys.",
+    "question": "Did the learner distinguish topic, communicative action, required details and recipient/day boundary? In Cycle B, were TWO materials actually named?",
+    "variation": "Multiple wordings are valid. A phrase can have more than one defensible semantic role.",
+    "noGhostwriting": "Quote an exact learner phrase about a genuinely missing detail and ask what materials their friend needs to bring. Do not supply the two materials or a complete model answer.",
+    "fallback": "AI review is currently unavailable. Your draft is saved locally; you can continue editing or finish the lesson."
+  }
+}
