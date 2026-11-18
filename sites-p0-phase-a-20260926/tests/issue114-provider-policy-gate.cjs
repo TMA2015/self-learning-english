@@ -3,6 +3,14 @@
 // SDK is fully mocked. No external HTTP calls, credentials or learner data.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process'),Module=require('node:module');
 const root=path.join(__dirname,'..'),out=path.join(root,'.sites-runtime/issue114-provider-gate');
+// Documentation regression: an academic packet / historical issue cannot globally disable SLE AI.
+// This augments the existing positive Gemini-on-demand test; it adds no CI job/provider call.
+const standard=fs.readFileSync(path.join(root,'docs/SLE_MASTER_CONTENT_AND_SELF_LEARNING_STANDARD.md'),'utf8');
+assert.match(standard,/Issue #114 is \*\*not OPEN\*\*/,'Closed Issue #114 must not be revived as an active blanket gate');
+assert.match(standard,/\*\*Writing Review mode\*\*/,'AI Tutor must explicitly support separately guarded saved Writing review');
+assert.match(standard,/A content-only packet MUST ask for \*\*academic\/content scope verdicts only\*\*/,'NotebookLM authoring decisions must be scope-limited');
+assert.match(standard,/not as project-wide \*\*NO_GO \/ NOT_AUTHORIZED\*\*/,'Out-of-scope AI must not inherit a content-only NO_GO');
+assert.doesNotMatch(standard,/AI Tutor is \*\*opt-in\*\* and limited to learner-visible knowledge\/overview context\./,'Obsolete global knowledge-only policy must not recur');
 fs.rmSync(out,{force:true,recursive:true});
 cp.execFileSync(process.execPath,[path.join(root,'node_modules/typescript/bin/tsc'),
  'infrastructure/browser/firebase-ai-browser.ts','--outDir',out,'--module','commonjs',
