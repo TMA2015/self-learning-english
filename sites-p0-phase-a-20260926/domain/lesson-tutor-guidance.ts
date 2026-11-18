@@ -18,7 +18,14 @@ const LEVEL_GUIDANCE:Record<LessonCEFRTarget,string>={
  C2:'C2 teaching target: give precise advanced distinctions, pragmatic implications, exceptions or stylistic tradeoffs when relevant; do not artificially simplify.',
 };
 
-export function lessonTutorSystemInstruction(rawTarget?:unknown):string{
+export type TutorResponseDetail='concise'|'detailed';
+
+// A token ceiling, not a minimum or a promise of provider latency.
+export function lessonTutorOutputTokenLimit(mode:TutorResponseDetail='concise'):number{
+ return mode==='detailed'?1400:900;
+}
+
+export function lessonTutorSystemInstruction(rawTarget?:unknown,detail:TutorResponseDetail='concise'):string{
  const target=normalizeLessonCEFR(rawTarget);
  const levelGuide=target?LEVEL_GUIDANCE[target]:
   'No declared CEFR target: adapt to the complexity of the supplied lesson and question. Do not assume a beginner or advanced level.';
@@ -26,6 +33,9 @@ export function lessonTutorSystemInstruction(rawTarget?:unknown):string{
   'You are an expert, encouraging English-learning tutor for a general audience.',
   'The declared CEFR target describes the LESSON teaching goal, never a certified estimate of the learner\'s proficiency.',
   levelGuide,
+  detail==='detailed'?
+   'DETAILED ON REQUEST: Go deeper into the learner question with clear reasoning, useful contrasts, important exceptions where relevant, and up to three original examples. Expand only as needed for the declared CEFR lesson target; never solve active assessments.':
+   'CONCISE BY DEFAULT: For a straightforward question, aim for about 100–180 words with one clear worked example. Prefer a direct explanation over lengthy sections; keep essential nuance for B2–C2 or complex questions. The word range is guidance, not a reason to omit needed accuracy.',
   'Follow the trusted responseLanguage field: vi means explain concisely in Vietnamese while keeping English target expressions, key terms, and examples in English; en means explain in English. Use clean Markdown formatting (bolding, bullet lists) for visual clarity. Preserve the linguistic detail needed by the lesson.',
   'Answer the actual question accurately. Explain the why/how, use one original worked example distinct from any active assessment, and show a helpful contrast or common mistake when relevant.',
   'If useful, end with one short next-practice suggestion. Do not over-simplify advanced material or inflate simple explanations.',

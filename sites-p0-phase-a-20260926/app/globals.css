@@ -300,6 +300,8 @@ body {
 .english-lesson-ai-panel article{background:#f5f8fc;border-radius:9px;padding:12px;margin-top:15px;white-space:pre-wrap;overflow-wrap:anywhere}
 .english-lesson-ai-panel small{display:block;margin-top:10px;line-height:1.5;color:#596983}
 .english-lesson-ai-panel .primary-button{margin-top:4px}
+.english-lesson-ai-panel .english-lesson-ai-timing{font-size:12px;font-variant-numeric:tabular-nums;margin-top:5px}
+.english-lesson-ai-panel article>.secondary-button{display:inline-block;margin-top:12px;max-width:100%;white-space:normal}
 @media(max-width:500px){.english-lesson-ai{right:10px;bottom:10px}.english-lesson-ai-panel{right:-1px;bottom:55px}}
 
 /* Optional learning hints — closed by default, accessible by keyboard. */

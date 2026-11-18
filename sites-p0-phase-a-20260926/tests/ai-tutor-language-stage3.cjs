@@ -44,7 +44,7 @@ for(const [question,expected] of cases){
 const provider=fs.readFileSync(path.join(__dirname,'../infrastructure/browser/firebase-ai-browser.ts'),'utf8');
 const guidance=fs.readFileSync(path.join(__dirname,'../domain/lesson-tutor-guidance.ts'),'utf8');
 assert(provider.includes('detectTutorQuestionLanguage(question)'));
-assert(provider.includes('lessonTutorSystemInstruction(targetCEFR)'));
+assert(provider.includes('lessonTutorSystemInstruction(targetCEFR,responseDetail)'));
 assert(provider.includes('...(targetCEFR?{targetCEFR}:{})'));
 assert(guidance.includes('Follow the trusted responseLanguage field: vi'));
 assert(guidance.includes('keeping English target expressions, key terms, and examples in English'));

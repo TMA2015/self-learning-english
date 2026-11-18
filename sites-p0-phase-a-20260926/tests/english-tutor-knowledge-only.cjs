@@ -14,7 +14,8 @@ assert(tutor.includes('Your question is sent only when you ask'));
 assert(tutor.includes("result.status==='answered'"));
 assert(bridge.includes("await getToken(appCheckInstance)"));
 assert(bridge.includes("model:config.geminiModel"));
-assert(bridge.includes("maxOutputTokens:1400"));
+assert(bridge.includes("maxOutputTokens:lessonTutorOutputTokenLimit(responseDetail)"));
+assert(bridge.includes("input.responseDetail==='detailed'?'detailed':'concise'"),"Unknown modes must fall back to concise");
 assert(bridge.includes("lessonLifecycle.run("));
 assert(!tutor.includes("innerHTML"));
 assert(css.includes(".english-lesson-ai-panel"));
@@ -32,6 +33,9 @@ for(const [target,marker] of [
  assert.equal(guidance.normalizeLessonCEFR(target.toLowerCase()),target);
  const prompt=guidance.lessonTutorSystemInstruction(target);
  assert(prompt.includes(marker),'Missing target-specific guidance for '+target);
+ assert(prompt.includes('CONCISE BY DEFAULT'));
+ const detailed=guidance.lessonTutorSystemInstruction(target,'detailed');
+ assert(detailed.includes(marker)&&detailed.includes('DETAILED ON REQUEST'),'Details must preserve the same CEFR target');
  assert(prompt.includes('lesson')&&prompt.includes('responseLanguage'));
  assert(prompt.includes('Do not reveal direct answers or keys to active assessment items'));
  assert(prompt.includes('if asked to solve an active test item, explain the underlying concept'));
@@ -46,7 +50,9 @@ for(const invalid of ['',null,undefined,'A3','C3','A1-B2','A10','junk']){
  assert(guidance.lessonTutorSystemInstruction(invalid).includes('No declared CEFR target'));
 }
 assert(bridge.includes('normalizeLessonCEFR(input.cefrTarget)'));
-assert(bridge.includes('lessonTutorSystemInstruction(targetCEFR)'));
+assert(bridge.includes('lessonTutorSystemInstruction(targetCEFR,responseDetail)'));
+assert.equal(guidance.lessonTutorOutputTokenLimit('concise'),900);
+assert.equal(guidance.lessonTutorOutputTokenLimit('detailed'),1400);
 assert(bridge.includes('...(targetCEFR?{targetCEFR}:{})'));
 assert(tutor.includes('cefrTarget'));
 assert(read('app/foundation.tsx').includes('cefrTarget={lesson.cefr_target}'),

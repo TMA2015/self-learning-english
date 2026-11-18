@@ -18,23 +18,31 @@ export function EnglishLessonTutor({lesson,focus,cefrTarget}:{lesson:string;focu
  const [open,setOpen]=useState(false),[question,setQuestion]=useState('');
  const [answer,setAnswer]=useState(''),[error,setError]=useState('');
  const [model,setModel]=useState(''),[pending,setPending]=useState(false);
+ const [lastPrompt,setLastPrompt]=useState(''),[lastDetail,setLastDetail]=useState<'concise'|'detailed'>('concise');
+ const [elapsedMs,setElapsedMs]=useState<number|null>(null);
  const requestGate=useRef(new LatestTutorRequest());
  useEffect(()=>{
    requestGate.current.invalidate();
-   setOpen(false);setQuestion('');setAnswer('');setError('');setModel('');setPending(false);
+   setOpen(false);setQuestion('');setAnswer('');setError('');setModel('');setLastPrompt('');setLastDetail('concise');setElapsedMs(null);setPending(false);
    return ()=>{requestGate.current.invalidate()};
  },[lesson]);
- async function ask(prompt:string){
+ async function ask(prompt:string,responseDetail:'concise'|'detailed'='concise'){
    if(!prompt.trim()||pending)return;
    const ticket=requestGate.current.begin();
-   setPending(true);setAnswer('');setError('');setModel('');
+   const startedAt=Date.now();
+   setPending(true);setError('');
+   // Keep the concise answer visible if a follow-up detail request fails.
+   if(responseDetail==='concise'){setAnswer('');setModel('');setLastPrompt('');setElapsedMs(null);setLastDetail('concise')}
    // Lesson notes are passed explicitly from knowledge-only screens.
    // Never read arbitrary DOM selection, draft text or a hidden quiz answer.
    const safeFocus=(focus?.trim()||lesson).slice(0,1800);
    try{
-     const result=await explainEnglishLessonAI({lesson,focus:safeFocus,question:prompt,cefrTarget});
+     const result=await explainEnglishLessonAI({lesson,focus:safeFocus,question:prompt,cefrTarget,responseDetail});
      if(!requestGate.current.isCurrent(ticket))return;
-     if(result.status==='answered'){setAnswer(result.text);setModel(result.model)}
+     if(result.status==='answered'){
+       setAnswer(result.text);setModel(result.model);setLastPrompt(prompt);setLastDetail(responseDetail);
+       setElapsedMs(Math.max(0,Date.now()-startedAt));
+     }
      else{setError(result.reason)}
    }catch{
      if(requestGate.current.isCurrent(ticket))setError('Gemini could not complete this request. Please try again.');
@@ -57,7 +65,11 @@ export function EnglishLessonTutor({lesson,focus,cefrTarget}:{lesson:string;focu
     rows={3} placeholder="What would you like to understand better?"/>
    <button type="button" className="primary-button" disabled={pending||!question.trim()} onClick={()=>void ask(question)}>
     {pending?'Asking Gemini…':'Ask Gemini'}</button>
-   {answer&&<article aria-live="polite"><strong>Gemini response · {model}</strong><div className="english-lesson-ai-answer"><TeachingBlocks text={answer}/></div></article>}
+   {answer&&<article aria-live="polite"><strong>Gemini response · {model}</strong>
+    {elapsedMs!==null&&<small className="english-lesson-ai-timing">Response time: {(elapsedMs/1000).toFixed(1)}s (including App Check and network)</small>}
+    <div className="english-lesson-ai-answer"><TeachingBlocks text={answer}/></div>
+    {lastDetail==='concise'&&lastPrompt&&<button type="button" className="secondary-button" disabled={pending} onClick={()=>void ask(lastPrompt,'detailed')}>{pending?'Expanding…':'Explain in more detail'}</button>}
+   </article>}
    {error&&<p role="status" className="notice">{error}</p>}
    <small>AI can make mistakes. Do not enter personal information. This tutor is for learning, not graded assessments. Your question is sent only when you ask.</small>
   </section>}

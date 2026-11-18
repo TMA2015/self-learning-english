@@ -10,7 +10,7 @@ assert(ui.includes("import {TeachingBlocks} from './teaching-blocks'"));
 assert(ui.includes('<TeachingBlocks text={answer}/>'));
 assert(!ui.includes('<p>{answer}</p>'));
 assert(!ui.includes('dangerouslySetInnerHTML'));
-assert(provider.includes('lessonTutorSystemInstruction(targetCEFR)'),'Active Gemini model must use the level-aware guidance');
+assert(provider.includes('lessonTutorSystemInstruction(targetCEFR,responseDetail)'),'Active Gemini model must use the level-aware guidance');
 assert(guidance.includes('Follow the trusted responseLanguage field: vi'));
 assert(guidance.includes('keeping English target expressions, key terms, and examples in English'));
 assert(guidance.includes('Use clean Markdown formatting (bolding, bullet lists)'));
