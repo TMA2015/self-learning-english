@@ -89,6 +89,10 @@ function TestApp(){
    text('FW-U02-practice-b-idea-'+i,ideas[i]);
    await until(()=>((document.querySelector('textarea[name="FW-U02-practice-b-idea-'+i+'"]') as HTMLTextAreaElement)?.value===ideas[i]),'idea controlled '+i);
   }
+  for(let i=0;i<3;i++){
+   text('FW-U02-practice-b-why-'+i,'This activity could suit teenagers at a library.');
+   await until(()=>((document.querySelector('textarea[name="FW-U02-practice-b-why-'+i+'"]') as HTMLTextAreaElement)?.value?.startsWith('This activity')),'fit explanation '+i);
+  }
   choose('FW-U02-practice-b-chosen','1');
   await until(()=>((document.getElementById('FW-U02-practice-b-chosen') as HTMLSelectElement)?.value==='1'),'selected one');
   text('FW-U02-practice-b-rationale','Teenagers can share interesting graphic novels together without needing a big room.');

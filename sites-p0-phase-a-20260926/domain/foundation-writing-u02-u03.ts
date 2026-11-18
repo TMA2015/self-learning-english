@@ -5,7 +5,7 @@ import type {FoundationWritingV1} from './foundation-writing-u01';
 export const REVIEWED_FOUNDATION_UNITS={'FW-U02':u02,'FW-U03':u03} as const;
 export type NextUnitId=keyof typeof REVIEWED_FOUNDATION_UNITS;
 export type IdeaStatus=''|'Fits'|'Needs clarification'|'Off-task';
-export type Idea={text:string;fit:IdeaStatus};
+export type Idea={text:string;fit:IdeaStatus;fitReason:string};
 export type IdeaBank={ideas:Idea[];chosenIndex:string;rationale:string;setAside:string;concrete:string};
 export type Chain={claim:string;reason:string;detail:string};
 export type U02Draft={
@@ -24,7 +24,7 @@ export type NextUnitVersion<T extends NextDraft=NextDraft>={
  version:number;savedAt:number;signature:string;draft:T;evidence_weight:0;proficiency_weight:0;
 };
 export type NextUnitWork<T extends NextDraft=NextDraft>={draft:T;versions:NextUnitVersion<T>[]};
-export const blankIdea=():Idea=>({text:'',fit:''});
+export const blankIdea=():Idea=>({text:'',fit:'',fitReason:''});
 export const blankBank=():IdeaBank=>({ideas:[blankIdea(),blankIdea(),blankIdea()],chosenIndex:'',rationale:'',setAside:'',concrete:''});
 export const blankChain=():Chain=>({claim:'',reason:'',detail:''});
 export const blankU02=():U02Draft=>({
@@ -80,7 +80,7 @@ export function supplementalResult(unit:NextUnitId,id:string,selected:string){
   explanations:item.options.map(o=>({id:o.id,text:o.text,reason:o.rationale,isKey:o.id===item.key}))};
 }
 const serialBank=(bank:IdeaBank):string=>[
- ...bank.ideas.map((idea,i)=>'Candidate '+(i+1)+': '+idea.text.trim()+' | Fit note: '+idea.fit),
+ ...bank.ideas.map((idea,i)=>'Candidate '+(i+1)+': '+idea.text.trim()+' | Fit classification: '+idea.fit+' | Learner fit explanation: '+(idea.fitReason??'').trim()),
  'Chosen candidate: '+(Number(bank.chosenIndex)+1),
  'Reason for selecting: '+bank.rationale.trim(),
  'Optional set aside / trade-off: '+bank.setAside.trim(),

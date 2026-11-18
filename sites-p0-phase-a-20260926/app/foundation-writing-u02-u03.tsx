@@ -31,13 +31,13 @@ function BankEditor({unitId,bank,label,change}:{
 }){
  const options=['Fits','Needs clarification','Off-task'] as const;
  const selected=bank.chosenIndex;
- const editIdea=(index:number,field:'text'|'fit',value:string)=>{
+ const editIdea=(index:number,field:'text'|'fit'|'fitReason',value:string)=>{
   const ideas=bank.ideas.map((v,i)=>i===index?{...v,[field]:value}:v);
   change({...bank,ideas});
  };
  return <div aria-label={label}>
   <h3>{label} · original idea bank</h3>
-  <p>Start with three DIFFERENT possible activities. All may fit; Off-task and optional rejection are not required.</p>
+  <p>Start with three DIFFERENT possible activities. For each, choose a fit label and explain it briefly in your own words. All may fit; Off-task and optional rejection are not required.</p>
   {bank.ideas.map((idea,i)=><div className="wcv2-card" key={i}>
    <OriginalField name={unitId+'-'+label+'-idea-'+i} label={'Candidate '+(i+1)}
     value={idea.text} rows={2} help="Short note, not a whole paragraph"
@@ -48,6 +48,11 @@ function BankEditor({unitId,bank,label,change}:{
      <option value="">Choose if useful</option>{options.map(o=><option key={o} value={o}>{o}</option>)}
     </select>
    </label>
+   <OriginalField name={unitId+'-'+label+'-why-'+i}
+    label="Your reason for this classification"
+    help="Explain the activity's audience or resource fit in your own words; no automatic quality score."
+    rows={2} value={idea.fitReason??''}
+    onChange={v=>editIdea(i,'fitReason',v)}/>
   </div>)}
   <button type="button" className="secondary-button" disabled={bank.ideas.length>=8}
    onClick={()=>change({...bank,ideas:[...bank.ideas,blankIdea()]})}>Add candidate</button>
