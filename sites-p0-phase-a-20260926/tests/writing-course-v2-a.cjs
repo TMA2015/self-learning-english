@@ -25,7 +25,9 @@ function walk(element,predicate){if(!element||typeof element!=='object')return n
 (async()=>{
  await test('Writing landing has three working entries and future-only placeholders',()=>{
   const s=render(ui.WritingEntries,{onGo:go});for(const phrase of ['About this course','Writing Foundations','English Writing Coach · 12 Weeks','Writing is the skill','Independent Practice · Future','My Writing / Review · Future'])assert(s.includes(phrase));
-  assert(home.includes('<WritingHome compact'));assert(read('app/platform.tsx').includes('<WritingEntries'));
+  assert(!home.includes('<WritingHome compact'),'12-week course entries must not clutter the Writing skill overview');
+  assert(home.includes('view==="writing-course"&&'),'The original 12-week course stays available on its dedicated page');
+  assert(read('app/platform.tsx').includes('<WritingEntries'),'Existing course entries remain intact as standalone content');
  });
  await test('Overview explains learner, flow, time, AI optional and progress limits',()=>{
   const s=render(ui.CourseOverview,{onGo:go,showVi:false});for(const phrase of ['10–14','Grade 5–8','A2 to early B1','Learn → Guided Practice → Main Practice','25–35 minutes','two short sessions','AI is optional','when AI fails','not the same as language proficiency'])assert(s.includes(phrase));assert(!/IELTS|band scoring/i.test(s));
