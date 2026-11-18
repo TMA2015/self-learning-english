@@ -97,4 +97,83 @@ const responsive=async()=>{
  }
  return {phase:'responsive',viewport:innerWidth,checks:['integrated Home viewport / controls'],overflow};
 };
-(window as any).__SLE_WEEK2_HOME_QA={full,restore,responsive};
+
+/** Real integrated HomeClient navigation QA for PR #168. Browser-local/synthetic only. */
+const skillOverview=async()=>{
+ await wait(()=>text(document.querySelector('.save-status')).includes('Saved on this device'),'browser-local learner runtime');
+ const isMobile=innerWidth<=750;
+ const nav=async(label:string)=>{
+  if(isMobile){
+   const menu=document.querySelector<HTMLButtonElement>('.mobile-menu');
+   if(!menu)throw Error('Mobile navigation toggle missing');
+   menu.click();
+   await wait(()=>!!document.querySelector('aside.sidebar.open'),'mobile sidebar opens');
+  }
+  await click(label,'nav[aria-label="Main navigation"] button.nav-item');
+  if(isMobile)await wait(()=>!document.querySelector('aside.sidebar.open'),'mobile sidebar closes');
+ };
+ const expected:[string,number][]=[
+  ['Grammar',40],['Vocabulary',18],['Reading',33],['Writing',31],
+  ['Listening',21],['Speaking',6],['Pronunciation',5]
+ ];
+ const assertOverview=async(label:string,count:number)=>{
+  await wait(()=>text(document.querySelector('.page-heading h1'))===label,label+' skill title');
+  await wait(()=>text(document.querySelector('.page-heading p'))===count+' lessons available',label+' skill count');
+  await wait(()=>!!document.querySelector('.foundation-path'),label+' skill navigation');
+  const tabs=document.querySelector<HTMLElement>('.foundation-path')!;
+  const heading=document.querySelector<HTMLElement>('.page-heading')!;
+  if(!(tabs.compareDocumentPosition(heading)&Node.DOCUMENT_POSITION_FOLLOWING))
+   throw Error(label+' tabs are not above heading');
+  const buttons=[...tabs.querySelectorAll<HTMLButtonElement>('button')];
+  if(buttons.length!==7)throw Error('Expected exactly 7 skill tabs; found '+buttons.length);
+  for(const [skill] of expected){
+   if(!buttons.some(button=>text(button).toLowerCase().includes(skill.toLowerCase())))
+    throw Error('Missing '+skill+' skill tab');
+  }
+  if(!text(document.querySelector('.foundation-today')).includes('What should I study today?'))
+   throw Error(label+' learning suggestion disappeared');
+  if(![...document.querySelectorAll('.foundation-today button')].some(b=>text(b)==='Browse Units'))
+   throw Error(label+' needs the existing Unit-browser action');
+  if(document.documentElement.scrollWidth>innerWidth+3)
+   throw Error(label+' horizontal overflow '+(document.documentElement.scrollWidth-innerWidth)+'px at '+innerWidth);
+  for(const button of buttons){
+   const r=button.getBoundingClientRect();
+   if(r.width&&r.height&&(r.left<0||r.right>innerWidth+3))
+    throw Error(label+' offscreen skill tab '+text(button)+' at '+innerWidth);
+  }
+ };
+ const selectTab=async(label:string)=>{
+  const tab=[...document.querySelectorAll<HTMLButtonElement>('.foundation-path button')]
+   .find(button=>text(button).toLowerCase().includes(label.toLowerCase()));
+  if(!tab)throw Error('Cannot switch to '+label);
+  tab.click();await pause(150);
+ };
+ await nav('Grammar');
+ await assertOverview('Grammar',40);
+ for(const [skill,count] of expected.slice(1)){
+  await selectTab(skill);await assertOverview(skill,count);
+ }
+ await selectTab('Writing');
+ await assertOverview('Writing',31);
+ const direct=document.querySelector<HTMLButtonElement>('.foundation-writing-action button');
+ if(!direct||text(direct)!=='Open AI Writing Feedback · Any Topic')
+  throw Error('Writing independent feedback entry missing');
+ direct.click();
+ await wait(()=>!!document.querySelector('textarea[name="student-written-content"]'),'Writing Any Topic opened');
+ await nav('AI Tutor');
+ await wait(()=>text(document.querySelector('.page-heading h1'))==='AI Tutor','AI Tutor overview');
+ const tutorButton=[...document.querySelectorAll<HTMLButtonElement>('.platform-intro button')]
+  .find(button=>text(button).includes('Open AI Writing Feedback'));
+ if(!tutorButton)throw Error('AI Tutor independent Writing feedback CTA missing');
+ tutorButton.click();
+ await wait(()=>!!document.querySelector('textarea[name="student-written-content"]'),'AI Tutor links to Any Topic');
+ await nav('My Courses');
+ await wait(()=>!!document.querySelector('section[aria-label="English Writing Coach course"]'),
+  'Separate 12-week course retained');
+ return {phase:'skillOverview',viewport:innerWidth,skillCounts:expected,
+  sevenTabsAboveTitle:true,browseUnitsPreserved:true,
+  writingAnyTopic:true,tutorAnyTopic:true,separateWritingCourse:true,
+  mobileMenuCovered:isMobile,overflow:document.documentElement.scrollWidth-innerWidth};
+};
+
+(window as any).__SLE_WEEK2_HOME_QA={full,restore,responsive,skillOverview};
