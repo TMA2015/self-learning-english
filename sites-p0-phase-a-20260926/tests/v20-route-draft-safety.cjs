@@ -15,7 +15,11 @@ const player=fs.readFileSync(path.join(root,'app/foundation.tsx'),'utf8');
 const nav=page.split('const navGroups=')[1]?.split('] as const;')[0];
 assert.ok(nav,'all sidebar routes must be inspectable');
 const routes=[...nav.matchAll(/key:"([^"]+)"/g)].map(m=>m[1]);
-assert.ok(routes.includes('dashboard')&&routes.includes('parent')&&routes.includes('foundation')&&routes.includes('writing'),'required non-skill and skill routes missing');
+assert.ok(routes.includes('dashboard')&&routes.includes('parent')&&routes.includes('writing'),'required non-skill and skill routes missing');
+assert.ok(!routes.includes('foundation'),'All Lessons duplicate must not be a sidebar destination');
+assert.ok(page.includes('"foundation"'),'Backward-compatible foundation route must still be handled');
+for(const skill of ['grammar','reading','writing','listening','speaking','vocabulary','pronunciation'])
+ assert.ok(routes.includes(skill),'Skill Library must retain '+skill);
 assert.equal(new Set(routes).size,routes.length,'sidebar destinations must be unique');
 assert.ok(page.includes('foundationNavigationGuard.current?.(target)'),'route waits for child guard');
 assert.ok(page.includes('onNavigationGuard={registerFoundationNavigationGuard}'),'mounted Foundation player registers guard');
