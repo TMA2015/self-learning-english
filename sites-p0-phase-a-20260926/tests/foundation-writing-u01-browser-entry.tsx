@@ -12,7 +12,7 @@ function ensure(value:unknown,msg:string){if(!value)throw Error('U01_BROWSER_QA:
 const delay=(ms:number)=>new Promise<void>(resolve=>setTimeout(resolve,ms));
 async function waitUntil(predicate:()=>boolean,msg:string){
  for(let i=0;i<280;i++){if(predicate())return;await delay(40)}
- throw Error('Timed out: '+msg+' '+document.body.textContent?.slice(-400));
+ throw Error('Timed out: '+msg+' '+document.getElementById('app')?.textContent?.slice(-400));
 }
 function find(label:string):HTMLButtonElement|undefined{
  return [...document.querySelectorAll('button')].find(b=>b.textContent?.trim().includes(label));
@@ -85,7 +85,7 @@ function Root(){
    await waitUntil(()=>((document.querySelector('textarea[name="'+name+'"]') as HTMLTextAreaElement)?.value===value),'controlled '+name);
   }
   find('Save version')!.click();
-  await waitUntil(()=>document.body.textContent?.includes('Saved version 1')===true,'version 1 save');
+  await waitUntil(()=>document.getElementById('app')?.textContent?.includes('Saved version 1')===true,'version 1 save');
   ensure((window as any).__u01Calls===0,'No provider request from Save');
   find('AI Tutor')!.click();
   await waitUntil(()=>!!find('Get personal AI Tutor feedback'),'tutor tab');
@@ -93,20 +93,20 @@ function Root(){
   ensure(ai.disabled===false,'Saved map enables AI Tutor');
   ensure((window as any).__u01Calls===0,'No AI request from opening panel');
   ai.click();
-  await waitUntil(()=>document.body.textContent?.includes('Specific strengths')===true,'synthetic feedback');
+  await waitUntil(()=>document.getElementById('app')?.textContent?.includes('Specific strengths')===true,'synthetic feedback');
   ensure((window as any).__u01Calls===1,'Exactly one provider request on explicit click');
 
   find('Practice A')!.click();
   await waitUntil(()=>!!document.querySelector('textarea[name="u01-a-topic"]'),'return to map');
   fill('u01-a-topic','Updated independent writing topic');
-  await waitUntil(()=>document.body.textContent?.includes('Save a version')===true,'editing invalidates saved status');
+  await waitUntil(()=>document.getElementById('app')?.textContent?.includes('Save a version')===true,'editing invalidates saved status');
   find('AI Tutor')!.click();
   await waitUntil(()=>!!find('Get personal AI Tutor feedback'),'AI Tutor tab after edited map');
   const now=find('Get personal AI Tutor feedback')!;
   ensure(now.disabled,'Edited, unsaved map disables the AI request');
-  ensure(!document.body.textContent?.includes('Specific strengths'),'Stale AI feedback must be cleared');
+  ensure(!document.getElementById('app')?.textContent?.includes('Specific strengths'),'Stale AI feedback must be cleared');
   find('Save version')!.click();
-  await waitUntil(()=>document.body.textContent?.includes('Saved version 2')===true,'version 2 save');
+  await waitUntil(()=>document.getElementById('app')?.textContent?.includes('Saved version 2')===true,'version 2 save');
   const after=(await loadLearnerState()).state??{};
   const work=after.foundationWritingV1?.units?.['FW-U01'];
   ensure(work?.versions?.length===2,'Both immutable saved versions present');
@@ -117,7 +117,7 @@ function Root(){
   report('PASS_U01_SAVED',{versions:2,preserved:true,staleResponseCleared:true,aiCalls:1});
  }else if(phase==='restore'){
   ensure((window as any).__u01Calls===0,'No AI on reload');
-  await waitUntil(()=>document.body.textContent?.includes('Saved version 2')===true,'restored version 2');
+  await waitUntil(()=>document.getElementById('app')?.textContent?.includes('Saved version 2')===true,'restored version 2');
   find('Practice A')!.click();
   await waitUntil(()=>!!document.querySelector('textarea[name="u01-a-topic"]'),'restored map');
   ensure((document.querySelector('textarea[name="u01-a-topic"]') as HTMLTextAreaElement).value==='Updated independent writing topic',
@@ -128,10 +128,10 @@ function Root(){
   ensure((window as any).__u01Calls===0,'Reopening saved map has no automatic AI calls');
   find('Practice A')!.click();
   fill('u01-a-topic','Draft that was never successfully saved');
-  await waitUntil(()=>document.body.textContent?.includes('Save a version')===true,'unsaved draft state before failed save');
+  await waitUntil(()=>document.getElementById('app')?.textContent?.includes('Save a version')===true,'unsaved draft state before failed save');
   (window as any).__failU01Save=true;
   find('Save version')!.click();
-  await waitUntil(()=>document.body.textContent?.includes('Save failed')===true,'failed save warning');
+  await waitUntil(()=>document.getElementById('app')?.textContent?.includes('Save failed')===true,'failed save warning');
   const prior=(await loadLearnerState()).state?.foundationWritingV1?.units?.['FW-U01'];
   ensure(prior?.versions?.length===2,'Failed save must never mutate persisted learner data');
   find('AI Tutor')!.click();
