@@ -127,6 +127,7 @@ function Root(){
   ensure(!find('Get personal AI Tutor feedback')!.disabled,'Reopened saved map remains eligible');
   ensure((window as any).__u01Calls===0,'Reopening saved map has no automatic AI calls');
   find('Practice A')!.click();
+  await waitUntil(()=>!!document.querySelector('textarea[name="u01-a-topic"]'),'Practice A re-opened before edit');
   fill('u01-a-topic','Draft that was never successfully saved');
   await waitUntil(()=>document.getElementById('app')?.textContent?.includes('Save a version')===true,'unsaved draft state before failed save');
   (window as any).__failU01Save=true;
