@@ -22,12 +22,7 @@ export function clearAnyTopicBrowserData(storage:Pick<Storage,'length'|'key'|'re
  for(const key of feedbackKeys)storage.removeItem(key);
 }
 type Draft={topic:string;writing:string;updatedAt:number};
-type Snapshot=Draft&{words:number;paragraphs:number};
-
-function words(value:string):number{
-  const trimmed=value.trim();
-  return trimmed?trimmed.split(/\s+/u).length:0;
-}
+type Snapshot=Draft;
 export function AnyTopicWritingReview({showVi=false}:{showVi?:boolean}){
   const [topic,setTopic]=useState('');
   const [writing,setWriting]=useState('');
@@ -98,16 +93,16 @@ export function AnyTopicWritingReview({showVi=false}:{showVi?:boolean}){
   const aiEligible=ready&&draftSaved&&writing.trim().length>=8&&writing.length<=7000;
   return <section className="panel any-topic-writing-review" aria-label="Independent Writing Review">
     <div className="page-heading"><div>
-      <h1>Writing Draft &amp; Self-Check · Any Topic</h1>
-      <p>Write about a topic of your choice, save a draft, check your revision steps and optionally ask Gemini for personal writing feedback. This space is separate from English Writing Coach · 12 Weeks and graded Foundation lessons.</p>
+      <h1>Writing Draft · Any Topic</h1>
+      <p>Write about a topic of your choice, save a draft locally, and ask AI Tutor for personal Writing feedback when you choose. This space is separate from English Writing Coach · 12 Weeks and graded Foundation lessons.</p>
     </div></div>
-    <p className="notice"><strong>Your choice:</strong> the self-check is always available without AI, and its questions are the same for every draft. After saving, you may explicitly ask Gemini to review this draft. Gemini feedback is provisional advice, never an official grade or certified CEFR result.</p>
+    <p className="notice"><strong>Your choice:</strong> Save and revise locally without AI. After saving, you may explicitly ask Gemini to review this draft through AI Tutor. Feedback is provisional advice, never an official grade or certified CEFR result.</p>
     <form onSubmit={event=>{
       event.preventDefault();
       if(!valid)return;
-      setReviewed({topic,writing,updatedAt:Date.now(),words:words(writing),
-        paragraphs:writing.trim().split(/\n\s*\n/u).filter(Boolean).length});
-      save();
+      // Open Writing AI Tutor only after this exact draft is saved.
+      if(save())setReviewed({topic,writing,updatedAt:Date.now()});
+      else setReviewed(null);
     }}>
       <label className="field" htmlFor="any-topic-writing-topic">Writing topic <span aria-hidden="true">*</span>
         <textarea id="any-topic-writing-topic" name="writing-topic" rows={3} required
@@ -122,22 +117,14 @@ export function AnyTopicWritingReview({showVi=false}:{showVi?:boolean}){
       <p role="status" aria-live="polite">{saveStatus}</p>
       <p className="muted">Saved only in this browser, not synchronized across devices. On a shared computer, other browser users may see this draft and cached Gemini feedback. Clear local draft also deletes this workspace’s cached AI responses; it does not delete other course records.</p>
       <div className="learning-choices">
-        <button className="primary-button" type="submit" disabled={!ready||!valid}>Open self-review checklist</button>
+        <button className="primary-button" type="submit" disabled={!ready||!valid}>Save &amp; open AI Tutor</button>
         <button className="secondary-button" type="button" disabled={!ready} onClick={save}>Save draft</button>
         <button className="secondary-button" type="button" disabled={!ready} onClick={clear}>Clear local draft</button>
       </div>
     </form>
-    {currentReview&&<section className="panel" aria-label="Provisional self-review checklist" aria-live="polite">
-      <h2>Self-revision checklist · not individual feedback</h2>
-      <p>Your draft has {currentReview.words} words across {currentReview.paragraphs} text block(s). These counts describe length only; they do not measure writing quality or CEFR proficiency.</p>
-      <ol>
-        <li><strong>Task response:</strong> Re-read your exact topic. Underline the task verb and check whether every required part is addressed.</li>
-        <li><strong>Ideas:</strong> Identify your main point and at least one specific supporting reason or example. Add evidence if needed.</li>
-        <li><strong>Organization:</strong> Check the order of ideas, paragraph breaks and whether the conclusion follows from the response.</li>
-        <li><strong>Language:</strong> Read each sentence aloud and check verb forms, agreement, word choice, punctuation and unclear references.</li>
-      </ol>
-      <p><strong>Next revision:</strong> Choose the most important item above, revise the draft yourself, and open the checklist again. The checklist itself does not evaluate or correct your sentences.</p>
-      <h3>Optional Gemini Writing feedback</h3>
+    {currentReview&&<section className="panel" aria-label="AI Tutor writing review" aria-live="polite">
+      <h2>AI Tutor · Writing Review</h2>
+      <p>Your saved draft can receive individualized suggestions only if you explicitly request AI feedback below. No AI review, quality score or CEFR estimate has been performed yet.</p>
       {!draftSaved&&<p className="notice">AI review requires a successfully saved copy of this exact draft. Save again after any editing.</p>}
       {writing.length>7000&&<p className="notice">Your full draft is saved. For Gemini feedback, use a shorter draft of up to 7,000 characters. Your longer text remains available for self-review.</p>}
       <WritingAIReview reviewId="any-topic-writing" task={topic} fields={{draft:writing}} kind="draft" enabled={aiEligible} reviewMode="any-topic" responseLanguage={showVi ? 'vi' : 'en'}/>

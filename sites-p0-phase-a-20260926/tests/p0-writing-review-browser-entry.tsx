@@ -28,31 +28,32 @@ function write(t:HTMLTextAreaElement|null,value:string){
  await wait(()=>!!textarea('writing-topic')&&!!textarea('student-written-content'),'mount');
  const topic=textarea('writing-topic')!,writing=textarea('student-written-content')!;
  assert(topic.required&&writing.required,'Both fields required');
- assert(!!find('Open self-review checklist'),'checklist button exists');
+ assert(!!find('Save & open AI Tutor'),'checklist button exists');
  if(phase==='save'){
-  assert(find('Open self-review checklist')?.disabled,'Empty input cannot review');
+  assert(find('Save & open AI Tutor')?.disabled,'Empty input cannot review');
   write(topic,'Should students read every day? Give reasons.');
   write(writing,'Students should read every day. Reading builds vocabulary and helps them learn new ideas.');
-  await wait(()=>!!find('Open self-review checklist')&&!find('Open self-review checklist')!.disabled,'controlled updates');
+  await wait(()=>!!find('Save & open AI Tutor')&&!find('Save & open AI Tutor')!.disabled,'controlled updates');
   find('Save draft')!.click();
   await wait(()=>JSON.parse(localStorage.getItem(prefix)??'{}').writing?.startsWith('Students should read'),'browser save');
-  assert(!document.querySelector('[aria-label="Provisional self-review checklist"]'),'No review before action');
+  assert(!document.querySelector('[aria-label="AI Tutor writing review"]'),'No review before action');
   report('PASS_SAVED',{saved:true,required:2});
  }else if(phase==='restore'){
   await wait(()=>textarea('writing-topic')!.value.includes('Should students read every day?'),'load saved topic');
   assert(textarea('student-written-content')!.value.includes('Reading builds vocabulary'),'restore saved work');
-  find('Open self-review checklist')!.click();
-  await wait(()=>!!document.querySelector('[aria-label="Provisional self-review checklist"]'),'checklist');
-  const checklist=document.querySelector('[aria-label="Provisional self-review checklist"]')!.textContent??'';
-  assert(/Task response|Organization|Language/.test(checklist),'Revision guidance displayed');
-  assert(!/Your CEFR|CEFR B1|Score: 9/.test(checklist),'No invented score');
+  find('Save & open AI Tutor')!.click();
+  await wait(()=>!!document.querySelector('[aria-label="AI Tutor writing review"]'),'checklist');
+  const tutorPanel=document.querySelector('[aria-label="AI Tutor writing review"]')!.textContent??'';
+  assert(tutorPanel.includes('AI Tutor · Writing Review'),'Dedicated Writing AI Tutor surface');
+  assert(!/Self-revision checklist|Task response:|Organization:|Language:/.test(tutorPanel),'No generic checklist');
+  assert(!/Your CEFR|CEFR B1|Score: 9/.test(tutorPanel),'No invented score');
   const optionalAI=document.querySelector('[data-qa-optional-gemini]');
   assert(optionalAI?.getAttribute('data-qa-optional-gemini')==='enabled',
     'Successfully restored saved draft enables the optional Gemini control');
   assert((optionalAI?.textContent??'').includes('no external requests'),
     'This storage browser preflight must use the explicit Gemini UI test stub');
   write(textarea('student-written-content'),'Revised, shorter idea.');
-  await wait(()=>!document.querySelector('[aria-label="Provisional self-review checklist"]'),'stale review hidden after edits');
+  await wait(()=>!document.querySelector('[aria-label="AI Tutor writing review"]'),'stale review hidden after edits');
   assert(!document.querySelector('[data-qa-optional-gemini]'),'Editing must hide stale AI controls');
   const aiCache='g-learning:english:ai-feedback:v1:any-topic-writing:synthetic-response';
   const otherCache='g-learning:english:ai-feedback:v1:week-9:separate';
