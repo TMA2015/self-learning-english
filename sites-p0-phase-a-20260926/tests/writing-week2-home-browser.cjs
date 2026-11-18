@@ -107,6 +107,8 @@ const root=path.join(__dirname,'..');
   const results=[];
   await load(1280);results.push(await run('full'));
   await load(1280);results.push(await run('restore'));
+  // PR #168 integrated skill-nav/Any Topic QA at true mobile and desktop viewports.
+  for(const width of [320,1280]){await load(width);results.push(await run('skillOverview'));}
   for(const width of [320,375,768,1280]){
    await load(width);results.push(await run('responsive'));
    const screenshot=await command('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
