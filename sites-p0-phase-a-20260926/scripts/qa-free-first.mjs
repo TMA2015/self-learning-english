@@ -58,6 +58,7 @@ const coreTests=[
 
 const fullRegressionTests=[
   "p0-writing-review-browser.cjs",
+  "foundation-writing-u01-browser.cjs",
   "writing-source-bundle-browser.cjs",
   "vocabulary-pilot-browser.cjs",
   "rgw-depth-pilot-browser.cjs",
