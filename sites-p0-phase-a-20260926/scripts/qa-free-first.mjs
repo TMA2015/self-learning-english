@@ -49,6 +49,7 @@ const coreTests=[
   "any-topic-writing-review-shell.cjs",
   "any-topic-writing-academic-r1.cjs",
   "foundation-writing-u01-v1.cjs",
+  "foundation-writing-u02-u03-v1.cjs",
   "writing-source-corpus-audit.cjs",
   "vocabulary-pilot-contract.cjs",
   "rgw-depth-pilot-contract.cjs",
@@ -59,6 +60,7 @@ const coreTests=[
 const fullRegressionTests=[
   "p0-writing-review-browser.cjs",
   "foundation-writing-u01-browser.cjs",
+  "foundation-writing-u02-u03-browser.cjs",
   "writing-source-bundle-browser.cjs",
   "vocabulary-pilot-browser.cjs",
   "rgw-depth-pilot-browser.cjs",
