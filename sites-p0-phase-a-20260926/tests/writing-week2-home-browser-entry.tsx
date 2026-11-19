@@ -113,7 +113,7 @@ const skillOverview=async()=>{
   if(isMobile)await wait(()=>!document.querySelector('aside.sidebar.open'),'mobile sidebar closes');
  };
  const expected:[string,number][]=[
-  ['Grammar',40],['Vocabulary',18],['Reading',33],['Writing',31],
+  ['Grammar',42],['Vocabulary',22],['Reading',41],['Writing',39],
   ['Listening',21],['Speaking',6],['Pronunciation',5]
  ];
  const assertOverview=async(label:string,count:number)=>{
@@ -149,12 +149,12 @@ const skillOverview=async()=>{
   tab.click();await pause(150);
  };
  await nav('Grammar');
- await assertOverview('Grammar',40);
+ await assertOverview('Grammar',42);
  for(const [skill,count] of expected.slice(1)){
   await selectTab(skill);await assertOverview(skill,count);
  }
  await selectTab('Writing');
- await assertOverview('Writing',31);
+ await assertOverview('Writing',39);
  const direct=document.querySelector<HTMLButtonElement>('.foundation-writing-action button');
  if(!direct||text(direct)!=='Open AI Writing Feedback · Any Topic')
   throw Error('Writing independent feedback entry missing');
