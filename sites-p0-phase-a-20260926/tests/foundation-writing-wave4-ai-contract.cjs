@@ -14,6 +14,7 @@ vm.runInNewContext(ts.transpileModule(source,{fileName:'ai/service.ts',compilerO
   if(name==='./teaching-validation')return{validateTeachingRating:()=>null};
   if(name==='./prompts/registry.json')return registry;
   if(name==='../content/writing-rubric.json')return{criteria:[]};
+  if(name==='../domain/writing-studio-reference')return{CEFR_WRITING_CRITERIA:[],CEFR_TARGET_GUIDANCE:{},WRITING_STUDIO_CEFR_RUBRIC_VERSION:'cefr-written-production-2020-v1',validCEFRWritingLevel:()=>false};
   if(name==='./validation')return{validateRating:()=>null};
   throw Error('Unexpected import '+name);
  }},{filename:'ai/service.ts',timeout:5000});
