@@ -54,7 +54,7 @@ assert.match(originalType,/'FW-U04'\?:Wave2Work<U04Draft>/);
 assert.match(originalType,/'FW-U05'\?:Wave2Work<U05Draft>/);
 assert.match(originalType,/'FW-U06'\?:Wave2Work<U06Draft>/);
 assert.match(read('scripts/qa-free-first.mjs'),/foundation-writing-u04-u06-v1\.cjs/,'core QA registered');
-assert.equal(registry['foundation-writing-review'].version,'1.2.0');
+assert.equal(registry['foundation-writing-review'].version,'1.3.0');
 for(const unit of sources)assert(registry['foundation-writing-review'].system.includes(unit.id));
 function loadTS(content,name,mocks){
  const holder={exports:{}};
@@ -162,7 +162,7 @@ const good=text=>({summary:'Learner noted a useful reader purpose.',
     unitId:a.unitId,fixtureId:a.fixtureId,text:a.text},{responseLanguage:'en'});
   assert(reviewed);
   assert.equal(lastRequest.purpose,'foundation-writing-review');
-  assert.equal(lastRequest.promptVersion,'1.2.0');
+  assert.equal(lastRequest.promptVersion,'1.3.0');
   assert.equal(reviewed.structuredResult.scores,null);
   for(const invalid of [
    {...good(a.text),scores:{meaning:9}},
