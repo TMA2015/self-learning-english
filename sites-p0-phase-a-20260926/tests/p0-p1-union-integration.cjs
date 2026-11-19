@@ -27,7 +27,7 @@ assert(platform.includes('export function WritingHome'), 'The separate 12-week W
 assert(home.includes('view==="writing-course"&&'), 'The existing 12-week Writing Course route is retained');
 exactly(home,/<AnyTopicWritingReview showVi=\{!!state.vietnameseSupport\}\/>/g,1,'Independent Writing Review opens once with existing language preference');
 assert(home.includes('writingIntro={view==="writing"?<div className="learning-choices"'),'Writing overview retains one bounded entry group');
-assert(home.includes('onClick={()=>void navigate("foundation-writing")}>Start Foundation Writing · U01–U06 available'),'New Foundation course has a direct entry');
+assert(home.includes('onClick={()=>void navigate("foundation-writing")}>Start Foundation Writing · 12 Units available'),'New Foundation course has a direct entry');
 assert(home.includes('onClick={()=>void navigate("writing-any-topic")}'),'Writing overview opens independent saved-draft feedback');
 assert(home.includes('view==="tutor"&&<TutorOverview onWriting={()=>navigate("writing-any-topic")}/>'),
  'AI feedback landing opens Any Topic instead of Week 1');
