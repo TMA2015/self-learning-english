@@ -233,6 +233,10 @@ const foundationTwelve=async()=>{
   // real public Firebase config, not on an assumed unconfigured environment.
   if((window as any).__OUTSIDE_REQUESTS)throw Error('Unexpected external request before explicit AI opt-in '+unit);
  }
+ await click('Back to Foundation Writing','main button');
+ await wait(atCourse,'all three Wave4 units return to same course overview');
+ await wait(()=>text(document.querySelector('section[aria-label="Foundation Writing course progress"]')).includes('3/12 units with saved work'),
+  'real saved Wave4 versions projected into Foundation course progress');
  const preserved=await (await import('../infrastructure/browser/client-services')).loadLearnerState();
  const st=(preserved.state as any)?.foundationWritingV1?.units;
  if(!st)throw Error('Foundation Writing real state not stored');
