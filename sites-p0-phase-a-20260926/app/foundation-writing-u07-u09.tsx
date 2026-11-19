@@ -276,7 +276,7 @@ export function FoundationWritingWave3({unitId,work,onEdit,onSave,onExit,showVi=
     onClick={()=>void save()}>{busy?'Saving…':'Save version'}</button>
    <button className="secondary-button" type="button" disabled={busy}
     onClick={()=>void save(true)}>Save &amp; Exit</button>
-   <button className="secondary-button" type="button" onClick={onExit}>Back to Writing</button>
+   <button className="secondary-button" type="button" onClick={onExit}>Back to Foundation Writing</button>
   </div>
   {saveStatus&&<p className="notice" role="status">{saveStatus}</p>}
   <article className="wcv2-card" aria-label={unitId+' practice milestones'}>
