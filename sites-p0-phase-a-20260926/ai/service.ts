@@ -13,7 +13,14 @@ export function createTutorService(provider:AITutorProvider):AITutor{
   const text=typeof submitted?.text==='string'?submitted.text:'';
   const strengths=r.strengths as string[],improvements=r.improvements as string[];
   const quotes=r.quotes,questions=r.questions;
-  if(submitted?.unitId!=='FW-U01'||!['FW-U01-A','FW-U01-B','FW-U01-T'].includes(String(submitted.fixtureId))||
+  const allowedFixtures:Record<string,readonly string[]>={
+    'FW-U01':['FW-U01-A','FW-U01-B','FW-U01-T'],
+    'FW-U02':['FW-U02-A','FW-U02-B','FW-U02-T'],
+    'FW-U03':['FW-U03-A','FW-U03-B','FW-U03-T'],
+  };
+  const unitId=typeof submitted?.unitId==='string'?submitted.unitId:'';
+  if(!Object.hasOwn(allowedFixtures,unitId)||
+     !allowedFixtures[unitId].includes(String(submitted?.fixtureId))||
      text.length<20||text.length>7000||r.scores!==null||r.level!==null||
      typeof r.summary!=='string'||!r.summary.trim()||
      strengths.length>2||improvements.length>2||

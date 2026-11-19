@@ -1,0 +1,286 @@
+{
+  "id": "FW-U03",
+  "title": "Develop Reasons & Concrete Support",
+  "estimatedMinutes": "25–40",
+  "microLessons": 3,
+  "outcome": "Build two distinct Claim → Reason → Concrete Detail chains: each reason adds useful information and each detail shows how or why its reason could work.",
+  "source": {
+    "manuscript": "SLE_FOUNDATION_WRITING_AUTHORING_WAVE1_U01-U03_DRAFT_20261118.md",
+    "sha256": "4d0c80a754a68cc2b23be09e55b47741aa09ea25b18accdae72e562d016b7e3b",
+    "review": "SLE-FW-AUTH-W1",
+    "verdict": "PASS",
+    "requiredChanges": "NONE"
+  },
+  "teaching": {
+    "demo": {
+      "id": "FW-U03-D01",
+      "prompt": "Our town should build a safer cycle path near the school.",
+      "steps": [
+        {
+          "label": "Claim",
+          "text": "Our town should build a cycle path near the school. It says what I want."
+        },
+        {
+          "label": "Tempting weak reason",
+          "text": "Because it is a good idea. The listener asks Why good? and gets no new information. This is circular."
+        },
+        {
+          "label": "Useful reason",
+          "text": "It could separate young cyclists from busy traffic near the school entrance. This adds a possible benefit."
+        },
+        {
+          "label": "Ask why",
+          "text": "Who benefits, and in what situation? Young cyclists near peak school traffic. Do not claim invented accident reductions."
+        },
+        {
+          "label": "Repair",
+          "text": "Replace empty praise with an actual effect on people. A reasonable student may choose a different effect; judge the logic, not vocabulary matching."
+        }
+      ]
+    },
+    "miniCheck": "In your own words, why is 'good because it is good' weaker than explaining a safety benefit?",
+    "microLesson2": {
+      "teacher": "A reason tells what might improve. A detail helps the reader picture how it would happen.",
+      "claim": "The town should make a cycle path near the school.",
+      "reason": "It could separate cyclists from waiting cars.",
+      "detail": "For example, painted lanes and marked crossings could guide riders past the school entrance.",
+      "why": "The detail describes a possible mechanism for the reason; it is not a made-up statistic.",
+      "weakDetail": "My friend likes red bicycles. That fact does not show how the path improves safety.",
+      "thinkPrompt": "If your reason says students have more time, what real action would create that extra time?"
+    },
+    "microLesson3": "Build TWO original Claim → Reason → Detail chains. Keep one proposal but write genuinely different reasons and a concrete detail for each. A correct phrase does not guarantee the reason and detail are logically connected.",
+    "a1": "I think __ because __; choose a benefit from two prompts before writing one. Optional short phrase frames are allowed.",
+    "b1": "Compare safety and convenience reasons; add a plausible objection (e.g., space/resources) and respond with one concrete detail.",
+    "noUnsupportedFacts": "Do not invent surveys, percentages, attendance forecasts or accident reductions."
+  },
+  "cycleA": {
+    "id": "FW-U03-A",
+    "prompt": "Your school should provide a reusable-water-bottle refill station near the sports area. Explain why the station would be useful, with one specific example.",
+    "promptStrip": {
+      "topic": "Reusable-water-bottle refill station",
+      "task": "Propose and explain",
+      "mustInclude": "Reason + example",
+      "boundary": "School sports area and students"
+    },
+    "instruction": "Choose the direct role for each card (Claim, Reason, Detail, circular, off-task or weak link), check the explanations, and create one learner-written repair for X1 or X3.",
+    "roles": [
+      "Claim",
+      "Reason",
+      "Detail",
+      "circular",
+      "off-task",
+      "weak link"
+    ],
+    "cards": [
+      {
+        "id": "C1",
+        "text": "The school should add a refill station near the sports area.",
+        "key": "Claim",
+        "rationale": "Proposes the change"
+      },
+      {
+        "id": "R1",
+        "text": "Students could refill bottles after exercise without walking to the canteen.",
+        "key": "Reason",
+        "rationale": "Gives a practical benefit tied to sports-area use"
+      },
+      {
+        "id": "D1",
+        "text": "For example, players could fill their reusable bottles immediately after a match.",
+        "key": "Detail",
+        "rationale": "Concrete moment illustrating R1"
+      },
+      {
+        "id": "X1",
+        "text": "A refill station is good because it is very good.",
+        "key": "circular",
+        "rationale": "Adds praise but no benefit or causal mechanism"
+      },
+      {
+        "id": "X2",
+        "text": "The music club needs a larger piano.",
+        "key": "off-task",
+        "rationale": "Different activity and school resource"
+      },
+      {
+        "id": "X3",
+        "text": "A refill station helps swimmers because swimming pools are large.",
+        "key": "weak link",
+        "rationale": "Does not show why a school sports-area station helps; irrelevant pool size"
+      }
+    ],
+    "repairPrompt": "Choose X1 or X3 and replace it with a specific ORIGINAL reason or detail for the sports-area refill station; compare your idea to R1 without copying.",
+    "caveat": "C1 alone is not a reason; R1 alone is not a concrete example. Do not grade open repairs using text matching."
+  },
+  "cycleB": {
+    "id": "FW-U03-B",
+    "prompt": "Your school should create a lunchtime creative club. Give two different reasons and one specific detail for each.",
+    "diagnoseInstruction": "First classify the three weak submissions as circular, thin mechanism or off-task, read the rationale, then repair one in your own words.",
+    "diagnosticRoles": [
+      "circular",
+      "thin mechanism",
+      "off-task"
+    ],
+    "weak": [
+      {
+        "id": "B-W1",
+        "text": "A creative club is nice because it is a good club.",
+        "key": "circular",
+        "rationale": "Repeats the same opinion",
+        "repairInstruction": "Name one concrete benefit for learners; then add a situation that shows it"
+      },
+      {
+        "id": "B-W2",
+        "text": "A creative club gives students something to do at lunch because lunch happens every day.",
+        "key": "thin mechanism",
+        "rationale": "States a timetable fact but not a useful outcome",
+        "repairInstruction": "Explain what useful, enjoyable or social action occurs at lunch"
+      },
+      {
+        "id": "B-W3",
+        "text": "Our school should buy new uniforms because students like art.",
+        "key": "off-task",
+        "rationale": "Doesn't propose or justify a lunchtime club",
+        "repairInstruction": "Return to the club proposal and state a task-relevant reason"
+      }
+    ],
+    "chainFields": [
+      "claim",
+      "reason",
+      "detail"
+    ],
+    "chainInstruction": "Create TWO original chains. Both may use the same club proposal, but reasons must be different benefits, not synonyms. Details show a plausible situation or mechanism for their own reason.",
+    "readerCheck": "How does detail A prove/explain reason A? Is reason B actually different?",
+    "weakRepairPrompt": "Choose one weak submission and write ONE original repair. Do not copy the demo or automatically fill in your chain."
+  },
+  "transfer": {
+    "id": "FW-U03-T",
+    "prompt": "Your local park should offer a small sheltered reading corner. Give two different benefits and a concrete design detail showing how each benefit could happen.",
+    "instruction": "Save two entirely new Claim → Reason → Detail chains. Do not prefill the rain-protection or reading-together examples mentioned in teacher guidance."
+  },
+  "supplemental": [
+    {
+      "id": "FW-U03-F01",
+      "title": "Identify a genuine reason",
+      "prompt": "Our class should start a lunchtime chess corner.",
+      "question": "Which statement adds a genuine reason instead of repeating the proposal?",
+      "key": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "It is great because a great corner is great.",
+          "rationale": "Repeats praise only"
+        },
+        {
+          "id": "B",
+          "text": "A chess corner is a good chess corner.",
+          "rationale": "Rewords the same claim"
+        },
+        {
+          "id": "C",
+          "text": "It could give students a calm game they can play in small groups.",
+          "rationale": "Identifies a practical benefit for students"
+        },
+        {
+          "id": "D",
+          "text": "Chess pieces can be black or white.",
+          "rationale": "Descriptive fact but no reason to start this corner"
+        }
+      ]
+    },
+    {
+      "id": "FW-U03-F02",
+      "title": "Claim vs reason",
+      "prompt": "The library should offer short student book talks.",
+      "question": "Which sentence is a REASON for that proposal?",
+      "key": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "The library should offer short student book talks.",
+          "rationale": "Restates the claim"
+        },
+        {
+          "id": "B",
+          "text": "Students could discover titles recommended by classmates.",
+          "rationale": "States how the proposal benefits readers"
+        },
+        {
+          "id": "C",
+          "text": "The talks could happen on Thursdays.",
+          "rationale": "A scheduling detail, not a benefit by itself"
+        },
+        {
+          "id": "D",
+          "text": "My cousin likes football.",
+          "rationale": "Outside the book-talk purpose"
+        }
+      ]
+    },
+    {
+      "id": "FW-U03-F03",
+      "title": "Relevant detail",
+      "prompt": "A quiet homework space helps students concentrate.",
+      "question": "Which detail best shows HOW the space could help?",
+      "key": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "It would be very good because it is important.",
+          "rationale": "Circular praise without a mechanism"
+        },
+        {
+          "id": "B",
+          "text": "Our school team won last year.",
+          "rationale": "Unrelated event"
+        },
+        {
+          "id": "C",
+          "text": "Everyone will become exactly 40% smarter.",
+          "rationale": "Invented unsupported prediction"
+        },
+        {
+          "id": "D",
+          "text": "Students could use a table away from loud games during homework time.",
+          "rationale": "Concrete situation explaining reduced distraction"
+        }
+      ]
+    },
+    {
+      "id": "FW-U03-F04",
+      "title": "Two reasons must differ",
+      "prompt": "The community centre should hold a weekend photography club.",
+      "question": "Which pair gives TWO different reasons?",
+      "key": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "It is fun. / It is enjoyable.",
+          "rationale": "Two synonyms of the same unsupported general claim"
+        },
+        {
+          "id": "B",
+          "text": "It is useful. / It is very useful.",
+          "rationale": "Restatement, not a distinct reason"
+        },
+        {
+          "id": "C",
+          "text": "It could teach photo composition. / It could help neighbours document community events together.",
+          "rationale": "One reason about a skill, the other about community participation"
+        },
+        {
+          "id": "D",
+          "text": "I have a phone. / My phone is blue.",
+          "rationale": "Personal facts not benefits of a club"
+        }
+      ]
+    }
+  ],
+  "aiCriteria": {
+    "review": "For each chain, is the claim a proposal, the reason meaningful new information, the detail genuinely tied to it, and two reasons distinct?",
+    "allowAlreadyGood": "When both chains have meaningful support, recognize that and offer an optional transfer challenge; never manufacture a missing reason.",
+    "guidingQuestion": "You wrote 'The creative club is fun.' What would members do that makes this useful or enjoyable?",
+    "prohibit": "No numeric scores, proficiency levels, complete replacement chains, invented evidence or automatic AI request.",
+    "fallback": "AI review is currently unavailable. Your draft is saved locally; you can continue editing or finish the lesson."
+  }
+}

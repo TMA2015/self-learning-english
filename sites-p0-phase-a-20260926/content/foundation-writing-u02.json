@@ -1,0 +1,246 @@
+{
+  "id": "FW-U02",
+  "title": "Generate & Filter Relevant Ideas",
+  "estimatedMinutes": "20–30",
+  "microLessons": 2,
+  "outcome": "Independently produce at least three plausible ideas, judge task relevance, improve a vague idea when appropriate, choose one idea and explain fit; rejection is never compulsory.",
+  "source": {
+    "manuscript": "SLE_FOUNDATION_WRITING_AUTHORING_WAVE1_U01-U03_DRAFT_20261118.md",
+    "sha256": "4d0c80a754a68cc2b23be09e55b47741aa09ea25b18accdae72e562d016b7e3b",
+    "review": "SLE-FW-AUTH-W1",
+    "verdict": "PASS",
+    "requiredChanges": "NONE"
+  },
+  "teaching": {
+    "microLesson1": "Brainstorming has two different actions: make possibilities, then examine them. Do not reject everything just to fill a box.",
+    "microLesson2": "Choose one idea using the actual task, audience and resource constraints; explain why it fits. All candidates may be valid and set-aside can remain blank.",
+    "demo": {
+      "id": "FW-U02-D01",
+      "prompt": "A small community centre wants a free activity for families on a rainy Sunday afternoon. Suggest one activity and explain why it fits.",
+      "steps": [
+        {
+          "label": "Notice",
+          "text": "It must work indoors, be free or inexpensive, and suit families. The Task is to suggest one activity, not to describe a personal memory."
+        },
+        {
+          "label": "Generate without grading",
+          "text": "Board-game circle; family storytelling hour; simple recycled-paper crafts; community football match."
+        },
+        {
+          "label": "Filter",
+          "text": "First three can work indoors. The football match conflicts with a rainy indoor setting unless it is redesigned for a gym, and may be impractical for a small centre."
+        },
+        {
+          "label": "Repair",
+          "text": "Community football match could become indoor mini-ball skills with soft equipment, but that raises space/safety questions. Repair is possible; not compulsory."
+        },
+        {
+          "label": "Choose",
+          "text": "Recycled-paper crafts is easy to start using available paper, takes place indoors and works for different ages. No invented participant numbers or cost claims."
+        },
+        {
+          "label": "Transfer thinking",
+          "text": "A different prompt may make the football idea suitable. Relevance depends on the actual task, not a global good/bad label."
+        }
+      ]
+    },
+    "commonMistake": "Write the first interesting idea regardless of audience, limits or explainability.",
+    "a1": "Ideas can begin as keywords. Optional starter: This idea fits because ...",
+    "b1": "Compare two valid ideas under one realistic constraint (space, safety, time, cost) and justify a trade-off."
+  },
+  "cycleA": {
+    "id": "FW-U02-A",
+    "prompt": "Your school wants one affordable improvement to its outdoor break-time area. Suggest a change that makes that outdoor area more useful for students.",
+    "instructions": "Sort the six cards into FITS, NEEDS_DETAIL_OR_REPAIR or OFF_TASK. Read feedback for every card, then repair A2 or A6 in your own words and explain one classification. Alternative defensible interpretations may be explained in the open note.",
+    "buckets": [
+      "FITS",
+      "NEEDS_DETAIL_OR_REPAIR",
+      "OFF_TASK"
+    ],
+    "cards": [
+      {
+        "id": "A1",
+        "text": "Put simple benches beside the playground trees so students have somewhere to sit.",
+        "key": "FITS",
+        "rationale": "Specific outdoor improvement serving break-time use; price still needs checking in real planning"
+      },
+      {
+        "id": "A2",
+        "text": "Make the outside better.",
+        "key": "NEEDS_DETAIL_OR_REPAIR",
+        "rationale": "Still about the right setting, but does not say what change to make"
+      },
+      {
+        "id": "A3",
+        "text": "Change the timetable for school buses.",
+        "key": "OFF_TASK",
+        "rationale": "A transport change, not an improvement to the outdoor area"
+      },
+      {
+        "id": "A4",
+        "text": "Paint simple hopscotch grids on an empty part of the playground.",
+        "key": "FITS",
+        "rationale": "Concrete, plausible outdoor break-time change"
+      },
+      {
+        "id": "A5",
+        "text": "Build a new cinema inside the library.",
+        "key": "OFF_TASK",
+        "rationale": "Interior entertainment facility, not the outdoor break area"
+      },
+      {
+        "id": "A6",
+        "text": "Add some equipment to the playground.",
+        "key": "NEEDS_DETAIL_OR_REPAIR",
+        "rationale": "Could fit, but type, location and practical benefit are unspecified"
+      }
+    ],
+    "repairPrompt": "Choose A2 or A6. Write a more specific improvement in your own words; many valid repairs exist.",
+    "justificationPrompt": "I placed card ___ in ___ because the task says ___."
+  },
+  "cycleB": {
+    "id": "FW-U02-B",
+    "prompt": "Your local library wants one new weekend activity that helps teenagers enjoy reading. Suggest an activity and explain why it would suit the library.",
+    "instruction": "Enter at least three different candidate activities as short notes; decide whether each Fits, Needs clarification or is Off-task. Choose one and explain why it suits the library and teenagers. Set aside an idea only if useful; this is entirely optional. Make one vague idea more concrete in your own words.",
+    "candidateLabels": [
+      "Fits",
+      "Needs clarification",
+      "Off-task"
+    ],
+    "choiceRationalePrompt": "This activity matches the library and teenagers because ...",
+    "setAsidePrompt": "Optional: Which idea would you set aside, even if relevant, and what trade-off explains your decision? Leave blank if all ideas fit.",
+    "concretePrompt": "Develop one vague idea into a more concrete action, in your own words.",
+    "allValid": "Book-swap table, short graphic-novel circle and read-and-draw session may all fit. Never force a reject or prefill these in student fields.",
+    "completion": "Three distinct nonempty notes, a chosen index that exists, and a nonempty fit rationale; process-only, not a quality or CEFR verdict."
+  },
+  "transfer": {
+    "id": "FW-U02-T",
+    "prompt": "A neighbourhood youth group wants a low-cost outdoor activity for a Saturday morning. Suggest one activity and explain why young people could join easily.",
+    "instruction": "Save three NEW candidates, choose one, and give a fresh selection rationale. Do not copy library activities; no forced reject."
+  },
+  "supplemental": [
+    {
+      "id": "FW-U02-F01",
+      "title": "Relevance to a specific task",
+      "prompt": "Suggest one improvement to a small public reading room.",
+      "question": "Which is clearly on task?",
+      "key": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Add a shelf for shared books",
+          "rationale": "Directly changes the reading room"
+        },
+        {
+          "id": "B",
+          "text": "Change the city football team's uniform",
+          "rationale": "Unrelated sports decision"
+        },
+        {
+          "id": "C",
+          "text": "Cancel all school exams",
+          "rationale": "School policy, not reading-room improvement"
+        },
+        {
+          "id": "D",
+          "text": "Build a motorway outside town",
+          "rationale": "Transport project, not reading-room improvement"
+        }
+      ]
+    },
+    {
+      "id": "FW-U02-F02",
+      "title": "Repair a vague idea",
+      "prompt": "Suggest an activity for a rainy lunch break in a classroom.",
+      "question": "Which revision makes 'something fun' most usable for this task?",
+      "key": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "It is fun and very good.",
+          "rationale": "Repeats evaluation without identifying any activity"
+        },
+        {
+          "id": "B",
+          "text": "Something exciting happens somewhere.",
+          "rationale": "Still lacks the action and classroom fit"
+        },
+        {
+          "id": "C",
+          "text": "Play a short classroom word-guessing game using the board.",
+          "rationale": "Names an indoor activity and usable materials"
+        },
+        {
+          "id": "D",
+          "text": "Students should buy a different school uniform.",
+          "rationale": "A different topic"
+        }
+      ]
+    },
+    {
+      "id": "FW-U02-F03",
+      "title": "Choose and explain a trade-off",
+      "prompt": "A small library with limited tables wants a weekend activity. Two ideas are a book-swap table and a very large dance performance.",
+      "question": "Which explanation best justifies choosing the book-swap?",
+      "key": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Book swaps are the best because they are best.",
+          "rationale": "Circular reason without task constraint"
+        },
+        {
+          "id": "B",
+          "text": "It can use the few tables the library already has, while the dance performance needs more space.",
+          "rationale": "Uses a task-relevant space constraint"
+        },
+        {
+          "id": "C",
+          "text": "I hate all music.",
+          "rationale": "Personal dislike does not explain feasibility"
+        },
+        {
+          "id": "D",
+          "text": "My cousin once visited a library.",
+          "rationale": "Personal anecdote unrelated to selection"
+        }
+      ]
+    },
+    {
+      "id": "FW-U02-F04",
+      "title": "All-valid ideas and optional rejection",
+      "prompt": "Select a quiet weekend library activity. Learner proposes a book discussion, bookmark-making and picture-book storytelling.",
+      "question": "Which action shows appropriate idea selection?",
+      "key": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Label one of the three ideas off-topic even if it fits, because a reject box must be filled",
+          "rationale": "Fabricates a bad idea when all three can suit the library"
+        },
+        {
+          "id": "B",
+          "text": "Refuse to choose until an impossible idea is invented",
+          "rationale": "Brainstorming does not require a deliberately bad idea"
+        },
+        {
+          "id": "C",
+          "text": "Choose one and explain why it suits the audience and resources; leave rejection blank if useful",
+          "rationale": "Valid comparison without forced rejection"
+        },
+        {
+          "id": "D",
+          "text": "Copy every idea into a final essay without selecting",
+          "rationale": "The task asks for one chosen activity"
+        }
+      ]
+    }
+  ],
+  "aiCriteria": {
+    "review": "Do candidates address the exact library/activity task? Is choice explained by audience/resources? Does vague repair become concrete?",
+    "avoid": "Never require Off-task or setAside, never use number of ideas to claim quality, never invent feasibility data or ghostwrite an idea.",
+    "question": "You wrote 'reading games.' What would teenagers do during this activity?",
+    "acceptAllValid": "If three ideas fit and setAside is empty, explicitly accept this as valid process outcome.",
+    "fallback": "AI review is currently unavailable. Your draft is saved locally; you can continue editing or finish the lesson."
+  }
+}
