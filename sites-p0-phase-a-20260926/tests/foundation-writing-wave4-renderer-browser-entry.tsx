@@ -15,7 +15,7 @@ const strips={topic:'A synthetic writing topic',task:'Write to a fictional reade
  mustInclude:'Give an idea, explanation and a specific reader action',boundary:'The proposal is not approved and facts must not be invented'};
 function rows(id:Wave4Id,part:'A-'|'F'){
  return Object.entries(reviewedKeys).filter(([k])=>k.startsWith(id+'-'+part)).map(([qid,key])=>({
-  id:qid,key,options:[...'ABCD'].map(c=>({id:c,text:'Synthetic option '+qid+c,
+  id:qid,key,stem:sentence+' synthetic fixed question',options:[...'ABCD'].map(c=>({id:c,text:'Synthetic option '+qid+c,
     rationale:'Synthetic explanation for '+qid+c+'.'}))
  }));
 }

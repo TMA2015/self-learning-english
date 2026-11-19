@@ -59,7 +59,7 @@ async function commit(state:any,unit:Wave4Id,at:number){
   }
   let changed=edit(current.foundationWritingV1 as Scope,'FW-U10',{
    ...current.foundationWritingV1.units['FW-U10'].draft,
-   cycleB:{draftV1:'Wave 4 new text typed after restoring the browser: a substantive learner revision.'},
+   cycleB:{...current.foundationWritingV1.units['FW-U10'].draft.cycleB,editedV2:'Wave 4 new text typed after restoring the browser: a substantive learner revision.'},
    revisionDecision:'NO_CHANGE_JUSTIFIED',revisionReason:'One confirmed factual sentence already preserves the intended actor and time.'
   });
   const x=stage(changed,'FW-U10',Date.now());
@@ -69,7 +69,7 @@ async function commit(state:any,unit:Wave4Id,at:number){
   const returned=rollback(x.after,x);
   check(returned.rolledBack,'synthetic failed write rolled back');
   check((returned.scope.units['FW-U10'] as any).versions.length===1,'rollback does not fake persisted version');
-  check((returned.scope.units['FW-U10'] as any).draft.cycleB.draftV1.includes('new text typed'),
+  check((returned.scope.units['FW-U10'] as any).draft.cycleB.editedV2.includes('new text typed'),
    'rollback retains unsaved learner text');
   current={...current,foundationWritingV1:returned.scope};
   const committed=await commit(current,'FW-U10',Date.now()+1);

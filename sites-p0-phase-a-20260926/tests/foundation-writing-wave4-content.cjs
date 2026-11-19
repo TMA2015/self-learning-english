@@ -20,7 +20,7 @@ const strip={topic:'Synthetic task context',task:'Write an original synthetic me
  mustInclude:'Give a specific example and a reader request',boundary:'No invented facts or claimed approval'};
 function objectives(id,type){
  return Object.entries(domain.reviewedKeys).filter(([k])=>k.startsWith(id+'-'+type)).map(([qid,key])=>({
- id:qid,key,options:[...'ABCD'].map(c=>({id:c,text:sentence+' '+qid+c,rationale:'Synthetic rationale '+qid+c+' is not learner facing.'}))
+ id:qid,key,stem:sentence+' synthetic independent question',options:[...'ABCD'].map(c=>({id:c,text:sentence+' '+qid+c,rationale:'Synthetic rationale '+qid+c+' is not learner facing.'}))
  }));
 }
 function unit(id){

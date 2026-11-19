@@ -8,7 +8,7 @@ export const WAVE4_SOURCE_NAME='SLE_FOUNDATION_WRITING_AUTHORING_WAVE4_U10-U12_D
 export const WAVE4_SOURCE_SHA256='cca51171781dc535c6a4080107b0204561b850cfcaf33e089fce2eb184468083';
 export const WAVE4_NOTEBOOKLM_VERDICT='SLE-FW-AUTH-W4-NBLM-R1-20261118';
 export type TaskStrip={topic:string;task:string;mustInclude:string;boundary:string};
-export type OwnField={key:string;label:string};
+export type OwnField={key:string;label:string;requiredForAI?:boolean};
 export type Stage={id:string;prompt:string;taskStrip:TaskStrip;fields:OwnField[]};
 export type Wave4Lesson={
  id:Wave4Id;title:string;outcome:string;minutes:string;
@@ -23,7 +23,8 @@ const record=(x:unknown):x is Record<string,unknown>=>!!x&&typeof x==='object'&&
 const words=(x:unknown,min=1)=>typeof x==='string'&&x.trim().length>=min;
 const taskStrip=(x:unknown)=>record(x)&&['topic','task','mustInclude','boundary'].every(k=>words(x[k],8));
 const fields=(x:unknown)=>Array.isArray(x)&&x.length>=1&&x.every(
- (f:unknown)=>record(f)&&words(f.key)&&/^[a-z][a-zA-Z0-9]*$/.test(String(f.key))&&words(f.label,5)
+ (f:unknown)=>record(f)&&words(f.key)&&/^[a-z][a-zA-Z0-9]*$/.test(String(f.key))&&words(f.label,5)&&
+ (f.requiredForAI===undefined||typeof f.requiredForAI==='boolean')
 )&&new Set(x.map((f:OwnField)=>f.key)).size===x.length;
 const ownStage=(x:unknown,expectedId:string)=>record(x)&&x.id===expectedId&&words(x.prompt,25)&&
  taskStrip(x.taskStrip)&&fields(x.fields);
@@ -73,6 +74,7 @@ export function validateWave4Bundle(input:unknown):ContentVerdict{
    !Array.isArray(row.extras)||row.extras.length!==4)
    errors.push(id+' requires 4 embedded and 4 supplemental objective items');
   objectives+=local.length;
+  if(local.some(q=>!record(q)||!words(q.stem,20)))errors.push(id+' original learner-facing question stems missing');
   for(const q of local)if(record(q)&&Array.isArray(q.options))
    rationales+=q.options.filter((o:unknown)=>record(o)&&words(o.rationale)).length;
   const expect=Object.keys(reviewedKeys).filter(k=>k.startsWith(id+'-'));
