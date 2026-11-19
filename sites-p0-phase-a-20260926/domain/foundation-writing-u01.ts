@@ -1,5 +1,6 @@
 import source from '../content/foundation-writing-u01.json';
 import type {NextUnitWork,U02Draft,U03Draft} from './foundation-writing-u02-u03';
+import type {Wave2Work,U04Draft,U05Draft,U06Draft} from './foundation-writing-u04-u06';
 
 export const FOUNDATION_WRITING_SCHEMA=1 as const;
 export const FOUNDATION_U01='FW-U01' as const;
@@ -23,7 +24,7 @@ export type U01Version={
  evidence_weight:0; proficiency_weight:0;
 };
 export type U01Work={draft:U01Draft;versions:U01Version[]};
-export type FoundationWritingV1={schemaVersion:1; units:{'FW-U01'?:U01Work;'FW-U02'?:NextUnitWork<U02Draft>;'FW-U03'?:NextUnitWork<U03Draft>}};
+export type FoundationWritingV1={schemaVersion:1; units:{'FW-U01'?:U01Work;'FW-U02'?:NextUnitWork<U02Draft>;'FW-U03'?:NextUnitWork<U03Draft>;'FW-U04'?:Wave2Work<U04Draft>;'FW-U05'?:Wave2Work<U05Draft>;'FW-U06'?:Wave2Work<U06Draft>}};
 
 export const newTaskMap=():TaskMap=>({topic:'',task:'',mustInclude:'',boundary:'',commitment:''});
 export const newU01Draft=():U01Draft=>({

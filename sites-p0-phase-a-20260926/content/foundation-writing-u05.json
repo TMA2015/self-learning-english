@@ -1,0 +1,256 @@
+{
+  "id": "FW-U05",
+  "title": "Build Unified Single Paragraphs",
+  "minutes": "20–35",
+  "microLessons": 2,
+  "source": {
+    "manuscript": "SLE_FOUNDATION_WRITING_AUTHORING_WAVE2_U04-U06_AS_REVIEWED_20261118.md",
+    "sha256": "42a059c04c269664e268d4d7a80a9c23536e1c868bf51a36ab34671e8ec052dd",
+    "academicReview": "SLE-FW-AUTH-W2-NBLM-R1-20261118",
+    "verdict": "PASS",
+    "requiredChanges": "NONE"
+  },
+  "outcome": "Write one paragraph about one main point, identify what a sentence does and repair or remove irrelevant material. Word guidance is not a quality cutoff.",
+  "teaching": {
+    "lesson1": "A paragraph is not simply a block of five sentences. The reader should know what the entire paragraph is trying to explain.",
+    "lesson2": "Check each sentence's job against the main point: opening point, reason, example and optional further practical detail. Other coherent orders are possible.",
+    "demo": {
+      "id": "FW-U05-D01",
+      "prompt": "A neighborhood group is considering a small plant-exchange shelf near the community garden. Explain how it could help neighbors.",
+      "steps": [
+        {
+          "label": "Notice",
+          "text": "The paragraph's one job is explaining how the plant exchange could help neighbors."
+        },
+        {
+          "label": "Main point",
+          "text": "A small plant-exchange shelf could help neighbors share extra seedlings without wasting them."
+        },
+        {
+          "label": "Reason",
+          "text": "Some households grow more seedlings than they can plant."
+        },
+        {
+          "label": "Concrete detail",
+          "text": "For instance, a gardener might leave two spare tomato plants for another family."
+        },
+        {
+          "label": "Reject/repair",
+          "text": "The neighborhood bus fare increased last month does not help explain seedling sharing. Remove it; a shorter, focused paragraph is better."
+        },
+        {
+          "label": "Natural end",
+          "text": "A simple take-one/leave-one sign could clarify the exchange. A separate summary sentence is optional."
+        },
+        {
+          "label": "Transfer principle",
+          "text": "Sentence job matters more than length or formulaic Firstly/Finally."
+        }
+      ],
+      "paragraph": "A small plant-exchange shelf could help neighbors share extra seedlings without wasting them. Some households grow more seedlings than they can plant, so a shared shelf would give the extras a useful home. For example, one gardener might leave two tomato plants for another family. A simple sign could explain how to take or donate a plant."
+    },
+    "a1": "Optional sentence roles: Main point / Why / Example. Use short, understandable sentences.",
+    "b1": "Explain when a second detail helps and when it distracts from the central point."
+  },
+  "cycleA": {
+    "id": "FW-U05-A",
+    "prompt": "Your school is considering a quiet reading nook near the hallway. Explain why a small space with books and chairs could help students at break time.",
+    "instruction": "For THIS closed task, put the main point first, the reason second, the example before the maintenance detail. Put the off-topic card in Remove. Alternative coherent supporting-detail orders may be explained in your own reflection; this key is not a universal formula.",
+    "positions": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "REMOVE"
+    ],
+    "cards": [
+      {
+        "id": "S1",
+        "text": "A small reading nook could give students a quiet choice during busy breaks.",
+        "key": "1",
+        "role": "Opening main point",
+        "rationale": "Names the proposal and its central benefit."
+      },
+      {
+        "id": "S2",
+        "text": "The hallway can be noisy, so a calmer corner would suit students who want a short reading break.",
+        "key": "2",
+        "role": "Reason",
+        "rationale": "Explains how calmness helps students."
+      },
+      {
+        "id": "S3",
+        "text": "For example, two chairs and a shelf of short books could fit into an unused corner.",
+        "key": "3",
+        "role": "Concrete example",
+        "rationale": "Makes the proposal imaginable and relevant."
+      },
+      {
+        "id": "S4",
+        "text": "A notice asking readers to return books could help keep the nook usable for the next class.",
+        "key": "4",
+        "role": "Further practical detail",
+        "rationale": "Offers a possible way to maintain the nook."
+      },
+      {
+        "id": "X1",
+        "text": "Our school football team won a match last weekend.",
+        "key": "REMOVE",
+        "role": "Off topic",
+        "rationale": "Does not develop the reading nook's purpose."
+      }
+    ],
+    "repairPrompt": "Replace X1 with a new sentence that genuinely supports the reading nook. Your wording can differ from the model.",
+    "reflectionPrompt": "What job does S3 perform that S1 does not?",
+    "orderWhyPrompt": "Explain why this order serves a reader. If a different supporting-detail order is still coherent, explain that too."
+  },
+  "cycleB": {
+    "id": "FW-U05-B",
+    "prompt": "The school wants to create a student tool-lending corner where classmates may borrow rulers, glue sticks and other safe classroom supplies. Recommend the corner and explain one main benefit, supported with a practical example. Write one coherent paragraph.",
+    "strip": {
+      "topic": "School tool-lending corner for safe classroom supplies.",
+      "task": "Recommend the corner and explain its usefulness.",
+      "mustInclude": "One main benefit and at least one practical, relevant example.",
+      "boundary": "School/classmates; safe ordinary supplies; one paragraph."
+    },
+    "steps": [
+      "Write short original planning notes: main point, reason and concrete detail.",
+      "Write one original unified paragraph; all sentences should support the same benefit.",
+      "Quote one sentence exactly from YOUR paragraph and label its job as point, reason or detail.",
+      "Explain why that chosen sentence performs that job. A sentence may do more than one job.",
+      "Save your own paragraph version. Suggested length 60–90 words is guidance only."
+    ],
+    "roles": [
+      "point",
+      "reason",
+      "detail"
+    ],
+    "suggestedLength": "60–90 words — guidance only, never a quality cutoff.",
+    "a1": "Optional: I recommend __ because __; For example, __. Do not use as a scored answer.",
+    "b1": "Add a realistic return-supplies limitation while staying on the same paragraph purpose."
+  },
+  "transfer": {
+    "id": "FW-U05-T",
+    "prompt": "A local youth center wants one new weekend bicycle-repair pop-up where young people can learn simple, safe maintenance with adult supervision. Write one recommendation paragraph explaining a single benefit, with a concrete example and no unrelated sentences.",
+    "instruction": "Write a NEW paragraph and copy one exact supporting-detail sentence from it. The main task is not a word-count test."
+  },
+  "supplemental": [
+    {
+      "id": "FW-U05-F01",
+      "title": "Point versus example",
+      "prompt": "A community pool could offer beginner swimming lessons.",
+      "question": "Which sentence best introduces the overall purpose of a paragraph about this proposal?",
+      "key": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Last Tuesday, a child bought a blue swimsuit.",
+          "rationale": "One incident, not the central proposal."
+        },
+        {
+          "id": "B",
+          "text": "Beginner swimming lessons could help new swimmers feel safer and more confident in the pool.",
+          "rationale": "Names the proposal and potential benefit."
+        },
+        {
+          "id": "C",
+          "text": "The pool tiles are blue.",
+          "rationale": "Decor does not explain the proposed lesson."
+        },
+        {
+          "id": "D",
+          "text": "My cousin prefers cycling to swimming.",
+          "rationale": "Personal aside unrelated to the paragraph."
+        }
+      ]
+    },
+    {
+      "id": "FW-U05-F02",
+      "title": "Irrelevant support sentence",
+      "prompt": "A neighborhood library wants to lend board games. Paragraph begins: Borrowing board games from the library could help families enjoy activities together without buying every game.",
+      "question": "Which addition is least relevant?",
+      "key": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Families could choose a game for a rainy weekend.",
+          "rationale": "Relevant family-use situation."
+        },
+        {
+          "id": "B",
+          "text": "The library could explain how to return missing pieces.",
+          "rationale": "Practical detail about lending."
+        },
+        {
+          "id": "C",
+          "text": "A neighbor bought a red car last year.",
+          "rationale": "Unrelated event, not developing board-game lending."
+        },
+        {
+          "id": "D",
+          "text": "Borrowing means families could try different games without owning each one.",
+          "rationale": "On-topic development, though specificity might improve it."
+        }
+      ]
+    },
+    {
+      "id": "FW-U05-F03",
+      "title": "Concrete rather than empty praise",
+      "prompt": "A school could host a lunchtime music-listening session.",
+      "question": "Which sentence gives strongest concrete support for how the session could work?",
+      "key": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "It will be very, very good.",
+          "rationale": "Praise instead of process."
+        },
+        {
+          "id": "B",
+          "text": "Lunch is a time.",
+          "rationale": "Uninformative."
+        },
+        {
+          "id": "C",
+          "text": "Students could listen to one short song in a supervised room and discuss what they noticed.",
+          "rationale": "Plausible process tied to the session."
+        },
+        {
+          "id": "D",
+          "text": "Music is music, and everyone knows music.",
+          "rationale": "Repetitive generalization with no detail."
+        }
+      ]
+    },
+    {
+      "id": "FW-U05-F04",
+      "title": "Unity is not word count",
+      "prompt": "Your paragraph has one clear point, a matching reason and example, and no unrelated sentences; it is shorter than a suggested word range.",
+      "question": "Which action is best before adding anything?",
+      "key": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Add an unrelated story until it reaches exactly 100 words.",
+          "rationale": "Filler damages unity."
+        },
+        {
+          "id": "B",
+          "text": "Insert Furthermore before every sentence.",
+          "rationale": "Connectors do not add support."
+        },
+        {
+          "id": "C",
+          "text": "Re-check the task and decide whether any necessary idea is missing; keep it concise if nothing is missing.",
+          "rationale": "Meaning and coverage are more important than arbitrary length."
+        },
+        {
+          "id": "D",
+          "text": "Delete the topic sentence because short paragraphs cannot have one.",
+          "rationale": "Removes the paragraph's anchor."
+        }
+      ]
+    }
+  ],
+  "aiLens": "Review unity and relevance by citing exact saved sentences, not word counts. Ask about off-task content only if it exists. Accept varied order and multifunctional sentences; do not require a separate conclusion."
+}

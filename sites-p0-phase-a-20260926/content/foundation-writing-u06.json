@@ -1,0 +1,245 @@
+{
+  "id": "FW-U06",
+  "title": "Plan Multi-Paragraph Outlines",
+  "minutes": "20–30",
+  "microLessons": 2,
+  "source": {
+    "manuscript": "SLE_FOUNDATION_WRITING_AUTHORING_WAVE2_U04-U06_AS_REVIEWED_20261118.md",
+    "sha256": "42a059c04c269664e268d4d7a80a9c23536e1c868bf51a36ab34671e8ec052dd",
+    "academicReview": "SLE-FW-AUTH-W2-NBLM-R1-20261118",
+    "verdict": "PASS",
+    "requiredChanges": "NONE"
+  },
+  "outcome": "Plan short keyword outlines with distinct paragraph jobs, plausible order and task coverage; choose three or four roles according to need, not a fixed essay template.",
+  "teaching": {
+    "lesson1": "An outline decides which ideas belong where before drafting. It is not a place to write the entire essay.",
+    "lesson2": "Compare paragraph jobs and find repetition, but do not treat three/four paragraphs as a universal rule.",
+    "demo": {
+      "id": "FW-U06-D01",
+      "prompt": "Write a short message to the public library suggesting an afternoon skills-sharing session. Explain who could take part and give two practical arrangements.",
+      "steps": [
+        {
+          "label": "Notice",
+          "text": "Topic: skills-sharing afternoon; Task: suggest and explain; Must include participants and two arrangements; Boundary: short message to public library."
+        },
+        {
+          "label": "Choose a path",
+          "text": "Start with the proposal, then let organizers picture how it works."
+        },
+        {
+          "label": "Keyword role notes",
+          "text": "P1: proposal; free skills-sharing; community. P2: volunteer demonstrations; tables; sign-up. P3: teenagers and adults; beginner slots; invite feedback."
+        },
+        {
+          "label": "Why roles differ",
+          "text": "P1 says WHAT; P2 details practical HOW; P3 identifies WHO and a closing request."
+        },
+        {
+          "label": "Reject duplicate roles",
+          "text": "Repeating that the event is nice adds no distinct reader job. Replace repetition with a missing participant/arrangement."
+        },
+        {
+          "label": "Transfer principle",
+          "text": "Two paragraphs might also work for a short email; adapt outline to audience, not an exact four-paragraph rule."
+        }
+      ]
+    },
+    "a1": "Optional icons/roles: What? How? Who? English keyword notes are enough; no full essay needed.",
+    "b1": "Compare a proposal with a public notice and explain why their reader jobs may differ."
+  },
+  "cycleA": {
+    "id": "FW-U06-A",
+    "prompt": "A community group plans a one-day food-waste reduction event. Write a short proposal to neighborhood volunteers: explain the event, the food-sharing activity, and how participants will handle leftover items safely.",
+    "strip": {
+      "topic": "One-day community food-waste event.",
+      "task": "Propose a practical plan for neighborhood volunteers.",
+      "mustInclude": "Event, sharing activity, safe leftover handling.",
+      "boundary": "Volunteers/community; one day; safe practical actions."
+    },
+    "labels": [
+      "P1: Proposal and invitation",
+      "P2: Main sharing activity",
+      "P3: Safe next steps and close",
+      "DUPLICATE_OR_EMPTY",
+      "OFF_TASK",
+      "DUPLICATE_ROLE"
+    ],
+    "cards": [
+      {
+        "id": "C1",
+        "text": "Opening: one-day food-waste event; volunteers invited",
+        "key": "P1: Proposal and invitation",
+        "rationale": "Introduces event, audience and purpose."
+      },
+      {
+        "id": "C2",
+        "text": "Food-sharing station: label unopened shelf-stable food; clear collection area",
+        "key": "P2: Main sharing activity",
+        "rationale": "Describes a central practical action without a food-safety guarantee."
+      },
+      {
+        "id": "C3",
+        "text": "Leftover handling: follow organizers' safety guidance; contact suitable charities before donating",
+        "key": "P3: Safe next steps and close",
+        "rationale": "Handles leftovers cautiously, not assuming donations are automatically accepted."
+      },
+      {
+        "id": "X1",
+        "text": "All paragraphs: the food event is nice and good",
+        "key": "DUPLICATE_OR_EMPTY",
+        "rationale": "Empty praise does not create distinct roles."
+      },
+      {
+        "id": "X2",
+        "text": "Change the color of city buses",
+        "key": "OFF_TASK",
+        "rationale": "Unrelated to the food-waste event."
+      },
+      {
+        "id": "X3",
+        "text": "P2: food-sharing station; P3: food-sharing station, no new action",
+        "key": "DUPLICATE_ROLE",
+        "rationale": "Repeats one paragraph's reader job with no new action."
+      }
+    ],
+    "repairPrompt": "Rewrite one repeated role into a new action that makes the event proposal more useful. Do not imply that food donation is automatically permitted.",
+    "whyPrompt": "Explain why your repaired role has a different job from the other roles."
+  },
+  "cycleB": {
+    "id": "FW-U06-B",
+    "prompt": "A community youth center is preparing a weekend makers' fair. Write a proposal that explains (1) what the fair would offer, (2) two different activity areas, and (3) how visitors can participate safely. Plan the paragraph jobs using short notes before drafting.",
+    "strip": {
+      "topic": "Weekend makers' fair at a community youth center.",
+      "task": "Propose and explain an event to organizers.",
+      "mustInclude": "Fair purpose; TWO distinct activity areas; safe participation arrangement.",
+      "boundary": "Youth center; weekend visitors; practical/safe activities; outline only."
+    },
+    "instruction": "Pick three or four paragraph roles. Give each role a reader job and keyword/short-phrase notes; usually 3–8 notes per role, but this is guidance, not a semantic quality cutoff. Explain the order and whether any jobs overlap. Do not write a full essay or force a separate conclusion.",
+    "a1": "Optional roles: introduce / show / invite. A straightforward three-part plan is fine.",
+    "b1": "Compare a proposal vs public notice; optionally compress to two parts for a different short notice and explain."
+  },
+  "transfer": {
+    "id": "FW-U06-T",
+    "prompt": "An animal shelter wants a short letter suggesting a community donation drive. Plan a clear letter that explains the purpose, how people could participate, and what they should check before bringing supplies. Produce only a keyword outline.",
+    "instruction": "Make a new 3- or 4-role keyword outline and explain how it covers the shelter's needs. Do not invent an official accepted-items list; suggest confirming with the shelter first."
+  },
+  "supplemental": [
+    {
+      "id": "FW-U06-F01",
+      "title": "Outline versus full draft",
+      "prompt": "Plan a short community-garden volunteer invitation.",
+      "question": "Which entry is most suitable as an outline note?",
+      "key": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Dear neighbors, I am writing with great excitement about a wonderful plan ... [full paragraph].",
+          "rationale": "Prewrites a whole paragraph instead of a flexible note."
+        },
+        {
+          "id": "B",
+          "text": "P1: invite volunteers; Saturday morning; community garden",
+          "rationale": "Compact keywords capture one reader job and details."
+        },
+        {
+          "id": "C",
+          "text": "Firstly, secondly, thirdly, finally",
+          "rationale": "Connector list without actual task content."
+        },
+        {
+          "id": "D",
+          "text": "Write 120 words exactly.",
+          "rationale": "Word target isn't a content plan."
+        }
+      ]
+    },
+    {
+      "id": "FW-U06-F02",
+      "title": "Distinct paragraph jobs",
+      "prompt": "Outline a neighborhood tree-planting invitation: tell people when, what to bring, and why it helps.",
+      "question": "Which pair has the clearest distinct jobs?",
+      "key": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "P1: say planting is nice; P2: say planting is very nice",
+          "rationale": "Repeats praise rather than new functions."
+        },
+        {
+          "id": "B",
+          "text": "P1: explain when and where to join; P2: explain needed supplies and purpose",
+          "rationale": "Splits logistics and preparation/benefit and covers the task."
+        },
+        {
+          "id": "C",
+          "text": "P1: list famous footballers; P2: list football scores",
+          "rationale": "Unrelated to the invitation."
+        },
+        {
+          "id": "D",
+          "text": "P1: mention the same date; P2: repeat the same date with no new action",
+          "rationale": "Duplicates a job, omitting other required information."
+        }
+      ]
+    },
+    {
+      "id": "FW-U06-F03",
+      "title": "Cover required parts",
+      "prompt": "Invite residents to a bike-safety talk. Include the place, starting time, and one planned practical activity.",
+      "question": "Which outline covers all required information without drafting the complete invitation?",
+      "key": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Place; time; practical demonstration; audience: residents",
+          "rationale": "Lists every requirement in planning notes."
+        },
+        {
+          "id": "B",
+          "text": "I love bicycles; bicycles are excellent",
+          "rationale": "Praise without place/time/activity."
+        },
+        {
+          "id": "C",
+          "text": "Place and time only",
+          "rationale": "Missing required practical activity."
+        },
+        {
+          "id": "D",
+          "text": "Write about any outdoor hobby",
+          "rationale": "Changes event and constraints."
+        }
+      ]
+    },
+    {
+      "id": "FW-U06-F04",
+      "title": "Flexible structure",
+      "prompt": "A short message to a club leader explains a simple event proposal and two arrangements.",
+      "question": "Which planning principle best fits?",
+      "key": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Every response must have exactly five paragraphs.",
+          "rationale": "Short message may not need long essay structure."
+        },
+        {
+          "id": "B",
+          "text": "All paragraph roles must repeat the same proposal sentence.",
+          "rationale": "Duplication defeats planning."
+        },
+        {
+          "id": "C",
+          "text": "Choose a small number of distinct roles that cover the task, even if opening and closing share one paragraph.",
+          "rationale": "Flexible task-driven structure preserves required functions."
+        },
+        {
+          "id": "D",
+          "text": "Skip required arrangements if they do not fit your favorite format.",
+          "rationale": "Flexible structure does not permit omitting required details."
+        }
+      ]
+    }
+  ],
+  "aiLens": "Review whether each planned paragraph has a distinct reader job and covers the fair purpose, two activity areas and safe participation. Accept coherent 3-role or 4-role structures. Quote actual learner notes, do not draft a finished proposal."
+}
