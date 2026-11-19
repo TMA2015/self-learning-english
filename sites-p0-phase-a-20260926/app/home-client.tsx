@@ -364,7 +364,7 @@ export default function Home(){
     onEdit={draft=>editFoundationWave4(view==="foundation-writing-u10"?"FW-U10":view==="foundation-writing-u11"?"FW-U11":"FW-U12",draft)}
     onSave={()=>saveFoundationWave4(view==="foundation-writing-u10"?"FW-U10":view==="foundation-writing-u11"?"FW-U11":"FW-U12")}
     onExit={()=>void navigate("writing")} showVi={!!state.vietnameseSupport}
-    reviewer={async payload=>{
+    reviewer={browserTutorService().available?async payload=>{
      // Only called by the learner's explicit click for an exact persisted artifact.
      const tutor=browserTutorService();
      if(!tutor.available)throw Error('Optional AI Tutor unavailable');
@@ -373,7 +373,7 @@ export default function Home(){
      },{responseLanguage:state.vietnameseSupport?'vi':'en'});
      if(response?.provider!=='firebase-ai-logic')throw Error('Unverified AI Tutor response');
      return response.structuredResult;
-    }}/> )}
+    }:undefined}/> )}
 
  {view==="reference"&&<ReferenceLibrary catalog={foundationCatalog} onCatalog={setFoundationCatalog} onOpenLesson={(id,skill)=>void openReferenceLesson(id,skill)}/>}
  {view==="diagnostic"&&<DiagnosticAssessment value={state.diagnosticV2} archive={state.diagnosticArchive??[]} onChange={diagnosticV2=>update({diagnosticV2,...(state.diagnosticV2&&state.diagnosticV2.startedAt!==diagnosticV2.startedAt?{diagnosticArchive:[...(state.diagnosticArchive??[]),state.diagnosticV2]}:{})})} onFinish={finishDiagnostic} showVi={!!state.vietnameseSupport}/>}
