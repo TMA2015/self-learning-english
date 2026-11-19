@@ -55,7 +55,7 @@ const good=()=>({summary:'Your proposal names a possible action.',strengths:['Co
  assert(failures>=15,'Invalid structured feedback triggers explicit failure report');
  assert(calls>=21,'All synthetic valid/invalid requests were actually passed into the service');
  const home=read('app/home-client.tsx');
- assert(home.includes('reviewer={async payload=>'),'Actual HomeClient must wire optional on-demand reviewer');
+ assert(home.includes('reviewer={browserTutorService().available?async payload=>'),'Actual HomeClient gates reviewer on provider availability');
  assert(home.includes("browserTutorService()"),'Reuse existing provider; no new subscription or endpoint');
  console.log(JSON.stringify({result:'PASS',gate:'FOUNDATION_WRITING_WAVE4_SHARED_AI_TUTOR',
   unitFixtures:6,rejectedInvalidReviews:15,promptVersion:'1.4.0',syntheticProvider:true,
