@@ -9,7 +9,7 @@ for(const u of ['10','11','12'])assert(prompt.system.includes('FW-U'+u),'Prompt 
 const source=read('ai/service.ts'),sandboxModule={exports:{}};
 vm.runInNewContext(ts.transpileModule(source,{fileName:'ai/service.ts',compilerOptions:{
  target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS,esModuleInterop:true
-}}).outputText,{module,exports:module.exports,JSON,Date,Object,Set,Number,Error,
+}}).outputText,{module:sandboxModule,exports:sandboxModule.exports,JSON,Date,Object,Set,Number,Error,
  require:name=>{
   if(name==='./teaching-validation')return{validateTeachingRating:()=>null};
   if(name==='./prompts/registry.json')return registry;
