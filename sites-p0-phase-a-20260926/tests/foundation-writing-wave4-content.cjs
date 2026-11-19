@@ -72,10 +72,18 @@ check('student-facing original source is not shipped',()=>{
  const contents=fs.readdirSync(path.join(base,'content'));
  assert.equal(contents.filter(x=>/^foundation-writing-u(10|11|12)\.json$/.test(x)).length,0);
 });
-check('learner Wave4 renderer is isolated from HomeClient routes',()=>{
+check('reviewed Wave4 authoring and real source-based content are integrated',()=>{
  const home=fs.readFileSync(path.join(base,'app/home-client.tsx'),'utf8');
- assert(!home.includes("from './foundation-writing-wave4'"));
- assert(!home.includes('foundation-writing-u10'));
+ const original=fs.readFileSync(path.join(base,'docs/foundation-writing',
+  'SLE_FOUNDATION_WRITING_AUTHORING_WAVE4_U10-U12_DRAFT_20261118.md'),'utf8');
+ const reviewed=require('../content/foundation-writing-wave4-reviewed.json');
+ assert(original.includes('# U10 — Edit Language Mechanics Without Changing Meaning'));
+ assert(original.includes('# U11 — Revise Meaning, Reason & Flow'));
+ assert(original.includes('# U12 — Independent Capstone & New-Genre Transfer'));
+ const audit=m.validateWave4Bundle(reviewed);
+ assert.equal(audit.pass,true,JSON.stringify(audit.errors));
+ assert(home.includes("from './foundation-writing-wave4'"));
+ for(const id of ['10','11','12'])assert(home.includes('foundation-writing-u'+id));
 });
 check('source verifier utility exists and exact checksum is pinned',()=>{
  const source=fs.readFileSync(path.join(base,'scripts/verify-foundation-writing-wave4-source.cjs'),'utf8');
@@ -87,4 +95,4 @@ check('course shell includes explicit save and opt-in review actions',()=>{
  assert.match(ui,/safeReview/);assert.match(ui,/sourceAudit\.pass/);
 });
 console.log(JSON.stringify({result:'PASS',gate:'FOUNDATION_WRITING_WAVE4_CONTENT_SHELL',tests:n,
- authoringSource:'NOT_AVAILABLE',uiMountedInLiveApp:false,release:'NO_GO'}));
+ authoringSource:'RECOVERED_SHA_GATED',uiMountedInCurrentMain:false,release:'QA_REQUIRED'}));
