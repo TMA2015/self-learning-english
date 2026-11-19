@@ -29,7 +29,7 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
  },[]);
  const storageKey='g-learning:english:ai-feedback:v1:'+reviewId.replace(/[^a-z0-9-]/gi,'')+':'+fingerprint(signature);
  const [feedback,setFeedback]=useState<OnDemandWritingFeedback|null>(null);
-  const [feedbackSignature,setFeedbackSignature]=useState<string|null>(null);
+ const [feedbackSignature,setFeedbackSignature]=useState<string|null>(null);
  const [reason,setReason]=useState('');
  const [busy,setBusy]=useState(false);
  useEffect(()=>{
@@ -85,7 +85,7 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
           <p><strong>From your text: </strong>{item.evidence?<>“{item.evidence}”</>:'Not enough evidence in this sample.'}</p>
           <p><strong>Next step: </strong>{item.nextStep}</p>
         </div>)}
-      </section>
+      </section>}
      {visibleFeedback.strengths.length>0&&<><strong>What worked well</strong><ul>{visibleFeedback.strengths.map((s,i)=><li key={i}>{(kind==='revision'||reviewMode==='any-topic')?<Inline text={s}/>:s}</li>)}</ul></>}
      {visibleFeedback.improvements.length>0&&<><strong>What to improve</strong><ul>{visibleFeedback.improvements.map((s,i)=><li key={i}>{(kind==='revision'||reviewMode==='any-topic')?<Inline text={s}/>:s}</li>)}</ul></>}
      {visibleFeedback.scores&&kind!=='revision'&&reviewMode!=='any-topic'&&!sourceSample&&<div><strong>AI rubric observations · provisional (0–10)</strong><ul>{Object.entries(visibleFeedback.scores).map(([k,v])=><li key={k}>{k.replaceAll('-',' ')}: {v}/10</li>)}</ul></div>}
