@@ -62,7 +62,7 @@ assert(home.includes('view==="writing-any-topic"&&<AnyTopicWritingReview'),
  'Independent writing draft/review remains reachable');
 assert(home.includes('view==="tutor"&&<TutorOverview onWriting={()=>navigate("writing-any-topic")}/>'),
  'AI Tutor Writing feedback entry must never send users to Week 1');
-assert(platform.includes('Open AI Writing Feedback'),'Make AI feedback CTA explicit');
+assert(platform.includes('Open Writing Studio'),'Keep explicit Writing Studio CTA on AI Tutor page');
 assert(!platform.split('export function TutorOverview')[1].includes('Try Writing practice'),
  'Remove incorrect Week 1 CTA from AI feedback landing');
 assert(anyTopic.includes('reviewMode="any-topic"')&&anyTopic.includes('kind="draft" enabled={aiEligible}'),
