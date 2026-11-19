@@ -395,7 +395,7 @@ export function FoundationWritingNextUnit({unitId,work,onEdit,onSave,onExit,show
     onClick={()=>void save()}>{busy?'Saving…':'Save version'}</button>
    <button type="button" className="secondary-button" disabled={busy}
     onClick={()=>void save(true)}>Save &amp; Exit</button>
-   <button type="button" className="secondary-button" onClick={onExit}>Back to Writing</button>
+   <button type="button" className="secondary-button" onClick={onExit}>Back to Foundation Writing</button>
   </div>
   {saveMessage&&<p role="status" className="notice">{saveMessage}</p>}
   <article className="wcv2-card" aria-label={unitId+' practice milestones'}>
@@ -406,7 +406,7 @@ export function FoundationWritingNextUnit({unitId,work,onEdit,onSave,onExit,show
     <li>Independent transfer: {progress.originalTransfer?'Saved':'Not yet'}</li>
     <li>Four supplemental items: {progress.extras?'Checked':'Not yet'}</li></ul>
   </article>
-  <p className="muted">Stored in existing SLE learner state under foundationWritingV1 / {unitId}. The legacy Writing course and grades remain separate.</p>
+  <p className="muted">Stored in existing SLE learner state under foundationWritingV1 / {unitId}. Independent Writing skill-catalog results and grades remain separate.</p>
   {showVi&&<p className="vi-help">Em có thể tự học và lưu tiến độ mà không dùng AI. AI Tutor chỉ nhận xét bài em chủ động yêu cầu sau khi đã lưu.</p>}
  </section>;
 }

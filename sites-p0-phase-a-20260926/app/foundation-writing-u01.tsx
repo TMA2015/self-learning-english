@@ -246,7 +246,7 @@ export function FoundationWritingU01({work=emptyU01Work(),onEdit,onSave,onExit,s
    <button type="button" className="primary-button" disabled={saving} onClick={()=>void save()}>
     {saving?'Saving…':'Save version'}</button>
    <button type="button" className="secondary-button" disabled={saving} onClick={()=>void save(true)}>Save &amp; Exit</button>
-   <button type="button" className="secondary-button" onClick={onExit}>Back to Writing</button>
+   <button type="button" className="secondary-button" onClick={onExit}>Back to Foundation Writing</button>
   </div>
   {saveMessage&&<p role="status" className="notice">{saveMessage}</p>}
   <div className="wcv2-card"><h3>Practice milestones (not CEFR evidence)</h3><ul>

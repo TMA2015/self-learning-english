@@ -54,10 +54,10 @@ assert(!home.includes('<WritingHome compact'),'Do not embed the 12-week course i
 assert(!foundation.includes('className="foundation-writing-coach"'),
  'No course-only cards in the Writing skill overview');
 assert(home.includes('writingIntro={view==="writing"?<div className="learning-choices"'),'Writing skill keeps a bounded accessible entry group');
-assert(home.includes('onClick={()=>void navigate("foundation-writing")}>Start Foundation Writing · 12 Units available'),'Reviewed full Foundation Writing U01–U12 accessible from Writing');
-assert(home.includes('Open AI Writing Feedback · Any Topic'));
+assert(home.includes('onClick={()=>void navigate("writing-course")}>Foundation Writing'),'Reviewed full Foundation Writing U01–U12 accessible from Writing');
+assert(home.includes('>Writing Studio</button>')&&home.includes('onClick={()=>void navigate("writing-any-topic")}>Writing Studio</button>'));
 assert(css.includes('.foundation-writing-action{'),'Compact action layout must remain mobile-readable');
-assert(home.includes('view==="writing-course"&&'),'The separate 12-week Writing course remains reachable');
+assert(home.includes('view==="writing-course"&&'),'The Foundation Writing course overview remains reachable from Writing and My Courses');
 assert(home.includes('view==="writing-any-topic"&&<AnyTopicWritingReview'),
  'Independent writing draft/review remains reachable');
 assert(home.includes('view==="tutor"&&<TutorOverview onWriting={()=>navigate("writing-any-topic")}/>'),
@@ -85,6 +85,6 @@ console.log(JSON.stringify({
  result:'PASS',gate:'skill-overview-cleanup',skillTabsAboveTitle:true,
  dynamicSkillCounts:Object.fromEntries(counts),allLessonsSidebarRemoved:true,
  skillLibraryRetained:true,focusUnitDropdownRemoved:true,
- writing12WeekOnlyInCourse:true,independentGeminiFeedbackRoute:true,
+ foundationWritingSharedCourseOverview:true,independentGeminiFeedbackRoute:true,
  noProviderCalls:true,noProductionMutations:true,
 }));

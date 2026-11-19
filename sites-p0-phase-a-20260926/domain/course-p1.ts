@@ -1,20 +1,34 @@
-/** v21 P1 projection. This is a virtual view of the saved Writing programme. */
+/** v21 course-selection contract. Keep the historical ID to preserve existing selections. */
 export const WRITING_COURSE_ID='COURSE-WRITING-12W';
-export const WRITING_STEP_NAMES=['Question analysis','Brainstorm','Outline','Writing'] as const;
+export const FOUNDATION_UNIT_IDS=['FW-U01','FW-U02','FW-U03','FW-U04','FW-U05','FW-U06','FW-U07','FW-U08','FW-U09','FW-U10','FW-U11','FW-U12'] as const;
 export type CourseSelection={courseV1:1;activeCourseId:string|null;revision:number;lastRequestId:string|null};
 export const emptySelection=():CourseSelection=>({courseV1:1,activeCourseId:null,revision:0,lastRequestId:null});
 
+function record(value:unknown):Record<string,unknown>|null{
+ return value!==null&&typeof value==='object'&&!Array.isArray(value)?value as Record<string,unknown>:null;
+}
+
+/** A unit has SAVED work only if a persisted immutable version exists; this is not mastery. */
+export function savedFoundationUnitIds(state:Record<string,unknown>|null):string[]{
+ const foundation=record(state?.foundationWritingV1);
+ if(!foundation||foundation.schemaVersion!==1)return [];
+ const units=record(foundation.units);
+ if(!units)return [];
+ return FOUNDATION_UNIT_IDS.filter(id=>{
+  const entry=record(units[id]);
+  return !!entry&&Array.isArray(entry.versions)&&entry.versions.length>0;
+ });
+}
+
 export function writingCourse(state:Record<string,unknown>|null){
- const saved=Array.isArray(state?.completed)?state.completed:[];
- const completed=WRITING_STEP_NAMES.map((_,i)=>i).filter(i=>saved.includes(i));
- const next=WRITING_STEP_NAMES.find((_,i)=>!completed.includes(i));
+ const saved=savedFoundationUnitIds(state);
+ const next=FOUNDATION_UNIT_IDS.find(id=>!saved.includes(id));
  return {
-  id:WRITING_COURSE_ID,title:'English Writing Coach · 12 Weeks',kind:'legacy-writing' as const,
-  publishedWeeks:1,previewWeeks:11,completedRequired:completed.length,availableRequired:4,
-  nextActivity:next??'Review your Week 1 work',
-  // A saved process flag is not a Writing quality score or a reviewed CEFR level.
-  progressLabel:`${completed.length}/4 Week 1 steps saved`,
-  week1Complete:completed.length===4,
+  id:WRITING_COURSE_ID,title:'Foundation Writing',kind:'foundation-writing' as const,
+  publishedUnits:12,completedRequired:saved.length,availableRequired:12,
+  nextActivity:next?'Unit '+next.slice(-2):'Review a saved unit',
+  // The count is a save-history indicator, never an assessed score or course mastery claim.
+  progressLabel:`${saved.length}/12 units with saved work`,
  };
 }
 

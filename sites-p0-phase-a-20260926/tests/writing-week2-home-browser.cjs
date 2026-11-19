@@ -1,5 +1,5 @@
 'use strict';
-/** Real HomeClient and real browser-local learner runtime, synthetic data only.
+/** Real Foundation Writing HomeClient and browser-local learner runtime, synthetic data only.
  * This is NOT authenticated production server or physical Safari QA.
  */
 const assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path'),
@@ -7,7 +7,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),os=require('nod
 const root=path.join(__dirname,'..');
 (async()=>{
  const {build}=await import('vite');
- const out=path.join(root,'.sites-runtime/w2-home-integrated-browser');
+ const out=path.join(root,'.sites-runtime/foundation-course-home-integrated-browser');
  fs.rmSync(out,{force:true,recursive:true});
  await build({root,configFile:false,logLevel:'error',
   resolve:{alias:{'@':root}},
@@ -49,7 +49,7 @@ const root=path.join(__dirname,'..');
  }).find(Boolean);
  assert(bin,'Chromium executable required');
  assert(typeof WebSocket==='function','Node 24 CDP WebSocket needed');
- const profile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-week2-home-'));
+ const profile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-foundation-home-'));
  const browser=cp.spawn(bin,['--headless=new','--no-sandbox','--disable-dev-shm-usage','--no-first-run',
   '--disable-background-networking','--disable-extensions','--remote-debugging-port=0',
   '--remote-debugging-address=127.0.0.1','--remote-allow-origins=*','--window-size=1280,900',
@@ -114,13 +114,13 @@ const root=path.join(__dirname,'..');
    const screenshot=await command('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
    const bytes=Buffer.from(screenshot.data,'base64');
    fs.writeFileSync(path.join(out,'week2-home-'+width+'.png'),bytes);
-   console.log('W2_HOME_SCREENSHOT '+JSON.stringify({width,bytes:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex')}));
+   console.log('FOUNDATION_HOME_SCREENSHOT '+JSON.stringify({width,bytes:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex')}));
   }
   // Real authoring source + real HomeClient navigation/save/reload for full course.
   await load(1280);results.push(await run('foundationTwelve'));
   await load(320);results.push(await run('foundationRestore'));
   assert.equal(writeRequests,0,'HTTP fixture cannot receive learner writes');
-  console.log(JSON.stringify({result:'PASS',gate:'W2_R2_FULL_HOME_INTEGRATED_BROWSER',cases:results,
+  console.log(JSON.stringify({result:'PASS',gate:'FOUNDATION_WRITING_FULL_HOME_INTEGRATED_BROWSER',cases:results,
    actualHomeClient:true,browserLocalStorage:true,externalRequests:0,httpWrites:0,
    trueCssViewports:[320,375,768,1280],touchEmulation:true,
    authenticatedServerIntegration:'NOT_TESTED',physicalIpadSafari:'NOT_TESTED'}));

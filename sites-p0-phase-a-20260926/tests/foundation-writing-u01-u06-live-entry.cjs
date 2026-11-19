@@ -8,12 +8,16 @@ const tests=['foundation-writing-u01-v1.cjs','foundation-writing-u02-u03-v1.cjs'
  'foundation-writing-u01-browser.cjs','foundation-writing-u02-u03-browser.cjs',
  'foundation-writing-u04-u06-browser.cjs'];
 for(const t of tests)assert(read('scripts/qa-free-first.mjs').includes('"'+t+'"'),'QA must include '+t);
-assert(home.includes('Start Foundation Writing · 12 Units available'),'visible entry in Writing tab');
+assert(home.includes('>Foundation Writing</button>'),'Foundation Writing course entry stays on unchanged Writing page');
 assert(home.includes('primary-button foundation-writing-course-cta'),'responsive course CTA class retained');
 assert(read('app/globals.css').includes('.foundation-writing-course-cta{max-width:100%;min-width:0;white-space:normal;overflow-wrap:anywhere'), '320px content must wrap rather than overflow');
-assert(home.includes('onClick={()=>void navigate("foundation-writing")}>Start Foundation Writing'),
- 'Writing course entry must open U01 and not the unrelated 12-week Writing Coach');
-assert(home.includes('Open AI Writing Feedback · Any Topic'),'existing writing path preserved');
+assert(home.includes('onClick={()=>void navigate("writing-course")}>Foundation Writing'),
+ 'Writing course entry must open the shared Foundation course overview, not jump into U01');
+assert(home.includes('>Writing Studio</button>'),'Writing Studio button must preserve Any Topic Writing path');
+assert(home.includes('writingIntro={view==="writing"?<div')&&home.includes('<FoundationDemo'),'the full original Writing skill overview must stay mounted');
+const sidebar=home.split('{heading:"SKILL LIBRARY"')[1]?.split('{heading:"ASSESSMENTS & EXAM PREP"')[0]??'';
+assert(sidebar.includes('key:"writing",label:"Writing"'),'Writing remains in the left sidebar');
+assert(!sidebar.includes('label:"Foundation Writing · U'),'standalone U01–U12 links must be removed only from the sidebar');
 for(const id of ['02','03','04','05','06','07','08','09','10','11','12']){
  assert(home.includes('foundation-writing-u'+id),'Unit '+id+' navigation preserved');
 }
