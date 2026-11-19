@@ -1,5 +1,5 @@
 import type {EvaluationMetadata} from '../domain/ai-metadata';
-export type TutorPurpose='writing-evaluation'|'feedback'|'revision-coaching'|'error-explanation'|'learning-plan-recommendations'|'brainstorming-coaching'|'speaking-evaluation'|'writing-teaching'|'any-topic-writing'|'foundation-writing-review';
+export type TutorPurpose='writing-evaluation'|'feedback'|'revision-coaching'|'error-explanation'|'learning-plan-recommendations'|'brainstorming-coaching'|'speaking-evaluation'|'writing-teaching'|'any-topic-writing'|'cefr-writing-coaching'|'foundation-writing-review';
 export type TutorRequest={schemaVersion:1;purpose:TutorPurpose;promptVersion:string;instructions:string;input:Record<string,unknown>;temperature:number};
 export type ProviderResult={provider:string;model:string;result:unknown};
 /** Provider boundary. A provider may be server-side or an App-Check-protected browser SDK; no vendor-specific types escape the adapter. */
