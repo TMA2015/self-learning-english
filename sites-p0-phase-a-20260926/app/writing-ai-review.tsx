@@ -3,6 +3,7 @@ import {useEffect,useRef,useState} from 'react';
 import {requestWritingAI,type OnDemandWritingFeedback} from '../infrastructure/browser/client-services';
 import {TeachingBlocks,Inline} from './teaching-blocks';
 import {CEFR_WRITING_CRITERIA,WRITING_STUDIO_CEFR_RUBRIC_VERSION,type WritingStudioReference} from '../domain/writing-studio-reference';
+import {WRITING_STUDIO_SCORING_VERSION,WRITING_STUDIO_MAX_SCORE} from '../domain/writing-studio-scoring';
 
 /** Independent learner-local feedback cache: never changes the underlying attempt grade.
  * The student must explicitly request AI before any writing is sent to Firebase. */
@@ -15,7 +16,7 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
  reviewId:string;task:string;fields:Record<string,string>;
  kind:'draft'|'planning'|'revision';enabled:boolean;sourceSample?:boolean;responseLanguage?:'en'|'vi';reviewMode?:'standard'|'any-topic';reference?:WritingStudioReference;
 }){
- const signature=JSON.stringify([task,fields,kind,...(kind==='revision'?[responseLanguage]:[]),...(reviewMode==='any-topic'?[reviewMode,responseLanguage,'academic-r1',...(reference.kind==='cefr'?[reference.kind,reference.level,WRITING_STUDIO_CEFR_RUBRIC_VERSION]:[])]:[])]);
+ const signature=JSON.stringify([task,fields,kind,...(kind==='revision'?[responseLanguage]:[]),...(reviewMode==='any-topic'?[reviewMode,responseLanguage,WRITING_STUDIO_SCORING_VERSION,...(reference.kind==='cefr'?[reference.kind,reference.level,WRITING_STUDIO_CEFR_RUBRIC_VERSION]:[])]:[])]);
  const latestSignature=useRef(signature);
  latestSignature.current=signature;
  const currentlyEligible=useRef(enabled);
@@ -40,8 +41,12 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
      if(stored){
        const parsed=JSON.parse(stored) as OnDemandWritingFeedback;
        if(parsed.provider==='firebase-ai-logic'&&parsed.kind===kind&&typeof parsed.summary==='string'&&Array.isArray(parsed.strengths)&&
-         ((kind!=='revision'&&reviewMode!=='any-topic')||(parsed.scores===null&&parsed.level===null))&&
-          (reference.kind!=='cefr'||(parsed.targetCEFR===reference.level&&parsed.rubricVersion===WRITING_STUDIO_CEFR_RUBRIC_VERSION&&Array.isArray(parsed.criteria)))){
+         ((kind!=='revision'&&reviewMode!=='any-topic')||(
+           parsed.level===null&&Array.isArray(parsed.criteria)&&parsed.criteria.length===CEFR_WRITING_CRITERIA.length&&
+           parsed.maxScore===WRITING_STUDIO_MAX_SCORE&&Number.isInteger(parsed.totalScore)&&
+           parsed.framework===reference.kind&&
+           parsed.rubricVersion===(reference.kind==='cefr'?WRITING_STUDIO_CEFR_RUBRIC_VERSION:WRITING_STUDIO_SCORING_VERSION)&&
+           (reference.kind!=='cefr'||parsed.targetCEFR===reference.level)))){
           setFeedback(parsed);setFeedbackSignature(signature);
         }
      }
@@ -57,9 +62,12 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
      // display an old response as an assessment of a newer draft.
      if(!mounted.current||!currentlyEligible.current||latestSignature.current!==requestedSignature)return;
      if(result.status==='validated'){
-       if(reviewMode==='any-topic'&&(result.feedback.scores!==null||result.feedback.level!==null||
-          (reference.kind==='cefr'&&(result.feedback.targetCEFR!==reference.level||!Array.isArray(result.feedback.criteria))))){
-         setFeedback(null);setReason('Any Topic feedback must be unscored. Please try again later.');return;
+       if(reviewMode==='any-topic'&&(result.feedback.level!==null||
+         !Number.isInteger(result.feedback.totalScore)||result.feedback.maxScore!==WRITING_STUDIO_MAX_SCORE||
+         !Array.isArray(result.feedback.criteria)||result.feedback.criteria.length!==CEFR_WRITING_CRITERIA.length||
+         result.feedback.framework!==reference.kind||
+         (reference.kind==='cefr'&&result.feedback.targetCEFR!==reference.level))){
+         setFeedback(null);setReason('The writing score was incomplete. Please request feedback again later.');return;
        }
        setFeedback(result.feedback);setFeedbackSignature(signature);
        try{localStorage.setItem(storageKey,JSON.stringify(result.feedback))}catch{/* storage optional */}
@@ -70,19 +78,19 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
  const visibleFeedback=enabled&&feedbackSignature===signature?feedback:null;
  return <section className="writing-ai-review" aria-label={reviewMode==='any-topic'?'AI Tutor Writing Review':'Optional Gemini writing feedback'}>
    <div className="writing-ai-review-heading"><strong>{reviewMode==='any-topic'?'✦ AI Tutor · Writing Review':'✦ Gemini AI Writing'}</strong><span>{visibleFeedback?'Provisional AI feedback':busy?'Checking your writing…':'Optional · On demand'}</span></div>
-   {!visibleFeedback&&<p>{kind==='revision'?'Compare your saved original and revised text with Gemini. Get evidence-based feedback on actual changes and one next revision action; no grade or CEFR estimate is assigned.':'Get feedback on relevance, ideas, organization and language. This is separate from the saved exercise and is not an official CEFR score.'}</p>}
+   {!visibleFeedback&&<p>{kind==='revision'?'Compare your saved original and revised text with Gemini. Get evidence-based feedback on actual changes and one next revision action; no grade or CEFR estimate is assigned.':'Get criterion-by-criterion scores and writing suggestions based on your task and selected reference. The score evaluates this text, not your English proficiency level.'}</p>}
    {sourceSample&&<p>Sample-based revision is practice only; any AI feedback cannot assess your independent writing ability.</p>}
    {visibleFeedback?<div aria-live="polite">
      <p><strong>AI response received · {visibleFeedback.model}</strong> · Provisional educational feedback</p>
-     {reviewMode==='any-topic'&&reference.kind==='cefr'&&<p className="muted">CEFR {reference.level} is your selected practice target, not your measured or certified proficiency.</p>}
+     {reviewMode==='any-topic'&&<p className="muted">{reference.kind==='cefr'?'Scored against writing expectations for CEFR '+reference.level+'. This does not identify your own CEFR level.':'General Writing: scored against the prompt and genre, without a CEFR target.'}</p>}
       {(kind==='revision'||reviewMode==='any-topic')?<TeachingBlocks text={visibleFeedback.summary}/>:<p>{visibleFeedback.summary}</p>}
-      {reviewMode==='any-topic'&&reference.kind==='cefr'&&visibleFeedback.criteria&&<section aria-label="CEFR target-referenced writing criteria">
-        <h3>Feedback against CEFR {reference.level} writing expectations</h3>
-        <p className="muted">Qualitative practice observations based on the Council of Europe CEFR Companion volume (2020); no scores or level certification.</p>
+      {reviewMode==='any-topic'&&visibleFeedback.criteria&&<section aria-label="Writing Studio scored writing criteria">
+        <h3>Writing score: {visibleFeedback.totalScore}/{visibleFeedback.maxScore}</h3>
+        <p className="muted">Six task-based writing criteria, each 0–5. {reference.kind==='cefr'?'The '+reference.level+' target is the scoring standard, not your achieved English level.':'General Writing is evaluated against this writing task and genre.'} This is a project-defined practice score, not an official CEFR or exam score.</p>
         {visibleFeedback.criteria.map((item,index)=><div className="criterion-feedback" key={item.criterion}>
-          <h4>{CEFR_WRITING_CRITERIA[index]?.name??item.criterion}</h4>
+          <h4>{CEFR_WRITING_CRITERIA[index]?.name??item.criterion} — {item.score}/5</h4>
           <p>{item.observation}</p>
-          <p><strong>From your text: </strong>{item.evidence?<>“{item.evidence}”</>:'Not enough evidence in this sample.'}</p>
+          <p><strong>Evidence: </strong>{item.evidence?<>“{item.evidence}”</>:'No exact quotation available from this draft.'}</p>
           <p><strong>Next step: </strong>{item.nextStep}</p>
         </div>)}
       </section>}
@@ -95,7 +103,7 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
      <button type="button" className="secondary-button" disabled={busy||!enabled} onClick={()=>void request()}>Request updated AI feedback</button>
    </div>:<>
      <button type="button" className="secondary-button" disabled={!enabled||busy} onClick={()=>void request()}>{busy?'Checking with Gemini…':kind==='revision'?'Compare original & revision with Gemini':'Get AI feedback'}</button>
-     <p className="muted">{kind==='revision'?'Only clicking this button sends your saved original text, revised version and revision notes to Gemini via Firebase AI Logic. This comparison is unscored.':'Only clicking this button sends your response to Firebase AI Logic. If AI fails, no AI score is assigned.'}</p>
+     <p className="muted">{kind==='revision'?'Only clicking this button sends your saved original text, revised version and revision notes to Gemini via Firebase AI Logic. This comparison is unscored.':'Only clicking this button sends your saved writing to Firebase AI Logic. If Gemini fails, your draft and prior learning records are unchanged.'}</p>
      {reason&&<p role="status" className="notice">AI not available: {reason} {reviewMode==='any-topic'?'Your saved draft remains available to edit.':'Guided Check and saved work remain available.'}</p>}
    </>}
  </section>;
