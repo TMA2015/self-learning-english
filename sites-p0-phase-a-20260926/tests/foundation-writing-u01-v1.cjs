@@ -112,6 +112,7 @@ const service=loadTS(aiServiceText,'ai/service.ts',{
  './teaching-validation':{validateTeachingRating:()=>null},
  './prompts/registry.json':registry,
  '../content/writing-rubric.json':{criteria:[]},
+  '../domain/writing-studio-reference':{CEFR_WRITING_CRITERIA:[],CEFR_TARGET_GUIDANCE:{},WRITING_STUDIO_CEFR_RUBRIC_VERSION:'cefr-written-production-2020-v1',validCEFRWritingLevel:()=>false},
  './validation':{validateRating:()=>null},
 });
 const good=()=>{
