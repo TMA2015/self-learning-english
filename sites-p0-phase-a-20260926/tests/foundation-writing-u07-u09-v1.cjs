@@ -50,7 +50,7 @@ assert.match(storeType,/'FW-U07'\?:Wave3Work/);
 assert.match(storeType,/'FW-U08'\?:Wave3Work/);
 assert.match(storeType,/'FW-U09'\?:Wave3Work/);
 assert.match(read('scripts/qa-free-first.mjs'),/foundation-writing-u07-u09-v1\.cjs/);
-assert.equal(registry['foundation-writing-review'].version,'1.3.0');
+assert.equal(registry['foundation-writing-review'].version,'1.4.0');
 const prompt=registry['foundation-writing-review'].system;
 for(const unit of content)assert(prompt.includes(unit.id),'AI prompt includes '+unit.id);
 assert(prompt.includes('never require a rejected/off-task candidate'),'retain U02 invariant');
@@ -150,7 +150,7 @@ const good=text=>({summary:'You identified your reader purpose.',
    {unitId:a.unitId,fixtureId:a.fixtureId,text:a.text},{responseLanguage:'en'});
   assert(feedback,'valid synthetic result');
   assert.equal(request.purpose,'foundation-writing-review');
-  assert.equal(request.promptVersion,'1.3.0');
+  assert.equal(request.promptVersion,'1.4.0');
   assert.equal(feedback.structuredResult.scores,null);
   for(const bad of [
    {...good(a.text),scores:{grade:9}},
