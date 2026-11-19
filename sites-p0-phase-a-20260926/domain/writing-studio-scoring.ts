@@ -45,7 +45,7 @@ export function validateWritingStudioScore(raw:unknown,draft:string):WritingStud
    if(!row||typeof row.criterion!=='string')return null;
    const id=row.criterion.trim() as CEFRWritingCriterionId;
    if(!CEFR_WRITING_CRITERIA.some(x=>x.id===id)||rows.has(id)||
-     !Number.isInteger(row.score)||!Number.isFinite(row.score)||Number(row.score)<0||Number(row.score)>5||
+     typeof row.score!=='number'||!Number.isInteger(row.score)||row.score<0||row.score>5||
      typeof row.observation!=='string'||!row.observation.trim()||
      typeof row.nextStep!=='string'||!row.nextStep.trim())return null;
    // The full response remains usable if Gemini's citation is not verbatim.
