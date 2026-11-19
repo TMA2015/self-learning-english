@@ -35,7 +35,7 @@ let appCheckReady=false;
 let appCheckInstance:ReturnType<typeof initializeAppCheck>|null=null;
 let cachedTutor:AITutor|null=null;
 const lessonLifecycle=new FirebaseRequestLifecycle();
-const writingStudioOutputSchema=Schema.object({properties:{
+function writingStudioOutputSchema(){return Schema.object({properties:{
  summary:Schema.string(),
  strengths:Schema.array({items:Schema.string()}),
  improvements:Schema.array({items:Schema.string()}),
@@ -49,7 +49,7 @@ const writingStudioOutputSchema=Schema.object({properties:{
    score:Schema.number(),observation:Schema.string(),
    evidence:Schema.string(),nextStep:Schema.string(),
  }})}),
-}});
+}});}
 
 
 function localDebugAllowed(){
@@ -114,7 +114,7 @@ class FirebaseBrowserAILogicTransport implements FirebaseAILogicTransport{
           // Structured Writing ratings need more than 1,200 tokens when
           // including six rubric criteria and concise correction hints.
           maxOutputTokens:input.writingStudioStructured?3200:2400,
-          ...(input.writingStudioStructured?{responseSchema:writingStudioOutputSchema}:{}) ,
+          ...(input.writingStudioStructured?{responseSchema:writingStudioOutputSchema()}:{}) ,
         },
       });
       const generated=await model.generateContent(JSON.stringify(input.userPayload));
