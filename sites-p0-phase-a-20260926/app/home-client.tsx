@@ -29,6 +29,12 @@ import {FoundationWritingU01} from './foundation-writing-u01';
 import {FoundationWritingNextUnit} from './foundation-writing-u02-u03';
 import {FoundationWritingWave2} from './foundation-writing-u04-u06';
 import {FoundationWritingWave3} from './foundation-writing-u07-u09';
+import {FoundationWritingWave4} from './foundation-writing-wave4';
+import wave4ReviewedContent from '../content/foundation-writing-wave4-reviewed.json';
+import type {Wave4Lesson} from '../domain/foundation-writing-wave4-content';
+import {edit as editWave4,stage as stageWave4,verifyReadback as verifyWave4Readback,
+ rollback as rollbackWave4,wave4Work,type Wave4Id,type Wave4Draft,type Scope as Wave4Scope}
+ from '../domain/foundation-writing-wave4-readiness';
 import {appendWave3Version,wave3Work,type Wave3Id,type Wave3Draft} from '../domain/foundation-writing-u07-u09';
 import {appendWave2Version,wave2Work,type Wave2Id,type Wave2Draft} from '../domain/foundation-writing-u04-u06';
 import {appendNextVersion,nextUnitWork,type NextDraft,type NextUnitId} from '../domain/foundation-writing-u02-u03';
@@ -38,7 +44,7 @@ import {LATER_WEEKS,laterWork,editLater,copyLaterSource,learnerSources,submitLat
 import {WRITING_WEEKS,weekWork,editWeek,submitWeek,weekGuidedProgress,checkWeekGuided,canCompareWeek,finishWeekReview,confirmWeekNavigation,type WritingWeek,type WeekScreen,type WeekWork,type WritingBlockState} from '../domain/writing-course-v2-b';
 import {weeks,task,stages,skillLabels,demoHistory} from "./content";
 
-type View="foundation-writing"|"foundation-writing-u02"|"foundation-writing-u03"|"foundation-writing-u04"|"foundation-writing-u05"|"foundation-writing-u06"|"foundation-writing-u07"|"foundation-writing-u08"|"foundation-writing-u09"|"reference"|"units"|"writing-any-topic"|"writing-later-week"|"writing-week"|"writing-overview"|"writing-foundations"|"writing-learn"|"writing-guided"|"writing-review"|"foundation"|"debug"|"dashboard"|"diagnostic"|"profile"|"plan"|"courses"|"writing-course"|"skillmap"|"errorbank"|"writing"|"curriculum"|"lesson"|"progress"|"parent"|"grammar"|"reading"|"listening"|"speaking"|"vocabulary"|"pronunciation"|"specialization"|"tutor";
+type View="foundation-writing"|"foundation-writing-u02"|"foundation-writing-u03"|"foundation-writing-u04"|"foundation-writing-u05"|"foundation-writing-u06"|"foundation-writing-u07"|"foundation-writing-u08"|"foundation-writing-u09"|"foundation-writing-u10"|"foundation-writing-u11"|"foundation-writing-u12"|"reference"|"units"|"writing-any-topic"|"writing-later-week"|"writing-week"|"writing-overview"|"writing-foundations"|"writing-learn"|"writing-guided"|"writing-review"|"foundation"|"debug"|"dashboard"|"diagnostic"|"profile"|"plan"|"courses"|"writing-course"|"skillmap"|"errorbank"|"writing"|"curriculum"|"lesson"|"progress"|"parent"|"grammar"|"reading"|"listening"|"speaking"|"vocabulary"|"pronunciation"|"specialization"|"tutor";
 type Feedback={summary:string;strengths:string[];improvements:string[];exercise:string;scores:Record<string,number>|null;corrections:{original:string;revised:string;why:string;tag:string}[];tags:string[]};
 type Entry={learnerModel?:LearnerModel;learningPlan?:LearningPlanModel;submissionId?:string;evaluationStatus?:string;aiFailureReason?:string;evidence?:Evidence[];mode:"ai"|"guided";feedback:Feedback;rating?:WritingRating;evaluation?:{provider?:string;model?:string}};
 type State={foundationWritingV1?:FoundationWritingV1;writingCourseV2C?:LaterBlock;writingCourseV2B?:WritingBlockState;writingCourseV2?:PilotState;learningChoice?:LearningChoice;week:number;stage:number;analysis:{topic:string;task:string;keywords:string;limits:string;offtopic:string};brainstorm:{ideas:string;selected:string;support:string;example:string};outline:{opening:string;reason1:string;detail:string;example:string;ending:string};writing:string;miniAnswer:string;miniDone:boolean;completed:number[];feedbacks:Record<string,Entry>;history:typeof demoHistory;revision:string;profile?:Profile;diagnostic?:Diagnostic;diagnosticV2?:DiagnosticV2;diagnosticArchive?:DiagnosticV2[];evidence?:Evidence[];learnerModel?:LearnerModel;learningPlan?:LearningPlanModel;vietnameseSupport?:boolean};
@@ -46,7 +52,7 @@ const seed:State={week:0,stage:0,analysis:{topic:"",task:"",keywords:"",limits:"
 const navGroups=[
  {heading:"TODAY",items:[{key:"dashboard",label:"Dashboard",icon:LayoutDashboard}]},
  {heading:"LEARN",items:[{key:"units",label:"Learn by Units",icon:BookOpen},{key:"reference",label:"Reference Library",icon:BookOpen},{key:"courses",label:"My Courses",icon:Target},{key:"tutor",label:"AI Tutor",icon:Sparkles}]},
- {heading:"SKILL LIBRARY",items:[{key:"grammar",label:"Grammar",icon:BookOpen},{key:"reading",label:"Reading",icon:Library},{key:"writing",label:"Writing",icon:PenLine},{key:"foundation-writing",label:"Foundation Writing · U01",icon:PenLine},{key:"foundation-writing-u02",label:"Foundation Writing · U02",icon:PenLine},{key:"foundation-writing-u03",label:"Foundation Writing · U03",icon:PenLine},{key:"foundation-writing-u04",label:"Foundation Writing · U04",icon:PenLine},{key:"foundation-writing-u05",label:"Foundation Writing · U05",icon:PenLine},{key:"foundation-writing-u06",label:"Foundation Writing · U06",icon:PenLine},{key:"foundation-writing-u07",label:"Foundation Writing · U07",icon:PenLine},{key:"foundation-writing-u08",label:"Foundation Writing · U08",icon:PenLine},{key:"foundation-writing-u09",label:"Foundation Writing · U09",icon:PenLine},{key:"listening",label:"Listening",icon:Headphones},{key:"speaking",label:"Speaking",icon:Mic},{key:"vocabulary",label:"Vocabulary",icon:BookOpen},{key:"pronunciation",label:"Pronunciation",icon:Volume2}]},
+ {heading:"SKILL LIBRARY",items:[{key:"grammar",label:"Grammar",icon:BookOpen},{key:"reading",label:"Reading",icon:Library},{key:"writing",label:"Writing",icon:PenLine},{key:"foundation-writing",label:"Foundation Writing · U01",icon:PenLine},{key:"foundation-writing-u02",label:"Foundation Writing · U02",icon:PenLine},{key:"foundation-writing-u03",label:"Foundation Writing · U03",icon:PenLine},{key:"foundation-writing-u04",label:"Foundation Writing · U04",icon:PenLine},{key:"foundation-writing-u05",label:"Foundation Writing · U05",icon:PenLine},{key:"foundation-writing-u06",label:"Foundation Writing · U06",icon:PenLine},{key:"foundation-writing-u07",label:"Foundation Writing · U07",icon:PenLine},{key:"foundation-writing-u08",label:"Foundation Writing · U08",icon:PenLine},{key:"foundation-writing-u09",label:"Foundation Writing · U09",icon:PenLine},{key:"foundation-writing-u10",label:"Foundation Writing · U10",icon:PenLine},{key:"foundation-writing-u11",label:"Foundation Writing · U11",icon:PenLine},{key:"foundation-writing-u12",label:"Foundation Writing · U12",icon:PenLine},{key:"listening",label:"Listening",icon:Headphones},{key:"speaking",label:"Speaking",icon:Mic},{key:"vocabulary",label:"Vocabulary",icon:BookOpen},{key:"pronunciation",label:"Pronunciation",icon:Volume2}]},
  {heading:"ASSESSMENTS & EXAM PREP",items:[{key:"diagnostic",label:"Diagnostic Assessment",icon:ClipboardList},{key:"specialization",label:"IELTS / TOEFL · Planned",icon:GraduationCap}]},
  {heading:"PROGRESS & REVIEW",items:[{key:"progress",label:"Progress",icon:ChartNoAxesCombined},{key:"skillmap",label:"Skill Map",icon:MapIcon},{key:"errorbank",label:"Error Bank",icon:Database}]},
  {heading:"SETTINGS & FAMILY",items:[{key:"profile",label:"Learner Settings",icon:UserRound},{key:"parent",label:"Parent Center",icon:Users}]},
@@ -188,6 +194,36 @@ export default function Home(){
   }
   return false;
  }
+ function editFoundationWave4(unit:Wave4Id,draft:Wave4Draft){
+  const before=latestState.current.foundationWritingV1??emptyFoundationWritingV1();
+  const nextScope=editWave4(before as unknown as Wave4Scope,unit,draft);
+  update({foundationWritingV1:nextScope as unknown as FoundationWritingV1});
+ }
+ async function saveFoundationWave4(unit:Wave4Id):Promise<boolean>{
+  const before=latestState.current;
+  const scope=(before.foundationWritingV1??emptyFoundationWritingV1()) as unknown as Wave4Scope;
+  let staged:ReturnType<typeof stageWave4>;
+  try{staged=stageWave4(scope,unit,Date.now())}catch{return false}
+  const next:State={...before,foundationWritingV1:staged.after as unknown as FoundationWritingV1};
+  dirty.current=true;latestState.current=next;setState(next);
+  const wrote=await saveNow(next);
+  if(wrote){
+   try{
+    const persisted=(await loadLearnerState()).state as State|undefined;
+    if(persisted&&verifyWave4Readback(staged,persisted.foundationWritingV1))return true;
+   }catch{/* An unconfirmed save never grants AI eligibility. */}
+  }
+  const latest=latestState.current;
+  const latestScope=latest.foundationWritingV1 as unknown as Wave4Scope|undefined;
+  if(latestScope?.schemaVersion===1){
+   const result=rollbackWave4(latestScope,staged);
+   if(result.rolledBack){
+    const back:State={...latest,foundationWritingV1:result.scope as unknown as FoundationWritingV1};
+    dirty.current=true;latestState.current=back;setState(back);
+   }
+  }
+  return false;
+ }
  function patch(group:"analysis"|"brainstorm"|"outline",key:string,value:string){dirty.current=true;const previous=latestState.current;const stageIndex=group==="analysis"?0:group==="brainstorm"?1:2;const feedbacks={...previous.feedbacks};delete feedbacks[String(stageIndex)];const next={...previous,feedbacks,completed:previous.completed.filter(item=>item!==stageIndex),[group]:{...previous[group],[key]:value}};latestState.current=next;setState(next)}
  async function finishDiagnostic(diagnosticV2:DiagnosticV2){
   const data=await finishDiagnosticAssessment(diagnosticV2);
@@ -273,7 +309,7 @@ export default function Home(){
  <div className="layout"><aside className={'sidebar '+(menu?'open':'')}><nav aria-label="Main navigation">{navGroups.map(group=><div className="nav-group" key={group.heading}><div className="side-label">{group.heading}</div>{group.items.map(n=><button key={n.key} className={'nav-item '+(view===n.key?'active':'')} disabled={navigating} onClick={()=>void navigate(n.key)}><n.icon size={18}/>{n.label}{view===n.key&&<span className="nav-active"/>}</button>)}</div>)}</nav>{navigating&&<p className="notice" role="status">Saving your draft before navigating…</p>}<div className="side-bottom"><div className="side-label">YOUR JOURNEY</div>{courseData?.activeCourse?<><strong>{courseData.activeCourse.title}</strong><div className="side-progress"><span>{courseData.activeCourse.progressLabel}</span><strong>{Math.round(courseData.activeCourse.completedRequired/courseData.activeCourse.availableRequired*100)}%</strong></div><Progress value={courseData.activeCourse.completedRequired/courseData.activeCourse.availableRequired*100} className="h-2 mt-3"/><p>Next Week 1 step: {courseData.activeCourse.nextActivity}</p><p>Week 1 process summary only. See each week in the course for its saved progress.</p><button className="text-button" onClick={()=>void navigate("writing-course")}>Continue course</button></>:<><p>{courseData?'Choose a course to show your journey.':'Loading your courses…'}</p><button className="text-button" onClick={()=>void navigate("courses")}>Choose a course</button></>}</div></aside>
  <main className="main-content">{view==="debug"&&isAdmin&&<DeveloperView/>}{view==="dashboard"&&<><div className="eyebrow">SELF-LEARNING ENGLISH · YOUR JOURNEY</div><div className="page-heading"><div><h1>{state.profile?.name?`Welcome, ${state.profile.name}`:"Your learning journey"}</h1><p>{courseData?.activeCourse?`Continue ${courseData.activeCourse.title} or explore independent lessons.`:"Choose a course or explore independent lessons."}</p></div><button className="primary-button" onClick={()=>navigate("courses")}>My Courses <ArrowRight size={17}/></button></div><button className="secondary-button" onClick={()=>navigate("foundation")}>Open learning path · 7 skills</button><section className="stats-grid"><div className="stat-card feature"><div className="stat-icon"><Target/></div><span>{courseData?.activeCourse?"ACTIVE COURSE":"CHOOSE A COURSE"}</span><strong>{courseData?.activeCourse?.title??"No active course"}</strong><div className="card-foot"><Progress value={courseData?.activeCourse?courseData.activeCourse.completedRequired*25:0} className="h-2"/><b>{courseData?.activeCourse?.progressLabel??"Choose in My Courses"}</b></div></div><div className="stat-card"><span>NEXT AVAILABLE</span><strong>{courseData?.activeCourse?.nextActivity??"Choose a course"}</strong><p>{courseData?.activeCourse?"Week 1 next step · Weeks 1–12 available":"Free practice remains in Course Catalog"}</p></div><div className="stat-card"><span>STARTING LEVEL</span><strong className="big-number">{state.learnerModel?.displayLevel??state.learnerModel?.level??"—"}</strong><p>{state.learnerModel?"Starting level estimate":"Take the Diagnostic Assessment"}</p></div></section><section className="dashboard-progress-guidance" aria-label="Understanding your learning results"><strong>Understanding your results</strong><p>Lesson scores reflect your submitted answers and help you track improvement. CEFR labels show each lesson's target level; any broader level estimate is approximate and depends on available evidence across skills.</p></section><div className="two-col"><section className="panel"><div className="section-head"><div><span className="eyebrow">YOUR PATH</span><h2>{courseData?.activeCourse?"Continue your course":"Choose your course"}</h2></div><span className="soft-icon"><ClipboardList/></span></div><p className="panel-intro">{courseData?.activeCourse?.progressLabel??"Choose a course to keep a clear learning journey. You can still practise any skill."}</p><button className="text-button" onClick={()=>navigate(courseData?.activeCourse?"writing-course":"courses")}>{courseData?.activeCourse?"Open course":"Open My Courses"} <ArrowRight size={16}/></button></section><PracticeSummary data={practiceData} error={practiceError} onRefresh={()=>void refreshPractice()} onSkill={skill=>void navigate(skill.toLowerCase() as View)}/></div></>}
 
-  {(["units","foundation","grammar","vocabulary","reading","listening","speaking","pronunciation","writing"] as View[]).includes(view)&&<FoundationDemo onNavigationGuard={registerFoundationNavigationGuard} sharedCatalog={foundationCatalog} onCatalog={setFoundationCatalog} onSelectSkill={next=>navigate(next as View)} skill={view==="foundation"||view==="units"?undefined:view} entryMode={view==="units"?"units":"lessons"} requestedLessonId={requestedLessonId} onRequestedLessonHandled={id=>setRequestedLessonId(previous=>previous===id?null:previous)} writingIntro={view==="writing"?<div className="learning-choices" role="group" aria-label="Writing learning paths"><button type="button" className="secondary-button" onClick={()=>void navigate("writing-any-topic")}>Open AI Writing Feedback · Any Topic</button><button type="button" className="primary-button foundation-writing-course-cta" onClick={()=>void navigate("foundation-writing")}>Start Foundation Writing · U01–U06 available</button></div>:undefined} showVi={!!state.vietnameseSupport} onEvidence={()=>{void refreshPractice();void fetch("/api/state").then(r=>r.json()).then((v:any)=>{if(v.state)setState(s=>({...s,evidence:v.state.evidence,learnerModel:v.state.learnerModel,learningPlan:v.state.learningPlan}))})}}/>}
+  {(["units","foundation","grammar","vocabulary","reading","listening","speaking","pronunciation","writing"] as View[]).includes(view)&&<FoundationDemo onNavigationGuard={registerFoundationNavigationGuard} sharedCatalog={foundationCatalog} onCatalog={setFoundationCatalog} onSelectSkill={next=>navigate(next as View)} skill={view==="foundation"||view==="units"?undefined:view} entryMode={view==="units"?"units":"lessons"} requestedLessonId={requestedLessonId} onRequestedLessonHandled={id=>setRequestedLessonId(previous=>previous===id?null:previous)} writingIntro={view==="writing"?<div className="learning-choices" role="group" aria-label="Writing learning paths"><button type="button" className="secondary-button" onClick={()=>void navigate("writing-any-topic")}>Open AI Writing Feedback · Any Topic</button><button type="button" className="primary-button foundation-writing-course-cta" onClick={()=>void navigate("foundation-writing")}>Start Foundation Writing · 12 Units available</button></div>:undefined} showVi={!!state.vietnameseSupport} onEvidence={()=>{void refreshPractice();void fetch("/api/state").then(r=>r.json()).then((v:any)=>{if(v.state)setState(s=>({...s,evidence:v.state.evidence,learnerModel:v.state.learnerModel,learningPlan:v.state.learningPlan}))})}}/>}
  {view==="writing-any-topic"&&<AnyTopicWritingReview showVi={!!state.vietnameseSupport}/>}
  {view==="foundation-writing"&&(state.foundationWritingV1&&state.foundationWritingV1.schemaVersion!==1?
   <section className="panel" role="alert"><h2>Unknown Foundation Writing data version</h2>
@@ -313,6 +349,20 @@ export default function Home(){
     onEdit={draft=>editFoundationWave3(view==="foundation-writing-u07"?"FW-U07":view==="foundation-writing-u08"?"FW-U08":"FW-U09",draft)}
     onSave={()=>saveFoundationWave3(view==="foundation-writing-u07"?"FW-U07":view==="foundation-writing-u08"?"FW-U08":"FW-U09")}
     onExit={()=>void navigate("writing")} showVi={!!state.vietnameseSupport}/>)}
+
+ {(["foundation-writing-u10","foundation-writing-u11","foundation-writing-u12"] as View[]).includes(view)&&
+  (state.foundationWritingV1&&state.foundationWritingV1.schemaVersion!==1?
+   <section className="panel" role="alert"><h2>Unknown Foundation Writing data version</h2>
+    <p>Your saved learning history is preserved. This Unit cannot be edited.</p></section>:
+   <FoundationWritingWave4
+    unitId={view==="foundation-writing-u10"?"FW-U10":view==="foundation-writing-u11"?"FW-U11":"FW-U12"}
+    approvedBundle={wave4ReviewedContent as unknown as Wave4Lesson[]}
+    work={wave4Work((state.foundationWritingV1??emptyFoundationWritingV1()) as unknown as Wave4Scope,
+      view==="foundation-writing-u10"?"FW-U10":view==="foundation-writing-u11"?"FW-U11":"FW-U12")}
+    originalDraftV1={state.foundationWritingV1?.units['FW-U09']?.firstDraftV1?.text}
+    onEdit={draft=>editFoundationWave4(view==="foundation-writing-u10"?"FW-U10":view==="foundation-writing-u11"?"FW-U11":"FW-U12",draft)}
+    onSave={()=>saveFoundationWave4(view==="foundation-writing-u10"?"FW-U10":view==="foundation-writing-u11"?"FW-U11":"FW-U12")}
+    onExit={()=>void navigate("writing")} showVi={!!state.vietnameseSupport}/> )}
 
  {view==="reference"&&<ReferenceLibrary catalog={foundationCatalog} onCatalog={setFoundationCatalog} onOpenLesson={(id,skill)=>void openReferenceLesson(id,skill)}/>}
  {view==="diagnostic"&&<DiagnosticAssessment value={state.diagnosticV2} archive={state.diagnosticArchive??[]} onChange={diagnosticV2=>update({diagnosticV2,...(state.diagnosticV2&&state.diagnosticV2.startedAt!==diagnosticV2.startedAt?{diagnosticArchive:[...(state.diagnosticArchive??[]),state.diagnosticV2]}:{})})} onFinish={finishDiagnostic} showVi={!!state.vietnameseSupport}/>}
