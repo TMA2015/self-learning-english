@@ -17,6 +17,9 @@ export function createTutorService(provider:AITutorProvider):AITutor{
     'FW-U01':['FW-U01-A','FW-U01-B','FW-U01-T'],
     'FW-U02':['FW-U02-A','FW-U02-B','FW-U02-T'],
     'FW-U03':['FW-U03-A','FW-U03-B','FW-U03-T'],
+    'FW-U04':['FW-U04-A','FW-U04-B','FW-U04-T'],
+    'FW-U05':['FW-U05-A','FW-U05-B','FW-U05-T'],
+    'FW-U06':['FW-U06-A','FW-U06-B','FW-U06-T'],
   };
   const unitId=typeof submitted?.unitId==='string'?submitted.unitId:'';
   if(!Object.hasOwn(allowedFixtures,unitId)||

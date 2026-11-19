@@ -1,0 +1,312 @@
+{
+  "id": "FW-U04",
+  "title": "Sentence Craft & Meaningful Linkers",
+  "minutes": "20–30",
+  "microLessons": 2,
+  "source": {
+    "manuscript": "SLE_FOUNDATION_WRITING_AUTHORING_WAVE2_U04-U06_AS_REVIEWED_20261118.md",
+    "sha256": "42a059c04c269664e268d4d7a80a9c23536e1c868bf51a36ab34671e8ec052dd",
+    "academicReview": "SLE-FW-AUTH-W2-NBLM-R1-20261118",
+    "verdict": "PASS",
+    "requiredChanges": "NONE"
+  },
+  "outcome": "Explain cause, result and genuine contrast clearly, repair ambiguous references, and write four purposeful sentences without connector quotas.",
+  "teaching": {
+    "lesson1": "A clear sentence helps someone know what happened, why, or why something was surprising. A connector is a signpost for meaning, not decoration.",
+    "lesson2": "A sentence can be grammatical but still make a reader guess who she, they or this refers to.",
+    "demo": {
+      "id": "FW-U04-D01",
+      "prompt": "The neighborhood nature walk was moved to Sunday because heavy rain was expected on Saturday. Explain the change to families.",
+      "steps": [
+        {
+          "label": "Notice",
+          "text": "Families need the new day and the reason for the change: expected rain is the reason; moving the walk is the result."
+        },
+        {
+          "label": "Decide",
+          "text": "The organizers moved the walk to Sunday because heavy rain was expected on Saturday. 'Because' introduces the reason."
+        },
+        {
+          "label": "Show another focus",
+          "text": "Heavy rain was expected on Saturday, so the organizers moved the walk to Sunday. The consequence comes after 'so'."
+        },
+        {
+          "label": "Contrast when real",
+          "text": "Although the day changed, the meeting place stayed the same. Do not combine 'although A, but B'."
+        },
+        {
+          "label": "Reject and repair",
+          "text": "'The walk was moved, however it was on Sunday' claims a contrast that is not present. Better: 'The walk was moved to Sunday because rain was forecast.'"
+        },
+        {
+          "label": "Transfer principle",
+          "text": "First name the relationship in plain words; then decide whether a connector is needed at all."
+        }
+      ]
+    },
+    "ambiguity": {
+      "ambiguous": "When the volunteers met the parents, they explained the new route.",
+      "repairs": [
+        "The volunteers explained the new route to the parents.",
+        "The parents explained the new route to the volunteers."
+      ],
+      "question": "Who explained the route? The writer must decide; both intended meanings are possible.",
+      "miniCheck": "Why is replacing 'they' with a specific noun more useful than adding 'Furthermore'?"
+    },
+    "concept": "Cause = why; result = what happened; contrast = unexpected or opposing relation. A coherent sentence need not include a linker.",
+    "a1": "A happened because B; B happened, so A; Although B, A. Say the relation in your own words before writing.",
+    "b1": "Compare a two-sentence explanation with a complex sentence; explain which is clearer to a busy reader."
+  },
+  "cycleA": {
+    "id": "FW-U04-A",
+    "prompt": "On a school sports day, sudden rain made the outdoor field slippery. The school moved the relay races indoors. Some students still enjoyed the event, even though the location changed.",
+    "relations": [
+      {
+        "id": "A-R1",
+        "text": "The field became slippery. → The teachers moved the races indoors.",
+        "key": "CAUSE_TO_RESULT",
+        "rationale": "The unsafe field plausibly causes the teachers' decision."
+      },
+      {
+        "id": "A-R2",
+        "text": "The location changed. / The students still enjoyed the event.",
+        "key": "CONTRAST",
+        "rationale": "Enjoyment continued despite a disruption."
+      },
+      {
+        "id": "A-R3",
+        "text": "The relay races moved indoors. ← Rain made the field unsafe.",
+        "key": "RESULT_WITH_REASON",
+        "rationale": "The move is stated first; the rain explains why."
+      }
+    ],
+    "choices": [
+      {
+        "id": "FW-U04-A-C1",
+        "stem": "The field was slippery, ___ the teachers moved the races into the gym.",
+        "key": "so",
+        "options": [
+          {
+            "id": "so",
+            "text": "so",
+            "rationale": "Correct consequence: the move follows from the unsafe field."
+          },
+          {
+            "id": "because",
+            "text": "because",
+            "rationale": "Would present the move as the cause of the slippery field."
+          },
+          {
+            "id": "although",
+            "text": "although",
+            "rationale": "Wrong contrast: the move is expected because the field was unsafe."
+          },
+          {
+            "id": "however",
+            "text": "however",
+            "rationale": "Not a suitable simple in-clause causal connector in this position."
+          }
+        ]
+      },
+      {
+        "id": "FW-U04-A-C2",
+        "stem": "___ the location changed, the students still enjoyed the event.",
+        "key": "Although",
+        "options": [
+          {
+            "id": "Although",
+            "text": "Although",
+            "rationale": "Correct: enjoyment despite the change."
+          },
+          {
+            "id": "So",
+            "text": "So",
+            "rationale": "Does not express contrast or start this dependent construction appropriately."
+          },
+          {
+            "id": "Because",
+            "text": "Because",
+            "rationale": "Would make the location change cause enjoyment, rather than enjoyment despite disruption."
+          },
+          {
+            "id": "Therefore",
+            "text": "Therefore",
+            "rationale": "A result marker does not fit this dependent-clause form."
+          }
+        ]
+      },
+      {
+        "id": "FW-U04-A-C3",
+        "stem": "The races moved into the gym ___ the outdoor field had become slippery.",
+        "key": "because",
+        "options": [
+          {
+            "id": "because",
+            "text": "because",
+            "rationale": "Correct: field condition explains why the move happened."
+          },
+          {
+            "id": "but",
+            "text": "but",
+            "rationale": "Not a contrast: the second clause explains the first."
+          },
+          {
+            "id": "so",
+            "text": "so",
+            "rationale": "Reverses the cause: the move did not make the field slippery."
+          },
+          {
+            "id": "although",
+            "text": "although",
+            "rationale": "Suggests unexpected contrast where there is a reason."
+          }
+        ]
+      }
+    ],
+    "explainPrompt": "Choose ONE join and explain why its connector expresses the intended relationship.",
+    "noLinkPrompt": "Rewrite that join without an explicit connector while preserving its facts, where feasible. Natural alternatives are acceptable."
+  },
+  "cycleB": {
+    "id": "FW-U04-B",
+    "prompt": "Your school is announcing an after-school robotics workshop. The usual classroom is unavailable because it is being repaired, so the workshop will use the school library instead. Some families worry that the change will make it hard to find the room. Write four short, informative sentences for students and families, and repair one ambiguous sentence.",
+    "steps": [
+      "Sentence 1: state the change and new place clearly.",
+      "Sentence 2: explain why the room changed; use cause or result naturally.",
+      "Sentence 3: acknowledge concern and offer an accurate possible reassurance. Do not invent an existing map, sign or guide.",
+      "Sentence 4: give a practical next action for families.",
+      "Ambiguity: decide whether Ms. Lee or Mia sent the message, then repair the sentence."
+    ],
+    "ambiguous": "After Ms. Lee told Mia about the new room, she sent the class a message.",
+    "intendedAgents": [
+      "Ms. Lee",
+      "Mia"
+    ],
+    "note": "Both intended agents are acceptable if clarified. Do not automatically count connectors or assign a grammar/logic score.",
+    "a1": "Optional frames: The workshop will be in __; This change happened because __; You can __.",
+    "b1": "Express the room change with because and so, then choose which is clearer; optional only."
+  },
+  "transfer": {
+    "id": "FW-U04-T",
+    "prompt": "A youth bus route is running 20 minutes later than usual because roadworks have closed one street. Write a brief public notice with four clear sentences: new timing, reason, a practical reader action, and a cautious note about what has/hasn't been confirmed. Show a genuine cause/result relationship; don't claim any unprovided route map is available.",
+    "instruction": "Four original sentences plus your note about one relationship you chose. No invented confirmation or automatic grammar score."
+  },
+  "supplemental": [
+    {
+      "id": "FW-U04-F01",
+      "title": "Cause or effect without changing facts",
+      "prompt": "The community hall closed early because its heating stopped working.",
+      "question": "Which sentence preserves the same cause-effect relationship?",
+      "key": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "The hall closed early, so the heating stopped working.",
+          "rationale": "Reverses cause and effect."
+        },
+        {
+          "id": "B",
+          "text": "The heating stopped working, so the hall closed early.",
+          "rationale": "Heater failure is the cause; closing is the consequence."
+        },
+        {
+          "id": "C",
+          "text": "Although the heating stopped, the hall closed early.",
+          "rationale": "Suggests contrast where the task says cause."
+        },
+        {
+          "id": "D",
+          "text": "The hall closed early, but its heating stopped working.",
+          "rationale": "Presents linked facts as contrast."
+        }
+      ]
+    },
+    {
+      "id": "FW-U04-F02",
+      "title": "Contrasting an expectation",
+      "prompt": "The recycling competition was difficult. Our team completed it.",
+      "question": "Which join best expresses that the team succeeded despite difficulty?",
+      "key": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Because it was difficult, our team completed it.",
+          "rationale": "Makes difficulty the cause of completion."
+        },
+        {
+          "id": "B",
+          "text": "It was difficult, so our team completed it.",
+          "rationale": "Invents a causal link."
+        },
+        {
+          "id": "C",
+          "text": "Although it was difficult, our team completed it.",
+          "rationale": "Expresses completion despite difficulty."
+        },
+        {
+          "id": "D",
+          "text": "It was difficult; therefore our team completed it.",
+          "rationale": "Asserts an unsupported result."
+        }
+      ]
+    },
+    {
+      "id": "FW-U04-F03",
+      "title": "Repair a referent",
+      "prompt": "Jin handed a folder to Ben. Ben put the folder on the shelf.",
+      "question": "Which makes the person placing the folder unambiguous without changing the facts?",
+      "key": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "He put it on the shelf.",
+          "rationale": "He could mean Jin or Ben."
+        },
+        {
+          "id": "B",
+          "text": "Jin put the folder on the shelf.",
+          "rationale": "Changes the stated agent."
+        },
+        {
+          "id": "C",
+          "text": "Ben put the folder on the shelf.",
+          "rationale": "Names the correct agent."
+        },
+        {
+          "id": "D",
+          "text": "They put it on the shelf.",
+          "rationale": "Obscures the individual agent."
+        }
+      ]
+    },
+    {
+      "id": "FW-U04-F04",
+      "title": "Avoid a decorative transition",
+      "prompt": "Your town wants a new community notice about a free repair workshop.",
+      "question": "Which sentence gives a meaningful reason instead of a decorative linker?",
+      "key": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Furthermore, furthermore, the workshop is good.",
+          "rationale": "Repeated connector and empty praise."
+        },
+        {
+          "id": "B",
+          "text": "The workshop is useful because fixing small items may help families keep them longer.",
+          "rationale": "Provides a plausible causal explanation."
+        },
+        {
+          "id": "C",
+          "text": "However, the workshop is a workshop.",
+          "rationale": "No contrast or information."
+        },
+        {
+          "id": "D",
+          "text": "First, second, third, it is very good.",
+          "rationale": "Sequencing words without a benefit."
+        }
+      ]
+    }
+  ],
+  "aiLens": "Check real cause/result or contrast supported by the task, not connector counts. Verify the workshop location and intentionally clarified agent; do not accept invented existing signs/maps. Ask a question grounded in actual learner words, never ghostwrite four replacement sentences."
+}

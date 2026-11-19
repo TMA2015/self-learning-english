@@ -27,6 +27,8 @@ import {EnglishLessonTutor} from './english-lesson-tutor';
 import {AnyTopicWritingReview} from './any-topic-writing-review';
 import {FoundationWritingU01} from './foundation-writing-u01';
 import {FoundationWritingNextUnit} from './foundation-writing-u02-u03';
+import {FoundationWritingWave2} from './foundation-writing-u04-u06';
+import {appendWave2Version,wave2Work,type Wave2Id,type Wave2Draft} from '../domain/foundation-writing-u04-u06';
 import {appendNextVersion,nextUnitWork,type NextDraft,type NextUnitId} from '../domain/foundation-writing-u02-u03';
 import {appendU01Version,emptyFoundationWritingV1,u01Work,
  type U01Draft,type FoundationWritingV1} from '../domain/foundation-writing-u01';
@@ -34,7 +36,7 @@ import {LATER_WEEKS,laterWork,editLater,copyLaterSource,learnerSources,submitLat
 import {WRITING_WEEKS,weekWork,editWeek,submitWeek,weekGuidedProgress,checkWeekGuided,canCompareWeek,finishWeekReview,confirmWeekNavigation,type WritingWeek,type WeekScreen,type WeekWork,type WritingBlockState} from '../domain/writing-course-v2-b';
 import {weeks,task,stages,skillLabels,demoHistory} from "./content";
 
-type View="foundation-writing"|"foundation-writing-u02"|"foundation-writing-u03"|"reference"|"units"|"writing-any-topic"|"writing-later-week"|"writing-week"|"writing-overview"|"writing-foundations"|"writing-learn"|"writing-guided"|"writing-review"|"foundation"|"debug"|"dashboard"|"diagnostic"|"profile"|"plan"|"courses"|"writing-course"|"skillmap"|"errorbank"|"writing"|"curriculum"|"lesson"|"progress"|"parent"|"grammar"|"reading"|"listening"|"speaking"|"vocabulary"|"pronunciation"|"specialization"|"tutor";
+type View="foundation-writing"|"foundation-writing-u02"|"foundation-writing-u03"|"foundation-writing-u04"|"foundation-writing-u05"|"foundation-writing-u06"|"reference"|"units"|"writing-any-topic"|"writing-later-week"|"writing-week"|"writing-overview"|"writing-foundations"|"writing-learn"|"writing-guided"|"writing-review"|"foundation"|"debug"|"dashboard"|"diagnostic"|"profile"|"plan"|"courses"|"writing-course"|"skillmap"|"errorbank"|"writing"|"curriculum"|"lesson"|"progress"|"parent"|"grammar"|"reading"|"listening"|"speaking"|"vocabulary"|"pronunciation"|"specialization"|"tutor";
 type Feedback={summary:string;strengths:string[];improvements:string[];exercise:string;scores:Record<string,number>|null;corrections:{original:string;revised:string;why:string;tag:string}[];tags:string[]};
 type Entry={learnerModel?:LearnerModel;learningPlan?:LearningPlanModel;submissionId?:string;evaluationStatus?:string;aiFailureReason?:string;evidence?:Evidence[];mode:"ai"|"guided";feedback:Feedback;rating?:WritingRating;evaluation?:{provider?:string;model?:string}};
 type State={foundationWritingV1?:FoundationWritingV1;writingCourseV2C?:LaterBlock;writingCourseV2B?:WritingBlockState;writingCourseV2?:PilotState;learningChoice?:LearningChoice;week:number;stage:number;analysis:{topic:string;task:string;keywords:string;limits:string;offtopic:string};brainstorm:{ideas:string;selected:string;support:string;example:string};outline:{opening:string;reason1:string;detail:string;example:string;ending:string};writing:string;miniAnswer:string;miniDone:boolean;completed:number[];feedbacks:Record<string,Entry>;history:typeof demoHistory;revision:string;profile?:Profile;diagnostic?:Diagnostic;diagnosticV2?:DiagnosticV2;diagnosticArchive?:DiagnosticV2[];evidence?:Evidence[];learnerModel?:LearnerModel;learningPlan?:LearningPlanModel;vietnameseSupport?:boolean};
@@ -42,7 +44,7 @@ const seed:State={week:0,stage:0,analysis:{topic:"",task:"",keywords:"",limits:"
 const navGroups=[
  {heading:"TODAY",items:[{key:"dashboard",label:"Dashboard",icon:LayoutDashboard}]},
  {heading:"LEARN",items:[{key:"units",label:"Learn by Units",icon:BookOpen},{key:"reference",label:"Reference Library",icon:BookOpen},{key:"courses",label:"My Courses",icon:Target},{key:"tutor",label:"AI Tutor",icon:Sparkles}]},
- {heading:"SKILL LIBRARY",items:[{key:"grammar",label:"Grammar",icon:BookOpen},{key:"reading",label:"Reading",icon:Library},{key:"writing",label:"Writing",icon:PenLine},{key:"foundation-writing",label:"Foundation Writing · U01",icon:PenLine},{key:"foundation-writing-u02",label:"Foundation Writing · U02",icon:PenLine},{key:"foundation-writing-u03",label:"Foundation Writing · U03",icon:PenLine},{key:"listening",label:"Listening",icon:Headphones},{key:"speaking",label:"Speaking",icon:Mic},{key:"vocabulary",label:"Vocabulary",icon:BookOpen},{key:"pronunciation",label:"Pronunciation",icon:Volume2}]},
+ {heading:"SKILL LIBRARY",items:[{key:"grammar",label:"Grammar",icon:BookOpen},{key:"reading",label:"Reading",icon:Library},{key:"writing",label:"Writing",icon:PenLine},{key:"foundation-writing",label:"Foundation Writing · U01",icon:PenLine},{key:"foundation-writing-u02",label:"Foundation Writing · U02",icon:PenLine},{key:"foundation-writing-u03",label:"Foundation Writing · U03",icon:PenLine},{key:"foundation-writing-u04",label:"Foundation Writing · U04",icon:PenLine},{key:"foundation-writing-u05",label:"Foundation Writing · U05",icon:PenLine},{key:"foundation-writing-u06",label:"Foundation Writing · U06",icon:PenLine},{key:"listening",label:"Listening",icon:Headphones},{key:"speaking",label:"Speaking",icon:Mic},{key:"vocabulary",label:"Vocabulary",icon:BookOpen},{key:"pronunciation",label:"Pronunciation",icon:Volume2}]},
  {heading:"ASSESSMENTS & EXAM PREP",items:[{key:"diagnostic",label:"Diagnostic Assessment",icon:ClipboardList},{key:"specialization",label:"IELTS / TOEFL · Planned",icon:GraduationCap}]},
  {heading:"PROGRESS & REVIEW",items:[{key:"progress",label:"Progress",icon:ChartNoAxesCombined},{key:"skillmap",label:"Skill Map",icon:MapIcon},{key:"errorbank",label:"Error Bank",icon:Database}]},
  {heading:"SETTINGS & FAMILY",items:[{key:"profile",label:"Learner Settings",icon:UserRound},{key:"parent",label:"Parent Center",icon:Users}]},
@@ -126,6 +128,35 @@ export default function Home(){
   const next:State={...current,foundationWritingV1:{...previous,units:{...previous.units,[unit]:saved}}};
   dirty.current=true;latestState.current=next;setState(next);
   return saveNow(next);
+ }
+ function editFoundationWave2(unit:Wave2Id,draft:Wave2Draft){
+  const previous=latestState.current.foundationWritingV1??emptyFoundationWritingV1();
+  if(previous.schemaVersion!==1)throw Error('Unknown Foundation Writing schema; preserve learner backup.');
+  const current=wave2Work(previous,unit);
+  update({foundationWritingV1:{...previous,units:{...previous.units,[unit]:{...current,draft}}}});
+ }
+ async function saveFoundationWave2(unit:Wave2Id):Promise<boolean>{
+  const current=latestState.current;
+  const previous=current.foundationWritingV1??emptyFoundationWritingV1();
+  if(previous.schemaVersion!==1)return false;
+  const prior=wave2Work(previous,unit);
+  let saved;
+  try{saved=appendWave2Version(prior,Date.now())}catch{return false}
+  const next:State={...current,foundationWritingV1:{...previous,units:{...previous.units,[unit]:saved}}};
+  dirty.current=true;latestState.current=next;setState(next);
+  const verified=await saveNow(next);
+  if(verified)return true;
+  // A failed actual storage write must not leave a phantom saved version eligible for AI.
+  const live=latestState.current,scope=live.foundationWritingV1??emptyFoundationWritingV1();
+  if(saved.versions.length>prior.versions.length&&scope.schemaVersion===1){
+   const present=wave2Work(scope,unit),failed=saved.versions.at(-1),last=present.versions.at(-1);
+   if(failed&&last?.version===failed.version&&last.signature===failed.signature){
+    const rolled:State={...live,foundationWritingV1:{...scope,
+      units:{...scope.units,[unit]:{...present,versions:prior.versions}}}};
+    latestState.current=rolled;setState(rolled);dirty.current=true;
+   }
+  }
+  return false;
  }
  function patch(group:"analysis"|"brainstorm"|"outline",key:string,value:string){dirty.current=true;const previous=latestState.current;const stageIndex=group==="analysis"?0:group==="brainstorm"?1:2;const feedbacks={...previous.feedbacks};delete feedbacks[String(stageIndex)];const next={...previous,feedbacks,completed:previous.completed.filter(item=>item!==stageIndex),[group]:{...previous[group],[key]:value}};latestState.current=next;setState(next)}
  async function finishDiagnostic(diagnosticV2:DiagnosticV2){
@@ -230,6 +261,17 @@ export default function Home(){
     onEdit={draft=>editFoundationNext(view==="foundation-writing-u02"?"FW-U02":"FW-U03",draft)}
     onSave={()=>saveFoundationNext(view==="foundation-writing-u02"?"FW-U02":"FW-U03")}
     onExit={()=>void navigate("writing")} showVi={!!state.vietnameseSupport}/>)}
+
+ {(["foundation-writing-u04","foundation-writing-u05","foundation-writing-u06"] as View[]).includes(view)&&
+   (state.foundationWritingV1&&state.foundationWritingV1.schemaVersion!==1?
+    <section className="panel" role="alert"><h2>Unknown Foundation Writing data version</h2>
+     <p>Preserve your learner backup. No data was overwritten.</p></section>:
+    <FoundationWritingWave2
+     unitId={view==="foundation-writing-u04"?"FW-U04":view==="foundation-writing-u05"?"FW-U05":"FW-U06"}
+     work={wave2Work(state.foundationWritingV1,view==="foundation-writing-u04"?"FW-U04":view==="foundation-writing-u05"?"FW-U05":"FW-U06")}
+     onEdit={draft=>editFoundationWave2(view==="foundation-writing-u04"?"FW-U04":view==="foundation-writing-u05"?"FW-U05":"FW-U06",draft)}
+     onSave={()=>saveFoundationWave2(view==="foundation-writing-u04"?"FW-U04":view==="foundation-writing-u05"?"FW-U05":"FW-U06")}
+     onExit={()=>void navigate("writing")} showVi={!!state.vietnameseSupport}/>)}
 
  {view==="reference"&&<ReferenceLibrary catalog={foundationCatalog} onCatalog={setFoundationCatalog} onOpenLesson={(id,skill)=>void openReferenceLesson(id,skill)}/>}
  {view==="diagnostic"&&<DiagnosticAssessment value={state.diagnosticV2} archive={state.diagnosticArchive??[]} onChange={diagnosticV2=>update({diagnosticV2,...(state.diagnosticV2&&state.diagnosticV2.startedAt!==diagnosticV2.startedAt?{diagnosticArchive:[...(state.diagnosticArchive??[]),state.diagnosticV2]}:{})})} onFinish={finishDiagnostic} showVi={!!state.vietnameseSupport}/>}
