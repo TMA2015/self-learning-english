@@ -6,7 +6,7 @@ const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p
 const registry=JSON.parse(read('ai/prompts/registry.json')),prompt=registry['foundation-writing-review'];
 assert.equal(prompt.version,'1.4.0');
 for(const u of ['10','11','12'])assert(prompt.system.includes('FW-U'+u),'Prompt must cover FW-U'+u);
-const source=read('ai/service.ts'),module={exports:{}};
+const source=read('ai/service.ts'),sandboxModule={exports:{}};
 vm.runInNewContext(ts.transpileModule(source,{fileName:'ai/service.ts',compilerOptions:{
  target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS,esModuleInterop:true
 }}).outputText,{module,exports:module.exports,JSON,Date,Object,Set,Number,Error,
@@ -18,7 +18,7 @@ vm.runInNewContext(ts.transpileModule(source,{fileName:'ai/service.ts',compilerO
   throw Error('Unexpected import '+name);
  }},{filename:'ai/service.ts',timeout:5000});
 let response=null,request=null,failures=0,calls=0;
-const tutor=module.exports.createTutorService({available:true,reportFailure:()=>failures++,
+const tutor=sandboxModule.exports.createTutorService({available:true,reportFailure:()=>failures++,
  async generate(p){calls++;request=p;return{provider:'firebase-ai-logic',model:'synthetic-no-network',result:response}}});
 const original='draftV1: This is my independent saved original message about an activity. It requests a possible decision.';
 const changed='revisedV2: I now clarify the reader action without inventing a confirmed event.';
