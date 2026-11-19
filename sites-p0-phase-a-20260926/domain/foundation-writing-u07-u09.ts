@@ -99,13 +99,16 @@ const ownFixture=(unit:Wave3Id,artifact:Wave3Artifact)=>{
 export function wave3Required(unit:Wave3Id,artifact:Wave3Artifact){
  const c=WAVE3_UNITS[unit];
  return artifact==='cycleA'?ownKeys[unit]:
+ artifact==='cycleB'&&unit==='FW-U07'?['problem','response','transitionReason']:
  artifact==='cycleB'?c.cycleB.fields.map(f=>f.key):c.transfer.fields.map(f=>f.key);
 }
 export function wave3Artifact(unit:Wave3Id,draft:Wave3Draft,artifact:Wave3Artifact){
  const fields=artifact==='cycleA'?draft.cycleAOwn:artifact==='cycleB'?draft.cycleB:draft.transfer;
  const required=wave3Required(unit,artifact);
+ const optional=unit==='FW-U07'&&artifact==='cycleB'?
+  ['repairBefore','repairAfter','repairWhy'].filter(key=>(fields[key]??'').trim()):[];
  return {unitId:unit,fixtureId:ownFixture(unit,artifact),task:ownTask(unit,artifact),
- text:required.map(key=>key+': '+(fields[key]??'').trim()).join('\n')+
+ text:[...required,...optional].map(key=>key+': '+(fields[key]??'').trim()).join('\n')+
   (artifact==='cycleB'&&unit==='FW-U09'?'\n[Draft V1 is learner-owned; no automatic scoring.]':'')};
 }
 export function eligibleWave3Artifact(unit:Wave3Id,work:Wave3Work,artifact:Wave3Artifact){
