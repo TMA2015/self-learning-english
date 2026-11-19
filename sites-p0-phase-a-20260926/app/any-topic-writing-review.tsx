@@ -94,7 +94,7 @@ export function AnyTopicWritingReview({showVi=false}:{showVi?:boolean}){
   return <section className="panel any-topic-writing-review" aria-label="Independent Writing Review">
     <div className="page-heading"><div>
       <h1>Writing Draft · Any Topic</h1>
-      <p>Write about a topic of your choice, save a draft locally, and ask AI Tutor for personal Writing feedback when you choose. This space is separate from English Writing Coach · 12 Weeks and graded Foundation lessons.</p>
+      <p>Write about a topic of your choice, save a draft locally, and ask AI Tutor for personal Writing feedback when you choose. This workspace is separate from Foundation Writing and the independent Writing skill catalog; this feedback does not change assessment records.</p>
     </div></div>
     <p className="notice"><strong>Your choice:</strong> Save and revise locally without AI. After saving, you may explicitly ask Gemini to review this draft through AI Tutor. Feedback is provisional advice, never an official grade or certified CEFR result.</p>
     <form onSubmit={event=>{
