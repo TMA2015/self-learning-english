@@ -43,8 +43,11 @@ assert.match(home,/writingIntro=\{view==="writing"\?[^\n]*onClick=\{\(\)=>void n
  'Writing skill overview must link directly to independent Gemini Writing');
 assert.match(home,/view==="tutor"&&<TutorOverview onWriting=\{\(\)=>navigate\("writing-any-topic"\)\}/,
  'AI Tutor Writing-feedback entry must not redirect to 12-week Week 1');
-assert.match(platform,/AI Writing Feedback · Any Topic/,'Explain independent feedback and saved-draft requirement');
-assert.match(platform,/Open AI Writing Feedback/,'Use precise CTA instead of Try Writing practice');
+assert.match(platform,/<h2>Writing Studio<\/h2>/,'AI Tutor card uses the Writing Studio name');
+assert.match(platform,/Open Writing Studio/,'AI Tutor CTA opens the existing independent Writing Studio');
+assert.match(platform,/After saving, you can optionally ask Gemini/,'Explicit save-first optional provider promise retained');
+assert.doesNotMatch(platform.split('export function TutorOverview')[1],/12-week Writing Course/,'Obsolete 12-week copy is removed from the AI Tutor card');
+assert.doesNotMatch(view,/English Writing Coach · 12 Weeks/,'Any Topic workspace no longer references the retired course');
 assert.doesNotMatch(platform.split('export function TutorOverview')[1],/Try Writing practice/,
  'Do not route feedback users to Writing Course');
 assert.match(runner,/any-topic-writing-review-shell\.cjs/,'Register mandatory QA in full suite');
