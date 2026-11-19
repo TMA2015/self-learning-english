@@ -1,0 +1,315 @@
+{
+  "id": "FW-U08",
+  "title": "Adapt Register, Audience & Tone",
+  "minutes": "30–40",
+  "source": {
+    "document": "SLE_FOUNDATION_WRITING_AUTHORING_WAVE3_U07-U09_DRAFT_20261118.md",
+    "sha256": "13db37528ca01091fce49de2e783b8c252f133f922df45855a150a586a096efb",
+    "notebooklm": "SLE-FW-AUTH-W3-NBLM-R1-20261118",
+    "verdict": "PASS",
+    "requiredChanges": "NONE"
+  },
+  "outcome": "Ask the same two missing questions to a friend and an organizer, adapting wording appropriately without changing the request or inventing unknown facts.",
+  "teaching": {
+    "lessons": [
+      "Tone is a choice for the reader and purpose, not a ladder from bad to good. Peer messages may be informal and excellent.",
+      "A wording change must preserve the communicative action. Replacing 'Where do we meet?' with 'Please confirm the price' changes the question, not just the tone."
+    ],
+    "demo": {
+      "id": "FW-U08-D01",
+      "prompt": "Ask friend Sam and exhibition organizer Mr. Lin the closing time and whether reservations are required at a community photography show; neither answer is given.",
+      "steps": [
+        [
+          "Notice",
+          "Both readers receive the SAME two missing facts: closing time and reservations."
+        ],
+        [
+          "Peer",
+          "Hi Sam! Do you know what time the photo exhibition closes? Also, do we need to reserve a place? Thanks!"
+        ],
+        [
+          "Organizer",
+          "Hello Mr. Lin, could you please tell me the exhibition closing time and whether visitors need to reserve a place? Thank you."
+        ],
+        [
+          "Why",
+          "Greeting and courtesy differ while both questions remain."
+        ],
+        [
+          "Reject / repair",
+          "Overformal legal-style phrasing or dropping one of the questions is not an improvement."
+        ],
+        [
+          "Transfer",
+          "Adjust tone according to the person; never invent the time or booking policy."
+        ]
+      ]
+    },
+    "a1": "Hi … / Do you know …? / Thanks!; Hello … / Could you please tell me …? / Thank you.",
+    "b1": "Compare a long ceremonial request with a short courteous one."
+  },
+  "cycleA": {
+    "id": "FW-U08-A",
+    "prompt": "A school science poster competition notice does not state submission deadline or whether posters must be digital or printed. Ask Jo, a classmate, and teacher Ms. Park for BOTH facts. Do not guess answers.",
+    "objective": [
+      {
+        "id": "FW-U08-A-TEACHER",
+        "prompt": "Message to Ms. Park.",
+        "question": "Which courteous question retains deadline and format?",
+        "key": "C",
+        "options": [
+          {
+            "id": "A",
+            "text": "Hey Jo, did you see my new phone?",
+            "rationale": "Wrong reader and task."
+          },
+          {
+            "id": "B",
+            "text": "Dear Ms. Park, please accept my winning poster tomorrow.",
+            "rationale": "Assumes date/submission and asks neither fact."
+          },
+          {
+            "id": "C",
+            "text": "Hello Ms. Park, could you please tell me the poster deadline and whether we should submit a digital or printed poster? Thank you.",
+            "rationale": "Right reader and both unknown details."
+          },
+          {
+            "id": "D",
+            "text": "Science posters are good. I demand an answer now.",
+            "rationale": "Demand, no requested facts."
+          }
+        ]
+      },
+      {
+        "id": "FW-U08-A-PEER",
+        "prompt": "Message to classmate Jo.",
+        "question": "Which natural peer message asks the SAME two facts?",
+        "key": "A",
+        "options": [
+          {
+            "id": "A",
+            "text": "Hi Jo! Do you know when the poster is due and if it needs to be digital or printed? Thanks!",
+            "rationale": "Friendly and covers both."
+          },
+          {
+            "id": "B",
+            "text": "Dear Competition Authority, I formally certify all poster rules.",
+            "rationale": "Wrong reader; no question."
+          },
+          {
+            "id": "C",
+            "text": "Hi Jo, the deadline is certainly Friday, and printed posters are banned.",
+            "rationale": "Invents deadline and format."
+          },
+          {
+            "id": "D",
+            "text": "Hi Jo, which science project did you do last year?",
+            "rationale": "Different question."
+          }
+        ]
+      }
+    ],
+    "order": {
+      "id": "FW-U08-A-INTENT",
+      "key": "INTENT_PRESERVED_REGISTER_ADAPTED",
+      "options": [
+        {
+          "id": "INTENT_PRESERVED_REGISTER_ADAPTED",
+          "text": "Both ask deadline and format; register varies by audience",
+          "rationale": "Intended information remains identical."
+        },
+        {
+          "id": "INTENT_CHANGED",
+          "text": "Teacher asks deadline and peer asks about an unrelated sport",
+          "rationale": "This would change the original intention."
+        },
+        {
+          "id": "ANSWERS_INVENTED",
+          "text": "Both messages announce assumed rules",
+          "rationale": "The missing facts are unknown."
+        }
+      ]
+    },
+    "ownFields": [
+      {
+        "key": "repair",
+        "label": "Your courteous rewrite of 'Give me the poster details now' asking BOTH missing questions"
+      },
+      {
+        "key": "reason",
+        "label": "Why is your changed wording suitable for Ms. Park?"
+      }
+    ]
+  },
+  "cycleB": {
+    "id": "FW-U08-B",
+    "prompt": "A neighbourhood public mural walk notice omits starting time and meeting point. Write TWO original messages: one to Luca, a friend who signed up, and one to coordinator Ms. Rivera. Both need the same two missing facts. Explain TWO purposeful wording changes. Do not invent the answers or a confirmed booking.",
+    "taskStrip": {
+      "topic": "Neighbourhood public mural walk",
+      "task": "Request practical information from a friend and an event coordinator",
+      "mustInclude": "Starting time AND meeting point in BOTH messages; two changes explained",
+      "boundary": "Neither fact known; no fake booking, deadlines or demands"
+    },
+    "fields": [
+      {
+        "key": "sharedIntent",
+        "label": "Your note identifying BOTH missing questions"
+      },
+      {
+        "key": "peerMessage",
+        "label": "Original message to friend Luca"
+      },
+      {
+        "key": "organizerMessage",
+        "label": "Original message to coordinator Ms. Rivera"
+      },
+      {
+        "key": "change1",
+        "label": "First deliberate wording change and why"
+      },
+      {
+        "key": "change2",
+        "label": "Second deliberate wording change and why"
+      }
+    ],
+    "a1": "Use brief general greeting/question starters; do not fill in an unknown answer.",
+    "b1": "Try shortening the organizer request while retaining both questions and courtesy."
+  },
+  "transfer": {
+    "id": "FW-U08-T",
+    "prompt": "A youth center beginner dance workshop notice does not say which shoes to bring or whether prior experience is necessary. Ask friend Noa and the registration officer the SAME TWO questions without inventing answers. Explain one audience-related wording change.",
+    "fields": [
+      {
+        "key": "sharedQuestions",
+        "label": "Both original missing questions"
+      },
+      {
+        "key": "peerMessage",
+        "label": "Original message to Noa"
+      },
+      {
+        "key": "staffMessage",
+        "label": "Original message to registration officer"
+      },
+      {
+        "key": "toneReason",
+        "label": "Why does your wording suit the two readers?"
+      }
+    ]
+  },
+  "extras": [
+    {
+      "id": "FW-U08-F01",
+      "prompt": "Ask history teacher Mr. Dao where to submit a class project; location unknown.",
+      "question": "Which message fits both reader and request?",
+      "key": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Yo, where's my project? Hurry up.",
+          "rationale": "Demanding; wrong question."
+        },
+        {
+          "id": "B",
+          "text": "The project is definitely due at the gym.",
+          "rationale": "Invents a place."
+        },
+        {
+          "id": "C",
+          "text": "Hello Mr. Dao, could you please tell me where to submit our history projects? Thank you.",
+          "rationale": "Courteous, correct action, no invented fact."
+        },
+        {
+          "id": "D",
+          "text": "Dear District Mayor, I strongly request a new road.",
+          "rationale": "Wrong reader/topic."
+        }
+      ]
+    },
+    {
+      "id": "FW-U08-F02",
+      "prompt": "Ask close friend Eli when a school music rehearsal starts.",
+      "question": "Which is clearest natural peer wording?",
+      "key": "A",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hi Eli, do you know what time rehearsal starts? Thanks!",
+          "rationale": "Friendly direct question."
+        },
+        {
+          "id": "B",
+          "text": "To Whom It May Concern: Pursuant to the rehearsal regulations …",
+          "rationale": "Overly bureaucratic and incomplete."
+        },
+        {
+          "id": "C",
+          "text": "You must tell me now or I will report you.",
+          "rationale": "Threatening."
+        },
+        {
+          "id": "D",
+          "text": "Music rehearsals are musical.",
+          "rationale": "A statement, not a request."
+        }
+      ]
+    },
+    {
+      "id": "FW-U08-F03",
+      "prompt": "Politely ask a bus-tour guide BOTH starting place and finishing time.",
+      "question": "Which preserves both questions?",
+      "key": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Dear Guide, your tour sounds amazing.",
+          "rationale": "No questions."
+        },
+        {
+          "id": "B",
+          "text": "Could you please confirm where the tour begins?",
+          "rationale": "Omits finish time."
+        },
+        {
+          "id": "C",
+          "text": "Please change the tour to Sunday afternoon.",
+          "rationale": "Changes task to rescheduling."
+        },
+        {
+          "id": "D",
+          "text": "Could you please tell me where the tour begins and what time it ends? Thank you.",
+          "rationale": "Both needs preserved."
+        }
+      ]
+    },
+    {
+      "id": "FW-U08-F04",
+      "prompt": "Ask a museum volunteer coordinator if students may volunteer at a weekend session. Permission not yet granted.",
+      "question": "Which request is accurate?",
+      "key": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "We will attend as approved volunteers; your permission is confirmed.",
+          "rationale": "Claims approval."
+        },
+        {
+          "id": "B",
+          "text": "Hello, could you please let us know whether students may volunteer at the weekend session?",
+          "rationale": "Respectful question and uncertainty."
+        },
+        {
+          "id": "C",
+          "text": "I command you to approve all students immediately.",
+          "rationale": "Demand and unwarranted control."
+        },
+        {
+          "id": "D",
+          "text": "I have already accepted the post on your behalf.",
+          "rationale": "Invented acceptance."
+        }
+      ]
+    }
+  ],
+  "aiLens": "Review the two saved messages plus sharedIntent and changes. Both must ask starting time and meeting point; do not auto-detect missing meaning by literal keywords. Allow natural friend voice and varied polite coordinator phrasing. Never ghostwrite both messages."
+}

@@ -1,0 +1,303 @@
+{
+  "id": "FW-U09",
+  "title": "Draft Integrated Multi-Paragraph Text",
+  "minutes": "30–45",
+  "source": {
+    "document": "SLE_FOUNDATION_WRITING_AUTHORING_WAVE3_U07-U09_DRAFT_20261118.md",
+    "sha256": "13db37528ca01091fce49de2e783b8c252f133f922df45855a150a586a096efb",
+    "notebooklm": "SLE-FW-AUTH-W3-NBLM-R1-20261118",
+    "verdict": "PASS",
+    "requiredChanges": "NONE"
+  },
+  "outcome": "Write a reader-focused formal request Draft V1 with all required information and distinct functional paragraph jobs; retain the very first saved draft for later revision.",
+  "teaching": {
+    "lessons": [
+      "A draft is a message to a real reader, not a list of connectors. Map required facts and polite action first.",
+      "Planning is a route, not a cage. A requirement must appear somewhere, but two, three or four coherent paragraphs may work."
+    ],
+    "demo": {
+      "id": "FW-U09-D01",
+      "prompt": "Write a polite email to a community museum manager suggesting one beginner map-making workshop. Propose a possible time, a simple activity and ask for consideration; do not assert museum approval.",
+      "steps": [
+        [
+          "Notice",
+          "Reader museum manager; request to consider; tentative timing, activity and clear decision request."
+        ],
+        [
+          "Plan",
+          "P1 purpose/proposal; P2 timing/activity; P3 courteous question and thanks."
+        ],
+        [
+          "Teacher-only model",
+          "Dear Museum Manager, I am writing to ask whether the museum could consider a beginner map-making workshop for local students. One possible time is a Saturday afternoon. Participants could draw a simple map of a familiar area and compare roads and landmarks. Would you consider this idea or suggest a suitable alternative? Thank you for your time. Kind regards, Alex."
+        ],
+        [
+          "Why",
+          "Each paragraph has a reader job; no event approval is claimed."
+        ],
+        [
+          "Reject/repair",
+          "The claim 'Map workshops are fantastic' does not supply a time or activity."
+        ],
+        [
+          "Transfer",
+          "Check every task requirement against actual draft sentences, not a connector/word count."
+        ]
+      ]
+    },
+    "a1": "I am writing to ask if … / One possible activity is … / Thank you for considering …",
+    "b1": "Suggest a small-group or supply constraint as a possibility, not an established policy."
+  },
+  "cycleA": {
+    "id": "FW-U09-A",
+    "prompt": "Email a neighbourhood sports hall manager asking them to consider a trial after-school table-tennis session. Include one suggested weekday, registration suggestion, one resource to check and polite decision request. Treat all as proposals, not an approved event.",
+    "taskStrip": {
+      "topic": "Trial table-tennis session",
+      "task": "Ask the sports hall manager to consider a trial",
+      "mustInclude": "Weekday; registration; resource check; decision request",
+      "boundary": "Provisional plan, manager audience, no invented approval or attendance"
+    },
+    "labels": [
+      "R1",
+      "R2",
+      "R3",
+      "UNSUPPORTED_CLAIM",
+      "OFF_TASK"
+    ],
+    "cards": [
+      {
+        "id": "C1",
+        "text": "Could the hall consider a trial table-tennis session on a Wednesday after school?",
+        "key": "R1",
+        "rationale": "Names the proposal and tentative day."
+      },
+      {
+        "id": "C2",
+        "text": "Interested students could sign up through the hall desk, if that option is available.",
+        "key": "R2",
+        "rationale": "Proposed registration, not a confirmed arrangement."
+      },
+      {
+        "id": "C3",
+        "text": "The hall would also need to check whether tables are available.",
+        "key": "R2",
+        "rationale": "A resource check, no invented inventory."
+      },
+      {
+        "id": "C4",
+        "text": "Please let us know whether the idea could work. Thank you for considering it.",
+        "key": "R3",
+        "rationale": "Polite decision request and closing."
+      },
+      {
+        "id": "X1",
+        "text": "The trial is officially approved and starts tomorrow.",
+        "key": "UNSUPPORTED_CLAIM",
+        "rationale": "The task is still provisional; approval is invented."
+      },
+      {
+        "id": "X2",
+        "text": "My aunt watches football on television.",
+        "key": "OFF_TASK",
+        "rationale": "Unrelated event."
+      }
+    ],
+    "cover": {
+      "id": "FW-U09-A-COVER",
+      "key": [
+        "weekday",
+        "registration",
+        "resource",
+        "decisionRequest"
+      ],
+      "labels": [
+        {
+          "id": "weekday",
+          "text": "One suggested weekday"
+        },
+        {
+          "id": "registration",
+          "text": "An optional student registration method"
+        },
+        {
+          "id": "resource",
+          "text": "One resource hall must check"
+        },
+        {
+          "id": "decisionRequest",
+          "text": "A polite request for manager's decision"
+        }
+      ]
+    },
+    "falseOpening": "Dear Manager, table tennis is good. We are sure the trial is already approved.",
+    "ownFields": [
+      {
+        "key": "repair",
+        "label": "Your rewrite: remove false approval and make a polite request"
+      },
+      {
+        "key": "reason",
+        "label": "Why does your revision preserve the uncertain/proposal status?"
+      }
+    ]
+  },
+  "cycleB": {
+    "id": "FW-U09-B",
+    "prompt": "First-time visitors to a community arts centre may not know how to join weekend workshops. Write a polite email to the programme coordinator proposing clearer sign-up instructions. Include where and when to register, what participants should bring, one concrete benefit, and ask for consideration. Do NOT invent current registration policies.",
+    "taskStrip": {
+      "topic": "Workshop sign-up instructions",
+      "task": "Polite request to programme coordinator for clearer first-time information",
+      "mustInclude": "Visitors potentially confused; where/when registration; what to bring; one practical benefit; consideration request",
+      "boundary": "No invented hours/policy/approval/numbers; 90–130 words only optional guidance"
+    },
+    "fields": [
+      {
+        "key": "planRoles",
+        "label": "Your 2–3 paragraph jobs — planning notes, not a complete draft"
+      },
+      {
+        "key": "draftV1",
+        "label": "Your ORIGINAL independent formal email — Draft V1"
+      },
+      {
+        "key": "commitmentNote",
+        "label": "How this draft preserves the task and reader"
+      }
+    ],
+    "a1": "I am writing to ask if … / One possible activity is … / Thank you for considering …",
+    "b1": "Optional: qualify feasibility without claiming a known policy. Length guidance 90–130 words, never a score threshold."
+  },
+  "transfer": {
+    "id": "FW-U09-T",
+    "prompt": "Write a respectful email to a school committee asking it to consider a shaded waiting space for students after clubs. State when the need is noticeable, propose one feasible arrangement, explain one direct benefit and ask for consideration. Do not invent a budget or approved plan.",
+    "fields": [
+      {
+        "key": "taskMapNotes",
+        "label": "Your original task-coverage notes"
+      },
+      {
+        "key": "draftV1Transfer",
+        "label": "New ORIGINAL multi-paragraph transfer email"
+      },
+      {
+        "key": "readerDecision",
+        "label": "Why does the closing ask the right reader to consider the proposal?"
+      }
+    ]
+  },
+  "extras": [
+    {
+      "id": "FW-U09-F01",
+      "prompt": "Propose beginners' badminton afternoon by email; include a suggested date and first-time equipment.",
+      "question": "Which covers practical details?",
+      "key": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Badminton is fun, fun and very fun.",
+          "rationale": "No date/equipment."
+        },
+        {
+          "id": "B",
+          "text": "Could the club consider a beginners' badminton afternoon next Saturday? New players could bring their own racket if available.",
+          "rationale": "Tentative time, equipment and no invented approval."
+        },
+        {
+          "id": "C",
+          "text": "The afternoon has already been approved and everyone must attend.",
+          "rationale": "Untrue approval and obligation."
+        },
+        {
+          "id": "D",
+          "text": "Furthermore, therefore, however, badminton.",
+          "rationale": "Connectors replace content."
+        }
+      ]
+    },
+    {
+      "id": "FW-U09-F02",
+      "prompt": "Request an art display from school office: purpose, possible location, and polite decision.",
+      "question": "Which three-part plan has distinct jobs?",
+      "key": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "P1: art is great; P2: art is very great; P3: art is great again.",
+          "rationale": "Repeated praise."
+        },
+        {
+          "id": "B",
+          "text": "P1: your weekend; P2: unrelated films; P3: thank reader.",
+          "rationale": "Unrelated, task not covered."
+        },
+        {
+          "id": "C",
+          "text": "P1: ask for display; P2: possible location and benefit; P3: politely request a decision.",
+          "rationale": "Distinct jobs and full coverage."
+        },
+        {
+          "id": "D",
+          "text": "P1: everything in headline; P2/P3: empty.",
+          "rationale": "Empty roles waste space."
+        }
+      ]
+    },
+    {
+      "id": "FW-U09-F03",
+      "prompt": "School has NOT decided about a Saturday language-help desk; student asks permission.",
+      "question": "Which keeps decision status accurate?",
+      "key": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "The help desk opens every Saturday, as officially agreed.",
+          "rationale": "Invents official agreement."
+        },
+        {
+          "id": "B",
+          "text": "Everyone must use it this weekend.",
+          "rationale": "Invents obligation."
+        },
+        {
+          "id": "C",
+          "text": "The desk is guaranteed to improve every grade.",
+          "rationale": "Invents guaranteed result."
+        },
+        {
+          "id": "D",
+          "text": "Could the school consider trying a Saturday language-help desk?",
+          "rationale": "Correctly asks for consideration."
+        }
+      ]
+    },
+    {
+      "id": "FW-U09-F04",
+      "prompt": "Swimming club has NOT agreed to a proposed family information session.",
+      "question": "Which closing is appropriate?",
+      "key": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Thank you for approving the session and paying for everything.",
+          "rationale": "Assumes approval and money."
+        },
+        {
+          "id": "B",
+          "text": "Would you consider this idea and let us know whether it may be possible? Thank you for your time.",
+          "rationale": "Courteous decision request with uncertainty."
+        },
+        {
+          "id": "C",
+          "text": "My teacher's bicycle is orange.",
+          "rationale": "Unrelated."
+        },
+        {
+          "id": "D",
+          "text": "I demand a guaranteed reply by tomorrow morning.",
+          "rationale": "Unreasonable demand."
+        }
+      ]
+    }
+  ],
+  "aiLens": "Review exact saved Draft V1 and task strip only after explicit learner request. Prioritize grounded missing requirements, reader mismatch or concrete-detail weakness; accept strong work without manufacturing errors. No full replacement letter, grade, CEFR level or invented policy. Preserve first immutable Draft V1 for later U10/U11."
+}

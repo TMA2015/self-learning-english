@@ -51,7 +51,7 @@ assert.match(home,/foundation-writing-u03/);
 assert.match(legacy,/'FW-U02'\?:NextUnitWork<U02Draft>/);
 assert.match(legacy,/'FW-U03'\?:NextUnitWork<U03Draft>/);
 assert.match(read('scripts/qa-free-first.mjs'),/foundation-writing-u02-u03-v1\.cjs/);
-assert.equal(registry['foundation-writing-review'].version,'1.2.0');
+assert.equal(registry['foundation-writing-review'].version,'1.3.0');
 assert.match(registry['foundation-writing-review'].system,/never require a rejected\/off-task candidate/);
 assert.match(registry['foundation-writing-review'].system,/two benefits are genuinely different/);
 
@@ -171,7 +171,7 @@ function good(text){return {summary:'A suggestion grounded in the saved writing'
   assert.equal(out.structuredResult.scores,null);
   assert.equal(out.structuredResult.level,null);
   assert.equal(lastReq.purpose,'foundation-writing-review');
-  assert.equal(lastReq.promptVersion,'1.2.0');
+  assert.equal(lastReq.promptVersion,'1.3.0');
   for(const bad of [
    {...good(artifact.text),scores:{grammar:8}},
    {...good(artifact.text),level:'C2'},
