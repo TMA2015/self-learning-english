@@ -23,7 +23,7 @@ assert.match(read('app/any-topic-writing-review.tsx'),/responseLanguage=\{showVi
 assert.match(read('app/home-client.tsx'),/AnyTopicWritingReview showVi=\{!!state.vietnameseSupport\}/);
 assert.match(read('app/writing-ai-review.tsx'),/reviewMode!=='any-topic'/);
 assert.match(read('app/writing-ai-review.tsx'),/parsed.scores===null&&parsed.level===null/);
-assert.match(read('infrastructure/browser/client-services.ts'),/tutor\.coach\('any-topic'/);
+assert.match(read('infrastructure/browser/client-services.ts'),/targetCEFR\?'cefr-writing':'any-topic'/,'General and CEFR are separate, unscored coaching stages');
 
 fs.rmSync(path.join(root,out),{recursive:true,force:true});
 execFileSync(process.execPath,[
