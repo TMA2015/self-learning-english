@@ -12,7 +12,7 @@ const DRAFT_KEY='g-learning:english:any-topic-writing:draft:v1';
 const ANY_TOPIC_AI_CACHE_PREFIX='g-learning:english:ai-feedback:v1:any-topic-writing:';
 
 /** Clear only the Any Topic draft and its optional Gemini feedback.
- * Never delete feedback for the 12-week Writing Course or other skills. */
+ * Never delete Foundation Writing or other skills' feedback. */
 export function clearAnyTopicBrowserData(storage:Pick<Storage,'length'|'key'|'removeItem'>):void{
  const feedbackKeys:string[]=[];
  for(let i=0;i<storage.length;i++){
