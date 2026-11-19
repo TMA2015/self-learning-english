@@ -51,7 +51,7 @@ async function test(){
  assert(first,'Valid B1 scored text must be accepted');
  assert.equal(lastRequest.purpose,'cefr-writing-coaching');
  assert.equal(lastRequest.promptVersion,'0.2.0-scored');
- assert.match(lastRequest.instructions,/targetCEFR=B1/);
+ assert.match(lastRequest.instructions,/practice target is B1/,'Trusted CEFR B1 target must shape the score');
  assert.equal(lastRequest.input.learnerContext.targetCEFR,'B1');
  assert.equal(first.structuredResult.totalScore,25);
  assert.equal(first.structuredResult.maxScore,30);
