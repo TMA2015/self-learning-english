@@ -635,3 +635,6 @@ body {
  .sle-rgw-strategy,.sle-rgw-model,.sle-rgw-brainstorm,.sle-rgw-self-practice{padding:11px 12px}
  .sle-rgw-strategies{gap:.5rem}
 }
+
+/* Foundation Writing course entry: prevent button overflow at 320px while retaining readable wrapping. */
+.foundation-writing-course-cta{max-width:100%;min-width:0;white-space:normal;overflow-wrap:anywhere;text-align:center;line-height:1.45}

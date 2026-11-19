@@ -53,7 +53,8 @@ for(const marker of ['todayPlan?.resume','todayPlan?.review','todayPlan?.learn',
 assert(!home.includes('<WritingHome compact'),'Do not embed the 12-week course in Writing overview');
 assert(!foundation.includes('className="foundation-writing-coach"'),
  'No course-only cards in the Writing skill overview');
-assert(home.includes('writingIntro={view==="writing"?<button'),'Writing skill keeps a small action only');
+assert(home.includes('writingIntro={view==="writing"?<div className="learning-choices"'),'Writing skill keeps a bounded accessible entry group');
+assert(home.includes('onClick={()=>void navigate("foundation-writing")}>Start Foundation Writing · U01–U06 available'),'Reviewed Foundation Writing U01–U06 accessible from Writing');
 assert(home.includes('Open AI Writing Feedback · Any Topic'));
 assert(css.includes('.foundation-writing-action{'),'Compact action layout must remain mobile-readable');
 assert(home.includes('view==="writing-course"&&'),'The separate 12-week Writing course remains reachable');

@@ -39,7 +39,7 @@ assert.match(home,/import \{AnyTopicWritingReview\}/);
 assert.match(home,/view==="writing-any-topic"&&<AnyTopicWritingReview showVi=\{!!state.vietnameseSupport\}\/>/);
 assert.match(view,/reviewMode="any-topic" responseLanguage=\{showVi \? 'vi' : 'en'\}/);
 
-assert.match(home,/writingIntro=\{view==="writing"\?<button[^\n]*navigate\("writing-any-topic"\)/,
+assert.match(home,/writingIntro=\{view==="writing"\?[^\n]*onClick=\{\(\)=>void navigate\("writing-any-topic"\)\}>Open AI Writing Feedback · Any Topic/,
  'Writing skill overview must link directly to independent Gemini Writing');
 assert.match(home,/view==="tutor"&&<TutorOverview onWriting=\{\(\)=>navigate\("writing-any-topic"\)\}/,
  'AI Tutor Writing-feedback entry must not redirect to 12-week Week 1');
