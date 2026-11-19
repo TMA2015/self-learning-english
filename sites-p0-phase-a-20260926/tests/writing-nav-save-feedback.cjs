@@ -7,7 +7,8 @@ const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const page=read('app/page.tsx')+read('app/home-client.tsx'), player=read('app/foundation.tsx'), platform=read('app/platform.tsx'), css=read('app/globals.css');
 
 assert.equal((page.match(/<WritingHome\b/g)||[]).length,0,'No 12-week Writing Coach block in the Writing skill overview');
-assert.ok(page.includes('writingIntro={view==="writing"?<button'),'Writing skill keeps only a compact independent-feedback action');
+assert.ok(page.includes('writingIntro={view==="writing"?<div className="learning-choices"'),'Writing skill retains a compact action group');
+assert.ok(page.includes('onClick={()=>void navigate("foundation-writing")}>Start Foundation Writing · U01–U06 available'),'Foundation Writing entry opens U01');
 assert.ok(page.includes('Open AI Writing Feedback · Any Topic'),'Writing skill links to the standalone saved-draft Gemini workspace');
 assert.ok(!page.includes('view==="writing"&&<WritingHome'),'no extra course overview above the player');
 assert.ok(platform.includes('compact=false'),'Existing 12-week Writing course component stays available separately');
