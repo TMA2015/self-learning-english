@@ -1,9 +1,8 @@
 'use client';
 /**
- * Source-driven Wave 4 learner UI. DELIBERATELY NOT mounted by HomeClient until
- * the original 68,935-byte reviewed authoring Markdown and all three units are
- * supplied, SHA-verified and compared against the actual rendered lessons.
- * Test this renderer with explicit synthetic fixtures; never release fixtures.
+ * Source-driven Wave 4 learner UI. Real learner-facing data is independently
+ * validated against the exact NotebookLM-approved 68,935-byte manuscript.
+ * Synthetic fixtures are confined to the isolated browser QA harness.
  */
 import {useEffect,useRef,useState} from 'react';
 import {validateWave4Bundle,type Wave4Lesson,type TaskStrip,type OwnField} from '../domain/foundation-writing-wave4-content';
@@ -47,13 +46,14 @@ function Strip({x}:{x:TaskStrip}){
    <dt>Must Include</dt><dd>{x.mustInclude}</dd><dt>Boundary</dt><dd>{x.boundary}</dd></dl>
  </details>;
 }
-function Field({unit,stage,field,value,onValue}:{unit:Wave4Id;stage:string;field:OwnField;value:string;
- onValue:(v:string)=>void}){
+function Field({unit,stage,field,value,onValue,locked=false}:{unit:Wave4Id;stage:string;field:OwnField;value:string;
+ onValue:(v:string)=>void;locked?:boolean}){
  return <label className="field" htmlFor={unit+'-'+stage+'-'+field.key}>
   <strong>{field.label}</strong>
   <textarea name={unit+'-'+stage+'-'+field.key} id={unit+'-'+stage+'-'+field.key}
-   rows={4} maxLength={6000} value={value} onChange={e=>onValue(e.target.value)}
+   rows={4} maxLength={6000} value={value} readOnly={locked} onChange={e=>{if(!locked)onValue(e.target.value)}}
    placeholder="Write your own words. The teacher's example is a different task."/>
+  {locked&&<span className="muted">Original V1 saved · read-only. Continue in the V2 field or record a justified keep decision.</span>}
  </label>;
 }
 export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave,onExit,
@@ -78,14 +78,16 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
  const latest=work.versions.at(-1);
  const exact=!!latest&&latest.signature===JSON.stringify(draft);
  const selected=src[target];
- const payload=eligibleArtifact(unitId,work,selected.id,selected.fields.map(f=>f.key));
+ const payload=eligibleArtifact(unitId,work,selected.id,selected.fields.filter(f=>f.requiredForAI===true||
+  (f.requiredForAI===undefined&&f.key==='draftV1')).map(f=>f.key));
+ const originalV1=work.versions.find(v=>!!v.draft.cycleB.draftV1?.trim())?.draft.cycleB.draftV1;
  const change=(next:Wave4Draft)=>{token.current++;setReview(null);setReviewError('');
   setStatus('');onEdit(next)};
  const navigate=(next:Screen)=>{token.current++;setReview(null);setReviewError('');setTab(next)};
  const choice=(q:Objective,which:'cycleAAnswers'|'extrasAnswers')=>{
   const answer=draft[which][q.id]??'',reveal=shown[q.id]===true;
   return <article className="wcv2-card" key={q.id} aria-label={q.id}>
-   <h3>{q.id}</h3>
+   <h3>{q.id}</h3><p>{q.stem??'Choose the best answer to the fixed question.'}</p>
    <fieldset><legend>{q.id} · Choose the best answer</legend>
     {q.options.map(o=><label className="field" key={o.id}>
      <input type="radio" name={q.id} value={o.id} checked={answer===o.id}
@@ -129,7 +131,7 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
   <div className="page-heading"><div>
    <span className="eyebrow">FOUNDATION WRITING · SELF-PACED · {unitId}</span>
    <h1>{src.title}</h1><p>{src.outcome}</p>
-   <p className="muted">Independent teaching and practice · approximately {src.minutes} minutes (flexible).
+   <p className="muted">Independent teaching and practice · {src.minutes==='self-paced'?'self-paced, flexible timing':src.minutes+' minutes (flexible)'}.
     No automatic CEFR score.</p>
   </div></div>
   <div className="learning-choices" role="group" aria-label={unitId+' study sections'}>
@@ -144,21 +146,21 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
    <p className="muted">This copy is never rewritten by editing Units 10–12.</p>
   </details>}
   {tab==='learn'&&<section aria-label={unitId+' independent teaching'}>
-   <h2>Micro-lesson 1</h2><p>{src.teaching.lessons[0]}</p>
+   <h2>Micro-lesson 1</h2><p style={{whiteSpace:'pre-wrap'}}>{src.teaching.lessons[0]}</p>
    <h3>Worked demonstration · {src.teaching.demo.id}</h3>
-   <blockquote>{src.teaching.demo.prompt}</blockquote>
+   <blockquote style={{whiteSpace:'pre-wrap'}}>{src.teaching.demo.prompt}</blockquote>
    <button className="secondary-button" type="button" disabled={demo>=src.teaching.demo.steps.length}
     onClick={()=>setDemo(x=>Math.min(x+1,src.teaching.demo.steps.length))}>
     {demo?'Reveal next reasoning step':'Reveal first reasoning step'}</button>
    {demo>0&&<ol>{src.teaching.demo.steps.slice(0,demo).map(([name,explain],i)=>
     <li key={i}><strong>{name}:</strong> {explain}</li>)}</ol>}
-   <h2>Micro-lesson 2</h2><p>{src.teaching.lessons[1]}</p>
+   <h2>Micro-lesson 2</h2><p style={{whiteSpace:'pre-wrap'}}>{src.teaching.lessons[1]}</p>
    <details><summary>Optional A1 bridge</summary><p>{src.teaching.a1}</p></details>
    <details><summary>Optional B1 extension</summary><p>{src.teaching.b1}</p></details>
   </section>}
   {tab==='cycleA'&&<section aria-label={unitId+' Practice A'}>
    <h2>Practice A · {src.cycleA.id}</h2>
-   <Strip x={src.cycleA.taskStrip}/><blockquote>{src.cycleA.prompt}</blockquote>
+   <Strip x={src.cycleA.taskStrip}/><blockquote style={{whiteSpace:'pre-wrap'}}>{src.cycleA.prompt}</blockquote>
    {src.cycleA.items.map(q=>choice(q,'cycleAAnswers'))}
    <h3>Your own explanation (not auto-graded)</h3>
    {src.cycleA.ownFields.map(f=><Field key={f.key} unit={unitId} stage="cycleA" field={f}
@@ -167,9 +169,10 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
   {(['cycleB','transfer'] as const).includes(tab as 'cycleB'|'transfer')&&
    (tab==='cycleB'||tab==='transfer')&&<section aria-label={unitId+' original '+tab}>
     <h2>{tab==='cycleB'?'Practice B · original writing':'Independent transfer'} · {src[tab].id}</h2>
-    <Strip x={src[tab].taskStrip}/><blockquote>{src[tab].prompt}</blockquote>
+    <Strip x={src[tab].taskStrip}/><blockquote style={{whiteSpace:'pre-wrap'}}>{src[tab].prompt}</blockquote>
     {src[tab].fields.map(f=><Field key={f.key} unit={unitId} stage={tab} field={f}
-     value={draft[tab][f.key]??''} onValue={value=>fieldEditor(tab,f.key,value)}/>)}
+     value={draft[tab][f.key]??''} locked={tab==='cycleB'&&f.key==='draftV1'&&!!originalV1}
+     onValue={value=>fieldEditor(tab,f.key,value)}/>)}
     {tab==='cycleB'&&<fieldset><legend>Your editing or retention decision</legend>
      {(['REVISION_SAVED','NO_CHANGE_JUSTIFIED','KEEP_V1_WITH_REASON'] as const).map(v=>
       <label className="field" key={v}>

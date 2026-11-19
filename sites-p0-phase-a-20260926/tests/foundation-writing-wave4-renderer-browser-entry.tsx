@@ -115,7 +115,13 @@ async function write(name:string,value:string){
  check((window as any).__reviewCalls===1,'one explicit review');
  click('Practice B');
  await until(()=>!!root().querySelector('textarea[name="'+unit+'-cycleB-draftV1"]'),'Practice B remounted');
- await write(unit+'-cycleB-draftV1',unit+' This is a changed learner text with a specific reader benefit.');
+ check((root().querySelector('textarea[name="'+unit+'-cycleB-draftV1"]') as HTMLTextAreaElement).readOnly,
+  'saved original V1 is protected');
+ click('Practice A');
+ await until(()=>!!root().querySelector('input[name="'+firstQ.id+'"]'),'Practice A remounted');
+ const alternate=[...root().querySelectorAll<HTMLInputElement>('input[name="'+firstQ.id+'"]')]
+  .find(e=>e.value!==firstQ.key);
+ check(alternate,'alternate choice exists');alternate!.click();
  click('AI Tutor');
  await until(()=>!!button('Get personal AI Tutor feedback'),'AI tab after edit');
  check(button('Get personal AI Tutor feedback')!.disabled,'unsaved revised draft blocks AI');
