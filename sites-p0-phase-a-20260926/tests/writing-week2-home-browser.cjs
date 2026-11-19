@@ -17,7 +17,7 @@ const root=path.join(__dirname,'..');
    'process.env.NEXT_PUBLIC_BASE_PATH':JSON.stringify(''),
   },
   build:{outDir:out,emptyOutDir:true,target:'es2022',minify:false,cssCodeSplit:false,
-   lib:{entry:path.join(root,'tests/writing-foundation-home-browser-entry.tsx'),
+   lib:{entry:path.join(root,'tests/writing-week2-home-browser-entry.tsx'),
      formats:['es'],fileName:()=> 'entry.js'}}
  });
  const css=fs.readFileSync(path.join(root,'app/globals.css'),'utf8');
