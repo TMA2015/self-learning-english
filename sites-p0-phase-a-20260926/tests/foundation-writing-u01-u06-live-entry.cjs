@@ -9,6 +9,8 @@ const tests=['foundation-writing-u01-v1.cjs','foundation-writing-u02-u03-v1.cjs'
  'foundation-writing-u04-u06-browser.cjs'];
 for(const t of tests)assert(read('scripts/qa-free-first.mjs').includes('"'+t+'"'),'QA must include '+t);
 assert(home.includes('Start Foundation Writing · U01–U06 available'),'visible entry in Writing tab');
+assert(home.includes('primary-button foundation-writing-course-cta'),'responsive course CTA class retained');
+assert(read('app/globals.css').includes('.foundation-writing-course-cta{max-width:100%;min-width:0;white-space:normal;overflow-wrap:anywhere'), '320px content must wrap rather than overflow');
 assert(home.includes('onClick={()=>void navigate("foundation-writing")}>Start Foundation Writing'),
  'Writing course entry must open U01 and not the unrelated 12-week Writing Coach');
 assert(home.includes('Open AI Writing Feedback · Any Topic'),'existing writing path preserved');
