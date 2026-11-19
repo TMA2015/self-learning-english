@@ -54,6 +54,7 @@ const coreTests=[
   "foundation-writing-u07-u09-v1.cjs",
   // Source-independent Wave 4 contract only; no U10-U12 authored content is activated.
   "foundation-writing-wave4-readiness.cjs",
+  "foundation-writing-wave4-content.cjs",
   "writing-source-corpus-audit.cjs",
   "vocabulary-pilot-contract.cjs",
   "rgw-depth-pilot-contract.cjs",
