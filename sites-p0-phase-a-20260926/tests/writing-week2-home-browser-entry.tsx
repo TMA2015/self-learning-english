@@ -168,15 +168,15 @@ const skillOverview=async()=>{
 
 /** Real integrated HomeClient Foundation Writing 12-Unit source, save, revision, reload regression. */
 const foundationTwelve=async()=>{
- await wait(()=>text(document.querySelector('.save-status')).includes('Saved on this device'),'SLE local storage ready');
- const n=(id:string)=>document.querySelector<HTMLButtonElement>('nav[aria-label="Main navigation"] button.nav-item[data-id="'+id+'"]');
+ await goCourse();
  const navigateUnit=async(id:'10'|'11'|'12')=>{
-  const label='Foundation Writing · U'+id,navItems=[...document.querySelectorAll<HTMLButtonElement>('nav[aria-label="Main navigation"] button.nav-item')];
-  const button=navItems.find(b=>text(b)===label);
-  if(!button)throw Error('Reviewed full course sidebar missing '+label);
-  button.click();
+  if(!atCourse()){
+   await click('Back to Foundation Writing','main button');
+   await wait(atCourse,'previous unit returns to course overview');
+  }
+  await click('Open Unit '+id,'main button');
   try{
-   await wait(()=>!!document.querySelector('section[aria-label="Foundation Writing FW-U'+id+'"]'),label+' source-backed screen');
+   await wait(()=>!!document.querySelector('section[aria-label="Foundation Writing FW-U'+id+'"]'),'U'+id+' source-backed screen');
   }catch(error){
    throw Error(String(error)+'; React errors: '+JSON.stringify(__FW_BROWS_ERRORS.slice(-5))+
     '; DOM: '+String(document.body?.textContent).slice(0,800));
@@ -257,16 +257,8 @@ const foundationRestore=async()=>{
   if(!w?.versions[0]?.draft?.cycleB?.draftV1?.includes('I wrote my original independent'))
    throw Error('Original V1 text changed '+id);
  }
- const label='Foundation Writing · U12';
- const b=[...document.querySelectorAll<HTMLButtonElement>('nav[aria-label="Main navigation"] button.nav-item')]
-  .find(e=>text(e)===label);
- if(!b)throw Error('U12 not navigable after reload');
- if(innerWidth<=750){
-  const menu=document.querySelector<HTMLButtonElement>('.mobile-menu');
-  if(!menu)throw Error('Responsive menu missing');menu.click();
-  await wait(()=>!!document.querySelector('aside.sidebar.open'),'mobile menu opens');
- }
- b.click();
+ await goCourse();
+ await click('Open Unit 12','main button');
  await wait(()=>!!document.querySelector('section[aria-label="Foundation Writing FW-U12"]'),'restored U12 UI');
  await click('Practice B','main button');
  await wait(()=>!!document.querySelector('textarea[name="FW-U12-cycleB-draftV1"]'),'U12 restored V1');
