@@ -51,6 +51,7 @@ const coreTests=[
   "foundation-writing-u01-v1.cjs",
   "foundation-writing-u02-u03-v1.cjs",
   "foundation-writing-u04-u06-v1.cjs",
+  "foundation-writing-u01-u06-live-entry.cjs",
   "writing-source-corpus-audit.cjs",
   "vocabulary-pilot-contract.cjs",
   "rgw-depth-pilot-contract.cjs",
