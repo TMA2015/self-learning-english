@@ -288,6 +288,12 @@ body {
 .writing-ai-review li{margin:7px 0}
 .writing-ai-review button{margin-top:10px}
 .writing-ai-review p{line-height:1.6}
+.writing-ai-review .criterion-feedback{border-top:1px solid #d6e3f1;padding:13px 0 10px}
+.writing-ai-review .criterion-feedback h4{font-size:15px;margin:0 0 8px;color:#173f70}
+.writing-ai-review .criterion-feedback p{margin:6px 0;overflow-wrap:anywhere}
+.writing-ai-review section[aria-label="CEFR target-referenced writing criteria"]{margin:18px 0;padding:14px;background:#fff;border:1px solid #d6e3f1;border-radius:12px}
+.any-topic-writing-review .learning-choices .field{min-width:min(100%,230px);flex:1}
+
 
 /* Knowledge-only floating English Tutor, visually consistent with the Math app. */
 .english-lesson-ai{position:fixed;right:20px;bottom:20px;z-index:70;font-size:14px}
