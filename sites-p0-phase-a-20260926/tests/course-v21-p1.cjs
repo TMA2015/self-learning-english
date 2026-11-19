@@ -28,15 +28,18 @@ const deferred=()=>{let resolve;const promise=new Promise(r=>resolve=r);return {
 (async()=>{
  const db=new FakeD1(),owner='user:account-1',other='user:account-2';
  const scope={ownerId:owner,learnerId:'primary'},learning=new D1LearningRepository(db),courses=new D1CourseSelectionRepository(db);
- const legacy={week:8,stage:3,completed:[0,1,4],analysis:{topic:'Saved'},writing:'Old draft',feedbacks:{0:{summary:'Good'}},revision:'My revision',courseV1:{legacyUnknown:true}};
+ const legacy={week:8,stage:3,completed:[0,1,4],analysis:{topic:'Saved'},writing:'Old draft',feedbacks:{0:{summary:'Good'}},revision:'My revision',courseV1:{legacyUnknown:true},foundationWritingV1:{schemaVersion:1,units:{'FW-U01':{versions:[{version:1,signature:'saved-u01'}]},'FW-U02':{versions:[]},'FW-U12':{versions:[{version:1,signature:'saved-u12'}],firstDraftV1:{text:'Original',version:1,savedAt:123}}}}};
  await learning.writeState(scope,legacy);const before=db.writes;
  const [state,selection]=await Promise.all([learning.readState(scope),courses.read(owner)]);
  assert.equal(db.writes,before,'pure course GET must not write/import/backfill');
  assert.equal(selection.activeCourseId,null,'read must not auto-select');
  assert.equal(myCourses(state,selection).activeCourse,null);
  assert.deepEqual(writingCourse(state).completedRequired,2);
- assert.equal(writingCourse(state).previewWeeks,11);
- assert.equal(writingCourse(state).nextActivity,'Outline');
+ assert.equal(writingCourse(state).publishedUnits,12);
+ assert.equal(writingCourse(state).title,'Foundation Writing');
+ assert.equal(writingCourse(state).progressLabel,'2/12 units with saved work');
+ assert.equal(writingCourse({...state,foundationWritingV1:undefined}).completedRequired,0,'legacy Week 1 flags cannot pretend Foundation Writing saves');
+ assert.equal(writingCourse(state).nextActivity,'Unit 02');
  assert.equal(state.writing,'Old draft');assert.deepEqual(state.feedbacks,legacy.feedbacks);
  const first=await courses.select(owner,WRITING_COURSE_ID,0,'request-0001');
  assert.equal(first.revision,1);assert.equal((await courses.read(owner)).activeCourseId,WRITING_COURSE_ID);
@@ -48,6 +51,7 @@ const deferred=()=>{let resolve;const promise=new Promise(r=>resolve=r);return {
  await learning.writeState(scope,{...current,writing:'New Writing text'});
  assert.equal((await courses.read(owner)).activeCourseId,WRITING_COURSE_ID,'Writing PUT after selection cannot overwrite it');
  assert.deepEqual((await learning.readState(scope)).courseV1,legacy.courseV1,'v20 unknown state fields survive legacy Writing save');
+ assert.deepEqual((await learning.readState(scope)).foundationWritingV1,legacy.foundationWritingV1,'all Foundation saved versions and immutable first draft must survive a legacy Writing save');
  // Reverse order: an old snapshot is written after the selection CAS.
  const oldSnapshot=await learning.readState(scope);
  const cleared=await courses.select(owner,null,1,'request-0004');assert.equal(cleared.revision,2);
@@ -84,5 +88,5 @@ const deferred=()=>{let resolve;const promise=new Promise(r=>resolve=r);return {
  assert.equal(v20Blob,'0d45ba9b9f4f3cb5826f874314405754b285e378');
  assert.ok(v20.includes('{...previous,...body}'),'v20 must merge and retain unknown fields during a normal Writing save');
  assert.equal(db.rows.has(selectionKey(owner)),true,'source-only rollback leaves the independent selection record intact');
- console.log('PASS: pure GET, account scope, atomic CAS/idempotency, both Writing write orders, legacy rollback, progress/previews, versioned shared attempt, draft navigation.');
+ console.log('PASS: pure GET, account scope, atomic CAS/idempotency, both Writing write orders, legacy rollback, actual saved-unit progress, versioned shared attempt, draft navigation.');
 })().catch(e=>{console.error(e);process.exitCode=1});
