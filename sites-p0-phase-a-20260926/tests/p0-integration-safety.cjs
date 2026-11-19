@@ -14,7 +14,7 @@ const runner=read('scripts/qa-free-first.mjs');
 const workflow=read('../.github/workflows/english-pr-qa.yml');
 assert.equal((home.match(/<WritingHome\b/g)||[]).length,0,
  'Independent Writing skill overview does not embed the separate 12-week course');
-assert.match(home,/writingIntro=\{view==="writing"\?<div[^\n]*onClick=\{\(\)=>void navigate\("writing-any-topic"\)\}>Open AI Writing Feedback · Any Topic/,
+assert.match(home,/writingIntro=\{view==="writing"\?<div[^\n]*onClick=\{\(\)=>void navigate\("writing-any-topic"\)\}>Writing Studio/,
  'Writing skill keeps a compact direct Gemini feedback route');
 assert.match(home,/view==="tutor"&&<TutorOverview onWriting=\{\(\)=>navigate\("writing-any-topic"\)\}/,
  'AI feedback must not redirect to Week 1');
