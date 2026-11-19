@@ -161,6 +161,13 @@ export function eligibleArtifact(unit:Wave4Id,work:Wave4Work,fixture:string,requ
  const latest=work.versions.at(-1);if(!latest||latest.signature!==signature(work.draft))return null;
  const fields=fixture.endsWith('-B')?latest.draft.cycleB:latest.draft.transfer;
  if(!required.every(k=>typeof fields[k]==='string'&&fields[k].trim()))return null;
- const text=required.map(k=>k+': '+fields[k].trim()).join('\n');
+ const keys=[...required,...Object.keys(fields).filter(k=>!required.includes(k)&&
+   typeof fields[k]==='string'&&fields[k].trim())];
+ const segments=keys.map(k=>k+': '+fields[k].trim());
+ if(fixture.endsWith('-B')&&work.draft.revisionDecision){
+  segments.push('Learner editorial decision: '+work.draft.revisionDecision);
+  if(work.draft.revisionReason?.trim())segments.push('Learner revision/keep rationale: '+work.draft.revisionReason.trim());
+ }
+ const text=segments.join('\n');
  return text.length>=20&&text.length<=7000?text:null;
 }
