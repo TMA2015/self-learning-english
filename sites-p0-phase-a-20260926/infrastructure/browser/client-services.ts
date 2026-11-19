@@ -12,6 +12,7 @@ import {gardenRelevantIdeaResult} from '../../application/writing-practice';
 import {browserTutorConfigured,browserTutorService,readAIFailure,resetAIFailure} from './firebase-ai-browser';
 import writingCourse from '../../content/writing-course.json';
 import type {TeachingRating,WritingContext} from '../../domain/writing';
+import {CEFR_WRITING_CRITERIA,WRITING_STUDIO_CEFR_RUBRIC_VERSION,validCEFRWritingLevel,type CEFRWritingLevel,type CEFRWritingCriterionFeedback} from '../../domain/writing-studio-reference';
 
 export function browserLearningEnabled(){
   return process.env.NEXT_PUBLIC_LEARNING_RUNTIME==='browser';
@@ -286,6 +287,9 @@ export type OnDemandWritingFeedback={
   scores:Record<string,number>|null;
   level:string|null;
   corrections:{original:string;why:string;hint:string}[];
+  criteria?:CEFRWritingCriterionFeedback[];
+  targetCEFR?:CEFRWritingLevel;
+  rubricVersion?:string;
 };
 export type OnDemandWritingResult=
   |{status:'validated';feedback:OnDemandWritingFeedback}
@@ -301,7 +305,7 @@ const aiFailureMessage=(code:string|null)=>{
     default:return 'The AI service did not return verified feedback. Your work remains saved for review.';
   }
 };
-export async function requestWritingAI(task:string,fields:Record<string,string>,kind:'draft'|'planning'|'revision',responseLanguage:'en'|'vi'='en',reviewMode:'standard'|'any-topic'='standard'):Promise<OnDemandWritingResult>{
+export async function requestWritingAI(task:string,fields:Record<string,string>,kind:'draft'|'planning'|'revision',responseLanguage:'en'|'vi'='en',reviewMode:'standard'|'any-topic'='standard',targetCEFR:CEFRWritingLevel|null=null):Promise<OnDemandWritingResult>{
   if(!browserLearningEnabled())return {status:'unavailable',reason:'AI feedback is only available in the browser learning runtime.'};
   if(!task.trim()||Object.values(fields).some(v=>typeof v!=='string'))return {status:'unavailable',reason:'The writing task is incomplete.'};
   const answer=Object.entries(fields).filter(([,v])=>v.trim()).map(([k,v])=>k+': '+v.trim()).join('\n');
@@ -317,15 +321,27 @@ export async function requestWritingAI(task:string,fields:Record<string,string>,
   resetAIFailure();
   try{
     if(kind==='draft'&&reviewMode==='any-topic'){
-      // Independent, strictly unscored qualitative feedback; do not use teachWriting's numeric rubric.
-      const review=await tutor.coach('any-topic',task,{draft:fields.draft??fields.writing??answer},{responseLanguage});
+      // Only a validated target invokes CEFR mode. Both reference choices stay unscored.
+      if(targetCEFR!==null&&!validCEFRWritingLevel(targetCEFR))return {status:'unavailable',reason:'Select a valid CEFR practice target.'};
+      const review=await tutor.coach(targetCEFR?'cefr-writing':'any-topic',task,{draft:fields.draft??fields.writing??answer},
+        {responseLanguage,...(targetCEFR?{targetCEFR}:{})});
       if(review?.provider==='firebase-ai-logic'){
-        const r=review.structuredResult as {summary:string;strengths:string[];improvements:string[];exercise:string;corrections:{original:string;why:string;hint:string}[];scores:null;level:null;canEstimateLevel:false};
-        if(r.scores!==null||r.level!==null||r.canEstimateLevel!==false)return {status:'unavailable',reason:'Any Topic feedback did not pass qualitative validation.'};
+        const r=review.structuredResult as {summary:string;strengths:string[];improvements:string[];exercise:string;corrections:{original:string;why:string;hint:string}[];scores:null;level:null;canEstimateLevel:false;framework?:string;targetCEFR?:string;rubricVersion?:string;criteria?:CEFRWritingCriterionFeedback[]};
+        if(r.scores!==null||r.level!==null||r.canEstimateLevel!==false)return {status:'unavailable',reason:'Writing Studio feedback did not pass qualitative validation.'};
+        if(targetCEFR){
+          if(r.framework!=='cefr'||r.targetCEFR!==targetCEFR||r.rubricVersion!==WRITING_STUDIO_CEFR_RUBRIC_VERSION||
+            !Array.isArray(r.criteria)||r.criteria.length!==CEFR_WRITING_CRITERIA.length||
+            !r.criteria.every((row,index)=>row.criterion===CEFR_WRITING_CRITERIA[index].id&&
+              typeof row.observation==='string'&&!!row.observation.trim()&&
+              typeof row.evidence==='string'&&(!row.evidence||(fields.draft??fields.writing??'').includes(row.evidence))&&
+              typeof row.nextStep==='string'&&!!row.nextStep.trim()))
+            return {status:'unavailable',reason:'CEFR feedback did not pass the selected rubric validation.'};
+        }
         return {status:'validated',feedback:{
           model:review.model,provider:'firebase-ai-logic',reviewedAt:Date.now(),kind,
           summary:r.summary,strengths:r.strengths,improvements:r.improvements,
           exercise:r.exercise,scores:null,level:null,corrections:r.corrections,
+          ...(targetCEFR?{criteria:r.criteria,targetCEFR,rubricVersion:WRITING_STUDIO_CEFR_RUBRIC_VERSION}:{}),
         }};
       }
     }else if(kind==='draft'){

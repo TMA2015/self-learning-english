@@ -152,7 +152,7 @@ const skillOverview=async()=>{
  await nav('AI Tutor');
  await wait(()=>text(document.querySelector('.page-heading h1'))==='AI Tutor','AI Tutor overview');
  const tutorButton=[...document.querySelectorAll<HTMLButtonElement>('.platform-intro button')]
-  .find(button=>text(button).includes('Open AI Writing Feedback'));
+  .find(button=>text(button)==='Open Writing Studio');
  if(!tutorButton)throw Error('AI Tutor independent Writing feedback CTA missing');
  tutorButton.click();
  await wait(()=>!!document.querySelector('textarea[name="student-written-content"]'),'AI Tutor links to Any Topic');

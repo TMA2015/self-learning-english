@@ -1,6 +1,7 @@
 import {validateTeachingRating} from "./teaching-validation";
 import registry from './prompts/registry.json';
 import rubric from '../content/writing-rubric.json';
+import {CEFR_WRITING_CRITERIA,CEFR_TARGET_GUIDANCE,WRITING_STUDIO_CEFR_RUBRIC_VERSION,validCEFRWritingLevel} from '../domain/writing-studio-reference';
 import type {AITutor,AITutorProvider,TutorPurpose} from './contracts';
 import type {EvaluationMetadata} from '../domain/ai-metadata';
 import {validateRating} from './validation';
@@ -8,7 +9,7 @@ export function createTutorService(provider:AITutorProvider):AITutor{
  function invalidResponse():null{provider.reportFailure?.('invalid-response');return null}
 
  async function run(purpose:TutorPurpose,input:Record<string,unknown>,context:Record<string,string>,temperature:number):Promise<EvaluationMetadata|null>{if(!provider.available)return null;const prompt=registry[purpose];if(prompt.status==='reserved')return null;const instructions=prompt.system.replace(/\{\{(\w+)\}\}/g,(_,key)=>context[key]??'');try{const result=await provider.generate({schemaVersion:1,purpose,promptVersion:prompt.version,instructions,input,temperature});return result?{provider:result.provider,model:result.model,promptId:purpose,promptVersion:prompt.version,timestamp:new Date().toISOString(),structuredResult:result.result}:null}catch{return null}}
- return {available:provider.available,async teachWriting(text,task,context){const evaluation=await run("writing-teaching",{task,studentWriting:text,learnerContext:context},{},0);if(!evaluation)return null;const rating=validateTeachingRating(evaluation.structuredResult,text);return rating?{...rating,evaluation:{...evaluation,structuredResult:rating}}:invalidResponse()},async evaluateWriting(text,task){const evaluation=await run('writing-evaluation',{task,studentWriting:text},{criteria:rubric.criteria.join(', ')},0);if(!evaluation)return null;const rating=validateRating(evaluation.structuredResult,text);if(!rating)return invalidResponse();return {...rating,evaluation:{...evaluation,structuredResult:rating}}},async coach(stage,task,answer,learnerContext){const evaluation=await run(stage==='foundation-writing'?'foundation-writing-review':stage==='brainstorm'?'brainstorming-coaching':stage==='revision'?'revision-coaching':stage==='any-topic'?'any-topic-writing':'feedback',{stage,task,studentAnswer:answer,learnerContext,...(['any-topic','foundation-writing'].includes(stage)?{responseLanguage:learnerContext?.responseLanguage==='vi'?'vi':'en'}:{})},{task,stage},.3);if(!evaluation)return null;const raw=evaluation.structuredResult;if(!raw||typeof raw!=='object')return invalidResponse();const r=raw as Record<string,unknown>;if(typeof r.summary!=='string'||(stage==='foundation-writing'? !['strengths','improvements'].every(k=>Array.isArray(r[k])&&(r[k] as unknown[]).every(x=>typeof x==='string')) : typeof r.exercise!=='string'||!['strengths','improvements','tags'].every(k=>Array.isArray(r[k])&&(r[k] as unknown[]).every(x=>typeof x==='string'))))return invalidResponse();if(stage==='foundation-writing'){
+ return {available:provider.available,async teachWriting(text,task,context){const evaluation=await run("writing-teaching",{task,studentWriting:text,learnerContext:context},{},0);if(!evaluation)return null;const rating=validateTeachingRating(evaluation.structuredResult,text);return rating?{...rating,evaluation:{...evaluation,structuredResult:rating}}:invalidResponse()},async evaluateWriting(text,task){const evaluation=await run('writing-evaluation',{task,studentWriting:text},{criteria:rubric.criteria.join(', ')},0);if(!evaluation)return null;const rating=validateRating(evaluation.structuredResult,text);if(!rating)return invalidResponse();return {...rating,evaluation:{...evaluation,structuredResult:rating}}},async coach(stage,task,answer,learnerContext){if(stage==='cefr-writing'&&!validCEFRWritingLevel(learnerContext?.targetCEFR))return invalidResponse();const evaluation=await run(stage==='foundation-writing'?'foundation-writing-review':stage==='brainstorm'?'brainstorming-coaching':stage==='revision'?'revision-coaching':stage==='cefr-writing'?'cefr-writing-coaching':stage==='any-topic'?'any-topic-writing':'feedback',{stage,task,studentAnswer:answer,learnerContext,...(['any-topic','cefr-writing','foundation-writing'].includes(stage)?{responseLanguage:learnerContext?.responseLanguage==='vi'?'vi':'en'}:{})},{task,stage,...(stage==='cefr-writing'&&validCEFRWritingLevel(learnerContext?.targetCEFR)?{targetLevel:learnerContext.targetCEFR,levelGuidance:CEFR_TARGET_GUIDANCE[learnerContext.targetCEFR]}:{})},.3);if(!evaluation)return null;const raw=evaluation.structuredResult;if(!raw||typeof raw!=='object')return invalidResponse();const r=raw as Record<string,unknown>;if(typeof r.summary!=='string'||(stage==='foundation-writing'? !['strengths','improvements'].every(k=>Array.isArray(r[k])&&(r[k] as unknown[]).every(x=>typeof x==='string')) : typeof r.exercise!=='string'||!['strengths','improvements','tags'].every(k=>Array.isArray(r[k])&&(r[k] as unknown[]).every(x=>typeof x==='string'))))return invalidResponse();if(stage==='foundation-writing'){
   const submitted=answer&&typeof answer==='object'&&!Array.isArray(answer)?answer as Record<string,unknown>:null;
   const text=typeof submitted?.text==='string'?submitted.text:'';
   const strengths=r.strengths as string[],improvements=r.improvements as string[];
@@ -40,6 +41,40 @@ export function createTutorService(provider:AITutorProvider):AITutor{
      typeof r.nextAction!=='string'||!r.nextAction.trim())return invalidResponse();
   return {...evaluation,structuredResult:{
     summary:r.summary,strengths,improvements,quotes,questions,nextAction:r.nextAction,
+    scores:null,level:null,canEstimateLevel:false,
+  }};
+ }
+ if(stage==='cefr-writing'){
+  const selected=learnerContext?.targetCEFR;
+  const submitted=answer&&typeof answer==='object'&&!Array.isArray(answer)?answer as Record<string,unknown>:null;
+  const draft=submitted?.draft;
+  const criteria=r.criteria;
+  const corrections=r.corrections;
+  const expected=CEFR_WRITING_CRITERIA.map(item=>item.id);
+  if(!validCEFRWritingLevel(selected)||typeof draft!=='string'||
+     r.framework!=='cefr'||r.targetCEFR!==selected||r.rubricVersion!==WRITING_STUDIO_CEFR_RUBRIC_VERSION||
+     r.scores!==null||r.level!==null||r.canEstimateLevel!==false||
+     !Array.isArray(criteria)||criteria.length!==expected.length||
+     !criteria.every((item,index)=>{
+       if(!item||typeof item!=='object')return false;
+       const row=item as Record<string,unknown>;
+       return row.criterion===expected[index]&&typeof row.observation==='string'&&!!row.observation.trim()&&
+         typeof row.evidence==='string'&&(!row.evidence||draft.includes(row.evidence))&&
+         typeof row.nextStep==='string'&&!!row.nextStep.trim();
+     })||
+     !Array.isArray(corrections)||corrections.length>3||
+     (r.strengths as string[]).length>3||(r.improvements as string[]).length>3||
+     corrections.some(row=>{
+       if(!row||typeof row!=='object')return true;
+       const c=row as Record<string,unknown>;
+       return typeof c.original!=='string'||!c.original||!draft.includes(c.original)||
+         typeof c.why!=='string'||!c.why.trim()||typeof c.hint!=='string'||!c.hint.trim();
+     }))return invalidResponse();
+  return {...evaluation,structuredResult:{
+    summary:r.summary,strengths:r.strengths,improvements:r.improvements,exercise:r.exercise,tags:r.tags,
+    criteria,framework:'cefr',targetCEFR:selected,rubricVersion:WRITING_STUDIO_CEFR_RUBRIC_VERSION,
+    corrections:(corrections as Array<{original:string;why:string;hint:string}>)
+      .map(row=>({original:row.original,why:row.why,hint:row.hint})),
     scores:null,level:null,canEstimateLevel:false,
   }};
  }

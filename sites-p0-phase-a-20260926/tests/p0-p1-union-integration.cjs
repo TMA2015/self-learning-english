@@ -97,7 +97,7 @@ assert(workflow.includes('Ensure FFmpeg and FFprobe for audio validation'));
 assert(workflow.includes('ffprobe -hide_banner -version'));
 assert(workflow.includes('Full application release QA and static build (NO DEPLOY)'));
 assert(platform.includes('onAnyTopic'),'The separate 12-week Writing component remains intact');
-assert(platform.includes('Open AI Writing Feedback'),'Standalone AI feedback entry remains explicit');
+assert(platform.includes('Open Writing Studio'),'AI Tutor has an explicit Writing Studio entry');
 console.log(JSON.stringify({
  result:'PASS',gate:'P0-P1-Combined-Routes-Data-Safety',
  composedPRs:[137,139,140],existingPlayer:true,

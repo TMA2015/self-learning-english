@@ -48,6 +48,7 @@ const coreTests=[
   "learner-result-copy-dedup.cjs",
   "any-topic-writing-review-shell.cjs",
   "any-topic-writing-academic-r1.cjs",
+  "writing-studio-cefr-target.cjs",
   "foundation-writing-u01-v1.cjs",
   "foundation-writing-u02-u03-v1.cjs",
   "foundation-writing-u04-u06-v1.cjs",

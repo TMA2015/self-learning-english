@@ -130,6 +130,7 @@ for(const unit of content)for(const question of unit.extras){
 const tutorService=moduleTS(read('ai/service.ts'),'ai/service.ts',{
  './teaching-validation':{validateTeachingRating:()=>null},
  './prompts/registry.json':registry,'../content/writing-rubric.json':{criteria:[]},
+  '../domain/writing-studio-reference':{CEFR_WRITING_CRITERIA:[],CEFR_TARGET_GUIDANCE:{},WRITING_STUDIO_CEFR_RUBRIC_VERSION:'cefr-written-production-2020-v1',validCEFRWritingLevel:()=>false},
  './validation':{validateRating:()=>null}
 });
 let reply,request,failures=0;

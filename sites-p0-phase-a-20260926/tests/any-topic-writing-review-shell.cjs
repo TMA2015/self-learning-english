@@ -30,21 +30,24 @@ assert.match(view,/writing\.length<=7000/,'Bound Gemini text while allowing long
 assert.match(view,/setSavedSignature\(null\)/,'A failed save must invalidate AI eligibility');
 assert.match(view,/Save again after any editing/,'Require new saved snapshot after edits');
 assert.match(view,/This browser only|this browser only/i);
-assert.match(view,/Writing Draft · Any Topic/);
+assert.match(view,/Writing Studio · Any Topic/);
 assert.match(view,/<h2>AI Tutor · Writing Review<\/h2>/,'Saved Writing gets learner-visible AI Tutor review');
 assert.doesNotMatch(view,/Self-revision checklist|Open self-review checklist|Task response:<\/strong>|Organization:<\/strong>/,
  'Do not reintroduce a generic checklist masquerading as individualized assessment');
 assert.match(view,/if\(save\(\)\)setReviewed/,'Only successful save may open AI Tutor');
 assert.match(home,/import \{AnyTopicWritingReview\}/);
 assert.match(home,/view==="writing-any-topic"&&<AnyTopicWritingReview showVi=\{!!state.vietnameseSupport\}\/>/);
-assert.match(view,/reviewMode="any-topic" responseLanguage=\{showVi \? 'vi' : 'en'\}/);
+assert.match(view,/reviewMode="any-topic" reference=\{reference\} responseLanguage=\{showVi \? 'vi' : 'en'\}/);
 
 assert.match(home,/writingIntro=\{view==="writing"\?[^\n]*onClick=\{\(\)=>void navigate\("writing-any-topic"\)\}>Writing Studio/,
  'Writing skill overview must link directly to independent Gemini Writing');
 assert.match(home,/view==="tutor"&&<TutorOverview onWriting=\{\(\)=>navigate\("writing-any-topic"\)\}/,
  'AI Tutor Writing-feedback entry must not redirect to 12-week Week 1');
-assert.match(platform,/AI Writing Feedback · Any Topic/,'Explain independent feedback and saved-draft requirement');
-assert.match(platform,/Open AI Writing Feedback/,'Use precise CTA instead of Try Writing practice');
+assert.match(platform,/<h2>Writing Studio<\/h2>/,'AI Tutor card uses the Writing Studio name');
+assert.match(platform,/Open Writing Studio/,'AI Tutor CTA opens the existing independent Writing Studio');
+assert.match(platform,/After saving, you can optionally ask Gemini/,'Explicit save-first optional provider promise retained');
+assert.doesNotMatch(platform.split('export function TutorOverview')[1],/12-week Writing Course/,'Obsolete 12-week copy is removed from the AI Tutor card');
+assert.doesNotMatch(view,/English Writing Coach · 12 Weeks/,'Any Topic workspace no longer references the retired course');
 assert.doesNotMatch(platform.split('export function TutorOverview')[1],/Try Writing practice/,
  'Do not route feedback users to Writing Course');
 assert.match(runner,/any-topic-writing-review-shell\.cjs/,'Register mandatory QA in full suite');
@@ -78,6 +81,13 @@ function makeHarness({failSave=false}={}){
    if(name==='react')return fakeReact;
    if(name==='react/jsx-runtime')return require('react/jsx-runtime');
    if(name==='./writing-ai-review')return {WritingAIReview:StubAI};
+   if(name==='../domain/writing-studio-reference')return {
+     CEFR_WRITING_LEVELS:['A1','A2','B1','B2','C1','C2'],
+     normalizeWritingStudioReference(value){
+       return value?.kind==='cefr'&&['A1','A2','B1','B2','C1','C2'].includes(value.level)
+         ?value:{kind:'general'};
+     },
+   };
    throw Error('Unexpected import '+name);
   },module:holder,exports:holder.exports,localStorage:memory,
   window:{confirm:()=>true},Date,JSON,
@@ -112,6 +122,17 @@ function makeHarness({failSave=false}={}){
  assert.equal(ai.props.kind,'draft');
  assert.equal(ai.props.reviewMode,'any-topic','Qualitative review must use the isolated mode');
  assert.equal(ai.props.responseLanguage,'en','English should be the default language');
+ assert.equal(ai.props.reference.kind,'general','General feedback stays the default');
+ const framework=h.walk(h.render(),e=>e.type==='select'&&e.props.id==='writing-studio-framework');
+ assert(framework,'Reference selection must exist without triggering Gemini');
+ framework.props.onChange({target:{value:'cefr'}});h.render();h.flush();
+ const target=h.walk(h.render(),e=>e.type==='select'&&e.props.id==='writing-studio-cefr-level');
+ assert(target,'A1–C2 selector must appear for CEFR');
+ target.props.onChange({target:{value:'A2'}});h.render();h.flush();
+ const targeted=h.walk(h.render(),e=>e.type===h.StubAI);
+ assert(targeted?.props.enabled&&targeted.props.reference.kind==='cefr'&&targeted.props.reference.level==='A2',
+  'Changing only reference keeps saved text eligible but changes the selected AI rubric');
+ assert.equal(h.calls.provider,0,'Selecting a framework must not contact Gemini');
  const vi=h.walk(h.render(true),e=>e.type===h.StubAI);
  assert.equal(vi.props.responseLanguage,'vi','Vietnamese preference must reach Gemini UI');
  assert.equal(ai.props.fields.draft,'A quiet reading area helps students focus and discover new books.');
