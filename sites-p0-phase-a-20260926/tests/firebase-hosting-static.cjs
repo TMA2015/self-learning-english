@@ -64,7 +64,9 @@ assert.equal(active.lessons.flatMap(l=>l.activities).length,1224);
 const source1240=require('../content/curriculum-1.24.0-candidate.json');
 assert.deepEqual(active.lessons.slice(0,142),source1240.lessons,'All 142 previously released lessons must remain immutable');
 assert.deepEqual(active.course.sequence.slice(0,142),source1240.course.sequence,'Historical course order must not move');
-assert.deepEqual(active.rubrics,source1240.rubrics,'Historical rubrics must remain immutable');
+const source1270=require('../content/curriculum-1.27.0-candidate.json');
+for(const [id,rubric] of Object.entries(source1240.rubrics))assert.deepEqual(active.rubrics[id],rubric,'Historical rubric changed: '+id);
+assert.deepEqual(active.rubrics,source1270.rubrics,'Staging must retain the complete reviewed rubric set, including B2 Writing');
 const runtimeSource=fs.readFileSync(path.join(root,'infrastructure','browser','local-runtime.ts'),'utf8');
 assert(runtimeSource.includes("import curriculum1280 from '../../content/curriculum-1.28.0-candidate.json'"),
   'Static browser runtime must bundle the staged v1.28.0 curriculum');
