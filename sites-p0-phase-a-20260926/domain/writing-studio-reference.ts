@@ -5,7 +5,7 @@
  */
 export const CEFR_WRITING_LEVELS=['A1','A2','B1','B2','C1','C2'] as const;
 export type CEFRWritingLevel=(typeof CEFR_WRITING_LEVELS)[number];
-export const WRITING_STUDIO_CEFR_RUBRIC_VERSION='cefr-written-production-2020-v1' as const;
+export const WRITING_STUDIO_CEFR_RUBRIC_VERSION='cefr-written-production-2020-scored-v2' as const;
 
 export type WritingStudioReference=
   |{kind:'general'}
@@ -23,7 +23,7 @@ export function normalizeWritingStudioReference(value:unknown):WritingStudioRefe
  return item.kind==='cefr'&&validCEFRWritingLevel(item.level)?{kind:'cefr',level:item.level}:GENERAL_WRITING_REFERENCE;
 }
 
-/** Stable criteria identifiers; no numeric grading or earned level inference. */
+/** Six project-defined criterion IDs. Scores are for the submitted text against the chosen target only. No inferred learner level. */
 export const CEFR_WRITING_CRITERIA=[
  {id:'task-response',name:'Task response & purpose'},
  {id:'ideas-and-support',name:'Ideas & support'},
@@ -36,6 +36,7 @@ export const CEFR_WRITING_CRITERIA=[
 export type CEFRWritingCriterionId=(typeof CEFR_WRITING_CRITERIA)[number]['id'];
 export type CEFRWritingCriterionFeedback={
  criterion:CEFRWritingCriterionId;
+ score?:number;
  observation:string;
  evidence:string;
  nextStep:string;
