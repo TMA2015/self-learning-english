@@ -1,6 +1,7 @@
 'use client';
 import {useEffect,useState} from 'react';
 import {WritingAIReview} from './writing-ai-review';
+import {CEFR_WRITING_LEVELS,normalizeWritingStudioReference,type WritingStudioReference,type CEFRWritingLevel} from '../domain/writing-studio-reference';
 
 /**
  * Independent any-topic Writing: local draft and deterministic self-check first,
@@ -21,11 +22,12 @@ export function clearAnyTopicBrowserData(storage:Pick<Storage,'length'|'key'|'re
  storage.removeItem(DRAFT_KEY);
  for(const key of feedbackKeys)storage.removeItem(key);
 }
-type Draft={topic:string;writing:string;updatedAt:number};
+type Draft={topic:string;writing:string;updatedAt:number;reference?:WritingStudioReference};
 type Snapshot=Draft;
 export function AnyTopicWritingReview({showVi=false}:{showVi?:boolean}){
   const [topic,setTopic]=useState('');
   const [writing,setWriting]=useState('');
+  const [reference,setReference]=useState<WritingStudioReference>({kind:'general'});
   const [ready,setReady]=useState(false);
   const [saveStatus,setSaveStatus]=useState('Loading browser draft…');
   const [reviewed,setReviewed]=useState<Snapshot|null>(null);
@@ -39,6 +41,7 @@ export function AnyTopicWritingReview({showVi=false}:{showVi?:boolean}){
         if(typeof parsed.topic==='string'&&typeof parsed.writing==='string'){
           setTopic(parsed.topic.slice(0,2000));
           setWriting(parsed.writing.slice(0,20000));
+          setReference(normalizeWritingStudioReference(parsed.reference));
           setSaveStatus('Previous draft restored from this browser.');
         }else setSaveStatus('No usable saved draft. Start a new one.');
       }else setSaveStatus('No saved draft on this browser.');
@@ -57,18 +60,18 @@ export function AnyTopicWritingReview({showVi=false}:{showVi?:boolean}){
         setSavedSignature(null);
         return;
       }
-      localStorage.setItem(DRAFT_KEY,JSON.stringify({topic,writing,updatedAt:Date.now()} satisfies Draft));
+      localStorage.setItem(DRAFT_KEY,JSON.stringify({topic,writing,reference,updatedAt:Date.now()} satisfies Draft));
       setSavedSignature(JSON.stringify([topic,writing]));
       setSaveStatus('Draft saved on this browser only.');
     }catch{
       setSavedSignature(null);
       setSaveStatus('Could not save on this browser. Copy your text before leaving.');
     }
-  },[topic,writing,ready]);
+  },[topic,writing,reference,ready]);
 
   function save():boolean{
     try{
-      localStorage.setItem(DRAFT_KEY,JSON.stringify({topic,writing,updatedAt:Date.now()} satisfies Draft));
+      localStorage.setItem(DRAFT_KEY,JSON.stringify({topic,writing,reference,updatedAt:Date.now()} satisfies Draft));
       setSavedSignature(JSON.stringify([topic,writing]));
       setSaveStatus('Draft saved on this browser only.');
       return true;
@@ -82,7 +85,7 @@ export function AnyTopicWritingReview({showVi=false}:{showVi?:boolean}){
     if(!window.confirm('Delete the Any Topic draft and its cached Gemini feedback from this browser? Other course records remain. This cannot be undone.'))return;
     let cleared=true;
     try{clearAnyTopicBrowserData(localStorage)}catch{cleared=false}
-    setTopic('');setWriting('');setReviewed(null);setSavedSignature(null);
+    setTopic('');setWriting('');setReference({kind:'general'});setReviewed(null);setSavedSignature(null);
     setSaveStatus(cleared
       ?'Any Topic draft and its Gemini feedback cleared from this browser.'
       :'Draft cleared from this view, but some browser data could not be deleted. Clear site data in browser settings.');
@@ -93,10 +96,30 @@ export function AnyTopicWritingReview({showVi=false}:{showVi?:boolean}){
   const aiEligible=ready&&draftSaved&&writing.trim().length>=8&&writing.length<=7000;
   return <section className="panel any-topic-writing-review" aria-label="Independent Writing Review">
     <div className="page-heading"><div>
-      <h1>Writing Draft · Any Topic</h1>
+      <h1>Writing Studio · Any Topic</h1>
       <p>Write about a topic of your choice, save a draft locally, and ask AI Tutor for personal Writing feedback when you choose. This workspace is separate from Foundation Writing and the independent Writing skill catalog; this feedback does not change assessment records.</p>
     </div></div>
     <p className="notice"><strong>Your choice:</strong> Save and revise locally without AI. After saving, you may explicitly ask Gemini to review this draft through AI Tutor. Feedback is provisional advice, never an official grade or certified CEFR result.</p>
+    <div className="learning-choices" role="group" aria-label="Writing Studio reference">
+      <label className="field" htmlFor="writing-studio-framework">
+        <span>Feedback reference</span>
+        <select id="writing-studio-framework" value={reference.kind} onChange={event=>
+          setReference(event.target.value==='cefr'?{kind:'cefr',level:'B1'}:{kind:'general'})}>
+          <option value="general">General Writing (no level)</option>
+          <option value="cefr">CEFR — selected practice target</option>
+        </select>
+      </label>
+      {reference.kind==='cefr'&&<label className="field" htmlFor="writing-studio-cefr-level">
+        <span>Target CEFR level</span>
+        <select id="writing-studio-cefr-level" value={reference.level} onChange={event=>
+          setReference({kind:'cefr',level:event.target.value as CEFRWritingLevel})}>
+          {CEFR_WRITING_LEVELS.map(level=><option value={level} key={level}>{level}</option>)}
+        </select>
+      </label>}
+    </div>
+    <p className="muted">{reference.kind==='cefr'?
+      'CEFR '+reference.level+' is a learning target, not a measured level. AI will use qualitative writing criteria and will not award a grade or certified CEFR result.':
+      'General feedback focuses on the writing itself without assigning a CEFR level.'}</p>
     <form onSubmit={event=>{
       event.preventDefault();
       if(!valid)return;
@@ -127,7 +150,7 @@ export function AnyTopicWritingReview({showVi=false}:{showVi?:boolean}){
       <p>Your saved draft can receive individualized suggestions only if you explicitly request AI feedback below. No AI review, quality score or CEFR estimate has been performed yet.</p>
       {!draftSaved&&<p className="notice">AI review requires a successfully saved copy of this exact draft. Save again after any editing.</p>}
       {writing.length>7000&&<p className="notice">Your full draft is saved. For Gemini feedback, use a shorter draft of up to 7,000 characters. Your longer text remains available for self-review.</p>}
-      <WritingAIReview reviewId="any-topic-writing" task={topic} fields={{draft:writing}} kind="draft" enabled={aiEligible} reviewMode="any-topic" responseLanguage={showVi ? 'vi' : 'en'}/>
+      <WritingAIReview reviewId="any-topic-writing" task={topic} fields={{draft:writing}} kind="draft" enabled={aiEligible} reviewMode="any-topic" reference={reference} responseLanguage={showVi ? 'vi' : 'en'}/>
     </section>}
   </section>;
 }
