@@ -6,6 +6,7 @@ export type FirebaseAILogicGenerateInput={
   userPayload:Record<string,unknown>;
   temperature:number;
   responseMimeType:'application/json';
+  writingStudioStructured?:boolean;
 };
 
 export interface FirebaseAILogicTransport{
@@ -40,6 +41,7 @@ export class FirebaseAILogicProvider implements AITutorProvider{
         userPayload:request.input,
         temperature:request.temperature,
         responseMimeType:'application/json',
+        ...(['any-topic-writing','cefr-writing-coaching'].includes(request.purpose)?{writingStudioStructured:true}:{}),
       });
       if(result===null||result===undefined){this.reportFailure('invalid-response');return null}
       return {provider:'firebase-ai-logic',model:this.transport.model,result};
