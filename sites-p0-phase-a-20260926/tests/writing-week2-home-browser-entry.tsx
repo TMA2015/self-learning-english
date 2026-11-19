@@ -2,6 +2,9 @@ import React from 'react';
 import {createRoot} from 'react-dom/client';
 import Home from '../app/home-client';
 import {writingWeek} from '../domain/writing-course-v2-b';
+const __FW_BROWS_ERRORS:string[]=[];
+window.addEventListener('error',e=>__FW_BROWS_ERRORS.push(String(e.error?.stack??e.message).slice(0,900)));
+window.addEventListener('unhandledrejection',e=>__FW_BROWS_ERRORS.push(String(e.reason?.stack??e.reason).slice(0,900)));
 createRoot(document.getElementById('app')!).render(<Home/>);
 const pause=(ms:number)=>new Promise<void>(r=>setTimeout(r,ms));
 const text=(e:Element|null)=>e?.textContent?.trim().replace(/\s+/g,' ')??'';
@@ -186,7 +189,12 @@ const foundationTwelve=async()=>{
   const button=navItems.find(b=>text(b)===label);
   if(!button)throw Error('Reviewed full course sidebar missing '+label);
   button.click();
-  await wait(()=>!!document.querySelector('section[aria-label="Foundation Writing FW-U'+id+'"]'),label+' source-backed screen');
+  try{
+   await wait(()=>!!document.querySelector('section[aria-label="Foundation Writing FW-U'+id+'"]'),label+' source-backed screen');
+  }catch(error){
+   throw Error(String(error)+'; React errors: '+JSON.stringify(__FW_BROWS_ERRORS.slice(-5))+
+    '; DOM: '+String(document.body?.textContent).slice(0,800));
+  }
  };
  const editor=(unit:string,stage:string,key:string)=>document.querySelector<HTMLTextAreaElement>(
   'textarea[name="'+unit+'-'+stage+'-'+key+'"]');
@@ -234,7 +242,10 @@ const foundationTwelve=async()=>{
   await click('AI Tutor','main button');
   await wait(()=>!!document.querySelector('section[aria-label="'+unit+' optional AI Tutor Writing Review"]'),'Optional tutor screen');
   const review=[...document.querySelectorAll<HTMLButtonElement>('main button')].find(b=>text(b)==='Get personal AI Tutor feedback');
-  if(!review?.disabled)throw Error('Do not enable unconfigured live provider '+unit);
+  if(!review)throw Error('Saved-only optional AI Tutor control missing '+unit);
+  // Browser QA never clicks the provider button; availability depends on the
+  // real public Firebase config, not on an assumed unconfigured environment.
+  if((window as any).__OUTSIDE_REQUESTS)throw Error('Unexpected external request before explicit AI opt-in '+unit);
  }
  const preserved=await (await import('../infrastructure/browser/client-services')).loadLearnerState();
  const st=(preserved.state as any)?.foundationWritingV1?.units;

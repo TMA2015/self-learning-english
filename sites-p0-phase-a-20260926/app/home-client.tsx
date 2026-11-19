@@ -63,6 +63,11 @@ function countWords(s:string){return s.trim()?s.trim().split(/\s+/).length:0}
 export default function Home(){
  const browserMode=browserLearningEnabled();
  const [isAdmin,setIsAdmin]=useState(false);useEffect(()=>{void loadCapabilities().then(d=>setIsAdmin(d.isAdmin)).catch(()=>setIsAdmin(false))},[]);
+ // Resolve optional AI availability after mount; never crash rendering if browser
+ // configuration is absent in offline QA or the SDK is unsupported on this device.
+ const [foundationAIReady,setFoundationAIReady]=useState(false);
+ useEffect(()=>{try{setFoundationAIReady(browserTutorService().available)}
+   catch{setFoundationAIReady(false)}},[]);
 
  const [foundationCatalog,setFoundationCatalog]=useState<FoundationCatalog|null>(null);const [requestedLessonId,setRequestedLessonId]=useState<string|null>(null);const [planFoundationLoading,setPlanFoundationLoading]=useState(false);const [planFoundationError,setPlanFoundationError]=useState("");const [view,setView]=useState<View>("dashboard");const [state,setState]=useState<State>(seed);const [loaded,setLoaded]=useState(false);const [saving,setSaving]=useState("Loading progress...");const [busy,setBusy]=useState(false);const [menu,setMenu]=useState(false);const [hint,setHint]=useState(false);const [navigating,setNavigating]=useState(false);const latestState=useRef(state);latestState.current=state;const storageReady=useRef(false);const dirty=useRef(false);const saveQueue=useRef<Promise<boolean>>(Promise.resolve(true));
  const [courseData,setCourseData]=useState<MyCoursesData|null>(null),[courseError,setCourseError]=useState(''),[courseBusy,setCourseBusy]=useState(false);
@@ -364,7 +369,7 @@ export default function Home(){
     onEdit={draft=>editFoundationWave4(view==="foundation-writing-u10"?"FW-U10":view==="foundation-writing-u11"?"FW-U11":"FW-U12",draft)}
     onSave={()=>saveFoundationWave4(view==="foundation-writing-u10"?"FW-U10":view==="foundation-writing-u11"?"FW-U11":"FW-U12")}
     onExit={()=>void navigate("writing")} showVi={!!state.vietnameseSupport}
-    reviewer={browserTutorService().available?async payload=>{
+    reviewer={foundationAIReady?async payload=>{
      // Only called by the learner's explicit click for an exact persisted artifact.
      const tutor=browserTutorService();
      if(!tutor.available)throw Error('Optional AI Tutor unavailable');
