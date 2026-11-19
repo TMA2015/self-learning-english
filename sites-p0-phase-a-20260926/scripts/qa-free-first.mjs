@@ -67,6 +67,7 @@ const fullRegressionTests=[
   "foundation-writing-u02-u03-browser.cjs",
   "foundation-writing-u04-u06-browser.cjs",
   "foundation-writing-u07-u09-browser.cjs",
+  "foundation-writing-wave4-readback-browser.cjs",
   "writing-source-bundle-browser.cjs",
   "vocabulary-pilot-browser.cjs",
   "rgw-depth-pilot-browser.cjs",
