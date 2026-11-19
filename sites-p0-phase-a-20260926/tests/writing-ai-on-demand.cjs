@@ -31,16 +31,16 @@ for(const required of ['Follow the trusted responseLanguage field if provided','
  assert(registry['revision-coaching'].system.includes(required),'NotebookLM correction missing: '+required);
 }
 const serviceSource=read('ai/service.ts');
-assert(serviceSource.includes("stage==='revision'?'revision-coaching':stage==='any-topic'?'any-topic-writing':'feedback'"),'Distinct revision and Any Topic prompts must be routed explicitly');
+assert(serviceSource.includes("stage==='revision'?'revision-coaching':stage==='cefr-writing'?'cefr-writing-coaching':stage==='any-topic'?'any-topic-writing':'feedback'"),'Revision, CEFR and General prompts must be explicitly isolated');
 assert(serviceSource.includes("scores:stage!=='revision'"));
 const laterPage=read('app/writing-course-v2-c.tsx');
 assert(laterPage.includes('revisionAIContext(week,work)'));
 assert(laterPage.includes("kind={editing?'revision':'draft'}"));
 assert(laterPage.includes("responseLanguage={showVi?'vi':'en'}"));
 assert(services.includes("...(kind==='revision'?{responseLanguage}:{})"));
-assert(component.includes("...(reviewMode==='any-topic'?[reviewMode,responseLanguage,'academic-r1']:[])"),'Any Topic must invalidate old scored cache and language variants');
-assert(component.includes('requestWritingAI(task,fields,kind,responseLanguage,reviewMode)'));
-assert(services.includes("tutor.coach('any-topic'"),'Any Topic must bypass numeric Writing scoring');
+assert(component.includes("...(reviewMode==='any-topic'?[reviewMode,responseLanguage,'academic-r1'")&&component.includes('WRITING_STUDIO_CEFR_RUBRIC_VERSION'),'Writing Studio cache keys include feedback language, CEFR reference and rubric version');
+assert(component.includes('requestWritingAI(task,fields,kind,responseLanguage,reviewMode,reviewMode===\'any-topic\''),'CEFR selection reaches request boundary without altering other modes');
+assert(services.includes("targetCEFR?'cefr-writing':'any-topic'"),'Both General and CEFR use the unscored coaching route');
 assert(component.includes('<TeachingBlocks text={visibleFeedback.summary}/>'));
 assert(component.includes('<Inline text={s}/>'));
 assert(laterPage.includes('enabled={saved&&!busy&&!error&&(!editing||!!revision)}'));
@@ -81,6 +81,7 @@ assert(home.includes('✦ AI Writing · optional'));
    if(name==='react')return fake;
    if(name==='react/jsx-runtime')return require('react/jsx-runtime');
    if(name==='./teaching-blocks')return {TeachingBlocks:()=>null,Inline:()=>null};
+   if(name==='../domain/writing-studio-reference')return {CEFR_WRITING_CRITERIA:[],WRITING_STUDIO_CEFR_RUBRIC_VERSION:'cefr-written-production-2020-v1'};
    if(name==='../infrastructure/browser/client-services')
     return {requestWritingAI:()=>{requests++;return new Promise(resolve=>{release=resolve})}};
    throw Error('Unexpected module '+name);
