@@ -97,7 +97,7 @@ async function write(name:string,value:string){
  click('Check and explain');
  await until(()=>root().textContent?.includes('Fixed key: '+firstQ.key)===true,'explanation reveal');
  click('Practice B');
- await until(()=>!!root().querySelector('textarea[name="'+unit+'-cycleB-draftV1"]'),'Cycle B textbox');
+ await until(()=>!!root().querySelector('textarea[name="'+unit+'-cycleB-draftV1"]'),'Practice B mounted');
  const original=unit+' My independent synthetic message asks the reader to consider an unapproved workshop idea.';
  await write(unit+'-cycleB-draftV1',original);
  click('AI Tutor');
@@ -114,6 +114,7 @@ async function write(name:string,value:string){
  await until(()=>root().textContent?.includes('Synthetic grounded review')===true,'opt-in result');
  check((window as any).__reviewCalls===1,'one explicit review');
  click('Practice B');
+ await until(()=>!!root().querySelector('textarea[name="'+unit+'-cycleB-draftV1"]'),'Practice B remounted');
  await write(unit+'-cycleB-draftV1',unit+' This is a changed learner text with a specific reader benefit.');
  click('AI Tutor');
  await until(()=>!!button('Get personal AI Tutor feedback'),'AI tab after edit');
