@@ -162,7 +162,7 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
    {src.cycleA.items.map(q=>choice(q,'cycleAAnswers'))}
    <h3>Your own explanation (not auto-graded)</h3>
    {src.cycleA.ownFields.map(f=><Field key={f.key} unit={unitId} stage="cycleA" field={f}
-    value={draft.cycleB['ownA'+f.key]??''} onValue={value=>fieldEditor('cycleB','ownA'+f.key,value)}/>)}
+    value={draft.cycleAOwn?.[f.key]??''} onValue={value=>change({...draft,cycleAOwn:{...draft.cycleAOwn,[f.key]:value}})}/>)}
   </section>}
   {(['cycleB','transfer'] as const).includes(tab as 'cycleB'|'transfer')&&
    (tab==='cycleB'||tab==='transfer')&&<section aria-label={unitId+' original '+tab}>

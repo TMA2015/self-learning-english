@@ -4,7 +4,7 @@
  * It depends on an immutable, actually saved U09 Draft V1 from PR #174.
  */
 export type Wave4Id='FW-U10'|'FW-U11'|'FW-U12';
-export type Wave4Draft={cycleAAnswers:Record<string,string>;cycleB:Record<string,string>;
+export type Wave4Draft={cycleAAnswers:Record<string,string>;cycleAOwn?:Record<string,string>;cycleB:Record<string,string>;
  transfer:Record<string,string>;extrasAnswers:Record<string,string>;
  revisionDecision?:''|'NO_CHANGE_JUSTIFIED'|'KEEP_V1_WITH_REASON'|'REVISION_SAVED';
  revisionReason?:string};
@@ -28,7 +28,7 @@ const obj=(x:unknown):x is Record<string,unknown>=>x!==null&&typeof x==='object'
 const stringMap=(x:unknown)=>obj(x)&&Object.values(x).every(v=>typeof v==='string');
 const signature=(x:unknown)=>JSON.stringify(x);
 function validDraft(x:unknown):x is Wave4Draft{return obj(x)&&stringMap(x.cycleAAnswers)&&
- stringMap(x.cycleB)&&stringMap(x.transfer)&&stringMap(x.extrasAnswers)&&
+ (x.cycleAOwn===undefined||stringMap(x.cycleAOwn))&&stringMap(x.cycleB)&&stringMap(x.transfer)&&stringMap(x.extrasAnswers)&&
  (x.revisionReason===undefined||typeof x.revisionReason==='string')&&
  (x.revisionDecision===undefined||['','NO_CHANGE_JUSTIFIED','KEEP_V1_WITH_REASON','REVISION_SAVED'].includes(String(x.revisionDecision)))}
 function validWork(x:unknown):x is Wave4Work{
@@ -79,7 +79,7 @@ export function checkedScope(value:unknown):{scope:Scope;firstDraft:string}{
    throw Error('Invalid Wave 4 history: do not overwrite');
  return {scope,firstDraft:first.text};
 }
-const blank=():Wave4Work=>({draft:{cycleAAnswers:{},cycleB:{},transfer:{},extrasAnswers:{}},versions:[]});
+const blank=():Wave4Work=>({draft:{cycleAAnswers:{},cycleAOwn:{},cycleB:{},transfer:{},extrasAnswers:{}},versions:[]});
 /** Editing is pure and does not claim a successful save. */
 export function edit(scope:Scope,unit:Wave4Id,draft:Wave4Draft):Scope{
  checkedScope(scope);

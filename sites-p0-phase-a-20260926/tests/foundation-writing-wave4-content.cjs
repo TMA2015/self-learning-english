@@ -77,6 +77,10 @@ check('learner Wave4 renderer is isolated from HomeClient routes',()=>{
  assert(!home.includes("from './foundation-writing-wave4'"));
  assert(!home.includes('foundation-writing-u10'));
 });
+check('source verifier utility exists and exact checksum is pinned',()=>{
+ const source=fs.readFileSync(path.join(base,'scripts/verify-foundation-writing-wave4-source.cjs'),'utf8');
+ assert.match(source,/68935/);assert.match(source,/cca51171781dc535c6a4080107b0204561b850cfcaf33e089fce2eb184468083/);
+});
 check('course shell includes explicit save and opt-in review actions',()=>{
  const ui=fs.readFileSync(path.join(base,'app/foundation-writing-wave4.tsx'),'utf8');
  assert.match(ui,/Save &amp; Exit/);assert.match(ui,/Get personal AI Tutor feedback/);
