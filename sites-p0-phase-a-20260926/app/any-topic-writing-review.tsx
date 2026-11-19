@@ -6,7 +6,7 @@ import {CEFR_WRITING_LEVELS,normalizeWritingStudioReference,type WritingStudioRe
 /**
  * Independent any-topic Writing: local draft and deterministic self-check first,
  * plus optional Gemini feedback for the successfully saved text on explicit click.
- * No grade writes, Foundation attempt changes, or certified CEFR result.
+ * Practice writing scores stay in the local feedback cache; no Foundation grade writes or learner-level certification.
  */
 const DRAFT_KEY='g-learning:english:any-topic-writing:draft:v1';
 const ANY_TOPIC_AI_CACHE_PREFIX='g-learning:english:ai-feedback:v1:any-topic-writing:';
@@ -99,7 +99,7 @@ export function AnyTopicWritingReview({showVi=false}:{showVi?:boolean}){
       <h1>Writing Studio · Any Topic</h1>
       <p>Write about a topic of your choice, save a draft locally, and ask AI Tutor for personal Writing feedback when you choose. This workspace is separate from Foundation Writing and the independent Writing skill catalog; this feedback does not change assessment records.</p>
     </div></div>
-    <p className="notice"><strong>Your choice:</strong> Save and revise locally without AI. After saving, you may explicitly ask Gemini to review this draft through AI Tutor. Feedback is provisional advice, never an official grade or certified CEFR result.</p>
+    <p className="notice"><strong>Your choice:</strong> Save and revise locally without AI. After saving, you may explicitly ask Gemini to review this draft through AI Tutor. Feedback includes a project-defined writing practice score (six criteria, 0–5 each), never an official exam score or certified CEFR result.</p>
     <div className="learning-choices" role="group" aria-label="Writing Studio reference">
       <label className="field" htmlFor="writing-studio-framework">
         <span>Feedback reference</span>
@@ -118,8 +118,8 @@ export function AnyTopicWritingReview({showVi=false}:{showVi?:boolean}){
       </label>}
     </div>
     <p className="muted">{reference.kind==='cefr'?
-      'CEFR '+reference.level+' is a learning target, not a measured level. AI will use qualitative writing criteria and will not award a grade or certified CEFR result.':
-      'General feedback focuses on the writing itself without assigning a CEFR level.'}</p>
+      'CEFR '+reference.level+' sets the writing expectations for six 0–5 criterion scores and a total /30. This does not assess your personal CEFR level.':
+      'General Writing scores this response against the task and genre on the same six criteria, without a CEFR target.'}</p>
     <form onSubmit={event=>{
       event.preventDefault();
       if(!valid)return;
