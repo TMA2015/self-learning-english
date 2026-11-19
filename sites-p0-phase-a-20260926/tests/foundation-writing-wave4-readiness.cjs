@@ -25,6 +25,19 @@ check('wrong key rejected',()=>{const x=synthetic();x[0].key='Z';assert.equal(m.
 check('missing rationale rejected',()=>{const x=synthetic();x[0].options[0].rationale='';assert.equal(m.auditObjectives(x).pass,false)});
 check('duplicate option rejected',()=>{const x=synthetic();x[0].options[0].id='B';assert.equal(m.auditObjectives(x).pass,false)});
 check('U09 saved original verified',()=>assert.equal(m.checkedScope(base()).firstDraft,u09Text));
+check('Wave4 is self-paced without a required U09 submission',()=>assert.equal(
+ m.checkedScope({schemaVersion:1,units:{}}).firstDraft,''));
+check('a V2 requires a separately saved V1',()=>{
+ const x=m.edit(base(),'FW-U10',{...draft(),
+  cycleB:{draftV1:'My short fictional original cooking recap.',editedV2:'My edited fictional cooking recap.'},
+  revisionDecision:'REVISION_SAVED',revisionReason:'Meaningful justified verb repair'});
+ assert.throws(()=>m.stage(x,'FW-U10',200),/V1 first/);
+});
+check('no change without saved original cannot fabricate a completion version',()=>{
+ const x=m.edit(base(),'FW-U11',{...draft(),revisionDecision:'KEEP_V1_WITH_REASON',
+  revisionReason:'This original claim already matches the provided evidence.'});
+ assert.throws(()=>m.stage(x,'FW-U11',200),/V1 first/);
+});
 check('U09 tampered first draft rejected',()=>{const x=base();x.units['FW-U09'].firstDraftV1.text='tampered';assert.throws(()=>m.checkedScope(x))});
 check('unknown state schema rejected',()=>assert.throws(()=>m.checkedScope({schemaVersion:2,units:{}})));
 const edited=m.edit(base(),'FW-U10',draft());

@@ -86,7 +86,7 @@ export function checkedScope(value:unknown):{scope:Scope;firstDraft:string}{
  }
  for(const unit of ids)if(scope.units[unit]!==undefined&&!validWork(scope.units[unit]))
    throw Error('Invalid Wave 4 history: do not overwrite');
- return {scope,firstDraft:first.text};
+ return {scope,firstDraft};
 }
 const blank=():Wave4Work=>({draft:{cycleAAnswers:{},cycleAOwn:{},cycleB:{},transfer:{},extrasAnswers:{}},versions:[]});
 export function wave4Work(scope:Scope|undefined,unit:Wave4Id):Wave4Work{
@@ -119,6 +119,12 @@ export function stage(scope:Scope,unit:Wave4Id,at:number):Staged{
  if((decision==='NO_CHANGE_JUSTIFIED'||decision==='KEEP_V1_WITH_REASON')&&
    (!(current.revisionReason??'').trim()||(v2&&v2!==v1)))
   throw Error('Keep/no-change requires an explanation and cannot claim a changed V2');
+ const priorOriginal=previous.versions.find(v=>typeof v.draft.cycleB.draftV1==='string'&&
+   v.draft.cycleB.draftV1.trim()===v1);
+ if((v2&&v1!==v2)||decision==='REVISION_SAVED'||decision==='NO_CHANGE_JUSTIFIED'||decision==='KEEP_V1_WITH_REASON'){
+  if(!priorOriginal)throw Error('Save the independent V1 first before revision or keep decision');
+  if(v2&&!decision)throw Error('Record why the edited V2 differs from V1');
+ }
  const sig=signature(previous.draft),last=previous.versions.at(-1);
  if(!last||last.signature!==sig){
   if(previous.versions.length>=100)throw Error('Version limit reached; export backup');

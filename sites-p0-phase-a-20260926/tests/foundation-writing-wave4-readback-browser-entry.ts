@@ -60,7 +60,7 @@ async function commit(state:any,unit:Wave4Id,at:number){
   let changed=edit(current.foundationWritingV1 as Scope,'FW-U10',{
    ...current.foundationWritingV1.units['FW-U10'].draft,
    cycleB:{...current.foundationWritingV1.units['FW-U10'].draft.cycleB,editedV2:'Wave 4 new text typed after restoring the browser: a substantive learner revision.'},
-   revisionDecision:'NO_CHANGE_JUSTIFIED',revisionReason:'One confirmed factual sentence already preserves the intended actor and time.'
+   revisionDecision:'REVISION_SAVED',revisionReason:'The writer explains an actual and bounded change to the saved original.'
   });
   const x=stage(changed,'FW-U10',Date.now());
   check(!verifyReadback(x,current.foundationWritingV1),'unsaved staged version fails persisted proof');
