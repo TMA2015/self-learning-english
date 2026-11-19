@@ -116,6 +116,9 @@ const root=path.join(__dirname,'..');
    fs.writeFileSync(path.join(out,'week2-home-'+width+'.png'),bytes);
    console.log('W2_HOME_SCREENSHOT '+JSON.stringify({width,bytes:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex')}));
   }
+  // Real authoring source + real HomeClient navigation/save/reload for full course.
+  await load(1280);results.push(await run('foundationTwelve'));
+  await load(320);results.push(await run('foundationRestore'));
   assert.equal(writeRequests,0,'HTTP fixture cannot receive learner writes');
   console.log(JSON.stringify({result:'PASS',gate:'W2_R2_FULL_HOME_INTEGRATED_BROWSER',cases:results,
    actualHomeClient:true,browserLocalStorage:true,externalRequests:0,httpWrites:0,

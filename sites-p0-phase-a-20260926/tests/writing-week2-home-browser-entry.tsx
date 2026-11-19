@@ -176,4 +176,109 @@ const skillOverview=async()=>{
   mobileMenuCovered:isMobile,overflow:document.documentElement.scrollWidth-innerWidth};
 };
 
-(window as any).__SLE_WEEK2_HOME_QA={full,restore,responsive,skillOverview};
+
+/** Real integrated HomeClient Foundation Writing 12-Unit source, save, revision, reload regression. */
+const foundationTwelve=async()=>{
+ await wait(()=>text(document.querySelector('.save-status')).includes('Saved on this device'),'SLE local storage ready');
+ const n=(id:string)=>document.querySelector<HTMLButtonElement>('nav[aria-label="Main navigation"] button.nav-item[data-id="'+id+'"]');
+ const navigateUnit=async(id:'10'|'11'|'12')=>{
+  const label='Foundation Writing · U'+id,navItems=[...document.querySelectorAll<HTMLButtonElement>('nav[aria-label="Main navigation"] button.nav-item')];
+  const button=navItems.find(b=>text(b)===label);
+  if(!button)throw Error('Reviewed full course sidebar missing '+label);
+  button.click();
+  await wait(()=>!!document.querySelector('section[aria-label="Foundation Writing FW-U'+id+'"]'),label+' source-backed screen');
+ };
+ const editor=(unit:string,stage:string,key:string)=>document.querySelector<HTMLTextAreaElement>(
+  'textarea[name="'+unit+'-'+stage+'-'+key+'"]');
+ const saveVersion=async(num:number)=>{
+  await click('Save version','main button');
+  await wait(()=>text(document.querySelector('main')).includes('Saved version '+num+'.'),'durable saved version '+num);
+  if(text(document.querySelector('main')).includes('Save failed'))throw Error('Unexpected storage failure');
+ };
+ const original=(id:string)=>'FW-U'+id+' I wrote my original independent short account about a possible event. '+
+  'I explained what happened, why the action matters, and what a reader could do next. This is a synthetic learner-authored QA text.';
+ const revised=(id:string)=>original(id)+' I clarified the purpose and kept the unapproved suggestion conditional.';
+ for(const id of ['10','11','12'] as const){
+  const unit='FW-U'+id;
+  await navigateUnit(id);
+  if(!text(document.querySelector('main')).includes('Micro-lesson 1'))throw Error('Reviewed teaching missing '+unit);
+  if(!text(document.querySelector('main')).includes('Micro-lesson 2'))throw Error('Second micro-lesson missing '+unit);
+  await click('Practice A','main button');
+  await wait(()=>!!document.querySelector('input[name="'+unit+'-'+(id==='10'?'A-TENSE':id==='11'?'A-PRIORITY':'A-COVER')+'"]'),unit+' actual source Cycle A');
+  const firstId=unit+'-'+(id==='10'?'A-TENSE':id==='11'?'A-PRIORITY':'A-COVER');
+  const choices=[...document.querySelectorAll<HTMLInputElement>('input[name="'+firstId+'"]')];
+  if(choices.length!==4)throw Error('Original four options missing '+firstId);
+  if(!text(document.querySelector('main')).includes(id==='10'?'Last Friday':id==='11'?'revision':'pool'))
+   throw Error('Real source question context missing '+unit);
+  await click('Practice B','main button');
+  await wait(()=>!!editor(unit,'cycleB','draftV1'),'Original V1 editor '+unit);
+  await write(editor(unit,'cycleB','draftV1')!,original(id));
+  await saveVersion(1);
+  const savedEditor=editor(unit,'cycleB','draftV1');
+  if(!savedEditor?.readOnly||savedEditor.value!==original(id))throw Error(unit+' immutable V1 not protected');
+  const v2Key=id==='10'?'editedV2':'revisedV2';
+  if(id==='11'){
+   const keep=document.querySelector<HTMLInputElement>('input[name="'+unit+'-revision"][value="KEEP_V1_WITH_REASON"]');
+   if(!keep)throw Error('Justified retain control missing');keep.click();
+   await wait(()=>!!editor(unit,'revision','reason'),'keep note input');
+   await write(editor(unit,'revision','reason')!,'The initial proposal already states a realistic method and suitable reader action.');
+  }else{
+   await wait(()=>!!editor(unit,'cycleB',v2Key),'V2 editor');
+   await write(editor(unit,'cycleB',v2Key)!,revised(id));
+   const choice=document.querySelector<HTMLInputElement>('input[name="'+unit+'-revision"][value="REVISION_SAVED"]');
+   if(!choice)throw Error('Revision decision missing');choice.click();
+   await write(editor(unit,'revision','reason')!,'Added a specific reader action while preserving the original facts and conditional status.');
+  }
+  await saveVersion(2);
+  if(!editor(unit,'cycleB','draftV1')?.readOnly)throw Error('V1 was unlocked after revision '+unit);
+  await click('AI Tutor','main button');
+  await wait(()=>!!document.querySelector('section[aria-label="'+unit+' optional AI Tutor Writing Review"]'),'Optional tutor screen');
+  const review=[...document.querySelectorAll<HTMLButtonElement>('main button')].find(b=>text(b)==='Get personal AI Tutor feedback');
+  if(!review?.disabled)throw Error('Do not enable unconfigured live provider '+unit);
+ }
+ const preserved=await (await import('../infrastructure/browser/client-services')).loadLearnerState();
+ const st=(preserved.state as any)?.foundationWritingV1?.units;
+ if(!st)throw Error('Foundation Writing real state not stored');
+ for(const id of ['10','11','12']){
+  const w=st['FW-U'+id];
+  if(w?.versions?.length!==2||w.versions[0].draft.cycleB.draftV1!==original(id))
+   throw Error('Real saved V1/V2 history missing FW-U'+id);
+ }
+ return {phase:'foundationTwelve',actualHomeClient:true,reviewedUnits:['FW-U10','FW-U11','FW-U12'],
+  exactSourceOptions:true,versions:[2,2,2],originalV1Immutable:true,
+  justifiedKeepCase:true,realSleStorage:true,providerCalls:0};
+};
+const foundationRestore=async()=>{
+ await wait(()=>text(document.querySelector('.save-status')).includes('Saved on this device'),'restored SLE local state');
+ const service=await import('../infrastructure/browser/client-services');
+ const data=(await service.loadLearnerState()).state as any;
+ const units=data?.foundationWritingV1?.units;
+ if(!units)throw Error('Wave4 store absent after actual browser reload');
+ for(const id of ['10','11','12']){
+  const w=units['FW-U'+id];
+  if(w?.versions?.length!==2)throw Error('Reload failed '+id);
+  if(!w?.versions[0]?.draft?.cycleB?.draftV1?.includes('I wrote my original independent'))
+   throw Error('Original V1 text changed '+id);
+ }
+ const label='Foundation Writing · U12';
+ const b=[...document.querySelectorAll<HTMLButtonElement>('nav[aria-label="Main navigation"] button.nav-item')]
+  .find(e=>text(e)===label);
+ if(!b)throw Error('U12 not navigable after reload');
+ if(innerWidth<=750){
+  const menu=document.querySelector<HTMLButtonElement>('.mobile-menu');
+  if(!menu)throw Error('Responsive menu missing');menu.click();
+  await wait(()=>!!document.querySelector('aside.sidebar.open'),'mobile menu opens');
+ }
+ b.click();
+ await wait(()=>!!document.querySelector('section[aria-label="Foundation Writing FW-U12"]'),'restored U12 UI');
+ await click('Practice B','main button');
+ await wait(()=>!!document.querySelector('textarea[name="FW-U12-cycleB-draftV1"]'),'U12 restored V1');
+ const field=document.querySelector<HTMLTextAreaElement>('textarea[name="FW-U12-cycleB-draftV1"]');
+ if(!field?.readOnly||!field.value.includes('I wrote my original independent'))throw Error('Restored V1 is not immutable');
+ const overflow=document.documentElement.scrollWidth-innerWidth;
+ if(overflow>3)throw Error('Wave4 horizontal overflow '+overflow+'px at '+innerWidth);
+ return {phase:'foundationRestore',browserReload:true,actualHomeClient:true,learnerHistoryUnchanged:true,
+  savedVersionsRetained:true,originalV1ReadOnly:true,viewport:innerWidth,overflow};
+};
+
+(window as any).__SLE_WEEK2_HOME_QA={full,restore,responsive,skillOverview,foundationTwelve,foundationRestore};
