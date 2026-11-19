@@ -30,6 +30,7 @@ import {FoundationWritingNextUnit} from './foundation-writing-u02-u03';
 import {FoundationWritingWave2} from './foundation-writing-u04-u06';
 import {FoundationWritingWave3} from './foundation-writing-u07-u09';
 import {FoundationWritingWave4} from './foundation-writing-wave4';
+import {browserTutorService} from '../infrastructure/browser/firebase-ai-browser';
 import wave4ReviewedContent from '../content/foundation-writing-wave4-reviewed.json';
 import type {Wave4Lesson} from '../domain/foundation-writing-wave4-content';
 import {edit as editWave4,stage as stageWave4,verifyReadback as verifyWave4Readback,
@@ -362,7 +363,17 @@ export default function Home(){
     originalDraftV1={state.foundationWritingV1?.units['FW-U09']?.firstDraftV1?.text}
     onEdit={draft=>editFoundationWave4(view==="foundation-writing-u10"?"FW-U10":view==="foundation-writing-u11"?"FW-U11":"FW-U12",draft)}
     onSave={()=>saveFoundationWave4(view==="foundation-writing-u10"?"FW-U10":view==="foundation-writing-u11"?"FW-U11":"FW-U12")}
-    onExit={()=>void navigate("writing")} showVi={!!state.vietnameseSupport}/> )}
+    onExit={()=>void navigate("writing")} showVi={!!state.vietnameseSupport}
+    reviewer={async payload=>{
+     // Only called by the learner's explicit click for an exact persisted artifact.
+     const tutor=browserTutorService();
+     if(!tutor.available)throw Error('Optional AI Tutor unavailable');
+     const response=await tutor.coach('foundation-writing',payload.task,{
+      unitId:payload.unitId,fixtureId:payload.fixtureId,text:payload.text
+     },{responseLanguage:state.vietnameseSupport?'vi':'en'});
+     if(response?.provider!=='firebase-ai-logic')throw Error('Unverified AI Tutor response');
+     return response.structuredResult;
+    }}/> )}
 
  {view==="reference"&&<ReferenceLibrary catalog={foundationCatalog} onCatalog={setFoundationCatalog} onOpenLesson={(id,skill)=>void openReferenceLesson(id,skill)}/>}
  {view==="diagnostic"&&<DiagnosticAssessment value={state.diagnosticV2} archive={state.diagnosticArchive??[]} onChange={diagnosticV2=>update({diagnosticV2,...(state.diagnosticV2&&state.diagnosticV2.startedAt!==diagnosticV2.startedAt?{diagnosticArchive:[...(state.diagnosticArchive??[]),state.diagnosticV2]}:{})})} onFinish={finishDiagnostic} showVi={!!state.vietnameseSupport}/>}
