@@ -1,0 +1,1074 @@
+[
+  {
+    "id": "FW-U10",
+    "title": "Edit Language Mechanics Without Changing Meaning",
+    "outcome": "Identify justifiable tense, subject–verb agreement, article/reference and punctuation errors in a known fixed context; produce an independent edited copy while protecting who did what, when and why. Leave correct language correct.",
+    "minutes": "self-paced",
+    "source": {
+      "document": "SLE_FOUNDATION_WRITING_AUTHORING_WAVE4_U10-U12_DRAFT_20261118.md",
+      "sha256": "cca51171781dc535c6a4080107b0204561b850cfcaf33e089fce2eb184468083",
+      "notebooklm": "SLE-FW-AUTH-W4-NBLM-R1-20261118",
+      "verdict": "PASS",
+      "requiredChanges": "NONE"
+    },
+    "teaching": {
+      "lessons": [
+        "Teacher: “Editing is not hunting for a mistake in every sentence. First find what the writer means. Fix a form only when there is a good reason. Do not change the story to make your revision look more impressive.”\n\n\n\nMini-concept — What exactly counts as evidence? A date like “last Sunday” helps establish tense; the actual singular/plural subject helps choose was/were; a noun's first mention helps choose a/an in a specified context. But writers may choose other natural structures. Do not declare a sentence wrong merely because it differs from the teacher's style.\n\nOptional A1 bridge: yesterday, last week = completed time; we were vs he was. Explain edited copy = your text after careful corrections.  \nOptional B1 stretch: Explain why the past form put looks identical to the present, and why copying a correct verb into V2 can be an intentional editorial decision.",
+        "Teacher: “Good editing can be a small change, or no change at all. Editing quality is not the number of corrections.”\n\nShort separate teaching contrast (unscored, not a Cycle A answer): In “I borrowed a book. The book had a blue cover,” the second mention can naturally use the because the reader already knows which book. Replacing it with a book would reduce that reference clarity. In “We went home after the lesson,” no edit is necessary from the given facts. Ask: Did my correction change the intended event or reader reference?\n\nMeaning protection prompts, learner-facing: “Who did the action? Did I keep the original time? Did I introduce facts the original did not say? Do I have evidence that this is wrong, or am I changing style?” These are questions about the process, not an automated checklist claiming to grade the answer. They never generate a numeric result."
+      ],
+      "demo": {
+        "id": "FW-U10-D01",
+        "prompt": "Primary independent teacher think-aloud FW-U10-D01 — Pottery studio visit.\n\nPrompt known to the teacher: A student visited a pottery studio with an aunt last Sunday, watched a teacher demonstrate, and made a plate. Preserve those facts while editing the student's short recount.\n\nOriginal (display-only, immutable demo V1):\nLast Sunday, I visit a small pottery studio with my aunt. The teacher showed us how to shape a bowl. My aunt make a cup, and I made a plate. We put our pieces on a shelf, and then we went home.",
+        "steps": [
+          [
+            "Notice:",
+            "“Last Sunday” fixes the narrative in the past. The writer says I visited; the aunt made a cup; the teacher showed the process. I will not invent new activities."
+          ],
+          [
+            "Decide:",
+            "visit → visited, because the visit was completed last Sunday. make → made, because the aunt's action also happened in the past. These are two specific edits, not an instruction to change every verb."
+          ],
+          [
+            "Why:",
+            "“The teacher showed us…” and “We put our pieces…” already use appropriate past forms. Keep both intact. The sentence with “my aunt … and I made…” is grammatical after the one correction."
+          ],
+          [
+            "Reject/repair:",
+            "Reject replacing “I” with “we”: that would change the narrator. Reject “the teacher will show”: that invents future timing. Reject gratuitously changing put to putted (incorrect irregular past form)."
+          ],
+          [
+            "Teacher edited V2:",
+            "“Last Sunday, I visited a small pottery studio with my aunt. The teacher showed us how to shape a bowl. My aunt made a cup, and I made a plate. We put our pieces on a shelf, and then we went home.”"
+          ],
+          [
+            "Transfer principle:",
+            "Record the original, change only what the evidence justifies, keep already-correct material, then compare meaning across versions. The teacher V2 is not prefilled into any active learner field."
+          ]
+        ]
+      },
+      "a1": "yesterday, last week = completed time; we were vs he was. Explain edited copy = your text after careful corrections.",
+      "b1": "Explain why the past form put looks identical to the present, and why copying a correct verb into V2 can be an intentional editorial decision."
+    },
+    "cycleA": {
+      "id": "FW-U10-A",
+      "prompt": "Fixed prompt FW-U10-A: “The following recount describes a completed school visit last Friday. Its facts are fixed: the class visited a science centre; the guide showed a Moon model; several friends felt excited during the talk; the narrator took notes. Choose the best option for the exact question; do not add new facts.”\n\nFixed original excerpt (read-only):\nLast Friday, our class visit a science centre. The guide showed us a model of the Moon. During the visit last Friday, my friends was excited to ask questions. We took notes after the talk.\n\nFour authored interactions — same short text, different decisions:",
+      "taskStrip": {
+        "topic": "Completed science-centre class visit last Friday",
+        "task": "Edit only forms that the fixed past recount justifies",
+        "mustInclude": "Preserve the class, the guide, the Moon model, the excited friends and the order of events",
+        "boundary": "Do not add facts, change actors or change the visit from past to future"
+      },
+      "ownFields": [
+        {
+          "key": "reason",
+          "label": "Explain one fixed-context decision in your own words (unscored)",
+          "requiredForAI": false
+        }
+      ],
+      "items": [
+        {
+          "id": "FW-U10-A-TENSE",
+          "stem": "For “Last Friday, our class ___ a science centre,” select the correct form within the fixed completed-visit meaning.",
+          "key": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "visits",
+              "rationale": "Present simple describes a habit; the fixed trip was completed last Friday."
+            },
+            {
+              "id": "B",
+              "text": "visited",
+              "rationale": "Past simple accurately describes the completed event with “last Friday.”"
+            },
+            {
+              "id": "C",
+              "text": "visiting",
+              "rationale": "Missing a finite verb; “our class visiting” cannot stand as this sentence."
+            },
+            {
+              "id": "D",
+              "text": "will visit",
+              "rationale": "Future meaning conflicts with the explicitly completed visit."
+            }
+          ]
+        },
+        {
+          "id": "FW-U10-A-AGREEMENT",
+          "stem": "Complete “During the visit last Friday, my friends ___ excited to ask questions.”",
+          "key": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "was",
+              "rationale": "Friends is plural; was does not agree."
+            },
+            {
+              "id": "B",
+              "text": "is",
+              "rationale": "Present singular verb conflicts with plural friends and past setting."
+            },
+            {
+              "id": "C",
+              "text": "were",
+              "rationale": "Plural past form matches friends during yesterday's talk."
+            },
+            {
+              "id": "D",
+              "text": "be",
+              "rationale": "Bare verb cannot form this past declarative clause."
+            }
+          ]
+        },
+        {
+          "id": "FW-U10-A-KEEP",
+          "stem": "The fixed sentence is “The guide showed us a model of the Moon.” No other fact changes. Which editing decision is appropriate?",
+          "key": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "Change showed to shows.",
+              "rationale": "Shifts the documented completed event into present tense."
+            },
+            {
+              "id": "B",
+              "text": "Change us to them.",
+              "rationale": "Changes who received the explanation."
+            },
+            {
+              "id": "C",
+              "text": "Change a model to many models.",
+              "rationale": "Invents a different number of exhibits."
+            },
+            {
+              "id": "D",
+              "text": "Keep the sentence unchanged.",
+              "rationale": "This form is already correct for the fixed past recount; editing need not force changes."
+            }
+          ]
+        },
+        {
+          "id": "FW-U10-A-MEANING",
+          "stem": "The original says “We took notes after the talk.” Which edited sentence best keeps both the subject and the order of events?",
+          "key": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "We took notes after the talk.",
+              "rationale": "Preserves the narrator's group and the time relationship; no edit required."
+            },
+            {
+              "id": "B",
+              "text": "We took notes before the talk.",
+              "rationale": "Changes after to before, altering the story."
+            },
+            {
+              "id": "C",
+              "text": "The guide took notes after the talk.",
+              "rationale": "Replaces we with the guide, a different actor."
+            },
+            {
+              "id": "D",
+              "text": "We will take notes after the talk.",
+              "rationale": "Turns the completed action into a future event."
+            }
+          ]
+        }
+      ]
+    },
+    "cycleB": {
+      "id": "FW-U10-B",
+      "prompt": "Prompt FW-U10-B (not pottery/science centre): “Write a short, truthful or clearly fictional recount of a small weekend cooking experience for a friend who missed it. Include what happened first, one action you or someone else performed, and how it ended. The experience can be simple; you are not required to claim a real personal event.”\n\nStage 1 — V1: Write your own recount (roughly 55–95 words as guidance only). Explicitly save as immutable FW-U10-B/V1 (original text, prompt ID, timestamp, content version). No example copy/paste into the textbox.\n\nStage 2 — bounded inspection: Display V1 on the left (read-only), a fresh copy on the right (editable V2). Choose one of these legitimate actions: (a) make one or more justified corrections to tense, agreement, article/reference or punctuation; or (b) keep a section unchanged and explain why it is already correct. The learner does not need to invent an error. For a wholly sound V1, the learner may save a confirmed no-change editorial decision, without fabricating a different V2.\n\nStage 3 — own change notes: For every actual edit (if any), identify a precise before/after excerpt plus a brief reason linked to the intended meaning. If no edit, give one evidence-based reason for keeping the text. Optional meaningCheck asks whether the time, actor or event changed; this is a learner explanation, not a machine-scored truth flag.\n\nStage 4 — save/retry: Save V2 as a distinct immutable version only if it truly differs, otherwise preserve V1 and save a versioned NO_CHANGE_JUSTIFIED process note. If saving fails, preserve the visible editor and show copy/retry guidance; no AI eligible state. When V2 saved, show a two-column or stacked diff with accessible change summaries. Do not infer “better” from a nonempty diff.\n\nReview acceptance: The software may verify V1 exists and save status, and that edit notes refer to actual submitted text; whether corrections are good or the story remains accurate requires optional trusted review. Avoid detecting tense with regex on free text. All learner-owned outputs are unassessed for proficiency unless a separate validated review is performed.\n\nOptional A1 bridge: “First…, then…, after that…” are optional prompts, not mandatory keywords.  \nOptional B1 stretch: Explain when switching tense might be deliberate (e.g., a general fact embedded in a past recount) and why a blanket all verbs → past rule can be wrong.",
+      "taskStrip": {
+        "topic": "Weekend cooking experience for a friend",
+        "task": "Write an original recount and edit only justified mechanics",
+        "mustInclude": "What happened first, an action, how the experience ended, V1 and edit/keep reason",
+        "boundary": "A fictional experience is permitted; do not invent errors or silently change the story"
+      },
+      "fields": [
+        {
+          "key": "draftV1",
+          "label": "Your original weekend-cooking recount (V1)",
+          "requiredForAI": true
+        },
+        {
+          "key": "editedV2",
+          "label": "Edited copy (V2), only when a real change is needed",
+          "requiredForAI": false
+        },
+        {
+          "key": "editNotes",
+          "label": "Before/after excerpts and reasons for edits",
+          "requiredForAI": false
+        },
+        {
+          "key": "keptAsWritten",
+          "label": "Already-correct text and why you kept it",
+          "requiredForAI": false
+        },
+        {
+          "key": "meaningCheck",
+          "label": "Explain whether the original actors, time and events were preserved",
+          "requiredForAI": false
+        }
+      ]
+    },
+    "transfer": {
+      "id": "FW-U10-T",
+      "prompt": "New prompt, new genre: A student is preparing a short community birdwatching club notice and wants to check the language without accidentally changing the practical details. Here is the supplied factual brief: the walk is next Saturday at 9:00 a.m., meets outside the north gate, and visitors should bring water; participation is being planned, not confirmed. Draft a 2–4-sentence notice using those facts, save its V1, then either edit one justifiable language issue or explain why no change is needed. Save V2 if changed and record the factual details preserved. This is student-generated and not deterministically graded for correct mechanics. No claim that the walk is approved.\n\nIndependent transfer assessment boundary: The saved notes and fixed fact labels prove process participation, not that punctuation, tense, register or factual accuracy were correct. A semantic reviewer must inspect the text for that judgment.",
+      "taskStrip": {
+        "topic": "Community birdwatching club notice",
+        "task": "Draft a notice and edit language without changing supplied facts",
+        "mustInclude": "Next Saturday 9:00 a.m.; north gate; bring water; version or no-change explanation",
+        "boundary": "Participation is only planned; no claim the walk is approved"
+      },
+      "fields": [
+        {
+          "key": "noticeV1",
+          "label": "Your original notice (V1)",
+          "requiredForAI": true
+        },
+        {
+          "key": "noticeV2",
+          "label": "Edited notice (V2), if needed",
+          "requiredForAI": false
+        },
+        {
+          "key": "factCheck",
+          "label": "Facts preserved from the supplied brief",
+          "requiredForAI": false
+        },
+        {
+          "key": "keepReason",
+          "label": "Reason for keeping correct language unchanged",
+          "requiredForAI": false
+        }
+      ]
+    },
+    "extras": [
+      {
+        "id": "FW-U10-F01",
+        "stem": "A student writes a recount about a completed trip yesterday: “Yesterday, I go to the aquarium with my uncle.” Which edit best preserves the fact and fixes the tense?",
+        "key": "D",
+        "options": [
+          {
+            "id": "A",
+            "text": "Yesterday, I will go to the aquarium with my uncle.",
+            "rationale": "Moves the trip to the future, contradicting the completed past event."
+          },
+          {
+            "id": "B",
+            "text": "Yesterday, I go to the aquarium with my uncle, really.",
+            "rationale": "Adds emphasis but leaves the tense error."
+          },
+          {
+            "id": "C",
+            "text": "Yesterday, my uncle goes to the aquarium without me.",
+            "rationale": "Changes both the subject and event facts."
+          },
+          {
+            "id": "D",
+            "text": "Yesterday, I went to the aquarium with my uncle.",
+            "rationale": "Uses the correct irregular past form and preserves who travelled together."
+          }
+        ]
+      },
+      {
+        "id": "FW-U10-F02",
+        "stem": "A fixed caption says “These two maps was on the table yesterday.” Which choice repairs agreement without altering the number of maps?",
+        "key": "A",
+        "options": [
+          {
+            "id": "A",
+            "text": "These two maps were on the table yesterday.",
+            "rationale": "Plural subject “two maps” takes past “were”; other facts remain."
+          },
+          {
+            "id": "B",
+            "text": "This map was on the table yesterday.",
+            "rationale": "Changes two maps into one."
+          },
+          {
+            "id": "C",
+            "text": "These two maps is on the table yesterday.",
+            "rationale": "Uses a singular present verb for a plural past subject."
+          },
+          {
+            "id": "D",
+            "text": "These two maps was on the table yesterday.",
+            "rationale": "Leaves the agreement error unchanged."
+          }
+        ]
+      },
+      {
+        "id": "FW-U10-F03",
+        "stem": "The fixed story has already introduced “a lantern” in sentence 1. Sentence 2 reads “___ lantern lit the path.” Which option gives the clearest reference to the same lantern?",
+        "key": "C",
+        "options": [
+          {
+            "id": "A",
+            "text": "An",
+            "rationale": "“An lantern” is grammatically wrong because “lantern” begins with a consonant sound."
+          },
+          {
+            "id": "B",
+            "text": "Some",
+            "rationale": "“Some lantern” does not fit the specified singular item."
+          },
+          {
+            "id": "C",
+            "text": "The",
+            "rationale": "The reader already knows which particular lantern is meant."
+          },
+          {
+            "id": "D",
+            "text": "A",
+            "rationale": "A new indefinite article may suggest a different lantern, losing the intended exact reference."
+          }
+        ]
+      },
+      {
+        "id": "FW-U10-F04",
+        "stem": "A writer has a correct past-tense sentence: “We left the museum at noon.” The stated facts confirm this. What is the most justified editorial action?",
+        "key": "B",
+        "options": [
+          {
+            "id": "A",
+            "text": "Replace “We” with “They” to show a change was made.",
+            "rationale": "Changes the actors without evidence."
+          },
+          {
+            "id": "B",
+            "text": "Keep it unchanged and note that it accurately reports the confirmed fact.",
+            "rationale": "A correct sentence does not need a cosmetic edit."
+          },
+          {
+            "id": "C",
+            "text": "Change “left” to “leave” because shorter verbs are better.",
+            "rationale": "Breaks the completed past tense."
+          },
+          {
+            "id": "D",
+            "text": "Add “therefore” before “at noon” to sound academic.",
+            "rationale": "A decorative connector does not serve the sentence meaning."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "FW-U11",
+    "title": "Revise Meaning, Reason & Flow",
+    "outcome": "Make a meaningful, evidence-grounded change to an idea, reason, detail, paragraph role or transition — or give a well-supported keep-decision for a section already sound. Distinguish language editing from revising what the text says to the reader.",
+    "minutes": "self-paced",
+    "source": {
+      "document": "SLE_FOUNDATION_WRITING_AUTHORING_WAVE4_U10-U12_DRAFT_20261118.md",
+      "sha256": "cca51171781dc535c6a4080107b0204561b850cfcaf33e089fce2eb184468083",
+      "notebooklm": "SLE-FW-AUTH-W4-NBLM-R1-20261118",
+      "verdict": "PASS",
+      "requiredChanges": "NONE"
+    },
+    "teaching": {
+      "lessons": [
+        "Teacher: “Fixing a tense is editing. Making your reader understand why the idea matters and what someone could do is revising. The best revision is not necessarily the longest.”\n\n\n\nNotice the limitation: Even the teacher's proposal remains a proposal, not a tested environmental result. The writing is improved in specificity; it does not prove real-world impact.\n\nOptional A1 bridge: reason = why, detail = how or what exactly, reader job = what this part helps the reader understand.  \nOptional B1 stretch: Replace an absolute promise with a conditional, assess trade-offs, distinguish plausible logic from verified evidence.",
+        "Teacher: “A useful revision can change the claim, add a missing reason, replace unsupported facts or reorder ideas for your reader. But if a sentence is clear and supported, keep it. You do not get points for unnecessary changes.”\n\nDistinct small non-scored illustration: We could ask residents to suggest two suitable times. If the task really is to request times, this sentence may already be effective. A reviewer should not ask for a different synonym solely to create V2. By contrast, This will improve everything by 80%. needs evidence that the prompt does not give; responsibly revise or omit it.\n\nPriority rule: When a text both lacks a crucial required detail and has an article mistake, normally repair the missing reader information first, then polish mechanics. A few mechanics corrections do not substitute for giving a good reason or a practical next step."
+      ],
+      "demo": {
+        "id": "FW-U11-D01",
+        "prompt": "Independent teacher model FW-U11-D01 — Reusable workshop badges.\n\nScenario: Propose a feasible way for a neighbourhood craft workshop to reuse name badges at successive sessions. The organizers have not approved anything. Do not invent figures on cost or waste.\n\nWeak demo V1 (display-only):\nWeekend workshops should reuse their name badges. This is a wonderful idea. Everyone will love it. It will solve the problem completely.",
+        "steps": [
+          [
+            "Notice:",
+            "The writer offers a broad position, but no method. “Everyone” and “completely” overclaim. The reader cannot see who collects badges or what happens next."
+          ],
+          [
+            "Decide:",
+            "Replace vague praise with a specific, conditional process: put a return box near the exit; check and store badges for a future session. Keep the basic intention — reuse rather than throw away."
+          ],
+          [
+            "Why:",
+            "A reader can now picture the action. “Could reduce the number of new badges needed” is more defensible than “will solve the problem completely.” No invented percentage or approval."
+          ],
+          [
+            "Reject/repair:",
+            "Adding Furthermore before the vague praise would not provide evidence. Changing wonderful to extremely wonderful changes emphasis, not meaning. Repeating the suggestion in a second paragraph adds no new reader job."
+          ],
+          [
+            "Teacher demo V2:",
+            "“The workshop team could place a clearly marked badge-return box by the exit. Volunteers could check and store returned badges for the next session. This might reduce the need for new badges. Would the organizers consider trying it at one workshop?”"
+          ],
+          [
+            "Transfer principle:",
+            "Select the most important reader problem, revise with a plausible reason and concrete action, and explain the gain. The model is a separate exercise, never an answer to U11 Cycle A/B/transfer."
+          ]
+        ]
+      },
+      "a1": "reason = why, detail = how or what exactly, reader job = what this part helps the reader understand.",
+      "b1": "Replace an absolute promise with a conditional, assess trade-offs, distinguish plausible logic from verified evidence."
+    },
+    "cycleA": {
+      "id": "FW-U11-A",
+      "prompt": "Fixed prompt FW-U11-A: “Write to families about a possible reduction in paper school announcements. Suggest an alternative, but keep a way for families who need paper copies to obtain them. The proposal has not been approved and there are no measured savings.”\n\nFixed weak V1 (display-only):\nWe should stop printing school announcements. Paper is bad. This idea will save 90% of all paper. Every family can just look online. The school has already agreed.",
+      "taskStrip": {
+        "topic": "Possible reduction in paper school announcements",
+        "task": "Select a specific, truthful revision plan for the supplied weak proposal",
+        "mustInclude": "Digital option and paper-copy access for families who need it",
+        "boundary": "No invented 90% savings, school approval or universal online access"
+      },
+      "ownFields": [
+        {
+          "key": "reason",
+          "label": "Explain one fixed-context decision in your own words (unscored)",
+          "requiredForAI": false
+        }
+      ],
+      "items": [
+        {
+          "id": "FW-U11-A-PRIORITY",
+          "stem": "Which of these revision plans best addresses the task's important weaknesses, given exactly the stated facts?",
+          "key": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "Add “Furthermore” before every sentence.",
+              "rationale": "Connector decoration does not address inaccessible notices or unsupported promises."
+            },
+            {
+              "id": "B",
+              "text": "Offer a digital option plus requested paper copies; remove invented 90% and approval claims.",
+              "rationale": "Keeps access for families needing paper and removes facts the prompt did not establish."
+            },
+            {
+              "id": "C",
+              "text": "Delete mention of paper-copy access to keep the proposal short.",
+              "rationale": "Violates an explicit reader-access requirement."
+            },
+            {
+              "id": "D",
+              "text": "Replace “Paper is bad” with “Paper is extremely bad.”",
+              "rationale": "Intensifies an empty claim without providing method or accurate evidence."
+            }
+          ]
+        },
+        {
+          "id": "FW-U11-A-EVIDENCE",
+          "stem": "Which phrase in the fixed V1 is an unsupported quantitative claim?",
+          "key": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "We should stop printing school announcements.",
+              "rationale": "This is a proposal to discuss, not a measured statistic. It may be an overbroad proposal but is not the requested quantitative claim."
+            },
+            {
+              "id": "B",
+              "text": "Paper is bad.",
+              "rationale": "A vague judgment, not the percentage the question targets."
+            },
+            {
+              "id": "C",
+              "text": "This idea will save 90% of all paper.",
+              "rationale": "The prompt supplies no study or measurement for 90%; the number is unsupported."
+            },
+            {
+              "id": "D",
+              "text": "Every family can just look online.",
+              "rationale": "A faulty assumption about access, but not a percentage claim."
+            }
+          ]
+        },
+        {
+          "id": "FW-U11-A-KEEP",
+          "stem": "Consider this separate sentence from a possible revised plan: “Families who need a printed copy could request one from the school office.” The supplied task requires a paper-access route and gives no reason to treat this conditional suggestion as false. What should a conscientious reviser do to this sentence, on the evidence provided?",
+          "key": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "Rewrite it to “All families already receive an online notice.”",
+              "rationale": "Changes purpose and invents universal internet access."
+            },
+            {
+              "id": "B",
+              "text": "Remove it because every V2 must be shorter than V1.",
+              "rationale": "Removes the requirement to serve families needing print copies."
+            },
+            {
+              "id": "C",
+              "text": "Change “could” to “must”; permission was granted.",
+              "rationale": "Falsely changes a proposal to a settled rule."
+            },
+            {
+              "id": "D",
+              "text": "Keep it as an appropriate possible access arrangement.",
+              "rationale": "It is relevant, conditional and addresses the task; unnecessary revision is not required."
+            }
+          ]
+        },
+        {
+          "id": "FW-U11-A-READER",
+          "stem": "Which revised sentence most directly gives the reader a practical next action without claiming that the school has approved it?",
+          "key": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "Could the school trial email notices while allowing families to request paper copies?",
+              "rationale": "Proposes an actionable, conditional approach and retains print access."
+            },
+            {
+              "id": "B",
+              "text": "The school has already banned all paper notices.",
+              "rationale": "Invents approval and contradicts the access requirement."
+            },
+            {
+              "id": "C",
+              "text": "The digital world is very, very exciting.",
+              "rationale": "General praise supplies no practicable next step."
+            },
+            {
+              "id": "D",
+              "text": "Every family must install a phone app tomorrow.",
+              "rationale": "Demands a new universal rule and ignores families needing printed notices."
+            }
+          ]
+        }
+      ]
+    },
+    "cycleB": {
+      "id": "FW-U11-B",
+      "prompt": "New prompt FW-U11-B — Reducing disposable cups at an outdoor community concert: “Write to the volunteer coordinator suggesting one realistic way to use fewer disposable cups at a future concert, how people could take part, and one limitation or practical consideration. No waste numbers, budget, permission or current policy has been supplied; present all proposed actions conditionally.”\n\nStage 1 — Independent V1: Save the learner's own proposal; no teacher sample is inserted. Suggested 75–120 words are guidance only.  \nStage 2 — Reader-first diagnosis: Learner identifies (a) their core proposal, (b) one reader question their text must answer, and (c) one possible revision priority: clearer mechanism, supported reason, feasible limit, better paragraph flow, or an honest no-change for a portion that is already satisfactory. Do not use a one-size-fits-all checklist to claim a grade.  \nStage 3 — V2: Revise the student-owned text while retaining a read-only V1. A typical student may improve two meaningful places, but no numeric edit quota is used as quality evidence. If a selected segment genuinely needs no change, record that with a reason; if the entire V1 is already well matched, permit an explicit KEEP_V1_WITH_REASON rather than manufacturing a weak V2.  \nStage 4 — Explain effect: In learner words, name at least one actual changed excerpt (if changed), what the reader can understand now, and whether the intended action stayed the same. If keeping text, explain the evidence supporting that decision. Save versions atomically; no AI call during save.  \nStage 5 — Optional Tutor: Compare V1↔V2 only after successful save and explicit click; ask whether the specific change improved reader understanding, not whether a changed word count proves development.\n\nA1 bridge: Optional sentence starters “One possible step is…”, “This could help because…” — never prepopulate the learner's submission.  \nB1 stretch: Consider a trade-off (cleaning reusable cups vs. access/volunteer capacity) without claiming an actual cost or waste reduction.\n\nValidity notes: The software checks version identity, persistence and that an explanation was supplied, not the persuasiveness of the proposal. Even a formally complete V2 can have an unsupported or contradictory idea, which requires trusted semantic review. A good V1/justified unchanged part is never punished for not changing.",
+      "taskStrip": {
+        "topic": "Reducing disposable cups at a future outdoor community concert",
+        "task": "Draft a proposal and consider meaningful reader-first revisions",
+        "mustInclude": "One realistic step, how people could participate, practical limitation and a revision/keep reason",
+        "boundary": "No measured waste, approved budget, permission or existing policy is supplied"
+      },
+      "fields": [
+        {
+          "key": "draftV1",
+          "label": "Your original concert proposal (V1)",
+          "requiredForAI": true
+        },
+        {
+          "key": "revisedV2",
+          "label": "Meaningfully revised proposal (V2), if needed",
+          "requiredForAI": false
+        },
+        {
+          "key": "revisionTarget",
+          "label": "Main reader problem you chose to address",
+          "requiredForAI": false
+        },
+        {
+          "key": "beforeExcerpt",
+          "label": "Exact excerpt before revision",
+          "requiredForAI": false
+        },
+        {
+          "key": "afterExcerpt",
+          "label": "Your excerpt after revision, if changed",
+          "requiredForAI": false
+        },
+        {
+          "key": "readerBenefit",
+          "label": "How your decision helps the reader",
+          "requiredForAI": false
+        },
+        {
+          "key": "unchangedReason",
+          "label": "Evidence-based keep decision, if applicable",
+          "requiredForAI": false
+        }
+      ]
+    },
+    "transfer": {
+      "id": "FW-U11-T",
+      "prompt": "Different task/prompt: “A community reading room wants to reduce unnecessary electricity use while remaining comfortable and safe. Write a short proposal to the room coordinator suggesting one small step, why it might help, and a practical limit (for example, access or safety). Save V1; identify the most consequential possible reader misunderstanding; revise one area if necessary or defend no change with a reason. Save an immutable comparison record.” No measurements, policy or approval are provided. The learner writes all versions.\n\nReview boundary: A justified choice to retain a sound area is a legitimate exercise outcome. The program does not assign semantic accuracy on the basis of presence of “because,” number of replacements, environmental opinion or number of paragraphs.",
+      "taskStrip": {
+        "topic": "Reducing unnecessary electricity use at a reading room",
+        "task": "Write an original proposal, diagnose reader misunderstanding, revise or justify no change",
+        "mustInclude": "A small step, plausible benefit and a practical access/safety limitation",
+        "boundary": "Comfort and safety remain important; no measurements, policy or approval supplied"
+      },
+      "fields": [
+        {
+          "key": "proposalV1",
+          "label": "Your reading-room proposal (V1)",
+          "requiredForAI": true
+        },
+        {
+          "key": "proposalV2",
+          "label": "Revision, if required",
+          "requiredForAI": false
+        },
+        {
+          "key": "readerMisunderstanding",
+          "label": "Possible important misunderstanding for the coordinator",
+          "requiredForAI": false
+        },
+        {
+          "key": "revisionReason",
+          "label": "Explain your change or keep decision",
+          "requiredForAI": false
+        }
+      ]
+    },
+    "extras": [
+      {
+        "id": "FW-U11-F01",
+        "stem": "A draft asks for a new drinking-water point but says only “It is very good.” Which replacement provides the clearest reason without pretending a result was measured?",
+        "key": "D",
+        "options": [
+          {
+            "id": "A",
+            "text": "It is very, very, very good.",
+            "rationale": "Intensifies praise but offers no mechanism or reader benefit."
+          },
+          {
+            "id": "B",
+            "text": "Furthermore, good means good.",
+            "rationale": "Adds a connector and circular explanation."
+          },
+          {
+            "id": "C",
+            "text": "Everyone has already agreed to it.",
+            "rationale": "Invents agreement and still lacks a reason."
+          },
+          {
+            "id": "D",
+            "text": "A nearby water point could make it easier for visitors to refill bottles during long visits.",
+            "rationale": "Supplies a plausible mechanism with cautious language; does not invent measured impact."
+          }
+        ]
+      },
+      {
+        "id": "FW-U11-F02",
+        "stem": "A student proposal claims: “This plan will reduce traffic by exactly 74%.” The task supplies no traffic study. Which revision is most defensible?",
+        "key": "A",
+        "options": [
+          {
+            "id": "A",
+            "text": "Remove the exact claim and explain the plausible route by which the plan might help.",
+            "rationale": "Avoids an unsupported statistic and invites a reasoned, conditional proposal."
+          },
+          {
+            "id": "B",
+            "text": "Change 74% to 99% to sound more convincing.",
+            "rationale": "Increases an unsupported claim."
+          },
+          {
+            "id": "C",
+            "text": "Keep 74% because precise numbers always improve Writing.",
+            "rationale": "Precision without evidence is not reliability."
+          },
+          {
+            "id": "D",
+            "text": "Add “Obviously” before the claim.",
+            "rationale": "A confidence word supplies no evidence."
+          }
+        ]
+      },
+      {
+        "id": "FW-U11-F03",
+        "stem": "A complete proposal already explains one action, why it helps, and politely asks for a decision. Which sign best supports not forcing another change?",
+        "key": "C",
+        "options": [
+          {
+            "id": "A",
+            "text": "The word count is less than 100, so it is automatically perfect.",
+            "rationale": "Length alone cannot prove completeness or quality."
+          },
+          {
+            "id": "B",
+            "text": "The learner added three connectors, so the proposal is complete.",
+            "rationale": "Connectors are not evidence that reader needs are covered."
+          },
+          {
+            "id": "C",
+            "text": "A reviewer can point to the required content and a sound reason for preserving the present wording.",
+            "rationale": "A specific evidence-based no-change rationale is legitimate."
+          },
+          {
+            "id": "D",
+            "text": "The learner has already spent five minutes editing.",
+            "rationale": "Time spent is not evidence of writing quality."
+          }
+        ]
+      },
+      {
+        "id": "FW-U11-F04",
+        "stem": "A V1 says “The plan will help families.” V2 says “The plan will really help families.” What can be concluded from this one change alone?",
+        "key": "B",
+        "options": [
+          {
+            "id": "A",
+            "text": "The proposal is now fully supported.",
+            "rationale": "Adding an adverb supplies no real evidence."
+          },
+          {
+            "id": "B",
+            "text": "The change adds emphasis but has not yet supplied a mechanism or concrete reason.",
+            "rationale": "Correctly distinguishes stylistic emphasis from substantive revision."
+          },
+          {
+            "id": "C",
+            "text": "The writer has reached B1 level.",
+            "rationale": "A single modification cannot establish proficiency."
+          },
+          {
+            "id": "D",
+            "text": "The meaning is guaranteed more accurate.",
+            "rationale": "Emphasis may even be less defensible; accuracy is not proven."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "FW-U12",
+    "title": "Independent Capstone & New-Genre Transfer",
+    "outcome": "Independently use task analysis → idea selection → sensible plan → V1 draft → self-directed edit/revision → saved V2 or justified retain-decision, then write for a different audience and genre without copying the proposal template.",
+    "minutes": "self-paced",
+    "source": {
+      "document": "SLE_FOUNDATION_WRITING_AUTHORING_WAVE4_U10-U12_DRAFT_20261118.md",
+      "sha256": "cca51171781dc535c6a4080107b0204561b850cfcaf33e089fce2eb184468083",
+      "notebooklm": "SLE-FW-AUTH-W4-NBLM-R1-20261118",
+      "verdict": "PASS",
+      "requiredChanges": "NONE"
+    },
+    "teaching": {
+      "lessons": [
+        "Teacher: “You now have a toolbox, not a form you must fill in exactly the same way every time. Notice what this reader needs. Plan just enough. Draft, check, revise when necessary, and communicate clearly. A public notice is not the same thing as asking someone to approve a plan.”\n\n\n\nOriginality protection: The model is a teacher example only and uses neither the community-center proposal of Cycle B nor the public notice in the transfer. The teacher model does not predetermine the learner's preferred approach.",
+        "Teacher: “An independent learner can decide which step needs more time. The task map prevents missing a requirement; the plan keeps paragraphs useful; revisions should serve the reader. You may revisit any step. Practice completion is not a CEFR result.”\n\nSkill transfer contrast: A proposal normally states a suggested future action, reasons, feasibility and a polite request for a decision. A notice normally tells the public confirmed what/when/where/what to do. Neither genre requires an identical paragraph count. A well-designed two-sentence notice may be enough; a persuasive proposal may need multiple distinct paragraph jobs. Choosing a genre after reading the task is itself an important writing decision.\n\nOptional A1 bridge: Offer labels who/what/when/where/action as explanatory prompts only; meaning stays in the student's own words.  \nOptional B1 stretch: Add a truthful feasibility/limitations sentence, tailor the notice for newcomers, avoid claims unsupported by the prompt."
+      ],
+      "demo": {
+        "id": "FW-U12-D01",
+        "prompt": "Independent teacher think-aloud FW-U12-D01 — A local history photo-scanning table.\n\nTeacher-only prompt: “Write a short proposal to a community centre manager about a possible photo-scanning table during a local history afternoon. Suggest the purpose, a safe way to handle visitors' original photographs, and ask whether a trial could be considered. Do not claim it is approved or that the centre has scanning equipment.”",
+        "steps": [
+          [
+            "Notice — four-part map:",
+            "Topic = local-history photo-scanning idea; Task = propose a trial; Must Include = purpose + careful handling of originals + decision request; Boundary = community centre manager, unapproved, no verified equipment or promises."
+          ],
+          [
+            "Decide — idea and plan:",
+            "The reader needs (P1) a clear proposed activity, (P2) how it might work without endangering originals, and (P3) an honest request for feasibility. Short notes: visitor brings photo voluntarily; volunteer handles only with consent; ask what equipment is available."
+          ],
+          [
+            "Why — teacher illustrative V1:",
+            "“The centre could consider a photo-scanning table during the local history afternoon. Visitors who choose to join might bring an old photograph. The organizers could first check whether a scanner and a trained helper would be available. Could the manager tell us whether a small supervised trial is possible?” This is a proposal; conditional language avoids invented readiness."
+          ],
+          [
+            "Reject/repair — independent V2 decision:",
+            "The teacher notices “bring an old photograph” does not explicitly protect the original. Add “Visitors would keep control of their photographs, and no copying would happen without their permission.” The teacher does not claim a real consent system is already in place. A mechanically extra Furthermore or an invented 100% success rate would not improve the idea."
+          ],
+          [
+            "Transfer principle:",
+            "In proposals, ask a decision-maker to consider a future action and explain feasibility. A public notice must instead provide confirmed event facts to readers; it must not announce a trial that has not been approved. Do not copy this full example into a learner activity: every Cycle and transfer below uses different facts."
+          ]
+        ]
+      },
+      "a1": "Offer labels who/what/when/where/action as explanatory prompts only; meaning stays in the student's own words.",
+      "b1": "Add a truthful feasibility/limitations sentence, tailor the notice for newcomers, avoid claims unsupported by the prompt."
+    },
+    "cycleA": {
+      "id": "FW-U12-A",
+      "prompt": "Fixed prompt FW-U12-A (new setting: community pool wayfinding): “The pool coordinator invites suggestions to help first-time visitors find the changing rooms. Write a short proposal to the coordinator. Suggest one sign, where to put it, and one reason it could help. Do not announce that the sign is already approved.”\n\nRead-only 4-part task strip (learning reference, not a second exam):\n\n| Topic | Task | Must Include | Boundary |\n|---|---|---|---|\n| Finding changing rooms at a pool | Propose a sign to a coordinator | One sign; location; reason | Not yet approved; polite request, not a public announcement |",
+      "taskStrip": {
+        "topic": "Changing-room wayfinding for first-time pool visitors",
+        "task": "Propose one sign to the pool coordinator",
+        "mustInclude": "Sign, possible placement and reason it could help",
+        "boundary": "Sign has not been approved; this is a proposal, not a public announcement"
+      },
+      "ownFields": [
+        {
+          "key": "reason",
+          "label": "Explain one fixed-context decision in your own words (unscored)",
+          "requiredForAI": false
+        }
+      ],
+      "items": [
+        {
+          "id": "FW-U12-A-COVER",
+          "stem": "Which fixed candidate best covers the exact pool proposal requirements without inventing approval?",
+          "key": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "“The pool is wonderful. Everyone loves swimming.”",
+              "rationale": "General praise omits the sign, location and reason."
+            },
+            {
+              "id": "B",
+              "text": "“The changing-room sign has already been installed, so visitors must follow it.”",
+              "rationale": "Invents an installation and does not propose a location with a reason."
+            },
+            {
+              "id": "C",
+              "text": "“Could the pool consider putting a ‘Changing Rooms’ arrow beside the main entrance? It might help new visitors find the right corridor.”",
+              "rationale": "Names a sign and specific placement, gives a reasonable benefit and asks rather than asserting approval."
+            },
+            {
+              "id": "D",
+              "text": "“I recommend new swimming costumes for every visitor.”",
+              "rationale": "Changes the task from wayfinding to clothing."
+            }
+          ]
+        },
+        {
+          "id": "FW-U12-A-GENRE",
+          "stem": "The sign has not been approved. Which opening belongs in the requested proposal rather than an announcement?",
+          "key": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "“Would you consider adding a direction sign for first-time visitors?”",
+              "rationale": "Politely asks the responsible decision-maker to consider an unapproved action."
+            },
+            {
+              "id": "B",
+              "text": "“The pool's new direction sign opens today.”",
+              "rationale": "Presents a future suggestion as a confirmed event."
+            },
+            {
+              "id": "C",
+              "text": "“All visitors must obey the sign that staff installed.”",
+              "rationale": "Invents both a command and an installation."
+            },
+            {
+              "id": "D",
+              "text": "“Today's swimming lessons will end at four.”",
+              "rationale": "Unrelated event information does not propose a sign."
+            }
+          ]
+        },
+        {
+          "id": "FW-U12-A-FACTS",
+          "stem": "Which detail does not come from the task and therefore must not be stated as a fact?",
+          "key": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "The intended reader is the pool coordinator.",
+              "rationale": "The prompt explicitly identifies this reader."
+            },
+            {
+              "id": "B",
+              "text": "The sign is proposed for first-time visitors.",
+              "rationale": "The prompt directly states the visitor problem."
+            },
+            {
+              "id": "C",
+              "text": "The suggestion should name where the sign might go.",
+              "rationale": "The task explicitly requires a location."
+            },
+            {
+              "id": "D",
+              "text": "The coordinator has funded and approved the sign.",
+              "rationale": "Funding/approval are absent; the prompt explicitly says it has not been approved."
+            }
+          ]
+        },
+        {
+          "id": "FW-U12-A-PLAN",
+          "stem": "Which note set helps draft without writing the whole response or duplicating jobs?",
+          "key": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "P1: praise swimming; P2: repeat that swimming is nice.",
+              "rationale": "No sign, location or reason; redundant roles."
+            },
+            {
+              "id": "B",
+              "text": "P1: propose arrow sign; beside entrance; P2: easier first visit; ask coordinator to consider.",
+              "rationale": "Flexible keywords separate idea/location from benefit/request, covering the prompt."
+            },
+            {
+              "id": "C",
+              "text": "Write exactly five paragraphs, whatever the audience needs.",
+              "rationale": "A paragraph quota is not a content plan."
+            },
+            {
+              "id": "D",
+              "text": "Announce installation date and cost before they are known.",
+              "rationale": "Invents facts and skips actual planning."
+            }
+          ]
+        }
+      ]
+    },
+    "cycleB": {
+      "id": "FW-U12-B",
+      "prompt": "Fresh main prompt FW-U12-B — Multilingual storytelling evening (unapproved):\n\n“A community centre is considering new ways for neighbours of different backgrounds to share stories. Write a proposal to the centre coordinator suggesting a possible multilingual storytelling evening. Explain one accessible activity, how first-time visitors could take part without pressure to speak, and one practical arrangement or limitation. Ask whether the centre would consider the idea. Do not invent an approved date, budget, volunteer team or participant count.”\n\nIndependent workspace — each field is student-owned, never model-preloaded:\n\n1. FW-U12-B-TASK: Create a four-part map for this new prompt: Topic / Task / Must Include / Boundary. A read-only prompt strip can stay accessible; the actual map is the learner's own, not automatically graded for semantic correctness.\n2. FW-U12-B-IDEAS: Record two or three plausible approaches; pick one and explain its likely benefit. No forced rejection of sensible ideas.\n3. FW-U12-B-PLAN: Note a small number of distinct reader jobs (suggestion; accessible way to join; practical condition and decision request). Adjust the number and order for clarity; no 5-paragraph quota.\n4. FW-U12-B-V1: Write and save an independent proposal in the learner's own words. Roughly 100–160 words is guidance only, not a condition for PASS, quality or language level. Version is immutable once saved. Don't invent claimed approval or participant statistics.\n5. FW-U12-B-EDIT-REVISE: Reopen a copy as a working V2, attend to mechanics and meaning. Change only what is justified; if the original is already effective, record a concrete reason for retaining the sound text. The original V1 remains available read-only. A learner who has no meaningful revision should not be forced to fabricate changes.\n6. FW-U12-B-REFLECT: Write a short process note: name a requirement met, identify a decision about intended readers, and explain one actual change or justified keep-decision. Be specific; no automatic grade or strength claim from the presence of this note.\n7. FW-U12-B-SAVE: Save final V2 if changed, or V1 plus a KEEP_V1_WITH_REASON record if unchanged. Successful-save status only after storage confirms; refresh/resume should recover the exact version if the future implementation supports it. Learner can finish core practice without AI.\n8. FW-U12-B-AI: Optionally click Review with AI Tutor on the matching saved version. No auto-run. Tutor may ask a specific question about actual task coverage and reader impact, but must not write a finished proposal or infer CEFR. A later edit invalidates the earlier result.\n\nStudent agency: Neither a particular view of multilingual events nor the literal phrase “without pressure” is a machine-scored criterion for original sentences. A good independent proposal could use several valid participation approaches, depending on feasibility and audience.",
+      "taskStrip": {
+        "topic": "Multilingual storytelling evening at a community centre",
+        "task": "Independently map, plan, draft, edit/revise and explain an unapproved proposal",
+        "mustInclude": "Accessible participation without pressure, practical limitation and request for consideration",
+        "boundary": "No approved date, budget, volunteer team or participant count"
+      },
+      "fields": [
+        {
+          "key": "taskMap",
+          "label": "Your own Topic / Task / Must Include / Boundary map",
+          "requiredForAI": false
+        },
+        {
+          "key": "ideaNotes",
+          "label": "Two or three approaches; choose and explain a benefit",
+          "requiredForAI": false
+        },
+        {
+          "key": "readerPlan",
+          "label": "Distinct reader jobs / brief outline",
+          "requiredForAI": false
+        },
+        {
+          "key": "draftV1",
+          "label": "Your original multilingual-storytelling proposal (V1)",
+          "requiredForAI": true
+        },
+        {
+          "key": "revisedV2",
+          "label": "Edited/revised proposal (V2), only if justified",
+          "requiredForAI": false
+        },
+        {
+          "key": "processReason",
+          "label": "Requirement covered, reader decision, revision or keep reason",
+          "requiredForAI": false
+        }
+      ]
+    },
+    "transfer": {
+      "id": "FW-U12-T",
+      "prompt": "Distinct new prompt B — confirmed beginner chess taster public notice:\n\n“The youth centre has confirmed a beginner chess taster for Thursday, 4:00–5:00 p.m., in Community Room 2. Entry is free. Participants should bring a pencil and sign up at reception by Tuesday. Write a short public notice for first-time visitors using only these confirmed facts. Make the main action easy to find. Do not ask for permission, announce extra refreshments, change the date or invent an age limit.”\n\nRead-only task strip: Topic = beginner chess taster; Task = public notice; Must Include = Thursday 4–5 p.m., Community Room 2, free, bring pencil, sign up at reception by Tuesday; Boundary = confirmed event, public first-time visitors, no invented extras.\n\nIndependent action: Write and save a 2–5-sentence (or concise formatted) notice. Include a title if helpful, but no fixed paragraph template. Then add a transfer contrast note explaining how this notice differs from the unapproved, persuasive proposal in Cycle B: confirmed event information vs. consideration request, audience, information order. Do not reuse the teacher's photo-scanning example or the pool sign proposal's language.\n\nTransfer integrity: The system may log publicNotice present, transferContrastNote present and successful save. It may not declare the notice accurate, accessible, persuasive or a CEFR achievement from counts/keyword hits. If there is no substantive human/eligible AI review, show “Capstone practice saved; writing quality not assessed.” This should not block access to other Units.",
+      "taskStrip": {
+        "topic": "Confirmed beginner chess taster at a youth centre",
+        "task": "Create a concise public notice for first-time visitors",
+        "mustInclude": "Thursday 4:00–5:00 p.m.; Community Room 2; free; pencil; sign up at reception by Tuesday",
+        "boundary": "Event is confirmed; do not ask permission or invent extras, age limit or refreshments"
+      },
+      "fields": [
+        {
+          "key": "publicNotice",
+          "label": "Your original confirmed chess-taster public notice",
+          "requiredForAI": true
+        },
+        {
+          "key": "transferContrastNote",
+          "label": "How this notice differs from an unapproved proposal",
+          "requiredForAI": true
+        }
+      ]
+    },
+    "extras": [
+      {
+        "id": "FW-U12-F01",
+        "stem": "A coordinator has not approved a proposed lunchtime music corner. Which opening fits a proposal rather than a public event notice?",
+        "key": "C",
+        "options": [
+          {
+            "id": "A",
+            "text": "The music corner opens tomorrow, as officially confirmed.",
+            "rationale": "Invents approval and a date."
+          },
+          {
+            "id": "B",
+            "text": "Everyone must attend the new music corner.",
+            "rationale": "Announces a compulsory unapproved activity."
+          },
+          {
+            "id": "C",
+            "text": "Would you consider a short lunchtime music corner for interested students?",
+            "rationale": "Requests consideration without presenting plans as confirmed facts."
+          },
+          {
+            "id": "D",
+            "text": "Free music lessons start at noon next week.",
+            "rationale": "Invents fees, schedule and event approval."
+          }
+        ]
+      },
+      {
+        "id": "FW-U12-F02",
+        "stem": "A confirmed board-game evening notice states Friday 6 p.m., Hall B, and “sign up at reception.” Which draft covers exactly these confirmed public details?",
+        "key": "A",
+        "options": [
+          {
+            "id": "A",
+            "text": "Board-game evening: Friday at 6 p.m. in Hall B. Sign up at reception.",
+            "rationale": "States the confirmed what/when/where/action and no invented restrictions."
+          },
+          {
+            "id": "B",
+            "text": "Would the manager consider a game event one day?",
+            "rationale": "Proposal request rather than notice; omits confirmed facts."
+          },
+          {
+            "id": "C",
+            "text": "Board games will be in Hall A and anyone can enter without signing up.",
+            "rationale": "Changes the hall and contradicts the action requirement."
+          },
+          {
+            "id": "D",
+            "text": "Guaranteed free snacks at our game event.",
+            "rationale": "Invents food and omits time, venue and action."
+          }
+        ]
+      },
+      {
+        "id": "FW-U12-F03",
+        "stem": "A learner has saved V1 of a capstone and made no changes because every required idea is already well supported. What is the most appropriate next record?",
+        "key": "D",
+        "options": [
+          {
+            "id": "A",
+            "text": "Auto-assign C1 for a good-looking draft.",
+            "rationale": "No validated proficiency evidence has been produced."
+          },
+          {
+            "id": "B",
+            "text": "Replace the whole text with an AI sample.",
+            "rationale": "Ghostwrites and destroys ownership."
+          },
+          {
+            "id": "C",
+            "text": "Mark revision failure because every V2 must be longer.",
+            "rationale": "Changes and length are not quality criteria."
+          },
+          {
+            "id": "D",
+            "text": "Save a justified KEEP_V1 decision and preserve the immutable original.",
+            "rationale": "Accurately records a valid no-change editorial decision without fabrication."
+          }
+        ]
+      },
+      {
+        "id": "FW-U12-F04",
+        "stem": "What is the strongest evidence that a learner attempted genre transfer from proposal to public notice, before any trusted semantic assessment?",
+        "key": "B",
+        "options": [
+          {
+            "id": "A",
+            "text": "A model produced a sample notice before the learner typed.",
+            "rationale": "Model text is not student-owned transfer evidence."
+          },
+          {
+            "id": "B",
+            "text": "The learner independently saved a new public notice plus a note identifying how its audience and purpose differ from the proposal.",
+            "rationale": "Documents two distinct learner artifacts and a process contrast, without claiming certified quality."
+          },
+          {
+            "id": "C",
+            "text": "The learner copied a proposal and changed the title to “Notice.”",
+            "rationale": "Label change alone does not establish different audience/purpose writing."
+          },
+          {
+            "id": "D",
+            "text": "The notice contains at least five transition words.",
+            "rationale": "Connector count is unrelated to independent genre transfer."
+          }
+        ]
+      }
+    ]
+  }
+]

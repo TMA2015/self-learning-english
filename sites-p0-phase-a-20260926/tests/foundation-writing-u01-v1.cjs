@@ -132,7 +132,7 @@ const tutor=service.createTutorService({
  const ok=await tutor.coach('foundation-writing',request.task,context,{responseLanguage:'vi'});
  assert(ok,'Valid task-map feedback should pass');
  assert.equal(lastReq.purpose,'foundation-writing-review');
- assert.equal(lastReq.promptVersion,'1.2.0');
+ assert.equal(lastReq.promptVersion,'1.4.0');
  assert.equal(lastReq.input.responseLanguage,'vi');
  assert.equal(ok.structuredResult.scores,null);
  assert.equal(ok.structuredResult.level,null);

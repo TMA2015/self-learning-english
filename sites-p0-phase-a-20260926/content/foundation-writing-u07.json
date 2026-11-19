@@ -1,0 +1,311 @@
+{
+  "id": "FW-U07",
+  "title": "Connect Ideas Across Paragraphs",
+  "source": {
+    "document": "SLE_FOUNDATION_WRITING_AUTHORING_WAVE3_U07-U09_DRAFT_20261118.md",
+    "sha256": "13db37528ca01091fce49de2e783b8c252f133f922df45855a150a586a096efb",
+    "notebooklm": "SLE-FW-AUTH-W3-NBLM-R1-20261118",
+    "verdict": "PASS",
+    "requiredChanges": "NONE"
+  },
+  "minutes": "20–40",
+  "outcome": "Use a meaningful bridge from one problem paragraph to a response; make references clear without decorative connectors.",
+  "teaching": {
+    "lessons": [
+      "A paragraph break starts a new step for your reader. Name how the next paragraph responds to the previous problem; 'Moreover' alone has no meaning.",
+      "If he, this, they or it could point to more than one idea, find the intended referent and name it. A clear sentence does not have to include a special transition."
+    ],
+    "demo": {
+      "id": "FW-U07-D01",
+      "prompt": "A community theatre changed ticket collection to the main lobby. New visitors sometimes wait at a wrong entrance. Explain the confusion and propose a sign.",
+      "steps": [
+        [
+          "Notice",
+          "P1 explains visitor confusion; P2 explains one practical response."
+        ],
+        [
+          "Decide P1",
+          "Visitors sometimes wait at the side entrance, but collection is now in the main lobby."
+        ],
+        [
+          "Decide P2",
+          "To make the collection point clearer, the theatre could put a direction sign near both entrances."
+        ],
+        [
+          "Why",
+          "The opening names the link to the problem; it is more useful than 'Furthermore'."
+        ],
+        [
+          "Reject / repair",
+          "Moreover, this would solve it hides the action and referents. Specify the sign and main-lobby desk."
+        ],
+        [
+          "Transfer",
+          "Can the reader trace how P2 solves the P1 problem? Clear named repetition is allowed."
+        ]
+      ]
+    },
+    "ambiguity": "The football coach spoke to the student captain after the match. He described the new practice rule.",
+    "ambiguityNote": "Both coach and captain are possible. The writer must decide before choosing a repair.",
+    "a1": "The problem is … / One way to help is … / This could help because …",
+    "b1": "Compare This could reduce confusion with Clear signs could reduce confusion at the ticket desk."
+  },
+  "cycleA": {
+    "id": "FW-U07-A",
+    "prompt": "New students struggle to find technology classrooms. The current school map gives room numbers without building names; a committee proposes adding building names to the map and entrance signs.",
+    "paragraph1": "During their first week, new students sometimes cannot find the technology classrooms. The map lists room numbers, but it does not show the buildings' names.",
+    "paragraph2": "This could help. They should put them on it. Students would then know where to go.",
+    "objective": [
+      {
+        "id": "FW-U07-A-BRIDGE",
+        "prompt": "School map problem and proposed names on signs.",
+        "question": "Which P2 opening clearly proposes a relevant response?",
+        "key": "B",
+        "options": [
+          {
+            "id": "A",
+            "text": "Furthermore, our football team won a match.",
+            "rationale": "Unrelated sports news."
+          },
+          {
+            "id": "B",
+            "text": "To help students find the right buildings, the school could add building names to the map and entrance signs.",
+            "rationale": "Relevant proposal, with honest 'could'."
+          },
+          {
+            "id": "C",
+            "text": "This fixes everything.",
+            "rationale": "This and everything are vague/unsupported."
+          },
+          {
+            "id": "D",
+            "text": "The signs were all replaced yesterday.",
+            "rationale": "Invents a completed action."
+          }
+        ]
+      },
+      {
+        "id": "FW-U07-A-REFERENT",
+        "prompt": "The committee proposed building names on the map and entrance signs. This proposal could help new students.",
+        "question": "What does This proposal refer to?",
+        "key": "C",
+        "options": [
+          {
+            "id": "A",
+            "text": "Students changing rooms",
+            "rationale": "Context, not action."
+          },
+          {
+            "id": "B",
+            "text": "Technology classrooms",
+            "rationale": "Destination, not proposal."
+          },
+          {
+            "id": "C",
+            "text": "Adding building names to the map and signs",
+            "rationale": "The named proposed action."
+          },
+          {
+            "id": "D",
+            "text": "Football team winning",
+            "rationale": "Not part of sentence."
+          }
+        ]
+      }
+    ],
+    "order": {
+      "id": "FW-U07-A-ORDER",
+      "key": "PROBLEM_THEN_RESPONSE",
+      "options": [
+        {
+          "id": "PROBLEM_THEN_RESPONSE",
+          "text": "P1 difficulty, then P2 proposed map/sign response",
+          "rationale": "The response has a named problem to solve."
+        },
+        {
+          "id": "RESPONSE_FIRST_UNREVISED",
+          "text": "Unrevised P2, then P1",
+          "rationale": "The initial This/They/It has no clear referent yet."
+        },
+        {
+          "id": "UNRELATED",
+          "text": "Add a sports paragraph",
+          "rationale": "Does not support this task."
+        }
+      ]
+    },
+    "ownFields": [
+      {
+        "key": "repair",
+        "label": "Rewrite 'They should put them on it' with named actor, content, place"
+      },
+      {
+        "key": "reason",
+        "label": "Explain one vague referent and your repair"
+      }
+    ]
+  },
+  "cycleB": {
+    "id": "FW-U07-B",
+    "prompt": "For the student council newsletter, write TWO short paragraphs about the lost-and-found collection table. P1: students do not know when to look for clothes or bottles. P2: propose a clear weekly notice with where and when; do not pretend the notice is approved. Explain the bridge. If references are already clear, justify keeping them instead of inventing an error.",
+    "fields": [
+      {
+        "key": "problem",
+        "label": "Paragraph 1 — information problem"
+      },
+      {
+        "key": "response",
+        "label": "Paragraph 2 — proposed weekly notice"
+      },
+      {
+        "key": "transitionReason",
+        "label": "How P2 connects to P1 / what your references mean"
+      },
+      {
+        "key": "repairBefore",
+        "label": "Optional original phrase to improve"
+      },
+      {
+        "key": "repairAfter",
+        "label": "Optional revised phrase"
+      },
+      {
+        "key": "repairWhy",
+        "label": "Optional reason for revision or no change"
+      }
+    ]
+  },
+  "transfer": {
+    "id": "FW-U07-T",
+    "prompt": "A neighbourhood sports center lends balls and jump ropes, but visitors do not know where to return them. Write TWO connected visitor-information paragraphs: problem, then proposed return instructions. Do not claim a new sign or desk exists.",
+    "fields": [
+      {
+        "key": "problem",
+        "label": "Visitor problem paragraph"
+      },
+      {
+        "key": "response",
+        "label": "Proposed solution paragraph"
+      },
+      {
+        "key": "bridgeNote",
+        "label": "Bridge / named continuity explanation"
+      }
+    ]
+  },
+  "extras": [
+    {
+      "id": "FW-U07-F01",
+      "prompt": "A museum leaflet uses tiny labels; visitors cannot read descriptions.",
+      "question": "Which P2 opening directly addresses the problem?",
+      "key": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "Moreover, the museum is a building.",
+          "rationale": "Unrelated fact."
+        },
+        {
+          "id": "B",
+          "text": "To make object descriptions easier to read, the museum could print larger labels.",
+          "rationale": "Relevant readability response."
+        },
+        {
+          "id": "C",
+          "text": "This will definitely fix every museum problem.",
+          "rationale": "Vague and unsupported guarantee."
+        },
+        {
+          "id": "D",
+          "text": "My cousin enjoys ice cream.",
+          "rationale": "Unrelated anecdote."
+        }
+      ]
+    },
+    {
+      "id": "FW-U07-F02",
+      "prompt": "Science-fair organizers sent each team a printed timetable. The timetable listed presentation times.",
+      "question": "What is The timetable?",
+      "key": "B",
+      "options": [
+        {
+          "id": "A",
+          "text": "The project team",
+          "rationale": "Recipient, not object."
+        },
+        {
+          "id": "B",
+          "text": "The printed schedule sent by the organizers",
+          "rationale": "The exact printed object."
+        },
+        {
+          "id": "C",
+          "text": "The organizers",
+          "rationale": "People, not object."
+        },
+        {
+          "id": "D",
+          "text": "A prize certificate",
+          "rationale": "Not mentioned."
+        }
+      ]
+    },
+    {
+      "id": "FW-U07-F03",
+      "prompt": "A school lunch line is long because no labels say which counter serves each meal. P2 proposes clear labels.",
+      "question": "Which is the best bridge?",
+      "key": "C",
+      "options": [
+        {
+          "id": "A",
+          "text": "Furthermore, the queue is a queue.",
+          "rationale": "Empty repetition."
+        },
+        {
+          "id": "B",
+          "text": "Even though the signs are beautiful, my bicycle is red.",
+          "rationale": "Unrelated contrast."
+        },
+        {
+          "id": "C",
+          "text": "Clear labels at each counter could help students choose the right line.",
+          "rationale": "Names a solution to cause."
+        },
+        {
+          "id": "D",
+          "text": "This and that will be useful.",
+          "rationale": "Vague references."
+        }
+      ]
+    },
+    {
+      "id": "FW-U07-F04",
+      "prompt": "The park guide met the visitor. She offered to explain the trail, but no further clue is given.",
+      "question": "What is justified?",
+      "key": "D",
+      "options": [
+        {
+          "id": "A",
+          "text": "Guide must have offered because mentioned first.",
+          "rationale": "Noun order is not proof."
+        },
+        {
+          "id": "B",
+          "text": "Visitor must have offered because mentioned last.",
+          "rationale": "Proximity is not proof."
+        },
+        {
+          "id": "C",
+          "text": "Change she to they and declare clarity.",
+          "rationale": "May stay ambiguous."
+        },
+        {
+          "id": "D",
+          "text": "Ask who offered, then name the person in the rewrite.",
+          "rationale": "Establish meaning before repair."
+        }
+      ]
+    }
+  ],
+  "aiLens": "Review exact saved two paragraphs and explanation. Recognize meaningful noun-phrase repetition, clear no-linker bridges and justified no-change. Ask about actual unclear referents; do not invent one or ghostwrite both paragraphs."
+}
