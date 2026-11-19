@@ -220,7 +220,7 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
     onClick={()=>void save()}>{saving?'Saving…':'Save version'}</button>
    <button type="button" className="secondary-button" disabled={saving}
     onClick={()=>void save(true)}>Save &amp; Exit</button>
-   <button type="button" className="secondary-button" onClick={onExit}>Back to Writing</button>
+   <button type="button" className="secondary-button" onClick={onExit}>Back to Foundation Writing</button>
   </div>
   {status&&<p role="status" className="notice">{status}</p>}
   <p className="muted">Practice milestones represent completed work only, not a validated language level.
