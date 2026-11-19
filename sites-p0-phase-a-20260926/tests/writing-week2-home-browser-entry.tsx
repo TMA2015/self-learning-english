@@ -17,88 +17,74 @@ const click=async(s:string,selector='button')=>{
  await wait(()=>!!button(s,selector)&&!button(s,selector)!.disabled,s);
  button(s,selector)!.click();await pause(130);
 };
-const panel=()=>document.querySelector('section.panel.wcv2.wcv2-b');
-const toWeek=async()=>{
- await wait(()=>text(document.querySelector('.save-status')).includes('Saved on this device'),'local runtime');
- await click('My Courses','nav[aria-label="Main navigation"] button.nav-item');
- await wait(()=>!!document.querySelector('section[aria-label="English Writing Coach course"]'),'dedicated Writing course card');
- await click('Continue','section[aria-label="English Writing Coach course"] button');
- await click('Open Week 2','main button');
- await wait(()=>text(panel()).includes('Week 2'),'integrated Week 2');
+/** Shared integrated navigation: the legacy 12-week Home entry has been retired. */
+const navTo=async(label:string)=>{
+ if(innerWidth<=750){
+  const menu=document.querySelector<HTMLButtonElement>('.mobile-menu');
+  if(!menu)throw Error('Mobile menu missing');
+  if(!document.querySelector('aside.sidebar.open'))menu.click();
+  await wait(()=>!!document.querySelector('aside.sidebar.open'),'mobile menu opens');
+ }
+ await click(label,'nav[aria-label="Main navigation"] button.nav-item');
+ if(innerWidth<=750)await wait(()=>!document.querySelector('aside.sidebar.open'),'mobile menu closes');
 };
-const step=async(s:string)=>{await click(s,'.stage-nav button');await wait(()=>text(document.querySelector('.stage-nav [aria-current="step"]'))===s,'step '+s)};
+const atCourse=()=>text(document.querySelector('main .page-heading h1'))==='Foundation Writing'&&
+ document.querySelectorAll('.curriculum-grid[aria-label="Foundation Writing course units"] .week-card').length===12;
+const goCourse=async()=>{
+ await wait(()=>text(document.querySelector('.save-status')).includes('Saved on this device'),'local runtime');
+ await navTo('My Courses');
+ await wait(()=>!!document.querySelector('section[aria-label="Foundation Writing course"]'),'dedicated Foundation Writing course card');
+ await click('Continue','section[aria-label="Foundation Writing course"] button');
+ await wait(atCourse,'Foundation Writing 12-unit course overview');
+};
 const write=async(e:HTMLTextAreaElement,value:string)=>{
  Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value')?.set?.call(e,value);
  e.dispatchEvent(new Event('input',{bubbles:true}));await pause(180);
 };
 const full=async()=>{
- await toWeek();
- if(!document.querySelector('.english-lesson-ai-launch'))throw Error('Gemini AI Tutor control missing on Learn screen');
- const vi=document.querySelector<HTMLInputElement>('.support-toggle input');
- if(!vi)throw Error('Vietnamese Support missing');
- if(!vi.checked)vi.click();
- await wait(()=>!!panel()?.querySelector('.vi-help'),'Vietnamese support');
- await step('Guided Practice');
- const qs=writingWeek(2).items;
- for(let i=0;i<qs.length;i++){
-  const field=[...panel()!.querySelectorAll('fieldset')][i];
-  if(!field)throw Error('missing MCQ '+i);
-  const choices=[...field.querySelectorAll<HTMLInputElement>('input[type=radio]')];
-  if(i===0){
-   choices[(qs[i].correct+1)%choices.length].click();await pause(90);
-   field.querySelector<HTMLButtonElement>('button')!.click();
-   await wait(()=>text(field).includes('Incorrect'),'wrong feedback');
-   choices[qs[i].correct].click();await pause(90);
-   field.querySelector<HTMLButtonElement>('button')!.click();
-  }else{
-   choices[qs[i].correct].click();await pause(90);
-   field.querySelector<HTMLButtonElement>('button')!.click();
-  }
-  await wait(()=>text(field).includes('Correct')||text(field).includes('Retry used'),'MCQ '+i);
- }
- await step('Main Practice');
- const data={ideas:'Drawing club\nMusic club\nScience club',best:'Drawing club',fit:'Students share simple art materials after school.'};
- for(const [key,value] of Object.entries(data)){
-  const e=panel()?.querySelector<HTMLTextAreaElement>('textarea[name="week-2-'+key+'"]');
-  if(!e)throw Error('missing '+key);
-  await write(e,value);
- }
- const reject=panel()?.querySelector<HTMLTextAreaElement>('textarea[name="week-2-reject"]');
- if(!reject||reject.value.trim())throw Error('reject should remain blank');
- const own=[...panel()!.querySelectorAll<HTMLInputElement>('input[type=checkbox]')].find(e=>!e.checked);
- if(!own)throw Error('own work checkbox');own.click();await pause(130);
- await click('Save my plan & check it');
- await wait(()=>text(panel()).includes('YOUR PLAN · READ-ONLY'),'save to feedback');
- const ai=panel()?.querySelector('article[aria-label="Optional AI review of saved Week 2 plan"]');
- if(!ai||!text(ai).includes('Ready for Gemini review'))throw Error('Saved local plan is not ready for Gemini');
- const aiButton=ai.querySelector<HTMLButtonElement>('button');
- if(!aiButton||aiButton.disabled)throw Error('Gemini review button should be enabled after local save');
- // No click here: real HomeClient QA must not call the live provider. Mock handler coverage is separate.
-
- await step('Reflect & Finish');
- const reflection=panel()?.querySelector<HTMLTextAreaElement>('textarea');
- if(!reflection)throw Error('reflection input');await write(reflection,'I chose drawing because it clearly answers the task.');
- await click('Save reflection & finish Week 2');
- await wait(()=>text(panel()).includes('Week 2 has been completed'),'finish Week 2');
- return {phase:'full',viewport:innerWidth,checks:['Home navigation','Vietnamese Support','4 MCQs and retry','optional reject','save and feedback','single reflection and finish'],overflow:document.documentElement.scrollWidth-innerWidth};
+ await wait(()=>text(document.querySelector('.save-status')).includes('Saved on this device'),'browser storage');
+ await navTo('Writing');
+ await wait(()=>text(document.querySelector('.page-heading h1'))==='Writing','Writing overview preserved');
+ const buttons=[...document.querySelectorAll<HTMLButtonElement>('.foundation-writing-action button')].map(text);
+ if(!buttons.includes('Writing Studio')||!buttons.includes('Foundation Writing'))
+  throw Error('Writing overview does not retain both owner-approved CTAs');
+ if(!text(document.querySelector('.foundation-today')).includes('What should I study today?'))
+  throw Error('Existing Writing recommendations missing');
+ await click('Foundation Writing','.foundation-writing-action button');
+ await wait(atCourse,'Writing path opens Foundation course overview');
+ await click('Open Unit 01','main button');
+ await wait(()=>!!document.querySelector('section[aria-label="Foundation Writing Unit 01"]'),'real U01 opens');
+ await click('Back to Foundation Writing','main button');
+ await wait(atCourse,'return to same course overview from U01');
+ await goCourse();
+ if(!text(document.querySelector('main')).includes('0/12 units with saved work'))
+  throw Error('Foundation course must not infer progress from old Week 1 flags');
+ return {phase:'full',viewport:innerWidth,checks:['Writing page intact','two Writing CTAs',
+  'Writing → Foundation overview','real U01','unit back to overview','My Courses → same overview',
+  'legacy flags excluded'],overflow:document.documentElement.scrollWidth-innerWidth};
 };
 const restore=async()=>{
- await toWeek();await step('Reflect & Finish');
- if(!text(panel()).includes('Week 2 has been completed')||!text(panel()).includes('Saved version 1'))throw Error('history or completion missing after reload');
- await step('Main Practice');
- const rej=panel()?.querySelector<HTMLTextAreaElement>('textarea[name="week-2-reject"]');
- if(rej?.value.trim())throw Error('empty reject not restored');
- return {phase:'restore',viewport:innerWidth,checks:['IndexedDB saved completion/history/optional blank reject'],overflow:document.documentElement.scrollWidth-innerWidth};
+ await goCourse();
+ if(!document.querySelector('section[aria-label="Foundation Writing course progress"]'))
+  throw Error('Course progress panel missing after reload');
+ await click('Open Unit 02','main button');
+ await wait(()=>!!document.querySelector('section[aria-label="Foundation Writing FW-U02"]'),'U02 opens after reload');
+ await click('Back to Foundation Writing','main button');
+ await wait(atCourse,'course overview restored after navigating U02');
+ return {phase:'restore',viewport:innerWidth,checks:['My Courses selection after reload',
+  '12-unit overview','real U02','unit back to overview']};
 };
 const responsive=async()=>{
- await toWeek();
+ await goCourse();
  const overflow=document.documentElement.scrollWidth-innerWidth;
- if(overflow>3)throw Error('horizontal overflow '+overflow+' at '+innerWidth);
- for(const el of panel()!.querySelectorAll<HTMLElement>('button,input,textarea')){
+ if(overflow>3)throw Error('course overview horizontal overflow '+overflow+' at '+innerWidth);
+ for(const el of document.querySelectorAll<HTMLElement>('.curriculum-grid button')){
   const r=el.getBoundingClientRect();
-  if(r.width&&r.height&&r.right>innerWidth+3)throw Error('offscreen control '+text(el).slice(0,70));
+  if(r.width&&r.height&&(r.right>innerWidth+3||r.left<0))
+   throw Error('offscreen Foundation Unit control '+text(el)+' at '+innerWidth);
  }
- return {phase:'responsive',viewport:innerWidth,checks:['integrated Home viewport / controls'],overflow};
+ return {phase:'responsive',viewport:innerWidth,checks:['12-unit course on real Home viewport',
+  'no offscreen buttons'],overflow};
 };
 
 /** Real integrated HomeClient navigation QA for PR #168. Browser-local/synthetic only. */
@@ -159,7 +145,7 @@ const skillOverview=async()=>{
  await selectTab('Writing');
  await assertOverview('Writing',31);
  const direct=document.querySelector<HTMLButtonElement>('.foundation-writing-action button');
- if(!direct||text(direct)!=='Open AI Writing Feedback · Any Topic')
+ if(!direct||text(direct)!=='Writing Studio')
   throw Error('Writing independent feedback entry missing');
  direct.click();
  await wait(()=>!!document.querySelector('textarea[name="student-written-content"]'),'Writing Any Topic opened');
@@ -171,11 +157,11 @@ const skillOverview=async()=>{
  tutorButton.click();
  await wait(()=>!!document.querySelector('textarea[name="student-written-content"]'),'AI Tutor links to Any Topic');
  await nav('My Courses');
- await wait(()=>!!document.querySelector('section[aria-label="English Writing Coach course"]'),
-  'Separate 12-week course retained');
+ await wait(()=>!!document.querySelector('section[aria-label="Foundation Writing course"]'),
+  'Foundation Writing replaces old My Courses course');
  return {phase:'skillOverview',viewport:innerWidth,skillCounts:expected,
   sevenTabsAboveTitle:true,browseUnitsPreserved:true,
-  writingAnyTopic:true,tutorAnyTopic:true,separateWritingCourse:true,
+  writingAnyTopic:true,tutorAnyTopic:true,foundationWritingCourse:true,
   mobileMenuCovered:isMobile,overflow:document.documentElement.scrollWidth-innerWidth};
 };
 
