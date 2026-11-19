@@ -23,11 +23,11 @@ const workflow=read('../.github/workflows/english-pr-qa.yml');
 const exactly=(source,pattern,n,label)=>assert.equal((source.match(pattern)||[]).length,n,label);
 // Existing Writing route must remain a single page and not become a second app.
 exactly(home,/<WritingHome\b/g,0,'The independent Writing skill overview must not embed the 12-week course');
-assert(platform.includes('export function WritingHome'), 'The separate 12-week Writing component is preserved');
-assert(home.includes('view==="writing-course"&&'), 'The existing 12-week Writing Course route is retained');
+assert(platform.includes('export function WritingHome'), 'Legacy WritingHome stays outside the live skill overview');
+assert(home.includes('view==="writing-course"&&'), 'The existing course route now opens the Foundation Writing overview');
 exactly(home,/<AnyTopicWritingReview showVi=\{!!state.vietnameseSupport\}\/>/g,1,'Independent Writing Review opens once with existing language preference');
 assert(home.includes('writingIntro={view==="writing"?<div className="learning-choices"'),'Writing overview retains one bounded entry group');
-assert(home.includes('onClick={()=>void navigate("foundation-writing")}>Start Foundation Writing · 12 Units available'),'New Foundation course has a direct entry');
+assert(home.includes('onClick={()=>void navigate("writing-course")}>Foundation Writing'),'New Foundation course has a direct entry');
 assert(home.includes('onClick={()=>void navigate("writing-any-topic")}'),'Writing overview opens independent saved-draft feedback');
 assert(home.includes('view==="tutor"&&<TutorOverview onWriting={()=>navigate("writing-any-topic")}/>'),
  'AI feedback landing opens Any Topic instead of Week 1');
