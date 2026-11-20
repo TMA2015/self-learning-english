@@ -132,4 +132,11 @@ export function estimateEnglishLocalStorage(native:BrowserStore):{utf16Bytes:num
  }
  return {utf16Bytes,keys};
 }
+/** Use the codec on real browser Storage only. Unit-test fake storage retains
+ * its established raw-string contract unless the test opts into the wrapper.
+ */
+export function englishNativeBrowserStore(store:BrowserStore):BrowserStore{
+ return typeof Storage!=='undefined'&&store instanceof Storage
+  ?englishLosslessStore(store):store;
+}
 export const __storageCodecTest={encode,decode,compressible};
