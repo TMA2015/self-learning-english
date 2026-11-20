@@ -1,4 +1,5 @@
 import {mapSeed,type AcademicAttempt,type AcademicPackage,type AcademicRepository} from '../../domain/academic';
+import {englishLosslessStore} from '../browser/lossless-browser-storage';
 import {retainReferencedLessons,stripBundle,decodePackageDocument,type StoredAcademicPackage,type RetentionSnapshot} from '../../domain/storage-retention';
 import type {LearningRepository,LearnerState,Scope,Snapshot} from '../../domain/repository';
 import type {DiagnosticV2,Evidence} from '../../domain/learning-model';
@@ -342,7 +343,7 @@ export class BrowserLocalCourseSelectionRepository{
 }
 
 export function browserLocalRepositories(ownerId='local-family',learnerId='primary',storage?:BrowserKeyValueStorage){
-  const selected=storage??(typeof window!=='undefined'?window.localStorage:undefined);
+  const selected=storage??(typeof window!=='undefined'?englishLosslessStore(window.localStorage):undefined);
   if(!selected)throw new Error('Browser local storage is unavailable.');
   return {
     scope:{ownerId,learnerId} as Scope,
