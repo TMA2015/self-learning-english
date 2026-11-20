@@ -18,9 +18,9 @@ const home=read('app/home-client.tsx');
 assert.equal(pilot.entries.length,26,'26 academically reviewed existing pilot entries preserved');
 const legacy=pilot.entries.filter(e=>e.kind==='irregular_verbs');
 assert.equal(legacy.length,6);
-assert.equal(staged.status,'ACADEMIC_DRAFT_NOT_REVIEWED_NOT_LIVE');
+assert.equal(staged.status,'NOTEBOOKLM_PASS_185_OF_185_DRAFT_NOT_LIVE');
 assert.equal(staged.new_entries.length,185);
-assert(staged.new_entries.every(e=>e.review_status==='NOT_REVIEWED'),'No premature academic PASS');
+assert(staged.new_entries.every(e=>e.review_status==='NOTEBOOKLM_PASS'),'Owner-supplied 185/185 NotebookLM verdict must match candidate metadata');
 assert.equal(staged.counts.total_candidate,191);
 const ids=[...legacy.map(x=>x.id),...staged.new_entries.map(x=>x.id)];
 assert.equal(new Set(ids).size,191,'All 191 IDs distinct');
@@ -57,7 +57,7 @@ const {buildIrregularRows,searchIrregularRows,pageIrregularRows}=require(out);
 const rows=buildIrregularRows(pilot.entries,staged.new_entries);
 assert.equal(rows.length,191);
 assert.equal(rows.filter(x=>x.reviewState==='PILOT_REVIEWED').length,6);
-assert.equal(rows.filter(x=>x.reviewState==='NOT_REVIEWED').length,185);
+assert.equal(rows.filter(x=>x.reviewState==='CORPUS_REVIEWED').length,185);
 assert.equal(rows.filter(x=>x.priority==='extended').length,81);
 const query=(text,priority='all',initial='all')=>
  searchIrregularRows(rows,{query:text,priority,initial}).map(x=>x.base);
@@ -77,9 +77,9 @@ assert.equal(paged.totalPages,8);assert.equal(paged.rows.length,25);
 assert.equal(pageIrregularRows(rows,8,25).rows.length,16);
 assert.equal(pageIrregularRows(rows,10000,25).page,8);
 assert.equal(pageIrregularRows([],1,25).totalPages,1);
-for(const guard of ['No learner records','Academic draft','25']){
+for(const guard of ['No learner records','Academic content reviewed','25']){
  // The candidate UI must signal unreleased content and keep bounded rendering.
- if(guard==='Academic draft')assert(ui.includes(guard));
+ if(guard==='Academic content reviewed')assert(ui.includes(guard));
 }
 assert(ui.includes('pageIrregularRows(filtered,page,25)'),'Never eagerly render full 191-row list');
 assert(ui.includes('aria-label="Filter by initial letter"'),'A-Z keyboard labels');
@@ -89,12 +89,12 @@ assert(ui.includes('PILOT_REVIEWED')&&ui.includes('Academic draft'));
 assert(styles.includes('.sle-reference-v2-candidate .sle-ref-v2-letters'));
 assert(styles.includes('@media(max-width:680px)'));
 assert(!home.includes('ReferenceLibraryV2IrregularCandidate'),
- 'Candidate MUST NOT enter live site navigation before academic review');
+ 'Legacy standalone corpus prototype must not create a second site navigation route');
 for(const text of [source,ui]){
  assert.doesNotMatch(text,/\blocalStorage\b|\bindexedDB\b|\bFirebase\b|\bGemini\b|\bfetch\s*\(/i,
  'Candidate must remain local, read-only and provider-free');
 }
 console.log(JSON.stringify({result:'PASS',gate:'reference-v2-irregular-candidate',
  expectedCandidates:185,existingApproved:6,totalVerbs:191,core:110,extended:81,
- v1v2v3Search:true,alphabetical:true,pageSize:25,academicReview:'PENDING',
+ v1v2v3Search:true,alphabetical:true,pageSize:25,academicReview:'PASS_185_OF_185',
  mainNavigation:'UNMODIFIED',liveRelease:false}));
