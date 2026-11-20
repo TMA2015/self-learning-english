@@ -39,9 +39,10 @@ export function verifiedWritingExcerpt(draft:string,excerpt:unknown):string{
  if(draft.includes(trimmed))return trimmed;
  // Gemini sometimes collapses line breaks or multiple spaces in exact quotations.
  // Matching these whitespace differences still returns an actual draft substring.
- const parts=trimmed.split(/\\s+/u);
+ const parts=trimmed.split(/\s+/u);
  if(parts.length<3)return '';
- const escaped=parts.map(part=>part.replace(/[.*+?^${}()|[\]\\]/g,'\\/** Provider-only normalization: never manufacture missing marks or invented quotes. */'));
+ const special='\\^$.*+?()[]{}|';
+ const escaped=parts.map(part=>Array.from(part,ch=>special.includes(ch)?'\\'+ch:ch).join(''));
  try{
   const match=new RegExp(escaped.join('\\s+'),'u').exec(draft);
   return match?.[0]??'';
