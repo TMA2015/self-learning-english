@@ -77,7 +77,7 @@ let selection='';
   await wait(()=>getCount().includes('12 reference entries'),'12 reviewed connectors');
   assert(document.querySelectorAll('.sle-ref-connector-card').length===12,'connector cards');
   search('because');
-  await wait(()=>getCount().includes('2 reference entries'),'because and because of');
+  await wait(()=>document.querySelector('.sle-ref-connector-card h4')?.textContent==='because','exact because ranked first across related matches');
   assert(document.querySelector('.sle-ref-connector-card h4')?.textContent==='because',
    'Exact connector match should rank before because of');
   search('despite');
