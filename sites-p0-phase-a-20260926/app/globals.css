@@ -572,6 +572,19 @@ body {
  .sle-reference .sle-reference-category-filter.is-selected{padding:7px 9px}
 }
 
+/* Integrated, independently reviewed 191-lemma irregular table. */
+.sle-reference .sle-ref-verb-controls{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin:13px 0;padding:12px;border:1px solid #d0dfec;border-radius:10px;background:#f8fbff}
+.sle-reference .sle-ref-verb-controls label{display:grid;gap:6px;max-width:280px;font-weight:650}
+.sle-reference .sle-ref-verb-controls select{font:inherit;width:100%;min-height:44px;padding:8px 10px;border:1px solid #a6b9ce;border-radius:8px;background:white;color:#153854}
+.sle-reference .sle-ref-v2-letters{display:flex;flex-wrap:wrap;gap:5px}
+.sle-reference .sle-ref-v2-letters button{min-width:36px;min-height:44px;padding:5px 8px;border:1px solid #9baec5;background:#f2f7fe;color:#244d7b;border-radius:7px;font:inherit;font-weight:650;cursor:pointer}
+.sle-reference .sle-ref-v2-letters button[aria-pressed="true"]{background:#245c98;color:white;border-color:#245c98}
+.sle-reference .sle-ref-v2-letters button:focus-visible,.sle-reference .sle-ref-verb-controls select:focus-visible,.sle-reference .sle-ref-v2-pagination button:focus-visible{outline:3px solid #2f6ea8;outline-offset:2px}
+.sle-reference .sle-ref-v2-pagination{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin:14px 0;line-height:1.5}
+.sle-reference .sle-ref-v2-pagination button{min-height:44px}
+.sle-reference .sle-ref-v2-pagination button:disabled{opacity:.5;cursor:not-allowed}
+@media(max-width:380px){.sle-reference .sle-ref-verb-controls{padding:9px}.sle-reference .sle-ref-v2-letters button{min-width:34px}}
+
 /* Reviewed Reference Library v2 Wave 1 — independent of unreviewed 191-verb candidate. */
 .sle-reference .is-writing_connectors{--ref-kind-bg:#e9ebfc;--ref-kind-fg:#373b87;--ref-kind-border:#929bd6}
 .sle-reference .is-frequency_expressions{--ref-kind-bg:#e5f3ed;--ref-kind-fg:#265c47;--ref-kind-border:#8bbba5}
