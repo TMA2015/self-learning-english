@@ -1,0 +1,154 @@
+name: SLE Reference Library v2 owner-approved temporary Preview
+
+# Owner approved an isolated Reference Library v2 Preview on 2026-11-20.
+# This file must stay on the QA branch ONLY; never merge it into main.
+on:
+  push:
+    branches:
+      - qa/sle-ref-v2-preview-20261120
+    paths:
+      - '.github/workflows/english-ref-v2-preview-qa.yml'
+      - 'sites-p0-phase-a-20260926/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sle-reference-v2-preview-only-20261120
+  cancel-in-progress: false
+
+jobs:
+  english_reference_preview:
+    if: ${{ github.repository == 'TMA2015/self-learning-english' && github.ref == 'refs/heads/qa/sle-ref-v2-preview-20261120' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      STATIC_EXPORT: '1'
+      NEXT_PUBLIC_LEARNING_RUNTIME: browser
+      NEXT_PUBLIC_BASE_PATH: ''
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - name: Checkout exact isolated QA commit
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Verify protected source origin and English-only Preview scope
+        run: |
+          set -euo pipefail
+          [[ "$GITHUB_REF" == 'refs/heads/qa/sle-ref-v2-preview-20261120' ]]
+          [[ "$(git rev-parse HEAD)" == "$GITHUB_SHA" ]]
+          [[ "$(git rev-parse HEAD^)" == '3f587ac467a8bc7de4bfd8bb74cd4ed2dab59bfb' ]]
+          test "$(git diff --name-only HEAD^ HEAD | wc -l | tr -d ' ')" = '1'
+          test "$(git diff --name-only HEAD^ HEAD)" = '.github/workflows/english-ref-v2-preview-qa.yml'
+          node --input-type=commonjs - <<'NODE'
+          const assert=require('node:assert/strict'),fs=require('node:fs');
+          const cfg=JSON.parse(fs.readFileSync('firebase.json','utf8'));
+          const rc=JSON.parse(fs.readFileSync('.firebaserc','utf8'));
+          assert.equal(cfg.hosting.target,'english');
+          assert.equal(cfg.hosting.public,'dist/client');
+          assert.equal(rc.projects.default,'roadmap-toan-ai');
+          assert.deepEqual(rc.targets['roadmap-toan-ai'].hosting.english,['g-learning-english']);
+          const runtime=fs.readFileSync('infrastructure/browser/local-runtime.ts','utf8');
+          assert(runtime.includes("import curriculum1280 from '../../content/curriculum-1.28.0-candidate.json'"));
+          const c=require('./content/curriculum-1.28.0-candidate.json');
+          assert.equal(c.schema_version,'1.28.0');
+          assert.equal(c.lessons.length,176);
+          assert.equal(c.lessons.reduce((n,l)=>n+l.activities.length,0),1224);
+          const pilot=require('./content/reference-library-pilot-v1.json').entries;
+          const wave=require('./content/reference-library-v2-wave1-reviewed.json').entries;
+          const corpus=require('./content/reference-library-v2-irregular-candidate.json');
+          assert.equal(pilot.length,26);
+          assert.equal(wave.length,38);
+          assert.equal(corpus.new_entries.length,185);
+          assert.equal(corpus.status,'NOTEBOOKLM_PASS_185_OF_185_DRAFT_NOT_LIVE');
+          assert(corpus.new_entries.every(e=>e.review_status==='NOTEBOOKLM_PASS'));
+          const verbs=[...pilot.filter(e=>e.kind==='irregular_verbs').map(e=>e.term),...corpus.new_entries.map(e=>e.base)];
+          assert.equal(verbs.length,191);
+          assert.equal(new Set(verbs).size,191);
+          const integrated=[...pilot,...wave.filter(e=>e.kind!=='irregular_verbs'),...corpus.new_entries];
+          assert.equal(integrated.length,234);
+          assert.equal(new Set(integrated.map(e=>e.id)).size,234);
+          const ui=fs.readFileSync('app/reference-library.tsx','utf8');
+          assert(ui.includes('reference-library-v2-irregular-candidate.json'));
+          assert(ui.includes("...waveOne.entries.filter(x=>x.kind!=='irregular_verbs')"));
+          assert(ui.includes('pagedVerbs=verbFiltered.slice('));
+          console.log('REFERENCE_V2_PREVIEW_SCOPE_PASS: English-only; v1.28.0; 234 reference entries / 191 verbs; no duplicate Wave 1 verbs');
+          NODE
+
+      - name: Confirm Preview-only Firebase credential configured
+        env:
+          FIREBASE_CREDENTIAL: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
+        run: |
+          if [[ -z "$FIREBASE_CREDENTIAL" ]]; then
+            echo '::error::English Firebase credential missing; stop without deploy'
+            exit 1
+          fi
+          echo 'Credential present (secret not displayed)'
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+
+      - name: Frozen dependency install
+        run: pnpm install --frozen-lockfile
+
+      - name: Reference v2 source parity and corpus regression gates
+        run: |
+          set -euo pipefail
+          node tests/reference-library-pilot.cjs
+          node tests/reference-library-v2-wave1.cjs
+          node tests/reference-library-v2-irregular-candidate.cjs
+
+      - name: Build exact approved English Reference Library Preview (NO LIVE)
+        run: pnpm build
+
+      - name: Verify static English build and protected audio assets
+        run: |
+          set -euo pipefail
+          node tests/firebase-hosting-static.cjs
+          test -s dist/client/index.html
+          test -s dist/client/foundation-audio/LIS-A1-06-v1.mp3
+          test -s dist/client/foundation-audio/LIS-A2-07-v1.mp3
+          test -s dist/client/diagnostic-audio/DIAG-LIS-01-v1.mp3
+          echo 'REFERENCE_V2_PREVIEW_BUILD_VERIFIED'
+
+      - name: Deploy to expiring English Preview channel ONLY (never LIVE)
+        id: deploy_preview
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
+          projectId: roadmap-toan-ai
+          target: english
+          entryPoint: sites-p0-phase-a-20260926
+          channelId: sle-ref-v2-qa-20261120
+          expires: 7d
+          disableComment: true
+          firebaseToolsVersion: '15.32.1'
+
+      - name: Record exact Preview URL for owner
+        if: ${{ always() }}
+        working-directory: .
+        env:
+          DEPLOY_RESULT: ${{ steps.deploy_preview.outcome }}
+          PREVIEW_URLS: ${{ steps.deploy_preview.outputs.urls }}
+        run: |
+          {
+            echo '## SLE Reference Library v2 — temporary English Preview'
+            echo "- Source PR #187 head: 3f587ac467a8bc7de4bfd8bb74cd4ed2dab59bfb"
+            echo "- Isolated QA ref: $GITHUB_REF"
+            echo "- Exact QA commit: $GITHUB_SHA"
+            echo "- English Preview deploy outcome: $DEPLOY_RESULT"
+            echo "- English Preview URL(s): $PREVIEW_URLS"
+            echo '- Expected reference library: 234 entries, 191 verbs, 12 Writing connectors, 11 frequency, 20 other legacy.'
+            echo '- Test on Desktop and physical iPad Safari, not in private mode; Preview origin is separate from LIVE and has separate local browser data.'
+            echo '- NEVER merge this Preview workflow/branch, NEVER deploy LIVE, NEVER change Math/Auth/student data.'
+          } >> "$GITHUB_STEP_SUMMARY"
