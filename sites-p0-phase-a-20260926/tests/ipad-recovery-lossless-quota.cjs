@@ -84,6 +84,8 @@ assert(__storageCodecTest.compressible(attemptKey));
 assert(!__storageCodecTest.compressible(prefix+':recovery-pending-v2'));
 (async()=>{
 const empty=new SafariStore();
+// Explicitly model a native Storage instance; legacy mock tests stay raw.
+global.Storage=SafariStore;
 global.window={localStorage:empty};
 const wrapped=englishLosslessStore(empty);
 const repo=new BrowserLocalAcademicRepository(wrapped);
