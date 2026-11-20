@@ -6,6 +6,7 @@ const root=path.join(__dirname,'..');
 const read=(p)=>fs.readFileSync(path.join(root,p),'utf8');
 const old=JSON.parse(read('content/reference-library-pilot-v1.json'));
 const w=JSON.parse(read('content/reference-library-v2-wave1-reviewed.json'));
+const wave2=JSON.parse(read('content/reference-library-v2-writing-connectors-wave2-reviewed.json'));
 const corpus=JSON.parse(read('content/reference-library-v2-irregular-candidate.json'));
 const packet=read('notebooklm/SLE_REFERENCE_LIBRARY_V2_WAVE1_R1_20261120.md');
 const domain=read('domain/reference-library.ts');
@@ -16,6 +17,11 @@ assert.equal(old.entries.length,26);
 assert.equal(w.review_status,'NOTEBOOKLM_PASS_38_OF_38');
 assert.equal(w.runtime_state,'DRAFT_NOT_LIVE');
 assert.equal(w.entries.length,38);
+assert.equal(wave2.review_status,'NOTEBOOKLM_PASS_30_OF_30');
+assert.equal(wave2.runtime_state,'DRAFT_NOT_LIVE');
+assert.equal(wave2.entries.length,30);
+assert(wave2.entries.every(e=>e.kind==='writing_connectors'));
+assert.equal(new Set(wave2.entries.map(e=>e.id)).size,30);
 assert.equal(corpus.status,'NOTEBOOKLM_PASS_185_OF_185_DRAFT_NOT_LIVE');
 assert.equal(corpus.new_entries.length,185);
 assert(corpus.new_entries.every(e=>e.review_status==='NOTEBOOKLM_PASS'));
@@ -72,23 +78,26 @@ const corpusEntries=corpus.new_entries.map(item=>({
  verb_priority:item.tier,
 }));
 const entries=[...old.entries,...w.entries.filter(e=>e.kind!=='irregular_verbs'),
- ...corpusEntries],base={query:'',kind:'all',level:'all',register:'all'};
-assert.equal(entries.length,234,'6 pilot + 185 full corpus + 20 pilot other + 23 Wave 1 others');
-assert.equal(new Set(entries.map(e=>e.id)).size,234,'Wave 1 verb overlap must not duplicate IDs');
-assert.equal(new Set(entries.map(e=>e.term)).size,234,'No duplicate lemmas or phrases');
-assert.equal(filterReferenceEntries(entries,base).length,234);
+ ...wave2.entries,...corpusEntries],base={query:'',kind:'all',level:'all',register:'all'};
+assert.equal(entries.length,264,'6 pilot + 185 full corpus + 20 pilot other + 23 Wave1 + 30 Wave2');
+assert.equal(new Set(entries.map(e=>e.id)).size,264,'No Wave1 verb overlap or Wave2 connector ID duplication');
+assert.equal(new Set(entries.map(e=>e.term)).size,264,'No duplicate lemmas or expressions');
+assert.equal(filterReferenceEntries(entries,base).length,264);
 function find(query,kind='all'){return filterReferenceEntries(entries,{...base,query,kind}).map(e=>e.term)}
 for(const [query,expected] of [['did','do'],['done','do'],['thought','think'],
  ['gotten','get'],['learnt','learn'],['laid','lay'],['despite','despite'],
  ['because','because'],['usually','usually'],['every other day','every other day']]){
  assert.equal(find(query)[0],expected,'exact lookup priority: '+query);
 }
-assert.deepEqual(find('', 'writing_connectors').length,12);
+assert.deepEqual(find('', 'writing_connectors').length,42);
 assert.deepEqual(find('', 'frequency_expressions').length,11);
 assert.equal(w.entries.filter(e=>e.frequency_type==='indefinite_frequency').length,8);
 assert.equal(w.entries.filter(e=>e.frequency_type==='definite_frequency').length,3);
 assert(!w.entries.some(e=>/\d+\s*%|percentage=/i.test(e.note||'')),'no fictional fixed percentages');
 assert(ui.includes('reference-library-v2-wave1-reviewed.json'));
+assert(ui.includes('reference-library-v2-writing-connectors-wave2-reviewed.json'));
+assert.equal(find('furthermore','writing_connectors')[0],'furthermore');
+assert.equal(find('nevertheless','writing_connectors')[0],'nevertheless');
 assert(ui.includes('reference-library-v2-irregular-candidate.json'),
  'The 185 reviewed full-corpus entries should be included in this DRAFT main Reference UI');
 assert(ui.includes("...waveOne.entries.filter(x=>x.kind!=='irregular_verbs')"),
@@ -102,6 +111,6 @@ assert(css.includes('.sle-reference .sle-reference-scroll-cue'));
 assert(css.includes('.sle-reference .sle-reference-table-scroll thead th'));
 assert(!/\blocalStorage\.setItem\s*\(|\bindexedDB\.open\s*\(/.test(ui+domain));
 console.log(JSON.stringify({result:'PASS',gate:'reference-library-v2-wave1-reviewed',
- reviewedWave1:38,reviewedCorpus:185,preservedPilot:26,aggregate:234,irregular:191,
- connectors:12,frequency:11,parity:true,academicSourceVersionReconciliation:'RELEASE_GATE',
+ reviewedWave1:38,reviewedWave2Connectors:30,reviewedCorpus:185,preservedPilot:26,aggregate:264,irregular:191,
+ connectors:42,frequency:11,parity:true,academicSourceVersionReconciliation:'RELEASE_GATE',
  projectLiveUnchanged:true,productionWrites:0}));
