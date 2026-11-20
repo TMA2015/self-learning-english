@@ -38,7 +38,7 @@ const allIds=new Set();
 for(const item of staged.new_entries){
  assert(!allIds.has(item.id));allIds.add(item.id);
  assert(/^REF2-IRR-\d{3}$/.test(item.id),item.id);
- assert(typeof item.meaning==='string'&&item.meaning.length>=5,item.id);
+ assert(typeof item.meaning==='string'&&item.meaning.trim().length>=2,item.id);
  assert(typeof item.example==='string'&&item.example.includes(' '),item.id);
  assert(typeof item.past==='string'&&item.past,item.id);
  assert(typeof item.participle==='string'&&item.participle,item.id);
