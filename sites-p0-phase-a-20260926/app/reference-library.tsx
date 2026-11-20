@@ -2,6 +2,7 @@
 import {useEffect,useMemo,useState} from 'react';
 import source from '../content/reference-library-pilot-v1.json';
 import waveOne from '../content/reference-library-v2-wave1-reviewed.json';
+import connectorWaveTwo from '../content/reference-library-v2-writing-connectors-wave2-reviewed.json';
 import fullVerbs from '../content/reference-library-v2-irregular-candidate.json';
 import {foundationRequest} from '../infrastructure/browser/client-services';
 import type {Catalog} from './foundation';
@@ -23,6 +24,7 @@ const CORPUS_ENTRIES=fullVerbs.new_entries.map(item=>({
 }));
 const ENTRIES=[...source.entries,
  ...waveOne.entries.filter(x=>x.kind!=='irregular_verbs'),
+ ...connectorWaveTwo.entries,
  ...CORPUS_ENTRIES] as ReferenceEntry[];
 const ALPHABET='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 // This generic but correct reminder occurs in 141/185 corpus records.
@@ -96,8 +98,8 @@ export function ReferenceLibrary({
    <p>Use these examples to understand a pattern, then try a different example of your own.
     Choose a topic or level to find forms, meaning and examples.</p>
    <p><small>Offline-first static reference · 26/26 entries academically reviewed in the pilot
-    plus 23/23 Writing/Frequency entries from Wave 1 and 185/185 full-corpus verbs
-    independently approved by NotebookLM (234 reference entries in this candidate).
+    plus 23/23 Writing/Frequency entries from Wave 1, 30/30 Writing Connectors from Wave 2
+    and 185/185 full-corpus verbs independently approved by NotebookLM (264 reference entries in this candidate).
     No answers, tests, AI evaluation or learner scores are stored here.
     Legacy practice links are broad skill suggestions, not verified lessons for each term.</small></p>
   </section>
@@ -210,7 +212,7 @@ export function ReferenceLibrary({
    </div>
   </section>}
   {connectors.length>0&&<section className="sle-reference-section" aria-label="Writing linking words">
-   <h2>Writing connectors — choose by purpose</h2>
+   <h2>Writing connectors — choose by purpose ({connectors.length} matching)</h2>
    <p className="muted">Choose a logical relationship first, then check the sentence pattern and punctuation. More connectors do not automatically mean better writing.</p>
    {writingFunctions.map(fn=><div className="sle-ref-connector-group" key={fn}>
     <h3>{fn.replaceAll('_',' ').replaceAll(' / ',' and ')}</h3>
@@ -218,6 +220,7 @@ export function ReferenceLibrary({
     {connectors.filter(e=>(e.function||'General')===fn).map(entry=><article className="panel sle-ref-connector-card" key={entry.id}>
      <div className="sle-reference-tags"><span>Suggested {entry.level}</span><span>{entry.register}</span></div>
      <h4>{entry.term}</h4>
+     {entry.meaning!==entry.function&&<p><strong>Purpose:</strong> {entry.meaning}</p>}
      <p><strong>Structure:</strong> {entry.grammatical_type} · {entry.construction}</p>
      <p><strong>Example:</strong> {entry.example}</p>
      <p><strong>Usage:</strong> {entry.note}</p>
