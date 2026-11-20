@@ -43,12 +43,12 @@ let selection='';
   <ReferenceLibrary catalog={catalog} onCatalog={()=>fail('Unnecessary catalog fetch')}
    onOpenLesson={(id,skill)=>{selection=id+' '+skill;report('PASS_LINK '+selection)}}/>
  );
- await wait(()=>getCount().includes('26 reference entries'),'initial 26 items');
- assert(document.querySelectorAll('.sle-reference-table-scroll tbody tr').length===6,'six verb rows');
+ await wait(()=>getCount().includes('64 reference entries'),'26 pilot + 38 reviewed items');
+ assert(document.querySelectorAll('.sle-reference-table-scroll tbody tr').length===21,'six pilot + fifteen reviewed verb rows');
  assert(document.querySelectorAll('.sle-reference-card').length===20,'20 phrase/strategy cards');
  assert(!!document.querySelector('input[type="search"]'),'search is native search input');
- assert(document.querySelectorAll('.sle-reference-category-filter').length===7,
-  'Six text-labelled category buttons plus All');
+ assert(document.querySelectorAll('.sle-reference-category-filter').length===9,
+  'Eight text-labelled category buttons plus All');
  if(phase==='search'){
   const badge=(kind:string)=>document.querySelector('.sle-reference-category-filter.is-'+kind) as HTMLButtonElement|null;
   assert(!!badge('idioms'),'Idioms category exists');
@@ -70,8 +70,35 @@ let selection='';
   await wait(()=>document.getElementById('app')?.textContent?.includes('No matching entries')??false,'honest empty state');
   const clear=[...document.querySelectorAll('button')].find(x=>x.textContent?.includes('Clear filters'));
   clear?.click();
-  await wait(()=>getCount().includes('26 reference entries'),'clear filters');
+  await wait(()=>getCount().includes('64 reference entries'),'clear filters');
   report('PASS_SEARCH_FILTERS');
+ }else if(phase==='v2'){
+  select('Reference type','writing_connectors');
+  await wait(()=>getCount().includes('12 reference entries'),'12 reviewed connectors');
+  assert(document.querySelectorAll('.sle-ref-connector-card').length===12,'connector cards');
+  search('because');
+  await wait(()=>getCount().includes('2 reference entries'),'because and because of');
+  assert(document.querySelector('.sle-ref-connector-card h4')?.textContent==='because',
+   'Exact connector match should rank before because of');
+  search('despite');
+  await wait(()=>document.querySelector('.sle-ref-connector-card h4')?.textContent==='despite',
+   'despite rule visible before indirect mentions');
+  assert(document.getElementById('app')?.textContent?.includes('noun phrase / -ing phrase'),
+   'despite must require noun/-ing construction');
+  search('');select('Reference type','frequency_expressions');
+  await wait(()=>getCount().includes('11 reference entries'),'eleven reviewed frequency expressions');
+  assert(document.querySelectorAll('.sle-ref-frequency-item').length===8,'qualitative ladder eight');
+  assert(document.querySelectorAll('.sle-ref-counted-frequency .sle-ref-connector-card').length===3,
+   'three counted/interval expressions separate from ladder');
+  assert(!(document.querySelector('[aria-label="Frequency expressions"]')?.textContent||'').includes('%'),
+   'No fabricated percentage scale');
+  search('usually');
+  await wait(()=>document.querySelector('.sle-ref-frequency-item strong')?.textContent==='usually',
+   'search adverb + position guidance');
+  search('did');select('Reference type','irregular_verbs');
+  await wait(()=>document.querySelector('.sle-reference-table-scroll tbody th')?.textContent==='do',
+   'search by historical V2 form did');
+  report('PASS_V2_REVIEWED_REFERENCE');
  }else if(phase==='catalog'){
   const first=document.querySelector('.sle-reference-table-scroll .sle-reference-practice button') as HTMLButtonElement|null;
   assert(first,'available real catalog lesson should show button');
