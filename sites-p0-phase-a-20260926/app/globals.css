@@ -242,6 +242,27 @@ body {
 .wcv2-card legend {font-weight:700;padding:0 6px}
 .wcv2-option {display:flex;align-items:flex-start;gap:10px;margin:12px 0;line-height:1.5}
 .wcv2-option input {flex:none;margin-top:5px}
+/* Foundation Writing U01–U12: radio controls are choices, not text fields.
+   Override the global .field input 100% width / 49px height without changing other skills. */
+.wcv2 label.wcv2-radio-option{
+ display:flow-root;min-height:44px;margin:8px 0;padding:10px 12px;
+ border:1px solid #d9e5f1;border-radius:9px;line-height:1.55;cursor:pointer;
+ overflow-wrap:anywhere;
+}
+.wcv2 label.wcv2-radio-option:focus-within{border-color:#3972bd;background:#f4f8ff}
+.wcv2 label.wcv2-radio-option input[type="radio"]{
+ float:left;clear:left;box-sizing:border-box;
+ width:18px;height:18px;min-width:18px;min-height:18px;max-width:18px;max-height:18px;
+ margin:4px 10px 0 0;padding:0;accent-color:#245bb1;
+ border:0;border-radius:50%;box-shadow:none;
+}
+.wcv2 label.wcv2-radio-option p{margin:7px 0 0 28px;color:#536f92;font-size:14px}
+.wcv2 fieldset{min-width:0;max-width:100%}
+.foundation-unit-top-nav{display:flex;align-items:center;flex-wrap:wrap;margin:0 0 18px}
+.foundation-unit-top-nav .secondary-button{min-height:42px;white-space:normal}
+@media(max-width:640px){.wcv2 label.wcv2-radio-option{padding:11px 9px}
+.foundation-unit-top-nav .secondary-button{width:auto;max-width:100%}}
+
 .wcv2 .learning-choices {flex-wrap:wrap}
 .wcv2 button {max-width:100%;white-space:normal;text-align:left}
 .wcv2 .field textarea {box-sizing:border-box;width:100%;min-width:0}
