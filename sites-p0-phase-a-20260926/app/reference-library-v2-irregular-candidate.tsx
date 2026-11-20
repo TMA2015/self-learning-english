@@ -1,7 +1,7 @@
 'use client';
-/** Isolated engineering proof-of-concept for an UNREVIEWED academic corpus.
+/** Isolated engineering proof-of-concept for a NotebookLM-reviewed academic corpus.
  * This component is intentionally NOT linked to app navigation or production
- * Reference Library until independent NotebookLM approval and owner release.
+ * Reference Library until independent technical QA and owner release authorization.
  */
 import {useMemo,useState} from 'react';
 import pilot from '../content/reference-library-pilot-v1.json';
@@ -21,7 +21,7 @@ export function ReferenceLibraryV2IrregularCandidate(){
   [query,priority,initial]);
  const view=pageIrregularRows(filtered,page,25);
  const reviewed=ROWS.filter(x=>x.reviewState==='PILOT_REVIEWED').length;
- const staged=ROWS.length-reviewed;
+ const reviewedCorpus=ROWS.length-reviewed;
  function search(value:string){setQuery(value);setPage(1)}
  function selectPriority(value:'all'|VerbPriority){setPriority(value);setPage(1)}
  function selectInitial(value:string){setInitial(value);setPage(1)}
@@ -32,10 +32,10 @@ export function ReferenceLibraryV2IrregularCandidate(){
    <p>Search by base, past simple or past participle. Explore meanings, examples and important variants.</p>
   </div></div>
   <div className="notice sle-ref-v2-unreviewed" role="status">
-   <strong>Academic draft — not available on the live website.</strong>
-   {' '}{reviewed} existing entries were approved in the pilot; {staged} newly authored
-   candidate entries await independent NotebookLM review. The “core” filter is
-   editorial, not a CEFR score or certified word-frequency ranking.
+   <strong>Academic content reviewed — this separate prototype is not a live release.</strong>
+   {' '}{reviewed} pilot verbs and {reviewedCorpus} full-corpus entries passed their
+   separate NotebookLM academic reviews. Engineering, device QA and production release
+   remain separate gates. The “core” filter is editorial, not a CEFR score or measured rank.
   </div>
   <div className="panel sle-ref-v2-controls">
    <label htmlFor="sle-ref-v2-search">Search verb or form
@@ -77,7 +77,7 @@ export function ReferenceLibraryV2IrregularCandidate(){
       <p className="sle-ref-v2-example">{item.example}</p>
       <details><summary>Usage and exceptions</summary>
        <p>{item.usageNote}</p>
-       <small>{item.priority} · {item.reviewState==='PILOT_REVIEWED'?'Pilot reviewed':'Academic draft'} · {item.id}</small>
+       <small>{item.priority} · {item.reviewState==='PILOT_REVIEWED'?'Pilot reviewed':'Corpus reviewed'} · {item.id}</small>
       </details>
      </td>
     </tr>)}</tbody>
