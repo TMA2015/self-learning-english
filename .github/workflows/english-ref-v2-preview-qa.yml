@@ -34,15 +34,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
 
       - name: Verify protected source origin and English-only Preview scope
         run: |
           set -euo pipefail
           [[ "$GITHUB_REF" == 'refs/heads/qa/sle-ref-v2-preview-20261120' ]]
           [[ "$(git rev-parse HEAD)" == "$GITHUB_SHA" ]]
-          [[ "$(git rev-parse HEAD^)" == '3f587ac467a8bc7de4bfd8bb74cd4ed2dab59bfb' ]]
-          test "$(git diff --name-only HEAD^ HEAD | wc -l | tr -d ' ')" = '1'
-          test "$(git diff --name-only HEAD^ HEAD)" = '.github/workflows/english-ref-v2-preview-qa.yml'
+          git merge-base --is-ancestor '3f587ac467a8bc7de4bfd8bb74cd4ed2dab59bfb' HEAD
+          test "$(git diff --name-only 3f587ac467a8bc7de4bfd8bb74cd4ed2dab59bfb HEAD | wc -l | tr -d ' ')" = '1'
+          test "$(git diff --name-only 3f587ac467a8bc7de4bfd8bb74cd4ed2dab59bfb HEAD)" = '.github/workflows/english-ref-v2-preview-qa.yml'
           node --input-type=commonjs - <<'NODE'
           const assert=require('node:assert/strict'),fs=require('node:fs');
           const cfg=JSON.parse(fs.readFileSync('firebase.json','utf8'));
