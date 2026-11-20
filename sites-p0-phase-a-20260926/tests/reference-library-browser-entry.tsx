@@ -102,6 +102,18 @@ let selection='';
   search('did');select('Reference type','irregular_verbs');
   await wait(()=>document.querySelector('.sle-reference-table-scroll tbody th')?.textContent==='do',
    'search by historical V2 form did');
+  search('abode');
+  await wait(()=>document.querySelector('.sle-reference-table-scroll tbody th')?.textContent==='abide',
+   'abode matches abide');
+  const verbCell=document.querySelector('.sle-reference-table-scroll tbody td:last-child') as HTMLElement|null;
+  assert(verbCell?.textContent?.includes('Meaning:')&&verbCell?.textContent?.includes('continue or tolerate'),
+   'Each row must show individual meaning');
+  assert(verbCell?.textContent?.includes('They abided by the agreement.'),
+   'Keep original reviewed contextual example');
+  assert(!verbCell?.textContent?.includes('Past simple is used for a finished past action;'),
+   'Hide repetitive generic boilerplate without changing approved JSON');
+  assert(document.querySelectorAll('.sle-reference-table-scroll .sle-reference-practice').length===0,
+   'Do not link unrelated Grammar A1-01 from irregular verb rows');
   search('gotten');
   await wait(()=>document.querySelector('.sle-reference-table-scroll tbody th')?.textContent==='get',
    'American participle gotten finds get');
@@ -125,10 +137,16 @@ let selection='';
    .every(th=>th.textContent?.toLowerCase().startsWith('w')),'W filter must show W verbs');
   report('PASS_V2_REVIEWED_REFERENCE_191');
  }else if(phase==='catalog'){
-  const first=document.querySelector('.sle-reference-table-scroll .sle-reference-practice button') as HTMLButtonElement|null;
-  assert(first,'available real catalog lesson should show button');
+  assert(document.querySelectorAll('.sle-reference-table-scroll .sle-reference-practice button').length===0,
+   'Irregular verbs must not link to unrelated first Grammar lesson');
+  assert(document.querySelectorAll('.sle-ref-connector-card .sle-reference-practice button').length===0,
+   'Writing connectors must not link to unrelated first Writing lesson');
+  select('Reference type','collocations');
+  await wait(()=>getCount().includes('5 reference entries'),'legacy collocation category');
+  const first=document.querySelector('.sle-reference-card .sle-reference-practice button') as HTMLButtonElement|null;
+  assert(first,'retain legacy skill practice link for pilot collocation cards');
   first!.click();
-  await wait(()=>selection==='GRA-A1-01 grammar','catalog-grounded callback');
+  await wait(()=>selection==='VOC-A2-03 vocabulary','legacy catalog-grounded callback');
   assert(!document.getElementById('app')?.textContent?.includes('CEFR certification awarded'),'no fake badge');
   report('PASS_CATALOG_LINK');
  }else if(phase==='missing'){
