@@ -16,8 +16,8 @@ export const REFERENCE_V2_KINDS=[
  {id:'frequency_expressions',label:'Frequency expressions'},
 ] as const;
 export type ReferenceKind=typeof REFERENCE_KINDS[number]['id']|typeof REFERENCE_V2_KINDS[number]['id'];
-export type ReferenceLevel='A1'|'A2'|'B1'|'B2'|'C1'|'C2';
-export type ReferenceRegister='neutral'|'informal'|'formal'|'neutral to formal';
+export type ReferenceLevel='A1'|'A2'|'B1'|'B2'|'C1'|'C2'|'not_tagged';
+export type ReferenceRegister='neutral'|'informal'|'formal'|'neutral to formal'|'not_tagged';
 export type ReferenceSkill='grammar'|'vocabulary'|'reading'|'writing';
 export type ReferenceEntry={
  id:string;kind:ReferenceKind;level:ReferenceLevel;register:ReferenceRegister;
@@ -26,6 +26,7 @@ export type ReferenceEntry={
  search_keywords?:string[];
  // Reviewed v2 specialist fields; legacy 26 references do not require them.
  pattern_group?:string;common_error?:string;
+ verb_priority?:'core'|'extended';
  function?:string;grammatical_type?:string;construction?:string;
  frequency_type?:'indefinite_frequency'|'definite_frequency';
  qualitative_band?:string;position_rule?:string;
@@ -48,7 +49,7 @@ export function filterReferenceEntries(
   const text=[e.term,e.meaning,e.example,e.note,e.forms?.base,
    e.forms?.past,e.forms?.participle,e.pattern_group,e.common_error,
    e.function,e.grammatical_type,e.construction,e.frequency_type,
-   e.qualitative_band,e.position_rule,...(e.search_keywords??[])].filter(Boolean)
+   e.qualitative_band,e.position_rule,e.verb_priority,...(e.search_keywords??[])].filter(Boolean)
    .join(' ').normalize('NFKC').toLocaleLowerCase('en');
   return words.every(w=>text.includes(w));
  }).sort((a,b)=>{
