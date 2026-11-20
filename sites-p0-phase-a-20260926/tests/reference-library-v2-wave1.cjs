@@ -21,12 +21,12 @@ for(const [kind,n] of Object.entries(byKind))assert.equal(w.entries.filter(e=>e.
 assert.equal(new Set([...old.entries,...w.entries].map(e=>e.id)).size,64);
 assert.equal(new Set([...old.entries,...w.entries].map(e=>e.term.toLowerCase())).size,64);
 for(const e of w.entries){
- assert(/^REF2-(IRR|LNK|FRQ)-\\d{3}$/.test(e.id),'stable new ID '+e.id);
+ assert(/^REF2-(IRR|LNK|FRQ)-\d{3}$/.test(e.id),'stable new ID '+e.id);
  const mark='#### '+e.id+' — '+e.term;
  const start=packet.indexOf(mark),next=packet.indexOf('\n#### REF2-',start+mark.length);
  assert(start>=0,'missing review packet entry '+e.id);
  const section=packet.slice(start,next<0?packet.indexOf('\n## 4.',start):next);
- const f={};for(const m of section.matchAll(/^- \\*\\*([^*]+):\\*\\* (.+)$/gm))f[m[1]]=m[2];
+ const f={};for(const m of section.matchAll(/^- \*\*([^*]+):\*\* (.+)$/gm))f[m[1]]=m[2];
  for(const [key,val] of [['Kind',e.kind],['Suggested level',e.level],
   ['Register',e.register],['Original example',e.example],['Usage guidance',e.note]]){
   assert.equal(f[key],val,e.id+': original review field diverged: '+key);
@@ -67,7 +67,7 @@ assert.deepEqual(find('', 'writing_connectors').length,12);
 assert.deepEqual(find('', 'frequency_expressions').length,11);
 assert.equal(w.entries.filter(e=>e.frequency_type==='indefinite_frequency').length,8);
 assert.equal(w.entries.filter(e=>e.frequency_type==='definite_frequency').length,3);
-assert(!w.entries.some(e=>/\\b(?:\\d+\\s*%|percentage=)\\b/i.test(e.note||'')),'no fictional fixed percentages');
+assert(!w.entries.some(e=>/\d+\s*%|percentage=/i.test(e.note||'')),'no fictional fixed percentages');
 assert(ui.includes('reference-library-v2-wave1-reviewed.json'));
 assert(!ui.includes('reference-library-v2-irregular-candidate.json'),
  'The UNREVIEWED 191 corpus must remain isolated from the LIVE-facing reference UI');
@@ -75,7 +75,7 @@ assert(ui.includes('className="sle-ref-frequency-ladder"'));
 assert(ui.includes('className="sle-ref-connector-group"'));
 assert(css.includes('.sle-reference .sle-reference-scroll-cue'));
 assert(css.includes('.sle-reference .sle-reference-table-scroll thead th'));
-assert(!/\\blocalStorage\\.setItem\\s*\\(|\\bindexedDB\\.open\\s*\\(/.test(ui+domain));
+assert(!/\blocalStorage\.setItem\s*\(|\bindexedDB\.open\s*\(/.test(ui+domain));
 console.log(JSON.stringify({result:'PASS',gate:'reference-library-v2-wave1-reviewed',
  reviewed:38,preservedPilot:26,aggregate:64,irregular:21,connectors:12,
  frequency:11,parity:true,academicSourceVersionReconciliation:'RELEASE_GATE',
