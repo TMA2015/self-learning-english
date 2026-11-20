@@ -58,7 +58,12 @@ export class BrowserLocalLearningRepository implements LearningRepository {
   constructor(
     private readonly storage:BrowserKeyValueStorage,
     private readonly prefix=DEFAULT_PREFIX,
-  ){}
+  ){
+    // Some independent pages/tests instantiate Repository(window.localStorage)
+    // directly; all real browser repositories must share the same codec.
+    if(typeof window!=='undefined'&&storage===window.localStorage)
+      this.storage=englishLosslessStore(window.localStorage);
+  }
 
   async readState(scope:Scope):Promise<LearnerState|null>{
     const key=scopeKey(this.prefix,scope,'state');
@@ -132,7 +137,10 @@ export class BrowserLocalAcademicRepository implements AcademicRepository {
   constructor(
     private readonly storage:BrowserKeyValueStorage,
     private readonly prefix=DEFAULT_PREFIX,
-  ){}
+  ){
+    if(typeof window!=='undefined'&&storage===window.localStorage)
+      this.storage=englishLosslessStore(window.localStorage);
+  }
   private readonly derivedBundles=new Map<string,ReturnType<typeof mapSeed>>();
 
   private packagesKey(){return `${this.prefix}:academic:packages`}
@@ -294,7 +302,10 @@ export class BrowserLocalCourseSelectionRepository{
   constructor(
     private readonly storage:BrowserKeyValueStorage,
     private readonly prefix=DEFAULT_PREFIX,
-  ){}
+  ){
+    if(typeof window!=='undefined'&&storage===window.localStorage)
+      this.storage=englishLosslessStore(window.localStorage);
+  }
 
   private key(ownerId:string){return ownerKey(this.prefix,ownerId,'course-selection')}
 
