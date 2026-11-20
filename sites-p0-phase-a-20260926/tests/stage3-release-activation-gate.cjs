@@ -18,8 +18,10 @@ assert.deepEqual(candidate.lessons.slice(0,released.lessons.length),released.les
  'v1.28.0 must not modify any of the 154 released v1.25 lessons');
 assert.deepEqual(candidate.course.sequence.slice(0,released.course.sequence.length),released.course.sequence,
  'v1.28.0 must preserve the exact released v1.25 course sequence');
-assert.deepEqual(candidate.rubrics,released.rubrics,
- 'v1.28.0 must preserve all released scoring rubrics');
+for(const [id,oldRubric] of Object.entries(released.rubrics))
+ assert.deepEqual(candidate.rubrics[id],oldRubric,'Released rubric modified: '+id);
+assert.deepEqual(Object.keys(candidate.rubrics).filter(id=>!Object.hasOwn(released.rubrics,id)).sort(),
+ ['RUBRIC-WRITING-B2'],'Only reviewed B2 Writing rubric may be newly added');
 const runtime=fs.readFileSync(path.join(root,'infrastructure/browser/local-runtime.ts'),'utf8');
 const upgrade=fs.readFileSync(path.join(root,'tests/browser-curriculum-upgrade.cjs'),'utf8');
 const coreRunner=fs.readFileSync(path.join(root,'scripts/qa-free-first.mjs'),'utf8');
