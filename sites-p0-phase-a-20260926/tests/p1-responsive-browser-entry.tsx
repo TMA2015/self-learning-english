@@ -31,7 +31,7 @@ const cssBox=(e:Element)=>e.getBoundingClientRect();
   await wait(()=>!!document.querySelector('.sle-reference-table-scroll'),'Reference mounted');
   const root=document.querySelector('.sle-reference')!,table=document.querySelector('.sle-reference-table-scroll') as HTMLElement;
   const categories=[...document.querySelectorAll('.sle-reference-category-filter')] as HTMLButtonElement[];
-  check(categories.length===7,'6 categories plus all');
+  check(categories.length===9,'8 categories (six pilot + two reviewed Wave 1) plus all');
   check(Math.ceil(cssBox(root).right)<=width+2,'Reference root extends beyond fixed '+width+'px container');
   check(Math.ceil(cssBox(table).right)<=width+2,'Table scroll region escapes '+width+'px container');
   const tableElement=table.querySelector('table')!;
