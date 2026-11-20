@@ -89,7 +89,7 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
   return <article className="wcv2-card" key={q.id} aria-label={q.id}>
    <h3>{q.id}</h3><p>{q.stem??'Choose the best answer to the fixed question.'}</p>
    <fieldset><legend>{q.id} · Choose the best answer</legend>
-    {q.options.map(o=><label className="field" key={o.id}>
+    {q.options.map(o=><label className="field wcv2-radio-option" key={o.id}>
      <input type="radio" name={q.id} value={o.id} checked={answer===o.id}
       onChange={()=>{setShown(v=>({...v,[q.id]:false}));change({...draft,
        [which]:{...draft[which],[q.id]:o.id}})}}/>
@@ -128,6 +128,7 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
   finally{if(live.current&&token.current===request)setReviewBusy(false)}
  }
  return <section className="panel wcv2" aria-label={'Foundation Writing '+unitId}>
+  <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button></div>
   <div className="page-heading"><div>
    <span className="eyebrow">FOUNDATION WRITING · SELF-PACED · {unitId}</span>
    <h1>{src.title}</h1><p>{src.outcome}</p>
@@ -175,7 +176,7 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
      onValue={value=>fieldEditor(tab,f.key,value)}/>)}
     {tab==='cycleB'&&<fieldset><legend>Your editing or retention decision</legend>
      {(['REVISION_SAVED','NO_CHANGE_JUSTIFIED','KEEP_V1_WITH_REASON'] as const).map(v=>
-      <label className="field" key={v}>
+      <label className="field wcv2-radio-option" key={v}>
        <input type="radio" name={unitId+'-revision'} value={v} checked={draft.revisionDecision===v}
         onChange={()=>change({...draft,revisionDecision:v})}/>
        {v==='REVISION_SAVED'?'I made a meaningful revision':v==='NO_CHANGE_JUSTIFIED'?
