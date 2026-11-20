@@ -3,6 +3,7 @@ import {useRef,useState} from 'react';
 import {browserLearningEnabled} from '../infrastructure/browser/client-services';
 import {exportLocalRecoveryV2,verifyLocalRecoveryV2,previewLocalRecoveryV2,restoreLocalRecoveryV2} from '../infrastructure/browser/local-recovery';
 import {localAcademicRuntime} from '../infrastructure/browser/local-runtime';
+import {estimateEnglishLocalStorage} from '../infrastructure/browser/lossless-browser-storage';
 
 type RetentionPreview=Awaited<ReturnType<Awaited<ReturnType<typeof localAcademicRuntime>>['academic']['previewRetention']>>;
 type RecoveryPreview=Awaited<ReturnType<typeof previewLocalRecoveryV2>>;
@@ -16,6 +17,7 @@ export function LocalBackupPanel(){
  const [busy,setBusy]=useState(false);
  const [status,setStatus]=useState('');
  const [retention,setRetention]=useState<RetentionPreview|null>(null);
+ const [storageUsage,setStorageUsage]=useState<{utf16Bytes:number;keys:number}|null>(null);
  const [recoveryText,setRecoveryText]=useState('');
  const [restorePreview,setRestorePreview]=useState<RecoveryPreview|null>(null);
  const [fullBackupExported,setFullBackupExported]=useState(false);
@@ -61,9 +63,10 @@ export function LocalBackupPanel(){
    const {academic}=await localAcademicRuntime();
    const summary=await academic.previewRetention();
    setRetention(summary);
+   setStorageUsage(estimateEnglishLocalStorage(window.localStorage));
    const saving=Math.max(0,summary.estimatedBeforeBytes-summary.estimatedAfterBytes);
    setStatus(saving<1024
-    ?'Storage analysis complete. No meaningful space reduction is available; cleanup is not recommended. No data changed.'
+    ?'Storage analysis complete. No additional curriculum versions can be removed safely. This does NOT mean Safari has room for new work. No data changed.'
     :'Storage analysis complete. The three safe cleanup steps are below. No data changed.');
   });
  }
@@ -121,9 +124,10 @@ export function LocalBackupPanel(){
    {retention&&<div className="foundation-storage-inspection sle-storage-preview" aria-label="Storage cleanup preview">
     <h3>Kết quả xem trước</h3>
     <p><strong>Curriculum hiện tại:</strong> {retention.activeVersion}. Số phiên bản đang có: {retention.beforeVersions.length}; cần giữ: {retention.retainedVersions.length}. Bài học lịch sử gắn với bài làm: {retention.protectedLessonCount}.</p>
-    <p><strong>Dung lượng curriculum ước tính:</strong> {Math.ceil(retention.estimatedBeforeBytes/1024)} → {Math.ceil(retention.estimatedAfterBytes/1024)} KiB; có thể giảm khoảng {Math.round(potentialSavings/1024)} KiB. Dung lượng thực tế trên Safari có thể khác.</p>
+    <p><strong>Dung lượng curriculum ước tính:</strong> {Math.ceil(retention.estimatedBeforeBytes/1024)} → {Math.ceil(retention.estimatedAfterBytes/1024)} KiB; có thể giảm khoảng {Math.round(potentialSavings/1024)} KiB. Đây là mức giảm nguồn bài học cũ, <strong>không phải dung lượng trống của Safari</strong>.</p>
+    {storageUsage&&<p><strong>Tổng lưu trữ English hiện tại (ước tính UTF-16):</strong> {Math.ceil(storageUsage.utf16Bytes/1024)} KiB qua {storageUsage.keys} khóa. Giới hạn thực tế tùy Safari và thiết bị; dung lượng này không tính các website khác. Khi không thể lưu bài mới, giữ bản sao lưu V2 và không xóa dữ liệu Safari.</p>}
     {!cleanupUseful
-     ?<p className="sle-storage-no-savings" role="note"><strong>Chưa cần dọn:</strong> Không có dung lượng đáng kể để giảm. Những phiên bản/bài học cũ vẫn cần để mở các bài đã làm. Không cần tải tệp hoặc xác nhận dọn; xem trước không thay đổi dữ liệu.</p>
+     ?<p className="sle-storage-no-savings" role="note"><strong>Không thể giảm thêm học liệu theo cách này:</strong> Những phiên bản/bài học cũ vẫn cần để mở các bài đã làm. <strong>Không có nghĩa thiết bị còn đủ chỗ để lưu bài mới.</strong> Việc nén không mất dữ liệu sẽ được áp dụng khi hệ thống ghi/khôi phục nội dung; giữ bản sao lưu V2 bên ngoài Safari.</p>
      :<div className="sle-cleanup-steps" aria-label="Three safe cleanup steps">
        <h3>Thực hiện theo thứ tự 3 bước</h3>
        <div className="sle-cleanup-step">
