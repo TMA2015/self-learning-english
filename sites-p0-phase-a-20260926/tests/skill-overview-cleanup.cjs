@@ -70,10 +70,10 @@ assert(anyTopic.includes('reviewMode="any-topic"')&&anyTopic.includes('kind="dra
 assert(anyTopic.includes('localStorage.setItem(DRAFT_KEY'),
  'Independent Writing must preserve browser-saved draft');
 
-const active=require('../content/curriculum-1.25.0-candidate.json');
+const active=require('../content/curriculum-1.28.0-candidate.json');
 const counts=new Map();
 for(const lesson of active.lessons)counts.set(lesson.module,(counts.get(lesson.module)||0)+1);
-assert.equal(active.lessons.length,154);
+assert.equal(active.lessons.length,176);
 assert.equal(counts.size,7);
 for(const skill of ['grammar','reading','writing','listening','speaking','vocabulary','pronunciation'])
  assert(counts.get(skill)>0,'Active curriculum missing '+skill);
