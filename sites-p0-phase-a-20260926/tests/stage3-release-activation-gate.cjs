@@ -6,7 +6,22 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const root=path.resolve(__dirname,'..');
-const candidate=require('../content/curriculum-1.25.0-candidate.json');
+const candidate=require('../content/curriculum-1.28.0-candidate.json');
+const released=require('../content/curriculum-1.25.0-candidate.json');
+assert.equal(released.schema_version,'1.25.0');
+assert.equal(released.lessons.length,154);
+assert.equal(released.lessons.reduce((n,l)=>n+l.activities.length,0),1125);
+assert.equal(candidate.schema_version,'1.28.0');
+assert.equal(candidate.lessons.length,176);
+assert.equal(candidate.lessons.reduce((n,l)=>n+l.activities.length,0),1224);
+assert.deepEqual(candidate.lessons.slice(0,released.lessons.length),released.lessons,
+ 'v1.28.0 must not modify any of the 154 released v1.25 lessons');
+assert.deepEqual(candidate.course.sequence.slice(0,released.course.sequence.length),released.course.sequence,
+ 'v1.28.0 must preserve the exact released v1.25 course sequence');
+for(const [id,oldRubric] of Object.entries(released.rubrics))
+ assert.deepEqual(candidate.rubrics[id],oldRubric,'Released rubric modified: '+id);
+assert.deepEqual(Object.keys(candidate.rubrics).filter(id=>!Object.hasOwn(released.rubrics,id)).sort(),
+ ['RUBRIC-WRITING-B2'],'Only reviewed B2 Writing rubric may be newly added');
 const runtime=fs.readFileSync(path.join(root,'infrastructure/browser/local-runtime.ts'),'utf8');
 const upgrade=fs.readFileSync(path.join(root,'tests/browser-curriculum-upgrade.cjs'),'utf8');
 const coreRunner=fs.readFileSync(path.join(root,'scripts/qa-free-first.mjs'),'utf8');
