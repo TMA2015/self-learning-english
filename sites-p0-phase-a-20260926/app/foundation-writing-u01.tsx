@@ -90,9 +90,10 @@ export function FoundationWritingU01({work=emptyU01Work(),onEdit,onSave,onExit,s
   finally{if(ticket===generation.current&&mounted.current)setPending(false)}
  }
  return <section className="panel wcv2" aria-label="Foundation Writing Unit 01">
+  <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button></div>
   <div className="page-heading"><div><span className="eyebrow">FOUNDATION WRITING · SELF-PACED · FW-U01</span>
    <h1>{unit.title}</h1><p>{unit.outcome}</p>
-   <p className="muted">Academically reviewed · {unit.estimatedMinutes}. Free writing is never graded by word count or keywords.</p>
+   <p className="muted">{unit.estimatedMinutes} · Learn and practice at your own pace. Your original writing can receive optional feedback after saving.</p>
   </div></div>
   <div className="learning-choices" role="group" aria-label="Sections of Unit 01">
    {tabs.map(t=><button type="button" key={t.key} aria-pressed={t.key===step}
@@ -100,7 +101,6 @@ export function FoundationWritingU01({work=emptyU01Work(),onEdit,onSave,onExit,s
   </div>
   <p className="muted" role="status">{saved?'Saved version '+saved.version+'. Edit or change answers, then save again for AI Tutor.':
     'Your work is an editable draft. Save a version to enable optional AI Tutor review.'}
-   {' '}Practice evidence weight 0; no CEFR grade.
   </p>
 
   {step==='learn'&&<section aria-label="Read-only lessons">
@@ -156,7 +156,7 @@ export function FoundationWritingU01({work=emptyU01Work(),onEdit,onSave,onExit,s
   {step==='cycleB'&&<section aria-label="Practice B">
    <h2>Practice B · {unit.cycleB.id}</h2><blockquote>{unit.cycleB.prompt}</blockquote>
    <fieldset><legend>{unit.cycleB.question}</legend>
-    {unit.cycleB.options.map(o=><label className="field" key={o.id}>
+    {unit.cycleB.options.map(o=><label className="field wcv2-radio-option" key={o.id}>
      <input type="radio" name="u01-best-opening" value={o.id} checked={draft.cycleBChoice===o.id}
       onChange={()=>edit({...draft,cycleBChoice:o.id,revealCycleB:false})}/>
      <strong>{o.id}.</strong> {o.text}
@@ -195,7 +195,7 @@ export function FoundationWritingU01({work=emptyU01Work(),onEdit,onSave,onExit,s
     return <article className="wcv2-card" key={item.id}><h3>{item.id} · {item.title}</h3>
      <blockquote>{item.prompt}</blockquote>
      <fieldset><legend>{item.question}</legend>
-      {item.options.map(o=><label className="field" key={o.id}>
+      {item.options.map(o=><label className="field wcv2-radio-option" key={o.id}>
        <input type="radio" name={item.id} value={o.id} checked={chosen===o.id}
         onChange={()=>edit({...draft,supplementalAnswers:{...draft.supplementalAnswers,[item.id]:o.id},
          revealSupplemental:{...draft.revealSupplemental,[item.id]:false}})}/>

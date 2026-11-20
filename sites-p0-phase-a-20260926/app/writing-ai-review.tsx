@@ -90,9 +90,10 @@ export function WritingAIReview({reviewId,task,fields,kind,enabled,sourceSample=
         {visibleFeedback.criteria.map((item,index)=><div className="criterion-feedback" key={item.criterion}>
           <h4>{CEFR_WRITING_CRITERIA[index]?.name??item.criterion} — {item.score}/5</h4>
           <p>{item.observation}</p>
-          <p><strong>Evidence: </strong>{item.evidence?<>“{item.evidence}”</>:'No exact quotation available from this draft.'}</p>
+          {item.evidence&&<p><strong>From your writing: </strong>“{item.evidence}”</p>}
           <p><strong>Next step: </strong>{item.nextStep}</p>
         </div>)}
+        {visibleFeedback.criteria.some(item=>!item.evidence)&&<p className="muted">Only excerpts verified against your original text are shown. Please check any observation without a quotation against your writing.</p>}
       </section>}
      {visibleFeedback.strengths.length>0&&<><strong>What worked well</strong><ul>{visibleFeedback.strengths.map((s,i)=><li key={i}>{(kind==='revision'||reviewMode==='any-topic')?<Inline text={s}/>:s}</li>)}</ul></>}
      {visibleFeedback.improvements.length>0&&<><strong>What to improve</strong><ul>{visibleFeedback.improvements.map((s,i)=><li key={i}>{(kind==='revision'||reviewMode==='any-topic')?<Inline text={s}/>:s}</li>)}</ul></>}

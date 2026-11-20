@@ -126,7 +126,7 @@ function U04Panel({step,d,edit,count,reveal}:{
   {x.cycleA.choices.map(q=><div className="wcv2-card" key={q.id}>
    <strong>{q.id}</strong><p>{q.stem}</p>
    <fieldset><legend>Choose the best connector</legend>
-    {q.options.map(opt=><label className="field" key={opt.id}>
+    {q.options.map(opt=><label className="field wcv2-radio-option" key={opt.id}>
      <input type="radio" name={q.id} value={opt.id}
       checked={d.comboAnswers[q.id]===opt.id}
       onChange={()=>edit({...d,comboAnswers:{...d.comboAnswers,[q.id]:opt.id},comboReveal:false})}/>
@@ -374,9 +374,10 @@ export function FoundationWritingWave2({unitId,work,onEdit,onSave,onExit,showVi=
   finally{if(mounted.current&&ticket.current===current)setPending(false)}
  }
  return <section className="panel wcv2" aria-label={'Foundation Writing '+unitId}>
+  <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button></div>
   <div className="page-heading"><div><span className="eyebrow">FOUNDATION WRITING · SELF-PACED · {unitId}</span>
    <h1>{source.title}</h1><p>{source.outcome}</p>
-   <p className="muted">Academically reviewed · {source.minutes}. Free writing and reasoning are not automatically graded.</p>
+   <p className="muted">{source.minutes} · Learn at your own pace. Your own writing is not automatically graded.</p>
   </div></div>
   <div className="learning-choices" role="group" aria-label={unitId+' sections'}>
    {tabs.map(tab=><button type="button" key={tab.key} aria-pressed={step===tab.key}
@@ -385,8 +386,7 @@ export function FoundationWritingWave2({unitId,work,onEdit,onSave,onExit,showVi=
   </div>
   <p className="muted" role="status">
    {saved?'Saved version '+saved.version+'. Edits need a fresh save for AI review.':
-    'Your edited draft is not the last saved version. Save before requesting optional AI review.'}
-   {' '}Practice evidence weight 0; proficiency weight 0.</p>
+    'Your edited draft is not the last saved version. Save before requesting optional AI review.'}</p>
   {unitId==='FW-U04'&&<U04Panel step={step} d={work.draft as U04Draft} edit={edit} count={count} reveal={setCount}/>}
   {unitId==='FW-U05'&&<U05Panel step={step} d={work.draft as U05Draft} edit={edit} count={count} reveal={setCount}/>}
   {unitId==='FW-U06'&&<U06Panel step={step} d={work.draft as U06Draft} edit={edit} count={count} reveal={setCount}/>}
@@ -400,7 +400,7 @@ export function FoundationWritingWave2({unitId,work,onEdit,onSave,onExit,showVi=
     return <article className="wcv2-card" key={item.id}>
      <h3>{item.id} · {item.title}</h3><blockquote>{item.prompt}</blockquote>
      <fieldset><legend>{item.question}</legend>
-      {item.options.map(option=><label className="field" key={option.id}>
+      {item.options.map(option=><label className="field wcv2-radio-option" key={option.id}>
        <input type="radio" name={item.id} value={option.id} checked={chosen===option.id}
         onChange={()=>edit({...work.draft,supplementalAnswers:{...work.draft.supplementalAnswers,[item.id]:option.id},
          supplementalReveal:{...work.draft.supplementalReveal,[item.id]:false}})}/>

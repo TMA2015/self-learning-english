@@ -29,6 +29,26 @@ const record=(v:unknown):Record<string,unknown>|null=>
 const strings=(v:unknown,limit:number):string[]|null=>
  Array.isArray(v)&&v.length<=limit&&v.every(x=>typeof x==='string')?v.map(x=>(x as string).slice(0,700)):null;
 
+/** Verify an excerpt against the original draft without paraphrasing it.
+ * Permit only trim/whitespace variation; return bytes sliced from the original.
+ * Do not attempt semantic similarity, fuzzy matches or fabricated substitutions. */
+export function verifiedWritingExcerpt(draft:string,excerpt:unknown):string{
+ if(typeof excerpt!=='string'||!excerpt.trim()||excerpt.length>800)return '';
+ if(draft.includes(excerpt))return excerpt;
+ const trimmed=excerpt.trim();
+ if(draft.includes(trimmed))return trimmed;
+ // Gemini sometimes collapses line breaks or multiple spaces in exact quotations.
+ // Matching these whitespace differences still returns an actual draft substring.
+ const parts=trimmed.split(/\s+/u);
+ if(parts.length<3)return '';
+ const special='\\^$.*+?()[]{}|';
+ const escaped=parts.map(part=>Array.from(part,ch=>special.includes(ch)?'\\'+ch:ch).join(''));
+ try{
+  const match=new RegExp(escaped.join('\\s+'),'u').exec(draft);
+  return match?.[0]??'';
+ }catch{return ''}
+}
+
 /** Provider-only normalization: never manufacture missing marks or invented quotes. */
 export function validateWritingStudioScore(raw:unknown,draft:string):WritingStudioScoreResult|null{
  const r=record(raw);
@@ -50,7 +70,7 @@ export function validateWritingStudioScore(raw:unknown,draft:string):WritingStud
      typeof row.nextStep!=='string'||!row.nextStep.trim())return null;
    // The full response remains usable if Gemini's citation is not verbatim.
    // Omit the ungrounded quote rather than showing it as evidence.
-   const quote=typeof row.evidence==='string'&&draft.includes(row.evidence)&&row.evidence.trim()?row.evidence:'';
+   const quote=verifiedWritingExcerpt(draft,row.evidence);
    rows.set(id,{criterion:id,score:Number(row.score),observation:row.observation.trim().slice(0,1400),
      evidence:quote,nextStep:row.nextStep.trim().slice(0,700)});
  }
