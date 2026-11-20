@@ -22,6 +22,11 @@ jobs:
     if: ${{ github.repository == 'TMA2015/self-learning-english' && github.ref == 'refs/heads/qa/sle-ipad-preview-20261120' }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      # Match the exact static Firebase Hosting build profile in qa-release.mjs.
+      STATIC_EXPORT: '1'
+      NEXT_PUBLIC_LEARNING_RUNTIME: browser
+      NEXT_PUBLIC_BASE_PATH: ''
     defaults:
       run:
         working-directory: sites-p0-phase-a-20260926
