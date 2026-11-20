@@ -43,8 +43,8 @@ let selection='';
   <ReferenceLibrary catalog={catalog} onCatalog={()=>fail('Unnecessary catalog fetch')}
    onOpenLesson={(id,skill)=>{selection=id+' '+skill;report('PASS_LINK '+selection)}}/>
  );
- await wait(()=>getCount().includes('64 reference entries'),'26 pilot + 38 reviewed items');
- assert(document.querySelectorAll('.sle-reference-table-scroll tbody tr').length===21,'six pilot + fifteen reviewed verb rows');
+ await wait(()=>getCount().includes('234 reference entries'),'26 pilot + 23 reviewed phrases + 185 reviewed corpus verbs');
+ assert(document.querySelectorAll('.sle-reference-table-scroll tbody tr').length===25,'191 reviewed verbs paginated 25 per page');
  assert(document.querySelectorAll('.sle-reference-card').length===20,'20 phrase/strategy cards');
  assert(!!document.querySelector('input[type="search"]'),'search is native search input');
  assert(document.querySelectorAll('.sle-reference-category-filter').length===9,
@@ -70,7 +70,7 @@ let selection='';
   await wait(()=>document.getElementById('app')?.textContent?.includes('No matching entries')??false,'honest empty state');
   const clear=[...document.querySelectorAll('button')].find(x=>x.textContent?.includes('Clear filters'));
   clear?.click();
-  await wait(()=>getCount().includes('64 reference entries'),'clear filters');
+  await wait(()=>getCount().includes('234 reference entries'),'clear filters');
   report('PASS_SEARCH_FILTERS');
  }else if(phase==='v2'){
   select('Reference type','writing_connectors');
@@ -102,7 +102,28 @@ let selection='';
   search('did');select('Reference type','irregular_verbs');
   await wait(()=>document.querySelector('.sle-reference-table-scroll tbody th')?.textContent==='do',
    'search by historical V2 form did');
-  report('PASS_V2_REVIEWED_REFERENCE');
+  search('gotten');
+  await wait(()=>document.querySelector('.sle-reference-table-scroll tbody th')?.textContent==='get',
+   'American participle gotten finds get');
+  search('learnt');
+  await wait(()=>document.querySelector('.sle-reference-table-scroll tbody th')?.textContent==='learn',
+   'British variant learnt finds learn');
+  search('');
+  await wait(()=>document.querySelectorAll('.sle-reference-table-scroll tbody tr').length===25,
+   'reset to first page of 191 verbs');
+  const pag=document.querySelector('[aria-label="Irregular verb pages"]') as HTMLElement|null;
+  assert(!!pag,'191 verbs require page navigation');
+  const next=[...pag!.querySelectorAll('button')].find(b=>b.textContent?.includes('Next'));
+  assert(!!next,'Next page button must exist');
+  next!.click();
+  await wait(()=>pag!.textContent?.includes('Page 2 / 8')??false,'25-row paging moves to page 2');
+  const w=[...document.querySelectorAll('[aria-label="Filter irregular verbs by initial letter"] button')]
+   .find(b=>b.textContent==='W') as HTMLButtonElement|undefined;
+  assert(!!w,'A–Z letter W available');w!.click();
+  await wait(()=>w!.getAttribute('aria-pressed')==='true','A–Z letter selection');
+  assert([...document.querySelectorAll('.sle-reference-table-scroll tbody th')]
+   .every(th=>th.textContent?.toLowerCase().startsWith('w')),'W filter must show W verbs');
+  report('PASS_V2_REVIEWED_REFERENCE_191');
  }else if(phase==='catalog'){
   const first=document.querySelector('.sle-reference-table-scroll .sle-reference-practice button') as HTMLButtonElement|null;
   assert(first,'available real catalog lesson should show button');
