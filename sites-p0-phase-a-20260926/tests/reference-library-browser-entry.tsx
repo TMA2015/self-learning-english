@@ -90,8 +90,12 @@ let selection='';
   assert(document.querySelectorAll('.sle-ref-frequency-item').length===8,'qualitative ladder eight');
   assert(document.querySelectorAll('.sle-ref-counted-frequency .sle-ref-connector-card').length===3,
    'three counted/interval expressions separate from ladder');
-  assert(!(document.querySelector('[aria-label="Frequency expressions"]')?.textContent||'').includes('%'),
-   'No fabricated percentage scale');
+  const freqRegion=document.querySelector('[aria-label="Frequency expressions"]');
+  assert(!!freqRegion,'frequency section rendered');
+  assert(freqRegion!.querySelectorAll('progress,meter,[data-fixed-percentage]').length===0,
+   'No invented numerical percentage chart');
+  assert(freqRegion!.textContent?.includes('not fixed numerical percentages'),
+   'Teach why an indefinite adverb cannot be assigned fixed percentages');
   search('usually');
   await wait(()=>document.querySelector('.sle-ref-frequency-item strong')?.textContent==='usually',
    'search adverb + position guidance');
