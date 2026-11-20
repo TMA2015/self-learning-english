@@ -110,7 +110,7 @@ export function FoundationWritingWave3({unitId,work,onEdit,onSave,onExit,showVi=
   return <article className="wcv2-card" key={q.id}>
    <h3>{q.id}</h3><blockquote>{q.prompt}</blockquote><fieldset>
     <legend>{q.question}</legend>
-    {q.options.map(o=><label className="field" key={o.id}>
+    {q.options.map(o=><label className="field wcv2-radio-option" key={o.id}>
      <input type="radio" name={q.id} value={o.id} checked={answers[q.id]===o.id}
       onChange={()=>extra?
        edit({...d,extrasAnswers:{...d.extrasAnswers,[q.id]:o.id},
@@ -127,10 +127,11 @@ export function FoundationWritingWave3({unitId,work,onEdit,onSave,onExit,showVi=
   </article>;
  };
  return <section className="panel wcv2" aria-label={'Foundation Writing '+unitId}>
+  <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button></div>
   <div className="page-heading"><div>
    <span className="eyebrow">FOUNDATION WRITING · SELF-PACED · {unitId}</span>
    <h1>{src.title}</h1><p>{src.outcome}</p>
-   <p className="muted">Independently reviewed academic source · {src.minutes} min flexible. No automated CEFR score.</p>
+   <p className="muted">{src.minutes} · Learn at your own pace. Your independent writing remains yours.</p>
   </div></div>
   <div className="learning-choices" role="group" aria-label={unitId+' study sections'}>
    {tabs.map(t=><button type="button" key={t.id} aria-pressed={screen===t.id}
@@ -140,7 +141,6 @@ export function FoundationWritingWave3({unitId,work,onEdit,onSave,onExit,showVi=
   <p role="status" className="muted">
    {saved?'Saved version '+saved.version+'; any new edit requires saving again.':
     'Current work is not exactly saved. AI will not review it until you successfully save.'}
-   {' '}Evidence weight 0 · proficiency weight 0.
   </p>
 
   {screen==='learn'&&<section aria-label={unitId+' teacher demonstrations'}>
