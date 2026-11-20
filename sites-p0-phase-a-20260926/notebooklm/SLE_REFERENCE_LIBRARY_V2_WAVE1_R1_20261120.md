@@ -1,5 +1,7 @@
 # SLE English Reference Library v2 — Wave 1: architecture and 38-item academic review packet
 
+> **SCOPE UPDATE — 2026-11-20:** The 15 irregular-verb entries in Section 3A have been superseded for academic review by the complete **191-lemma** corpus in `notebooklm/SLE_REFERENCE_LIBRARY_V2_IRREGULAR_FULL_R1_20261120.md` (six existing reviewed pilot items + 185 draft items). **Do not submit both packets to NotebookLM concurrently.** This Wave 1 document remains archived as the draft source for 12 Writing connectors and 11 Frequency entries; those topics will be reviewed in a separate active batch after the irregular corpus. Neither packet is authorized for production.
+
 **Packet ID:** `SLE-REFERENCE-V2-W1-R1-20261120`  
 **Review status:** DRAFT — independently NOT REVIEWED; **not approved for import or release**  
 **Product:** Self-Learning English (SLE) GitHub/Firebase web app; **not** the separate in-chat English Tutor  
