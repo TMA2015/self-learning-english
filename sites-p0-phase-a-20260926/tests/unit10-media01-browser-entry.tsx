@@ -90,6 +90,7 @@ async function run(){
  assert(src.lessons.length===132,'Wrong 1.21.0 lesson count');
  assert(validateSeed(src).length===0,'Reviewed candidate invalid');
  const academic=new BrowserLocalAcademicRepository(localStorage);
+ const oldPackageDigest=await sourceDigest(src);
  await academic.addPackage({id:src.package_id,version:src.schema_version,
   digest:await sourceDigest(src),source:src,bundle:mapSeed(src),at:Date.now()});
  // A baseline OLD lesson attempt remains in the isolated profile through
@@ -107,6 +108,11 @@ async function run(){
  await wait(()=>lessonButton(ids[0]),'real listening catalog for candidate');
  const runtime=await localAcademicRuntime();
  assert((await runtime.service.catalog()).version==='1.28.0','Staged browser AcademicService must serve v1.28.0 while preserving the reviewed Unit10 lessons and immutable v1.21 attempt');
+ // A staged activation may change the active catalog, but must keep the
+ // original immutable v1.21 source for the historical attempt above.
+ const retained=await academic.packages();
+ assert(retained.some(p=>p.version===src.schema_version&&p.digest===oldPackageDigest),
+  'Staged v1.28 activation lost the original Unit10 historical source');
  const summary:{id:string,played:boolean,answered:boolean,submitted:boolean,retake:boolean}[]=[];
  for(const id of ids){
   await openLesson(id);
