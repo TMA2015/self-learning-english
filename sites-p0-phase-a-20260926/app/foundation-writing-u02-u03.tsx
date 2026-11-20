@@ -315,9 +315,10 @@ export function FoundationWritingNextUnit({unitId,work,onEdit,onSave,onExit,show
   finally{if(mounted.current&&currentTicket===ticket.current)setPending(false)}
  }
  return <section className="panel wcv2" aria-label={'Foundation Writing '+unitId}>
+  <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button></div>
   <div className="page-heading"><div><span className="eyebrow">FOUNDATION WRITING · SELF-PACED · {unitId}</span>
    <h1>{source.title}</h1><p>{source.outcome}</p>
-   <p className="muted">Independent academic PASS · {source.estimatedMinutes}; free writing is not automatically graded for meaning or CEFR.</p>
+   <p className="muted">{source.estimatedMinutes} · Learn at your own pace. Save your writing before requesting optional AI feedback.</p>
   </div></div>
   <div className="learning-choices" role="group" aria-label={unitId+' sections'}>
    {tabs.map(t=><button type="button" key={t.key} aria-pressed={t.key===step}
@@ -326,7 +327,6 @@ export function FoundationWritingNextUnit({unitId,work,onEdit,onSave,onExit,show
   </div>
   <p role="status" className="muted">{saved?'Version '+saved.version+' saved. Edits require a fresh save before AI review.':
    'Editing an unsaved draft. Save a version for optional personal AI Tutor review.'}
-   {' '}Evidence weight 0, proficiency weight 0.
   </p>
   {unitId==='FW-U02'&&<U02Pane step={step} d={work.draft as U02Draft} edit={edit}
    demoCount={demoCount} setDemoCount={setDemoCount}/>}
@@ -342,7 +342,7 @@ export function FoundationWritingNextUnit({unitId,work,onEdit,onSave,onExit,show
     return <article className="wcv2-card" key={item.id}>
      <h3>{item.id} · {item.title}</h3><blockquote>{item.prompt}</blockquote>
      <fieldset><legend>{item.question}</legend>
-      {item.options.map(o=><label className="field" key={o.id}>
+      {item.options.map(o=><label className="field wcv2-radio-option" key={o.id}>
        <input type="radio" name={item.id} value={o.id} checked={picked===o.id}
         onChange={()=>edit({...work.draft,supplementalAnswers:{...work.draft.supplementalAnswers,[item.id]:o.id},
          revealSupplemental:{...work.draft.revealSupplemental,[item.id]:false}})}/>
