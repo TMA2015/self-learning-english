@@ -140,7 +140,7 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
     className={tab===t.id?'primary-button':'secondary-button'} onClick={()=>navigate(t.id)}>{t.label}</button>)}
   </div>
   <p role="status" className="muted">{exact?'Saved version '+latest.version+'.':
-   'This draft is not yet saved exactly.'} Evidence weight 0 · proficiency weight 0.</p>
+   'This draft is not yet saved exactly.'}</p>
   {originalDraftV1&&<details className="wcv2-card">
    <summary>Your original Unit 09 Draft V1 · read-only</summary>
    <blockquote>{originalDraftV1}</blockquote>
