@@ -1,0 +1,3441 @@
+{
+  "dataset_id": "SLE-REFERENCE-LIBRARY-IRREGULAR-CORPUS-R1-20261120",
+  "status": "NOTEBOOKLM_PASS_185_OF_185_DRAFT_NOT_LIVE",
+  "generated_from": "original authoring and independent forms cross-check; user chart used as coverage checklist only",
+  "reference_sources": [
+    "https://dictionary.cambridge.org/grammar/british-grammar/verbs-irregular-verbs",
+    "https://learnenglish.britishcouncil.org/free-resources/grammar/english-grammar-reference/irregular-verbs",
+    "https://owl.purdue.edu/owl/general_writing/grammar/irregular_verbs/index.html"
+  ],
+  "pilot_immutable_refs": [
+    {
+      "base": "go",
+      "id": "REF-IRR-01",
+      "review": "EXISTING_PILOT_REVIEWED_DO_NOT_COPY"
+    },
+    {
+      "base": "see",
+      "id": "REF-IRR-02",
+      "review": "EXISTING_PILOT_REVIEWED_DO_NOT_COPY"
+    },
+    {
+      "base": "buy",
+      "id": "REF-IRR-03",
+      "review": "EXISTING_PILOT_REVIEWED_DO_NOT_COPY"
+    },
+    {
+      "base": "write",
+      "id": "REF-IRR-04",
+      "review": "EXISTING_PILOT_REVIEWED_DO_NOT_COPY"
+    },
+    {
+      "base": "choose",
+      "id": "REF-IRR-05",
+      "review": "EXISTING_PILOT_REVIEWED_DO_NOT_COPY"
+    },
+    {
+      "base": "grow",
+      "id": "REF-IRR-06",
+      "review": "EXISTING_PILOT_REVIEWED_DO_NOT_COPY"
+    }
+  ],
+  "new_entries": [
+    {
+      "id": "REF2-IRR-016",
+      "kind": "irregular_verbs",
+      "base": "abide",
+      "past": "abided / abode",
+      "participle": "abided / abode",
+      "meaning": "continue or tolerate",
+      "example": "They abided by the agreement.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "abide",
+        "abided",
+        "abode",
+        "abided",
+        "abode"
+      ]
+    },
+    {
+      "id": "REF2-IRR-017",
+      "kind": "irregular_verbs",
+      "base": "arise",
+      "past": "arose",
+      "participle": "arisen",
+      "meaning": "appear or begin",
+      "example": "A new problem arose during the meeting.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "arise",
+        "arose",
+        "arisen"
+      ]
+    },
+    {
+      "id": "REF2-IRR-018",
+      "kind": "irregular_verbs",
+      "base": "awake",
+      "past": "awoke",
+      "participle": "awoken",
+      "meaning": "wake from sleep",
+      "example": "She awoke when the alarm rang.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "awake",
+        "awoke",
+        "awoken"
+      ]
+    },
+    {
+      "id": "REF2-IRR-001",
+      "kind": "irregular_verbs",
+      "base": "be",
+      "past": "was / were",
+      "participle": "been",
+      "meaning": "exist or have a state",
+      "example": "The classroom was quiet this morning.",
+      "usage_note": "Present: am/is/are; past was/were depends on subject. Hypothetical were is separate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "be",
+        "was",
+        "were",
+        "been"
+      ]
+    },
+    {
+      "id": "REF2-IRR-019",
+      "kind": "irregular_verbs",
+      "base": "bear",
+      "past": "bore",
+      "participle": "borne",
+      "meaning": "carry or endure",
+      "example": "The bridge has borne heavy traffic for years.",
+      "usage_note": "Born is the customary birth-related participle; borne is used for carrying or enduring.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "bear",
+        "bore",
+        "borne"
+      ]
+    },
+    {
+      "id": "REF2-IRR-020",
+      "kind": "irregular_verbs",
+      "base": "beat",
+      "past": "beat",
+      "participle": "beaten",
+      "meaning": "defeat or strike repeatedly",
+      "example": "Our team beat the champions yesterday.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "beat",
+        "beat",
+        "beaten"
+      ]
+    },
+    {
+      "id": "REF2-IRR-021",
+      "kind": "irregular_verbs",
+      "base": "become",
+      "past": "became",
+      "participle": "become",
+      "meaning": "change into a new state",
+      "example": "The sky became dark before the storm.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "become",
+        "became",
+        "become"
+      ]
+    },
+    {
+      "id": "REF2-IRR-022",
+      "kind": "irregular_verbs",
+      "base": "befall",
+      "past": "befell",
+      "participle": "befallen",
+      "meaning": "happen to someone",
+      "example": "A strange accident befell the traveller.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "befall",
+        "befell",
+        "befallen"
+      ]
+    },
+    {
+      "id": "REF2-IRR-023",
+      "kind": "irregular_verbs",
+      "base": "begin",
+      "past": "began",
+      "participle": "begun",
+      "meaning": "start",
+      "example": "The science lesson began at nine.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "begin",
+        "began",
+        "begun"
+      ]
+    },
+    {
+      "id": "REF2-IRR-024",
+      "kind": "irregular_verbs",
+      "base": "behold",
+      "past": "beheld",
+      "participle": "beheld",
+      "meaning": "see or observe",
+      "example": "The visitors beheld a remarkable view.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "behold",
+        "beheld",
+        "beheld"
+      ]
+    },
+    {
+      "id": "REF2-IRR-025",
+      "kind": "irregular_verbs",
+      "base": "bend",
+      "past": "bent",
+      "participle": "bent",
+      "meaning": "curve or fold",
+      "example": "He bent the wire into a circle.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "bend",
+        "bent",
+        "bent"
+      ]
+    },
+    {
+      "id": "REF2-IRR-026",
+      "kind": "irregular_verbs",
+      "base": "bet",
+      "past": "bet",
+      "participle": "bet",
+      "meaning": "risk money on an outcome",
+      "example": "She bet that the blue team would win.",
+      "usage_note": "Betted also occurs in some varieties; default classroom form is bet-bet-bet.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "bet",
+        "bet",
+        "bet"
+      ]
+    },
+    {
+      "id": "REF2-IRR-027",
+      "kind": "irregular_verbs",
+      "base": "bid",
+      "past": "bid",
+      "participle": "bid",
+      "meaning": "offer a price",
+      "example": "They bid for the painting online.",
+      "usage_note": "This row means offer a price (bid-bid-bid). Bid meaning command can have older bade/bidden forms.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "bid",
+        "bid",
+        "bid"
+      ]
+    },
+    {
+      "id": "REF2-IRR-028",
+      "kind": "irregular_verbs",
+      "base": "bind",
+      "past": "bound",
+      "participle": "bound",
+      "meaning": "tie or fasten",
+      "example": "The students bound the pages together.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "bind",
+        "bound",
+        "bound"
+      ]
+    },
+    {
+      "id": "REF2-IRR-029",
+      "kind": "irregular_verbs",
+      "base": "bite",
+      "past": "bit",
+      "participle": "bitten",
+      "meaning": "cut with teeth",
+      "example": "The puppy bit the rubber toy.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "bite",
+        "bit",
+        "bitten"
+      ]
+    },
+    {
+      "id": "REF2-IRR-030",
+      "kind": "irregular_verbs",
+      "base": "bleed",
+      "past": "bled",
+      "participle": "bled",
+      "meaning": "lose blood",
+      "example": "His finger bled after a small cut.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "bleed",
+        "bled",
+        "bled"
+      ]
+    },
+    {
+      "id": "REF2-IRR-031",
+      "kind": "irregular_verbs",
+      "base": "blow",
+      "past": "blew",
+      "participle": "blown",
+      "meaning": "move air",
+      "example": "The wind blew the leaves across the path.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "blow",
+        "blew",
+        "blown"
+      ]
+    },
+    {
+      "id": "REF2-IRR-032",
+      "kind": "irregular_verbs",
+      "base": "break",
+      "past": "broke",
+      "participle": "broken",
+      "meaning": "damage into pieces",
+      "example": "She broke the cup by accident.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "break",
+        "broke",
+        "broken"
+      ]
+    },
+    {
+      "id": "REF2-IRR-033",
+      "kind": "irregular_verbs",
+      "base": "breed",
+      "past": "bred",
+      "participle": "bred",
+      "meaning": "produce offspring",
+      "example": "The farm bred horses for many years.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "breed",
+        "bred",
+        "bred"
+      ]
+    },
+    {
+      "id": "REF2-IRR-034",
+      "kind": "irregular_verbs",
+      "base": "bring",
+      "past": "brought",
+      "participle": "brought",
+      "meaning": "carry toward someone",
+      "example": "He brought his notebook to class.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "bring",
+        "brought",
+        "brought"
+      ]
+    },
+    {
+      "id": "REF2-IRR-035",
+      "kind": "irregular_verbs",
+      "base": "broadcast",
+      "past": "broadcast",
+      "participle": "broadcast",
+      "meaning": "transmit on radio or television",
+      "example": "The station broadcast the concert live.",
+      "usage_note": "Broadcast-broadcast-broadcast is common; broadcasted also occurs.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "broadcast",
+        "broadcast",
+        "broadcast"
+      ]
+    },
+    {
+      "id": "REF2-IRR-036",
+      "kind": "irregular_verbs",
+      "base": "build",
+      "past": "built",
+      "participle": "built",
+      "meaning": "construct",
+      "example": "They built a small wooden bridge.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "build",
+        "built",
+        "built"
+      ]
+    },
+    {
+      "id": "REF2-IRR-037",
+      "kind": "irregular_verbs",
+      "base": "burn",
+      "past": "burned / burnt",
+      "participle": "burned / burnt",
+      "meaning": "be damaged by fire or heat",
+      "example": "The candle burned for an hour.",
+      "usage_note": "Burned and burnt are standard alternatives; preferences differ by dialect and context.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "burn",
+        "burned",
+        "burnt",
+        "burned",
+        "burnt"
+      ]
+    },
+    {
+      "id": "REF2-IRR-038",
+      "kind": "irregular_verbs",
+      "base": "burst",
+      "past": "burst",
+      "participle": "burst",
+      "meaning": "break open suddenly",
+      "example": "The balloon burst during the game.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "burst",
+        "burst",
+        "burst"
+      ]
+    },
+    {
+      "id": "REF2-IRR-039",
+      "kind": "irregular_verbs",
+      "base": "cast",
+      "past": "cast",
+      "participle": "cast",
+      "meaning": "throw or assign a role",
+      "example": "The director cast her in the school play.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "cast",
+        "cast",
+        "cast"
+      ]
+    },
+    {
+      "id": "REF2-IRR-040",
+      "kind": "irregular_verbs",
+      "base": "catch",
+      "past": "caught",
+      "participle": "caught",
+      "meaning": "stop and hold something moving",
+      "example": "He caught the ball with both hands.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "catch",
+        "caught",
+        "caught"
+      ]
+    },
+    {
+      "id": "REF2-IRR-041",
+      "kind": "irregular_verbs",
+      "base": "cling",
+      "past": "clung",
+      "participle": "clung",
+      "meaning": "hold tightly",
+      "example": "The wet towel clung to the railing.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "cling",
+        "clung",
+        "clung"
+      ]
+    },
+    {
+      "id": "REF2-IRR-004",
+      "kind": "irregular_verbs",
+      "base": "come",
+      "past": "came",
+      "participle": "come",
+      "meaning": "move toward",
+      "example": "My aunt came to visit us last week.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "come",
+        "came",
+        "come"
+      ]
+    },
+    {
+      "id": "REF2-IRR-042",
+      "kind": "irregular_verbs",
+      "base": "cost",
+      "past": "cost",
+      "participle": "cost",
+      "meaning": "have a price",
+      "example": "The ticket cost five pounds.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "cost",
+        "cost",
+        "cost"
+      ]
+    },
+    {
+      "id": "REF2-IRR-043",
+      "kind": "irregular_verbs",
+      "base": "creep",
+      "past": "crept",
+      "participle": "crept",
+      "meaning": "move slowly and quietly",
+      "example": "The cat crept under the sofa.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "creep",
+        "crept",
+        "crept"
+      ]
+    },
+    {
+      "id": "REF2-IRR-044",
+      "kind": "irregular_verbs",
+      "base": "cut",
+      "past": "cut",
+      "participle": "cut",
+      "meaning": "divide with a sharp tool",
+      "example": "She cut the paper into strips.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "cut",
+        "cut",
+        "cut"
+      ]
+    },
+    {
+      "id": "REF2-IRR-045",
+      "kind": "irregular_verbs",
+      "base": "deal",
+      "past": "dealt",
+      "participle": "dealt",
+      "meaning": "handle or distribute",
+      "example": "He dealt the cards fairly.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "deal",
+        "dealt",
+        "dealt"
+      ]
+    },
+    {
+      "id": "REF2-IRR-046",
+      "kind": "irregular_verbs",
+      "base": "dig",
+      "past": "dug",
+      "participle": "dug",
+      "meaning": "make a hole",
+      "example": "We dug a small hole for the tree.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "dig",
+        "dug",
+        "dug"
+      ]
+    },
+    {
+      "id": "REF2-IRR-047",
+      "kind": "irregular_verbs",
+      "base": "dive",
+      "past": "dived / dove",
+      "participle": "dived",
+      "meaning": "jump into water",
+      "example": "The swimmer dived into the pool.",
+      "usage_note": "Dove is a past simple alternative especially in US English; dived is also standard.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "dive",
+        "dived",
+        "dove",
+        "dived"
+      ]
+    },
+    {
+      "id": "REF2-IRR-002",
+      "kind": "irregular_verbs",
+      "base": "do",
+      "past": "did",
+      "participle": "done",
+      "meaning": "perform an action",
+      "example": "I did my homework before dinner.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "do",
+        "did",
+        "done"
+      ]
+    },
+    {
+      "id": "REF2-IRR-048",
+      "kind": "irregular_verbs",
+      "base": "draw",
+      "past": "drew",
+      "participle": "drawn",
+      "meaning": "make a picture",
+      "example": "She drew a map of the park.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "draw",
+        "drew",
+        "drawn"
+      ]
+    },
+    {
+      "id": "REF2-IRR-049",
+      "kind": "irregular_verbs",
+      "base": "dream",
+      "past": "dreamed / dreamt",
+      "participle": "dreamed / dreamt",
+      "meaning": "experience dreams",
+      "example": "I dreamed about the seaside last night.",
+      "usage_note": "Dreamed and dreamt are both used; region and context affect preference.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "dream",
+        "dreamed",
+        "dreamt",
+        "dreamed",
+        "dreamt"
+      ]
+    },
+    {
+      "id": "REF2-IRR-050",
+      "kind": "irregular_verbs",
+      "base": "drink",
+      "past": "drank",
+      "participle": "drunk",
+      "meaning": "consume a liquid",
+      "example": "We drank water after the run.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "drink",
+        "drank",
+        "drunk"
+      ]
+    },
+    {
+      "id": "REF2-IRR-051",
+      "kind": "irregular_verbs",
+      "base": "drive",
+      "past": "drove",
+      "participle": "driven",
+      "meaning": "operate a vehicle",
+      "example": "My dad drove us to the museum.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "drive",
+        "drove",
+        "driven"
+      ]
+    },
+    {
+      "id": "REF2-IRR-013",
+      "kind": "irregular_verbs",
+      "base": "eat",
+      "past": "ate",
+      "participle": "eaten",
+      "meaning": "consume food",
+      "example": "They ate lunch in the garden.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "eat",
+        "ate",
+        "eaten"
+      ]
+    },
+    {
+      "id": "REF2-IRR-052",
+      "kind": "irregular_verbs",
+      "base": "fall",
+      "past": "fell",
+      "participle": "fallen",
+      "meaning": "drop downward",
+      "example": "A leaf fell onto the table.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "fall",
+        "fell",
+        "fallen"
+      ]
+    },
+    {
+      "id": "REF2-IRR-053",
+      "kind": "irregular_verbs",
+      "base": "feed",
+      "past": "fed",
+      "participle": "fed",
+      "meaning": "give food",
+      "example": "We fed the rabbits in the morning.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "feed",
+        "fed",
+        "fed"
+      ]
+    },
+    {
+      "id": "REF2-IRR-054",
+      "kind": "irregular_verbs",
+      "base": "feel",
+      "past": "felt",
+      "participle": "felt",
+      "meaning": "experience an emotion or sensation",
+      "example": "She felt excited about the trip.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "feel",
+        "felt",
+        "felt"
+      ]
+    },
+    {
+      "id": "REF2-IRR-055",
+      "kind": "irregular_verbs",
+      "base": "fight",
+      "past": "fought",
+      "participle": "fought",
+      "meaning": "struggle or argue",
+      "example": "The two brothers fought over the game.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "fight",
+        "fought",
+        "fought"
+      ]
+    },
+    {
+      "id": "REF2-IRR-015",
+      "kind": "irregular_verbs",
+      "base": "find",
+      "past": "found",
+      "participle": "found",
+      "meaning": "discover",
+      "example": "They found a lost key near the gate.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "find",
+        "found",
+        "found"
+      ]
+    },
+    {
+      "id": "REF2-IRR-056",
+      "kind": "irregular_verbs",
+      "base": "flee",
+      "past": "fled",
+      "participle": "fled",
+      "meaning": "run away from danger",
+      "example": "The villagers fled the rising water.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "flee",
+        "fled",
+        "fled"
+      ]
+    },
+    {
+      "id": "REF2-IRR-057",
+      "kind": "irregular_verbs",
+      "base": "fling",
+      "past": "flung",
+      "participle": "flung",
+      "meaning": "throw suddenly",
+      "example": "He flung his scarf onto the chair.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "fling",
+        "flung",
+        "flung"
+      ]
+    },
+    {
+      "id": "REF2-IRR-058",
+      "kind": "irregular_verbs",
+      "base": "fly",
+      "past": "flew",
+      "participle": "flown",
+      "meaning": "move through air",
+      "example": "The birds flew over the lake.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "fly",
+        "flew",
+        "flown"
+      ]
+    },
+    {
+      "id": "REF2-IRR-059",
+      "kind": "irregular_verbs",
+      "base": "forbid",
+      "past": "forbade",
+      "participle": "forbidden",
+      "meaning": "not allow",
+      "example": "The rules forbade eating in the lab.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "forbid",
+        "forbade",
+        "forbidden"
+      ]
+    },
+    {
+      "id": "REF2-IRR-060",
+      "kind": "irregular_verbs",
+      "base": "forecast",
+      "past": "forecast",
+      "participle": "forecast",
+      "meaning": "predict what will happen",
+      "example": "The report forecast heavy rain.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "forecast",
+        "forecast",
+        "forecast"
+      ]
+    },
+    {
+      "id": "REF2-IRR-061",
+      "kind": "irregular_verbs",
+      "base": "foresee",
+      "past": "foresaw",
+      "participle": "foreseen",
+      "meaning": "predict",
+      "example": "They foresaw problems with the plan.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "foresee",
+        "foresaw",
+        "foreseen"
+      ]
+    },
+    {
+      "id": "REF2-IRR-062",
+      "kind": "irregular_verbs",
+      "base": "forget",
+      "past": "forgot",
+      "participle": "forgotten",
+      "meaning": "fail to remember",
+      "example": "I forgot my library card yesterday.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "forget",
+        "forgot",
+        "forgotten"
+      ]
+    },
+    {
+      "id": "REF2-IRR-063",
+      "kind": "irregular_verbs",
+      "base": "forgive",
+      "past": "forgave",
+      "participle": "forgiven",
+      "meaning": "stop blaming",
+      "example": "She forgave her friend after the apology.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "forgive",
+        "forgave",
+        "forgiven"
+      ]
+    },
+    {
+      "id": "REF2-IRR-064",
+      "kind": "irregular_verbs",
+      "base": "forsake",
+      "past": "forsook",
+      "participle": "forsaken",
+      "meaning": "abandon",
+      "example": "He forsook his original plan.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "forsake",
+        "forsook",
+        "forsaken"
+      ]
+    },
+    {
+      "id": "REF2-IRR-065",
+      "kind": "irregular_verbs",
+      "base": "freeze",
+      "past": "froze",
+      "participle": "frozen",
+      "meaning": "turn into ice",
+      "example": "The water froze overnight.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "freeze",
+        "froze",
+        "frozen"
+      ]
+    },
+    {
+      "id": "REF2-IRR-066",
+      "kind": "irregular_verbs",
+      "base": "get",
+      "past": "got",
+      "participle": "got / gotten",
+      "meaning": "receive or become",
+      "example": "He got a message from his teacher.",
+      "usage_note": "Gotten is principally AmE participle for receiving/becoming; got is common BrE, and have got can mean possession.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "get",
+        "got",
+        "got",
+        "gotten"
+      ]
+    },
+    {
+      "id": "REF2-IRR-006",
+      "kind": "irregular_verbs",
+      "base": "give",
+      "past": "gave",
+      "participle": "given",
+      "meaning": "hand to someone",
+      "example": "The teacher gave us a new worksheet.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "give",
+        "gave",
+        "given"
+      ]
+    },
+    {
+      "id": "REF2-IRR-067",
+      "kind": "irregular_verbs",
+      "base": "grind",
+      "past": "ground",
+      "participle": "ground",
+      "meaning": "crush into small pieces",
+      "example": "The machine ground the grain into flour.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "grind",
+        "ground",
+        "ground"
+      ]
+    },
+    {
+      "id": "REF2-IRR-068",
+      "kind": "irregular_verbs",
+      "base": "hang",
+      "past": "hung",
+      "participle": "hung",
+      "meaning": "suspend from above",
+      "example": "We hung the picture beside the window.",
+      "usage_note": "Hung is for suspension. Hanged is the customary past for execution.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "hang",
+        "hung",
+        "hung"
+      ]
+    },
+    {
+      "id": "REF2-IRR-003",
+      "kind": "irregular_verbs",
+      "base": "have",
+      "past": "had",
+      "participle": "had",
+      "meaning": "possess or experience",
+      "example": "They had a short break after lunch.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "have",
+        "had",
+        "had"
+      ]
+    },
+    {
+      "id": "REF2-IRR-069",
+      "kind": "irregular_verbs",
+      "base": "hear",
+      "past": "heard",
+      "participle": "heard",
+      "meaning": "perceive sound",
+      "example": "I heard music from the next room.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "hear",
+        "heard",
+        "heard"
+      ]
+    },
+    {
+      "id": "REF2-IRR-070",
+      "kind": "irregular_verbs",
+      "base": "hide",
+      "past": "hid",
+      "participle": "hidden",
+      "meaning": "keep out of sight",
+      "example": "The child hid behind the curtain.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "hide",
+        "hid",
+        "hidden"
+      ]
+    },
+    {
+      "id": "REF2-IRR-071",
+      "kind": "irregular_verbs",
+      "base": "hit",
+      "past": "hit",
+      "participle": "hit",
+      "meaning": "strike",
+      "example": "The ball hit the wall.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "hit",
+        "hit",
+        "hit"
+      ]
+    },
+    {
+      "id": "REF2-IRR-072",
+      "kind": "irregular_verbs",
+      "base": "hold",
+      "past": "held",
+      "participle": "held",
+      "meaning": "keep in the hand",
+      "example": "She held the umbrella over her friend.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "hold",
+        "held",
+        "held"
+      ]
+    },
+    {
+      "id": "REF2-IRR-073",
+      "kind": "irregular_verbs",
+      "base": "hurt",
+      "past": "hurt",
+      "participle": "hurt",
+      "meaning": "cause pain",
+      "example": "He hurt his knee during practice.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "hurt",
+        "hurt",
+        "hurt"
+      ]
+    },
+    {
+      "id": "REF2-IRR-074",
+      "kind": "irregular_verbs",
+      "base": "input",
+      "past": "input / inputted",
+      "participle": "input / inputted",
+      "meaning": "enter data",
+      "example": "The operator input the figures.",
+      "usage_note": "Input and inputted both occur depending on context.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "input",
+        "input",
+        "inputted",
+        "input",
+        "inputted"
+      ]
+    },
+    {
+      "id": "REF2-IRR-075",
+      "kind": "irregular_verbs",
+      "base": "keep",
+      "past": "kept",
+      "participle": "kept",
+      "meaning": "continue to have or hold",
+      "example": "She kept the letter in a drawer.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "keep",
+        "kept",
+        "kept"
+      ]
+    },
+    {
+      "id": "REF2-IRR-076",
+      "kind": "irregular_verbs",
+      "base": "kneel",
+      "past": "knelt / kneeled",
+      "participle": "knelt / kneeled",
+      "meaning": "rest on the knees",
+      "example": "He knelt to tie his shoe.",
+      "usage_note": "Kneeled and knelt are both valid.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "kneel",
+        "knelt",
+        "kneeled",
+        "knelt",
+        "kneeled"
+      ]
+    },
+    {
+      "id": "REF2-IRR-008",
+      "kind": "irregular_verbs",
+      "base": "know",
+      "past": "knew",
+      "participle": "known",
+      "meaning": "have knowledge",
+      "example": "I knew the answer after the clue.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "know",
+        "knew",
+        "known"
+      ]
+    },
+    {
+      "id": "REF2-IRR-077",
+      "kind": "irregular_verbs",
+      "base": "lay",
+      "past": "laid",
+      "participle": "laid",
+      "meaning": "put something down",
+      "example": "She laid the book on the desk.",
+      "usage_note": "Transitive lay (put down): lay-laid-laid. Intransitive lie (recline): lie-lay-lain.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "lay",
+        "laid",
+        "laid"
+      ]
+    },
+    {
+      "id": "REF2-IRR-078",
+      "kind": "irregular_verbs",
+      "base": "lead",
+      "past": "led",
+      "participle": "led",
+      "meaning": "guide",
+      "example": "Our guide led us through the gallery.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "lead",
+        "led",
+        "led"
+      ]
+    },
+    {
+      "id": "REF2-IRR-079",
+      "kind": "irregular_verbs",
+      "base": "lean",
+      "past": "leaned / leant",
+      "participle": "leaned / leant",
+      "meaning": "rest at an angle",
+      "example": "He leaned against the fence.",
+      "usage_note": "Leaned and leant differ in regional frequency.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "lean",
+        "leaned",
+        "leant",
+        "leaned",
+        "leant"
+      ]
+    },
+    {
+      "id": "REF2-IRR-080",
+      "kind": "irregular_verbs",
+      "base": "leap",
+      "past": "leaped / leapt",
+      "participle": "leaped / leapt",
+      "meaning": "jump",
+      "example": "The deer leapt over the stream.",
+      "usage_note": "Leaped and leapt are both used.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "leap",
+        "leaped",
+        "leapt",
+        "leaped",
+        "leapt"
+      ]
+    },
+    {
+      "id": "REF2-IRR-081",
+      "kind": "irregular_verbs",
+      "base": "learn",
+      "past": "learned / learnt",
+      "participle": "learned / learnt",
+      "meaning": "gain knowledge",
+      "example": "We learned new words in class.",
+      "usage_note": "Learned and learnt are both valid; often differing in regional preference.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "learn",
+        "learned",
+        "learnt",
+        "learned",
+        "learnt"
+      ]
+    },
+    {
+      "id": "REF2-IRR-082",
+      "kind": "irregular_verbs",
+      "base": "leave",
+      "past": "left",
+      "participle": "left",
+      "meaning": "go away",
+      "example": "The train left at noon.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "leave",
+        "left",
+        "left"
+      ]
+    },
+    {
+      "id": "REF2-IRR-083",
+      "kind": "irregular_verbs",
+      "base": "lend",
+      "past": "lent",
+      "participle": "lent",
+      "meaning": "give temporarily",
+      "example": "She lent me her pencil.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "lend",
+        "lent",
+        "lent"
+      ]
+    },
+    {
+      "id": "REF2-IRR-084",
+      "kind": "irregular_verbs",
+      "base": "let",
+      "past": "let",
+      "participle": "let",
+      "meaning": "allow",
+      "example": "Dad let us stay up late.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "let",
+        "let",
+        "let"
+      ]
+    },
+    {
+      "id": "REF2-IRR-085",
+      "kind": "irregular_verbs",
+      "base": "lie",
+      "past": "lay",
+      "participle": "lain",
+      "meaning": "rest in a horizontal position",
+      "example": "The cat lay on the rug all afternoon.",
+      "usage_note": "Lie (recline): lie-lay-lain; lie meaning tell a falsehood is regular: lied-lied. Compare lay-laid-laid.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "lie",
+        "lay",
+        "lain"
+      ]
+    },
+    {
+      "id": "REF2-IRR-086",
+      "kind": "irregular_verbs",
+      "base": "light",
+      "past": "lit / lighted",
+      "participle": "lit / lighted",
+      "meaning": "make something start burning or shine",
+      "example": "She lit a candle on the table.",
+      "usage_note": "Lit and lighted are both used; lighted can also serve adjectival uses.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "light",
+        "lit",
+        "lighted",
+        "lit",
+        "lighted"
+      ]
+    },
+    {
+      "id": "REF2-IRR-087",
+      "kind": "irregular_verbs",
+      "base": "lose",
+      "past": "lost",
+      "participle": "lost",
+      "meaning": "misplace or fail to win",
+      "example": "He lost his ticket on the bus.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "lose",
+        "lost",
+        "lost"
+      ]
+    },
+    {
+      "id": "REF2-IRR-007",
+      "kind": "irregular_verbs",
+      "base": "make",
+      "past": "made",
+      "participle": "made",
+      "meaning": "create",
+      "example": "We made a poster together.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "make",
+        "made",
+        "made"
+      ]
+    },
+    {
+      "id": "REF2-IRR-088",
+      "kind": "irregular_verbs",
+      "base": "mean",
+      "past": "meant",
+      "participle": "meant",
+      "meaning": "signify or intend",
+      "example": "She meant to call you yesterday.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "mean",
+        "meant",
+        "meant"
+      ]
+    },
+    {
+      "id": "REF2-IRR-089",
+      "kind": "irregular_verbs",
+      "base": "meet",
+      "past": "met",
+      "participle": "met",
+      "meaning": "come together",
+      "example": "They met outside the library.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "meet",
+        "met",
+        "met"
+      ]
+    },
+    {
+      "id": "REF2-IRR-090",
+      "kind": "irregular_verbs",
+      "base": "mislead",
+      "past": "misled",
+      "participle": "misled",
+      "meaning": "give a false idea",
+      "example": "The unclear title misled the readers.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "mislead",
+        "misled",
+        "misled"
+      ]
+    },
+    {
+      "id": "REF2-IRR-091",
+      "kind": "irregular_verbs",
+      "base": "mistake",
+      "past": "mistook",
+      "participle": "mistaken",
+      "meaning": "identify wrongly",
+      "example": "I mistook that bag for mine.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "mistake",
+        "mistook",
+        "mistaken"
+      ]
+    },
+    {
+      "id": "REF2-IRR-092",
+      "kind": "irregular_verbs",
+      "base": "offset",
+      "past": "offset",
+      "participle": "offset",
+      "meaning": "balance an effect",
+      "example": "The savings offset the extra cost.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "offset",
+        "offset",
+        "offset"
+      ]
+    },
+    {
+      "id": "REF2-IRR-093",
+      "kind": "irregular_verbs",
+      "base": "outgrow",
+      "past": "outgrew",
+      "participle": "outgrown",
+      "meaning": "become too big or mature for",
+      "example": "He outgrew his old shoes.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "outgrow",
+        "outgrew",
+        "outgrown"
+      ]
+    },
+    {
+      "id": "REF2-IRR-094",
+      "kind": "irregular_verbs",
+      "base": "overcome",
+      "past": "overcame",
+      "participle": "overcome",
+      "meaning": "succeed despite difficulty",
+      "example": "They overcame several problems.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "overcome",
+        "overcame",
+        "overcome"
+      ]
+    },
+    {
+      "id": "REF2-IRR-095",
+      "kind": "irregular_verbs",
+      "base": "overdo",
+      "past": "overdid",
+      "participle": "overdone",
+      "meaning": "do too much",
+      "example": "He overdid the decorations.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "overdo",
+        "overdid",
+        "overdone"
+      ]
+    },
+    {
+      "id": "REF2-IRR-096",
+      "kind": "irregular_verbs",
+      "base": "overdraw",
+      "past": "overdrew",
+      "participle": "overdrawn",
+      "meaning": "take more money than is in an account",
+      "example": "He overdrew his account.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "overdraw",
+        "overdrew",
+        "overdrawn"
+      ]
+    },
+    {
+      "id": "REF2-IRR-097",
+      "kind": "irregular_verbs",
+      "base": "overeat",
+      "past": "overate",
+      "participle": "overeaten",
+      "meaning": "eat too much",
+      "example": "We overate at the festival.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "overeat",
+        "overate",
+        "overeaten"
+      ]
+    },
+    {
+      "id": "REF2-IRR-098",
+      "kind": "irregular_verbs",
+      "base": "overhear",
+      "past": "overheard",
+      "participle": "overheard",
+      "meaning": "hear by accident",
+      "example": "I overheard a short conversation.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "overhear",
+        "overheard",
+        "overheard"
+      ]
+    },
+    {
+      "id": "REF2-IRR-099",
+      "kind": "irregular_verbs",
+      "base": "oversleep",
+      "past": "overslept",
+      "participle": "overslept",
+      "meaning": "sleep too long",
+      "example": "She overslept and missed the bus.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "oversleep",
+        "overslept",
+        "overslept"
+      ]
+    },
+    {
+      "id": "REF2-IRR-100",
+      "kind": "irregular_verbs",
+      "base": "overtake",
+      "past": "overtook",
+      "participle": "overtaken",
+      "meaning": "catch up and pass",
+      "example": "The cyclist overtook the bus.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "overtake",
+        "overtook",
+        "overtaken"
+      ]
+    },
+    {
+      "id": "REF2-IRR-101",
+      "kind": "irregular_verbs",
+      "base": "pay",
+      "past": "paid",
+      "participle": "paid",
+      "meaning": "give money in exchange",
+      "example": "She paid for the tickets.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "pay",
+        "paid",
+        "paid"
+      ]
+    },
+    {
+      "id": "REF2-IRR-102",
+      "kind": "irregular_verbs",
+      "base": "plead",
+      "past": "pleaded / pled",
+      "participle": "pleaded / pled",
+      "meaning": "ask urgently or state a plea",
+      "example": "He pleaded for another chance.",
+      "usage_note": "Pleaded is broad standard; pled occurs especially in US legal and informal contexts.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "plead",
+        "pleaded",
+        "pled",
+        "pleaded",
+        "pled"
+      ]
+    },
+    {
+      "id": "REF2-IRR-103",
+      "kind": "irregular_verbs",
+      "base": "preset",
+      "past": "preset",
+      "participle": "preset",
+      "meaning": "set in advance",
+      "example": "She preset the timer.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "preset",
+        "preset",
+        "preset"
+      ]
+    },
+    {
+      "id": "REF2-IRR-104",
+      "kind": "irregular_verbs",
+      "base": "proofread",
+      "past": "proofread",
+      "participle": "proofread",
+      "meaning": "check writing for errors",
+      "example": "He proofread his essay twice.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "proofread",
+        "proofread",
+        "proofread"
+      ]
+    },
+    {
+      "id": "REF2-IRR-105",
+      "kind": "irregular_verbs",
+      "base": "prove",
+      "past": "proved",
+      "participle": "proved / proven",
+      "meaning": "show something is true",
+      "example": "The experiment proved the idea wrong.",
+      "usage_note": "Proved is regular past; participle proved or proven depends on variety and usage.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "prove",
+        "proved",
+        "proved",
+        "proven"
+      ]
+    },
+    {
+      "id": "REF2-IRR-012",
+      "kind": "irregular_verbs",
+      "base": "put",
+      "past": "put",
+      "participle": "put",
+      "meaning": "place",
+      "example": "I put the books on the shelf.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "put",
+        "put",
+        "put"
+      ]
+    },
+    {
+      "id": "REF2-IRR-106",
+      "kind": "irregular_verbs",
+      "base": "quit",
+      "past": "quit / quitted",
+      "participle": "quit / quitted",
+      "meaning": "stop doing something",
+      "example": "She quit the team last year.",
+      "usage_note": "Quit is the usual contemporary form; quitted appears in some contexts/varieties.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "quit",
+        "quit",
+        "quitted",
+        "quit",
+        "quitted"
+      ]
+    },
+    {
+      "id": "REF2-IRR-011",
+      "kind": "irregular_verbs",
+      "base": "read",
+      "past": "read",
+      "participle": "read",
+      "meaning": "understand written words",
+      "example": "He read the story yesterday.",
+      "usage_note": "All forms spelled read; base pronounced /riːd/ and past/participle /red/.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "read",
+        "read",
+        "read"
+      ]
+    },
+    {
+      "id": "REF2-IRR-107",
+      "kind": "irregular_verbs",
+      "base": "rebuild",
+      "past": "rebuilt",
+      "participle": "rebuilt",
+      "meaning": "build again",
+      "example": "The town rebuilt the old bridge.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "rebuild",
+        "rebuilt",
+        "rebuilt"
+      ]
+    },
+    {
+      "id": "REF2-IRR-108",
+      "kind": "irregular_verbs",
+      "base": "redo",
+      "past": "redid",
+      "participle": "redone",
+      "meaning": "do again",
+      "example": "I redid the difficult exercise.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "redo",
+        "redid",
+        "redone"
+      ]
+    },
+    {
+      "id": "REF2-IRR-109",
+      "kind": "irregular_verbs",
+      "base": "remake",
+      "past": "remade",
+      "participle": "remade",
+      "meaning": "make again",
+      "example": "They remade the video for class.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "remake",
+        "remade",
+        "remade"
+      ]
+    },
+    {
+      "id": "REF2-IRR-110",
+      "kind": "irregular_verbs",
+      "base": "repay",
+      "past": "repaid",
+      "participle": "repaid",
+      "meaning": "pay back",
+      "example": "He repaid the money he borrowed.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "repay",
+        "repaid",
+        "repaid"
+      ]
+    },
+    {
+      "id": "REF2-IRR-111",
+      "kind": "irregular_verbs",
+      "base": "reset",
+      "past": "reset",
+      "participle": "reset",
+      "meaning": "set again",
+      "example": "I reset the clock after the power cut.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "reset",
+        "reset",
+        "reset"
+      ]
+    },
+    {
+      "id": "REF2-IRR-112",
+      "kind": "irregular_verbs",
+      "base": "retell",
+      "past": "retold",
+      "participle": "retold",
+      "meaning": "tell again",
+      "example": "She retold the story in her own words.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "retell",
+        "retold",
+        "retold"
+      ]
+    },
+    {
+      "id": "REF2-IRR-113",
+      "kind": "irregular_verbs",
+      "base": "rewind",
+      "past": "rewound",
+      "participle": "rewound",
+      "meaning": "wind back",
+      "example": "He rewound the recording.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "rewind",
+        "rewound",
+        "rewound"
+      ]
+    },
+    {
+      "id": "REF2-IRR-114",
+      "kind": "irregular_verbs",
+      "base": "ride",
+      "past": "rode",
+      "participle": "ridden",
+      "meaning": "travel on a bicycle or horse",
+      "example": "We rode our bikes to school.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "ride",
+        "rode",
+        "ridden"
+      ]
+    },
+    {
+      "id": "REF2-IRR-115",
+      "kind": "irregular_verbs",
+      "base": "ring",
+      "past": "rang",
+      "participle": "rung",
+      "meaning": "make a bell sound",
+      "example": "The bell rang at the end of class.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "ring",
+        "rang",
+        "rung"
+      ]
+    },
+    {
+      "id": "REF2-IRR-116",
+      "kind": "irregular_verbs",
+      "base": "rise",
+      "past": "rose",
+      "participle": "risen",
+      "meaning": "move upward",
+      "example": "The river rose after the storm.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "rise",
+        "rose",
+        "risen"
+      ]
+    },
+    {
+      "id": "REF2-IRR-117",
+      "kind": "irregular_verbs",
+      "base": "run",
+      "past": "ran",
+      "participle": "run",
+      "meaning": "move quickly on foot",
+      "example": "He ran around the track.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "run",
+        "ran",
+        "run"
+      ]
+    },
+    {
+      "id": "REF2-IRR-118",
+      "kind": "irregular_verbs",
+      "base": "say",
+      "past": "said",
+      "participle": "said",
+      "meaning": "speak words",
+      "example": "She said goodbye at the station.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "say",
+        "said",
+        "said"
+      ]
+    },
+    {
+      "id": "REF2-IRR-119",
+      "kind": "irregular_verbs",
+      "base": "seek",
+      "past": "sought",
+      "participle": "sought",
+      "meaning": "try to find",
+      "example": "The group sought a quieter room.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "seek",
+        "sought",
+        "sought"
+      ]
+    },
+    {
+      "id": "REF2-IRR-120",
+      "kind": "irregular_verbs",
+      "base": "sell",
+      "past": "sold",
+      "participle": "sold",
+      "meaning": "exchange for money",
+      "example": "He sold his old bicycle.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "sell",
+        "sold",
+        "sold"
+      ]
+    },
+    {
+      "id": "REF2-IRR-121",
+      "kind": "irregular_verbs",
+      "base": "send",
+      "past": "sent",
+      "participle": "sent",
+      "meaning": "cause to go",
+      "example": "I sent a message to my cousin.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "send",
+        "sent",
+        "sent"
+      ]
+    },
+    {
+      "id": "REF2-IRR-122",
+      "kind": "irregular_verbs",
+      "base": "set",
+      "past": "set",
+      "participle": "set",
+      "meaning": "put in a position or arrange",
+      "example": "She set the alarm for seven.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "set",
+        "set",
+        "set"
+      ]
+    },
+    {
+      "id": "REF2-IRR-123",
+      "kind": "irregular_verbs",
+      "base": "sew",
+      "past": "sewed",
+      "participle": "sewn / sewed",
+      "meaning": "join cloth with stitches",
+      "example": "My grandmother sewed a button onto my coat.",
+      "usage_note": "Past is sewed; sewn or sewed can occur as participle.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "sew",
+        "sewed",
+        "sewn",
+        "sewed"
+      ]
+    },
+    {
+      "id": "REF2-IRR-124",
+      "kind": "irregular_verbs",
+      "base": "shake",
+      "past": "shook",
+      "participle": "shaken",
+      "meaning": "move quickly back and forth",
+      "example": "She shook the bottle gently.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "shake",
+        "shook",
+        "shaken"
+      ]
+    },
+    {
+      "id": "REF2-IRR-125",
+      "kind": "irregular_verbs",
+      "base": "shave",
+      "past": "shaved",
+      "participle": "shaved / shaven",
+      "meaning": "remove hair",
+      "example": "He shaved before the interview.",
+      "usage_note": "Shaved is common participle; shaven is also used, often adjectivally.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "shave",
+        "shaved",
+        "shaved",
+        "shaven"
+      ]
+    },
+    {
+      "id": "REF2-IRR-126",
+      "kind": "irregular_verbs",
+      "base": "shed",
+      "past": "shed",
+      "participle": "shed",
+      "meaning": "lose or drop naturally",
+      "example": "The tree shed its leaves in autumn.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "shed",
+        "shed",
+        "shed"
+      ]
+    },
+    {
+      "id": "REF2-IRR-127",
+      "kind": "irregular_verbs",
+      "base": "shine",
+      "past": "shone / shined",
+      "participle": "shone / shined",
+      "meaning": "give light or make something bright",
+      "example": "The sun shone through the window.",
+      "usage_note": "Shone commonly means emitted light; shined often means polished; regional variation exists.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "shine",
+        "shone",
+        "shined",
+        "shone",
+        "shined"
+      ]
+    },
+    {
+      "id": "REF2-IRR-128",
+      "kind": "irregular_verbs",
+      "base": "shoot",
+      "past": "shot",
+      "participle": "shot",
+      "meaning": "send out or direct quickly",
+      "example": "She shot the ball toward the goal.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "shoot",
+        "shot",
+        "shot"
+      ]
+    },
+    {
+      "id": "REF2-IRR-129",
+      "kind": "irregular_verbs",
+      "base": "show",
+      "past": "showed",
+      "participle": "shown / showed",
+      "meaning": "display",
+      "example": "He showed us his drawings.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "show",
+        "showed",
+        "shown",
+        "showed"
+      ]
+    },
+    {
+      "id": "REF2-IRR-130",
+      "kind": "irregular_verbs",
+      "base": "shrink",
+      "past": "shrank / shrunk",
+      "participle": "shrunk",
+      "meaning": "become smaller",
+      "example": "My wool jumper shrank in the wash.",
+      "usage_note": "Shrank commonly past; shrunk also occurs, and shrunk is participle.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "shrink",
+        "shrank",
+        "shrunk",
+        "shrunk"
+      ]
+    },
+    {
+      "id": "REF2-IRR-131",
+      "kind": "irregular_verbs",
+      "base": "shut",
+      "past": "shut",
+      "participle": "shut",
+      "meaning": "close",
+      "example": "We shut the windows before leaving.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "shut",
+        "shut",
+        "shut"
+      ]
+    },
+    {
+      "id": "REF2-IRR-132",
+      "kind": "irregular_verbs",
+      "base": "sing",
+      "past": "sang",
+      "participle": "sung",
+      "meaning": "make musical sounds",
+      "example": "They sang together at the concert.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "sing",
+        "sang",
+        "sung"
+      ]
+    },
+    {
+      "id": "REF2-IRR-133",
+      "kind": "irregular_verbs",
+      "base": "sink",
+      "past": "sank / sunk",
+      "participle": "sunk",
+      "meaning": "go below the surface",
+      "example": "The toy boat sank in the pond.",
+      "usage_note": "Sank is usual past; sunk also occurs, especially in some usages.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "sink",
+        "sank",
+        "sunk",
+        "sunk"
+      ]
+    },
+    {
+      "id": "REF2-IRR-134",
+      "kind": "irregular_verbs",
+      "base": "sit",
+      "past": "sat",
+      "participle": "sat",
+      "meaning": "rest seated",
+      "example": "She sat near the window.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "sit",
+        "sat",
+        "sat"
+      ]
+    },
+    {
+      "id": "REF2-IRR-135",
+      "kind": "irregular_verbs",
+      "base": "sleep",
+      "past": "slept",
+      "participle": "slept",
+      "meaning": "rest in sleep",
+      "example": "I slept well last night.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "sleep",
+        "slept",
+        "slept"
+      ]
+    },
+    {
+      "id": "REF2-IRR-136",
+      "kind": "irregular_verbs",
+      "base": "slide",
+      "past": "slid",
+      "participle": "slid",
+      "meaning": "move smoothly along a surface",
+      "example": "The book slid off the desk.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "slide",
+        "slid",
+        "slid"
+      ]
+    },
+    {
+      "id": "REF2-IRR-137",
+      "kind": "irregular_verbs",
+      "base": "sling",
+      "past": "slung",
+      "participle": "slung",
+      "meaning": "throw or hang loosely",
+      "example": "He slung his bag over one shoulder.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "sling",
+        "slung",
+        "slung"
+      ]
+    },
+    {
+      "id": "REF2-IRR-138",
+      "kind": "irregular_verbs",
+      "base": "smell",
+      "past": "smelled / smelt",
+      "participle": "smelled / smelt",
+      "meaning": "notice an odour",
+      "example": "We smelled fresh bread from the bakery.",
+      "usage_note": "Smelled and smelt differ in usage and regional preference.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "smell",
+        "smelled",
+        "smelt",
+        "smelled",
+        "smelt"
+      ]
+    },
+    {
+      "id": "REF2-IRR-139",
+      "kind": "irregular_verbs",
+      "base": "sneak",
+      "past": "sneaked / snuck",
+      "participle": "sneaked / snuck",
+      "meaning": "move quietly or secretly",
+      "example": "The cat sneaked into the kitchen.",
+      "usage_note": "Snuck is more common in North American usage; sneaked is standard.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "sneak",
+        "sneaked",
+        "snuck",
+        "sneaked",
+        "snuck"
+      ]
+    },
+    {
+      "id": "REF2-IRR-140",
+      "kind": "irregular_verbs",
+      "base": "sow",
+      "past": "sowed",
+      "participle": "sown / sowed",
+      "meaning": "plant seeds",
+      "example": "The farmer sowed the field with wheat.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "sow",
+        "sowed",
+        "sown",
+        "sowed"
+      ]
+    },
+    {
+      "id": "REF2-IRR-014",
+      "kind": "irregular_verbs",
+      "base": "speak",
+      "past": "spoke",
+      "participle": "spoken",
+      "meaning": "talk",
+      "example": "She spoke clearly in the meeting.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "speak",
+        "spoke",
+        "spoken"
+      ]
+    },
+    {
+      "id": "REF2-IRR-141",
+      "kind": "irregular_verbs",
+      "base": "speed",
+      "past": "sped / speeded",
+      "participle": "sped / speeded",
+      "meaning": "move fast or increase speed",
+      "example": "The train sped through the countryside.",
+      "usage_note": "Sped and speeded are both used; speeded is common in some technical/causative contexts.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "speed",
+        "sped",
+        "speeded",
+        "sped",
+        "speeded"
+      ]
+    },
+    {
+      "id": "REF2-IRR-142",
+      "kind": "irregular_verbs",
+      "base": "spell",
+      "past": "spelled / spelt",
+      "participle": "spelled / spelt",
+      "meaning": "write letters of a word",
+      "example": "He spelled the name correctly.",
+      "usage_note": "Spelled and spelt are standard regional alternatives.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "spell",
+        "spelled",
+        "spelt",
+        "spelled",
+        "spelt"
+      ]
+    },
+    {
+      "id": "REF2-IRR-143",
+      "kind": "irregular_verbs",
+      "base": "spend",
+      "past": "spent",
+      "participle": "spent",
+      "meaning": "use time or money",
+      "example": "We spent an hour reading.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "spend",
+        "spent",
+        "spent"
+      ]
+    },
+    {
+      "id": "REF2-IRR-144",
+      "kind": "irregular_verbs",
+      "base": "spill",
+      "past": "spilled / spilt",
+      "participle": "spilled / spilt",
+      "meaning": "let liquid fall out",
+      "example": "She spilled juice on the table.",
+      "usage_note": "Spilled and spilt are standard alternatives.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "spill",
+        "spilled",
+        "spilt",
+        "spilled",
+        "spilt"
+      ]
+    },
+    {
+      "id": "REF2-IRR-145",
+      "kind": "irregular_verbs",
+      "base": "spin",
+      "past": "spun",
+      "participle": "spun",
+      "meaning": "turn rapidly",
+      "example": "The wheel spun in the wind.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "spin",
+        "spun",
+        "spun"
+      ]
+    },
+    {
+      "id": "REF2-IRR-146",
+      "kind": "irregular_verbs",
+      "base": "spit",
+      "past": "spat / spit",
+      "participle": "spat / spit",
+      "meaning": "force saliva from the mouth",
+      "example": "The child spat out the bitter medicine.",
+      "usage_note": "Spat and spit both occur, with regional variation.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "spit",
+        "spat",
+        "spit",
+        "spat",
+        "spit"
+      ]
+    },
+    {
+      "id": "REF2-IRR-147",
+      "kind": "irregular_verbs",
+      "base": "split",
+      "past": "split",
+      "participle": "split",
+      "meaning": "divide into parts",
+      "example": "We split the class into groups.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "split",
+        "split",
+        "split"
+      ]
+    },
+    {
+      "id": "REF2-IRR-148",
+      "kind": "irregular_verbs",
+      "base": "spoil",
+      "past": "spoiled / spoilt",
+      "participle": "spoiled / spoilt",
+      "meaning": "damage enjoyment or quality",
+      "example": "The rain spoiled our picnic.",
+      "usage_note": "Spoiled and spoilt differ in common regional uses.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "spoil",
+        "spoiled",
+        "spoilt",
+        "spoiled",
+        "spoilt"
+      ]
+    },
+    {
+      "id": "REF2-IRR-149",
+      "kind": "irregular_verbs",
+      "base": "spread",
+      "past": "spread",
+      "participle": "spread",
+      "meaning": "extend over an area",
+      "example": "He spread the blanket on the grass.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "spread",
+        "spread",
+        "spread"
+      ]
+    },
+    {
+      "id": "REF2-IRR-150",
+      "kind": "irregular_verbs",
+      "base": "spring",
+      "past": "sprang / sprung",
+      "participle": "sprung",
+      "meaning": "jump suddenly",
+      "example": "The cat sprang onto the shelf.",
+      "usage_note": "Sprang is common past; sprung also occurs. Participle is sprung.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "spring",
+        "sprang",
+        "sprung",
+        "sprung"
+      ]
+    },
+    {
+      "id": "REF2-IRR-151",
+      "kind": "irregular_verbs",
+      "base": "stand",
+      "past": "stood",
+      "participle": "stood",
+      "meaning": "be upright on feet",
+      "example": "We stood in a line.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "stand",
+        "stood",
+        "stood"
+      ]
+    },
+    {
+      "id": "REF2-IRR-152",
+      "kind": "irregular_verbs",
+      "base": "steal",
+      "past": "stole",
+      "participle": "stolen",
+      "meaning": "take without permission",
+      "example": "Someone stole the bicycle.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "steal",
+        "stole",
+        "stolen"
+      ]
+    },
+    {
+      "id": "REF2-IRR-153",
+      "kind": "irregular_verbs",
+      "base": "stick",
+      "past": "stuck",
+      "participle": "stuck",
+      "meaning": "attach or remain attached",
+      "example": "The label stuck to the box.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "stick",
+        "stuck",
+        "stuck"
+      ]
+    },
+    {
+      "id": "REF2-IRR-154",
+      "kind": "irregular_verbs",
+      "base": "sting",
+      "past": "stung",
+      "participle": "stung",
+      "meaning": "cause pain with a sting",
+      "example": "A bee stung my arm.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "sting",
+        "stung",
+        "stung"
+      ]
+    },
+    {
+      "id": "REF2-IRR-155",
+      "kind": "irregular_verbs",
+      "base": "stink",
+      "past": "stank / stunk",
+      "participle": "stunk",
+      "meaning": "smell very bad",
+      "example": "The rubbish stank after a hot day.",
+      "usage_note": "Stank and stunk both occur as past; stunk is usual participle.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "stink",
+        "stank",
+        "stunk",
+        "stunk"
+      ]
+    },
+    {
+      "id": "REF2-IRR-156",
+      "kind": "irregular_verbs",
+      "base": "strike",
+      "past": "struck",
+      "participle": "struck / stricken",
+      "meaning": "hit or affect suddenly",
+      "example": "Lightning struck a nearby tree.",
+      "usage_note": "Struck is typical participle for hitting; stricken in some fixed or affected senses.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "strike",
+        "struck",
+        "struck",
+        "stricken"
+      ]
+    },
+    {
+      "id": "REF2-IRR-157",
+      "kind": "irregular_verbs",
+      "base": "string",
+      "past": "strung",
+      "participle": "strung",
+      "meaning": "put items on a thread",
+      "example": "They strung lights across the room.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "string",
+        "strung",
+        "strung"
+      ]
+    },
+    {
+      "id": "REF2-IRR-158",
+      "kind": "irregular_verbs",
+      "base": "strive",
+      "past": "strove / strived",
+      "participle": "striven / strived",
+      "meaning": "try very hard",
+      "example": "She strove to improve her writing.",
+      "usage_note": "Strove/striven and strived/strived are both possible; avoid treating this as a single simple rule.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "strive",
+        "strove",
+        "strived",
+        "striven",
+        "strived"
+      ]
+    },
+    {
+      "id": "REF2-IRR-159",
+      "kind": "irregular_verbs",
+      "base": "swear",
+      "past": "swore",
+      "participle": "sworn",
+      "meaning": "make a serious promise",
+      "example": "He swore to tell the truth.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "swear",
+        "swore",
+        "sworn"
+      ]
+    },
+    {
+      "id": "REF2-IRR-160",
+      "kind": "irregular_verbs",
+      "base": "sweep",
+      "past": "swept",
+      "participle": "swept",
+      "meaning": "clean with a broom",
+      "example": "She swept the classroom floor.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "sweep",
+        "swept",
+        "swept"
+      ]
+    },
+    {
+      "id": "REF2-IRR-161",
+      "kind": "irregular_verbs",
+      "base": "swim",
+      "past": "swam",
+      "participle": "swum",
+      "meaning": "move through water",
+      "example": "They swam in the pool.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "swim",
+        "swam",
+        "swum"
+      ]
+    },
+    {
+      "id": "REF2-IRR-162",
+      "kind": "irregular_verbs",
+      "base": "swing",
+      "past": "swung",
+      "participle": "swung",
+      "meaning": "move back and forth",
+      "example": "The gate swung open.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "swing",
+        "swung",
+        "swung"
+      ]
+    },
+    {
+      "id": "REF2-IRR-005",
+      "kind": "irregular_verbs",
+      "base": "take",
+      "past": "took",
+      "participle": "taken",
+      "meaning": "carry or receive",
+      "example": "She took her umbrella.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "take",
+        "took",
+        "taken"
+      ]
+    },
+    {
+      "id": "REF2-IRR-010",
+      "kind": "irregular_verbs",
+      "base": "teach",
+      "past": "taught",
+      "participle": "taught",
+      "meaning": "help someone learn",
+      "example": "Our teacher taught us a new song.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "teach",
+        "taught",
+        "taught"
+      ]
+    },
+    {
+      "id": "REF2-IRR-163",
+      "kind": "irregular_verbs",
+      "base": "tear",
+      "past": "tore",
+      "participle": "torn",
+      "meaning": "rip",
+      "example": "He tore the old paper in half.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "tear",
+        "tore",
+        "torn"
+      ]
+    },
+    {
+      "id": "REF2-IRR-164",
+      "kind": "irregular_verbs",
+      "base": "tell",
+      "past": "told",
+      "participle": "told",
+      "meaning": "give information in words",
+      "example": "She told us a funny story.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "tell",
+        "told",
+        "told"
+      ]
+    },
+    {
+      "id": "REF2-IRR-009",
+      "kind": "irregular_verbs",
+      "base": "think",
+      "past": "thought",
+      "participle": "thought",
+      "meaning": "have an opinion or idea",
+      "example": "We thought the task was easy.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "think",
+        "thought",
+        "thought"
+      ]
+    },
+    {
+      "id": "REF2-IRR-165",
+      "kind": "irregular_verbs",
+      "base": "throw",
+      "past": "threw",
+      "participle": "thrown",
+      "meaning": "send through the air",
+      "example": "He threw the ball to me.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "throw",
+        "threw",
+        "thrown"
+      ]
+    },
+    {
+      "id": "REF2-IRR-166",
+      "kind": "irregular_verbs",
+      "base": "thrust",
+      "past": "thrust",
+      "participle": "thrust",
+      "meaning": "push suddenly",
+      "example": "He thrust the door open.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "thrust",
+        "thrust",
+        "thrust"
+      ]
+    },
+    {
+      "id": "REF2-IRR-167",
+      "kind": "irregular_verbs",
+      "base": "tread",
+      "past": "trod",
+      "participle": "trodden / trod",
+      "meaning": "step or walk",
+      "example": "She trod carefully on the wet path.",
+      "usage_note": "Trod is past; trodden is common participle, trod also occurs.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "tread",
+        "trod",
+        "trodden",
+        "trod"
+      ]
+    },
+    {
+      "id": "REF2-IRR-168",
+      "kind": "irregular_verbs",
+      "base": "troubleshoot",
+      "past": "troubleshot / troubleshooted",
+      "participle": "troubleshot / troubleshooted",
+      "meaning": "find and fix technical problems",
+      "example": "They troubleshot the printer.",
+      "usage_note": "Troubleshot is widely used; troubleshooted also appears.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "troubleshoot",
+        "troubleshot",
+        "troubleshooted",
+        "troubleshot",
+        "troubleshooted"
+      ]
+    },
+    {
+      "id": "REF2-IRR-169",
+      "kind": "irregular_verbs",
+      "base": "undergo",
+      "past": "underwent",
+      "participle": "undergone",
+      "meaning": "experience a process",
+      "example": "The building underwent repairs.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "undergo",
+        "underwent",
+        "undergone"
+      ]
+    },
+    {
+      "id": "REF2-IRR-170",
+      "kind": "irregular_verbs",
+      "base": "underlie",
+      "past": "underlay",
+      "participle": "underlain",
+      "meaning": "form the basis of",
+      "example": "Trust underlay their teamwork.",
+      "usage_note": "Not to be confused with lie-lay-lain; underlie-underlay-underlain.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "underlie",
+        "underlay",
+        "underlain"
+      ]
+    },
+    {
+      "id": "REF2-IRR-171",
+      "kind": "irregular_verbs",
+      "base": "understand",
+      "past": "understood",
+      "participle": "understood",
+      "meaning": "grasp meaning",
+      "example": "I understood the instructions.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "understand",
+        "understood",
+        "understood"
+      ]
+    },
+    {
+      "id": "REF2-IRR-172",
+      "kind": "irregular_verbs",
+      "base": "undertake",
+      "past": "undertook",
+      "participle": "undertaken",
+      "meaning": "agree to do a task",
+      "example": "The club undertook a new project.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "undertake",
+        "undertook",
+        "undertaken"
+      ]
+    },
+    {
+      "id": "REF2-IRR-173",
+      "kind": "irregular_verbs",
+      "base": "undo",
+      "past": "undid",
+      "participle": "undone",
+      "meaning": "reverse an action",
+      "example": "He undid the knot.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "undo",
+        "undid",
+        "undone"
+      ]
+    },
+    {
+      "id": "REF2-IRR-174",
+      "kind": "irregular_verbs",
+      "base": "uphold",
+      "past": "upheld",
+      "participle": "upheld",
+      "meaning": "support or maintain",
+      "example": "The judge upheld the decision.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "uphold",
+        "upheld",
+        "upheld"
+      ]
+    },
+    {
+      "id": "REF2-IRR-175",
+      "kind": "irregular_verbs",
+      "base": "upset",
+      "past": "upset",
+      "participle": "upset",
+      "meaning": "make someone unhappy or disturb",
+      "example": "The news upset him.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "upset",
+        "upset",
+        "upset"
+      ]
+    },
+    {
+      "id": "REF2-IRR-176",
+      "kind": "irregular_verbs",
+      "base": "wake",
+      "past": "woke / waked",
+      "participle": "woken / waked",
+      "meaning": "stop sleeping",
+      "example": "She woke early to catch the train.",
+      "usage_note": "Woke and woken are usual; waked is also available in certain uses.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "wake",
+        "woke",
+        "waked",
+        "woken",
+        "waked"
+      ]
+    },
+    {
+      "id": "REF2-IRR-177",
+      "kind": "irregular_verbs",
+      "base": "wear",
+      "past": "wore",
+      "participle": "worn",
+      "meaning": "have clothes on",
+      "example": "He wore a blue jacket.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "wear",
+        "wore",
+        "worn"
+      ]
+    },
+    {
+      "id": "REF2-IRR-178",
+      "kind": "irregular_verbs",
+      "base": "weave",
+      "past": "wove / weaved",
+      "participle": "woven / weaved",
+      "meaning": "make fabric by crossing threads",
+      "example": "They wove a basket from reeds.",
+      "usage_note": "Wove/woven for making fabric; weaved may be used for moving in and out.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "weave",
+        "wove",
+        "weaved",
+        "woven",
+        "weaved"
+      ]
+    },
+    {
+      "id": "REF2-IRR-179",
+      "kind": "irregular_verbs",
+      "base": "weep",
+      "past": "wept",
+      "participle": "wept",
+      "meaning": "cry",
+      "example": "The child wept after losing the toy.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "weep",
+        "wept",
+        "wept"
+      ]
+    },
+    {
+      "id": "REF2-IRR-180",
+      "kind": "irregular_verbs",
+      "base": "win",
+      "past": "won",
+      "participle": "won",
+      "meaning": "be successful in a contest",
+      "example": "Our class won the quiz.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "core",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "win",
+        "won",
+        "won"
+      ]
+    },
+    {
+      "id": "REF2-IRR-181",
+      "kind": "irregular_verbs",
+      "base": "wind",
+      "past": "wound",
+      "participle": "wound",
+      "meaning": "turn or wrap around",
+      "example": "She wound the string around the box.",
+      "usage_note": "Wind (turn/wrap) is wound-wound (/waʊnd/); wind (moving air) is a different noun/verb use.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "wind",
+        "wound",
+        "wound"
+      ]
+    },
+    {
+      "id": "REF2-IRR-182",
+      "kind": "irregular_verbs",
+      "base": "withdraw",
+      "past": "withdrew",
+      "participle": "withdrawn",
+      "meaning": "take back or remove",
+      "example": "He withdrew his name from the list.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "withdraw",
+        "withdrew",
+        "withdrawn"
+      ]
+    },
+    {
+      "id": "REF2-IRR-183",
+      "kind": "irregular_verbs",
+      "base": "withhold",
+      "past": "withheld",
+      "participle": "withheld",
+      "meaning": "keep back",
+      "example": "The editor withheld the article.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "withhold",
+        "withheld",
+        "withheld"
+      ]
+    },
+    {
+      "id": "REF2-IRR-184",
+      "kind": "irregular_verbs",
+      "base": "withstand",
+      "past": "withstood",
+      "participle": "withstood",
+      "meaning": "resist or survive",
+      "example": "The old wall withstood the storm.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "withstand",
+        "withstood",
+        "withstood"
+      ]
+    },
+    {
+      "id": "REF2-IRR-185",
+      "kind": "irregular_verbs",
+      "base": "wring",
+      "past": "wrung",
+      "participle": "wrung",
+      "meaning": "twist to squeeze",
+      "example": "She wrung water from the towel.",
+      "usage_note": "Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.",
+      "tier": "extended",
+      "origin": "reviewed_full_corpus",
+      "review_status": "NOTEBOOKLM_PASS",
+      "search_terms": [
+        "wring",
+        "wrung",
+        "wrung"
+      ]
+    }
+  ],
+  "counts": {
+    "pilot_immutable": 6,
+    "additional_draft": 185,
+    "total_candidate": 191
+  },
+  "review_evidence": "SLE-REF-IRR-FULL-R1-20261120; owner-supplied NotebookLM: 185/185 PASS, 0 corrections",
+  "review_standard_provenance": "Reviewer cited SLE-MASTER-001 v1.1.0; current main v1.2.1 requires source-set reconciliation before production release"
+}

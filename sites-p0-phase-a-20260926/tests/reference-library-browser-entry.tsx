@@ -43,12 +43,12 @@ let selection='';
   <ReferenceLibrary catalog={catalog} onCatalog={()=>fail('Unnecessary catalog fetch')}
    onOpenLesson={(id,skill)=>{selection=id+' '+skill;report('PASS_LINK '+selection)}}/>
  );
- await wait(()=>getCount().includes('26 reference entries'),'initial 26 items');
- assert(document.querySelectorAll('.sle-reference-table-scroll tbody tr').length===6,'six verb rows');
+ await wait(()=>getCount().includes('264 reference entries'),'26 pilot + 23 Wave1 + 30 Wave2 + 185 corpus verbs');
+ assert(document.querySelectorAll('.sle-reference-table-scroll tbody tr').length===25,'191 reviewed verbs paginated 25 per page');
  assert(document.querySelectorAll('.sle-reference-card').length===20,'20 phrase/strategy cards');
  assert(!!document.querySelector('input[type="search"]'),'search is native search input');
- assert(document.querySelectorAll('.sle-reference-category-filter').length===7,
-  'Six text-labelled category buttons plus All');
+ assert(document.querySelectorAll('.sle-reference-category-filter').length===9,
+  'Eight text-labelled category buttons plus All');
  if(phase==='search'){
   const badge=(kind:string)=>document.querySelector('.sle-reference-category-filter.is-'+kind) as HTMLButtonElement|null;
   assert(!!badge('idioms'),'Idioms category exists');
@@ -70,13 +70,91 @@ let selection='';
   await wait(()=>document.getElementById('app')?.textContent?.includes('No matching entries')??false,'honest empty state');
   const clear=[...document.querySelectorAll('button')].find(x=>x.textContent?.includes('Clear filters'));
   clear?.click();
-  await wait(()=>getCount().includes('26 reference entries'),'clear filters');
+  await wait(()=>getCount().includes('264 reference entries'),'clear filters');
   report('PASS_SEARCH_FILTERS');
+ }else if(phase==='v2'){
+  select('Reference type','writing_connectors');
+  await wait(()=>getCount().includes('42 reference entries'),'12 Wave1 + 30 approved Wave2 connectors');
+  assert(document.querySelectorAll('.sle-ref-connector-card').length===42,'42 reviewed connector cards');
+  search('furthermore');
+  await wait(()=>document.querySelector('.sle-ref-connector-card h4')?.textContent==='furthermore',
+   'Wave2 furthermore exact search and rendering');
+  assert(document.querySelector('.sle-ref-connector-card')?.textContent?.includes('Adds another important supporting point'),
+   'Wave2 individually reviewed purpose is shown');
+  search('nevertheless');
+  await wait(()=>document.querySelector('.sle-ref-connector-card h4')?.textContent==='nevertheless',
+   'Wave2 concession label searchable');
+  search('because');
+  await wait(()=>document.querySelector('.sle-ref-connector-card h4')?.textContent==='because','exact because ranked first across related matches');
+  assert(document.querySelector('.sle-ref-connector-card h4')?.textContent==='because',
+   'Exact connector match should rank before because of');
+  search('despite');
+  await wait(()=>document.querySelector('.sle-ref-connector-card h4')?.textContent==='despite',
+   'despite rule visible before indirect mentions');
+  assert(document.getElementById('app')?.textContent?.includes('noun phrase / -ing phrase'),
+   'despite must require noun/-ing construction');
+  search('');select('Reference type','frequency_expressions');
+  await wait(()=>getCount().includes('11 reference entries'),'eleven reviewed frequency expressions');
+  assert(document.querySelectorAll('.sle-ref-frequency-item').length===8,'qualitative ladder eight');
+  assert(document.querySelectorAll('.sle-ref-counted-frequency .sle-ref-connector-card').length===3,
+   'three counted/interval expressions separate from ladder');
+  const freqRegion=document.querySelector('[aria-label="Frequency expressions"]');
+  assert(!!freqRegion,'frequency section rendered');
+  assert(freqRegion!.querySelectorAll('progress,meter,[data-fixed-percentage]').length===0,
+   'No invented numerical percentage chart');
+  assert(freqRegion!.textContent?.includes('not fixed numerical percentages'),
+   'Teach why an indefinite adverb cannot be assigned fixed percentages');
+  search('usually');
+  await wait(()=>document.querySelector('.sle-ref-frequency-item strong')?.textContent==='usually',
+   'search adverb + position guidance');
+  search('did');select('Reference type','irregular_verbs');
+  await wait(()=>document.querySelector('.sle-reference-table-scroll tbody th')?.textContent==='do',
+   'search by historical V2 form did');
+  search('abode');
+  await wait(()=>document.querySelector('.sle-reference-table-scroll tbody th')?.textContent==='abide',
+   'abode matches abide');
+  const verbCell=document.querySelector('.sle-reference-table-scroll tbody td:last-child') as HTMLElement|null;
+  assert(verbCell?.textContent?.includes('Meaning:')&&verbCell?.textContent?.includes('continue or tolerate'),
+   'Each row must show individual meaning');
+  assert(verbCell?.textContent?.includes('They abided by the agreement.'),
+   'Keep original reviewed contextual example');
+  assert(!verbCell?.textContent?.includes('Past simple is used for a finished past action;'),
+   'Hide repetitive generic boilerplate without changing approved JSON');
+  assert(document.querySelectorAll('.sle-reference-table-scroll .sle-reference-practice').length===0,
+   'Do not link unrelated Grammar A1-01 from irregular verb rows');
+  search('gotten');
+  await wait(()=>document.querySelector('.sle-reference-table-scroll tbody th')?.textContent==='get',
+   'American participle gotten finds get');
+  search('learnt');
+  await wait(()=>document.querySelector('.sle-reference-table-scroll tbody th')?.textContent==='learn',
+   'British variant learnt finds learn');
+  search('');
+  await wait(()=>document.querySelectorAll('.sle-reference-table-scroll tbody tr').length===25,
+   'reset to first page of 191 verbs');
+  const pag=document.querySelector('[aria-label="Irregular verb pages"]') as HTMLElement|null;
+  assert(!!pag,'191 verbs require page navigation');
+  const next=[...pag!.querySelectorAll('button')].find(b=>b.textContent?.includes('Next'));
+  assert(!!next,'Next page button must exist');
+  next!.click();
+  await wait(()=>pag!.textContent?.includes('Page 2 / 8')??false,'25-row paging moves to page 2');
+  const w=[...document.querySelectorAll('[aria-label="Filter irregular verbs by initial letter"] button')]
+   .find(b=>b.textContent==='W') as HTMLButtonElement|undefined;
+  assert(!!w,'A–Z letter W available');w!.click();
+  await wait(()=>w!.getAttribute('aria-pressed')==='true','A–Z letter selection');
+  assert([...document.querySelectorAll('.sle-reference-table-scroll tbody th')]
+   .every(th=>th.textContent?.toLowerCase().startsWith('w')),'W filter must show W verbs');
+  report('PASS_V2_REVIEWED_REFERENCE_191');
  }else if(phase==='catalog'){
-  const first=document.querySelector('.sle-reference-table-scroll .sle-reference-practice button') as HTMLButtonElement|null;
-  assert(first,'available real catalog lesson should show button');
+  assert(document.querySelectorAll('.sle-reference-table-scroll .sle-reference-practice button').length===0,
+   'Irregular verbs must not link to unrelated first Grammar lesson');
+  assert(document.querySelectorAll('.sle-ref-connector-card .sle-reference-practice button').length===0,
+   'Writing connectors must not link to unrelated first Writing lesson');
+  select('Reference type','collocations');
+  await wait(()=>getCount().includes('5 reference entries'),'legacy collocation category');
+  const first=document.querySelector('.sle-reference-card .sle-reference-practice button') as HTMLButtonElement|null;
+  assert(first,'retain legacy skill practice link for pilot collocation cards');
   first!.click();
-  await wait(()=>selection==='GRA-A1-01 grammar','catalog-grounded callback');
+  await wait(()=>selection==='VOC-A2-03 vocabulary','legacy catalog-grounded callback');
   assert(!document.getElementById('app')?.textContent?.includes('CEFR certification awarded'),'no fake badge');
   report('PASS_CATALOG_LINK');
  }else if(phase==='missing'){

@@ -58,15 +58,16 @@ const root=path.resolve(__dirname,'..');
   });
   const host='http://127.0.0.1:'+server.address().port;
   const results=[];
-  for(const phase of ['search','catalog','missing']){
+  for(const phase of ['search','v2','catalog','missing']){
    const result=await run(host+'/?phase='+phase);
    results.push(result);
   }
   assert.match(results[0],/^PASS_SEARCH_FILTERS/);
-  assert.match(results[1],/^PASS_CATALOG_LINK/);
-  assert.match(results[2],/^PASS_MISSING_CATALOG/);
+  assert.match(results[1],/^PASS_V2_REVIEWED_REFERENCE/);
+  assert.match(results[2],/^PASS_CATALOG_LINK/);
+  assert.match(results[3],/^PASS_MISSING_CATALOG/);
   console.log(JSON.stringify({result:'PASS',gate:'ReferenceLibrary-real-Chromium',
-   syntheticCatalog:true,searchAndFilters:true,
+   syntheticCatalog:true,searchAndFilters:true,reviewedV2Wave1:true,
    canonicalRelatedLessonCallback:true,missingCatalogBlocked:true,
    browser:'Chromium',realSafariIpad:'NOT_TESTED',productionWrites:0}));
  }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});}

@@ -11,15 +11,25 @@ export const REFERENCE_KINDS=[
  {id:'common_mistakes',label:'Common mistakes'},
  {id:'learning_tips',label:'Learning tips'},
 ] as const;
-export type ReferenceKind=typeof REFERENCE_KINDS[number]['id'];
-export type ReferenceLevel='A1'|'A2'|'B1'|'B2'|'C1'|'C2';
-export type ReferenceRegister='neutral'|'informal'|'formal';
+export const REFERENCE_V2_KINDS=[
+ {id:'writing_connectors',label:'Writing connectors'},
+ {id:'frequency_expressions',label:'Frequency expressions'},
+] as const;
+export type ReferenceKind=typeof REFERENCE_KINDS[number]['id']|typeof REFERENCE_V2_KINDS[number]['id'];
+export type ReferenceLevel='A1'|'A2'|'B1'|'B2'|'C1'|'C2'|'not_tagged';
+export type ReferenceRegister='neutral'|'informal'|'formal'|'neutral to formal'|'not_tagged';
 export type ReferenceSkill='grammar'|'vocabulary'|'reading'|'writing';
 export type ReferenceEntry={
  id:string;kind:ReferenceKind;level:ReferenceLevel;register:ReferenceRegister;
  term:string;meaning:string;example:string;note:string;skill:ReferenceSkill;
  forms?:{base:string;past:string;participle:string};
  search_keywords?:string[];
+ // Reviewed v2 specialist fields; legacy 26 references do not require them.
+ pattern_group?:string;common_error?:string;
+ verb_priority?:'core'|'extended';
+ function?:string;grammatical_type?:string;construction?:string;
+ frequency_type?:'indefinite_frequency'|'definite_frequency';
+ qualitative_band?:string;position_rule?:string;
 };
 export type ReferenceFilters={
  query:string;kind:'all'|ReferenceKind;level:'all'|ReferenceLevel;
@@ -34,11 +44,26 @@ export function filterReferenceEntries(
  return entries.filter(e=>{
   if(filter.kind!=='all'&&e.kind!==filter.kind)return false;
   if(filter.level!=='all'&&e.level!==filter.level)return false;
-  if(filter.register!=='all'&&e.register!==filter.register)return false;
+  if(filter.register!=='all'&&e.register!==filter.register&&
+   !(e.register==='neutral to formal'&&(filter.register==='neutral'||filter.register==='formal')))return false;
   const text=[e.term,e.meaning,e.example,e.note,e.forms?.base,
-   e.forms?.past,e.forms?.participle,...(e.search_keywords??[])].filter(Boolean)
+   e.forms?.past,e.forms?.participle,e.pattern_group,e.common_error,
+   e.function,e.grammatical_type,e.construction,e.frequency_type,
+   e.qualitative_band,e.position_rule,e.verb_priority,...(e.search_keywords??[])].filter(Boolean)
    .join(' ').normalize('NFKC').toLocaleLowerCase('en');
   return words.every(w=>text.includes(w));
+ }).sort((a,b)=>{
+  if(!words.length)return 0; // retain original order when browsing the table
+  const query=filter.query.normalize('NFKC').toLocaleLowerCase('en').trim();
+  const rank=(e:ReferenceEntry)=>{
+   const forms=[e.term,e.forms?.base,...(e.forms?.past?.split(' / ')??[]),
+    ...(e.forms?.participle?.split(' / ')??[])].filter(Boolean)
+    .map(x=>x!.toLocaleLowerCase('en').trim());
+   if(forms.includes(query))return 0;
+   if(forms.some(x=>x.startsWith(query)))return 1;
+   return 2;
+  };
+  return rank(a)-rank(b);
  });
 }
 /** Every link MUST be grounded in actual current imported catalog entries.
