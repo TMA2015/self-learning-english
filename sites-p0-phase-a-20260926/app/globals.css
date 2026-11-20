@@ -572,6 +572,29 @@ body {
  .sle-reference .sle-reference-category-filter.is-selected{padding:7px 9px}
 }
 
+/* Reviewed Reference Library v2 Wave 1 — independent of unreviewed 191-verb candidate. */
+.sle-reference .is-writing_connectors{--ref-kind-bg:#e9ebfc;--ref-kind-fg:#373b87;--ref-kind-border:#929bd6}
+.sle-reference .is-frequency_expressions{--ref-kind-bg:#e5f3ed;--ref-kind-fg:#265c47;--ref-kind-border:#8bbba5}
+.sle-reference .sle-reference-scroll-cue{margin:.6rem 0;padding:.5rem .75rem;color:#2c527c;background:#eff5fb;border-left:3px solid #5c83b1;border-radius:5px;font-size:.91rem}
+.sle-reference .sle-reference-table-scroll thead th{position:sticky;top:0;z-index:1;background:#e9f2fb}
+.sle-reference .sle-ref-connector-group{min-width:0;margin:1.1rem 0 1.4rem}
+.sle-reference .sle-ref-connector-group h3{text-transform:capitalize;font-size:1.04rem;margin:0 0 .65rem;color:#294e7b}
+.sle-reference .sle-ref-connector-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}
+.sle-reference .sle-ref-connector-card{min-width:0;overflow-wrap:anywhere;line-height:1.55}
+.sle-reference .sle-ref-connector-card h4{font-size:1.1rem;margin:.4rem 0 .65rem}
+.sle-reference .sle-ref-connector-card p{margin:.6rem 0}
+.sle-reference .sle-ref-caution{border-left:3px solid #b28a63;background:#fff9ef;padding:.55rem .75rem;border-radius:4px;overflow-wrap:anywhere}
+.sle-reference .sle-ref-frequency-ladder{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:10px;list-style:none;padding:0;margin:1rem 0}
+.sle-reference .sle-ref-frequency-item{margin:0;padding:12px 14px;background:#f7fafc;border:1px solid #cbd9e8;border-left:4px solid #507fad;border-radius:9px;min-width:0;overflow-wrap:anywhere;line-height:1.55}
+.sle-reference .sle-ref-frequency-item p{margin:.45rem 0}
+.sle-reference .sle-ref-frequency-item small{color:#52677c}
+.sle-reference .sle-ref-counted-frequency{margin-top:1.5rem;border-top:1px solid #d8e5f2;padding-top:1rem}
+.sle-reference .sle-ref-counted-frequency h3{margin:0 0 .6rem}
+@media(max-width:380px){
+ .sle-reference .sle-ref-connector-card,.sle-reference .sle-ref-frequency-item{padding:10px 11px}
+ .sle-reference .sle-ref-frequency-ladder,.sle-reference .sle-ref-connector-grid{gap:9px}
+}
+
 /* Integrated Writing: canonical sources displayed where the answer is entered. */
 .writing-source-bundle{margin:1rem 0 1.25rem;min-width:0}
 .writing-source-bundle>p{line-height:1.65;overflow-wrap:anywhere}
