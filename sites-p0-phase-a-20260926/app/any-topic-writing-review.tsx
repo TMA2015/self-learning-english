@@ -147,7 +147,6 @@ export function AnyTopicWritingReview({showVi=false}:{showVi?:boolean}){
     </form>
     {currentReview&&<section className="panel" aria-label="AI Tutor writing review" aria-live="polite">
       <h2>AI Tutor · Writing Review</h2>
-      <p>Your saved draft can receive individualized suggestions only if you explicitly request AI feedback below. No AI review, quality score or CEFR estimate has been performed yet.</p>
       {!draftSaved&&<p className="notice">AI review requires a successfully saved copy of this exact draft. Save again after any editing.</p>}
       {writing.length>7000&&<p className="notice">Your full draft is saved. For Gemini feedback, use a shorter draft of up to 7,000 characters. Your longer text remains available for self-review.</p>}
       <WritingAIReview reviewId="any-topic-writing" task={topic} fields={{draft:writing}} kind="draft" enabled={aiEligible} reviewMode="any-topic" reference={reference} responseLanguage={showVi ? 'vi' : 'en'}/>
