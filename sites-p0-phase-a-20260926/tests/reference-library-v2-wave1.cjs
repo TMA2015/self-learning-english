@@ -6,6 +6,7 @@ const root=path.join(__dirname,'..');
 const read=(p)=>fs.readFileSync(path.join(root,p),'utf8');
 const old=JSON.parse(read('content/reference-library-pilot-v1.json'));
 const w=JSON.parse(read('content/reference-library-v2-wave1-reviewed.json'));
+const corpus=JSON.parse(read('content/reference-library-v2-irregular-candidate.json'));
 const packet=read('notebooklm/SLE_REFERENCE_LIBRARY_V2_WAVE1_R1_20261120.md');
 const domain=read('domain/reference-library.ts');
 const ui=read('app/reference-library.tsx');
@@ -15,6 +16,11 @@ assert.equal(old.entries.length,26);
 assert.equal(w.review_status,'NOTEBOOKLM_PASS_38_OF_38');
 assert.equal(w.runtime_state,'DRAFT_NOT_LIVE');
 assert.equal(w.entries.length,38);
+assert.equal(corpus.status,'NOTEBOOKLM_PASS_185_OF_185_DRAFT_NOT_LIVE');
+assert.equal(corpus.new_entries.length,185);
+assert(corpus.new_entries.every(e=>e.review_status==='NOTEBOOKLM_PASS'));
+assert(corpus.new_entries.every(e=>!('score' in e)&&!('answer_key' in e)));
+assert.equal(new Set(corpus.new_entries.map(x=>x.id)).size,185);
 assert.equal(new Set(w.entries.map(e=>e.id)).size,38);
 const byKind={irregular_verbs:15,writing_connectors:12,frequency_expressions:11};
 for(const [kind,n] of Object.entries(byKind))assert.equal(w.entries.filter(e=>e.kind===kind).length,n);
@@ -56,10 +62,24 @@ fs.mkdirSync(path.dirname(out),{recursive:true});fs.writeFileSync(out,transpiled
 const {REFERENCE_KINDS,REFERENCE_V2_KINDS,filterReferenceEntries}=require(out);
 assert.equal(REFERENCE_KINDS.length,6,'preserve six reviewed pilot categories');
 assert.equal(REFERENCE_V2_KINDS.length,2,'new connector/frequency categories');
-const entries=[...old.entries,...w.entries],base={query:'',kind:'all',level:'all',register:'all'};
-assert.equal(filterReferenceEntries(entries,base).length,64);
+// Wave 1's 15 review-approved verb IDs also occur in the separately reviewed
+// full corpus. Use corpus wordings for those IDs, never count the overlap twice.
+const corpusEntries=corpus.new_entries.map(item=>({
+ id:item.id,kind:'irregular_verbs',term:item.base,meaning:item.meaning,
+ example:item.example,note:item.usage_note,skill:'grammar',
+ level:'not_tagged',register:'not_tagged',search_keywords:item.search_terms,
+ forms:{base:item.base,past:item.past,participle:item.participle},
+ verb_priority:item.tier,
+}));
+const entries=[...old.entries,...w.entries.filter(e=>e.kind!=='irregular_verbs'),
+ ...corpusEntries],base={query:'',kind:'all',level:'all',register:'all'};
+assert.equal(entries.length,234,'6 pilot + 185 full corpus + 20 pilot other + 23 Wave 1 others');
+assert.equal(new Set(entries.map(e=>e.id)).size,234,'Wave 1 verb overlap must not duplicate IDs');
+assert.equal(new Set(entries.map(e=>e.term)).size,234,'No duplicate lemmas or phrases');
+assert.equal(filterReferenceEntries(entries,base).length,234);
 function find(query,kind='all'){return filterReferenceEntries(entries,{...base,query,kind}).map(e=>e.term)}
-for(const [query,expected] of [['did','do'],['done','do'],['thought','think'],['despite','despite'],
+for(const [query,expected] of [['did','do'],['done','do'],['thought','think'],
+ ['gotten','get'],['learnt','learn'],['laid','lay'],['despite','despite'],
  ['because','because'],['usually','usually'],['every other day','every other day']]){
  assert.equal(find(query)[0],expected,'exact lookup priority: '+query);
 }
@@ -69,14 +89,19 @@ assert.equal(w.entries.filter(e=>e.frequency_type==='indefinite_frequency').leng
 assert.equal(w.entries.filter(e=>e.frequency_type==='definite_frequency').length,3);
 assert(!w.entries.some(e=>/\d+\s*%|percentage=/i.test(e.note||'')),'no fictional fixed percentages');
 assert(ui.includes('reference-library-v2-wave1-reviewed.json'));
-assert(!ui.includes('reference-library-v2-irregular-candidate.json'),
- 'The UNREVIEWED 191 corpus must remain isolated from the LIVE-facing reference UI');
+assert(ui.includes('reference-library-v2-irregular-candidate.json'),
+ 'The 185 reviewed full-corpus entries should be included in this DRAFT main Reference UI');
+assert(ui.includes("...waveOne.entries.filter(x=>x.kind!=='irregular_verbs')"),
+ 'Do not double-count 15 overlapping Wave 1 verbs');
+assert(ui.includes('pagedVerbs=verbFiltered.slice('),'Render at most 25 verbs per page');
+assert(ui.includes('aria-label="Filter irregular verbs by initial letter"'));
+assert(ui.includes('aria-label="Verb tier"'));
 assert(ui.includes('className="sle-ref-frequency-ladder"'));
 assert(ui.includes('className="sle-ref-connector-group"'));
 assert(css.includes('.sle-reference .sle-reference-scroll-cue'));
 assert(css.includes('.sle-reference .sle-reference-table-scroll thead th'));
 assert(!/\blocalStorage\.setItem\s*\(|\bindexedDB\.open\s*\(/.test(ui+domain));
 console.log(JSON.stringify({result:'PASS',gate:'reference-library-v2-wave1-reviewed',
- reviewed:38,preservedPilot:26,aggregate:64,irregular:21,connectors:12,
- frequency:11,parity:true,academicSourceVersionReconciliation:'RELEASE_GATE',
- unreviewed191Live:false,productionWrites:0}));
+ reviewedWave1:38,reviewedCorpus:185,preservedPilot:26,aggregate:234,irregular:191,
+ connectors:12,frequency:11,parity:true,academicSourceVersionReconciliation:'RELEASE_GATE',
+ projectLiveUnchanged:true,productionWrites:0}));
