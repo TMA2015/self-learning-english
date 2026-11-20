@@ -43,7 +43,7 @@ let selection='';
   <ReferenceLibrary catalog={catalog} onCatalog={()=>fail('Unnecessary catalog fetch')}
    onOpenLesson={(id,skill)=>{selection=id+' '+skill;report('PASS_LINK '+selection)}}/>
  );
- await wait(()=>getCount().includes('234 reference entries'),'26 pilot + 23 reviewed phrases + 185 reviewed corpus verbs');
+ await wait(()=>getCount().includes('264 reference entries'),'26 pilot + 23 Wave1 + 30 Wave2 + 185 corpus verbs');
  assert(document.querySelectorAll('.sle-reference-table-scroll tbody tr').length===25,'191 reviewed verbs paginated 25 per page');
  assert(document.querySelectorAll('.sle-reference-card').length===20,'20 phrase/strategy cards');
  assert(!!document.querySelector('input[type="search"]'),'search is native search input');
@@ -70,12 +70,20 @@ let selection='';
   await wait(()=>document.getElementById('app')?.textContent?.includes('No matching entries')??false,'honest empty state');
   const clear=[...document.querySelectorAll('button')].find(x=>x.textContent?.includes('Clear filters'));
   clear?.click();
-  await wait(()=>getCount().includes('234 reference entries'),'clear filters');
+  await wait(()=>getCount().includes('264 reference entries'),'clear filters');
   report('PASS_SEARCH_FILTERS');
  }else if(phase==='v2'){
   select('Reference type','writing_connectors');
-  await wait(()=>getCount().includes('12 reference entries'),'12 reviewed connectors');
-  assert(document.querySelectorAll('.sle-ref-connector-card').length===12,'connector cards');
+  await wait(()=>getCount().includes('42 reference entries'),'12 Wave1 + 30 approved Wave2 connectors');
+  assert(document.querySelectorAll('.sle-ref-connector-card').length===42,'42 reviewed connector cards');
+  search('furthermore');
+  await wait(()=>document.querySelector('.sle-ref-connector-card h4')?.textContent==='furthermore',
+   'Wave2 furthermore exact search and rendering');
+  assert(document.querySelector('.sle-ref-connector-card')?.textContent?.includes('Adds another important supporting point'),
+   'Wave2 individually reviewed purpose is shown');
+  search('nevertheless');
+  await wait(()=>document.querySelector('.sle-ref-connector-card h4')?.textContent==='nevertheless',
+   'Wave2 concession label searchable');
   search('because');
   await wait(()=>document.querySelector('.sle-ref-connector-card h4')?.textContent==='because','exact because ranked first across related matches');
   assert(document.querySelector('.sle-ref-connector-card h4')?.textContent==='because',
