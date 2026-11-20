@@ -25,6 +25,9 @@ const ENTRIES=[...source.entries,
  ...waveOne.entries.filter(x=>x.kind!=='irregular_verbs'),
  ...CORPUS_ENTRIES] as ReferenceEntry[];
 const ALPHABET='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+// This generic but correct reminder occurs in 141/185 corpus records.
+// Leave reviewed source unchanged; omit it from repeated lookup rows.
+const GENERIC_VERB_NOTE='Past simple is used for a finished past action; the past participle is used in perfect and passive constructions where appropriate.';
 const UI_KINDS=[...REFERENCE_KINDS,...REFERENCE_V2_KINDS];
 const LEVELS=['A1','A2','B1','B2','C1','C2'] as const;
 const kindLabel=(kind:ReferenceKind)=>UI_KINDS.find(x=>x.id===kind)?.label??kind;
@@ -91,12 +94,12 @@ export function ReferenceLibrary({
   </div></div>
   <section className="panel sle-reference-intro" aria-label="How to use this library">
    <p>Use these examples to understand a pattern, then try a different example of your own.
-    Choose a topic or level, then open a linked lesson to practise.</p>
+    Choose a topic or level to find forms, meaning and examples.</p>
    <p><small>Offline-first static reference · 26/26 entries academically reviewed in the pilot
     plus 23/23 Writing/Frequency entries from Wave 1 and 185/185 full-corpus verbs
     independently approved by NotebookLM (234 reference entries in this candidate).
     No answers, tests, AI evaluation or learner scores are stored here.
-    Related-skill lesson links appear only if those lessons are in this device's imported catalog.</small></p>
+    Legacy practice links are broad skill suggestions, not verified lessons for each term.</small></p>
   </section>
   <section className="panel sle-reference-filters" aria-label="Search and filter references">
    <div className="sle-reference-filter-grid">
@@ -171,12 +174,14 @@ export function ReferenceLibrary({
       <th scope="row">{entry.forms?.base}</th>
       <td>{entry.forms?.past}</td>
       <td>{entry.forms?.participle}</td>
-      <td><strong>{entry.example}</strong><p>{entry.note}</p>
+      <td><p><strong>Meaning:</strong> {entry.meaning}</p>
+       <p><strong>Example:</strong> {entry.example}</p>
+       {entry.note!==GENERIC_VERB_NOTE&&<p><strong>Usage:</strong> {entry.note}</p>}
        {entry.pattern_group&&<p><strong>Pattern:</strong> {entry.pattern_group.replaceAll('_',' ')}</p>}
        {entry.common_error&&<p><strong>Watch out:</strong> {entry.common_error}</p>}
        <small>{entry.level==='not_tagged'?'CEFR level not assigned':'Suggested '+entry.level}
         {entry.verb_priority?' · '+entry.verb_priority+' (editorial)':' · reviewed pilot'}</small>
-       <Related entry={entry}/>
+       {/* Topic-verified lesson links for irregular verbs will be added separately. */}
       </td>
      </tr>)}</tbody>
     </table>
@@ -217,7 +222,7 @@ export function ReferenceLibrary({
      <p><strong>Example:</strong> {entry.example}</p>
      <p><strong>Usage:</strong> {entry.note}</p>
      <p className="sle-ref-caution"><strong>Watch out:</strong> {entry.common_error}</p>
-     <Related entry={entry}/>
+     {/* No topic match verified: do not link arbitrary introductory Writing lessons. */}
     </article>)}
     </div>
    </div>)}
