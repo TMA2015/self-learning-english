@@ -1,17 +1,21 @@
 'use client';
 import {useEffect,useMemo,useState} from 'react';
 import source from '../content/reference-library-pilot-v1.json';
+import waveOne from '../content/reference-library-v2-wave1-reviewed.json';
 import {foundationRequest} from '../infrastructure/browser/client-services';
 import type {Catalog} from './foundation';
 import {
- REFERENCE_KINDS,availableRelatedLessons,filterReferenceEntries,
+ REFERENCE_KINDS,REFERENCE_V2_KINDS,availableRelatedLessons,filterReferenceEntries,
  type ReferenceEntry,type ReferenceFilters,type ReferenceKind,
  type ReferenceLevel,type ReferenceRegister,type ReferenceSkill
 } from '../domain/reference-library';
 
-const ENTRIES=source.entries as ReferenceEntry[];
+// Only independently reviewed Wave 1 entries are in this live-facing component.
+// The separate 191-verb corpus remains an unreviewed isolated candidate.
+const ENTRIES=[...source.entries,...waveOne.entries] as ReferenceEntry[];
+const UI_KINDS=[...REFERENCE_KINDS,...REFERENCE_V2_KINDS];
 const LEVELS=['A1','A2','B1','B2','C1','C2'] as const;
-const kindLabel=(kind:ReferenceKind)=>REFERENCE_KINDS.find(x=>x.id===kind)?.label??kind;
+const kindLabel=(kind:ReferenceKind)=>UI_KINDS.find(x=>x.id===kind)?.label??kind;
 
 export function ReferenceLibrary({
  catalog,onCatalog,onOpenLesson
@@ -29,7 +33,12 @@ export function ReferenceLibrary({
   ENTRIES,{query,kind,level,register}
  ),[query,kind,level,register]);
  const verbs=results.filter(e=>e.kind==='irregular_verbs');
- const others=results.filter(e=>e.kind!=='irregular_verbs');
+ const connectors=results.filter(e=>e.kind==='writing_connectors');
+ const indefinite=results.filter(e=>e.kind==='frequency_expressions'&&e.frequency_type==='indefinite_frequency');
+ const definite=results.filter(e=>e.kind==='frequency_expressions'&&e.frequency_type==='definite_frequency');
+ const otherCards=results.filter(e=>e.kind!=='irregular_verbs'&&
+  e.kind!=='writing_connectors'&&e.kind!=='frequency_expressions');
+ const writingFunctions=[...new Set(connectors.map(e=>e.function||'General'))];
  useEffect(()=>{
   if(catalog)return;
   let active=true;
@@ -55,12 +64,13 @@ export function ReferenceLibrary({
   <div className="eyebrow">LEARN · QUICK REFERENCE</div>
   <div className="page-heading"><div>
    <h1>English Reference Library</h1>
-   <p>Look up useful forms, phrases, common mistakes and study strategies.</p>
+   <p>Look up irregular verbs, writing connectors, frequency, useful phrases and study strategies.</p>
   </div></div>
   <section className="panel sle-reference-intro" aria-label="How to use this library">
    <p>Use these examples to understand a pattern, then try a different example of your own.
     Choose a topic or level, then open a linked lesson to practise.</p>
-   <p><small>Offline-first static reference pilot · 26/26 entries academically reviewed.
+   <p><small>Offline-first static reference · 26/26 entries academically reviewed in the pilot
+    and 38/38 additional Wave 1 entries approved by NotebookLM.
     No answers, tests, AI evaluation or learner scores are stored here.
     Related-skill lesson links appear only if those lessons are in this device's imported catalog.</small></p>
   </section>
@@ -68,12 +78,12 @@ export function ReferenceLibrary({
    <div className="sle-reference-filter-grid">
     <label>Search words and examples
      <input type="search" value={query} onChange={e=>setQuery(e.target.value)}
-      placeholder="e.g. written, decline, feel unwell" aria-label="Search reference entries"/>
+      placeholder="e.g. written, despite, usually, decline" aria-label="Search reference entries"/>
     </label>
     <label>Reference type
      <select value={kind} onChange={e=>setKind(e.target.value as 'all'|ReferenceKind)} aria-label="Reference type">
       <option value="all">All types</option>
-      {REFERENCE_KINDS.map(x=><option key={x.id} value={x.id}>{x.label}</option>)}
+      {UI_KINDS.map(x=><option key={x.id} value={x.id}>{x.label}</option>)}
      </select>
     </label>
     <label>Suggested level
@@ -94,7 +104,7 @@ export function ReferenceLibrary({
    <div className="sle-reference-category-filters" role="group" aria-label="Quick category filters">
     <button type="button" className={'sle-reference-category-filter is-all'+(kind==='all'?' is-selected':'')}
      aria-pressed={kind==='all'} onClick={()=>setKind('all')}>All categories</button>
-    {REFERENCE_KINDS.map(group=><button type="button" key={group.id}
+    {UI_KINDS.map(group=><button type="button" key={group.id}
      className={'sle-reference-category-filter is-'+group.id+(kind===group.id?' is-selected':'')}
      aria-pressed={kind===group.id} onClick={()=>setKind(group.id)}>
       {group.label}
@@ -111,7 +121,8 @@ export function ReferenceLibrary({
   {results.length===0&&<section className="panel" role="status"><h2>No matching entries</h2><p>Try a shorter word or clear one of the filters.</p></section>}
   {verbs.length>0&&<section className="panel sle-reference-section" aria-label="Irregular verb table">
    <h2>Irregular verbs</h2>
-   <p className="muted">Base form · simple past · past participle. Learn one form in a new context rather than only memorising a list.</p>
+   <p className="muted">Base form · simple past · past participle. Search by V1, V2 or V3. The full 191-lemma expansion is still being independently reviewed.</p>
+   <p className="sle-reference-scroll-cue">On a narrow screen, scroll the table sideways to view every column.</p>
    <div className="sle-reference-table-scroll" role="region" aria-label="Scrollable irregular verb table" tabIndex={0}>
     <table><thead><tr><th scope="col">Base</th><th scope="col">Past</th><th scope="col">Past participle</th><th scope="col">Example and usage</th></tr></thead>
      <tbody>{verbs.map(entry=><tr key={entry.id}>
@@ -119,6 +130,8 @@ export function ReferenceLibrary({
       <td>{entry.forms?.past}</td>
       <td>{entry.forms?.participle}</td>
       <td><strong>{entry.example}</strong><p>{entry.note}</p>
+       {entry.pattern_group&&<p><strong>Pattern:</strong> {entry.pattern_group.replaceAll('_',' ')}</p>}
+       {entry.common_error&&<p><strong>Watch out:</strong> {entry.common_error}</p>}
        <small>Suggested {entry.level} · {entry.register}</small>
        <Related entry={entry}/>
       </td>
@@ -126,10 +139,10 @@ export function ReferenceLibrary({
     </table>
    </div>
   </section>}
-  {others.length>0&&<section className="sle-reference-section" aria-label="Phrase and study references">
+  {otherCards.length>0&&<section className="sle-reference-section" aria-label="Phrase and study references">
    <h2>Expressions and learning guidance</h2>
    <div className="sle-reference-card-grid">
-    {others.map(entry=><article className="panel sle-reference-card" key={entry.id}>
+    {otherCards.map(entry=><article className="panel sle-reference-card" key={entry.id}>
      <div className="sle-reference-tags">
       <span className={'sle-reference-kind-label is-'+entry.kind}>{kindLabel(entry.kind)}</span><span>Suggested {entry.level}</span><span>{entry.register}</span>
      </div>
@@ -140,6 +153,48 @@ export function ReferenceLibrary({
      <Related entry={entry}/>
     </article>)}
    </div>
+  </section>}
+  {connectors.length>0&&<section className="sle-reference-section" aria-label="Writing linking words">
+   <h2>Writing connectors — choose by purpose</h2>
+   <p className="muted">Choose a logical relationship first, then check the sentence pattern and punctuation. More connectors do not automatically mean better writing.</p>
+   {writingFunctions.map(fn=><div className="sle-ref-connector-group" key={fn}>
+    <h3>{fn.replaceAll('_',' ').replaceAll(' / ',' and ')}</h3>
+    <div className="sle-ref-connector-grid">
+    {connectors.filter(e=>(e.function||'General')===fn).map(entry=><article className="panel sle-ref-connector-card" key={entry.id}>
+     <div className="sle-reference-tags"><span>Suggested {entry.level}</span><span>{entry.register}</span></div>
+     <h4>{entry.term}</h4>
+     <p><strong>Structure:</strong> {entry.grammatical_type} · {entry.construction}</p>
+     <p><strong>Example:</strong> {entry.example}</p>
+     <p><strong>Usage:</strong> {entry.note}</p>
+     <p className="sle-ref-caution"><strong>Watch out:</strong> {entry.common_error}</p>
+     <Related entry={entry}/>
+    </article>)}
+    </div>
+   </div>)}
+  </section>}
+  {(indefinite.length>0||definite.length>0)&&<section className="sle-reference-section" aria-label="Frequency expressions">
+   <h2>Frequency — from always to never</h2>
+   <p className="muted">These are approximate, context-dependent meanings, not fixed numerical percentages. Check where each adverb goes in the sentence.</p>
+   {indefinite.length>0&&<ol className="sle-ref-frequency-ladder">
+    {indefinite.map(entry=><li key={entry.id} className="sle-ref-frequency-item">
+     <div><strong>{entry.term}</strong> <small>· {entry.qualitative_band?.replaceAll('_',' ')}</small></div>
+     <p>{entry.example}</p><p><strong>Position:</strong> {entry.position_rule}</p>
+     <p>{entry.note}</p>
+     <p className="sle-ref-caution"><strong>Watch out:</strong> {entry.common_error}</p>
+    </li>)}
+   </ol>}
+   {definite.length>0&&<div className="sle-ref-counted-frequency">
+    <h3>Measured frequency and intervals</h3>
+    <p>These expressions name a count or an interval, so they do not belong on the approximate ladder above.</p>
+    <div className="sle-ref-connector-grid">
+    {definite.map(entry=><article className="panel sle-ref-connector-card" key={entry.id}>
+     <h4>{entry.term}</h4>
+     <p><strong>Pattern:</strong> {entry.position_rule}</p>
+     <p><strong>Example:</strong> {entry.example}</p><p>{entry.note}</p>
+     <p className="sle-ref-caution"><strong>Watch out:</strong> {entry.common_error}</p>
+    </article>)}
+    </div>
+   </div>}
   </section>}
   <p className="muted sle-reference-footer">Reference cards are separate from quizzes and do not change your saved results. A linked lesson is related by skill; it may not teach the exact expression shown above.</p>
  </div>;
