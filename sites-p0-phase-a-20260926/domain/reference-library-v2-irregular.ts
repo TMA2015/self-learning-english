@@ -1,9 +1,9 @@
 /**
  * Reference Library v2 irregular-verb CANDIDATE selectors.
- * The 185 new terms are academic drafts, NOT reviewed or authorized for LIVE.
+ * The 185 additional records passed independent NotebookLM content review; release remains NOT authorized.
  * Pure operations: no scoring, network, learner state or storage.
  */
-export type ReviewState='PILOT_REVIEWED'|'NOT_REVIEWED';
+export type ReviewState='PILOT_REVIEWED'|'CORPUS_REVIEWED';
 export type VerbPriority='core'|'extended';
 export type IrregularVerbRow={
  id:string;
@@ -36,7 +36,7 @@ export type StagedVerb={
  example:string;
  usage_note:string;
  tier:VerbPriority;
- review_status:'NOT_REVIEWED';
+ review_status:'NOTEBOOKLM_PASS';
  search_terms:string[];
 };
 const normalize=(v:string)=>v.normalize('NFKC').toLocaleLowerCase('en').trim();
@@ -54,7 +54,7 @@ export function buildIrregularRows(pilot:readonly ExistingPilotVerb[],staged:rea
  const incoming=staged.map(x=>({
   id:x.id,base:x.base,past:x.past,participle:x.participle,
   meaning:x.meaning,example:x.example,usageNote:x.usage_note,priority:x.tier,
-  reviewState:'NOT_REVIEWED' as const,
+  reviewState:'CORPUS_REVIEWED' as const,
   searchTerms:[...x.search_terms],
  }));
  const result=[...existing,...incoming];
