@@ -85,7 +85,7 @@ assert(ui.includes('pageIrregularRows(filtered,page,25)'),'Never eagerly render 
 assert(ui.includes('aria-label="Filter by initial letter"'),'A-Z keyboard labels');
 assert(ui.includes('aria-label="Irregular verbs table, horizontally scrollable on narrow screens"'));
 assert(ui.includes('role="status"')&&ui.includes('aria-live="polite"'));
-assert(ui.includes('PILOT_REVIEWED')&&ui.includes('Academic draft'));
+assert(ui.includes('PILOT_REVIEWED')&&ui.includes('Academic content reviewed'));
 assert(styles.includes('.sle-reference-v2-candidate .sle-ref-v2-letters'));
 assert(styles.includes('@media(max-width:680px)'));
 assert(!home.includes('ReferenceLibraryV2IrregularCandidate'),
