@@ -64,6 +64,7 @@ const coreTests=[
   "vocabulary-pilot-contract.cjs",
   "rgw-depth-pilot-contract.cjs",
   "highlight-left-edge-contract.cjs",
+  "reference-library-v2-irregular-candidate.cjs",
   "pronunciation-runtime-audio.cjs",
 ];
 
