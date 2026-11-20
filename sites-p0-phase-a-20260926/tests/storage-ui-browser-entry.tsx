@@ -145,7 +145,8 @@ const pkg=async(version:string)=>{
    await action('Preview storage cleanup');
    await wait(()=>!!document.querySelector('.sle-storage-no-savings'),'zero-savings summary');
    const message=document.querySelector('.sle-storage-no-savings')?.textContent??'';
-   assert(message.includes('Chưa cần dọn'),'Zero-savings preview must explain no cleanup needed');
+   assert(message.includes('Không thể giảm thêm học liệu')&&message.includes('không có nghĩa'),
+     'Zero-savings preview must not imply available Safari quota');
    assert(!findButton('Confirm compact storage'),'No-op cleanup must not offer a confirm button');
    assert(!findButton('2. Chọn đúng file vừa tải'),'No-op cleanup must not demand a file picker');
    assert(localStorage.getItem(key)===before,'Preview-only must not change the saved curriculum');
