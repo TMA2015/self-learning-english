@@ -57,6 +57,7 @@ function browserMain(MODULES,seed){
  (async()=>{
   const {BrowserLocalAcademicRepository}=load('/infrastructure/storage/browser-local-repositories.js');
   const recovery=load('/infrastructure/browser/local-recovery.js');
+  const {englishLosslessStore}=load('/infrastructure/browser/lossless-browser-storage.js');
   const owner='test-family',id=seed.lessons[0].id,ns='g-learning:english:v1';
   const pkg=(v)=>({id:'chrome-'+v,version:v,digest:'digest-'+v,
    source:{...seed,schema_version:v},bundle:{},at:1});
@@ -69,15 +70,15 @@ function browserMain(MODULES,seed){
     packageId:'chrome-1.18.0',version:'1.18.0',lessonId:id,
     status:'started',answers:{},createdAt:1,evidence:[]});
    await repo.addPackage(pkg('1.18.1'));
-   const before=localStorage.getItem(ns+':academic:packages').length;
+   const before=englishLosslessStore(localStorage).getItem(ns+':academic:packages').length;
    const p=await repo.previewRetention();
    check(p.protectedLessonCount===1,'must protect one historical lesson');
    await repo.compactRetention(p.token,true);
-   const doc=JSON.parse(localStorage.getItem(ns+':academic:packages'));
+   const doc=JSON.parse(englishLosslessStore(localStorage).getItem(ns+':academic:packages'));
    check(doc.schema===2&&doc.records.length===2,'retention document schema');
    check(doc.records.filter(x=>!x.archive).length===1,'one complete active curriculum');
    check(doc.records.find(x=>x.version==='1.18.0').source.lessons.length===1,'exact historic lesson');
-   const after=localStorage.getItem(ns+':academic:packages').length;
+   const after=englishLosslessStore(localStorage).getItem(ns+':academic:packages').length;
    check(after<before,'retention reduces bytes');
    const file=await recovery.exportLocalRecoveryV2();
    const verified=await recovery.verifyLocalRecoveryV2(file.text);
