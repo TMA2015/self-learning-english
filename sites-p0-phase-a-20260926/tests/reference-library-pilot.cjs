@@ -125,7 +125,7 @@ for(const s of [ui,tsSource]){
 }
 assert(ui.includes('Choose a topic or level, then open a linked lesson to practise.'),'Reference Library guidance should be actionable without repeating assessment caveats');
 assert(ui.includes('26/26 entries academically reviewed'),'UI should no longer claim verdict pending');
-assert(ui.includes('aria-pressed={kind===group.id}')&&ui.includes('onClick={()=>setKind(group.id)}'),
+assert(ui.includes('aria-pressed={kind===group.id}')&&ui.includes('onClick={()=>{setKind(group.id);setVerbPage(1)}}'),
  'Text-labelled category chips must be interactive and stateful');
 for(const kind of Object.keys(kinds))
  assert(css.includes('.sle-reference .is-'+kind),
