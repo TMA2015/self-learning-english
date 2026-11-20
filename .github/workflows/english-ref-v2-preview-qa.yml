@@ -79,7 +79,7 @@ jobs:
           assert.equal(new Set(connectors.map(e=>e.term)).size,42);
           assert.equal(integrated.length,264);
           assert.equal(new Set(integrated.map(e=>e.id)).size,264);
-          assert.equal(new Set(integrated.map(e=>e.term)).size,264);
+          assert.equal(new Set(integrated.map(e=>e.term??e.base)).size,264);
           const ui=fs.readFileSync('app/reference-library.tsx','utf8');
           assert(ui.includes('reference-library-v2-irregular-candidate.json'));
           assert(ui.includes('reference-library-v2-writing-connectors-wave2-reviewed.json'));
