@@ -2,6 +2,7 @@
 import {useEffect,useMemo,useState} from 'react';
 import source from '../content/reference-library-pilot-v1.json';
 import waveOne from '../content/reference-library-v2-wave1-reviewed.json';
+import fullVerbs from '../content/reference-library-v2-irregular-candidate.json';
 import {foundationRequest} from '../infrastructure/browser/client-services';
 import type {Catalog} from './foundation';
 import {
@@ -10,9 +11,20 @@ import {
  type ReferenceLevel,type ReferenceRegister,type ReferenceSkill
 } from '../domain/reference-library';
 
-// Only independently reviewed Wave 1 entries are in this live-facing component.
-// The separate 191-verb corpus remains an unreviewed isolated candidate.
-const ENTRIES=[...source.entries,...waveOne.entries] as ReferenceEntry[];
+// Six original approved verbs stay byte-for-byte in the 26-entry pilot.
+// The 185-entry full corpus independently covers all 15 reviewed Wave 1 verbs;
+// use its literal approved forms/examples instead of duplicating those lemmas.
+const CORPUS_ENTRIES=fullVerbs.new_entries.map(item=>({
+ id:item.id,kind:'irregular_verbs' as const,term:item.base,
+ meaning:item.meaning,example:item.example,note:item.usage_note,
+ level:'not_tagged' as const,register:'not_tagged' as const,skill:'grammar' as const,
+ forms:{base:item.base,past:item.past,participle:item.participle},
+ search_keywords:item.search_terms,verb_priority:item.tier,
+}));
+const ENTRIES=[...source.entries,
+ ...waveOne.entries.filter(x=>x.kind!=='irregular_verbs'),
+ ...CORPUS_ENTRIES] as ReferenceEntry[];
+const ALPHABET='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const UI_KINDS=[...REFERENCE_KINDS,...REFERENCE_V2_KINDS];
 const LEVELS=['A1','A2','B1','B2','C1','C2'] as const;
 const kindLabel=(kind:ReferenceKind)=>UI_KINDS.find(x=>x.id===kind)?.label??kind;
@@ -29,10 +41,20 @@ export function ReferenceLibrary({
  const [level,setLevel]=useState<ReferenceFilters['level']>('all');
  const [register,setRegister]=useState<ReferenceFilters['register']>('all');
  const [catalogError,setCatalogError]=useState('');
+ const [verbTier,setVerbTier]=useState<'all'|'core'|'extended'>('all');
+ const [verbInitial,setVerbInitial]=useState('all');
+ const [verbPage,setVerbPage]=useState(1);
  const results=useMemo(()=>filterReferenceEntries(
   ENTRIES,{query,kind,level,register}
  ),[query,kind,level,register]);
  const verbs=results.filter(e=>e.kind==='irregular_verbs');
+ const verbFiltered=verbs.filter(e=>
+  (verbTier==='all'||(e.verb_priority??'core')===verbTier)&&
+  (verbInitial==='all'||e.term.toUpperCase().startsWith(verbInitial))
+ ).sort((a,b)=>query.trim()?0:a.term.localeCompare(b.term,'en'));
+ const verbTotalPages=Math.max(1,Math.ceil(verbFiltered.length/25));
+ const activeVerbPage=Math.min(verbPage,verbTotalPages);
+ const pagedVerbs=verbFiltered.slice((activeVerbPage-1)*25,activeVerbPage*25);
  const connectors=results.filter(e=>e.kind==='writing_connectors');
  const indefinite=results.filter(e=>e.kind==='frequency_expressions'&&e.frequency_type==='indefinite_frequency');
  const definite=results.filter(e=>e.kind==='frequency_expressions'&&e.frequency_type==='definite_frequency');
@@ -49,7 +71,8 @@ export function ReferenceLibrary({
   });
   return ()=>{active=false};
  },[catalog,onCatalog]);
- function clear(){setQuery('');setKind('all');setLevel('all');setRegister('all')}
+ function clear(){setQuery('');setKind('all');setLevel('all');setRegister('all');
+  setVerbTier('all');setVerbInitial('all');setVerbPage(1)}
  function Related({entry}:{entry:ReferenceEntry}){
   const matches=catalog?.imported?availableRelatedLessons(entry,catalog.lessons):[];
   const linked=matches[0];
@@ -70,30 +93,31 @@ export function ReferenceLibrary({
    <p>Use these examples to understand a pattern, then try a different example of your own.
     Choose a topic or level, then open a linked lesson to practise.</p>
    <p><small>Offline-first static reference · 26/26 entries academically reviewed in the pilot
-    and 38/38 additional Wave 1 entries approved by NotebookLM.
+    plus 23/23 Writing/Frequency entries from Wave 1 and 185/185 full-corpus verbs
+    independently approved by NotebookLM (234 reference entries in this candidate).
     No answers, tests, AI evaluation or learner scores are stored here.
     Related-skill lesson links appear only if those lessons are in this device's imported catalog.</small></p>
   </section>
   <section className="panel sle-reference-filters" aria-label="Search and filter references">
    <div className="sle-reference-filter-grid">
     <label>Search words and examples
-     <input type="search" value={query} onChange={e=>setQuery(e.target.value)}
+     <input type="search" value={query} onChange={e=>{setQuery(e.target.value);setVerbPage(1)}}
       placeholder="e.g. written, despite, usually, decline" aria-label="Search reference entries"/>
     </label>
     <label>Reference type
-     <select value={kind} onChange={e=>setKind(e.target.value as 'all'|ReferenceKind)} aria-label="Reference type">
+     <select value={kind} onChange={e=>{setKind(e.target.value as 'all'|ReferenceKind);setVerbPage(1)}} aria-label="Reference type">
       <option value="all">All types</option>
       {UI_KINDS.map(x=><option key={x.id} value={x.id}>{x.label}</option>)}
      </select>
     </label>
     <label>Suggested level
-     <select value={level} onChange={e=>setLevel(e.target.value as 'all'|ReferenceLevel)} aria-label="Suggested level">
+     <select value={level} onChange={e=>{setLevel(e.target.value as 'all'|ReferenceLevel);setVerbPage(1)}} aria-label="Suggested level">
       <option value="all">All levels</option>
       {LEVELS.map(x=><option key={x} value={x}>{x}</option>)}
      </select>
     </label>
     <label>Register
-     <select value={register} onChange={e=>setRegister(e.target.value as 'all'|ReferenceRegister)} aria-label="Register">
+     <select value={register} onChange={e=>{setRegister(e.target.value as 'all'|ReferenceRegister);setVerbPage(1)}} aria-label="Register">
       <option value="all">All registers</option>
       <option value="neutral">Neutral</option>
       <option value="informal">Informal</option>
@@ -103,10 +127,10 @@ export function ReferenceLibrary({
    </div>
    <div className="sle-reference-category-filters" role="group" aria-label="Quick category filters">
     <button type="button" className={'sle-reference-category-filter is-all'+(kind==='all'?' is-selected':'')}
-     aria-pressed={kind==='all'} onClick={()=>setKind('all')}>All categories</button>
+     aria-pressed={kind==='all'} onClick={()=>{setKind('all');setVerbPage(1)}}>All categories</button>
     {UI_KINDS.map(group=><button type="button" key={group.id}
      className={'sle-reference-category-filter is-'+group.id+(kind===group.id?' is-selected':'')}
-     aria-pressed={kind===group.id} onClick={()=>setKind(group.id)}>
+     aria-pressed={kind===group.id} onClick={()=>{setKind(group.id);setVerbPage(1)}}>
       {group.label}
     </button>)}
    </div>
