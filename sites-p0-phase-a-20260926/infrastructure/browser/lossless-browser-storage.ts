@@ -120,4 +120,16 @@ export function englishLosslessStore(native:BrowserStore):BrowserStore{
  cache.set(wrapped as object,wrapped);
  return wrapped;
 }
+/** Read-only estimate: storage engines may apply different quota accounting. */
+export function estimateEnglishLocalStorage(native:BrowserStore):{utf16Bytes:number;keys:number}{
+ let utf16Bytes=0,keys=0;
+ for(let i=0;i<native.length;i++){
+  const key=native.key(i);
+  if(!key?.startsWith(ENGLISH))continue;
+  const value=native.getItem(key);
+  if(value===null)continue;
+  keys++;utf16Bytes+=2*(key.length+value.length);
+ }
+ return {utf16Bytes,keys};
+}
 export const __storageCodecTest={encode,decode,compressible};
