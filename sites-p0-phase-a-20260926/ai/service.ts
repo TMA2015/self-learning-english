@@ -1,7 +1,8 @@
 import {validateTeachingRating} from "./teaching-validation";
 import registry from './prompts/registry.json';
 import rubric from '../content/writing-rubric.json';
-import {CEFR_WRITING_CRITERIA,CEFR_TARGET_GUIDANCE,WRITING_STUDIO_CEFR_RUBRIC_VERSION,validCEFRWritingLevel} from '../domain/writing-studio-reference';
+import {CEFR_TARGET_GUIDANCE,WRITING_STUDIO_CEFR_RUBRIC_VERSION,validCEFRWritingLevel} from '../domain/writing-studio-reference';
+import {validateWritingStudioScore,WRITING_STUDIO_SCORING_VERSION} from '../domain/writing-studio-scoring';
 import type {AITutor,AITutorProvider,TutorPurpose} from './contracts';
 import type {EvaluationMetadata} from '../domain/ai-metadata';
 import {validateRating} from './validation';
@@ -44,58 +45,22 @@ export function createTutorService(provider:AITutorProvider):AITutor{
     scores:null,level:null,canEstimateLevel:false,
   }};
  }
- if(stage==='cefr-writing'){
+ if(stage==='cefr-writing'||stage==='any-topic'){
   const selected=learnerContext?.targetCEFR;
   const submitted=answer&&typeof answer==='object'&&!Array.isArray(answer)?answer as Record<string,unknown>:null;
   const draft=submitted?.draft;
-  const criteria=r.criteria;
-  const corrections=r.corrections;
-  const expected=CEFR_WRITING_CRITERIA.map(item=>item.id);
-  if(!validCEFRWritingLevel(selected)||typeof draft!=='string'||
-     r.framework!=='cefr'||r.targetCEFR!==selected||r.rubricVersion!==WRITING_STUDIO_CEFR_RUBRIC_VERSION||
-     r.scores!==null||r.level!==null||r.canEstimateLevel!==false||
-     !Array.isArray(criteria)||criteria.length!==expected.length||
-     !criteria.every((item,index)=>{
-       if(!item||typeof item!=='object')return false;
-       const row=item as Record<string,unknown>;
-       return row.criterion===expected[index]&&typeof row.observation==='string'&&!!row.observation.trim()&&
-         typeof row.evidence==='string'&&(!row.evidence||draft.includes(row.evidence))&&
-         typeof row.nextStep==='string'&&!!row.nextStep.trim();
-     })||
-     !Array.isArray(corrections)||corrections.length>3||
-     (r.strengths as string[]).length>3||(r.improvements as string[]).length>3||
-     corrections.some(row=>{
-       if(!row||typeof row!=='object')return true;
-       const c=row as Record<string,unknown>;
-       return typeof c.original!=='string'||!c.original||!draft.includes(c.original)||
-         typeof c.why!=='string'||!c.why.trim()||typeof c.hint!=='string'||!c.hint.trim();
-     }))return invalidResponse();
+  if(typeof draft!=='string'||(stage==='cefr-writing'&&!validCEFRWritingLevel(selected)))
+    return invalidResponse();
+  const scored=validateWritingStudioScore(r,draft);
+  if(!scored)return invalidResponse();
   return {...evaluation,structuredResult:{
-    summary:r.summary,strengths:r.strengths,improvements:r.improvements,exercise:r.exercise,tags:r.tags,
-    criteria,framework:'cefr',targetCEFR:selected,rubricVersion:WRITING_STUDIO_CEFR_RUBRIC_VERSION,
-    corrections:(corrections as Array<{original:string;why:string;hint:string}>)
-      .map(row=>({original:row.original,why:row.why,hint:row.hint})),
-    scores:null,level:null,canEstimateLevel:false,
+    ...scored,
+    framework:stage==='cefr-writing'?'cefr':'general',
+    ...(stage==='cefr-writing'?{targetCEFR:selected,rubricVersion:WRITING_STUDIO_CEFR_RUBRIC_VERSION}:
+    {rubricVersion:WRITING_STUDIO_SCORING_VERSION}),
+    // Six criterion marks represent this response ONLY, never learner CEFR proficiency.
+    level:null,canEstimateLevel:false,
   }};
- }
- if(stage==='any-topic'){
-  // Strict qualitative contract: uncalibrated Writing must never be accepted with numeric grading.
-  const draft=(answer&&typeof answer==='object'&&!Array.isArray(answer)?(answer as Record<string,unknown>).draft:null);
-  const corrections=r.corrections;
-  if(typeof draft!=='string'||r.scores!==null||r.level!==null||r.canEstimateLevel!==false||
-     !Array.isArray(corrections)||corrections.length>3||
-     (r.strengths as string[]).length>3||(r.improvements as string[]).length>3||
-     corrections.some(c=>{
-       if(!c||typeof c!=='object')return true;
-       const row=c as Record<string,unknown>;
-       return typeof row.original!=='string'||!row.original||!draft.includes(row.original)||
-              typeof row.why!=='string'||!row.why.trim()||typeof row.hint!=='string'||!row.hint.trim();
-     }))return invalidResponse();
-  return {...evaluation,structuredResult:{summary:r.summary,strengths:r.strengths,
-    improvements:r.improvements,exercise:r.exercise,tags:r.tags,
-    corrections:(corrections as Array<{original:string;why:string;hint:string}>)
-      .map(c=>({original:c.original,why:c.why,hint:c.hint})),
-    scores:null,level:null,canEstimateLevel:false}};
  }
  return {...evaluation,structuredResult:{summary:r.summary,strengths:(r.strengths as string[]).slice(0,3),improvements:(r.improvements as string[]).slice(0,3),exercise:r.exercise,tags:r.tags,corrections:[],scores:stage!=='revision'&&r.scores&&typeof r.scores==='object'&&Object.values(r.scores).every(x=>typeof x==='number'&&Number.isFinite(x)&&x>=0&&x<=10)?r.scores:null}}}};
 }

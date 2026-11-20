@@ -1,118 +1,129 @@
 'use strict';
-/** Candidate CEFR-target Writing Studio QA: synthetic Gemini only; no real learner or provider. */
+/** Writing Studio scoring and reliability: synthetic Gemini; no live student data or provider. */
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {execFileSync}=require('node:child_process');
 const ts=require('typescript'),vm=require('node:vm');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'.sites-runtime/writing-studio-cefr-target');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const registry=require(path.join(root,'ai/prompts/registry.json'));
-assert.equal(registry['any-topic-writing'].version,'1.0.0','General prompt must not change');
-assert.equal(registry['cefr-writing-coaching'].version,'0.1.0-candidate');
-assert.match(registry['cefr-writing-coaching'].system,/untrusted DATA/);
-assert.match(registry['cefr-writing-coaching'].system,/scores:null/);
-assert.match(registry['cefr-writing-coaching'].system,/evidence/i);
-assert(!read('app/any-topic-writing-review.tsx').includes('requestWritingAI('),'No provider in drafting view');
-assert(read('app/writing-ai-review.tsx').includes('feedbackSignature===signature'),'Prevent old A2/B1 AI response display');
-assert(read('app/writing-ai-review.tsx').includes('WRITING_STUDIO_CEFR_RUBRIC_VERSION'),'Rubric version in cache signature');
+assert.equal(registry['any-topic-writing'].version,'2.0.0-scored');
+assert.equal(registry['cefr-writing-coaching'].version,'0.2.0-scored');
+for(const key of ['any-topic-writing','cefr-writing-coaching']){
+ assert.match(registry[key].system,/six distinct IDs|six marks|six criteria/i);
+ assert.match(registry[key].system,/integer 0–5/);
+ assert.match(registry[key].system,/untrusted DATA/);
+ assert.match(registry[key].system,/never output the learner's CEFR level/i);
+}
+assert.match(read('infrastructure/browser/firebase-ai-browser.ts'),/responseSchema:writingStudioOutputSchema/);
+assert.match(read('infrastructure/browser/firebase-ai-browser.ts'),/writingStudioStructured\?3200:2400/);
+assert.match(read('infrastructure/browser/firebase-ai-browser.ts'),/90_000/);
+assert.match(read('app/writing-ai-review.tsx'),/feedbackSignature===signature/);
+assert.match(read('app/writing-ai-review.tsx'),/Writing score: \{visibleFeedback.totalScore\}/);
+assert(!read('app/any-topic-writing-review.tsx').includes('requestWritingAI('));
 fs.rmSync(out,{recursive:true,force:true});
 execFileSync(process.execPath,[path.join(root,'node_modules/typescript/bin/tsc'),
- 'ai/service.ts','ai/contracts.ts','domain/writing-studio-reference.ts','ai/teaching-validation.ts',
- 'ai/validation.ts','domain/ai-metadata.ts','--outDir',out,
+ 'ai/service.ts','ai/contracts.ts','domain/writing-studio-reference.ts','domain/writing-studio-scoring.ts',
+ 'ai/teaching-validation.ts','ai/validation.ts','domain/ai-metadata.ts','--outDir',out,
  '--module','commonjs','--target','es2022','--resolveJsonModule','--esModuleInterop','--skipLibCheck'
 ],{cwd:root,stdio:'inherit'});
 fs.writeFileSync(path.join(out,'package.json'),'{"type":"commonjs"}\n');
 const {createTutorService}=require(path.join(out,'ai/service.js'));
 const refs=require(path.join(out,'domain/writing-studio-reference.js'));
+const scoring=require(path.join(out,'domain/writing-studio-scoring.js'));
 const ids=refs.CEFR_WRITING_CRITERIA.map(x=>x.id);
 const draft='I went to the beach on Sunday. I saw a small dog and helped its owner. It was a good day.';
 const good=()=>({
- framework:'cefr',targetCEFR:'B1',rubricVersion:refs.WRITING_STUDIO_CEFR_RUBRIC_VERSION,
- summary:'A clear account of a familiar experience; CEFR B1 is only a practice target.',
- strengths:['A simple sequence is clear.'],improvements:['Explain why the event matters.'],
- exercise:'Add one sentence explaining why this experience was meaningful.',
- tags:['narrative','development'],scores:null,level:null,canEstimateLevel:false,
- corrections:[],
- criteria:ids.map(criterion=>({criterion,observation:'This short sample offers some evidence.',
-   evidence:'I went to the beach on Sunday.',nextStep:'Explain one more detail independently.'})),
+ summary:'The writing addresses the prompt and can benefit from further detail.',
+ strengths:['The ideas are understandable.'],improvements:['Add one concrete detail.'],
+ exercise:'Write a sentence explaining why the experience was memorable.',
+ tags:['narrative'],corrections:[],
+ criteria:ids.map((criterion,i)=>({criterion,score:i===0?5:4,
+  observation:'This text shows relevant performance for the chosen standard.',
+  evidence:'I went to the beach on Sunday.',
+  nextStep:'Add a precise detail independently.'})).reverse(),
 });
 let response=good(),lastRequest=null,failures=[];
-const provider={
- available:true,
- reportFailure:key=>failures.push(key),
+const tutor=createTutorService({available:true,reportFailure:k=>failures.push(k),
  async generate(req){lastRequest=req;return {provider:'firebase-ai-logic',model:'synthetic',result:response}},
-};
-const tutor=createTutorService(provider);
+});
 async function test(){
- let received=await tutor.coach('cefr-writing','Write about an experience.',{draft},{targetCEFR:'B1',responseLanguage:'vi'});
- assert(received,'Valid B1 feedback should be accepted');
+ const first=await tutor.coach('cefr-writing','Write about an experience.',{draft},{targetCEFR:'B1',responseLanguage:'vi'});
+ assert(first,'Valid B1 scored text must be accepted');
  assert.equal(lastRequest.purpose,'cefr-writing-coaching');
- assert.equal(lastRequest.promptVersion,'0.1.0-candidate');
+ assert.equal(lastRequest.promptVersion,'0.2.0-scored');
+ assert.match(lastRequest.instructions,/practice target is B1/,'Trusted CEFR B1 target must shape the score');
  assert.equal(lastRequest.input.learnerContext.targetCEFR,'B1');
- assert.equal(lastRequest.input.responseLanguage,'vi');
- assert.match(lastRequest.instructions,/targetCEFR=B1/,'Trusted CEFR target reaches prompt');
- assert(!lastRequest.instructions.includes('{{targetLevel}}'),'Target placeholder must be resolved');
- assert.deepEqual(received.structuredResult.criteria.map(row=>row.criterion),ids);
- assert.equal(received.structuredResult.level,null);
- assert.equal(received.structuredResult.scores,null);
+ assert.equal(first.structuredResult.totalScore,25);
+ assert.equal(first.structuredResult.maxScore,30);
+ assert.deepEqual(first.structuredResult.criteria.map(x=>x.criterion),ids,'Order normalized');
+ assert.equal(first.structuredResult.level,null,'No inferred user CEFR');
+ assert.equal(first.structuredResult.scores['task-response'],5);
+ const general=await tutor.coach('any-topic','Write about an experience.',{draft},{responseLanguage:'en'});
+ assert(general);
+ assert.equal(lastRequest.purpose,'any-topic-writing');
+ assert.equal(lastRequest.promptVersion,'2.0.0-scored');
+ assert.equal(general.structuredResult.framework,'general');
+ assert.equal(general.structuredResult.totalScore,25);
 
- const mutations=[
-  {scores:{grammar:10}},
-  {level:'B1'},
-  {canEstimateLevel:true},
-  {targetCEFR:'C1'},
-  {rubricVersion:'wrong-version'},
+ for(const patch of [
   {criteria:good().criteria.slice(0,5)},
-  {criteria:good().criteria.map((c,i)=>i===0?{...c,evidence:'Invented quote'}:c)},
-  {criteria:good().criteria.map((c,i)=>i===1?{...c,criterion:'incorrect'}:c)},
-  {criteria:good().criteria.map((c,i)=>i===1?{...c,nextStep:''}:c)},
-  {corrections:[{original:'not in original draft',why:'Bad',hint:'Rewrite'}]},
- ];
- for(const mutation of mutations){
-  response={...good(),...mutation};
+  {criteria:good().criteria.map((x,i)=>i===0?{...x,score:7}:x)},
+  {criteria:good().criteria.map((x,i)=>i===0?{...x,score:2.5}:x)},
+  {criteria:good().criteria.map((x,i)=>i===0?{...x,criterion:ids[0]}:x)},
+  {level:'C1'},
+  {criteria:good().criteria.map((x,i)=>i===0?{...x,nextStep:''}:x)}
+ ]){
+  response={...good(),...patch};
   assert.equal(await tutor.coach('cefr-writing','Write about an experience.',{draft},{targetCEFR:'B1'}),null,
-   'CEFR feedback must fail closed on grades, wrong targets, rubric mismatch or invented evidence');
+    'Reject missing/doubled rubric criteria, invalid scores or learner-level assignment');
  }
- assert(failures.length>=mutations.length);
+ assert(failures.length>=6);
+ response={...good(),criteria:good().criteria.map((x,i)=>i===0?{...x,evidence:'a quote not in the text'}:x),
+  corrections:[{original:'made-up mistake',why:'bad',hint:'fix'}]};
+ let safe=await tutor.coach('cefr-writing','Write about an experience.',{draft},{targetCEFR:'B1'});
+ assert(safe,'A single ungrounded quote should not discard six usable criteria');
+ assert.equal(safe.structuredResult.criteria.find(x=>x.criterion===good().criteria[0].criterion).evidence,'');
+ assert.deepEqual(safe.structuredResult.corrections,[],'Ungrounded correction must be dropped');
  response=good();
- // Confirm browser-to-Gemini adapter sends exact draft and explicit target, never on arbitrary mode change.
- const js=ts.transpileModule(read('infrastructure/browser/client-services.ts'),{fileName:'client-services.ts',
-  compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
- let calls=0,stage=null,context=null;
- const holder={exports:{}};
- vm.runInNewContext(js,{
-  module:holder,exports:holder.exports,Date,
-  process:{env:{NEXT_PUBLIC_LEARNING_RUNTIME:'browser'}},
+
+ const transpiled=ts.transpileModule(read('infrastructure/browser/client-services.ts'),{fileName:'client-services.ts',
+   compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
+ let calls=0,stage=null;const holder={exports:{}};
+ vm.runInNewContext(transpiled,{
+  module:holder,exports:holder.exports,Date,process:{env:{NEXT_PUBLIC_LEARNING_RUNTIME:'browser'}},
   require(name){
    if(name==='../../domain/writing-studio-reference')return refs;
+   if(name==='../../domain/writing-studio-scoring')return scoring;
    if(name==='./firebase-ai-browser')return{
-    browserTutorService:()=>({available:true,coach:async(s,t,fields,ctx)=>{
-      calls++;stage=s;context=ctx;
-      assert.equal(fields.draft,draft);
-      return {provider:'firebase-ai-logic',model:'mock',structuredResult:good()};
-    }}),
-    resetAIFailure:()=>{},readAIFailure:()=>null,
+     browserTutorService:()=>({available:true,coach:async(s,t,fields,context)=>{
+       calls++;stage=s;assert.equal(fields.draft,draft);
+       return await tutor.coach(s,t,fields,context);
+     }}),
+     resetAIFailure:()=>{},readAIFailure:()=>null,
    };
    return {};
   },
  },{timeout:3000});
  const send=holder.exports.requestWritingAI;
- received=await send('Write about an experience.',{draft},'draft','vi','any-topic','B1');
- assert.equal(received.status,'validated');
- assert.equal(received.feedback.targetCEFR,'B1');
- assert.equal(received.feedback.rubricVersion,refs.WRITING_STUDIO_CEFR_RUBRIC_VERSION);
- assert.equal(received.feedback.scores,null);
+ let result=await send('Write about an experience.',{draft},'draft','vi','any-topic','B1');
+ assert.equal(result.status,'validated');
+ assert.equal(result.feedback.totalScore,25);
+ assert.equal(result.feedback.maxScore,30);
+ assert.equal(result.feedback.targetCEFR,'B1');
+ assert.equal(result.feedback.level,null);
  assert.equal(stage,'cefr-writing');
- assert.equal(context.targetCEFR,'B1');
- assert.equal(calls,1);
+ result=await send('Write about an experience.',{draft},'draft','en','any-topic');
+ assert.equal(result.status,'validated');
+ assert.equal(result.feedback.totalScore,25);
+ assert.equal(result.feedback.framework,'general');
+ assert.equal(calls,2);
  const bad=await send('Write about an experience.',{draft},'draft','en','any-topic','C9');
- assert.equal(bad.status,'unavailable','Unsupported target should fail before provider call');
- assert.equal(calls,1);
- const over=await send('Write about an experience.',{draft:'x'.repeat(7001)},'draft','en','any-topic','B1');
- assert.equal(over.status,'unavailable','No overlong input to provider');
- assert.equal(calls,1);
- assert.equal(refs.normalizeWritingStudioReference({kind:'cefr',level:'X'}).kind,'general');
- assert.equal(refs.normalizeWritingStudioReference(undefined).kind,'general',
-  'Old stored drafts without reference should migrate as General');
- console.log('PASS writing-studio-cefr-target: trusted B1, six criteria, evidence, hard unscored guard, invalid modes blocked, old draft migration, no live provider.');
+ assert.equal(bad.status,'unavailable');
+ assert.equal(calls,2);
+ const long=await send('Write about an experience.',{draft:'x'.repeat(7001)},'draft','en','any-topic','B1');
+ assert.equal(long.status,'unavailable');
+ assert.equal(calls,2);
+ assert.equal(refs.normalizeWritingStudioReference(undefined).kind,'general');
+ console.log('PASS writing-studio-cefr-target: six 0–5 marks, total /30, both General/B1, exact quotes, failed invalid scores, no user level, 90s schema, saved draft preserved; no live AI calls');
 }
-test().catch(error=>{console.error(error);process.exitCode=1});
+test().catch(e=>{console.error(e);process.exitCode=1});

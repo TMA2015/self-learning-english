@@ -4,8 +4,9 @@ import {detectTutorQuestionLanguage} from '../../domain/tutor-question-language'
 import {normalizeLessonCEFR,lessonTutorSystemInstruction,lessonTutorOutputTokenLimit,type TutorResponseDetail} from '../../domain/lesson-tutor-guidance';
 import {SafeProviderError,type ProviderDiagnostic} from '../../ai/provider-diagnostics';
 import {getToken,initializeAppCheck,ReCaptchaEnterpriseProvider} from 'firebase/app-check';
-import {getAI,getGenerativeModel,GoogleAIBackend} from 'firebase/ai';
+import {getAI,getGenerativeModel,GoogleAIBackend,Schema} from 'firebase/ai';
 import {createTutorService} from '../../ai/service';
+import {CEFR_WRITING_CRITERIA} from '../../domain/writing-studio-reference';
 import {reviewWeek2SavedPlan,type Week2AIAdvice} from '../../application/writing-week2-ai-feedback';
 import type {AITutor} from '../../ai/contracts';
 import {
@@ -34,6 +35,22 @@ let appCheckReady=false;
 let appCheckInstance:ReturnType<typeof initializeAppCheck>|null=null;
 let cachedTutor:AITutor|null=null;
 const lessonLifecycle=new FirebaseRequestLifecycle();
+function writingStudioOutputSchema(){return Schema.object({properties:{
+ summary:Schema.string(),
+ strengths:Schema.array({items:Schema.string()}),
+ improvements:Schema.array({items:Schema.string()}),
+ exercise:Schema.string(),
+ tags:Schema.array({items:Schema.string()}),
+ corrections:Schema.array({items:Schema.object({properties:{
+   original:Schema.string(),why:Schema.string(),hint:Schema.string(),
+ }})}),
+ criteria:Schema.array({items:Schema.object({properties:{
+   criterion:Schema.enumString({enum:CEFR_WRITING_CRITERIA.map(x=>x.id)}),
+   score:Schema.number(),observation:Schema.string(),
+   evidence:Schema.string(),nextStep:Schema.string(),
+ }})}),
+}});}
+
 
 function localDebugAllowed(){
   if(typeof location==='undefined')return false;
@@ -66,7 +83,8 @@ function ensureAI(config:FirebasePublicAIConfig){
 
 class FirebaseBrowserAILogicTransport implements FirebaseAILogicTransport{
   readonly available=true;
-  private readonly lifecycle=new FirebaseRequestLifecycle(safeDiagnostic);
+  // Keep the SDK request locked until it settles; CEFR scoring may need more than the former 60s UI deadline.
+  private readonly lifecycle=new FirebaseRequestLifecycle(safeDiagnostic,undefined,90_000);
   private selectedModel:string;
   get model(){return this.selectedModel}
 
@@ -95,7 +113,8 @@ class FirebaseBrowserAILogicTransport implements FirebaseAILogicTransport{
           responseMimeType:input.responseMimeType,
           // Structured Writing ratings need more than 1,200 tokens when
           // including six rubric criteria and concise correction hints.
-          maxOutputTokens:2400,
+          maxOutputTokens:input.writingStudioStructured?3200:2400,
+          ...(input.writingStudioStructured?{responseSchema:writingStudioOutputSchema()}:{}) ,
         },
       });
       const generated=await model.generateContent(JSON.stringify(input.userPayload));
