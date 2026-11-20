@@ -145,23 +145,49 @@ export function ReferenceLibrary({
   {results.length===0&&<section className="panel" role="status"><h2>No matching entries</h2><p>Try a shorter word or clear one of the filters.</p></section>}
   {verbs.length>0&&<section className="panel sle-reference-section" aria-label="Irregular verb table">
    <h2>Irregular verbs</h2>
-   <p className="muted">Base form · simple past · past participle. Search by V1, V2 or V3. The full 191-lemma expansion is still being independently reviewed.</p>
-   <p className="sle-reference-scroll-cue">On a narrow screen, scroll the table sideways to view every column.</p>
+   <p className="muted">191 academically reviewed verbs (6 pilot + 185 full-corpus).
+    Search by base (V1), past (V2), participle (V3), or regional variants.
+    Core and Extended are editorial groups, not CEFR proficiency ratings.</p>
+   <div className="sle-ref-verb-controls">
+    <label>Priority group
+     <select aria-label="Verb tier" value={verbTier}
+      onChange={e=>{setVerbTier(e.target.value as 'all'|'core'|'extended');setVerbPage(1)}}>
+      <option value="all">All verbs</option><option value="core">Core (editorial)</option>
+      <option value="extended">Extended (editorial)</option>
+     </select>
+    </label>
+    <div className="sle-ref-v2-letters" role="group" aria-label="Filter irregular verbs by initial letter">
+     <button type="button" aria-pressed={verbInitial==='all'} onClick={()=>{setVerbInitial('all');setVerbPage(1)}}>All</button>
+     {ALPHABET.map(letter=><button key={letter} type="button" aria-pressed={verbInitial===letter}
+      onClick={()=>{setVerbInitial(letter);setVerbPage(1)}}>{letter}</button>)}
+    </div>
+    <p role="status" aria-live="polite">{verbFiltered.length} matching verbs · page {activeVerbPage} of {verbTotalPages}</p>
+   </div>
+   <p className="sle-reference-scroll-cue">On a narrow screen, scroll the table sideways to view every column.
+    The CEFR/register filters show only records with reviewed tags; corpus verbs use Core/Extended instead.</p>
    <div className="sle-reference-table-scroll" role="region" aria-label="Scrollable irregular verb table" tabIndex={0}>
     <table><thead><tr><th scope="col">Base</th><th scope="col">Past</th><th scope="col">Past participle</th><th scope="col">Example and usage</th></tr></thead>
-     <tbody>{verbs.map(entry=><tr key={entry.id}>
+     <tbody>{pagedVerbs.map(entry=><tr key={entry.id}>
       <th scope="row">{entry.forms?.base}</th>
       <td>{entry.forms?.past}</td>
       <td>{entry.forms?.participle}</td>
       <td><strong>{entry.example}</strong><p>{entry.note}</p>
        {entry.pattern_group&&<p><strong>Pattern:</strong> {entry.pattern_group.replaceAll('_',' ')}</p>}
        {entry.common_error&&<p><strong>Watch out:</strong> {entry.common_error}</p>}
-       <small>Suggested {entry.level} · {entry.register}</small>
+       <small>{entry.level==='not_tagged'?'CEFR level not assigned':'Suggested '+entry.level}
+        {entry.verb_priority?' · '+entry.verb_priority+' (editorial)':' · reviewed pilot'}</small>
        <Related entry={entry}/>
       </td>
      </tr>)}</tbody>
     </table>
    </div>
+   {verbTotalPages>1&&<div className="sle-ref-v2-pagination" aria-label="Irregular verb pages">
+    <button type="button" className="secondary-button" disabled={activeVerbPage===1}
+     onClick={()=>setVerbPage(Math.max(1,activeVerbPage-1))}>Previous page</button>
+    <span>Page {activeVerbPage} / {verbTotalPages}</span>
+    <button type="button" className="secondary-button" disabled={activeVerbPage===verbTotalPages}
+     onClick={()=>setVerbPage(Math.min(verbTotalPages,activeVerbPage+1))}>Next page</button>
+   </div>}
   </section>}
   {otherCards.length>0&&<section className="sle-reference-section" aria-label="Phrase and study references">
    <h2>Expressions and learning guidance</h2>
