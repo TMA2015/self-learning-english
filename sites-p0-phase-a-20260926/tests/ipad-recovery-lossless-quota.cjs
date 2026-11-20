@@ -82,6 +82,7 @@ assert.equal(__storageCodecTest.decode(__storageCodecTest.encode(JSON.stringify(
 assert.equal(__storageCodecTest.decode('{"x":1}'),'{"x":1}','Legacy JSON stays readable');
 assert(__storageCodecTest.compressible(attemptKey));
 assert(!__storageCodecTest.compressible(prefix+':recovery-pending-v2'));
+(async()=>{
 const empty=new SafariStore();
 global.window={localStorage:empty};
 const wrapped=englishLosslessStore(empty);
@@ -128,3 +129,4 @@ console.log(JSON.stringify({result:'PASS',gate:'ipad-recovery-lossless-quota',
  restoredAndAfterUpdateBytes:empty.used(),sourceVersions:versions.length,attempts:133,
  v2Portable:true,originalHistoryUnchanged:true,unicodeExact:true,
  noOwnerData:true,noStorageClear:true,noLiveDeploy:true}));
+})().catch(e=>{console.error(e);process.exitCode=1});
