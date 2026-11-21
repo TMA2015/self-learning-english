@@ -131,16 +131,30 @@ class Storage{
  assert.deepEqual(pending.evidence,[],'No C1 proficiency evidence from unreviewed Writing');
  assert(!pending.review,'No fabricated C1 rubric review');
  const rubric=next.rubrics['RUBRIC-WRITING-C1'];
+ const pendingReview=(await svc.reviews()).find(x=>x.id===pending.id);
+ assert.equal(pendingReview.rubricId,'RUBRIC-WRITING-C1','Reviewer UI must know this rubric uses qualitative feedback only');
  const syntheticScores=Object.fromEntries(rubric.criteria.map(k=>[k,3]));
  await assert.rejects(
   ()=>svc.approve(pending.id,'Synthetic feedback, not a calibrated C1 rating.',syntheticScores,true),
-  /C1 Writing remains pending review/i,
-  'Unvalidated C1 0-4 rubric must not write numeric evidence'
+  /C1 Writing accepts qualitative feedback only/i,
+  'Unvalidated C1 0-4 rubric must not create numerical evidence'
+ );
+ await assert.rejects(
+  ()=>svc.approve(pending.id,'Synthetic qualitative feedback',{},false),
+  /An adult must check/i,
+  'Explicit trusted adult confirmation remains mandatory'
  );
  const afterGuard=(await repo.attempts(owner)).find(x=>x.id===pending.id);
  assert.equal(afterGuard.status,'pending_review');
  assert.deepEqual(afterGuard.evidence,[]);
- assert(!afterGuard.review,'Approval guard must not write review evidence');
+ assert(!afterGuard.review,'Refused approval must not write any evidence');
+ const qualitative=await svc.approve(pending.id,'The briefing separates observations from inferences. Revise the final recommendation to state one alternative explanation.',{},true);
+ assert.equal(qualitative.status,'approved','Trusted qualitative feedback can be delivered');
+ assert.deepEqual(qualitative.review.scores,{},'No numerical rubric scores for C1');
+ assert.deepEqual(qualitative.evidence,[],'No inferred C1 proficiency evidence from qualitative feedback');
+ assert.match(qualitative.review.feedback,/alternative explanation/);
+ assert.equal((await svc.approve(pending.id,'Ignored duplicate review',{},true)).review.feedback,qualitative.review.feedback,
+  'C1 qualitative approval is idempotent and cannot rewrite approved evidence');
 
  // Read-only retention PREVIEW, with both versions still present.
  const retention=await repo.previewRetention();
