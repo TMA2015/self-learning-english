@@ -111,7 +111,14 @@ const grammarB1Wave2CAdditions={
   "grammar.indirect_questions": "indirect-questions",
   "grammar.question_tags": "question-tags"
 };
-const reviewedAdditions={...batch04Additions,...grammarA1A2Additions,...grammarB1Wave2AAdditions,...grammarB1Wave2BAdditions,...grammarB1Wave2CAdditions};
+// 2026-11-21 NotebookLM independent Academic PASS, SLE-B2C1-BRIDGE-B01-R1-20261121.
+ // Only these three additional C1 discourse tags are whitelisted; historical mappings remain frozen.
+const c1BridgeBatch01Additions={
+  'grammar.discourse_reference':'discourse-reference',
+  'grammar.information_structure':'information-structure',
+  'grammar.concession':'concession'
+};
+const reviewedAdditions={...batch04Additions,...grammarA1A2Additions,...grammarB1Wave2AAdditions,...grammarB1Wave2BAdditions,...grammarB1Wave2CAdditions,...c1BridgeBatch01Additions};
 
 for(const [tag,slug] of Object.entries(previous))assert.equal(tagMap[tag],slug,'historical tag mapping changed: '+tag);
 for(const [tag,slug] of Object.entries(reviewedAdditions))assert.equal(tagMap[tag],slug,'reviewed exact mapping missing/changed: '+tag);
@@ -131,4 +138,4 @@ for(const [tag,slug] of Object.entries(reviewedAdditions)){
 
 const unknown=structuredClone(seed);unknown.lessons.find(l=>l.module==='grammar').activities[0].skill_tags=['grammar.unknown_unreviewed'];
 assert.ok(validateSeed(unknown).some(x=>x.includes('invalid prompt/tags')),'unknown tag must be rejected');
-console.log('PASS: historical mappings unchanged; all 31 reviewed additive mappings accepted/mapped; closed-world tag guard intact; unknown tag rejected; no learner-state writes.');
+console.log('PASS: historical mappings unchanged; all 34 reviewed additive mappings accepted/mapped; closed-world tag guard intact; unknown tag rejected; no learner-state writes.');
