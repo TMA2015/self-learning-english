@@ -53,7 +53,7 @@ type ReviewedWaveThree={
  meaning_or_strategy:string;pattern_or_procedure:string;independent_illustration:string;
  contrast_or_reasoning:string;watch_out_or_limits:string;learner_self_check:string;search_hints:string[];
 };
-const WAVE3_ENTRIES:ReferenceEntry[]=(crossSkillWaveThree.entries as ReviewedWaveThree[]).map(x=>{
+const WAVE3_ENTRIES:ReferenceEntry[]=(crossSkillWaveThree.entries as unknown as ReviewedWaveThree[]).map(x=>{
  const skill:ReferenceSkill=x.kind==='reading_strategies'?'reading'
   :x.kind==='listening_strategies'?'listening':'vocabulary';
  // Source-authored register detail is rendered verbatim. Only unambiguous
