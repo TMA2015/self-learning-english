@@ -71,7 +71,7 @@ class Storage {
  // Idempotence: a later visit does NOT rewrite any key.
  storage.writes=[];
  const again=await browser.localAcademicRuntime();
- assert.equal((await again.service.catalog()).version,'1.29.0');
+ assert.equal((await again.service.catalog()).version,'1.30.0');
  assert.deepEqual(storage.writes,[]);
  console.log(JSON.stringify({result:'PASS',gate:'automatic-v130-curriculum-upgrade',previous:109,current:190,protectedOldAttempt:true,quotaFailClosed:true,storageDeletions:0}));
 })().catch(e=>{console.error(e);process.exitCode=1});
