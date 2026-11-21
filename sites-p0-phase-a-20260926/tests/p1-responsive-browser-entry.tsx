@@ -31,7 +31,7 @@ const cssBox=(e:Element)=>e.getBoundingClientRect();
   await wait(()=>!!document.querySelector('.sle-reference-table-scroll'),'Reference mounted');
   const root=document.querySelector('.sle-reference')!,table=document.querySelector('.sle-reference-table-scroll') as HTMLElement;
   const categories=[...document.querySelectorAll('.sle-reference-category-filter')] as HTMLButtonElement[];
-  check(categories.length===9,'8 categories (six pilot + two reviewed Wave 1) plus all');
+  check(categories.length===11,'10 categories (six pilot + four reviewed reference extensions) plus all');
   check(Math.ceil(cssBox(root).right)<=width+2,'Reference root extends beyond fixed '+width+'px container');
   check(Math.ceil(cssBox(table).right)<=width+2,'Table scroll region escapes '+width+'px container');
   const tableElement=table.querySelector('table')!;
@@ -57,8 +57,16 @@ const cssBox=(e:Element)=>e.getBoundingClientRect();
   const cards=[...document.querySelectorAll('.sle-reference-card')];
   check(cards.length===20,'Static cards available at narrow width');
   for(const card of cards)check(cssBox(card).right<=width+2,'Card overflows '+width+'px layout');
+  const waveTwoCards=[...document.querySelectorAll('.sle-ref-wave2-card')];
+  check(waveTwoCards.length===30,'20 Grammar and 10 Writing reference cards must render');
+  for(const card of waveTwoCards){
+   const rect=cssBox(card);
+   check(rect.left>=-2&&rect.right<=width+2,'Grammar/Writing card overflows '+width+'px layout');
+   check(rect.width>=width*.65,'Grammar/Writing card too narrow on '+width+'px layout');
+  }
   const result={type:'reference',layoutWidth:width,actualViewport:window.innerWidth,
-   tableScrollNeeded:needsScroll,categories:categories.length,visibleCards:cards.length};
+   tableScrollNeeded:needsScroll,categories:categories.length,visibleCards:cards.length,
+   waveTwoCards:waveTwoCards.length};
   status.textContent='PASS_RESPONSIVE '+JSON.stringify(result);
  }else if(mode==='writing'){
   createRoot(app).render(<AnyTopicWritingReview/>);
