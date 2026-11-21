@@ -132,8 +132,56 @@ const scored={id:'saved-real-attempt',packageId:old.package_id,version:old.schem
  assert.equal(finished.attempts,1);
  assert.equal(interrupted.getItem(recovery.RECOVERY_MARKER),null);
  assert.deepEqual(JSON.parse(interrupted.getItem(attemptKey)),[scored]);
+
+ // English-only reset: a verified external V2 checksum and typed confirmation
+ // are mandatory. Never clear another application's or unknown storage keys.
+ const resetStore=new Store();use(resetStore);
+ const resetRepo=new BrowserLocalAcademicRepository(resetStore);
+ await resetRepo.addPackage(asPackage(next));
+ await resetRepo.start('local-family',scored);
+ const mathKey='g-learning:math:v1:owner:family:academic-attempts';
+ const outsideKey='unrelated:device-preference';
+ resetStore.setItem(mathKey,'math-history-must-remain');
+ resetStore.setItem(outsideKey,'browser-setting');
+ const resetBackup=await recovery.exportLocalRecoveryV2();
+ const resetDigest=JSON.parse(resetBackup.text).sha256;
+ const snapshotReset=()=>JSON.stringify([...resetStore.items].sort(([a],[b])=>a.localeCompare(b)));
+ const originalResetSnapshot=snapshotReset();
+ await assert.rejects(()=>recovery.clearLocalEnglishProgress(resetDigest,'CLEAR'),/type XOA SLE/);
+ await assert.rejects(()=>recovery.clearLocalEnglishProgress('0'.repeat(64),'XOA SLE'),/data changed since/);
+ assert.equal(snapshotReset(),originalResetSnapshot,'Unsafe confirmation must not delete anything');
+ resetStore.setItem(unknown,'{"progress":"unexpected"}');
+ await assert.rejects(()=>recovery.clearLocalEnglishProgress(resetDigest,'XOA SLE'),/Unrecognized English storage keys/);
+ resetStore.removeItem(unknown);
+ resetStore.setItem(recovery.RECOVERY_MARKER,'interrupted');
+ await assert.rejects(()=>recovery.clearLocalEnglishProgress(resetDigest,'XOA SLE'),/Interrupted Recovery V2/);
+ resetStore.removeItem(recovery.RECOVERY_MARKER);
+ const changedKey=prefix+':owner:local-family:learner:primary:state';
+ resetStore.setItem(changedKey,'{"draft":"changed-after-backup"}');
+ await assert.rejects(()=>recovery.clearLocalEnglishProgress(resetDigest,'XOA SLE'),/data changed since/);
+ resetStore.removeItem(changedKey);
+ assert.equal(snapshotReset(),originalResetSnapshot,'Stale backup must not remove data');
+ const originalRemove=resetStore.removeItem.bind(resetStore);
+ let failDeleteOnce=true;
+ resetStore.removeItem=k=>{
+  if(k===attemptKey&&failDeleteOnce){failDeleteOnce=false;throw Error('simulated delete failure')}
+  return originalRemove(k);
+ };
+ await assert.rejects(()=>recovery.clearLocalEnglishProgress(resetDigest,'XOA SLE'),/progress was restored/);
+ assert.equal(snapshotReset(),originalResetSnapshot,'Deletion failure must rollback data');
+ resetStore.removeItem=originalRemove;
+ const cleared=await recovery.clearLocalEnglishProgress(resetDigest,'XOA SLE');
+ assert.equal(cleared.attempts,1);
+ assert(cleared.deletedKeys>=2);
+ assert.equal(resetStore.getItem(key),null,'English curriculum key must be removed');
+ assert.equal(resetStore.getItem(attemptKey),null,'English attempts must be removed');
+ assert.equal(resetStore.getItem(mathKey),'math-history-must-remain');
+ assert.equal(resetStore.getItem(outsideKey),'browser-setting');
+ assert.equal(resetStore.getItem(recovery.RECOVERY_MARKER),null);
+ assert.equal((await recovery.verifyLocalRecoveryV2(resetBackup.text)).attempts,1,'Downloaded V2 stays portable after clearing');
  console.log(JSON.stringify({result:'PASS',gate:'local-recovery-v2',
   portableHistoricalLesson:true,checkedSHA256:true,freshBrowserRestore:true,
   protectedExistingLearner:true,rollbackOnWriteFailure:true,interruptedMarkerGuard:true,interruptedRecoveryResumable:true,
+  englishOnlyReset:true,backupGate:true,staleBackupProtected:true,unknownKeysProtected:true,rollbackOnDeleteFailure:true,unrelatedStoragePreserved:true,
   remoteUpload:false,productionWrites:0}));
 })().catch(e=>{console.error(e);process.exitCode=1});
