@@ -67,6 +67,7 @@ const coreTests=[
   "highlight-left-edge-contract.cjs",
   "reference-library-v2-irregular-candidate.cjs",
   "reference-library-wave2-grammar-writing.cjs",
+  "reference-library-wave3-crossskill.cjs",
   "pronunciation-runtime-audio.cjs",
 ];
 
