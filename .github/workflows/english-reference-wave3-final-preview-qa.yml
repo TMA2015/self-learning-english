@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: sle-ref-w3-final-pr192-preview
+  group: sle-ref-w3-pr192-preview
   cancel-in-progress: false
 
 jobs:
@@ -113,7 +113,7 @@ jobs:
           projectId: roadmap-toan-ai
           target: english
           entryPoint: sites-p0-phase-a-20260926
-          channelId: sle-ref-w3-final-pr192
+          channelId: sle-ref-w3-pr192
           expires: 3d
           disableComment: true
           firebaseToolsVersion: '15.32.1'
@@ -124,7 +124,7 @@ jobs:
         run: |
           set -euo pipefail
           url="$(node -p 'JSON.parse(process.env.PREVIEW_URLS)[0]')"
-          [[ "$url" == https://g-learning-english--sle-ref-w3-final-pr192-*.web.app ]]
+          [[ "$url" == https://g-learning-english--sle-ref-w3-pr192-*.web.app ]]
           tmp="$(mktemp)"
           trap 'rm -f "$tmp"' EXIT
           curl -fsSL --retry 10 --retry-all-errors --retry-delay 5 --connect-timeout 10 --max-time 30 "$url/" -o "$tmp"
