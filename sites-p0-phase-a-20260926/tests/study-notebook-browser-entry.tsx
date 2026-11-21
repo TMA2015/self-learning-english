@@ -72,14 +72,17 @@ const catalog={
  clickText('My Notes (0)');
  await wait(()=>!!find('textarea[aria-label="Your study note"]'),'Learner note editor');
  setInput('textarea[aria-label="Your study note"]','My own safe example <script>window.injected=true</script>');
+ await wait(()=>!![...document.querySelectorAll('button')].find(b=>b.textContent?.trim()==='Save note'&&!b.disabled),
+  'Note editor must enable save after text edit');
  clickText('Save note');
  await wait(()=>loadStudyNotebook(window.localStorage).notes.length===1,
   'Learner note actually saved on browser');
  assert(!document.querySelector('.study-note-body script')&&!('injected' in window),
   'React must render user text, never execute it');
  root.render(<StudyNotebook key="round2"/>);
- await wait(()=>!!find('[aria-label="Learner-created study notes"]')===false,
-  'Initial flashcard view restored after remount');
+ await wait(()=>!!find('[aria-label="Learner-created study notes"]')===false &&
+  [...document.querySelectorAll('button')].some(b=>b.textContent?.trim()==='My Notes (1)'),
+  'Reloaded Study Notebook must retain one saved note');
  clickText('My Notes (1)');
  await wait(()=>!!find('.study-note-body')?.textContent?.includes('My own safe example'),
   'Browser reload/remount preserves note text');
