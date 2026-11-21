@@ -86,9 +86,18 @@ const pkg=async(version:string)=>{
   assert(!findButton('Export old reference JSON'),'Obsolete reference-only export must not appear in Parent View');
   assert(!!findButton('Choose recovery JSON file'),'Restore must have a visible file-picker button');
   assert(!!document.querySelector('.sle-storage-action-row'),'Actions must have adjacent descriptions');
-  assert(findButton('Xóa tiến độ SLE trên thiết bị này')?.disabled,'Reset must require verified saved backup and typed confirmation');
-  assert(!!document.getElementById('sle-v2-reset-verify-file'),'Reset must have native V2 verification picker');
-  assert(!!document.getElementById('sle-clear-english-confirm'),'Reset must require explicit typed confirmation');
+  const resetButton=findButton('Xóa tiến độ SLE');
+  assert(resetButton&&!resetButton.disabled,'Single bottom-row reset button must be visible and clickable');
+  assert(resetButton.closest('.sle-storage-action-row')!==null,'Reset button must match existing two-column action-row layout');
+  assert(resetButton.closest('.sle-storage-section')?.nextElementSibling?.classList.contains('sle-storage-footnote'),
+   'Reset action must be the final button row immediately above the existing footnote');
+  assert(document.getElementById('sle-v2-reset-verify-file')===null,
+   'Reset safety controls should stay hidden before the bottom-row button is clicked');
+  await action('Xóa tiến độ SLE');
+  await wait(()=>document.getElementById('sle-clear-english-confirm')!==null,'reset controls opened on click');
+  assert(findButton('Xác nhận xóa tiến độ English')?.disabled,
+   'Reset confirmation must be disabled until backup is verified and XOA SLE typed');
+  assert(!!document.getElementById('sle-v2-reset-verify-file'),'Opened reset must offer native Recovery V2 picker');
   if(mode==='backup'){
    await action('Preview storage cleanup');
    await wait(()=>!!document.querySelector('.foundation-storage-inspection'),'retention preview');
@@ -112,7 +121,7 @@ const pkg=async(version:string)=>{
    await wait(()=>status().includes('Saved recovery file verified'),'file selection and verification');
    assert(!findButton('Confirm compact storage')?.disabled,'Verified complete recovery must unlock cleanup');
    assert(!!document.querySelector('.sle-storage-verified-file'),'Selected and verified filename must be visible');
-   assert(findButton('Xóa tiến độ SLE trên thiết bị này')?.disabled,'Reset must remain blocked until XOA SLE is typed');
+   assert(findButton('Xác nhận xóa tiến độ English')?.disabled,'Reset must remain blocked until XOA SLE is typed');
    const before=englishLosslessStore(localStorage).getItem(key)!.length;
    await action('Confirm compact storage');
    await wait(()=>status().includes('Curriculum storage compacted safely'),'compact UI finished');
