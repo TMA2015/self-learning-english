@@ -120,4 +120,4 @@ assert.equal(shuffled,20);
 console.log(JSON.stringify({result:'PASS',gate:'B2_U08U09_B02_V130_MACHINE_CANDIDATE',sourceSha256:digest,
   totalLessons:190,totalActivities:1278,newLessons:6,objectives,writing,optionCount,reading,
   sourceFidelity:'22/22',shuffled,previous184Immutable:true,mappedLessons:188,unmappedPilots:2,reviewedUnitLinks:6,
-  interactionStatus:'PASS_CONCEPT_ONLY',runtime:'v1.29 UNCHANGED',realLearnerData:'NOT_TOUCHED',deploy:false}));
+  interactionStatus:'PASS_CONCEPT_ONLY',runtime:'v1.30 STAGED_DRAFT_NO_LIVE',realLearnerData:'NOT_TOUCHED',deploy:false}));
