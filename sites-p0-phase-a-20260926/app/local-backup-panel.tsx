@@ -1,7 +1,7 @@
 "use client";
 import {useRef,useState} from 'react';
 import {browserLearningEnabled} from '../infrastructure/browser/client-services';
-import {exportLocalRecoveryV2,verifyLocalRecoveryV2,previewLocalRecoveryV2,restoreLocalRecoveryV2} from '../infrastructure/browser/local-recovery';
+import {exportLocalRecoveryV2,verifyLocalRecoveryV2,previewLocalRecoveryV2,restoreLocalRecoveryV2,clearLocalEnglishProgress} from '../infrastructure/browser/local-recovery';
 import {localAcademicRuntime} from '../infrastructure/browser/local-runtime';
 import {estimateEnglishLocalStorage} from '../infrastructure/browser/lossless-browser-storage';
 
@@ -24,6 +24,9 @@ export function LocalBackupPanel(){
  const [backupExpected,setBackupExpected]=useState('');
  const [verifiedBackupName,setVerifiedBackupName]=useState('');
  const [selectedRestoreName,setSelectedRestoreName]=useState('');
+ const [clearPhrase,setClearPhrase]=useState('');
+ const [resetOpen,setResetOpen]=useState(false);
+ const clearVerifyInput=useRef<HTMLInputElement>(null);
  const verifyInput=useRef<HTMLInputElement>(null);
  const restoreInput=useRef<HTMLInputElement>(null);
  const potentialSavings=retention?Math.max(0,retention.estimatedBeforeBytes-retention.estimatedAfterBytes):0;
@@ -40,7 +43,7 @@ export function LocalBackupPanel(){
    download(file.text,file.filename);
    setBackupExpected((JSON.parse(file.text) as {sha256:string}).sha256);
    setFullBackupExported(false);
-   setVerifiedBackupName('');
+   setVerifiedBackupName('');setClearPhrase('');
    setStatus('Complete V2 recovery JSON prepared ('+file.versions+' content versions, '+file.attempts+' attempts). Verify the saved file below before cleanup. Nothing was uploaded.');
   });
  }
@@ -52,7 +55,7 @@ export function LocalBackupPanel(){
    if(!backupExpected||recovered.sha256!==backupExpected)
     throw Error('Selected file is not the current downloaded backup. Download a new V2 recovery JSON and verify again.');
    setFullBackupExported(true);setVerifiedBackupName(file.name);
-   setStatus('Saved recovery file verified against the current export. Compaction can now be confirmed.');
+   setStatus('Saved recovery file verified against the current export. Safe English-only reset or compaction can now be confirmed.');
   });
  }
  async function inspect(){
@@ -101,6 +104,17 @@ export function LocalBackupPanel(){
    const result=await restoreLocalRecoveryV2(recoveryText,restorePreview.token,true);
    setStatus('Recovery verified: '+result.attempts+' attempts. Reload the page to see restored lessons.');
    setRestorePreview(null);setRecoveryText('');
+  });
+ }
+ async function clearEnglishOnly(){
+  if(!backupExpected||!fullBackupExported||clearPhrase!=='XOA SLE')return;
+  await run(async()=>{
+   const result=await clearLocalEnglishProgress(backupExpected,clearPhrase);
+   setFullBackupExported(false);setBackupExpected('');setVerifiedBackupName('');setClearPhrase('');
+   setStatus('Đã xóa '+result.deletedKeys+' khóa dữ liệu English trên trình duyệt này. Đang tải lại ứng dụng. Các website khác không bị xóa.');
+   // Cached local repositories must be discarded; on reload the bundled
+   // curriculum can bootstrap again into a fresh English learner profile.
+   window.location.reload();
   });
  }
  return <section className="panel progress-bottom sle-storage-panel" aria-label="On-device storage and recovery">
@@ -167,6 +181,31 @@ export function LocalBackupPanel(){
     <p>Đã kiểm tra bản sao lưu ngày {restorePreview.exportedAt}: {restorePreview.attempts} lượt làm bài, {restorePreview.versions} phiên bản học liệu.</p>
     <button type="button" className="secondary-button" disabled={busy}
      onClick={()=>void restore()}>Confirm recovery into this empty profile</button>
+   </div>}
+  </div>
+
+  <div className="sle-storage-section" aria-label="English-only progress reset">
+   <div className="sle-storage-action-row">
+    <button type="button" className="secondary-button" disabled={busy}
+     aria-expanded={resetOpen} aria-controls="sle-reset-confirmation"
+     onClick={()=>{setClearPhrase('');setResetOpen(open=>!open)}}>Xóa tiến độ SLE</button>
+    <p><strong>4. Xóa riêng tiến độ Self-Learning English.</strong> Chỉ xóa bài làm, điểm và bản nháp English trên trình duyệt này; không xóa dữ liệu Self-Learning Math, các website khác, lịch sử Safari hoặc file Recovery V2 đã lưu. Cần xác minh bản sao lưu trước khi xóa.</p>
+   </div>
+   {resetOpen&&<div id="sle-reset-confirmation" className="foundation-storage-inspection sle-restore-confirmation" aria-label="Confirm English-only progress reset">
+    <p><strong>Xác nhận xóa tiến độ English trên thiết bị này.</strong> Trước tiên hãy nhấn nút <strong>Download complete recovery JSON</strong> ở bước 1, lưu tệp vào Files rồi chọn lại đúng tệp vừa tải. Đóng các tab SLE khác trước khi xóa.</p>
+    <button type="button" className="secondary-button" disabled={busy||!backupExpected}
+     onClick={()=>clearVerifyInput.current?.click()}>Xác minh file Recovery V2 đã tải</button>
+    <input ref={clearVerifyInput} id="sle-v2-reset-verify-file" className="sle-storage-hidden-file" tabIndex={-1}
+     aria-label="Select downloaded English Recovery V2 before clearing this device"
+     type="file" accept=".json,application/json" disabled={busy||!backupExpected}
+     onChange={e=>{const file=e.currentTarget.files?.[0];e.currentTarget.value='';void verifyDownloaded(file)}}/>
+    {fullBackupExported&&verifiedBackupName&&<small role="note">Đã xác minh: {verifiedBackupName}</small>}
+    <p><label htmlFor="sle-clear-english-confirm">Nhập <strong>XOA SLE</strong> để xác nhận xóa:</label></p>
+    <input id="sle-clear-english-confirm" type="text" autoComplete="off" spellCheck={false}
+     value={clearPhrase} disabled={busy||!fullBackupExported}
+     onChange={e=>setClearPhrase(e.currentTarget.value)} placeholder="XOA SLE"/>
+    <button type="button" className="secondary-button" disabled={busy||!fullBackupExported||clearPhrase!=='XOA SLE'}
+     onClick={()=>void clearEnglishOnly()}>Xác nhận xóa tiến độ English</button>
    </div>}
   </div>
 
