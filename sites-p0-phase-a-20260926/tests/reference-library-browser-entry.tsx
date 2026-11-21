@@ -43,19 +43,19 @@ let selection='';
   <ReferenceLibrary catalog={catalog} onCatalog={()=>fail('Unnecessary catalog fetch')}
    onOpenLesson={(id,skill)=>{selection=id+' '+skill;report('PASS_LINK '+selection)}}/>
  );
- await wait(()=>getCount().includes('294 reference entries'),'264 previous reviewed references + 30 reviewed Grammar/Writing references');
+ await wait(()=>getCount().includes('329 reference entries'),'294 previously reviewed references + 35 Wave3 cards');
  assert(document.querySelectorAll('.sle-reference-table-scroll tbody tr').length===25,'191 reviewed verbs paginated 25 per page');
  assert(document.querySelectorAll('.sle-reference-card').length===20,'20 phrase/strategy cards');
  assert(!!document.querySelector('input[type="search"]'),'search is native search input');
- assert(document.querySelectorAll('.sle-reference-category-filter').length===11,
-  'Ten text-labelled category buttons plus All');
+ assert(document.querySelectorAll('.sle-reference-category-filter').length===15,
+  'Fourteen text-labelled category buttons plus All');
  if(phase==='search'){
   const badge=(kind:string)=>document.querySelector('.sle-reference-category-filter.is-'+kind) as HTMLButtonElement|null;
   assert(!!badge('idioms'),'Idioms category exists');
   badge('idioms')!.click();
   await wait(()=>badge('idioms')?.getAttribute('aria-pressed')==='true','category selected');
   assert(badge('phrasal_verbs')?.getAttribute('aria-pressed')==='false','other category not selected');
-  await wait(()=>getCount().includes('3 reference entries'),'idioms filter');
+  await wait(()=>getCount().includes('8 reference entries'),'three original idioms plus five new reviewed idioms');
   search('ice');
   await wait(()=>getCount().includes('1 reference entry'),'term search');
   assert(document.getElementById('app')?.textContent?.includes('break the ice'),'expected idiom shown');
@@ -70,7 +70,7 @@ let selection='';
   await wait(()=>document.getElementById('app')?.textContent?.includes('No matching entries')??false,'honest empty state');
   const clear=[...document.querySelectorAll('button')].find(x=>x.textContent?.includes('Clear filters'));
   clear?.click();
-  await wait(()=>getCount().includes('294 reference entries'),'clear filters');
+  await wait(()=>getCount().includes('329 reference entries'),'clear filters');
   report('PASS_SEARCH_FILTERS');
  }else if(phase==='v2'){
   select('Reference type','writing_connectors');
@@ -177,15 +177,68 @@ let selection='';
    'NO_TOPIC_LINKS_AUTHORIZED; no learner scoring or lesson action in Writing Toolkit');
   search('');
   select('Reference type','all');
-  await wait(()=>getCount().includes('294 reference entries'),'reset wave2 filters without losing legacy items');
+  await wait(()=>getCount().includes('329 reference entries'),'reset wave2 filters without losing legacy items');
   report('PASS_W2_GRAMMAR_WRITING_30');
+ }else if(phase==='wave3'){
+  select('Reference type','phrasal_verbs');
+  await wait(()=>getCount().includes('9 reference entries'),'four original + five new phrasal verbs');
+  search('put it off');
+  await wait(()=>getCount().includes('1 reference entry'),'search separability pattern, not only headword');
+  assert(document.querySelector('[aria-label="Wave 3 Phrasal verbs"] .sle-ref-wave3-card h4')?.textContent==='put off',
+   'Phrasal separable pronoun pattern searchable');
+  search('');
+  select('Reference type','collocations');
+  await wait(()=>getCount().includes('10 reference entries'),'five original + five new collocations');
+  assert(document.querySelectorAll('[aria-label="Wave 3 Collocations"] .sle-ref-wave3-card').length===5,
+   'five new collocations retain specialist procedures');
+  search('');
+  select('Reference type','word_families');
+  await wait(()=>getCount().includes('5 reference entries'),'five word-family cards');
+  search('explain me the rule');
+  await wait(()=>getCount().includes('1 reference entry'),'search word-family usage warning');
+  assert(document.querySelector('[aria-label="Wave 3 Word families"] h4')?.textContent==='explain / explanation / explanatory',
+   'Wrong syntax finds the correct teaching card');
+  search('');
+  select('Reference type','confusable_words');
+  await wait(()=>getCount().includes('5 reference entries'),'five confusable-word cards');
+  search('actually currently');
+  await wait(()=>getCount().includes('1 reference entry'),'false-friend pair searchable');
+  search('');
+  select('Reference type','idioms');
+  await wait(()=>getCount().includes('8 reference entries'),'legacy and new idioms remain together');
+  search('');
+  select('Reference type','reading_strategies');
+  await wait(()=>getCount().includes('5 reference entries'),'five reading strategies');
+  assert(document.querySelectorAll('[aria-label="Wave 3 Reading strategies"] .sle-ref-wave3-card').length===5,
+   'reading strategies rendered as independent teaching cards');
+  search('');
+  select('Reference type','listening_strategies');
+  await wait(()=>getCount().includes('5 reference entries'),'five listening strategies');
+  const region=document.querySelector('[aria-label="Wave 3 Listening strategies"]');
+  assert(region?.textContent?.includes('UNASSESSED')??false,
+   'Missing audio requires UNASSESSED, not a guessed score');
+  assert(region?.querySelectorAll('audio,video,button,.sle-reference-practice').length===0,
+   'Static Listening cards must not expose player/transcript controls or unverified lessons');
+  search('transcript after submit');
+  await wait(()=>getCount().includes('1 reference entry'),'transcript safety search');
+  assert(document.querySelector('[aria-label="Wave 3 Listening strategies"] h4')?.textContent?.includes('transcripts only when allowed'),
+   'Exact reviewed Listening caution found');
+  search('');
+  select('Suggested level','A1');
+  await wait(()=>getCount().includes('2 reference entries'),'A1–A2 navigation includes two gist/purpose guides');
+  select('Suggested level','all');
+  select('Reference type','all');
+  await wait(()=>getCount().includes('329 reference entries'),'return all 329 reviewed entries');
+  assert(document.querySelectorAll('.sle-ref-wave3-card').length===35,'35 new cards rendered without duplication');
+  assert(document.querySelectorAll('.sle-reference-card').length===20,'20 original pilot non-verb cards unchanged');
+  report('PASS_W3_CROSS_SKILL_35');
  }else if(phase==='catalog'){
   assert(document.querySelectorAll('.sle-reference-table-scroll .sle-reference-practice button').length===0,
    'Irregular verbs must not link to unrelated first Grammar lesson');
   assert(document.querySelectorAll('.sle-ref-connector-card .sle-reference-practice button').length===0,
    'Writing connectors must not link to unrelated first Writing lesson');
   select('Reference type','collocations');
-  await wait(()=>getCount().includes('5 reference entries'),'legacy collocation category');
+  await wait(()=>getCount().includes('10 reference entries'),'five immutable + five new collocations');
   const first=document.querySelector('.sle-reference-card .sle-reference-practice button') as HTMLButtonElement|null;
   assert(first,'retain legacy skill practice link for pilot collocation cards');
   first!.click();
