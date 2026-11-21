@@ -138,9 +138,12 @@ export function StudyNotebook({onOpenReference}:{onOpenReference?:(search:string
   {section==='notes'&&<section className="panel" aria-label="Learner-created study notes">
    <h2>{editingId?'Edit your note':'Write your own note'}</h2>
    <p className="muted">Write what you understood, an original example, or a question to revisit. Your text is not automatically graded or sent to AI.</p>
-   <label>Link to a saved reference (optional)
+   <label>Link to a reference (optional)
     <select aria-label="Note linked reference" value={noteLink} onChange={e=>setNoteLink(e.target.value)}>
      <option value="">General note (not linked)</option>
+     {noteLink&&!cards.some(c=>c.referenceId===noteLink)&&<option value={noteLink}>
+      {referenceById.get(noteLink)?.term??noteLink} · preserved linked note (flashcard removed)
+     </option>}
      {cards.map(c=><option key={c.referenceId} value={c.referenceId}>
       {referenceById.get(c.referenceId)?.term??c.referenceId}</option>)}
     </select>

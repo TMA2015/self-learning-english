@@ -90,6 +90,39 @@ const catalog={
   'Cross-device sync must never be promised');
  assert(!!window.localStorage.getItem(STUDY_NOTEBOOK_KEY),'Study Notebook stored in independent key');
  assert(window.localStorage.getItem(old)==='{"immutable":"yes"}','Historical academic data remains unchanged');
+ // Regression: removing a saved flashcard must not silently change the linked reference in an existing note.
+ clickText('Flashcards (2)');
+ await wait(()=>!!find('[aria-label="Selected flashcard"]'),'Return to saved flashcards');
+ clickText('Write a note');
+ await wait(()=>!!find('textarea[aria-label="Your study note"]'),'Linked note editor');
+ const originalLink=document.querySelector('select[aria-label="Note linked reference"]') as unknown as HTMLSelectElement;
+ assert(originalLink.value==='REF4-DEG-001','New note should inherit selected vetted reference');
+ setInput('textarea[aria-label="Your study note"]','Linked note survives card removal');
+ clickText('Save note');
+ await wait(()=>loadStudyNotebook(window.localStorage).notes.some(n=>n.text==='Linked note survives card removal'&&n.referenceId==='REF4-DEG-001'),
+  'New note linked to saved reference');
+ clickText('Flashcards (2)');
+ await wait(()=>!!find('[aria-label="Selected flashcard"]'),'Reopen the linked flashcard');
+ const originalConfirm=window.confirm;
+ window.confirm=()=>true;
+ try{clickText('Remove from review')}finally{window.confirm=originalConfirm}
+ await wait(()=>loadStudyNotebook(window.localStorage).cards.length===1,
+  'Remove flashcard while preserving linked note');
+ clickText('My Notes (2)');
+ await wait(()=>!![...document.querySelectorAll('.study-note')].find(n=>n.textContent?.includes('Linked note survives card removal')),
+  'Linked note survives flashcard removal');
+ const linkedRow=[...document.querySelectorAll('.study-note')].find(n=>n.textContent?.includes('Linked note survives card removal'));
+ const editButton=[...(linkedRow?.querySelectorAll('button')??[])].find(b=>b.textContent?.trim()==='Edit') as HTMLButtonElement|undefined;
+ assert(!!editButton,'Linked note edit action exists');
+ editButton!.click();
+ const orphanLink=document.querySelector('select[aria-label="Note linked reference"]') as unknown as HTMLSelectElement;
+ await wait(()=>orphanLink.value==='REF4-DEG-001'&&
+  [...orphanLink.options].some(o=>o.value==='REF4-DEG-001'&&o.textContent?.includes('flashcard removed')),
+  'Editor must display the preserved reference after flashcard removal');
+ setInput('textarea[aria-label="Your study note"]','Linked note edited after card removal');
+ clickText('Save changes');
+ await wait(()=>loadStudyNotebook(window.localStorage).notes.some(n=>n.text==='Linked note edited after card removal'&&n.referenceId==='REF4-DEG-001'),
+  'Editing the note does not silently unlink its original vetted reference');
  // Both narrow-mobile and tablet layouts: no horizontal overflow of new note editor/actions.
  for(const width of [320,768]){
   document.documentElement.style.width=width+'px';document.body.style.width=width+'px';app.style.width=width+'px';
