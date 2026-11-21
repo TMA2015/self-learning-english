@@ -79,8 +79,8 @@ const reviewedAssignments={
 };
 assert.deepEqual(map.reviewed_v130,reviewedAssignments,'Only reviewed B2 U08/U09 links may be added');
 const runtime=fs.readFileSync(path.join(root,'infrastructure/browser/local-runtime.ts'),'utf8');
-assert(runtime.includes("from '../../content/curriculum-1.29.0-candidate.json'"));
-assert(!runtime.includes("from '../../content/curriculum-1.30.0-candidate.json'"));
+assert(runtime.includes("from '../../content/curriculum-1.30.0-candidate.json'"),'Staged v1.30 runtime must bundle exact reviewed candidate');
+assert(!runtime.includes("from '../../content/curriculum-1.29.0-candidate.json'"));
 const out='.sites-runtime/b2-u08u09-v130-schema';
 fs.rmSync(path.join(root,out),{recursive:true,force:true});fs.mkdirSync(path.join(root,out),{recursive:true});
 execFileSync(process.execPath,['node_modules/typescript/bin/tsc','domain/academic.ts','domain/content-model.ts','domain/option-order.ts','domain/unit-guide-60.ts',
@@ -120,4 +120,4 @@ assert.equal(shuffled,20);
 console.log(JSON.stringify({result:'PASS',gate:'B2_U08U09_B02_V130_MACHINE_CANDIDATE',sourceSha256:digest,
   totalLessons:190,totalActivities:1278,newLessons:6,objectives,writing,optionCount,reading,
   sourceFidelity:'22/22',shuffled,previous184Immutable:true,mappedLessons:188,unmappedPilots:2,reviewedUnitLinks:6,
-  interactionStatus:'PASS_CONCEPT_ONLY',runtime:'v1.29 UNCHANGED',realLearnerData:'NOT_TOUCHED',deploy:false}));
+  interactionStatus:'PASS_CONCEPT_ONLY',runtime:'v1.30 STAGED_DRAFT_NO_LIVE',realLearnerData:'NOT_TOUCHED',deploy:false}));

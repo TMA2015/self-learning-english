@@ -16,7 +16,7 @@ class MemoryStorage{
  const {academicService,sourceDigest}=require(path.join(out,'application/academic-service.js'));
  const {mapSeed}=require(path.join(out,'domain/academic.js'));
  const {WRITING_COURSE_ID}=require(path.join(out,'domain/course-p1.js'));
- const old=require('../content/curriculum-1.11.0-candidate.json'),baseline1180=require('../content/curriculum-1.18.0-candidate.json'),baseline1250=require('../content/curriculum-1.25.0-candidate.json'),baseline1280=require('../content/curriculum-1.28.0-candidate.json'),current=require('../content/curriculum-1.29.0-candidate.json');
+ const old=require('../content/curriculum-1.11.0-candidate.json'),baseline1180=require('../content/curriculum-1.18.0-candidate.json'),baseline1250=require('../content/curriculum-1.25.0-candidate.json'),baseline1280=require('../content/curriculum-1.28.0-candidate.json'),baseline1290=require('../content/curriculum-1.29.0-candidate.json'),current=require('../content/curriculum-1.30.0-candidate.json');
  const academic=new BrowserLocalAcademicRepository(storage),learning=new BrowserLocalLearningRepository(storage);
  const pkg={id:old.package_id,version:old.schema_version,digest:await sourceDigest(old),source:old,bundle:mapSeed(old),at:1};
  await academic.addPackage(pkg);const persistedOldPackage=(await academic.packages())[0];
@@ -29,7 +29,7 @@ class MemoryStorage{
  const learner=await runtime.localLearningRuntime();await learner.service.saveState({writing:'Unchanged Writing draft',feedback:{note:'Saved feedback'},completed:[0]});
  const courses=await runtime.localCourseRuntime();await courses.select(WRITING_COURSE_ID,0,'upgrade-selection');
  // Family upgrade rehearsal: historical v1.11.0 work and a previously
- // imported v1.18.0, v1.25.0 and v1.28.0 attempts must survive activation of v1.29.0.
+ // imported v1.18.0, v1.25.0, v1.28.0 and v1.29.0 attempts must survive v1.30.0 activation.
  const package1180={id:baseline1180.package_id,version:baseline1180.schema_version,digest:await sourceDigest(baseline1180),source:baseline1180,bundle:mapSeed(baseline1180),at:2};
  await academic.addPackage(package1180);
  const historical1180=await service.start('REA-A1-01','historical-reading-1180');
@@ -45,14 +45,22 @@ class MemoryStorage{
  const historical1280=await service.start(baseline1280.lessons.at(-1).id,'historical-v128-attempt');
  assert.equal(historical1280.version,'1.28.0');
  const oldReading1280=await service.lesson(baseline1280.lessons.at(-1).id,'1.28.0');
+ const package1290={id:baseline1290.package_id,version:baseline1290.schema_version,digest:await sourceDigest(baseline1290),source:baseline1290,bundle:mapSeed(baseline1290),at:5};
+ await academic.addPackage(package1290);
+ const historical1290=await service.start('REA-C1-04','historical-v129-attempt');
+ assert.equal(historical1290.version,'1.29.0');
+ const oldReading1290=await service.lesson('REA-C1-04','1.29.0');
  const before=new Map(storage.map),oldAttempts=await academic.attempts(runtime.LOCAL_OWNER_ID),oldView=await service.lesson(grammar.id,'1.11.0');storage.writes=[];
  const upgraded=await runtime.localAcademicRuntime();const catalog=await upgraded.service.catalog();
- assert.equal(catalog.version,'1.29.0');assert.equal(catalog.lessons.length,184);
+ assert.equal(catalog.version,'1.30.0');assert.equal(catalog.lessons.length,190);
  assert.deepEqual(current.lessons.slice(0,154),baseline1250.lessons,'Original v1.25 lessons must remain byte structurally intact');
  assert.deepEqual(current.lessons.slice(0,176),baseline1280.lessons,'Original v1.28 lessons and answers must remain unchanged');
- assert.equal(current.lessons.reduce((n,l)=>n+l.activities.length,0),1256);
- assert.deepEqual(catalog.lessons.reduce((m,l)=>(m[l.module]=(m[l.module]??0)+1,m),{}),{grammar:43,vocabulary:22,reading:45,writing:42,listening:21,speaking:6,pronunciation:5});
- const packages=await upgraded.academic.packages();assert.equal(packages.length,5);assert.deepEqual(packages.find(p=>p.version==='1.11.0'),persistedOldPackage);assert.deepEqual(packages.find(p=>p.version==='1.18.0').source,baseline1180);assert.deepEqual(packages.find(p=>p.version==='1.25.0').source,baseline1250);assert.deepEqual(packages.find(p=>p.version==='1.28.0').source,baseline1280);assert.deepEqual(packages.find(p=>p.version==='1.29.0').source,current);
+ assert.deepEqual(current.lessons.slice(0,184),baseline1290.lessons,'All 184 v1.29 lessons and answers unchanged');
+ assert.deepEqual(current.course.sequence.slice(0,184),baseline1290.course.sequence,'The 184 historical course positions must be unchanged');
+ assert.deepEqual(current.rubrics,baseline1290.rubrics,'Historical B2 and C1 rubrics remain unchanged');
+ assert.equal(current.lessons.reduce((n,l)=>n+l.activities.length,0),1278);
+ assert.deepEqual(catalog.lessons.reduce((m,l)=>(m[l.module]=(m[l.module]??0)+1,m),{}),{grammar:43,vocabulary:22,reading:49,writing:44,listening:21,speaking:6,pronunciation:5});
+ const packages=await upgraded.academic.packages();assert.equal(packages.length,6);assert.deepEqual(packages.find(p=>p.version==='1.11.0'),persistedOldPackage);assert.deepEqual(packages.find(p=>p.version==='1.18.0').source,baseline1180);assert.deepEqual(packages.find(p=>p.version==='1.25.0').source,baseline1250);assert.deepEqual(packages.find(p=>p.version==='1.28.0').source,baseline1280);assert.deepEqual(packages.find(p=>p.version==='1.29.0').source,baseline1290);assert.deepEqual(packages.find(p=>p.version==='1.30.0').source,current);
  const packageKey='g-learning:english:v1:academic:packages';assert.deepEqual(storage.writes,[packageKey]);
  for(const [k,v] of before)if(k!==packageKey)assert.equal(storage.getItem(k),v,'Learner key changed: '+k);
  assert.deepEqual([...storage.map.keys()].sort(),[...before.keys()].sort(),'No namespace change');
@@ -61,30 +69,32 @@ class MemoryStorage{
  assert.deepEqual(await upgraded.service.lesson('REA-A1-01','1.18.0'),oldReading1180);
  assert.deepEqual(await upgraded.service.lesson('REA-A2-08','1.25.0'),oldReading1250);
  assert.deepEqual(await upgraded.service.lesson(baseline1280.lessons.at(-1).id,'1.28.0'),oldReading1280);
+ assert.deepEqual(await upgraded.service.lesson('REA-C1-04','1.29.0'),oldReading1290);
  assert((await upgraded.service.lesson('REA-A1-01')).lesson.examples.join(' ').includes('guitar group'));
  assert((await upgraded.service.lesson('VOC-A1-01')).lesson.examples.some(e=>e.includes('Noor buys a banana')));
  assert.deepEqual((await upgraded.service.catalog()).attempts.find(a=>a.id===scored.id).results,scored.results);
  assert(catalog.lessons.some(l=>l.id==='REA-C1-01')&&catalog.lessons.some(l=>l.id==='VOC-C2-01'));
- for(const id of ['REA-B2-10','WRI-B2-08','WRI-C1-01','REA-C1-04'])assert(catalog.lessons.some(l=>l.id===id),'New reviewed lesson missing '+id);
+ for(const id of ['REA-B2-10','WRI-B2-08','WRI-C1-01','REA-C1-04','REA-B2-11','REA-B2-12','WRI-B2-10','REA-B2-13','REA-B2-14','WRI-B2-11'])assert(catalog.lessons.some(l=>l.id===id),'New reviewed lesson missing '+id);
  assert.deepEqual([...storage.map.keys()].sort(),[...before.keys()].sort(),'No learner storage keys added or removed by curriculum update');
  for(const id of ['PRO-A2-03','PRO-B1-02','LIS-A2-03','LIS-B1-04'])assert(catalog.lessons.some(l=>l.id===id));
  const manifest=require('../content/pronunciation-audio.json');for(const id of ['PRO-A2-03','PRO-B1-02'])assert.deepEqual((await upgraded.service.lesson(id)).pronunciationAudio,{url:manifest[id].url,duration:manifest[id].duration});
  // Reload: reuse persisted bytes, but force repository recreation with a new storage object.
  const reload=new MemoryStorage();reload.map=new Map(storage.map);global.window.localStorage=reload;
- const again=await runtime.localAcademicRuntime();assert.equal((await again.service.catalog()).version,'1.29.0');assert.deepEqual(reload.writes,[]);
+ const again=await runtime.localAcademicRuntime();assert.equal((await again.service.catalog()).version,'1.30.0');assert.deepEqual(reload.writes,[]);
  assert.deepEqual(await again.academic.attempts(runtime.LOCAL_OWNER_ID),oldAttempts);
  assert.equal((await (await runtime.localCourseRuntime()).load()).activeCourseId,WRITING_COURSE_ID);
  const revision=await again.service.start(grammar.id,'historical-revision',scored.id);assert.equal(revision.version,'1.11.0');assert.equal(revision.parentId,scored.id);
- const fresh=await again.service.start(grammar.id,'current-root-attempt');assert.equal(fresh.version,'1.29.0');assert.equal(fresh.parentId,undefined);
+ const fresh=await again.service.start(grammar.id,'current-root-attempt');assert.equal(fresh.version,'1.30.0');assert.equal(fresh.parentId,undefined);
  assert.equal((await again.academic.attempts(runtime.LOCAL_OWNER_ID)).find(a=>a.id===historical1180.id).version,'1.18.0');
  assert.equal((await again.academic.attempts(runtime.LOCAL_OWNER_ID)).find(a=>a.id===historical1250.id).version,'1.25.0');
  assert.equal((await again.academic.attempts(runtime.LOCAL_OWNER_ID)).find(a=>a.id===historical1280.id).version,'1.28.0');
+ assert.equal((await again.academic.attempts(runtime.LOCAL_OWNER_ID)).find(a=>a.id===historical1290.id).version,'1.29.0');
  assert.deepEqual((await again.academic.attempts(runtime.LOCAL_OWNER_ID)).filter(a=>oldAttempts.some(o=>o.id===a.id)),oldAttempts);
- // Active v1.29 Reading must be playable end-to-end, not merely discoverable in the catalog.
+ // Historical v1.29 Reading must remain playable after v1.30 activation, not merely discoverable in the catalog.
  const newReading=current.lessons.find(l=>l.id==='REA-C1-02');
  assert(newReading&&newReading.activities.length===6);
  const c1ReadingAttempt=await again.service.start(newReading.id,'synthetic-v129-c1-reading');
- assert.equal(c1ReadingAttempt.version,'1.29.0');
+ assert.equal(c1ReadingAttempt.version,'1.30.0');
  await again.service.draft(c1ReadingAttempt.id,Object.fromEntries(newReading.activities.map(q=>[q.id,q.answer.correct_option_id])));
  const c1ReadingResult=await again.service.submit(c1ReadingAttempt.id);
  assert.equal(c1ReadingResult.status,'scored');
@@ -99,7 +109,28 @@ class MemoryStorage{
  assert.equal(c1WritingResult.status,'pending_review');
  assert.deepEqual(c1WritingResult.evidence,[],'No automatic C1 Writing proficiency evidence');
  assert.deepEqual((await again.academic.attempts(runtime.LOCAL_OWNER_ID)).filter(a=>oldAttempts.some(o=>o.id===a.id)),oldAttempts,
-  'New v1.29 assessments must never rewrite historic version-pinned attempts');
+  'New v1.30 assessments must never rewrite historic version-pinned attempts');
+ // New B2-U08 Reading must be playable and score only the reviewed objective keys.
+ const b2Reading=current.lessons.find(l=>l.id==='REA-B2-11');
+ assert.equal(b2Reading?.activities.length,5);
+ const b2ReadingAttempt=await again.service.start(b2Reading.id,'synthetic-v130-b2-reading');
+ assert.equal(b2ReadingAttempt.version,'1.30.0');
+ await again.service.draft(b2ReadingAttempt.id,Object.fromEntries(b2Reading.activities.map(q=>[q.id,q.answer.correct_option_id])));
+ const b2ReadingResult=await again.service.submit(b2ReadingAttempt.id);
+ assert.equal(b2ReadingResult.status,'scored');
+ assert(b2ReadingResult.results.every(q=>q.correct),'Reviewed B2 answer keys must grade deterministically');
+ assert(b2ReadingResult.evidence.every(e=>e.skill==='Reading'&&!e.level),'No automatic CEFR certificate from B2 practice');
+ // B2-U09 Writing remains pending adult review, with no invented proficiency evidence.
+ const b2Writing=current.lessons.find(l=>l.id==='WRI-B2-11');
+ assert.equal(b2Writing?.activities.length,1);
+ assert.equal(b2Writing.activities[0].answer,null);
+ assert.equal(b2Writing.activities[0].evidence_weight,0);
+ const b2WritingAttempt=await again.service.start(b2Writing.id,'synthetic-v130-b2-writing');
+ await again.service.draft(b2WritingAttempt.id,{[b2Writing.activities[0].id]:'A synthetic rehearsal response requiring adult feedback, not an automatic grade.'});
+ const b2WritingResult=await again.service.submit(b2WritingAttempt.id);
+ assert.equal(b2WritingResult.status,'pending_review');
+ assert.deepEqual(b2WritingResult.evidence,[],'No CEFR or numeric evidence from unreviewed B2 Writing');
+ assert.deepEqual((await again.academic.attempts(runtime.LOCAL_OWNER_ID)).filter(a=>oldAttempts.some(o=>o.id===a.id)),oldAttempts,'Historical family work must remain immutable after v1.30 practice');
  await assert.rejects(()=>again.academic.addPackage({...pkg,digest:'conflict'}),/Immutable/);
- console.log('PASS: immutable 1.11 -> 1.18.0 -> 1.25.0 -> 1.28.0 -> 1.29.0 staged upgrade; 184/1256, old drafts/results/Reading notes preserved; one package key write; reload idempotent; course/state/evidence unchanged.');
+ console.log('PASS: immutable 1.11 -> 1.18.0 -> 1.25.0 -> 1.28.0 -> 1.29.0 -> 1.30.0 staged upgrade; 190/1278, old drafts/results/Reading notes preserved; v1.30 B2 Reading scored + Writing pending; one package key write; reload idempotent; course/state/evidence unchanged.');
 })().catch(e=>{console.error(e);process.exitCode=1});

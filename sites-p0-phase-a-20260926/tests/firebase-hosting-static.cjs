@@ -53,17 +53,21 @@ const baseline=require('../content/curriculum-1.18.0-candidate.json');
 const stage3=require('../content/curriculum-1.18.1-candidate.json');
 const archived1200=require('../content/curriculum-1.20.0-candidate.json');
 const previous1280=require('../content/curriculum-1.28.0-candidate.json');
-const active=require('../content/curriculum-1.29.0-candidate.json');
+const previous1290=require('../content/curriculum-1.29.0-candidate.json');
+const active=require('../content/curriculum-1.30.0-candidate.json');
 assert.equal(archived1200.lessons.length,123);
 assert.deepEqual(active.lessons.slice(0,123),archived1200.lessons,'All 123 prior lessons unchanged');
 assert.equal(baseline.schema_version,'1.18.0');
 assert.equal(stage3.schema_version,'1.18.1');
 assert.equal(stage3.lessons.length,109);
-assert.equal(active.schema_version,'1.29.0');
-assert.equal(active.lessons.length,184);
-assert.equal(active.lessons.flatMap(l=>l.activities).length,1256);
+assert.equal(active.schema_version,'1.30.0');
+assert.equal(active.lessons.length,190);
+assert.equal(active.lessons.flatMap(l=>l.activities).length,1278);
 assert.deepEqual(active.lessons.slice(0,176),previous1280.lessons,'All 176 v1.28 lesson IDs, keys and learning texts remain unchanged');
 assert.deepEqual(active.course.sequence.slice(0,176),previous1280.course.sequence,'v1.28 order and version-pinned history must be stable');
+assert.deepEqual(active.lessons.slice(0,184),previous1290.lessons,'All reviewed v1.29 lessons must remain immutable');
+assert.deepEqual(active.course.sequence.slice(0,184),previous1290.course.sequence,'All reviewed v1.29 course positions must remain immutable');
+assert.deepEqual(active.rubrics,previous1290.rubrics,'All B2 and C1 reviewed rubrics must stay immutable');
 const source1240=require('../content/curriculum-1.24.0-candidate.json');
 assert.deepEqual(active.lessons.slice(0,142),source1240.lessons,'All 142 previously released lessons must remain immutable');
 assert.deepEqual(active.course.sequence.slice(0,142),source1240.course.sequence,'Historical course order must not move');
@@ -72,8 +76,8 @@ for(const [id,rubric] of Object.entries(source1240.rubrics))assert.deepEqual(act
 for(const [id,rubric] of Object.entries(previous1280.rubrics))assert.deepEqual(active.rubrics[id],rubric,'Historical rubric changed: '+id);
 assert.deepEqual(Object.keys(active.rubrics).filter(id=>!Object.hasOwn(previous1280.rubrics,id)),['RUBRIC-WRITING-C1'],'Only one new qualitative C1 rubric may be staged');
 const runtimeSource=fs.readFileSync(path.join(root,'infrastructure','browser','local-runtime.ts'),'utf8');
-assert(runtimeSource.includes("import curriculum1290 from '../../content/curriculum-1.29.0-candidate.json'"),
-  'Static browser runtime must bundle the staged v1.29.0 cumulative curriculum');
+assert(runtimeSource.includes("import curriculum1300 from '../../content/curriculum-1.30.0-candidate.json'"),
+  'Static browser runtime must bundle the staged v1.30.0 cumulative curriculum');
 const raw=fs.readFileSync(path.join(root,'content/curriculum-1.15.0-candidate.json'));const canonical=v=>Array.isArray(v)?v.map(canonical):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,canonical(v[k])])):v;const sha=v=>crypto.createHash('sha256').update(v).digest('hex');assert.equal(sha(raw),'981a7273a9158c9e53a0e3336de1a88892024f617330d797d534f9e293dc4426');assert.equal(sha(JSON.stringify(canonical(JSON.parse(raw)))),'66663bb61cf60b266d25e8abd890e81ad27398d3ebee9b7cd5cd211de878b1e8');
 const html=fs.readFileSync(path.join(out,'index.html'),'utf8');
 assert(!html.includes('/self-learning-english/self-learning-english/'),'Firebase build must not duplicate a GitHub Pages base path');
@@ -131,6 +135,13 @@ assert(builtJS.some(file=>fs.readFileSync(file,'utf8').includes('Briarfield coun
  'Firebase built JS must contain the newly reviewed C1 extended discourse source from v1.29.0');
 assert(builtJS.some(file=>fs.readFileSync(file,'utf8').includes('RUBRIC-WRITING-C1')),
  'Firebase built JS must contain the unscored C1 Writing rubric ID');
+assert(builtJS.some(file=>fs.readFileSync(file,'utf8').includes('Harbourview Youth Centre')),'Built English JS missing reviewed B2-U08 discussion source');
+assert(builtJS.some(file=>fs.readFileSync(file,'utf8').includes('Oakridge Community Festival')),'Built English JS missing B2-U08 clarification source');
+assert(builtJS.some(file=>fs.readFileSync(file,'utf8').includes('Northbank Library')),'Built English JS missing B2-U09 access evaluation source');
+assert(builtJS.some(file=>fs.readFileSync(file,'utf8').includes('Glenford Council')),'Built English JS missing B2-U09 environment trade-off source');
+assert(builtJS.some(file=>fs.readFileSync(file,'utf8').includes('Rivergate School newspaper')),'Built English JS missing B2-U08 unscored Writing source');
+assert(builtJS.some(file=>fs.readFileSync(file,'utf8').includes('Larchfield Community Centre')),'Built English JS missing B2-U09 unscored Writing source');
+
 
 const allowedPublicFirebaseWebApiKeys=new Set([
   'AIzaSyAnCa-t04dmwFHLARYN77o866tomq4RUBg',
