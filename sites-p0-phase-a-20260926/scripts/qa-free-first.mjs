@@ -68,6 +68,7 @@ const coreTests=[
   "reference-library-v2-irregular-candidate.cjs",
   "reference-library-wave2-grammar-writing.cjs",
   "reference-library-wave3-crossskill.cjs",
+  "reference-library-wave4-degree-usage.cjs",
   "pronunciation-runtime-audio.cjs",
 ];
 

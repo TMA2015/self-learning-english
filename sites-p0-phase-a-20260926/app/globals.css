@@ -787,3 +787,15 @@ body {
  .sle-reference .sle-ref-wave3-group{margin:12px 0 18px}
  .sle-reference .sle-ref-wave3-card{padding:12px}
 }
+
+/* Reference Library Wave 4 static academic card groups; 320px and iPad ready. */
+.sle-reference .sle-ref-wave4-group{margin:18px 0 24px;min-width:0}
+.sle-reference .sle-ref-wave4-group>h3{margin:12px 0;line-height:1.4}
+.sle-reference .sle-ref-wave4-card{min-width:0;max-width:100%;overflow-wrap:anywhere;line-height:1.55}
+.sle-reference .sle-ref-wave4-card h4{margin:9px 0;font-size:1.07rem;line-height:1.35}
+.sle-reference .sle-ref-wave4-card p{margin:9px 0}
+.sle-reference .sle-ref-wave4-card .sle-reference-tags{flex-wrap:wrap;gap:6px}
+@media(max-width:380px){
+ .sle-reference .sle-ref-wave4-group{margin:12px 0 18px}
+ .sle-reference .sle-ref-wave4-card{padding:12px}
+}
