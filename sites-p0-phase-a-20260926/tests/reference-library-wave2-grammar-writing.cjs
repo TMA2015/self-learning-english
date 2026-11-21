@@ -103,7 +103,8 @@ assert(!/localStorage\.|sessionStorage\.|setItem\(|Gemini|AI feedback|score\s*=/
 const compiled=ts.transpileModule(domain,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
 const out=path.join(root,'.sites-runtime/reference-library-wave2-domain.cjs');fs.mkdirSync(path.dirname(out),{recursive:true});fs.writeFileSync(out,compiled);
 const {filterReferenceEntries,REFERENCE_V2_KINDS}=require(out);
-assert.deepEqual(REFERENCE_V2_KINDS.map(x=>x.id),['writing_connectors','frequency_expressions','grammar_comparisons','writing_toolkit']);
+assert.deepEqual(REFERENCE_V2_KINDS.slice(0,4).map(x=>x.id),['writing_connectors','frequency_expressions','grammar_comparisons','writing_toolkit']);
+assert.equal(REFERENCE_V2_KINDS.length,8,'Original four V2 categories retained; four more Wave3 kinds appended');
 const mapSpecialist=e=>e.kind==='grammar_comparisons'
  ?{...e,term:e.title,meaning:e.use_decision,note:e.watch_out,skill:'grammar',level:'not_tagged',register:'not_tagged'}
  :{...e,term:e.title,meaning:e.purpose,example:e.worked_micro_example,note:e.avoid,skill:'writing',level:'not_tagged',register:'not_tagged'};
