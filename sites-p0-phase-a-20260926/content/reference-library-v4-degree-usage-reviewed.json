@@ -1,0 +1,721 @@
+{
+  "dataset_id": "SLE-REF-W4-DEGREE-USAGE-CROSSSKILL-R1-20261121",
+  "review_status": "NOTEBOOKLM_PASS_35_OF_35",
+  "source_standard": "SLE-MASTER-001 v1.2.1",
+  "reviewed_source_packet": "notebooklm/SLE_REF_W4_DEGREE_USAGE_CROSSSKILL_R1_20261121.md",
+  "review_verdict": "Owner-provided NotebookLM independent academic verdict 35/35 PASS; no mandatory or optional corrections; no overlap/schema blockers; no topic-linked lessons authorized; read-only reference only.",
+  "release_status": "STAGED_DRAFT_NOT_RELEASED",
+  "counts": {
+    "degree_expressions": 10,
+    "preposition_patterns": 10,
+    "writing_functions": 5,
+    "reading_strategies": 5,
+    "listening_strategies": 5,
+    "total": 35
+  },
+  "entries": [
+    {
+      "id": "REF4-DEG-001",
+      "kind": "degree_expressions",
+      "title": "very vs too",
+      "suggested_level": "A2",
+      "register_or_mode": "neutral; adjective/adverb degree",
+      "meaning_or_strategy": "Very strengthens a description; too says a degree exceeds a relevant limit or is unsuitable for a purpose.",
+      "pattern_or_procedure": "Use very + adjective/adverb, but too + adjective/adverb (+ for someone / to-infinitive where appropriate). Ask what practical limit too refers to.",
+      "independent_illustration": "After filling the water bottle, Noura said, “It is very heavy.” Her younger brother replied, “It is too heavy for me to carry.”",
+      "contrast_or_reasoning": "The same bottle can be described as heavy, but only the second speaker explicitly judges its weight against his ability to carry it.",
+      "watch_out_or_limits": "Too is not simply a stronger synonym for very. In positive contexts, “too kind” may be affectionate or exaggerated; infer attitude from context.",
+      "learner_self_check": "Can I identify the limit or problem that makes too more appropriate than very?",
+      "search_hints": [
+        "very",
+        "too",
+        "degree",
+        "excessive",
+        "adjective",
+        "too heavy"
+      ]
+    },
+    {
+      "id": "REF4-DEG-002",
+      "kind": "degree_expressions",
+      "title": "too ... to vs ... enough to",
+      "suggested_level": "A2–B1",
+      "register_or_mode": "neutral; sufficiency and limits",
+      "meaning_or_strategy": "Too ... to signals a limiting degree; adjective + enough + to says the degree meets a relevant requirement.",
+      "pattern_or_procedure": "Compare too + adjective + to + base verb with adjective + enough + to + base verb; identify the particular action and its conditions.",
+      "independent_illustration": "The narrow path was too slippery to cycle along safely, but the wider path was dry enough to use.",
+      "contrast_or_reasoning": "The two descriptions evaluate different qualities against different action thresholds; they are not automatic grammatical opposites.",
+      "watch_out_or_limits": "These frames express practical judgments, not universal measurements; changing the person, purpose or conditions may change the judgment.",
+      "learner_self_check": "What action is being judged, and what would count as enough for it?",
+      "search_hints": [
+        "too to",
+        "enough to",
+        "threshold",
+        "too difficult",
+        "sufficiently"
+      ]
+    },
+    {
+      "id": "REF4-DEG-003",
+      "kind": "degree_expressions",
+      "title": "enough with nouns and adjectives",
+      "suggested_level": "A2",
+      "register_or_mode": "neutral; placement pattern",
+      "meaning_or_strategy": "Enough expresses the required amount or degree; its position depends on the word it modifies.",
+      "pattern_or_procedure": "Use enough + noun (enough chairs) but adjective/adverb + enough (quiet enough, quickly enough). Include for + person or to + verb if it clarifies the standard.",
+      "independent_illustration": "The hall had enough chairs, but the microphone was not loud enough for the visitors at the back.",
+      "contrast_or_reasoning": "Quantity (chairs) and degree (loudness) use different word order while answering the same basic sufficiency question.",
+      "watch_out_or_limits": "“Enough loud” is not the normal pattern for this meaning; enough can also stand alone in context (“That is enough”).",
+      "learner_self_check": "Is enough placed before a noun or after an adjective/adverb?",
+      "search_hints": [
+        "enough chairs",
+        "loud enough",
+        "quantity",
+        "adjective enough",
+        "placement"
+      ]
+    },
+    {
+      "id": "REF4-DEG-004",
+      "kind": "degree_expressions",
+      "title": "so + adjective vs such + noun phrase",
+      "suggested_level": "A2–B1",
+      "register_or_mode": "neutral; emphatic degree",
+      "meaning_or_strategy": "So typically intensifies an adjective/adverb; such intensifies a noun phrase, often including an adjective.",
+      "pattern_or_procedure": "Use so + adjective/adverb (“so useful”) and such + (a/an) + adjective + noun (“such a useful map”); omit a/an for plural or uncountable noun phrases.",
+      "independent_illustration": "The guide was so clear that I finished quickly. It was such a useful guide that I shared it with my group.",
+      "contrast_or_reasoning": "The first frame modifies clear; the second frame modifies the noun phrase a useful guide.",
+      "watch_out_or_limits": "Do not insert a/an before an uncountable noun: “such useful information,” not “such an useful information.” Some fixed constructions work differently.",
+      "learner_self_check": "Am I intensifying an adjective or an entire noun phrase?",
+      "search_hints": [
+        "so",
+        "such",
+        "a useful",
+        "so clear",
+        "such information",
+        "intensifiers"
+      ]
+    },
+    {
+      "id": "REF4-DEG-005",
+      "kind": "degree_expressions",
+      "title": "quite vs fairly vs rather",
+      "suggested_level": "B1–B2",
+      "register_or_mode": "neutral; context- and variety-dependent",
+      "meaning_or_strategy": "These adverbs can moderate a gradable description, but strength and attitude depend on variety, adjective and context.",
+      "pattern_or_procedure": "Inspect what adjective follows and the speaker’s stance. Fairly often suggests a moderate degree; rather can add surprise or an unfavourable nuance; quite is especially context-sensitive.",
+      "independent_illustration": "An editor wrote, “The first draft is fairly clear, but the conclusion is rather long.” A colleague replied, “The title is quite excellent.”",
+      "contrast_or_reasoning": "Fairly clear is a moderate assessment; rather long hints at a concern. Quite excellent may mean completely excellent in some usage varieties, unlike quite good.",
+      "watch_out_or_limits": "Do not publish a fixed numerical scale for these words. British and American English, gradability and intonation may change interpretations.",
+      "learner_self_check": "Could the evaluation or degree change with the adjective or English variety?",
+      "search_hints": [
+        "quite",
+        "fairly",
+        "rather",
+        "moderate",
+        "degree",
+        "British American variety"
+      ]
+    },
+    {
+      "id": "REF4-DEG-006",
+      "kind": "degree_expressions",
+      "title": "almost vs nearly",
+      "suggested_level": "A2–B1",
+      "register_or_mode": "neutral; approximation",
+      "meaning_or_strategy": "Almost and nearly often indicate that something came close to a limit or was short of being complete.",
+      "pattern_or_procedure": "Use almost/nearly before relevant quantifiers, adjectives and verb phrases when they convey near-completion; check whether the final event actually occurred.",
+      "independent_illustration": "Nearly everyone joined the museum visit, but two students stayed at school. The coach almost missed the bus, yet boarded just in time.",
+      "contrast_or_reasoning": "Neither nearly everyone nor almost missed means all people joined or the coach actually missed the bus.",
+      "watch_out_or_limits": "The adverbs are often interchangeable but not in every idiom or collocation. They are not precise percentage labels.",
+      "learner_self_check": "What boundary was approached, and was it reached?",
+      "search_hints": [
+        "almost",
+        "nearly",
+        "approximately",
+        "close to",
+        "almost missed"
+      ]
+    },
+    {
+      "id": "REF4-DEG-007",
+      "kind": "degree_expressions",
+      "title": "hard vs hardly",
+      "suggested_level": "A2–B1",
+      "register_or_mode": "neutral; form and meaning contrast",
+      "meaning_or_strategy": "Hard as an adverb can mean with effort or intensely; hardly usually means almost not.",
+      "pattern_or_procedure": "Compare work hard (“use considerable effort”) with hardly work (“do almost no work”); check the verb and intended meaning.",
+      "independent_illustration": "Mina worked hard to finish the model, but her partner hardly worked on it at all.",
+      "contrast_or_reasoning": "Changing hard to hardly reverses the evaluation rather than simply softening it.",
+      "watch_out_or_limits": "Hard also serves as an adjective (“a hard test”); hardly has other uses such as “hardly ever,” already covered in the frequency reference.",
+      "learner_self_check": "Does the context mean strong effort or almost no activity?",
+      "search_hints": [
+        "hard",
+        "hardly",
+        "work hard",
+        "hardly work",
+        "adverb",
+        "hardly ever"
+      ]
+    },
+    {
+      "id": "REF4-DEG-008",
+      "kind": "degree_expressions",
+      "title": "only vs just: focus and position",
+      "suggested_level": "A2–B1",
+      "register_or_mode": "neutral; scope and focus",
+      "meaning_or_strategy": "Only limits the people, things or actions included; just may mean only but also has senses such as a short time ago or exactly.",
+      "pattern_or_procedure": "Position only close to the word being restricted when ambiguity matters: “I told only Amal” versus “I only told Amal.” Check the intended focus.",
+      "independent_illustration": "“I sent only the summary to the team,” said Rei. “I just sent the summary,” replied Ben, meaning he had sent it moments earlier.",
+      "contrast_or_reasoning": "The first excludes other documents; the second may refer to recency, not exclusivity.",
+      "watch_out_or_limits": "Sentence focus varies with stress and context. Just and only are not always replaceable; avoid claiming one universal fixed position.",
+      "learner_self_check": "Am I limiting the object/action, or describing when something happened?",
+      "search_hints": [
+        "only",
+        "just",
+        "focus",
+        "position",
+        "only the summary",
+        "just sent"
+      ]
+    },
+    {
+      "id": "REF4-DEG-009",
+      "kind": "degree_expressions",
+      "title": "especially vs particularly vs specially",
+      "suggested_level": "B1",
+      "register_or_mode": "neutral; emphasis and intended purpose",
+      "meaning_or_strategy": "Especially and particularly can single something out as notable; specially often highlights a specific purpose or design.",
+      "pattern_or_procedure": "Use especially/particularly to identify a standout case; use specially when a thing is made, prepared or arranged for a specific use.",
+      "independent_illustration": "The children enjoyed the exhibition, especially the room with moving models. One model was specially built for visitors who use wheelchairs.",
+      "contrast_or_reasoning": "Especially singles out a favourite; specially describes why a particular model was built.",
+      "watch_out_or_limits": "Specially and especially sometimes overlap in natural English, and particularly can be similar to especially; review the intended distinction, not a rigid ban.",
+      "learner_self_check": "Is this a highlighted example or a special purpose for an action?",
+      "search_hints": [
+        "especially",
+        "particularly",
+        "specially",
+        "purpose",
+        "emphasis",
+        "standout"
+      ]
+    },
+    {
+      "id": "REF4-DEG-010",
+      "kind": "degree_expressions",
+      "title": "much, far and a little with comparatives",
+      "suggested_level": "B1",
+      "register_or_mode": "neutral; comparative intensification",
+      "meaning_or_strategy": "Comparatives can be strengthened or softened to express the size of a difference.",
+      "pattern_or_procedure": "Use much/far/a lot + comparative for a substantial difference and a little/slightly + comparative for a smaller one: much better; slightly cheaper.",
+      "independent_illustration": "After the route changed, the second walk was much shorter, while the train fare was only a little cheaper.",
+      "contrast_or_reasoning": "The adverbs describe the size of the comparison; they do not say the walk was short in absolute terms.",
+      "watch_out_or_limits": "Normally say “much better,” not “very better.” Do not confuse comparative degree with the frequency of an action.",
+      "learner_self_check": "What is being compared, and how large is the difference?",
+      "search_hints": [
+        "much better",
+        "far cheaper",
+        "slightly longer",
+        "comparative degree",
+        "very better"
+      ]
+    },
+    {
+      "id": "REF4-PRE-001",
+      "kind": "preposition_patterns",
+      "title": "interested in vs good at",
+      "suggested_level": "A2",
+      "register_or_mode": "neutral; adjective + preposition",
+      "meaning_or_strategy": "Interested in expresses curiosity or engagement; good at describes competence. Their prepositions do not express the same meaning.",
+      "pattern_or_procedure": "Use be interested in + noun/-ing and be good at + noun/-ing. Check whether the sentence is about motivation or a skill.",
+      "independent_illustration": "Rafi is interested in astronomy, but he is especially good at explaining diagrams to younger children.",
+      "contrast_or_reasoning": "An interest may exist without developed ability, and skill may exist without strong personal interest.",
+      "watch_out_or_limits": "Interest and competence can coexist. Avoid treating “interested at” or “good in” as interchangeable in these common patterns.",
+      "learner_self_check": "Am I describing what draws attention or what someone can do well?",
+      "search_hints": [
+        "interested in",
+        "good at",
+        "adjective preposition",
+        "interested in learning"
+      ]
+    },
+    {
+      "id": "REF4-PRE-002",
+      "kind": "preposition_patterns",
+      "title": "listen to vs hear",
+      "suggested_level": "A1–A2",
+      "register_or_mode": "neutral; attention and perception",
+      "meaning_or_strategy": "Listen to normally describes directing attention to sound; hear describes receiving or perceiving sound.",
+      "pattern_or_procedure": "Use listen to + sound/source and hear + sound/source with no to in the usual direct-object pattern. Contrast intention with actual perception.",
+      "independent_illustration": "Eli listened to the announcement carefully but could not hear the final sentence because a door slammed.",
+      "contrast_or_reasoning": "Paying attention does not guarantee successfully hearing every word.",
+      "watch_out_or_limits": "“Hear about” and “hear from” are additional valid constructions with different meanings. A reading-only reference is never evidence that a listening exercise was heard.",
+      "learner_self_check": "Did the person choose to pay attention, or perceive the sound?",
+      "search_hints": [
+        "listen to",
+        "hear",
+        "listen to music",
+        "hearing",
+        "object preposition"
+      ]
+    },
+    {
+      "id": "REF4-PRE-003",
+      "kind": "preposition_patterns",
+      "title": "arrive at/in vs get to",
+      "suggested_level": "A2",
+      "register_or_mode": "neutral; destinations and transport",
+      "meaning_or_strategy": "Arrive uses different prepositions depending on the destination, whereas get to can cover many ordinary destinations.",
+      "pattern_or_procedure": "Typically arrive at a specific point/building, arrive in a city/country, or get to a place; with home, normally say arrive home/get home.",
+      "independent_illustration": "Our train arrived in Kyoto at noon. We got to the art centre an hour later and arrived home before sunset.",
+      "contrast_or_reasoning": "The examples contrast city, destination building and home without forcing the same preposition everywhere.",
+      "watch_out_or_limits": "Not every destination follows a mechanical size rule; established usage and context matter. Avoid “arrive to Paris” in this normal sense.",
+      "learner_self_check": "Is the destination a city/country, a specific point, or home?",
+      "search_hints": [
+        "arrive in",
+        "arrive at",
+        "get to",
+        "arrive home",
+        "transport"
+      ]
+    },
+    {
+      "id": "REF4-PRE-004",
+      "kind": "preposition_patterns",
+      "title": "depend on vs rely on",
+      "suggested_level": "B1",
+      "register_or_mode": "neutral; relation and trust",
+      "meaning_or_strategy": "Depend on often states a condition or reliance; rely on commonly emphasizes trusting a person/system to provide help or function.",
+      "pattern_or_procedure": "Use depend on + noun/-ing clause as relevant (“depends on the weather”) and rely on + person/thing (“rely on the timetable”).",
+      "independent_illustration": "Whether the event goes ahead depends on the weather; the organisers rely on a clear forecast before deciding.",
+      "contrast_or_reasoning": "The first expresses a condition; the second explains what information the organisers trust for a decision.",
+      "watch_out_or_limits": "These expressions overlap in many contexts; they are not opposites, and “depend of” is not the normal English pattern.",
+      "learner_self_check": "Is this a condition, practical reliance, or trust in an agent?",
+      "search_hints": [
+        "depend on",
+        "rely on",
+        "preposition on",
+        "condition",
+        "reliance"
+      ]
+    },
+    {
+      "id": "REF4-PRE-005",
+      "kind": "preposition_patterns",
+      "title": "afraid of vs worried about",
+      "suggested_level": "A2–B1",
+      "register_or_mode": "neutral; emotional stance",
+      "meaning_or_strategy": "Afraid of commonly names fear; worried about commonly names concern regarding a person, possibility or outcome.",
+      "pattern_or_procedure": "Use be afraid of + noun/-ing and be worried about + noun/-ing. If a full clause is needed, choose a natural construction and preserve the meaning.",
+      "independent_illustration": "Ken is afraid of deep water; his sister is worried about tomorrow’s storm warning.",
+      "contrast_or_reasoning": "Fear of the situation and concern about a future event can overlap, but the phrase choice highlights different viewpoints.",
+      "watch_out_or_limits": "“Afraid that ...” and “worried that ...” also exist; these examples do not prohibit valid alternatives.",
+      "learner_self_check": "Does the sentence highlight fear or concern about an uncertain outcome?",
+      "search_hints": [
+        "afraid of",
+        "worried about",
+        "preposition",
+        "concern",
+        "fear"
+      ]
+    },
+    {
+      "id": "REF4-PRE-006",
+      "kind": "preposition_patterns",
+      "title": "wait for vs expect",
+      "suggested_level": "A2–B1",
+      "register_or_mode": "neutral; waiting and anticipation",
+      "meaning_or_strategy": "Wait for indicates remaining until an event/person arrives or happens; expect means believe or anticipate that something will happen.",
+      "pattern_or_procedure": "Use wait for + person/thing or wait to + verb; use expect + noun, expect to + verb or expect that + clause as appropriate.",
+      "independent_illustration": "We waited for the bus under the shelter. The driver expected it to arrive at half past eight.",
+      "contrast_or_reasoning": "Physical waiting and a belief about arrival are related but separate actions.",
+      "watch_out_or_limits": "Expect is not a substitute for wait in every context: “I am expecting the bus” may describe anticipation, not standing at a stop.",
+      "learner_self_check": "Is someone remaining until an event, or predicting/anticipating it?",
+      "search_hints": [
+        "wait for",
+        "expect",
+        "wait to",
+        "expecting",
+        "anticipation"
+      ]
+    },
+    {
+      "id": "REF4-PRE-007",
+      "kind": "preposition_patterns",
+      "title": "discuss something vs talk about something",
+      "suggested_level": "B1",
+      "register_or_mode": "neutral; verb complementation",
+      "meaning_or_strategy": "Discuss usually takes the topic as a direct object; talk about uses about before the topic.",
+      "pattern_or_procedure": "Use discuss + issue/plan or have a discussion about + issue/plan; use talk about + issue/plan.",
+      "independent_illustration": "The class discussed the recycling plan yesterday and talked about ways to improve it today.",
+      "contrast_or_reasoning": "The subject is the same, but the verb patterns differ.",
+      "watch_out_or_limits": "“Discuss about the plan” is not standard for this transitive sense; “a discussion about the plan” is correct.",
+      "learner_self_check": "Is the word discuss a verb or is discussion a noun?",
+      "search_hints": [
+        "discuss",
+        "talk about",
+        "discuss about",
+        "discussion about",
+        "verb object"
+      ]
+    },
+    {
+      "id": "REF4-PRE-008",
+      "kind": "preposition_patterns",
+      "title": "prefer A to B vs would rather A than B",
+      "suggested_level": "B1",
+      "register_or_mode": "neutral; preferences",
+      "meaning_or_strategy": "Prefer and would rather express a choice but require different structures.",
+      "pattern_or_procedure": "Use prefer + noun/-ing + to + noun/-ing; use would rather + bare verb + than + bare verb (or contextually omit the repeated verb).",
+      "independent_illustration": "I prefer cycling to driving on quiet roads, but on rainy days I would rather take the bus than cycle.",
+      "contrast_or_reasoning": "Prefer compares activities with -ing in this frame; would rather takes a bare verb.",
+      "watch_out_or_limits": "“Prefer to do ... rather than ...” is also possible; do not teach only one valid preference construction.",
+      "learner_self_check": "Which word determines whether the next verb takes -ing or a bare form?",
+      "search_hints": [
+        "prefer to",
+        "would rather than",
+        "prefer cycling",
+        "rather take",
+        "preference"
+      ]
+    },
+    {
+      "id": "REF4-PRE-009",
+      "kind": "preposition_patterns",
+      "title": "look forward to + -ing vs want to + verb",
+      "suggested_level": "B1",
+      "register_or_mode": "neutral; forward-looking expressions",
+      "meaning_or_strategy": "Look forward to conveys positive anticipation; want to expresses desire. The to in look forward to is a preposition.",
+      "pattern_or_procedure": "Use look forward to + noun/-ing, but want to + base verb. Check whether to is part of a prepositional phrase or infinitive marker.",
+      "independent_illustration": "The volunteers look forward to meeting the visitors. They want to prepare a welcome sign first.",
+      "contrast_or_reasoning": "The same word to introduces different structures; when the complement is a verb, the preposition requires its -ing form (meeting).",
+      "watch_out_or_limits": "“Look forward to meet” is not the standard complement here. Register can vary, and “I look forward to hearing from you” is a conventional closing.",
+      "learner_self_check": "Is to followed by a noun/-ing or a base verb in this expression?",
+      "search_hints": [
+        "look forward to meeting",
+        "want to meet",
+        "preposition to",
+        "gerund"
+      ]
+    },
+    {
+      "id": "REF4-PRE-010",
+      "kind": "preposition_patterns",
+      "title": "used to + verb vs be used to + -ing",
+      "suggested_level": "B1",
+      "register_or_mode": "neutral; past habits and familiarity",
+      "meaning_or_strategy": "Used to + base verb describes a past state/habit; be used to + noun/-ing describes being accustomed to something.",
+      "pattern_or_procedure": "Compare used to + verb (“used to walk”) with am/is/are used to + noun/-ing (“am used to walking”). Get used to + -ing describes becoming accustomed.",
+      "independent_illustration": "Before moving, Aya used to take the train; now she is used to cycling to school.",
+      "contrast_or_reasoning": "The first describes an earlier routine; the second describes present familiarity with a new activity.",
+      "watch_out_or_limits": "Negative/question forms of past-habit used to vary in usage and spelling. Do not assume every “used to” phrase marks a past habit.",
+      "learner_self_check": "Does the sentence describe a former routine or present adaptation?",
+      "search_hints": [
+        "used to do",
+        "be used to doing",
+        "get used to",
+        "past habit",
+        "accustomed"
+      ]
+    },
+    {
+      "id": "REF4-WFN-001",
+      "kind": "writing_functions",
+      "title": "ask for information politely",
+      "suggested_level": "A2–B1",
+      "register_or_mode": "polite email, message or request",
+      "meaning_or_strategy": "A polite request names the exact information needed and allows the reader to respond without guessing.",
+      "pattern_or_procedure": "Identify the question, choose a fitting opening (Could you tell me ...? / I would like to ask ...), and add only relevant context.",
+      "independent_illustration": "In an invented email about a library event: “Could you tell me whether visitors need to register in advance?”",
+      "contrast_or_reasoning": "The request is specific and courteous; adding a generic “Please give me information” would be less actionable.",
+      "watch_out_or_limits": "An indirect question follows statement word order after its introductory phrase: “Could you tell me when it starts?”, not “when does it start?” Do not copy this into a live writing assessment as a ready-made answer.",
+      "learner_self_check": "Can the recipient identify the exact information I need?",
+      "search_hints": [
+        "polite request",
+        "could you tell me",
+        "registration",
+        "email",
+        "indirect question"
+      ]
+    },
+    {
+      "id": "REF4-WFN-002",
+      "kind": "writing_functions",
+      "title": "clarify and confirm without inventing facts",
+      "suggested_level": "A2–B1",
+      "register_or_mode": "polite clarification; neutral register",
+      "meaning_or_strategy": "Clarification asks what unclear wording means; confirmation checks an interpretation instead of declaring it true.",
+      "pattern_or_procedure": "Name the uncertain detail, ask one narrow question, and mark any guess as a question rather than a fact.",
+      "independent_illustration": "In a fictional group-project message: “When you wrote ‘Friday afternoon,’ did you mean before 3 p.m.?”",
+      "contrast_or_reasoning": "The writer does not pretend that 3 p.m. is the agreed time; the message tests an interpretation.",
+      "watch_out_or_limits": "Do not claim an agreement or changed deadline without evidence. Choose register according to audience.",
+      "learner_self_check": "Have I separated what was said from what I am asking someone to confirm?",
+      "search_hints": [
+        "clarification",
+        "confirm",
+        "did you mean",
+        "uncertainty",
+        "message"
+      ]
+    },
+    {
+      "id": "REF4-WFN-003",
+      "kind": "writing_functions",
+      "title": "qualify a claim responsibly",
+      "suggested_level": "B1–B2",
+      "register_or_mode": "neutral/academic; cautious stance",
+      "meaning_or_strategy": "Hedges indicate limits of confidence or scope rather than turning unsupported statements into facts.",
+      "pattern_or_procedure": "Choose a qualification that matches evidence: may, can, seems, appears, in some cases, depending on the context.",
+      "independent_illustration": "For an invented opinion paragraph: “A later start time may help some students, although the effect could depend on travel arrangements.”",
+      "contrast_or_reasoning": "The claim is a possibility with a stated condition; it does not assert a measured benefit or a percentage.",
+      "watch_out_or_limits": "Do not add invented studies, numbers or quotes. “May” does not make an unsupported causal claim automatically valid.",
+      "learner_self_check": "What evidence do I have, and does my wording claim more than it supports?",
+      "search_hints": [
+        "hedging",
+        "may",
+        "seems",
+        "in some cases",
+        "qualify",
+        "cautious claim"
+      ]
+    },
+    {
+      "id": "REF4-WFN-004",
+      "kind": "writing_functions",
+      "title": "recommend an action with a reason",
+      "suggested_level": "A2–B1",
+      "register_or_mode": "neutral; suggestion, advice and justification",
+      "meaning_or_strategy": "A useful recommendation names an action and explains why it addresses a defined problem.",
+      "pattern_or_procedure": "State the practical issue, propose an achievable action, then give a relevant reason or expected benefit without overstating certainty.",
+      "independent_illustration": "For a fictional classroom notice: “I suggest placing a water refill station near the sports field because students spend long breaks there.”",
+      "contrast_or_reasoning": "The statement connects action and location to an observed need; it does not promise a proven health outcome.",
+      "watch_out_or_limits": "A suggestion is not a command. If cost or accessibility matters, acknowledge constraints instead of pretending there are none.",
+      "learner_self_check": "Can a reader identify both my proposed action and why it fits the problem?",
+      "search_hints": [
+        "recommendation",
+        "I suggest",
+        "reason",
+        "action",
+        "justify"
+      ]
+    },
+    {
+      "id": "REF4-WFN-005",
+      "kind": "writing_functions",
+      "title": "describe evidence without manufacturing numbers",
+      "suggested_level": "B1–B2",
+      "register_or_mode": "neutral/academic; evidence integrity",
+      "meaning_or_strategy": "Writing should distinguish an observed example or a provided data point from a verified general trend.",
+      "pattern_or_procedure": "Attribute a figure only when a real source supplies it; if no data are provided, write a bounded observation or hypothetical illustration as such.",
+      "independent_illustration": "In a fictional class discussion: “During our one practice session, several groups requested extra time.” The writer does not invent a schoolwide survey.",
+      "contrast_or_reasoning": "A local anecdote can motivate a question but cannot prove what all students think.",
+      "watch_out_or_limits": "Never fabricate survey percentages, citations or expert statements. A reference example is not an approved answer to an active essay.",
+      "learner_self_check": "Could the reader tell what was actually observed and how broadly it applies?",
+      "search_hints": [
+        "evidence",
+        "observation",
+        "survey",
+        "invented statistics",
+        "attribution"
+      ]
+    },
+    {
+      "id": "REF4-REA-001",
+      "kind": "reading_strategies",
+      "title": "recognise problem–solution text structure",
+      "suggested_level": "A2–B1",
+      "register_or_mode": "unscored reading strategy",
+      "meaning_or_strategy": "Some texts first identify a difficulty, then describe one or more responses and their limits.",
+      "pattern_or_procedure": "In an independent short paragraph, find the difficulty, proposed action and any evidence of whether it worked; do not assume a proposal already succeeded.",
+      "independent_illustration": "Invented mini-text: “The school garden dried out in summer. A group suggested collecting rainwater. The plan has not yet been tested.”",
+      "contrast_or_reasoning": "The last sentence prevents reading the proposal as an established successful solution; this differs from simply tracking event order.",
+      "watch_out_or_limits": "Not all texts have a single solution, and paragraph order may vary. Do not infer outcomes absent from the text.",
+      "learner_self_check": "Which sentence states the problem, and is the proposed solution tested or only suggested?",
+      "search_hints": [
+        "problem solution",
+        "structure",
+        "proposed action",
+        "result",
+        "reading"
+      ]
+    },
+    {
+      "id": "REF4-REA-002",
+      "kind": "reading_strategies",
+      "title": "work out word meaning from nearby clues",
+      "suggested_level": "A2–B1",
+      "register_or_mode": "unscored reading strategy",
+      "meaning_or_strategy": "Context can narrow an unfamiliar word’s meaning, but the correct sense must fit grammar and the surrounding idea.",
+      "pattern_or_procedure": "Read the whole sentence and neighbouring explanation; propose a meaning and test it by substituting a simple phrase.",
+      "independent_illustration": "Invented mini-text: “The trail was muddy and slippery, so the hikers moved cautiously, taking small steps.” Here cautiously suggests with care.",
+      "contrast_or_reasoning": "Action and consequences supply clues; matching a familiar word fragment alone is weaker evidence.",
+      "watch_out_or_limits": "Context does not guarantee an exact dictionary synonym. If uncertainty remains, mark it and consult a dictionary after the task permits.",
+      "learner_self_check": "Does my proposed meaning fit what people actually do in this passage?",
+      "search_hints": [
+        "meaning from context",
+        "cautiously",
+        "context clues",
+        "vocabulary in reading"
+      ]
+    },
+    {
+      "id": "REF4-REA-003",
+      "kind": "reading_strategies",
+      "title": "compare evidence across two short sources",
+      "suggested_level": "B1–B2",
+      "register_or_mode": "unscored reading and source comparison",
+      "meaning_or_strategy": "Two texts may agree on facts while differing in interpretation, scope or stated uncertainty.",
+      "pattern_or_procedure": "Identify each author’s specific claim, locate cited evidence, then describe agreement and difference without merging them into a made-up conclusion.",
+      "independent_illustration": "Invented extracts: Text A says the new footpath shortened one walk; Text B says it improved access but was closed after rain.",
+      "contrast_or_reasoning": "The texts address different outcomes; one does not erase the other, and neither proves access was always improved.",
+      "watch_out_or_limits": "Do not invent a third source or treat two brief examples as a full systematic review.",
+      "learner_self_check": "Which claim belongs to each source, and what is still unknown?",
+      "search_hints": [
+        "compare sources",
+        "agreement",
+        "disagreement",
+        "evidence",
+        "reading"
+      ]
+    },
+    {
+      "id": "REF4-REA-004",
+      "kind": "reading_strategies",
+      "title": "distinguish a writer’s observation from evaluation",
+      "suggested_level": "B1",
+      "register_or_mode": "unscored reading strategy",
+      "meaning_or_strategy": "Texts may report an observable fact and then offer a judgment; readers should distinguish the two without assuming all opinions are false.",
+      "pattern_or_procedure": "Mark what could be checked directly and which words express assessment; note whose viewpoint is represented.",
+      "independent_illustration": "Invented mini-text: “The exhibition opened at nine. The writer called its first room the most impressive.”",
+      "contrast_or_reasoning": "The opening time is checkable; most impressive reports an evaluation, not a measured universal ranking.",
+      "watch_out_or_limits": "An evaluative sentence may be well supported; this strategy does not equate subjective with wrong or unimportant.",
+      "learner_self_check": "Could another informed observer reasonably evaluate the same event differently?",
+      "search_hints": [
+        "observation",
+        "evaluation",
+        "fact vs opinion",
+        "viewpoint",
+        "reading"
+      ]
+    },
+    {
+      "id": "REF4-REA-005",
+      "kind": "reading_strategies",
+      "title": "identify audience and communicative purpose",
+      "suggested_level": "A2–B1",
+      "register_or_mode": "unscored reading strategy",
+      "meaning_or_strategy": "The intended reader and purpose help explain choices of information, structure and tone.",
+      "pattern_or_procedure": "Inspect the text type, action requested and distinctive wording, then infer a limited purpose supported by those cues.",
+      "independent_illustration": "Invented notice: “Please return the borrowed microscopes to the science desk by Friday so the next group can use them.”",
+      "contrast_or_reasoning": "This is primarily an instruction/reminder to borrowers, not a report evaluating microscope quality.",
+      "watch_out_or_limits": "One text can have several purposes; do not over-interpret author identity, feelings or motives from one sentence.",
+      "learner_self_check": "Who is likely being addressed, and what action or understanding is invited?",
+      "search_hints": [
+        "audience",
+        "purpose",
+        "notice",
+        "informative persuasive",
+        "reading"
+      ]
+    },
+    {
+      "id": "REF4-LIS-001",
+      "kind": "listening_strategies",
+      "title": "identify speaker roles from spoken content",
+      "suggested_level": "A2",
+      "register_or_mode": "unscored listening strategy; fictional scenario only",
+      "meaning_or_strategy": "Listening for what people say they need or can provide helps identify their roles in a conversation.",
+      "pattern_or_procedure": "On genuine verified audio, first ask who is speaking to whom; use stated responsibilities and the conversation context, not assumptions from voices.",
+      "independent_illustration": "Fictional teaching scenario (not an audio script): at a help desk, a visitor asks where a room is and another person explains the route.",
+      "contrast_or_reasoning": "The question-and-answer functions supply role evidence; voice pitch or accent alone does not establish identity or authority.",
+      "watch_out_or_limits": "This written scenario is not a real MP3 transcript or hearing evidence. For graded Listening, verified playback is required; otherwise UNASSESSED.",
+      "learner_self_check": "What actual words or actions in the audio would support each speaker role?",
+      "search_hints": [
+        "speaker roles",
+        "help desk",
+        "conversation",
+        "who is speaking",
+        "listening"
+      ]
+    },
+    {
+      "id": "REF4-LIS-002",
+      "kind": "listening_strategies",
+      "title": "distinguish a request, offer and instruction",
+      "suggested_level": "A2–B1",
+      "register_or_mode": "unscored listening strategy; fictional scenario only",
+      "meaning_or_strategy": "Speakers can use questions and polite phrasing to request help, offer help or tell someone what to do.",
+      "pattern_or_procedure": "With real approved audio, attend to the intended action and who would perform it; wording and intonation both matter.",
+      "independent_illustration": "Fictional teaching scenario (not an audio script): one person asks for a map; another offers to show the entrance; a guide gives a safety instruction.",
+      "contrast_or_reasoning": "These utterance purposes are different even though they all occur in one public-information setting.",
+      "watch_out_or_limits": "Do not infer speaker intent solely from a single polite word or punctuation on paper. No assessment answers, audio keys or transcript are provided here.",
+      "learner_self_check": "Who is expected to act after the speaker finishes?",
+      "search_hints": [
+        "request",
+        "offer",
+        "instruction",
+        "communicative purpose",
+        "listening"
+      ]
+    },
+    {
+      "id": "REF4-LIS-003",
+      "kind": "listening_strategies",
+      "title": "notice uncertainty and probability in speech",
+      "suggested_level": "B1",
+      "register_or_mode": "unscored listening strategy; fictional scenario only",
+      "meaning_or_strategy": "Expressions such as might, probably, perhaps or I think can indicate uncertainty rather than a confirmed arrangement.",
+      "pattern_or_procedure": "When listening to a real clip, separate what the speaker confirms from what remains tentative; record uncertainty only after hearing the relevant wording.",
+      "independent_illustration": "Fictional teaching scenario (not an audio script): a coordinator thinks a meeting might move outdoors but has not announced a final location.",
+      "contrast_or_reasoning": "A possible location is not the confirmed destination; this is different from a correction of a previously confirmed time.",
+      "watch_out_or_limits": "This reference never supplies a live task’s audio or answer. Missing/invalid playback keeps graded Listening UNASSESSED.",
+      "learner_self_check": "Which detail was certain, and which was presented as a possibility?",
+      "search_hints": [
+        "might",
+        "probably",
+        "perhaps",
+        "uncertain plan",
+        "listening"
+      ]
+    },
+    {
+      "id": "REF4-LIS-004",
+      "kind": "listening_strategies",
+      "title": "interpret approximate amounts and limits",
+      "suggested_level": "B1",
+      "register_or_mode": "unscored listening strategy; fictional scenario only",
+      "meaning_or_strategy": "Words like about, at least, up to and no more than change whether a number is approximate, a minimum or a maximum.",
+      "pattern_or_procedure": "In verified audio, note the quantity and its qualifier together; re-listen to the permitted segment if you heard the number but missed the qualifier.",
+      "independent_illustration": "Fictional teaching scenario (not an audio script): a guide describes an event taking about twenty minutes, with no more than thirty visitors per group.",
+      "contrast_or_reasoning": "About twenty is approximate; no more than thirty sets an upper bound. Neither implies an exact recorded count.",
+      "watch_out_or_limits": "Do not confuse “at least” with “at most.” This teaching scenario is not a transcript and does not reveal active audio answers.",
+      "learner_self_check": "Did the speaker give an estimate, a minimum or a maximum?",
+      "search_hints": [
+        "about",
+        "at least",
+        "at most",
+        "no more than",
+        "listening numbers"
+      ]
+    },
+    {
+      "id": "REF4-LIS-005",
+      "kind": "listening_strategies",
+      "title": "follow spoken stages without forcing keyword matching",
+      "suggested_level": "A2–B1",
+      "register_or_mode": "unscored listening strategy; fictional scenario only",
+      "meaning_or_strategy": "Signposting language can help organise a sequence of actions, but the listener must still understand what changes at each stage.",
+      "pattern_or_procedure": "For genuine audio, listen for transitions such as first, next and finally; then paraphrase the actions rather than merely collecting these words.",
+      "independent_illustration": "Fictional teaching scenario (not an audio script): an organiser describes registering, checking equipment and then entering a workshop.",
+      "contrast_or_reasoning": "The stages have functions; a list of signpost words without their associated actions would not demonstrate comprehension.",
+      "watch_out_or_limits": "This card is a strategy illustration, not pre-submit task content; supported full playback remains mandatory for a scored Listening attempt.",
+      "learner_self_check": "Can I explain the steps in my own words after actually hearing them?",
+      "search_hints": [
+        "first next finally",
+        "spoken sequence",
+        "stages",
+        "listening signposts"
+      ]
+    }
+  ]
+}
