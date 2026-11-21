@@ -48,7 +48,7 @@ const catalog={
  await wait(()=>!!find('.sle-reference-search-summary')?.textContent?.includes('364 reference entries'),
   'Full approved reference count');
  assert(!!find('.sle-reference-table-scroll tbody .sle-ref-save-card'),'Paginated verb table save control must be available');
- const selectors=document.querySelector<HTMLSelectElement>('select[aria-label="Reference type"]')!;
+ const selectors=document.querySelector('select[aria-label="Reference type"]') as unknown as HTMLSelectElement;
  selectors.value='degree_expressions';selectors.dispatchEvent(new Event('change',{bubbles:true}));
  await wait(()=>!!find('button[aria-label="Save very vs too to review"]'),'New Wave4 card save');
  find('button[aria-label="Save very vs too to review"]')!.click();
