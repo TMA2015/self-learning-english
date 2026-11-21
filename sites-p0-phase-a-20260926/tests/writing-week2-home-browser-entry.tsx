@@ -102,7 +102,7 @@ const skillOverview=async()=>{
   if(isMobile)await wait(()=>!document.querySelector('aside.sidebar.open'),'mobile sidebar closes');
  };
  const expected:[string,number][]=[
-  ['Grammar',42],['Vocabulary',22],['Reading',41],['Writing',39],
+  ['Grammar',43],['Vocabulary',22],['Reading',45],['Writing',42],
   ['Listening',21],['Speaking',6],['Pronunciation',5]
  ];
  const assertOverview=async(label:string,count:number)=>{
@@ -138,12 +138,12 @@ const skillOverview=async()=>{
   tab.click();await pause(150);
  };
  await nav('Grammar');
- await assertOverview('Grammar',42);
+ await assertOverview('Grammar',43);
  for(const [skill,count] of expected.slice(1)){
   await selectTab(skill);await assertOverview(skill,count);
  }
  await selectTab('Writing');
- await assertOverview('Writing',39);
+ await assertOverview('Writing',42);
  const direct=document.querySelector<HTMLButtonElement>('.foundation-writing-action button');
  if(!direct||text(direct)!=='Writing Studio')
   throw Error('Writing independent feedback entry missing');
