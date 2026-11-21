@@ -58,14 +58,15 @@ const root=path.resolve(__dirname,'..');
   });
   const host='http://127.0.0.1:'+server.address().port;
   const results=[];
-  for(const phase of ['search','v2','catalog','missing']){
+  for(const phase of ['search','v2','wave2','catalog','missing']){
    const result=await run(host+'/?phase='+phase);
    results.push(result);
   }
   assert.match(results[0],/^PASS_SEARCH_FILTERS/);
   assert.match(results[1],/^PASS_V2_REVIEWED_REFERENCE/);
-  assert.match(results[2],/^PASS_CATALOG_LINK/);
-  assert.match(results[3],/^PASS_MISSING_CATALOG/);
+  assert.match(results[2],/^PASS_W2_GRAMMAR_WRITING_30/);
+  assert.match(results[3],/^PASS_CATALOG_LINK/);
+  assert.match(results[4],/^PASS_MISSING_CATALOG/);
   console.log(JSON.stringify({result:'PASS',gate:'ReferenceLibrary-real-Chromium',
    syntheticCatalog:true,searchAndFilters:true,reviewedV2Wave1:true,
    canonicalRelatedLessonCallback:true,missingCatalogBlocked:true,

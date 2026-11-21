@@ -43,12 +43,12 @@ let selection='';
   <ReferenceLibrary catalog={catalog} onCatalog={()=>fail('Unnecessary catalog fetch')}
    onOpenLesson={(id,skill)=>{selection=id+' '+skill;report('PASS_LINK '+selection)}}/>
  );
- await wait(()=>getCount().includes('264 reference entries'),'26 pilot + 23 Wave1 + 30 Wave2 + 185 corpus verbs');
+ await wait(()=>getCount().includes('294 reference entries'),'264 previous reviewed references + 30 reviewed Grammar/Writing references');
  assert(document.querySelectorAll('.sle-reference-table-scroll tbody tr').length===25,'191 reviewed verbs paginated 25 per page');
  assert(document.querySelectorAll('.sle-reference-card').length===20,'20 phrase/strategy cards');
  assert(!!document.querySelector('input[type="search"]'),'search is native search input');
- assert(document.querySelectorAll('.sle-reference-category-filter').length===9,
-  'Eight text-labelled category buttons plus All');
+ assert(document.querySelectorAll('.sle-reference-category-filter').length===11,
+  'Ten text-labelled category buttons plus All');
  if(phase==='search'){
   const badge=(kind:string)=>document.querySelector('.sle-reference-category-filter.is-'+kind) as HTMLButtonElement|null;
   assert(!!badge('idioms'),'Idioms category exists');
@@ -70,7 +70,7 @@ let selection='';
   await wait(()=>document.getElementById('app')?.textContent?.includes('No matching entries')??false,'honest empty state');
   const clear=[...document.querySelectorAll('button')].find(x=>x.textContent?.includes('Clear filters'));
   clear?.click();
-  await wait(()=>getCount().includes('264 reference entries'),'clear filters');
+  await wait(()=>getCount().includes('294 reference entries'),'clear filters');
   report('PASS_SEARCH_FILTERS');
  }else if(phase==='v2'){
   select('Reference type','writing_connectors');
@@ -144,6 +144,41 @@ let selection='';
   assert([...document.querySelectorAll('.sle-reference-table-scroll tbody th')]
    .every(th=>th.textContent?.toLowerCase().startsWith('w')),'W filter must show W verbs');
   report('PASS_V2_REVIEWED_REFERENCE_191');
+ }else if(phase==='wave2'){
+  select('Reference type','grammar_comparisons');
+  await wait(()=>getCount().includes('20 reference entries'),'20 NotebookLM-reviewed Grammar comparisons');
+  assert(document.querySelectorAll('[aria-label="Grammar comparison references"] .sle-ref-wave2-card').length===20,
+   '20 independent Grammar cards visible');
+  assert((document.querySelector('[aria-label="Grammar comparison references"]')?.textContent??'')
+   .includes('Watch out / limits:'),'Each Grammar card explains exceptions, not only a tense label');
+  search('has been reading');
+  await wait(()=>getCount().includes('1 reference entry'),'search grammar explanation and example');
+  assert(document.querySelector('[aria-label="Grammar comparison references"] h3')?.textContent==='Present perfect simple vs continuous',
+   'has been reading must find the relevant Grammar comparison');
+  assert(document.querySelectorAll('[aria-label="Grammar comparison references"] .sle-reference-practice').length===0,
+   'NO_TOPIC_LINKS_AUTHORIZED for Grammar');
+  search('');
+  select('Suggested level','A1');
+  await wait(()=>document.querySelector('[aria-label="Grammar comparison references"]')?.textContent?.includes('Present simple vs present continuous')??false,
+   'suggested range A1–A2 should include the A1 filter');
+  select('Suggested level','all');
+  select('Reference type','writing_toolkit');
+  await wait(()=>getCount().includes('10 reference entries'),'10 NotebookLM-reviewed Writing Toolkit guides');
+  assert(document.querySelectorAll('[aria-label="Writing Toolkit reference"] .sle-ref-wave2-card').length===10,
+   '10 specialized Writing process cards visible');
+  search('paraphrase');
+  await wait(()=>getCount().includes('1 reference entry'),'writing toolkit search');
+  assert(document.querySelector('[aria-label="Writing Toolkit reference"] h3')?.textContent==='Paraphrase without changing the claim',
+   'Paraphrase tool findable');
+  const toolkit=document.querySelector('[aria-label="Writing Toolkit reference"]');
+  assert(toolkit?.textContent?.includes('Ask yourself:')&&toolkit?.textContent?.includes('Avoid / limits:'),
+   'Writing Toolkit must display an independent self-check and caution');
+  assert(toolkit?.querySelectorAll('.sle-reference-practice,button').length===0,
+   'NO_TOPIC_LINKS_AUTHORIZED; no learner scoring or lesson action in Writing Toolkit');
+  search('');
+  select('Reference type','all');
+  await wait(()=>getCount().includes('294 reference entries'),'reset wave2 filters without losing legacy items');
+  report('PASS_W2_GRAMMAR_WRITING_30');
  }else if(phase==='catalog'){
   assert(document.querySelectorAll('.sle-reference-table-scroll .sle-reference-practice button').length===0,
    'Irregular verbs must not link to unrelated first Grammar lesson');

@@ -14,6 +14,8 @@ export const REFERENCE_KINDS=[
 export const REFERENCE_V2_KINDS=[
  {id:'writing_connectors',label:'Writing connectors'},
  {id:'frequency_expressions',label:'Frequency expressions'},
+ {id:'grammar_comparisons',label:'Grammar comparisons'},
+ {id:'writing_toolkit',label:'Writing toolkit'},
 ] as const;
 export type ReferenceKind=typeof REFERENCE_KINDS[number]['id']|typeof REFERENCE_V2_KINDS[number]['id'];
 export type ReferenceLevel='A1'|'A2'|'B1'|'B2'|'C1'|'C2'|'not_tagged';
@@ -30,6 +32,13 @@ export type ReferenceEntry={
  function?:string;grammatical_type?:string;construction?:string;
  frequency_type?:'indefinite_frequency'|'definite_frequency';
  qualitative_band?:string;position_rule?:string;
+ // Reviewed Wave 2 reference-only specialist content; suggested levels may
+ // be ranges (A1–A2 / B1–B2), not proficiency labels or learner scores.
+ suggested_level?:string;
+ concept?:string;use_decision?:string;patterns?:string;contrast?:string;watch_out?:string;
+ process_step?:string;purpose?:string;steps?:string;
+ worked_micro_example?:string;self_check?:string;avoid?:string;
+ keywords?:string[];
 };
 export type ReferenceFilters={
  query:string;kind:'all'|ReferenceKind;level:'all'|ReferenceLevel;
@@ -43,13 +52,22 @@ export function filterReferenceEntries(
  const words=filter.query.normalize('NFKC').toLocaleLowerCase('en').trim().split(/\s+/).filter(Boolean);
  return entries.filter(e=>{
   if(filter.kind!=='all'&&e.kind!==filter.kind)return false;
-  if(filter.level!=='all'&&e.level!==filter.level)return false;
+  if(filter.level!=='all'&&e.level!==filter.level){
+   const order=['A1','A2','B1','B2','C1','C2'];
+   const range=e.suggested_level?.split('–').map(x=>x.trim())??[];
+   const index=order.indexOf(filter.level);
+   const low=order.indexOf(range[0]),high=order.indexOf(range[1]??range[0]);
+   if(low<0||high<low||index<low||index>high)return false;
+  }
   if(filter.register!=='all'&&e.register!==filter.register&&
    !(e.register==='neutral to formal'&&(filter.register==='neutral'||filter.register==='formal')))return false;
   const text=[e.term,e.meaning,e.example,e.note,e.forms?.base,
    e.forms?.past,e.forms?.participle,e.pattern_group,e.common_error,
    e.function,e.grammatical_type,e.construction,e.frequency_type,
-   e.qualitative_band,e.position_rule,e.verb_priority,...(e.search_keywords??[])].filter(Boolean)
+   e.qualitative_band,e.position_rule,e.verb_priority,e.suggested_level,
+   e.concept,e.use_decision,e.patterns,e.contrast,e.watch_out,
+   e.process_step,e.purpose,e.steps,e.worked_micro_example,
+   e.self_check,e.avoid,...(e.search_keywords??[]),...(e.keywords??[])].filter(Boolean)
    .join(' ').normalize('NFKC').toLocaleLowerCase('en');
   return words.every(w=>text.includes(w));
  }).sort((a,b)=>{

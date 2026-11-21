@@ -755,3 +755,21 @@ body {
  .sle-reference-v2-candidate .sle-ref-v2-letters button{min-width:34px;min-height:44px}
  .sle-reference-v2-candidate .sle-reference-table-scroll table{min-width:670px}
 }
+
+
+/* Reference Library Wave 2: mobile-first, read-only Grammar and Writing cards.
+   No fixed min-width columns: 320px screens must not overflow. */
+.sle-reference .sle-ref-wave2-grid{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px;
+}
+.sle-reference .sle-ref-wave2-card{
+ min-width:0;max-width:100%;overflow-wrap:anywhere;line-height:1.5;
+}
+.sle-reference .sle-ref-wave2-card h3{font-size:1.08rem;line-height:1.4;margin:10px 0}
+.sle-reference .sle-ref-wave2-card p{margin:8px 0;max-width:100%}
+.sle-reference .sle-ref-wave2-card .sle-reference-tags{display:flex;flex-wrap:wrap;gap:7px}
+.sle-reference .sle-ref-wave2-card strong{font-weight:700}
+@media(max-width:380px){
+ .sle-reference .sle-ref-wave2-grid{grid-template-columns:minmax(0,1fr)}
+ .sle-reference .sle-ref-wave2-card{padding:12px}
+}
