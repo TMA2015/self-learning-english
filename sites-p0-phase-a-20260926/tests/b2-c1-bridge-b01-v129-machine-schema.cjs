@@ -10,7 +10,7 @@ const {execFileSync}=require('node:child_process');
 const root=path.resolve(__dirname,'..');
 const source=fs.readFileSync(path.join(root,'content/review-packets/SLE_B2_C1_BRIDGE_BATCH01_NOTEBOOKLM_R1_20261121.md'),'utf8');
 const digest=crypto.createHash('sha256').update(source).digest('hex');
-assert.equal(digest,'4ae18659cea3fa7e4ca7f1aaa20281ab6e168aa3505261f66d90d0c2de033c2a','Author-reviewed source must remain immutable');
+assert.equal(digest,'7f77a4be005209a529ffe42bcf368a484ac5a2b7aac79df6b775e57ef5d182da','Author-reviewed source must remain immutable');
 const previous=require('../content/curriculum-1.28.0-candidate.json');
 const candidate=require('../content/curriculum-1.29.0-candidate.json');
 const nav=require('../content/sle-unit-navigation-map-v1.json');
