@@ -106,6 +106,7 @@ const ENTRIES=[...source.entries,
  ...waveOne.entries.filter(x=>x.kind!=='irregular_verbs'),
  ...connectorWaveTwo.entries,
  ...CORPUS_ENTRIES,...GRAMMAR_WRITING_ENTRIES,...WAVE3_ENTRIES,...WAVE4_ENTRIES] as ReferenceEntry[];
+export {ENTRIES as REFERENCE_ENTRIES};
 const ALPHABET='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 // This generic but correct reminder occurs in 141/185 corpus records.
 // Leave reviewed source unchanged; omit it from repeated lookup rows.
@@ -115,13 +116,16 @@ const LEVELS=['A1','A2','B1','B2','C1','C2'] as const;
 const kindLabel=(kind:ReferenceKind)=>UI_KINDS.find(x=>x.id===kind)?.label??kind;
 
 export function ReferenceLibrary({
- catalog,onCatalog,onOpenLesson
+ catalog,onCatalog,onOpenLesson,onSaveForReview,saveStatus,initialSearch
 }:{
  catalog:Catalog|null;
  onCatalog:(next:Catalog)=>void;
  onOpenLesson:(lessonId:string,skill:ReferenceSkill)=>void;
+ onSaveForReview?:(id:string)=>void;
+ saveStatus?:string;
+ initialSearch?:string;
 }){
- const [query,setQuery]=useState('');
+ const [query,setQuery]=useState(initialSearch??'');
  const [kind,setKind]=useState<ReferenceFilters['kind']>('all');
  const [level,setLevel]=useState<ReferenceFilters['level']>('all');
  const [register,setRegister]=useState<ReferenceFilters['register']>('all');
@@ -165,6 +169,11 @@ export function ReferenceLibrary({
  },[catalog,onCatalog]);
  function clear(){setQuery('');setKind('all');setLevel('all');setRegister('all');
   setVerbTier('all');setVerbInitial('all');setVerbPage(1)}
+ function SaveForReview({entry}:{entry:ReferenceEntry}){
+  return onSaveForReview?<button type="button" className="sle-ref-save-card"
+   aria-label={'Save '+entry.term+' to review'}
+   onClick={()=>onSaveForReview(entry.id)}>Save to review</button>:null;
+ }
  function Related({entry}:{entry:ReferenceEntry}){
   const matches=catalog?.imported?availableRelatedLessons(entry,catalog.lessons):[];
   const linked=matches[0];
@@ -192,6 +201,9 @@ export function ReferenceLibrary({
     No answers, tests, AI evaluation or learner scores are stored here.
     Specialist cards do not assert unverified topic lesson links.</small></p>
   </section>
+  {onSaveForReview&&<p className="muted">Choose “Save to review” on a reference to create a flashcard in Study Notebook.
+   Your own review choices are device-local, not grading.</p>}
+  {saveStatus&&<p className="study-notebook-saved" role="status">{saveStatus}</p>}
   <section className="panel sle-reference-filters" aria-label="Search and filter references">
    <div className="sle-reference-filter-grid">
     <label>Search words and examples
@@ -273,6 +285,7 @@ export function ReferenceLibrary({
        <small>{entry.level==='not_tagged'?'CEFR level not assigned':'Suggested '+entry.level}
         {entry.verb_priority?' · '+entry.verb_priority+' (editorial)':' · reviewed pilot'}</small>
        {/* Topic-verified lesson links for irregular verbs will be added separately. */}
+       <SaveForReview entry={entry}/>
       </td>
      </tr>)}</tbody>
     </table>
@@ -297,6 +310,7 @@ export function ReferenceLibrary({
      <p><strong>Example:</strong> {entry.example}</p>
      <p className="muted"><strong>Remember:</strong> {entry.note}</p>
      <Related entry={entry}/>
+     <SaveForReview entry={entry}/>
     </article>)}
    </div>
   </section>}
@@ -318,7 +332,8 @@ export function ReferenceLibrary({
       <p><strong>Compare / why:</strong> {entry.contrast_or_reasoning}</p>
       <p className="sle-ref-caution"><strong>Watch out / limits:</strong> {entry.watch_out_or_limits}</p>
       <p><strong>Check yourself:</strong> {entry.learner_self_check}</p>
-      {/* Academic NO_TOPIC_LINKS_AUTHORIZED. No scoring, data writes or generated lesson links. */}
+      {/* Academic NO_TOPIC_LINKS_AUTHORIZED. No scoring or generated lesson links. */}
+      <SaveForReview entry={entry}/>
      </article>)}
     </div>
    </div>)}
@@ -341,7 +356,8 @@ export function ReferenceLibrary({
       <p><strong>Compare / why:</strong> {entry.contrast_or_reasoning}</p>
       <p className="sle-ref-caution"><strong>Watch out / limits:</strong> {entry.watch_out_or_limits}</p>
       <p><strong>Check yourself:</strong> {entry.learner_self_check}</p>
-      {/* Academic NO_TOPIC_LINKS_AUTHORIZED: no learner writes, scoring or lesson links. */}
+      {/* Academic NO_TOPIC_LINKS_AUTHORIZED: no grading or lesson links. */}
+      <SaveForReview entry={entry}/>
      </article>)}
     </div>
    </div>)}
@@ -359,6 +375,7 @@ export function ReferenceLibrary({
      <p><strong>Independent example:</strong> {entry.example}</p>
      <p><strong>Why this form:</strong> {entry.contrast}</p>
      <p className="sle-ref-caution"><strong>Watch out / limits:</strong> {entry.watch_out}</p>
+      <SaveForReview entry={entry}/>
     </article>)}
    </div>
   </section>}
@@ -376,6 +393,7 @@ export function ReferenceLibrary({
      <p><strong>Example:</strong> {entry.example}</p>
      <p><strong>Usage:</strong> {entry.note}</p>
      <p className="sle-ref-caution"><strong>Watch out:</strong> {entry.common_error}</p>
+     <SaveForReview entry={entry}/>
      {/* No topic match verified: do not link arbitrary introductory Writing lessons. */}
     </article>)}
     </div>
@@ -394,6 +412,7 @@ export function ReferenceLibrary({
      <p><strong>Independent illustration:</strong> {entry.worked_micro_example}</p>
      <p><strong>Ask yourself:</strong> {entry.self_check}</p>
      <p className="sle-ref-caution"><strong>Avoid / limits:</strong> {entry.avoid}</p>
+     <SaveForReview entry={entry}/>
     </article>)}
    </div>
   </section>}
@@ -406,6 +425,7 @@ export function ReferenceLibrary({
      <p>{entry.example}</p><p><strong>Position:</strong> {entry.position_rule}</p>
      <p>{entry.note}</p>
      <p className="sle-ref-caution"><strong>Watch out:</strong> {entry.common_error}</p>
+     <SaveForReview entry={entry}/>
     </li>)}
    </ol>}
    {definite.length>0&&<div className="sle-ref-counted-frequency">
@@ -417,6 +437,7 @@ export function ReferenceLibrary({
      <p><strong>Pattern:</strong> {entry.position_rule}</p>
      <p><strong>Example:</strong> {entry.example}</p><p>{entry.note}</p>
      <p className="sle-ref-caution"><strong>Watch out:</strong> {entry.common_error}</p>
+     <SaveForReview entry={entry}/>
     </article>)}
     </div>
    </div>}

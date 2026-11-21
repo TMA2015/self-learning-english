@@ -2,7 +2,10 @@
 import {useCallback,useEffect,useRef,useState} from "react";
 import {BookOpen,LayoutDashboard,ChartNoAxesCombined,Users,CheckCircle2,ArrowRight,ArrowLeft,Lightbulb,PenLine,Save,ClipboardList,Target,Menu,X,UserRound,Map as MapIcon,GraduationCap,Headphones,Mic,Library,Volume2,Database,Sparkles} from "lucide-react";
 import {FoundationDemo,ContentImporter,FoundationReviews,type Catalog as FoundationCatalog} from "./foundation";
-import {ReferenceLibrary} from "./reference-library";
+import {ReferenceLibrary,REFERENCE_ENTRIES} from "./reference-library";
+import {StudyNotebook} from "./study-notebook";
+import {saveReviewedReference} from "../domain/study-notebook";
+import {loadStudyNotebook,persistStudyNotebook} from "../infrastructure/browser/study-notebook-storage";
 import {AssistedReviewPanel} from "./assisted-review-panel";
 import {TeachingFeedback,SavedWriting,type WritingReply} from "./writing-coach";
 import type {TeachingRating} from "../domain/writing";
@@ -46,14 +49,14 @@ import {LATER_WEEKS,laterWork,editLater,copyLaterSource,learnerSources,submitLat
 import {WRITING_WEEKS,weekWork,editWeek,submitWeek,weekGuidedProgress,checkWeekGuided,canCompareWeek,finishWeekReview,confirmWeekNavigation,type WritingWeek,type WeekScreen,type WeekWork,type WritingBlockState} from '../domain/writing-course-v2-b';
 import {weeks,task,stages,skillLabels,demoHistory} from "./content";
 
-type View="foundation-writing"|"foundation-writing-u02"|"foundation-writing-u03"|"foundation-writing-u04"|"foundation-writing-u05"|"foundation-writing-u06"|"foundation-writing-u07"|"foundation-writing-u08"|"foundation-writing-u09"|"foundation-writing-u10"|"foundation-writing-u11"|"foundation-writing-u12"|"reference"|"units"|"writing-any-topic"|"writing-later-week"|"writing-week"|"writing-overview"|"writing-foundations"|"writing-learn"|"writing-guided"|"writing-review"|"foundation"|"debug"|"dashboard"|"diagnostic"|"profile"|"plan"|"courses"|"writing-course"|"skillmap"|"errorbank"|"writing"|"curriculum"|"lesson"|"progress"|"parent"|"grammar"|"reading"|"listening"|"speaking"|"vocabulary"|"pronunciation"|"specialization"|"tutor";
+type View="foundation-writing"|"foundation-writing-u02"|"foundation-writing-u03"|"foundation-writing-u04"|"foundation-writing-u05"|"foundation-writing-u06"|"foundation-writing-u07"|"foundation-writing-u08"|"foundation-writing-u09"|"foundation-writing-u10"|"foundation-writing-u11"|"foundation-writing-u12"|"reference"|"study-notebook"|"units"|"writing-any-topic"|"writing-later-week"|"writing-week"|"writing-overview"|"writing-foundations"|"writing-learn"|"writing-guided"|"writing-review"|"foundation"|"debug"|"dashboard"|"diagnostic"|"profile"|"plan"|"courses"|"writing-course"|"skillmap"|"errorbank"|"writing"|"curriculum"|"lesson"|"progress"|"parent"|"grammar"|"reading"|"listening"|"speaking"|"vocabulary"|"pronunciation"|"specialization"|"tutor";
 type Feedback={summary:string;strengths:string[];improvements:string[];exercise:string;scores:Record<string,number>|null;corrections:{original:string;revised:string;why:string;tag:string}[];tags:string[]};
 type Entry={learnerModel?:LearnerModel;learningPlan?:LearningPlanModel;submissionId?:string;evaluationStatus?:string;aiFailureReason?:string;evidence?:Evidence[];mode:"ai"|"guided";feedback:Feedback;rating?:WritingRating;evaluation?:{provider?:string;model?:string}};
 type State={foundationWritingV1?:FoundationWritingV1;writingCourseV2C?:LaterBlock;writingCourseV2B?:WritingBlockState;writingCourseV2?:PilotState;learningChoice?:LearningChoice;week:number;stage:number;analysis:{topic:string;task:string;keywords:string;limits:string;offtopic:string};brainstorm:{ideas:string;selected:string;support:string;example:string};outline:{opening:string;reason1:string;detail:string;example:string;ending:string};writing:string;miniAnswer:string;miniDone:boolean;completed:number[];feedbacks:Record<string,Entry>;history:typeof demoHistory;revision:string;profile?:Profile;diagnostic?:Diagnostic;diagnosticV2?:DiagnosticV2;diagnosticArchive?:DiagnosticV2[];evidence?:Evidence[];learnerModel?:LearnerModel;learningPlan?:LearningPlanModel;vietnameseSupport?:boolean};
 const seed:State={week:0,stage:0,analysis:{topic:"",task:"",keywords:"",limits:"",offtopic:""},brainstorm:{ideas:"",selected:"",support:"",example:""},outline:{opening:"",reason1:"",detail:"",example:"",ending:""},writing:"",miniAnswer:"",miniDone:false,completed:[],feedbacks:{},history:demoHistory,revision:"",profile:initialProfile,diagnostic:initialDiagnostic,evidence:[],vietnameseSupport:false};
 const navGroups=[
  {heading:"TODAY",items:[{key:"dashboard",label:"Dashboard",icon:LayoutDashboard}]},
- {heading:"LEARN",items:[{key:"units",label:"Learn by Units",icon:BookOpen},{key:"reference",label:"Reference Library",icon:BookOpen},{key:"courses",label:"My Courses",icon:Target},{key:"tutor",label:"AI Tutor",icon:Sparkles}]},
+ {heading:"LEARN",items:[{key:"units",label:"Learn by Units",icon:BookOpen},{key:"reference",label:"Reference Library",icon:BookOpen},{key:"study-notebook",label:"Study Notebook",icon:ClipboardList},{key:"courses",label:"My Courses",icon:Target},{key:"tutor",label:"AI Tutor",icon:Sparkles}]},
  {heading:"SKILL LIBRARY",items:[{key:"grammar",label:"Grammar",icon:BookOpen},{key:"reading",label:"Reading",icon:Library},{key:"writing",label:"Writing",icon:PenLine},{key:"listening",label:"Listening",icon:Headphones},{key:"speaking",label:"Speaking",icon:Mic},{key:"vocabulary",label:"Vocabulary",icon:BookOpen},{key:"pronunciation",label:"Pronunciation",icon:Volume2}]},
  {heading:"ASSESSMENTS & EXAM PREP",items:[{key:"diagnostic",label:"Diagnostic Assessment",icon:ClipboardList},{key:"specialization",label:"IELTS / TOEFL · Planned",icon:GraduationCap}]},
  {heading:"PROGRESS & REVIEW",items:[{key:"progress",label:"Progress",icon:ChartNoAxesCombined},{key:"skillmap",label:"Skill Map",icon:MapIcon},{key:"errorbank",label:"Error Bank",icon:Database}]},
@@ -70,6 +73,7 @@ export default function Home(){
  useEffect(()=>{try{setFoundationAIReady(browserTutorService().available)}
    catch{setFoundationAIReady(false)}},[]);
 
+ const [studyNotice,setStudyNotice]=useState("");const [referenceLookup,setReferenceLookup]=useState("");
  const [foundationCatalog,setFoundationCatalog]=useState<FoundationCatalog|null>(null);const [requestedLessonId,setRequestedLessonId]=useState<string|null>(null);const [planFoundationLoading,setPlanFoundationLoading]=useState(false);const [planFoundationError,setPlanFoundationError]=useState("");const [view,setView]=useState<View>("dashboard");const [state,setState]=useState<State>(seed);const [loaded,setLoaded]=useState(false);const [saving,setSaving]=useState("Loading progress...");const [busy,setBusy]=useState(false);const [menu,setMenu]=useState(false);const [hint,setHint]=useState(false);const [navigating,setNavigating]=useState(false);const latestState=useRef(state);latestState.current=state;const storageReady=useRef(false);const dirty=useRef(false);const saveQueue=useRef<Promise<boolean>>(Promise.resolve(true));
  const [courseData,setCourseData]=useState<MyCoursesData|null>(null),[courseError,setCourseError]=useState(''),[courseBusy,setCourseBusy]=useState(false);
  const [blockWeek,setBlockWeek]=useState<WritingWeek>(2);const [blockScreen,setBlockScreen]=useState<WeekScreen>("learn");const [blockError,setBlockError]=useState("");const blockCheckPending=useRef(false);const blockNavigationPending=useRef(false);
@@ -308,6 +312,19 @@ export default function Home(){
   // Reuse the existing guarded navigation and version-preserving lesson loader.
   if(await navigate(skill as View))setRequestedLessonId(id);
  }
+ function saveReferenceForReview(referenceId:string){
+  try{
+   const store=window.localStorage;
+   const current=loadStudyNotebook(store);
+   const vetted=new Set(REFERENCE_ENTRIES.map(entry=>entry.id));
+   const next=saveReviewedReference(current,referenceId,vetted);
+   if(next===current){setStudyNotice('Already saved to Study Notebook on this browser.');return}
+   persistStudyNotebook(store,next);
+   setStudyNotice('Saved for review on this browser. Open Study Notebook to practise.');
+  }catch(err){
+   setStudyNotice('Not saved: '+(err instanceof Error?err.message:'Device storage unavailable.'));
+  }
+ }
  async function openReferenceLesson(id:string,skill:"grammar"|"reading"|"vocabulary"|"writing"){
   await openCatalogLesson(id,skill);
  }
@@ -381,7 +398,14 @@ export default function Home(){
      return response.structuredResult;
     }:undefined}/> )}
 
- {view==="reference"&&<ReferenceLibrary catalog={foundationCatalog} onCatalog={setFoundationCatalog} onOpenLesson={(id,skill)=>{if(skill!=="listening")void openReferenceLesson(id,skill)}}/>}
+ {view==="reference"&&<ReferenceLibrary key={referenceLookup} initialSearch={referenceLookup}
+  catalog={foundationCatalog} onCatalog={setFoundationCatalog} saveStatus={studyNotice}
+  onSaveForReview={saveReferenceForReview}
+  onOpenLesson={(id,skill)=>{if(skill!=="listening")void openReferenceLesson(id,skill)}}/>}
+ {view==="study-notebook"&&<StudyNotebook onOpenReference={term=>{
+  setReferenceLookup(term);void navigate("reference");
+ }}/>}
+
  {view==="diagnostic"&&<DiagnosticAssessment value={state.diagnosticV2} archive={state.diagnosticArchive??[]} onChange={diagnosticV2=>update({diagnosticV2,...(state.diagnosticV2&&state.diagnosticV2.startedAt!==diagnosticV2.startedAt?{diagnosticArchive:[...(state.diagnosticArchive??[]),state.diagnosticV2]}:{})})} onFinish={finishDiagnostic} showVi={!!state.vietnameseSupport}/>}
  {view==="profile"&&<LearnerProfile profile={state.profile??initialProfile} model={state.learnerModel} onChange={updateProfile} showVi={!!state.vietnameseSupport}/>}
  {view==="courses"&&<MyCourses data={courseData} error={courseError} busy={courseBusy} onSelect={id=>void selectCourse(id)} onContinue={()=>void (async()=>{if(await selectCourse(WRITING_COURSE_ID))await navigate('writing-course')})()} onRecommendations={()=>void navigate("plan")}/>}
