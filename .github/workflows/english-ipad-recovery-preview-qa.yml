@@ -1,0 +1,148 @@
+name: SLE P0 iPad Recovery English Preview only
+
+# One-time owner-approved Safari acceptance. This workflow exists on QA branch only.
+# Never merge to main; never run LIVE deploy or upload learner backups.
+on:
+  push:
+    branches:
+      - qa/sle-ipad-recovery-p0-preview-20261121
+    paths:
+      - '.github/workflows/english-ipad-recovery-preview-qa.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sle-ipad189-two-preview-channels
+  cancel-in-progress: false
+
+jobs:
+  preview:
+    if: ${{ github.repository == 'TMA2015/self-learning-english' && github.ref == 'refs/heads/qa/sle-ipad-recovery-p0-preview-20261121' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      STATIC_EXPORT: '1'
+      NEXT_PUBLIC_LEARNING_RUNTIME: browser
+      NEXT_PUBLIC_BASE_PATH: ''
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - name: Checkout exact QA branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Enforce approved PR head and workflow-only delta; English target only
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = 'refs/heads/qa/sle-ipad-recovery-p0-preview-20261121'
+          git merge-base --is-ancestor '9756c3867d99676101c38950ed534d98ee86598c' HEAD
+          test "$(git diff --name-only 9756c3867d99676101c38950ed534d98ee86598c HEAD)" = '.github/workflows/english-ipad-recovery-preview-qa.yml'
+          node --input-type=commonjs - <<'NODE'
+          const assert=require('node:assert/strict'),fs=require('node:fs');
+          const cfg=JSON.parse(fs.readFileSync('firebase.json','utf8'));
+          const rc=JSON.parse(fs.readFileSync('.firebaserc','utf8'));
+          const runtime=fs.readFileSync('infrastructure/browser/local-runtime.ts','utf8');
+          const academic=require('./content/curriculum-1.28.0-candidate.json');
+          assert.equal(cfg.hosting.target,'english');
+          assert.equal(cfg.hosting.public,'dist/client');
+          assert.equal(rc.projects.default,'roadmap-toan-ai');
+          assert.deepEqual(rc.targets['roadmap-toan-ai'].hosting.english,['g-learning-english']);
+          assert(runtime.includes("import curriculum1280 from '../../content/curriculum-1.28.0-candidate.json'"));
+          assert.equal(academic.lessons.length,176);
+          assert.equal(academic.lessons.reduce((sum,lesson)=>sum+lesson.activities.length,0),1224);
+          assert(fs.existsSync('infrastructure/browser/lossless-browser-storage.ts'));
+          console.log('ENGLISH_ONLY_EXACT_PR_HEAD_PASS');
+          NODE
+
+      - name: Require existing English Firebase Hosting credential
+        env:
+          FIREBASE_CREDENTIAL: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
+        run: |
+          if [[ -z "$FIREBASE_CREDENTIAL" ]]; then
+            echo '::error::Firebase credential absent, refusing Preview deploy'
+            exit 1
+          fi
+          echo 'Firebase credential configured (secret not displayed)'
+
+      - name: Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+
+      - name: Install frozen dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Focused P0 Recovery and real UI storage regressions
+        run: |
+          node tests/ipad-recovery-lossless-quota.cjs
+          node tests/storage-ui-browser.cjs
+          node tests/storage-chromium-v2.cjs
+
+      - name: Build English preview (NOT LIVE)
+        run: pnpm build
+
+      - name: Verify English static Hosting build and all protected MP3 files
+        run: |
+          node tests/firebase-hosting-static.cjs
+          test -s dist/client/index.html
+          test -s dist/client/foundation-audio/LIS-A1-06-v1.mp3
+          test -s dist/client/foundation-audio/LIS-A2-07-v1.mp3
+          test -s dist/client/diagnostic-audio/DIAG-LIS-01-v1.mp3
+          echo 'P0_PREVIEW_BUILD_PASS'
+
+      - name: Deploy synthetic-smoke English Preview ONLY
+        id: smoke
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
+          projectId: roadmap-toan-ai
+          target: english
+          entryPoint: sites-p0-phase-a-20260926
+          channelId: sle-ipad189-smoke
+          expires: 3d
+          disableComment: true
+          firebaseToolsVersion: '15.32.1'
+
+      - name: Deploy untouched real-restore English Preview ONLY
+        id: restore
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
+          projectId: roadmap-toan-ai
+          target: english
+          entryPoint: sites-p0-phase-a-20260926
+          channelId: sle-ipad189-restore
+          expires: 3d
+          disableComment: true
+          firebaseToolsVersion: '15.32.1'
+
+      - name: Record actual URLs and prevent confusion with LIVE
+        if: ${{ always() }}
+        working-directory: .
+        env:
+          SMOKE_STATUS: ${{ steps.smoke.outcome }}
+          RESTORE_STATUS: ${{ steps.restore.outcome }}
+          SMOKE_URL: ${{ steps.smoke.outputs.urls }}
+          RESTORE_URL: ${{ steps.restore.outputs.urls }}
+        run: |
+          {
+            echo '## P0 Safari Recovery — English Preview only'
+            echo '- Authoritative PR #189 exact application base: 9756c3867d99676101c38950ed534d98ee86598c'
+            echo "- Workflow QA branch commit: $GITHUB_SHA"
+            echo "- Smoke Preview outcome: $SMOKE_STATUS"
+            echo "- Smoke URL: $SMOKE_URL"
+            echo "- Restore Preview outcome: $RESTORE_STATUS"
+            echo "- Restore URL: $RESTORE_URL"
+            echo '- Use smoke URL with synthetic attempts ONLY; restore URL must remain untouched until owner restores private V2 on iPad.'
+            echo '- Preview origins are separate from LIVE and from one another. Export recovered V2 before these Preview channels expire.'
+            echo '- NO LIVE release, merge, Math, Auth, learner data transfer, or original recovery file upload.'
+          } >> "$GITHUB_STEP_SUMMARY"
