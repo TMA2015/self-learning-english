@@ -4,6 +4,7 @@ import {LocalBackupPanel} from '../app/local-backup-panel';
 import {localAcademicRuntime} from '../infrastructure/browser/local-runtime';
 import {BrowserLocalAcademicRepository} from '../infrastructure/storage/browser-local-repositories';
 import {sourceDigest} from '../application/academic-service';
+import {englishLosslessStore} from '../infrastructure/browser/lossless-browser-storage';
 import {mapSeed,type Seed} from '../domain/academic';
 import curriculum from '../content/curriculum-1.18.1-candidate.json';
 
@@ -108,14 +109,14 @@ const pkg=async(version:string)=>{
    await wait(()=>status().includes('Saved recovery file verified'),'file selection and verification');
    assert(!findButton('Confirm compact storage')?.disabled,'Verified complete recovery must unlock cleanup');
    assert(!!document.querySelector('.sle-storage-verified-file'),'Selected and verified filename must be visible');
-   const before=localStorage.getItem(key)!.length;
+   const before=englishLosslessStore(localStorage).getItem(key)!.length;
    await action('Confirm compact storage');
    await wait(()=>status().includes('Curriculum storage compacted safely'),'compact UI finished');
-   const doc=JSON.parse(localStorage.getItem(key)!);
+   const doc=JSON.parse(englishLosslessStore(localStorage).getItem(key)!);
    assert(doc.schema===2&&doc.records.length===2,'legacy archive plus current complete');
    assert(doc.records.filter((v:any)=>!v.archive).length===1,'one current full source');
    assert((await repo.attempts(owner)).length===1,'learner attempt intact');
-   report('PASS_BACKUP_PANEL',{before,after:localStorage.getItem(key)!.length,
+   report('PASS_BACKUP_PANEL',{before,after:englishLosslessStore(localStorage).getItem(key)!.length,
      attempts:1,savedFile:true,buttonGate:true});
   }else if(mode==='recovery'){
    const chooser=document.getElementById('sle-v2-recovery-file') as HTMLInputElement;
@@ -145,7 +146,8 @@ const pkg=async(version:string)=>{
    await action('Preview storage cleanup');
    await wait(()=>!!document.querySelector('.sle-storage-no-savings'),'zero-savings summary');
    const message=document.querySelector('.sle-storage-no-savings')?.textContent??'';
-   assert(message.includes('Chưa cần dọn'),'Zero-savings preview must explain no cleanup needed');
+   assert(message.includes('Không thể giảm thêm học liệu')&&/không có nghĩa/i.test(message),
+     'Zero-savings preview must not imply available Safari quota');
    assert(!findButton('Confirm compact storage'),'No-op cleanup must not offer a confirm button');
    assert(!findButton('2. Chọn đúng file vừa tải'),'No-op cleanup must not demand a file picker');
    assert(localStorage.getItem(key)===before,'Preview-only must not change the saved curriculum');

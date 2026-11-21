@@ -1,4 +1,5 @@
 import {mapSeed,type AcademicAttempt,type AcademicPackage,type AcademicRepository} from '../../domain/academic';
+import {englishNativeBrowserStore} from '../browser/lossless-browser-storage';
 import {retainReferencedLessons,stripBundle,decodePackageDocument,type StoredAcademicPackage,type RetentionSnapshot} from '../../domain/storage-retention';
 import type {LearningRepository,LearnerState,Scope,Snapshot} from '../../domain/repository';
 import type {DiagnosticV2,Evidence} from '../../domain/learning-model';
@@ -57,7 +58,12 @@ export class BrowserLocalLearningRepository implements LearningRepository {
   constructor(
     private readonly storage:BrowserKeyValueStorage,
     private readonly prefix=DEFAULT_PREFIX,
-  ){}
+  ){
+    // Some independent pages/tests instantiate Repository(window.localStorage)
+    // directly; all real browser repositories must share the same codec.
+    if(typeof window!=='undefined'&&storage===window.localStorage)
+      this.storage=englishNativeBrowserStore(window.localStorage);
+  }
 
   async readState(scope:Scope):Promise<LearnerState|null>{
     const key=scopeKey(this.prefix,scope,'state');
@@ -131,7 +137,10 @@ export class BrowserLocalAcademicRepository implements AcademicRepository {
   constructor(
     private readonly storage:BrowserKeyValueStorage,
     private readonly prefix=DEFAULT_PREFIX,
-  ){}
+  ){
+    if(typeof window!=='undefined'&&storage===window.localStorage)
+      this.storage=englishNativeBrowserStore(window.localStorage);
+  }
   private readonly derivedBundles=new Map<string,ReturnType<typeof mapSeed>>();
 
   private packagesKey(){return `${this.prefix}:academic:packages`}
@@ -293,7 +302,10 @@ export class BrowserLocalCourseSelectionRepository{
   constructor(
     private readonly storage:BrowserKeyValueStorage,
     private readonly prefix=DEFAULT_PREFIX,
-  ){}
+  ){
+    if(typeof window!=='undefined'&&storage===window.localStorage)
+      this.storage=englishNativeBrowserStore(window.localStorage);
+  }
 
   private key(ownerId:string){return ownerKey(this.prefix,ownerId,'course-selection')}
 
@@ -342,7 +354,7 @@ export class BrowserLocalCourseSelectionRepository{
 }
 
 export function browserLocalRepositories(ownerId='local-family',learnerId='primary',storage?:BrowserKeyValueStorage){
-  const selected=storage??(typeof window!=='undefined'?window.localStorage:undefined);
+  const selected=storage??(typeof window!=='undefined'?englishNativeBrowserStore(window.localStorage):undefined);
   if(!selected)throw new Error('Browser local storage is unavailable.');
   return {
     scope:{ownerId,learnerId} as Scope,

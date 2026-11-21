@@ -1,4 +1,5 @@
 import {decodePackageDocument,retainReferencedLessons} from '../../domain/storage-retention';
+import {englishNativeBrowserStore} from './lossless-browser-storage';
 
 const PREFIX='g-learning:english:v1';
 export const RECOVERY_MARKER=PREFIX+':recovery-pending-v2';
@@ -9,7 +10,7 @@ type RecoveryFile={format:'g-learning-english.recovery';schemaVersion:2;exported
 type Store=Pick<Storage,'getItem'|'setItem'|'removeItem'|'key'|'length'>;
 function currentStore():Store{
  if(typeof window==='undefined'||!window.localStorage)throw Error('Browser storage is unavailable.');
- return window.localStorage;
+ return englishNativeBrowserStore(window.localStorage);
 }
 function acceptableKey(key:string){
  if(!key.startsWith(PREFIX+':'))return false;

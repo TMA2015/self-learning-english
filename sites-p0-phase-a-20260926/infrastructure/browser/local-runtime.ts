@@ -1,4 +1,5 @@
 import curriculum1280 from '../../content/curriculum-1.28.0-candidate.json';
+import {englishNativeBrowserStore} from './lossless-browser-storage';
 import {academicService,sourceDigest} from '../../application/academic-service';
 import {learningService} from '../../application/learning-service';
 import {mapSeed,validateSeed,compareVersions,type Seed} from '../../domain/academic';
@@ -21,7 +22,7 @@ let cached:{
 
 function browserStorage():BrowserKeyValueStorage{
   if(typeof window==='undefined'||!window.localStorage)throw new Error('Browser storage is unavailable.');
-  return window.localStorage;
+  return englishNativeBrowserStore(window.localStorage);
 }
 
 function repositories(){
