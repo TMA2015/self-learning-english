@@ -69,6 +69,7 @@ const coreTests=[
   "reference-library-wave2-grammar-writing.cjs",
   "reference-library-wave3-crossskill.cjs",
   "reference-library-wave4-degree-usage.cjs",
+  "study-notebook-local-mvp.cjs",
   "pronunciation-runtime-audio.cjs",
 ];
 
@@ -117,6 +118,7 @@ const fullRegressionTests=[
   "reference-library-v2-wave1.cjs",
   "reference-library-v2-connectors-wave2.cjs",
   "reference-library-browser.cjs",
+  "study-notebook-browser.cjs",
   "p1-responsive-browser.cjs",
   "p0-p1-union-integration.cjs",
   "unit-guide-60.cjs",
