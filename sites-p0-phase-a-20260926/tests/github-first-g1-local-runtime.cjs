@@ -45,7 +45,7 @@ global.window={localStorage:storage,location:{origin:'https://example.test'}};
   const academic=await runtime.localAcademicRuntime();
   const catalog=await academic.service.catalog();
   assert.equal(catalog.version,'1.30.0');
-  assert.equal(catalog.lessons.length,190,'bundled GitHub-first curriculum should auto-load 1.29.0 / 190 lessons');
+  assert.equal(catalog.lessons.length,190,'bundled GitHub-first curriculum should auto-load 1.30.0 / 190 lessons');
   assert(catalog.lessons.some(l=>l.id==='REA-C1-01'));
   assert(catalog.lessons.some(l=>l.id==='VOC-C2-01'));
   const packages=await academic.academic.packages();
