@@ -25,6 +25,7 @@ export function LocalBackupPanel(){
  const [verifiedBackupName,setVerifiedBackupName]=useState('');
  const [selectedRestoreName,setSelectedRestoreName]=useState('');
  const [clearPhrase,setClearPhrase]=useState('');
+ const [resetOpen,setResetOpen]=useState(false);
  const clearVerifyInput=useRef<HTMLInputElement>(null);
  const verifyInput=useRef<HTMLInputElement>(null);
  const restoreInput=useRef<HTMLInputElement>(null);
@@ -183,27 +184,29 @@ export function LocalBackupPanel(){
    </div>}
   </div>
 
-  <div className="sle-storage-section" aria-label="Clear only English learner progress on this device">
-   <h3>4. Xóa riêng tiến độ SLE trên thiết bị này</h3>
-   <p><strong>Chỉ xóa dữ liệu học tập Self-Learning English trong trình duyệt này.</strong> Không xóa dữ liệu Self-Learning Math, lịch sử Safari, dữ liệu trên thiết bị khác hoặc bản Recovery V2 đã tải xuống. Sau khi xóa, ứng dụng sẽ tự tải lại học liệu cơ bản.</p>
-   <p><strong>Để tránh mất bài do thao tác nhầm:</strong> hãy dùng nút "Download complete recovery JSON" ở bước 1, lưu tệp ra Files, sau đó chọn lại chính tệp đó để xác minh trước khi xóa. Đóng các tab SLE khác trên cùng trình duyệt.</p>
-   <div className="sle-cleanup-step">
+  <div className="sle-storage-section" aria-label="English-only progress reset">
+   <div className="sle-storage-action-row">
+    <button type="button" className="secondary-button" disabled={busy}
+     aria-expanded={resetOpen} aria-controls="sle-reset-confirmation"
+     onClick={()=>{setClearPhrase('');setResetOpen(open=>!open)}}>Xóa tiến độ SLE</button>
+    <p><strong>4. Xóa riêng tiến độ Self-Learning English.</strong> Chỉ xóa bài làm, điểm và bản nháp English trên trình duyệt này; không xóa dữ liệu Self-Learning Math, các website khác, lịch sử Safari hoặc file Recovery V2 đã lưu. Cần xác minh bản sao lưu trước khi xóa.</p>
+   </div>
+   {resetOpen&&<div id="sle-reset-confirmation" className="foundation-storage-inspection sle-restore-confirmation" aria-label="Confirm English-only progress reset">
+    <p><strong>Xác nhận xóa tiến độ English trên thiết bị này.</strong> Trước tiên hãy nhấn nút <strong>Download complete recovery JSON</strong> ở bước 1, lưu tệp vào Files rồi chọn lại đúng tệp vừa tải. Đóng các tab SLE khác trước khi xóa.</p>
     <button type="button" className="secondary-button" disabled={busy||!backupExpected}
-     onClick={()=>clearVerifyInput.current?.click()}>Xác minh file Recovery V2 trước khi xóa</button>
+     onClick={()=>clearVerifyInput.current?.click()}>Xác minh file Recovery V2 đã tải</button>
     <input ref={clearVerifyInput} id="sle-v2-reset-verify-file" className="sle-storage-hidden-file" tabIndex={-1}
      aria-label="Select downloaded English Recovery V2 before clearing this device"
      type="file" accept=".json,application/json" disabled={busy||!backupExpected}
      onChange={e=>{const file=e.currentTarget.files?.[0];e.currentTarget.value='';void verifyDownloaded(file)}}/>
     {fullBackupExported&&verifiedBackupName&&<small role="note">Đã xác minh: {verifiedBackupName}</small>}
-   </div>
-   <div className="sle-cleanup-step">
-    <label htmlFor="sle-clear-english-confirm">Nhập <strong>XOA SLE</strong> để xác nhận xóa tiến độ trên thiết bị này:</label>
+    <p><label htmlFor="sle-clear-english-confirm">Nhập <strong>XOA SLE</strong> để xác nhận xóa:</label></p>
     <input id="sle-clear-english-confirm" type="text" autoComplete="off" spellCheck={false}
      value={clearPhrase} disabled={busy||!fullBackupExported}
      onChange={e=>setClearPhrase(e.currentTarget.value)} placeholder="XOA SLE"/>
     <button type="button" className="secondary-button" disabled={busy||!fullBackupExported||clearPhrase!=='XOA SLE'}
-     onClick={()=>void clearEnglishOnly()}>Xóa tiến độ SLE trên thiết bị này</button>
-   </div>
+     onClick={()=>void clearEnglishOnly()}>Xác nhận xóa tiến độ English</button>
+   </div>}
   </div>
 
   <p className="muted sle-storage-footnote">Các bài học mới được thêm tự động khi trình duyệt đủ chỗ. Nếu cập nhật bị chặn do thiếu dung lượng, tiến độ cũ phải được giữ nguyên; không xóa dữ liệu trang web để thử lại. Bản JSON tham chiếu cũ không khôi phục được nguồn bài lịch sử nên không còn là lựa chọn sao lưu chính.</p>
