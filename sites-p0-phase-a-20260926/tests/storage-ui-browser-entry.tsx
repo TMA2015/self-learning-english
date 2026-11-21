@@ -100,7 +100,7 @@ const pkg=async(version:string)=>{
   assert(!!document.getElementById('sle-v2-reset-verify-file'),'Opened reset must offer native Recovery V2 picker');
   if(mode==='backup'){
    await action('Preview storage cleanup');
-   await wait(()=>!!document.querySelector('.foundation-storage-inspection'),'retention preview');
+   await wait(()=>!!document.querySelector('.sle-storage-preview'),'retention preview (not reset confirmation)');
    assert(findButton('Confirm compact storage')?.disabled,'Must not permit cleanup without verified saved backup');
    assert(findButton('2. Chọn đúng file vừa tải')?.disabled,'File verification must remain gated until download');
    assert(!!findButton('1. Tải file sao lưu đầy đủ'),'Step 1 must be adjacent to Preview');
