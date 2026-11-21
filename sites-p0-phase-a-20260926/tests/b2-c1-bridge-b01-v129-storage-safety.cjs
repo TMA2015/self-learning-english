@@ -130,6 +130,17 @@ class Storage{
  assert.equal(pending.status,'pending_review','C1 Writing must not be automatically graded');
  assert.deepEqual(pending.evidence,[],'No C1 proficiency evidence from unreviewed Writing');
  assert(!pending.review,'No fabricated C1 rubric review');
+ const rubric=next.rubrics['RUBRIC-WRITING-C1'];
+ const syntheticScores=Object.fromEntries(rubric.criteria.map(k=>[k,3]));
+ await assert.rejects(
+  ()=>svc.approve(pending.id,'Synthetic feedback, not a calibrated C1 rating.',syntheticScores,true),
+  /C1 Writing remains pending review/i,
+  'Unvalidated C1 0-4 rubric must not write numeric evidence'
+ );
+ const afterGuard=(await repo.attempts(owner)).find(x=>x.id===pending.id);
+ assert.equal(afterGuard.status,'pending_review');
+ assert.deepEqual(afterGuard.evidence,[]);
+ assert(!afterGuard.review,'Approval guard must not write review evidence');
 
  // Read-only retention PREVIEW, with both versions still present.
  const retention=await repo.previewRetention();
