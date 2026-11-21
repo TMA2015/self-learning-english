@@ -183,7 +183,7 @@ async function run(){
  report('PASS',{suite:'UNIT10_MEDIA01_REAL_FOUNDATION_CHROME',lessons:summary,
   olderAttemptPreserved:true,attempts:at.length,
   transientBrowserProfile:true,liveLearnerDataTouched:false,productionImport:false,
-  media01ChromeProductPlayer:'PASS',safariIpad:'NOT_TESTED',releaseAuthorized:false});
+  media01ChromeProductPlayer:'PASS',runtimeVersion:(await runtime.service.catalog()).version,safariIpad:'NOT_TESTED',releaseAuthorized:false});
 }
 run().catch(e=>{
  report('FAIL',{error:String(e?.stack||e),jsErrors:errors,html:excerpt()});
