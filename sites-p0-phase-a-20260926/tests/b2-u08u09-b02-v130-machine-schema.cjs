@@ -73,13 +73,17 @@ for(let i=0;i<6;i++){
 }
 assert.deepEqual([objectives,writing,reading,optionCount],[20,2,4,80]);
 assert(!next.lessons.slice(184).some(l=>l.activities.some(a=>a.interaction||a.widget||a.semantic_score)));
-assert(!map.reviewed_v130,'Unit map not yet activated for v1.30');
+const reviewedAssignments={
+ 'REA-B2-11':'B2-U08','REA-B2-12':'B2-U08','WRI-B2-10':'B2-U08',
+ 'REA-B2-13':'B2-U09','REA-B2-14':'B2-U09','WRI-B2-11':'B2-U09'
+};
+assert.deepEqual(map.reviewed_v130,reviewedAssignments,'Only reviewed B2 U08/U09 links may be added');
 const runtime=fs.readFileSync(path.join(root,'infrastructure/browser/local-runtime.ts'),'utf8');
 assert(runtime.includes("from '../../content/curriculum-1.29.0-candidate.json'"));
 assert(!runtime.includes("from '../../content/curriculum-1.30.0-candidate.json'"));
 const out='.sites-runtime/b2-u08u09-v130-schema';
 fs.rmSync(path.join(root,out),{recursive:true,force:true});fs.mkdirSync(path.join(root,out),{recursive:true});
-execFileSync(process.execPath,['node_modules/typescript/bin/tsc','domain/academic.ts','domain/content-model.ts','domain/option-order.ts',
+execFileSync(process.execPath,['node_modules/typescript/bin/tsc','domain/academic.ts','domain/content-model.ts','domain/option-order.ts','domain/unit-guide-60.ts',
  '--outDir',out,'--rootDir','.','--module','commonjs','--target','es2022','--resolveJsonModule',
  '--esModuleInterop','--skipLibCheck','--lib','es2022,dom'],{cwd:root,stdio:'inherit'});
 fs.writeFileSync(path.join(root,out,'package.json'),'{"type":"commonjs"}\n');
@@ -89,6 +93,18 @@ const {createOptionOrder,validateOptionOrder,orderedOptions}=require(path.join(r
 assert.equal(MAX_CURRICULUM_LESSONS,250);
 assert.deepEqual(validateSeed(next),[],'Real importer rejects source-only candidate');
 assert.deepEqual(validateContent(mapSeed(next)),[],'Mapped content rejects source-only candidate');
+const {unitGuideForCatalog,primaryUnitForLessonId}=require(path.join(root,out,'domain/unit-guide-60.js'));
+const unitCatalog=next.lessons.map(l=>({id:l.id,title:l.title,module:l.module,cefr:l.cefr_target,minutes:l.estimated_minutes}));
+const unitIndex=unitGuideForCatalog(unitCatalog,next.course.sequence);
+assert.equal(unitIndex.units.length,60);
+assert.equal(unitIndex.mappedLessonCount,188,'6 new reviewed links must be in correct B2 units');
+assert.deepEqual(unitIndex.unmappedLessons.map(l=>l.id).sort(),['REA-C1-01','VOC-C2-01']);
+for(const [id,unit] of Object.entries(reviewedAssignments))assert.equal(primaryUnitForLessonId(id),unit);
+for(const [unit,lessonIds] of [['B2-U08',['REA-B2-11','REA-B2-12','WRI-B2-10']],['B2-U09',['REA-B2-13','REA-B2-14','WRI-B2-11']]]){
+ const actual=unitIndex.units.find(u=>u.id===unit);
+ assert.deepEqual(actual?.lessons.map(l=>l.id),lessonIds,unit+' exact ordered lesson mapping');
+ assert.equal(actual.available,true,unit+' must be available when v1.30 candidate catalog is supplied');
+}
 let shuffled=0;
 for(const lesson of next.lessons.slice(184)){
  const order=createOptionOrder(lesson.activities,()=>0);
@@ -103,5 +119,5 @@ for(const lesson of next.lessons.slice(184)){
 assert.equal(shuffled,20);
 console.log(JSON.stringify({result:'PASS',gate:'B2_U08U09_B02_V130_MACHINE_CANDIDATE',sourceSha256:digest,
   totalLessons:190,totalActivities:1278,newLessons:6,objectives,writing,optionCount,reading,
-  sourceFidelity:'22/22',shuffled,previous184Immutable:true,
+  sourceFidelity:'22/22',shuffled,previous184Immutable:true,mappedLessons:188,unmappedPilots:2,reviewedUnitLinks:6,
   interactionStatus:'PASS_CONCEPT_ONLY',runtime:'v1.29 UNCHANGED',realLearnerData:'NOT_TOUCHED',deploy:false}));
