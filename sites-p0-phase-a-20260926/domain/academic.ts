@@ -24,6 +24,8 @@ export const tagMap:Record<string,string>={
  'grammar.present_perfect_continuous':'tense-and-aspect','grammar.past_perfect':'tense-and-aspect','grammar.narrative_order':'tense-and-aspect','grammar.used_to':'tense-and-aspect','grammar.would_past_habit':'tense-and-aspect','grammar.modal_deduction':'modal-deduction',
  'grammar.second_conditional':'second-conditional','grammar.wish_present':'wish-present','grammar.passive_voice':'passive-voice','grammar.reported_speech':'reported-speech','grammar.reported_questions':'reported-questions',
  'grammar.non_defining_relative_clauses':'non-defining-relative-clauses','grammar.gerund_infinitive':'gerund-infinitive','grammar.indirect_questions':'indirect-questions','grammar.question_tags':'question-tags',
+ // Reviewed C1 discourse grammar, distinct from legacy clause/tense skills. No auto-CEFR promotion.
+ 'grammar.discourse_reference':'discourse-reference','grammar.information_structure':'information-structure','grammar.concession':'concession',
  'vocabulary.collocations':'collocation','vocabulary.meaning_in_context':'meaning-in-context','vocabulary.word_formation':'word-formation',
  'reading.gist':'gist','reading.detail':'detail','reading.inference':'inference','reading.author_purpose':'inference','reading.vocabulary_in_context':'vocabulary-in-context',
  'listening.gist':'gist','listening.detail':'detail','listening.inference':'speaker-intention','listening.speaker_intention':'speaker-intention',
