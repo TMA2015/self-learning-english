@@ -3,6 +3,7 @@ import {useEffect,useMemo,useState} from 'react';
 import source from '../content/reference-library-pilot-v1.json';
 import waveOne from '../content/reference-library-v2-wave1-reviewed.json';
 import connectorWaveTwo from '../content/reference-library-v2-writing-connectors-wave2-reviewed.json';
+import grammarWritingWaveTwo from '../content/reference-library-v2-grammar-writing-reviewed.json';
 import fullVerbs from '../content/reference-library-v2-irregular-candidate.json';
 import {foundationRequest} from '../infrastructure/browser/client-services';
 import type {Catalog} from './foundation';
@@ -22,10 +23,34 @@ const CORPUS_ENTRIES=fullVerbs.new_entries.map(item=>({
  forms:{base:item.base,past:item.past,participle:item.participle},
  search_keywords:item.search_terms,verb_priority:item.tier,
 }));
+type ReviewedGrammarComparison={
+ id:string;kind:'grammar_comparisons';title:string;suggested_level:string;
+ concept:string;use_decision:string;patterns:string;example:string;
+ contrast:string;watch_out:string;keywords:string[];
+};
+type ReviewedWritingToolkit={
+ id:string;kind:'writing_toolkit';title:string;suggested_level:string;
+ process_step:string;purpose:string;steps:string;worked_micro_example:string;
+ self_check:string;avoid:string;keywords:string[];
+};
+// Typed, reviewed static source. No learner storage, network, AI or topic lesson links.
+const GRAMMAR_WRITING_ENTRIES:ReferenceEntry[]=
+ (grammarWritingWaveTwo.entries as unknown as (ReviewedGrammarComparison|ReviewedWritingToolkit)[]).map(x=>
+  x.kind==='grammar_comparisons'
+   ?{id:x.id,kind:x.kind,term:x.title,meaning:x.use_decision,
+     example:x.example,note:x.watch_out,level:'not_tagged',register:'not_tagged',skill:'grammar',
+     suggested_level:x.suggested_level,concept:x.concept,use_decision:x.use_decision,
+     patterns:x.patterns,contrast:x.contrast,watch_out:x.watch_out,keywords:x.keywords}
+   :{id:x.id,kind:x.kind,term:x.title,meaning:x.purpose,
+     example:x.worked_micro_example,note:x.avoid,level:'not_tagged',register:'not_tagged',skill:'writing',
+     suggested_level:x.suggested_level,process_step:x.process_step,purpose:x.purpose,
+     steps:x.steps,worked_micro_example:x.worked_micro_example,self_check:x.self_check,
+     avoid:x.avoid,keywords:x.keywords}
+ );
 const ENTRIES=[...source.entries,
  ...waveOne.entries.filter(x=>x.kind!=='irregular_verbs'),
  ...connectorWaveTwo.entries,
- ...CORPUS_ENTRIES] as ReferenceEntry[];
+ ...CORPUS_ENTRIES,...GRAMMAR_WRITING_ENTRIES] as ReferenceEntry[];
 const ALPHABET='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 // This generic but correct reminder occurs in 141/185 corpus records.
 // Leave reviewed source unchanged; omit it from repeated lookup rows.
@@ -63,8 +88,11 @@ export function ReferenceLibrary({
  const connectors=results.filter(e=>e.kind==='writing_connectors');
  const indefinite=results.filter(e=>e.kind==='frequency_expressions'&&e.frequency_type==='indefinite_frequency');
  const definite=results.filter(e=>e.kind==='frequency_expressions'&&e.frequency_type==='definite_frequency');
+ const grammarComparisons=results.filter(e=>e.kind==='grammar_comparisons');
+ const writingToolkit=results.filter(e=>e.kind==='writing_toolkit');
  const otherCards=results.filter(e=>e.kind!=='irregular_verbs'&&
-  e.kind!=='writing_connectors'&&e.kind!=='frequency_expressions');
+  e.kind!=='writing_connectors'&&e.kind!=='frequency_expressions'&&
+  e.kind!=='grammar_comparisons'&&e.kind!=='writing_toolkit');
  const writingFunctions=[...new Set(connectors.map(e=>e.function||'General'))];
  useEffect(()=>{
   if(catalog)return;
@@ -92,16 +120,16 @@ export function ReferenceLibrary({
   <div className="eyebrow">LEARN · QUICK REFERENCE</div>
   <div className="page-heading"><div>
    <h1>English Reference Library</h1>
-   <p>Look up irregular verbs, writing connectors, frequency, useful phrases and study strategies.</p>
+   <p>Look up irregular verbs, writing connectors, frequency, grammar comparisons, writing techniques and useful expressions.</p>
   </div></div>
   <section className="panel sle-reference-intro" aria-label="How to use this library">
    <p>Use these examples to understand a pattern, then try a different example of your own.
     Choose a topic or level to find forms, meaning and examples.</p>
-   <p><small>Offline-first static reference · 26/26 entries academically reviewed in the pilot
-    plus 23/23 Writing/Frequency entries from Wave 1, 30/30 Writing Connectors from Wave 2
-    and 185/185 full-corpus verbs independently approved by NotebookLM (264 reference entries in this candidate).
+   <p><small>Offline-first static reference · 294 reviewed records: 264 existing lookup entries plus
+    20 Grammar comparisons and 10 Writing Toolkit guides (NotebookLM academic PASS 30/30).
+    Suggested levels are learning-navigation hints, not proficiency scores.
     No answers, tests, AI evaluation or learner scores are stored here.
-    Legacy practice links are broad skill suggestions, not verified lessons for each term.</small></p>
+    Grammar/Writing specialist cards do not assert unverified topic lesson links.</small></p>
   </section>
   <section className="panel sle-reference-filters" aria-label="Search and filter references">
    <div className="sle-reference-filter-grid">
@@ -211,6 +239,22 @@ export function ReferenceLibrary({
     </article>)}
    </div>
   </section>}
+  {grammarComparisons.length>0&&<section className="sle-reference-section" aria-label="Grammar comparison references">
+   <h2>Grammar comparisons ({grammarComparisons.length} matching)</h2>
+   <p className="muted">Choose the meaning first, then compare forms, reasons and limits. Suggested levels are for navigation only. These are unscored reference examples, not verified topic lessons.</p>
+   <div className="sle-ref-wave2-grid">
+    {grammarComparisons.map(entry=><article className="panel sle-ref-wave2-card" key={entry.id}>
+     <div className="sle-reference-tags"><span>Grammar comparison</span><span>Suggested {entry.suggested_level}</span></div>
+     <h3>{entry.term}</h3>
+     <p><strong>Meaning:</strong> {entry.concept}</p>
+     <p><strong>Choose by use:</strong> {entry.use_decision}</p>
+     <p><strong>Form:</strong> {entry.patterns}</p>
+     <p><strong>Independent example:</strong> {entry.example}</p>
+     <p><strong>Why this form:</strong> {entry.contrast}</p>
+     <p className="sle-ref-caution"><strong>Watch out / limits:</strong> {entry.watch_out}</p>
+    </article>)}
+   </div>
+  </section>}
   {connectors.length>0&&<section className="sle-reference-section" aria-label="Writing linking words">
    <h2>Writing connectors — choose by purpose ({connectors.length} matching)</h2>
    <p className="muted">Choose a logical relationship first, then check the sentence pattern and punctuation. More connectors do not automatically mean better writing.</p>
@@ -229,6 +273,22 @@ export function ReferenceLibrary({
     </article>)}
     </div>
    </div>)}
+  </section>}
+  {writingToolkit.length>0&&<section className="sle-reference-section" aria-label="Writing Toolkit reference">
+   <h2>Writing Toolkit ({writingToolkit.length} matching)</h2>
+   <p className="muted">Practical decisions and self-checks for original writing. The examples are independent of live exercises. No automatic essay score or template answer is provided.</p>
+   <div className="sle-ref-wave2-grid">
+    {writingToolkit.map(entry=><article className="panel sle-ref-wave2-card" key={entry.id}>
+     <div className="sle-reference-tags"><span>Writing process</span><span>Suggested {entry.suggested_level}</span></div>
+     <h3>{entry.term}</h3>
+     <p><strong>Step:</strong> {entry.process_step}</p>
+     <p><strong>Purpose:</strong> {entry.purpose}</p>
+     <p><strong>How to do it:</strong> {entry.steps}</p>
+     <p><strong>Independent illustration:</strong> {entry.worked_micro_example}</p>
+     <p><strong>Ask yourself:</strong> {entry.self_check}</p>
+     <p className="sle-ref-caution"><strong>Avoid / limits:</strong> {entry.avoid}</p>
+    </article>)}
+   </div>
   </section>}
   {(indefinite.length>0||definite.length>0)&&<section className="sle-reference-section" aria-label="Frequency expressions">
    <h2>Frequency — from always to never</h2>
