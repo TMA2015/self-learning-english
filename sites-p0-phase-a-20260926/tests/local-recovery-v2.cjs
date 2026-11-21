@@ -137,8 +137,9 @@ const scored={id:'saved-real-attempt',packageId:old.package_id,version:old.schem
  // are mandatory. Never clear another application's or unknown storage keys.
  const resetStore=new Store();use(resetStore);
  const resetRepo=new BrowserLocalAcademicRepository(resetStore);
- await resetRepo.addPackage(asPackage(next));
+ await resetRepo.addPackage(asPackage(old));
  await resetRepo.start('local-family',scored);
+ await resetRepo.addPackage(asPackage(next));
  const mathKey='g-learning:math:v1:owner:family:academic-attempts';
  const outsideKey='unrelated:device-preference';
  resetStore.setItem(mathKey,'math-history-must-remain');
