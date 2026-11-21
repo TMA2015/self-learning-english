@@ -185,7 +185,7 @@ export function ReferenceLibrary({
    <p>Use these examples to understand a pattern, then try a different example of your own.
     Choose a topic or level to find forms, meaning and examples.</p>
    <p><small>Offline-first static reference · 364 reviewed records: 26/26 entries academically reviewed in the original pilot,
-    294 reviewed entries through Wave 2, 35 Wave 3 vocabulary/Reading/Listening guides
+    294 reviewed entries through Wave 2 (including 20 Grammar comparisons and 10 Writing Toolkit guides), 35 Wave 3 vocabulary/Reading/Listening guides
     (NotebookLM academic PASS 35/35), and 35 Wave 4 Degree/Preposition/Writing/Reading/Listening guides
     (NotebookLM academic PASS 35/35).
     Suggested levels are learning-navigation hints, not proficiency scores.
