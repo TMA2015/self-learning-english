@@ -88,8 +88,8 @@ const pkg=async(version:string)=>{
   assert(!!document.querySelector('.sle-storage-action-row'),'Actions must have adjacent descriptions');
   const resetButton=findButton('Xóa tiến độ SLE');
   assert(resetButton&&!resetButton.disabled,'Single bottom-row reset button must be visible and clickable');
-  assert(resetButton.closest('.sle-storage-action-row')!==null,'Reset button must match existing two-column action-row layout');
-  assert(resetButton.closest('.sle-storage-section')?.nextElementSibling?.classList.contains('sle-storage-footnote'),
+  assert(resetButton?.closest('.sle-storage-action-row')!==null,'Reset button must match existing two-column action-row layout');
+  assert(resetButton?.closest('.sle-storage-section')?.nextElementSibling?.classList.contains('sle-storage-footnote'),
    'Reset action must be the final button row immediately above the existing footnote');
   assert(document.getElementById('sle-v2-reset-verify-file')===null,
    'Reset safety controls should stay hidden before the bottom-row button is clicked');
