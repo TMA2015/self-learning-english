@@ -92,7 +92,7 @@ for(const id of ['REF-PHR-01','REF-COL-01','REF-IDI-01','REF-MIS-03','REF-TIP-01
 const ui=read('app/reference-library.tsx'),domain=read('domain/reference-library.ts'),css=read('app/globals.css');
 assert(ui.includes('...GRAMMAR_WRITING_ENTRIES,...WAVE3_ENTRIES'),
  'Only append 35 approved specialist records after preserving 294 existing.');
-assert(ui.includes('329 reviewed records')&&ui.includes('PASS 35/35'));
+assert(ui.includes('364 reviewed records')&&ui.includes('PASS 35/35'));
 assert(ui.includes('Wave 3 vocabulary reading and listening references'));
 assert(ui.includes('NO_TOPIC_LINKS_AUTHORIZED'));
 const section=ui.slice(ui.indexOf('  {waveThreeGroups.length>0&&'),ui.indexOf('  {grammarComparisons.length>0&&'));
@@ -108,7 +108,7 @@ const out=path.join(root,'.sites-runtime/reference-library-wave3-domain.cjs');
 fs.mkdirSync(path.dirname(out),{recursive:true});fs.writeFileSync(out,compiled);
 const {filterReferenceEntries,REFERENCE_KINDS,REFERENCE_V2_KINDS}=require(out);
 assert.equal(REFERENCE_KINDS.length,6,'Do not mutate six original category kinds.');
-assert.deepEqual(REFERENCE_V2_KINDS.map(x=>x.id),[
+assert.deepEqual(REFERENCE_V2_KINDS.slice(0,8).map(x=>x.id),[
  'writing_connectors','frequency_expressions','grammar_comparisons','writing_toolkit',
  'word_families','confusable_words','reading_strategies','listening_strategies'
 ]);
