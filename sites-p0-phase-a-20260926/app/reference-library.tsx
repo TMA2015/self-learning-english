@@ -4,6 +4,7 @@ import source from '../content/reference-library-pilot-v1.json';
 import waveOne from '../content/reference-library-v2-wave1-reviewed.json';
 import connectorWaveTwo from '../content/reference-library-v2-writing-connectors-wave2-reviewed.json';
 import grammarWritingWaveTwo from '../content/reference-library-v2-grammar-writing-reviewed.json';
+import crossSkillWaveThree from '../content/reference-library-v3-cross-skill-reviewed.json';
 import fullVerbs from '../content/reference-library-v2-irregular-candidate.json';
 import {foundationRequest} from '../infrastructure/browser/client-services';
 import type {Catalog} from './foundation';
@@ -47,10 +48,37 @@ const GRAMMAR_WRITING_ENTRIES:ReferenceEntry[]=
      steps:x.steps,worked_micro_example:x.worked_micro_example,self_check:x.self_check,
      avoid:x.avoid,keywords:x.keywords}
  );
+type ReviewedWaveThree={
+ id:string;kind:ReferenceKind;title:string;suggested_level:string;register_or_mode:string;
+ meaning_or_strategy:string;pattern_or_procedure:string;independent_illustration:string;
+ contrast_or_reasoning:string;watch_out_or_limits:string;learner_self_check:string;search_hints:string[];
+};
+const WAVE3_ENTRIES:ReferenceEntry[]=(crossSkillWaveThree.entries as unknown as ReviewedWaveThree[]).map(x=>{
+ const skill:ReferenceSkill=x.kind==='reading_strategies'?'reading'
+  :x.kind==='listening_strategies'?'listening':'vocabulary';
+ // Source-authored register detail is rendered verbatim. Only unambiguous
+ // standard tags are projected into legacy navigation filter.
+ const reg=x.register_or_mode.toLowerCase();
+ const register:ReferenceRegister=reg.startsWith('neutral to formal')?'neutral to formal'
+  :reg.startsWith('neutral')?'neutral'
+  :reg.startsWith('informal')?'informal'
+  :reg.startsWith('formal')?'formal':'not_tagged';
+ return {id:x.id,kind:x.kind,term:x.title,meaning:x.meaning_or_strategy,
+  example:x.independent_illustration,note:x.watch_out_or_limits,
+  skill,level:'not_tagged',register,suggested_level:x.suggested_level,
+  register_or_mode:x.register_or_mode,meaning_or_strategy:x.meaning_or_strategy,
+  pattern_or_procedure:x.pattern_or_procedure,independent_illustration:x.independent_illustration,
+  contrast_or_reasoning:x.contrast_or_reasoning,watch_out_or_limits:x.watch_out_or_limits,
+  learner_self_check:x.learner_self_check,search_hints:x.search_hints};
+});
+const WAVE3_KINDS:ReferenceKind[]=[
+ 'phrasal_verbs','collocations','word_families','confusable_words','idioms',
+ 'reading_strategies','listening_strategies'
+];
 const ENTRIES=[...source.entries,
  ...waveOne.entries.filter(x=>x.kind!=='irregular_verbs'),
  ...connectorWaveTwo.entries,
- ...CORPUS_ENTRIES,...GRAMMAR_WRITING_ENTRIES] as ReferenceEntry[];
+ ...CORPUS_ENTRIES,...GRAMMAR_WRITING_ENTRIES,...WAVE3_ENTRIES] as ReferenceEntry[];
 const ALPHABET='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 // This generic but correct reminder occurs in 141/185 corpus records.
 // Leave reviewed source unchanged; omit it from repeated lookup rows.
@@ -90,9 +118,11 @@ export function ReferenceLibrary({
  const definite=results.filter(e=>e.kind==='frequency_expressions'&&e.frequency_type==='definite_frequency');
  const grammarComparisons=results.filter(e=>e.kind==='grammar_comparisons');
  const writingToolkit=results.filter(e=>e.kind==='writing_toolkit');
+ const waveThree=results.filter(e=>e.id.startsWith('REF3-'));
+ const waveThreeGroups=WAVE3_KINDS.map(k=>({kind:k,rows:waveThree.filter(e=>e.kind===k)})).filter(x=>x.rows.length>0);
  const otherCards=results.filter(e=>e.kind!=='irregular_verbs'&&
   e.kind!=='writing_connectors'&&e.kind!=='frequency_expressions'&&
-  e.kind!=='grammar_comparisons'&&e.kind!=='writing_toolkit');
+  e.kind!=='grammar_comparisons'&&e.kind!=='writing_toolkit'&&!e.id.startsWith('REF3-'));
  const writingFunctions=[...new Set(connectors.map(e=>e.function||'General'))];
  useEffect(()=>{
   if(catalog)return;
@@ -120,17 +150,18 @@ export function ReferenceLibrary({
   <div className="eyebrow">LEARN · QUICK REFERENCE</div>
   <div className="page-heading"><div>
    <h1>English Reference Library</h1>
-   <p>Look up irregular verbs, writing connectors, frequency, grammar comparisons, writing techniques and useful expressions.</p>
+   <p>Look up irregular verbs, writing connectors, grammar, vocabulary in context, reading and listening strategies.</p>
   </div></div>
   <section className="panel sle-reference-intro" aria-label="How to use this library">
    <p>Use these examples to understand a pattern, then try a different example of your own.
     Choose a topic or level to find forms, meaning and examples.</p>
-   <p><small>Offline-first static reference · 294 reviewed records: 26/26 entries academically reviewed in the original pilot,
-    264 existing lookup entries in total, plus 20 Grammar comparisons and 10 Writing Toolkit guides
-    (NotebookLM academic PASS 30/30).
+   <p><small>Offline-first static reference · 329 reviewed records: 26/26 entries academically reviewed in the original pilot,
+    264 earlier lookup entries plus 20 Grammar comparisons and 10 Writing Toolkit guides
+    (NotebookLM academic PASS 30/30), plus 35 Wave 3 vocabulary, Reading and Listening
+    reference cards (NotebookLM academic PASS 35/35).
     Suggested levels are learning-navigation hints, not proficiency scores.
     No answers, tests, AI evaluation or learner scores are stored here.
-    Grammar/Writing specialist cards do not assert unverified topic lesson links.</small></p>
+    Specialist cards do not assert unverified topic lesson links.</small></p>
   </section>
   <section className="panel sle-reference-filters" aria-label="Search and filter references">
    <div className="sle-reference-filter-grid">
@@ -239,6 +270,29 @@ export function ReferenceLibrary({
      <Related entry={entry}/>
     </article>)}
    </div>
+  </section>}
+  {waveThreeGroups.length>0&&<section className="sle-reference-section" aria-label="Wave 3 vocabulary reading and listening references">
+   <h2>Vocabulary in context · Reading · Listening ({waveThree.length} matching)</h2>
+   <p className="muted">35 independently reviewed, unscored reference cards. Reading examples are invented mini-texts.
+    Listening illustrations are fictional teaching situations, not audio transcripts, graded stimuli or hearing evidence.
+    The current lesson player controls when a real transcript may appear after submission; this library never reveals live answer keys.</p>
+   {waveThreeGroups.map(group=><div className="sle-ref-wave3-group" key={group.kind} aria-label={'Wave 3 '+kindLabel(group.kind)}>
+    <h3>{kindLabel(group.kind)} ({group.rows.length})</h3>
+    <div className="sle-ref-wave2-grid sle-ref-wave3-grid">
+     {group.rows.map(entry=><article className="panel sle-ref-wave2-card sle-ref-wave3-card" key={entry.id}>
+      <div className="sle-reference-tags"><span>{kindLabel(entry.kind)}</span>
+       <span>Suggested {entry.suggested_level}</span><span>{entry.register_or_mode}</span></div>
+      <h4>{entry.term}</h4>
+      <p><strong>Meaning / strategy:</strong> {entry.meaning_or_strategy}</p>
+      <p><strong>Pattern / procedure:</strong> {entry.pattern_or_procedure}</p>
+      <p><strong>Independent illustration:</strong> {entry.independent_illustration}</p>
+      <p><strong>Compare / why:</strong> {entry.contrast_or_reasoning}</p>
+      <p className="sle-ref-caution"><strong>Watch out / limits:</strong> {entry.watch_out_or_limits}</p>
+      <p><strong>Check yourself:</strong> {entry.learner_self_check}</p>
+      {/* Academic NO_TOPIC_LINKS_AUTHORIZED: no learner writes, scoring or lesson links. */}
+     </article>)}
+    </div>
+   </div>)}
   </section>}
   {grammarComparisons.length>0&&<section className="sle-reference-section" aria-label="Grammar comparison references">
    <h2>Grammar comparisons ({grammarComparisons.length} matching)</h2>
