@@ -381,7 +381,7 @@ export default function Home(){
      return response.structuredResult;
     }:undefined}/> )}
 
- {view==="reference"&&<ReferenceLibrary catalog={foundationCatalog} onCatalog={setFoundationCatalog} onOpenLesson={(id,skill)=>void openReferenceLesson(id,skill)}/>}
+ {view==="reference"&&<ReferenceLibrary catalog={foundationCatalog} onCatalog={setFoundationCatalog} onOpenLesson={(id,skill)=>{if(skill!=="listening")void openReferenceLesson(id,skill)}}/>}
  {view==="diagnostic"&&<DiagnosticAssessment value={state.diagnosticV2} archive={state.diagnosticArchive??[]} onChange={diagnosticV2=>update({diagnosticV2,...(state.diagnosticV2&&state.diagnosticV2.startedAt!==diagnosticV2.startedAt?{diagnosticArchive:[...(state.diagnosticArchive??[]),state.diagnosticV2]}:{})})} onFinish={finishDiagnostic} showVi={!!state.vietnameseSupport}/>}
  {view==="profile"&&<LearnerProfile profile={state.profile??initialProfile} model={state.learnerModel} onChange={updateProfile} showVi={!!state.vietnameseSupport}/>}
  {view==="courses"&&<MyCourses data={courseData} error={courseError} busy={courseBusy} onSelect={id=>void selectCourse(id)} onContinue={()=>void (async()=>{if(await selectCourse(WRITING_COURSE_ID))await navigate('writing-course')})()} onRecommendations={()=>void navigate("plan")}/>}
