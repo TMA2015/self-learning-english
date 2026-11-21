@@ -31,7 +31,7 @@ const cssBox=(e:Element)=>e.getBoundingClientRect();
   await wait(()=>!!document.querySelector('.sle-reference-table-scroll'),'Reference mounted');
   const root=document.querySelector('.sle-reference')!,table=document.querySelector('.sle-reference-table-scroll') as HTMLElement;
   const categories=[...document.querySelectorAll('.sle-reference-category-filter')] as HTMLButtonElement[];
-  check(categories.length===11,'10 categories (six pilot + four reviewed reference extensions) plus all');
+  check(categories.length===15,'14 stable category kinds (six pilot + eight extensions) plus all');
   check(Math.ceil(cssBox(root).right)<=width+2,'Reference root extends beyond fixed '+width+'px container');
   check(Math.ceil(cssBox(table).right)<=width+2,'Table scroll region escapes '+width+'px container');
   const tableElement=table.querySelector('table')!;
@@ -57,7 +57,7 @@ const cssBox=(e:Element)=>e.getBoundingClientRect();
   const cards=[...document.querySelectorAll('.sle-reference-card')];
   check(cards.length===20,'Static cards available at narrow width');
   for(const card of cards)check(cssBox(card).right<=width+2,'Card overflows '+width+'px layout');
-  const waveTwoCards=[...document.querySelectorAll('.sle-ref-wave2-card')];
+  const waveTwoCards=[...document.querySelectorAll('.sle-ref-wave2-card:not(.sle-ref-wave3-card)')];
   check(waveTwoCards.length===30,'20 Grammar and 10 Writing reference cards must render');
   for(const card of waveTwoCards){
    const rect=cssBox(card);
@@ -65,9 +65,16 @@ const cssBox=(e:Element)=>e.getBoundingClientRect();
    check(rect.width>=Math.min(width-44,280),
     'Grammar/Writing card must remain readable at 320px and in iPad two-column layout');
   }
+  const waveThreeCards=[...document.querySelectorAll('.sle-ref-wave3-card')];
+  check(waveThreeCards.length===35,'35 new cross-skill cards must render');
+  for(const card of waveThreeCards){
+   const rect=cssBox(card);
+   check(rect.left>=-2&&rect.right<=width+2,'Cross-skill card exceeds '+width+'px');
+   check(rect.width>=Math.min(width-44,280),'Cross-skill card too narrow for reading on '+width+'px');
+  }
   const result={type:'reference',layoutWidth:width,actualViewport:window.innerWidth,
    tableScrollNeeded:needsScroll,categories:categories.length,visibleCards:cards.length,
-   waveTwoCards:waveTwoCards.length};
+   waveTwoCards:waveTwoCards.length,waveThreeCards:waveThreeCards.length};
   status.textContent='PASS_RESPONSIVE '+JSON.stringify(result);
  }else if(mode==='writing'){
   createRoot(app).render(<AnyTopicWritingReview/>);
