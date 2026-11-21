@@ -62,7 +62,8 @@ const cssBox=(e:Element)=>e.getBoundingClientRect();
   for(const card of waveTwoCards){
    const rect=cssBox(card);
    check(rect.left>=-2&&rect.right<=width+2,'Grammar/Writing card overflows '+width+'px layout');
-   check(rect.width>=width*.65,'Grammar/Writing card too narrow on '+width+'px layout');
+   check(rect.width>=Math.min(width-44,280),
+    'Grammar/Writing card must remain readable at 320px and in iPad two-column layout');
   }
   const result={type:'reference',layoutWidth:width,actualViewport:window.innerWidth,
    tableScrollNeeded:needsScroll,categories:categories.length,visibleCards:cards.length,
