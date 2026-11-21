@@ -1,0 +1,580 @@
+{
+  "dataset_id": "SLE-REF-W2-GRAMMAR-WRITING-R1-20261121",
+  "review_status": "NOTEBOOKLM_PASS_30_OF_30",
+  "source_standard": "SLE-MASTER-001 v1.2.1",
+  "reviewed_source_packet": "notebooklm/SLE_REF_W2_GRAMMAR_WRITING_R1_20261121.md",
+  "review_verdict": "Owner-provided independent NotebookLM review: 20/20 Grammar +10/10 Writing Toolkit PASS; 0 mandatory corrections; no topic-linked lessons authorized.",
+  "release_status": "STAGED_DRAFT_NOT_RELEASED",
+  "counts": {
+    "grammar_comparisons": 20,
+    "writing_toolkit": 10,
+    "total": 30
+  },
+  "entries": [
+    {
+      "id": "REF2-GRM-001",
+      "kind": "grammar_comparisons",
+      "title": "Present simple vs present continuous",
+      "suggested_level": "A1–A2",
+      "concept": "habit/general pattern vs action in progress or temporary situation.",
+      "use_decision": "Choose the present simple for a recurring routine; the present continuous often emphasizes what is happening around now or is temporary.",
+      "patterns": "subject + base verb (-s/-es for he/she/it) vs am/is/are + -ing.",
+      "example": "Maya takes the bus every weekday. Today she is walking to school.",
+      "contrast": "The first clause is a regular habit; the second describes today's exception.",
+      "watch_out": "Avoid treating every now sentence as continuous: many state verbs normally take simple forms (I know the answer). Some state verbs vary by meaning (I'm thinking about the problem).",
+      "keywords": [
+        "routine",
+        "temporary",
+        "now",
+        "-ing",
+        "present forms"
+      ]
+    },
+    {
+      "id": "REF2-GRM-002",
+      "kind": "grammar_comparisons",
+      "title": "Past simple vs present perfect",
+      "suggested_level": "A2–B1",
+      "concept": "finished-time narrative vs past event connected to the present or an unspecified life experience.",
+      "use_decision": "Explicit finished past times normally go with past simple; present perfect can connect a past event to present relevance without locating it at a finished time.",
+      "patterns": "subject + V2 vs have/has + past participle.",
+      "example": "I visited Da Nang last July. I have visited Da Nang several times.",
+      "contrast": "The first visit is dated; the second statement counts experience without saying when.",
+      "watch_out": "Avoid I have visited Da Nang last July in standard teaching use. Present perfect use varies with dialect and context; do not claim all varieties express the contrast identically.",
+      "keywords": [
+        "experience",
+        "last year",
+        "ever",
+        "present perfect",
+        "finished time"
+      ]
+    },
+    {
+      "id": "REF2-GRM-003",
+      "kind": "grammar_comparisons",
+      "title": "Past continuous alongside past simple",
+      "suggested_level": "A2",
+      "concept": "background ongoing activity and a shorter event in a narrative.",
+      "use_decision": "Past continuous can set the scene; past simple can report the event that happens during it.",
+      "patterns": "was/were + -ing alongside a simple-past clause.",
+      "example": "I was drawing a map when the lights went out.",
+      "contrast": "Drawing was underway; the power cut is presented as an event.",
+      "watch_out": "Not every clause with when requires a continuous tense. Two past continuous clauses may describe simultaneous ongoing activities.",
+      "keywords": [
+        "interrupted action",
+        "while",
+        "when",
+        "background event"
+      ]
+    },
+    {
+      "id": "REF2-GRM-004",
+      "kind": "grammar_comparisons",
+      "title": "Present perfect simple vs continuous",
+      "suggested_level": "B1",
+      "concept": "completed results/number of outcomes vs duration or continuing activity.",
+      "use_decision": "Use perfect simple to foreground a result or amount; perfect continuous often emphasizes activity or duration.",
+      "patterns": "have/has + participle vs have/has been + -ing.",
+      "example": "I have read three chapters. I have been reading for an hour.",
+      "contrast": "Three chapters focuses on output; an hour focuses on time spent.",
+      "watch_out": "Both forms can overlap; continuous is not always appropriate with state verbs (I have known her for years). Do not equate continuous mechanically with “unfinished”.",
+      "keywords": [
+        "have been doing",
+        "duration",
+        "since",
+        "for",
+        "result",
+        "completed"
+      ]
+    },
+    {
+      "id": "REF2-GRM-005",
+      "kind": "grammar_comparisons",
+      "title": "Will vs be going to for future reference",
+      "suggested_level": "A2",
+      "concept": "predictions and intentions, interpreted through context.",
+      "use_decision": "will commonly expresses an on-the-spot decision or prediction; be going to can signal a prior intention or a prediction based on present evidence.",
+      "patterns": "will + base vs am/is/are going to + base.",
+      "example": "I think our team will win. Look at those dark clouds—it is going to rain.",
+      "contrast": "The second speaker points to present evidence.",
+      "watch_out": "Both patterns can make predictions; these are tendencies, not an absolute ban on alternative choices.",
+      "keywords": [
+        "intention",
+        "prediction",
+        "evidence",
+        "plans",
+        "future"
+      ]
+    },
+    {
+      "id": "REF2-GRM-006",
+      "kind": "grammar_comparisons",
+      "title": "Present continuous arrangements vs going-to intentions",
+      "suggested_level": "A2",
+      "concept": "scheduled personal arrangement vs intended action.",
+      "use_decision": "Present continuous often signals an arranged future event, especially with a time/place; going to can focus on intention.",
+      "patterns": "am/is/are + -ing + future time vs be going to + base.",
+      "example": "I'm meeting the club leader at three on Friday. I'm going to ask her about the project.",
+      "contrast": "The meeting is an arrangement; the question is the speaker's intention.",
+      "watch_out": "These expressions overlap; not every present continuous clause is future, and the arrangement meaning needs context.",
+      "keywords": [
+        "appointments",
+        "future arrangements",
+        "plans",
+        "intention"
+      ]
+    },
+    {
+      "id": "REF2-GRM-007",
+      "kind": "grammar_comparisons",
+      "title": "A/an vs the: first and shared reference",
+      "suggested_level": "A1–A2",
+      "concept": "introducing one non-specific countable item vs identifying a particular one.",
+      "use_decision": "a/an often introduces one non-specific singular countable noun; the refers to an identifiable referent in context.",
+      "patterns": "a/an + singular countable noun; the + noun phrase where identifiable.",
+      "example": "I bought a notebook. The notebook has a blue cover.",
+      "contrast": "The second mention points back to the already introduced notebook.",
+      "watch_out": "a/an depends on pronunciation (an hour, a university). the has more uses than second mention; do not teach a fixed “first mention = a” rule for every context.",
+      "keywords": [
+        "articles",
+        "first mention",
+        "specific",
+        "countable",
+        "an hour"
+      ]
+    },
+    {
+      "id": "REF2-GRM-008",
+      "kind": "grammar_comparisons",
+      "title": "No article vs the for general and specific groups",
+      "suggested_level": "A2",
+      "concept": "plural/uncountable nouns used generally vs identified referents.",
+      "use_decision": "A plural or uncountable noun can appear without an article when speaking generally; the can refer to a specific identifiable set or substance.",
+      "patterns": "plural noun / uncountable noun vs the + noun.",
+      "example": "Books can be expensive. The books on this desk are free.",
+      "contrast": "First is general; second restricts the group.",
+      "watch_out": "Some institutions, geographical names and generic uses of the follow additional patterns. Do not use this basic contrast as a universal article rule.",
+      "keywords": [
+        "zero article",
+        "plural",
+        "general reference",
+        "definite article"
+      ]
+    },
+    {
+      "id": "REF2-GRM-009",
+      "kind": "grammar_comparisons",
+      "title": "Some vs any: neutral questions and offers",
+      "suggested_level": "A1–A2",
+      "concept": "unspecified quantities in statements, questions and requests.",
+      "use_decision": "some is common in affirmative statements and offers; any is common in neutral questions and negatives, but neither distribution is absolute.",
+      "patterns": "some/any + plural countable or uncountable noun in these common contexts.",
+      "example": "We have some fruit. Do we have any bread? Would you like some tea?",
+      "contrast": "The last question is an offer, so some is natural.",
+      "watch_out": "any can occur in affirmative free-choice meanings (Choose any seat); do not label it always negative.",
+      "keywords": [
+        "offers",
+        "questions",
+        "some",
+        "any",
+        "negative"
+      ]
+    },
+    {
+      "id": "REF2-GRM-010",
+      "kind": "grammar_comparisons",
+      "title": "Each, every and all",
+      "suggested_level": "A2–B1",
+      "concept": "separate individuals, a whole set, and totality.",
+      "use_decision": "each often highlights members separately; every treats all members of a set generally; all can refer to the whole plural set.",
+      "patterns": "each/every + singular countable noun vs all (the) + plural noun where appropriate.",
+      "example": "Each student received a card. Every student needed a card. All the students joined the game.",
+      "contrast": "The first distributes cards individually; the others describe the whole group from different perspectives.",
+      "watch_out": "Avoid every students in this use. These are meaning tendencies, not perfect one-to-one translations.",
+      "keywords": [
+        "determiners",
+        "agreement",
+        "whole group",
+        "individually"
+      ]
+    },
+    {
+      "id": "REF2-GRM-011",
+      "kind": "grammar_comparisons",
+      "title": "Few/a few and little/a little",
+      "suggested_level": "B1",
+      "concept": "quantity with countable plurals vs uncountable nouns, and the speaker's evaluation of sufficiency.",
+      "use_decision": "a few/a little often convey some quantity, potentially enough; few/little without a often emphasize scarcity.",
+      "patterns": "few/a few + plural countable noun vs little/a little + uncountable noun.",
+      "example": "We have a few minutes, so we can check the map. We have little time, so we need to leave now.",
+      "contrast": "The first presents remaining time as usable; the second stresses shortage.",
+      "watch_out": "Context and tone matter; a few does not guarantee a quantity is objectively sufficient. Do not merge with the pilot's separate many vs much reference.",
+      "keywords": [
+        "countable",
+        "uncountable",
+        "scarcity",
+        "enough",
+        "a little"
+      ]
+    },
+    {
+      "id": "REF2-GRM-012",
+      "kind": "grammar_comparisons",
+      "title": "Must, have to and should",
+      "suggested_level": "A2–B1",
+      "concept": "strong obligation/necessity vs advice.",
+      "use_decision": "must and have to can express obligation or necessity; should normally gives advice or expectation rather than the same force of obligation.",
+      "patterns": "must/should + base; have/has to + base.",
+      "example": "Visitors must wear helmets on this ride. We have to register by Friday. You should drink water after a long walk.",
+      "contrast": "The first two impose or report requirements; the third recommends an action.",
+      "watch_out": "must = personal and have to = external is not a reliable absolute division; negative meanings need separate treatment (mustn't vs don't have to).",
+      "keywords": [
+        "modal verbs",
+        "obligation",
+        "necessity",
+        "advice"
+      ]
+    },
+    {
+      "id": "REF2-GRM-013",
+      "kind": "grammar_comparisons",
+      "title": "Mustn't vs don't have to",
+      "suggested_level": "A2",
+      "concept": "prohibition vs absence of obligation.",
+      "use_decision": "mustn't normally prohibits; don't have to says an action is not required, without forbidding it.",
+      "patterns": "must not / mustn't + base vs do/does not have to + base.",
+      "example": "You mustn't enter the laboratory without permission. You don't have to stay after the meeting.",
+      "contrast": "Entering the laboratory is forbidden in that condition; staying after the meeting is optional.",
+      "watch_out": "Do not teach mustn't as the negative of “it is necessary”; dialect and politeness can change wording, but the basic meaning contrast is important.",
+      "keywords": [
+        "don't have to",
+        "no need",
+        "forbidden",
+        "prohibition"
+      ]
+    },
+    {
+      "id": "REF2-GRM-014",
+      "kind": "grammar_comparisons",
+      "title": "Can and could in requests and ability",
+      "suggested_level": "A2",
+      "concept": "present ability and request politeness; contextual meanings of could.",
+      "use_decision": "can can report ability or ask for help; could may sound more tentative/polite in requests and can refer to past general ability.",
+      "patterns": "can/could + base; questions Can/Could + subject + base...?",
+      "example": "Can you show me the timetable? Could you show me the timetable, please?",
+      "contrast": "Both are requests; the second is often more tentative, not automatically more grammatical.",
+      "watch_out": "could is not a universal replacement for specific successful past actions; was/were able to and context may matter. Not all could uses are past.",
+      "keywords": [
+        "ability",
+        "polite request",
+        "past ability",
+        "can",
+        "could"
+      ]
+    },
+    {
+      "id": "REF2-GRM-015",
+      "kind": "grammar_comparisons",
+      "title": "Zero conditional vs first conditional",
+      "suggested_level": "A2–B1",
+      "concept": "general consequences vs realistic future possibilities.",
+      "use_decision": "Zero conditional commonly states a general regularity; first conditional often discusses a plausible future condition and outcome.",
+      "patterns": "if + present, present vs if + present, will + base (typical patterns, not exclusive).",
+      "example": "If water freezes, it expands. If it rains tomorrow, we'll practise indoors.",
+      "contrast": "One refers to a general pattern; the other to a particular future possibility.",
+      "watch_out": "Other modal/imperative forms are possible; do not apply the simplistic ban “never use will after if” across every meaning or construction.",
+      "keywords": [
+        "if",
+        "cause and effect",
+        "future possibility",
+        "zero",
+        "first conditional"
+      ]
+    },
+    {
+      "id": "REF2-GRM-016",
+      "kind": "grammar_comparisons",
+      "title": "Second conditional and imagined situations",
+      "suggested_level": "B1",
+      "concept": "hypothetical or unlikely situations rather than a stated actual plan.",
+      "use_decision": "Use the common second-conditional pattern to imagine a different present/future situation and its consequence.",
+      "patterns": "if + past form, would + base.",
+      "example": "If I had more free time, I would join the science club.",
+      "contrast": "The speaker imagines having more free time; this is not a report that they currently do.",
+      "watch_out": "Past-form syntax does not necessarily describe past time. If I were... is often preferred in formal hypothetical use, while was occurs in some contexts and dialects.",
+      "keywords": [
+        "would",
+        "hypothetical",
+        "unreal",
+        "second conditional",
+        "if I were"
+      ]
+    },
+    {
+      "id": "REF2-GRM-017",
+      "kind": "grammar_comparisons",
+      "title": "Comparative adjectives: -er vs more",
+      "suggested_level": "A2",
+      "concept": "comparing two entities on one property.",
+      "use_decision": "Shorter adjectives often use -er; many longer adjectives use more, with lexical and spelling exceptions.",
+      "patterns": "adjective-er + than / more + adjective + than.",
+      "example": "This path is shorter than the other one. This plan is more reliable than the first plan.",
+      "contrast": "The two patterns express comparison but attach different morphology.",
+      "watch_out": "Avoid more shorter in a regular comparison. Some two-syllable adjectives permit variation; good → better is irregular.",
+      "keywords": [
+        "comparison",
+        "-er",
+        "than",
+        "more",
+        "better",
+        "spelling"
+      ]
+    },
+    {
+      "id": "REF2-GRM-018",
+      "kind": "grammar_comparisons",
+      "title": "Gerund or to-infinitive after common verbs",
+      "suggested_level": "A2–B1",
+      "concept": "complement patterns selected by the main verb.",
+      "use_decision": "Verbs such as enjoy commonly take an -ing complement; verbs such as hope commonly take a to-infinitive.",
+      "patterns": "enjoy + -ing vs hope + to + base.",
+      "example": "I enjoy drawing city maps. I hope to visit the museum next week.",
+      "contrast": "Both describe activities but the preceding verbs select different complements.",
+      "watch_out": "Avoid enjoy to draw in standard use. Other verbs allow both with a difference in meaning (remember, stop) or little difference (start); this two-verb illustration is not a complete verb list.",
+      "keywords": [
+        "gerund",
+        "-ing",
+        "infinitive",
+        "enjoy",
+        "hope",
+        "want"
+      ]
+    },
+    {
+      "id": "REF2-GRM-019",
+      "kind": "grammar_comparisons",
+      "title": "Defining relative clauses: who, which, that",
+      "suggested_level": "B1",
+      "concept": "identifying which person or thing is meant.",
+      "use_decision": "A defining relative clause adds information needed to identify its noun; who is commonly used for people, which for things, and that in many defining clauses.",
+      "patterns": "noun + who/which/that + clause in suitable subject/object roles.",
+      "example": "The student who designed the poster won a prize. The poster that she designed is on the wall.",
+      "contrast": "Each clause narrows its preceding noun to a particular person or poster.",
+      "watch_out": "Do not insert defining-clause commas here. Some object relatives may omit the pronoun; subject relatives generally cannot. Non-defining relative clauses follow different rules.",
+      "keywords": [
+        "relative clause",
+        "who",
+        "which",
+        "that",
+        "defining",
+        "pronoun"
+      ]
+    },
+    {
+      "id": "REF2-GRM-020",
+      "kind": "grammar_comparisons",
+      "title": "Direct and embedded question word order",
+      "suggested_level": "B1",
+      "concept": "forming a polite embedded question without repeating main-question inversion.",
+      "use_decision": "Direct information questions may invert auxiliary and subject; embedded questions typically retain statement order inside the subordinate clause.",
+      "patterns": "Where is + noun? vs Could you tell me where + noun + is?",
+      "example": "Where is the community library? Could you tell me where the community library is?",
+      "contrast": "The second is a request containing an embedded question, so where the library is has declarative order.",
+      "watch_out": "Avoid Could you tell me where is the library? in ordinary embedded-question grammar. Not all direct questions use the same inversion pattern; check subject questions separately.",
+      "keywords": [
+        "indirect questions",
+        "word order",
+        "auxiliary inversion",
+        "polite"
+      ]
+    },
+    {
+      "id": "REF2-WTK-001",
+      "kind": "writing_toolkit",
+      "title": "Decide required content before optional detail",
+      "suggested_level": "A2",
+      "process_step": "understand the task and select relevant ideas.",
+      "purpose": "Apply Topic / Task / Must Include / Boundary to distinguish non-negotiable requirements from interesting extras; complement (do not duplicate) pilot REF-TIP-04.",
+      "steps": "Underline intended reader, action, facts that must appear, tone/length limit; mark optional details separately.",
+      "worked_micro_example": "For a fictional message asking a club leader to change a meeting room, mandatory facts are which meeting, new room, day/time; a long history of the club is optional and likely unnecessary.",
+      "self_check": "Can the intended reader act on the message without requesting missing information?",
+      "avoid": "Do not treat every personal preference as a required detail. This is guidance, not automated evaluation of a learner's draft.",
+      "keywords": [
+        "analyze task",
+        "audience",
+        "must include",
+        "boundary",
+        "instructions"
+      ]
+    },
+    {
+      "id": "REF2-WTK-002",
+      "kind": "writing_toolkit",
+      "title": "Brainstorm and select, rather than list everything",
+      "suggested_level": "A2–B1",
+      "process_step": "idea generation and relevance check.",
+      "purpose": "Generate several plausible ideas and choose those that address the actual prompt.",
+      "steps": "Produce 3–5 brief candidate ideas; test each against the topic, audience and goal; retain 2–3 that can be explained clearly.",
+      "worked_micro_example": "For a fictional letter suggesting improvements to a school courtyard, shade, seating, litter bins are relevant; the writer's favourite cartoon is not unless directly connected.",
+      "self_check": "Can I say in one sentence why each selected idea belongs in this response?",
+      "avoid": "More ideas do not automatically mean a better answer. Never auto-score idea quality by counting bullets.",
+      "keywords": [
+        "brainstorming",
+        "selection",
+        "relevance",
+        "plan ideas"
+      ]
+    },
+    {
+      "id": "REF2-WTK-003",
+      "kind": "writing_toolkit",
+      "title": "Give each paragraph one clear job",
+      "suggested_level": "A2–B1",
+      "process_step": "organizing a text.",
+      "purpose": "Prevent a paragraph from jumping between unrelated purposes.",
+      "steps": "Label each planned paragraph's role before drafting: identify the situation, give a reason or example, ask for an action, or close appropriately.",
+      "worked_micro_example": "In a fictional request to organize a recycling drive: paragraph 1 explains the request; paragraph 2 presents benefits and a feasible step; paragraph 3 asks for approval.",
+      "self_check": "Does every sentence in the paragraph help its stated job?",
+      "avoid": "Paragraph number depends on text length and genre; a short message does not need a rigid three-paragraph template.",
+      "keywords": [
+        "outline",
+        "paragraph function",
+        "organization",
+        "coherence"
+      ]
+    },
+    {
+      "id": "REF2-WTK-004",
+      "kind": "writing_toolkit",
+      "title": "Topic sentence vs supporting detail",
+      "suggested_level": "B1",
+      "process_step": "developing a paragraph.",
+      "purpose": "Make the central point discoverable and support it with relevant specifics.",
+      "steps": "State a focused point; choose one explanation and one concrete, related illustration; check the illustration truly supports the point.",
+      "worked_micro_example": "A quiet reading corner would help students concentrate. For example, soft seating away from the busy entrance could reduce distractions.",
+      "self_check": "Is the topic sentence narrower than “The school is good,” and does the next sentence actually explain it?",
+      "avoid": "Not every literary or narrative paragraph requires an explicit opening topic sentence.",
+      "keywords": [
+        "topic sentence",
+        "main idea",
+        "support",
+        "focus"
+      ]
+    },
+    {
+      "id": "REF2-WTK-005",
+      "kind": "writing_toolkit",
+      "title": "Example, reason and evidence are not identical",
+      "suggested_level": "B1",
+      "process_step": "supporting a claim responsibly.",
+      "purpose": "Distinguish an illustrative case, a causal explanation and verified external evidence.",
+      "steps": "Name the point; label whether support is an example, a reason or sourced evidence; avoid inventing survey numbers or quotations.",
+      "worked_micro_example": "A library may be useful after school because some students need a quiet place to work is a reason; a student studying there after class is an illustration, not a measured school-wide outcome.",
+      "self_check": "Am I presenting an assumption as a proven fact?",
+      "avoid": "A plausible example alone does not establish that a claim is universally true; reference content must never fabricate an external citation.",
+      "keywords": [
+        "evidence",
+        "example",
+        "reason",
+        "assertion",
+        "factual support"
+      ]
+    },
+    {
+      "id": "REF2-WTK-006",
+      "kind": "writing_toolkit",
+      "title": "Claim → illustration → explanation",
+      "suggested_level": "B1",
+      "process_step": "reasoning in an opinion paragraph.",
+      "purpose": "Make the reasoning visible rather than stacking connectors.",
+      "steps": "Offer a claim; give one concrete illustration; explicitly state how it helps justify the claim.",
+      "worked_micro_example": "A small garden could improve our courtyard. Students could grow herbs there. Caring for the plants would give them a practical shared responsibility.",
+      "self_check": "After the example, have I explained its relevance rather than assuming the reader will infer it?",
+      "avoid": "This is a flexible scaffold, not a universal paragraph formula or automatic argument-quality score.",
+      "keywords": [
+        "claim",
+        "explain",
+        "support",
+        "argument",
+        "reasoning"
+      ]
+    },
+    {
+      "id": "REF2-WTK-007",
+      "kind": "writing_toolkit",
+      "title": "Address a reasonable counterpoint",
+      "suggested_level": "B1–B2",
+      "process_step": "balanced argument.",
+      "purpose": "Recognize a relevant limitation without simply repeating the opposing view.",
+      "steps": "State a genuine objection fairly; respond with a proportionate reason or condition.",
+      "worked_micro_example": "A school garden would need regular care. However, a rotating volunteer schedule could make the work manageable.",
+      "self_check": "Does my response address the objection, or merely restate my preference?",
+      "avoid": "This is a reasoning reference; using however does not by itself demonstrate a successful counterargument, and not every genre requires one.",
+      "keywords": [
+        "counterargument",
+        "concession",
+        "balance",
+        "respond",
+        "objection"
+      ]
+    },
+    {
+      "id": "REF2-WTK-008",
+      "kind": "writing_toolkit",
+      "title": "Match email register to audience and purpose",
+      "suggested_level": "A2–B1",
+      "process_step": "choosing tone and request language.",
+      "purpose": "Use language appropriate for a friend, classmate, teacher or community organizer without equating formality with quality.",
+      "steps": "Identify relationship and purpose; choose greeting, request wording and sign-off that suit the situation.",
+      "worked_micro_example": "To a club organizer, Could you tell me whether the room is available on Tuesday? may fit better than Hey, give us that room!",
+      "self_check": "Would the intended reader regard the request as clear and respectful?",
+      "avoid": "Formality varies by culture and relationship; a friendly tone is not inherently incorrect. Do not score register automatically from greeting words alone.",
+      "keywords": [
+        "formal",
+        "informal",
+        "email",
+        "request",
+        "audience",
+        "tone"
+      ]
+    },
+    {
+      "id": "REF2-WTK-009",
+      "kind": "writing_toolkit",
+      "title": "Paraphrase without changing the claim",
+      "suggested_level": "B1–B2",
+      "process_step": "revising expression responsibly.",
+      "purpose": "Change wording or structure while preserving the original meaning, degree of certainty and important facts.",
+      "steps": "Identify the source claim; rewrite in fresh language; compare actors, quantity, time and certainty between original and revision.",
+      "worked_micro_example": "Many students prefer quiet spaces to study can be paraphrased as Quiet study areas are popular with many students, but not Every student needs a silent room.",
+      "self_check": "Did I accidentally change many to all, might to will, or the time reference?",
+      "avoid": "Paraphrasing someone else's published wording may still require citation; this tool does not grant permission to reuse source text without attribution.",
+      "keywords": [
+        "paraphrase",
+        "meaning",
+        "certainty",
+        "avoid exaggeration",
+        "revision"
+      ]
+    },
+    {
+      "id": "REF2-WTK-010",
+      "kind": "writing_toolkit",
+      "title": "Revise for task response, clarity and correctness",
+      "suggested_level": "A2–B1",
+      "process_step": "self-check and revision before submission.",
+      "purpose": "Check more than spelling: required information, logical order, sentence readability and language accuracy.",
+      "steps": "Check (1) required details; (2) paragraph focus; (3) misleading claims; (4) verb/article accuracy; (5) sentence punctuation. Revise one concrete issue at a time.",
+      "worked_micro_example": "In a fictional event invitation, replacing It starts later with It starts at 3 p.m. on Saturday repairs a missing actionable detail.",
+      "self_check": "Would a reader understand the purpose and the next action without guessing?",
+      "avoid": "This checklist is self-guidance, not a claim that writing was semantically graded or certified. Trusted review is still needed for quality judgments.",
+      "keywords": [
+        "proofreading",
+        "revise",
+        "self-check",
+        "writing clarity",
+        "completeness"
+      ]
+    }
+  ]
+}
