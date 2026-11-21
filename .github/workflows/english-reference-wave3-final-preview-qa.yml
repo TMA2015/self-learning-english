@@ -89,7 +89,11 @@ jobs:
           node tests/p1-responsive-browser.cjs
 
       - name: Enforce full TypeScript integration guard
-        run: pnpm exec tsc --noEmit --incremental false
+        run: |
+          # Local-only generated Unit10 fixture used by an existing TSX browser test.
+          # No production curriculum or learner records are touched.
+          node scripts/compose-unit10-v121-candidate.cjs
+          pnpm exec tsc --noEmit --incremental false
 
       - name: Build English static Preview without LIVE changes
         run: pnpm build
