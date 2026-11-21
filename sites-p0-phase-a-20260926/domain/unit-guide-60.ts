@@ -29,6 +29,8 @@ const assignments:Record<string,string>={
  ...primaryAssignments.confirmed_v126,
  ...primaryAssignments.confirmed_v127,
  ...primaryAssignments.confirmed_v128,
+ // Review-approved v1.29 candidate links; only visible if that catalog is independently activated.
+ ...primaryAssignments.reviewed_v129,
 };
 export const UNIT_LEVELS:UnitLevel[]=['A1','A2','B1','B2','C1','C2'];
 export const UNIT_DEFINITIONS=authoredUnits.units;
