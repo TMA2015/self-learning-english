@@ -107,12 +107,12 @@ async function run(){
  root.render(React.createElement(FoundationDemo,{skill:'listening'}));
  await wait(()=>lessonButton(ids[0]),'real listening catalog for candidate');
  const runtime=await localAcademicRuntime();
- assert((await runtime.service.catalog()).version==='1.28.0','Staged browser AcademicService must serve v1.28.0 while preserving the reviewed Unit10 lessons and immutable v1.21 attempt');
+ assert((await runtime.service.catalog()).version==='1.29.0','Staged browser AcademicService must serve v1.29.0 while preserving reviewed Unit10 lessons and immutable v1.21 attempt');
  // A staged activation may change the active catalog, but must keep the
  // original immutable v1.21 source for the historical attempt above.
  const retained=await academic.packages();
  assert(retained.some(p=>p.version===src.schema_version&&p.digest===oldPackageDigest),
-  'Staged v1.28 activation lost the original Unit10 historical source');
+  'Staged v1.29 activation lost the original Unit10 historical source');
  const summary:{id:string,played:boolean,answered:boolean,submitted:boolean,retake:boolean}[]=[];
  for(const id of ids){
   await openLesson(id);
