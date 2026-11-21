@@ -223,3 +223,47 @@ export async function restoreLocalRecoveryV2(text:string,token:string,confirmed:
    :'Recovery remains interrupted. Retry using the same verified V2 file; do not clear this browser profile.');
  }
 }
+
+/**
+ * Reset ONLY recognized English localStorage keys in this browser origin.
+ * Required: an exported V2 backup read back from disk and SHA-verified by the
+ * UI, a fresh match against the current live data, and a typed confirmation.
+ * Never call Storage.clear(), touch Math/other origins or delete unknown keys.
+ */
+export async function clearLocalEnglishProgress(verifiedBackupSha256:string,confirmation:string):Promise<{
+ deletedKeys:number;attempts:number;versions:number
+}>{
+ if(confirmation!=='XOA SLE'||!/^[0-9a-f]{64}$/.test(verifiedBackupSha256))
+  throw Error('To clear English progress, verify a downloaded Recovery V2 and type XOA SLE.');
+ const store=currentStore();
+ if(store.getItem(RECOVERY_MARKER))
+  throw Error('Interrupted Recovery V2 detected. Do not clear the browser; complete the original recovery first.');
+ assertNoUnknownEnglishKeys(store);
+ const original=entriesIn(store);
+ if(!original.length)throw Error('There is no stored English progress to clear.');
+ const scope=assertSourceAvailable(original);
+ if(await sha256(JSON.stringify(original))!==verifiedBackupSha256)
+  throw Error('English data changed since the verified backup. Download and verify a new Recovery V2 before clearing.');
+ // No async gap between this last snapshot check and the actual removals.
+ assertNoUnknownEnglishKeys(store);
+ if(store.getItem(RECOVERY_MARKER)||JSON.stringify(entriesIn(store))!==JSON.stringify(original))
+  throw Error('English data changed or recovery started. No progress was cleared.');
+ const removed:Entry[]=[];
+ try{
+  for(const row of original){
+   store.removeItem(row.key);
+   removed.push(row);
+   if(store.getItem(row.key)!==null)throw Error('English key was not removed.');
+  }
+  if(entriesIn(store).length)throw Error('English storage still contains recognized progress keys.');
+ }catch{
+  let rolledBack=true;
+  for(const row of [...removed].reverse()){
+   try{store.setItem(row.key,row.value)}catch{rolledBack=false}
+  }
+  throw Error(rolledBack
+   ?'English reset stopped; original progress was restored. Keep the verified Recovery V2 file.'
+   :'English reset was interrupted and rollback could not finish. Keep your verified Recovery V2 file and do not save new work until recovered.');
+ }
+ return {deletedKeys:removed.length,attempts:scope.attempts,versions:scope.versions};
+}
