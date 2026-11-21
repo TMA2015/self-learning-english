@@ -68,7 +68,7 @@ fs.mkdirSync(path.dirname(out),{recursive:true});fs.writeFileSync(out,transpiled
 const {REFERENCE_KINDS,REFERENCE_V2_KINDS,filterReferenceEntries}=require(out);
 assert.equal(REFERENCE_KINDS.length,6,'preserve six reviewed pilot categories');
 assert.deepEqual(REFERENCE_V2_KINDS.slice(0,4).map(x=>x.id),['writing_connectors','frequency_expressions','grammar_comparisons','writing_toolkit'],'Preserve original four V2 category IDs/order');
-assert.equal(REFERENCE_V2_KINDS.length,8,'Wave 3 adds four specialist kinds while preserving four original v2 extensions');
+assert.equal(REFERENCE_V2_KINDS.length,11,'Wave 4 adds three more kinds without replacing existing V2 and Wave3 categories');
 // Wave 1's 15 review-approved verb IDs also occur in the separately reviewed
 // full corpus. Use corpus wordings for those IDs, never count the overlap twice.
 const corpusEntries=corpus.new_entries.map(item=>({
