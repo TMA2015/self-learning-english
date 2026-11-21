@@ -79,8 +79,8 @@ const reviewedAssignments={
 };
 assert.deepEqual(map.reviewed_v130,reviewedAssignments,'Only reviewed B2 U08/U09 links may be added');
 const runtime=fs.readFileSync(path.join(root,'infrastructure/browser/local-runtime.ts'),'utf8');
-assert(runtime.includes("from '../../content/curriculum-1.29.0-candidate.json'"));
-assert(!runtime.includes("from '../../content/curriculum-1.30.0-candidate.json'"));
+assert(runtime.includes("from '../../content/curriculum-1.30.0-candidate.json'"),'Staged v1.30 runtime must bundle exact reviewed candidate');
+assert(!runtime.includes("from '../../content/curriculum-1.29.0-candidate.json'"));
 const out='.sites-runtime/b2-u08u09-v130-schema';
 fs.rmSync(path.join(root,out),{recursive:true,force:true});fs.mkdirSync(path.join(root,out),{recursive:true});
 execFileSync(process.execPath,['node_modules/typescript/bin/tsc','domain/academic.ts','domain/content-model.ts','domain/option-order.ts','domain/unit-guide-60.ts',
