@@ -20,6 +20,9 @@ export const REFERENCE_V2_KINDS=[
  {id:'confusable_words',label:'Confusable words'},
  {id:'reading_strategies',label:'Reading strategies'},
  {id:'listening_strategies',label:'Listening strategies'},
+ {id:'degree_expressions',label:'Degree & intensity'},
+ {id:'preposition_patterns',label:'Preposition patterns'},
+ {id:'writing_functions',label:'Writing functions'},
 ] as const;
 export type ReferenceKind=typeof REFERENCE_KINDS[number]['id']|typeof REFERENCE_V2_KINDS[number]['id'];
 export type ReferenceLevel='A1'|'A2'|'B1'|'B2'|'C1'|'C2'|'not_tagged';
