@@ -16,11 +16,15 @@ export const REFERENCE_V2_KINDS=[
  {id:'frequency_expressions',label:'Frequency expressions'},
  {id:'grammar_comparisons',label:'Grammar comparisons'},
  {id:'writing_toolkit',label:'Writing toolkit'},
+ {id:'word_families',label:'Word families'},
+ {id:'confusable_words',label:'Confusable words'},
+ {id:'reading_strategies',label:'Reading strategies'},
+ {id:'listening_strategies',label:'Listening strategies'},
 ] as const;
 export type ReferenceKind=typeof REFERENCE_KINDS[number]['id']|typeof REFERENCE_V2_KINDS[number]['id'];
 export type ReferenceLevel='A1'|'A2'|'B1'|'B2'|'C1'|'C2'|'not_tagged';
 export type ReferenceRegister='neutral'|'informal'|'formal'|'neutral to formal'|'not_tagged';
-export type ReferenceSkill='grammar'|'vocabulary'|'reading'|'writing';
+export type ReferenceSkill='grammar'|'vocabulary'|'reading'|'writing'|'listening';
 export type ReferenceEntry={
  id:string;kind:ReferenceKind;level:ReferenceLevel;register:ReferenceRegister;
  term:string;meaning:string;example:string;note:string;skill:ReferenceSkill;
@@ -39,6 +43,11 @@ export type ReferenceEntry={
  process_step?:string;purpose?:string;steps?:string;
  worked_micro_example?:string;self_check?:string;avoid?:string;
  keywords?:string[];
+ // Reviewed Wave 3 educational reference fields: keep text source-authored.
+ register_or_mode?:string;meaning_or_strategy?:string;
+ pattern_or_procedure?:string;independent_illustration?:string;
+ contrast_or_reasoning?:string;watch_out_or_limits?:string;
+ learner_self_check?:string;search_hints?:string[];
 };
 export type ReferenceFilters={
  query:string;kind:'all'|ReferenceKind;level:'all'|ReferenceLevel;
@@ -67,7 +76,10 @@ export function filterReferenceEntries(
    e.qualitative_band,e.position_rule,e.verb_priority,e.suggested_level,
    e.concept,e.use_decision,e.patterns,e.contrast,e.watch_out,
    e.process_step,e.purpose,e.steps,e.worked_micro_example,
-   e.self_check,e.avoid,...(e.search_keywords??[]),...(e.keywords??[])].filter(Boolean)
+   e.self_check,e.avoid,e.register_or_mode,e.meaning_or_strategy,
+   e.pattern_or_procedure,e.independent_illustration,e.contrast_or_reasoning,
+   e.watch_out_or_limits,e.learner_self_check,...(e.search_keywords??[]),
+   ...(e.keywords??[]),...(e.search_hints??[])].filter(Boolean)
    .join(' ').normalize('NFKC').toLocaleLowerCase('en');
   return words.every(w=>text.includes(w));
  }).sort((a,b)=>{
