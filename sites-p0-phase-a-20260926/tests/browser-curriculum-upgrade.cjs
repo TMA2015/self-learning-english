@@ -80,6 +80,26 @@ class MemoryStorage{
  assert.equal((await again.academic.attempts(runtime.LOCAL_OWNER_ID)).find(a=>a.id===historical1250.id).version,'1.25.0');
  assert.equal((await again.academic.attempts(runtime.LOCAL_OWNER_ID)).find(a=>a.id===historical1280.id).version,'1.28.0');
  assert.deepEqual((await again.academic.attempts(runtime.LOCAL_OWNER_ID)).filter(a=>oldAttempts.some(o=>o.id===a.id)),oldAttempts);
+ // Active v1.29 Reading must be playable end-to-end, not merely discoverable in the catalog.
+ const newReading=current.lessons.find(l=>l.id==='REA-C1-02');
+ assert(newReading&&newReading.activities.length===6);
+ const c1ReadingAttempt=await again.service.start(newReading.id,'synthetic-v129-c1-reading');
+ assert.equal(c1ReadingAttempt.version,'1.29.0');
+ await again.service.draft(c1ReadingAttempt.id,Object.fromEntries(newReading.activities.map(q=>[q.id,q.answer.correct_option_id])));
+ const c1ReadingResult=await again.service.submit(c1ReadingAttempt.id);
+ assert.equal(c1ReadingResult.status,'scored');
+ assert(c1ReadingResult.results.every(q=>q.correct),'New C1 source-grounded objective answers must score correctly');
+ assert(c1ReadingResult.evidence.every(e=>e.skill==='Reading'&&!e.level),'Objective practice cannot certify C1 proficiency');
+ // C1 Writing can be saved/submitted but cannot auto-score or claim mastery.
+ const newWriting=current.lessons.find(l=>l.id==='WRI-C1-01');
+ assert(newWriting?.activities.length===1);
+ const c1WritingAttempt=await again.service.start(newWriting.id,'synthetic-v129-c1-writing');
+ await again.service.draft(c1WritingAttempt.id,{[newWriting.activities[0].id]:'A synthetic C1 briefing that reports observations, explains limits and proposes a reversible study rather than inferring any permanent improvement.'});
+ const c1WritingResult=await again.service.submit(c1WritingAttempt.id);
+ assert.equal(c1WritingResult.status,'pending_review');
+ assert.deepEqual(c1WritingResult.evidence,[],'No automatic C1 Writing proficiency evidence');
+ assert.deepEqual((await again.academic.attempts(runtime.LOCAL_OWNER_ID)).filter(a=>oldAttempts.some(o=>o.id===a.id)),oldAttempts,
+  'New v1.29 assessments must never rewrite historic version-pinned attempts');
  await assert.rejects(()=>again.academic.addPackage({...pkg,digest:'conflict'}),/Immutable/);
  console.log('PASS: immutable 1.11 -> 1.18.0 -> 1.25.0 -> 1.28.0 -> 1.29.0 staged upgrade; 184/1256, old drafts/results/Reading notes preserved; one package key write; reload idempotent; course/state/evidence unchanged.');
 })().catch(e=>{console.error(e);process.exitCode=1});
