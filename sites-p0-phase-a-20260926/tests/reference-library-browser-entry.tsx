@@ -43,12 +43,12 @@ let selection='';
   <ReferenceLibrary catalog={catalog} onCatalog={()=>fail('Unnecessary catalog fetch')}
    onOpenLesson={(id,skill)=>{selection=id+' '+skill;report('PASS_LINK '+selection)}}/>
  );
- await wait(()=>getCount().includes('329 reference entries'),'294 previously reviewed references + 35 Wave3 cards');
+ await wait(()=>getCount().includes('364 reference entries'),'329 preserved references +35 independently reviewed Wave4 cards');
  assert(document.querySelectorAll('.sle-reference-table-scroll tbody tr').length===25,'191 reviewed verbs paginated 25 per page');
  assert(document.querySelectorAll('.sle-reference-card').length===20,'20 phrase/strategy cards');
  assert(!!document.querySelector('input[type="search"]'),'search is native search input');
- assert(document.querySelectorAll('.sle-reference-category-filter').length===15,
-  'Fourteen text-labelled category buttons plus All');
+ assert(document.querySelectorAll('.sle-reference-category-filter').length===18,
+  'Seventeen text-labelled category buttons plus All');
  if(phase==='search'){
   const badge=(kind:string)=>document.querySelector('.sle-reference-category-filter.is-'+kind) as HTMLButtonElement|null;
   assert(!!badge('idioms'),'Idioms category exists');
@@ -70,7 +70,7 @@ let selection='';
   await wait(()=>document.getElementById('app')?.textContent?.includes('No matching entries')??false,'honest empty state');
   const clear=[...document.querySelectorAll('button')].find(x=>x.textContent?.includes('Clear filters'));
   clear?.click();
-  await wait(()=>getCount().includes('329 reference entries'),'clear filters');
+  await wait(()=>getCount().includes('364 reference entries'),'clear filters');
   report('PASS_SEARCH_FILTERS');
  }else if(phase==='v2'){
   select('Reference type','writing_connectors');
@@ -177,7 +177,7 @@ let selection='';
    'NO_TOPIC_LINKS_AUTHORIZED; no learner scoring or lesson action in Writing Toolkit');
   search('');
   select('Reference type','all');
-  await wait(()=>getCount().includes('329 reference entries'),'reset wave2 filters without losing legacy items');
+  await wait(()=>getCount().includes('364 reference entries'),'reset wave2 filters without losing legacy items');
   report('PASS_W2_GRAMMAR_WRITING_30');
  }else if(phase==='wave3'){
   select('Reference type','phrasal_verbs');
@@ -208,12 +208,12 @@ let selection='';
   await wait(()=>getCount().includes('8 reference entries'),'legacy and new idioms remain together');
   search('');
   select('Reference type','reading_strategies');
-  await wait(()=>getCount().includes('5 reference entries'),'five reading strategies');
+  await wait(()=>getCount().includes('10 reference entries'),'five Wave3 +five Wave4 reading strategies');
   assert(document.querySelectorAll('[aria-label="Wave 3 Reading strategies"] .sle-ref-wave3-card').length===5,
    'reading strategies rendered as independent teaching cards');
   search('');
   select('Reference type','listening_strategies');
-  await wait(()=>getCount().includes('5 reference entries'),'five listening strategies');
+  await wait(()=>getCount().includes('10 reference entries'),'five Wave3 +five Wave4 listening strategies');
   const region=document.querySelector('[aria-label="Wave 3 Listening strategies"]');
   assert(region?.textContent?.includes('UNASSESSED')??false,
    'Missing audio requires UNASSESSED, not a guessed score');
@@ -228,10 +228,56 @@ let selection='';
   await wait(()=>getCount().includes('2 reference entries'),'A1–A2 navigation includes two gist/purpose guides');
   select('Suggested level','all');
   select('Reference type','all');
-  await wait(()=>getCount().includes('329 reference entries'),'return all 329 reviewed entries');
+  await wait(()=>getCount().includes('364 reference entries'),'return all 329 reviewed entries');
   assert(document.querySelectorAll('.sle-ref-wave3-card').length===35,'35 new cards rendered without duplication');
   assert(document.querySelectorAll('.sle-reference-card').length===20,'20 original pilot non-verb cards unchanged');
   report('PASS_W3_CROSS_SKILL_35');
+ }else if(phase==='wave4'){
+  select('Reference type','degree_expressions');
+  await wait(()=>getCount().includes('10 reference entries'),'10 reviewed intensity/degree cards');
+  assert(document.querySelectorAll('[aria-label="Wave 4 Degree & intensity"] .sle-ref-wave4-card').length===10,
+   'Degree entries separate from 11 frequency expressions');
+  search('too heavy');
+  await wait(()=>getCount().includes('1 reference entry'),'Find contextual very vs too distinction');
+  assert(document.querySelector('[aria-label="Wave 4 Degree & intensity"] h4')?.textContent==='very vs too',
+   'Very vs too should appear with original caution');
+  search('');select('Reference type','preposition_patterns');
+  await wait(()=>getCount().includes('10 reference entries'),'10 preposition and complement patterns');
+  search('look forward to meeting');
+  await wait(()=>getCount().includes('1 reference entry'),'Search preposition + gerund explanation');
+  assert(document.querySelector('[aria-label="Wave 4 Preposition patterns"] h4')?.textContent==='look forward to + -ing vs want to + verb',
+   'Preposition to vs infinitive to is distinct');
+  search('');select('Reference type','writing_functions');
+  await wait(()=>getCount().includes('5 reference entries'),'5 functional writing moves');
+  search('hedging');
+  await wait(()=>getCount().includes('1 reference entry'),'Find responsible hedging');
+  assert(document.querySelector('[aria-label="Wave 4 Writing functions"] h4')?.textContent==='qualify a claim responsibly',
+   'Writing register and claim integrity card should be searchable');
+  search('');select('Reference type','reading_strategies');
+  await wait(()=>getCount().includes('10 reference entries'),'old 5 +new 5 Reading strategies');
+  assert(document.querySelectorAll('[aria-label="Wave 3 Reading strategies"] .sle-ref-wave3-card').length===5 &&
+   document.querySelectorAll('[aria-label="Wave 4 Reading strategies"] .sle-ref-wave4-card').length===5,
+   'Reused Reading category combines, does not overwrite');
+  search('');select('Reference type','listening_strategies');
+  await wait(()=>getCount().includes('10 reference entries'),'old 5 +new 5 Listening strategies');
+  const listening=document.querySelector('[aria-label="Wave 4 Listening strategies"]');
+  assert(listening?.querySelectorAll('.sle-ref-wave4-card').length===5,'Five new Listening references');
+  assert(listening?.querySelectorAll('audio,video,button,.sle-reference-practice').length===0,
+   'No listening test key/audio/player or unverified topic links');
+  assert(listening?.textContent?.includes('Watch out / limits:'),
+   'Listening reference retains original safety warning');
+  search('at least at most');
+  await wait(()=>getCount().includes('1 reference entry'),'Find spoken approximate amount limits');
+  assert(document.querySelector('[aria-label="Wave 4 Listening strategies"] h4')?.textContent==='interpret approximate amounts and limits',
+   'Numbers/limits strategy searchable');
+  search('');select('Suggested level','A1');
+  await wait(()=>getCount().includes('2 reference entries'),'Original A1–A2 strategy navigation unchanged');
+  select('Suggested level','all');select('Reference type','all');
+  await wait(()=>getCount().includes('364 reference entries'),'Reset to 364 total references');
+  assert(document.querySelectorAll('.sle-ref-wave4-card').length===35,'Exactly 35 new cards');
+  assert(document.querySelectorAll('.sle-ref-wave3-card').length===35,'Wave3 cards unchanged');
+  assert(document.querySelectorAll('.sle-reference-card').length===20,'Pilot cards unchanged');
+  report('PASS_W4_DEGREE_USAGE_35');
  }else if(phase==='catalog'){
   assert(document.querySelectorAll('.sle-reference-table-scroll .sle-reference-practice button').length===0,
    'Irregular verbs must not link to unrelated first Grammar lesson');
