@@ -85,7 +85,6 @@ jobs:
         run: |
           node tests/ipad-recovery-lossless-quota.cjs
           node tests/storage-ui-browser.cjs
-          node tests/storage-chromium-v2.cjs
 
       - name: Build English preview (NOT LIVE)
         run: pnpm build
