@@ -125,8 +125,9 @@ export function ReferenceLibrary({
   <section className="panel sle-reference-intro" aria-label="How to use this library">
    <p>Use these examples to understand a pattern, then try a different example of your own.
     Choose a topic or level to find forms, meaning and examples.</p>
-   <p><small>Offline-first static reference · 294 reviewed records: 264 existing lookup entries plus
-    20 Grammar comparisons and 10 Writing Toolkit guides (NotebookLM academic PASS 30/30).
+   <p><small>Offline-first static reference · 294 reviewed records: 26/26 entries academically reviewed in the original pilot,
+    264 existing lookup entries in total, plus 20 Grammar comparisons and 10 Writing Toolkit guides
+    (NotebookLM academic PASS 30/30).
     Suggested levels are learning-navigation hints, not proficiency scores.
     No answers, tests, AI evaluation or learner scores are stored here.
     Grammar/Writing specialist cards do not assert unverified topic lesson links.</small></p>
