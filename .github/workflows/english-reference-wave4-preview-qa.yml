@@ -1,0 +1,153 @@
+name: SLE Reference Wave 4 English Preview only
+
+# Temporary read-only owner Preview for Draft PR #193. NEVER merge this workflow into main.
+on:
+  push:
+    branches:
+      - qa/sle-reference-wave4-preview-20261121
+    paths:
+      - '.github/workflows/english-reference-wave4-preview-qa.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sle-ref-w4-pr193-preview
+  cancel-in-progress: false
+
+jobs:
+  preview:
+    if: ${{ github.repository == 'TMA2015/self-learning-english' && github.ref == 'refs/heads/qa/sle-reference-wave4-preview-20261121' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      STATIC_EXPORT: '1'
+      NEXT_PUBLIC_LEARNING_RUNTIME: browser
+      NEXT_PUBLIC_BASE_PATH: ''
+    defaults:
+      run:
+        working-directory: sites-p0-phase-a-20260926
+    steps:
+      - name: Checkout exact isolated QA branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Guard exact approved PR code and English-only hosting
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor '0948de4569b66a6e8468c451d93eb694600d74b8' HEAD
+          test "$(git diff --name-only 0948de4569b66a6e8468c451d93eb694600d74b8 HEAD)" = '.github/workflows/english-reference-wave4-preview-qa.yml'
+          node --input-type=commonjs - <<'NODE'
+          const a=require('node:assert/strict'),fs=require('node:fs');
+          const cfg=JSON.parse(fs.readFileSync('firebase.json','utf8'));
+          const rc=JSON.parse(fs.readFileSync('.firebaserc','utf8'));
+          a.equal(cfg.hosting.target,'english');
+          a.equal(cfg.hosting.public,'dist/client');
+          a.equal(rc.projects.default,'roadmap-toan-ai');
+          a.deepEqual(rc.targets['roadmap-toan-ai'].hosting.english,['g-learning-english']);
+          const runtime=fs.readFileSync('infrastructure/browser/local-runtime.ts','utf8');
+          a(runtime.includes("import curriculum1280 from '../../content/curriculum-1.28.0-candidate.json'"));
+          const ref=JSON.parse(fs.readFileSync('content/reference-library-v4-degree-usage-reviewed.json','utf8'));
+          a.equal(ref.review_status,'NOTEBOOKLM_PASS_35_OF_35');
+          a.equal(ref.entries.length,35);
+          a.equal(ref.entries.filter(x=>x.kind==='degree_expressions').length,10);
+          a.equal(ref.entries.filter(x=>x.kind==='preposition_patterns').length,10);
+          console.log('SLE_W4_REFERENCE_PREVIEW_SCOPE_PASS');
+          NODE
+
+      - name: Check Firebase credential is available (not logged)
+        env:
+          FIREBASE_CREDENTIAL: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
+        run: |
+          test -n "$FIREBASE_CREDENTIAL" || { echo '::error::Firebase credential absent'; exit 1; }
+          echo 'Firebase credential present'
+
+      - name: Setup Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+
+      - name: Install frozen dependency graph
+        run: pnpm install --frozen-lockfile
+
+      - name: Academic exact-source and browser Reference QA (no deploy)
+        run: |
+          set -euo pipefail
+          node tests/reference-library-wave2-grammar-writing.cjs
+          node tests/reference-library-wave3-crossskill.cjs
+          node tests/reference-library-wave4-degree-usage.cjs
+          node tests/reference-library-pilot.cjs
+          node tests/reference-library-v2-wave1.cjs
+          node tests/reference-library-v2-connectors-wave2.cjs
+          node tests/reference-library-browser.cjs
+          node tests/p1-responsive-browser.cjs
+
+      - name: Enforce full TypeScript integration guard
+        run: |
+          # Local-only generated Unit10 fixture used by an existing TSX browser test.
+          # No production curriculum or learner records are touched.
+          node scripts/compose-unit10-v121-candidate.cjs
+          pnpm exec tsc --noEmit --incremental false
+
+      - name: Build English static Preview without LIVE changes
+        run: pnpm build
+
+      - name: Check English static hosting and assets
+        run: |
+          node tests/firebase-hosting-static.cjs
+          test -s dist/client/index.html
+          test -s dist/client/foundation-audio/LIS-A1-06-v1.mp3
+          test -s dist/client/diagnostic-audio/DIAG-LIS-01-v1.mp3
+
+      - name: Deploy isolated English Preview channel (not LIVE)
+        id: deploy
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROADMAP_TOAN_AI }}
+          projectId: roadmap-toan-ai
+          target: english
+          entryPoint: sites-p0-phase-a-20260926
+          channelId: sle-ref-w4-pr193
+          expires: 3d
+          disableComment: true
+          firebaseToolsVersion: '15.32.1'
+
+      - name: Smoke actual Preview HTML and MP3
+        env:
+          PREVIEW_URLS: ${{ steps.deploy.outputs.urls }}
+        run: |
+          set -euo pipefail
+          url="$(node -p 'JSON.parse(process.env.PREVIEW_URLS)[0]')"
+          [[ "$url" == https://g-learning-english--sle-ref-w4-pr193-*.web.app ]]
+          tmp="$(mktemp)"
+          trap 'rm -f "$tmp"' EXIT
+          curl -fsSL --retry 10 --retry-all-errors --retry-delay 5 --connect-timeout 10 --max-time 30 "$url/" -o "$tmp"
+          grep -Eiq '<(!doctype html|html)([[:space:]>])' "$tmp"
+          curl -fsSL --retry 10 --retry-all-errors --retry-delay 5 --connect-timeout 10 --max-time 30 "$url/foundation-audio/LIS-A1-06-v1.mp3" -o "$tmp"
+          test -s "$tmp"
+          echo "SLE_REFERENCE_W4_PREVIEW_SMOKE_PASS: $url"
+
+      - name: Publish verified Preview URL and boundaries
+        if: ${{ always() }}
+        working-directory: .
+        env:
+          DEPLOY_STATUS: ${{ steps.deploy.outcome }}
+          PREVIEW_URLS: ${{ steps.deploy.outputs.urls }}
+        run: |
+          {
+            echo '## Reference Library Wave 4 Preview — Draft PR #193'
+            echo '- Exact source HEAD: 0948de4569b66a6e8468c451d93eb694600d74b8'
+            echo "- QA branch commit: $GITHUB_SHA"
+            echo "- Preview deploy: $DEPLOY_STATUS"
+            echo "- URL: $PREVIEW_URLS"
+            echo '- 364 read-only records (329 legacy unchanged + 35 Wave4 degree/usage).'
+            echo '- Preview expires after 3 days. Browser-local learner progress does not migrate to LIVE.'
+            echo '- No merge, LIVE deploy, Math/Auth/data modifications, or topic lesson links.'
+          } >> "$GITHUB_STEP_SUMMARY"
