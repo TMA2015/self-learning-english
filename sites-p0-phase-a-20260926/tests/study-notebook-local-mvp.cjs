@@ -2,6 +2,8 @@
 /** Study Notebook: independently persisted unscored notes/cards. No learner storage writes. */
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),ts=require('typescript');
 const root=path.resolve(__dirname,'..'),output=path.join(root,'.sites-runtime','study-notebook-test');
+fs.mkdirSync(output,{recursive:true});
+fs.writeFileSync(path.join(output,'package.json'),JSON.stringify({type:'commonjs'}));
 const files=[
  ['domain/study-notebook.ts','domain/study-notebook.js'],
  ['infrastructure/browser/study-notebook-storage.ts','infrastructure/browser/study-notebook-storage.js']
