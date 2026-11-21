@@ -135,6 +135,11 @@ for(const l of candidate.lessons.slice(176)){
  }
 }
 assert.equal(shuffled,29);
+const reviewerService=fs.readFileSync(path.join(root,'application/academic-service.ts'),'utf8');
+const reviewerUI=fs.readFileSync(path.join(root,'app/foundation.tsx'),'utf8');
+assert(reviewerService.includes('rubricId:q?.rubric_id'),'Review response must expose actual rubric ID');
+assert(reviewerUI.includes("row.rubricId==='RUBRIC-WRITING-C1'"),'C1 reviewer UI must distinguish pending qualitative status');
+assert(reviewerUI.includes('Numeric rubric scoring and approval are not available'),'C1 reviewer controls must not misleadingly promise approved scores');
 console.log(JSON.stringify({result:'PASS',gate:'B2_C1_B01_V129_MACHINE_CANDIDATE',
  sourceSha256:digest,newLessons:8,objective,writing,optionsCount,reading,
  totalLessons:184,totalActivities:1256,mapped:182,unmappedPilots:2,
