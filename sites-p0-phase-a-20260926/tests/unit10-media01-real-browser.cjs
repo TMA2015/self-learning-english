@@ -130,6 +130,7 @@ if(!chrome)throw Error('No native Chrome installed — real MEDIA-01 is NOT veri
   assert.deepEqual(detail.lessons?.map(x=>x.id),ids);
   assert(detail.lessons.every(x=>x.played&&x.answered&&x.submitted&&x.retake));
   assert.equal(detail.olderAttemptPreserved,true);
+  assert.equal(detail.runtimeVersion,'1.28.0','Real browser must report the staged runtime version');
   assert.equal(detail.productionImport,false);
   assert.equal(detail.releaseAuthorized,false);
   console.log(JSON.stringify({
