@@ -1,12 +1,12 @@
 'use strict';
 /**
- * SLE reviewed Batch01 additive 1.28 -> 1.29 quota/storage rehearsal; SYNTHETIC data only.
+ * SLE reviewed Batch02 additive 1.29 -> 1.30 quota/storage rehearsal; SYNTHETIC data only.
  * All attempts are synthetic, assembled from public content. This does NOT
  * inspect Safari or any owner's real browser data, import, deploy or migrate.
  */
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {execFileSync}=require('node:child_process');
-const root=path.resolve(__dirname,'..'),out='.sites-runtime/b2-c1-v130-storage';
+const root=path.resolve(__dirname,'..'),out='.sites-runtime/b2-u08u09-v130-storage';
 execFileSync(process.execPath,[
  'node_modules/typescript/bin/tsc',
  'infrastructure/browser/local-runtime.ts',
