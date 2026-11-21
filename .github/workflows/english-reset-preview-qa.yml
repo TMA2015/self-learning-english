@@ -75,10 +75,11 @@ jobs:
       - name: Install frozen dependency graph
         run: pnpm install --frozen-lockfile
 
-      - name: TypeScript plus destructive-reset/Recovery real-browser QA
+      - name: TypeScript-compiled Recovery and real-browser destructive-reset QA
         run: |
           set -euo pipefail
-          pnpm exec tsc --noEmit --incremental false
+          # local-recovery-v2 compiles the typed recovery modules, and storage-ui-browser bundles the React/TSX panel.
+          # Global tsc is still mandatory in the separate exact-head full PR QA after generated curriculum fixtures.
           node tests/local-recovery-v2.cjs
           node tests/ipad-recovery-lossless-quota.cjs
           node tests/storage-ui-browser.cjs
