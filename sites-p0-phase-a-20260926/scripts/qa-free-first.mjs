@@ -137,6 +137,7 @@ const fullRegressionTests=[
   "b2-c1-bridge-b01-v129-machine-schema.cjs",
   "b2-c1-bridge-b01-v129-storage-safety.cjs",
   "b2-u08u09-b02-v130-machine-schema.cjs",
+  "b2-u10-b03-reviewed-source-media-hold.cjs",
   "b2-u08u09-b02-v130-storage-safety.cjs",
   "f3-b2-bulk12-v126-storage-safety.cjs",
   "f3-v126-multi-version-quota-fallback.cjs",
