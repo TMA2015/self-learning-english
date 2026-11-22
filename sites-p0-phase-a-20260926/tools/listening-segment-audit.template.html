@@ -40,7 +40,11 @@
 </section>
 <section class="panel">
   <h2>Annotate and replay each transcript line</h2>
-  <p>Click a line, play the MP3, and use <strong>Mark start</strong> and <strong>Mark end</strong> at the actual spoken boundaries. Replay the selected region and check its alignment by ear. The table never estimates boundaries automatically.</p>
+  <p>Click a line, play the MP3, and use <strong>Mark start</strong> and <strong>Mark end</strong> at the actual spoken boundaries. Replay the selected region and check its alignment by ear. This tool does not automatically certify boundaries.</p>
+  <label for="suggest-file"><strong>Optional: import silence-assisted candidate JSON</strong></label>
+  <p><input id="suggest-file" type="file" accept=".json,application/json" disabled /></p>
+  <p class="muted">Candidate offsets are only starting points. They must match this exact MP3 and every line must be checked by ear. Import never marks a replay as verified.</p>
+  <p id="suggest-result" role="status">No candidate imported.</p>
   <div class="buttons">
     <button id="mark-start" type="button" disabled>Mark start at playhead</button>
     <button id="mark-end" type="button" disabled>Mark end at playhead</button>
@@ -88,6 +92,7 @@ function allValid(){
 function update(){
  const enabled=verifiedFile&&actualDuration>0;
  $("mark-start").disabled=!enabled;$("mark-end").disabled=!enabled;
+ $("suggest-file").disabled=!enabled;
  $("replay").disabled=!enabled||!rangeValid(rows[selected]);
  $("export").disabled=!allValid();
  $("selection-info").textContent="Selected "+rows[selected].lineId+
@@ -150,6 +155,44 @@ $("mp3-file").addEventListener("change",async(e)=>{
   verifiedFile=true;fileUrl=URL.createObjectURL(f);player.src=fileUrl;
   message("SHA-256 verified. Checking audio duration…","ok");
  }catch(err){message("MP3 verification error: "+String(err),"bad")}
+});
+$("suggest-file").addEventListener("change",async(e)=>{
+ const f=e.target.files?.[0];
+ if(!f)return;
+ if(!verifiedFile||!actualDuration){
+  $("suggest-result").textContent="Confirm the exact original MP3 first.";return
+ }
+ if(f.size>100000){
+  $("suggest-result").textContent="Candidate JSON exceeds 100 KB; import refused.";return
+ }
+ try{
+  const value=JSON.parse(await f.text());
+  if(value.status!=="CANDIDATE_UNVERIFIED"||value.productionEnabled!==false||
+   value.lessonId!==auditData.lessonId||value.assetSha256!==auditData.sha256||
+   !Number.isFinite(value.durationSeconds)||
+   Math.abs(value.durationSeconds-actualDuration)>0.5||
+   !Array.isArray(value.segments)||value.segments.length!==rows.length)
+   throw Error("Wrong asset/lesson, incomplete segments, or non-candidate status");
+  const proposed=value.segments.map((r,i)=>{
+   const start=Number(r.startMs),end=Number(r.endMs);
+   if(r.lineId!==rows[i].lineId||
+    !Number.isSafeInteger(start)||!Number.isSafeInteger(end)||
+    start<0||end<=start||end>Math.round(actualDuration*1000)+150||
+    (i>0&&start<Number(value.segments[i-1].endMs)))
+    throw Error("Invalid timing range or overlap at "+rows[i].lineId);
+   return {start,end};
+  });
+  player.pause();stopAt=null;replayLine=null;
+  proposed.forEach((range,i)=>{
+   rows[i].startMs=range.start;rows[i].endMs=range.end;
+   rows[i].replayChecked=false; // Never trust imported claims of completed listening
+  });
+  $("suggest-result").textContent="Unverified suggestions loaded for "+rows.length+
+   " lines. Replay and adjust EVERY line before exporting any reviewed candidate.";
+  update();
+ }catch(err){
+  $("suggest-result").textContent="Candidate rejected: "+String(err.message||err);
+ }finally{e.target.value=""}
 });
 $("export").addEventListener("click",()=>{
  if(!allValid())return;
