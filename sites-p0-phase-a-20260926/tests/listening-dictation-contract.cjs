@@ -15,7 +15,7 @@ const labels=['A','B','Woman','Man','Host','Guest','Teacher','Student'];
 // NotebookLM MUST_FIX #1: structural speaker names (including long names) are
 // never audio words, cloze targets, or counted toward gap density.
 for(const speaker of labels){
- const phrase=speaker+': Peaches ripen outside every morning.\\n'+speaker+
+ const phrase=speaker+': Peaches ripen outside every morning.\n'+speaker+
  ': Students enjoy gardening during summer afternoons.';
  const sheet=buildDictationSheet(phrase,30);
  const textOnly=phrase.replaceAll(new RegExp('^'+speaker+': ?', 'gm'),'');
@@ -59,7 +59,7 @@ for(const id of ids){
   tested++;
  }
 }
-const noSpace=buildDictationSheet('Woman:Garden birds sing softly every morning.\\nHost:Today visitors enjoy the river walk.',30);
+const noSpace=buildDictationSheet('Woman:Garden birds sing softly every morning.\nHost:Today visitors enjoy the river walk.',30);
 assert(!noSpace.gaps.some(g=>['woman','host'].includes(g.answer.toLowerCase())),
  'No-space labels must never become dictation targets');
 assert.equal(normalizeDictationAnswer('  You\u2019re. '),"you're");
