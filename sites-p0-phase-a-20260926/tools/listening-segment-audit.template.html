@@ -57,6 +57,7 @@
     <button id="mark-start" type="button" disabled>Mark start at playhead</button>
     <button id="mark-end" type="button" disabled>Mark end at playhead</button>
     <button id="replay" type="button" disabled>Replay selected region</button>
+    <button id="confirm-replay" type="button" disabled>I listened — confirm this exact sentence/turn</button>
     <button id="next-line" type="button">Next line</button>
   </div>
   <p id="selection-info" role="status"></p>
@@ -78,7 +79,10 @@
 // Substituted by local Node build script; no transcript is embedded into production.
 const auditData=__LESSON_DATA__;
 const $=id=>document.getElementById(id);
-const rows=auditData.lines.map((text,i)=>({lineId:"L"+(i+1),text,startMs:null,endMs:null,replayChecked:false}));
+const rows=auditData.lines.map((text,i)=>({
+ lineId:"L"+(i+1),text,startMs:null,endMs:null,
+ replayCompleted:false,replayChecked:false
+}));
 let selected=0,verifiedFile=false,fileUrl=null,stopAt=null,replayLine=null,actualDuration=0;
 const turnMap=Array.isArray(auditData.turnMap)?auditData.turnMap:[];
 let suggestedTurns=null;
@@ -118,10 +122,13 @@ function update(){
       " ms; NOT verified, mark sentence limits separately.":"No suggested turn window loaded.")
   : "";
  $("replay").disabled=!enabled||!rangeValid(rows[selected]);
+ $("confirm-replay").disabled=!enabled||!rangeValid(rows[selected])||
+  !rows[selected].replayCompleted||rows[selected].replayChecked;
  $("export").disabled=!allValid();
  $("selection-info").textContent="Selected "+rows[selected].lineId+
   " · "+(rows[selected].startMs??"—")+"–"+(rows[selected].endMs??"—")+
-  " ms · replay "+(rows[selected].replayChecked?"checked":"not checked");
+  " ms · replay "+(rows[selected].replayChecked?"manually confirmed":
+    rows[selected].replayCompleted?"played — confirm by listening":"not reviewed");
  $("lines").replaceChildren();
  rows.forEach((r,i)=>{
   const tr=document.createElement("tr");
@@ -131,7 +138,8 @@ function update(){
   col(r.lineId);col(r.text);
   if(turnMap.length===rows.length)
    col("T"+turnMap[i].turnIndex+" · "+turnMap[i].sentenceInTurn+"/"+turnMap[i].turnSentenceCount);
-  col(r.startMs??"—");col(r.endMs??"—");col(r.replayChecked?"Confirmed by replay":"Not checked");
+  col(r.startMs??"—");col(r.endMs??"—");col(r.replayChecked
+   ?"Human confirmed":r.replayCompleted?"Played; confirmation required":"Not checked");
   $("lines").append(tr);
  });
 }
@@ -141,11 +149,17 @@ function mark(type){
  if(type==="start")rows[selected].startMs=v;
  else rows[selected].endMs=v;
  rows[selected].replayChecked=false;
+ rows[selected].replayCompleted=false;
  update();
 }
 $("mark-start").addEventListener("click",()=>mark("start"));
 $("mark-end").addEventListener("click",()=>mark("end"));
 $("next-line").addEventListener("click",()=>{selected=(selected+1)%rows.length;update()});
+$("confirm-replay").addEventListener("click",()=>{
+ const row=rows[selected];
+ if(!verifiedFile||!rangeValid(row)||!row.replayCompleted)return;
+ row.replayChecked=true;update();
+});
 $("replay").addEventListener("click",async()=>{
  const line=rows[selected];if(!verifiedFile||!rangeValid(line))return;
  player.pause();stopAt=line.endMs;replayLine=selected;
@@ -156,7 +170,9 @@ player.addEventListener("timeupdate",()=>{
  if(stopAt===null)return;
  if(player.currentTime*1000>=stopAt-50){
   player.pause();
-  stopAt=null;if(replayLine!==null)rows[replayLine].replayChecked=true;replayLine=null;update();
+  stopAt=null;
+  if(replayLine!==null)rows[replayLine].replayCompleted=true;
+  replayLine=null;update();
  }
 });
 player.addEventListener("loadedmetadata",()=>{
@@ -171,7 +187,7 @@ $("mp3-file").addEventListener("change",async(e)=>{
  verifiedFile=false;actualDuration=0;stopAt=null;replayLine=null;player.pause();player.removeAttribute("src");
  suggestedTurns=null;
  $("turn-result").textContent="Re-select a matching turn candidate after verifying this MP3.";
- rows.forEach(r=>{r.startMs=null;r.endMs=null;r.replayChecked=false});
+ rows.forEach(r=>{r.startMs=null;r.endMs=null;r.replayCompleted=false;r.replayChecked=false});
  update();
  const f=e.target.files?.[0];if(!f)return;
  if(!crypto?.subtle){message("SHA-256 is unavailable here. Use a local HTTP server (not an untrusted website).","bad");return}
@@ -213,6 +229,7 @@ $("suggest-file").addEventListener("change",async(e)=>{
   player.pause();stopAt=null;replayLine=null;
   proposed.forEach((range,i)=>{
    rows[i].startMs=range.start;rows[i].endMs=range.end;
+   rows[i].replayCompleted=false;
    rows[i].replayChecked=false; // Never trust imported claims of completed listening
   });
   $("suggest-result").textContent="Unverified suggestions loaded for "+rows.length+
