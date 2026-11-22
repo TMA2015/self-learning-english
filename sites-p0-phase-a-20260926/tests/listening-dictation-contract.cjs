@@ -11,6 +11,24 @@ vm.runInNewContext(compiled,{module:o,exports:o.exports,Math,Set,Map,Number,Stri
 const {splitDictationLines,buildDictationSheet,normalizeDictationAnswer,checkDictationAnswers,validVerifiedSegments}=o.exports;
 const manifest=require('../content/foundation-audio.json');
 const ids=['LIS-A1-03','LIS-A2-01','LIS-B1-01'];
+const labels=['A','B','Woman','Man','Host','Guest','Teacher','Student'];
+// NotebookLM MUST_FIX #1: structural speaker names (including long names) are
+// never audio words, cloze targets, or counted toward gap density.
+for(const speaker of labels){
+ const phrase=speaker+': Peaches ripen outside every morning.\\n'+speaker+
+ ': Students enjoy gardening during summer afternoons.';
+ const sheet=buildDictationSheet(phrase,30);
+ const textOnly=phrase.replaceAll(new RegExp('^'+speaker+': ?', 'gm'),'');
+ const audibleCount=[...textOnly.matchAll(/[A-Za-z]+(?:['’\\-][A-Za-z]+)*/g)].length;
+ assert.equal(sheet.spokenWords,audibleCount,speaker+' is speaker metadata, not a spoken word');
+ assert.equal(sheet.lines.length,2);
+ assert(!sheet.gaps.some(g=>g.answer.toLowerCase()===speaker.toLowerCase()),
+  'Speaker name must never be masked: '+speaker);
+ assert(sheet.lines.every((line,i)=>line.parts.filter(p=>p.kind==='text')
+   .map(p=>p.text).join('').includes(speaker+':')),
+  'Speaker label must remain visible even when other text is masked: '+speaker);
+}
+
 let tested=0;
 for(const id of ids){
  const m=manifest[id];
@@ -41,6 +59,9 @@ for(const id of ids){
   tested++;
  }
 }
+const noSpace=buildDictationSheet('Woman:Garden birds sing softly every morning.\\nHost:Today visitors enjoy the river walk.',30);
+assert(!noSpace.gaps.some(g=>['woman','host'].includes(g.answer.toLowerCase())),
+ 'No-space labels must never become dictation targets');
 assert.equal(normalizeDictationAnswer('  You\u2019re. '),"you're");
 assert.equal(splitDictationLines('').length,0);
 assert.throws(()=>buildDictationSheet(manifest['LIS-A2-01'].source,50));
@@ -58,6 +79,11 @@ assert(app.includes('disabled={!enabledSegments}'));
 assert(app.includes('validVerifiedSegments(sheet.lines,verifiedSegments,assetSha256,durationSeconds)'));
 assert(app.includes('audio.current.currentTime=segment.startMs/1000'));
 assert(app.includes('Replay full recording'));
+assert(app.includes('Type the exact word spoken in the recording'),'NotebookLM MUST_FIX #2 exact learner instruction');
+assert(app.includes('Literal Word Match'),'NotebookLM MUST_FIX #2 honest checking label');
+assert(app.includes('setChecked(false);setAnswers({});setDensity('),
+ 'Difficulty change must clear old literal check before new sheet is shown');
+
 assert(app.includes('Check exact words'));
 assert(app.includes('Practice answers stay on this screen only'));
 assert(!/fetch\(|foundationRequest|localStorage|setItem\(|\.score\s*=|playbackCompleted|tutorService|new Audio\(/.test(app));
