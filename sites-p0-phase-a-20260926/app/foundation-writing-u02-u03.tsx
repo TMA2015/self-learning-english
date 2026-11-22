@@ -2,6 +2,7 @@
 import {useEffect,useRef,useState} from 'react';
 import {EnglishLessonTutor} from './english-lesson-tutor';
 import {TeachingBlocks} from './teaching-blocks';
+import {CardSortBoard,ResponsePlanner} from './learning-interactions';
 import {browserTutorService} from '../infrastructure/browser/firebase-ai-browser';
 import {REVIEWED_FOUNDATION_UNITS,blankIdea,blankChain,bankReady,eligibleNextArtifact,
  exactSavedNext,nextProgress,supplementalResult,exactSignature,
@@ -87,13 +88,11 @@ function BankEditor({unitId,bank,label,change}:{
 function ChainEditor({id,chain,edit}:{
  id:string;chain:Chain;edit:(field:keyof Chain,value:string)=>void;
 }){
- return <div className="wcv2-card">
-  <h3>{id}</h3>
-  {(['claim','reason','detail'] as const).map(field=><OriginalField key={field}
-   name={id+'-'+field} label={field==='claim'?'Claim — what I propose':
-    field==='reason'?'Reason — why it may help':'Detail — how/when/for whom it may help'}
-   rows={2} value={chain[field]} onChange={value=>edit(field,value)}/>)}
- </div>;
+ return <ResponsePlanner id={id} title={id} fields={[
+  {key:'claim',label:'Claim — what I propose'},
+  {key:'reason',label:'Reason — why it may help'},
+  {key:'detail',label:'Detail — how/when/for whom it may help'}
+ ] as const} values={chain} onChange={edit}/>;
 }
 function U02Pane({step,d,edit,demoCount,setDemoCount}:{
  step:Step;d:U02Draft;edit:(v:U02Draft)=>void;demoCount:number;setDemoCount:(n:number)=>void;
@@ -120,20 +119,13 @@ function U02Pane({step,d,edit,demoCount,setDemoCount}:{
  if(step==='cycleA')return <section aria-label="U02 Practice A cards">
   <h2>Practice A · {source.cycleA.id}</h2><blockquote>{source.cycleA.prompt}</blockquote>
   <p>{source.cycleA.instructions}</p>
-  {source.cycleA.cards.map(card=><div className="field" key={card.id}>
-   <label htmlFor={'u02-card-'+card.id}><strong>{card.id} · {card.text}</strong></label>
-   <select id={'u02-card-'+card.id} value={d.cycleASorts[card.id]??''}
-    onChange={e=>edit({...d,cycleASorts:{...d.cycleASorts,[card.id]:e.target.value},revealCycleA:false})}>
-    <option value="">Choose the most direct role</option>
-    {source.cycleA.buckets.map(b=><option key={b} value={b}>{b}</option>)}
-   </select>
-   {d.revealCycleA&&<p role="status" className="muted">
-    {d.cycleASorts[card.id]===card.key?'Direct label correct. ':'Review the primary label. '}
-    {card.rationale} (Key: {card.key})
-   </p>}
-  </div>)}
-  <button className="secondary-button" type="button" onClick={()=>edit({...d,revealCycleA:true})}>
-   Check all six cards and see explanations</button>
+  <CardSortBoard idPrefix="u02-card-" title="Sort the six idea cards"
+   cards={source.cycleA.cards} categories={source.cycleA.buckets}
+   selections={d.cycleASorts} revealed={d.revealCycleA}
+   emptyLabel="Choose the most direct role"
+   checkLabel="Check all six cards and see explanations"
+   onSelect={(id,category)=>edit({...d,cycleASorts:{...d.cycleASorts,[id]:category},revealCycleA:false})}
+   onCheck={()=>edit({...d,revealCycleA:true})}/>
   <label className="field" htmlFor="u02-repair-card"><strong>Card to repair (A2 or A6)</strong>
    <select id="u02-repair-card" value={d.repairCard}
     onChange={e=>edit({...d,repairCard:e.target.value})}>
@@ -199,20 +191,13 @@ function U03Pane({step,d,edit,demoCount,setDemoCount}:{
    <p><strong>Must Include:</strong> {source.cycleA.promptStrip.mustInclude}</p>
    <p><strong>Boundary:</strong> {source.cycleA.promptStrip.boundary}</p>
   </div><p>{source.cycleA.instruction}</p>
-  {source.cycleA.cards.map(card=><div className="field" key={card.id}>
-   <label htmlFor={'u03-card-'+card.id}><strong>{card.id} · {card.text}</strong></label>
-   <select id={'u03-card-'+card.id} value={d.cycleARoles[card.id]??''}
-    onChange={e=>edit({...d,cycleARoles:{...d.cycleARoles,[card.id]:e.target.value},revealCycleA:false})}>
-    <option value="">Choose the role / diagnosis</option>
-    {source.cycleA.roles.map(x=><option key={x} value={x}>{x}</option>)}
-   </select>
-   {d.revealCycleA&&<p className="muted" role="status">
-    {d.cycleARoles[card.id]===card.key?'Correct direct role. ':'Review this choice. '}
-    {card.rationale} (Key: {card.key})
-   </p>}
-  </div>)}
-  <button type="button" className="secondary-button" onClick={()=>edit({...d,revealCycleA:true})}>
-   Check card roles and all explanations</button>
+  <CardSortBoard idPrefix="u03-card-" title="Sort reasoning roles and weak links"
+   cards={source.cycleA.cards} categories={source.cycleA.roles}
+   selections={d.cycleARoles} revealed={d.revealCycleA}
+   emptyLabel="Choose the role / diagnosis"
+   checkLabel="Check card roles and all explanations"
+   onSelect={(id,category)=>edit({...d,cycleARoles:{...d.cycleARoles,[id]:category},revealCycleA:false})}
+   onCheck={()=>edit({...d,revealCycleA:true})}/>
   <label htmlFor="u03-repair-card" className="field"><strong>Choose one weak card to repair</strong>
    <select id="u03-repair-card" value={d.repairCard} onChange={e=>edit({...d,repairCard:e.target.value})}>
     <option value="">Select X1 or X3</option><option value="X1">X1</option><option value="X3">X3</option>
