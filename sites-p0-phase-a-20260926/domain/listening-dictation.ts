@@ -3,6 +3,9 @@
  * Pass in ONLY an authorized, already-revealed transcript from the existing
  * gated attempt transcript API. Never import transcript strings into a bundle.
  */
+export const DICTATION_PILOT_IDS=['LIS-A1-03','LIS-A2-01','LIS-B1-01'] as const;
+export const dictationPilotEligible=(id:string):boolean=>
+ (DICTATION_PILOT_IDS as readonly string[]).includes(id);
 export type DictationDensity=10|20|30;
 export type DictationPart={kind:'text';text:string}|{kind:'gap';id:string};
 export type DictationLine={id:string;parts:DictationPart[];displayText:string};
