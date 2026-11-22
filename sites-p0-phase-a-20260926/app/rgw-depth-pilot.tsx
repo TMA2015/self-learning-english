@@ -63,7 +63,12 @@ export function RgwDepthTeaching({lessonId,version}:{lessonId:string;version:str
    <div className="sle-rgw-model" aria-label="Independent worked example">
     <h4>{lesson.model.title}</h4>
     <p className="sle-rgw-model-situation">{lesson.model.situation}</p>
-    <p className="sle-rgw-model-thinking">{lesson.model.thinking}</p>
+    {lessonId==='REA-B1-03'
+      ?<details className="sle-rgw-model-reasoning">
+        <summary>See the worked reasoning (optional)</summary>
+        <p className="sle-rgw-model-thinking">{lesson.model.thinking}</p>
+       </details>
+      :<p className="sle-rgw-model-thinking">{lesson.model.thinking}</p>}
    </div>
    {lessonId==='REA-B1-03'&&<IndependentReadingEvidence key={lessonId+'-'+version}
     passage={lesson.model.situation}/>}
