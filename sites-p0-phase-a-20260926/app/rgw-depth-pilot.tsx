@@ -46,7 +46,7 @@ function IndependentReadingEvidence({passage}:{passage:string}){
 
 export function RgwDepthTeaching({lessonId,version}:{lessonId:string;version:string}){
  const baseline=version===VERSION?LESSONS[lessonId]:undefined;
- const lesson=baseline??(version===CURRENT_IDENTICAL_VERSION?LESSONS[lessonId]:undefined);
+ const lesson=baseline??(version===CURRENT_IDENTICAL_VERSION&&lessonId==='REA-B1-03'?LESSONS[lessonId]:undefined);
  if(!lesson)return null;
  return <section className="foundation-learn-block sle-rgw-pilot" aria-label="Reading Grammar Writing learning toolkit">
    <h3>{lesson.module==='reading'?'Read with evidence':lesson.module==='grammar'?'Reason from evidence':'Plan your writing'}</h3>
