@@ -58,7 +58,7 @@ const ui=read('app/rgw-depth-pilot.tsx'),foundation=read('app/foundation.tsx');
 const tip=read('domain/foundation-recovery-tip.ts'),review=read('domain/post-lesson-review.ts');
 assert(ui.includes('version===VERSION?LESSONS[lessonId]:undefined'),'Version pin required');
 assert(ui.includes("CURRENT_IDENTICAL_VERSION='1.28.0'"),'Only verified v1.28 may reuse old reviewed teaching');
-assert(ui.includes("version===CURRENT_IDENTICAL_VERSION?LESSONS[lessonId]:undefined"),'No broad future-version fallback');
+assert(ui.includes("version===CURRENT_IDENTICAL_VERSION&&lessonId==='REA-B1-03'?LESSONS[lessonId]:undefined"),'Only REA-B1-03 in reviewed v1.28 may reuse prior overlay');
 assert(ui.includes("lessonId==='REA-B1-03'&&<IndependentReadingEvidence"),'Evidence pilot restricted to Reading sample');
 assert(ui.includes('passage={lesson.model.situation}'),'Use independent reviewed model, not assessment passage');
 assert.match(ui,/expectedId="2"/,'Limitation sentence from approved sample is second');
