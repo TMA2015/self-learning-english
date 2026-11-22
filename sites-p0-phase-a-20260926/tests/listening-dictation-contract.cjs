@@ -42,7 +42,7 @@ for(const id of ids){
  }
 }
 assert.equal(normalizeDictationAnswer('  You\u2019re. '),"you're");
-assert.deepEqual(splitDictationLines(''),[]);
+assert.equal(splitDictationLines('').length,0);
 assert.throws(()=>buildDictationSheet(manifest['LIS-A2-01'].source,50));
 const app=read('app/listening-dictation.tsx');
 const parent=read('app/foundation.tsx');
