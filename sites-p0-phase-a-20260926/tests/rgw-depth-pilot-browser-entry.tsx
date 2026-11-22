@@ -40,6 +40,9 @@ function waitUntil(predicate:()=>boolean){
  if(lesson==='REA-B1-03'){
   check(model.textContent?.includes('school garden'),'Separate Reading demonstration');
   check(cards.length===4,'Four reviewed Reading strategies');
+  const reasoning=panel.querySelector<HTMLDetailsElement>('.sle-rgw-model-reasoning');
+  check(!!reasoning&&!reasoning!.open,'Correct reviewed thinking is closed before selecting evidence');
+
   const widget=panel.querySelector('[data-learning-interaction="EvidenceHighlighter"]') as HTMLElement|null;
   check(!!widget,'Reading evidence selection is visible on independent model');
   const options=[...widget!.querySelectorAll<HTMLButtonElement>('button[aria-pressed]')];
