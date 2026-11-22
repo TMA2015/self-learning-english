@@ -64,7 +64,10 @@ const root=path.resolve(__dirname,'..');
   ['GRA-B1-05','teaching',375],
   ['WRI-B1-05','teaching',320],
   ['WRI-B1-05','teaching',768],
-  ['REA-B1-03','teaching',320,'1.24.0']
+  ['REA-B1-03','teaching',320,'1.28.0'],
+  ['REA-B1-03','teaching',375,'1.28.0'],
+  ['REA-B1-03','teaching',320,'1.24.0'],
+  ['REA-B1-03','teaching',320,'1.29.0']
  ];
  try{
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
@@ -75,11 +78,11 @@ const root=path.resolve(__dirname,'..');
    const result=await run(base+'/?'+args);
    outcomes.push({lesson,phase,width,version:version??'1.25.0',result});
   }
-  assert.equal(outcomes.length,5);
-  assert.equal(outcomes.filter(c=>c.result==='PASS_VERSION_GUARD').length,1);
+  assert.equal(outcomes.length,8);
+  assert.equal(outcomes.filter(c=>c.result==='PASS_VERSION_GUARD').length,2);
   assert.equal(writes,0,'No browser fixture may write learner or server state');
   console.log(JSON.stringify({result:'PASS',gate:'RGW_DEPTH_R1_NATIVE_CHROMIUM',
-   cases:outcomes,reviewedLessons:3,syntheticOnly:true,networkWrites:0,
+   cases:outcomes,reviewedLessons:3,readingHighlighterCases:3,syntheticOnly:true,networkWrites:0,
    contentContainerWidths:[320,375,768],instructionOnly:true,
    actualDeviceViewport:'NOT_TESTED',realSafariIpad:'NOT_TESTED',
    productionWrites:0}));
