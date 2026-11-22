@@ -44,6 +44,7 @@ const coreTests=[
   "g3-firebase-browser-bridge.cjs",
   "listening-audio-manifest-coverage.cjs",
   "listening-dictation-contract.cjs",
+  "listening-segment-audit-tool.cjs",
   "legacy-listening-kokoro-repair-preflight.cjs",
   "writing-step-feedback-ux.cjs",
   "offline-lesson-postfeedback.cjs",
