@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLE · Offline MP3 Sentence Alignment Audit</title>
+<style>
+  :root{color-scheme:light dark;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;line-height:1.45}
+  body{max-width:1000px;margin:0 auto;padding:18px}
+  h1{font-size:1.45rem;margin:0 0 .4rem}
+  h2{font-size:1.08rem}
+  .muted{opacity:.8}.panel{border:1px solid #aaa6;border-radius:12px;padding:16px;margin:12px 0}
+  .buttons{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+  button,input{font:inherit}button{border:1px solid #888;border-radius:8px;padding:9px 12px;min-height:44px;cursor:pointer}
+  button:disabled{cursor:not-allowed;opacity:.4}
+  input[type=number]{max-width:7.8rem;padding:8px;min-height:32px}
+  input[type=file]{max-width:100%}
+  audio{width:100%}
+  table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #8887;padding:8px;text-align:left}
+  th{font-size:.85rem}td:nth-child(1){min-width:6.8rem}
+  tr.active{outline:2px solid #6483b8;border-radius:6px}
+  tr{cursor:pointer}
+  .ok{color:#168542}.bad{color:#b53c42}
+  code{word-break:break-all}
+  [role=alert]{font-weight:600}
+</style>
+</head>
+<body>
+<h1>Self-Learning English · MP3 Sentence Alignment Audit</h1>
+<p class="muted">Offline engineering tool. It does not upload recordings, authenticate users or change student attempts. Every timestamp begins as <strong>UNVERIFIED</strong>; export is an engineering candidate, not authorization to enable per-sentence Listening.</p>
+<section class="panel">
+  <h2 id="lesson-title"></h2>
+  <p><strong>Expected original asset SHA-256:</strong> <code id="expected-sha"></code></p>
+  <p><strong>Expected duration:</strong> <span id="expected-duration"></span> seconds</p>
+  <label for="mp3-file"><strong>Choose the exact original MP3 from the local SLE repository</strong></label>
+  <p><input type="file" id="mp3-file" accept=".mp3,audio/mpeg" /></p>
+  <p id="integrity" role="status">No MP3 selected. Timing controls are locked.</p>
+  <audio id="player" controls preload="metadata"></audio>
+  <p class="muted">The file is kept only in this browser tab. The tool requires SHA-256 equality; a different recording cannot be used to approve segment boundaries.</p>
+</section>
+<section class="panel">
+  <h2>Annotate and replay each transcript line</h2>
+  <p>Click a line, play the MP3, and use <strong>Mark start</strong> and <strong>Mark end</strong> at the actual spoken boundaries. Replay the selected region and check its alignment by ear. The table never estimates boundaries automatically.</p>
+  <div class="buttons">
+    <button id="mark-start" type="button" disabled>Mark start at playhead</button>
+    <button id="mark-end" type="button" disabled>Mark end at playhead</button>
+    <button id="replay" type="button" disabled>Replay selected region</button>
+    <button id="next-line" type="button">Next line</button>
+  </div>
+  <p id="selection-info" role="status"></p>
+  <div style="overflow-x:auto">
+   <table>
+    <thead><tr><th>Line</th><th>Source text (unscored QA only)</th><th>Start (ms)</th><th>End (ms)</th><th>Replay checked</th></tr></thead>
+    <tbody id="lines"></tbody>
+   </table>
+  </div>
+</section>
+<section class="panel">
+ <h2>Export a review candidate</h2>
+ <p>All segments must be sequential, non-overlapping and within the original MP3's measured duration. A reviewer must confirm each one by listening. The JSON output remains <strong>CANDIDATE_UNVERIFIED</strong>, and is not read by SLE's production player.</p>
+ <button type="button" id="export" disabled>Export timing candidate JSON</button>
+ <p id="export-status" role="status"></p>
+</section>
+<script>
+"use strict";
+// Substituted by local Node build script; no transcript is embedded into production.
+const auditData=__LESSON_DATA__;
+const $=id=>document.getElementById(id);
+const rows=auditData.lines.map((text,i)=>({lineId:"L"+(i+1),text,startMs:null,endMs:null,replayChecked:false}));
+let selected=0,verifiedFile=false,fileUrl=null,stopAt=null,actualDuration=0;
+$("lesson-title").textContent=auditData.lessonId+" · "+rows.length+" source lines";
+$("expected-sha").textContent=auditData.sha256;
+$("expected-duration").textContent=auditData.duration;
+const player=$("player");
+function message(text,kind=""){const el=$("integrity");el.textContent=text;el.className=kind;}
+function rangeValid(r){
+ return Number.isFinite(r.startMs)&&Number.isFinite(r.endMs)&&
+ r.startMs>=0&&r.endMs>r.startMs&&r.endMs<=Math.round(actualDuration*1000)+150;
+}
+function allValid(){
+ if(!verifiedFile||!actualDuration||!rows.length)return false;
+ for(let i=0;i<rows.length;i++){
+  if(!rangeValid(rows[i])||!rows[i].replayChecked)return false;
+  if(i&&rows[i].startMs<rows[i-1].endMs)return false;
+ }
+ return true;
+}
+function update(){
+ const enabled=verifiedFile&&actualDuration>0;
+ $("mark-start").disabled=!enabled;$("mark-end").disabled=!enabled;
+ $("replay").disabled=!enabled||!rangeValid(rows[selected]);
+ $("export").disabled=!allValid();
+ $("selection-info").textContent="Selected "+rows[selected].lineId+
+  " · "+(rows[selected].startMs??"—")+"–"+(rows[selected].endMs??"—")+
+  " ms · replay "+(rows[selected].replayChecked?"checked":"not checked");
+ $("lines").replaceChildren();
+ rows.forEach((r,i)=>{
+  const tr=document.createElement("tr");
+  if(i===selected)tr.className="active";
+  tr.addEventListener("click",()=>{selected=i;update()});
+  const col=text=>{const td=document.createElement("td");td.textContent=String(text);tr.append(td);return td};
+  col(r.lineId);col(r.text);
+  col(r.startMs??"—");col(r.endMs??"—");col(r.replayChecked?"Confirmed by replay":"Not checked");
+  $("lines").append(tr);
+ });
+}
+function mark(type){
+ if(!verifiedFile||!actualDuration)return;
+ const v=Math.round(player.currentTime*1000);
+ if(type==="start")rows[selected].startMs=v;
+ else rows[selected].endMs=v;
+ rows[selected].replayChecked=false;
+ update();
+}
+$("mark-start").addEventListener("click",()=>mark("start"));
+$("mark-end").addEventListener("click",()=>mark("end"));
+$("next-line").addEventListener("click",()=>{selected=(selected+1)%rows.length;update()});
+$("replay").addEventListener("click",async()=>{
+ const line=rows[selected];if(!verifiedFile||!rangeValid(line))return;
+ player.pause();stopAt=line.endMs;
+ player.currentTime=line.startMs/1000;
+ try{await player.play()}catch(e){$("selection-info").textContent="Playback error: "+e.message;stopAt=null}
+});
+player.addEventListener("timeupdate",()=>{
+ if(stopAt===null)return;
+ if(player.currentTime*1000>=stopAt-50){
+  player.pause();
+  stopAt=null;rows[selected].replayChecked=true;update();
+ }
+});
+player.addEventListener("loadedmetadata",()=>{
+ actualDuration=Number(player.duration);
+ if(!Number.isFinite(actualDuration)||Math.abs(actualDuration-auditData.duration)>0.5){
+  verifiedFile=false;message("Audio duration differs from manifest. Cannot audit this file.","bad");
+ }else if(verifiedFile)message("MP3 SHA-256 and duration match original manifest.","ok");
+ update();
+});
+$("mp3-file").addEventListener("change",async(e)=>{
+ if(fileUrl){URL.revokeObjectURL(fileUrl);fileUrl=null}
+ verifiedFile=false;actualDuration=0;stopAt=null;player.pause();player.removeAttribute("src");
+ rows.forEach(r=>{r.startMs=null;r.endMs=null;r.replayChecked=false});
+ update();
+ const f=e.target.files?.[0];if(!f)return;
+ if(!crypto?.subtle){message("SHA-256 is unavailable here. Use a local HTTP server (not an untrusted website).","bad");return}
+ try{
+  const bytes=await f.arrayBuffer();
+  const digest=[...new Uint8Array(await crypto.subtle.digest("SHA-256",bytes))]
+   .map(n=>n.toString(16).padStart(2,"0")).join("");
+  if(digest!==auditData.sha256){message("SHA-256 MISMATCH. Choose the exact original MP3; no segment export allowed.","bad");return}
+  verifiedFile=true;fileUrl=URL.createObjectURL(f);player.src=fileUrl;
+  message("SHA-256 verified. Checking audio duration…","ok");
+ }catch(err){message("MP3 verification error: "+String(err),"bad")}
+});
+$("export").addEventListener("click",()=>{
+ if(!allValid())return;
+ const out={
+  schema:"sle-listening-segment-candidate-v1",
+  status:"CANDIDATE_UNVERIFIED",productionEnabled:false,
+  lessonId:auditData.lessonId,assetUrl:auditData.url,assetSha256:auditData.sha256,
+  durationSeconds:actualDuration,
+  notes:"All line ranges manually replayed in local QA tool; separate reviewer approval and physical iPad QA required",
+  segments:rows.map(r=>({
+   lineId:r.lineId,startMs:r.startMs,endMs:r.endMs,
+   assetSha256:auditData.sha256,replayChecked:r.replayChecked
+  }))
+ };
+ const blob=new Blob([JSON.stringify(out,null,2)+"\n"],{type:"application/json"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");a.href=url;a.download=auditData.lessonId+"-segment-candidate.json";
+ document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ $("export-status").textContent="Unverified candidate exported locally. Not imported or activated.";
+});
+update();
+</script>
+</body>
+</html>
