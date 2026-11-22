@@ -86,6 +86,7 @@ const fullRegressionTests=[
   "writing-source-bundle-browser.cjs",
   "vocabulary-pilot-browser.cjs",
   "rgw-depth-pilot-browser.cjs",
+  "listening-dictation-browser.cjs",
   "highlight-left-edge-browser.cjs",
   "learner-result-browser.cjs",
   "learning-plan-direct-review-browser.cjs",
