@@ -67,7 +67,7 @@ assert.equal(w.evidence_weight,0);
 assert.equal(w.rubric_id,'RUBRIC-WRITING-B2');
 assert.deepEqual([w.word_range_guidance.min,w.word_range_guidance.max],[180,240]);
 assert.equal(w.word_range_guidance.not_a_quality_score,true);
-assert(src.includes(w.prompt),'Writing prompt must match approved source exactly');
+assert(src.replace(/\*\*/g,'').includes(w.prompt),'Writing prompt must match approved source after Markdown emphasis normalization');
 const content=require('../content/curriculum-1.30.0-candidate.json');
 assert.equal(content.schema_version,'1.30.0');
 assert.deepEqual([content.lessons.length,content.lessons.flatMap(l=>l.activities).length],[190,1278]);
