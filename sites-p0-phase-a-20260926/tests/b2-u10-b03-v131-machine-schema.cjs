@@ -37,7 +37,7 @@ for(const lesson of incoming){
  assert(!lesson.activities.some(q=>q.interaction||q.widget||q.semantic_score));
 }
 const r=incoming[0],l=incoming[1],w=incoming[2];
-const normalize=s=>s.replace(/\\*\\*/g,'').replace(/^### /gm,'').trim();
+const normalize=s=>s.replace(/\*\*/g,'').replace(/^### /gm,'').trim();
 const srcReading=stage.reading.approved_source_section;
 const begin=srcReading.indexOf('### Source A'),end=srcReading.indexOf('**REA-B2-15-Q1**');
 assert(begin>=0&&end>begin);
@@ -60,7 +60,7 @@ function assertObjective(lesson,items,keys) {
 assertObjective(r,stage.reading.approved_items,'BADCBA');
 assertObjective(l,stage.held_listening.approved_items,'CADBCB');
 assert.deepEqual(l.audio_asset.roles,['Mara, organizer','Jon, venue and volunteer coordinator']);
-const transcript=stage.held_listening.production_turns.map(t=>t.speaker+': '+t.text).join('\\n');
+const transcript=stage.held_listening.production_turns.map(t=>t.speaker+': '+t.text).join('\n');
 assert.equal(l.audio_asset.source_text,transcript,'Exact nine-turn approved A/B transcript');
 assert.equal(l.audio_asset.transcript_reveal,'after_submission');
 assert.equal(l.audio_asset.requires_real_playback,true);
@@ -88,7 +88,7 @@ const out='.sites-runtime/b2-u10-b03-v131-source-machine-qa';
 fs.rmSync(path.join(root,out),{recursive:true,force:true});
 fs.mkdirSync(path.join(root,out),{recursive:true});
 execFileSync(process.execPath,['node_modules/typescript/bin/tsc','domain/academic.ts','domain/content-model.ts','domain/option-order.ts','domain/unit-guide-60.ts','--outDir',out,'--rootDir','.','--module','commonjs','--target','es2022','--resolveJsonModule','--esModuleInterop','--skipLibCheck','--lib','es2022,dom'],{cwd:root,stdio:'inherit'});
-fs.writeFileSync(path.join(root,out,'package.json'),'{"type":"commonjs"}\\n');
+fs.writeFileSync(path.join(root,out,'package.json'),'{"type":"commonjs"}\n');
 const {validateSeed,mapSeed}=require(path.join(root,out,'domain/academic.js'));
 const {validateContent}=require(path.join(root,out,'domain/content-model.js'));
 const {createOptionOrder,validateOptionOrder,orderedOptions}=require(path.join(root,out,'domain/option-order.js'));
