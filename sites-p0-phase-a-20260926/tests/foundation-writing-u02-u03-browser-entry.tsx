@@ -82,6 +82,19 @@ function TestApp(){
  await until(()=>!!document.querySelector('#app [aria-label="Foundation Writing '+unit+'"]'),'unit mount');
  check((window as any).__aiCalls===0,'No automatic AI on mount');
  if(phase==='02save'){
+  click('Practice A');
+  await until(()=>!!document.querySelector('[data-learning-interaction="CardSortBoard"]'),'U02 reusable sort board');
+  const board02=document.querySelector('[data-learning-interaction="CardSortBoard"]')!;
+  check(!board02.textContent?.includes('(Key: FITS)'),'U02 key hidden before Check');
+  choose('u02-card-A1','FITS');
+  await until(()=>!!board02.textContent?.includes('1/6 placed'),'U02 grouping updated from controlled choice');
+  const groups02=board02.querySelector('[data-learning-interaction-preview="CardSortBoard"]')!;
+  check(groups02.textContent?.includes('A1.'),'U02 learner chosen card appears in category preview');
+  check(!board02.textContent?.includes('(Key: FITS)'),'Grouping preview must not reveal answer');
+  click('Check all six cards and see explanations');
+  await until(()=>!!board02.textContent?.includes('(Key: FITS)'),'U02 reviewed feedback only after Check');
+  choose('u02-card-A1','OFF_TASK');
+  await until(()=>!board02.textContent?.includes('(Key: FITS)'),'Editing category hides old feedback');
   click('Practice B');
   await until(()=>!!document.querySelector('textarea[name="FW-U02-practice-b-idea-0"]'),'U02 idea bank');
   const ideas=['Book-swap table','Short graphic-novel circle','Read-and-draw session'];
@@ -140,8 +153,19 @@ function TestApp(){
  }else if(phase==='03save'){
   const before=(await loadLearnerState()).state??{};
   check(before.foundationWritingV1?.units?.['FW-U02']?.versions?.length===2,'Prior U02 remains saved');
+  click('Practice A');
+  await until(()=>!!document.querySelector('[data-learning-interaction="CardSortBoard"]'),'U03 reusable sort board');
+  const board03=document.querySelector('[data-learning-interaction="CardSortBoard"]')!;
+  check(!board03.textContent?.includes('(Key: Claim)'),'U03 role key hidden before Check');
+  choose('u03-card-C1','Claim');
+  await until(()=>!!board03.textContent?.includes('1/6 placed'),'U03 grouped user choice');
+  check(!board03.textContent?.includes('(Key: Claim)'),'U03 live preview is not answer feedback');
+  click('Check card roles and all explanations');
+  await until(()=>!!board03.textContent?.includes('(Key: Claim)'),'U03 postcheck explanation');
   click('Practice B');
   await until(()=>!!document.querySelector('textarea[name="chainA-claim"]'),'U03 chains');
+  check(document.querySelectorAll('[data-learning-interaction="ResponsePlanner"]').length===2,
+   'U03 displays two reusable ResponsePlanners in Practice B');
   choose('u03-weak-choice','B-W1');
   text('u03-weak-repair','Members could learn to create pictures and meet other learners during lunch.');
   const fields={
@@ -156,6 +180,10 @@ function TestApp(){
    text(k,v);
    await until(()=>((document.querySelector('textarea[name="'+k+'"]') as HTMLTextAreaElement)?.value===v),'controlled chain '+k);
   }
+  const preview03=document.querySelector('[data-learning-interaction-preview="ResponsePlanner"]')!;
+  check(preview03.textContent?.includes('3/3 parts filled'),'U03 filled plan summary updates without marking quality');
+  check(preview03.textContent?.includes('Our school should create a lunchtime creative club'),
+   'U03 original learner text, not generated text, appears in preview');
   click('Save version');
   await until(()=>app().textContent?.includes('Version 1 saved')===true,'U03 version one');
   click('AI Tutor');
