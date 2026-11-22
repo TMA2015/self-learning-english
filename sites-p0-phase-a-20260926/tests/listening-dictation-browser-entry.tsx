@@ -25,6 +25,10 @@ const changeSelect=(id:string,value:string)=>{
  await wait(()=>!!document.querySelector('[data-learning-interaction="ListeningDictation"]'),'component mount');
  const widget=document.querySelector('[data-learning-interaction="ListeningDictation"]') as HTMLElement;
  check(widget.textContent?.includes('after your Listening submission'),'Post-submit label shown');
+ check(widget.textContent?.includes('Type the exact word spoken in the recording'),
+  'Reviewer-required exact transcription instruction appears before the learner types');
+ check(widget.textContent?.includes('Literal Word Match'),
+  'Reviewer-required literal-only feedback framing appears before answer check');
  const modes=[...widget.querySelectorAll<HTMLButtonElement>('button[aria-pressed]')];
  check(modes.length===2,'Two replay modes visible');
  check(modes[1].disabled,'Unverified sentence playback must be disabled');
@@ -44,6 +48,8 @@ const changeSelect=(id:string,value:string)=>{
  check(checkButton,'Check action accessible');
  checkButton!.click();
  await wait(()=>!!widget.textContent?.includes('Practice check:'),'Check completed');
+ check(widget.textContent?.includes('Literal Word Match'),
+  'Answer result is explicitly labelled Literal Word Match');
  check(widget.textContent?.includes('/'+medium.gaps.length+' exact words'),'Only practice feedback, no language score');
  changeSelect('sle-dictation-density','30');
  const hard=buildDictationSheet(source,30);
