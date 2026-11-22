@@ -9,18 +9,19 @@ const width=Number(query.get('width')??'320');
 const shell=document.getElementById('app')!;
 const status=document.getElementById('sle-test-result')!;
 function check(value:unknown,message:string){if(!value)throw Error('RGW_DEPTH_BROWSER '+lesson+' '+message);}
-function waitUntil(predicate:()=>boolean){
+function waitUntil(predicate:()=>boolean,description='React mount timeout'){
  return new Promise<void>((resolve,reject)=>{
   let tick=0;
-  function poll(){if(predicate())resolve();else if(++tick>=160)reject(Error('React mount timeout'));else setTimeout(poll,25);}
+  function poll(){if(predicate())resolve();else if(++tick>=160)reject(Error(description));else setTimeout(poll,25);}
   poll();
  });
 }
 (async()=>{
  shell.style.width=width+'px';shell.style.maxWidth='100%';
  createRoot(shell).render(<RgwDepthTeaching lessonId={lesson} version={version}/>);
- await waitUntil(()=>!!document.querySelector('.sle-rgw-pilot')||version!=='1.25.0');
- if(version!=='1.25.0'){
+ const supported=['1.25.0','1.28.0'].includes(version);
+ await waitUntil(()=>!!document.querySelector('.sle-rgw-pilot')||!supported);
+ if(!supported){
   check(!document.querySelector('.sle-rgw-pilot'),'No overlay for older attempts');
   status.textContent='PASS_VERSION_GUARD';return;
  }
@@ -39,6 +40,30 @@ function waitUntil(predicate:()=>boolean){
  if(lesson==='REA-B1-03'){
   check(model.textContent?.includes('school garden'),'Separate Reading demonstration');
   check(cards.length===4,'Four reviewed Reading strategies');
+  const reasoning=panel.querySelector<HTMLDetailsElement>('.sle-rgw-model-reasoning');
+  check(!!reasoning&&!reasoning!.open,'Correct reviewed thinking is closed before selecting evidence');
+
+  const widget=panel.querySelector('[data-learning-interaction="EvidenceHighlighter"]') as HTMLElement|null;
+  check(!!widget,'Reading evidence selection is visible on independent model');
+  const options=[...widget!.querySelectorAll<HTMLButtonElement>('button[aria-pressed]')];
+  check(options.length===3,'Exactly 3 independently reviewed-model sentences, not assessment passage');
+  check(!widget!.textContent?.includes('However marks a limitation:'),'No precheck comparison text');
+  options[0].click();
+  await waitUntil(()=>options[0].getAttribute('aria-pressed')==='true');
+  const checkButton=[...widget!.querySelectorAll<HTMLButtonElement>('button')].find(b=>b.textContent?.includes('Check selected evidence'));
+  check(!!checkButton&&!checkButton.disabled,'Check now available after selection');
+  checkButton!.click();
+  await waitUntil(()=>!!widget!.textContent?.includes('Review the limitation clue and compare again.'),
+   'Wrong-choice guidance appears only after check');
+  options[1].click();
+  await waitUntil(()=>options[1].getAttribute('aria-pressed')==='true'&&
+   !widget!.textContent?.includes('Review the limitation clue and compare again.'),
+   'New choice must clear stale feedback');
+  checkButton!.click();
+  await waitUntil(()=>!!widget!.textContent?.includes('This sentence supports the model interpretation.'),
+   'Correct evidence guidance after explicit check');
+  check(!widget!.textContent?.includes('Study apps can make it easier to organise homework'),
+   'Assessed reading passage must not leak into widget');
  }else if(lesson==='GRA-B1-05'){
   check(model.textContent?.includes('art-room timetable'),'Separate Grammar demonstration');
   check(cards.length===3&&panel.textContent?.includes('mustn\'t'),'Deduction and prohibition comparison');

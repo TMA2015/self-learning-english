@@ -9,6 +9,15 @@ const bytes=Buffer.from(source);
 const gitBlob=crypto.createHash('sha1').update(Buffer.concat([Buffer.from('blob '+bytes.length+'\0'),bytes])).digest('hex');
 assert.equal(gitBlob,'eb6016669023b4a4d75df7278408da1e60894369','Do not mutate imported v1.25.0');
 const curriculum=JSON.parse(source),overlay=JSON.parse(read('content/rwg-depth-pilot-r1.json'));
+const cumulative=JSON.parse(read('content/curriculum-1.28.0-candidate.json'));
+assert.equal(cumulative.schema_version,'1.28.0');
+assert.equal(cumulative.lessons.length,176);
+for(const id of ['REA-B1-03','GRA-B1-05','WRI-B1-05']){
+ const original=curriculum.lessons.find(l=>l.id===id);
+ const newer=cumulative.lessons.find(l=>l.id===id);
+ assert.deepEqual(newer,original,'Explicit 1.28 overlay reuse requires exact immutable original lesson '+id);
+}
+
 assert.equal(curriculum.schema_version,'1.25.0');
 assert.equal(curriculum.lessons.length,154);
 assert.equal(overlay.source_curriculum_version,'1.25.0');
@@ -48,6 +57,17 @@ for(const id of Object.keys(overlay.recovery_by_item)){
 const ui=read('app/rgw-depth-pilot.tsx'),foundation=read('app/foundation.tsx');
 const tip=read('domain/foundation-recovery-tip.ts'),review=read('domain/post-lesson-review.ts');
 assert(ui.includes('version===VERSION?LESSONS[lessonId]:undefined'),'Version pin required');
+assert(ui.includes("CURRENT_IDENTICAL_VERSION='1.28.0'"),'Only verified v1.28 may reuse old reviewed teaching');
+assert(ui.includes("version===CURRENT_IDENTICAL_VERSION&&lessonId==='REA-B1-03'?LESSONS[lessonId]:undefined"),'Only REA-B1-03 in reviewed v1.28 may reuse prior overlay');
+assert(ui.includes("lessonId==='REA-B1-03'&&<IndependentReadingEvidence"),'Evidence pilot restricted to Reading sample');
+assert(ui.includes('passage={lesson.model.situation}'),'Use independent reviewed model, not assessment passage');
+assert.match(ui,/expectedId="2"/,'Limitation sentence from approved sample is second');
+assert(ui.includes("nor does the text prove that every school has the money, space, or staff for a garden."),
+ 'Optional NotebookLM R1 feedback alignment adopted verbatim');
+assert(!ui.includes("every school has a backup plan."),'Superseded feedback must not recur');
+
+assert(ui.includes('setChecked(false)'),'Editing evidence must hide feedback');
+
 assert(ui.includes('Optional self-practice: not submitted or graded.'));
 assert(!/correct_option_id|accepted_answers|fetch\(|localStorage|indexedDB|\bsubmit\(/.test(ui));
 assert(!Object.values(overlay.lessons).some(l=>/correct_option_id|accepted_answers/.test(JSON.stringify(l))));

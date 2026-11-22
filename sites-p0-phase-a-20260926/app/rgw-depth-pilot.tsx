@@ -1,5 +1,7 @@
 'use client';
 
+import {useState} from 'react';
+import {EvidenceHighlighter} from './learning-interactions';
 import pilotData from '../content/rwg-depth-pilot-r1.json';
 
 /**
@@ -22,8 +24,29 @@ type ReviewedLesson={
 const LESSONS=pilotData.lessons as unknown as Record<string,ReviewedLesson>;
 const VERSION=pilotData.source_curriculum_version;
 
+// Source content checks require REA/GRA/WRI B1 pilot lessons to remain byte-for-byte
+// identical in both reviewed 1.25 and cumulative active 1.28 packages.
+// This is a deliberately explicit allowlist; no forward-version wildcard.
+const CURRENT_IDENTICAL_VERSION='1.28.0';
+
+function IndependentReadingEvidence({passage}:{passage:string}){
+ const [selected,setSelected]=useState('');
+ const [checked,setChecked]=useState(false);
+ const sentences=(passage.match(/[^.!?]+[.!?]+/g)??[]).map((text,i)=>({id:String(i+1),text:text.trim()}));
+ if(sentences.length!==3)return null;
+ return <EvidenceHighlighter
+  title="Find the limitation in a model text"
+  question="Which sentence introduces a limitation to the positive claim about school gardens?"
+  sentences={sentences} selectedId={selected} checked={checked}
+  expectedId="2"
+  rationale="However marks a limitation: rainy days can interrupt outdoor activities. This does not mean gardens are useless; nor does the text prove that every school has the money, space, or staff for a garden."
+  onSelect={id=>{setSelected(id);setChecked(false)}}
+  onCheck={()=>setChecked(true)}/>;
+}
+
 export function RgwDepthTeaching({lessonId,version}:{lessonId:string;version:string}){
- const lesson=version===VERSION?LESSONS[lessonId]:undefined;
+ const baseline=version===VERSION?LESSONS[lessonId]:undefined;
+ const lesson=baseline??(version===CURRENT_IDENTICAL_VERSION&&lessonId==='REA-B1-03'?LESSONS[lessonId]:undefined);
  if(!lesson)return null;
  return <section className="foundation-learn-block sle-rgw-pilot" aria-label="Reading Grammar Writing learning toolkit">
    <h3>{lesson.module==='reading'?'Read with evidence':lesson.module==='grammar'?'Reason from evidence':'Plan your writing'}</h3>
@@ -40,8 +63,15 @@ export function RgwDepthTeaching({lessonId,version}:{lessonId:string;version:str
    <div className="sle-rgw-model" aria-label="Independent worked example">
     <h4>{lesson.model.title}</h4>
     <p className="sle-rgw-model-situation">{lesson.model.situation}</p>
-    <p className="sle-rgw-model-thinking">{lesson.model.thinking}</p>
+    {lessonId==='REA-B1-03'
+      ?<details className="sle-rgw-model-reasoning">
+        <summary>See the worked reasoning (optional)</summary>
+        <p className="sle-rgw-model-thinking">{lesson.model.thinking}</p>
+       </details>
+      :<p className="sle-rgw-model-thinking">{lesson.model.thinking}</p>}
    </div>
+   {lessonId==='REA-B1-03'&&<IndependentReadingEvidence key={lessonId+'-'+version}
+    passage={lesson.model.situation}/>}
    <details className="sle-rgw-self-practice">
     <summary>{lesson.self_practice.title}</summary>
     {lesson.module==='writing'?<div>
