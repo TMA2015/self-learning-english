@@ -62,6 +62,10 @@ assert(ui.includes("version===CURRENT_IDENTICAL_VERSION&&lessonId==='REA-B1-03'?
 assert(ui.includes("lessonId==='REA-B1-03'&&<IndependentReadingEvidence"),'Evidence pilot restricted to Reading sample');
 assert(ui.includes('passage={lesson.model.situation}'),'Use independent reviewed model, not assessment passage');
 assert.match(ui,/expectedId="2"/,'Limitation sentence from approved sample is second');
+assert(ui.includes("nor does the text prove that every school has the money, space, or staff for a garden."),
+ 'Optional NotebookLM R1 feedback alignment adopted verbatim');
+assert(!ui.includes("every school has a backup plan."),'Superseded feedback must not recur');
+
 assert(ui.includes('setChecked(false)'),'Editing evidence must hide feedback');
 
 assert(ui.includes('Optional self-practice: not submitted or graded.'));
