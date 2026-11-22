@@ -31,11 +31,8 @@ function review(items,id,keys) {
   assert.equal(item.options.length,4,item.id+' must have four options');
   assert.deepEqual(item.options.map(x=>x.id),['A','B','C','D']);
   assert(item.options.every(x=>typeof x.text==='string'&&x.text.length>5),item.id+' nonempty distractors');
-  const escapedId=item.id.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-  const line=new RegExp('^\\*\\*'+escapedId+'\\*\\* \\('+item.skill_tag.replace('.','\\.')+'\\)\\. (.+)$','m');
-  const m=src.match(line);
-  assert(m,item.id+' exact source heading missing');
-  assert.equal(item.prompt,m[1],item.id+' question must match reviewed source');
+  const expectedHeading='**'+item.id+'** ('+item.skill_tag+'). '+item.prompt;
+  assert(src.includes(expectedHeading),item.id+' exact source question/skill tag missing');
   assert(src.includes('**Key:** '+item.approved_key+'. **Rationale:** '+item.rationale),
    item.id+' rationale/key must match');
   assert(item.misconception.length>12&&item.repair.length>10,item.id+' complete authored repair');
@@ -50,14 +47,15 @@ assert.equal(stage.held_listening.status,'SCRIPT_ONLY_NOT_ASSESSED');
 assert.equal(stage.held_listening.scoring_authorized,false);
 assert.equal(stage.held_listening.verified_media,null);
 assert.equal(stage.held_listening.required_mp3,'LIS-B2-01-v1.mp3');
-const sourceTurns=[...stage.held_listening.approved_source_section.matchAll(
- /^> \\*\\*(Host \\/ organizer \\(Mara\\)|Venue and volunteer coordinator \\(Jon\\)|Mara|Jon):\\*\\* (.+)$/gm
-)];
+const sourceTurns=stage.held_listening.approved_source_section.split('\\n')
+ .filter(line=>line.startsWith('> **')&&line.includes(':** '))
+ .map(line=>({text:line.slice(line.indexOf(':** ')+4),isMara:line.includes('(Mara)')||line.startsWith('> **Mara:')}));
 assert.equal(sourceTurns.length,9,'Nine approved source dialogue turns');
 assert.equal(stage.held_listening.production_turns.length,9);
 sourceTurns.forEach((m,i)=>{
  const expected=stage.held_listening.production_turns[i];
- assert.equal(expected.text,m[2],'Turn '+(i+1)+' text must be exact');
+ assert.equal(expected.text,m.text,'Turn '+(i+1)+' text must be exact');
+ assert.equal(m.isMara,i%2===0,'Turn '+(i+1)+' role order');
  assert.equal(expected.speaker,i%2===0?'A':'B');
  assert.equal(expected.role,i%2===0?'Mara':'Jon');
 });
@@ -90,10 +88,8 @@ assert(runtime.includes("from '../../content/curriculum-1.30.0-candidate.json'")
 assert(!runtime.includes("from '../../content/curriculum-1.31.0-candidate.json'"));
 const receipt=fs.readFileSync(path.join(root,'content/review-packets/SLE_LIS_B2_01_MEDIA_INTAKE_RECEIPT_20261122.md'),'utf8');
 assert(receipt.includes('995521c99ec8715758cd295a4de04a1788b8772a9e73d703cc72dd977b415056'));
-assert(receipt.includes('WORD_PARITY_PENDING')||receipt.includes('WORD_PARITY_PENDING'.replace('_PENDING','S_PENDING'))||
-  receipt.includes('WORD_PARITY_PENDING')||receipt.includes('WORD_PARITY_PENDING'.toLowerCase())||
-  /spoken.words|spoken-content|spoken.word|word.for.word/i.test(receipt));
-assert(/VOICE_RIGHTS_PENDING|voice license/i.test(receipt));
+assert(/WORD_PARITY_PENDING|spoken.word|word.for.word/i.test(receipt),'Exact audio-to-script parity still pending');
+assert(/VOICE_RIGHTS_PENDING|voice license/i.test(receipt),'Voice rights still pending');
 console.log(JSON.stringify({
  result:'PASS',gate:'B2_U10_BATCH03_REVIEWED_SOURCE_AND_MEDIA_HOLD',sourceSha256:expectedHash,
  academic:'PASS',readingItems:6,listeningScriptItems:6,unscoredWritingItems:1,
