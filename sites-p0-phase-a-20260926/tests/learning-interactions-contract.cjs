@@ -13,6 +13,14 @@ for(const p of ['app/learning-interactions.tsx','app/foundation-writing-u02-u03.
 }
 assert.match(ui,/export function CardSortBoard\(/);
 assert.match(ui,/export function ResponsePlanner</);
+assert.match(ui,/export function EvidenceHighlighter\(/);
+assert.match(ui,/data-learning-interaction="EvidenceHighlighter"/);
+assert.match(ui,/aria-pressed=\{selectedId===sentence\.id\}/,'Accessible keyboard/touch selection');
+assert.match(ui,/disabled=\{!selectedId\}/,'Cannot check without choosing evidence');
+assert.match(ui,/checked&&selectedId/,'Feedback hidden until explicit Check');
+assert.match(ui,/onSelect\(sentence\.id\)/,'Selection delegated to caller');
+assert.match(ui,/Practice only: no automatic Reading score/,'Unscored evidence contract');
+
 assert.match(ui,/data-learning-interaction="CardSortBoard"/);
 assert.match(ui,/data-learning-interaction="ResponsePlanner"/);
 assert.match(ui,/data-learning-interaction-preview="CardSortBoard"/);
@@ -48,6 +56,6 @@ assert.match(pilot,/Get personal AI Tutor feedback/);
 assert.match(read('scripts/qa-free-first.mjs'),/learning-interactions-contract\.cjs/);
 assert.match(read('tests/foundation-writing-u02-u03-browser-entry.tsx'),/data-learning-interaction="CardSortBoard"/);
 assert.match(read('tests/foundation-writing-u02-u03-browser-entry.tsx'),/data-learning-interaction="ResponsePlanner"/);
-console.log(JSON.stringify({result:'PASS',gate:'SLE_INTERACTION_TOOLKIT_PILOT',primitives:2,
+console.log(JSON.stringify({result:'PASS',gate:'SLE_INTERACTION_TOOLKIT_PILOT',primitives:3,
  pilotUnits:['FW-U02','FW-U03'],existingCycleCards:12,existingU03Chains:4,
  contentChanges:0,newScoredItems:0,gradingUnchanged:true,liveAuthorized:false}));
