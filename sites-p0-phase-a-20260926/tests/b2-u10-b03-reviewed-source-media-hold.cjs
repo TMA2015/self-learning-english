@@ -47,7 +47,7 @@ assert.equal(stage.held_listening.status,'SCRIPT_ONLY_NOT_ASSESSED');
 assert.equal(stage.held_listening.scoring_authorized,false);
 assert.equal(stage.held_listening.verified_media,null);
 assert.equal(stage.held_listening.required_mp3,'LIS-B2-01-v1.mp3');
-const sourceTurns=stage.held_listening.approved_source_section.split('\\n')
+const sourceTurns=stage.held_listening.approved_source_section.split('\n')
  .filter(line=>line.startsWith('> **')&&line.includes(':** '))
  .map(line=>({text:line.slice(line.indexOf(':** ')+4),isMara:line.includes('(Mara)')||line.startsWith('> **Mara:')}));
 assert.equal(sourceTurns.length,9,'Nine approved source dialogue turns');
