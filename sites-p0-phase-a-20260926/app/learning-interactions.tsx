@@ -6,7 +6,7 @@
  * Accessible native controls are intentionally preferred over mandatory drag/drop.
  */
 export type SortCard={id:string;text:string;key:string;rationale:string};
-export type PlannerField={key:string;label:string;help?:string};
+export type PlannerField<Key extends string=string>={key:Key;label:string;help?:string};
 export type CardSortBoardProps={
  idPrefix:string;title:string;cards:readonly SortCard[];categories:readonly string[];
  selections:Readonly<Record<string,string>>;revealed:boolean;
@@ -53,11 +53,11 @@ export function CardSortBoard({
   <p className="muted">Only the fixed reviewed categories have answer keys. Original explanations are not automatically graded.</p>
  </section>;
 }
-export type ResponsePlannerProps={
- id:string;title:string;fields:readonly PlannerField[];
- values:Readonly<Record<string,string>>;onChange:(key:string,value:string)=>void;
+export type ResponsePlannerProps<Key extends string>={
+ id:string;title:string;fields:readonly PlannerField<Key>[];
+ values:Readonly<Record<Key,string>>;onChange:(key:Key,value:string)=>void;
 };
-export function ResponsePlanner({id,title,fields,values,onChange}:ResponsePlannerProps){
+export function ResponsePlanner<Key extends string>({id,title,fields,values,onChange}:ResponsePlannerProps<Key>){
  const count=fields.filter(field=>(values[field.key]??'').trim().length>0).length;
  return <section className="wcv2-card" data-learning-interaction="ResponsePlanner" aria-label={title}>
   <h3>{title}</h3>
