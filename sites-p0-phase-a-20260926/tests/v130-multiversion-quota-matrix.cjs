@@ -38,6 +38,61 @@ function syntheticAttempts(pkgs,count){
  }
  return byOwner;
 }
+// Independent proof of concept. This document format is NOT read by the app.
+// Share byte-identical lesson objects only, never match by lesson ID alone.
+const sha=s=>require('node:crypto').createHash('sha256').update(s,'utf8').digest('hex');
+function packFullHistory(records){
+ const pool=[],lookup=new Map();
+ const versions=records.map(p=>{
+  const references=p.source.lessons.map(lesson=>{
+   const key=JSON.stringify(lesson);
+   if(lookup.has(key))return lookup.get(key);
+   const index=pool.length;lookup.set(key,index);pool.push(lesson);return index;
+  });
+  return {...p,source:{...p.source,lessons:references}};
+ });
+ return {experiment:'SLE_DEDUP_POC_ONLY',sourceHash:sha(JSON.stringify(records)),pool,versions};
+}
+function unpackFullHistory(doc){
+ assert.equal(doc.experiment,'SLE_DEDUP_POC_ONLY');
+ assert(Array.isArray(doc.pool)&&Array.isArray(doc.versions));
+ const restored=doc.versions.map(p=>({...p,source:{...p.source,lessons:p.source.lessons.map(index=>{
+  assert(Number.isInteger(index)&&index>=0&&index<doc.pool.length,'Invalid lesson reference');
+  return doc.pool[index];
+ })}}));
+ assert.equal(sha(JSON.stringify(restored)),doc.sourceHash,'Full history digest mismatch');
+ return restored;
+}
+function measureDedup(records,nativeBefore,history,quota){
+ const original=JSON.stringify(records),packed=packFullHistory(records);
+ assert.equal(JSON.stringify(unpackFullHistory(JSON.parse(JSON.stringify(packed)))),original);
+ const badRef=JSON.parse(JSON.stringify(packed));
+ badRef.versions[0].source.lessons[0]=badRef.pool.length;
+ assert.throws(()=>unpackFullHistory(badRef),/Invalid lesson reference/);
+ const badText=JSON.parse(JSON.stringify(packed));
+ badText.pool[0].title+=' CORRUPTED';
+ assert.throws(()=>unpackFullHistory(badText),/digest mismatch/);
+ // Demonstrate same-ID changed content does not alias to an older object.
+ const variant=JSON.parse(JSON.stringify(records[0]));
+ variant.version='synthetic-variant';
+ variant.source.lessons[0].title+=' independent changed version';
+ const both=packFullHistory([records[0],variant]);
+ assert.notEqual(both.versions[0].source.lessons[0],both.versions[1].source.lessons[0]);
+ assert.equal(JSON.stringify(unpackFullHistory(both)),JSON.stringify([records[0],variant]));
+ const native=new Store();native.map=new Map(nativeBefore);
+ const codec=englishLosslessStore(native);
+ codec.setItem(packageKey,JSON.stringify(packed));
+ const totalBytes=cost(native.map);
+ const decoded=unpackFullHistory(JSON.parse(codec.getItem(packageKey)));
+ assert.equal(JSON.stringify(decoded),original);
+ for(const [k,v] of nativeBefore)if(k!==packageKey)assert.equal(native.getItem(k),v);
+ for(const [owner,list] of history)assert.deepEqual(JSON.parse(codec.getItem(key(owner))),list);
+ // Test atomic failure of writing the experimental document to a fake store.
+ const blocked=new Store();blocked.map=new Map(nativeBefore);blocked.limit=0;
+ assert.throws(()=>englishLosslessStore(blocked).setItem(packageKey,JSON.stringify(packed)),/quota exceeded/);
+ assert.deepEqual(blocked.map,nativeBefore);assert.deepEqual(blocked.writes,[]);
+ return {totalBytes,headroomBytes:quota-totalBytes,fits:totalBytes<=quota,originalLessonCopies:records.reduce((n,p)=>n+p.source.lessons.length,0),uniqueExactLessonObjects:packed.pool.length,fullVersionsPreserved:records.length,originalPackageDigestVerified:true,corruptRefBlocked:true,corruptContentBlocked:true,sameIdChangedContentSeparated:true};
+}
 (async()=>{
  const packs=[];
  for(const s of sources)packs.push({id:s.package_id,version:s.schema_version,digest:await sourceDigest(s),source:s,at:packs.length+1});
@@ -92,6 +147,7 @@ function syntheticAttempts(pkgs,count){
    for(const [owner,list] of history)assert.deepEqual(await repo.attempts(owner),list);
    const row={oldVersions:old.map(p=>p.version),attemptCount,owners:2,mode:compressed?'PRODUCTION_CODEC':'RAW',quotaBytes:quota,baselineBytes:initial,fullUpgradeBytes:fullBytes,fullHeadroomBytes:quota-fullBytes,outcome,retentionProjectionBytes:projectedBytes,retentionHeadroomBytes:quota-projectedBytes,protectedVersionLessonPairs:projection.protectedLessonCount};
    rows.push(row);console.log('V130_QUOTA_SCENARIO '+JSON.stringify(row));
+   if(compressed){const dedup=measureDedup([...old,next],before,history,quota);console.log('V130_DEDUP_SCENARIO '+JSON.stringify({attemptCount,priorVersions:oldCount,baselineCodecFullBytes:fullBytes,...dedup,bytesSaved:fullBytes-dedup.totalBytes,prototypeOnly:true}));}
   }
  }
  assert.equal(rows.length,6);
