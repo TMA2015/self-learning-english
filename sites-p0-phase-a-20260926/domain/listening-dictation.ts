@@ -38,15 +38,20 @@ export function buildDictationSheet(source:string,density:DictationDensity):Dict
  const raw=splitDictationLines(source);
  const candidates:{line:number;start:number;end:number;answer:string;global:number}[]=[];
  const all=raw.map((line,lineIndex)=>{
-  const speakerEnd=line.match(/^[\p{L}][\p{L} .'-]{0,22}:\s/u)?.[0].length??0;
+  // A speaker label is structural metadata, never a spoken cloze answer.
+  // Explicitly protect A/B/Woman/Man/Host/Guest and longer labeled speakers,
+  // including transcripts with no space after the colon.
+  const speakerEnd=line.match(/^\s*(?:A|B|Woman|Man|Host|Guest|[\p{L}][\p{L} .'-]{0,22})\s*:\s*/iu)?.[0].length??0;
   const found=[...line.matchAll(words)].map(m=>({
    line:lineIndex,start:m.index??0,end:(m.index??0)+m[0].length,answer:m[0],global:0,
+   spoken:(m.index??0)>=speakerEnd,
    eligible:(m.index??0)>=speakerEnd&&m[0].length>=4&&!stopwords.has(m[0].toLowerCase())
   }));
   return found;
  });
  let spokenWords=0;
  for(const line of all)for(const token of line){
+  if(!token.spoken)continue; // speaker metadata is not an audible word
   if(token.eligible)candidates.push({...token,global:spokenWords});
   spokenWords++;
  }
