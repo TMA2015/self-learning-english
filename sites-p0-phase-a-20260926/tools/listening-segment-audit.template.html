@@ -67,7 +67,7 @@
 const auditData=__LESSON_DATA__;
 const $=id=>document.getElementById(id);
 const rows=auditData.lines.map((text,i)=>({lineId:"L"+(i+1),text,startMs:null,endMs:null,replayChecked:false}));
-let selected=0,verifiedFile=false,fileUrl=null,stopAt=null,actualDuration=0;
+let selected=0,verifiedFile=false,fileUrl=null,stopAt=null,replayLine=null,actualDuration=0;
 $("lesson-title").textContent=auditData.lessonId+" · "+rows.length+" source lines";
 $("expected-sha").textContent=auditData.sha256;
 $("expected-duration").textContent=auditData.duration;
@@ -97,7 +97,7 @@ function update(){
  rows.forEach((r,i)=>{
   const tr=document.createElement("tr");
   if(i===selected)tr.className="active";
-  tr.addEventListener("click",()=>{selected=i;update()});
+  tr.addEventListener("click",()=>{if(stopAt!==null)player.pause();stopAt=null;replayLine=null;selected=i;update()});
   const col=text=>{const td=document.createElement("td");td.textContent=String(text);tr.append(td);return td};
   col(r.lineId);col(r.text);
   col(r.startMs??"—");col(r.endMs??"—");col(r.replayChecked?"Confirmed by replay":"Not checked");
@@ -117,7 +117,7 @@ $("mark-end").addEventListener("click",()=>mark("end"));
 $("next-line").addEventListener("click",()=>{selected=(selected+1)%rows.length;update()});
 $("replay").addEventListener("click",async()=>{
  const line=rows[selected];if(!verifiedFile||!rangeValid(line))return;
- player.pause();stopAt=line.endMs;
+ player.pause();stopAt=line.endMs;replayLine=selected;
  player.currentTime=line.startMs/1000;
  try{await player.play()}catch(e){$("selection-info").textContent="Playback error: "+e.message;stopAt=null}
 });
@@ -125,7 +125,7 @@ player.addEventListener("timeupdate",()=>{
  if(stopAt===null)return;
  if(player.currentTime*1000>=stopAt-50){
   player.pause();
-  stopAt=null;rows[selected].replayChecked=true;update();
+  stopAt=null;if(replayLine!==null)rows[replayLine].replayChecked=true;replayLine=null;update();
  }
 });
 player.addEventListener("loadedmetadata",()=>{
@@ -137,7 +137,7 @@ player.addEventListener("loadedmetadata",()=>{
 });
 $("mp3-file").addEventListener("change",async(e)=>{
  if(fileUrl){URL.revokeObjectURL(fileUrl);fileUrl=null}
- verifiedFile=false;actualDuration=0;stopAt=null;player.pause();player.removeAttribute("src");
+ verifiedFile=false;actualDuration=0;stopAt=null;replayLine=null;player.pause();player.removeAttribute("src");
  rows.forEach(r=>{r.startMs=null;r.endMs=null;r.replayChecked=false});
  update();
  const f=e.target.files?.[0];if(!f)return;
