@@ -82,3 +82,41 @@ export function ResponsePlanner<Key extends string>({id,title,fields,values,onCh
   </details>
  </section>;
 }
+
+/**
+ * EvidenceHighlighter uses a reviewed independent demonstration, not scored passage text.
+ * Selecting a sentence is unscored practice. The reviewed comparison stays hidden
+ * until an explicit Check. Keyboard Enter/Space and touch use native buttons.
+ */
+export type EvidenceSentence={id:string;text:string};
+export type EvidenceHighlighterProps={
+ title:string;question:string;sentences:readonly EvidenceSentence[];
+ selectedId:string;checked:boolean;expectedId:string;rationale:string;
+ onSelect:(id:string)=>void;onCheck:()=>void;
+};
+export function EvidenceHighlighter({
+ title,question,sentences,selectedId,checked,expectedId,rationale,onSelect,onCheck
+}:EvidenceHighlighterProps){
+ return <section className="wcv2-card" data-learning-interaction="EvidenceHighlighter" aria-label={title}>
+  <h3>{title}</h3>
+  <p>{question}</p>
+  <p className="muted">Select the sentence that best supports your answer. This is an independent worked example, not the scored reading passage.</p>
+  <div role="group" aria-label={question} style={{display:'grid',gap:'0.5rem'}}>
+   {sentences.map((sentence,i)=><button type="button" key={sentence.id}
+    className={selectedId===sentence.id?'primary-button':'secondary-button'}
+    aria-pressed={selectedId===sentence.id}
+    onClick={()=>onSelect(sentence.id)}
+    style={{textAlign:'left',whiteSpace:'normal',height:'auto',minHeight:'2.75rem'}}>
+    <strong>{i+1}.</strong> {sentence.text}
+   </button>)}
+  </div>
+  <p className="muted" aria-live="polite">{selectedId?'Sentence selected. You can change your choice before checking.':'Choose one sentence.'}</p>
+  <button type="button" className="secondary-button" disabled={!selectedId}
+   onClick={onCheck}>Check selected evidence</button>
+  {checked&&selectedId&&<p role="status" className="muted">
+   {selectedId===expectedId?'This sentence supports the model interpretation. ':'Review the limitation clue and compare again. '}
+   {rationale}
+  </p>}
+  <p className="muted">Practice only: no automatic Reading score, CEFR award or learner attempt is recorded.</p>
+ </section>;
+}
