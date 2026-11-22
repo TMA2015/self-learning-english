@@ -9,10 +9,10 @@ const width=Number(query.get('width')??'320');
 const shell=document.getElementById('app')!;
 const status=document.getElementById('sle-test-result')!;
 function check(value:unknown,message:string){if(!value)throw Error('RGW_DEPTH_BROWSER '+lesson+' '+message);}
-function waitUntil(predicate:()=>boolean){
+function waitUntil(predicate:()=>boolean,description='React mount timeout'){
  return new Promise<void>((resolve,reject)=>{
   let tick=0;
-  function poll(){if(predicate())resolve();else if(++tick>=160)reject(Error('React mount timeout'));else setTimeout(poll,25);}
+  function poll(){if(predicate())resolve();else if(++tick>=160)reject(Error(description));else setTimeout(poll,25);}
   poll();
  });
 }
