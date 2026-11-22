@@ -39,7 +39,7 @@ function IndependentReadingEvidence({passage}:{passage:string}){
   question="Which sentence introduces a limitation to the positive claim about school gardens?"
   sentences={sentences} selectedId={selected} checked={checked}
   expectedId="2"
-  rationale="However marks a limitation: rainy days can interrupt outdoor activities. This does not mean gardens are useless or that every school has a backup plan."
+  rationale="However marks a limitation: rainy days can interrupt outdoor activities. This does not mean gardens are useless; nor does the text prove that every school has the money, space, or staff for a garden."
   onSelect={id=>{setSelected(id);setChecked(false)}}
   onCheck={()=>setChecked(true)}/>;
 }
