@@ -1,7 +1,7 @@
 # Reusable Reading EvidenceHighlighter — engineering pilot
 
 **Date:** 2026-11-22  
-**Status:** DRAFT / academic design review pending / engineering QA pending / NOT LIVE  
+**Status:** DRAFT / independent NotebookLM design PASS (2026-11-22) / engineering QA pending exact final HEAD / NOT LIVE  
 **Dependency:** PR #212 tested CardSortBoard + ResponsePlanner source; this follow-on PR is stacked on that reviewed draft. It is not a separate SLE workstream.
 
 ## What is implemented
@@ -22,7 +22,7 @@
 - Keep full SLE release QA and build. QA success on PR #212 is historical and does not certify this follow-on source until its own exact-head QA passes.
 
 ## Academic gate
-A new learner-facing interaction has new prompt and feedback wording. **Independent NotebookLM review is therefore required** under SLE-MASTER-001 before adoption. The portable single-file packet `SLE_READING_EVIDENCE_HIGHLIGHTER_REVIEW_R1_20261122.md` was prepared outside GitHub with exact model, S1/S2/S3, candidate key, proposed feedback, eight questions and required verdict. NotebookLM verdict NOT YET RECEIVED; technical CI is independent and cannot approve content.
+**Independent NotebookLM R1 review received 2026-11-22: ACADEMIC PASS, eight questions PASS, S2 unique PASS, MUST_FIX NONE.** The original portable packet `SLE_READING_EVIDENCE_HIGHLIGHTER_REVIEW_R1_20261122.md` is preserved under `content/review-packets/`, with the result recorded in `content/review-packets/SLE_REA_B1_03_EVIDENCE_NOTEBOOKLM_PASS_RECEIPT_20261122.md`. The reviewer offered one optional wording alignment; it has been applied to the shared explanation and checked by a source assertion. This is pedagogical authorization only, **not technical QA, Safari acceptance or release authorization**.
 
 ## Future cross-skill use
 After academic review and real iPad acceptance, reuse EvidenceHighlighter for B2 Reading with an independent approved source passage and source-specific spans. No blind migration of historical graded passages or keys.
