@@ -45,6 +45,14 @@
   <p><input id="suggest-file" type="file" accept=".json,application/json" disabled /></p>
   <p class="muted">Candidate offsets are only starting points. They must match this exact MP3 and every line must be checked by ear. Import never marks a replay as verified.</p>
   <p id="suggest-result" role="status">No candidate imported.</p>
+  <div id="turn-assist" hidden>
+    <label for="turn-file"><strong>Optional: import reviewed-later speaker-TURN suggestions</strong></label>
+    <p><input id="turn-file" type="file" accept=".json,application/json" disabled /></p>
+    <p class="muted">Turn suggestions help locate a sentence within its original speaker turn. They never fill sentence timestamps or count as a checked replay.</p>
+    <p id="turn-result" role="status">No turn candidate imported.</p>
+    <button type="button" id="play-turn" disabled>Play approximate parent turn (NOT a sentence check)</button>
+    <p id="turn-info" role="status"></p>
+  </div>
   <div class="buttons">
     <button id="mark-start" type="button" disabled>Mark start at playhead</button>
     <button id="mark-end" type="button" disabled>Mark end at playhead</button>
@@ -54,7 +62,7 @@
   <p id="selection-info" role="status"></p>
   <div style="overflow-x:auto">
    <table>
-    <thead><tr><th>Line</th><th>Source text (unscored QA only)</th><th>Start (ms)</th><th>End (ms)</th><th>Replay checked</th></tr></thead>
+    <thead><tr><th>Line</th><th>Source text (unscored QA only)</th><th id="turn-column" hidden>Source turn</th><th>Start (ms)</th><th>End (ms)</th><th>Replay checked</th></tr></thead>
     <tbody id="lines"></tbody>
    </table>
   </div>
@@ -72,6 +80,12 @@ const auditData=__LESSON_DATA__;
 const $=id=>document.getElementById(id);
 const rows=auditData.lines.map((text,i)=>({lineId:"L"+(i+1),text,startMs:null,endMs:null,replayChecked:false}));
 let selected=0,verifiedFile=false,fileUrl=null,stopAt=null,replayLine=null,actualDuration=0;
+const turnMap=Array.isArray(auditData.turnMap)?auditData.turnMap:[];
+let suggestedTurns=null;
+if(turnMap.length===rows.length&&turnMap.length>0){
+ $("turn-assist").hidden=false;
+ $("turn-column").hidden=false;
+}
 $("lesson-title").textContent=auditData.lessonId+" · "+rows.length+" source lines";
 $("expected-sha").textContent=auditData.sha256;
 $("expected-duration").textContent=auditData.duration;
@@ -93,6 +107,16 @@ function update(){
  const enabled=verifiedFile&&actualDuration>0;
  $("mark-start").disabled=!enabled;$("mark-end").disabled=!enabled;
  $("suggest-file").disabled=!enabled;
+ $("turn-file").disabled=!enabled||turnMap.length!==rows.length;
+ const mapping=turnMap[selected];
+ const suggestion=mapping&&suggestedTurns?.[mapping.turnIndex-1];
+ $("play-turn").disabled=!enabled||!suggestion;
+ $("turn-info").textContent=mapping
+  ? "Sentence L"+(selected+1)+" belongs to turn T"+mapping.turnIndex+
+    " (sentence "+mapping.sentenceInTurn+"/"+mapping.turnSentenceCount+"). "+
+    (suggestion?"Suggested turn window "+suggestion.startMs+"–"+suggestion.endMs+
+      " ms; NOT verified, mark sentence limits separately.":"No suggested turn window loaded.")
+  : "";
  $("replay").disabled=!enabled||!rangeValid(rows[selected]);
  $("export").disabled=!allValid();
  $("selection-info").textContent="Selected "+rows[selected].lineId+
@@ -105,6 +129,8 @@ function update(){
   tr.addEventListener("click",()=>{if(stopAt!==null)player.pause();stopAt=null;replayLine=null;selected=i;update()});
   const col=text=>{const td=document.createElement("td");td.textContent=String(text);tr.append(td);return td};
   col(r.lineId);col(r.text);
+  if(turnMap.length===rows.length)
+   col("T"+turnMap[i].turnIndex+" · "+turnMap[i].sentenceInTurn+"/"+turnMap[i].turnSentenceCount);
   col(r.startMs??"—");col(r.endMs??"—");col(r.replayChecked?"Confirmed by replay":"Not checked");
   $("lines").append(tr);
  });
@@ -143,6 +169,8 @@ player.addEventListener("loadedmetadata",()=>{
 $("mp3-file").addEventListener("change",async(e)=>{
  if(fileUrl){URL.revokeObjectURL(fileUrl);fileUrl=null}
  verifiedFile=false;actualDuration=0;stopAt=null;replayLine=null;player.pause();player.removeAttribute("src");
+ suggestedTurns=null;
+ $("turn-result").textContent="Re-select a matching turn candidate after verifying this MP3.";
  rows.forEach(r=>{r.startMs=null;r.endMs=null;r.replayChecked=false});
  update();
  const f=e.target.files?.[0];if(!f)return;
@@ -193,6 +221,58 @@ $("suggest-file").addEventListener("change",async(e)=>{
  }catch(err){
   $("suggest-result").textContent="Candidate rejected: "+String(err.message||err);
  }finally{e.target.value=""}
+});
+// Turn-level suggestions are *navigation aids*. Import must NEVER modify
+// rows[startMs/endMs/replayChecked], even when a malicious JSON says "verified".
+$("turn-file").addEventListener("change",async(event)=>{
+ const file=event.target.files?.[0];
+ if(!file)return;
+ if(!verifiedFile||!actualDuration||!turnMap.length){
+  $("turn-result").textContent="Verify original MP3 and source turn mapping first.";return;
+ }
+ if(file.size>100000){$("turn-result").textContent="Turn candidate too large.";return}
+ try{
+  const value=JSON.parse(await file.text());
+  const maxTurn=Math.max(...turnMap.map(m=>m.turnIndex));
+  if(value.reviewLevel!=="SPEAKER_TURN_ONLY"||
+     value.explicitlyNotSentenceAligned!==true||
+     value.status!=="CANDIDATE_UNVERIFIED"||
+     value.productionEnabled!==false||
+     value.independentAudioVerified!==false||
+     value.lessonId!==auditData.lessonId||
+     value.assetSha256!==auditData.sha256||
+     !Number.isFinite(value.durationSeconds)||
+     Math.abs(value.durationSeconds-actualDuration)>0.5||
+     !Array.isArray(value.segments)||
+     value.segments.length!==maxTurn)
+    throw Error("Turn proposal does not match this original MP3 and its transcript");
+  const proposed=value.segments.map((item,i)=>{
+    const start=item.startMs,end=item.endMs;
+    if(item.lineId!=="L"+(i+1)||item.sourceSpeakerTurn!==i+1||
+      item.assetSha256!==auditData.sha256||
+      !Number.isSafeInteger(start)||!Number.isSafeInteger(end)||
+      start<0||end<=start||end>Math.round(actualDuration*1000)+150||
+      (i>0&&start<value.segments[i-1].endMs))
+     throw Error("Invalid source turn or overlapping time range: T"+(i+1));
+    return {startMs:start,endMs:end};
+  });
+  player.pause();stopAt=null;replayLine=null;
+  suggestedTurns=proposed; // NEVER copy into sentence rows or mark replay checked
+  $("turn-result").textContent="Imported "+proposed.length+
+   " UNVERIFIED turn windows. Play the parent turn as a guide, then mark and replay every sentence separately.";
+  update();
+ }catch(error){
+  $("turn-result").textContent="Turn proposal rejected: "+String(error.message||error);
+ }finally{event.target.value=""}
+});
+$("play-turn").addEventListener("click",async()=>{
+ const mapping=turnMap[selected],turn=mapping&&suggestedTurns?.[mapping.turnIndex-1];
+ if(!verifiedFile||!turn)return;
+ player.pause();stopAt=turn.endMs;replayLine=null; // no sentence replay can be marked checked
+ player.currentTime=turn.startMs/1000;
+ try{await player.play()}catch(error){
+  stopAt=null;$("turn-result").textContent="Turn playback failed: "+String(error.message||error);
+ }
 });
 $("export").addEventListener("click",()=>{
  if(!allValid())return;
