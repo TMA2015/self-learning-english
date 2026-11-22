@@ -33,6 +33,8 @@ const assignments:Record<string,string>={
  ...primaryAssignments.reviewed_v129,
  // R2 reviewed B2-U08/U09 links only become visible when those lessons exist in the active catalog.
  ...primaryAssignments.reviewed_v130,
+ // Approved B2-U10 Batch03 candidate links, gated on actual catalog lesson availability.
+ ...primaryAssignments.reviewed_v131,
 };
 export const UNIT_LEVELS:UnitLevel[]=['A1','A2','B1','B2','C1','C2'];
 export const UNIT_DEFINITIONS=authoredUnits.units;
