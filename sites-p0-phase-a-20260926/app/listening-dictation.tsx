@@ -62,6 +62,8 @@ export function ListeningDictationPractice({
   <p className="muted">Optional practice <strong>after your Listening submission</strong>.
    Replay the original MP3, fill in the missing words and check the exact spellings.
    This does not change your Listening score or CEFR evidence.</p>
+  <p><strong>Type the exact word spoken in the recording</strong>.
+   This is a <strong>Literal Word Match</strong> spelling exercise, not a comprehension or proficiency grade.</p>
   <div className="learning-choices" role="group" aria-label="Dictation replay mode">
    <button type="button" aria-pressed={mode==='whole'} className={mode==='whole'?'primary-button':'secondary-button'}
     onClick={()=>setMode('whole')}>Whole recording</button>
@@ -84,7 +86,7 @@ export function ListeningDictationPractice({
   {audioError&&<p role="alert" className="notice">{audioError}</p>}
   <label className="field" htmlFor="sle-dictation-density">
    <strong>How many words should be hidden?</strong>
-   <select id="sle-dictation-density" value={density} onChange={e=>setDensity(Number(e.target.value) as DictationDensity)}>
+   <select id="sle-dictation-density" value={density} onChange={e=>{setChecked(false);setAnswers({});setDensity(Number(e.target.value) as DictationDensity)}}>
     <option value={10}>Easy · about 10%</option>
     <option value={20}>Medium · about 20%</option>
     <option value={30}>Challenge · about 30%</option>
@@ -124,7 +126,7 @@ export function ListeningDictationPractice({
     onClick={()=>{setAnswers({});setChecked(false)}}>Clear answers</button>
   </div>
   {checked&&<p role="status" className="notice">
-   Practice check: {correct}/{sheet.gaps.length} exact words.
+   <strong>Literal Word Match</strong> — Practice check: {correct}/{sheet.gaps.length} exact words.
    Review the transcript and replay any unclear parts. This is not a Listening proficiency score.
   </p>}
   <p className="muted">Practice answers stay on this screen only: no automatic save,
