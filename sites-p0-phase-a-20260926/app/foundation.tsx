@@ -236,7 +236,7 @@ export function FoundationDemo({showVi=false,onEvidence,skill,entryMode='lessons
  {transcriptVisible&&transcript&&<p style={{whiteSpace:'pre-wrap'}}>{transcript}</p>}
  {dictationOpen&&transcript&&audioInfo&&dictationPilotEligible(lesson.id)&&<ListeningDictationPractice
   key={'post-submit-dictation-'+attempt.id+'-'+attempt.version}
-  attemptId={attempt.id} transcript={transcript} audioUrl={audioInfo.url}
+  attemptId={attempt.id} lessonId={lesson.id} transcript={transcript} audioUrl={audioInfo.url}
   durationSeconds={audioInfo.duration}/>}
  </section>}<div className="learning-choices">{(!olderContent||attempt.status==='pending_review'||attempt.status==='approved')&&<button className="secondary-button" disabled={busy} onClick={()=>void newAttempt(attempt.status==='pending_review'||attempt.status==='approved')}>{(attempt.status==='pending_review'||attempt.status==='approved'?'Start a revision':'Retake lesson')+(attempt.status==='pending_review'||attempt.status==='approved'?historicalVersionSuffix:'')}</button>}{currentPracticeAction}{nextId&&<button className="primary-button" disabled={busy} onClick={()=>void open(nextId)}>Next step</button>}</div></>}<details className="progress-bottom"><summary>Attempt & revision history</summary>{catalog.attempts.filter(a=>a.lessonId===lesson.id).sort((a,b)=>b.createdAt-a.createdAt).map(a=><button className="secondary-button" disabled={busy||recordingNow} key={a.id} onClick={()=>void open(lesson.id,a)}>{new Date(a.createdAt).toLocaleString()} · {attemptHistoryLabel(a)}</button>)}</details></>}</>}</section>}</>}</>;
 }
