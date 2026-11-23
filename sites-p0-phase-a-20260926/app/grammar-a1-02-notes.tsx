@@ -12,7 +12,7 @@ import {Inline,TeachingBlocks} from './teaching-blocks';
 type Section = {title:string;text:string};
 const pairs = [
  {meaning:'Tôi / của tôi',subject:'I',possessive:'my',a:'',b:' have a bag.',c:'',d:' bag is new.'},
- {meaning:'Bạn / của bạn',subject:'you',possessive:'your',a:'',b:' are late.',c:'Where is ',d:' ticket?'},
+ {meaning:'Bạn / của bạn',subject:'you',possessive:'your',a:'',b:' have a ticket.',c:'',d:' ticket is here.'},
  {meaning:'Anh ấy / của anh ấy',subject:'he',possessive:'his',a:'',b:' is Minh.',c:'',d:' pencil is blue.'},
  {meaning:'Cô ấy / của cô ấy',subject:'she',possessive:'her',a:'',b:' is Linh.',c:'',d:' brother is tall.'},
  {meaning:'Nó / của nó',subject:'it',possessive:'its',a:'',b:' is a cute dog.',c:'Look at ',d:' tail.'},
