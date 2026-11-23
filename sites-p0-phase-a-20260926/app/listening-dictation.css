@@ -1,0 +1,62 @@
+/* Compact G Learning Dictation. Owner-accepted layout, original A/B audio units. */
+.sle-turn-practice{--slblue:#1764b8;--slborder:#dce6f2;background:#fff;color:#182b45;
+ border:1px solid var(--slborder);border-radius:13px;overflow:hidden;
+ font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.56;
+ width:100%;max-width:800px;box-shadow:0 2px 8px rgba(27,58,96,.035)}
+.sle-turn-practice *{box-sizing:border-box}
+.sle-turn-header{padding:15px 16px 12px;background:#f5f8fc;border-bottom:1px solid var(--slborder)}
+.sle-turn-heading{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 15px}
+.sle-turn-heading strong{font-size:16px;color:#133c6d}
+.sle-turn-heading span{color:#667c97;font-size:12px}
+.sle-turn-modes{display:inline-flex;background:#e8eef6;gap:3px;border-radius:9px;padding:3px;margin-top:10px}
+.sle-turn-modes button{font:inherit;border:0;background:transparent;color:#405a79;
+ border-radius:7px;padding:7px 11px;min-height:34px;font-size:13px;font-weight:500}
+.sle-turn-modes button.selected{background:white;color:#123a6b;font-weight:700;box-shadow:0 1px 4px #0c3e6e18}
+.sle-turn-tools{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:10px 16px}
+.sle-turn-whole,.sle-turn-retry{border:1px solid #cbdcf0;border-radius:8px;
+ background:#f8fbff;color:#19456f;padding:7px 11px;font:inherit;font-weight:600;min-height:35px}
+.sle-turn-retry{font-size:12px}
+.sle-turn-media-status{font-size:12px;color:#4c6681;flex:1;min-width:145px}
+.sle-turn-helper{margin:0;padding:0 16px 9px;color:#627c97;font-size:12px}
+.sle-turn-instruction{margin:0;border-top:1px solid #eef3f8;
+ padding:8px 16px 10px;color:#61738b;font-size:12px}
+.sle-turn-instruction strong{color:#395a7e}
+.sle-turn-lines{max-height:440px;overflow-y:auto;overscroll-behavior:contain;
+ border-top:1px solid var(--slborder);scrollbar-color:#c3d3ea transparent;scrollbar-width:thin}
+.sle-turn-line{display:grid;grid-template-columns:25px minmax(0,1fr) 43px;align-items:start;gap:7px;
+ padding:11px 13px 11px 16px;min-height:54px;border-bottom:1px solid #e8eef5}
+.sle-turn-line:last-child{border-bottom:0}
+.sle-turn-line.playing{background:#f0f7ff}
+.sle-turn-number{font-size:11px;color:#91a5c1;font-weight:600;padding-top:3px;font-variant-numeric:tabular-nums}
+.sle-turn-text{font-size:14px;line-height:1.9;min-width:0;overflow-wrap:anywhere}
+.sle-turn-speaker{font-weight:700;color:#1257a1}
+.sle-turn-speaker-btn{font:inherit;font-size:16px;border:1px solid #d2e2f4;background:#fff;
+ border-radius:8px;min-width:36px;min-height:36px;display:grid;place-items:center;color:#205c9d;
+ padding:5px;align-self:start;cursor:pointer}
+.sle-turn-speaker-btn:disabled{opacity:.38;cursor:not-allowed}
+.sle-turn-input-wrap{display:inline-flex;flex-direction:column;vertical-align:middle;max-width:40vw;
+ margin:0 3px}
+.sle-turn-gap{background:#f7faff;border:1px solid #c4d7ed;border-radius:6px;
+ font:inherit;color:#143d6d;font-size:14px;text-align:center;
+ min-height:29px;height:29px;padding:2px 4px;max-width:100%}
+.sle-turn-gap.correct{border-color:#24945d;background:#edfff5}
+.sle-turn-gap.wrong{border-color:#cf6a6a;background:#fff3f3}
+.sle-turn-correct-word{color:#9c3f3f;font-size:12px;line-height:1.3}
+.sle-turn-practice button:focus-visible,.sle-turn-gap:focus-visible{outline:2px solid #3d8dd8;outline-offset:2px}
+.sle-turn-footer{background:#f6f9fd;border-top:1px solid var(--slborder);padding:12px 16px}
+.sle-turn-actions{display:flex;flex-wrap:wrap;gap:8px}
+.sle-turn-check,.sle-turn-clear{font:inherit;min-height:38px;padding:8px 12px;border-radius:8px;font-weight:700}
+.sle-turn-check{border:1px solid #0d75d2;background:#0879d8;color:white}
+.sle-turn-clear{border:1px solid #cfdef0;background:#fff;color:#49627f}
+.sle-turn-count{margin:9px 0 0;color:#617993;font-size:12px}
+.sle-turn-result{color:#174c7e;font-size:13px;margin:9px 0 0}
+.sle-turn-disclaimer{color:#70859c;font-size:11px;margin:8px 0 0}
+@media(max-width:520px){
+ .sle-turn-header{padding:12px}.sle-turn-heading strong{font-size:15px}
+ .sle-turn-line{grid-template-columns:22px minmax(0,1fr) 40px;padding:10px 9px 10px 11px;gap:5px}
+ .sle-turn-text{font-size:14px;line-height:1.85}
+ .sle-turn-tools,.sle-turn-footer{padding:10px 12px}
+ .sle-turn-instruction{padding:8px 12px}
+ .sle-turn-modes button{padding:7px 8px;font-size:12px}
+ .sle-turn-lines{max-height:52vh}
+}
