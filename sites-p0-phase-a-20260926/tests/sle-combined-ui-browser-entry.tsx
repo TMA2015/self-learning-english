@@ -62,7 +62,8 @@ async function wait(predicate:()=>boolean,message:string){
  const options=[...practice.querySelectorAll('.foundation-option')] as HTMLElement[];
  check(options.length===4,'four MCQ options shown');
  const columns=getComputedStyle(practice.querySelector('.foundation-option-grid')!).gridTemplateColumns.trim().split(/\s+/);
- const expected=width===375?1:2;
+ const gridWidth=rect(practice.querySelector('.foundation-option-grid')!).width;
+ const expected=gridWidth>=728?2:1; // 2*360px + 8px gap; content narrower after panel padding
  check(columns.length===expected,'MCQ columns '+columns.length+' expected '+expected+' at '+width);
  for(const label of options){
   check(rect(label).height>=43.5,'44px option target');
