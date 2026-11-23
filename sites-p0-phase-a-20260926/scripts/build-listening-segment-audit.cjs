@@ -40,8 +40,24 @@ for(const id of ids){
  if(bytes.length<10000)throw Error('Audio file unexpectedly short: '+id);
  const lines=split(item.source);
  if(lines.length<2)throw Error('Cannot provide line segmentation for: '+id);
+ // Every displayed sentence receives an exact, *text-only* parent turn index.
+ // This mapping is NOT an audio alignment and never invents milliseconds.
+ const sourceTurns=item.source.replace(/\r\n?/g,'\n').split(/\n+/)
+  .map(t=>t.trim()).filter(Boolean);
+ const turnMap=[],reconstructed=[];
+ for(let i=0;i<sourceTurns.length;i++){
+  const inside=split(sourceTurns[i]);
+  if(!inside.length)throw Error('Empty transcript turn: '+id+' T'+(i+1));
+  for(let j=0;j<inside.length;j++){
+   reconstructed.push(inside[j]);
+   turnMap.push({turnIndex:i+1,turnLineId:'L'+(i+1),
+    sentenceInTurn:j+1,turnSentenceCount:inside.length});
+  }
+ }
+ if(JSON.stringify(reconstructed)!==JSON.stringify(lines)||
+  turnMap.length!==lines.length)throw Error('Sentence/turn text reconciliation failed: '+id);
  const data={lessonId:id,url:item.url,sha256:item.sha256,
-  duration:item.duration,lines};
+  duration:item.duration,lines,turnMap,sourceTurnCount:sourceTurns.length};
  const safe=JSON.stringify(data).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028');
  const html=template.replace('__LESSON_DATA__',safe);
  if(html.includes('__LESSON_DATA__'))throw Error('Unexpected placeholder remained');

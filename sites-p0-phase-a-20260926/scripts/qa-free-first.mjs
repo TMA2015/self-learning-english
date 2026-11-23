@@ -47,6 +47,7 @@ const coreTests=[
   "listening-segment-audit-tool.cjs",
   "listening-silence-suggestions.cjs",
   "listening-turn-audit-staging.cjs",
+  "listening-turn-to-sentence-audit.cjs",
   "legacy-listening-kokoro-repair-preflight.cjs",
   "writing-step-feedback-ux.cjs",
   "offline-lesson-postfeedback.cjs",
