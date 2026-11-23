@@ -90,7 +90,7 @@ export function buildDictationSheet(source:string,density:DictationDensity):Dict
 export function normalizeDictationAnswer(value:string):string{
  return value.trim().toLowerCase().replace(/[‘’]/g,"'").replace(/^[\s.,!?;:]+|[\s.,!?;:]+$/g,'');
 }
-export function checkDictationAnswers(sheet:DictationSheet,answers:Readonly<Record<string,string>>){
+export function checkDictationAnswers(sheet:Pick<DictationSheet,'gaps'>,answers:Readonly<Record<string,string>>){
  return sheet.gaps.map(g=>({id:g.id,correct:normalizeDictationAnswer(answers[g.id]??'')===
   normalizeDictationAnswer(g.answer),expected:g.answer}));
 }
