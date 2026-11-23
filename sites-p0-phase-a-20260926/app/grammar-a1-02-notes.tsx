@@ -2,6 +2,7 @@
 import {useState} from 'react';
 import type {SeedLesson} from '../domain/academic';
 import {Inline,TeachingBlocks} from './teaching-blocks';
+import './grammar-a1-02-notes.css';
 
 /** GRA-A1-02-only presentational pilot.
  * Current, version-pinned lesson objectives and authored notes are the source
@@ -97,7 +98,7 @@ export function GrammarA102Notes({lesson,sections,showVi}:{lesson:SeedLesson;sec
       <td><strong className="sle-gra02-poss">{p.possessive}</strong> + noun</td>
       <td>{p.a}<strong className="sle-gra02-subj">{p.subject==='I'?'I':p.subject==='you'?'You':p.subject[0].toUpperCase()+p.subject.slice(1)}</strong>{p.b}
        <span className="sle-gra02-arrow" aria-label="corresponds to">→</span>
-       {p.c}<strong className="sle-gra02-poss">{p.possessive[0].toUpperCase()+p.possessive.slice(1)}</strong>{p.d}</td>
+       {p.c}<strong className="sle-gra02-poss">{p.c?p.possessive:p.possessive[0].toUpperCase()+p.possessive.slice(1)}</strong>{p.d}</td>
      </tr>)}</tbody>
     </table>
    </div>
