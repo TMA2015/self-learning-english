@@ -89,7 +89,7 @@ assert(app.includes('setAnswers({});setChecked(false)'),
  'Changing compact mode/attempt must clear stale checking');
 
 assert(app.includes('Check exact words'));
-assert(app.includes('Practice answers stay on this screen only'));
+assert(app.includes('Answers stay in memory'));
 assert(!/fetch\(|foundationRequest|localStorage|setItem\(|\.score\s*=|playbackCompleted|tutorService|new Audio\(/.test(app));
 const helper=read('domain/listening-turn-replay.ts');
 assert(helper.includes("actual!==asset.sha256"),'Actual MP3 SHA must match original');
