@@ -46,6 +46,7 @@ const coreTests=[
   "listening-dictation-contract.cjs",
   "listening-turn-compact.cjs",
   "foundation-compact-practice.cjs",
+  "foundation-compact-browser.cjs",
   "legacy-listening-kokoro-repair-preflight.cjs",
   "writing-step-feedback-ux.cjs",
   "offline-lesson-postfeedback.cjs",
