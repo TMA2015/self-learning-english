@@ -17,7 +17,7 @@ const root=path.resolve(__dirname,'..');
  const base=fs.readFileSync(path.join(root,'app/globals.css'),'utf8');
  const styles=fs.readFileSync(path.join(root,'app/multiskill-knowledge-v2.css'),'utf8');
  const start=base.indexOf(':root {');
- assert(start>=0&&styles.includes('.sle-ms-reading'),'Real application CSS required');
+ assert(start>=0&&styles.includes('.sle-ms-grid')&&styles.includes('.sle-ms-listening-notice'),'Real application CSS required');
  const browser=['google-chrome','google-chrome-stable','chromium','chromium-browser']
   .map(x=>{try{return cp.execFileSync('which',[x],{encoding:'utf8'}).trim()}catch{return ''}}).find(Boolean);
  if(!browser)throw Error('Native Chromium unavailable; cannot assert browser PASS');
