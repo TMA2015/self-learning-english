@@ -81,3 +81,12 @@
  .sle-gra02-table-scroll th,.sle-gra02-table-scroll td{padding:9px 10px}
 }
 @media(prefers-reduced-motion:reduce){.sle-gra02 *{scroll-behavior:auto}}
+
+/* Historic-version message stays fully readable but no longer dominates the lesson. */
+.foundation-lesson:has(.sle-gra02) > .notice {
+  margin:8px 0 12px;
+  padding:7px 11px;
+  border-radius:8px;
+  font-size:12px;
+  line-height:1.5;
+}
