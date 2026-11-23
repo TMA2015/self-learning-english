@@ -1,0 +1,66 @@
+/* SLE Multi-skill UI v2: owner-approved visual hierarchy, four reviewed pilots.
+ * All selectors scoped to .sle-ms; no changes to assessment or player controls. */
+.sle-ms{max-width:960px;width:100%;min-width:0;margin:18px 0 24px;color:#24374f;font-size:15px;line-height:1.65}
+.sle-ms *{box-sizing:border-box}
+.sle-ms-intro{background:#f3f7fd;border:1px solid #dae7f5;border-radius:12px;padding:15px 18px;margin-bottom:22px}
+.sle-ms-kicker{color:#2d598e;font-size:12px;font-weight:750;letter-spacing:.04em;text-transform:uppercase;margin:0 0 8px}
+.sle-ms-goal{margin:0;font-size:14px;color:#263e5d;line-height:1.65}
+.sle-ms-goal strong{display:block;font-size:12px;letter-spacing:.03em;color:#245bb1;text-transform:uppercase}
+.sle-ms-section{min-width:0;margin:0 0 25px}
+.sle-ms-head{display:flex;gap:10px;align-items:flex-start;margin:0 0 12px}
+.sle-ms-head>span{display:inline-grid;place-items:center;min-width:25px;height:24px;background:#245bb1;color:#fff;font-size:12px;font-weight:700;border-radius:6px;flex:none}
+.sle-ms-head h3{font-size:18px;color:#193b61;font-weight:750;margin:0;line-height:1.42}
+.sle-ms-head p{font-size:13px;color:#6d7890;margin:2px 0 0}
+.sle-ms-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.sle-ms-card,.sle-ms-vocab-card{padding:15px 17px;border-radius:11px;border:1px solid #dce6f1;background:#fff;min-width:0;overflow-wrap:anywhere}
+.sle-ms-card h4{font-size:15px;font-weight:750;color:#24518d;line-height:1.45;margin:0 0 8px}
+.sle-ms-card p{font-size:14px;line-height:1.65;margin:0}
+.sle-ms-card-index{display:inline-block;color:#245bb1;font-size:17px;margin:0 0 7px}
+.sle-ms-panel{border:1px solid #dce6f1;background:#f7faff;border-radius:11px;padding:16px 18px;min-width:0}
+.sle-ms-panel>p{margin:6px 0 10px}
+.sle-ms-panel ul{padding-left:22px;margin:8px 0 0}
+.sle-ms-panel li{margin:5px 0}
+.sle-ms-controls{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}
+.sle-ms-controls button{font:inherit;font-size:13px;min-height:42px;padding:7px 12px;border:1px solid #bfd0e7;border-radius:9px;background:#fff;color:#315981;cursor:pointer}
+.sle-ms-controls button[aria-pressed=true]{color:#fff;background:#245bb1;border-color:#245bb1}
+.sle-ms-passage{padding:17px;background:#fff;border:1px solid #dce6f1;border-radius:9px;font-size:15px;line-height:1.9;margin:10px 0 7px}
+.sle-ms-passage span{border-radius:4px;transition:background-color .12s}
+.sle-ms-highlight{background:#ffeb9b;box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:2px 3px}
+.sle-ms-hint{font-size:13px;color:#536d87;line-height:1.6;margin:10px 0}
+.sle-ms-panel small,.sle-ms-detail small{color:#61758c}
+.sle-ms-model{background:#f3f7ff;border:1px solid #d7e6f5;border-left:4px solid #245bb1;border-radius:0 11px 11px 0;padding:17px 19px;overflow-wrap:anywhere}
+.sle-ms-model strong{color:#1d4e87}
+.sle-ms-model p{margin:8px 0 0;line-height:1.72}
+.sle-ms-detail{margin:14px 0 0;padding:11px 15px;border:1px solid #dce6f1;background:#fff;border-radius:10px}
+.sle-ms-detail summary{cursor:pointer;min-height:44px;display:list-item;align-content:center;font-weight:650;color:#2c5687;line-height:1.5}
+.sle-ms-detail p{margin:10px 0}
+.sle-ms-vocab-card{padding:0;overflow:hidden}
+.sle-ms-vocab-card summary{cursor:pointer;padding:15px 17px;min-height:70px;display:flex;flex-direction:column;gap:4px}
+.sle-ms-vocab-card summary strong{color:#24518d;font-size:15px}
+.sle-ms-vocab-card summary span{font-size:13px;color:#526d85}
+.sle-ms-vocab-card summary small{font-size:12px;color:#245bb1}
+.sle-ms-vocab-card[open] summary{border-bottom:1px solid #dce6f1;background:#f6faff}
+.sle-ms-vocab-expand{padding:11px 17px;font-size:14px}
+.sle-ms-vocab-expand p{margin:6px 0;line-height:1.62}
+.sle-ms-context{font-size:14px;color:#536d87;margin:-10px 0 22px}
+.sle-ms-brainstorm{counter-reset:ms;list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.sle-ms-brainstorm li{position:relative;padding:12px 15px 12px 47px;border:1px solid #dce6f1;border-radius:9px;background:#fff;font-size:14px;line-height:1.65}
+.sle-ms-brainstorm li:before{counter-increment:ms;content:counter(ms);position:absolute;left:14px;top:12px;display:grid;place-items:center;background:#e8f0fd;color:#245bb1;border-radius:50%;width:23px;height:23px;font-weight:700}
+.sle-ms-outline{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:13px}
+.sle-ms-outline p{font-size:14px;margin:0;padding:10px 12px;border:1px solid #dae5f2;background:#fff;border-radius:8px;white-space:pre-line;overflow-wrap:anywhere}
+.sle-ms-panel textarea{display:block;box-sizing:border-box;width:100%;max-width:100%;border:1px solid #cbd8ea;border-radius:9px;padding:12px;font:inherit;font-size:14px;line-height:1.6;resize:vertical;margin-top:9px}
+.sle-ms-notebar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:9px;flex-wrap:wrap}
+.sle-ms-notebar button{white-space:nowrap}
+.sle-ms-checklist{display:grid;gap:7px;padding:8px 0}
+.sle-ms-checklist label{display:flex;gap:9px;align-items:center;font-size:14px}
+.sle-ms-checklist input{width:17px;height:17px;flex:none}
+.sle-ms-listening-notice{border:1px solid #f3d79e;background:#fffaf0;border-radius:10px;padding:12px 14px;font-size:14px;line-height:1.66;margin:14px 0 20px}
+.sle-ms :focus-visible{outline:3px solid #397ac9;outline-offset:3px}
+@media(max-width:700px){
+ .sle-ms-grid,.sle-ms-outline{grid-template-columns:1fr}
+ .sle-ms-intro,.sle-ms-panel,.sle-ms-model{padding:13px 14px}
+ .sle-ms-card{padding:13px 14px}
+ .sle-ms-head h3{font-size:17px}
+ .sle-ms-passage{padding:12px}
+}
+@media(prefers-reduced-motion:reduce){.sle-ms-passage span{transition:none}}
