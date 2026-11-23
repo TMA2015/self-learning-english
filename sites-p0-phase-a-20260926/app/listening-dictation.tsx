@@ -1,135 +1,191 @@
 'use client';
 import {useEffect,useMemo,useRef,useState} from 'react';
-import {buildDictationSheet,checkDictationAnswers,validVerifiedSegments,
- type DictationDensity,type VerifiedSentenceSegment} from '../domain/listening-dictation';
+import {buildTurnDictationSheet,checkDictationAnswers,splitSpeakerTurns,
+ type TurnPracticeMode} from '../domain/listening-dictation';
+import {ORIGINAL_TURN_ASSETS,prepareOriginalTurnReplay,type TurnRange}
+ from '../domain/listening-turn-replay';
+import './listening-dictation.css';
 
+/**
+ * Only mounted by Foundation when attempt.status === 'scored' AND the gated
+ * transcript endpoint has returned the authorized post-submit transcript.
+ * Optional, memory-only practice: never writes a scored Listening attempt.
+ */
 export function ListeningDictationPractice({
- attemptId,transcript,audioUrl,durationSeconds,assetSha256,verifiedSegments
+ attemptId,lessonId,transcript,audioUrl,durationSeconds
 }:{
- attemptId:string;transcript:string;audioUrl:string;durationSeconds?:number;
- assetSha256?:string;verifiedSegments?:readonly VerifiedSentenceSegment[]
+ attemptId:string;lessonId:string;transcript:string;audioUrl:string;
+ durationSeconds?:number
 }){
- const [density,setDensity]=useState<DictationDensity>(20);
- const [mode,setMode]=useState<'whole'|'sentence'>('whole');
+ const [mode,setMode]=useState<TurnPracticeMode>('light');
  const [answers,setAnswers]=useState<Record<string,string>>({});
  const [checked,setChecked]=useState(false);
- const [audioError,setAudioError]=useState('');
+ const [ranges,setRanges]=useState<TurnRange[]>([]);
+ const [mediaState,setMediaState]=useState<'preparing'|'ready'|'unavailable'>('preparing');
+ const [mediaMessage,setMediaMessage]=useState('');
  const [activeLine,setActiveLine]=useState<string|null>(null);
+ const root=useRef<HTMLElement|null>(null);
  const audio=useRef<HTMLAudioElement|null>(null);
- const segmentEndMs=useRef<number|null>(null);
- const sheet=useMemo(()=>buildDictationSheet(transcript,density),[transcript,density]);
- const enabledSegments=validVerifiedSegments(sheet.lines,verifiedSegments,assetSha256,durationSeconds);
- const results=useMemo(()=>checked?checkDictationAnswers(sheet,answers):[],[sheet,answers,checked]);
- const byGap=new Map(results.map(r=>[r.id,r]));
- const correct=results.filter(r=>r.correct).length;
+ const endMs=useRef<number|null>(null);
+ const turns=useMemo(()=>splitSpeakerTurns(transcript),[transcript]);
+ const expected=ORIGINAL_TURN_ASSETS[lessonId];
+ const sourceReady=Boolean(expected&&turns.length===expected.turnCount);
+ const sheet=useMemo(()=>{
+  if(!sourceReady)return null;
+  try{return buildTurnDictationSheet(transcript,lessonId,mode)}
+  catch{return null}
+ },[sourceReady,transcript,lessonId,mode]);
+ const checkedResults=useMemo(()=>sheet&&checked?checkDictationAnswers(sheet,answers):[],[sheet,checked,answers]);
+ const resultById=new Map(checkedResults.map(x=>[x.id,x]));
+ const gapById=new Map(sheet?.gaps.map(x=>[x.id,x])??[]);
+ const score=checkedResults.filter(r=>r.correct).length;
+ const playbackReady=mediaState==='ready'&&ranges.length===turns.length;
+ const [retrySeq,setRetrySeq]=useState(0);
  useEffect(()=>{
-  // Key the component by attempt in the parent; version/density changes reset
-  // volatile practice only, never any scored attempt answers or progress.
-  setAnswers({});setChecked(false);setAudioError('');
-  segmentEndMs.current=null;setActiveLine(null);
-  audio.current?.pause();
- },[attemptId,transcript,density]);
- useEffect(()=>()=>{audio.current?.pause();segmentEndMs.current=null},[]);
- async function replayWhole(){
-  if(!audio.current)return;
-  segmentEndMs.current=null;setActiveLine(null);setAudioError('');
-  try{audio.current.pause();audio.current.currentTime=0;await audio.current.play();}
-  catch{setAudioError('Could not play this recording. Dictation stays unassessed.');}
+  setAnswers({});setChecked(false);
+  audio.current?.pause();endMs.current=null;setActiveLine(null);
+ },[attemptId,lessonId,mode,transcript]);
+ useEffect(()=>{
+  let active=true;
+  const controller=new AbortController();
+  audio.current?.pause();endMs.current=null;setActiveLine(null);
+  setRanges([]);setMediaState('preparing');setMediaMessage('');
+  if(!sourceReady||!audioUrl){
+   setMediaState('unavailable');setMediaMessage('Original recording or speaker-turn transcript is unavailable.');
+   return ()=>controller.abort();
+  }
+  void prepareOriginalTurnReplay(lessonId,audioUrl,turns,controller.signal)
+   .then(found=>{
+    if(!active)return;
+    setRanges(found);setMediaState('ready');
+    setMediaMessage('Original MP3 checked · '+found.length+' speaker turns ready.');
+   })
+   .catch(error=>{
+    if(!active)return;
+    setRanges([]);setMediaState('unavailable');
+    setMediaMessage('Turn replay unavailable: '+String(error instanceof Error?error.message:error)+
+     ' You can still play the full recording.');
+   });
+  return ()=>{active=false;controller.abort();audio.current?.pause();endMs.current=null};
+ },[sourceReady,lessonId,audioUrl,transcript,retrySeq]);
+ function stopTurn(){
+  endMs.current=null;setActiveLine(null);audio.current?.pause();
  }
- async function replayLine(lineId:string){
-  if(!enabledSegments||!audio.current)return;
-  const segment=verifiedSegments?.find(s=>s.lineId===lineId);
-  if(!segment)return;
+ async function playWhole(){
+  const player=audio.current;if(!player)return;
+  stopTurn();setMediaMessage('');
+  try{player.currentTime=0;await player.play()}
+  catch{setMediaMessage('Could not play the original recording on this device.')}
+ }
+ async function playTurn(index:number){
+  const player=audio.current,range=ranges[index];
+  if(!playbackReady||!range||!player)return;
+  stopTurn();setActiveLine('L'+(index+1));endMs.current=range.endMs;
   try{
-   audio.current.pause();segmentEndMs.current=segment.endMs;setActiveLine(lineId);
-   audio.current.currentTime=segment.startMs/1000;setAudioError('');
-   await audio.current.play();
+   player.currentTime=range.startMs/1000;
+   await player.play();
   }catch{
-   segmentEndMs.current=null;setActiveLine(null);
-   setAudioError('Sentence playback is unavailable. Play the original recording instead.');
+   stopTurn();setMediaMessage('Turn audio could not start. Try the full recording.');
   }
  }
- function updateAudioTime(){
-  if(!audio.current||segmentEndMs.current===null)return;
-  if(audio.current.currentTime*1000>=segmentEndMs.current-60){
-   audio.current.pause();segmentEndMs.current=null;setActiveLine(null);
-  }
+ function checkTime(){
+  if(!audio.current||endMs.current===null)return;
+  if(audio.current.currentTime*1000>=endMs.current-45)stopTurn();
  }
- if(!transcript.trim()||!audioUrl||!sheet.gaps.length)return null;
- return <section className="panel" data-learning-interaction="ListeningDictation"
+ function nextInput(current:HTMLInputElement){
+  const inputs=Array.from(root.current?.querySelectorAll<HTMLInputElement>('input.sle-turn-gap')??[]);
+  const index=inputs.indexOf(current);
+  if(index>=0)inputs[(index+1)%inputs.length]?.focus();
+ }
+ if(!sheet||!audioUrl)return null;
+ return <section ref={root} className="sle-turn-practice" data-learning-interaction="ListeningDictation"
   aria-label="Post-submission listening dictation practice">
-  <h3>Listening practice · Fill the gaps</h3>
-  <p className="muted">Optional practice <strong>after your Listening submission</strong>.
-   Replay the original MP3, fill in the missing words and check the exact spellings.
-   This does not change your Listening score or CEFR evidence.</p>
-  <p><strong>Type the exact word spoken in the recording</strong>.
-   This is a <strong>Literal Word Match</strong> spelling exercise, not a comprehension or proficiency grade.</p>
-  <div className="learning-choices" role="group" aria-label="Dictation replay mode">
-   <button type="button" aria-pressed={mode==='whole'} className={mode==='whole'?'primary-button':'secondary-button'}
-    onClick={()=>setMode('whole')}>Whole recording</button>
-   <button type="button" disabled={!enabledSegments} aria-pressed={mode==='sentence'}
-    className={mode==='sentence'?'primary-button':'secondary-button'}
-    onClick={()=>{if(enabledSegments)setMode('sentence')}}>One sentence at a time</button>
+  <header className="sle-turn-header">
+   <div className="sle-turn-heading">
+    <strong>✎ Listening practice · Fill the gaps</strong>
+    <span>{lessonId} · {turns.length} speaker turns</span>
+   </div>
+   <div className="sle-turn-modes" role="group" aria-label="Practice difficulty">
+    <button type="button" aria-pressed={mode==='light'} onClick={()=>setMode('light')}
+     className={mode==='light'?'selected':''}>Light · {buildTurnDictationSheet(transcript,lessonId,'light').gaps.length} words</button>
+    <button type="button" aria-pressed={mode==='focus'} onClick={()=>setMode('focus')}
+     className={mode==='focus'?'selected':''}>Extra practice · {turns.length} words</button>
+   </div>
+  </header>
+  <div className="sle-turn-tools">
+   <button type="button" className="sle-turn-whole" onClick={()=>void playWhole()}>
+    ▶ Full recording
+   </button>
+   <span role="status" className="sle-turn-media-status">
+    {mediaState==='preparing'?'Checking original MP3 and locating A/B turns…':
+     mediaState==='ready'?'✓ '+turns.length+' A/B turns ready':
+     'Turn replay unavailable'}
+   </span>
+   {mediaState==='unavailable'&&<button type="button" className="sle-turn-retry"
+    onClick={()=>setRetrySeq(v=>v+1)}>Try again</button>}
   </div>
-  {!enabledSegments&&<p className="muted" role="note">
-   Sentence replay will be enabled only after exact timings have been verified against this MP3.
-   The full original recording is available now; no timings are guessed.
-  </p>}
-  <audio ref={audio} controls preload="metadata" src={audioUrl}
-   onTimeUpdate={updateAudioTime}
-   onEnded={()=>{segmentEndMs.current=null;setActiveLine(null)}}
-   onError={()=>setAudioError('The recording could not be loaded; please retry later.')}/>
-  <div className="learning-choices">
-   <button type="button" className="secondary-button" onClick={()=>void replayWhole()}>
-    Replay full recording</button>
+  {mediaMessage&&<p className="sle-turn-helper" role="status">{mediaMessage}</p>}
+  <p className="sle-turn-instruction">
+   <strong>Type the exact word spoken in the recording.</strong> Listen to each whole speaker turn,
+   then fill one small gap where shown. <strong>Literal Word Match</strong> only.
+  </p>
+  <audio ref={audio} preload="metadata" src={audioUrl} onTimeUpdate={checkTime}
+   onEnded={()=>{endMs.current=null;setActiveLine(null)}}
+   onError={()=>setMediaMessage('The recording cannot be loaded; please retry.')}/>
+  <div className="sle-turn-lines" role="list" aria-label="Original speaker turns">
+   {sheet.lines.map((line,i)=>{
+    const speakerMatch=line.displayText.match(/^\s*[\p{L}][\p{L} .'-]{0,22}:\s*/u);
+    const speaker=speakerMatch?.[0]||'';
+    return <div className={'sle-turn-line'+(activeLine===line.id?' playing':'')} key={line.id} role="listitem">
+     <span className="sle-turn-number">{String(i+1).padStart(2,'0')}</span>
+     <div className="sle-turn-text">
+      <strong className="sle-turn-speaker">{speaker}</strong>
+      {line.parts.map((part,j)=>{
+       if(part.kind==='text'){
+        const text=(j===0&&speaker)?part.text.slice(speaker.length):part.text;
+        return <span key={'t-'+j}>{text}</span>;
+       }
+       const gap=gapById.get(part.id);
+       const feedback=resultById.get(part.id);
+       return <span key={part.id} className="sle-turn-input-wrap">
+        <input className={'sle-turn-gap'+(feedback?(feedback.correct?' correct':' wrong'):'')}
+         type="text" autoComplete="off" autoCorrect="off" spellCheck={false}
+         aria-label={'Missing word in speaker turn '+(i+1)}
+         style={{width:Math.max(60,Math.min(110,(gap?.answer.length||6)*9+12))+'px'}}
+         value={answers[part.id]??''}
+         onChange={event=>{setAnswers(old=>({...old,[part.id]:event.target.value}));setChecked(false)}}
+         onKeyDown={event=>{if(event.key==='Enter'){event.preventDefault();nextInput(event.currentTarget)}}}
+        />
+        {feedback&&!feedback.correct&&<small className="sle-turn-correct-word">{feedback.expected}</small>}
+       </span>;
+      })}
+     </div>
+     <button className="sle-turn-speaker-btn" type="button" title={'Play speaker turn '+(i+1)}
+      aria-label={'Play speaker turn '+(i+1)} disabled={!playbackReady}
+      onClick={()=>void playTurn(i)}>{activeLine===line.id?'◼':'🔊'}</button>
+    </div>;
+   })}
   </div>
-  {audioError&&<p role="alert" className="notice">{audioError}</p>}
-  <label className="field" htmlFor="sle-dictation-density">
-   <strong>How many words should be hidden?</strong>
-   <select id="sle-dictation-density" value={density} onChange={e=>{setChecked(false);setAnswers({});setDensity(Number(e.target.value) as DictationDensity)}}>
-    <option value={10}>Easy · about 10%</option>
-    <option value={20}>Medium · about 20%</option>
-    <option value={30}>Challenge · about 30%</option>
-   </select>
-  </label>
-  <p className="muted" role="status">Auto-generated practice: {sheet.gaps.length} missing words.
-   Only exact words from this already-submitted transcript are checked; punctuation and letter case are ignored.</p>
-  <ol className="sle-dictation-lines">
-   {sheet.lines.map((line,i)=><li key={line.id} className="wcv2-card" style={{whiteSpace:'normal'}}>
-    {mode==='sentence'&&enabledSegments&&<button type="button" className="secondary-button"
-      onClick={()=>void replayLine(line.id)}>
-      {activeLine===line.id?'Playing sentence…':'Replay sentence '+(i+1)}
-    </button>}
-    <div style={{lineHeight:2,overflowWrap:'anywhere'}}>
-    {line.parts.map((part,j)=>part.kind==='text'
-     ?<span key={'p-'+j} style={{whiteSpace:'pre-wrap'}}>{part.text}</span>
-     :<span key={part.id} style={{display:'inline-block',verticalAlign:'middle',marginInline:'0.15rem'}}>
-       <label>
-        <span className="sr-only">Missing word {part.id} in line {i+1}</span>
-        <input aria-label={'Missing word '+part.id+' in line '+(i+1)}
-         autoComplete="off" spellCheck={false} type="text" value={answers[part.id]??''}
-         style={{width:'7.5rem',maxWidth:'35vw',minHeight:'2.5rem'}}
-         onChange={e=>{setAnswers(prev=>({...prev,[part.id]:e.target.value}));setChecked(false)}}/>
-       </label>
-       {byGap.has(part.id)&&<span role="status" className="muted">
-        {byGap.get(part.id)?.correct?' ✓':' · '+byGap.get(part.id)?.expected}
-       </span>}
-      </span>)}
-    </div>
-   </li>)}
-  </ol>
-  <div className="learning-choices">
-   <button type="button" className="primary-button"
-    disabled={!sheet.gaps.length}
-    onClick={()=>setChecked(true)}>Check exact words</button>
-   <button type="button" className="secondary-button"
-    onClick={()=>{setAnswers({});setChecked(false)}}>Clear answers</button>
-  </div>
-  {checked&&<p role="status" className="notice">
-   <strong>Literal Word Match</strong> — Practice check: {correct}/{sheet.gaps.length} exact words.
-   Review the transcript and replay any unclear parts. This is not a Listening proficiency score.
-  </p>}
-  <p className="muted">Practice answers stay on this screen only: no automatic save,
-   grade, AI request or learner attempt is created.</p>
+  <footer className="sle-turn-footer">
+   <div className="sle-turn-actions">
+    <button type="button" className="sle-turn-check" onClick={()=>setChecked(true)}>
+     ✓ Check exact words
+    </button>
+    <button type="button" className="sle-turn-clear" onClick={()=>{
+     stopTurn();setAnswers({});setChecked(false);
+    }}>↻ Try again</button>
+   </div>
+   <p className="sle-turn-count" role="status">
+    {sheet.gaps.length} blanks · {sheet.gaps.filter(g=>(answers[g.id]??'').trim()).length} filled
+    · Case-insensitive · Enter: next blank
+   </p>
+   {checked&&<p className="sle-turn-result" role="status">
+    <strong>Literal Word Match:</strong> Practice check {score}/{sheet.gaps.length} correct words.
+    This is not a Listening score or CEFR evaluation.
+   </p>}
+   <p className="sle-turn-disclaimer">
+    Optional after-submission practice only. Answers stay in memory and never change scored work.
+   </p>
+  </footer>
  </section>;
 }
