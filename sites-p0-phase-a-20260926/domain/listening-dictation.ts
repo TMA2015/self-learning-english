@@ -110,3 +110,60 @@ export function validVerifiedSegments(lines:readonly DictationLine[],segments:re
  }
  return true;
 }
+
+
+/**
+ * Owner-approved compact A/B-turn Dictation, sourced ONLY from the transcript
+ * returned by the gated, already-scored attempt API. No answers or transcripts
+ * are bundled into the web client.
+ */
+export type TurnPracticeMode='light'|'focus';
+export type TurnDictationSheet={
+ lines:DictationLine[];gaps:DictationGap[];spokenWords:number;mode:TurnPracticeMode;
+};
+const turnTargets:Readonly<Record<string,{count:number;light:readonly number[]}>>={
+ 'LIS-A1-03':{count:9,light:[1,2,4,6,7]},
+ 'LIS-A2-01':{count:7,light:[0,2,3,5]},
+ 'LIS-B1-01':{count:6,light:[0,1,3,5]}
+};
+export function splitSpeakerTurns(source:string):string[]{
+ if(typeof source!=='string'||!source.trim())return [];
+ return source.replace(/\r\n?/g,'\n').trim().split(/\n+/).map(s=>s.trim()).filter(Boolean);
+}
+export function buildTurnDictationSheet(
+ source:string,lessonId:string,mode:TurnPracticeMode='light'
+):TurnDictationSheet{
+ const spec=turnTargets[lessonId];
+ if(!spec||!['light','focus'].includes(mode))throw Error('Unsupported turn-based Dictation pilot/mode');
+ const turns=splitSpeakerTurns(source);
+ if(turns.length!==spec.count)throw Error('Original speaker-turn count differs from approved pilot');
+ const chosen=new Set(mode==='light'?spec.light:turns.map((_,i)=>i));
+ const gaps:DictationGap[]=[];
+ let spokenWords=0;
+ const lines=turns.map((line,i)=>{
+  const label=line.match(/^\s*[\p{L}][\p{L} .'-]{0,22}:\s*/u)?.[0]||'';
+  if(!label)throw Error('Missing speaker label on original audio turn');
+  const candidates=[...line.slice(label.length).matchAll(words)].map(m=>({
+   answer:m[0],start:label.length+(m.index??0),
+   eligible:m[0].length>=4&&!stopwords.has(m[0].toLowerCase())
+  }));
+  spokenWords+=candidates.length;
+  const good=candidates.filter(c=>c.eligible);
+  if(chosen.has(i)&&!good.length)throw Error('Turn has no valid fill-in target');
+  // Select one content word from the AUTHORIZED transcript at runtime.
+  // The selection metadata has turn positions only, never bundled answer keys.
+  const pick=chosen.has(i)?[...good].sort((a,b)=>
+   stableRank(lessonId+'|'+i+'|'+a.answer)-stableRank(lessonId+'|'+i+'|'+b.answer))[0]:null;
+  const parts:DictationPart[]=pick
+   ?[
+     {kind:'text',text:line.slice(0,pick.start)},
+     {kind:'gap',id:'L'+(i+1)+'-G1'},
+     {kind:'text',text:line.slice(pick.start+pick.answer.length)}
+    ]
+   :[{kind:'text',text:line}];
+  if(pick)gaps.push({id:'L'+(i+1)+'-G1',answer:pick.answer,lineId:'L'+(i+1),ordinal:gaps.length+1});
+  return {id:'L'+(i+1),parts,displayText:line};
+ });
+ if(gaps.length!==chosen.size)throw Error('Compact Dictation gap target mismatch');
+ return {lines,gaps,spokenWords,mode};
+}
