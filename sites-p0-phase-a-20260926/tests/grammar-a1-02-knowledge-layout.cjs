@@ -32,6 +32,8 @@ for(const subject of ['I','you','he','she','it','we','they']){
 }
 assert.ok(pilot.includes("possessive:'my'")&&pilot.includes("b:' have a bag.'")&&pilot.includes("d:' bag is new.'"),
  'retain the owner-approved I → my + noun / example-pair presentation');
+assert.ok(pilot.includes("subject:'you',possessive:'your'")&&pilot.includes("b:' have a ticket.'")&&pilot.includes("d:' ticket is here.'"),
+ 'NotebookLM R1 optional refinement keeps you/your paired example referentially consistent');
 assert.ok(pilot.includes('>{p.c?p.possessive:'),'mid-sentence possessive adjective case preserved');
 assert.ok(pilot.includes('<td lang="vi">{p.meaning}</td>'),
  'Meaning column is the sole intentional always-Vietnamese part');
