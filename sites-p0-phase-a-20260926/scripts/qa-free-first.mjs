@@ -89,6 +89,7 @@ const fullRegressionTests=[
   "vocabulary-pilot-browser.cjs",
   "rgw-depth-pilot-browser.cjs",
   "listening-dictation-browser.cjs",
+  "foundation-compact-chromium.cjs",
   "highlight-left-edge-browser.cjs",
   "learner-result-browser.cjs",
   "learning-plan-direct-review-browser.cjs",
