@@ -68,38 +68,50 @@ assert.throws(()=>buildDictationSheet(manifest['LIS-A2-01'].source,50));
 const app=read('app/listening-dictation.tsx');
 const parent=read('app/foundation.tsx');
 const st=read('scripts/qa-free-first.mjs');
-for(const file of ['domain/listening-dictation.ts','app/listening-dictation.tsx','app/foundation.tsx']){
+for(const file of ['domain/listening-dictation.ts','domain/listening-turn-replay.ts','app/listening-dictation.tsx','app/foundation.tsx']){
  const parsed=ts.createSourceFile(file,read(file),ts.ScriptTarget.Latest,true,
   file.endsWith('.tsx')?ts.ScriptKind.TSX:ts.ScriptKind.TS);
  assert.equal(parsed.parseDiagnostics.length,0,file+' JS/TSX syntax errors');
 }
 assert(app.includes('data-learning-interaction="ListeningDictation"'));
-assert(app.includes('One sentence at a time'));
-assert(app.includes('disabled={!enabledSegments}'));
-assert(app.includes('validVerifiedSegments(sheet.lines,verifiedSegments,assetSha256,durationSeconds)'));
-assert(app.includes('audio.current.currentTime=segment.startMs/1000'));
-assert(app.includes('Replay full recording'));
+assert(app.includes('prepareOriginalTurnReplay(lessonId,audioUrl,turns,controller.signal)'));
+assert(app.includes("mediaState==='ready'&&ranges.length===turns.length"));
+assert(app.includes('disabled={!playbackReady}'));
+assert(app.includes('range.startMs/1000'));
+assert(app.includes('▶ Full recording'));
+assert(!app.includes('One sentence at a time'));
+assert(app.includes('5')===false || app.includes('Light'));
 assert(app.includes('Type the exact word spoken in the recording'),'NotebookLM MUST_FIX #2 exact learner instruction');
 assert(app.includes('Literal Word Match'),'NotebookLM MUST_FIX #2 honest checking label');
-assert(app.includes('setChecked(false);setAnswers({});setDensity('),
- 'Difficulty change must clear old literal check before new sheet is shown');
+assert(app.includes("setMode('light')")&&app.includes("setMode('focus')"),
+ 'Both owner-accepted compact modes must be selectable');
+assert(app.includes('setAnswers({});setChecked(false)'),
+ 'Changing compact mode/attempt must clear stale checking');
 
 assert(app.includes('Check exact words'));
 assert(app.includes('Practice answers stay on this screen only'));
 assert(!/fetch\(|foundationRequest|localStorage|setItem\(|\.score\s*=|playbackCompleted|tutorService|new Audio\(/.test(app));
+const helper=read('domain/listening-turn-replay.ts');
+assert(helper.includes("actual!==asset.sha256"),'Actual MP3 SHA must match original');
+assert(helper.includes("if(eligible.length<n)return []"),'No invented speaker-turn cuts');
+assert(helper.includes('fetch(url'), 'Read audio for local decoding only after scored UI mount');
+assert(!helper.includes('localStorage')&&!helper.includes('POST')&&!helper.includes('/api/foundation'));
+assert(!app.includes("from '../content/foundation-audio.json'"),'No source transcript shipped in client');
 assert(parent.includes("attempt.status==='scored'&&<section aria-label=\"Post-submission Listening practice\""),
  'Must render only after graded submission');
 assert(parent.includes("if(!attempt||attempt.status!=='scored'||lesson?.module!=='listening')return;"),
  'Gated transcript authorization before any dictation state');
 assert(parent.includes("currentAttemptRef.current!==requestedAttemptId"),'Stale attempt transcript must be ignored');
 assert(parent.includes("<ListeningDictationPractice"));
+assert(parent.includes("lessonId={lesson.id}"),'The scored lesson ID must bind the original MP3');
 assert(parent.includes("key={'post-submit-dictation-'+attempt.id+'-'+attempt.version}"),'Attempt pinned');
 assert(parent.includes("Read transcript after submission"));
 assert(parent.includes("Play full audio"));
 assert(parent.includes("audio.current?.pause()"),'Existing playback control unchanged');
 assert(!app.includes("from '../content/foundation-audio.json'"),'Never bundle transcript in client');
 assert(st.includes('listening-dictation-contract.cjs'),'Mandatory core QA registered');
+assert(st.includes('listening-turn-compact.cjs'),'Owner-approved turn replay core QA registered');
 console.log(JSON.stringify({result:'PASS',gate:'SLE_POST_SUBMIT_DICTATION_SOURCE_CONTRACT',
  lessons:ids,scenarios:tested,densities:[10,20,30],literalFeedbackOnly:true,
- sourceFromScoredServer:true,segmentModeGate:'VERIFIED_TIMINGS_REQUIRED',
+ sourceFromScoredServer:true,segmentModeGate:'ORIGINAL_SHA_AND_AUDIO_TURNS_REQUIRED',
  evidenceWrites:0,AIRequests:0,fireBaseLive:false}));
