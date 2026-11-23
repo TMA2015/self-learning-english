@@ -79,7 +79,7 @@ assert(!/localStorage|sessionStorage|fetch\(|\/api\/foundation|setItem\(/.test(a
  'The React practice widget must never make a score API or persistence request');
 assert(parent.includes("attempt.status==='scored'&&<section aria-label=\"Post-submission Listening practice\""));
 assert(parent.includes("if(!attempt||attempt.status!=='scored'||lesson?.module!=='listening')return;"));
-assert(parent.includes('key={\'post-submit-dictation-\'+attempt.id+\'+\'-\'+attempt.version}'));
+assert(parent.includes("key={'post-submit-dictation-'+attempt.id+'-'+attempt.version}"));
 assert(parent.includes('lessonId={lesson.id}'));
 const rawCSS=read('app/listening-dictation.css');
 assert(rawCSS.includes('.sle-turn-gap')&&rawCSS.includes('font-size:14px'));
