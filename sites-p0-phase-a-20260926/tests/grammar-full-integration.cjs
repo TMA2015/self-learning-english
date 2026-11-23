@@ -21,7 +21,13 @@ for(const l of current.lessons){
  assert(grammarSections(l.explanation.en).length>=3);
  for(const showVi of [false,true]){
   const html=renderToStaticMarkup(React.createElement(StructuredGrammarNotes,{lesson:l,showVi}));renders++;
-  assert(html.includes('Learning goals'));assert(html.includes('The core idea'));assert.equal(html.includes('lang="vi"'),showVi);
+  assert(html.includes('Learning goals'));assert(html.includes('The core idea'));
+  // The owner's explicit Meaning-column exception keeps seven Vietnamese
+  // translations visible at all times in GRA-A1-02. Every other Vietnamese
+  // explanation/heading remains gated by the language toggle.
+  const viTagCount=(html.match(/lang="vi"/g)||[]).length;
+  if(l.id==='GRA-A1-02')assert(showVi?viTagCount>7:viTagCount===7,'Meaning exception + toggle gating');
+  else assert.equal(viTagCount>0,showVi);
   assert(!html.includes('accepted_answers'));assert(!html.includes('assessed gap-fill'));assert(!html.includes('grading policy will be decided'));
   for(const q of l.activities)assert(!html.includes(q.id),'Assessment ID exposed: '+q.id);
  }
