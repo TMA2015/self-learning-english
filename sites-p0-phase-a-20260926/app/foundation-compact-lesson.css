@@ -1,0 +1,173 @@
+/*
+ * Compact Foundation lesson density — common to Listening, Reading, Grammar,
+ * Vocabulary, Writing and other Foundation practice modules.
+ *
+ * OWNER UX: same 14px reading scale as accepted Listening Dictation; show
+ * two radio choices per row whenever there's room, keep 44px touch targets.
+ *
+ * Display ONLY: no question/answer order, correct key, attempt persistence,
+ * audio proof, assessment scoring or submitted-response logic changes.
+ *
+ * Import from app/foundation.tsx only; diagnostics and specialist editors
+ * are separate interfaces and are intentionally not bulk-styled in this PR.
+ */
+.foundation-lesson.foundation-focus {
+  container-type: inline-size;
+  padding: 20px 22px;
+}
+
+.foundation-lesson.foundation-focus > h2 {
+  font-size: 20px;
+  line-height: 1.3;
+  margin: 6px 0 12px;
+}
+
+.foundation-lesson.foundation-focus .foundation-player-nav {
+  gap: 8px;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+}
+
+/* Consistent text scale across lesson notes, readings and practice. */
+.foundation-lesson.foundation-focus .foundation-learn {
+  gap: 12px;
+  margin: 12px 0 18px;
+}
+.foundation-lesson.foundation-focus .foundation-learn-block {
+  padding: 14px 16px;
+}
+.foundation-lesson.foundation-focus .foundation-learn-block h3 {
+  font-size: 16px;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.foundation-lesson.foundation-focus .foundation-objectives {
+  font-size: 14.5px;
+  line-height: 1.65;
+  gap: 4px;
+}
+.foundation-lesson.foundation-focus .foundation-explanation {
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+.foundation-lesson.foundation-focus .foundation-passage {
+  padding: 14px 16px;
+  margin: 12px 0;
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+.foundation-lesson.foundation-focus .foundation-passage h3 {
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0 0 7px;
+}
+.foundation-lesson.foundation-focus .foundation-passage p {
+  margin: 6px 0;
+}
+
+/* All objective Foundation questions share exactly one visual layout. */
+.foundation-lesson.foundation-focus .foundation-question {
+  min-width: 0;
+  padding: 10px 0;
+  margin: 8px 0;
+}
+.foundation-lesson.foundation-focus .foundation-question legend {
+  max-width: 100%;
+  padding: 0 2px 5px 0;
+  font-size: 14.5px;
+  font-weight: 700;
+  line-height: 1.55;
+  color: #183d67;
+  overflow-wrap: anywhere;
+}
+
+.foundation-lesson.foundation-focus .foundation-options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 9px;
+  row-gap: 7px;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  align-items: stretch;
+}
+.foundation-lesson.foundation-focus .foundation-options-grid .foundation-option {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  min-width: 0;
+  min-height: 44px; /* Keep touch target usable on iPad. */
+  padding: 8px 10px;
+  font-size: 14px;
+  line-height: 1.45;
+  border-radius: 8px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.foundation-lesson.foundation-focus .foundation-options-grid .foundation-option input[type="radio"] {
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  flex: 0 0 17px;
+  accent-color: #245bb1;
+}
+.foundation-lesson.foundation-focus .foundation-options-grid .foundation-option-long {
+  grid-column: 1 / -1;
+}
+.foundation-lesson.foundation-focus .foundation-options-grid .foundation-option:focus-within {
+  outline: 2px solid #7cadde;
+  outline-offset: 2px;
+}
+
+/* Do not shrink writing fields below 16px: iOS may zoom tiny text inputs. */
+.foundation-lesson.foundation-focus .foundation-question textarea {
+  font-size: 16px;
+}
+.foundation-lesson.foundation-focus .foundation-question .field {
+  font-size: 14px;
+}
+.foundation-lesson.foundation-focus .foundation-question .exercise {
+  font-size: 14px;
+  line-height: 1.55;
+  padding: 9px 12px;
+  margin: 10px 0 0;
+}
+
+/* Retain the verified full-recording control and playback safeguards.
+ * Only reduce visual overhead; do not make the audio region sticky.
+ */
+.foundation-lesson.foundation-focus .foundation-listening-audio-compact {
+  padding: 10px 13px;
+  margin: 10px 0 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.foundation-lesson.foundation-focus .foundation-listening-audio-compact > p {
+  margin: 0 0 6px;
+}
+.foundation-lesson.foundation-focus .foundation-listening-audio-compact > p[role="status"] {
+  margin: 7px 0 0;
+}
+.foundation-lesson.foundation-focus .foundation-listening-audio-compact .secondary-button {
+  padding: 8px 12px;
+  min-height: 44px;
+}
+
+/* Container size, not device label, controls the choice layout.
+ * A narrow iPad split view and small screens revert to one column.
+ */
+@container (max-width: 490px) {
+  .foundation-lesson.foundation-focus .foundation-options-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .foundation-lesson.foundation-focus {
+    padding: 14px 12px;
+  }
+  .foundation-lesson.foundation-focus > h2 {
+    font-size: 18px;
+  }
+}
