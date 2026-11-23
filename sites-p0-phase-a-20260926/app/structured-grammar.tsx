@@ -1,5 +1,6 @@
 import type {SeedLesson} from '../domain/academic';
 import {TeachingBlocks} from './teaching-blocks';
+import {GrammarA102Notes} from './grammar-a1-02-notes';
 /** Detect authored structured notes by format, not an outdated version allowlist.
  * Older attempts with plain-text notes keep their original display; new versions
  * reuse the same safe renderer without changing saved academic content. */
@@ -18,6 +19,9 @@ export function grammarSections(markdown:string){
 }
 export function StructuredGrammarNotes({lesson,showVi}:{lesson:SeedLesson;showVi:boolean}){
  const sections=grammarSections(lesson.explanation.en);
+ if(lesson.id==='GRA-A1-02'&&sections.some(s=>s.title.toLowerCase().includes('worked example'))){
+  return <GrammarA102Notes lesson={lesson} sections={sections} showVi={showVi}/>;
+ }
  return <section className="gdp-integrated" aria-label="Structured Grammar lesson notes">
   <section className="gdp-card gdp-goals"><h3>Learning goals</h3><ul>{lesson.objectives.map(o=><li key={o}>{o}</li>)}</ul></section>
   {sections.map((s,i)=><section className={'gdp-card '+(s.title==='Worked examples'?'gdp-examples':s.title==='Common mistakes'?'gdp-mistakes':'')} key={i}><h3>{s.title==='Core rule / Meaning'?'The core idea':s.title}</h3><TeachingBlocks text={s.text}/></section>)}
