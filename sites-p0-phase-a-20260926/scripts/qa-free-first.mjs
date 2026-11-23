@@ -172,6 +172,7 @@ const fullRegressionTests=[
   "foundation-coaching.cjs",
   "foundation-results-ux.cjs",
   "g-learning-brand.cjs",
+  "grammar-a1-02-knowledge-layout.cjs",
   "grammar-b1-wave2a-draft.cjs",
   "grammar-b1-wave2b-draft.cjs",
   "grammar-b1-wave2c-draft.cjs",
