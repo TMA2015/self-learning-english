@@ -2,7 +2,6 @@
 import {useState} from 'react';
 import type {SeedLesson} from '../domain/academic';
 import {Inline,TeachingBlocks} from './teaching-blocks';
-import './grammar-a1-02-notes.css';
 
 /** GRA-A1-02-only presentational pilot.
  * Current, version-pinned lesson objectives and authored notes are the source
@@ -72,11 +71,11 @@ export function GrammarA102Notes({lesson,sections,showVi}:{lesson:SeedLesson;sec
  const workedLines=lines(worked.text);
  const mistakeLines=lines(mistakes.text);
  return <section className="sle-gra02" aria-label="Pronouns and possessive adjectives lesson notes">
-  <section className="sle-gra02-section">
+  <section className="sle-gra02-section" aria-label="Learning goals">
    <SectionHead index={1} title="What you will learn" vi="Mục tiêu bài học" showVi={showVi}/>
    <ul className="sle-gra02-goals">{lesson.objectives.map(goal=><li key={goal}><span aria-hidden="true">✓</span><Inline text={goal}/></li>)}</ul>
   </section>
-  <section className="sle-gra02-section">
+  <section className="sle-gra02-section" aria-label="The core idea">
    <SectionHead index={2} title="The Core Idea" vi="Ý cốt lõi cần nhớ" showVi={showVi}/>
    <div className="sle-gra02-core">
     <TeachingBlocks text={core.text}/>
