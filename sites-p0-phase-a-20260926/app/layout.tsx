@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./grammar-a1-02-notes.css";
+import "./multiskill-knowledge-v2.css";
 
 const basePath=(process.env.NEXT_PUBLIC_BASE_PATH??'').replace(/\/$/,'');
 
