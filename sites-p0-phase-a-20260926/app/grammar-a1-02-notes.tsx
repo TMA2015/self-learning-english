@@ -32,7 +32,7 @@ const mistakeVi=[
 const checks=[
  {prompt:'___ mother is a doctor.',options:['They','Their'],answer:'Their',
   why:'Their comes before the noun mother to show possession.',
-  wrong:'They is a subject pronoun; choose the possessive adjective before mother.',
+  wrong:'The word They is a subject pronoun; choose the possessive adjective before mother.',
   vi:'Trước danh từ mother cần tính từ sở hữu their.'},
  {prompt:'Nam is my brother. ___ plays football every day.',options:['He','His'],answer:'He',
   why:'He is the subject before the verb plays.',
@@ -48,8 +48,10 @@ function splitMistake(line:string){
  const parts=line.slice(2).split(' → ');
  if(parts.length!==2)return null;
  const wrong=parts[0].replace(/\s*✗\s*$/u,'').trim();
- const right=parts[1].replace(/\s*✓\s*/u,' ✓ ').trim();
- return {wrong,right};
+ const check=parts[1].indexOf(' ✓');
+ const right=(check<0?parts[1]:parts[1].slice(0,check)).trim();
+ const note=check<0?'':parts[1].slice(check+2).trim();
+ return {wrong,right,note};
 }
 function SectionHead({index,title,vi,showVi}:{index:number;title:string;vi:string;showVi:boolean}){
  return <div className="sle-gra02-heading"><span className="sle-gra02-step" aria-hidden="true">{index}</span><div><h3>{title}</h3>{showVi&&<p lang="vi">{vi}</p>}</div></div>;
@@ -121,6 +123,7 @@ export function GrammarA102Notes({lesson,sections,showVi}:{lesson:SeedLesson;sec
     return <div className="sle-gra02-mistake" key={i}>{parts?<>
      <div className="sle-gra02-wrong"><span aria-label="Incorrect">✗</span> <Inline text={parts.wrong}/></div>
      <div className="sle-gra02-right"><span aria-label="Correct">✓</span> <Inline text={parts.right}/></div>
+     {parts.note&&<p className="sle-gra02-rule"><strong>Rule:</strong> <Inline text={parts.note}/></p>}
      {showVi&&mistakeVi[i]&&<p className="sle-gra02-translation" lang="vi">{mistakeVi[i]}</p>}
     </>:<TeachingBlocks text={line}/>}</div>;
    })}</div>
