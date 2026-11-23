@@ -176,6 +176,7 @@ const fullRegressionTests=[
   "g-learning-brand.cjs",
   "grammar-a1-02-knowledge-layout.cjs",
   "grammar-a1-02-browser.cjs",
+  "sle-combined-ui-browser.cjs",
   "grammar-b1-wave2a-draft.cjs",
   "grammar-b1-wave2b-draft.cjs",
   "grammar-b1-wave2c-draft.cjs",
