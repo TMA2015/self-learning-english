@@ -178,6 +178,7 @@ const fullRegressionTests=[
   "grammar-a1-02-browser.cjs",
   "sle-combined-ui-browser.cjs",
   "multiskill-knowledge-v2.cjs",
+  "multiskill-knowledge-v2-browser.cjs",
   "grammar-b1-wave2a-draft.cjs",
   "grammar-b1-wave2b-draft.cjs",
   "grammar-b1-wave2c-draft.cjs",
