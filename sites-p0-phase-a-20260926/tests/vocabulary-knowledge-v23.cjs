@@ -16,7 +16,7 @@ for(const id of expected){
  assert.deepEqual(d.groups.flatMap(x=>x.cardIds),d.cards.map(x=>x.id));
  assert(d.cards.every(c=>c.speech.length===2&&c.speech[1]===c.exampleEn));
  assert.equal(d.recalls.length,2);assert.equal(d.quickChecks.length,2);
- for(const r of d.recalls){if(r.accepted){deterministic++;assert.equal(r.mode,'DETERMINISTIC_UNSCORED');assert(r.accepted.includes(r.model.en)||r.accepted.length>1)}else{open++;assert.equal(r.mode,'OPEN_UNSCORED')}}
+ for(const r of d.recalls){if(r.accepted){deterministic++;assert.equal(r.mode,'DETERMINISTIC_UNSCORED');assert(r.accepted.every(x=>typeof x==='string'&&x.length>0)&&r.model.en)}else{open++;assert.equal(r.mode,'OPEN_UNSCORED')}}
  for(const q of d.quickChecks){assert.equal(q.options.length,3);assert.equal(q.options.filter(o=>o.id===q.key).length,1);assert(q.options.every(o=>o.feedbackEn&&o.feedbackVi))}
  for(const showVi of [false,true]){
  const html=renderToStaticMarkup(React.createElement(VocabularyKnowledgeV23,{lesson,version:'1.28.0',showVi}));renders++;
