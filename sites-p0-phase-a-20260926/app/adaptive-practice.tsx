@@ -16,6 +16,8 @@ export function AdaptivePracticeGrid({className,children}:{className:string;chil
  useEffect(()=>{
   const grid=ref.current;if(!grid)return;
   let active=true;
+  let pendingFrame:number|null=null;
+  let measuredWidth=-1;
   const context=document.createElement('canvas').getContext('2d');
   const measure=()=>{
    if(!active||!context)return;
@@ -25,16 +27,37 @@ export function AdaptivePracticeGrid({className,children}:{className:string;chil
    context.font=style.fontWeight+' '+style.fontSize+' '+style.fontFamily;
    const longest=Math.max(...spans.map(s=>/\r?\n/.test(s.textContent??'')?Infinity:context.measureText(s.textContent??'').width));
    const gap=Number.parseFloat(getComputedStyle(grid).columnGap)||8;
-   const columns=practiceColumns(spans.length,longest,grid.clientWidth,gap);
-   grid.style.setProperty('--practice-columns',String(columns));
-   grid.dataset.practiceColumns=String(columns);
+   measuredWidth=grid.clientWidth;
+   const columns=String(practiceColumns(spans.length,longest,measuredWidth,gap));
+   // No layout mutation when the computed presentation has not changed.
+   if(grid.dataset.practiceColumns!==columns){
+    grid.style.setProperty('--practice-columns',columns);
+    grid.dataset.practiceColumns=columns;
+   }
+  };
+  // ResizeObserver delivery is a read-only notification. Changing the
+  // column count synchronously in its callback can resize the observed
+  // element again in the same delivery cycle (especially at 4 -> 2).
+  const schedule=()=>{
+   if(!active||pendingFrame!==null)return;
+   pendingFrame=window.requestAnimationFrame(()=>{
+    pendingFrame=null;
+    measure();
+   });
   };
   measure();
-  const observer=typeof ResizeObserver==='function'?new ResizeObserver(measure):null;
+  const observer=typeof ResizeObserver==='function'?new ResizeObserver(()=>{
+   // Column count depends on width, not the height changed by wrapping.
+   if(grid.clientWidth!==measuredWidth)schedule();
+  }):null;
   observer?.observe(grid);
-  window.addEventListener('resize',measure);
-  void document.fonts?.ready.then(()=>{if(active)measure()});
-  return ()=>{active=false;observer?.disconnect();window.removeEventListener('resize',measure)};
+  window.addEventListener('resize',schedule);
+  void document.fonts?.ready.then(schedule);
+  return ()=>{
+   active=false;observer?.disconnect();
+   window.removeEventListener('resize',schedule);
+   if(pendingFrame!==null)window.cancelAnimationFrame(pendingFrame);
+  };
  },[children]);
  return <div ref={ref} className={className} data-practice-adaptive="true">{children}</div>;
 }
