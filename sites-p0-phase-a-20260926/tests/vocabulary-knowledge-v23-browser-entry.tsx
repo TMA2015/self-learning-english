@@ -22,7 +22,10 @@ function check(ok:unknown,label:string){if(!ok)throw Error(label)}
  check(panel.querySelectorAll('.sle-voc-card').length===d.cards.length,'card count');
  check(!panel.querySelector('[lang="vi"]'),'English first');
  const speakers=panel.querySelectorAll<HTMLButtonElement>('.sle-voc-card .sle-voc-speaker');
- speakers[0].click();speakers[1].click();check(cancels===2&&spoken.length===2&&spoken.every((u,i)=>u.text===d.cards[0].speech[i]&&u.lang==='en-GB'&&u.rate===0.92),'exact TTS invocation');
+ speakers[0].click();speakers[1].click();await wait(()=>spoken.length>=2,'two speech invocations');
+ // SpeechSynthesisUtterance.rate is a WebIDL float; native getters may round to float32.
+ // Compare its observed value with the expected native representation, not JS double equality.
+ check(cancels===2&&spoken.length===2&&spoken.every((u,i)=>u.text===d.cards[0].speech[i]&&u.lang==='en-GB'&&(u.rate===0.92||u.rate===Math.fround(0.92))),'exact TTS invocation: '+JSON.stringify({cancels,spoken,expected:d.cards[0].speech,expectedRate:Math.fround(0.92)}));
  const flip=panel.querySelector<HTMLButtonElement>('.sle-voc-flip')!;
  flip.click();await wait(()=>flip.getAttribute('aria-pressed')==='true','flip');
  check(flip.textContent?.includes(d.cards[0].meaningEn),'flashcard back');
