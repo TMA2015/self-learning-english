@@ -6,11 +6,12 @@ import data from '../content/grammar-knowledge-v23-wave1.json';
 import wave2 from '../content/grammar-knowledge-v23-wave2-a1.json';
 import wave3b from '../content/grammar-knowledge-v23-wave3b-a2.json';
 import wave3a from '../content/grammar-knowledge-v23-wave3a-a2.json';
+import wave4a from '../content/grammar-knowledge-v23-wave4a-b1.json';
 import type {SeedLesson} from '../domain/academic';
 const params=new URL(location.href).searchParams,id=params.get('lesson')??'GRA-A1-02',width=Number(params.get('width')??375);
 const shell=document.getElementById('app')!,output=document.getElementById('sle-test-result')!;
 const lesson=curriculum.lessons.find(l=>l.id===id) as unknown as SeedLesson;
-const entries={...data.lessons,...wave2.lessons,...wave3b.lessons,...wave3a.lessons} as Record<string,{sections:{quiz?:{options:{correct:boolean}[]}[]}[]}>;
+const entries={...data.lessons,...wave2.lessons,...wave3b.lessons,...wave3a.lessons,...wave4a.lessons} as Record<string,{sections:{quiz?:{options:{correct:boolean}[]}[]}[]}>;
 const checks=entries[id].sections.flatMap(s=>s.quiz??[]);
 function Fixture(){const [showVi,setShowVi]=useState(false);return <main className="foundation-lesson"><button id="vi-toggle" onClick={()=>setShowVi(x=>!x)}>Vietnamese Support</button><StructuredGrammarNotes lesson={lesson} version="1.28.0" showVi={showVi}/></main>}
 const check=(yes:unknown,label:string)=>{if(!yes)throw Error(id+' '+width+' '+label)};
@@ -38,6 +39,13 @@ const wait=async(f:()=>boolean,label:string)=>{for(let i=0;i<220;i++){if(f())ret
   check(root.querySelectorAll('.sle-gra02-remember').length===1&&!root.querySelector('.sle-gra02-remember .sle-gra02-step'),'unnumbered Remember');
   check(root.querySelectorAll('table').length>=1,'reviewed comparison table');
   check(root.querySelectorAll('svg').length=== (['GRA-A2-01','GRA-A2-04','GRA-A2-07'].includes(id)?1:0),'reviewed diagrams');
+ }
+ if(id in wave4a.lessons){
+  const heads=[...root.querySelectorAll('.sle-gra02-step')].map(el=>el.textContent);
+  check(heads.every((v,i)=>v===String(i+1)),'continuous numbered headings');
+  check(root.querySelectorAll('.sle-gra02-remember').length===1&&!root.querySelector('.sle-gra02-remember .sle-gra02-step'),'unnumbered Remember');
+  check(root.querySelectorAll('table').length>=1,'reviewed comparison table');
+  check(root.querySelectorAll('svg').length=== (['GRA-B1-03','GRA-B1-06'].includes(id)?1:0),'reviewed diagrams');
  }
  for(const svg of root.querySelectorAll<SVGSVGElement>('.diagram:not(.pyramid-wrap) svg')){
   const wide=svg.getAttribute('viewBox')?.startsWith('0 0 520 '),rect=svg.getBoundingClientRect();
