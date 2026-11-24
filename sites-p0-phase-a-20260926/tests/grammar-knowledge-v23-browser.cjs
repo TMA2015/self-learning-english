@@ -53,13 +53,13 @@ const root=path.resolve(__dirname,'..');
  try{
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
   const baseUrl='http://127.0.0.1:'+server.address().port,results=[];
-  for(const lesson of ["GRA-A1-02","GRA-A1-06","GRA-A1-12","GRA-A2-08","GRA-B1-01","GRA-B1-08","GRA-A1-01","GRA-A1-03","GRA-A1-04","GRA-A1-05","GRA-A1-07","GRA-A1-08","GRA-A1-09","GRA-A1-10","GRA-A1-11"]){
+  for(const lesson of ["GRA-A1-02","GRA-A1-06","GRA-A1-12","GRA-A2-08","GRA-B1-01","GRA-B1-08","GRA-A1-01","GRA-A1-03","GRA-A1-04","GRA-A1-05","GRA-A1-07","GRA-A1-08","GRA-A1-09","GRA-A1-10","GRA-A1-11","GRA-A2-09","GRA-A2-10","GRA-A2-11","GRA-A2-12","GRA-A2-13","GRA-A2-14","GRA-A2-15","GRA-A2-16"]){
    for(const width of [375,768,960]){
     const query=new URLSearchParams({lesson,width:String(width)});
     results.push({lesson,width,result:await run(baseUrl+'/?'+query,lesson,width)});
    }
   }
-  assert.equal(results.length,45);assert.equal(writes,0);
+  assert.equal(results.length,69);assert.equal(writes,0);
   console.log(JSON.stringify({result:'PASS',gate:'SLE_GRAMMAR_V23_REAL_CHROMIUM',
    cases:results,source:'reviewed instruction',physicalIpadSafari:'NOT_TESTED',realAuth:'NOT_TESTED',
    syntheticOnly:true,backendWrites:0,scoreMutations:0}));
