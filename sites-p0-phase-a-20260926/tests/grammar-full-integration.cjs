@@ -33,7 +33,7 @@ for(const l of current.lessons){
  }
 }
 assert.equal(changed,40);
-const ui=fs.readFileSync('app/foundation.tsx','utf8');assert(ui.includes('structuredGrammarAvailable(lesson,loadedLessonVersion.current)'));assert(ui.includes('<StructuredGrammarNotes lesson={lesson} showVi={showVi}/>'));
+const ui=fs.readFileSync('app/foundation.tsx','utf8');assert(ui.includes('structuredGrammarAvailable(lesson,loadedLessonVersion.current)'));assert(ui.includes('<StructuredGrammarNotes lesson={lesson} showVi={showVi} version={loadedLessonVersion.current}/>'),'player forwards the exact loaded content version');
 const css=fs.readFileSync('app/globals.css','utf8');assert(css.includes('.gdp-integrated'));assert(css.includes('overflow-x:auto'));assert(css.includes('@media(max-width:700px)'));
 // Compile the actual service for an isolated, read-only importer preview.
 const {execFileSync}=require('node:child_process');

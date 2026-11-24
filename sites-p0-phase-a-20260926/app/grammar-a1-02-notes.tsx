@@ -154,7 +154,7 @@ export function CompactGrammarSelfCheck({items,showVi}:{items:readonly GrammarQu
        className={'sle-gra02-answer'+(selected===o?(o.correct?' is-correct':' is-wrong'):'')}
        onClick={()=>setResponses(prev=>({...prev,[i]:o.text}))}>{o.text}</button>)}
     </div>
-    {selected&&<p className="sle-gra02-feedback" role="status" aria-live="polite">{selected.correct?'✓ '+selected.feedback:'Try again. '+selected.feedback}</p>}
+    {selected&&<p className="sle-gra02-feedback" role="status" aria-live="polite">{selected.correct?'✓ '+selected.feedback:/^Try again\b/i.test(selected.feedback)?selected.feedback:'Try again. '+selected.feedback}</p>}
     {selected&&showVi&&<p lang="vi" className="sle-gra02-translation">{selected.vi}</p>}
    </div>;
   })}

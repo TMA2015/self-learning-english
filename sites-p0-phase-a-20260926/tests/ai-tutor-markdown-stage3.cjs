@@ -55,6 +55,9 @@ vm.runInNewContext(grammarJS.outputText,{
   // This regression renders GRA-A1-04 only. Stub the unrelated A1-02 UI pilot,
   // which has its own real-render/academic tests in the full QA suite.
   if(name==='./grammar-a1-02-notes')return {GrammarA102Notes:()=>null};
+  // The v2.3 overlay is unrelated to the historical Markdown regression.
+  // Dedicated real SSR and browser tests exercise its actual implementation.
+  if(name==='./grammar-knowledge-v23')return {grammarKnowledgeV23Available:()=>false,GrammarKnowledgeV23:()=>{throw Error('Unexpected v2.3 render for historical lesson')}};
   throw Error('Unexpected structured Grammar dependency: '+name);
  },
  exports:grammarModule.exports,module:grammarModule,
