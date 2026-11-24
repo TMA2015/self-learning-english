@@ -4,11 +4,12 @@ import type {SeedLesson} from '../domain/academic';
 import {CompactGrammarSelfCheck,type GrammarQuickCheck} from './grammar-a1-02-notes';
 import authored from '../content/grammar-knowledge-v23-wave1.json';
 import wave2 from '../content/grammar-knowledge-v23-wave2-a1.json';
+import wave3b from '../content/grammar-knowledge-v23-wave3b-a2.json';
 
 type Block=string|{tag:string;attrs?:Record<string,string>;children?:Block[]};
 type Section={title:string;viTitle:string;step:string|null;blocks?:Block[];quiz?:GrammarQuickCheck[]};
 type Entry={title:string;baselineExplanation:string;sections:Section[]};
-const LESSONS={...authored.lessons,...wave2.lessons} as unknown as Record<string,Entry>;
+const LESSONS={...authored.lessons,...wave2.lessons,...wave3b.lessons} as unknown as Record<string,Entry>;
 const VERSION=authored.source_curriculum_version;
 /** Only the explicitly reviewed version and unchanged source lesson. Historical
  * notes and unknown future versions fall back to their original renderer. */
