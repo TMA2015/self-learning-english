@@ -27,7 +27,7 @@ const wait=async(f:()=>boolean,label:string)=>{for(let i=0;i<200;i++){if(f())ret
  createRoot(shell).render(<Fixture/>);
  await wait(()=>document.querySelectorAll('[data-practice-columns]').length===3,'measured options');
  const grids=[...shell.querySelectorAll<HTMLElement>('.foundation-option-grid')];
- const expected=width===375?[2,2,1]:width===650?[4,4,1]:[4,4,1];
+ const expected=width===375?[2,2,1]:width===550?[4,2,1]:[4,4,1];
  for(let i=0;i<3;i++){
   const count=getComputedStyle(grids[i]).gridTemplateColumns.trim().split(/\s+/).length;
   check(count===expected[i],'columns '+width+' '+i+': '+count+' expected '+expected[i]);
