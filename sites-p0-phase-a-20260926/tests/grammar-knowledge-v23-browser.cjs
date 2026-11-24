@@ -9,13 +9,13 @@ const root=path.resolve(__dirname,'..');
  const {build}=await import('vite'),out=path.join(root,'.sites-runtime/grammar-v23-browser');
  fs.rmSync(out,{recursive:true,force:true});
  await build({root,configFile:false,logLevel:'error',define:{
-  'process.env.NODE_ENV':JSON.stringify('production')
+  'process.env.NODE_ENV':JSON.stringify('production'),'process.env.NEXT_PUBLIC_LEARNING_RUNTIME':JSON.stringify('server')
  },build:{outDir:out,emptyOutDir:true,target:'es2022',minify:false,
   lib:{entry:path.join(root,'tests/grammar-knowledge-v23-browser-entry.tsx'),
    formats:['iife'],name:'SleGrammarV23Browser',fileName:()=> 'bundle.js'}}});
  const bundle=fs.readFileSync(path.join(out,'bundle.js'),'utf8');
  const base=fs.readFileSync(path.join(root,'app/globals.css'),'utf8');
- const styles=fs.readFileSync(path.join(root,'app/grammar-a1-02-notes.css'),'utf8')+'\n'+fs.readFileSync(path.join(root,'app/grammar-knowledge-v23.css'),'utf8');
+ const styles=fs.readFileSync(path.join(root,'app/grammar-a1-02-notes.css'),'utf8')+'\n'+fs.readFileSync(path.join(root,'app/grammar-knowledge-v23.css'),'utf8')+'\n'+fs.readFileSync(path.join(root,'app/foundation-practice-compact.css'),'utf8');
  const start=base.indexOf(':root {');
  assert(start>=0&&styles.includes('.sle-grammar-v23')&&styles.includes('.sle-gra02-answer'),'Real application CSS required');
  const browser=['google-chrome','google-chrome-stable','chromium','chromium-browser']
@@ -33,10 +33,10 @@ const root=path.resolve(__dirname,'..');
   res.writeHead(200,{'Content-Type':'text/html;charset=utf-8','Cache-Control':'no-store'}).end(html);
  });
  const profile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-v2-browser-'));
- const run=(url,lesson,width)=>new Promise((resolve,reject)=>{
+ const run=(url,lesson,width,route='component')=>new Promise((resolve,reject)=>{
   const child=cp.spawn(browser,['--headless=new','--no-sandbox','--disable-dev-shm-usage','--disable-extensions',
    '--disable-background-networking','--no-first-run','--virtual-time-budget=12000',
-   '--dump-dom','--window-size=1280,900','--user-data-dir='+path.join(profile,lesson+'-'+width),url],
+   '--dump-dom','--window-size=1280,900','--user-data-dir='+path.join(profile,lesson+'-'+width+'-'+route),url],
   {stdio:['ignore','pipe','pipe']});
   let stdout='',stderr='',expired=false;
   const timeout=setTimeout(()=>{expired=true;child.kill('SIGKILL')},38000);
@@ -59,9 +59,15 @@ const root=path.resolve(__dirname,'..');
     results.push({lesson,width,result:await run(baseUrl+'/?'+query,lesson,width)});
    }
   }
-  assert.equal(results.length,126);assert.equal(writes,0);
+  assert.equal(results.length,126);
+  const playerCases=[];
+  for(const [lesson,route] of [['GRA-B2-01','current'],['GRA-B2-02','current'],['GRA-A2-07','historical']])for(const width of [375,768,960]){
+   const query=new URLSearchParams({lesson,width:String(width),route});
+   playerCases.push({lesson,width,route,result:await run(baseUrl+'/?'+query,lesson,width,route)});
+  }
+  assert.equal(playerCases.length,9);assert.equal(writes,0);
   console.log(JSON.stringify({result:'PASS',gate:'SLE_GRAMMAR_V23_REAL_CHROMIUM',
-   cases:results,source:'reviewed instruction',physicalIpadSafari:'NOT_TESTED',realAuth:'NOT_TESTED',
+   cases:results,playerCases,actualFoundationRoute:true,source:'reviewed instruction',physicalIpadSafari:'NOT_TESTED',realAuth:'NOT_TESTED',
    syntheticOnly:true,backendWrites:0,scoreMutations:0}));
  }finally{server.close();fs.rmSync(profile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});
