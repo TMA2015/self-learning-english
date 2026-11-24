@@ -1,0 +1,5150 @@
+{
+  "schema_version": "sle-grammar-blocks-v1",
+  "source_curriculum_version": "1.28.0",
+  "source_curriculum_blob": "9d931a6930b8cd3ed918db1fa22e8708b7a9f884",
+  "source_html": "SLE_Grammar_Knowledge_v23_Wave3B_A2_Review_R2.html",
+  "academic_packet_id": "SLE-GRA-KNOWLEDGE-V23-W3B-A2-R2-20261124",
+  "academic_status": "PASS",
+  "lessons": {
+    "GRA-A2-09": {
+      "title": "Present perfect: experiences with ever and never",
+      "baselineExplanation": "### Core rule / Meaning\n\nUse **have/has + past participle** to talk about a life experience without saying exactly when a finished event happened. Use **ever** in typical experience questions and **never** for an experience that has not occurred.\n\n### When to use + worked example + why\n- **Life experience:** I **have climbed** a small hill. → The experience matters; no specific finished time is given.\n- **Ask about experience:** **Have** you **ever built** a kite? → **Ever** often follows the subject in this type of question.\n- **No experience up to now:** He **has never tried** ice skating. → **Never** follows **has**.\n- **Past participle:** **break → broken; take → taken**. → The past participle is not always the same as the simple past form.\n- **Finished past time:** We **explored** the old fort last April. → A definite completed past time normally calls for the past simple.\n\n### form / formula / decision cues (adaptive)\n- **Experience:** subject + **have/has + past participle**.\n- **Ever question:** **Have/Has + subject + ever + past participle?**\n- **Never statement:** subject + **have/has + never + past participle**.\n- **Past-time contrast:** use the past simple when specifying a finished past time such as *last April*.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *I have **breaked** a plate once.* → **I have **broken** a plate once.** (**Break → broken** is an irregular past participle.)\n- ⚠️ *I **have met** him **last Tuesday**.* → **I **met** him **last Tuesday**.** (Use the past simple with that finished time.)\n\n### Remember / comparison (adaptive)\n\nAsk: **life experience without a stated finished time**, or **a finished event with a stated past time**? Check the past participle and the meaning.",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-goals"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Talk about experiences up to now."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Ask about experiences."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Contrast experiences with a finished past time."
+                  ],
+                  "tag": "li"
+                }
+              ],
+              "tag": "ul"
+            }
+          ],
+          "step": "1",
+          "title": "What you will learn",
+          "viTitle": "Mục tiêu bài học"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-core"
+              },
+              "children": [
+                {
+                  "children": [
+                    "Life experience without a stated finished past time → have/has + past participle. Ever commonly appears in experience questions; never means not at any time up to now."
+                  ],
+                  "tag": "p"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-translation",
+                    "lang": "vi"
+                  },
+                  "children": [
+                    "Hiện tại hoàn thành diễn tả trải nghiệm đến hiện tại mà không nêu thời điểm quá khứ đã kết thúc. Ever thường dùng trong câu hỏi; never nghĩa là chưa từng."
+                  ],
+                  "tag": "p"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "2",
+          "title": "The Core Idea",
+          "viTitle": "Ý cốt lõi"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "aria-label": "Grammar comparison table",
+                "class": "compact-table",
+                "role": "region",
+                "tabindex": "0"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Pattern"
+                              ],
+                              "tag": "th"
+                            },
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Meaning / use"
+                              ],
+                              "tag": "th"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "thead"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "have/has + past participle"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "write → written; give → given; choose → chosen"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "Have/Has + subject + ever + participle?"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "Ask about experience."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "have/has + never + participle"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "Say an experience has not happened."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "tbody"
+                    }
+                  ],
+                  "tag": "table"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "3",
+          "title": "Compare Experience & Finished Past Time",
+          "viTitle": "So sánh trải nghiệm và thời điểm quá khứ"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-examples"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "1. Experience"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "I have painted a mural."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The experience matters, not its date."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Điều quan trọng là trải nghiệm, không phải ngày xảy ra."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "2. Ever"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "Has Lin ever caught a fish?"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Has + subject + ever + participle."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Has + chủ ngữ + ever + quá khứ phân từ."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "3. Never"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "They have never slept in a tent."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Never already expresses a negative meaning."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Never đã mang nghĩa phủ định."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "4. Finished past"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "I painted a mural in 2024."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " A finished past time: use past simple."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Thời điểm quá khứ đã kết thúc: dùng quá khứ đơn."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "4",
+          "title": "How to Use in Context",
+          "viTitle": "Cách dùng qua ví dụ thực tế"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-mistakes"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ She has wrote a poem."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ She has written a poem."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Use the past participle."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Dùng quá khứ phân từ."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ We have arrived yesterday."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ We arrived yesterday."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Yesterday is a finished past time."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Yesterday là thời điểm quá khứ đã kết thúc."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "5",
+          "title": "Common Mistakes to Avoid",
+          "viTitle": "Lỗi sai thường gặp"
+        },
+        {
+          "blocks": [
+            {
+              "children": [
+                "Experience or a finished dated event? Check the auxiliary and participle."
+              ],
+              "tag": "p"
+            },
+            {
+              "attrs": {
+                "class": "sle-gra02-translation",
+                "lang": "vi"
+              },
+              "children": [
+                "Phân biệt trải nghiệm và sự kiện có thời điểm đã kết thúc. Kiểm tra trợ động từ và quá khứ phân từ."
+              ],
+              "tag": "p"
+            }
+          ],
+          "step": null,
+          "title": "Remember",
+          "viTitle": ""
+        },
+        {
+          "quiz": [
+            {
+              "id": "GRA-A2-09-QC1",
+              "options": [
+                {
+                  "correct": true,
+                  "feedback": "After has, use written.",
+                  "text": "written",
+                  "vi": "Sau has, dùng written."
+                },
+                {
+                  "correct": false,
+                  "feedback": "After has, use written.",
+                  "text": "wrote",
+                  "vi": "Sau has, dùng written."
+                },
+                {
+                  "correct": false,
+                  "feedback": "After has, use written.",
+                  "text": "write",
+                  "vi": "Sau has, dùng written."
+                }
+              ],
+              "prompt": "Complete with the past participle: Has your cousin ever ___ (write) a song?"
+            },
+            {
+              "id": "GRA-A2-09-QC2",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "A stated finished past time normally takes past simple.",
+                  "text": "We have visited the zoo in 2023.",
+                  "vi": "Thời điểm quá khứ đã kết thúc thường đi với quá khứ đơn."
+                },
+                {
+                  "correct": true,
+                  "feedback": "A stated finished past time normally takes past simple.",
+                  "text": "We visited the zoo in 2023.",
+                  "vi": "Thời điểm quá khứ đã kết thúc thường đi với quá khứ đơn."
+                },
+                {
+                  "correct": false,
+                  "feedback": "A stated finished past time normally takes past simple.",
+                  "text": "We have visit the zoo in 2023.",
+                  "vi": "Thời điểm quá khứ đã kết thúc thường đi với quá khứ đơn."
+                }
+              ],
+              "prompt": "The visit happened in 2023. Which sentence fits?"
+            }
+          ],
+          "step": "6",
+          "title": "Quick Self-Check",
+          "viTitle": "Tự kiểm tra nhanh, không tính điểm"
+        }
+      ]
+    },
+    "GRA-A2-10": {
+      "title": "Present perfect: just, already and yet",
+      "baselineExplanation": "### Core rule / Meaning\n\nUse **have/has + past participle** to connect a recent/completed event to the present. **Just**, **already**, and **yet** express different meanings and usually have different positions.\n\n### When to use + worked example + why\n- **Very recent event:** Dad **has just switched on** the heater. → **Just** means a short time ago; it commonly follows **has**.\n- **Completed sooner / before now:** I **have already packed** my lunch. → **Already** commonly sits after **have**.\n- **Ask whether something has happened:** **Have** the guests **arrived yet**? → **Yet** commonly comes at the end of a question.\n- **Something has not happened so far:** Tariq **hasn’t opened** the message **yet**. → **Yet** commonly comes at the end of a negative statement.\n- **Finished past-time contrast:** I **lost** my scarf on Monday. → The named finished time calls for past simple in this context.\n\n### form / formula / decision cues (adaptive)\n- **Present perfect:** subject + **have/has + past participle**.\n- **Just / already:** subject + **have/has + just/already + past participle** (common placement).\n- **Yet question:** **Have/Has + subject + past participle + yet?**\n- **Yet negative:** subject + **haven’t/hasn’t + past participle + yet**.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *We **have already ate** our lunch.* → **We **have already eaten** our lunch.** (Use the past participle after **have**.)\n- ⚠️ *He has just **arrive**.* → **He has just **arrived**.** (Use the past participle after **has just**.)\n\n### Remember / comparison (adaptive)\n\n**Just**: a short time ago. **Already**: before now/often sooner than expected. **Yet**: commonly at the end of questions and negatives. These are typical positions, not universal rules.",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-goals"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Use just for very recent events."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Use already for events completed before now."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Use yet in common questions and negatives."
+                  ],
+                  "tag": "li"
+                }
+              ],
+              "tag": "ul"
+            }
+          ],
+          "step": "1",
+          "title": "What you will learn",
+          "viTitle": "Mục tiêu bài học"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-core"
+              },
+              "children": [
+                {
+                  "children": [
+                    "Just = a very short time ago; already = before now, sometimes earlier than expected; yet = up to now, commonly in questions and negatives. These are common positions, not universal rules."
+                  ],
+                  "tag": "p"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-translation",
+                    "lang": "vi"
+                  },
+                  "children": [
+                    "Just: vừa mới; already: đã rồi; yet: chưa/đã…chưa. Vị trí nêu ở đây là cách dùng thường gặp."
+                  ],
+                  "tag": "p"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "2",
+          "title": "The Core Idea",
+          "viTitle": "Ý cốt lõi"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "aria-label": "Grammar comparison table",
+                "class": "compact-table",
+                "role": "region",
+                "tabindex": "0"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Pattern"
+                              ],
+                              "tag": "th"
+                            },
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Meaning / use"
+                              ],
+                              "tag": "th"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "thead"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "have/has + just/already + participle"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "Common middle position."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "Have/Has + subject + participle + yet?"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "Common question pattern."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "haven’t/hasn’t + participle + yet"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "Common negative pattern."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "tbody"
+                    }
+                  ],
+                  "tag": "table"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "3",
+          "title": "Compare Just, Already & Yet",
+          "viTitle": "So sánh just, already và yet"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-examples"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "1. Just"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "The lights have just gone out."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " A very recent event."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Sự kiện vừa mới xảy ra."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "2. Already"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "Nora has already watered the plants."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The job is done before now."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Công việc đã hoàn thành trước hiện tại."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "3. Yet: question"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "Has the film started yet?"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Ask whether an expected event has happened."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Hỏi sự kiện mong đợi đã xảy ra chưa."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "4. Yet: negative"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "I haven’t printed the ticket yet."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The expected action has not happened so far."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Việc mong đợi vẫn chưa xảy ra."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "4",
+          "title": "How to Use in Context",
+          "viTitle": "Cách dùng qua ví dụ thực tế"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-mistakes"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ He has just went outside."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ He has just gone outside."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Use the participle gone."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Dùng quá khứ phân từ gone."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ I hasn’t booked a seat yet."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ I haven’t booked a seat yet."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " I takes have, not has."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "I đi với have, không đi với has."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "5",
+          "title": "Common Mistakes to Avoid",
+          "viTitle": "Lỗi sai thường gặp"
+        },
+        {
+          "blocks": [
+            {
+              "children": [
+                "A finished time such as last Friday normally calls for past simple in this context."
+              ],
+              "tag": "p"
+            },
+            {
+              "attrs": {
+                "class": "sle-gra02-translation",
+                "lang": "vi"
+              },
+              "children": [
+                "Thời điểm đã kết thúc như last Friday thường dùng quá khứ đơn trong ngữ cảnh này."
+              ],
+              "tag": "p"
+            }
+          ],
+          "step": null,
+          "title": "Remember",
+          "viTitle": ""
+        },
+        {
+          "quiz": [
+            {
+              "id": "GRA-A2-10-QC1",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "Just describes a very recent action.",
+                  "text": "yet",
+                  "vi": "Just diễn tả hành động vừa mới xảy ra."
+                },
+                {
+                  "correct": true,
+                  "feedback": "Just describes a very recent action.",
+                  "text": "just",
+                  "vi": "Just diễn tả hành động vừa mới xảy ra."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Just describes a very recent action.",
+                  "text": "never",
+                  "vi": "Just diễn tả hành động vừa mới xảy ra."
+                }
+              ],
+              "prompt": "The door opened a few seconds ago. Complete: The shop has ___ opened."
+            },
+            {
+              "id": "GRA-A2-10-QC2",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "Yet commonly ends a negative statement about an expected action.",
+                  "text": "already",
+                  "vi": "Yet thường đứng cuối câu phủ định về việc mong đợi."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Yet commonly ends a negative statement about an expected action.",
+                  "text": "just",
+                  "vi": "Yet thường đứng cuối câu phủ định về việc mong đợi."
+                },
+                {
+                  "correct": true,
+                  "feedback": "Yet commonly ends a negative statement about an expected action.",
+                  "text": "yet",
+                  "vi": "Yet thường đứng cuối câu phủ định về việc mong đợi."
+                }
+              ],
+              "prompt": "Complete: We haven’t sent the invitation ___."
+            }
+          ],
+          "step": "6",
+          "title": "Quick Self-Check",
+          "viTitle": "Tự kiểm tra nhanh, không tính điểm"
+        }
+      ]
+    },
+    "GRA-A2-11": {
+      "title": "Choosing future forms: will, going to and present continuous",
+      "baselineExplanation": "### Core rule / Meaning More than one English form can refer to the future. Choose the one that best matches the information and intent in the situation; these are useful tendencies, **not absolute one-to-one rules**.\n\n### When to use\n\n| Form | Typical meaning in this lesson | Context cue | Worked example |\n|---|---|---|---|\n| **will + base verb** | Spontaneous decision / offer at the moment of speaking; also some predictions | The decision is made now | The phone is ringing — **I'll answer** it. |\n| **am/is/are going to + base verb** | A prior intention or a prediction based on clear current evidence | Already planned, or evidence visible now | **I'm going to save** for a new bike. / Look at those clouds — **it's going to rain**. |\n| **am/is/are + verb-ing** | A future arrangement already organised | Appointment, agreed time or other arrangement detail | **I'm meeting** Mai at four. |\n\n### Formulas / patterns\n\n- **Will:** Subject + **will + base verb** → *I will answer it.*\n- **Going to:** Subject + **am/is/are + going to + base verb** → *She is going to practise tonight.*\n- **Present continuous for an arrangement:** Subject + **am/is/are + verb-ing** (+ future arrangement context) → *We're seeing the film at 7 p.m.*\n\n### Worked examples\n- *The phone is ringing — **I'll answer** it.* → A decision made at the moment of speaking.\n- *I'm going to save for a new bike.* → A previously formed intention.\n- *Look at those clouds. It's going to rain.* → Present evidence motivates the prediction.\n- *I'm meeting Mai at four.* → An existing arrangement, with a clear time.\n\n### Common mistakes\n- *I will answering it* ✗ → *I will answer it* ✓ (base form after **will**).\n- *She going to practise tonight* ✗ → *She is going to practise tonight* ✓ (include appropriate **be**).\n- *I am meet Mai at four* ✗ → *I am meeting Mai at four* ✓ (**be + -ing**).\n- A whole grammatically correct sentence entered in a “write only the missing phrase” box is a **format mismatch**, not necessarily a grammar error.\n\n### Quick decision guide\n- Deciding right now? → **will** is often a good choice.\n- Intention existed before speaking, or clear evidence now? → **going to** is often a good choice.\n- Specific future arrangement already agreed? → **present continuous** is often a good choice.\n- Ask: What does the full situation tell us? Without context, forms can overlap.",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-goals"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Choose a future form by situation."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Build all three patterns correctly."
+                  ],
+                  "tag": "li"
+                }
+              ],
+              "tag": "ul"
+            }
+          ],
+          "step": "1",
+          "title": "What you will learn",
+          "viTitle": "Mục tiêu bài học"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-core"
+              },
+              "children": [
+                {
+                  "children": [
+                    "English future forms overlap. Will often expresses an immediate decision or prediction; going to often expresses a prior intention or prediction based on current evidence; present continuous often highlights an arrangement."
+                  ],
+                  "tag": "p"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-translation",
+                    "lang": "vi"
+                  },
+                  "children": [
+                    "Will thường dùng cho quyết định ngay lúc nói hoặc dự đoán; going to cho dự định đã có/dấu hiệu hiện tại; hiện tại tiếp diễn cho lịch hẹn đã sắp xếp. Các cách dùng có thể giao nhau."
+                  ],
+                  "tag": "p"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "2",
+          "title": "The Core Idea",
+          "viTitle": "Ý cốt lõi"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "aria-label": "Grammar comparison table",
+                "class": "compact-table",
+                "role": "region",
+                "tabindex": "0"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Pattern"
+                              ],
+                              "tag": "th"
+                            },
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Meaning / use"
+                              ],
+                              "tag": "th"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "thead"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "will + base verb"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "I will join."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "am/is/are going to + base verb"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "She is going to join."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "am/is/are + verb-ing"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "We are joining at noon."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "tbody"
+                    }
+                  ],
+                  "tag": "table"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "3",
+          "title": "Choose the Future Form",
+          "viTitle": "Chọn dạng diễn đạt tương lai"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-examples"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "1. Immediate decision"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "“I need a pencil.” “I’ll lend you one.”"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The offer is made now."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Lời đề nghị được đưa ra ngay lúc nói."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "2. Prior intention"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "I’m going to grow herbs this spring."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The intention existed before speaking."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Dự định có từ trước lúc nói."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "3. Evidence"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "That glass is shaking. It’s going to fall."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Visible evidence suggests a prediction."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Dấu hiệu nhìn thấy được làm cơ sở dự đoán."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "4. Arrangement"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "We’re visiting the dentist at 3 tomorrow."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " A specific appointment is arranged."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Cuộc hẹn cụ thể đã được sắp xếp."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "5. Prediction"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "I think our team will win."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " A prediction; no present evidence is specified."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Một dự đoán; không nêu dấu hiệu hiện tại."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "4",
+          "title": "How to Use in Context",
+          "viTitle": "Cách dùng qua ví dụ thực tế"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-mistakes"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ He will brings a notebook."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ He will bring a notebook."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Use the base form."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Dùng động từ nguyên mẫu."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ They going to plant flowers."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ They are going to plant flowers."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Include be."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Không bỏ động từ be."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "5",
+          "title": "Common Mistakes to Avoid",
+          "viTitle": "Lỗi sai thường gặp"
+        },
+        {
+          "blocks": [
+            {
+              "children": [
+                "Read the whole context; do not treat the three forms as mutually exclusive rules."
+              ],
+              "tag": "p"
+            },
+            {
+              "attrs": {
+                "class": "sle-gra02-translation",
+                "lang": "vi"
+              },
+              "children": [
+                "Đọc toàn bộ ngữ cảnh; ba dạng không phải quy tắc loại trừ nhau."
+              ],
+              "tag": "p"
+            }
+          ],
+          "step": null,
+          "title": "Remember",
+          "viTitle": ""
+        },
+        {
+          "quiz": [
+            {
+              "id": "GRA-A2-11-QC1",
+              "options": [
+                {
+                  "correct": true,
+                  "feedback": "Will takes a base verb.",
+                  "text": "will get",
+                  "vi": "Sau will dùng động từ nguyên mẫu."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Will takes a base verb.",
+                  "text": "will getting",
+                  "vi": "Sau will dùng động từ nguyên mẫu."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Will takes a base verb.",
+                  "text": "will gets",
+                  "vi": "Sau will dùng động từ nguyên mẫu."
+                }
+              ],
+              "prompt": "Complete using will: “I’m thirsty.” “I ___ (get) you some water.”"
+            },
+            {
+              "id": "GRA-A2-11-QC2",
+              "options": [
+                {
+                  "correct": true,
+                  "feedback": "Present continuous often highlights a future arrangement.",
+                  "text": "Present continuous",
+                  "vi": "Hiện tại tiếp diễn thường nhấn mạnh kế hoạch đã sắp xếp."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Present continuous often highlights a future arrangement.",
+                  "text": "Past simple",
+                  "vi": "Hiện tại tiếp diễn thường nhấn mạnh kế hoạch đã sắp xếp."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Present continuous often highlights a future arrangement.",
+                  "text": "Present perfect",
+                  "vi": "Hiện tại tiếp diễn thường nhấn mạnh kế hoạch đã sắp xếp."
+                }
+              ],
+              "prompt": "Which form best highlights an agreed appointment?"
+            }
+          ],
+          "step": "6",
+          "title": "Quick Self-Check",
+          "viTitle": "Tự kiểm tra nhanh, không tính điểm"
+        }
+      ]
+    },
+    "GRA-A2-12": {
+      "title": "Advice with should and shouldn't",
+      "baselineExplanation": "### Core rule / Meaning\n\nUse **should + base verb** for advice you think is helpful, and **should not/shouldn’t + base verb** to advise against something. A **should** question asks for advice. Advice is usually not as strong as a strict rule using **must**.\n\n### When to use + worked example + why\n- **Helpful suggestion:** You **should stretch** after sitting for a long time. → This is a helpful suggestion, not a compulsory rule.\n- **Advice against an action:** You **shouldn’t leave** your wet jacket on the floor. → The speaker advises you not to do this.\n- **Ask for advice:** **Should** we **check** the map before leaving? → Start the advice question with should.\n- **Contrast with a rule:** You **should speak** politely; visitors **must wear** a safety helmet in this area. → Should recommends good behaviour; must expresses a requirement.\n\n### form / formula / decision cues (adaptive)\n- **Advice:** subject + **should + base verb**.\n- **Advice against:** subject + **should not / shouldn’t + base verb**.\n- **Question:** **Should + subject + base verb?**\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *He **should to bring** a coat.* → **He **should bring** a coat.** (Do not add **to** after should.)\n- ⚠️ *We **should waiting** here.* → **We **should wait** here.** (Use the base verb after should.)\n\n### Remember / comparison (adaptive)\n\nAsk whether the speaker is **suggesting** or **requiring** something. **Should** generally recommends; **must** can state a rule.",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-goals"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Give positive and negative advice."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Ask for advice."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Distinguish advice from rules."
+                  ],
+                  "tag": "li"
+                }
+              ],
+              "tag": "ul"
+            }
+          ],
+          "step": "1",
+          "title": "What you will learn",
+          "viTitle": "Mục tiêu bài học"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-core"
+              },
+              "children": [
+                {
+                  "children": [
+                    "Should + base verb recommends an action; shouldn’t advises against it. Must can express a stronger requirement."
+                  ],
+                  "tag": "p"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-translation",
+                    "lang": "vi"
+                  },
+                  "children": [
+                    "Should + nguyên mẫu: nên; shouldn’t: không nên. Must có thể diễn tả yêu cầu bắt buộc."
+                  ],
+                  "tag": "p"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "2",
+          "title": "The Core Idea",
+          "viTitle": "Ý cốt lõi"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "aria-label": "Grammar comparison table",
+                "class": "compact-table",
+                "role": "region",
+                "tabindex": "0"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Pattern"
+                              ],
+                              "tag": "th"
+                            },
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Meaning / use"
+                              ],
+                              "tag": "th"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "thead"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "should + base verb"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "You should read."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "should not / shouldn’t + base verb"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "You shouldn’t rush."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "Should + subject + base verb?"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "Should we wait?"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "tbody"
+                    }
+                  ],
+                  "tag": "table"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "3",
+          "title": "Build Advice & Advice Questions",
+          "viTitle": "Cấu trúc lời khuyên và câu hỏi"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-examples"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "1. Advice"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "You should label your folders."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " A helpful suggestion."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Lời gợi ý hữu ích."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "2. Negative advice"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "You shouldn’t share your password."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Advice against an action."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Khuyên không thực hiện một hành động."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "3. Question"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "Should I bring a map?"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Ask for advice."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Xin lời khuyên."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "4. Rule versus advice"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "You must show your ticket to enter; you should arrive early."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " A requirement contrasts with a recommendation."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Phân biệt yêu cầu bắt buộc và lời khuyên."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "4",
+          "title": "How to Use in Context",
+          "viTitle": "Cách dùng qua ví dụ thực tế"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-mistakes"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ You should to pack a snack."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ You should pack a snack."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " No to after should."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Không thêm to sau should."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ Should she brings a pen?"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ Should she bring a pen?"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Use the base verb."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Dùng động từ nguyên mẫu."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "5",
+          "title": "Common Mistakes to Avoid",
+          "viTitle": "Lỗi sai thường gặp"
+        },
+        {
+          "blocks": [
+            {
+              "children": [
+                "Is the speaker recommending something or stating a requirement?"
+              ],
+              "tag": "p"
+            },
+            {
+              "attrs": {
+                "class": "sle-gra02-translation",
+                "lang": "vi"
+              },
+              "children": [
+                "Người nói đang khuyên hay nêu yêu cầu bắt buộc?"
+              ],
+              "tag": "p"
+            }
+          ],
+          "step": null,
+          "title": "Remember",
+          "viTitle": ""
+        },
+        {
+          "quiz": [
+            {
+              "id": "GRA-A2-12-QC1",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "Should takes the base form.",
+                  "text": "checking",
+                  "vi": "Sau should dùng động từ nguyên mẫu."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Should takes the base form.",
+                  "text": "to check",
+                  "vi": "Sau should dùng động từ nguyên mẫu."
+                },
+                {
+                  "correct": true,
+                  "feedback": "Should takes the base form.",
+                  "text": "check",
+                  "vi": "Sau should dùng động từ nguyên mẫu."
+                }
+              ],
+              "prompt": "Complete: You should ___ your work before handing it in."
+            },
+            {
+              "id": "GRA-A2-12-QC2",
+              "options": [
+                {
+                  "correct": true,
+                  "feedback": "Put Should before the subject.",
+                  "text": "Should we leave now?",
+                  "vi": "Đặt Should trước chủ ngữ."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Put Should before the subject.",
+                  "text": "We should leave now.",
+                  "vi": "Đặt Should trước chủ ngữ."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Put Should before the subject.",
+                  "text": "We shouldn’t leave now.",
+                  "vi": "Đặt Should trước chủ ngữ."
+                }
+              ],
+              "prompt": "Which is a question asking for advice?"
+            }
+          ],
+          "step": "6",
+          "title": "Quick Self-Check",
+          "viTitle": "Tự kiểm tra nhanh, không tính điểm"
+        }
+      ]
+    },
+    "GRA-A2-13": {
+      "title": "Possibility with may, might and could",
+      "baselineExplanation": "### Core rule / Meaning\n\nUse **may**, **might** or **could** with the **base verb** to say something is possible but not certain. More than one of these modals can fit the same situation; choose from meaning, context and the task’s required form.\n\n### When to use + worked example + why\n- **Possible plan:** Our class **may visit** the science centre next month. → The visit is possible, but not confirmed.\n- **Uncertain arrival:** The parcel **might arrive** after lunch. → The speaker is uncertain about its arrival time.\n- **Possible result:** The river **could rise** after heavy rain. → This describes a possible result, not a guaranteed one.\n- **Negative possibility:** Suri **might not attend** rehearsal tomorrow. → Might not means attendance is uncertain; it does not mean the person is forbidden to attend.\n- **Base verb after a modal:** The timetable **may change**. → After may, use change, not changes or to change.\n\n### form / formula / decision cues (adaptive)\n- **Possibility:** subject + **may/might/could + base verb**.\n- **Negative possibility:** subject + **may not/might not + base verb**, depending on context.\n- Avoid treating may, might and could as a fixed numerical probability ladder.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *He **might goes** to the workshop.* → **He **might go** to the workshop.** (A modal takes a base verb.)\n- ⚠️ *It **could to change** later.* → **It **could change** later.** (Do not put **to** after could in this pattern.)\n\n### Remember / comparison (adaptive)\n\n**Possible, not certain.** Several modals may be grammatically acceptable in open communication; strict practice questions can specify the intended modal.",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-goals"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Express uncertain possibilities."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Form modal phrases and negative possibilities."
+                  ],
+                  "tag": "li"
+                }
+              ],
+              "tag": "ul"
+            }
+          ],
+          "step": "1",
+          "title": "What you will learn",
+          "viTitle": "Mục tiêu bài học"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-core"
+              },
+              "children": [
+                {
+                  "children": [
+                    "May, might and could can express possibility. Their meanings overlap: do not assign fixed probability percentages. May not / might not can express negative possibility in context."
+                  ],
+                  "tag": "p"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-translation",
+                    "lang": "vi"
+                  },
+                  "children": [
+                    "May/might/could + nguyên mẫu diễn tả khả năng chưa chắc chắn. Không gán xác suất cố định. Might not/may not có thể diễn tả khả năng không xảy ra."
+                  ],
+                  "tag": "p"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "2",
+          "title": "The Core Idea",
+          "viTitle": "Ý cốt lõi"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "aria-label": "Grammar comparison table",
+                "class": "compact-table",
+                "role": "region",
+                "tabindex": "0"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Pattern"
+                              ],
+                              "tag": "th"
+                            },
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Meaning / use"
+                              ],
+                              "tag": "th"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "thead"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "may/might/could + base verb"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "It may work."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "may not / might not + base verb"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "It might not work."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "tbody"
+                    }
+                  ],
+                  "tag": "table"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "3",
+          "title": "Build Possibility with Modals",
+          "viTitle": "Diễn tả khả năng bằng động từ khuyết thiếu"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-examples"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "1. May"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "The museum may close early."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Closing is possible, not certain."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Việc đóng cửa có thể xảy ra nhưng chưa chắc chắn."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "2. Might"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "Ella might join the choir."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Her decision is not certain."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Quyết định của Ella chưa chắc chắn."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "3. Could"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "The noise could come from upstairs."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " One possible explanation."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Một cách giải thích có thể đúng."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "4. Negative possibility"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "The picnic might not happen tomorrow."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The event is uncertain, not prohibited."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Sự kiện chưa chắc xảy ra; không phải bị cấm."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "4",
+          "title": "How to Use in Context",
+          "viTitle": "Cách dùng qua ví dụ thực tế"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-mistakes"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ The train might arrives late."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ The train might arrive late."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " A modal takes the base verb."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Sau động từ khuyết thiếu dùng nguyên mẫu."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ It could to snow."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ It could snow."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " No to in this pattern."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Không thêm to trong cấu trúc này."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "5",
+          "title": "Common Mistakes to Avoid",
+          "viTitle": "Lỗi sai thường gặp"
+        },
+        {
+          "blocks": [
+            {
+              "children": [
+                "Possible, not certain. If a task specifies a modal, follow that instruction."
+              ],
+              "tag": "p"
+            },
+            {
+              "attrs": {
+                "class": "sle-gra02-translation",
+                "lang": "vi"
+              },
+              "children": [
+                "Có thể, không chắc chắn. Nếu đề yêu cầu động từ khuyết thiếu cụ thể, hãy làm theo."
+              ],
+              "tag": "p"
+            }
+          ],
+          "step": null,
+          "title": "Remember",
+          "viTitle": ""
+        },
+        {
+          "quiz": [
+            {
+              "id": "GRA-A2-13-QC1",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "May takes a base verb.",
+                  "text": "She may to call.",
+                  "vi": "Sau may dùng động từ nguyên mẫu."
+                },
+                {
+                  "correct": false,
+                  "feedback": "May takes a base verb.",
+                  "text": "She may calls.",
+                  "vi": "Sau may dùng động từ nguyên mẫu."
+                },
+                {
+                  "correct": true,
+                  "feedback": "May takes a base verb.",
+                  "text": "She may call.",
+                  "vi": "Sau may dùng động từ nguyên mẫu."
+                }
+              ],
+              "prompt": "Choose the correct modal pattern."
+            },
+            {
+              "id": "GRA-A2-13-QC2",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "Might not expresses negative possibility here.",
+                  "text": "It is certain to open.",
+                  "vi": "Might not ở đây diễn tả khả năng sự việc không xảy ra."
+                },
+                {
+                  "correct": true,
+                  "feedback": "Might not expresses negative possibility here.",
+                  "text": "It is possible that it will not open.",
+                  "vi": "Might not ở đây diễn tả khả năng sự việc không xảy ra."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Might not expresses negative possibility here.",
+                  "text": "Opening is forbidden.",
+                  "vi": "Might not ở đây diễn tả khả năng sự việc không xảy ra."
+                }
+              ],
+              "prompt": "“The club might not open today” means…"
+            }
+          ],
+          "step": "6",
+          "title": "Quick Self-Check",
+          "viTitle": "Tự kiểm tra nhanh, không tính điểm"
+        }
+      ]
+    },
+    "GRA-A2-14": {
+      "title": "Zero and first conditionals",
+      "baselineExplanation": "### Core rule / Meaning\n\nA **zero conditional** often describes a regular result or general fact. A **first conditional** usually describes a realistic future possibility and a likely result if its condition happens. Choose the pattern from meaning, not from the word **if** alone.\n\n### When to use + worked example + why\n- **Regular result:** If I skip breakfast, I **feel** hungry before lunch. → This describes what usually happens to me.\n- **General fact:** If you **heat** chocolate, it **melts**. → This describes a regular physical result in ordinary conditions.\n- **Real future possibility:** If the library **closes** early, we **will study** at home. → The closing is possible; studying at home is the planned result.\n- **Result clause first:** We **will bring** extra water if the walk **is** long. → The same first-conditional meaning works with the clauses reversed.\n\n### form / formula / decision cues (adaptive)\n- **Zero conditional:** **If + present simple, present simple** (general/regular result).\n- **First conditional:** **If + present simple, will + base verb** (a realistic future possibility).\n- **Order:** **We will wait if it gets dark** = **If it gets dark, we will wait**. A comma is normally used when the if-clause comes first.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *If he **will arrive** early, we will start.* → **If he **arrives** early, we will start.** (In this basic first-conditional pattern, use present simple in the if-clause.)\n- ⚠️ *If the tea **get** cold, I drink it quickly.* → **If the tea **gets** cold, I drink it quickly.** (For a regular result with singular tea, use gets.)\n\n### Remember / comparison (adaptive)\n\n**Always/usually true?** Zero conditional. **One real future possibility?** First conditional. The if-clause normally uses present simple in both basic patterns.",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-goals"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Distinguish regular results from realistic future possibilities."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Use the basic zero and first conditional patterns."
+                  ],
+                  "tag": "li"
+                }
+              ],
+              "tag": "ul"
+            }
+          ],
+          "step": "1",
+          "title": "What you will learn",
+          "viTitle": "Mục tiêu bài học"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-core"
+              },
+              "children": [
+                {
+                  "children": [
+                    "Zero conditional often describes a regular result or general fact. First conditional often describes a realistic future possibility and its result. The lesson focuses on basic patterns."
+                  ],
+                  "tag": "p"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-translation",
+                    "lang": "vi"
+                  },
+                  "children": [
+                    "Loại 0: kết quả thường xuyên/sự thật. Loại 1: khả năng thực tế trong tương lai. Đây là hai mẫu cơ bản."
+                  ],
+                  "tag": "p"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "2",
+          "title": "The Core Idea",
+          "viTitle": "Ý cốt lõi"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "diagram"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "aria-label": "If-clause → result clause",
+                    "role": "img",
+                    "viewbox": "0 0 520 94"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "fill": "#eaf3ff",
+                        "height": "40",
+                        "rx": "8",
+                        "stroke": "#aac6e9",
+                        "width": "208",
+                        "x": "10",
+                        "y": "14"
+                      },
+                      "tag": "rect"
+                    },
+                    {
+                      "attrs": {
+                        "fill": "#eaf3ff",
+                        "height": "40",
+                        "rx": "8",
+                        "stroke": "#aac6e9",
+                        "width": "208",
+                        "x": "302",
+                        "y": "14"
+                      },
+                      "tag": "rect"
+                    },
+                    {
+                      "attrs": {
+                        "d": "M230 34H290l-8 -6m8 6 -8 6",
+                        "fill": "none",
+                        "stroke": "#1b62b4",
+                        "stroke-width": "2"
+                      },
+                      "tag": "path"
+                    },
+                    {
+                      "attrs": {
+                        "fill": "#174f95",
+                        "font-size": "13",
+                        "text-anchor": "middle",
+                        "x": "114",
+                        "y": "39"
+                      },
+                      "children": [
+                        "Condition"
+                      ],
+                      "tag": "text"
+                    },
+                    {
+                      "attrs": {
+                        "fill": "#174f95",
+                        "font-size": "13",
+                        "text-anchor": "middle",
+                        "x": "406",
+                        "y": "39"
+                      },
+                      "children": [
+                        "Result"
+                      ],
+                      "tag": "text"
+                    },
+                    {
+                      "attrs": {
+                        "fill": "#425e7e",
+                        "font-size": "13",
+                        "text-anchor": "middle",
+                        "x": "260",
+                        "y": "78"
+                      },
+                      "children": [
+                        "If-clause → result clause"
+                      ],
+                      "tag": "text"
+                    }
+                  ],
+                  "tag": "svg"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "3",
+          "title": "See the Condition & Result",
+          "viTitle": "Sơ đồ điều kiện và kết quả"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "aria-label": "Grammar comparison table",
+                "class": "compact-table",
+                "role": "region",
+                "tabindex": "0"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Pattern"
+                              ],
+                              "tag": "th"
+                            },
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Meaning / use"
+                              ],
+                              "tag": "th"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "thead"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "If + present simple → present simple"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "Zero: regular result."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "If + present simple → will + base verb"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "First: possible future result."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "tbody"
+                    }
+                  ],
+                  "tag": "table"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "4",
+          "title": "Compare the Conditional Patterns",
+          "viTitle": "So sánh cấu trúc câu điều kiện"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-examples"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "1. Regular result"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "If I forget my glasses, I find reading difficult."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " This is a repeated situation."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Tình huống lặp lại."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "2. General fact"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "If butter gets warm enough, it melts."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " A general physical result."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Kết quả vật lý thường đúng."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "3. Future possibility"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "If the weather improves tomorrow, we will cycle to school."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " One possible future event and result."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Một khả năng tương lai và kết quả tương ứng."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "4. Reversed order"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "We will take a taxi if the train is cancelled."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Same relation; normally no comma with if-clause last."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Đổi thứ tự mệnh đề; thường không có dấu phẩy khi if đứng sau."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "5",
+          "title": "How to Use in Context",
+          "viTitle": "Cách dùng qua ví dụ thực tế"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-mistakes"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ If she will finish early, we will leave."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ If she finishes early, we will leave."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " In this basic first conditional, the if-clause uses present simple."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Trong mẫu điều kiện loại 1 cơ bản, mệnh đề if dùng hiện tại đơn."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ If the bell ring, we go inside."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ If the bell rings, we go inside."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " A singular subject takes rings."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Chủ ngữ số ít dùng rings."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "6",
+          "title": "Common Mistakes to Avoid",
+          "viTitle": "Lỗi sai thường gặp"
+        },
+        {
+          "blocks": [
+            {
+              "children": [
+                "Choose meaning first; the word if alone does not identify the conditional type."
+              ],
+              "tag": "p"
+            },
+            {
+              "attrs": {
+                "class": "sle-gra02-translation",
+                "lang": "vi"
+              },
+              "children": [
+                "Chọn theo ý nghĩa trước; chỉ từ if không đủ để xác định loại câu."
+              ],
+              "tag": "p"
+            }
+          ],
+          "step": null,
+          "title": "Remember",
+          "viTitle": ""
+        },
+        {
+          "quiz": [
+            {
+              "id": "GRA-A2-14-QC1",
+              "options": [
+                {
+                  "correct": true,
+                  "feedback": "A regular result uses present simple; dog takes barks.",
+                  "text": "barks",
+                  "vi": "Kết quả thường xuyên dùng hiện tại đơn; dog đi với barks."
+                },
+                {
+                  "correct": false,
+                  "feedback": "A regular result uses present simple; dog takes barks.",
+                  "text": "bark",
+                  "vi": "Kết quả thường xuyên dùng hiện tại đơn; dog đi với barks."
+                },
+                {
+                  "correct": false,
+                  "feedback": "A regular result uses present simple; dog takes barks.",
+                  "text": "will barking",
+                  "vi": "Kết quả thường xuyên dùng hiện tại đơn; dog đi với barks."
+                }
+              ],
+              "prompt": "Every day, this is what happens: If the alarm rings, the dog ___."
+            },
+            {
+              "id": "GRA-A2-14-QC2",
+              "options": [
+                {
+                  "correct": true,
+                  "feedback": "The basic first conditional uses will + base verb in the result.",
+                  "text": "will swim",
+                  "vi": "Mệnh đề kết quả của mẫu loại 1 cơ bản dùng will + nguyên mẫu."
+                },
+                {
+                  "correct": false,
+                  "feedback": "The basic first conditional uses will + base verb in the result.",
+                  "text": "will swimming",
+                  "vi": "Mệnh đề kết quả của mẫu loại 1 cơ bản dùng will + nguyên mẫu."
+                },
+                {
+                  "correct": false,
+                  "feedback": "The basic first conditional uses will + base verb in the result.",
+                  "text": "will swims",
+                  "vi": "Mệnh đề kết quả của mẫu loại 1 cơ bản dùng will + nguyên mẫu."
+                }
+              ],
+              "prompt": "A possible plan for tomorrow: If the pool is open, we ___."
+            }
+          ],
+          "step": "7",
+          "title": "Quick Self-Check",
+          "viTitle": "Tự kiểm tra nhanh, không tính điểm"
+        }
+      ]
+    },
+    "GRA-A2-15": {
+      "title": "Common verb patterns: to-infinitive and -ing",
+      "baselineExplanation": "### Core rule / Meaning\n\nThe **first verb** often decides whether the next verb uses **to + base verb** or **verb-ing**. Learn these patterns together with the first verb; do not choose the form from a single universal rule.\n\n### When to use + worked example + why\n- **Want + to:** Ravi **wants to build** a birdhouse. → Want is commonly followed by to + base verb.\n- **Plan + to:** The cousins **plan to organise** a picnic. → Plan is followed by to + base verb in this use.\n- **Decide + to:** We **decided to wait** for the morning train. → Decide is followed by to + base verb.\n- **Enjoy + -ing:** Hana **enjoys collecting** postcards. → Enjoy is normally followed by an -ing verb.\n- **Finish + -ing:** Arman **finished washing** the dishes. → Finish is normally followed by an -ing verb.\n\n### form / formula / decision cues (adaptive)\n- **Verb + to + base:** want to draw; plan to move; hope to improve; decide to leave.\n- **Verb + -ing:** enjoy painting; finish packing.\n- Some other verbs allow more than one pattern with meaning or usage differences; those contrasts are outside this lesson.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *I **enjoy to collect** stickers.* → **I **enjoy collecting** stickers.** (Use **-ing** after enjoy in this meaning.)\n- ⚠️ *She **decided taking** a break.* → **She **decided to take** a break.** (Use **to + base verb** after decide.)\n\n### Remember / comparison (adaptive)\n\nLearn verb patterns as chunks: **want/plan/hope/decide + to + verb**; **enjoy/finish + verb-ing**. Do not assume every verb follows the same pattern.",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-goals"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Learn frequent verb patterns as chunks."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Choose to-infinitive or -ing according to the first verb."
+                  ],
+                  "tag": "li"
+                }
+              ],
+              "tag": "ul"
+            }
+          ],
+          "step": "1",
+          "title": "What you will learn",
+          "viTitle": "Mục tiêu bài học"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-core"
+              },
+              "children": [
+                {
+                  "children": [
+                    "The first verb often determines the form of the next verb. Want, plan, hope and decide commonly take to + base verb in these patterns; enjoy and finish take -ing."
+                  ],
+                  "tag": "p"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-translation",
+                    "lang": "vi"
+                  },
+                  "children": [
+                    "Học theo cụm động từ: want/plan/hope/decide + to V; enjoy/finish + V-ing trong các mẫu đang học."
+                  ],
+                  "tag": "p"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "2",
+          "title": "The Core Idea",
+          "viTitle": "Ý cốt lõi"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "aria-label": "Grammar comparison table",
+                "class": "compact-table",
+                "role": "region",
+                "tabindex": "0"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Pattern"
+                              ],
+                              "tag": "th"
+                            },
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Meaning / use"
+                              ],
+                              "tag": "th"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "thead"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "want / plan / hope / decide + to + base verb"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "Learn the whole chunk."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "enjoy / finish + verb-ing"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "Learn the whole chunk."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "tbody"
+                    }
+                  ],
+                  "tag": "table"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "3",
+          "title": "Compare To-infinitive & -ing Patterns",
+          "viTitle": "So sánh mẫu to + V và V-ing"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-examples"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "1. Want"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "I want to design a poster."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Want + to + base verb."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Want + to + nguyên mẫu."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "2. Plan and hope"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "We plan to camp; I hope to see the stars."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Both use to + base verb here."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Cả hai dùng to + nguyên mẫu trong ngữ cảnh này."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "3. Decide"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "He decided to repair the lamp."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Decide + to + base verb."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Decide + to + nguyên mẫu."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "4. Enjoy"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "Lia enjoys making bracelets."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Enjoy + -ing."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Enjoy + V-ing."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "5. Finish"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "They finished folding the paper."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Finish + -ing."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Finish + V-ing."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "4",
+          "title": "How to Use in Context",
+          "viTitle": "Cách dùng qua ví dụ thực tế"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-mistakes"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ I enjoy to draw maps."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ I enjoy drawing maps."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Enjoy takes -ing in this meaning."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Enjoy đi với V-ing trong nghĩa này."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ We hope seeing you."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ We hope to see you."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Hope takes to + base verb here."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Hope đi với to + nguyên mẫu ở đây."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "5",
+          "title": "Common Mistakes to Avoid",
+          "viTitle": "Lỗi sai thường gặp"
+        },
+        {
+          "blocks": [
+            {
+              "children": [
+                "Other verbs can allow multiple patterns; learn each separately."
+              ],
+              "tag": "p"
+            },
+            {
+              "attrs": {
+                "class": "sle-gra02-translation",
+                "lang": "vi"
+              },
+              "children": [
+                "Các động từ khác có thể đi với nhiều mẫu; hãy học từng mẫu riêng."
+              ],
+              "tag": "p"
+            }
+          ],
+          "step": null,
+          "title": "Remember",
+          "viTitle": ""
+        },
+        {
+          "quiz": [
+            {
+              "id": "GRA-A2-15-QC1",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "Decide + to + base verb.",
+                  "text": "choosing",
+                  "vi": "Decide + to + nguyên mẫu."
+                },
+                {
+                  "correct": true,
+                  "feedback": "Decide + to + base verb.",
+                  "text": "to choose",
+                  "vi": "Decide + to + nguyên mẫu."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Decide + to + base verb.",
+                  "text": "choose",
+                  "vi": "Decide + to + nguyên mẫu."
+                }
+              ],
+              "prompt": "Complete: I decided ___ the red fabric."
+            },
+            {
+              "id": "GRA-A2-15-QC2",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "Enjoy + -ing.",
+                  "text": "to make",
+                  "vi": "Enjoy + V-ing."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Enjoy + -ing.",
+                  "text": "make",
+                  "vi": "Enjoy + V-ing."
+                },
+                {
+                  "correct": true,
+                  "feedback": "Enjoy + -ing.",
+                  "text": "making",
+                  "vi": "Enjoy + V-ing."
+                }
+              ],
+              "prompt": "Complete: She enjoys ___ clay models."
+            }
+          ],
+          "step": "6",
+          "title": "Quick Self-Check",
+          "viTitle": "Tự kiểm tra nhanh, không tính điểm"
+        }
+      ]
+    },
+    "GRA-A2-16": {
+      "title": "Defining relative clauses: who, which and that",
+      "baselineExplanation": "### Core rule / Meaning\n\nA **defining relative clause** gives information needed to identify which person or thing you mean. For **people**, use **who** or **that**; for **things**, use **which** or **that**. In the **subject-relative patterns tested here**, do not repeat the subject pronoun after the relative word.\n\n### When to use + worked example + why\n- **Identify a person:** The musician **who plays the violin** is our neighbour. → Who introduces information that identifies the person.\n- **Person with that:** The baker **that opens early** sells fresh bread. → That can also introduce a defining clause about a person.\n- **Identify a thing:** The printer **which makes labels** is broken. → Which introduces a defining clause about a thing.\n- **Thing with that:** The umbrella **that folds into a pocket** is useful. → That can also introduce a defining clause about a thing.\n- **Avoid repeated subject:** The athlete **who trains at dawn** is my cousin. → Do not write **who she trains** in this subject-relative pattern.\n\n### form / formula / decision cues (adaptive)\n- **Person + who/that + verb ...** (when the relative word is the clause subject).\n- **Thing + which/that + verb ...** (when the relative word is the clause subject).\n- **Do not repeat a subject:** *the musician who sings*, not *the musician who he sings*.\n- **Boundary:** This A2 lesson practises defining subject-relative clauses, not every kind of relative clause; the more advanced non-defining distinction is taught separately.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *The dancer **which performs** is famous.* → **The dancer **who performs** is famous.** (Prefer **who** for a person (or **that** in a defining clause).)\n- ⚠️ *The scanner **that it saves** images is new.* → **The scanner **that saves** images is new.** (Do not add **it** when that is the subject of the relative clause.)\n\n### Remember / comparison (adaptive)\n\n**Who/that** for a person; **which/that** for a thing in these defining clauses. Check whether the relative word is already the subject so you do not repeat **he/she/it**.",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-goals"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Identify people and things using defining subject relative clauses."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Avoid repeating the subject."
+                  ],
+                  "tag": "li"
+                }
+              ],
+              "tag": "ul"
+            }
+          ],
+          "step": "1",
+          "title": "What you will learn",
+          "viTitle": "Mục tiêu bài học"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-core"
+              },
+              "children": [
+                {
+                  "children": [
+                    "A defining clause gives information needed to identify a person or thing. In the subject-relative patterns here, use who/that for people and which/that for things; the relative word itself is the subject."
+                  ],
+                  "tag": "p"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-translation",
+                    "lang": "vi"
+                  },
+                  "children": [
+                    "Mệnh đề quan hệ xác định giúp nhận ra người/vật nào. Người: who/that; vật: which/that. Không lặp chủ ngữ khi từ quan hệ đã làm chủ ngữ."
+                  ],
+                  "tag": "p"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "2",
+          "title": "The Core Idea",
+          "viTitle": "Ý cốt lõi"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "diagram"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "aria-label": "Person or thing → who / which / that + verb",
+                    "role": "img",
+                    "viewbox": "0 0 520 94"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "fill": "#eaf3ff",
+                        "height": "40",
+                        "rx": "8",
+                        "stroke": "#aac6e9",
+                        "width": "208",
+                        "x": "10",
+                        "y": "14"
+                      },
+                      "tag": "rect"
+                    },
+                    {
+                      "attrs": {
+                        "fill": "#eaf3ff",
+                        "height": "40",
+                        "rx": "8",
+                        "stroke": "#aac6e9",
+                        "width": "208",
+                        "x": "302",
+                        "y": "14"
+                      },
+                      "tag": "rect"
+                    },
+                    {
+                      "attrs": {
+                        "d": "M230 34H290l-8 -6m8 6 -8 6",
+                        "fill": "none",
+                        "stroke": "#1b62b4",
+                        "stroke-width": "2"
+                      },
+                      "tag": "path"
+                    },
+                    {
+                      "attrs": {
+                        "fill": "#174f95",
+                        "font-size": "13",
+                        "text-anchor": "middle",
+                        "x": "114",
+                        "y": "39"
+                      },
+                      "children": [
+                        "Noun"
+                      ],
+                      "tag": "text"
+                    },
+                    {
+                      "attrs": {
+                        "fill": "#174f95",
+                        "font-size": "13",
+                        "text-anchor": "middle",
+                        "x": "406",
+                        "y": "39"
+                      },
+                      "children": [
+                        "Identifying clause"
+                      ],
+                      "tag": "text"
+                    },
+                    {
+                      "attrs": {
+                        "fill": "#425e7e",
+                        "font-size": "13",
+                        "text-anchor": "middle",
+                        "x": "260",
+                        "y": "78"
+                      },
+                      "children": [
+                        "Person or thing → who / which / that + verb"
+                      ],
+                      "tag": "text"
+                    }
+                  ],
+                  "tag": "svg"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "3",
+          "title": "See How the Clause Identifies",
+          "viTitle": "Sơ đồ xác định người hoặc vật"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "aria-label": "Grammar comparison table",
+                "class": "compact-table",
+                "role": "region",
+                "tabindex": "0"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Pattern"
+                              ],
+                              "tag": "th"
+                            },
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Meaning / use"
+                              ],
+                              "tag": "th"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "thead"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "person + who/that + verb"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "The person who cooks…"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "thing + which/that + verb"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "The lamp that shines…"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "tbody"
+                    }
+                  ],
+                  "tag": "table"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "4",
+          "title": "Choose the Relative Word",
+          "viTitle": "Chọn từ quan hệ phù hợp"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-examples"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "1. Person"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "The woman who fixes bicycles lives nearby."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Who identifies the woman."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Who giúp xác định người phụ nữ."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "2. Person with that"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "The boy that carries the drum is my friend."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " That is also possible here."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "That cũng có thể dùng ở đây."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "3. Thing"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "The machine which cuts paper is noisy."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Which identifies the thing."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Which giúp xác định vật."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "4. Thing with that"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "The box that contains the tools is heavy."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " That can refer to a thing."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "That cũng có thể chỉ vật."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "5",
+          "title": "How to Use in Context",
+          "viTitle": "Cách dùng qua ví dụ thực tế"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-mistakes"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ The child who he reads aloud is my cousin."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ The child who reads aloud is my cousin."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Who is the subject; omit he."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Who đã là chủ ngữ; bỏ he."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ The bike that it has a basket is blue."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ The bike that has a basket is blue."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " That is the subject; omit it."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "That đã là chủ ngữ; bỏ it."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "6",
+          "title": "Common Mistakes to Avoid",
+          "viTitle": "Lỗi sai thường gặp"
+        },
+        {
+          "blocks": [
+            {
+              "children": [
+                "This lesson covers defining subject relative clauses, not every kind of relative clause. Both who/that or which/that may be valid."
+              ],
+              "tag": "p"
+            },
+            {
+              "attrs": {
+                "class": "sle-gra02-translation",
+                "lang": "vi"
+              },
+              "children": [
+                "Bài này chỉ xét mệnh đề quan hệ xác định mà từ quan hệ làm chủ ngữ. Who/that hoặc which/that đều có thể đúng."
+              ],
+              "tag": "p"
+            }
+          ],
+          "step": null,
+          "title": "Remember",
+          "viTitle": ""
+        },
+        {
+          "quiz": [
+            {
+              "id": "GRA-A2-16-QC1",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "Who or that can introduce a defining clause about a person.",
+                  "text": "which / when",
+                  "vi": "Who hoặc that có thể mở đầu mệnh đề xác định về người."
+                },
+                {
+                  "correct": true,
+                  "feedback": "Who or that can introduce a defining clause about a person.",
+                  "text": "who / that",
+                  "vi": "Who hoặc that có thể mở đầu mệnh đề xác định về người."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Who or that can introduce a defining clause about a person.",
+                  "text": "where / which",
+                  "vi": "Who hoặc that có thể mở đầu mệnh đề xác định về người."
+                }
+              ],
+              "prompt": "Which pair can identify a person in this pattern?"
+            },
+            {
+              "id": "GRA-A2-16-QC2",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "That is already the subject of moves.",
+                  "text": "The robot that it moves is small.",
+                  "vi": "That đã làm chủ ngữ của moves."
+                },
+                {
+                  "correct": true,
+                  "feedback": "That is already the subject of moves.",
+                  "text": "The robot that moves is small.",
+                  "vi": "That đã làm chủ ngữ của moves."
+                },
+                {
+                  "correct": false,
+                  "feedback": "That is already the subject of moves.",
+                  "text": "The robot which it moves is small.",
+                  "vi": "That đã làm chủ ngữ của moves."
+                }
+              ],
+              "prompt": "Choose the sentence without a repeated subject."
+            }
+          ],
+          "step": "7",
+          "title": "Quick Self-Check",
+          "viTitle": "Tự kiểm tra nhanh, không tính điểm"
+        }
+      ]
+    }
+  }
+}
