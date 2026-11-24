@@ -41,3 +41,10 @@ assert.ok(!css.includes('display: none') && !css.includes('visibility: hidden'),
   'no existing text, feedback or warnings hidden to make cards smaller');
 assert.ok(previous.includes('.foundation-question'), 'existing global practice styling retained underneath the override');
 console.log('PASS: compact Foundation layout, original answer semantics, Listening and draft safety retained.');
+
+assert.ok(source.includes('<AdaptivePracticeGrid className="foundation-option-grid">'),'shared adaptive MCQ is wired in the actual player');
+assert.ok(source.includes('shortPracticeMode(q.prompt,answers[q.id]??\'\')'),'gap choice uses visible prompt and existing draft only');
+assert.ok(source.includes('setAnswers(s=>({...s,[q.id]:value}))'),'inline and compact inputs update the same original draft answer key');
+assert.ok(source.includes("shortMode&&shortMode.kind!=='textarea'"),'complex and multiline formats keep original textarea');
+assert.ok(css.includes('repeat(var(--practice-columns, 1), minmax(0, 1fr))'),'adaptive grid override');
+assert.ok(css.includes('width: 100px') && css.includes('height: 44px') && css.includes('width: min(100%, 180px)'),'approved gap dimensions');
