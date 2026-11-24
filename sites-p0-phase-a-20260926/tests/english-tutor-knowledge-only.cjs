@@ -55,8 +55,9 @@ assert.equal(guidance.lessonTutorOutputTokenLimit('concise'),900);
 assert.equal(guidance.lessonTutorOutputTokenLimit('detailed'),1400);
 assert(bridge.includes('...(targetCEFR?{targetCEFR}:{})'));
 assert(tutor.includes('cefrTarget'));
-assert(read('app/foundation.tsx').includes('cefrTarget={lesson.cefr_target}'),
- 'Foundation lessons must forward explicit CEFR teaching target');
+assert(read('app/foundation.tsx').includes('cefrTarget={(currentNotes?.lesson??lesson).cefr_target}'),
+ 'Foundation must forward the explicit CEFR target of the displayed knowledge version');
+assert(read('app/foundation.tsx').includes('...(currentNotes?.lesson??lesson).objectives')&&read('app/foundation.tsx').includes('(currentNotes?.lesson??lesson).explanation.en'), 'Tutor must use displayed knowledge only, never historical answers');
 assert(!bridge.includes('learning A1-B1 English'),
  'The old fixed teaching range must not remain in the active Gemini prompt');
 console.log(JSON.stringify({result:'PASS',suite:'english-tutor-knowledge-only',cefrTargetsCovered:6,unlabeledFallback:true,hasLiveGeminiProof:false,noAssessmentLeak:true}));

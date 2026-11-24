@@ -5,8 +5,9 @@ import {GrammarKnowledgeV23,grammarKnowledgeV23Available} from './grammar-knowle
 /** Detect authored structured notes by format, not an outdated version allowlist.
  * Older attempts with plain-text notes keep their original display; new versions
  * reuse the same safe renderer without changing saved academic content. */
-export function structuredGrammarAvailable(lesson:SeedLesson,_version:string){
- return lesson.module==='grammar'&&lesson.explanation.en.startsWith('### Core rule / Meaning');
+export function structuredGrammarAvailable(lesson:SeedLesson,version:string){
+ // Reviewed overlays take precedence over the legacy Markdown heading format.
+ return grammarKnowledgeV23Available(lesson,version)||(lesson.module==='grammar'&&lesson.explanation.en.startsWith('### Core rule / Meaning'));
 }
 export function grammarSections(markdown:string){
  return markdown.split('### ').slice(1).map(chunk=>{

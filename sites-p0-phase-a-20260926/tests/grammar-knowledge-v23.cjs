@@ -37,7 +37,7 @@ const reviewed4b=Buffer.from(JSON.stringify(canon(Object.fromEntries(Object.entr
 assert.equal(crypto.createHash('sha1').update('blob '+reviewed4b.length+'\0').update(reviewed4b).digest('hex'),'a5789c98a02667b6b106a74760c0005f4b0dcf6e','exact approved Wave 4B teaching blocks');
 const data={...wave1,lessons:{...wave1.lessons,...wave2.lessons,...wave3b.lessons,...wave3a.lessons,...wave4a.lessons,...wave4b.lessons}};
 const {grammarKnowledgeV23Available,GrammarKnowledgeV23}=require('../app/grammar-knowledge-v23.tsx');
-const {StructuredGrammarNotes}=require('../app/structured-grammar.tsx');
+const {StructuredGrammarNotes,structuredGrammarAvailable}=require('../app/structured-grammar.tsx');
 const raw=fs.readFileSync('content/curriculum-1.28.0-candidate.json');
 assert.equal(crypto.createHash('sha1').update('blob '+raw.length+'\0').update(raw).digest('hex'),data.source_curriculum_blob,'immutable reviewed baseline blob');
 const ids=Object.keys(data.lessons);assert.equal(ids.length,42);
@@ -45,7 +45,7 @@ let sections=0,checks=0,scored=0;
 for(const id of ids){
  const lesson=curriculum.lessons.find(l=>l.id===id),entry=data.lessons[id];assert(lesson);
  assert.equal(entry.baselineExplanation,lesson.explanation.en);assert.equal(entry.title,lesson.title);
- assert(grammarKnowledgeV23Available(lesson,'1.28.0'));assert(!grammarKnowledgeV23Available(lesson,'1.25.0'));assert(!grammarKnowledgeV23Available(lesson,'1.29.0'));assert(!grammarKnowledgeV23Available({...lesson,explanation:{...lesson.explanation,en:'changed'}},'1.28.0'));
+ assert(structuredGrammarAvailable(lesson,'1.28.0'),'player entry gate '+id);assert(grammarKnowledgeV23Available(lesson,'1.28.0'));assert(!grammarKnowledgeV23Available(lesson,'1.25.0'));assert(!grammarKnowledgeV23Available(lesson,'1.29.0'));assert(!grammarKnowledgeV23Available({...lesson,explanation:{...lesson.explanation,en:'changed'}},'1.28.0'));
  sections+=entry.sections.length;scored+=lesson.activities.length;
  const qs=entry.sections.flatMap(s=>s.quiz??[]);checks+=qs.length;
  for(const q of qs){assert.equal(q.options.filter(o=>o.correct).length,1);assert(q.options.every(o=>o.text&&o.feedback&&o.vi));assert(!lesson.activities.some(a=>a.id===q.id))}
