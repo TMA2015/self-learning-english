@@ -8,7 +8,10 @@ import wave3b from '../content/grammar-knowledge-v23-wave3b-a2.json';
 import wave3a from '../content/grammar-knowledge-v23-wave3a-a2.json';
 import wave4a from '../content/grammar-knowledge-v23-wave4a-b1.json';
 import wave4b from '../content/grammar-knowledge-v23-wave4b-b1-b2.json';
-import type {SeedLesson} from '../domain/academic';
+import type {SeedLesson,AcademicAttempt} from '../domain/academic';
+import {FoundationDemo,type Catalog} from '../app/foundation';
+import historical from '../content/curriculum-1.18.1-candidate.json';
+import {createOptionOrder} from '../domain/option-order';
 const params=new URL(location.href).searchParams,id=params.get('lesson')??'GRA-A1-02',width=Number(params.get('width')??375);
 const shell=document.getElementById('app')!,output=document.getElementById('sle-test-result')!;
 const lesson=curriculum.lessons.find(l=>l.id===id) as unknown as SeedLesson;
@@ -17,7 +20,48 @@ const checks=entries[id].sections.flatMap(s=>s.quiz??[]);
 function Fixture(){const [showVi,setShowVi]=useState(false);return <main className="foundation-lesson"><button id="vi-toggle" onClick={()=>setShowVi(x=>!x)}>Vietnamese Support</button>{structuredGrammarAvailable(lesson,'1.28.0')?<StructuredGrammarNotes lesson={lesson} version="1.28.0" showVi={showVi}/>:<div data-legacy-fallback>Legacy lesson notes</div>}</main>}
 const check=(yes:unknown,label:string)=>{if(!yes)throw Error(id+' '+width+' '+label)};
 const wait=async(f:()=>boolean,label:string)=>{for(let i=0;i<220;i++){if(f())return;await new Promise(r=>setTimeout(r,30))}throw Error('Timeout '+label)};
+async function playerRoute(){
+ const old=params.get('route')==='historical';
+ const archive=historical.lessons.find(l=>l.id===id) as unknown as SeedLesson|undefined;
+ if(old&&!archive)throw Error('historical lesson missing');
+ const saved=old?{id:'synthetic-archive',rootId:'synthetic-archive',packageId:'synthetic-old',version:'1.18.1',lessonId:id,status:'scored',answers:{[archive!.activities[0].id]:'B'},createdAt:1,evidence:[],results:[],optionOrder:createOptionOrder(archive!.activities,()=>0)} as AcademicAttempt:null;
+ const catalog:Catalog={version:'1.28.0',imported:true,journey:{title:'Test',steps:[]},course:{sequence:[id]},lessons:[{id,title:lesson.title,module:'grammar',cefr:lesson.cefr_target,minutes:10}],attempts:saved?[saved]:[]};
+ const before=JSON.stringify(saved),reads:string[]=[];
+ let writes=0;
+ window.fetch=async(input,init)=>{
+  const url=new URL(typeof input==='string'?input:input instanceof URL?input.href:input.url,location.origin);
+  if((init?.method??'GET')!=='GET'){writes++;throw Error('Fixture forbids writes')}
+  if(url.pathname!=='/api/foundation')throw Error('Unexpected fixture request '+url.pathname);
+  if(!url.searchParams.has('lesson'))return new Response(JSON.stringify(catalog),{headers:{'Content-Type':'application/json'}});
+  if(url.searchParams.get('lesson')!==id)throw Error('Unexpected lesson');
+  const version=url.searchParams.get('version');reads.push(String(version));
+  const source=version==='1.18.1'?archive:version==='1.28.0'?lesson:null;
+  if(!source)throw Error('Unexpected version '+version);
+  return new Response(JSON.stringify({version,lesson:source,audio:null,pronunciationAudio:null}),{headers:{'Content-Type':'application/json'}});
+ };
+ shell.style.width=width+'px';shell.style.maxWidth='100%';
+ createRoot(shell).render(<FoundationDemo skill="grammar" sharedCatalog={catalog} requestedLessonId={id}/>);
+ const overlay=()=>shell.querySelector('[data-grammar-knowledge="v2.3"]');
+ await wait(()=>!!overlay(),'actual Foundation lesson overlay');
+ check(overlay()?.getAttribute('data-lesson-id')===id,'correct lesson');
+ const find=(label:string)=>[...shell.querySelectorAll<HTMLButtonElement>('button')].find(b=>b.textContent?.trim().startsWith(label));
+ if(old){
+  check(reads.includes('1.18.1')&&reads.includes('1.28.0'),'separate immutable practice and current notes reads');
+  check(shell.textContent?.includes('Current lesson notes · v1.28.0'),'current notes label');
+  find('View archived notes')!.click();await wait(()=>!overlay()&&!!find('View current lesson notes'),'archived notes toggle');
+  check(shell.textContent?.includes('Archived lesson notes · v1.18.1'),'archive label');
+  find('View current lesson notes')!.click();await wait(()=>!!overlay(),'current notes restored');
+  find('View saved result')!.click();await wait(()=>!!shell.querySelector('input[name="'+archive!.activities[0].id+'"]'),'historical practice');
+  check(shell.querySelector<HTMLInputElement>('input[name="'+archive!.activities[0].id+'"][value="B"]')?.checked,'historical selected answer');
+  check(shell.textContent?.includes('content 1.18.1'),'historical practice version');
+  find('View lesson notes')!.click();await wait(()=>!!overlay(),'current notes after result');
+  check(JSON.stringify(saved)===before,'historical fixture unchanged');
+ }
+ check(writes===0,'no attempt writes');
+ output.textContent='PASS_SLE_GRAMMAR_V23_'+id+'_'+width;
+}
 (async()=>{
+ if(params.has('route')){await playerRoute();return}
  shell.style.width=width+'px';shell.style.maxWidth='100%';createRoot(shell).render(<Fixture/>);
  await wait(()=>!!shell.querySelector('[data-grammar-knowledge="v2.3"]'),'mount');
  const root=shell.querySelector<HTMLElement>('.sle-grammar-v23')!;
