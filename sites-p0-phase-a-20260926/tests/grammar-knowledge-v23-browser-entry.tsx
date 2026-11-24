@@ -21,16 +21,20 @@ function Fixture(){const [showVi,setShowVi]=useState(false);return <main classNa
 const check=(yes:unknown,label:string)=>{if(!yes)throw Error(id+' '+width+' '+label)};
 const wait=async(f:()=>boolean,label:string)=>{for(let i=0;i<220;i++){if(f())return;await new Promise(r=>setTimeout(r,30))}throw Error('Timeout '+label)};
 async function playerRoute(){
- const old=params.get('route')==='historical';
+ const route=params.get('route'),draft=route==='historical-draft',old=route==='historical'||draft;
  const archive=historical.lessons.find(l=>l.id===id) as unknown as SeedLesson|undefined;
  if(old&&!archive)throw Error('historical lesson missing');
- const saved=old?{id:'synthetic-archive',rootId:'synthetic-archive',packageId:'synthetic-old',version:'1.18.1',lessonId:id,status:'scored',answers:{[archive!.activities[0].id]:'B'},createdAt:1,evidence:[],results:[],optionOrder:createOptionOrder(archive!.activities,()=>0)} as AcademicAttempt:null;
+ const saved=old?{id:'synthetic-archive',rootId:'synthetic-archive',packageId:'synthetic-old',version:'1.18.1',lessonId:id,status:draft?'started':'scored',answers:{[archive!.activities[0].id]:'B'},createdAt:1,evidence:[],results:[],optionOrder:createOptionOrder(archive!.activities,()=>0)} as AcademicAttempt:null;
  const catalog:Catalog={version:'1.28.0',imported:true,journey:{title:'Test',steps:[]},course:{sequence:[id]},lessons:[{id,title:lesson.title,module:'grammar',cefr:lesson.cefr_target,minutes:10}],attempts:saved?[saved]:[]};
  const before=JSON.stringify(saved),reads:string[]=[];
- let writes=0;
+ let writes=0,draftSaves=0;
  window.fetch=async(input,init)=>{
   const url=new URL(typeof input==='string'?input:input instanceof URL?input.href:input.url,location.origin);
-  if((init?.method??'GET')!=='GET'){writes++;throw Error('Fixture forbids writes')}
+  if((init?.method??'GET')!=='GET'){
+   const body=JSON.parse(String(init?.body??'{}'));
+   if(draft&&url.pathname==='/api/foundation'&&body.action==='draft'&&body.id===saved?.id&&JSON.stringify(body.answers)===JSON.stringify(saved?.answers)){draftSaves++;return new Response(JSON.stringify(saved),{headers:{'Content-Type':'application/json'}})}
+   writes++;throw Error('Fixture forbids new attempts, submissions or changed draft writes: '+body.action);
+  }
   if(url.pathname!=='/api/foundation')throw Error('Unexpected fixture request '+url.pathname);
   if(!url.searchParams.has('lesson'))return new Response(JSON.stringify(catalog),{headers:{'Content-Type':'application/json'}});
   if(url.searchParams.get('lesson')!==id)throw Error('Unexpected lesson');
@@ -51,13 +55,16 @@ async function playerRoute(){
   find('View archived notes')!.click();await wait(()=>!overlay()&&!!find('View current lesson notes'),'archived notes toggle');
   check(shell.textContent?.includes('Archived lesson notes · v1.18.1'),'archive label');
   find('View current lesson notes')!.click();await wait(()=>!!overlay(),'current notes restored');
-  find('View saved result')!.click();await wait(()=>!!shell.querySelector('input[name="'+archive!.activities[0].id+'"]'),'historical practice');
+  find(draft?'Continue saved draft':'View saved result')!.click();await wait(()=>!!shell.querySelector('input[name="'+archive!.activities[0].id+'"]'),'historical practice');
   check(shell.querySelector<HTMLInputElement>('input[name="'+archive!.activities[0].id+'"][value="B"]')?.checked,'historical selected answer');
   check(shell.textContent?.includes('content 1.18.1'),'historical practice version');
+  const field=shell.querySelector<HTMLInputElement>('input[name="'+archive!.activities[0].id+'"][value="B"]')!;
+  check(field.matches(':disabled')===!draft,'submitted is read-only, draft remains editable');
   find('View lesson notes')!.click();await wait(()=>!!overlay(),'current notes after result');
   check(JSON.stringify(saved)===before,'historical fixture unchanged');
  }
- check(writes===0,'no attempt writes');
+ check(writes===0,'no new attempt, submission, or changed record');
+ if(!draft)check(draftSaves===0,'no draft writes for scored/new lessons');
  output.textContent='PASS_SLE_GRAMMAR_V23_'+id+'_'+width;
 }
 (async()=>{
