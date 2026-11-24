@@ -178,6 +178,8 @@ const fullRegressionTests=[
   "g-learning-brand.cjs",
   "grammar-a1-02-knowledge-layout.cjs",
   "grammar-a1-02-browser.cjs",
+  "grammar-knowledge-v23.cjs",
+  "grammar-knowledge-v23-browser.cjs",
   "sle-combined-ui-browser.cjs",
   "multiskill-knowledge-v2.cjs",
   "multiskill-knowledge-v2-browser.cjs",
