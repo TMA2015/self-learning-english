@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import {createRoot} from 'react-dom/client';
-import {StructuredGrammarNotes} from '../app/structured-grammar';
+import {StructuredGrammarNotes,structuredGrammarAvailable} from '../app/structured-grammar';
 import curriculum from '../content/curriculum-1.28.0-candidate.json';
 import data from '../content/grammar-knowledge-v23-wave1.json';
 import wave2 from '../content/grammar-knowledge-v23-wave2-a1.json';
@@ -14,7 +14,7 @@ const shell=document.getElementById('app')!,output=document.getElementById('sle-
 const lesson=curriculum.lessons.find(l=>l.id===id) as unknown as SeedLesson;
 const entries={...data.lessons,...wave2.lessons,...wave3b.lessons,...wave3a.lessons,...wave4a.lessons,...wave4b.lessons} as Record<string,{sections:{quiz?:{options:{correct:boolean}[]}[]}[]}>;
 const checks=entries[id].sections.flatMap(s=>s.quiz??[]);
-function Fixture(){const [showVi,setShowVi]=useState(false);return <main className="foundation-lesson"><button id="vi-toggle" onClick={()=>setShowVi(x=>!x)}>Vietnamese Support</button><StructuredGrammarNotes lesson={lesson} version="1.28.0" showVi={showVi}/></main>}
+function Fixture(){const [showVi,setShowVi]=useState(false);return <main className="foundation-lesson"><button id="vi-toggle" onClick={()=>setShowVi(x=>!x)}>Vietnamese Support</button>{structuredGrammarAvailable(lesson,'1.28.0')?<StructuredGrammarNotes lesson={lesson} version="1.28.0" showVi={showVi}/>:<div data-legacy-fallback>Legacy lesson notes</div>}</main>}
 const check=(yes:unknown,label:string)=>{if(!yes)throw Error(id+' '+width+' '+label)};
 const wait=async(f:()=>boolean,label:string)=>{for(let i=0;i<220;i++){if(f())return;await new Promise(r=>setTimeout(r,30))}throw Error('Timeout '+label)};
 (async()=>{
