@@ -51,5 +51,18 @@ const wait=async(f:()=>boolean,label:string)=>{for(let i=0;i<200;i++){if(f())ret
  shell.style.width='375px';
  await wait(()=>getComputedStyle(grids[0]).gridTemplateColumns.trim().split(/\s+/).length===2,'container resize');
  check(gap.value==='They','answer kept through resize');
+ // Repeated expand/shrink transitions at the original approved breakpoints,
+ // preserving the exact answer state and detecting late observer errors.
+ const sequence=[960,550,375,960,375];
+ for(const next of sequence){
+  shell.style.width=next+'px';
+  const want=next===375?[2,2,1]:next===550?[4,2,1]:[4,4,1];
+  await wait(()=>grids.every((g,i)=>getComputedStyle(g).gridTemplateColumns.trim().split(/\s+/).length===want[i]),'repeated resize '+next);
+  await new Promise(r=>setTimeout(r,100));
+  check(grids.every((g,i)=>getComputedStyle(g).gridTemplateColumns.trim().split(/\s+/).length===want[i]),'stable columns '+next);
+  check(gap.value==='They'&&radio.checked&&JSON.parse(document.querySelector('#answer-state')!.textContent!).q0==='1','answers preserved '+next);
+  check(shell.scrollWidth<=shell.clientWidth+2,'no overflow after resize '+next);
+  check(document.getElementById('sle-test-errors')?.textContent==='','no observer/script errors '+next);
+ }
  out.textContent='PASS_ADAPTIVE_PRACTICE_'+width;
 })().catch(e=>{out.textContent='FAIL '+String(e)});
