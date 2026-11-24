@@ -3,11 +3,16 @@ import {createElement,type ReactNode} from 'react';
 import type {SeedLesson} from '../domain/academic';
 import {CompactGrammarSelfCheck,type GrammarQuickCheck} from './grammar-a1-02-notes';
 import authored from '../content/grammar-knowledge-v23-wave1.json';
+import wave2 from '../content/grammar-knowledge-v23-wave2-a1.json';
+import wave3b from '../content/grammar-knowledge-v23-wave3b-a2.json';
+import wave3a from '../content/grammar-knowledge-v23-wave3a-a2.json';
+import wave4a from '../content/grammar-knowledge-v23-wave4a-b1.json';
+import wave4b from '../content/grammar-knowledge-v23-wave4b-b1-b2.json';
 
 type Block=string|{tag:string;attrs?:Record<string,string>;children?:Block[]};
 type Section={title:string;viTitle:string;step:string|null;blocks?:Block[];quiz?:GrammarQuickCheck[]};
 type Entry={title:string;baselineExplanation:string;sections:Section[]};
-const LESSONS=authored.lessons as unknown as Record<string,Entry>;
+const LESSONS={...authored.lessons,...wave2.lessons,...wave3b.lessons,...wave3a.lessons,...wave4a.lessons,...wave4b.lessons} as unknown as Record<string,Entry>;
 const VERSION=authored.source_curriculum_version;
 /** Only the explicitly reviewed version and unchanged source lesson. Historical
  * notes and unknown future versions fall back to their original renderer. */
