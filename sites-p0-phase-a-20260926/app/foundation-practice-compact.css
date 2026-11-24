@@ -142,3 +142,63 @@
   .foundation-focus .foundation-option-grid { gap: 7px; }
   .foundation-focus .foundation-option-grid .foundation-option { padding: 9px 10px; }
 }
+
+/* Compact Practice v3.1 — exact approved responsive option layout.
+   The legacy fallback above is retained for markup without the adaptive component.
+   Only visible option text and the available container width drive this layout. */
+.foundation-focus .foundation-option-grid[data-practice-adaptive="true"] {
+  grid-template-columns: repeat(var(--practice-columns, 1), minmax(0, 1fr));
+}
+.foundation-focus .foundation-option-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.foundation-focus .foundation-inline-sentence {
+  color: #203b58;
+  font-size: 16px;
+  line-height: 2.65;
+  margin: 3px 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.foundation-focus .foundation-question .foundation-inline-blank,
+.foundation-focus .foundation-question .foundation-short-input {
+  box-sizing: border-box;
+  max-width: 100%;
+  height: 44px;
+  min-height: 44px;
+  background: #fbfdff;
+  border: 1px solid #d7e2ee;
+  border-radius: 9px;
+  padding: 8px 11px;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #193b61;
+}
+.foundation-focus .foundation-question .foundation-inline-blank {
+  display: inline-block;
+  vertical-align: baseline;
+  width: 100px;
+  text-align: center;
+  margin: 0 3px;
+}
+.foundation-focus .foundation-question .foundation-inline-blank.is-phrase {
+  width: min(100%, 180px);
+}
+.foundation-focus .foundation-question .foundation-short-input {
+  display: block;
+  width: min(100%, 340px);
+  margin: 10px 0;
+}
+.foundation-focus .foundation-question .foundation-short-format {
+  color: #61758c;
+  font-size: 12px;
+  margin: 3px 0 0;
+  line-height: 1.5;
+}
+.foundation-focus .foundation-question .foundation-inline-blank:focus-visible,
+.foundation-focus .foundation-question .foundation-short-input:focus-visible {
+  outline: 2px solid #3e7bca;
+  outline-offset: 2px;
+}

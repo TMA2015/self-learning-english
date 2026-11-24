@@ -1,0 +1,16 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),ts=require('typescript');
+const React=require('react'),{renderToStaticMarkup}=require('react-dom/server');
+require.extensions['.tsx']=(m,f)=>m._compile(ts.transpileModule(fs.readFileSync(f,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX,esModuleInterop:true}}).outputText,f);
+const {practiceColumns,shortPracticeMode,ShortPracticeResponse}=require('../app/adaptive-practice.tsx');
+for(const [count,longest,width,expected] of [[4,20,600,4],[4,20,310,2],[4,20,200,2],[4,20,170,1],[4,100,950,4],[4,100,600,2],[4,245,950,1],[4,500,950,1],[2,30,600,2],[3,30,600,1]])assert.equal(practiceColumns(count,longest,width),expected,JSON.stringify([count,longest,width]));
+const prompt='Complete: Nam and I are friends. ___ walk to school together.';
+const mode=shortPracticeMode(prompt,'We');assert.deepEqual(mode,{kind:'inline',before:'Complete: Nam and I are friends. ',after:' walk to school together.',wide:false});
+assert.equal(shortPracticeMode('Complete with a phrase: Mia ___ every evening.','takes a break').wide,true);
+assert.equal(shortPracticeMode('Write the possessive adjective for we.','our').kind,'input');
+for(const [p,v] of [['___ and ___',''],['Complete the sentence.','Line 1\nLine 2'],['Explain the difference.',''],['First line\nSecond line ___',''],['___','']])assert.equal(shortPracticeMode(p,v).kind,'textarea');
+const html=renderToStaticMarkup(React.createElement(ShortPracticeResponse,{mode,prompt,id:'Q3',value:'We',onChange(){}}));
+assert(html.includes('foundation-inline-blank'));assert(html.includes('value="We"'));assert(!html.includes('placeholder='));
+assert(html.includes('Complete: Nam and I are friends. '));assert(html.includes(' walk to school together.'));
+assert(!html.includes('accepted_answers'));
+console.log(JSON.stringify({result:'PASS',gate:'SLE_ADAPTIVE_PRACTICE_V31_UNIT',columnCases:10,gapCases:8,originalValuePreserved:true,answerKeyIndependent:true}));
