@@ -4,11 +4,12 @@ import {StructuredGrammarNotes} from '../app/structured-grammar';
 import curriculum from '../content/curriculum-1.28.0-candidate.json';
 import data from '../content/grammar-knowledge-v23-wave1.json';
 import wave2 from '../content/grammar-knowledge-v23-wave2-a1.json';
+import wave3b from '../content/grammar-knowledge-v23-wave3b-a2.json';
 import type {SeedLesson} from '../domain/academic';
 const params=new URL(location.href).searchParams,id=params.get('lesson')??'GRA-A1-02',width=Number(params.get('width')??375);
 const shell=document.getElementById('app')!,output=document.getElementById('sle-test-result')!;
 const lesson=curriculum.lessons.find(l=>l.id===id) as unknown as SeedLesson;
-const entries={...data.lessons,...wave2.lessons} as Record<string,{sections:{quiz?:{options:{correct:boolean}[]}[]}[]}>;
+const entries={...data.lessons,...wave2.lessons,...wave3b.lessons} as Record<string,{sections:{quiz?:{options:{correct:boolean}[]}[]}[]}>;
 const checks=entries[id].sections.flatMap(s=>s.quiz??[]);
 function Fixture(){const [showVi,setShowVi]=useState(false);return <main className="foundation-lesson"><button id="vi-toggle" onClick={()=>setShowVi(x=>!x)}>Vietnamese Support</button><StructuredGrammarNotes lesson={lesson} version="1.28.0" showVi={showVi}/></main>}
 const check=(yes:unknown,label:string)=>{if(!yes)throw Error(id+' '+width+' '+label)};
@@ -19,6 +20,13 @@ const wait=async(f:()=>boolean,label:string)=>{for(let i=0;i<220;i++){if(f())ret
  const root=shell.querySelector<HTMLElement>('.sle-grammar-v23')!;
  check(root.querySelectorAll('.sle-gra02-section').length===entries[id].sections.length,'all sections');
  check(!root.querySelector('.sle-gra02-feedback'),'no blank feedback space');
+ if(id in wave3b.lessons){
+  const heads=[...root.querySelectorAll('.sle-gra02-step')].map(el=>el.textContent);
+  check(heads.every((v,i)=>v===String(i+1)),'continuous numbered headings');
+  check(root.querySelectorAll('.sle-gra02-remember').length===1&&!root.querySelector('.sle-gra02-remember .sle-gra02-step'),'unnumbered Remember');
+  check(root.querySelectorAll('table').length===1,'reviewed comparison table');
+  check(root.querySelectorAll('svg').length=== (['GRA-A2-14','GRA-A2-16'].includes(id)?1:0),'reviewed diagrams');
+ }
  const questions=[...root.querySelectorAll<HTMLElement>('.sle-gra02-question')];check(questions.length===checks.length,'quiz count');
  for(let i=0;i<checks.length;i++){const opts=[...questions[i].querySelectorAll<HTMLButtonElement>('button')],wrong=checks[i].options.findIndex(o=>!o.correct),right=checks[i].options.findIndex(o=>o.correct);check(opts.length===checks[i].options.length,'options count');opts[wrong].click();await wait(()=>!!questions[i].querySelector('.is-wrong'),'wrong feedback');opts[right].click();await wait(()=>!!questions[i].querySelector('.is-correct'),'retry correct');}
  const toggle=shell.querySelector<HTMLButtonElement>('#vi-toggle')!;toggle.click();await wait(()=>!!root.querySelector('p[lang=vi]'),'Vietnamese on');toggle.click();await wait(()=>!root.querySelector('p[lang=vi]'),'Vietnamese off');
