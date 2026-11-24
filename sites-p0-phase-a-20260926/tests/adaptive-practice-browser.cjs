@@ -26,10 +26,10 @@ const root=path.resolve(__dirname,'..');
  const html='<!doctype html><html><head><meta charset="utf-8">'+
   '<meta name="viewport" content="width=device-width,initial-scale=1">'+
   '<style>'+(base.slice(start)+'\n'+practice+'\n'+knowledge).replaceAll('</style>','<\\/style>')+'</style>'+
-  '</head><body style="margin:0;padding:10px"><div id="app"></div><div id="sle-test-result">STARTED</div>'+
+  '</head><body style="margin:0;padding:10px"><div id="app"></div><div id="sle-test-result">STARTED</div><div id="sle-test-errors" hidden></div>'+
   '<script>window.process={env:{NODE_ENV:"production"}};'+
-  'window.addEventListener("error",e=>document.getElementById("sle-test-result").textContent="FAIL_SCRIPT "+e.message);'+
-  'window.addEventListener("unhandledrejection",e=>document.getElementById("sle-test-result").textContent="FAIL_REJECTION "+e.reason);</script>'+
+  'function recordError(message){document.getElementById("sle-test-errors").textContent+=message+"; ";document.getElementById("sle-test-result").textContent=message;}window.addEventListener("error",e=>recordError("FAIL_SCRIPT "+e.message));'+
+  'window.addEventListener("unhandledrejection",e=>recordError("FAIL_REJECTION "+e.reason));</script>'+
   '<script>'+bundle.replaceAll('</script>','<\\/script>')+'</script></body></html>';
  let writes=0;
  const server=http.createServer((req,res)=>{
@@ -49,7 +49,9 @@ const root=path.resolve(__dirname,'..');
    clearTimeout(timer);
    if(expired||code!==0)return reject(Error('Chromium '+width+' exited '+code+' '+stderr.slice(-400)));
    const status=stdout.match(/<div id="sle-test-result">([\s\S]*?)<\/div>/)?.[1]??'';
-   if(!status.startsWith('PASS_ADAPTIVE_PRACTICE_'))return reject(Error('Adaptive real Chromium '+width+': '+status.slice(0,1400)));
+   const errors=stdout.match(/<div id="sle-test-errors"[^>]*>([\s\S]*?)<\/div>/)?.[1];
+   if(errors!=='')return reject(Error('Adaptive Chromium persistent errors '+width+': '+String(errors).slice(0,1400)));
+   if(status!=='PASS_ADAPTIVE_PRACTICE_'+width)return reject(Error('Adaptive real Chromium '+width+': '+status.slice(0,1400)));
    resolve(status);
   });
  });
@@ -60,7 +62,7 @@ const root=path.resolve(__dirname,'..');
   assert.equal(writes,0,'Never write learner data to server');
   console.log(JSON.stringify({result:'PASS',gate:'SLE_ADAPTIVE_PRACTICE_V31_REAL_CHROMIUM',
    cases:results,source:'Actual shared React controls and CSS',
-   optionMeasurement:true,inlineInput:true,containerResize:true,answerPreservation:true,
+   optionMeasurement:true,inlineInput:true,containerResize:true,answerPreservation:true,repeatedResizeTransitions:15,persistentBrowserErrorCheck:true,
    syntheticOnly:true,productionWrites:0,authenticatedSite:'NOT_TESTED',physicalSafari:'NOT_TESTED'}));
  }finally{server.close();fs.rmSync(profile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});
