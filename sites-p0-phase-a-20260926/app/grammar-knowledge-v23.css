@@ -64,3 +64,6 @@
  .sle-grammar-v23 .sle-gra02-heading h3{font-size:16px}
  .sle-grammar-v23 .compact-table th,.sle-grammar-v23 .compact-table td{padding:8px 10px}
 }
+
+/* Wave 2 approved diagrams reuse the same visual modules. */
+.sle-grammar-v23 svg.grammar-v23-diagram-tall{max-height:190px}

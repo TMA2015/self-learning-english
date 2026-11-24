@@ -3,11 +3,12 @@ import {createRoot} from 'react-dom/client';
 import {StructuredGrammarNotes} from '../app/structured-grammar';
 import curriculum from '../content/curriculum-1.28.0-candidate.json';
 import data from '../content/grammar-knowledge-v23-wave1.json';
+import wave2 from '../content/grammar-knowledge-v23-wave2-a1.json';
 import type {SeedLesson} from '../domain/academic';
 const params=new URL(location.href).searchParams,id=params.get('lesson')??'GRA-A1-02',width=Number(params.get('width')??375);
 const shell=document.getElementById('app')!,output=document.getElementById('sle-test-result')!;
 const lesson=curriculum.lessons.find(l=>l.id===id) as unknown as SeedLesson;
-const entries=data.lessons as Record<string,{sections:{quiz?:{options:{correct:boolean}[]}[]}[]}>;
+const entries={...data.lessons,...wave2.lessons} as Record<string,{sections:{quiz?:{options:{correct:boolean}[]}[]}[]}>;
 const checks=entries[id].sections.flatMap(s=>s.quiz??[]);
 function Fixture(){const [showVi,setShowVi]=useState(false);return <main className="foundation-lesson"><button id="vi-toggle" onClick={()=>setShowVi(x=>!x)}>Vietnamese Support</button><StructuredGrammarNotes lesson={lesson} version="1.28.0" showVi={showVi}/></main>}
 const check=(yes:unknown,label:string)=>{if(!yes)throw Error(id+' '+width+' '+label)};
@@ -26,6 +27,8 @@ const wait=async(f:()=>boolean,label:string)=>{for(let i=0;i<220;i++){if(f())ret
  if(id==='GRA-A1-12')check(!!root.querySelector('.pyramid-wrap svg'),'pyramid');
  if(id==='GRA-A2-08'||id==='GRA-B1-01')check(root.querySelectorAll('svg').length>=2,'timelines');
  if(id==='GRA-B1-08')check(root.querySelectorAll('.sentence-flow').length===2,'transformation');
+ if(['GRA-A1-03','GRA-A1-05','GRA-A1-09'].includes(id))check(!!root.querySelector('svg'),'reviewed visual diagram');
+ if(['GRA-A1-01','GRA-A1-04','GRA-A1-08','GRA-A1-10'].includes(id))check(!!root.querySelector('table'),'reviewed comparison table');
  for(const el of root.querySelectorAll('.sle-gra02-section,.module-card,.diagram,.transport-card,.compact-table,.sle-gra02-quiz'))check(el.getBoundingClientRect().right<=shell.getBoundingClientRect().right+2,'overflow '+el.className);
  check(root.scrollWidth<=root.clientWidth+2,'no external horizontal overflow');
  output.textContent='PASS_SLE_GRAMMAR_V23_'+id+'_'+width;
