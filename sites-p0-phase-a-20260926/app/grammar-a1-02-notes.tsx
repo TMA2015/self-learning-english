@@ -57,7 +57,6 @@ function SectionHead({index,title,vi,showVi}:{index:number;title:string;vi:strin
  return <div className="sle-gra02-heading"><span className="sle-gra02-step" aria-hidden="true">{index}</span><div><h3>{title}</h3>{showVi&&<p lang="vi">{vi}</p>}</div></div>;
 }
 export function GrammarA102Notes({lesson,sections,showVi}:{lesson:SeedLesson;sections:Section[];showVi:boolean}){
- const [responses,setResponses]=useState<Record<number,string>>({});
  const find=(fragment:string)=>sections.find(s=>s.title.toLowerCase().includes(fragment));
  const core=find('core rule');
  const worked=find('worked example');
@@ -135,22 +134,29 @@ export function GrammarA102Notes({lesson,sections,showVi}:{lesson:SeedLesson;sec
   </section>
   <section className="sle-gra02-section">
    <SectionHead index={6} title="Quick Self-Check" vi="Tự kiểm tra nhanh, không tính điểm" showVi={showVi}/>
-   <div className="sle-gra02-quiz" aria-label="Unscored lesson quick check">
-    <p className="sle-gra02-quiz-note">Try these before starting practice. This is unscored and is not saved to your results.</p>
-    {checks.map((q,i)=>{
-     const selected=responses[i];
-     return <div className="sle-gra02-question" key={i}>
-      <p><strong>{i+1}.</strong> {q.prompt}</p>
-      <div className="sle-gra02-options" role="group" aria-label={'Quick check question '+(i+1)}>
-       {q.options.map(option=><button type="button" key={option} aria-pressed={selected===option}
-        className={'sle-gra02-answer'+(selected===option?(option===q.answer?' is-correct':' is-wrong'):'')}
-        onClick={()=>setResponses(old=>({...old,[i]:option}))}>{option}</button>)}
-      </div>
-      {selected&&<p className="sle-gra02-feedback" role="status" aria-live="polite">{selected===q.answer?'✓ '+q.why:'Try again. '+q.wrong}</p>}
-      {selected&&showVi&&<p lang="vi" className="sle-gra02-translation">{q.vi}</p>}
-     </div>;
-    })}
-   </div>
+   <CompactGrammarSelfCheck showVi={showVi} items={checks.map((q,i)=>({id:'legacy-QC'+(i+1),prompt:q.prompt,options:q.options.map(text=>({text,correct:text===q.answer,feedback:text===q.answer?q.why:q.wrong,vi:q.vi}))}))}/>
   </section>
  </section>;
+}
+
+export type GrammarQuickCheck={id:string;prompt:string;options:readonly {text:string;correct:boolean;feedback:string;vi:string}[]};
+/** Shared deployed GRA-A1-02 compact control. Ephemeral only, no graded state. */
+export function CompactGrammarSelfCheck({items,showVi}:{items:readonly GrammarQuickCheck[];showVi:boolean}){
+ const [responses,setResponses]=useState<Record<number,string>>({});
+ return <div className="sle-gra02-quiz" aria-label="Unscored lesson quick check">
+  <p className="sle-gra02-quiz-note">Try these before starting practice. This is unscored and is not saved to your results.</p>
+  {items.map((q,i)=>{
+   const selected=q.options.find(o=>o.text===responses[i]);
+   return <div className="sle-gra02-question" key={q.id}>
+    <p><strong>{i+1}.</strong> {q.prompt}</p>
+    <div className="sle-gra02-options" role="group" aria-label={'Quick check question '+(i+1)}>
+     {q.options.map(o=><button type="button" key={o.text} aria-pressed={selected===o}
+       className={'sle-gra02-answer'+(selected===o?(o.correct?' is-correct':' is-wrong'):'')}
+       onClick={()=>setResponses(prev=>({...prev,[i]:o.text}))}>{o.text}</button>)}
+    </div>
+    {selected&&<p className="sle-gra02-feedback" role="status" aria-live="polite">{selected.correct?'✓ '+selected.feedback:'Try again. '+selected.feedback}</p>}
+    {selected&&showVi&&<p lang="vi" className="sle-gra02-translation">{selected.vi}</p>}
+   </div>;
+  })}
+ </div>;
 }

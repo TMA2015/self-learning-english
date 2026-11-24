@@ -1,0 +1,66 @@
+/* Grammar Knowledge v2.3: extend the deployed GRA-A1-02 styles. Scope all
+ * new visual modules; no global theme or Practice changes. */
+.sle-grammar-v23{min-width:0;container-type:inline-size;overflow-wrap:anywhere}
+.sle-grammar-v23 .lesson-context{font-size:14px;color:#46617e;margin:0 0 12px;line-height:1.6}
+.sle-grammar-v23 .module-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px}
+.sle-grammar-v23 .module-card{border:1px solid #dce6f1;border-radius:10px;background:#fff;padding:13px 14px;min-width:0}
+.sle-grammar-v23 .module-card h4{font-size:14px;color:#245b92;margin:0 0 7px}
+.sle-grammar-v23 .module-card p{font-size:14px;color:#3a526e;margin:6px 0}
+.sle-grammar-v23 .module-card svg,.sle-grammar-v23 .diagram svg{display:block;width:100%;height:auto;max-height:150px}
+.sle-grammar-v23 .diagram{background:#f7faff;border:1px solid #dce7f4;border-radius:12px;padding:14px;min-width:0}
+.sle-grammar-v23 .diagram p{font-size:13px;margin:7px 0 0;color:#48627f}
+.sle-grammar-v23 .diagram svg{max-height:220px}
+.sle-grammar-v23 .pyramid-wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr);gap:15px;align-items:center}
+.sle-grammar-v23 .pyramid-wrap svg{max-height:240px}
+.sle-grammar-v23 .tier{border-left:4px solid #245bb1;border-radius:8px;background:white;border-top:1px solid #dce6f1;border-bottom:1px solid #dce6f1;border-right:1px solid #dce6f1;padding:10px 13px;margin:7px 0;font-size:14px}
+.sle-grammar-v23 .tier b{display:block;margin-bottom:3px}
+.sle-grammar-v23 .t-at{border-left-color:#b45309}
+.sle-grammar-v23 .t-on{border-left-color:#7355a4}
+.sle-grammar-v23 .t-in{border-left-color:#245bb1}
+.sle-grammar-v23 .note{font-size:13px;color:#775728;background:#fff9ee;border:1px solid #f1dfc0;padding:11px 14px;border-radius:9px;margin:10px 0}
+.sle-grammar-v23 .tag-role{display:inline-block;font-weight:700;border:1px solid;border-radius:7px;padding:6px 10px;line-height:1.4;margin:2px}
+.sle-grammar-v23 .tag-doer{background:#eaf2ff;color:#245bb1;border-color:#b8d1f1}
+.sle-grammar-v23 .tag-action{background:#fff7e8;color:#966119;border-color:#ecd5ac}
+.sle-grammar-v23 .tag-receiver{background:#f4effd;color:#7552a7;border-color:#d9cbed}
+.sle-grammar-v23 .sentence-flow{display:flex;flex-wrap:wrap;align-items:center;gap:5px;padding:9px;background:#fff;border:1px solid #dce6f1;border-radius:9px}
+.sle-grammar-v23 .sentence-flow>strong{min-width:68px;font-size:12px;color:#607892}
+.sle-grammar-v23 .flow-note{color:#245b92;text-align:center;font-size:13px;font-weight:700;padding:9px 0}
+.sle-grammar-v23 .compact-table{width:100%;max-width:100%;overflow-x:auto;border:1px solid #dce6f1;border-radius:10px}
+.sle-grammar-v23 .compact-table table{width:100%;min-width:420px;border-collapse:collapse;text-align:left}
+.sle-grammar-v23 .compact-table.form-table table{min-width:460px}
+.sle-grammar-v23 .compact-table th,.sle-grammar-v23 .compact-table td{padding:10px 12px;vertical-align:top;font-size:14px;border-bottom:1px solid #e5ecf5}
+.sle-grammar-v23 .compact-table th{color:#234d7b;background:#f1f6fc}
+.sle-grammar-v23 .compact-table tbody tr:last-child td{border-bottom:0}
+.sle-grammar-v23 .review-small{font-size:13px;color:#5f748b}
+.sle-grammar-v23 .grammar-v23-spacer{height:12px}
+.sle-grammar-v23 .place-compact{grid-template-columns:repeat(auto-fit,minmax(min(100%,max(142px,calc((100% - 24px)/4))),1fr));gap:8px}
+.sle-grammar-v23 .place-compact .module-card{padding:9px 10px;display:flex;flex-direction:column;gap:3px}
+.sle-grammar-v23 .place-compact h4{font-size:14px;line-height:1.35;margin:0;min-height:2.7em}
+.sle-grammar-v23 .place-compact svg{width:100%;height:78px;max-height:78px;margin:0 auto}
+.sle-grammar-v23 .place-compact p{font-size:13px;line-height:1.4;margin:0}
+.sle-grammar-v23 .transport-intro{margin-top:-8px;margin-bottom:10px}
+.sle-grammar-v23 .transport-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:9px}
+.sle-grammar-v23 .transport-card{min-width:0;border:1px solid #dce6f1;border-top:3px solid #245bb1;background:#fff;border-radius:10px;padding:10px 12px}
+.sle-grammar-v23 .transport-on{border-top-color:#0f766e}
+.sle-grammar-v23 .transport-by{border-top-color:#946119}
+.sle-grammar-v23 .transport-card h4{font-size:18px;color:#245bb1;margin-bottom:4px}
+.sle-grammar-v23 .transport-on h4{color:#0f766e}
+.sle-grammar-v23 .transport-by h4{color:#946119}
+.sle-grammar-v23 .transport-card h4 small{font-size:12px;color:#5f748b}
+.sle-grammar-v23 .transport-card p{font-size:13px;line-height:1.45;margin:4px 0}
+.sle-grammar-v23 .transport-phrases{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}
+.sle-grammar-v23 .transport-phrases b{font-size:13px;background:#f1f6fd;border:1px solid #dce6f1;border-radius:6px;padding:3px 7px;line-height:1.4}
+.sle-grammar-v23 .transport-example{border-top:1px solid #e5ecf5;padding-top:7px}
+.sle-grammar-v23 .transport-contrast{margin-top:9px;padding:9px 12px;border:1px solid #dce6f1;background:#f7faff;border-radius:9px;font-size:14px}
+.sle-grammar-v23 .transport-contrast p{margin:2px 0}
+@container(max-width:700px){
+ .sle-grammar-v23 .sle-gra02-goals,.sle-grammar-v23 .sle-gra02-examples,.sle-grammar-v23 .sle-gra02-mistake,.sle-grammar-v23 .pyramid-wrap{grid-template-columns:1fr}
+ .sle-grammar-v23 .sle-gra02-mistake .sle-gra02-translation,.sle-grammar-v23 .sle-gra02-rule{grid-column:1}
+ .sle-grammar-v23 .sle-gra02-core,.sle-grammar-v23 .sle-gra02-quiz{padding:13px 14px}
+}
+@container(max-width:430px){
+ .sle-grammar-v23 .module-card{padding:11px}
+ .sle-grammar-v23 .sentence-flow>strong{width:100%}
+ .sle-grammar-v23 .sle-gra02-heading h3{font-size:16px}
+ .sle-grammar-v23 .compact-table th,.sle-grammar-v23 .compact-table td{padding:8px 10px}
+}

@@ -1,6 +1,7 @@
 import type {SeedLesson} from '../domain/academic';
 import {TeachingBlocks} from './teaching-blocks';
 import {GrammarA102Notes} from './grammar-a1-02-notes';
+import {GrammarKnowledgeV23,grammarKnowledgeV23Available} from './grammar-knowledge-v23';
 /** Detect authored structured notes by format, not an outdated version allowlist.
  * Older attempts with plain-text notes keep their original display; new versions
  * reuse the same safe renderer without changing saved academic content. */
@@ -17,7 +18,8 @@ export function grammarSections(markdown:string){
   return {title:label.charAt(0).toUpperCase()+label.slice(1),text};
  });
 }
-export function StructuredGrammarNotes({lesson,showVi}:{lesson:SeedLesson;showVi:boolean}){
+export function StructuredGrammarNotes({lesson,showVi,version}:{lesson:SeedLesson;showVi:boolean;version?:string}){
+ if(version&&grammarKnowledgeV23Available(lesson,version))return <GrammarKnowledgeV23 key={lesson.id+'@'+version} lesson={lesson} version={version} showVi={showVi}/>;
  const sections=grammarSections(lesson.explanation.en);
  if(lesson.id==='GRA-A1-02'&&sections.some(s=>s.title.toLowerCase().includes('worked example'))){
   return <GrammarA102Notes lesson={lesson} sections={sections} showVi={showVi}/>;
