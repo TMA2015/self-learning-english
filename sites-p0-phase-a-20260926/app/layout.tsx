@@ -3,6 +3,7 @@ import "./globals.css";
 import "./grammar-a1-02-notes.css";
 import "./grammar-knowledge-v23.css";
 import "./multiskill-knowledge-v2.css";
+import "./vocabulary-knowledge-v23.css";
 
 const basePath=(process.env.NEXT_PUBLIC_BASE_PATH??'').replace(/\/$/,'');
 
