@@ -67,3 +67,20 @@
 
 /* Wave 2 approved diagrams reuse the same visual modules. */
 .sle-grammar-v23 svg.grammar-v23-diagram-tall{max-height:190px}
+
+/* Owner-approved compact instructional diagram rule, shared by every grammar wave.
+   Simple diagrams must not scale to the full lesson width. Preserve the wider
+   viewBox for genuinely wide label-rich diagrams and the separate pyramid layout.
+   Future skill renderers should reuse the same proportional sizing policy. */
+.sle-grammar-v23 .diagram:not(.pyramid-wrap):has(svg){max-width:520px;margin-inline:auto;padding:10px 12px}
+.sle-grammar-v23 .diagram:not(.pyramid-wrap) svg{display:block;width:100%;max-width:360px;height:auto;max-height:150px;margin-inline:auto}
+.sle-grammar-v23 .diagram:not(.pyramid-wrap):has(svg[viewBox^="0 0 520 "]){max-width:544px}
+.sle-grammar-v23 .diagram:not(.pyramid-wrap) svg[viewBox^="0 0 520 "]{max-width:520px}
+.sle-grammar-v23 .diagram p{font-size:13px;line-height:1.5;margin:6px 0 0;color:#48627f}
+.sle-grammar-v23 .module-card:not(.place-compact .module-card) svg{max-width:360px;margin-inline:auto}
+.sle-grammar-v23 .pyramid-wrap svg{max-width:300px;max-height:230px;margin-inline:auto}
+.sle-grammar-v23 .pyramid-wrap svg text[font-size="20"]{font-size:15px}
+@container(max-width:430px){
+ .sle-grammar-v23 .diagram:not(.pyramid-wrap) svg text{font-size:14px}
+ .sle-grammar-v23 .diagram:not(.pyramid-wrap) svg[viewBox^="0 0 520 "] text{font-size:18px}
+}
