@@ -56,7 +56,7 @@ const root=path.resolve(__dirname,'..');
  try{
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
   const baseUrl='http://127.0.0.1:'+server.address().port,results=[];
-  for(const width of [375,650,960])results.push({width,status:await run(baseUrl+'/?width='+width,width)});
+  for(const width of [375,550,960])results.push({width,status:await run(baseUrl+'/?width='+width,width)});
   assert.equal(writes,0,'Never write learner data to server');
   console.log(JSON.stringify({result:'PASS',gate:'SLE_ADAPTIVE_PRACTICE_V31_REAL_CHROMIUM',
    cases:results,source:'Actual shared React controls and CSS',
