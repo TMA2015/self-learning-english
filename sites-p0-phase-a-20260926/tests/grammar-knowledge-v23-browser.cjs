@@ -61,11 +61,11 @@ const root=path.resolve(__dirname,'..');
   }
   assert.equal(results.length,126);
   const playerCases=[];
-  for(const [lesson,route] of [['GRA-B2-01','current'],['GRA-B2-02','current'],['GRA-A2-07','historical']])for(const width of [375,768,960]){
+  for(const [lesson,route] of [['GRA-B2-01','current'],['GRA-B2-02','current'],['GRA-A2-07','historical'],['GRA-A2-07','historical-draft']])for(const width of [375,768,960]){
    const query=new URLSearchParams({lesson,width:String(width),route});
    playerCases.push({lesson,width,route,result:await run(baseUrl+'/?'+query,lesson,width,route)});
   }
-  assert.equal(playerCases.length,9);assert.equal(writes,0);
+  assert.equal(playerCases.length,12);assert.equal(writes,0);
   console.log(JSON.stringify({result:'PASS',gate:'SLE_GRAMMAR_V23_REAL_CHROMIUM',
    cases:results,playerCases,actualFoundationRoute:true,source:'reviewed instruction',physicalIpadSafari:'NOT_TESTED',realAuth:'NOT_TESTED',
    syntheticOnly:true,backendWrites:0,scoreMutations:0}));
