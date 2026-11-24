@@ -8,7 +8,10 @@ import wave3b from '../content/grammar-knowledge-v23-wave3b-a2.json';
 import wave3a from '../content/grammar-knowledge-v23-wave3a-a2.json';
 import wave4a from '../content/grammar-knowledge-v23-wave4a-b1.json';
 import wave4b from '../content/grammar-knowledge-v23-wave4b-b1-b2.json';
-import type {SeedLesson,AcademicAttempt} from '../domain/academic';
+import {mapSeed,type Seed,type SeedLesson,type AcademicAttempt} from '../domain/academic';
+import {sourceDigest} from '../application/academic-service';
+import {BrowserLocalAcademicRepository} from '../infrastructure/storage/browser-local-repositories';
+import {localAcademicRuntime,LOCAL_OWNER_ID} from '../infrastructure/browser/local-runtime';
 import {FoundationDemo,type Catalog} from '../app/foundation';
 import historical from '../content/curriculum-1.18.1-candidate.json';
 import {createOptionOrder} from '../domain/option-order';
@@ -24,25 +27,29 @@ async function playerRoute(){
  const route=params.get('route'),draft=route==='historical-draft',old=route==='historical'||draft;
  const archive=historical.lessons.find(l=>l.id===id) as unknown as SeedLesson|undefined;
  if(old&&!archive)throw Error('historical lesson missing');
- const saved=old?{id:'synthetic-archive',rootId:'synthetic-archive',packageId:'synthetic-old',version:'1.18.1',lessonId:id,status:draft?'started':'scored',answers:{[archive!.activities[0].id]:'B'},createdAt:1,evidence:[],results:[],optionOrder:createOptionOrder(archive!.activities,()=>0)} as AcademicAttempt:null;
- const catalog:Catalog={version:'1.28.0',imported:true,journey:{title:'Test',steps:[]},course:{sequence:[id]},lessons:[{id,title:lesson.title,module:'grammar',cefr:lesson.cefr_target,minutes:10}],attempts:saved?[saved]:[]};
- const before=JSON.stringify(saved),reads:string[]=[];
- let writes=0,draftSaves=0;
- window.fetch=async(input,init)=>{
-  const url=new URL(typeof input==='string'?input:input instanceof URL?input.href:input.url,location.origin);
-  if((init?.method??'GET')!=='GET'){
-   const body=JSON.parse(String(init?.body??'{}'));
-   if(draft&&url.pathname==='/api/foundation'&&body.action==='draft'&&body.id===saved?.id&&JSON.stringify(body.answers)===JSON.stringify(saved?.answers)){draftSaves++;return new Response(JSON.stringify(saved),{headers:{'Content-Type':'application/json'}})}
-   writes++;throw Error('Fixture forbids new attempts, submissions or changed draft writes: '+body.action);
-  }
-  if(url.pathname!=='/api/foundation')throw Error('Unexpected fixture request '+url.pathname);
-  if(!url.searchParams.has('lesson'))return new Response(JSON.stringify(catalog),{headers:{'Content-Type':'application/json'}});
-  if(url.searchParams.get('lesson')!==id)throw Error('Unexpected lesson');
-  const version=url.searchParams.get('version');reads.push(String(version));
-  const source=version==='1.18.1'?archive:version==='1.28.0'?lesson:null;
-  if(!source)throw Error('Unexpected version '+version);
-  return new Response(JSON.stringify({version,lesson:source,audio:null,pronunciationAudio:null}),{headers:{'Content-Type':'application/json'}});
- };
+ // Match Firebase's real browser-local service. Each runner profile is
+ // disposable localhost storage, never the owner's profile or account.
+ check(location.hostname==='127.0.0.1','isolated localhost only');
+ const saved:AcademicAttempt|null=old?{
+  id:'synthetic-archive',rootId:'synthetic-archive',packageId:historical.package_id,
+  version:'1.18.1',lessonId:id,status:draft?'started':'scored',
+  answers:{[archive!.activities[0].id]:'B'},createdAt:1,evidence:[],
+  ...(draft?{}:{submittedAt:2,results:[{id:archive!.activities[0].id,correct:true,explanation:'Synthetic saved result',tags:[]}]}),
+  optionOrder:createOptionOrder(archive!.activities,()=>0)
+ }:null;
+ if(saved){
+  const academic=new BrowserLocalAcademicRepository(localStorage);
+  const src=historical as unknown as Seed;
+  await academic.addPackage({id:src.package_id,version:src.schema_version,digest:await sourceDigest(src),source:src,bundle:mapSeed(src),at:1});
+  await academic.start(LOCAL_OWNER_ID,saved);
+ }
+ const runtime=await localAcademicRuntime();
+ const catalog=await runtime.service.catalog() as unknown as Catalog;
+ check(catalog.version==='1.28.0','current browser curriculum');
+ const before=JSON.stringify(await runtime.academic.attempts(LOCAL_OWNER_ID));
+ const packagesBefore=JSON.stringify((await runtime.academic.packages()).map(p=>({id:p.id,version:p.version,digest:p.digest})));
+ let requests=0;
+ window.fetch=async()=>{requests++;throw Error('Unexpected network request in browser-local Grammar fixture')};
  shell.style.width=width+'px';shell.style.maxWidth='100%';
  createRoot(shell).render(<FoundationDemo skill="grammar" sharedCatalog={catalog} requestedLessonId={id}/>);
  const overlay=()=>shell.querySelector('[data-grammar-knowledge="v2.3"]');
@@ -50,7 +57,7 @@ async function playerRoute(){
  check(overlay()?.getAttribute('data-lesson-id')===id,'correct lesson');
  const find=(label:string)=>[...shell.querySelectorAll<HTMLButtonElement>('button')].find(b=>b.textContent?.trim().startsWith(label));
  if(old){
-  check(reads.includes('1.18.1')&&reads.includes('1.28.0'),'separate immutable practice and current notes reads');
+  check((await runtime.service.lesson(id,'1.18.1')).version==='1.18.1'&&(await runtime.service.lesson(id,'1.28.0')).version==='1.28.0','both immutable historical and current source available');
   check(shell.textContent?.includes('Current lesson notes · v1.28.0'),'current notes label');
   find('View archived notes')!.click();await wait(()=>!overlay()&&!!find('View current lesson notes'),'archived notes toggle');
   check(shell.textContent?.includes('Archived lesson notes · v1.18.1'),'archive label');
@@ -60,11 +67,16 @@ async function playerRoute(){
   check(shell.textContent?.includes('content 1.18.1'),'historical practice version');
   const field=shell.querySelector<HTMLInputElement>('input[name="'+archive!.activities[0].id+'"][value="B"]')!;
   check(field.matches(':disabled')===!draft,'submitted is read-only, draft remains editable');
+  if(!draft)check(shell.textContent?.includes('Synthetic saved result'),'original scored feedback displayed');
   find('View lesson notes')!.click();await wait(()=>!!overlay(),'current notes after result');
-  check(JSON.stringify(saved)===before,'historical fixture unchanged');
+  if(!draft)check(shell.textContent?.includes('Current lesson notes · v1.28.0'),'current knowledge after saved result');
  }
- check(writes===0,'no new attempt, submission, or changed record');
- if(!draft)check(draftSaves===0,'no draft writes for scored/new lessons');
+ // Let the ordinary same-answer draft autosave settle, then compare real
+ // persisted records, not just an in-memory fixture object.
+ if(draft)await new Promise(r=>setTimeout(r,1250));
+ check(JSON.stringify(await runtime.academic.attempts(LOCAL_OWNER_ID))===before,'all saved attempts byte-equivalent; no new attempt');
+ check(JSON.stringify((await runtime.academic.packages()).map(p=>({id:p.id,version:p.version,digest:p.digest})))===packagesBefore,'immutable packages unchanged');
+ check(requests===0,'no network request');
  output.textContent='PASS_SLE_GRAMMAR_V23_'+id+'_'+width;
 }
 (async()=>{
