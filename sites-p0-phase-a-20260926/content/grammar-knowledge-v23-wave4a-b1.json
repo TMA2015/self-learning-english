@@ -1,0 +1,4349 @@
+{
+  "schema_version": "sle-grammar-blocks-v1",
+  "source_curriculum_version": "1.28.0",
+  "source_curriculum_blob": "9d931a6930b8cd3ed918db1fa22e8708b7a9f884",
+  "source_html": "SLE_Grammar_Knowledge_v23_Wave4A_B1_Review.html",
+  "academic_packet_id": "SLE-GRA-KNOWLEDGE-V23-W4A-B1-20261124",
+  "academic_status": "PASS",
+  "lessons": {
+    "GRA-B1-02": {
+      "title": "Present perfect simple or continuous?",
+      "baselineExplanation": "### Core rule / Meaning\n\nBoth forms connect a past period with the present. **Present perfect simple** commonly focuses on a finished result, amount, or continuing state. **Present perfect continuous** commonly highlights activity over time or recent activity; context matters because some events allow both forms with different emphasis.\n\n### When to use + worked example + why\n- **Completed amount:** Tara **has knitted four scarves** this month. → Four scarves highlights the number completed.\n- **Activity continuing over time:** Tara **has been knitting** since breakfast. → The focus is how long the activity has been happening.\n- **Recent evidence of activity:** The grass is wet this morning. **Has it been raining**? → The question focuses on the recent activity suggested by present evidence.\n- **Continuing state:** We **have known** our neighbours for a decade. → Know is usually not used in this continuous pattern.\n- **Result versus process:** I **have cleaned** the balcony. / I **have been cleaning** the balcony. → The first foregrounds a completed result; the second highlights recent work, which need not be complete.\n\n### form / formula / decision cues (adaptive)\n- **Simple:** **have/has + past participle**.\n- **Continuous:** **have/has + been + verb-ing**.\n- **Result / completed number** versus **duration / recent process** is a useful cue, not a universal exclusive rule.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *She **has been owning** that violin for years.* → **She **has owned** that violin for years.** (Own is generally a stative verb.)\n- ⚠️ *They **has been practising** all afternoon.* → **They **have been practising** all afternoon.** (Use have with plural they.)\n\n### Remember / comparison (adaptive)\n\nCheck the focus: **how many / what is done** or **how long / what has been going on**? Remember that state verbs usually prefer the simple form.",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-goals"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Choose the simple form for results, completed amounts and continuing states."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Choose the continuous form to highlight duration or recent activity."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Recognise when state verbs normally take the simple form."
+                  ],
+                  "tag": "li"
+                }
+              ],
+              "tag": "ul"
+            }
+          ],
+          "step": "1",
+          "title": "What you will learn",
+          "viTitle": "Mục tiêu bài học"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-core"
+              },
+              "children": [
+                {
+                  "children": [
+                    "Both forms link the past to now. The simple form often highlights a result, a completed amount or a continuing state. The continuous form highlights the activity itself, its duration or recent evidence. The activity may have stopped recently; completion is not implied. Some verbs allow both forms with a different focus."
+                  ],
+                  "tag": "p"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-translation",
+                    "lang": "vi"
+                  },
+                  "children": [
+                    "Cả hai dạng nối quá khứ với hiện tại. Dạng đơn thường nhấn mạnh kết quả, số lượng đã hoàn thành hoặc trạng thái kéo dài. Dạng tiếp diễn nhấn mạnh quá trình, thời lượng hoặc dấu hiệu của hoạt động gần đây; không khẳng định đã hoàn tất. Một số động từ dùng được cả hai dạng với trọng tâm khác nhau."
+                  ],
+                  "tag": "p"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "2",
+          "title": "The Core Idea",
+          "viTitle": "Ý cốt lõi"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "aria-label": "Grammar comparison table",
+                "class": "compact-table",
+                "role": "region",
+                "tabindex": "0"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Pattern / cue"
+                              ],
+                              "tag": "th"
+                            },
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Meaning / form"
+                              ],
+                              "tag": "th"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "thead"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "have/has + past participle"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "Result or completed amount: has folded six paper cranes."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "have/has + been + verb-ing"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "Duration or recent activity: has been folding paper."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "know, own, believe (usual state meanings)"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "Usually use the simple form, even with for or since."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "for / since"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "For + duration; since + starting point. Either form may be possible."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "tbody"
+                    }
+                  ],
+                  "tag": "table"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "3",
+          "title": "Compare Result, Activity & State",
+          "viTitle": "So sánh kết quả, quá trình và trạng thái"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-examples"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "1. Completed amount"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "Rosa has sewn three buttons onto her coat."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The number of buttons completed is the focus."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Trọng tâm là số cúc áo đã khâu xong."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "2. Ongoing activity"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "Ari has been sorting shells since breakfast."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The focus is the activity over time, not how many shells are sorted."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Nhấn mạnh quá trình từ bữa sáng, không phải số vỏ sò đã phân loại."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "3. Recent evidence"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "Your sleeves are dusty. Have you been moving boxes?"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The dust suggests a recent activity; it may have stopped."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Bụi trên tay áo gợi ý hoạt động gần đây, có thể vừa dừng."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "4. Continuing state"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "We have known our music coach for two years."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Know describes a state in this meaning."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Know diễn tả trạng thái trong nghĩa này."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "5. Different focus"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "I have polished the table. / I have been polishing the table."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The first highlights the result; the second highlights the work, without confirming completion."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Câu đầu nhấn mạnh kết quả; câu sau nhấn mạnh quá trình, không khẳng định đã xong."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "4",
+          "title": "How to Use in Context",
+          "viTitle": "Cách dùng qua ví dụ thực tế"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-mistakes"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ She has been believing that story for years."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ She has believed that story for years."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Believe normally describes a state here."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Believe thường chỉ trạng thái trong ngữ cảnh này."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ The twins has been rehearsing."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ The twins have been rehearsing."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Use have with a plural subject."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Chủ ngữ số nhiều dùng have."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "5",
+          "title": "Common Mistakes to Avoid",
+          "viTitle": "Lỗi sai thường gặp"
+        },
+        {
+          "blocks": [
+            {
+              "children": [
+                "Ask: What is done, how many, or how long has the activity been happening? Check the verb meaning before choosing."
+              ],
+              "tag": "p"
+            },
+            {
+              "attrs": {
+                "class": "sle-gra02-translation",
+                "lang": "vi"
+              },
+              "children": [
+                "Hỏi: Đã xong gì, bao nhiêu, hay hoạt động kéo dài bao lâu? Kiểm tra nghĩa động từ trước khi chọn."
+              ],
+              "tag": "p"
+            }
+          ],
+          "step": null,
+          "title": "Remember",
+          "viTitle": ""
+        },
+        {
+          "quiz": [
+            {
+              "id": "GRA-B1-02-QC1",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "The completed number and ready result favour the simple form.",
+                  "text": "I have been building boats.",
+                  "vi": "Số lượng hoàn thành và kết quả đã sẵn sàng phù hợp với dạng đơn."
+                },
+                {
+                  "correct": true,
+                  "feedback": "The completed number and ready result favour the simple form.",
+                  "text": "I have built four model boats.",
+                  "vi": "Số lượng hoàn thành và kết quả đã sẵn sàng phù hợp với dạng đơn."
+                },
+                {
+                  "correct": false,
+                  "feedback": "The completed number and ready result favour the simple form.",
+                  "text": "I build boats each week.",
+                  "vi": "Số lượng hoàn thành và kết quả đã sẵn sàng phù hợp với dạng đơn."
+                }
+              ],
+              "prompt": "All four model boats are ready. Which form highlights the completed number?"
+            },
+            {
+              "id": "GRA-B1-02-QC2",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "Own is normally a state verb in this meaning.",
+                  "text": "has been owning",
+                  "vi": "Own thường là động từ trạng thái trong nghĩa này."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Own is normally a state verb in this meaning.",
+                  "text": "is owning",
+                  "vi": "Own thường là động từ trạng thái trong nghĩa này."
+                },
+                {
+                  "correct": true,
+                  "feedback": "Own is normally a state verb in this meaning.",
+                  "text": "has owned",
+                  "vi": "Own thường là động từ trạng thái trong nghĩa này."
+                }
+              ],
+              "prompt": "Complete: Kim ___ (own) this telescope for a year."
+            }
+          ],
+          "step": "6",
+          "title": "Quick Self-Check",
+          "viTitle": "Tự kiểm tra nhanh, không tính điểm"
+        }
+      ]
+    },
+    "GRA-B1-03": {
+      "title": "Past perfect and narrative order",
+      "baselineExplanation": "### Core rule / Meaning\n\nUse **had + past participle** to make clear that one event was already completed **before another past event or reference point**. Use past simple for the later event when describing a sequence. You do not need past perfect for every action in a story; use it when earlier order needs emphasis or clarification.\n\n### When to use + worked example + why\n- **Earlier preparation:** We **had packed** the tents before the guide arrived. → Packing was complete before the later arrival.\n- **Past realization:** Eva found that she **had dropped** her ticket outside. → Dropping happened before she discovered the problem.\n- **Negative earlier event:** The hikers **had not checked** the route when the fog appeared. → The check had not happened by that past moment.\n- **Recognize participles:** By sunrise, the artist **had drawn** three sketches. → Drawn, not drew, is the participle after had.\n\n### form / formula / decision cues (adaptive)\n- **Earlier past action:** subject + **had + past participle**.\n- **Later past event:** often a past-simple clause: **had prepared** before **arrived**.\n- **Negative:** **had not / hadn’t + past participle**.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *By noon, we **had took** the photos.* → **By noon, we **had taken** the photos.** (Use the past participle taken after had.)\n- ⚠️ *When I arrived, they **have finished** the display.* → **When I arrived, they **had finished** the display.** (The display was finished before a past reference point.)\n\n### Remember / comparison (adaptive)\n\nDraw a mini timeline: **earlier past → later past**. Past perfect marks the earlier step when that distinction is useful.",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-goals"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Use had + past participle for an event before another past reference point."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Combine past perfect and past simple to clarify narrative order."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Choose the correct past participle."
+                  ],
+                  "tag": "li"
+                }
+              ],
+              "tag": "ul"
+            }
+          ],
+          "step": "1",
+          "title": "What you will learn",
+          "viTitle": "Mục tiêu bài học"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-core"
+              },
+              "children": [
+                {
+                  "children": [
+                    "Past perfect looks back from a past reference point to something that happened earlier. The later event is often in the past simple. Use past perfect when the earlier relationship needs to be clear, not for every event in a story."
+                  ],
+                  "tag": "p"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-translation",
+                    "lang": "vi"
+                  },
+                  "children": [
+                    "Quá khứ hoàn thành nhìn từ một mốc quá khứ về sự việc xảy ra trước đó. Sự kiện sau thường ở quá khứ đơn. Chỉ dùng khi cần làm rõ quan hệ trước sau, không dùng cho mọi sự kiện trong câu chuyện."
+                  ],
+                  "tag": "p"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "2",
+          "title": "The Core Idea",
+          "viTitle": "Ý cốt lõi"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "diagram"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "aria-label": "Earlier and later past events",
+                    "fill": "#193b61",
+                    "role": "img",
+                    "viewBox": "0 0 360 100"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "d": "M22 54H338",
+                        "stroke": "#a3b7cf",
+                        "stroke-width": "3"
+                      },
+                      "tag": "path"
+                    },
+                    {
+                      "attrs": {
+                        "cx": "80",
+                        "cy": "54",
+                        "fill": "#245bb1",
+                        "r": "6"
+                      },
+                      "tag": "circle"
+                    },
+                    {
+                      "attrs": {
+                        "cx": "230",
+                        "cy": "54",
+                        "fill": "#245bb1",
+                        "r": "6"
+                      },
+                      "tag": "circle"
+                    },
+                    {
+                      "attrs": {
+                        "d": "M80 43V30M230 43V30M325 46V62",
+                        "stroke": "#245bb1",
+                        "stroke-width": "2"
+                      },
+                      "tag": "path"
+                    },
+                    {
+                      "attrs": {
+                        "font-size": "13",
+                        "text-anchor": "middle",
+                        "x": "80",
+                        "y": "20"
+                      },
+                      "children": [
+                        "Earlier event"
+                      ],
+                      "tag": "text"
+                    },
+                    {
+                      "attrs": {
+                        "font-size": "13",
+                        "text-anchor": "middle",
+                        "x": "230",
+                        "y": "20"
+                      },
+                      "children": [
+                        "Past reference"
+                      ],
+                      "tag": "text"
+                    },
+                    {
+                      "attrs": {
+                        "font-size": "12",
+                        "text-anchor": "middle",
+                        "x": "80",
+                        "y": "82"
+                      },
+                      "children": [
+                        "had + participle"
+                      ],
+                      "tag": "text"
+                    },
+                    {
+                      "attrs": {
+                        "font-size": "12",
+                        "text-anchor": "middle",
+                        "x": "230",
+                        "y": "82"
+                      },
+                      "children": [
+                        "past simple"
+                      ],
+                      "tag": "text"
+                    },
+                    {
+                      "attrs": {
+                        "font-size": "12",
+                        "text-anchor": "middle",
+                        "x": "325",
+                        "y": "82"
+                      },
+                      "children": [
+                        "Now"
+                      ],
+                      "tag": "text"
+                    }
+                  ],
+                  "tag": "svg"
+                },
+                {
+                  "children": [
+                    "Earlier event → later past reference → now. The earlier event is complete by the past reference point."
+                  ],
+                  "tag": "p"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-translation",
+                    "lang": "vi"
+                  },
+                  "children": [
+                    "Sự kiện trước → mốc quá khứ sau → hiện tại. Sự kiện trước hoàn tất tính đến mốc quá khứ sau."
+                  ],
+                  "tag": "p"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "3",
+          "title": "See the Relationship",
+          "viTitle": "Quan sát mối quan hệ"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "aria-label": "Grammar comparison table",
+                "class": "compact-table",
+                "role": "region",
+                "tabindex": "0"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Pattern / cue"
+                              ],
+                              "tag": "th"
+                            },
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Meaning / form"
+                              ],
+                              "tag": "th"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "thead"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "Earlier action"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "subject + had + past participle"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "Negative"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "subject + had not / hadn’t + past participle"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "Later reference point"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "often subject + past simple"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "Irregular participles"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "break → broken; choose → chosen; fall → fallen"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "tbody"
+                    }
+                  ],
+                  "tag": "table"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "4",
+          "title": "Build the Earlier-Past Form",
+          "viTitle": "Tạo dạng quá khứ xảy ra trước"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-examples"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "1. Earlier preparation"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "The volunteers had set up the stalls before the fair opened."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Setting up was complete before the opening."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Việc dựng gian hàng hoàn tất trước lúc hội chợ mở."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "2. Past discovery"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "Ravi noticed that the wind had broken a branch."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The branch broke before Ravi noticed it."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Cành cây gãy trước khi Ravi nhận ra."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "3. Negative earlier event"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "The crew had not tested the microphone when the guests came in."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Testing had not happened by that past point."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Đến mốc khách bước vào, việc thử mic vẫn chưa diễn ra."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "4. Participle"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "By sunset, Sara had chosen a design."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Choose becomes chosen after had."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Sau had, choose dùng dạng chosen."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "5. Simple sequence"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "We opened the parcel and looked inside."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The order is already clear, so both past simple verbs are natural."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Thứ tự đã rõ nên cả hai động từ quá khứ đơn đều tự nhiên."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "5",
+          "title": "How to Use in Context",
+          "viTitle": "Cách dùng qua ví dụ thực tế"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-mistakes"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ The branch had fell before the storm ended."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ The branch had fallen before the storm ended."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Use the past participle after had."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Sau had dùng quá khứ phân từ."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ By the time the shop opened, the baker has prepared the dough."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ By the time the shop opened, the baker had prepared the dough."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The preparation was earlier than a past reference point."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Việc chuẩn bị xảy ra trước một mốc quá khứ."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "6",
+          "title": "Common Mistakes to Avoid",
+          "viTitle": "Lỗi sai thường gặp"
+        },
+        {
+          "blocks": [
+            {
+              "children": [
+                "Identify the past reference point, then decide whether an earlier action needs past perfect."
+              ],
+              "tag": "p"
+            },
+            {
+              "attrs": {
+                "class": "sle-gra02-translation",
+                "lang": "vi"
+              },
+              "children": [
+                "Xác định mốc quá khứ, rồi quyết định sự kiện trước đó có cần quá khứ hoàn thành không."
+              ],
+              "tag": "p"
+            }
+          ],
+          "step": null,
+          "title": "Remember",
+          "viTitle": ""
+        },
+        {
+          "quiz": [
+            {
+              "id": "GRA-B1-03-QC1",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "Had found marks the earlier event.",
+                  "text": "The lights came on.",
+                  "vi": "Had found đánh dấu sự việc xảy ra trước."
+                },
+                {
+                  "correct": true,
+                  "feedback": "Had found marks the earlier event.",
+                  "text": "Eli found his seat.",
+                  "vi": "Had found đánh dấu sự việc xảy ra trước."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Had found marks the earlier event.",
+                  "text": "Both happened together.",
+                  "vi": "Had found đánh dấu sự việc xảy ra trước."
+                }
+              ],
+              "prompt": "When the lights came on, Eli had found his seat. What happened first?"
+            },
+            {
+              "id": "GRA-B1-03-QC2",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "Had is followed by the past participle chosen.",
+                  "text": "chose",
+                  "vi": "Had đi với quá khứ phân từ chosen."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Had is followed by the past participle chosen.",
+                  "text": "choosing",
+                  "vi": "Had đi với quá khứ phân từ chosen."
+                },
+                {
+                  "correct": true,
+                  "feedback": "Had is followed by the past participle chosen.",
+                  "text": "chosen",
+                  "vi": "Had đi với quá khứ phân từ chosen."
+                }
+              ],
+              "prompt": "Complete: Before the lesson began, Nora had ___ (choose) a topic."
+            }
+          ],
+          "step": "7",
+          "title": "Quick Self-Check",
+          "viTitle": "Tự kiểm tra nhanh, không tính điểm"
+        }
+      ]
+    },
+    "GRA-B1-04": {
+      "title": "Past habits with used to and would",
+      "baselineExplanation": "### Core rule / Meaning\n\nUse **used to + base verb** for past habits and states that are different now. Use **would + base verb** for repeated past actions when a past-time context is already clear; would does not usually describe past states in this meaning. After **did/didn’t**, use **use to**, not used to.\n\n### When to use + worked example + why\n- **Former state:** My cousin **used to be** very shy, but now she enjoys speaking on stage. → Being shy describes a state that has changed.\n- **Old habit:** We **used to collect** seashells on holiday. → This was a repeated past activity.\n- **Repeated action with a time setting:** During winter holidays, our neighbours **would host** board-game evenings. → The explicit past setting makes would a natural habitual choice.\n- **Negative form:** I **didn’t use to enjoy** olives, but I do now. → After did not, write use to.\n- **Question form:** **Did** your family **use to travel** by train? → The auxiliary did carries past tense.\n\n### form / formula / decision cues (adaptive)\n- **Affirmative former habit/state:** subject + **used to + base verb**.\n- **Repeated past action with clear past setting:** subject + **would + base verb**.\n- **Negative/question:** **didn’t use to** / **Did + subject + use to...?**\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *When I was ten, I **would be** very shy.* → **When I was ten, I **used to be** very shy.** (For a former state of being, used to is natural.)\n- ⚠️ ***Did** she **used to** sing in a choir?* → ****Did** she **use to** sing in a choir?** (Use the base form after did.)\n\n### Remember / comparison (adaptive)\n\n**Former state?** Choose used to. **Repeated past action with a clear time setting?** Would may also work.",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-goals"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Describe former habits and states with used to."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Describe repeated past actions with would when past context is clear."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Use did/didn’t + use to in questions and negatives."
+                  ],
+                  "tag": "li"
+                }
+              ],
+              "tag": "ul"
+            }
+          ],
+          "step": "1",
+          "title": "What you will learn",
+          "viTitle": "Mục tiêu bài học"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-core"
+              },
+              "children": [
+                {
+                  "children": [
+                    "Used to describes a past state or repeated action that is no longer true or typical. Would can describe repeated past actions when a past-time setting is clear; it is not the usual choice for a former state in this meaning. Both patterns take a base verb."
+                  ],
+                  "tag": "p"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-translation",
+                    "lang": "vi"
+                  },
+                  "children": [
+                    "Used to diễn tả trạng thái hoặc thói quen trước đây nay không còn đúng hoặc không còn thường xuyên. Would có thể kể hành động lặp lại khi bối cảnh quá khứ rõ ràng, nhưng thường không dùng cho trạng thái trước đây theo nghĩa này. Cả hai đi với động từ nguyên mẫu."
+                  ],
+                  "tag": "p"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "2",
+          "title": "The Core Idea",
+          "viTitle": "Ý cốt lõi"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "aria-label": "Grammar comparison table",
+                "class": "compact-table",
+                "role": "region",
+                "tabindex": "0"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Pattern / cue"
+                              ],
+                              "tag": "th"
+                            },
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Meaning / form"
+                              ],
+                              "tag": "th"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "thead"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "Former state"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "used to + base verb (used to be quiet)"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "Former repeated action"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "used to + base verb; would + base verb with a clear past setting"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "Negative"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "didn’t use to + base verb"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "Question"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "Did + subject + use to + base verb?"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "tbody"
+                    }
+                  ],
+                  "tag": "table"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "3",
+          "title": "Choose the Past-Habit Pattern",
+          "viTitle": "Chọn cấu trúc thói quen quá khứ"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-examples"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "1. Former state"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "Nina used to be afraid of storms, but now she enjoys watching them."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Being afraid is a former state."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Sự sợ hãi là trạng thái trước đây."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "2. Former habit"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "I used to keep a diary, but I stopped last year."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The repeated activity is no longer typical."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Hoạt động lặp lại trước đây nay không còn là thói quen."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "3. Past setting"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "At our old summer camp, we would make lanterns each evening."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The camp establishes the past context for a repeated action."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Bối cảnh trại hè cũ làm rõ hành động lặp lại trong quá khứ."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "4. Negative"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "Leo didn’t use to enjoy puzzles, but now he does."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Didn’t carries the past tense; use to follows."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Didn’t mang dấu hiệu quá khứ; sau đó dùng use to."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "5. Question"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "Did your sister use to ride a scooter?"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Did comes before the subject, followed by use to."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Did đứng trước chủ ngữ, sau đó là use to."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "4",
+          "title": "How to Use in Context",
+          "viTitle": "Cách dùng qua ví dụ thực tế"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-mistakes"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ I would own a model train when I was little."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ I used to own a model train when I was little."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " For a former ownership state, used to is the natural choice in this lesson."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Với trạng thái sở hữu trước đây, used to là cách dùng tự nhiên trong bài này."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ Did they used to make kites?"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ Did they use to make kites?"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " After did, use the base form use."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Sau did dùng dạng nguyên mẫu use."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "5",
+          "title": "Common Mistakes to Avoid",
+          "viTitle": "Lỗi sai thường gặp"
+        },
+        {
+          "blocks": [
+            {
+              "children": [
+                "Former state: used to. Repeated action with a clear past setting: used to or would may work."
+              ],
+              "tag": "p"
+            },
+            {
+              "attrs": {
+                "class": "sle-gra02-translation",
+                "lang": "vi"
+              },
+              "children": [
+                "Trạng thái trước đây: used to. Hành động lặp lại có bối cảnh quá khứ rõ: có thể dùng used to hoặc would."
+              ],
+              "tag": "p"
+            }
+          ],
+          "step": null,
+          "title": "Remember",
+          "viTitle": ""
+        },
+        {
+          "quiz": [
+            {
+              "id": "GRA-B1-04-QC1",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "Used to + be describes a state that has changed.",
+                  "text": "The pond would being deep.",
+                  "vi": "Used to + be diễn tả trạng thái đã thay đổi."
+                },
+                {
+                  "correct": true,
+                  "feedback": "Used to + be describes a state that has changed.",
+                  "text": "The pond used to be deep.",
+                  "vi": "Used to + be diễn tả trạng thái đã thay đổi."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Used to + be describes a state that has changed.",
+                  "text": "The pond use to was deep.",
+                  "vi": "Used to + be diễn tả trạng thái đã thay đổi."
+                }
+              ],
+              "prompt": "This pond was deep before, but it is shallow now. Choose the former-state sentence."
+            },
+            {
+              "id": "GRA-B1-04-QC2",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "Did takes use to, not used to.",
+                  "text": "Did he used to collect stamps?",
+                  "vi": "Sau did dùng use to, không dùng used to."
+                },
+                {
+                  "correct": true,
+                  "feedback": "Did takes use to, not used to.",
+                  "text": "Did he use to collect stamps?",
+                  "vi": "Sau did dùng use to, không dùng used to."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Did takes use to, not used to.",
+                  "text": "Was he use to collect stamps?",
+                  "vi": "Sau did dùng use to, không dùng used to."
+                }
+              ],
+              "prompt": "Choose the standard written question."
+            }
+          ],
+          "step": "6",
+          "title": "Quick Self-Check",
+          "viTitle": "Tự kiểm tra nhanh, không tính điểm"
+        }
+      ]
+    },
+    "GRA-B1-05": {
+      "title": "Modal deduction: must, might and can't",
+      "baselineExplanation": "### Core rule / Meaning\n\nUse modals to draw **conclusions from present evidence**, not to state duties. **Must** suggests a strong positive conclusion, **might/may/could** a possible but uncertain conclusion, and **can’t** a strong negative conclusion. The strength follows the available evidence; no fixed percentages are implied.\n\n### When to use + worked example + why\n- **Strong positive evidence:** The hall is full of decorations and music is playing; the celebration **must be** underway. → Visible clues strongly support the conclusion.\n- **One uncertain possibility:** We cannot see the schedule; the workshop **might begin** at noon. → The speaker treats the time as possible, not certain.\n- **Strong negative evidence:** The bakery is closed today, so that noise **can’t be** coming from its ovens. → The known facts rule out the conclusion.\n- **Several possibilities:** This coat **could fit** your brother, but we should check the size. → The conclusion is not proven.\n\n### form / formula / decision cues (adaptive)\n- **Strong positive deduction:** subject + **must + base verb**.\n- **Uncertain possibility:** subject + **may/might/could + base verb**.\n- **Strong negative deduction:** subject + **can’t + base verb**; **mustn’t** usually means prohibition, not negative deduction.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *He is abroad, so he **mustn’t be** at today’s rehearsal.* → **He is abroad, so he **can’t be** at today’s rehearsal.** (Can’t expresses negative deduction; mustn’t usually prohibits something.)\n- ⚠️ *There is a light on; someone **must to be** inside.* → **There is a light on; someone **must be** inside.** (Use the base verb without to after must.)\n\n### Remember / comparison (adaptive)\n\nAsk what the **evidence** actually supports: very likely, possible, or ruled out. Do not confuse deduction with rules.",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-goals"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Use must for a strong positive deduction based on evidence."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Use might, may or could for an uncertain possibility."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Use can’t for a strong negative deduction."
+                  ],
+                  "tag": "li"
+                }
+              ],
+              "tag": "ul"
+            }
+          ],
+          "step": "1",
+          "title": "What you will learn",
+          "viTitle": "Mục tiêu bài học"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-core"
+              },
+              "children": [
+                {
+                  "children": [
+                    "A deduction is a conclusion based on clues. Must signals a strong positive conclusion; may, might and could express an uncertain possibility; can’t signals that the speaker thinks the conclusion is ruled out. These are not fixed probability percentages and do not guarantee the conclusion is true."
+                  ],
+                  "tag": "p"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-translation",
+                    "lang": "vi"
+                  },
+                  "children": [
+                    "Suy luận là kết luận dựa trên dấu hiệu. Must thể hiện suy luận khẳng định mạnh; may, might, could diễn tả khả năng chưa chắc; can’t thể hiện suy luận phủ định mạnh. Không gán phần trăm cố định hoặc coi kết luận chắc chắn đúng."
+                  ],
+                  "tag": "p"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "2",
+          "title": "The Core Idea",
+          "viTitle": "Ý cốt lõi"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "aria-label": "Grammar comparison table",
+                "class": "compact-table",
+                "role": "region",
+                "tabindex": "0"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Pattern / cue"
+                              ],
+                              "tag": "th"
+                            },
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Meaning / form"
+                              ],
+                              "tag": "th"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "thead"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "must + base verb"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "Strong evidence for a conclusion"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "may / might / could + base verb"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "A possibility; evidence is not enough to be sure"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "can’t + base verb"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "Evidence strongly rules out a conclusion"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "must not / mustn’t"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "Usually a prohibition in rules, not the standard negative-deduction form taught here"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "tbody"
+                    }
+                  ],
+                  "tag": "table"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "3",
+          "title": "Match Evidence to the Modal",
+          "viTitle": "Ghép bằng chứng với động từ tình thái"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-examples"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "1. Strong evidence"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "Every chair is occupied and people are standing outside. The show must be popular."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The crowd strongly supports the conclusion."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Đám đông là dấu hiệu mạnh cho suy luận này."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "2. Uncertain possibility"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "I hear a soft tapping sound. It might be a loose shutter."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " There are several possible causes."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Có nhiều nguyên nhân có thể xảy ra."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "3. Ruled out"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "The label says this bottle holds 250 ml. It can’t hold a full litre."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The labelled capacity contradicts that claim."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Dung tích ghi trên nhãn mâu thuẫn với kết luận đó."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "4. Another possible explanation"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "The faint mark could be a pencil line, but we need to look closer."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The speaker has not confirmed the explanation."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Người nói chưa xác nhận được lời giải thích."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "4",
+          "title": "How to Use in Context",
+          "viTitle": "Cách dùng qua ví dụ thực tế"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-mistakes"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ The box is empty, so the toy mustn’t be inside."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ The box is empty, so the toy can’t be inside."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Use can’t for the negative deduction here, not a prohibition."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Ở đây cần suy luận phủ định bằng can’t, không phải cấm đoán."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ The ribbon is wet; it must to be damp outside."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ The ribbon is wet; it must be damp outside."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The modal takes the base verb; this is the speaker’s inference."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Động từ tình thái đi với nguyên mẫu; đây là suy luận của người nói."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "5",
+          "title": "Common Mistakes to Avoid",
+          "viTitle": "Lỗi sai thường gặp"
+        },
+        {
+          "blocks": [
+            {
+              "children": [
+                "Read the evidence, decide how strong the conclusion is, then choose the modal. A deduction is different from a rule."
+              ],
+              "tag": "p"
+            },
+            {
+              "attrs": {
+                "class": "sle-gra02-translation",
+                "lang": "vi"
+              },
+              "children": [
+                "Đọc bằng chứng, xác định mức độ mạnh của suy luận rồi chọn động từ tình thái. Suy luận khác quy định."
+              ],
+              "tag": "p"
+            }
+          ],
+          "step": null,
+          "title": "Remember",
+          "viTitle": ""
+        },
+        {
+          "quiz": [
+            {
+              "id": "GRA-B1-05-QC1",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "The empty case rules out the medal being inside.",
+                  "text": "must",
+                  "vi": "Tủ trống loại trừ khả năng huy chương ở bên trong."
+                },
+                {
+                  "correct": true,
+                  "feedback": "The empty case rules out the medal being inside.",
+                  "text": "can’t",
+                  "vi": "Tủ trống loại trừ khả năng huy chương ở bên trong."
+                },
+                {
+                  "correct": false,
+                  "feedback": "The empty case rules out the medal being inside.",
+                  "text": "has to",
+                  "vi": "Tủ trống loại trừ khả năng huy chương ở bên trong."
+                }
+              ],
+              "prompt": "A locked display case is completely empty. The medal ___ be inside it."
+            },
+            {
+              "id": "GRA-B1-05-QC2",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "Might leaves the possibility open without certainty.",
+                  "text": "It must be an owl.",
+                  "vi": "Might nêu khả năng mà không khẳng định chắc chắn."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Might leaves the possibility open without certainty.",
+                  "text": "It can’t be an owl.",
+                  "vi": "Might nêu khả năng mà không khẳng định chắc chắn."
+                },
+                {
+                  "correct": true,
+                  "feedback": "Might leaves the possibility open without certainty.",
+                  "text": "It might be an owl.",
+                  "vi": "Might nêu khả năng mà không khẳng định chắc chắn."
+                }
+              ],
+              "prompt": "You have not identified a bird by its call. Which sentence expresses uncertainty?"
+            }
+          ],
+          "step": "6",
+          "title": "Quick Self-Check",
+          "viTitle": "Tự kiểm tra nhanh, không tính điểm"
+        }
+      ]
+    },
+    "GRA-B1-06": {
+      "title": "Second conditional: imaginary situations",
+      "baselineExplanation": "### Core rule / Meaning\n\nA **second conditional** imagines a present or future situation that is unreal or unlikely. The basic pattern uses **if + past simple** for the imagined condition and **would + base verb** for the result. The past form here marks distance from reality, not past time.\n\n### When to use + worked example + why\n- **Imaginary opportunity:** If I **spoke** Italian, I **would translate** the menu for you. → The speaker imagines a skill they do not currently have.\n- **Unlikely situation:** If the town **had** a planetarium, we **would visit** it every weekend. → The town does not currently have this option.\n- **Advice in another person’s place:** **If I were you**, I **would check** the instructions first. → The speaker imagines being the listener to give advice.\n- **Question about an imagined choice:** What **would** you build if you **had** a workshop? → Would belongs in the result/question clause, not the if-clause.\n\n### form / formula / decision cues (adaptive)\n- **Basic second conditional:** **If + past simple, subject + would + base verb**.\n- **Result first:** **Subject + would + base verb + if + past simple**.\n- **Advice:** **If I were you, I would + base verb** (standard taught form).\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *If he **would practise** more, he would improve.* → **If he **practised** more, he would improve.** (In the basic second conditional, do not place would in the if-clause.)\n- ⚠️ *If I owned a kayak, I **would paddled** across the lake.* → **If I owned a kayak, I **would paddle** across the lake.** (Would is followed by the base verb.)\n\n### Remember / comparison (adaptive)\n\n**Unreal or unlikely now / later?** Use past simple in the if-clause and would + base verb in the result.",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-goals"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Use if + past simple and would + base verb for unreal or unlikely present/future situations."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Keep would in the result clause in the standard pattern."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Use If I were you to give advice."
+                  ],
+                  "tag": "li"
+                }
+              ],
+              "tag": "ul"
+            }
+          ],
+          "step": "1",
+          "title": "What you will learn",
+          "viTitle": "Mục tiêu bài học"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-core"
+              },
+              "children": [
+                {
+                  "children": [
+                    "A second conditional imagines a situation that is unreal or unlikely now or in the future and its possible result. The past form in the if-clause signals distance from reality, not necessarily past time. In the standard pattern, would is in the result clause."
+                  ],
+                  "tag": "p"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-translation",
+                    "lang": "vi"
+                  },
+                  "children": [
+                    "Điều kiện loại hai tưởng tượng tình huống không có thật hoặc ít khả năng ở hiện tại/tương lai và kết quả giả định. Dạng quá khứ trong mệnh đề if thể hiện khoảng cách với thực tế, không nhất thiết là thời gian quá khứ. Trong mẫu cơ bản, would nằm ở mệnh đề kết quả."
+                  ],
+                  "tag": "p"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "2",
+          "title": "The Core Idea",
+          "viTitle": "Ý cốt lõi"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "diagram"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "aria-label": "Imagined condition and result",
+                    "fill": "#193b61",
+                    "role": "img",
+                    "viewBox": "0 0 360 100"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "fill": "#e4eefb",
+                        "height": "62",
+                        "rx": "8",
+                        "stroke": "#a3b7cf",
+                        "width": "151",
+                        "x": "9",
+                        "y": "22"
+                      },
+                      "tag": "rect"
+                    },
+                    {
+                      "attrs": {
+                        "fill": "#e4eefb",
+                        "height": "62",
+                        "rx": "8",
+                        "stroke": "#a3b7cf",
+                        "width": "151",
+                        "x": "200",
+                        "y": "22"
+                      },
+                      "tag": "rect"
+                    },
+                    {
+                      "attrs": {
+                        "d": "M164 53H195M188 47L195 53L188 59",
+                        "fill": "none",
+                        "stroke": "#245bb1",
+                        "stroke-width": "2"
+                      },
+                      "tag": "path"
+                    },
+                    {
+                      "attrs": {
+                        "font-size": "13",
+                        "text-anchor": "middle",
+                        "x": "85",
+                        "y": "44"
+                      },
+                      "children": [
+                        "Imagined condition"
+                      ],
+                      "tag": "text"
+                    },
+                    {
+                      "attrs": {
+                        "font-size": "12",
+                        "text-anchor": "middle",
+                        "x": "85",
+                        "y": "65"
+                      },
+                      "children": [
+                        "if + past simple"
+                      ],
+                      "tag": "text"
+                    },
+                    {
+                      "attrs": {
+                        "font-size": "13",
+                        "text-anchor": "middle",
+                        "x": "275",
+                        "y": "44"
+                      },
+                      "children": [
+                        "Imagined result"
+                      ],
+                      "tag": "text"
+                    },
+                    {
+                      "attrs": {
+                        "font-size": "12",
+                        "text-anchor": "middle",
+                        "x": "275",
+                        "y": "65"
+                      },
+                      "children": [
+                        "would + base verb"
+                      ],
+                      "tag": "text"
+                    }
+                  ],
+                  "tag": "svg"
+                },
+                {
+                  "children": [
+                    "The arrow links an imagined condition to its hypothetical result, not to a guaranteed event."
+                  ],
+                  "tag": "p"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-translation",
+                    "lang": "vi"
+                  },
+                  "children": [
+                    "Mũi tên nối điều kiện giả định với kết quả giả định, không phải sự kiện chắc chắn xảy ra."
+                  ],
+                  "tag": "p"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "3",
+          "title": "See the Relationship",
+          "viTitle": "Quan sát mối quan hệ"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "aria-label": "Grammar comparison table",
+                "class": "compact-table",
+                "role": "region",
+                "tabindex": "0"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Pattern / cue"
+                              ],
+                              "tag": "th"
+                            },
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Meaning / form"
+                              ],
+                              "tag": "th"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "thead"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "If + subject + past simple"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "Imagined condition"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "subject + would + base verb"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "Imagined result"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "Result first"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "subject + would + base verb + if + subject + past simple"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "Advice"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "If I were you, I would + base verb"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "tbody"
+                    }
+                  ],
+                  "tag": "table"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "4",
+          "title": "Build the Imagined Condition & Result",
+          "viTitle": "Tạo điều kiện và kết quả giả định"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-examples"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "1. Unreal ability"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "If I understood sign language, I would help at the event."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The speaker imagines having a skill they do not have now."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Người nói tưởng tượng có một kỹ năng hiện chưa có."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "2. Unlikely change"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "If our village had a skating rink, we would practise there."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The speaker imagines a facility that is not available."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Người nói tưởng tượng có một cơ sở hiện chưa có."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "3. Advice"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "If I were you, I would save a copy of the file."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The speaker imagines being the listener."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Người nói đặt mình vào vị trí người nghe để khuyên."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "4. Result first"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "I would grow strawberries if I had a sunny balcony."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The imagined result may come first."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Có thể đặt kết quả giả định lên trước."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "5. Open vs imagined"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "If the weather improves, we’ll paint outdoors. / If we had a bigger studio, we would paint indoors."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The first treats a future condition as open; the second imagines a different situation."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Câu đầu xem điều kiện tương lai là còn bỏ ngỏ; câu sau tưởng tượng tình huống khác."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "5",
+          "title": "How to Use in Context",
+          "viTitle": "Cách dùng qua ví dụ thực tế"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-mistakes"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ If we would know the route, we would lead the group."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ If we knew the route, we would lead the group."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Use the past form in the if-clause of this standard pattern."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Trong mẫu cơ bản này, mệnh đề if dùng dạng quá khứ."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ If I had a sewing machine, I would made a costume."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ If I had a sewing machine, I would make a costume."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Would takes the base verb."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Would đi với động từ nguyên mẫu."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "6",
+          "title": "Common Mistakes to Avoid",
+          "viTitle": "Lỗi sai thường gặp"
+        },
+        {
+          "blocks": [
+            {
+              "children": [
+                "Imagined condition now/later → past form; imagined result → would + base verb."
+              ],
+              "tag": "p"
+            },
+            {
+              "attrs": {
+                "class": "sle-gra02-translation",
+                "lang": "vi"
+              },
+              "children": [
+                "Điều kiện giả định hiện tại/tương lai → dạng quá khứ; kết quả giả định → would + nguyên mẫu."
+              ],
+              "tag": "p"
+            }
+          ],
+          "step": null,
+          "title": "Remember",
+          "viTitle": ""
+        },
+        {
+          "quiz": [
+            {
+              "id": "GRA-B1-06-QC1",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "Had marks the unreal present condition.",
+                  "text": "have",
+                  "vi": "Had thể hiện điều kiện không có thật ở hiện tại."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Had marks the unreal present condition.",
+                  "text": "would have",
+                  "vi": "Had thể hiện điều kiện không có thật ở hiện tại."
+                },
+                {
+                  "correct": true,
+                  "feedback": "Had marks the unreal present condition.",
+                  "text": "had",
+                  "vi": "Had thể hiện điều kiện không có thật ở hiện tại."
+                }
+              ],
+              "prompt": "I do not have a camera. If I ___ a camera, I would take pictures of the birds."
+            },
+            {
+              "id": "GRA-B1-06-QC2",
+              "options": [
+                {
+                  "correct": true,
+                  "feedback": "If I were you + would + base verb is the taught hypothetical advice pattern.",
+                  "text": "If I were you, I would ask for directions.",
+                  "vi": "If I were you + would + nguyên mẫu là mẫu lời khuyên giả định."
+                },
+                {
+                  "correct": false,
+                  "feedback": "If I were you + would + base verb is the taught hypothetical advice pattern.",
+                  "text": "If I am you, I would asked for directions.",
+                  "vi": "If I were you + would + nguyên mẫu là mẫu lời khuyên giả định."
+                },
+                {
+                  "correct": false,
+                  "feedback": "If I were you + would + base verb is the taught hypothetical advice pattern.",
+                  "text": "If I would be you, I ask for directions.",
+                  "vi": "If I were you + would + nguyên mẫu là mẫu lời khuyên giả định."
+                }
+              ],
+              "prompt": "Choose the standard advice sentence."
+            }
+          ],
+          "step": "7",
+          "title": "Quick Self-Check",
+          "viTitle": "Tự kiểm tra nhanh, không tính điểm"
+        }
+      ]
+    },
+    "GRA-B1-07": {
+      "title": "Wish and if only for present situations",
+      "baselineExplanation": "### Core rule / Meaning\n\nUse **wish + past form** to imagine that something about the **present** were different. **If only + past form** often conveys a stronger feeling about the same unreal present. Use **wish + could + base verb** to focus on an ability or possibility the speaker lacks now.\n\n### When to use + worked example + why\n- **Want a different present fact:** I wish my backpack **weighed** less. → It is heavy now; the speaker wants that fact to change.\n- **Stronger wish:** If only our school **had** a bigger garden! → The speaker strongly wishes the current school facility were different.\n- **Wish for ability:** Jon wishes he **could understand** the radio announcement. → He cannot understand it now.\n- **Reality versus wish:** I **have** a small desk. / I wish I **had** a wider desk. → The past form signals an unreal current situation.\n\n### form / formula / decision cues (adaptive)\n- **Unreal present wish:** subject + **wish + subject + past form**.\n- **Emphatic unreal present:** **If only + subject + past form**.\n- **Missing ability:** **wish + subject + could + base verb**.\n\n### common mistakes (review for accuracy and alternatives)\n- ⚠️ *I wish I **know** the song.* → **I wish I **knew** the song.** (Use a past form for an unreal present wish.)\n- ⚠️ *If only she **could draws** portraits.* → **If only she **could draw** portraits.** (Could takes the base verb.)\n\n### Remember / comparison (adaptive)\n\n**I wish / If only** often means reality is different **now**. This pattern is not a description of a finished past event.",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-goals"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Use wish + past form for an unreal present situation."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Use if only + past form for a more emphatic present wish."
+                  ],
+                  "tag": "li"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        "✓"
+                      ],
+                      "tag": "span"
+                    },
+                    "Use wish + could + base verb for missing ability or possibility."
+                  ],
+                  "tag": "li"
+                }
+              ],
+              "tag": "ul"
+            }
+          ],
+          "step": "1",
+          "title": "What you will learn",
+          "viTitle": "Mục tiêu bài học"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-core"
+              },
+              "children": [
+                {
+                  "children": [
+                    "Wish + past form shows that present reality differs from what someone wants. If only often expresses the same idea more strongly. Wish + could + base verb focuses on an ability or possibility missing now. This lesson is about present situations, not regret about past events."
+                  ],
+                  "tag": "p"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-translation",
+                    "lang": "vi"
+                  },
+                  "children": [
+                    "Wish + dạng quá khứ nói về thực tế hiện tại khác điều mong muốn. If only thường diễn tả ý đó mạnh hơn. Wish + could + nguyên mẫu nhấn mạnh khả năng hiện còn thiếu. Bài này xét tình huống hiện tại, không xét nuối tiếc sự kiện đã qua."
+                  ],
+                  "tag": "p"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "2",
+          "title": "The Core Idea",
+          "viTitle": "Ý cốt lõi"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "aria-label": "Grammar comparison table",
+                "class": "compact-table",
+                "role": "region",
+                "tabindex": "0"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Pattern / cue"
+                              ],
+                              "tag": "th"
+                            },
+                            {
+                              "attrs": {
+                                "scope": "col"
+                              },
+                              "children": [
+                                "Meaning / form"
+                              ],
+                              "tag": "th"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "thead"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "Reality: The chair is hard."
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "I wish the chair were softer. (was is also common with singular subjects.)"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "Reality: We have little shade."
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "If only we had more shade!"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "Reality: I cannot whistle."
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "I wish I could whistle."
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    "An open future possibility"
+                                  ],
+                                  "tag": "b"
+                                }
+                              ],
+                              "tag": "td"
+                            },
+                            {
+                              "children": [
+                                "I hope the bus arrives soon. (Different from an unreal present wish.)"
+                              ],
+                              "tag": "td"
+                            }
+                          ],
+                          "tag": "tr"
+                        }
+                      ],
+                      "tag": "tbody"
+                    }
+                  ],
+                  "tag": "table"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "3",
+          "title": "From Present Reality to a Wish",
+          "viTitle": "Từ thực tế hiện tại đến điều ước"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-examples"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "1. Different present fact"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "Ari wishes his jacket fitted better."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The jacket does not fit as well as he wants now."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Áo khoác hiện không vừa như Ari mong muốn."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "2. Stronger feeling"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "If only the classroom had more shelves!"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The speaker strongly wants a different present classroom."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Người nói rất muốn phòng học hiện tại có thêm kệ."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "3. Missing ability"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "Nora wishes she could identify the stars."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " She lacks that ability now."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Nora hiện chưa có khả năng nhận biết các ngôi sao."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-example"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-situation"
+                      },
+                      "children": [
+                        "4. Reality vs wish"
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-sentence"
+                      },
+                      "children": [
+                        "The path is narrow. I wish the path were wider."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-why"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " The past form describes an imagined present, not a past event."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Dạng quá khứ thể hiện hiện tại giả định, không phải sự kiện quá khứ."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "article"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "4",
+          "title": "How to Use in Context",
+          "viTitle": "Cách dùng qua ví dụ thực tế"
+        },
+        {
+          "blocks": [
+            {
+              "attrs": {
+                "class": "sle-gra02-mistakes"
+              },
+              "children": [
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ I wish my desk has a drawer."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ I wish my desk had a drawer."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Use the past form for an unreal present wish."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Điều ước trái thực tế hiện tại dùng dạng quá khứ."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                },
+                {
+                  "attrs": {
+                    "class": "sle-gra02-mistake"
+                  },
+                  "children": [
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-wrong"
+                      },
+                      "children": [
+                        "✗ If only I could solved this riddle."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-right"
+                      },
+                      "children": [
+                        "✓ If only I could solve this riddle."
+                      ],
+                      "tag": "div"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-rule"
+                      },
+                      "children": [
+                        {
+                          "children": [
+                            "Why:"
+                          ],
+                          "tag": "strong"
+                        },
+                        " Could is followed by the base verb."
+                      ],
+                      "tag": "p"
+                    },
+                    {
+                      "attrs": {
+                        "class": "sle-gra02-translation",
+                        "lang": "vi"
+                      },
+                      "children": [
+                        "Could đi với động từ nguyên mẫu."
+                      ],
+                      "tag": "p"
+                    }
+                  ],
+                  "tag": "div"
+                }
+              ],
+              "tag": "div"
+            }
+          ],
+          "step": "5",
+          "title": "Common Mistakes to Avoid",
+          "viTitle": "Lỗi sai thường gặp"
+        },
+        {
+          "blocks": [
+            {
+              "children": [
+                "What is true now? What would you like to be different? Use a past form or could for this present-wish pattern."
+              ],
+              "tag": "p"
+            },
+            {
+              "attrs": {
+                "class": "sle-gra02-translation",
+                "lang": "vi"
+              },
+              "children": [
+                "Hiện tại điều gì là thật? Bạn muốn điều gì khác đi? Dùng dạng quá khứ hoặc could cho mẫu điều ước hiện tại."
+              ],
+              "tag": "p"
+            }
+          ],
+          "step": null,
+          "title": "Remember",
+          "viTitle": ""
+        },
+        {
+          "quiz": [
+            {
+              "id": "GRA-B1-07-QC1",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "Were represents the imagined present state.",
+                  "text": "I hope the stage opens tomorrow.",
+                  "vi": "Were thể hiện trạng thái hiện tại giả định."
+                },
+                {
+                  "correct": true,
+                  "feedback": "Were represents the imagined present state.",
+                  "text": "I wish the stage were larger.",
+                  "vi": "Were thể hiện trạng thái hiện tại giả định."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Were represents the imagined present state.",
+                  "text": "I wish the stage is larger.",
+                  "vi": "Were thể hiện trạng thái hiện tại giả định."
+                }
+              ],
+              "prompt": "The stage is too small. Choose a present wish."
+            },
+            {
+              "id": "GRA-B1-07-QC2",
+              "options": [
+                {
+                  "correct": false,
+                  "feedback": "Could + base verb expresses the missing ability.",
+                  "text": "can",
+                  "vi": "Could + nguyên mẫu diễn tả khả năng còn thiếu."
+                },
+                {
+                  "correct": false,
+                  "feedback": "Could + base verb expresses the missing ability.",
+                  "text": "could to",
+                  "vi": "Could + nguyên mẫu diễn tả khả năng còn thiếu."
+                },
+                {
+                  "correct": true,
+                  "feedback": "Could + base verb expresses the missing ability.",
+                  "text": "could",
+                  "vi": "Could + nguyên mẫu diễn tả khả năng còn thiếu."
+                }
+              ],
+              "prompt": "I cannot read music yet. Complete: I wish I ___ read music."
+            }
+          ],
+          "step": "6",
+          "title": "Quick Self-Check",
+          "viTitle": "Tự kiểm tra nhanh, không tính điểm"
+        }
+      ]
+    }
+  }
+}
