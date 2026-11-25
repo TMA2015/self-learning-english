@@ -46,6 +46,10 @@ for(const id of expected){
   const html=renderToStaticMarkup(React.createElement(ReadingKnowledgeV23,{lesson,version:'1.28.0',showVi}));
   assert(html.includes('Reading Knowledge v2.3'));assert.equal(html.includes('lang="vi"'),showVi);
   assert.equal((html.match(/data-quick-id=/g)||[]).length,2);
+  if(id==='REA-A2-09')assert(html.includes('Do not turn an unconfirmed quantity into zero.'),'English caution visible with or without Vietnamese');
+  if(['REA-A2-04','REA-A2-05','REA-A2-06','REA-A2-07','REA-A2-09','REA-A2-10','REA-A2-12'].includes(id))assert(html.includes('<table>'),'reviewed comparison rendered as actual table '+id);
+  if(id==='REA-A1-09')assert(html.includes('role="img"')&&html.includes('The fountain is north of the post office.'),'accessible schematic map');
+  if(id==='REA-A2-11')assert(html.includes('Schematic timeline')&&html.includes('13:25 ring during reading'),'reviewed timeline rendered');
   assert(!html.includes('role="status"'));assert(!html.includes('Hide model'));assert(!html.includes('correct_option_id'));renders++;
  }
  quick+=d.checks.length;lenses+=d.lenses.length;
