@@ -25,14 +25,40 @@ function Quick({task,showVi}:{task:Check;showVi:boolean}){
  <div className="sle-rea-choices" role="group" aria-label={task.prompt}>{task.options.map(o=><button key={o.id} type="button" aria-pressed={choice===o.id} onClick={()=>setChoice(o.id)}>{o.id}. {o.text}</button>)}</div>
  {selected&&<div role="status" className="sle-rea-feedback"><Text value={selected.feedback} showVi={showVi}/><button type="button" onClick={()=>setChoice(null)}>Try again</button></div>}</article>;
 }
+function ModelTable({headers,rows}:{headers:string[];rows:string[][]}){
+ return <div className="sle-rea-table-scroll" tabIndex={0} role="region" aria-label="Worked comparison table"><table><thead><tr>{headers.map((x,i)=><th key={i} scope="col">{x}</th>)}</tr></thead><tbody>{rows.map((row,i)=><tr key={i}>{row.map((x,j)=><td key={j}>{x}</td>)}</tr>)}</tbody></table></div>;
+}
 function ModelExtras({lines,showVi}:{lines:string[];showVi:boolean}){
  if(!lines.length)return null;
  const tableLines=lines.filter(l=>l.startsWith('|'));
  const prose=lines.filter(l=>!l.startsWith('|'));
  const cells=(l:string)=>l.split('|').slice(1,-1).map(s=>s.trim());
+ const first=lines[0];
+ if(first.startsWith('Schematic (not to scale')){
+  return <figure className="sle-rea-card"><figcaption>Schematic · not to scale</figcaption><p>N ↑ · E →</p><div className="sle-rea-map" role="img" aria-label="The fountain is north of the post office. From west to east: station, post office, flower shop.">
+  <span className="sle-rea-map-north">Fountain</span><span className="sle-rea-map-link" aria-hidden="true">│</span><span>Station</span><span>Post office</span><span>Flower shop</span></div></figure>;
+ }
+ if(first.startsWith('Schematic timeline')){
+  const timeline=first.split(': ')[1].split('. Do not draw')[0].split(' → ');
+  return <figure className="sle-rea-card"><figcaption>Schematic timeline · not to scale</figcaption><ol className="sle-rea-timeline">{timeline.map(t=><li key={t}>{t}</li>)}</ol>{showVi&&<p lang="vi" className="sle-rea-vi">Sơ đồ thứ tự, không theo tỉ lệ.</p>}</figure>;
+ }
+ if(!tableLines.length&&first.startsWith('Worked ')&&first.includes('|')){
+  const body=first.slice(first.indexOf(': ')+2).split('. VI ')[0].replace(/\.$/,'');
+  const split=(s:string)=>s.split(' | ');
+  const vi=first.includes('. VI ')?first.slice(first.indexOf('. VI ')+2):'';
+  let headers:string[]=[],rows:string[][]=[];
+  if(first.startsWith('Worked status table')||first.includes('session | day/time')){
+   const chunks=body.split('. ');headers=split(chunks.shift()!);rows=chunks.map(split);
+  }else if(first.includes('earlier place')){
+   headers=['Fact','Earlier','Current'];rows=body.split('; ').map((r,i)=>[(['Place','Start','Arrival'])[i],...split(r).map(x=>x.replace(/^(earlier place |current |earlier start |current start |arrival )/,''))]);
+  }else if(first.includes('departure 10:00')){
+   headers=['Fact','River tour','History walk'];rows=body.split('; ').map((r,i)=>{const labels=['departure','duration','basic price','guidebook','under 12'];return [labels[i],...split(r).map((x,j)=>j===0?x.slice(labels[i].length).trim():x)]});
+  }
+  if(rows.length&&headers.length&&rows.every(r=>r.length===headers.length))return <div className="sle-rea-card sle-rea-extras"><p>Worked comparison · model only</p><ModelTable headers={headers} rows={rows}/>{showVi&&vi&&<p lang="vi" className="sle-rea-vi">{vi}</p>}</div>;
+ }
  return <div className="sle-rea-card sle-rea-extras">
  {prose.filter(l=>!l.startsWith('VI labels:')).map((l,i)=>{const ix=l.indexOf(' VI ');return <div key={i}><p>{ix<0?l:l.slice(0,ix)}</p>{showVi&&ix>=0&&<p lang="vi" className="sle-rea-vi">{l.slice(ix+1)}</p>}</div>})}
- {tableLines.length>2&&<div className="sle-rea-table-scroll" tabIndex={0} role="region" aria-label="Worked comparison table"><table><thead><tr>{cells(tableLines[0]).map((x,i)=><th key={i} scope="col">{x}</th>)}</tr></thead><tbody>{tableLines.slice(2).map((l,i)=><tr key={i}>{cells(l).map((x,j)=><td key={j}>{x}</td>)}</tr>)}</tbody></table></div>}
+ {tableLines.length>2&&<ModelTable headers={cells(tableLines[0])} rows={tableLines.slice(2).map(cells)}/>}
  {showVi&&prose.filter(l=>l.startsWith('VI labels:')).map((l,i)=><p key={i} lang="vi" className="sle-rea-vi">{l}</p>)}
  </div>;
 }
@@ -43,7 +69,7 @@ function Body({d,showVi}:{d:Notes;showVi:boolean}){
  <Header n={1} en="Learning goal" vi="Mục tiêu" showVi={showVi}/><div className="sle-rea-card"><h4>{d.title}</h4><Text value={d.goal} showVi={showVi}/><Text value={d.context} showVi={showVi}/></div>
  <Header n={2} en="Reading strategies" vi="Chiến lược đọc" showVi={showVi}/><div className="sle-rea-grid">{d.strategy.map(s=><article className="sle-rea-card" key={s.label}><h4>{s.label}{showVi&&<span lang="vi"> · {s.labelVi}</span>}</h4><Text value={s} showVi={showVi}/></article>)}</div>
  <Header n={3} en="Explore the text" vi="Khám phá văn bản" showVi={showVi}/><div className="sle-rea-card"><h4>{d.modelTitle}</h4><div className="sle-rea-choices" role="group" aria-label="Sentence lenses">{d.lenses.map((l,i)=><button type="button" key={l.label} aria-pressed={lens===i} onClick={()=>setLens(lens===i?null:i)}>{l.label}</button>)}</div>
- <div aria-label="Worked reading text">{d.passage.map((p,i)=><p key={i} className={active?.refs.some(r=>p.includes(r+'. '))?'sle-rea-highlight':'sle-rea-sentence'}>{p}</p>)}</div>
+ <div aria-label="Worked reading text">{d.passage.map((p,i)=><p key={i} className={active?.refs.some(r=>p.startsWith(r+'. '))?'sle-rea-highlight':'sle-rea-sentence'}>{p}</p>)}</div>
  {active&&<div className="sle-rea-feedback" role="status"><strong>{active.refs.join(', ')}</strong><Text value={active} showVi={showVi}/></div>}
  <ModelExtras lines={d.extras} showVi={showVi}/></div>
  <Header n={4} en="Worked question" vi="Câu hỏi mẫu" showVi={showVi}/><article className="sle-rea-card"><h4>{d.worked.prompt}</h4><ul>{d.worked.options.map((o,i)=><li key={i}>{o}</li>)}</ul><details><summary>Show model reasoning</summary><Text value={d.worked.answer} showVi={showVi}/></details></article>
