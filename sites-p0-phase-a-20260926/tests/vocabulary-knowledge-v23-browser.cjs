@@ -33,10 +33,10 @@ const root=path.resolve(__dirname,'..');
   res.writeHead(200,{'Content-Type':'text/html;charset=utf-8','Cache-Control':'no-store'}).end(html);
  });
  const profile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-v2-browser-'));
- const run=(url,lesson,width)=>new Promise((resolve,reject)=>{
+ const run=(url,lesson,width,profileKey='component')=>new Promise((resolve,reject)=>{
   const child=cp.spawn(browser,['--headless=new','--no-sandbox','--disable-dev-shm-usage','--disable-extensions',
    '--disable-background-networking','--no-first-run','--virtual-time-budget=12000',
-   '--dump-dom','--window-size=1280,900','--user-data-dir='+path.join(profile,lesson+'-'+width),url],
+   '--dump-dom','--window-size=1280,900','--user-data-dir='+path.join(profile,lesson+'-'+width+'-'+profileKey),url],
   {stdio:['ignore','pipe','pipe']});
   let stdout='',stderr='',expired=false;
   const timeout=setTimeout(()=>{expired=true;child.kill('SIGKILL')},38000);
@@ -59,9 +59,22 @@ const root=path.resolve(__dirname,'..');
     results.push({lesson,width,result:await run(baseUrl+'/?'+query,lesson,width)});
    }
   }
-  assert.equal(results.length,12);assert.equal(writes,0);
+  const playerCases=[];
+  for(const [lesson,version] of [['VOC-A1-01','1.18.1'],['VOC-A2-01','1.18.1'],['VOC-B1-03','1.18.1'],['VOC-C2-01','1.25.0'],['VOC-B2-03','1.27.0']]){
+   for(const route of ['historical','historical-draft']){
+    for(const width of [375,768,960]){
+     const query=new URLSearchParams({lesson,width:String(width),route,version});
+     playerCases.push({lesson,width,route,version,result:await run(baseUrl+'/?'+query,lesson,width,route+'-'+version)});
+    }
+   }
+  }
+  for(const width of [375,768,960]){
+   const lesson='VOC-A1-01',route='current',query=new URLSearchParams({lesson,width:String(width),route});
+   playerCases.push({lesson,width,route,result:await run(baseUrl+'/?'+query,lesson,width,route)});
+  }
+  assert.equal(results.length,12);assert.equal(playerCases.length,33);assert.equal(writes,0);
   console.log(JSON.stringify({result:'PASS',gate:'SLE_VOCABULARY_V23_REAL_CHROMIUM',
-   cases:results,source:'reviewed vocabulary',tts:'MOCK_INVOCATION_ONLY',physicalIpadSafari:'NOT_TESTED',realAuth:'NOT_TESTED',
+   cases:results,playerCases,actualFoundationRoute:true,browserLocalAcademicService:true,persistedAttemptsCompared:true,source:'reviewed vocabulary',tts:'MOCK_INVOCATION_ONLY',physicalIpadSafari:'NOT_TESTED',realAuth:'NOT_TESTED',
    syntheticOnly:true,backendWrites:0,scoreMutations:0}));
  }finally{server.close();fs.rmSync(profile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});
