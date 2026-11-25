@@ -722,7 +722,8 @@
       "passage": [
         "Source A:",
         "S1. Kite Hour starts at 4:15 on the beach.",
-        "S2. If the wind is too strong, meet at the pavilion to decorate kites instead.\nSource B:",
+        "S2. If the wind is too strong, meet at the pavilion to decorate kites instead.",
+        "Source B:",
         "S3. Story Hour starts at 4:45 in the bookshop.",
         "S4. It takes place indoors in any weather."
       ],
@@ -1056,7 +1057,8 @@
         "S1. Get a locker key from the sports desk.",
         "S2. First put your bag inside. Then lock the door.",
         "S3. Do not leave food inside.",
-        "S4. Empty the locker by 6:00 p.m.\nSource B:",
+        "S4. Empty the locker by 6:00 p.m.",
+        "Source B:",
         "S5. Ask the desk worker about the cost of a lost key."
       ],
       "lenses": [
@@ -1221,7 +1223,8 @@
         "Source A — weekday classes:",
         "S1. Tuesday 11:00 — Dance — Studio A.",
         "S2. Thursday 10:00 — Cooking — Kitchen.",
-        "S3. All listed times are start times.\nSource B — special event:",
+        "S3. All listed times are start times.",
+        "Source B — special event:",
         "S4. Family Dance is on Sunday at 2:00 p.m. in Studio B.",
         "S5. Ask the organiser about the finishing time."
       ],
@@ -1259,8 +1262,7 @@
         "prompt": "Which statement is supported about Family Dance?",
         "options": [
           "A. It starts Tuesday in Studio A.",
-          "B. It starts Sunday at 2:00 p.m. in Studio",
-          "B.",
+          "B. It starts Sunday at 2:00 p.m. in Studio B.",
           "C. It finishes at 2:00 p.m."
         ],
         "answer": {
@@ -1389,7 +1391,8 @@
         "Source A:",
         "S1. From WEST to EAST on Oak Lane: STATION → POST OFFICE → FLOWER SHOP.",
         "S2. The fountain is immediately NORTH of the post office.",
-        "S3. EAST means right; NORTH means up. No distances are given.\nSource B:",
+        "S3. EAST means right; NORTH means up. No distances are given.",
+        "Source B:",
         "S4. From the flower shop, go WEST to the post office, then NORTH to the fountain."
       ],
       "lenses": [
@@ -2249,7 +2252,8 @@
         "Source A:",
         "S1. The river tour leaves at 10:00 and takes 45 minutes.",
         "S2. It costs £6; a guidebook is included.",
-        "S3. Children under 12 must be with an adult.\nSource B:",
+        "S3. Children under 12 must be with an adult.",
+        "Source B:",
         "S4. The history walk leaves at 11:00 and takes 30 minutes.",
         "S5. It costs £4; visitors may buy a guidebook for £2.",
         "S6. Children under 12 must also be with an adult."
