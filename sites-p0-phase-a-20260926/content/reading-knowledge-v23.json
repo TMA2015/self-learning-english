@@ -1,0 +1,3634 @@
+{
+  "version": "1.28.0",
+  "sourceCommit": "dfdc264d91c54cbff3653c4a7cb88d671698f0d4",
+  "sourceBlob": "2bc7f02a5fcb2be4efa054359e447d1330e394ca",
+  "sources": [
+    {
+      "path": "sites-p0-phase-a-20260926/content/review-packets/SLE_REA_KNOWLEDGE_V23_PILOT_R0_20261125.md",
+      "git_blob": "32b9365c93eb22d4eb968450e405a056ef3a237d"
+    },
+    {
+      "path": "sites-p0-phase-a-20260926/content/review-packets/SLE_REA_KNOWLEDGE_V23_W1A_A1_R0_20261125.md",
+      "git_blob": "17457f7941ab2c9c2cb7e2d4d1b62b64c817e8e9"
+    },
+    {
+      "path": "sites-p0-phase-a-20260926/content/review-packets/SLE_REA_KNOWLEDGE_V23_W1B_A1_R0_20261125.md",
+      "git_blob": "e94058c9a17626b21a31d8b38c1a3dc17801a0a5"
+    },
+    {
+      "path": "sites-p0-phase-a-20260926/content/review-packets/SLE_REA_KNOWLEDGE_V23_W2A_A2_R0_20261125.md",
+      "git_blob": "29df0849c06fc70c843e8594ef00f92467e778aa"
+    },
+    {
+      "path": "sites-p0-phase-a-20260926/content/review-packets/SLE_REA_KNOWLEDGE_V23_W2B_A2_R0_20261125.md",
+      "git_blob": "094a512b7a65595aa5d8faa12a6aef01eeb0a85f"
+    },
+    {
+      "path": "sites-p0-phase-a-20260926/content/review-packets/SLE_REA_KNOWLEDGE_V23_W2C_A2_R0_20261125.md",
+      "git_blob": "658c61be570ad090fd54e368f002ce5f51f75ec7"
+    }
+  ],
+  "lessons": {
+    "REA-A1-01": {
+      "title": "Read a short notice",
+      "goal": {
+        "en": "Find the purpose of a short notice, its important details and a condition. Check the exact words before deciding.",
+        "vi": "Tìm mục đích, thông tin quan trọng và điều kiện trong thông báo ngắn. Đối chiếu từ ngữ trước khi chọn."
+      },
+      "context": {
+        "en": "A notice tells readers what is happening and what they need to know or do.",
+        "vi": "Thông báo cho người đọc biết sự việc và những điều cần biết hoặc cần làm."
+      },
+      "strategy": [
+        {
+          "label": "Gist",
+          "labelVi": "Ý chính",
+          "en": "Read the whole notice once. Ask: What is this notice for?",
+          "vi": "Đọc toàn bộ một lượt. Hỏi: Thông báo này nhằm mục đích gì?"
+        },
+        {
+          "label": "Scan",
+          "labelVi": "Tìm nhanh",
+          "en": "Look for the type of detail you need: a place, time, object or action. Read the words around it.",
+          "vi": "Tìm đúng loại thông tin: địa điểm, thời gian, đồ vật hoặc hành động. Đọc các từ xung quanh."
+        },
+        {
+          "label": "Conditions",
+          "labelVi": "Điều kiện",
+          "en": "Notice words such as only, if and not. They can change the meaning.",
+          "vi": "Chú ý only, if và not vì chúng có thể thay đổi ý nghĩa."
+        },
+        {
+          "label": "Verify",
+          "labelVi": "Đối chiếu",
+          "en": "Point to the line that supports your answer. If the text does not tell you, do not guess.",
+          "vi": "Chỉ ra câu làm bằng chứng. Không đoán nếu văn bản không cho biết."
+        }
+      ],
+      "modelTitle": "Library drop box",
+      "passage": [
+        "S1. The town library has a new book-return box by the front door.",
+        "S2. You can use the box when the library is closed.",
+        "S3. Put library books in the box, but take DVDs to the desk when the library opens.",
+        "S4. Please do not leave your own books in the box."
+      ],
+      "lenses": [
+        {
+          "label": "PURPOSE",
+          "refs": [
+            "S1"
+          ],
+          "en": "The notice introduces a return service.",
+          "vi": "Câu này giới thiệu dịch vụ trả sách."
+        },
+        {
+          "label": "PLACE",
+          "refs": [
+            "S1"
+          ],
+          "en": "“by the front door” names the location.",
+          "vi": "Cụm này chỉ vị trí."
+        },
+        {
+          "label": "CONDITION",
+          "refs": [
+            "S2",
+            "S3",
+            "S4"
+          ],
+          "en": "Check when the box can be used, what goes in it, and what must not go in it.",
+          "vi": "Xem khi nào dùng hộp, đồ vật nào được bỏ vào và đồ vật nào không được bỏ vào."
+        }
+      ],
+      "extras": [],
+      "worked": {
+        "prompt": "A reader has a library DVD. What should they do?",
+        "options": [
+          "A. Put it in the box.",
+          "B. Take it to the desk when the library opens.",
+          "C. Leave it beside the front door."
+        ],
+        "answer": {
+          "en": "Model answer B. Evidence S3. A ignores the contrast after “but”; C confuses the location of the box with a permitted action.",
+          "vi": "B đúng theo S3. A bỏ qua phần đối lập sau “but”; C nhầm vị trí của hộp với hành động được phép. The notice does not give the opening hour; do not invent one."
+        }
+      },
+      "quickTitle": "Park fountain",
+      "quickText": "T1. The drinking fountain near the park gate is closed for repairs today.\nT2. Visitors can use the fountain beside the café instead.\nT3. The café sells drinks, but you do not have to buy one to use the fountain.",
+      "checks": [
+        {
+          "id": "REA-A1-01-KQC01",
+          "prompt": "What is the notice mainly for?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To announce a new café.",
+              "feedback": {
+                "en": "Incorrect: the café is a location, not the reason for the notice.",
+                "vi": "Quán là mốc vị trí, không phải mục đích thông báo."
+              }
+            },
+            {
+              "id": "B",
+              "text": "To tell visitors about a closed fountain and an alternative.",
+              "feedback": {
+                "en": "Correct: T1 and T2 together give the purpose.",
+                "vi": "T1 và T2 cùng cho biết mục đích."
+              }
+            },
+            {
+              "id": "C",
+              "text": "To ask visitors to buy drinks.",
+              "feedback": {
+                "en": "Incorrect: T3 says purchase is not required.",
+                "vi": "T3 nói không bắt buộc mua."
+              }
+            }
+          ],
+          "key": "B"
+        },
+        {
+          "id": "REA-A1-01-KQC02",
+          "prompt": "Must a visitor buy a drink to use the other fountain?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Yes, everyone must buy one.",
+              "feedback": {
+                "en": "Incorrect: “do not have to” means it is not required.",
+                "vi": "“Do not have to” nghĩa là không bắt buộc."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Only children must buy one.",
+              "feedback": {
+                "en": "Incorrect: no special rule for children is stated.",
+                "vi": "Không có quy định riêng cho trẻ em."
+              }
+            },
+            {
+              "id": "C",
+              "text": "No.",
+              "feedback": {
+                "en": "Correct: T3 explicitly says a purchase is unnecessary.",
+                "vi": "T3 nói rõ không cần mua."
+              }
+            }
+          ],
+          "key": "C"
+        }
+      ],
+      "transfer": {
+        "text": "U1. The lift in the community centre is not working this morning. U2. Please use the stairs next to the reception desk. U3. If you cannot use the stairs, ask the receptionist for help.",
+        "prompt": {
+          "en": "Write the purpose of the notice, where the stairs are, and what a visitor who cannot use stairs should do. Give one sentence ID as evidence for each.",
+          "vi": "Viết mục đích thông báo, vị trí cầu thang và cách xử lý nếu khách không thể đi cầu thang. Ghi mã câu làm bằng chứng."
+        },
+        "criteria": "purpose + location + conditional action, each grounded in U1–U3; no invented repair time or alternative route.",
+        "model": {
+          "en": "The notice tells visitors about a lift problem (U1) and what to do instead (U2–U3). The stairs are next to reception (U2). A visitor who cannot use them should ask the receptionist for help (U3).",
+          "vi": "Thông báo cho biết thang máy gặp sự cố và hướng dẫn cách xử lý (U1–U3). Cầu thang cạnh quầy lễ tân (U2). Người không thể đi cầu thang nên nhờ lễ tân giúp (U3)."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A1-02": {
+      "title": "Read a schedule and instructions",
+      "goal": {
+        "en": "Find what a notice is about, match each time to the right action, and separate supplied items from things to bring.",
+        "vi": "Tìm mục đích thông báo, ghép từng giờ với đúng hành động và phân biệt đồ được cung cấp với đồ cần mang."
+      },
+      "context": {
+        "en": "An event may have several times. Read the action next to each time before choosing an answer.",
+        "vi": "Một sự kiện có thể có nhiều mốc giờ. Đọc hành động đi kèm từng mốc trước khi chọn."
+      },
+      "strategy": [
+        {
+          "label": "Gist",
+          "labelVi": "Ý chính",
+          "en": "Read the title and first sentence. Ask what event or service is described.",
+          "vi": "Đọc tiêu đề và câu đầu; xác định sự kiện hoặc dịch vụ."
+        },
+        {
+          "label": "Time labels",
+          "labelVi": "Gắn nhãn thời gian",
+          "en": "Write the action beside each time: arrive, begin, finish or collect.",
+          "vi": "Ghi hành động bên cạnh từng giờ: đến, bắt đầu, kết thúc hoặc nhận đồ."
+        },
+        {
+          "label": "Bring or provided",
+          "labelVi": "Mang hay được cấp",
+          "en": "Read both sides of a contrast; do not turn a supplied item into a requirement.",
+          "vi": "Đọc hai vế đối lập; không biến đồ được cấp thành đồ bắt buộc mang."
+        },
+        {
+          "label": "Verify",
+          "labelVi": "Đối chiếu",
+          "en": "Check the full sentence, not just a number or object.",
+          "vi": "Đối chiếu cả câu, không chỉ số hoặc đồ vật."
+        }
+      ],
+      "modelTitle": "Repair workshop",
+      "passage": [
+        "S1. The community centre has a free bicycle repair workshop on Sunday.",
+        "S2. Arrive at 11:10 to check in; the workshop begins at 11:25.",
+        "S3. Bring your bicycle. The centre has all the repair tools.",
+        "S4. The workshop ends at 12:15."
+      ],
+      "lenses": [
+        {
+          "label": "PURPOSE",
+          "refs": [
+            "S1"
+          ],
+          "en": "The notice announces a repair workshop.",
+          "vi": "Thông báo giới thiệu buổi sửa xe đạp."
+        },
+        {
+          "label": "TIME",
+          "refs": [
+            "S2",
+            "S4"
+          ],
+          "en": "Check-in, beginning and ending are different actions.",
+          "vi": "Điểm danh, bắt đầu và kết thúc là các hành động khác nhau."
+        },
+        {
+          "label": "ITEMS",
+          "refs": [
+            "S3"
+          ],
+          "en": "The visitor brings the bicycle; tools are supplied.",
+          "vi": "Khách mang xe đạp; dụng cụ được cung cấp."
+        }
+      ],
+      "extras": [],
+      "worked": {
+        "prompt": "When does the workshop itself begin?",
+        "options": [
+          "A. 11:10.",
+          "B. 12:15.",
+          "C. 11:25."
+        ],
+        "answer": {
+          "en": "Model answer C. S2 gives 11:25 as the start. A is check-in, B is the end (S4).",
+          "vi": "C đúng theo S2. A là giờ điểm danh; B là giờ kết thúc theo S4."
+        }
+      },
+      "quickTitle": "Parcel collection",
+      "quickText": "T1. The parcel desk opens at 2:10. T2. Collections begin at 2:30 and finish at 4:10. T3. Bring your collection code; the desk supplies a paper bag.",
+      "checks": [
+        {
+          "id": "REA-A1-02-KQC01",
+          "prompt": "When can collections begin?",
+          "options": [
+            {
+              "id": "A",
+              "text": "2:30.",
+              "feedback": {
+                "en": "Correct: T2 gives the collection start.",
+                "vi": "T2 nêu giờ bắt đầu nhận đồ."
+              }
+            },
+            {
+              "id": "B",
+              "text": "2:10.",
+              "feedback": {
+                "en": "Incorrect: T1 gives the desk opening time.",
+                "vi": "T1 nêu giờ quầy mở."
+              }
+            },
+            {
+              "id": "C",
+              "text": "4:10.",
+              "feedback": {
+                "en": "Incorrect: T2 gives this as the finish.",
+                "vi": "T2 nêu đây là giờ kết thúc."
+              }
+            }
+          ],
+          "key": "A"
+        },
+        {
+          "id": "REA-A1-02-KQC02",
+          "prompt": "What does the customer need to bring?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A paper bag.",
+              "feedback": {
+                "en": "Incorrect: T3 says the desk supplies it.",
+                "vi": "T3 nói quầy cung cấp túi."
+              }
+            },
+            {
+              "id": "B",
+              "text": "A collection code.",
+              "feedback": {
+                "en": "Correct: T3 asks the customer to bring it.",
+                "vi": "T3 yêu cầu mang mã nhận đồ."
+              }
+            },
+            {
+              "id": "C",
+              "text": "A new parcel.",
+              "feedback": {
+                "en": "Incorrect: no such requirement is stated.",
+                "vi": "Không có yêu cầu này."
+              }
+            }
+          ],
+          "key": "B"
+        }
+      ],
+      "transfer": {
+        "text": "U1. A free guitar tuning session takes place at the music shop. U2. Arrive at 5:05; the session starts at 5:20 and ends at 6:10. U3. Bring your guitar; the shop supplies tuners. U4. If you cannot come, send a message by Tuesday evening.",
+        "prompt": {
+          "en": "State the purpose, the arrival and start times, what to bring, and the action if you cannot attend. Give sentence IDs.",
+          "vi": "Nêu mục đích, giờ đến và giờ bắt đầu, đồ cần mang và việc cần làm nếu không thể tham gia. Dẫn mã câu."
+        },
+        "criteria": "correct purpose, distinct times, item and conditional action with U1–U4; no invented charge or transport.",
+        "model": {
+          "en": "The notice announces a free guitar tuning session (U1). Arrive at 5:05; it starts at 5:20 (U2). Bring a guitar (U3). If you cannot come, send a message by Tuesday evening (U4).",
+          "vi": "Thông báo buổi chỉnh dây đàn miễn phí (U1). Đến lúc 5:05; bắt đầu lúc 5:20 (U2). Mang đàn guitar (U3). Nếu không thể đến, nhắn tin trước hoặc vào tối thứ Ba (U4)."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A1-03": {
+      "title": "Follow a personal message",
+      "goal": {
+        "en": "Find the sender's purpose, follow a changed plan, distinguish needed items and identify when a reply is due.",
+        "vi": "Tìm mục đích người gửi, theo dõi kế hoạch thay đổi, phân biệt đồ cần chuẩn bị và hạn trả lời."
+      },
+      "context": {
+        "en": "A friendly message can mention an old idea and a new idea. Read which action is now proposed.",
+        "vi": "Tin nhắn thân mật có thể nhắc ý định cũ và mới. Đọc xem hành động nào đang được đề xuất."
+      },
+      "strategy": [
+        {
+          "label": "Sender's purpose",
+          "labelVi": "Mục đích người gửi",
+          "en": "Ask what the sender wants to arrange, share or request.",
+          "vi": "Hỏi người gửi muốn sắp xếp, chia sẻ hay yêu cầu điều gì."
+        },
+        {
+          "label": "Old and new",
+          "labelVi": "Cũ và mới",
+          "en": "Notice but, instead and now; do not select an abandoned idea.",
+          "vi": "Chú ý but, instead, now; không chọn ý đã bỏ."
+        },
+        {
+          "label": "Needs",
+          "labelVi": "Yêu cầu",
+          "en": "Separate what to bring from what someone already has.",
+          "vi": "Phân biệt đồ cần mang với đồ người khác đã có."
+        },
+        {
+          "label": "Reply and verify",
+          "labelVi": "Trả lời và đối chiếu",
+          "en": "Match a reply deadline to the reply, not to the event.",
+          "vi": "Ghép hạn trả lời với hành động trả lời, không nhầm với giờ sự kiện."
+        }
+      ],
+      "modelTitle": "Board game evening",
+      "passage": [
+        "S1. Hi Ali, shall we play board games this evening?",
+        "S2. I thought we could play at my flat, but the café has a game table, so let's meet there at 6:20.",
+        "S3. Please bring your game cards; I have the board and counters.",
+        "S4. Let me know by 4:00 if you can come. — Jo"
+      ],
+      "lenses": [
+        {
+          "label": "PURPOSE",
+          "refs": [
+            "S1"
+          ],
+          "en": "Jo is arranging a game evening.",
+          "vi": "Jo muốn sắp xếp một buổi chơi."
+        },
+        {
+          "label": "CHANGE",
+          "refs": [
+            "S2"
+          ],
+          "en": "The flat was the earlier idea; the café is the proposed meeting place.",
+          "vi": "Căn hộ là ý định cũ; quán là nơi hẹn được đề xuất."
+        },
+        {
+          "label": "ACTION",
+          "refs": [
+            "S3",
+            "S4"
+          ],
+          "en": "Bring cards and reply by 4:00.",
+          "vi": "Mang thẻ chơi và trả lời trước hoặc lúc 4:00."
+        }
+      ],
+      "extras": [],
+      "worked": {
+        "prompt": "Where does Jo propose meeting Ali?",
+        "options": [
+          "A. At the café.",
+          "B. At Jo's flat.",
+          "C. At the shop."
+        ],
+        "answer": {
+          "en": "Model answer A. S2 moves from the earlier flat idea to the café. B is the old idea; C is not stated.",
+          "vi": "A đúng theo S2. B là ý định cũ; C không được nêu."
+        }
+      },
+      "quickTitle": "A cake for a neighbour",
+      "quickText": "T1. Hi Bea, let's make a cake for our neighbour. T2. I wanted to buy a ready-made cake, but let's bake one at my house instead. T3. Bring eggs; I have flour. T4. Please reply by 7:00 tonight. — Sam",
+      "checks": [
+        {
+          "id": "REA-A1-03-KQC01",
+          "prompt": "What is Sam's new plan?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Buy a cake.",
+              "feedback": {
+                "en": "Incorrect: T2 presents that as the earlier idea.",
+                "vi": "T2 nêu đây là ý định cũ."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Buy flour.",
+              "feedback": {
+                "en": "Incorrect: T3 says Sam has flour.",
+                "vi": "T3 nói Sam đã có bột."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Bake a cake at Sam's house.",
+              "feedback": {
+                "en": "Correct: T2 gives the new plan.",
+                "vi": "T2 nêu kế hoạch mới."
+              }
+            }
+          ],
+          "key": "C"
+        },
+        {
+          "id": "REA-A1-03-KQC02",
+          "prompt": "By when does Sam want a reply?",
+          "options": [
+            {
+              "id": "A",
+              "text": "7:00 tonight.",
+              "feedback": {
+                "en": "Correct: T4 gives the reply deadline.",
+                "vi": "T4 nêu hạn trả lời."
+              }
+            },
+            {
+              "id": "B",
+              "text": "After baking.",
+              "feedback": {
+                "en": "Incorrect: the message does not say this.",
+                "vi": "Tin nhắn không nói vậy."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Tomorrow morning.",
+              "feedback": {
+                "en": "Incorrect: T4 says tonight.",
+                "vi": "T4 nói tối nay."
+              }
+            }
+          ],
+          "key": "A"
+        }
+      ],
+      "transfer": {
+        "text": "U1. Hi Rui, can we practise a song together? U2. I planned an online call, but let's meet at my cousin's flat at 5:40 instead. U3. Bring the song sheet; I have a speaker. U4. If you cannot come, tell me; please reply by 3:00. — Nina",
+        "prompt": {
+          "en": "Write Nina's purpose, the new place and time, the item Rui should bring, and the reply deadline. Cite sentence IDs.",
+          "vi": "Nêu mục đích của Nina, nơi và giờ hẹn mới, đồ Rui cần mang và hạn trả lời. Dẫn mã câu."
+        },
+        "criteria": "U1–U4, distinguish old online plan from new proposed meeting; do not claim Rui has agreed.",
+        "model": {
+          "en": "Nina wants to practise a song together (U1). She proposes meeting at her cousin's flat at 5:40 (U2). Rui should bring the song sheet (U3) and reply by 3:00 (U4).",
+          "vi": "Nina muốn cùng tập một bài hát (U1). Nina đề xuất gặp tại căn hộ của anh/chị/em họ lúc 5:40 (U2). Rui cần mang bản lời/bản nhạc (U3) và trả lời trước hoặc lúc 3:00 (U4)."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A1-04": {
+      "title": "Read a timetable and one exception",
+      "goal": {
+        "en": "Match activities to times and places, distinguish a usual arrangement from a one-time change, and find a deadline.",
+        "vi": "Ghép hoạt động với giờ và địa điểm, phân biệt lịch thường lệ với thay đổi một lần và tìm hạn cuối."
+      },
+      "context": {
+        "en": "An update may change only one part of a timetable. Keep the other facts as written.",
+        "vi": "Thông báo cập nhật có thể chỉ đổi một phần lịch. Giữ các thông tin khác đúng như văn bản."
+      },
+      "strategy": [
+        {
+          "label": "Pair facts",
+          "labelVi": "Ghép thông tin",
+          "en": "Make a small row for each activity: time, place, action.",
+          "vi": "Lập một hàng cho mỗi hoạt động: giờ, nơi, hành động."
+        },
+        {
+          "label": "Exception",
+          "labelVi": "Ngoại lệ",
+          "en": "Underline usually and this time; answer for the date asked.",
+          "vi": "Gạch chân usually và this time; trả lời đúng ngày được hỏi."
+        },
+        {
+          "label": "Reason",
+          "labelVi": "Lý do",
+          "en": "Find because or another stated reason; don't guess.",
+          "vi": "Tìm because hoặc lý do được nêu; không suy đoán."
+        },
+        {
+          "label": "Deadline",
+          "labelVi": "Hạn cuối",
+          "en": "Read by or before with the action it limits.",
+          "vi": "Đọc by hoặc before cùng hành động mà chúng giới hạn."
+        }
+      ],
+      "modelTitle": "Sunday market update",
+      "passage": [
+        "S1. On Sunday, the fruit stall opens at 7:20 at the north entrance.",
+        "S2. The flower stall usually stands beside the fountain, but this Sunday it will stand near the clock because the fountain is being repaired.",
+        "S3. The bread stall opens at 8:10 in the usual place.",
+        "S4. Order a flower basket before Saturday noon."
+      ],
+      "lenses": [
+        {
+          "label": "SCHEDULE",
+          "refs": [
+            "S1",
+            "S3"
+          ],
+          "en": "Match each stall to its own opening time.",
+          "vi": "Ghép từng quầy với đúng giờ mở."
+        },
+        {
+          "label": "EXCEPTION",
+          "refs": [
+            "S2"
+          ],
+          "en": "Only the flower stall's location changes here; the repair is the stated reason.",
+          "vi": "Ở đây chỉ đổi vị trí quầy hoa; lý do được nêu là sửa đài phun nước."
+        },
+        {
+          "label": "DEADLINE",
+          "refs": [
+            "S4"
+          ],
+          "en": "The order must be made before Saturday noon.",
+          "vi": "Phải đặt giỏ hoa trước trưa thứ Bảy."
+        }
+      ],
+      "extras": [],
+      "worked": {
+        "prompt": "Where will the flower stall be this Sunday?",
+        "options": [
+          "A. Beside the fountain.",
+          "B. Near the clock.",
+          "C. At the north entrance."
+        ],
+        "answer": {
+          "en": "Model answer B. S2 identifies the temporary place. A is the usual place; C belongs to the fruit stall (S1).",
+          "vi": "B đúng theo S2. A là vị trí thường lệ; C là vị trí quầy trái cây theo S1."
+        }
+      },
+      "quickTitle": "Swimming centre update",
+      "quickText": "T1. The beginner swim starts at 6:15. T2. The water exercise normally uses Pool East, but today it uses Pool West because Pool East is closed for a repair. T3. Reserve a place for water exercise before 5:00.",
+      "checks": [
+        {
+          "id": "REA-A1-04-KQC01",
+          "prompt": "Why does water exercise use Pool West today?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Pool East is closed for a repair.",
+              "feedback": {
+                "en": "Correct: T2 states the reason.",
+                "vi": "T2 nêu lý do."
+              }
+            },
+            {
+              "id": "B",
+              "text": "The beginner swim starts earlier.",
+              "feedback": {
+                "en": "Incorrect: T1 gives a different activity's time, not a reason.",
+                "vi": "T1 nêu giờ hoạt động khác, không phải lý do."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Pool West is cheaper.",
+              "feedback": {
+                "en": "Incorrect: no price is stated.",
+                "vi": "Không nêu giá."
+              }
+            }
+          ],
+          "key": "A"
+        },
+        {
+          "id": "REA-A1-04-KQC02",
+          "prompt": "What should a visitor do before 5:00?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Finish swimming.",
+              "feedback": {
+                "en": "Incorrect: T3 gives a reservation deadline.",
+                "vi": "T3 nêu hạn đặt chỗ."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Repair Pool East.",
+              "feedback": {
+                "en": "Incorrect: the notice does not ask visitors to repair it.",
+                "vi": "Không yêu cầu khách sửa bể."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Reserve a place for water exercise.",
+              "feedback": {
+                "en": "Correct: T3 links the deadline to reservation.",
+                "vi": "T3 gắn hạn với đặt chỗ."
+              }
+            }
+          ],
+          "key": "C"
+        }
+      ],
+      "transfer": {
+        "text": "U1. The puppet show starts at 2:20 at the town theatre. U2. The ticket desk usually opens at the side door, but today it is at the main door because the side door is locked. U3. Collect reserved tickets before 2:00.",
+        "prompt": {
+          "en": "State the show start time, today's ticket desk location, why it changed, and the collection deadline. Cite sentence IDs.",
+          "vi": "Nêu giờ bắt đầu buổi diễn, vị trí quầy vé hôm nay, lý do đổi và hạn nhận vé. Dẫn mã câu."
+        },
+        "criteria": "U1–U3; keep event time and ticket deadline distinct; no invented opening time.",
+        "model": {
+          "en": "The show starts at 2:20 (U1). Today the desk is at the main door because the side door is locked (U2). Collect reserved tickets before 2:00 (U3).",
+          "vi": "Buổi diễn bắt đầu lúc 2:20 (U1). Hôm nay quầy vé ở cửa chính vì cửa bên bị khóa (U2). Nhận vé đã đặt trước 2:00 (U3)."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A1-05": {
+      "title": "Read weather conditions and invite a friend",
+      "goal": {
+        "en": "Find the normal plan and the weather alternative in a notice. Compare two short event offers and write a friendly invitation using supported details.",
+        "vi": "Tìm kế hoạch thường lệ và phương án theo thời tiết. So sánh hai thông báo ngắn và viết lời mời thân thiện dựa trên thông tin có thật."
+      },
+      "context": {
+        "en": "Weather can change a place or activity. An invitation should use the right condition, not promise a plan that the notice does not give.",
+        "vi": "Thời tiết có thể làm đổi nơi hoặc hoạt động. Lời mời cần giữ đúng điều kiện, không hứa điều thông báo không nêu."
+      },
+      "strategy": [
+        {
+          "label": "Gist",
+          "labelVi": "Ý chính",
+          "en": "Find what the notice invites people to do.",
+          "vi": "Tìm hoạt động mà thông báo mời mọi người tham gia."
+        },
+        {
+          "label": "Normal plan",
+          "labelVi": "Kế hoạch thường lệ",
+          "en": "Note the stated activity and place.",
+          "vi": "Ghi hoạt động và địa điểm được nêu."
+        },
+        {
+          "label": "If",
+          "labelVi": "Nếu",
+          "en": "Read the condition and its result together; a change is not always a cancellation.",
+          "vi": "Đọc điều kiện cùng kết quả; đổi kế hoạch không luôn là hủy."
+        },
+        {
+          "label": "Compare and invite",
+          "labelVi": "So sánh và mời",
+          "en": "Compare the offers with a friend's needs; give a friendly invitation with only supported details.",
+          "vi": "So sánh lựa chọn với nhu cầu của bạn; mời thân thiện bằng thông tin có căn cứ."
+        }
+      ],
+      "modelTitle": "Two weekend activities",
+      "passage": [
+        "Source A:",
+        "S1. Kite Hour starts at 4:15 on the beach.",
+        "S2. If the wind is too strong, meet at the pavilion to decorate kites instead.\nSource B:",
+        "S3. Story Hour starts at 4:45 in the bookshop.",
+        "S4. It takes place indoors in any weather."
+      ],
+      "lenses": [
+        {
+          "label": "NORMAL",
+          "refs": [
+            "S1",
+            "S3"
+          ],
+          "en": "Compare the normal activity, time and place.",
+          "vi": "So sánh hoạt động, giờ và nơi thường lệ."
+        },
+        {
+          "label": "CHANGE",
+          "refs": [
+            "S2"
+          ],
+          "en": "Strong wind changes both the place and the activity in A.",
+          "vi": "Gió quá mạnh làm đổi cả nơi và hoạt động ở A."
+        },
+        {
+          "label": "COMPARE",
+          "refs": [
+            "S2",
+            "S4"
+          ],
+          "en": "B remains indoors; A has a conditional alternative.",
+          "vi": "B luôn trong nhà; A có phương án tùy điều kiện."
+        }
+      ],
+      "extras": [],
+      "worked": {
+        "prompt": "The wind is too strong. What does Source A ask visitors to do?",
+        "options": [
+          "A. Fly kites on the beach.",
+          "B. Cancel both activities.",
+          "C. Decorate kites at the pavilion."
+        ],
+        "answer": {
+          "en": "Model answer C. S2 states the alternative. A ignores the condition; B invents a cancellation and wrongly extends A's rule to B.",
+          "vi": "C đúng theo S2. A bỏ qua điều kiện; B tự suy ra hủy và áp dụng sai quy định A cho B."
+        }
+      },
+      "quickTitle": "Two afternoon events",
+      "quickText": "T1. A chalk drawing event starts at 3:20 in the square. T2. If it is very hot, draw on paper in the community café instead. T3. A puzzle hour starts at 3:50 in the games room and stays indoors.",
+      "checks": [
+        {
+          "id": "REA-A1-05-KQC01",
+          "prompt": "What happens to the chalk drawing event if it is very hot?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It starts at 3:50.",
+              "feedback": {
+                "en": "Incorrect: T3 is the other event's time.",
+                "vi": "T3 nêu giờ sự kiện khác."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Participants draw on paper in the community café.",
+              "feedback": {
+                "en": "Correct: T2 states the alternative.",
+                "vi": "T2 nêu phương án thay thế."
+              }
+            },
+            {
+              "id": "C",
+              "text": "The notice cancels it.",
+              "feedback": {
+                "en": "Incorrect: T2 gives another plan, not a cancellation.",
+                "vi": "T2 đưa kế hoạch khác, không hủy."
+              }
+            }
+          ],
+          "key": "B"
+        },
+        {
+          "id": "REA-A1-05-KQC02",
+          "prompt": "Which event is stated to stay indoors?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Puzzle hour.",
+              "feedback": {
+                "en": "Correct: T3 explicitly says it stays indoors.",
+                "vi": "T3 nói rõ luôn trong nhà."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Chalk drawing in the square.",
+              "feedback": {
+                "en": "Incorrect: T1 gives the square as the normal place.",
+                "vi": "T1 nêu quảng trường là nơi thường lệ."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Both events are always indoors.",
+              "feedback": {
+                "en": "Incorrect: T1–T2 show a conditional change.",
+                "vi": "T1–T2 cho thấy thay đổi tùy điều kiện."
+              }
+            }
+          ],
+          "key": "A"
+        }
+      ],
+      "transfer": {
+        "text": "Source A: U1. A shell craft event begins at 10:40 on the seafront. U2. If the air is too cold, the same craft takes place inside the visitor centre.\nSource B: U3. A rhythm game begins at 11:10 in the music shop and takes place indoors in any weather.",
+        "prompt": {
+          "en": "Your friend likes crafts and is free only before 11:00. Compare the stated start times and activities. Write a short friendly invitation to the better-fitting event, including its cold-weather plan. Cite U1–U3. Do not promise it finishes before 11:00.",
+          "vi": "Bạn thích thủ công và chỉ rảnh trước 11:00. So sánh giờ bắt đầu và hoạt động. Viết lời mời ngắn thân thiện đến sự kiện phù hợp hơn, gồm phương án khi trời quá lạnh. Dẫn U1–U3. Không khẳng định sự kiện kết thúc trước 11:00."
+        },
+        "criteria": "identify A as better matching interests and start time, explicitly acknowledge finish time not stated; cite U1–U3; friendly invitation, conditional alternative retained; no claim of definite full attendance.",
+        "model": {
+          "en": "A starts at 10:40 and offers craft (U1); B starts at 11:10 and is a rhythm game (U3). Hi! Would you like to try the shell craft at 10:40 on the seafront? If it's too cold, we'll do the craft inside the visitor centre (U2). We should check the finish time first because the notice doesn't say when it ends.",
+          "vi": "A bắt đầu lúc 10:40 và có thủ công (U1); B bắt đầu lúc 11:10 và là trò chơi nhịp điệu (U3). Chào bạn! Bạn có muốn thử làm đồ thủ công từ vỏ sò lúc 10:40 ở bờ biển không? Nếu quá lạnh, ta sẽ làm trong trung tâm dành cho khách (U2). Cần hỏi giờ kết thúc trước vì thông báo không nêu."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A1-06": {
+      "title": "Read a menu or price list",
+      "goal": {
+        "en": "Read each line as one offer. Check quantity, price and your budget before asking for an item.",
+        "vi": "Đọc mỗi dòng như một lựa chọn. Kiểm tra số lượng, giá và ngân sách trước khi gọi món."
+      },
+      "context": {
+        "en": "A price list can name one item or a group of items. The price may cover the whole group.",
+        "vi": "Bảng giá có thể ghi một món hoặc nhiều món. Giá có thể áp dụng cho cả nhóm."
+      },
+      "strategy": [
+        {
+          "label": "Match",
+          "labelVi": "Ghép thông tin",
+          "en": "Keep the item and its price on the same line.",
+          "vi": "Ghép món và giá ở cùng một dòng."
+        },
+        {
+          "label": "Count",
+          "labelVi": "Đếm",
+          "en": "A or an names one item; a number and a plural noun show more than one.",
+          "vi": "A hoặc an chỉ một món; số đếm và danh từ số nhiều chỉ nhiều món."
+        },
+        {
+          "label": "Total",
+          "labelVi": "Tổng tiền",
+          "en": "Check whether a price covers a whole line. Add only the offers you choose.",
+          "vi": "Kiểm tra giá có áp dụng cho cả dòng không. Chỉ cộng giá các lựa chọn đã chọn."
+        },
+        {
+          "label": "Ask",
+          "labelVi": "Hỏi lịch sự",
+          "en": "Use “Can I have …, please?” with the exact quantity and item.",
+          "vi": "Dùng “Can I have …, please?” với đúng số lượng và món."
+        }
+      ],
+      "modelTitle": "Craft stall",
+      "passage": [
+        "S1. a badge — £1",
+        "S2. an eraser — £2",
+        "S3. three stickers — £3 (price for all three)",
+        "S4. All prices are for the full line."
+      ],
+      "lenses": [
+        {
+          "label": "ITEM",
+          "refs": [
+            "S1",
+            "S2",
+            "S3"
+          ],
+          "en": "Keep the name and price together.",
+          "vi": "Ghép tên món với giá."
+        },
+        {
+          "label": "QUANTITY",
+          "refs": [
+            "S1",
+            "S2",
+            "S3"
+          ],
+          "en": "A badge and an eraser each name one item; three stickers names a group of three.",
+          "vi": "Hai dòng đầu mỗi dòng một món; dòng thứ ba gồm ba hình dán."
+        },
+        {
+          "label": "TOTAL",
+          "refs": [
+            "S3",
+            "S4"
+          ],
+          "en": "£3 buys the whole sticker offer, not each sticker.",
+          "vi": "£3 là giá cả nhóm hình dán, không phải giá từng chiếc."
+        }
+      ],
+      "extras": [],
+      "worked": {
+        "prompt": "You have £4 and want a badge and three stickers. Which choice fits?",
+        "options": [
+          "A. Both for £4.",
+          "B. Both for £10.",
+          "C. Only the badge."
+        ],
+        "answer": {
+          "en": "Model answer A. S1 + S3 = £1 + £3 = £4; S4 confirms the whole-line price. B multiplies the group price again; C ignores the affordable combination.",
+          "vi": "A đúng vì £1 + £3 = £4, theo S1, S3, S4. B nhân lại giá cả nhóm; C bỏ qua lựa chọn đủ ngân sách."
+        }
+      },
+      "quickTitle": "Flower stall",
+      "quickText": "T1. a rose — £2\nT2. an orchid — £5\nT3. four daisies — £6 (all four together)",
+      "checks": [
+        {
+          "id": "REA-A1-06-KQC01",
+          "prompt": "Which line offers several flowers?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A rose.",
+              "feedback": {
+                "en": "Incorrect: a names one (T1).",
+                "vi": "A chỉ một bông (T1)."
+              }
+            },
+            {
+              "id": "B",
+              "text": "An orchid.",
+              "feedback": {
+                "en": "Incorrect: an names one (T2).",
+                "vi": "An chỉ một bông (T2)."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Four daisies.",
+              "feedback": {
+                "en": "Correct: four is the quantity (T3).",
+                "vi": "Four là số lượng (T3)."
+              }
+            }
+          ],
+          "key": "C"
+        },
+        {
+          "id": "REA-A1-06-KQC02",
+          "prompt": "You have £7. Can you buy a rose and an orchid?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Yes, for £7.",
+              "feedback": {
+                "en": "Correct: £2 + £5 = £7 (T1–T2).",
+                "vi": "£2 + £5 = £7."
+              }
+            },
+            {
+              "id": "B",
+              "text": "No, they cost £8.",
+              "feedback": {
+                "en": "Incorrect: add the two listed prices.",
+                "vi": "Cộng đúng hai giá đã ghi."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Yes, for £6.",
+              "feedback": {
+                "en": "Incorrect: £6 belongs to the daisies (T3).",
+                "vi": "£6 là giá hoa cúc (T3)."
+              }
+            }
+          ],
+          "key": "A"
+        }
+      ],
+      "transfer": {
+        "text": "U1. a ribbon — £2. U2. an envelope — £1. U3. five paper stars — £4 (all five together). U4. Prices are for the full line.",
+        "prompt": {
+          "en": "You have £6. Choose a ribbon and the stars if you can afford them. Give the total, cite the lines and write a polite request.",
+          "vi": "Bạn có £6. Chọn một dải ruy băng và các ngôi sao nếu đủ tiền. Nêu tổng tiền, dẫn mã dòng và viết lời yêu cầu lịch sự."
+        },
+        "criteria": "correct quantity, total and source IDs; polite request; no invented single-star price.",
+        "model": {
+          "en": "£2 + £4 = £6 (U1, U3, U4). Can I have a ribbon and five paper stars, please?",
+          "vi": "Tổng £6 theo U1, U3, U4. Lời yêu cầu: Can I have a ribbon and five paper stars, please?"
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A1-07": {
+      "title": "Read instructions and ask about missing information",
+      "goal": {
+        "en": "Find where and when to do something, follow the steps, notice rules, and ask for a missing fact.",
+        "vi": "Tìm địa điểm và thời gian, làm theo trình tự, chú ý quy định và hỏi thông tin còn thiếu."
+      },
+      "context": {
+        "en": "A help card may tell you whom to ask without giving every answer.",
+        "vi": "Thẻ hướng dẫn có thể chỉ người cần hỏi mà không cung cấp mọi câu trả lời."
+      },
+      "strategy": [
+        {
+          "label": "Locate",
+          "labelVi": "Tìm thông tin",
+          "en": "Match each place or time to its action.",
+          "vi": "Ghép địa điểm hoặc thời gian với đúng hành động."
+        },
+        {
+          "label": "Sequence",
+          "labelVi": "Trình tự",
+          "en": "Read first, next and then in order.",
+          "vi": "Đọc first, next và then theo thứ tự."
+        },
+        {
+          "label": "Rules",
+          "labelVi": "Quy định",
+          "en": "Do not tells you what is forbidden, not what to do.",
+          "vi": "Do not chỉ điều bị cấm, không phải điều cần làm."
+        },
+        {
+          "label": "Ask",
+          "labelVi": "Hỏi",
+          "en": "Check both sources. Ask a question about a fact that neither source gives.",
+          "vi": "Kiểm tra cả hai nguồn. Hỏi về dữ kiện chưa được nêu."
+        }
+      ],
+      "modelTitle": "Community locker",
+      "passage": [
+        "Source A:",
+        "S1. Get a locker key from the sports desk.",
+        "S2. First put your bag inside. Then lock the door.",
+        "S3. Do not leave food inside.",
+        "S4. Empty the locker by 6:00 p.m.\nSource B:",
+        "S5. Ask the desk worker about the cost of a lost key."
+      ],
+      "lenses": [
+        {
+          "label": "ACTION",
+          "refs": [
+            "S1",
+            "S4"
+          ],
+          "en": "Pick up and empty are different actions.",
+          "vi": "Nhận chìa khóa và dọn tủ là hai hành động khác nhau."
+        },
+        {
+          "label": "SEQUENCE",
+          "refs": [
+            "S2",
+            "S3"
+          ],
+          "en": "Follow the order and respect the negative rule.",
+          "vi": "Làm đúng thứ tự và tuân thủ điều cấm."
+        },
+        {
+          "label": "MISSING",
+          "refs": [
+            "S5"
+          ],
+          "en": "The worker can tell you the cost, but the cost is not written here.",
+          "vi": "Nhân viên có thể cho biết phí, nhưng phí chưa được ghi."
+        }
+      ],
+      "extras": [],
+      "worked": {
+        "prompt": "You have lost the key. Which question asks for the missing information?",
+        "options": [
+          "A. Where do I get a key?",
+          "B. How much does a lost key cost?",
+          "C. When must I empty the locker?"
+        ],
+        "answer": {
+          "en": "Model answer B: S5 identifies whom to ask but does not give a price. A is answered by S1; C by S4.",
+          "vi": "B hỏi phí chưa được ghi ở S5. A đã có đáp án ở S1; C ở S4."
+        }
+      },
+      "quickTitle": "Equipment cupboard",
+      "quickText": "T1. Take a ball from the cupboard beside the office. T2. Write your name on the sheet before taking it outside. T3. Do not leave the ball in the rain. T4. Ask the coach about the time for bringing it back.",
+      "checks": [
+        {
+          "id": "REA-A1-07-KQC01",
+          "prompt": "What should you do before taking the ball outside?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Write your name.",
+              "feedback": {
+                "en": "Correct: T2 gives that step.",
+                "vi": "T2 nêu bước này."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Leave it in the rain.",
+              "feedback": {
+                "en": "Incorrect: T3 forbids it.",
+                "vi": "T3 cấm việc này."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Move the cupboard.",
+              "feedback": {
+                "en": "Incorrect: no such instruction.",
+                "vi": "Không có hướng dẫn đó."
+              }
+            }
+          ],
+          "key": "A"
+        },
+        {
+          "id": "REA-A1-07-KQC02",
+          "prompt": "Which fact is missing?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Where the cupboard is.",
+              "feedback": {
+                "en": "Incorrect: T1 states it.",
+                "vi": "T1 đã nêu."
+              }
+            },
+            {
+              "id": "B",
+              "text": "The return time.",
+              "feedback": {
+                "en": "Correct: T4 tells you to ask, not the time itself.",
+                "vi": "T4 bảo hỏi, chưa nêu giờ."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Whether rain is allowed.",
+              "feedback": {
+                "en": "Incorrect: T3 gives the rule.",
+                "vi": "T3 có quy định."
+              }
+            }
+          ],
+          "key": "B"
+        }
+      ],
+      "transfer": {
+        "text": "U1. Collect a paint apron at the craft counter. U2. First put it on, then choose a brush. U3. Do not wash brushes in the drinking-water sink. U4. Ask the assistant where to put used aprons.",
+        "prompt": {
+          "en": "State the first action after collecting the apron, one forbidden action, and one question about missing information. Cite IDs.",
+          "vi": "Nêu hành động đầu tiên sau khi nhận tạp dề, một việc bị cấm và một câu hỏi về thông tin thiếu. Dẫn mã câu."
+        },
+        "criteria": "first step U2; rule U3; missing place U4; correctly formed useful question, no guessed return location.",
+        "model": {
+          "en": "Put the apron on first (U2). Do not wash brushes in the drinking-water sink (U3). Where should I put my used apron? (U4).",
+          "vi": "Mặc tạp dề trước (U2). Không rửa cọ trong bồn nước uống (U3). Hỏi nơi để tạp dề đã dùng (U4)."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A1-08": {
+      "title": "Read a timetable and a separate event",
+      "goal": {
+        "en": "Match the day, start time and place to the right activity. Keep separate events separate and ask about missing details.",
+        "vi": "Ghép đúng ngày, giờ bắt đầu và địa điểm với hoạt động. Phân biệt các sự kiện và hỏi thông tin thiếu."
+      },
+      "context": {
+        "en": "A timetable and a separate notice may name similar activities without describing the same event.",
+        "vi": "Thời khóa biểu và thông báo riêng có thể ghi hoạt động tương tự nhưng không phải cùng một sự kiện."
+      },
+      "strategy": [
+        {
+          "label": "Row",
+          "labelVi": "Dòng",
+          "en": "Read the day, time, activity and place together.",
+          "vi": "Đọc ngày, giờ, hoạt động và địa điểm cùng nhau."
+        },
+        {
+          "label": "Labels",
+          "labelVi": "Nhãn",
+          "en": "Start is not finish; a room is not a time.",
+          "vi": "Giờ bắt đầu không phải giờ kết thúc; phòng không phải thời gian."
+        },
+        {
+          "label": "Separate",
+          "labelVi": "Phân biệt",
+          "en": "Check which source describes the event you need.",
+          "vi": "Kiểm tra nguồn nào mô tả sự kiện cần tìm."
+        },
+        {
+          "label": "Missing",
+          "labelVi": "Thông tin thiếu",
+          "en": "If neither source gives the fact, ask rather than guess.",
+          "vi": "Nếu cả hai nguồn đều không nêu, hãy hỏi thay vì đoán."
+        }
+      ],
+      "modelTitle": "Community centre programme",
+      "passage": [
+        "Source A — weekday classes:",
+        "S1. Tuesday 11:00 — Dance — Studio A.",
+        "S2. Thursday 10:00 — Cooking — Kitchen.",
+        "S3. All listed times are start times.\nSource B — special event:",
+        "S4. Family Dance is on Sunday at 2:00 p.m. in Studio B.",
+        "S5. Ask the organiser about the finishing time."
+      ],
+      "lenses": [
+        {
+          "label": "ROW",
+          "refs": [
+            "S1",
+            "S2"
+          ],
+          "en": "Keep each day's time, activity and place together.",
+          "vi": "Ghép đúng ngày, giờ, hoạt động và địa điểm."
+        },
+        {
+          "label": "SEPARATE",
+          "refs": [
+            "S1",
+            "S4"
+          ],
+          "en": "Dance class and Family Dance are different events.",
+          "vi": "Lớp nhảy và sự kiện Family Dance khác nhau."
+        },
+        {
+          "label": "MISSING",
+          "refs": [
+            "S3",
+            "S5"
+          ],
+          "en": "The sources do not give a finishing time.",
+          "vi": "Nguồn không nêu giờ kết thúc."
+        }
+      ],
+      "extras": [],
+      "worked": {
+        "prompt": "Which statement is supported about Family Dance?",
+        "options": [
+          "A. It starts Tuesday in Studio A.",
+          "B. It starts Sunday at 2:00 p.m. in Studio",
+          "B.",
+          "C. It finishes at 2:00 p.m."
+        ],
+        "answer": {
+          "en": "Model answer B from S4. A uses the weekday class (S1); C changes the starting time into a finishing time (S4–S5).",
+          "vi": "B đúng theo S4. A nhầm với lớp ngày thường; C nhầm giờ bắt đầu thành giờ kết thúc."
+        }
+      },
+      "quickTitle": "Workshop timetable",
+      "quickText": "T1. Monday 11:30 — Sewing — Hall East. T2. Thursday 1:00 p.m. — Drawing — Hall West. T3. These are start times.\nT4. A special Sewing Show starts Saturday at 4:30 p.m. in the main hall.",
+      "checks": [
+        {
+          "id": "REA-A1-08-KQC01",
+          "prompt": "Where is the Monday workshop?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Hall East.",
+              "feedback": {
+                "en": "Correct: T1 pairs Monday with Hall East.",
+                "vi": "T1 ghép đúng ngày với Hall East."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Hall West.",
+              "feedback": {
+                "en": "Incorrect: T2 is Thursday.",
+                "vi": "T2 thuộc thứ Năm."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Main hall.",
+              "feedback": {
+                "en": "Incorrect: T4 is the show.",
+                "vi": "T4 là buổi trình diễn."
+              }
+            }
+          ],
+          "key": "A"
+        },
+        {
+          "id": "REA-A1-08-KQC02",
+          "prompt": "Which question asks for a fact not given?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Where is the show?",
+              "feedback": {
+                "en": "Incorrect: T4 answers this.",
+                "vi": "T4 đã trả lời."
+              }
+            },
+            {
+              "id": "B",
+              "text": "When does Drawing start?",
+              "feedback": {
+                "en": "Incorrect: T2 answers this.",
+                "vi": "T2 đã trả lời."
+              }
+            },
+            {
+              "id": "C",
+              "text": "When does the show finish?",
+              "feedback": {
+                "en": "Correct: T4 gives only its start.",
+                "vi": "T4 chỉ nêu giờ bắt đầu."
+              }
+            }
+          ],
+          "key": "C"
+        }
+      ],
+      "transfer": {
+        "text": "U1. Tuesday 1:15 p.m. — Pottery — Room Blue. U2. Friday 11:00 — Music — Room Yellow. U3. All times are starts. U4. A special Pottery Display starts Sunday at 5:00 p.m. in the entrance hall.",
+        "prompt": {
+          "en": "Give the day, starting time and place for the regular Pottery class and the special display. Ask one useful question about a missing fact. Cite IDs.",
+          "vi": "Nêu ngày, giờ bắt đầu và địa điểm của lớp gốm thường lệ và buổi trưng bày riêng. Hỏi một thông tin thiếu và dẫn mã câu."
+        },
+        "criteria": "distinguish U1 from U4, exact facts, missing finishing time or another genuinely absent relevant fact; no guessed details.",
+        "model": {
+          "en": "Pottery class starts Tuesday at 1:15 p.m. in Room Blue (U1). The display starts Sunday at 5:00 p.m. in the entrance hall (U4). What time does the display finish? (not stated in U1–U4).",
+          "vi": "Lớp gốm bắt đầu thứ Ba lúc 1:15 chiều ở Room Blue (U1). Trưng bày bắt đầu Chủ nhật lúc 5:00 chiều tại sảnh vào (U4). Hỏi giờ kết thúc buổi trưng bày vì nguồn chưa nêu."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A1-09": {
+      "title": "Follow a written route",
+      "goal": {
+        "en": "Follow the order of places and the directions from a given start. Do not guess distance or travel time.",
+        "vi": "Theo thứ tự địa điểm và hướng đi từ điểm xuất phát. Không đoán khoảng cách hoặc thời gian."
+      },
+      "context": {
+        "en": "A written map can show where places are without showing how far apart they are.",
+        "vi": "Sơ đồ bằng chữ có thể chỉ vị trí mà không cho biết khoảng cách."
+      },
+      "strategy": [
+        {
+          "label": "Start",
+          "labelVi": "Điểm đầu",
+          "en": "Identify the exact starting place.",
+          "vi": "Xác định đúng điểm xuất phát."
+        },
+        {
+          "label": "Order",
+          "labelVi": "Thứ tự",
+          "en": "Follow the named places in the written order; reverse the order for the opposite direction.",
+          "vi": "Theo thứ tự đã ghi; đảo thứ tự khi đi hướng ngược lại."
+        },
+        {
+          "label": "Turn",
+          "labelVi": "Rẽ",
+          "en": "Finish the first move before starting the next. Use the given direction key.",
+          "vi": "Hoàn thành bước đầu trước khi rẽ. Dùng chú giải hướng."
+        },
+        {
+          "label": "Limits",
+          "labelVi": "Giới hạn",
+          "en": "A route does not tell distance or time unless the source states it.",
+          "vi": "Đường đi không cho biết khoảng cách hoặc thời gian nếu nguồn không nêu."
+        }
+      ],
+      "modelTitle": "Hill Village",
+      "passage": [
+        "Source A:",
+        "S1. From WEST to EAST on Oak Lane: STATION → POST OFFICE → FLOWER SHOP.",
+        "S2. The fountain is immediately NORTH of the post office.",
+        "S3. EAST means right; NORTH means up. No distances are given.\nSource B:",
+        "S4. From the flower shop, go WEST to the post office, then NORTH to the fountain."
+      ],
+      "lenses": [
+        {
+          "label": "ORDER",
+          "refs": [
+            "S1"
+          ],
+          "en": "Read the order from the stated direction.",
+          "vi": "Đọc thứ tự theo hướng đã nêu."
+        },
+        {
+          "label": "TURN",
+          "refs": [
+            "S2",
+            "S4"
+          ],
+          "en": "The first move ends at the post office; then go north.",
+          "vi": "Bước đầu đến bưu điện; sau đó đi về phía bắc."
+        },
+        {
+          "label": "LIMIT",
+          "refs": [
+            "S3"
+          ],
+          "en": "The source gives direction but no distance.",
+          "vi": "Nguồn nêu hướng nhưng không nêu khoảng cách."
+        }
+      ],
+      "extras": [
+        "Schematic (not to scale, teaching model only): fountain above post office; station — post office — flower shop. Show N up, E right; no numeric distances or time."
+      ],
+      "worked": {
+        "prompt": "Starting at the flower shop, how do you reach the fountain?",
+        "options": [
+          "A. Go east, then south.",
+          "B. Go north from the flower shop.",
+          "C. Go west to the post office, then north."
+        ],
+        "answer": {
+          "en": "Model answer C (S4, supported by S1–S2). A reverses directions; B starts the northward move at the wrong place.",
+          "vi": "C đúng theo S4, S1–S2. A đảo hướng; B đi về phía bắc từ sai điểm."
+        }
+      },
+      "quickTitle": "Pine Square",
+      "quickText": "T1. From WEST to EAST: BANK → BOOKSHOP → CLOCK TOWER. T2. The statue is immediately SOUTH of the bookshop. T3. No travel times are shown.",
+      "checks": [
+        {
+          "id": "REA-A1-09-KQC01",
+          "prompt": "From the bank, which route reaches the statue using the stated places?",
+          "options": [
+            {
+              "id": "A",
+              "text": "East to the bookshop, then south.",
+              "feedback": {
+                "en": "Correct: T1–T2 support both moves.",
+                "vi": "T1–T2 chứng minh hai bước."
+              }
+            },
+            {
+              "id": "B",
+              "text": "West to the clock tower, then north.",
+              "feedback": {
+                "en": "Incorrect: the order and turn do not match.",
+                "vi": "Sai thứ tự và hướng rẽ."
+              }
+            },
+            {
+              "id": "C",
+              "text": "East to the clock tower, then south.",
+              "feedback": {
+                "en": "Incorrect: T2 places the statue south of the bookshop.",
+                "vi": "T2 đặt tượng phía nam hiệu sách."
+              }
+            }
+          ],
+          "key": "A"
+        },
+        {
+          "id": "REA-A1-09-KQC02",
+          "prompt": "Which fact is not given?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The order of bank and bookshop.",
+              "feedback": {
+                "en": "Incorrect: T1 shows it.",
+                "vi": "T1 đã nêu."
+              }
+            },
+            {
+              "id": "B",
+              "text": "The exact walking time.",
+              "feedback": {
+                "en": "Correct: T3 explicitly says it is not shown.",
+                "vi": "T3 nói rõ không có thời gian đi bộ."
+              }
+            },
+            {
+              "id": "C",
+              "text": "The direction from bookshop to statue.",
+              "feedback": {
+                "en": "Incorrect: T2 states south.",
+                "vi": "T2 nêu hướng nam."
+              }
+            }
+          ],
+          "key": "B"
+        }
+      ],
+      "transfer": {
+        "text": "U1. From WEST to EAST on Cedar Road: HOTEL → MARKET → BRIDGE. U2. The playground is immediately SOUTH of the market. U3. The map gives no walking distances or times.",
+        "prompt": {
+          "en": "Give two directions from the bridge to the playground using the named places. Cite the IDs. Say one fact you cannot find.",
+          "vi": "Nêu hai hướng đi từ cây cầu đến sân chơi qua các địa điểm đã nêu. Dẫn mã câu. Nêu một dữ kiện không tìm được."
+        },
+        "criteria": "west to market then south, U1–U2; no guessed distance or time (U3).",
+        "model": {
+          "en": "Go west from the bridge to the market (U1), then south to the playground (U2). The walking time is not given (U3).",
+          "vi": "Đi về phía tây từ cầu đến chợ (U1), rồi đi về phía nam đến sân chơi (U2). Không có thông tin thời gian đi bộ (U3)."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A2-01": {
+      "title": "Read for main idea, detail and supported inference",
+      "goal": {
+        "en": "Identify the main idea, locate details, work out a simple purpose, and infer a word's meaning using nearby clues.",
+        "vi": "Xác định ý chính, tìm chi tiết, suy ra mục đích đơn giản và đoán nghĩa từ dựa vào ngữ cảnh."
+      },
+      "context": {
+        "en": "A short article may contain several examples that support one overall point. A detail alone is not the main idea.",
+        "vi": "Một bài viết ngắn có thể có nhiều ví dụ hỗ trợ một ý chung. Một chi tiết riêng lẻ không phải ý chính."
+      },
+      "strategy": [
+        {
+          "label": "Gist",
+          "labelVi": "Ý chính",
+          "en": "Read the whole text, then choose an idea broad enough to cover its important parts.",
+          "vi": "Đọc toàn bài rồi chọn ý bao quát được các phần quan trọng."
+        },
+        {
+          "label": "Locate",
+          "labelVi": "Tìm chi tiết",
+          "en": "Identify the question word and read around the matching information.",
+          "vi": "Xác định từ để hỏi rồi đọc quanh thông tin tương ứng."
+        },
+        {
+          "label": "Infer",
+          "labelVi": "Suy luận",
+          "en": "Combine clues to explain a likely purpose; do not add facts the text cannot support.",
+          "vi": "Kết hợp dấu hiệu để giải thích mục đích hợp lý, không thêm dữ kiện thiếu bằng chứng."
+        },
+        {
+          "label": "Context",
+          "labelVi": "Ngữ cảnh",
+          "en": "Try a meaning for an unfamiliar word and test it in its sentence.",
+          "vi": "Thử nghĩa của từ lạ và kiểm tra trong câu chứa từ đó."
+        }
+      ],
+      "modelTitle": "A neighbourhood repair corner",
+      "passage": [
+        "S1. A repair corner has opened in a shopping arcade, where people can learn to fix small household objects.",
+        "S2. Each visitor works beside a helper and tries simple repairs before taking the object home.",
+        "S3. The corner lends a small toolkit, a box containing basic tools for the repair.",
+        "S4. Visitors can also watch a demonstration if they do not have anything to repair.",
+        "S5. The organisers hope people will feel more confident about fixing things instead of replacing them."
+      ],
+      "lenses": [
+        {
+          "label": "GIST",
+          "refs": [
+            "S1",
+            "S2",
+            "S4",
+            "S5"
+          ],
+          "en": "Learning to repair is the broad idea; the individual activities support it.",
+          "vi": "Học sửa đồ là ý bao quát; các hoạt động cụ thể hỗ trợ ý này."
+        },
+        {
+          "label": "DETAIL",
+          "refs": [
+            "S2",
+            "S4"
+          ],
+          "en": "The text gives two ways to take part, working with a helper or watching a demonstration.",
+          "vi": "Có hai cách tham gia: làm cùng người hướng dẫn hoặc xem minh họa."
+        },
+        {
+          "label": "PURPOSE",
+          "refs": [
+            "S1",
+            "S5"
+          ],
+          "en": "The stated aim is to build confidence; the passage does not say every visitor will repair everything successfully.",
+          "vi": "Mục tiêu là tăng tự tin; bài không nói mọi khách đều sửa thành công mọi đồ vật."
+        },
+        {
+          "label": "WORD IN CONTEXT",
+          "refs": [
+            "S3"
+          ],
+          "en": "The words after toolkit explain that it contains tools.",
+          "vi": "Các từ sau toolkit giải thích đó là hộp chứa dụng cụ."
+        }
+      ],
+      "extras": [],
+      "worked": {
+        "prompt": "Which statement best summarises the text?",
+        "options": [
+          "A. The repair corner helps people learn basic repairs and feel more confident.",
+          "B. The repair corner is only for people who own tools.",
+          "C. Every visitor must repair an object.",
+          "D. The shopping arcade sells only household objects."
+        ],
+        "answer": {
+          "en": "Model answer A: S1 and S5 give the overall purpose; S2 and S4 show ways to learn. B contradicts S3; C contradicts S4; D invents a restriction about the arcade.",
+          "vi": "A bao quát mục đích theo S1, S5 và các cách học ở S2, S4. B trái S3; C trái S4; D tự thêm giới hạn về khu mua sắm."
+        }
+      },
+      "quickTitle": "Local history recordings",
+      "quickText": "T1. A town project records stories told by older residents. T2. Young interviewers learn how to ask questions and listen carefully. T3. The recordings are stored in an archive, a collection kept for people to use later. T4. The organisers want future listeners to understand how everyday life has changed.",
+      "checks": [
+        {
+          "id": "REA-A2-01-KQC01",
+          "prompt": "What is the main idea?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Young people must buy recording equipment.",
+              "feedback": {
+                "en": "Incorrect: no purchase requirement is stated.",
+                "vi": "Không nêu yêu cầu mua thiết bị."
+              }
+            },
+            {
+              "id": "B",
+              "text": "A project collects memories and helps people understand changes in local life.",
+              "feedback": {
+                "en": "Correct: T1 and T4 express the overall purpose; T2 supports it.",
+                "vi": "T1 và T4 nêu mục đích chung; T2 hỗ trợ."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Every resident remembers the same events.",
+              "feedback": {
+                "en": "Incorrect: the text makes no such claim.",
+                "vi": "Văn bản không khẳng định điều đó."
+              }
+            }
+          ],
+          "key": "B"
+        },
+        {
+          "id": "REA-A2-01-KQC02",
+          "prompt": "What does archive mean in T3?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A collection kept for later use.",
+              "feedback": {
+                "en": "Correct: T3 explains the word directly.",
+                "vi": "T3 giải thích trực tiếp."
+              }
+            },
+            {
+              "id": "B",
+              "text": "A person who asks questions.",
+              "feedback": {
+                "en": "Incorrect: T2 describes interviewers.",
+                "vi": "T2 mô tả người phỏng vấn."
+              }
+            },
+            {
+              "id": "C",
+              "text": "A change in everyday life.",
+              "feedback": {
+                "en": "Incorrect: T4 gives the purpose, not the word's meaning.",
+                "vi": "T4 nêu mục đích, không phải nghĩa từ."
+              }
+            }
+          ],
+          "key": "A"
+        }
+      ],
+      "transfer": {
+        "text": "U1. A small theatre invites visitors to watch how a play is prepared. U2. Actors explain how they practise a scene, while technicians show the lighting equipment. U3. The theatre gives visitors a programme, a printed guide to the event. U4. The organisers want people to understand the work behind a performance.",
+        "prompt": {
+          "en": "Write the main idea, one supporting detail and the meaning of programme. Explain a likely purpose of the demonstrations using sentence IDs.",
+          "vi": "Viết ý chính, một chi tiết hỗ trợ và nghĩa từ programme. Giải thích mục đích hợp lý của phần minh họa, dẫn mã câu."
+        },
+        "criteria": "broad idea U1/U4; detail U2; meaning U3; purpose supported by U2/U4; no invented tickets, prices or performance dates.",
+        "model": {
+          "en": "The theatre helps visitors understand how a play is prepared (U1, U4). Technicians show lighting equipment (U2). A programme is a printed guide (U3). The demonstrations help visitors see the work behind the performance (U2, U4).",
+          "vi": "Nhà hát giúp khách hiểu cách chuẩn bị vở diễn (U1, U4). Kỹ thuật viên giới thiệu thiết bị chiếu sáng (U2). Programme là tài liệu in hướng dẫn về sự kiện (U3). Minh họa giúp hiểu công việc phía sau buổi diễn (U2, U4)."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A2-02": {
+      "title": "Read an announcement with conditions and contrast",
+      "goal": {
+        "en": "Find an announcement's purpose and details, interpret conditions and permission, and explain a contrast without inventing facts.",
+        "vi": "Tìm mục đích và chi tiết thông báo, hiểu điều kiện và quyền được phép, giải thích sự tương phản mà không tự thêm dữ kiện."
+      },
+      "context": {
+        "en": "An announcement may mention an idea that was considered but not chosen. Read the final decision and its reason.",
+        "vi": "Thông báo có thể nhắc ý tưởng đã cân nhắc nhưng không được chọn. Đọc quyết định cuối cùng và lý do."
+      },
+      "strategy": [
+        {
+          "label": "Purpose",
+          "labelVi": "Mục đích",
+          "en": "Identify the event and what readers need to do.",
+          "vi": "Xác định sự kiện và việc người đọc cần làm."
+        },
+        {
+          "label": "Condition",
+          "labelVi": "Điều kiện",
+          "en": "Read the action together with words such as as long as and only if.",
+          "vi": "Đọc hành động cùng các từ chỉ điều kiện như as long as và only if."
+        },
+        {
+          "label": "Contrast",
+          "labelVi": "Tương phản",
+          "en": "Separate the earlier idea from the decision after however.",
+          "vi": "Tách ý tưởng ban đầu khỏi quyết định sau however."
+        },
+        {
+          "label": "Fact or inference",
+          "labelVi": "Dữ kiện hay suy luận",
+          "en": "Check what is stated; explain a supported inference cautiously.",
+          "vi": "Kiểm tra điều được nêu; diễn đạt suy luận có bằng chứng một cách thận trọng."
+        }
+      ],
+      "modelTitle": "Community radio open session",
+      "passage": [
+        "S1. The community radio station will hold a short recording session on Tuesday evening.",
+        "S2. Visitors may record a one-minute message as long as they sign up at the reception desk.",
+        "S3. People who prefer not to speak can watch a recording demonstration.",
+        "S4. The team considered holding the session outdoors. However, it chose the studio because the street is noisy.",
+        "S5. The station will lend headphones during the session."
+      ],
+      "lenses": [
+        {
+          "label": "PURPOSE",
+          "refs": [
+            "S1",
+            "S2",
+            "S3"
+          ],
+          "en": "The event gives visitors a chance to record or observe.",
+          "vi": "Sự kiện cho khách cơ hội ghi âm hoặc quan sát."
+        },
+        {
+          "label": "CONDITION",
+          "refs": [
+            "S2"
+          ],
+          "en": "Signing up is a condition for recording a message, not a stated rule for watching.",
+          "vi": "Đăng ký là điều kiện ghi âm, không phải quy định được nêu cho việc xem."
+        },
+        {
+          "label": "CONTRAST",
+          "refs": [
+            "S4"
+          ],
+          "en": "The outdoor idea was considered; the studio is the chosen place.",
+          "vi": "Phương án ngoài trời được cân nhắc; phòng thu là nơi được chọn."
+        },
+        {
+          "label": "INFERENCE",
+          "refs": [
+            "S4"
+          ],
+          "en": "Less street noise is the stated reason for choosing the studio; the text does not promise a perfect recording.",
+          "vi": "Tiếng ồn đường phố là lý do chọn phòng thu; không có lời hứa bản ghi hoàn hảo."
+        }
+      ],
+      "extras": [],
+      "worked": {
+        "prompt": "A visitor wants to record a message. What must they do according to the notice?",
+        "options": [
+          "A. Bring their own headphones.",
+          "B. Record in the street.",
+          "C. Sign up at reception.",
+          "D. Record for ten minutes."
+        ],
+        "answer": {
+          "en": "Model answer C (S2). A ignores the lending offer in S5 and invents a requirement; B confuses the discarded idea with the decision (S4); D changes the stated length (S2).",
+          "vi": "C đúng theo S2. A bỏ qua việc cho mượn ở S5 và thêm yêu cầu; B nhầm phương án đã bỏ (S4); D đổi thời lượng ở S2."
+        }
+      },
+      "quickTitle": "Local chess demonstration",
+      "quickText": "T1. Visitors can play a practice match provided they put their names on the match sheet. T2. Spectators can watch from the back of the room. T3. The organisers considered using the entrance hall. However, they chose a side room because it has more space for tables.",
+      "checks": [
+        {
+          "id": "REA-A2-02-KQC01",
+          "prompt": "What is required for playing a practice match?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Register on the match sheet.",
+              "feedback": {
+                "en": "Correct: T1 states the condition.",
+                "vi": "T1 nêu điều kiện."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Sit at the back as a spectator.",
+              "feedback": {
+                "en": "Incorrect: T2 describes watching.",
+                "vi": "T2 mô tả việc xem."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Use the entrance hall.",
+              "feedback": {
+                "en": "Incorrect: T3 says the side room was chosen.",
+                "vi": "T3 nói chọn phòng bên."
+              }
+            }
+          ],
+          "key": "A"
+        },
+        {
+          "id": "REA-A2-02-KQC02",
+          "prompt": "Why is however used in T3?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To give a match score.",
+              "feedback": {
+                "en": "Incorrect: there is no score.",
+                "vi": "Không có điểm trận đấu."
+              }
+            },
+            {
+              "id": "B",
+              "text": "To introduce a rule about spectators.",
+              "feedback": {
+                "en": "Incorrect: T2 is about spectators.",
+                "vi": "T2 nói về khán giả."
+              }
+            },
+            {
+              "id": "C",
+              "text": "To contrast the earlier location idea with the chosen room.",
+              "feedback": {
+                "en": "Correct: T3 separates the two plans.",
+                "vi": "T3 phân biệt hai phương án."
+              }
+            }
+          ],
+          "key": "C"
+        }
+      ],
+      "transfer": {
+        "text": "U1. A craft centre will run a short paper-folding demonstration. U2. Visitors can make a model provided they collect a materials card at the entrance. U3. Other visitors can watch the instructor. U4. The centre considered using a corridor. However, it chose the main room because the corridor is narrow.",
+        "prompt": {
+          "en": "Explain the event's purpose, condition for making a model and final location decision. Cite IDs. State one fact the text does not give.",
+          "vi": "Giải thích mục đích sự kiện, điều kiện làm mô hình và quyết định địa điểm cuối cùng. Dẫn mã câu. Nêu một thông tin chưa được cung cấp."
+        },
+        "criteria": "U1–U3 purpose and condition; U4 contrast and reason; one genuinely missing fact, no invented cost or attendance capacity.",
+        "model": {
+          "en": "The event shows paper folding and lets visitors watch or make a model (U1–U3). To make one, collect a materials card (U2). The main room was chosen because the corridor is narrow (U4). The notice does not give the starting time.",
+          "vi": "Sự kiện minh họa gấp giấy và cho khách xem hoặc làm mô hình (U1–U3). Muốn làm cần lấy thẻ vật liệu (U2). Chọn phòng chính vì hành lang hẹp (U4). Chưa nêu giờ bắt đầu."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A2-03": {
+      "title": "Follow a changed plan and conditional action",
+      "goal": {
+        "en": "Separate the original and revised plans. Identify conditions, supplied materials and optional contributions.",
+        "vi": "Phân biệt kế hoạch ban đầu và kế hoạch sửa đổi. Xác định điều kiện, vật liệu được cung cấp và đóng góp tùy chọn."
+      },
+      "context": {
+        "en": "An update can change one part of a plan while leaving the other parts unchanged.",
+        "vi": "Bản cập nhật có thể thay đổi một phần kế hoạch nhưng giữ nguyên các phần khác."
+      },
+      "strategy": [
+        {
+          "label": "Old and new",
+          "labelVi": "Cũ và mới",
+          "en": "Note what was planned, what has changed and what is still the same.",
+          "vi": "Ghi kế hoạch ban đầu, điều thay đổi và điều vẫn giữ nguyên."
+        },
+        {
+          "label": "Reason",
+          "labelVi": "Lý do",
+          "en": "Read because, so and however to connect a change to its cause.",
+          "vi": "Đọc because, so và however để nối thay đổi với nguyên nhân."
+        },
+        {
+          "label": "Condition",
+          "labelVi": "Điều kiện",
+          "en": "Only if sets a condition; do not treat a conditional activity as certain.",
+          "vi": "Only if đặt điều kiện; không coi hoạt động có điều kiện là chắc chắn."
+        },
+        {
+          "label": "Materials",
+          "labelVi": "Vật liệu",
+          "en": "Separate must bring, supplied and optional.",
+          "vi": "Phân biệt phải mang, được cung cấp và tùy chọn."
+        }
+      ],
+      "modelTitle": "Theatre rehearsal update",
+      "passage": [
+        "S1. A youth theatre planned to rehearse a scene in the main theatre this evening.",
+        "S2. However, a sound check is taking place there, so the actors will practise in Studio C first.",
+        "S3. They will return to the main theatre only if the sound check has finished.",
+        "S4. Actors must bring their scripts; the theatre provides chairs and music stands.",
+        "S5. Extra costume pieces are welcome, but nobody needs to buy any."
+      ],
+      "lenses": [
+        {
+          "label": "CHANGE",
+          "refs": [
+            "S1",
+            "S2"
+          ],
+          "en": "Studio C replaces the initial rehearsal location because of the sound check.",
+          "vi": "Studio C thay địa điểm tập ban đầu vì đang kiểm tra âm thanh."
+        },
+        {
+          "label": "CONDITION",
+          "refs": [
+            "S3"
+          ],
+          "en": "Returning depends on the sound check finishing.",
+          "vi": "Quay lại phụ thuộc việc kiểm tra âm thanh đã xong."
+        },
+        {
+          "label": "MATERIALS",
+          "refs": [
+            "S4",
+            "S5"
+          ],
+          "en": "Scripts are required; chairs and stands are supplied; extra costumes are optional.",
+          "vi": "Kịch bản bắt buộc; ghế và giá nhạc được cung cấp; trang phục thêm tùy chọn."
+        }
+      ],
+      "extras": [],
+      "worked": {
+        "prompt": "The sound check is still taking place. Which statement follows the update?",
+        "options": [
+          "A. The actors must return to the main theatre immediately.",
+          "B. They should practise in Studio C; the condition for returning has not been met.",
+          "C. They must buy costumes before practising.",
+          "D. The theatre has cancelled every rehearsal."
+        ],
+        "answer": {
+          "en": "Model answer B: S2 gives the new location; S3 limits returning. A ignores only if; C contradicts S5; D invents cancellation.",
+          "vi": "B đúng theo S2, S3. A bỏ qua only if; C trái S5; D tự suy ra hủy toàn bộ buổi tập."
+        }
+      },
+      "quickTitle": "Recording a school podcast",
+      "quickText": "T1. The team originally planned to record in the assembly room. T2. A meeting is using that room, so the team will prepare questions in the media room. T3. Recording can begin only if the microphone is working. T4. The team provides headphones; members may bring a spare cable if they have one.",
+      "checks": [
+        {
+          "id": "REA-A2-03-KQC01",
+          "prompt": "Why is the team preparing questions in the media room?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The microphone has been sold.",
+              "feedback": {
+                "en": "Incorrect: no sale is stated.",
+                "vi": "Không nêu việc bán mic."
+              }
+            },
+            {
+              "id": "B",
+              "text": "The media room is the only room with headphones.",
+              "feedback": {
+                "en": "Incorrect: T4 does not say that.",
+                "vi": "T4 không nói vậy."
+              }
+            },
+            {
+              "id": "C",
+              "text": "The assembly room is being used for a meeting.",
+              "feedback": {
+                "en": "Correct: T2 states the reason.",
+                "vi": "T2 nêu lý do."
+              }
+            }
+          ],
+          "key": "C"
+        },
+        {
+          "id": "REA-A2-03-KQC02",
+          "prompt": "Which statement about a spare cable is accurate?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Every member must purchase one.",
+              "feedback": {
+                "en": "Incorrect: may and if indicate an option.",
+                "vi": "May và if chỉ lựa chọn."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Members can bring one if they have one.",
+              "feedback": {
+                "en": "Correct: T4 says it is optional.",
+                "vi": "T4 nêu đây là lựa chọn."
+              }
+            },
+            {
+              "id": "C",
+              "text": "The team forbids spare cables.",
+              "feedback": {
+                "en": "Incorrect: T4 allows them.",
+                "vi": "T4 cho phép."
+              }
+            }
+          ],
+          "key": "B"
+        }
+      ],
+      "transfer": {
+        "text": "U1. A dance group planned to practise on the stage. U2. The stage lights are being checked, so the group will warm up in the side studio. U3. Stage practice can start only if the lights are ready. U4. Members must bring their music notes; the organiser supplies a speaker. U5. An extra scarf is welcome but not required.",
+        "prompt": {
+          "en": "Explain the revised plan, why it changed, the condition for stage practice and the three categories of materials. Cite IDs.",
+          "vi": "Giải thích kế hoạch mới, lý do thay đổi, điều kiện tập trên sân khấu và ba nhóm vật dụng. Dẫn mã câu."
+        },
+        "criteria": "U1/U2 old/new and reason; U3 conditional, not guaranteed; U4 required/supplied, U5 optional; no invented repair finish time.",
+        "model": {
+          "en": "The group warms up in the side studio because the stage lights are being checked (U1–U2). Stage practice can start only when the lights are ready (U3). Bring music notes, use the supplied speaker, and bring an extra scarf only if desired (U4–U5).",
+          "vi": "Nhóm khởi động ở phòng tập bên vì đang kiểm tra đèn sân khấu (U1–U2). Chỉ tập trên sân khấu nếu đèn sẵn sàng (U3). Phải mang ghi chú nhạc, loa được cung cấp, khăn thêm không bắt buộc (U4–U5)."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A2-04": {
+      "title": "Interpret an update: times, options and reply exceptions",
+      "goal": {
+        "en": "Read an updated message, distinguish different time labels, understand optional arrangements and apply the correct reply rule.",
+        "vi": "Đọc tin nhắn cập nhật, phân biệt các mốc giờ, hiểu lựa chọn tùy ý và áp dụng đúng quy tắc phản hồi."
+      },
+      "context": {
+        "en": "An updated event message may give a new plan and different instructions for people in different situations.",
+        "vi": "Tin nhắn cập nhật sự kiện có thể đưa ra kế hoạch mới và hướng dẫn khác nhau cho từng tình huống."
+      },
+      "strategy": [
+        {
+          "label": "Compare",
+          "labelVi": "So sánh",
+          "en": "Put the earlier and current arrangements side by side; use the latest stated plan.",
+          "vi": "Đặt kế hoạch cũ và mới cạnh nhau; dùng kế hoạch mới nhất được nêu."
+        },
+        {
+          "label": "Time labels",
+          "labelVi": "Nhãn thời gian",
+          "en": "Distinguish arrival, start and reply deadline; subtract matching times only.",
+          "vi": "Phân biệt giờ đến, giờ bắt đầu và hạn trả lời; chỉ trừ hai mốc cùng loại."
+        },
+        {
+          "label": "Options",
+          "labelVi": "Lựa chọn",
+          "en": "Read if available and alternatives carefully; do not turn a suggestion into a requirement.",
+          "vi": "Đọc kỹ if available và phương án thay thế; không biến gợi ý thành yêu cầu."
+        },
+        {
+          "label": "Who acts?",
+          "labelVi": "Ai cần làm?",
+          "en": "Follow the condition for each person's situation, including an exception introduced by unless.",
+          "vi": "Theo điều kiện cho từng tình huống, kể cả ngoại lệ với unless."
+        }
+      ],
+      "modelTitle": "Birdwatching briefing",
+      "passage": [
+        "S1. The birdwatching group originally planned a briefing at the riverside shelter at 1:00 p.m.",
+        "S2. The shelter is being inspected, so the briefing will now be at the visitor centre at 1:45 p.m.; arrive by 1:35 to collect a route card.",
+        "S3. Bring binoculars if available; visitors without them can borrow a pair.",
+        "S4. The organiser will explain how to recognise birds and record observations.",
+        "S5. If you have not booked a place, contact the organiser by Monday at noon. If you have booked, contact them only if you need to cancel."
+      ],
+      "lenses": [
+        {
+          "label": "PLAN",
+          "refs": [
+            "S1",
+            "S2"
+          ],
+          "en": "The place and starting time have changed.",
+          "vi": "Địa điểm và giờ bắt đầu đã thay đổi."
+        },
+        {
+          "label": "TIMES",
+          "refs": [
+            "S1",
+            "S2",
+            "S5"
+          ],
+          "en": "Compare 1:00 with 1:45 for the start-time change; 1:35 is arrival, Monday noon the contact deadline for unbooked visitors.",
+          "vi": "So sánh 1:00 và 1:45 để tính đổi giờ bắt đầu; 1:35 là giờ đến, trưa thứ Hai là hạn liên hệ của người chưa đặt chỗ."
+        },
+        {
+          "label": "OPTION",
+          "refs": [
+            "S3"
+          ],
+          "en": "Binoculars are optional to bring because borrowing is possible.",
+          "vi": "Có thể mang ống nhòm nếu có vì được mượn."
+        },
+        {
+          "label": "ACTION",
+          "refs": [
+            "S5"
+          ],
+          "en": "An unbooked visitor should contact the organiser by the deadline; a booked visitor contacts only to cancel.",
+          "vi": "Người chưa đặt chỗ liên hệ trước hạn; người đã đặt chỉ liên hệ khi cần hủy."
+        }
+      ],
+      "extras": [
+        "Worked comparison table (model only): earlier place riverside shelter | current visitor centre; earlier start 1:00 p.m. | current start 1:45 p.m.; arrival not stated earlier | by 1:35 p.m. now. VI row labels: địa điểm; giờ bắt đầu; giờ đến."
+      ],
+      "worked": {
+        "prompt": "How much later does the briefing start now?",
+        "options": [
+          "A. 10 minutes.",
+          "B. 35 minutes.",
+          "C. 45 minutes.",
+          "D. One hour."
+        ],
+        "answer": {
+          "en": "Model answer C: S1 and S2 give 1:00 and 1:45, a 45-minute difference. A uses the gap between new arrival and start; B uses old start and new arrival; D is unsupported arithmetic.",
+          "vi": "C đúng vì 1:00 đến 1:45 là 45 phút (S1–S2). A dùng khoảng giữa giờ đến và bắt đầu mới; B dùng giờ bắt đầu cũ và giờ đến mới; D tính sai."
+        }
+      },
+      "quickTitle": "Language café update",
+      "quickText": "T1. The conversation meeting was planned for 5:00 p.m. in the upstairs room. T2. It now starts at 5:20 p.m. in the side room; arrive by 5:10. T3. Bring a dictionary if you have one; shared copies are available. T4. People who have not registered should contact the organiser by Tuesday morning. People already registered need not contact the organiser again unless they need to cancel.",
+      "checks": [
+        {
+          "id": "REA-A2-04-KQC01",
+          "prompt": "A visitor has not registered and wants to attend. What should they do?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Arrive at 5:10 without registering.",
+              "feedback": {
+                "en": "Incorrect: arrival is a different instruction (T2); T4 gives the contact rule.",
+                "vi": "Giờ đến là hướng dẫn khác; T4 nêu quy tắc liên hệ."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Contact the organiser by Tuesday morning.",
+              "feedback": {
+                "en": "Correct: T4 applies to unregistered visitors.",
+                "vi": "T4 áp dụng cho người chưa đăng ký."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Contact only if they cancel.",
+              "feedback": {
+                "en": "Incorrect: that exception applies to registered people.",
+                "vi": "Ngoại lệ áp dụng cho người đã đăng ký."
+              }
+            }
+          ],
+          "key": "B"
+        },
+        {
+          "id": "REA-A2-04-KQC02",
+          "prompt": "What does T3 say about dictionaries?",
+          "options": [
+            {
+              "id": "A",
+              "text": "They are optional to bring; shared copies are available.",
+              "feedback": {
+                "en": "Correct: T3 gives an alternative.",
+                "vi": "T3 nêu phương án thay thế."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Everyone must buy a dictionary.",
+              "feedback": {
+                "en": "Incorrect: no purchase is required.",
+                "vi": "Không bắt buộc mua."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Dictionaries cannot be used.",
+              "feedback": {
+                "en": "Incorrect: shared copies are offered.",
+                "vi": "Có bản dùng chung."
+              }
+            }
+          ],
+          "key": "A"
+        }
+      ],
+      "transfer": {
+        "text": "U1. A neighbourhood choir planned to meet at 4:00 p.m. in the east room. U2. The meeting now starts at 4:25 p.m. in the west room; arrive by 4:15 to collect music. U3. Bring a folder if available; spare folders can be borrowed. U4. Anyone joining for the first time should contact the leader by Wednesday morning. Returning members need to contact the leader only if they cannot attend.",
+        "prompt": {
+          "en": "Tell a new member where and when to arrive, the new start time and how much later it is than the old start. Explain the folder rule and what the new member and a returning member who can attend should do. Cite IDs.",
+          "vi": "Cho thành viên mới biết nơi và giờ đến, giờ bắt đầu mới và muộn hơn bao lâu. Giải thích quy tắc bìa đựng giấy và việc thành viên mới, thành viên cũ có thể tham dự cần làm. Dẫn mã câu."
+        },
+        "criteria": "U1/U2 correct time arithmetic (25 minutes), west room, arrive by 4:15; U3 optional/loan; U4 correct two cases; no invented reason for location change.",
+        "model": {
+          "en": "Arrive at the west room by 4:15 (U2). The meeting starts at 4:25, 25 minutes later than 4:00 (U1–U2). Bring a folder if available or borrow one (U3). A new member contacts the leader by Wednesday morning; a returning member who can attend does not need to contact the leader (U4).",
+          "vi": "Đến phòng phía tây chậm nhất 4:15 (U2). Bắt đầu 4:25, muộn hơn 25 phút so với 4:00 (U1–U2). Có bìa thì mang, nếu không có thể mượn (U3). Người mới liên hệ trước hoặc vào hạn sáng thứ Tư; người cũ có thể tham dự không cần liên hệ (U4)."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A2-05": {
+      "title": "Compare practical details across two notices",
+      "goal": {
+        "en": "Compare two options using stated details and requirements. Choose an option only when the evidence supports all relevant needs.",
+        "vi": "So sánh hai lựa chọn dựa trên thông tin và yêu cầu được nêu. Chỉ chọn khi bằng chứng đáp ứng các nhu cầu liên quan."
+      },
+      "context": {
+        "en": "Two offers may look similar but differ in practical details and conditions.",
+        "vi": "Hai lựa chọn có vẻ giống nhau nhưng có thể khác về thông tin và điều kiện thực tế."
+      },
+      "strategy": [
+        {
+          "label": "Build columns",
+          "labelVi": "Lập cột",
+          "en": "Put each source in its own column. Keep comparable facts on the same row.",
+          "vi": "Đặt mỗi nguồn vào một cột; thông tin cùng loại nằm cùng hàng."
+        },
+        {
+          "label": "Read the small words",
+          "labelVi": "Đọc từ chỉ điều kiện",
+          "en": "Separate must, may, if and included. Do not turn permission or an option into a requirement.",
+          "vi": "Phân biệt bắt buộc, được phép, điều kiện và thứ đã bao gồm; không biến lựa chọn thành yêu cầu."
+        },
+        {
+          "label": "Apply constraints",
+          "labelVi": "Áp dụng ràng buộc",
+          "en": "List the reader's needs first. Test every relevant one, not just the first match.",
+          "vi": "Liệt kê nhu cầu trước, kiểm tra từng điều kiện liên quan chứ không chỉ điều kiện đầu."
+        },
+        {
+          "label": "Explain from both",
+          "labelVi": "Giải thích từ hai nguồn",
+          "en": "Cite the relevant source(s); say “not stated” when a needed detail is absent.",
+          "vi": "Dẫn nguồn phù hợp; nói “không nêu” nếu thiếu dữ kiện."
+        }
+      ],
+      "modelTitle": "Two community tours",
+      "passage": [
+        "Source A:",
+        "S1. The river tour leaves at 10:00 and takes 45 minutes.",
+        "S2. It costs £6; a guidebook is included.",
+        "S3. Children under 12 must be with an adult.\nSource B:",
+        "S4. The history walk leaves at 11:00 and takes 30 minutes.",
+        "S5. It costs £4; visitors may buy a guidebook for £2.",
+        "S6. Children under 12 must also be with an adult."
+      ],
+      "lenses": [
+        {
+          "label": "TIME",
+          "refs": [
+            "S1",
+            "S4"
+          ],
+          "en": "Compare departure with departure and duration with duration.",
+          "vi": "So sánh giờ xuất phát với nhau và thời lượng với nhau."
+        },
+        {
+          "label": "COST",
+          "refs": [
+            "S2",
+            "S5"
+          ],
+          "en": "The guidebook is part of A's price but optional at extra cost in B.",
+          "vi": "Sách hướng dẫn đã gồm trong giá A; ở B có thể mua thêm."
+        },
+        {
+          "label": "CONDITION",
+          "refs": [
+            "S3",
+            "S6"
+          ],
+          "en": "Both sources state the same age condition; do not invent a difference.",
+          "vi": "Cả hai nguồn có cùng điều kiện tuổi; không tự tạo khác biệt."
+        }
+      ],
+      "extras": [
+        "Worked comparison table (from model only): departure 10:00 | 11:00; duration 45 min | 30 min; basic price £6 | £4; guidebook included | optional £2; under 12 accompanied | accompanied. VI row labels: giờ xuất phát; thời lượng; giá cơ bản; sách hướng dẫn; điều kiện dưới 12 tuổi."
+      ],
+      "worked": {
+        "prompt": "An adult wants a trip leaving before 11:00 with a guidebook and a budget of £6. Which fits all three needs?",
+        "options": [
+          "A. River tour.",
+          "B. History walk.",
+          "C. Both."
+        ],
+        "answer": {
+          "en": "Model answer A: S1 and S2 establish all three conditions. B meets the price including optional book (S5) but fails the departure requirement (S4). C fails because B fails one constraint.",
+          "vi": "A đáp ứng cả ba điều kiện theo S1–S2. B có thể mua thêm sách trong ngân sách nhưng xuất phát lúc 11:00, không phải trước 11:00. Vì vậy C sai."
+        }
+      },
+      "quickTitle": "Two bicycle rentals",
+      "quickText": "T1. Shop North offers a bicycle for two hours for £8. T2. A helmet is included, but lights cost £2 extra.\nT3. Shop South offers a bicycle for one hour for £5. T4. A helmet and lights are both included.",
+      "checks": [
+        {
+          "id": "REA-A2-05-KQC01",
+          "prompt": "Which shop offers two hours of bicycle use for no more than £8 if lights are not needed?",
+          "options": [
+            {
+              "id": "A",
+              "text": "South only.",
+              "feedback": {
+                "en": "Incorrect: South offers one hour (T3).",
+                "vi": "South chỉ cho thuê một giờ."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Both.",
+              "feedback": {
+                "en": "Incorrect: South does not meet the duration requirement.",
+                "vi": "South không đáp ứng thời lượng."
+              }
+            },
+            {
+              "id": "C",
+              "text": "North only.",
+              "feedback": {
+                "en": "Correct: T1 gives two hours at £8.",
+                "vi": "T1 cho biết hai giờ với giá £8."
+              }
+            }
+          ],
+          "key": "C"
+        },
+        {
+          "id": "REA-A2-05-KQC02",
+          "prompt": "Which statement is supported by the notices?",
+          "options": [
+            {
+              "id": "A",
+              "text": "North includes lights at no extra cost.",
+              "feedback": {
+                "en": "Incorrect: T2 states a £2 extra charge.",
+                "vi": "T2 nói đèn mất thêm £2."
+              }
+            },
+            {
+              "id": "B",
+              "text": "South includes a helmet and lights in its price.",
+              "feedback": {
+                "en": "Correct: T4 explicitly says both are included.",
+                "vi": "T4 nêu rõ cả hai đã bao gồm."
+              }
+            },
+            {
+              "id": "C",
+              "text": "South rents bicycles for any number of hours.",
+              "feedback": {
+                "en": "Incorrect: only a one-hour offer is stated.",
+                "vi": "Chỉ nêu gói một giờ."
+              }
+            }
+          ],
+          "key": "B"
+        }
+      ],
+      "transfer": {
+        "text": "U1. The morning ferry leaves at 9:00, costs £7 and carries bicycles for £2 extra. U2. The afternoon ferry leaves at 14:00, costs £6 and does not carry bicycles. U3. Both journeys take 25 minutes.",
+        "prompt": {
+          "en": "A traveller with a bicycle must arrive before noon and has £10. Recommend an option and explain why the other does not fit. Cite sentence IDs and calculate any extra cost.",
+          "vi": "Khách có xe đạp cần đến trước buổi trưa, ngân sách £10. Đề xuất một lựa chọn, giải thích vì sao lựa chọn còn lại không phù hợp; dẫn mã câu và tính chi phí thêm."
+        },
+        "criteria": "apply time including stated journey duration, bicycle rule and total cost; cite both sources; no assumptions about other departures.",
+        "model": {
+          "en": "The morning ferry fits: it arrives at 9:25 (U1, U3), carries bicycles and costs £9 in total (£7 + £2, U1). The afternoon ferry arrives too late and cannot carry bicycles (U2, U3).",
+          "vi": "Chuyến sáng phù hợp: đến lúc 9:25 (U1, U3), chở xe đạp và tổng giá £9 (U1). Chuyến chiều đến quá muộn và không chở xe đạp (U2, U3)."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A2-06": {
+      "title": "Compare options and match a preference",
+      "goal": {
+        "en": "Compare activities, times and requirements and recommend an option that meets all stated needs.",
+        "vi": "So sánh hoạt động, thời gian và yêu cầu; đề xuất lựa chọn đáp ứng mọi nhu cầu đã nêu."
+      },
+      "context": {
+        "en": "A good choice fits the reader's needs, not necessarily the most exciting activity.",
+        "vi": "Lựa chọn tốt phù hợp nhu cầu người đọc, không nhất thiết là hoạt động hấp dẫn nhất."
+      },
+      "strategy": [
+        {
+          "label": "Collect",
+          "labelVi": "Thu thập",
+          "en": "Put the same types of facts in matching rows for each option.",
+          "vi": "Đặt cùng loại dữ kiện vào các hàng tương ứng của từng lựa chọn."
+        },
+        {
+          "label": "Requirements",
+          "labelVi": "Yêu cầu",
+          "en": "Separate must, may and supplied.",
+          "vi": "Phân biệt bắt buộc, được phép và được cung cấp."
+        },
+        {
+          "label": "Filter",
+          "labelVi": "Lọc",
+          "en": "Check availability, interests and limits one by one.",
+          "vi": "Kiểm tra từng yếu tố: thời gian rảnh, sở thích và giới hạn."
+        },
+        {
+          "label": "Justify",
+          "labelVi": "Giải thích",
+          "en": "Cite evidence for the choice and for rejecting alternatives; do not invent a quality rating.",
+          "vi": "Dẫn bằng chứng chọn và loại phương án khác; không tự đánh giá chất lượng."
+        }
+      ],
+      "modelTitle": "Three weekend sessions",
+      "passage": [
+        "Source A —",
+        "S1. Bread Shapes runs on Saturday from 11:00 to noon; visitors shape dough into different designs.",
+        "S2. Participants must wear a hair covering, which is supplied.",
+        "Source B —",
+        "S3. Rhythm Hour runs on Sunday from 10:00 to 11:30; participants practise drum patterns.",
+        "S4. The session costs £3, and drums are supplied.\nSource C —",
+        "S5. Puppet Stories runs on Sunday from 2:00 to 3:00 p.m.; visitors tell stories with puppets.",
+        "S6. Admission is £2; participants may bring puppets, but shared ones are available."
+      ],
+      "lenses": [
+        {
+          "label": "TIME",
+          "refs": [
+            "S1",
+            "S3",
+            "S5"
+          ],
+          "en": "Check day as well as time.",
+          "vi": "Kiểm tra cả ngày và giờ."
+        },
+        {
+          "label": "ACTIVITY",
+          "refs": [
+            "S1",
+            "S3",
+            "S5"
+          ],
+          "en": "Match the preference to the activity.",
+          "vi": "Ghép sở thích với hoạt động cụ thể."
+        },
+        {
+          "label": "REQUIREMENTS",
+          "refs": [
+            "S2",
+            "S4",
+            "S6"
+          ],
+          "en": "Identify required, supplied and optional equipment; do not guess an unlisted fee.",
+          "vi": "Xác định đồ bắt buộc, được cấp và tùy chọn; không đoán phí chưa nêu."
+        }
+      ],
+      "extras": [
+        "Worked comparison table (model only):",
+        "| Session | Day/time | Activity | Requirement/cost |",
+        "| --- | --- | --- | --- |",
+        "| Bread Shapes | Sat 11:00–12:00 | Shape dough | Supplied hair covering required; price not stated |",
+        "| Rhythm Hour | Sun 10:00–11:30 | Drum patterns | £3, drums supplied |",
+        "| Puppet Stories | Sun 14:00–15:00 | Tell stories | £2, shared puppets available |",
+        "VI labels: buổi học, ngày/giờ, hoạt động, yêu cầu/chi phí; not stated = chưa nêu."
+      ],
+      "worked": {
+        "prompt": "Leo is free on Sunday morning, likes music and can spend up to £4. Which session meets all his needs?",
+        "options": [
+          "A. Bread Shapes.",
+          "B. Rhythm Hour.",
+          "C. Puppet Stories.",
+          "D. Both Sunday sessions."
+        ],
+        "answer": {
+          "en": "Model answer B: S3 matches day/time and interest; S4 gives an affordable cost. A is Saturday and concerns dough (S1); C is Sunday afternoon and concerns stories (S5); D includes C, which fails two constraints.",
+          "vi": "B đáp ứng thời gian và sở thích (S3), giá phù hợp (S4). A sai ngày và hoạt động; C vào buổi chiều và kể chuyện; D gồm C nên không đáp ứng mọi điều kiện."
+        }
+      },
+      "quickTitle": "Two museum demonstrations",
+      "quickText": "T1. Stone Patterns starts at 10:30 on Saturday and lasts 40 minutes; watch how patterns are cut into soft stone. T2. It costs £4; visitors must book a seat.\nT3. Clock Faces starts at 12:30 on Saturday and lasts 30 minutes; see how clock faces are designed. T4. Entry is £2 and no booking is needed.",
+      "checks": [
+        {
+          "id": "REA-A2-06-KQC01",
+          "prompt": "Which session fits someone who can attend only before noon and wants to see stone patterns?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Clock Faces only.",
+              "feedback": {
+                "en": "Incorrect: T3 begins after noon and concerns clocks.",
+                "vi": "T3 bắt đầu sau trưa và nói về đồng hồ."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Stone Patterns only.",
+              "feedback": {
+                "en": "Correct: T1 matches both needs and ends at 11:10.",
+                "vi": "T1 đáp ứng cả hai nhu cầu, kết thúc lúc 11:10."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Both.",
+              "feedback": {
+                "en": "Incorrect: Clock Faces fails both time and interest limits.",
+                "vi": "Clock Faces không đáp ứng giới hạn giờ và sở thích."
+              }
+            }
+          ],
+          "key": "B"
+        },
+        {
+          "id": "REA-A2-06-KQC02",
+          "prompt": "What must a visitor to Stone Patterns do?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Book a seat.",
+              "feedback": {
+                "en": "Correct: T2 states the requirement.",
+                "vi": "T2 nêu yêu cầu."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Bring a clock.",
+              "feedback": {
+                "en": "Incorrect: neither source states this.",
+                "vi": "Không nguồn nào nêu việc này."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Arrive at 12:30.",
+              "feedback": {
+                "en": "Incorrect: that is the other session's start (T3).",
+                "vi": "Đó là giờ bắt đầu buổi khác (T3)."
+              }
+            }
+          ],
+          "key": "A"
+        }
+      ],
+      "transfer": {
+        "text": "U1. Soap Designs: Tuesday 5:00–6:00 p.m., £5, shape soap; materials supplied. U2. Model Boats: Thursday 5:30–6:30 p.m., £7, build a model; materials supplied. U3. Story Maps: Thursday 6:00–7:00 p.m., £4, draw maps for stories; bring a pencil.",
+        "prompt": {
+          "en": "A learner is free Thursday, likes drawing and can spend £6. Recommend a session, say what to bring and why the other sessions do not fit. Cite IDs.",
+          "vi": "Người học rảnh thứ Năm, thích vẽ và có £6. Đề xuất buổi học, nêu đồ cần mang và lý do loại hai buổi còn lại. Dẫn mã câu."
+        },
+        "criteria": "U3 day/activity/budget and required pencil; U1 wrong day/activity; U2 over budget and different activity.",
+        "model": {
+          "en": "Story Maps fits: Thursday, drawing, £4; bring a pencil (U3). Soap Designs is Tuesday and involves soap (U1). Model Boats costs £7 and involves building (U2).",
+          "vi": "Story Maps phù hợp vì vào thứ Năm, có vẽ và giá £4; mang bút chì (U3). Soap Designs sai ngày và hoạt động (U1). Model Boats giá £7 và làm mô hình (U2)."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A2-07": {
+      "title": "Read linked notices and apply an update",
+      "goal": {
+        "en": "Find a shared purpose, distinguish original, changed and unchanged facts, and apply every condition for an alternative.",
+        "vi": "Tìm mục đích chung, phân biệt thông tin cũ, thay đổi và giữ nguyên; áp dụng mọi điều kiện của phương án thay thế."
+      },
+      "context": {
+        "en": "An update does not automatically replace every earlier rule.",
+        "vi": "Bản cập nhật không tự động thay thế mọi quy định trước."
+      },
+      "strategy": [
+        {
+          "label": "Link",
+          "labelVi": "Liên kết",
+          "en": "Identify the shared event or service.",
+          "vi": "Xác định sự kiện hoặc dịch vụ chung."
+        },
+        {
+          "label": "Compare",
+          "labelVi": "Đối chiếu",
+          "en": "Mark original, revised and explicitly unchanged facts.",
+          "vi": "Đánh dấu thông tin ban đầu, sửa đổi và được xác nhận giữ nguyên."
+        },
+        {
+          "label": "Conditions",
+          "labelVi": "Điều kiện",
+          "en": "Check every requirement for the alternative.",
+          "vi": "Kiểm tra mọi yêu cầu của phương án thay thế."
+        },
+        {
+          "label": "Limits",
+          "labelVi": "Giới hạn",
+          "en": "Do not add rules, permissions or guarantees that neither message gives.",
+          "vi": "Không thêm quy định, quyền hoặc bảo đảm chưa được nêu."
+        }
+      ],
+      "modelTitle": "Stationery order desk",
+      "passage": [
+        "Source A —",
+        "S1. The college stationery desk is taking orders for notebooks. Send your order by Monday at 2:00 p.m.",
+        "S2. The price is £5 per notebook; payment is due when you collect your order at the east entrance.",
+        "Source B —",
+        "S3. The east entrance is being inspected, so collect orders at the main entrance instead.",
+        "S4. The order deadline and price remain unchanged.",
+        "S5. If you need someone else to collect for you, send their name in advance and make sure they have your order number."
+      ],
+      "lenses": [
+        {
+          "label": "CHANGE",
+          "refs": [
+            "S2",
+            "S3"
+          ],
+          "en": "The collection entrance changes, not the purpose of the service.",
+          "vi": "Cửa nhận đồ thay đổi, không phải mục đích dịch vụ."
+        },
+        {
+          "label": "UNCHANGED",
+          "refs": [
+            "S1",
+            "S2",
+            "S4"
+          ],
+          "en": "The original deadline and price still apply.",
+          "vi": "Hạn đặt và giá ban đầu vẫn áp dụng."
+        },
+        {
+          "label": "BOTH CONDITIONS",
+          "refs": [
+            "S5"
+          ],
+          "en": "Another collector needs advance naming and the order number.",
+          "vi": "Người nhận hộ cần được báo tên trước và có mã đơn."
+        }
+      ],
+      "extras": [
+        "Worked comparison table (model only):",
+        "| Fact | Original | Updated |",
+        "| --- | --- | --- |",
+        "| Entrance | East | Main |",
+        "| Deadline | Monday 14:00 | Unchanged |",
+        "| Price | £5/notebook | Unchanged |",
+        "VI labels: thông tin, ban đầu, cập nhật, cửa nhận, hạn đặt, giá, giữ nguyên."
+      ],
+      "worked": {
+        "prompt": "A student wants a friend to collect their order. Which arrangement follows both notices?",
+        "options": [
+          "A. The friend goes to the east entrance with the order number.",
+          "B. The friend goes to the main entrance without an advance message.",
+          "C. The student sends the friend's name in advance, and the friend takes the order number to the main entrance.",
+          "D. The friend collects at the main entrance without the order number."
+        ],
+        "answer": {
+          "en": "Model answer C: S3 gives the new location; S5 gives both conditions. A uses the old location and does not establish advance naming; B omits advance naming; D omits the order number.",
+          "vi": "C đúng theo S3 và cả hai điều kiện S5. A dùng cửa cũ và chưa xác nhận báo tên; B thiếu báo tên trước; D thiếu mã đơn."
+        }
+      },
+      "quickTitle": "Costume fitting update",
+      "quickText": "T1. A theatre group plans costume fittings on Wednesday in Studio D. Each participant must bring their measurement card. T2. The fitting will now take place in Studio F because Studio D is being decorated. The day and card rule are unchanged. T3. If you need a different appointment, contact the organiser today and wait for a confirmed new time.",
+      "checks": [
+        {
+          "id": "REA-A2-07-KQC01",
+          "prompt": "Which fact changes?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The fitting studio.",
+              "feedback": {
+                "en": "Correct: T1/T2 show D becomes F.",
+                "vi": "T1/T2 cho thấy đổi D sang F."
+              }
+            },
+            {
+              "id": "B",
+              "text": "The fitting day.",
+              "feedback": {
+                "en": "Incorrect: T2 says the day is unchanged.",
+                "vi": "T2 nói ngày không đổi."
+              }
+            },
+            {
+              "id": "C",
+              "text": "The measurement card requirement.",
+              "feedback": {
+                "en": "Incorrect: T2 preserves it.",
+                "vi": "T2 giữ nguyên yêu cầu."
+              }
+            }
+          ],
+          "key": "A"
+        },
+        {
+          "id": "REA-A2-07-KQC02",
+          "prompt": "What should someone needing another appointment do?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Choose any time and arrive.",
+              "feedback": {
+                "en": "Incorrect: T3 requires confirmation.",
+                "vi": "T3 yêu cầu xác nhận."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Contact the organiser today and wait for confirmation.",
+              "feedback": {
+                "en": "Correct: both actions are in T3.",
+                "vi": "T3 nêu cả hai việc."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Leave the card at home.",
+              "feedback": {
+                "en": "Incorrect: the card rule still applies (T2).",
+                "vi": "Quy định về thẻ vẫn áp dụng (T2)."
+              }
+            }
+          ],
+          "key": "B"
+        }
+      ],
+      "transfer": {
+        "text": "U1. Original notice: a photography exhibition accepts framed photos at the north desk. Label each photo with your entry number. Entries close on Tuesday at 5:00 p.m.\nU2. Update: the north desk is being moved, so use the reception counter. The entry deadline and labelling requirement remain unchanged.\nU3. Anyone wishing to enter a second photo must ask the organiser first and obtain a separate entry number.",
+        "prompt": {
+          "en": "State what changed, what stayed the same, and what a person entering a second photo must do. Cite IDs and name one thing not specified.",
+          "vi": "Nêu điều thay đổi, điều giữ nguyên và việc người nộp ảnh thứ hai cần làm. Dẫn mã câu và nêu một thông tin chưa có."
+        },
+        "criteria": "U1–U2 reception, Tuesday 17:00, label; U3 both actions; absent fact such as fee.",
+        "model": {
+          "en": "Use reception instead of the north desk (U1–U2). Label each photo; entries close Tuesday at 5:00 (U1–U2). Ask the organiser and obtain a separate entry number before submitting a second photo (U3). The fee is not stated.",
+          "vi": "Dùng quầy lễ tân thay quầy phía bắc (U1–U2). Ghi mã dự thi; hạn vẫn là thứ Ba lúc 5 giờ chiều (U1–U2). Hỏi ban tổ chức và lấy mã riêng trước khi nộp ảnh thứ hai (U3). Chưa nêu phí."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A2-08": {
+      "title": "Compare offers and respect explicit limits",
+      "goal": {
+        "en": "Find schedules, places and limits in community notices, then recommend a realistic action without promising a result.",
+        "vi": "Tìm lịch, địa điểm và giới hạn trong thông báo cộng đồng rồi đề xuất hành động thực tế mà không hứa chắc kết quả."
+      },
+      "context": {
+        "en": "An offer of help does not guarantee a particular outcome.",
+        "vi": "Lời đề nghị giúp đỡ không bảo đảm một kết quả cụ thể."
+      },
+      "strategy": [
+        {
+          "label": "Locate",
+          "labelVi": "Tìm",
+          "en": "Match each offer with its day, place and activity.",
+          "vi": "Ghép từng lựa chọn với ngày, địa điểm và hoạt động."
+        },
+        {
+          "label": "Limits",
+          "labelVi": "Giới hạn",
+          "en": "Read may, only and if carefully.",
+          "vi": "Đọc kỹ may, only và if."
+        },
+        {
+          "label": "Match",
+          "labelVi": "Ghép",
+          "en": "Check whether an action fits the reader's needs and stated limits.",
+          "vi": "Kiểm tra hành động có phù hợp nhu cầu và giới hạn đã nêu."
+        },
+        {
+          "label": "Caution",
+          "labelVi": "Thận trọng",
+          "en": "Say what the notice offers, not what you hope will happen.",
+          "vi": "Nói điều thông báo đề nghị thay vì điều mình hy vọng."
+        }
+      ],
+      "modelTitle": "Two town information sessions",
+      "passage": [
+        "Source A —",
+        "S1. Local Records is on Tuesday from 3:00 to 4:30 p.m. at the history centre.",
+        "S2. Staff can search old street records, but some records are incomplete. Bring a street name and any known date.",
+        "Source B —",
+        "S3. Travel Planning is on Thursday from 1:00 to 2:00 p.m. at the station meeting room.",
+        "S4. Advisers can explain published train timetables. They do not sell tickets or reserve seats."
+      ],
+      "lenses": [
+        {
+          "label": "SCHEDULE",
+          "refs": [
+            "S1",
+            "S3"
+          ],
+          "en": "Match each day and place to its service.",
+          "vi": "Ghép từng ngày và địa điểm với dịch vụ."
+        },
+        {
+          "label": "LIMIT",
+          "refs": [
+            "S2",
+            "S4"
+          ],
+          "en": "Records may be incomplete; advice is not a reservation.",
+          "vi": "Hồ sơ có thể thiếu; tư vấn không phải đặt chỗ."
+        },
+        {
+          "label": "RECOMMEND",
+          "refs": [
+            "S2",
+            "S4"
+          ],
+          "en": "Choose the relevant service and express the actual help offered.",
+          "vi": "Chọn dịch vụ phù hợp và diễn đạt đúng sự hỗ trợ được đề nghị."
+        }
+      ],
+      "extras": [],
+      "worked": {
+        "prompt": "A visitor wants to learn about an old street name and is free Tuesday afternoon. What is a realistic recommendation?",
+        "options": [
+          "A. Attend Travel Planning to reserve a train seat.",
+          "B. Attend Local Records and ask staff to search; the needed record may be missing.",
+          "C. Attend Local Records and expect every record to be complete.",
+          "D. Attend Travel Planning at the history centre."
+        ],
+        "answer": {
+          "en": "Model answer B: S1 matches availability and S2 offers relevant help with a limit. A contradicts S4; C contradicts the incomplete-record warning; D mixes the locations.",
+          "vi": "B phù hợp theo S1–S2, kể cả giới hạn. A trái S4; C bỏ qua cảnh báo hồ sơ thiếu; D nhầm địa điểm hai dịch vụ."
+        }
+      },
+      "quickTitle": "Two practical advice desks",
+      "quickText": "T1. Map Help is open Monday 10:00–11:00 at the visitor pavilion; staff explain local route maps, but do not know current road delays. T2. Language Help is open Wednesday 2:00–3:00 at the meeting room; staff can explain short signs, but cannot translate complete documents.",
+      "checks": [
+        {
+          "id": "REA-A2-08-KQC01",
+          "prompt": "Which action matches Language Help?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Ask staff to translate a whole contract.",
+              "feedback": {
+                "en": "Incorrect: T2 excludes complete documents.",
+                "vi": "T2 không nhận dịch toàn bộ văn bản."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Ask for live road-delay information.",
+              "feedback": {
+                "en": "Incorrect: T1 does not offer it and T2 is a different service.",
+                "vi": "T1 không cung cấp, T2 là dịch vụ khác."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Ask about the meaning of a short sign.",
+              "feedback": {
+                "en": "Correct: T2 offers this.",
+                "vi": "T2 có hỗ trợ việc này."
+              }
+            }
+          ],
+          "key": "C"
+        },
+        {
+          "id": "REA-A2-08-KQC02",
+          "prompt": "Where and when can someone ask about a local route map?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Visitor pavilion, Monday 10:00–11:00.",
+              "feedback": {
+                "en": "Correct: T1 gives both facts.",
+                "vi": "T1 nêu cả hai dữ kiện."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Meeting room, Wednesday 2:00–3:00.",
+              "feedback": {
+                "en": "Incorrect: T2 is Language Help.",
+                "vi": "T2 là hỗ trợ ngôn ngữ."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Visitor pavilion, Wednesday 2:00–3:00.",
+              "feedback": {
+                "en": "Incorrect: combines different services.",
+                "vi": "Ghép nhầm thông tin hai dịch vụ."
+              }
+            }
+          ],
+          "key": "A"
+        }
+      ],
+      "transfer": {
+        "text": "U1. Family History Desk, Friday 11:00–noon at the archive: staff can help find public historical documents, but cannot promise that a particular document exists. U2. Drawing Desk, Saturday 3:00–4:00 at the gallery: instructors explain basic drawing techniques, but do not complete visitors' drawings for them.",
+        "prompt": {
+          "en": "A visitor wants to locate an old public document and is free Friday. Recommend a desk, give its place and time, explain its limit and why the other desk does not fit. Cite IDs.",
+          "vi": "Khách muốn tìm tài liệu công khai cũ và rảnh thứ Sáu. Đề xuất quầy, nêu nơi và giờ, giải thích giới hạn và vì sao quầy còn lại không phù hợp. Dẫn mã câu."
+        },
+        "criteria": "U1 relevant help, archive, Friday 11:00–12:00, no promised document; U2 different activity/day.",
+        "model": {
+          "en": "Try Family History Desk at the archive on Friday, 11:00–noon (U1). Staff can help search, but the document might not exist. Drawing Desk is Saturday and teaches drawing, not document searches (U2).",
+          "vi": "Thử Family History Desk tại kho lưu trữ thứ Sáu 11:00–12:00 (U1). Nhân viên có thể hỗ trợ tìm nhưng không bảo đảm tài liệu tồn tại. Drawing Desk vào thứ Bảy và dạy vẽ, không tìm tài liệu (U2)."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A2-09": {
+      "title": "Compare a bill and a message",
+      "goal": {
+        "en": "Separate billed, ordered and received quantities, read quantifiers in context, and request a precise correction based on both sources.",
+        "vi": "Phân biệt số lượng tính tiền, đã đặt và đã nhận, đọc từ chỉ lượng theo ngữ cảnh và yêu cầu sửa chính xác dựa trên cả hai nguồn."
+      },
+      "context": {
+        "en": "A bill shows what was charged, not necessarily what was delivered.",
+        "vi": "Hóa đơn cho biết số lượng đã tính tiền, không nhất thiết chứng minh đồ đã giao."
+      },
+      "strategy": [
+        {
+          "label": "Label",
+          "labelVi": "Gắn nhãn",
+          "en": "Make separate columns for billed, ordered and received.",
+          "vi": "Tạo cột riêng cho đã tính tiền, đã đặt và đã nhận."
+        },
+        {
+          "label": "Compare",
+          "labelVi": "So sánh",
+          "en": "Locate the same item in both sources; identify the discrepancy.",
+          "vi": "Tìm cùng mặt hàng ở hai nguồn; xác định chênh lệch."
+        },
+        {
+          "label": "Quantifiers",
+          "labelVi": "Từ chỉ lượng",
+          "en": "Read some, any, many and much in context; they do not always give exact counts.",
+          "vi": "Đọc some, any, many và much trong ngữ cảnh; không phải lúc nào cũng cho số lượng chính xác."
+        },
+        {
+          "label": "Correct",
+          "labelVi": "Sửa",
+          "en": "Change only the disputed line, keep the other charges as written, and ask politely.",
+          "vi": "Chỉ sửa dòng có tranh chấp, giữ nguyên khoản khác và yêu cầu lịch sự."
+        }
+      ],
+      "modelTitle": "Craft order",
+      "passage": [
+        "Source A —",
+        "S1. Felt sheets: 4 at £3 each = £12.",
+        "S2. Paintbrush: 1 at £5 = £5.",
+        "S3. Thread rolls: 2 at £4 each = £8. Total billed: £25.",
+        "Source B —",
+        "S4. I asked for two felt sheets and received two, but the bill shows four.",
+        "S5. I have some thread at home and do not need much more paint.",
+        "S6. Could you check the charge for the felt sheets, please?"
+      ],
+      "lenses": [
+        {
+          "label": "QUANTITY",
+          "refs": [
+            "S1",
+            "S4"
+          ],
+          "en": "Four were billed; two were ordered and two received.",
+          "vi": "Tính tiền bốn tấm; đặt hai và nhận hai."
+        },
+        {
+          "label": "NOT STATED",
+          "refs": [
+            "S2",
+            "S3",
+            "S5"
+          ],
+          "en": "The bill gives other billed quantities, but the message does not confirm their delivery. Some thread at home is not a delivered count.",
+          "vi": "Hóa đơn nêu số lượng tính tiền khác nhưng tin nhắn không xác nhận đã giao. Some thread ở nhà không phải số lượng giao."
+        },
+        {
+          "label": "CORRECTION",
+          "refs": [
+            "S1",
+            "S2",
+            "S3",
+            "S4",
+            "S6"
+          ],
+          "en": "Two felt sheets cost £6; the other billed lines stay £5 and £8 if only the disputed line changes.",
+          "vi": "Hai tấm nỉ giá £6; giữ £5 và £8 nếu chỉ sửa dòng tranh chấp."
+        }
+      ],
+      "extras": [
+        "Worked comparison table (model only):",
+        "| Item | Billed | Ordered | Received |",
+        "| --- | --- | --- | --- |",
+        "| Felt sheets | 4 | 2 | 2 |",
+        "| Paintbrush | 1 | Not stated | Not stated |",
+        "| Thread rolls | 2 | Not stated | Not stated |",
+        "VI labels: mặt hàng, đã tính tiền, đã đặt, đã nhận; chưa nêu. Do not turn an unconfirmed quantity into zero."
+      ],
+      "worked": {
+        "prompt": "If the seller corrects only the felt-sheet line, what is the revised total?",
+        "options": [
+          "A. £19.",
+          "B. £25.",
+          "C. £6.",
+          "D. £11."
+        ],
+        "answer": {
+          "en": "Model answer A: S1/S4 reduce the charge by two sheets at £3 each, so £25 − £6 = £19; equivalently £6 + £5 + £8 = £19. B keeps the old charge; C omits the other billed lines; D omits thread rolls.",
+          "vi": "A đúng: giảm hai tấm, mỗi tấm £3, nên £25 − £6 = £19. Cộng lại £6 + £5 + £8 cũng bằng £19. B giữ giá cũ; C bỏ các dòng khác; D bỏ dòng cuộn chỉ."
+        }
+      },
+      "quickTitle": "Stationery bill",
+      "quickText": "T1. Folders: 5 at £3 = £15. T2. Pens: 2 at £4 = £8. Total billed: £23.\nT3. I ordered three folders and received three. The bill shows five. T4. I have some pens already, but not many empty folders.",
+      "checks": [
+        {
+          "id": "REA-A2-09-KQC01",
+          "prompt": "Which conclusion follows from comparing the two sources?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Five folders were received.",
+              "feedback": {
+                "en": "Incorrect: T3 confirms three.",
+                "vi": "T3 xác nhận ba."
+              }
+            },
+            {
+              "id": "B",
+              "text": "The bill overstates the folder quantity by two.",
+              "feedback": {
+                "en": "Correct: T1 bills five; T3 confirms three ordered and received.",
+                "vi": "T1 tính năm; T3 đặt và nhận ba."
+              }
+            },
+            {
+              "id": "C",
+              "text": "No pens were delivered.",
+              "feedback": {
+                "en": "Incorrect: T4 does not state delivery.",
+                "vi": "T4 không nói đã giao hay chưa."
+              }
+            }
+          ],
+          "key": "B"
+        },
+        {
+          "id": "REA-A2-09-KQC02",
+          "prompt": "What does T4 tell us?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The customer has exactly two pens.",
+              "feedback": {
+                "en": "Incorrect: some does not specify an exact count.",
+                "vi": "Some không nêu số chính xác."
+              }
+            },
+            {
+              "id": "B",
+              "text": "The customer has no folders at all.",
+              "feedback": {
+                "en": "Incorrect: not many does not mean none.",
+                "vi": "Not many không có nghĩa là không có."
+              }
+            },
+            {
+              "id": "C",
+              "text": "The customer already has some pens and not many empty folders.",
+              "feedback": {
+                "en": "Correct: this preserves both quantifiers.",
+                "vi": "Giữ đúng cả hai từ chỉ lượng."
+              }
+            }
+          ],
+          "key": "C"
+        }
+      ],
+      "transfer": {
+        "text": "U1. Candle holders: 6 at £3 = £18. U2. Decorative string: 2 rolls at £4 = £8. Total billed: £26. U3. Customer message: I ordered four candle holders and received four, but the bill lists six. U4. I have some string already and do not need much extra.",
+        "prompt": {
+          "en": "Identify the mismatch and calculate the corrected total if only that line changes. State whether delivery of the string is confirmed. Write one polite correction request and cite IDs.",
+          "vi": "Xác định chênh lệch và tính tổng mới nếu chỉ sửa dòng đó. Nêu việc giao dây có được xác nhận không. Viết một yêu cầu sửa lịch sự và dẫn mã câu."
+        },
+        "criteria": "six billed/four ordered/four received (U1/U3); £12 + £8 = £20 (U1–U3); delivery of string unconfirmed (U2/U4); polite request specifying disputed item and count.",
+        "model": {
+          "en": "Six holders were billed, but four were ordered and received (U1, U3). Corrected total: £12 + £8 = £20 (U1–U3). The string delivery is not confirmed (U2, U4). Could you change the candle-holder charge to four holders, please?",
+          "vi": "Tính sáu đế nến nhưng chỉ đặt và nhận bốn (U1, U3). Tổng mới £12 + £8 = £20 (U1–U3). Chưa xác nhận giao dây (U2, U4). Yêu cầu lịch sự sửa số lượng tính tiền đế nến thành bốn."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A2-10": {
+      "title": "Read experience and progress across sources",
+      "goal": {
+        "en": "Distinguish unspecified experience, dated past events, recently completed work and pending tasks; cross-check two sources.",
+        "vi": "Phân biệt trải nghiệm không nêu thời điểm, sự kiện quá khứ có mốc thời gian, việc vừa hoàn thành và việc còn chờ; đối chiếu hai nguồn."
+      },
+      "context": {
+        "en": "Never describes the particular experience named, not every similar activity.",
+        "vi": "Never phủ định trải nghiệm cụ thể được nêu, không phải mọi hoạt động tương tự."
+      },
+      "strategy": [
+        {
+          "label": "Experience",
+          "labelVi": "Trải nghiệm",
+          "en": "Read have/has never + the whole activity; keep its scope.",
+          "vi": "Đọc have/has never cùng toàn bộ hoạt động; giữ đúng phạm vi."
+        },
+        {
+          "label": "Past date",
+          "labelVi": "Mốc quá khứ",
+          "en": "Locate a finished past-time phrase such as yesterday.",
+          "vi": "Tìm cụm thời gian quá khứ đã kết thúc như yesterday."
+        },
+        {
+          "label": "Status",
+          "labelVi": "Tiến độ",
+          "en": "Just signals recent completion, already completion by now, and not yet a pending action at the report time.",
+          "vi": "Just chỉ việc vừa xong, already chỉ việc đã xong, not yet chỉ việc chưa xong tại thời điểm báo cáo."
+        },
+        {
+          "label": "Cross-check",
+          "labelVi": "Đối chiếu",
+          "en": "Match each task to its owner and status in the other source; do not infer missing outcomes.",
+          "vi": "Ghép từng việc với người thực hiện và trạng thái ở nguồn khác; không suy ra kết quả chưa nêu."
+        }
+      ],
+      "modelTitle": "School radio rehearsal",
+      "passage": [
+        "Source A —",
+        "S1. Ben: I have never presented a live radio programme. I recorded a short story at home yesterday.",
+        "S2. I have just tested the microphone, but I haven't selected the opening music yet.",
+        "S3. Eva: I have already prepared the interview questions.",
+        "Source B —",
+        "S4. Technician's note: The microphone test is complete and Eva's questions are ready.",
+        "S5. The opening music is still undecided. The producer will review the programme tomorrow."
+      ],
+      "lenses": [
+        {
+          "label": "EXPERIENCE",
+          "refs": [
+            "S1"
+          ],
+          "en": "A home recording is not the same as presenting live radio.",
+          "vi": "Ghi âm ở nhà khác dẫn chương trình trực tiếp."
+        },
+        {
+          "label": "PAST TIME",
+          "refs": [
+            "S1"
+          ],
+          "en": "Yesterday identifies the finished time of the recording.",
+          "vi": "Yesterday chỉ thời điểm đã qua của bản ghi."
+        },
+        {
+          "label": "COMPLETED",
+          "refs": [
+            "S2",
+            "S3",
+            "S4"
+          ],
+          "en": "Microphone test and questions are complete, confirmed by the technician.",
+          "vi": "Kiểm tra mic và câu hỏi đã xong, được kỹ thuật viên xác nhận."
+        },
+        {
+          "label": "PENDING",
+          "refs": [
+            "S2",
+            "S5"
+          ],
+          "en": "Opening music is not selected; review is planned, not completed.",
+          "vi": "Chưa chọn nhạc mở đầu; việc duyệt mới là kế hoạch."
+        }
+      ],
+      "extras": [
+        "Worked status table (model only): task | report | cross-check. Microphone test | just completed S2 | complete S4. Interview questions | already prepared S3 | ready S4. Opening music | not yet selected S2 | undecided S5. VI labels: việc, báo cáo, đối chiếu."
+      ],
+      "worked": {
+        "prompt": "Which statement accurately combines both sources?",
+        "options": [
+          "A. Ben has never made any recordings.",
+          "B. All programme tasks are finished.",
+          "C. The microphone test and questions are ready, but the music is still undecided.",
+          "D. Eva has already presented a live programme."
+        ],
+        "answer": {
+          "en": "Model answer C: S2–S5 agree. A overextends never and contradicts S1; B ignores pending music in S5; D is not reported.",
+          "vi": "C đúng theo S2–S5. A mở rộng sai phạm vi never và trái S1; B bỏ qua nhạc chưa chọn; D không được nêu."
+        }
+      },
+      "quickTitle": "Model railway display",
+      "quickText": "T1. Ari: I have never built a large model railway. I made a small paper train last month. T2. I have just painted a station model. I haven't attached the roof yet. T3. Mei: I have already drawn the track plan. T4. Supervisor: The painted station and track plan are ready, but the roof is still separate.",
+      "checks": [
+        {
+          "id": "REA-A2-10-KQC01",
+          "prompt": "Which event has a stated finished past time?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Ari made a small paper train last month.",
+              "feedback": {
+                "en": "Correct: T1 gives a dated past period.",
+                "vi": "T1 nêu mốc quá khứ đã kết thúc."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Ari has just painted a station.",
+              "feedback": {
+                "en": "Incorrect: T2 reports recent completion without a stated finished date.",
+                "vi": "T2 báo vừa xong, không nêu mốc đã kết thúc."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Mei has already drawn the plan.",
+              "feedback": {
+                "en": "Incorrect: T3 reports current completion without a stated finished date.",
+                "vi": "T3 báo đã xong, không nêu mốc quá khứ."
+              }
+            }
+          ],
+          "key": "A"
+        },
+        {
+          "id": "REA-A2-10-KQC02",
+          "prompt": "Which task is pending in both reports?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Drawing the track plan.",
+              "feedback": {
+                "en": "Incorrect: T3–T4 confirm completion.",
+                "vi": "T3–T4 xác nhận đã xong."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Painting the station.",
+              "feedback": {
+                "en": "Incorrect: T2–T4 confirm completion.",
+                "vi": "T2–T4 xác nhận đã xong."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Attaching the roof.",
+              "feedback": {
+                "en": "Correct: T2 and T4 agree.",
+                "vi": "T2 và T4 thống nhất."
+              }
+            }
+          ],
+          "key": "C"
+        }
+      ],
+      "transfer": {
+        "text": "U1. Lila: I have never acted in a public play. I performed a short scene for my family two weeks ago. U2. I have just learned my lines, but I haven't chosen a costume yet. U3. Dan: I have already prepared the stage signs. U4. Director: Lila knows her lines and Dan's signs are ready. Lila's costume is still undecided.",
+        "prompt": {
+          "en": "Identify the negative experience and dated past event; report completed and pending work using both sources. Explain why the negative experience does not mean Lila has never acted. Cite IDs.",
+          "vi": "Nêu trải nghiệm bị phủ định và sự kiện có mốc quá khứ; báo cáo việc đã xong và chưa xong từ hai nguồn. Giải thích vì sao không thể suy ra Lila chưa từng diễn. Dẫn mã câu."
+        },
+        "criteria": "U1 exact scope and two weeks ago; U2–U4 lines/signs complete, costume pending; no invented performance date.",
+        "model": {
+          "en": "Lila has never acted in a public play, but performed a family scene two weeks ago (U1). Her lines and Dan's signs are ready; the costume is still undecided (U2–U4). A family scene is not a public play.",
+          "vi": "Lila chưa từng diễn vở kịch công khai, nhưng đã diễn cảnh ngắn cho gia đình hai tuần trước (U1). Lời thoại và biển sân khấu đã sẵn sàng; trang phục chưa chọn (U2–U4). Diễn cho gia đình khác diễn công khai."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A2-11": {
+      "title": "Read a timeline and overlapping past actions",
+      "goal": {
+        "en": "Reconstruct events in exact order; distinguish an ongoing past action from an event that occurs during it; compare a diary and a note.",
+        "vi": "Dựng đúng trình tự; phân biệt hành động đang diễn ra trong quá khứ với sự kiện xảy ra trong lúc đó; đối chiếu nhật ký và ghi chú."
+      },
+      "context": {
+        "en": "While and when show time relationships. They do not automatically prove that an ongoing action stopped or caused the other event.",
+        "vi": "While và when thể hiện quan hệ thời gian; không tự chứng minh hành động đang diễn ra đã dừng hay gây ra sự kiện kia."
+      },
+      "strategy": [
+        {
+          "label": "Timeline",
+          "labelVi": "Dòng thời gian",
+          "en": "Put each time beside its event.",
+          "vi": "Ghép từng mốc giờ với sự kiện."
+        },
+        {
+          "label": "Background",
+          "labelVi": "Bối cảnh",
+          "en": "Was/were + -ing describes an action in progress at a past moment.",
+          "vi": "Was/were + -ing mô tả hành động đang diễn ra tại một thời điểm quá khứ."
+        },
+        {
+          "label": "Event",
+          "labelVi": "Sự kiện",
+          "en": "Identify the past-simple event occurring during the ongoing action.",
+          "vi": "Xác định sự kiện quá khứ đơn xảy ra trong lúc hành động đang diễn ra."
+        },
+        {
+          "label": "Check",
+          "labelVi": "Đối chiếu",
+          "en": "Compare the other report; distinguish confirmed, rejected and unstated claims.",
+          "vi": "Đối chiếu nguồn khác; phân biệt điều được xác nhận, bác bỏ và chưa nêu."
+        }
+      ],
+      "modelTitle": "School radio recording diary",
+      "passage": [
+        "Source A —",
+        "S1. 1:10 p.m. I entered the studio. A technician was checking the sound levels.",
+        "S2. 1:25 p.m. The telephone rang while Jo was reading a script.",
+        "S3. 1:40 p.m. We recorded the introduction.",
+        "S4. 2:05 p.m. We recorded the interview.",
+        "S5. 2:20 p.m. We saved the recording.",
+        "Source B —",
+        "S6. Producer's note: We recorded the introduction before the interview and saved the recording afterwards. The telephone call was not part of the recording. We did not measure the interview length."
+      ],
+      "lenses": [
+        {
+          "label": "ORDER",
+          "refs": [
+            "S1",
+            "S2",
+            "S3",
+            "S4",
+            "S5"
+          ],
+          "en": "Follow timestamps: enter, ring, introduction, interview, save.",
+          "vi": "Theo giờ: vào phòng, chuông reo, mở đầu, phỏng vấn, lưu."
+        },
+        {
+          "label": "BACKGROUND",
+          "refs": [
+            "S1",
+            "S2"
+          ],
+          "en": "Checking sound and reading a script were ongoing actions at those moments.",
+          "vi": "Kiểm tra âm thanh và đọc kịch bản đang diễn ra lúc đó."
+        },
+        {
+          "label": "EVENT",
+          "refs": [
+            "S2"
+          ],
+          "en": "The phone rang during reading; the diary does not say reading stopped.",
+          "vi": "Điện thoại reo trong lúc đọc; nhật ký không nói việc đọc dừng lại."
+        },
+        {
+          "label": "CROSS-CHECK",
+          "refs": [
+            "S3",
+            "S4",
+            "S5",
+            "S6"
+          ],
+          "en": "The order agrees; phone call not included; interview length unmeasured.",
+          "vi": "Trình tự thống nhất; cuộc gọi không nằm trong bản ghi; chưa đo thời lượng phỏng vấn."
+        }
+      ],
+      "extras": [
+        "Schematic timeline (model only, not to scale): 13:10 enter → 13:25 ring during reading → 13:40 introduction → 14:05 interview → 14:20 save. Do not draw continuous action bars with invented end times. VI: sơ đồ thứ tự, không theo tỉ lệ."
+      ],
+      "worked": {
+        "prompt": "Which statement is supported by both sources?",
+        "options": [
+          "A. The interview was recorded before the introduction.",
+          "B. The introduction came before the interview, and saving followed.",
+          "C. The telephone call lasted fifteen minutes.",
+          "D. The phone call was part of the recorded programme."
+        ],
+        "answer": {
+          "en": "Model answer B: S3–S6 establish the order. A reverses it; C invents a duration; D contradicts S6.",
+          "vi": "B đúng theo S3–S6. A đảo thứ tự; C tự đặt thời lượng; D trái S6."
+        }
+      },
+      "quickTitle": "Craft display diary",
+      "quickText": "T1. 9:10 — I arrived. Kim was arranging clay models. T2. 9:35 — A bell rang while Kim was writing labels. T3. 9:50 — We opened the display. T4. 11:15 — We closed it. T5. Staff note: The bell rang before opening; it was not the opening signal.",
+      "checks": [
+        {
+          "id": "REA-A2-11-KQC01",
+          "prompt": "What was Kim doing when the bell rang?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Closing the display.",
+              "feedback": {
+                "en": "Incorrect: T4 is later.",
+                "vi": "T4 xảy ra sau."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Writing labels.",
+              "feedback": {
+                "en": "Correct: T2 states the ongoing action.",
+                "vi": "T2 nêu hành động đang diễn ra."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Opening the display.",
+              "feedback": {
+                "en": "Incorrect: T3 gives the later opening.",
+                "vi": "T3 nêu việc mở sau đó."
+              }
+            }
+          ],
+          "key": "B"
+        },
+        {
+          "id": "REA-A2-11-KQC02",
+          "prompt": "Which claim is rejected by the staff note?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The bell was the opening signal.",
+              "feedback": {
+                "en": "Correct: T5 explicitly says it was not.",
+                "vi": "T5 phủ định rõ."
+              }
+            },
+            {
+              "id": "B",
+              "text": "The bell rang before opening.",
+              "feedback": {
+                "en": "Incorrect: T5 confirms this.",
+                "vi": "T5 xác nhận."
+              }
+            },
+            {
+              "id": "C",
+              "text": "The display opened at 9:50.",
+              "feedback": {
+                "en": "Incorrect: T3 reports this, and T5 does not reject it.",
+                "vi": "T3 nêu, T5 không bác bỏ."
+              }
+            }
+          ],
+          "key": "A"
+        }
+      ],
+      "transfer": {
+        "text": "U1. 10:15 — I entered the music room. Pat was tuning a guitar. U2. 10:35 — A visitor knocked while Pat was reading a music sheet. U3. 10:50 — We rehearsed the first song. U4. 11:20 — We rehearsed the second song. U5. Leader's note: We rehearsed the first song before the second. The knock was not a signal to begin. We did not record how long each rehearsal lasted.",
+        "prompt": {
+          "en": "Make a four-event timeline. Describe the ongoing action when the visitor knocked. State one fact confirmed by both sources, one rejected claim and one unreported fact. Cite IDs.",
+          "vi": "Lập dòng thời gian bốn sự kiện. Mô tả hành động đang diễn ra khi khách gõ cửa. Nêu một điều được hai nguồn xác nhận, một nhận định bị bác bỏ và một dữ kiện chưa nêu. Dẫn mã câu."
+        },
+        "criteria": "U1–U4 correct order; U2 reading during knock, no invented stop; U3–U5 first before second; U5 not start signal and durations unknown.",
+        "model": {
+          "en": "Enter 10:15 → knock 10:35 → first song 10:50 → second song 11:20 (U1–U4). Pat was reading music when the visitor knocked (U2). First came before second (U3–U5); the knock was not a start signal; rehearsal lengths are not given (U5).",
+          "vi": "Vào phòng 10:15 → gõ cửa 10:35 → bài một 10:50 → bài hai 11:20 (U1–U4). Pat đang đọc bản nhạc khi khách gõ cửa (U2). Bài một trước bài hai; tiếng gõ không phải tín hiệu bắt đầu; chưa nêu thời lượng (U3–U5)."
+        }
+      },
+      "evidence_weight": 0
+    },
+    "REA-A2-12": {
+      "title": "Compare facts and recommend a conditional choice",
+      "goal": {
+        "en": "Compare price per session, duration, schedule and equipment; match all constraints and recommend without invented ratings.",
+        "vi": "So sánh giá mỗi buổi, thời lượng, lịch và thiết bị; đáp ứng mọi điều kiện và đề xuất mà không tự đặt đánh giá."
+      },
+      "context": {
+        "en": "A cheaper or longer session is not automatically suitable. Check all the reader's constraints and any borrowing conditions.",
+        "vi": "Buổi rẻ hơn hoặc dài hơn không tự động phù hợp. Kiểm tra mọi điều kiện của người học và quy định mượn đồ."
+      },
+      "strategy": [
+        {
+          "label": "Same units",
+          "labelVi": "Cùng đơn vị",
+          "en": "Compare per-session cost and calculate end minus start.",
+          "vi": "So sánh giá mỗi buổi và lấy giờ kết thúc trừ giờ bắt đầu."
+        },
+        {
+          "label": "Constraints",
+          "labelVi": "Điều kiện",
+          "en": "Check age, availability, budget and required equipment separately.",
+          "vi": "Kiểm tra riêng tuổi, thời gian rảnh, ngân sách và thiết bị."
+        },
+        {
+          "label": "Conditional access",
+          "labelVi": "Tiếp cận có điều kiện",
+          "en": "A loan may require an advance action; state the exact condition.",
+          "vi": "Mượn đồ có thể cần thực hiện việc trước; nêu đúng điều kiện."
+        },
+        {
+          "label": "Recommendation",
+          "labelVi": "Đề xuất",
+          "en": "Cite the matching facts and any remaining condition; do not rank quality without evidence.",
+          "vi": "Dẫn dữ kiện phù hợp và điều kiện còn lại; không xếp hạng chất lượng thiếu bằng chứng."
+        }
+      ],
+      "modelTitle": "Two science-maker sessions",
+      "passage": [
+        "Source A —",
+        "S1. Paper Engineering: Monday 4:30–5:15 p.m.; £5 per session; tools included; ages 10 and above.",
+        "S2. Circuit Models: Wednesday 3:00–4:15 p.m.; £8 per session; bring a small battery pack or request a loan by Monday evening; ages 12 and above.",
+        "S3. No class ratings are provided.",
+        "Source B —",
+        "S4. I am 13, free Wednesday afternoon only, and can spend up to £9.",
+        "S5. I have no battery pack, but I can contact the organiser on Sunday. I want to build a model."
+      ],
+      "lenses": [
+        {
+          "label": "PRICE/DURATION",
+          "refs": [
+            "S1",
+            "S2"
+          ],
+          "en": "£5 versus £8; 45 versus 75 minutes.",
+          "vi": "£5 so với £8; 45 so với 75 phút."
+        },
+        {
+          "label": "FIT",
+          "refs": [
+            "S1",
+            "S2",
+            "S4"
+          ],
+          "en": "Both ages and prices fit, but only Wednesday fits availability.",
+          "vi": "Cả hai phù hợp tuổi và giá, nhưng chỉ thứ Tư phù hợp lịch."
+        },
+        {
+          "label": "CONDITION",
+          "refs": [
+            "S2",
+            "S5"
+          ],
+          "en": "Request a loan by Monday evening; Sunday is early enough to request, not proof of a confirmed loan.",
+          "vi": "Yêu cầu mượn trước hoặc vào tối thứ Hai; Chủ nhật đủ sớm để yêu cầu, không chứng minh đã được xác nhận mượn."
+        },
+        {
+          "label": "LIMIT",
+          "refs": [
+            "S3"
+          ],
+          "en": "No evidence to rank class quality.",
+          "vi": "Không có bằng chứng xếp hạng chất lượng."
+        }
+      ],
+      "extras": [
+        "Worked comparison table (model only): session | day/time | duration | price | equipment | age. Paper Engineering | Mon 16:30–17:15 | 45 min | £5 | included | 10+. Circuit Models | Wed 15:00–16:15 | 75 min | £8 | battery pack or loan request by Mon evening | 12+. VI labels: buổi, ngày/giờ, thời lượng, giá, thiết bị, tuổi."
+      ],
+      "worked": {
+        "prompt": "Which recommendation is supported?",
+        "options": [
+          "A. Paper Engineering, because a lower price overrides the day.",
+          "B. Circuit Models, because its teaching is certainly better.",
+          "C. Both, because both accept a 13-year-old.",
+          "D. Circuit Models, provided the learner arranges a battery pack under the stated loan rule."
+        ],
+        "answer": {
+          "en": "Model answer D: S2, S4, S5 match day, age, budget and possible equipment arrangement. A ignores availability; B invents quality; C checks only age and ignores day.",
+          "vi": "D đúng theo S2, S4, S5 nếu thu xếp thiết bị đúng quy định. A bỏ qua lịch; B tự đánh giá chất lượng; C chỉ xét tuổi, bỏ qua lịch."
+        }
+      },
+      "quickTitle": "Two practical classes",
+      "quickText": "T1. Bread Design: Friday 3:00–3:40 p.m., £6, equipment included. T2. Clay Shapes: Sunday 1:30–2:40 p.m., £9, bring a modelling board or request a loan by Friday noon. T3. The notice gives no quality ratings.",
+      "checks": [
+        {
+          "id": "REA-A2-12-KQC01",
+          "prompt": "Which comparison is supported?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Bread Design lasts 70 minutes.",
+              "feedback": {
+                "en": "Incorrect: T1 gives 40 minutes.",
+                "vi": "T1 là 40 phút."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Clay Shapes lasts 70 minutes and costs £3 more.",
+              "feedback": {
+                "en": "Correct: T2 gives 70 minutes; £9 − £6 = £3.",
+                "vi": "T2 là 70 phút; chênh £3."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Clay Shapes has better teachers.",
+              "feedback": {
+                "en": "Incorrect: T3 gives no rating.",
+                "vi": "T3 không nêu đánh giá."
+              }
+            }
+          ],
+          "key": "B"
+        },
+        {
+          "id": "REA-A2-12-KQC02",
+          "prompt": "What must someone without a modelling board do to use a loan?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Attend Bread Design first.",
+              "feedback": {
+                "en": "Incorrect: not a stated requirement.",
+                "vi": "Không phải yêu cầu đã nêu."
+              }
+            },
+            {
+              "id": "B",
+              "text": "Wait until Sunday to request it.",
+              "feedback": {
+                "en": "Incorrect: T2 gives Friday noon.",
+                "vi": "T2 nêu trưa thứ Sáu."
+              }
+            },
+            {
+              "id": "C",
+              "text": "Request it by Friday noon.",
+              "feedback": {
+                "en": "Correct: T2 states the loan condition.",
+                "vi": "T2 nêu điều kiện mượn."
+              }
+            }
+          ],
+          "key": "C"
+        }
+      ],
+      "transfer": {
+        "text": "U1. Puppet Making: Tuesday 4:00–4:50 p.m., £4, equipment included, ages 9+. U2. Fabric Printing: Friday 2:15–3:35 p.m., £7, bring a printing block or request a loan by Wednesday afternoon, ages 12+. U3. Reader: I am 14, free Friday afternoon, have £8 and no printing block; I can contact the centre Tuesday. U4. The notice gives no ratings.",
+        "prompt": {
+          "en": "Compare session duration and price, recommend an option for this reader, explain the equipment condition and why the other session fails. Cite IDs; do not claim one is better taught.",
+          "vi": "So sánh thời lượng và giá, đề xuất cho người đọc, giải thích điều kiện thiết bị và lý do buổi kia không phù hợp. Dẫn mã câu; không tự đánh giá chất lượng giảng dạy."
+        },
+        "criteria": "U1 50 min/£4; U2 80 min/£7; U2–U3 age/day/budget and request by Wed afternoon, Tuesday possible but loan not confirmed; U1 wrong day; U4 no ratings.",
+        "model": {
+          "en": "Puppet Making lasts 50 minutes and costs £4; Fabric Printing lasts 80 minutes and costs £7 (U1–U2). Fabric Printing fits Friday, age and budget, provided the learner arranges the printing block; request a loan by Wednesday afternoon (U2–U3). Tuesday is early enough to request. Puppet Making is on the wrong day. No quality comparison is supported (U4).",
+          "vi": "Puppet Making 50 phút, £4; Fabric Printing 80 phút, £7 (U1–U2). Fabric Printing phù hợp thứ Sáu, tuổi và ngân sách nếu thu xếp khối in; yêu cầu mượn chậm nhất chiều thứ Tư (U2–U3). Thứ Ba đủ sớm để yêu cầu. Puppet Making sai ngày. Không có căn cứ so sánh chất lượng (U4)."
+        }
+      },
+      "evidence_weight": 0
+    }
+  }
+}
