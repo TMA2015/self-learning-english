@@ -59,7 +59,11 @@ function ModelExtras({lines,showVi}:{lines:string[];showVi:boolean}){
  return <div className="sle-rea-card sle-rea-extras">
  {prose.filter(l=>!l.startsWith('VI labels:')).map((l,i)=>{const ix=l.indexOf(' VI ');return <div key={i}><p>{ix<0?l:l.slice(0,ix)}</p>{showVi&&ix>=0&&<p lang="vi" className="sle-rea-vi">{l.slice(ix+1)}</p>}</div>})}
  {tableLines.length>2&&<ModelTable headers={cells(tableLines[0])} rows={tableLines.slice(2).map(cells)}/>}
- {showVi&&prose.filter(l=>l.startsWith('VI labels:')).map((l,i)=><p key={i} lang="vi" className="sle-rea-vi">{l}</p>)}
+ {prose.filter(l=>l.startsWith('VI labels:')).map((l,i)=>{
+  const caution='Do not turn an unconfirmed quantity into zero.';
+  const hasCaution=l.endsWith(' '+caution);
+  return <div key={i}>{hasCaution&&<p>{caution}</p>}{showVi&&<p lang="vi" className="sle-rea-vi">{hasCaution?l.slice(0,-caution.length).trimEnd():l}</p>}</div>;
+ })}
  </div>;
 }
 function Body({d,showVi}:{d:Notes;showVi:boolean}){
