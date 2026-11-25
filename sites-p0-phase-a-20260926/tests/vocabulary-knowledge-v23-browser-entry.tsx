@@ -83,6 +83,8 @@ async function historicalPlayerRoute(){
  check(panel.querySelectorAll('.sle-voc-card').length===d.cards.length,'card count');
  check(!panel.querySelector('[lang="vi"]'),'English first');
  const speakers=panel.querySelectorAll<HTMLButtonElement>('.sle-voc-card .sle-voc-speaker');
+ const checkSpeaker=(b:HTMLButtonElement)=>{const r=b.getBoundingClientRect(),svg=b.querySelector('svg');check(Math.abs(r.width-24)<1&&Math.abs(r.height-24)<1,'compact square speaker '+r.width+'x'+r.height);check(!!svg&&svg.getAttribute('aria-hidden')==='true'&&!!b.getAttribute('aria-label')&&!b.textContent?.trim(),'accessible icon-only speaker');};
+ panel.querySelectorAll<HTMLButtonElement>('.sle-voc-speaker').forEach(checkSpeaker);
  speakers[0].click();speakers[1].click();await wait(()=>spoken.length>=2,'two speech invocations');
  // SpeechSynthesisUtterance.rate is a WebIDL float; native getters may round to float32.
  // Compare its observed value with the expected native representation, not JS double equality.
