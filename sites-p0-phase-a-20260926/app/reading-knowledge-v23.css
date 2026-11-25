@@ -1,0 +1,21 @@
+.sle-rea-v23{min-width:0;overflow-wrap:anywhere;display:grid;gap:10px;margin:12px 0 20px}
+.sle-rea-v23 .sle-rea-heading{display:flex;gap:10px;align-items:flex-start;margin-top:12px}
+.sle-rea-v23 .sle-rea-heading>span{display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:8px;background:#e7f1ff;color:#174a83;font-weight:700}
+.sle-rea-v23 h3,.sle-rea-v23 h4,.sle-rea-v23 p{margin:0 0 8px}
+.sle-rea-v23 .sle-rea-card{border:1px solid #cbd5e1;border-radius:10px;padding:12px;min-width:0}
+.sle-rea-v23 .sle-rea-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:8px}
+.sle-rea-v23 .sle-rea-choices{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.sle-rea-v23 button{min-height:44px;max-width:100%;padding:8px 12px;border:1px solid #a7bcd5;border-radius:8px;background:#f8fafc;color:#173b65;white-space:normal;overflow-wrap:anywhere;text-align:left;font:inherit;cursor:pointer}
+.sle-rea-v23 button[aria-pressed=true]{background:#dbeafe;border-color:#2563eb;color:#173b65}
+.sle-rea-v23 button:focus-visible,.sle-rea-v23 textarea:focus-visible,.sle-rea-v23 summary:focus-visible,.sle-rea-v23 .sle-rea-table-scroll:focus-visible{outline:2px solid #2563eb;outline-offset:2px}
+.sle-rea-v23 .sle-rea-sentence,.sle-rea-v23 .sle-rea-highlight{padding:6px 8px;border-left:3px solid transparent}
+.sle-rea-v23 .sle-rea-highlight{background:#eff6ff;border-color:#2563eb;color:#173b65}
+.sle-rea-v23 .sle-rea-feedback{border-left:3px solid #2563eb;padding:10px;background:#eff6ff;color:#173b65;margin-top:8px}
+.sle-rea-v23 .sle-rea-vi{font-size:.95em;color:inherit;opacity:.86}
+.sle-rea-v23 .sle-rea-copy{white-space:pre-line}
+.sle-rea-v23 textarea{display:block;box-sizing:border-box;width:100%;font-size:16px;min-width:0;margin:8px 0}
+.sle-rea-v23 label{display:block;font-weight:600}
+.sle-rea-v23 summary{cursor:pointer;min-height:44px;padding:10px 0}
+.sle-rea-v23 .sle-rea-table-scroll{overflow-x:auto;max-width:100%}
+.sle-rea-v23 table{border-collapse:collapse;width:100%;font-size:.95em}
+.sle-rea-v23 th,.sle-rea-v23 td{border:1px solid #cbd5e1;padding:8px;text-align:left;vertical-align:top}
