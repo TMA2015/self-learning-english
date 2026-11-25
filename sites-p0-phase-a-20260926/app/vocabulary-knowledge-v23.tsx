@@ -49,7 +49,7 @@ function VocabularyBody({lesson,showVi}:{lesson:SeedLesson;showVi:boolean}){
   if(typeof window==='undefined'||!('speechSynthesis' in window)||typeof SpeechSynthesisUtterance==='undefined'){setSpeechMessage('Speech playback is unavailable in this browser. You can still read the example.');return}
   try{window.speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(text);utterance.lang='en-GB';utterance.rate=0.92;utterance.onerror=()=>setSpeechMessage('Speech playback is unavailable or interrupted.');window.speechSynthesis.speak(utterance);setSpeechMessage('');}catch{setSpeechMessage('Speech playback is unavailable.')}
  }
- const speaker=(c:Card,i:number)=><button type="button" className="sle-voc-speaker" aria-label={'Play '+(i===0?'word or phrase: ':'example: ')+c.term} onClick={()=>speak(c.speech[i])}>🔊</button>;
+ const speaker=(c:Card,i:number)=><button type="button" className="sle-voc-speaker" aria-label={'Play '+(i===0?'word or phrase: ':'example: ')+c.term} onClick={()=>speak(c.speech[i])}><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><path d="M3 9v6h4l5 4V5L7 9H3Z"/><path d="M15 9a4 4 0 0 1 0 6m3-9a8 8 0 0 1 0 12"/></svg></button>;
  const deck=d.deck[index],card=d.cards.find(c=>c.id===deck.cardId)!;
  const move=(n:number)=>{setIndex((index+n+d.deck.length)%d.deck.length);setFlipped(false)};
  return <section className="sle-ms sle-voc-v23" aria-label="Vocabulary Knowledge v2.3">
