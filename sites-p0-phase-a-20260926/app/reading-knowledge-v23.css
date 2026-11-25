@@ -19,3 +19,13 @@
 .sle-rea-v23 .sle-rea-table-scroll{overflow-x:auto;max-width:100%}
 .sle-rea-v23 table{border-collapse:collapse;width:100%;font-size:.95em}
 .sle-rea-v23 th,.sle-rea-v23 td{border:1px solid #cbd5e1;padding:8px;text-align:left;vertical-align:top}
+
+.sle-rea-v23 figure{margin:8px 0 0}
+.sle-rea-v23 figcaption{font-weight:600;margin-bottom:8px}
+.sle-rea-v23 .sle-rea-map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;align-items:center;text-align:center}
+.sle-rea-v23 .sle-rea-map span{padding:8px 4px;border:1px solid #a7bcd5;border-radius:6px;font-size:.9em;overflow-wrap:anywhere}
+.sle-rea-v23 .sle-rea-map .sle-rea-map-north,.sle-rea-v23 .sle-rea-map .sle-rea-map-link{grid-column:2}
+.sle-rea-v23 .sle-rea-map .sle-rea-map-link{padding:0;border:0}
+.sle-rea-v23 .sle-rea-map span:nth-child(3){grid-column:1}
+.sle-rea-v23 .sle-rea-timeline{padding-left:24px;margin:8px 0}
+.sle-rea-v23 .sle-rea-timeline li{padding:5px 0}
