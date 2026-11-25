@@ -89,7 +89,13 @@ async function main(){
    const response=await fetch(url,{headers:{Authorization:'Bearer '+token,Accept:'application/vnd.github+json'},signal:AbortSignal.timeout(10000)});
    if(!response.ok)throw Error('baseline lookup failed');
    const data=await response.json();
-   if(!data.workflow_runs?.some(r=>r.head_sha===base&&r.event==='push'&&r.head_branch==='main'&&r.conclusion==='success'))throw Error('base not verified LIVE');
+   if(!git('log','-1','--format=%B',base).includes('[release-english]'))throw Error('base has no authorized release marker');
+   const previous=data.workflow_runs?.find(r=>r.head_sha===base&&r.event==='push'&&r.head_branch==='main'&&r.conclusion==='success');
+   if(!previous||!Number.isSafeInteger(previous.id))throw Error('base not verified LIVE');
+   const jobs=await fetch('https://api.github.com/repos/'+repo+'/actions/runs/'+previous.id+'/jobs?filter=latest&per_page=100',{headers:{Authorization:'Bearer '+token,Accept:'application/vnd.github+json'},signal:AbortSignal.timeout(10000)});
+   if(!jobs.ok)throw Error('baseline jobs unavailable');
+   const detail=await jobs.json();
+   if(!detail.jobs?.some(j=>j.conclusion==='success'&&['Deploy Firebase Hosting English LIVE only','Check LIVE English HTML and valid audio'].every(name=>j.steps?.some(step=>step.name===name&&step.conclusion==='success'))))throw Error('base release job skipped or incomplete');
   }
  }catch(e){result=full('uncertain scope or LIVE baseline; full QA required');}
  console.log(JSON.stringify(result));
