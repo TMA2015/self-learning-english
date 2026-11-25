@@ -70,7 +70,7 @@ async function main(){
  if(process.argv.includes('--self-test'))return;
  const base=process.env.SLE_QA_BASE,head=process.env.GITHUB_SHA;
  const full=reason=>({tier:3,skills:[],reason});
- let result=full('unverified diff or previous LIVE baseline');
+ let result=full('unverified diff or previous LIVE baseline'),policyChange=false;
  try{
   if(!/^[0-9a-f]{40}$/.test(base||'')||! /^[0-9a-f]{40}$/.test(head||'')||base===head)throw Error('invalid commit');
   const git=(...args)=>cp.execFileSync('git',args,{encoding:'utf8',maxBuffer:16*1024*1024});
@@ -79,6 +79,7 @@ async function main(){
   const parts=git('diff','--name-status','--no-renames','-z',base,head).split('\0');parts.pop();
   if(parts.length%2)throw Error('unexpected diff format');
   const changes=[];for(let i=0;i<parts.length;i+=2)changes.push({status:parts[i],path:parts[i+1]});
+  policyChange=changes.some(x=>['scripts/classify-release.cjs','scripts/verify-actions-policy.cjs','.github/workflows/english-pr-qa.yml','.github/workflows/english-manual-release-qa.yml',prefix+'scripts/qa-scoped.mjs'].includes(x.path));
   result=plan(changes,(path,side)=>git('show',(side==='base'?base:head)+':'+path));
   if(result.tier<3&&process.env.GITHUB_EVENT_NAME==='push'){
    // A prior main commit is not necessarily deployed. Require exact successful
@@ -99,7 +100,7 @@ async function main(){
   }
  }catch(e){result=full('uncertain scope or LIVE baseline; full QA required');}
  console.log(JSON.stringify(result));
- if(process.env.GITHUB_OUTPUT)fs.appendFileSync(process.env.GITHUB_OUTPUT,'tier='+result.tier+'\nskills='+result.skills.join(',')+'\n');
+ if(process.env.GITHUB_OUTPUT)fs.appendFileSync(process.env.GITHUB_OUTPUT,'tier='+result.tier+'\nskills='+result.skills.join(',')+'\npolicy_change='+policyChange+'\n');
  if(process.env.GITHUB_STEP_SUMMARY)fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,'\nQA scope: Level '+result.tier+' — '+result.reason+'; skills: '+(result.skills.join(',')||'all')+'\n');
 }
 main().catch(e=>{console.error(e);process.exitCode=1});
