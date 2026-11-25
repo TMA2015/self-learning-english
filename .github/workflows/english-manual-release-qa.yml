@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: sle-english-live-release
@@ -29,6 +30,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
 
       - name: Verify authorization and English-only source
         run: |
@@ -67,6 +69,14 @@ jobs:
           node ../scripts/verify-actions-policy.cjs
           node tests/nov-2026-content-preflight.cjs
           node tests/audio-rights-release-gate.cjs --require-clearance
+
+      - name: Classify actual main diff and verify previous LIVE baseline
+        id: scope
+        working-directory: .
+        env:
+          SLE_QA_BASE: ${{ github.event.before }}
+          SLE_ACTIONS_READ_TOKEN: ${{ github.token }}
+        run: node scripts/classify-release.cjs
 
       - name: Confirm Firebase credential before expensive CI
         env:
@@ -121,11 +131,25 @@ jobs:
 
       - name: Full release QA, TS, static build and audio validation
         id: release_qa
+        if: ${{ steps.scope.outputs.tier == '3' }}
         run: pnpm qa:release
 
+      - name: Scoped release QA, TS and static build
+        id: scoped_qa
+        if: ${{ steps.scope.outputs.tier == '1' || steps.scope.outputs.tier == '2' }}
+        env:
+          SLE_QA_TIER: ${{ steps.scope.outputs.tier }}
+          SLE_QA_SKILLS: ${{ steps.scope.outputs.skills }}
+        run: node scripts/qa-scoped.mjs
+
       - name: Verify exact English build artifacts
+        env:
+          QA_TIER: ${{ steps.scope.outputs.tier }}
+          FULL_QA: ${{ steps.release_qa.outcome }}
+          SCOPED_QA: ${{ steps.scoped_qa.outcome }}
         run: |
           set -euo pipefail
+          if [[ "$QA_TIER" == '3' ]]; then [[ "$FULL_QA" == 'success' ]]; else [[ "$QA_TIER" =~ ^[12]$ && "$SCOPED_QA" == 'success' ]]; fi
           test -s dist/client/index.html
           test -s dist/client/foundation-audio/LIS-A1-06-v1.mp3
           test -s dist/client/foundation-audio/LIS-A2-07-v1.mp3
@@ -181,14 +205,18 @@ jobs:
         if: ${{ always() }}
         working-directory: .
         env:
-          QA_RESULT: ${{ steps.release_qa.outcome }}
+          QA_TIER: ${{ steps.scope.outputs.tier }}
+          FULL_QA: ${{ steps.release_qa.outcome }}
+          SCOPED_QA: ${{ steps.scoped_qa.outcome }}
           DEPLOY_RESULT: ${{ steps.deploy.outcome }}
           SMOKE_RESULT: ${{ steps.live_smoke.outcome }}
         run: |
           {
             echo '## SLE English LIVE release'
             echo "- Commit: $GITHUB_SHA"
-            echo "- Full QA: $QA_RESULT"
+            echo "- QA Level: $QA_TIER"
+            echo "- Full QA: $FULL_QA"
+            echo "- Scoped QA: $SCOPED_QA"
             echo "- Firebase LIVE deploy: $DEPLOY_RESULT"
             echo "- LIVE HTML/MP3 verification: $SMOKE_RESULT"
             echo '- Website: https://g-learning-english.web.app/'
