@@ -21,10 +21,16 @@ function plan(changes,read){
    // New selectors/rules, removed rules or external resources require full QA.
    const rules=s=>s.replace(/\/\*[\s\S]*?\*\//g,'').match(/[^{}]+(?=\{)/g)?.map(x=>x.trim())??[];
    if(JSON.stringify(rules(before))!==JSON.stringify(rules(after))||/@import|url\s*\(|expression\s*\(|\\|:has\(/i.test(after))return {tier:3,skills:[],reason:'CSS selector/rule or resource change'};
-   const declarations=s=>s.replace(/\/\*[\s\S]*?\*\//g,'').split(/[{}]/).filter((_,i)=>i%2===1);
-   // Conservative property whitelist. For media/container CSS this may escalate.
-   const changed=declarations(after).filter((x,i)=>x!==declarations(before)[i]);
-   if(changed.some(x=>/(?:display|visibility|opacity|pointer-events|position|z-index|content|overflow)\s*:/i.test(x)))tier=Math.max(tier,2);
+   const leaf=s=>[...s.replace(/\/\*[\s\S]*?\*\//g,'').matchAll(/([^{}]+)\{([^{}]*)\}/g)].map(m=>({selector:m[1].trim(),decl:m[2].split(';').map(x=>x.trim()).filter(Boolean)}));
+   const a=leaf(before),b=leaf(after);
+   if(a.length!==b.length||a.some((r,i)=>r.selector!==b[i].selector))return {tier:3,skills:[],reason:'CSS structure changed'};
+   const allowed=/^(?:color|background-color|border(?:-(?:top|right|bottom|left))?(?:-color|-width|-radius|-style)?|border-radius|font-size|font-weight|line-height|letter-spacing|margin(?:-(?:top|right|bottom|left))?|padding(?:-(?:top|right|bottom|left))?|gap|row-gap|column-gap|(?:min-|max-)?(?:width|height))$/;
+   for(let i=0;i<a.length;i++){
+    const changed=[...a[i].decl.filter(x=>!b[i].decl.includes(x)),...b[i].decl.filter(x=>!a[i].decl.includes(x))];
+    if(changed.some(x=>!allowed.test(x.split(':')[0].trim())||/!important|var\s*\(|url\s*\(/i.test(x)))return {tier:3,skills:[],reason:'non-cosmetic CSS declaration changed'};
+    // Reordered unchanged declarations can change the cascade: do not fast-track.
+    if(!changed.length&&JSON.stringify(a[i].decl)!==JSON.stringify(b[i].decl))return {tier:3,skills:[],reason:'CSS declaration reorder'};
+   }
   }else if(file===g.component){
    // Components are never fast solely by filename. A literal SVG path-only
    // adjustment in the existing Vocabulary button is allowed; all other
@@ -53,7 +59,7 @@ function selfTest(){
  assert.equal(plan([],read).tier,3);
  assert.equal(plan([mod(css)],(p,s)=>s==='base'?'.x{color:red}':'.y{color:blue}').tier,3);
  assert.equal(plan([mod(css)],(p,s)=>s==='base'?'.x{color:red}':'.x{color:url(https://example.invalid)}').tier,3);
- assert.equal(plan([mod(css)],(p,s)=>s==='base'?'.x{display:block}':'.x{display:none}').tier,2);
+ assert.equal(plan([mod(css)],(p,s)=>s==='base'?'.x{display:block}':'.x{display:none}').tier,3);
  const svg=d=>'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><path d="'+d+'"/></svg>';
  assert.equal(plan([mod(component)],(p,s)=>'same'+svg(s==='base'?'M1 1':'M2 2')).tier,1);
  assert.equal(plan([mod(component)],(p,s)=>s+svg('M1 1')).tier,3);
