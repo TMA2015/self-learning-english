@@ -3,7 +3,10 @@
 .sle-voc-v23 .sle-voc-card{min-width:0;overflow-wrap:anywhere}
 .sle-voc-v23 .sle-voc-card h4{display:block;margin:0 0 .5rem}
 .sle-voc-v23 .sle-voc-vi{color:var(--muted-foreground);font-size:.95em}
-.sle-voc-v23 .sle-voc-speaker{display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:1px solid #bfd8ef;border-radius:10px;background:#eff6ff;color:#174a83;font-size:1rem;cursor:pointer}
+.sle-voc-v23 button.sle-voc-speaker{display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;box-sizing:border-box;width:24px;height:24px;min-width:24px;min-height:24px;max-width:24px;max-height:24px;flex:0 0 24px;padding:0;margin:0;border:1px solid #cbd5e1;border-radius:4px;background:#f8fafc;color:#334155;line-height:1;cursor:pointer}
+.sle-voc-v23 button.sle-voc-speaker svg{display:block;width:16px;height:16px;flex:none;pointer-events:none}
+.sle-voc-v23 button.sle-voc-speaker:hover{background:#e8eef5;border-color:#94a3b8}
+.sle-voc-v23 button.sle-voc-speaker:active{background:#dce6f1}
 .sle-voc-v23 .sle-voc-copy{white-space:pre-line;overflow-wrap:anywhere}
 .sle-voc-v23 .sle-voc-flip{display:block;width:100%;min-height:120px;padding:18px;margin:8px 0 12px;border:1px solid #bfd8ef;border-radius:12px;background:#eff6ff;color:#174a83;text-align:center;font:inherit;overflow-wrap:anywhere;cursor:pointer}
 .sle-voc-v23 .sle-voc-flip small{display:block;margin-top:12px}
