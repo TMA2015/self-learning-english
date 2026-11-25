@@ -1,0 +1,18 @@
+/* Vocabulary Knowledge v2.3: scoped extension of the approved multi-skill design. */
+.sle-voc-v23 .sle-voc-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.sle-voc-v23 .sle-voc-card{min-width:0;overflow-wrap:anywhere}
+.sle-voc-v23 .sle-voc-card h4{display:block;margin:0 0 .5rem}
+.sle-voc-v23 .sle-voc-vi{color:var(--muted-foreground);font-size:.95em}
+.sle-voc-v23 .sle-voc-speaker{display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:1px solid #bfd8ef;border-radius:10px;background:#eff6ff;color:#174a83;font-size:1rem;cursor:pointer}
+.sle-voc-v23 .sle-voc-copy{white-space:pre-line;overflow-wrap:anywhere}
+.sle-voc-v23 .sle-voc-flip{display:block;width:100%;min-height:120px;padding:18px;margin:8px 0 12px;border:1px solid #bfd8ef;border-radius:12px;background:#eff6ff;color:#174a83;text-align:center;font:inherit;overflow-wrap:anywhere;cursor:pointer}
+.sle-voc-v23 .sle-voc-flip small{display:block;margin-top:12px}
+.sle-voc-v23 .sle-voc-task{margin:10px 0;min-width:0}
+.sle-voc-v23 .sle-voc-task legend{font-weight:600;max-width:100%;overflow-wrap:anywhere}
+.sle-voc-v23 textarea{display:block;width:100%;box-sizing:border-box;margin:8px 0;padding:10px;border:1px solid #b9c9db;border-radius:8px;resize:vertical;color:inherit;background:transparent;font:inherit}
+.sle-voc-v23 .sle-voc-options{display:grid;gap:8px;margin:8px 0}
+.sle-voc-v23 .sle-voc-options button{min-height:44px;text-align:left;white-space:normal;overflow-wrap:anywhere;padding:10px;border:1px solid #b9c9db;border-radius:8px;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.sle-voc-v23 .sle-voc-options button[aria-pressed=true]{outline:2px solid #2563eb;outline-offset:1px}
+.sle-voc-v23 .sle-voc-feedback{margin:12px 0;padding:12px;border-left:3px solid #2563eb;overflow-wrap:anywhere}
+.sle-voc-v23 .sle-ms-controls{flex-wrap:wrap}
+.sle-voc-v23 button:focus-visible,.sle-voc-v23 textarea:focus-visible{outline:2px solid #2563eb;outline-offset:2px}
