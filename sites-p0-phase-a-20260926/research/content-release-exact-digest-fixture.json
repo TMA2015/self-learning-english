@@ -1,0 +1,37 @@
+{
+  "status": "RESEARCH_ONLY_NOT_RUNTIME_AUTHORIZATION",
+  "sourceCommit": "c1bdf787f1971bf39f8089eec29063d1d7d69083",
+  "method": "UTF-8 exact Git blob reconstruction and SHA-256; canonical JSON sorted object keys matching academic-service.sourceDigest; abc vectors checked. Independent Node verification still required.",
+  "base": {
+    "path": "content/curriculum-1.28.0-candidate.json",
+    "gitBlob": "9d931a6930b8cd3ed918db1fa22e8708b7a9f884",
+    "byteLength": 1649502,
+    "rawSha256": "332133020a5c7fc21aad2f5c7c5779ac075f2a7925da1301582a144fc4e1061b",
+    "canonicalSha256": "fd233ca59c720ddb3b1dc42ad8d951624261b4b7002b3ab0767a9cf167fea50f",
+    "version": "1.28.0",
+    "lessons": 176,
+    "activities": 1224
+  },
+  "successor": {
+    "path": "content/curriculum-1.28.1-candidate.json",
+    "gitBlob": "ef69d4a9d4ed13fb3de7702ce6600e062c1039f2",
+    "byteLength": 1650627,
+    "rawSha256": "d95402089159b81af1ef99d5d797f0914fe21a4a498f1ab31053eba0f059e251",
+    "canonicalSha256": "5eaab191b2de845cfac20ac7b3aaaf3a1fde1279fd37813d4f26a407b330ea23",
+    "version": "1.28.1",
+    "lessons": 176,
+    "activities": 1224
+  },
+  "reviewPatch": {
+    "path": "content/review-packets/SLE_REA_BASELINE_WORDING_PATCH_20261126.json",
+    "gitBlob": "ab8c7d187164a2576ffcebb54506dc221d0eb249",
+    "byteLength": 7327,
+    "rawSha256": "0676b35140f1bca180a7d2cb02ec954265929f621f7a4c08bcc48478b2e67c15"
+  },
+  "reviewReceipt": {
+    "path": "content/review-packets/SLE_REA_BASELINE_WORDING_PASS_RECEIPT_20261126.md",
+    "gitBlob": "819f1e2f2ada34097bfd40165f15641696d12d95",
+    "byteLength": 906,
+    "rawSha256": "52e0840f2a141acc9e1b3953d876cde7f8b8482d523cdf06bf4b4c72a326fbed"
+  }
+}
