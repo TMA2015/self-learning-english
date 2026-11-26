@@ -1,0 +1,861 @@
+{
+  "artifact_type": "SLE_READING_KNOWLEDGE_V23_AUTHORING_PROJECTION",
+  "status": "SOURCE_ONLY_NOT_RUNTIME_NOT_IMPORTABLE",
+  "curriculum_version": "1.28.0",
+  "curriculum_git_blob": "9d931a6930b8cd3ed918db1fa22e8708b7a9f884",
+  "academic_standard": "SLE-MASTER-001 v1.2.1",
+  "scope": "A1/A2 only; B1 pilot intentionally excluded from this integration wave",
+  "lesson_count": 21,
+  "quick_check_count": 42,
+  "open_transfer_count": 21,
+  "new_scored_items": 0,
+  "evidence_weight": 0,
+  "rendering_contract": "Not a renderer schema. Exact reviewed Appendix A section text only; never render raw markdown wholesale. Parse structured fields, show selected lens and chosen option feedback only, hide transfer model until requested. No grading, attempt creation, persistence, import or release authorization.",
+  "sources": [
+    {
+      "path": "sites-p0-phase-a-20260926/content/review-packets/SLE_REA_KNOWLEDGE_V23_PILOT_R0_20261125.md",
+      "git_blob": "32b9365c93eb22d4eb968450e405a056ef3a237d"
+    },
+    {
+      "path": "sites-p0-phase-a-20260926/content/review-packets/SLE_REA_KNOWLEDGE_V23_W1A_A1_R0_20261125.md",
+      "git_blob": "17457f7941ab2c9c2cb7e2d4d1b62b64c817e8e9"
+    },
+    {
+      "path": "sites-p0-phase-a-20260926/content/review-packets/SLE_REA_KNOWLEDGE_V23_W1B_A1_R0_20261125.md",
+      "git_blob": "e94058c9a17626b21a31d8b38c1a3dc17801a0a5"
+    },
+    {
+      "path": "sites-p0-phase-a-20260926/content/review-packets/SLE_REA_KNOWLEDGE_V23_W2A_A2_R0_20261125.md",
+      "git_blob": "29df0849c06fc70c843e8594ef00f92467e778aa"
+    },
+    {
+      "path": "sites-p0-phase-a-20260926/content/review-packets/SLE_REA_KNOWLEDGE_V23_W2B_A2_R0_20261125.md",
+      "git_blob": "094a512b7a65595aa5d8faa12a6aef01eeb0a85f"
+    },
+    {
+      "path": "sites-p0-phase-a-20260926/content/review-packets/SLE_REA_KNOWLEDGE_V23_W2C_A2_R0_20261125.md",
+      "git_blob": "658c61be570ad090fd54e368f002ce5f51f75ec7"
+    }
+  ],
+  "lessons": [
+    {
+      "lesson_id": "REA-A1-01",
+      "title": "Read a short notice",
+      "source_index": 0,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Find the purpose of a short notice, its important details and a condition. Check the exact words before deciding.\n**Goal VI:** Tìm mục đích, thông tin quan trọng và điều kiện trong thông báo ngắn. Đối chiếu từ ngữ trước khi chọn.\n**Context EN:** A notice tells readers what is happening and what they need to know or do.\n**Context VI:** Thông báo cho người đọc biết sự việc và những điều cần biết hoặc cần làm.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Gist / Ý chính: Read the whole notice once. Ask: What is this notice for? / Đọc toàn bộ một lượt. Hỏi: Thông báo này nhằm mục đích gì?\n- Scan / Tìm nhanh: Look for the type of detail you need: a place, time, object or action. Read the words around it. / Tìm đúng loại thông tin: địa điểm, thời gian, đồ vật hoặc hành động. Đọc các từ xung quanh.\n- Conditions / Điều kiện: Notice words such as only, if and not. They can change the meaning. / Chú ý only, if và not vì chúng có thể thay đổi ý nghĩa.\n- Verify / Đối chiếu: Point to the line that supports your answer. If the text does not tell you, do not guess. / Chỉ ra câu làm bằng chứng. Không đoán nếu văn bản không cho biết."
+        },
+        {
+          "heading": "Interactive worked text — independent model: Library drop box",
+          "markdown": "S1. The town library has a new book-return box by the front door.\nS2. You can use the box when the library is closed.\nS3. Put library books in the box, but take DVDs to the desk when the library opens.\nS4. Please do not leave your own books in the box.\nLens PURPOSE → S1: The notice introduces a return service. / Câu này giới thiệu dịch vụ trả sách.\nLens PLACE → S1: “by the front door” names the location. / Cụm này chỉ vị trí.\nLens CONDITION → S2, S3, S4: Check when the box can be used, what goes in it, and what must not go in it. / Xem khi nào dùng hộp, đồ vật nào được bỏ vào và đồ vật nào không được bỏ vào."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "A reader has a library DVD. What should they do?\nA. Put it in the box. B. Take it to the desk when the library opens. C. Leave it beside the front door.\nModel answer B. Evidence S3. A ignores the contrast after “but”; C confuses the location of the box with a permitted action.\nVI: B đúng theo S3. A bỏ qua phần đối lập sau “but”; C nhầm vị trí của hộp với hành động được phép. The notice does not give the opening hour; do not invent one."
+        },
+        {
+          "heading": "Quick checks — independent text: Park fountain",
+          "markdown": "T1. The drinking fountain near the park gate is closed for repairs today.\nT2. Visitors can use the fountain beside the café instead.\nT3. The café sells drinks, but you do not have to buy one to use the fountain.\nQC REA-A1-01-KQC01: What is the notice mainly for?\n- A. To announce a new café. — Incorrect: the café is a location, not the reason for the notice. / Quán là mốc vị trí, không phải mục đích thông báo.\n- B. To tell visitors about a closed fountain and an alternative. — Correct: T1 and T2 together give the purpose. / T1 và T2 cùng cho biết mục đích.\n- C. To ask visitors to buy drinks. — Incorrect: T3 says purchase is not required. / T3 nói không bắt buộc mua.\nKey B.\nQC REA-A1-01-KQC02: Must a visitor buy a drink to use the other fountain?\n- A. Yes, everyone must buy one. — Incorrect: “do not have to” means it is not required. / “Do not have to” nghĩa là không bắt buộc.\n- B. Only children must buy one. — Incorrect: no special rule for children is stated. / Không có quy định riêng cho trẻ em.\n- C. No. — Correct: T3 explicitly says a purchase is unnecessary. / T3 nói rõ không cần mua.\nKey C."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. The lift in the community centre is not working this morning. U2. Please use the stairs next to the reception desk. U3. If you cannot use the stairs, ask the receptionist for help.\nPrompt EN: Write the purpose of the notice, where the stairs are, and what a visitor who cannot use stairs should do. Give one sentence ID as evidence for each.\nVI: Viết mục đích thông báo, vị trí cầu thang và cách xử lý nếu khách không thể đi cầu thang. Ghi mã câu làm bằng chứng.\nCriteria: purpose + location + conditional action, each grounded in U1–U3; no invented repair time or alternative route.\nHidden model EN: The notice tells visitors about a lift problem (U1) and what to do instead (U2–U3). The stairs are next to reception (U2). A visitor who cannot use them should ask the receptionist for help (U3).\nHidden model VI: Thông báo cho biết thang máy gặp sự cố và hướng dẫn cách xử lý (U1–U3). Cầu thang cạnh quầy lễ tân (U2). Người không thể đi cầu thang nên nhờ lễ tân giúp (U3)."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A1-01-KQC01",
+          "key": "B"
+        },
+        {
+          "id": "REA-A1-01-KQC02",
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A1-02",
+      "title": "Read a schedule and instructions",
+      "source_index": 1,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Find what a notice is about, match each time to the right action, and separate supplied items from things to bring.\n**Goal VI:** Tìm mục đích thông báo, ghép từng giờ với đúng hành động và phân biệt đồ được cung cấp với đồ cần mang.\n**Context EN:** An event may have several times. Read the action next to each time before choosing an answer.\n**Context VI:** Một sự kiện có thể có nhiều mốc giờ. Đọc hành động đi kèm từng mốc trước khi chọn.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Gist / Ý chính: Read the title and first sentence. Ask what event or service is described. / Đọc tiêu đề và câu đầu; xác định sự kiện hoặc dịch vụ.\n- Time labels / Gắn nhãn thời gian: Write the action beside each time: arrive, begin, finish or collect. / Ghi hành động bên cạnh từng giờ: đến, bắt đầu, kết thúc hoặc nhận đồ.\n- Bring or provided / Mang hay được cấp: Read both sides of a contrast; do not turn a supplied item into a requirement. / Đọc hai vế đối lập; không biến đồ được cấp thành đồ bắt buộc mang.\n- Verify / Đối chiếu: Check the full sentence, not just a number or object. / Đối chiếu cả câu, không chỉ số hoặc đồ vật."
+        },
+        {
+          "heading": "Interactive worked text — independent model: Repair workshop",
+          "markdown": "S1. The community centre has a free bicycle repair workshop on Sunday.\nS2. Arrive at 11:10 to check in; the workshop begins at 11:25.\nS3. Bring your bicycle. The centre has all the repair tools.\nS4. The workshop ends at 12:15.\nLens PURPOSE → S1: The notice announces a repair workshop. / Thông báo giới thiệu buổi sửa xe đạp.\nLens TIME → S2, S4: Check-in, beginning and ending are different actions. / Điểm danh, bắt đầu và kết thúc là các hành động khác nhau.\nLens ITEMS → S3: The visitor brings the bicycle; tools are supplied. / Khách mang xe đạp; dụng cụ được cung cấp."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "When does the workshop itself begin?\nA. 11:10. B. 12:15. C. 11:25.\nModel answer C. S2 gives 11:25 as the start. A is check-in, B is the end (S4).\nVI: C đúng theo S2. A là giờ điểm danh; B là giờ kết thúc theo S4."
+        },
+        {
+          "heading": "Quick checks — independent text: Parcel collection",
+          "markdown": "T1. The parcel desk opens at 2:10. T2. Collections begin at 2:30 and finish at 4:10. T3. Bring your collection code; the desk supplies a paper bag.\nQC REA-A1-02-KQC01: When can collections begin?\n- A. 2:30. — Correct: T2 gives the collection start. / T2 nêu giờ bắt đầu nhận đồ.\n- B. 2:10. — Incorrect: T1 gives the desk opening time. / T1 nêu giờ quầy mở.\n- C. 4:10. — Incorrect: T2 gives this as the finish. / T2 nêu đây là giờ kết thúc.\nKey A.\nQC REA-A1-02-KQC02: What does the customer need to bring?\n- A. A paper bag. — Incorrect: T3 says the desk supplies it. / T3 nói quầy cung cấp túi.\n- B. A collection code. — Correct: T3 asks the customer to bring it. / T3 yêu cầu mang mã nhận đồ.\n- C. A new parcel. — Incorrect: no such requirement is stated. / Không có yêu cầu này.\nKey B."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. A free guitar tuning session takes place at the music shop. U2. Arrive at 5:05; the session starts at 5:20 and ends at 6:10. U3. Bring your guitar; the shop supplies tuners. U4. If you cannot come, send a message by Tuesday evening.\nPrompt EN: State the purpose, the arrival and start times, what to bring, and the action if you cannot attend. Give sentence IDs.\nVI: Nêu mục đích, giờ đến và giờ bắt đầu, đồ cần mang và việc cần làm nếu không thể tham gia. Dẫn mã câu.\nCriteria: correct purpose, distinct times, item and conditional action with U1–U4; no invented charge or transport.\nHidden model EN: The notice announces a free guitar tuning session (U1). Arrive at 5:05; it starts at 5:20 (U2). Bring a guitar (U3). If you cannot come, send a message by Tuesday evening (U4).\nHidden model VI: Thông báo buổi chỉnh dây đàn miễn phí (U1). Đến lúc 5:05; bắt đầu lúc 5:20 (U2). Mang đàn guitar (U3). Nếu không thể đến, nhắn tin trước hoặc vào tối thứ Ba (U4)."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A1-02-KQC01",
+          "key": "A"
+        },
+        {
+          "id": "REA-A1-02-KQC02",
+          "key": "B"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A1-03",
+      "title": "Follow a personal message",
+      "source_index": 1,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Find the sender's purpose, follow a changed plan, distinguish needed items and identify when a reply is due.\n**Goal VI:** Tìm mục đích người gửi, theo dõi kế hoạch thay đổi, phân biệt đồ cần chuẩn bị và hạn trả lời.\n**Context EN:** A friendly message can mention an old idea and a new idea. Read which action is now proposed.\n**Context VI:** Tin nhắn thân mật có thể nhắc ý định cũ và mới. Đọc xem hành động nào đang được đề xuất.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Sender's purpose / Mục đích người gửi: Ask what the sender wants to arrange, share or request. / Hỏi người gửi muốn sắp xếp, chia sẻ hay yêu cầu điều gì.\n- Old and new / Cũ và mới: Notice but, instead and now; do not select an abandoned idea. / Chú ý but, instead, now; không chọn ý đã bỏ.\n- Needs / Yêu cầu: Separate what to bring from what someone already has. / Phân biệt đồ cần mang với đồ người khác đã có.\n- Reply and verify / Trả lời và đối chiếu: Match a reply deadline to the reply, not to the event. / Ghép hạn trả lời với hành động trả lời, không nhầm với giờ sự kiện."
+        },
+        {
+          "heading": "Interactive worked text — independent model: Board game evening",
+          "markdown": "S1. Hi Ali, shall we play board games this evening?\nS2. I thought we could play at my flat, but the café has a game table, so let's meet there at 6:20.\nS3. Please bring your game cards; I have the board and counters.\nS4. Let me know by 4:00 if you can come. — Jo\nLens PURPOSE → S1: Jo is arranging a game evening. / Jo muốn sắp xếp một buổi chơi.\nLens CHANGE → S2: The flat was the earlier idea; the café is the proposed meeting place. / Căn hộ là ý định cũ; quán là nơi hẹn được đề xuất.\nLens ACTION → S3, S4: Bring cards and reply by 4:00. / Mang thẻ chơi và trả lời trước hoặc lúc 4:00."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "Where does Jo propose meeting Ali?\nA. At the café. B. At Jo's flat. C. At the shop.\nModel answer A. S2 moves from the earlier flat idea to the café. B is the old idea; C is not stated.\nVI: A đúng theo S2. B là ý định cũ; C không được nêu."
+        },
+        {
+          "heading": "Quick checks — independent text: A cake for a neighbour",
+          "markdown": "T1. Hi Bea, let's make a cake for our neighbour. T2. I wanted to buy a ready-made cake, but let's bake one at my house instead. T3. Bring eggs; I have flour. T4. Please reply by 7:00 tonight. — Sam\nQC REA-A1-03-KQC01: What is Sam's new plan?\n- A. Buy a cake. — Incorrect: T2 presents that as the earlier idea. / T2 nêu đây là ý định cũ.\n- B. Buy flour. — Incorrect: T3 says Sam has flour. / T3 nói Sam đã có bột.\n- C. Bake a cake at Sam's house. — Correct: T2 gives the new plan. / T2 nêu kế hoạch mới.\nKey C.\nQC REA-A1-03-KQC02: By when does Sam want a reply?\n- A. 7:00 tonight. — Correct: T4 gives the reply deadline. / T4 nêu hạn trả lời.\n- B. After baking. — Incorrect: the message does not say this. / Tin nhắn không nói vậy.\n- C. Tomorrow morning. — Incorrect: T4 says tonight. / T4 nói tối nay.\nKey A."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. Hi Rui, can we practise a song together? U2. I planned an online call, but let's meet at my cousin's flat at 5:40 instead. U3. Bring the song sheet; I have a speaker. U4. If you cannot come, tell me; please reply by 3:00. — Nina\nPrompt EN: Write Nina's purpose, the new place and time, the item Rui should bring, and the reply deadline. Cite sentence IDs.\nVI: Nêu mục đích của Nina, nơi và giờ hẹn mới, đồ Rui cần mang và hạn trả lời. Dẫn mã câu.\nCriteria: U1–U4, distinguish old online plan from new proposed meeting; do not claim Rui has agreed.\nHidden model EN: Nina wants to practise a song together (U1). She proposes meeting at her cousin's flat at 5:40 (U2). Rui should bring the song sheet (U3) and reply by 3:00 (U4).\nHidden model VI: Nina muốn cùng tập một bài hát (U1). Nina đề xuất gặp tại căn hộ của anh/chị/em họ lúc 5:40 (U2). Rui cần mang bản lời/bản nhạc (U3) và trả lời trước hoặc lúc 3:00 (U4)."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A1-03-KQC01",
+          "key": "C"
+        },
+        {
+          "id": "REA-A1-03-KQC02",
+          "key": "A"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A1-04",
+      "title": "Read a timetable and one exception",
+      "source_index": 1,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Match activities to times and places, distinguish a usual arrangement from a one-time change, and find a deadline.\n**Goal VI:** Ghép hoạt động với giờ và địa điểm, phân biệt lịch thường lệ với thay đổi một lần và tìm hạn cuối.\n**Context EN:** An update may change only one part of a timetable. Keep the other facts as written.\n**Context VI:** Thông báo cập nhật có thể chỉ đổi một phần lịch. Giữ các thông tin khác đúng như văn bản.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Pair facts / Ghép thông tin: Make a small row for each activity: time, place, action. / Lập một hàng cho mỗi hoạt động: giờ, nơi, hành động.\n- Exception / Ngoại lệ: Underline usually and this time; answer for the date asked. / Gạch chân usually và this time; trả lời đúng ngày được hỏi.\n- Reason / Lý do: Find because or another stated reason; don't guess. / Tìm because hoặc lý do được nêu; không suy đoán.\n- Deadline / Hạn cuối: Read by or before with the action it limits. / Đọc by hoặc before cùng hành động mà chúng giới hạn."
+        },
+        {
+          "heading": "Interactive worked text — independent model: Sunday market update",
+          "markdown": "S1. On Sunday, the fruit stall opens at 7:20 at the north entrance.\nS2. The flower stall usually stands beside the fountain, but this Sunday it will stand near the clock because the fountain is being repaired.\nS3. The bread stall opens at 8:10 in the usual place.\nS4. Order a flower basket before Saturday noon.\nLens SCHEDULE → S1, S3: Match each stall to its own opening time. / Ghép từng quầy với đúng giờ mở.\nLens EXCEPTION → S2: Only the flower stall's location changes here; the repair is the stated reason. / Ở đây chỉ đổi vị trí quầy hoa; lý do được nêu là sửa đài phun nước.\nLens DEADLINE → S4: The order must be made before Saturday noon. / Phải đặt giỏ hoa trước trưa thứ Bảy."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "Where will the flower stall be this Sunday?\nA. Beside the fountain. B. Near the clock. C. At the north entrance.\nModel answer B. S2 identifies the temporary place. A is the usual place; C belongs to the fruit stall (S1).\nVI: B đúng theo S2. A là vị trí thường lệ; C là vị trí quầy trái cây theo S1."
+        },
+        {
+          "heading": "Quick checks — independent text: Swimming centre update",
+          "markdown": "T1. The beginner swim starts at 6:15. T2. The water exercise normally uses Pool East, but today it uses Pool West because Pool East is closed for a repair. T3. Reserve a place for water exercise before 5:00.\nQC REA-A1-04-KQC01: Why does water exercise use Pool West today?\n- A. Pool East is closed for a repair. — Correct: T2 states the reason. / T2 nêu lý do.\n- B. The beginner swim starts earlier. — Incorrect: T1 gives a different activity's time, not a reason. / T1 nêu giờ hoạt động khác, không phải lý do.\n- C. Pool West is cheaper. — Incorrect: no price is stated. / Không nêu giá.\nKey A.\nQC REA-A1-04-KQC02: What should a visitor do before 5:00?\n- A. Finish swimming. — Incorrect: T3 gives a reservation deadline. / T3 nêu hạn đặt chỗ.\n- B. Repair Pool East. — Incorrect: the notice does not ask visitors to repair it. / Không yêu cầu khách sửa bể.\n- C. Reserve a place for water exercise. — Correct: T3 links the deadline to reservation. / T3 gắn hạn với đặt chỗ.\nKey C."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. The puppet show starts at 2:20 at the town theatre. U2. The ticket desk usually opens at the side door, but today it is at the main door because the side door is locked. U3. Collect reserved tickets before 2:00.\nPrompt EN: State the show start time, today's ticket desk location, why it changed, and the collection deadline. Cite sentence IDs.\nVI: Nêu giờ bắt đầu buổi diễn, vị trí quầy vé hôm nay, lý do đổi và hạn nhận vé. Dẫn mã câu.\nCriteria: U1–U3; keep event time and ticket deadline distinct; no invented opening time.\nHidden model EN: The show starts at 2:20 (U1). Today the desk is at the main door because the side door is locked (U2). Collect reserved tickets before 2:00 (U3).\nHidden model VI: Buổi diễn bắt đầu lúc 2:20 (U1). Hôm nay quầy vé ở cửa chính vì cửa bên bị khóa (U2). Nhận vé đã đặt trước 2:00 (U3)."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A1-04-KQC01",
+          "key": "A"
+        },
+        {
+          "id": "REA-A1-04-KQC02",
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A1-05",
+      "title": "Read weather conditions and invite a friend",
+      "source_index": 1,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Find the normal plan and the weather alternative in a notice. Compare two short event offers and write a friendly invitation using supported details.\n**Goal VI:** Tìm kế hoạch thường lệ và phương án theo thời tiết. So sánh hai thông báo ngắn và viết lời mời thân thiện dựa trên thông tin có thật.\n**Context EN:** Weather can change a place or activity. An invitation should use the right condition, not promise a plan that the notice does not give.\n**Context VI:** Thời tiết có thể làm đổi nơi hoặc hoạt động. Lời mời cần giữ đúng điều kiện, không hứa điều thông báo không nêu.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Gist / Ý chính: Find what the notice invites people to do. / Tìm hoạt động mà thông báo mời mọi người tham gia.\n- Normal plan / Kế hoạch thường lệ: Note the stated activity and place. / Ghi hoạt động và địa điểm được nêu.\n- If / Nếu: Read the condition and its result together; a change is not always a cancellation. / Đọc điều kiện cùng kết quả; đổi kế hoạch không luôn là hủy.\n- Compare and invite / So sánh và mời: Compare the offers with a friend's needs; give a friendly invitation with only supported details. / So sánh lựa chọn với nhu cầu của bạn; mời thân thiện bằng thông tin có căn cứ."
+        },
+        {
+          "heading": "Interactive worked text — independent model: Two weekend activities",
+          "markdown": "Source A: S1. Kite Hour starts at 4:15 on the beach. S2. If the wind is too strong, meet at the pavilion to decorate kites instead.\nSource B: S3. Story Hour starts at 4:45 in the bookshop. S4. It takes place indoors in any weather.\nLens NORMAL → S1, S3: Compare the normal activity, time and place. / So sánh hoạt động, giờ và nơi thường lệ.\nLens CHANGE → S2: Strong wind changes both the place and the activity in A. / Gió quá mạnh làm đổi cả nơi và hoạt động ở A.\nLens COMPARE → S2, S4: B remains indoors; A has a conditional alternative. / B luôn trong nhà; A có phương án tùy điều kiện."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "The wind is too strong. What does Source A ask visitors to do?\nA. Fly kites on the beach. B. Cancel both activities. C. Decorate kites at the pavilion.\nModel answer C. S2 states the alternative. A ignores the condition; B invents a cancellation and wrongly extends A's rule to B.\nVI: C đúng theo S2. A bỏ qua điều kiện; B tự suy ra hủy và áp dụng sai quy định A cho B."
+        },
+        {
+          "heading": "Quick checks — independent text: Two afternoon events",
+          "markdown": "T1. A chalk drawing event starts at 3:20 in the square. T2. If it is very hot, draw on paper in the community café instead. T3. A puzzle hour starts at 3:50 in the games room and stays indoors.\nQC REA-A1-05-KQC01: What happens to the chalk drawing event if it is very hot?\n- A. It starts at 3:50. — Incorrect: T3 is the other event's time. / T3 nêu giờ sự kiện khác.\n- B. Participants draw on paper in the community café. — Correct: T2 states the alternative. / T2 nêu phương án thay thế.\n- C. The notice cancels it. — Incorrect: T2 gives another plan, not a cancellation. / T2 đưa kế hoạch khác, không hủy.\nKey B.\nQC REA-A1-05-KQC02: Which event is stated to stay indoors?\n- A. Puzzle hour. — Correct: T3 explicitly says it stays indoors. / T3 nói rõ luôn trong nhà.\n- B. Chalk drawing in the square. — Incorrect: T1 gives the square as the normal place. / T1 nêu quảng trường là nơi thường lệ.\n- C. Both events are always indoors. — Incorrect: T1–T2 show a conditional change. / T1–T2 cho thấy thay đổi tùy điều kiện.\nKey A."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "Source A: U1. A shell craft event begins at 10:40 on the seafront. U2. If the air is too cold, the same craft takes place inside the visitor centre.\nSource B: U3. A rhythm game begins at 11:10 in the music shop and takes place indoors in any weather.\nPrompt EN: Your friend likes crafts and is free only before 11:00. Compare the stated start times and activities. Write a short friendly invitation to the better-fitting event, including its cold-weather plan. Cite U1–U3. Do not promise it finishes before 11:00.\nVI: Bạn thích thủ công và chỉ rảnh trước 11:00. So sánh giờ bắt đầu và hoạt động. Viết lời mời ngắn thân thiện đến sự kiện phù hợp hơn, gồm phương án khi trời quá lạnh. Dẫn U1–U3. Không khẳng định sự kiện kết thúc trước 11:00.\nCriteria: identify A as better matching interests and start time, explicitly acknowledge finish time not stated; cite U1–U3; friendly invitation, conditional alternative retained; no claim of definite full attendance.\nHidden model EN: A starts at 10:40 and offers craft (U1); B starts at 11:10 and is a rhythm game (U3). Hi! Would you like to try the shell craft at 10:40 on the seafront? If it's too cold, we'll do the craft inside the visitor centre (U2). We should check the finish time first because the notice doesn't say when it ends.\nHidden model VI: A bắt đầu lúc 10:40 và có thủ công (U1); B bắt đầu lúc 11:10 và là trò chơi nhịp điệu (U3). Chào bạn! Bạn có muốn thử làm đồ thủ công từ vỏ sò lúc 10:40 ở bờ biển không? Nếu quá lạnh, ta sẽ làm trong trung tâm dành cho khách (U2). Cần hỏi giờ kết thúc trước vì thông báo không nêu."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A1-05-KQC01",
+          "key": "B"
+        },
+        {
+          "id": "REA-A1-05-KQC02",
+          "key": "A"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A1-06",
+      "title": "Read a menu or price list",
+      "source_index": 2,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Read each line as one offer. Check quantity, price and your budget before asking for an item.\n**Goal VI:** Đọc mỗi dòng như một lựa chọn. Kiểm tra số lượng, giá và ngân sách trước khi gọi món.\n**Context EN:** A price list can name one item or a group of items. The price may cover the whole group.\n**Context VI:** Bảng giá có thể ghi một món hoặc nhiều món. Giá có thể áp dụng cho cả nhóm.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Match / Ghép thông tin: Keep the item and its price on the same line. / Ghép món và giá ở cùng một dòng.\n- Count / Đếm: A or an names one item; a number and a plural noun show more than one. / A hoặc an chỉ một món; số đếm và danh từ số nhiều chỉ nhiều món.\n- Total / Tổng tiền: Check whether a price covers a whole line. Add only the offers you choose. / Kiểm tra giá có áp dụng cho cả dòng không. Chỉ cộng giá các lựa chọn đã chọn.\n- Ask / Hỏi lịch sự: Use “Can I have …, please?” with the exact quantity and item. / Dùng “Can I have …, please?” với đúng số lượng và món."
+        },
+        {
+          "heading": "Interactive worked text — independent model: Craft stall",
+          "markdown": "S1. a badge — £1\nS2. an eraser — £2\nS3. three stickers — £3 (price for all three)\nS4. All prices are for the full line.\nLens ITEM → S1, S2, S3: Keep the name and price together. / Ghép tên món với giá.\nLens QUANTITY → S1, S2, S3: A badge and an eraser each name one item; three stickers names a group of three. / Hai dòng đầu mỗi dòng một món; dòng thứ ba gồm ba hình dán.\nLens TOTAL → S3, S4: £3 buys the whole sticker offer, not each sticker. / £3 là giá cả nhóm hình dán, không phải giá từng chiếc."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "You have £4 and want a badge and three stickers. Which choice fits?\nA. Both for £4. B. Both for £10. C. Only the badge.\nModel answer A. S1 + S3 = £1 + £3 = £4; S4 confirms the whole-line price. B multiplies the group price again; C ignores the affordable combination.\nVI: A đúng vì £1 + £3 = £4, theo S1, S3, S4. B nhân lại giá cả nhóm; C bỏ qua lựa chọn đủ ngân sách."
+        },
+        {
+          "heading": "Quick checks — independent text: Flower stall",
+          "markdown": "T1. a rose — £2\nT2. an orchid — £5\nT3. four daisies — £6 (all four together)\nQC REA-A1-06-KQC01: Which line offers several flowers?\n- A. A rose. — Incorrect: a names one (T1). / A chỉ một bông (T1).\n- B. An orchid. — Incorrect: an names one (T2). / An chỉ một bông (T2).\n- C. Four daisies. — Correct: four is the quantity (T3). / Four là số lượng (T3).\nKey C.\nQC REA-A1-06-KQC02: You have £7. Can you buy a rose and an orchid?\n- A. Yes, for £7. — Correct: £2 + £5 = £7 (T1–T2). / £2 + £5 = £7.\n- B. No, they cost £8. — Incorrect: add the two listed prices. / Cộng đúng hai giá đã ghi.\n- C. Yes, for £6. — Incorrect: £6 belongs to the daisies (T3). / £6 là giá hoa cúc (T3).\nKey A."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. a ribbon — £2. U2. an envelope — £1. U3. five paper stars — £4 (all five together). U4. Prices are for the full line.\nPrompt EN: You have £6. Choose a ribbon and the stars if you can afford them. Give the total, cite the lines and write a polite request.\nVI: Bạn có £6. Chọn một dải ruy băng và các ngôi sao nếu đủ tiền. Nêu tổng tiền, dẫn mã dòng và viết lời yêu cầu lịch sự.\nCriteria: correct quantity, total and source IDs; polite request; no invented single-star price.\nHidden model EN: £2 + £4 = £6 (U1, U3, U4). Can I have a ribbon and five paper stars, please?\nHidden model VI: Tổng £6 theo U1, U3, U4. Lời yêu cầu: Can I have a ribbon and five paper stars, please?"
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A1-06-KQC01",
+          "key": "C"
+        },
+        {
+          "id": "REA-A1-06-KQC02",
+          "key": "A"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A1-07",
+      "title": "Read instructions and ask about missing information",
+      "source_index": 2,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Find where and when to do something, follow the steps, notice rules, and ask for a missing fact.\n**Goal VI:** Tìm địa điểm và thời gian, làm theo trình tự, chú ý quy định và hỏi thông tin còn thiếu.\n**Context EN:** A help card may tell you whom to ask without giving every answer.\n**Context VI:** Thẻ hướng dẫn có thể chỉ người cần hỏi mà không cung cấp mọi câu trả lời.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Locate / Tìm thông tin: Match each place or time to its action. / Ghép địa điểm hoặc thời gian với đúng hành động.\n- Sequence / Trình tự: Read first, next and then in order. / Đọc first, next và then theo thứ tự.\n- Rules / Quy định: Do not tells you what is forbidden, not what to do. / Do not chỉ điều bị cấm, không phải điều cần làm.\n- Ask / Hỏi: Check both sources. Ask a question about a fact that neither source gives. / Kiểm tra cả hai nguồn. Hỏi về dữ kiện chưa được nêu."
+        },
+        {
+          "heading": "Interactive worked text — independent model: Community locker",
+          "markdown": "Source A: S1. Get a locker key from the sports desk. S2. First put your bag inside. Then lock the door. S3. Do not leave food inside. S4. Empty the locker by 6:00 p.m.\nSource B: S5. Ask the desk worker about the cost of a lost key.\nLens ACTION → S1, S4: Pick up and empty are different actions. / Nhận chìa khóa và dọn tủ là hai hành động khác nhau.\nLens SEQUENCE → S2, S3: Follow the order and respect the negative rule. / Làm đúng thứ tự và tuân thủ điều cấm.\nLens MISSING → S5: The worker can tell you the cost, but the cost is not written here. / Nhân viên có thể cho biết phí, nhưng phí chưa được ghi."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "You have lost the key. Which question asks for the missing information?\nA. Where do I get a key? B. How much does a lost key cost? C. When must I empty the locker?\nModel answer B: S5 identifies whom to ask but does not give a price. A is answered by S1; C by S4.\nVI: B hỏi phí chưa được ghi ở S5. A đã có đáp án ở S1; C ở S4."
+        },
+        {
+          "heading": "Quick checks — independent text: Equipment cupboard",
+          "markdown": "T1. Take a ball from the cupboard beside the office. T2. Write your name on the sheet before taking it outside. T3. Do not leave the ball in the rain. T4. Ask the coach about the time for bringing it back.\nQC REA-A1-07-KQC01: What should you do before taking the ball outside?\n- A. Write your name. — Correct: T2 gives that step. / T2 nêu bước này.\n- B. Leave it in the rain. — Incorrect: T3 forbids it. / T3 cấm việc này.\n- C. Move the cupboard. — Incorrect: no such instruction. / Không có hướng dẫn đó.\nKey A.\nQC REA-A1-07-KQC02: Which fact is missing?\n- A. Where the cupboard is. — Incorrect: T1 states it. / T1 đã nêu.\n- B. The return time. — Correct: T4 tells you to ask, not the time itself. / T4 bảo hỏi, chưa nêu giờ.\n- C. Whether rain is allowed. — Incorrect: T3 gives the rule. / T3 có quy định.\nKey B."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. Collect a paint apron at the craft counter. U2. First put it on, then choose a brush. U3. Do not wash brushes in the drinking-water sink. U4. Ask the assistant where to put used aprons.\nPrompt EN: State the first action after collecting the apron, one forbidden action, and one question about missing information. Cite IDs.\nVI: Nêu hành động đầu tiên sau khi nhận tạp dề, một việc bị cấm và một câu hỏi về thông tin thiếu. Dẫn mã câu.\nCriteria: first step U2; rule U3; missing place U4; correctly formed useful question, no guessed return location.\nHidden model EN: Put the apron on first (U2). Do not wash brushes in the drinking-water sink (U3). Where should I put my used apron? (U4).\nHidden model VI: Mặc tạp dề trước (U2). Không rửa cọ trong bồn nước uống (U3). Hỏi nơi để tạp dề đã dùng (U4)."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A1-07-KQC01",
+          "key": "A"
+        },
+        {
+          "id": "REA-A1-07-KQC02",
+          "key": "B"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A1-08",
+      "title": "Read a timetable and a separate event",
+      "source_index": 2,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Match the day, start time and place to the right activity. Keep separate events separate and ask about missing details.\n**Goal VI:** Ghép đúng ngày, giờ bắt đầu và địa điểm với hoạt động. Phân biệt các sự kiện và hỏi thông tin thiếu.\n**Context EN:** A timetable and a separate notice may name similar activities without describing the same event.\n**Context VI:** Thời khóa biểu và thông báo riêng có thể ghi hoạt động tương tự nhưng không phải cùng một sự kiện.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Row / Dòng: Read the day, time, activity and place together. / Đọc ngày, giờ, hoạt động và địa điểm cùng nhau.\n- Labels / Nhãn: Start is not finish; a room is not a time. / Giờ bắt đầu không phải giờ kết thúc; phòng không phải thời gian.\n- Separate / Phân biệt: Check which source describes the event you need. / Kiểm tra nguồn nào mô tả sự kiện cần tìm.\n- Missing / Thông tin thiếu: If neither source gives the fact, ask rather than guess. / Nếu cả hai nguồn đều không nêu, hãy hỏi thay vì đoán."
+        },
+        {
+          "heading": "Interactive worked text — independent model: Community centre programme",
+          "markdown": "Source A — weekday classes: S1. Tuesday 11:00 — Dance — Studio A. S2. Thursday 10:00 — Cooking — Kitchen. S3. All listed times are start times.\nSource B — special event: S4. Family Dance is on Sunday at 2:00 p.m. in Studio B. S5. Ask the organiser about the finishing time.\nLens ROW → S1, S2: Keep each day's time, activity and place together. / Ghép đúng ngày, giờ, hoạt động và địa điểm.\nLens SEPARATE → S1, S4: Dance class and Family Dance are different events. / Lớp nhảy và sự kiện Family Dance khác nhau.\nLens MISSING → S3, S5: The sources do not give a finishing time. / Nguồn không nêu giờ kết thúc."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "Which statement is supported about Family Dance?\nA. It starts Tuesday in Studio A. B. It starts Sunday at 2:00 p.m. in Studio B. C. It finishes at 2:00 p.m.\nModel answer B from S4. A uses the weekday class (S1); C changes the starting time into a finishing time (S4–S5).\nVI: B đúng theo S4. A nhầm với lớp ngày thường; C nhầm giờ bắt đầu thành giờ kết thúc."
+        },
+        {
+          "heading": "Quick checks — independent text: Workshop timetable",
+          "markdown": "T1. Monday 11:30 — Sewing — Hall East. T2. Thursday 1:00 p.m. — Drawing — Hall West. T3. These are start times.\nT4. A special Sewing Show starts Saturday at 4:30 p.m. in the main hall.\nQC REA-A1-08-KQC01: Where is the Monday workshop?\n- A. Hall East. — Correct: T1 pairs Monday with Hall East. / T1 ghép đúng ngày với Hall East.\n- B. Hall West. — Incorrect: T2 is Thursday. / T2 thuộc thứ Năm.\n- C. Main hall. — Incorrect: T4 is the show. / T4 là buổi trình diễn.\nKey A.\nQC REA-A1-08-KQC02: Which question asks for a fact not given?\n- A. Where is the show? — Incorrect: T4 answers this. / T4 đã trả lời.\n- B. When does Drawing start? — Incorrect: T2 answers this. / T2 đã trả lời.\n- C. When does the show finish? — Correct: T4 gives only its start. / T4 chỉ nêu giờ bắt đầu.\nKey C."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. Tuesday 1:15 p.m. — Pottery — Room Blue. U2. Friday 11:00 — Music — Room Yellow. U3. All times are starts. U4. A special Pottery Display starts Sunday at 5:00 p.m. in the entrance hall.\nPrompt EN: Give the day, starting time and place for the regular Pottery class and the special display. Ask one useful question about a missing fact. Cite IDs.\nVI: Nêu ngày, giờ bắt đầu và địa điểm của lớp gốm thường lệ và buổi trưng bày riêng. Hỏi một thông tin thiếu và dẫn mã câu.\nCriteria: distinguish U1 from U4, exact facts, missing finishing time or another genuinely absent relevant fact; no guessed details.\nHidden model EN: Pottery class starts Tuesday at 1:15 p.m. in Room Blue (U1). The display starts Sunday at 5:00 p.m. in the entrance hall (U4). What time does the display finish? (not stated in U1–U4).\nHidden model VI: Lớp gốm bắt đầu thứ Ba lúc 1:15 chiều ở Room Blue (U1). Trưng bày bắt đầu Chủ nhật lúc 5:00 chiều tại sảnh vào (U4). Hỏi giờ kết thúc buổi trưng bày vì nguồn chưa nêu."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A1-08-KQC01",
+          "key": "A"
+        },
+        {
+          "id": "REA-A1-08-KQC02",
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A1-09",
+      "title": "Follow a written route",
+      "source_index": 2,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Follow the order of places and the directions from a given start. Do not guess distance or travel time.\n**Goal VI:** Theo thứ tự địa điểm và hướng đi từ điểm xuất phát. Không đoán khoảng cách hoặc thời gian.\n**Context EN:** A written map can show where places are without showing how far apart they are.\n**Context VI:** Sơ đồ bằng chữ có thể chỉ vị trí mà không cho biết khoảng cách.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Start / Điểm đầu: Identify the exact starting place. / Xác định đúng điểm xuất phát.\n- Order / Thứ tự: Follow the named places in the written order; reverse the order for the opposite direction. / Theo thứ tự đã ghi; đảo thứ tự khi đi hướng ngược lại.\n- Turn / Rẽ: Finish the first move before starting the next. Use the given direction key. / Hoàn thành bước đầu trước khi rẽ. Dùng chú giải hướng.\n- Limits / Giới hạn: A route does not tell distance or time unless the source states it. / Đường đi không cho biết khoảng cách hoặc thời gian nếu nguồn không nêu."
+        },
+        {
+          "heading": "Interactive worked text — independent model: Hill Village",
+          "markdown": "Source A: S1. From WEST to EAST on Oak Lane: STATION → POST OFFICE → FLOWER SHOP. S2. The fountain is immediately NORTH of the post office. S3. EAST means right; NORTH means up. No distances are given.\nSource B: S4. From the flower shop, go WEST to the post office, then NORTH to the fountain.\nLens ORDER → S1: Read the order from the stated direction. / Đọc thứ tự theo hướng đã nêu.\nLens TURN → S2, S4: The first move ends at the post office; then go north. / Bước đầu đến bưu điện; sau đó đi về phía bắc.\nLens LIMIT → S3: The source gives direction but no distance. / Nguồn nêu hướng nhưng không nêu khoảng cách.\nSchematic (not to scale, teaching model only): fountain above post office; station — post office — flower shop. Show N up, E right; no numeric distances or time."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "Starting at the flower shop, how do you reach the fountain?\nA. Go east, then south. B. Go north from the flower shop. C. Go west to the post office, then north.\nModel answer C (S4, supported by S1–S2). A reverses directions; B starts the northward move at the wrong place.\nVI: C đúng theo S4, S1–S2. A đảo hướng; B đi về phía bắc từ sai điểm."
+        },
+        {
+          "heading": "Quick checks — independent text: Pine Square",
+          "markdown": "T1. From WEST to EAST: BANK → BOOKSHOP → CLOCK TOWER. T2. The statue is immediately SOUTH of the bookshop. T3. No travel times are shown.\nQC REA-A1-09-KQC01: From the bank, which route reaches the statue using the stated places?\n- A. East to the bookshop, then south. — Correct: T1–T2 support both moves. / T1–T2 chứng minh hai bước.\n- B. West to the clock tower, then north. — Incorrect: the order and turn do not match. / Sai thứ tự và hướng rẽ.\n- C. East to the clock tower, then south. — Incorrect: T2 places the statue south of the bookshop. / T2 đặt tượng phía nam hiệu sách.\nKey A.\nQC REA-A1-09-KQC02: Which fact is not given?\n- A. The order of bank and bookshop. — Incorrect: T1 shows it. / T1 đã nêu.\n- B. The exact walking time. — Correct: T3 explicitly says it is not shown. / T3 nói rõ không có thời gian đi bộ.\n- C. The direction from bookshop to statue. — Incorrect: T2 states south. / T2 nêu hướng nam.\nKey B."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. From WEST to EAST on Cedar Road: HOTEL → MARKET → BRIDGE. U2. The playground is immediately SOUTH of the market. U3. The map gives no walking distances or times.\nPrompt EN: Give two directions from the bridge to the playground using the named places. Cite the IDs. Say one fact you cannot find.\nVI: Nêu hai hướng đi từ cây cầu đến sân chơi qua các địa điểm đã nêu. Dẫn mã câu. Nêu một dữ kiện không tìm được.\nCriteria: west to market then south, U1–U2; no guessed distance or time (U3).\nHidden model EN: Go west from the bridge to the market (U1), then south to the playground (U2). The walking time is not given (U3).\nHidden model VI: Đi về phía tây từ cầu đến chợ (U1), rồi đi về phía nam đến sân chơi (U2). Không có thông tin thời gian đi bộ (U3)."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A1-09-KQC01",
+          "key": "A"
+        },
+        {
+          "id": "REA-A1-09-KQC02",
+          "key": "B"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A2-01",
+      "title": "Read for main idea, detail and supported inference",
+      "source_index": 3,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Identify the main idea, locate details, work out a simple purpose, and infer a word's meaning using nearby clues.\n**Goal VI:** Xác định ý chính, tìm chi tiết, suy ra mục đích đơn giản và đoán nghĩa từ dựa vào ngữ cảnh.\n**Context EN:** A short article may contain several examples that support one overall point. A detail alone is not the main idea.\n**Context VI:** Một bài viết ngắn có thể có nhiều ví dụ hỗ trợ một ý chung. Một chi tiết riêng lẻ không phải ý chính.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Gist / Ý chính: Read the whole text, then choose an idea broad enough to cover its important parts. / Đọc toàn bài rồi chọn ý bao quát được các phần quan trọng.\n- Locate / Tìm chi tiết: Identify the question word and read around the matching information. / Xác định từ để hỏi rồi đọc quanh thông tin tương ứng.\n- Infer / Suy luận: Combine clues to explain a likely purpose; do not add facts the text cannot support. / Kết hợp dấu hiệu để giải thích mục đích hợp lý, không thêm dữ kiện thiếu bằng chứng.\n- Context / Ngữ cảnh: Try a meaning for an unfamiliar word and test it in its sentence. / Thử nghĩa của từ lạ và kiểm tra trong câu chứa từ đó."
+        },
+        {
+          "heading": "Interactive worked text — independent model: A neighbourhood repair corner",
+          "markdown": "S1. A repair corner has opened in a shopping arcade, where people can learn to fix small household objects.\nS2. Each visitor works beside a helper and tries simple repairs before taking the object home.\nS3. The corner lends a small toolkit, a box containing basic tools for the repair.\nS4. Visitors can also watch a demonstration if they do not have anything to repair.\nS5. The organisers hope people will feel more confident about fixing things instead of replacing them.\nLens GIST → S1, S2, S4, S5: Learning to repair is the broad idea; the individual activities support it. / Học sửa đồ là ý bao quát; các hoạt động cụ thể hỗ trợ ý này.\nLens DETAIL → S2, S4: The text gives two ways to take part, working with a helper or watching a demonstration. / Có hai cách tham gia: làm cùng người hướng dẫn hoặc xem minh họa.\nLens PURPOSE → S1, S5: The stated aim is to build confidence; the passage does not say every visitor will repair everything successfully. / Mục tiêu là tăng tự tin; bài không nói mọi khách đều sửa thành công mọi đồ vật.\nLens WORD IN CONTEXT → S3: The words after toolkit explain that it contains tools. / Các từ sau toolkit giải thích đó là hộp chứa dụng cụ."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "Which statement best summarises the text?\nA. The repair corner helps people learn basic repairs and feel more confident. B. The repair corner is only for people who own tools. C. Every visitor must repair an object. D. The shopping arcade sells only household objects.\nModel answer A: S1 and S5 give the overall purpose; S2 and S4 show ways to learn. B contradicts S3; C contradicts S4; D invents a restriction about the arcade.\nVI: A bao quát mục đích theo S1, S5 và các cách học ở S2, S4. B trái S3; C trái S4; D tự thêm giới hạn về khu mua sắm."
+        },
+        {
+          "heading": "Quick checks — independent text: Local history recordings",
+          "markdown": "T1. A town project records stories told by older residents. T2. Young interviewers learn how to ask questions and listen carefully. T3. The recordings are stored in an archive, a collection kept for people to use later. T4. The organisers want future listeners to understand how everyday life has changed.\nQC REA-A2-01-KQC01: What is the main idea?\n- A. Young people must buy recording equipment. — Incorrect: no purchase requirement is stated. / Không nêu yêu cầu mua thiết bị.\n- B. A project collects memories and helps people understand changes in local life. — Correct: T1 and T4 express the overall purpose; T2 supports it. / T1 và T4 nêu mục đích chung; T2 hỗ trợ.\n- C. Every resident remembers the same events. — Incorrect: the text makes no such claim. / Văn bản không khẳng định điều đó.\nKey B.\nQC REA-A2-01-KQC02: What does archive mean in T3?\n- A. A collection kept for later use. — Correct: T3 explains the word directly. / T3 giải thích trực tiếp.\n- B. A person who asks questions. — Incorrect: T2 describes interviewers. / T2 mô tả người phỏng vấn.\n- C. A change in everyday life. — Incorrect: T4 gives the purpose, not the word's meaning. / T4 nêu mục đích, không phải nghĩa từ.\nKey A."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. A small theatre invites visitors to watch how a play is prepared. U2. Actors explain how they practise a scene, while technicians show the lighting equipment. U3. The theatre gives visitors a programme, a printed guide to the event. U4. The organisers want people to understand the work behind a performance.\nPrompt EN: Write the main idea, one supporting detail and the meaning of programme. Explain a likely purpose of the demonstrations using sentence IDs.\nVI: Viết ý chính, một chi tiết hỗ trợ và nghĩa từ programme. Giải thích mục đích hợp lý của phần minh họa, dẫn mã câu.\nCriteria: broad idea U1/U4; detail U2; meaning U3; purpose supported by U2/U4; no invented tickets, prices or performance dates.\nHidden model EN: The theatre helps visitors understand how a play is prepared (U1, U4). Technicians show lighting equipment (U2). A programme is a printed guide (U3). The demonstrations help visitors see the work behind the performance (U2, U4).\nHidden model VI: Nhà hát giúp khách hiểu cách chuẩn bị vở diễn (U1, U4). Kỹ thuật viên giới thiệu thiết bị chiếu sáng (U2). Programme là tài liệu in hướng dẫn về sự kiện (U3). Minh họa giúp hiểu công việc phía sau buổi diễn (U2, U4)."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A2-01-KQC01",
+          "key": "B"
+        },
+        {
+          "id": "REA-A2-01-KQC02",
+          "key": "A"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A2-02",
+      "title": "Read an announcement with conditions and contrast",
+      "source_index": 3,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Find an announcement's purpose and details, interpret conditions and permission, and explain a contrast without inventing facts.\n**Goal VI:** Tìm mục đích và chi tiết thông báo, hiểu điều kiện và quyền được phép, giải thích sự tương phản mà không tự thêm dữ kiện.\n**Context EN:** An announcement may mention an idea that was considered but not chosen. Read the final decision and its reason.\n**Context VI:** Thông báo có thể nhắc ý tưởng đã cân nhắc nhưng không được chọn. Đọc quyết định cuối cùng và lý do.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Purpose / Mục đích: Identify the event and what readers need to do. / Xác định sự kiện và việc người đọc cần làm.\n- Condition / Điều kiện: Read the action together with words such as as long as and only if. / Đọc hành động cùng các từ chỉ điều kiện như as long as và only if.\n- Contrast / Tương phản: Separate the earlier idea from the decision after however. / Tách ý tưởng ban đầu khỏi quyết định sau however.\n- Fact or inference / Dữ kiện hay suy luận: Check what is stated; explain a supported inference cautiously. / Kiểm tra điều được nêu; diễn đạt suy luận có bằng chứng một cách thận trọng."
+        },
+        {
+          "heading": "Interactive worked text — independent model: Community radio open session",
+          "markdown": "S1. The community radio station will hold a short recording session on Tuesday evening.\nS2. Visitors may record a one-minute message as long as they sign up at the reception desk.\nS3. People who prefer not to speak can watch a recording demonstration.\nS4. The team considered holding the session outdoors. However, it chose the studio because the street is noisy.\nS5. The station will lend headphones during the session.\nLens PURPOSE → S1, S2, S3: The event gives visitors a chance to record or observe. / Sự kiện cho khách cơ hội ghi âm hoặc quan sát.\nLens CONDITION → S2: Signing up is a condition for recording a message, not a stated rule for watching. / Đăng ký là điều kiện ghi âm, không phải quy định được nêu cho việc xem.\nLens CONTRAST → S4: The outdoor idea was considered; the studio is the chosen place. / Phương án ngoài trời được cân nhắc; phòng thu là nơi được chọn.\nLens INFERENCE → S4: Less street noise is the stated reason for choosing the studio; the text does not promise a perfect recording. / Tiếng ồn đường phố là lý do chọn phòng thu; không có lời hứa bản ghi hoàn hảo."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "A visitor wants to record a message. What must they do according to the notice?\nA. Bring their own headphones. B. Record in the street. C. Sign up at reception. D. Record for ten minutes.\nModel answer C (S2). A ignores the lending offer in S5 and invents a requirement; B confuses the discarded idea with the decision (S4); D changes the stated length (S2).\nVI: C đúng theo S2. A bỏ qua việc cho mượn ở S5 và thêm yêu cầu; B nhầm phương án đã bỏ (S4); D đổi thời lượng ở S2."
+        },
+        {
+          "heading": "Quick checks — independent text: Local chess demonstration",
+          "markdown": "T1. Visitors can play a practice match provided they put their names on the match sheet. T2. Spectators can watch from the back of the room. T3. The organisers considered using the entrance hall. However, they chose a side room because it has more space for tables.\nQC REA-A2-02-KQC01: What is required for playing a practice match?\n- A. Register on the match sheet. — Correct: T1 states the condition. / T1 nêu điều kiện.\n- B. Sit at the back as a spectator. — Incorrect: T2 describes watching. / T2 mô tả việc xem.\n- C. Use the entrance hall. — Incorrect: T3 says the side room was chosen. / T3 nói chọn phòng bên.\nKey A.\nQC REA-A2-02-KQC02: Why is however used in T3?\n- A. To give a match score. — Incorrect: there is no score. / Không có điểm trận đấu.\n- B. To introduce a rule about spectators. — Incorrect: T2 is about spectators. / T2 nói về khán giả.\n- C. To contrast the earlier location idea with the chosen room. — Correct: T3 separates the two plans. / T3 phân biệt hai phương án.\nKey C."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. A craft centre will run a short paper-folding demonstration. U2. Visitors can make a model provided they collect a materials card at the entrance. U3. Other visitors can watch the instructor. U4. The centre considered using a corridor. However, it chose the main room because the corridor is narrow.\nPrompt EN: Explain the event's purpose, condition for making a model and final location decision. Cite IDs. State one fact the text does not give.\nVI: Giải thích mục đích sự kiện, điều kiện làm mô hình và quyết định địa điểm cuối cùng. Dẫn mã câu. Nêu một thông tin chưa được cung cấp.\nCriteria: U1–U3 purpose and condition; U4 contrast and reason; one genuinely missing fact, no invented cost or attendance capacity.\nHidden model EN: The event shows paper folding and lets visitors watch or make a model (U1–U3). To make one, collect a materials card (U2). The main room was chosen because the corridor is narrow (U4). The notice does not give the starting time.\nHidden model VI: Sự kiện minh họa gấp giấy và cho khách xem hoặc làm mô hình (U1–U3). Muốn làm cần lấy thẻ vật liệu (U2). Chọn phòng chính vì hành lang hẹp (U4). Chưa nêu giờ bắt đầu."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A2-02-KQC01",
+          "key": "A"
+        },
+        {
+          "id": "REA-A2-02-KQC02",
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A2-03",
+      "title": "Follow a changed plan and conditional action",
+      "source_index": 3,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Separate the original and revised plans. Identify conditions, supplied materials and optional contributions.\n**Goal VI:** Phân biệt kế hoạch ban đầu và kế hoạch sửa đổi. Xác định điều kiện, vật liệu được cung cấp và đóng góp tùy chọn.\n**Context EN:** An update can change one part of a plan while leaving the other parts unchanged.\n**Context VI:** Bản cập nhật có thể thay đổi một phần kế hoạch nhưng giữ nguyên các phần khác.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Old and new / Cũ và mới: Note what was planned, what has changed and what is still the same. / Ghi kế hoạch ban đầu, điều thay đổi và điều vẫn giữ nguyên.\n- Reason / Lý do: Read because, so and however to connect a change to its cause. / Đọc because, so và however để nối thay đổi với nguyên nhân.\n- Condition / Điều kiện: Only if sets a condition; do not treat a conditional activity as certain. / Only if đặt điều kiện; không coi hoạt động có điều kiện là chắc chắn.\n- Materials / Vật liệu: Separate must bring, supplied and optional. / Phân biệt phải mang, được cung cấp và tùy chọn."
+        },
+        {
+          "heading": "Interactive worked text — independent model: Theatre rehearsal update",
+          "markdown": "S1. A youth theatre planned to rehearse a scene in the main theatre this evening.\nS2. However, a sound check is taking place there, so the actors will practise in Studio C first.\nS3. They will return to the main theatre only if the sound check has finished.\nS4. Actors must bring their scripts; the theatre provides chairs and music stands.\nS5. Extra costume pieces are welcome, but nobody needs to buy any.\nLens CHANGE → S1, S2: Studio C replaces the initial rehearsal location because of the sound check. / Studio C thay địa điểm tập ban đầu vì đang kiểm tra âm thanh.\nLens CONDITION → S3: Returning depends on the sound check finishing. / Quay lại phụ thuộc việc kiểm tra âm thanh đã xong.\nLens MATERIALS → S4, S5: Scripts are required; chairs and stands are supplied; extra costumes are optional. / Kịch bản bắt buộc; ghế và giá nhạc được cung cấp; trang phục thêm tùy chọn."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "The sound check is still taking place. Which statement follows the update?\nA. The actors must return to the main theatre immediately. B. They should practise in Studio C; the condition for returning has not been met. C. They must buy costumes before practising. D. The theatre has cancelled every rehearsal.\nModel answer B: S2 gives the new location; S3 limits returning. A ignores only if; C contradicts S5; D invents cancellation.\nVI: B đúng theo S2, S3. A bỏ qua only if; C trái S5; D tự suy ra hủy toàn bộ buổi tập."
+        },
+        {
+          "heading": "Quick checks — independent text: Recording a school podcast",
+          "markdown": "T1. The team originally planned to record in the assembly room. T2. A meeting is using that room, so the team will prepare questions in the media room. T3. Recording can begin only if the microphone is working. T4. The team provides headphones; members may bring a spare cable if they have one.\nQC REA-A2-03-KQC01: Why is the team preparing questions in the media room?\n- A. The microphone has been sold. — Incorrect: no sale is stated. / Không nêu việc bán mic.\n- B. The media room is the only room with headphones. — Incorrect: T4 does not say that. / T4 không nói vậy.\n- C. The assembly room is being used for a meeting. — Correct: T2 states the reason. / T2 nêu lý do.\nKey C.\nQC REA-A2-03-KQC02: Which statement about a spare cable is accurate?\n- A. Every member must purchase one. — Incorrect: may and if indicate an option. / May và if chỉ lựa chọn.\n- B. Members can bring one if they have one. — Correct: T4 says it is optional. / T4 nêu đây là lựa chọn.\n- C. The team forbids spare cables. — Incorrect: T4 allows them. / T4 cho phép.\nKey B."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. A dance group planned to practise on the stage. U2. The stage lights are being checked, so the group will warm up in the side studio. U3. Stage practice can start only if the lights are ready. U4. Members must bring their music notes; the organiser supplies a speaker. U5. An extra scarf is welcome but not required.\nPrompt EN: Explain the revised plan, why it changed, the condition for stage practice and the three categories of materials. Cite IDs.\nVI: Giải thích kế hoạch mới, lý do thay đổi, điều kiện tập trên sân khấu và ba nhóm vật dụng. Dẫn mã câu.\nCriteria: U1/U2 old/new and reason; U3 conditional, not guaranteed; U4 required/supplied, U5 optional; no invented repair finish time.\nHidden model EN: The group warms up in the side studio because the stage lights are being checked (U1–U2). Stage practice can start only when the lights are ready (U3). Bring music notes, use the supplied speaker, and bring an extra scarf only if desired (U4–U5).\nHidden model VI: Nhóm khởi động ở phòng tập bên vì đang kiểm tra đèn sân khấu (U1–U2). Chỉ tập trên sân khấu nếu đèn sẵn sàng (U3). Phải mang ghi chú nhạc, loa được cung cấp, khăn thêm không bắt buộc (U4–U5)."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A2-03-KQC01",
+          "key": "C"
+        },
+        {
+          "id": "REA-A2-03-KQC02",
+          "key": "B"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A2-04",
+      "title": "Interpret an update: times, options and reply exceptions",
+      "source_index": 3,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Read an updated message, distinguish different time labels, understand optional arrangements and apply the correct reply rule.\n**Goal VI:** Đọc tin nhắn cập nhật, phân biệt các mốc giờ, hiểu lựa chọn tùy ý và áp dụng đúng quy tắc phản hồi.\n**Context EN:** An updated event message may give a new plan and different instructions for people in different situations.\n**Context VI:** Tin nhắn cập nhật sự kiện có thể đưa ra kế hoạch mới và hướng dẫn khác nhau cho từng tình huống.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Compare / So sánh: Put the earlier and current arrangements side by side; use the latest stated plan. / Đặt kế hoạch cũ và mới cạnh nhau; dùng kế hoạch mới nhất được nêu.\n- Time labels / Nhãn thời gian: Distinguish arrival, start and reply deadline; subtract matching times only. / Phân biệt giờ đến, giờ bắt đầu và hạn trả lời; chỉ trừ hai mốc cùng loại.\n- Options / Lựa chọn: Read if available and alternatives carefully; do not turn a suggestion into a requirement. / Đọc kỹ if available và phương án thay thế; không biến gợi ý thành yêu cầu.\n- Who acts? / Ai cần làm?: Follow the condition for each person's situation, including an exception introduced by unless. / Theo điều kiện cho từng tình huống, kể cả ngoại lệ với unless."
+        },
+        {
+          "heading": "Interactive worked text — independent model: Birdwatching briefing",
+          "markdown": "S1. The birdwatching group originally planned a briefing at the riverside shelter at 1:00 p.m.\nS2. The shelter is being inspected, so the briefing will now be at the visitor centre at 1:45 p.m.; arrive by 1:35 to collect a route card.\nS3. Bring binoculars if available; visitors without them can borrow a pair.\nS4. The organiser will explain how to recognise birds and record observations.\nS5. If you have not booked a place, contact the organiser by Monday at noon. If you have booked, contact them only if you need to cancel.\nLens PLAN → S1, S2: The place and starting time have changed. / Địa điểm và giờ bắt đầu đã thay đổi.\nLens TIMES → S1, S2, S5: Compare 1:00 with 1:45 for the start-time change; 1:35 is arrival, Monday noon the contact deadline for unbooked visitors. / So sánh 1:00 và 1:45 để tính đổi giờ bắt đầu; 1:35 là giờ đến, trưa thứ Hai là hạn liên hệ của người chưa đặt chỗ.\nLens OPTION → S3: Binoculars are optional to bring because borrowing is possible. / Có thể mang ống nhòm nếu có vì được mượn.\nLens ACTION → S5: An unbooked visitor should contact the organiser by the deadline; a booked visitor contacts only to cancel. / Người chưa đặt chỗ liên hệ trước hạn; người đã đặt chỉ liên hệ khi cần hủy.\nWorked comparison table (model only): earlier place riverside shelter | current visitor centre; earlier start 1:00 p.m. | current start 1:45 p.m.; arrival not stated earlier | by 1:35 p.m. now. VI row labels: địa điểm; giờ bắt đầu; giờ đến."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "How much later does the briefing start now?\nA. 10 minutes. B. 35 minutes. C. 45 minutes. D. One hour.\nModel answer C: S1 and S2 give 1:00 and 1:45, a 45-minute difference. A uses the gap between new arrival and start; B uses old start and new arrival; D is unsupported arithmetic.\nVI: C đúng vì 1:00 đến 1:45 là 45 phút (S1–S2). A dùng khoảng giữa giờ đến và bắt đầu mới; B dùng giờ bắt đầu cũ và giờ đến mới; D tính sai."
+        },
+        {
+          "heading": "Quick checks — independent text: Language café update",
+          "markdown": "T1. The conversation meeting was planned for 5:00 p.m. in the upstairs room. T2. It now starts at 5:20 p.m. in the side room; arrive by 5:10. T3. Bring a dictionary if you have one; shared copies are available. T4. People who have not registered should contact the organiser by Tuesday morning. People already registered need not contact the organiser again unless they need to cancel.\nQC REA-A2-04-KQC01: A visitor has not registered and wants to attend. What should they do?\n- A. Arrive at 5:10 without registering. — Incorrect: arrival is a different instruction (T2); T4 gives the contact rule. / Giờ đến là hướng dẫn khác; T4 nêu quy tắc liên hệ.\n- B. Contact the organiser by Tuesday morning. — Correct: T4 applies to unregistered visitors. / T4 áp dụng cho người chưa đăng ký.\n- C. Contact only if they cancel. — Incorrect: that exception applies to registered people. / Ngoại lệ áp dụng cho người đã đăng ký.\nKey B.\nQC REA-A2-04-KQC02: What does T3 say about dictionaries?\n- A. They are optional to bring; shared copies are available. — Correct: T3 gives an alternative. / T3 nêu phương án thay thế.\n- B. Everyone must buy a dictionary. — Incorrect: no purchase is required. / Không bắt buộc mua.\n- C. Dictionaries cannot be used. — Incorrect: shared copies are offered. / Có bản dùng chung.\nKey A."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. A neighbourhood choir planned to meet at 4:00 p.m. in the east room. U2. The meeting now starts at 4:25 p.m. in the west room; arrive by 4:15 to collect music. U3. Bring a folder if available; spare folders can be borrowed. U4. Anyone joining for the first time should contact the leader by Wednesday morning. Returning members need to contact the leader only if they cannot attend.\nPrompt EN: Tell a new member where and when to arrive, the new start time and how much later it is than the old start. Explain the folder rule and what the new member and a returning member who can attend should do. Cite IDs.\nVI: Cho thành viên mới biết nơi và giờ đến, giờ bắt đầu mới và muộn hơn bao lâu. Giải thích quy tắc bìa đựng giấy và việc thành viên mới, thành viên cũ có thể tham dự cần làm. Dẫn mã câu.\nCriteria: U1/U2 correct time arithmetic (25 minutes), west room, arrive by 4:15; U3 optional/loan; U4 correct two cases; no invented reason for location change.\nHidden model EN: Arrive at the west room by 4:15 (U2). The meeting starts at 4:25, 25 minutes later than 4:00 (U1–U2). Bring a folder if available or borrow one (U3). A new member contacts the leader by Wednesday morning; a returning member who can attend does not need to contact the leader (U4).\nHidden model VI: Đến phòng phía tây chậm nhất 4:15 (U2). Bắt đầu 4:25, muộn hơn 25 phút so với 4:00 (U1–U2). Có bìa thì mang, nếu không có thể mượn (U3). Người mới liên hệ trước hoặc vào hạn sáng thứ Tư; người cũ có thể tham dự không cần liên hệ (U4)."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A2-04-KQC01",
+          "key": "B"
+        },
+        {
+          "id": "REA-A2-04-KQC02",
+          "key": "A"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A2-05",
+      "title": "Compare practical details across two notices",
+      "source_index": 0,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Compare two options using stated details and requirements. Choose an option only when the evidence supports all relevant needs.\n**Goal VI:** So sánh hai lựa chọn dựa trên thông tin và yêu cầu được nêu. Chỉ chọn khi bằng chứng đáp ứng các nhu cầu liên quan.\n**Context EN:** Two offers may look similar but differ in practical details and conditions.\n**Context VI:** Hai lựa chọn có vẻ giống nhau nhưng có thể khác về thông tin và điều kiện thực tế.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Build columns / Lập cột: Put each source in its own column. Keep comparable facts on the same row. / Đặt mỗi nguồn vào một cột; thông tin cùng loại nằm cùng hàng.\n- Read the small words / Đọc từ chỉ điều kiện: Separate must, may, if and included. Do not turn permission or an option into a requirement. / Phân biệt bắt buộc, được phép, điều kiện và thứ đã bao gồm; không biến lựa chọn thành yêu cầu.\n- Apply constraints / Áp dụng ràng buộc: List the reader's needs first. Test every relevant one, not just the first match. / Liệt kê nhu cầu trước, kiểm tra từng điều kiện liên quan chứ không chỉ điều kiện đầu.\n- Explain from both / Giải thích từ hai nguồn: Cite the relevant source(s); say “not stated” when a needed detail is absent. / Dẫn nguồn phù hợp; nói “không nêu” nếu thiếu dữ kiện."
+        },
+        {
+          "heading": "Interactive worked text — independent model: Two community tours",
+          "markdown": "Source A: S1. The river tour leaves at 10:00 and takes 45 minutes. S2. It costs £6; a guidebook is included. S3. Children under 12 must be with an adult.\nSource B: S4. The history walk leaves at 11:00 and takes 30 minutes. S5. It costs £4; visitors may buy a guidebook for £2. S6. Children under 12 must also be with an adult.\nLens TIME → S1, S4: Compare departure with departure and duration with duration. / So sánh giờ xuất phát với nhau và thời lượng với nhau.\nLens COST → S2, S5: The guidebook is part of A's price but optional at extra cost in B. / Sách hướng dẫn đã gồm trong giá A; ở B có thể mua thêm.\nLens CONDITION → S3, S6: Both sources state the same age condition; do not invent a difference. / Cả hai nguồn có cùng điều kiện tuổi; không tự tạo khác biệt.\nWorked comparison table (from model only): departure 10:00 | 11:00; duration 45 min | 30 min; basic price £6 | £4; guidebook included | optional £2; under 12 accompanied | accompanied. VI row labels: giờ xuất phát; thời lượng; giá cơ bản; sách hướng dẫn; điều kiện dưới 12 tuổi."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "An adult wants a trip leaving before 11:00 with a guidebook and a budget of £6. Which fits all three needs?\nA. River tour. B. History walk. C. Both.\nModel answer A: S1 and S2 establish all three conditions. B meets the price including optional book (S5) but fails the departure requirement (S4). C fails because B fails one constraint.\nVI: A đáp ứng cả ba điều kiện theo S1–S2. B có thể mua thêm sách trong ngân sách nhưng xuất phát lúc 11:00, không phải trước 11:00. Vì vậy C sai."
+        },
+        {
+          "heading": "Quick checks — independent text: Two bicycle rentals",
+          "markdown": "T1. Shop North offers a bicycle for two hours for £8. T2. A helmet is included, but lights cost £2 extra.\nT3. Shop South offers a bicycle for one hour for £5. T4. A helmet and lights are both included.\nQC REA-A2-05-KQC01: Which shop offers two hours of bicycle use for no more than £8 if lights are not needed?\n- A. South only. — Incorrect: South offers one hour (T3). / South chỉ cho thuê một giờ.\n- B. Both. — Incorrect: South does not meet the duration requirement. / South không đáp ứng thời lượng.\n- C. North only. — Correct: T1 gives two hours at £8. / T1 cho biết hai giờ với giá £8.\nKey C.\nQC REA-A2-05-KQC02: Which statement is supported by the notices?\n- A. North includes lights at no extra cost. — Incorrect: T2 states a £2 extra charge. / T2 nói đèn mất thêm £2.\n- B. South includes a helmet and lights in its price. — Correct: T4 explicitly says both are included. / T4 nêu rõ cả hai đã bao gồm.\n- C. South rents bicycles for any number of hours. — Incorrect: only a one-hour offer is stated. / Chỉ nêu gói một giờ.\nKey B."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. The morning ferry leaves at 9:00, costs £7 and carries bicycles for £2 extra. U2. The afternoon ferry leaves at 14:00, costs £6 and does not carry bicycles. U3. Both journeys take 25 minutes.\nPrompt EN: A traveller with a bicycle must arrive before noon and has £10. Recommend an option and explain why the other does not fit. Cite sentence IDs and calculate any extra cost.\nVI: Khách có xe đạp cần đến trước buổi trưa, ngân sách £10. Đề xuất một lựa chọn, giải thích vì sao lựa chọn còn lại không phù hợp; dẫn mã câu và tính chi phí thêm.\nCriteria: apply time including stated journey duration, bicycle rule and total cost; cite both sources; no assumptions about other departures.\nHidden model EN: The morning ferry fits: it arrives at 9:25 (U1, U3), carries bicycles and costs £9 in total (£7 + £2, U1). The afternoon ferry arrives too late and cannot carry bicycles (U2, U3).\nHidden model VI: Chuyến sáng phù hợp: đến lúc 9:25 (U1, U3), chở xe đạp và tổng giá £9 (U1). Chuyến chiều đến quá muộn và không chở xe đạp (U2, U3)."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A2-05-KQC01",
+          "key": "C"
+        },
+        {
+          "id": "REA-A2-05-KQC02",
+          "key": "B"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A2-06",
+      "title": "Compare options and match a preference",
+      "source_index": 4,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Compare activities, times and requirements and recommend an option that meets all stated needs.\n**Goal VI:** So sánh hoạt động, thời gian và yêu cầu; đề xuất lựa chọn đáp ứng mọi nhu cầu đã nêu.\n**Context EN:** A good choice fits the reader's needs, not necessarily the most exciting activity.\n**Context VI:** Lựa chọn tốt phù hợp nhu cầu người đọc, không nhất thiết là hoạt động hấp dẫn nhất.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Collect / Thu thập: Put the same types of facts in matching rows for each option. / Đặt cùng loại dữ kiện vào các hàng tương ứng của từng lựa chọn.\n- Requirements / Yêu cầu: Separate must, may and supplied. / Phân biệt bắt buộc, được phép và được cung cấp.\n- Filter / Lọc: Check availability, interests and limits one by one. / Kiểm tra từng yếu tố: thời gian rảnh, sở thích và giới hạn.\n- Justify / Giải thích: Cite evidence for the choice and for rejecting alternatives; do not invent a quality rating. / Dẫn bằng chứng chọn và loại phương án khác; không tự đánh giá chất lượng."
+        },
+        {
+          "heading": "Interactive worked text — independent model: Three weekend sessions",
+          "markdown": "Source A — S1. Bread Shapes runs on Saturday from 11:00 to noon; visitors shape dough into different designs. S2. Participants must wear a hair covering, which is supplied.\nSource B — S3. Rhythm Hour runs on Sunday from 10:00 to 11:30; participants practise drum patterns. S4. The session costs £3, and drums are supplied.\nSource C — S5. Puppet Stories runs on Sunday from 2:00 to 3:00 p.m.; visitors tell stories with puppets. S6. Admission is £2; participants may bring puppets, but shared ones are available.\nLens TIME → S1, S3, S5: Check day as well as time. / Kiểm tra cả ngày và giờ.\nLens ACTIVITY → S1, S3, S5: Match the preference to the activity. / Ghép sở thích với hoạt động cụ thể.\nLens REQUIREMENTS → S2, S4, S6: Identify required, supplied and optional equipment; do not guess an unlisted fee. / Xác định đồ bắt buộc, được cấp và tùy chọn; không đoán phí chưa nêu.\nWorked comparison table (model only):\n| Session | Day/time | Activity | Requirement/cost |\n| --- | --- | --- | --- |\n| Bread Shapes | Sat 11:00–12:00 | Shape dough | Supplied hair covering required; price not stated |\n| Rhythm Hour | Sun 10:00–11:30 | Drum patterns | £3, drums supplied |\n| Puppet Stories | Sun 14:00–15:00 | Tell stories | £2, shared puppets available |\nVI labels: buổi học, ngày/giờ, hoạt động, yêu cầu/chi phí; not stated = chưa nêu."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "Leo is free on Sunday morning, likes music and can spend up to £4. Which session meets all his needs?\nA. Bread Shapes. B. Rhythm Hour. C. Puppet Stories. D. Both Sunday sessions.\nModel answer B: S3 matches day/time and interest; S4 gives an affordable cost. A is Saturday and concerns dough (S1); C is Sunday afternoon and concerns stories (S5); D includes C, which fails two constraints.\nVI: B đáp ứng thời gian và sở thích (S3), giá phù hợp (S4). A sai ngày và hoạt động; C vào buổi chiều và kể chuyện; D gồm C nên không đáp ứng mọi điều kiện."
+        },
+        {
+          "heading": "Quick checks — independent text: Two museum demonstrations",
+          "markdown": "T1. Stone Patterns starts at 10:30 on Saturday and lasts 40 minutes; watch how patterns are cut into soft stone. T2. It costs £4; visitors must book a seat.\nT3. Clock Faces starts at 12:30 on Saturday and lasts 30 minutes; see how clock faces are designed. T4. Entry is £2 and no booking is needed.\nQC REA-A2-06-KQC01: Which session fits someone who can attend only before noon and wants to see stone patterns?\n- A. Clock Faces only. — Incorrect: T3 begins after noon and concerns clocks. / T3 bắt đầu sau trưa và nói về đồng hồ.\n- B. Stone Patterns only. — Correct: T1 matches both needs and ends at 11:10. / T1 đáp ứng cả hai nhu cầu, kết thúc lúc 11:10.\n- C. Both. — Incorrect: Clock Faces fails both time and interest limits. / Clock Faces không đáp ứng giới hạn giờ và sở thích.\nKey B.\nQC REA-A2-06-KQC02: What must a visitor to Stone Patterns do?\n- A. Book a seat. — Correct: T2 states the requirement. / T2 nêu yêu cầu.\n- B. Bring a clock. — Incorrect: neither source states this. / Không nguồn nào nêu việc này.\n- C. Arrive at 12:30. — Incorrect: that is the other session's start (T3). / Đó là giờ bắt đầu buổi khác (T3).\nKey A."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. Soap Designs: Tuesday 5:00–6:00 p.m., £5, shape soap; materials supplied. U2. Model Boats: Thursday 5:30–6:30 p.m., £7, build a model; materials supplied. U3. Story Maps: Thursday 6:00–7:00 p.m., £4, draw maps for stories; bring a pencil.\nPrompt EN: A learner is free Thursday, likes drawing and can spend £6. Recommend a session, say what to bring and why the other sessions do not fit. Cite IDs.\nVI: Người học rảnh thứ Năm, thích vẽ và có £6. Đề xuất buổi học, nêu đồ cần mang và lý do loại hai buổi còn lại. Dẫn mã câu.\nCriteria: U3 day/activity/budget and required pencil; U1 wrong day/activity; U2 over budget and different activity.\nHidden model EN: Story Maps fits: Thursday, drawing, £4; bring a pencil (U3). Soap Designs is Tuesday and involves soap (U1). Model Boats costs £7 and involves building (U2).\nHidden model VI: Story Maps phù hợp vì vào thứ Năm, có vẽ và giá £4; mang bút chì (U3). Soap Designs sai ngày và hoạt động (U1). Model Boats giá £7 và làm mô hình (U2)."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A2-06-KQC01",
+          "key": "B"
+        },
+        {
+          "id": "REA-A2-06-KQC02",
+          "key": "A"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A2-07",
+      "title": "Read linked notices and apply an update",
+      "source_index": 4,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Find a shared purpose, distinguish original, changed and unchanged facts, and apply every condition for an alternative.\n**Goal VI:** Tìm mục đích chung, phân biệt thông tin cũ, thay đổi và giữ nguyên; áp dụng mọi điều kiện của phương án thay thế.\n**Context EN:** An update does not automatically replace every earlier rule.\n**Context VI:** Bản cập nhật không tự động thay thế mọi quy định trước.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Link / Liên kết: Identify the shared event or service. / Xác định sự kiện hoặc dịch vụ chung.\n- Compare / Đối chiếu: Mark original, revised and explicitly unchanged facts. / Đánh dấu thông tin ban đầu, sửa đổi và được xác nhận giữ nguyên.\n- Conditions / Điều kiện: Check every requirement for the alternative. / Kiểm tra mọi yêu cầu của phương án thay thế.\n- Limits / Giới hạn: Do not add rules, permissions or guarantees that neither message gives. / Không thêm quy định, quyền hoặc bảo đảm chưa được nêu."
+        },
+        {
+          "heading": "Interactive worked text — independent model: Stationery order desk",
+          "markdown": "Source A — S1. The college stationery desk is taking orders for notebooks. Send your order by Monday at 2:00 p.m. S2. The price is £5 per notebook; payment is due when you collect your order at the east entrance.\nSource B — S3. The east entrance is being inspected, so collect orders at the main entrance instead. S4. The order deadline and price remain unchanged. S5. If you need someone else to collect for you, send their name in advance and make sure they have your order number.\nLens CHANGE → S2, S3: The collection entrance changes, not the purpose of the service. / Cửa nhận đồ thay đổi, không phải mục đích dịch vụ.\nLens UNCHANGED → S1, S2, S4: The original deadline and price still apply. / Hạn đặt và giá ban đầu vẫn áp dụng.\nLens BOTH CONDITIONS → S5: Another collector needs advance naming and the order number. / Người nhận hộ cần được báo tên trước và có mã đơn.\nWorked comparison table (model only):\n| Fact | Original | Updated |\n| --- | --- | --- |\n| Entrance | East | Main |\n| Deadline | Monday 14:00 | Unchanged |\n| Price | £5/notebook | Unchanged |\nVI labels: thông tin, ban đầu, cập nhật, cửa nhận, hạn đặt, giá, giữ nguyên."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "A student wants a friend to collect their order. Which arrangement follows both notices?\nA. The friend goes to the east entrance with the order number. B. The friend goes to the main entrance without an advance message. C. The student sends the friend's name in advance, and the friend takes the order number to the main entrance. D. The friend collects at the main entrance without the order number.\nModel answer C: S3 gives the new location; S5 gives both conditions. A uses the old location and does not establish advance naming; B omits advance naming; D omits the order number.\nVI: C đúng theo S3 và cả hai điều kiện S5. A dùng cửa cũ và chưa xác nhận báo tên; B thiếu báo tên trước; D thiếu mã đơn."
+        },
+        {
+          "heading": "Quick checks — independent text: Costume fitting update",
+          "markdown": "T1. A theatre group plans costume fittings on Wednesday in Studio D. Each participant must bring their measurement card. T2. The fitting will now take place in Studio F because Studio D is being decorated. The day and card rule are unchanged. T3. If you need a different appointment, contact the organiser today and wait for a confirmed new time.\nQC REA-A2-07-KQC01: Which fact changes?\n- A. The fitting studio. — Correct: T1/T2 show D becomes F. / T1/T2 cho thấy đổi D sang F.\n- B. The fitting day. — Incorrect: T2 says the day is unchanged. / T2 nói ngày không đổi.\n- C. The measurement card requirement. — Incorrect: T2 preserves it. / T2 giữ nguyên yêu cầu.\nKey A.\nQC REA-A2-07-KQC02: What should someone needing another appointment do?\n- A. Choose any time and arrive. — Incorrect: T3 requires confirmation. / T3 yêu cầu xác nhận.\n- B. Contact the organiser today and wait for confirmation. — Correct: both actions are in T3. / T3 nêu cả hai việc.\n- C. Leave the card at home. — Incorrect: the card rule still applies (T2). / Quy định về thẻ vẫn áp dụng (T2).\nKey B."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. Original notice: a photography exhibition accepts framed photos at the north desk. Label each photo with your entry number. Entries close on Tuesday at 5:00 p.m.\nU2. Update: the north desk is being moved, so use the reception counter. The entry deadline and labelling requirement remain unchanged.\nU3. Anyone wishing to enter a second photo must ask the organiser first and obtain a separate entry number.\nPrompt EN: State what changed, what stayed the same, and what a person entering a second photo must do. Cite IDs and name one thing not specified.\nVI: Nêu điều thay đổi, điều giữ nguyên và việc người nộp ảnh thứ hai cần làm. Dẫn mã câu và nêu một thông tin chưa có.\nCriteria: U1–U2 reception, Tuesday 17:00, label; U3 both actions; absent fact such as fee.\nHidden model EN: Use reception instead of the north desk (U1–U2). Label each photo; entries close Tuesday at 5:00 (U1–U2). Ask the organiser and obtain a separate entry number before submitting a second photo (U3). The fee is not stated.\nHidden model VI: Dùng quầy lễ tân thay quầy phía bắc (U1–U2). Ghi mã dự thi; hạn vẫn là thứ Ba lúc 5 giờ chiều (U1–U2). Hỏi ban tổ chức và lấy mã riêng trước khi nộp ảnh thứ hai (U3). Chưa nêu phí."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A2-07-KQC01",
+          "key": "A"
+        },
+        {
+          "id": "REA-A2-07-KQC02",
+          "key": "B"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A2-08",
+      "title": "Compare offers and respect explicit limits",
+      "source_index": 4,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Find schedules, places and limits in community notices, then recommend a realistic action without promising a result.\n**Goal VI:** Tìm lịch, địa điểm và giới hạn trong thông báo cộng đồng rồi đề xuất hành động thực tế mà không hứa chắc kết quả.\n**Context EN:** An offer of help does not guarantee a particular outcome.\n**Context VI:** Lời đề nghị giúp đỡ không bảo đảm một kết quả cụ thể.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Locate / Tìm: Match each offer with its day, place and activity. / Ghép từng lựa chọn với ngày, địa điểm và hoạt động.\n- Limits / Giới hạn: Read may, only and if carefully. / Đọc kỹ may, only và if.\n- Match / Ghép: Check whether an action fits the reader's needs and stated limits. / Kiểm tra hành động có phù hợp nhu cầu và giới hạn đã nêu.\n- Caution / Thận trọng: Say what the notice offers, not what you hope will happen. / Nói điều thông báo đề nghị thay vì điều mình hy vọng."
+        },
+        {
+          "heading": "Interactive worked text — independent model: Two town information sessions",
+          "markdown": "Source A — S1. Local Records is on Tuesday from 3:00 to 4:30 p.m. at the history centre. S2. Staff can search old street records, but some records are incomplete. Bring a street name and any known date.\nSource B — S3. Travel Planning is on Thursday from 1:00 to 2:00 p.m. at the station meeting room. S4. Advisers can explain published train timetables. They do not sell tickets or reserve seats.\nLens SCHEDULE → S1, S3: Match each day and place to its service. / Ghép từng ngày và địa điểm với dịch vụ.\nLens LIMIT → S2, S4: Records may be incomplete; advice is not a reservation. / Hồ sơ có thể thiếu; tư vấn không phải đặt chỗ.\nLens RECOMMEND → S2, S4: Choose the relevant service and express the actual help offered. / Chọn dịch vụ phù hợp và diễn đạt đúng sự hỗ trợ được đề nghị."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "A visitor wants to learn about an old street name and is free Tuesday afternoon. What is a realistic recommendation?\nA. Attend Travel Planning to reserve a train seat. B. Attend Local Records and ask staff to search; the needed record may be missing. C. Attend Local Records and expect every record to be complete. D. Attend Travel Planning at the history centre.\nModel answer B: S1 matches availability and S2 offers relevant help with a limit. A contradicts S4; C contradicts the incomplete-record warning; D mixes the locations.\nVI: B phù hợp theo S1–S2, kể cả giới hạn. A trái S4; C bỏ qua cảnh báo hồ sơ thiếu; D nhầm địa điểm hai dịch vụ."
+        },
+        {
+          "heading": "Quick checks — independent text: Two practical advice desks",
+          "markdown": "T1. Map Help is open Monday 10:00–11:00 at the visitor pavilion; staff explain local route maps, but do not know current road delays. T2. Language Help is open Wednesday 2:00–3:00 at the meeting room; staff can explain short signs, but cannot translate complete documents.\nQC REA-A2-08-KQC01: Which action matches Language Help?\n- A. Ask staff to translate a whole contract. — Incorrect: T2 excludes complete documents. / T2 không nhận dịch toàn bộ văn bản.\n- B. Ask for live road-delay information. — Incorrect: T1 does not offer it and T2 is a different service. / T1 không cung cấp, T2 là dịch vụ khác.\n- C. Ask about the meaning of a short sign. — Correct: T2 offers this. / T2 có hỗ trợ việc này.\nKey C.\nQC REA-A2-08-KQC02: Where and when can someone ask about a local route map?\n- A. Visitor pavilion, Monday 10:00–11:00. — Correct: T1 gives both facts. / T1 nêu cả hai dữ kiện.\n- B. Meeting room, Wednesday 2:00–3:00. — Incorrect: T2 is Language Help. / T2 là hỗ trợ ngôn ngữ.\n- C. Visitor pavilion, Wednesday 2:00–3:00. — Incorrect: combines different services. / Ghép nhầm thông tin hai dịch vụ.\nKey A."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. Family History Desk, Friday 11:00–noon at the archive: staff can help find public historical documents, but cannot promise that a particular document exists. U2. Drawing Desk, Saturday 3:00–4:00 at the gallery: instructors explain basic drawing techniques, but do not complete visitors' drawings for them.\nPrompt EN: A visitor wants to locate an old public document and is free Friday. Recommend a desk, give its place and time, explain its limit and why the other desk does not fit. Cite IDs.\nVI: Khách muốn tìm tài liệu công khai cũ và rảnh thứ Sáu. Đề xuất quầy, nêu nơi và giờ, giải thích giới hạn và vì sao quầy còn lại không phù hợp. Dẫn mã câu.\nCriteria: U1 relevant help, archive, Friday 11:00–12:00, no promised document; U2 different activity/day.\nHidden model EN: Try Family History Desk at the archive on Friday, 11:00–noon (U1). Staff can help search, but the document might not exist. Drawing Desk is Saturday and teaches drawing, not document searches (U2).\nHidden model VI: Thử Family History Desk tại kho lưu trữ thứ Sáu 11:00–12:00 (U1). Nhân viên có thể hỗ trợ tìm nhưng không bảo đảm tài liệu tồn tại. Drawing Desk vào thứ Bảy và dạy vẽ, không tìm tài liệu (U2)."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A2-08-KQC01",
+          "key": "C"
+        },
+        {
+          "id": "REA-A2-08-KQC02",
+          "key": "A"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A2-09",
+      "title": "Compare a bill and a message",
+      "source_index": 4,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Separate billed, ordered and received quantities, read quantifiers in context, and request a precise correction based on both sources.\n**Goal VI:** Phân biệt số lượng tính tiền, đã đặt và đã nhận, đọc từ chỉ lượng theo ngữ cảnh và yêu cầu sửa chính xác dựa trên cả hai nguồn.\n**Context EN:** A bill shows what was charged, not necessarily what was delivered.\n**Context VI:** Hóa đơn cho biết số lượng đã tính tiền, không nhất thiết chứng minh đồ đã giao.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Label / Gắn nhãn: Make separate columns for billed, ordered and received. / Tạo cột riêng cho đã tính tiền, đã đặt và đã nhận.\n- Compare / So sánh: Locate the same item in both sources; identify the discrepancy. / Tìm cùng mặt hàng ở hai nguồn; xác định chênh lệch.\n- Quantifiers / Từ chỉ lượng: Read some, any, many and much in context; they do not always give exact counts. / Đọc some, any, many và much trong ngữ cảnh; không phải lúc nào cũng cho số lượng chính xác.\n- Correct / Sửa: Change only the disputed line, keep the other charges as written, and ask politely. / Chỉ sửa dòng có tranh chấp, giữ nguyên khoản khác và yêu cầu lịch sự."
+        },
+        {
+          "heading": "Interactive worked text — independent model: Craft order",
+          "markdown": "Source A — S1. Felt sheets: 4 at £3 each = £12. S2. Paintbrush: 1 at £5 = £5. S3. Thread rolls: 2 at £4 each = £8. Total billed: £25.\nSource B — S4. I asked for two felt sheets and received two, but the bill shows four. S5. I have some thread at home and do not need much more paint. S6. Could you check the charge for the felt sheets, please?\nLens QUANTITY → S1, S4: Four were billed; two were ordered and two received. / Tính tiền bốn tấm; đặt hai và nhận hai.\nLens NOT STATED → S2, S3, S5: The bill gives other billed quantities, but the message does not confirm their delivery. Some thread at home is not a delivered count. / Hóa đơn nêu số lượng tính tiền khác nhưng tin nhắn không xác nhận đã giao. Some thread ở nhà không phải số lượng giao.\nLens CORRECTION → S1, S2, S3, S4, S6: Two felt sheets cost £6; the other billed lines stay £5 and £8 if only the disputed line changes. / Hai tấm nỉ giá £6; giữ £5 và £8 nếu chỉ sửa dòng tranh chấp.\nWorked comparison table (model only):\n| Item | Billed | Ordered | Received |\n| --- | --- | --- | --- |\n| Felt sheets | 4 | 2 | 2 |\n| Paintbrush | 1 | Not stated | Not stated |\n| Thread rolls | 2 | Not stated | Not stated |\nVI labels: mặt hàng, đã tính tiền, đã đặt, đã nhận; chưa nêu. Do not turn an unconfirmed quantity into zero."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "If the seller corrects only the felt-sheet line, what is the revised total?\nA. £19. B. £25. C. £6. D. £11.\nModel answer A: S1/S4 reduce the charge by two sheets at £3 each, so £25 − £6 = £19; equivalently £6 + £5 + £8 = £19. B keeps the old charge; C omits the other billed lines; D omits thread rolls.\nVI: A đúng: giảm hai tấm, mỗi tấm £3, nên £25 − £6 = £19. Cộng lại £6 + £5 + £8 cũng bằng £19. B giữ giá cũ; C bỏ các dòng khác; D bỏ dòng cuộn chỉ."
+        },
+        {
+          "heading": "Quick checks — independent text: Stationery bill",
+          "markdown": "T1. Folders: 5 at £3 = £15. T2. Pens: 2 at £4 = £8. Total billed: £23.\nT3. I ordered three folders and received three. The bill shows five. T4. I have some pens already, but not many empty folders.\nQC REA-A2-09-KQC01: Which conclusion follows from comparing the two sources?\n- A. Five folders were received. — Incorrect: T3 confirms three. / T3 xác nhận ba.\n- B. The bill overstates the folder quantity by two. — Correct: T1 bills five; T3 confirms three ordered and received. / T1 tính năm; T3 đặt và nhận ba.\n- C. No pens were delivered. — Incorrect: T4 does not state delivery. / T4 không nói đã giao hay chưa.\nKey B.\nQC REA-A2-09-KQC02: What does T4 tell us?\n- A. The customer has exactly two pens. — Incorrect: some does not specify an exact count. / Some không nêu số chính xác.\n- B. The customer has no folders at all. — Incorrect: not many does not mean none. / Not many không có nghĩa là không có.\n- C. The customer already has some pens and not many empty folders. — Correct: this preserves both quantifiers. / Giữ đúng cả hai từ chỉ lượng.\nKey C."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. Candle holders: 6 at £3 = £18. U2. Decorative string: 2 rolls at £4 = £8. Total billed: £26. U3. Customer message: I ordered four candle holders and received four, but the bill lists six. U4. I have some string already and do not need much extra.\nPrompt EN: Identify the mismatch and calculate the corrected total if only that line changes. State whether delivery of the string is confirmed. Write one polite correction request and cite IDs.\nVI: Xác định chênh lệch và tính tổng mới nếu chỉ sửa dòng đó. Nêu việc giao dây có được xác nhận không. Viết một yêu cầu sửa lịch sự và dẫn mã câu.\nCriteria: six billed/four ordered/four received (U1/U3); £12 + £8 = £20 (U1–U3); delivery of string unconfirmed (U2/U4); polite request specifying disputed item and count.\nHidden model EN: Six holders were billed, but four were ordered and received (U1, U3). Corrected total: £12 + £8 = £20 (U1–U3). The string delivery is not confirmed (U2, U4). Could you change the candle-holder charge to four holders, please?\nHidden model VI: Tính sáu đế nến nhưng chỉ đặt và nhận bốn (U1, U3). Tổng mới £12 + £8 = £20 (U1–U3). Chưa xác nhận giao dây (U2, U4). Yêu cầu lịch sự sửa số lượng tính tiền đế nến thành bốn."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A2-09-KQC01",
+          "key": "B"
+        },
+        {
+          "id": "REA-A2-09-KQC02",
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A2-10",
+      "title": "Read experience and progress across sources",
+      "source_index": 5,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Distinguish unspecified experience, dated past events, recently completed work and pending tasks; cross-check two sources.\n**Goal VI:** Phân biệt trải nghiệm không nêu thời điểm, sự kiện quá khứ có mốc thời gian, việc vừa hoàn thành và việc còn chờ; đối chiếu hai nguồn.\n**Context EN:** Never describes the particular experience named, not every similar activity.\n**Context VI:** Never phủ định trải nghiệm cụ thể được nêu, không phải mọi hoạt động tương tự.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Experience / Trải nghiệm: Read have/has never + the whole activity; keep its scope. / Đọc have/has never cùng toàn bộ hoạt động; giữ đúng phạm vi.\n- Past date / Mốc quá khứ: Locate a finished past-time phrase such as yesterday. / Tìm cụm thời gian quá khứ đã kết thúc như yesterday.\n- Status / Tiến độ: Just signals recent completion, already completion by now, and not yet a pending action at the report time. / Just chỉ việc vừa xong, already chỉ việc đã xong, not yet chỉ việc chưa xong tại thời điểm báo cáo.\n- Cross-check / Đối chiếu: Match each task to its owner and status in the other source; do not infer missing outcomes. / Ghép từng việc với người thực hiện và trạng thái ở nguồn khác; không suy ra kết quả chưa nêu."
+        },
+        {
+          "heading": "Interactive worked text — independent model: School radio rehearsal",
+          "markdown": "Source A — S1. Ben: I have never presented a live radio programme. I recorded a short story at home yesterday. S2. I have just tested the microphone, but I haven't selected the opening music yet. S3. Eva: I have already prepared the interview questions.\nSource B — S4. Technician's note: The microphone test is complete and Eva's questions are ready. S5. The opening music is still undecided. The producer will review the programme tomorrow.\nLens EXPERIENCE → S1: A home recording is not the same as presenting live radio. / Ghi âm ở nhà khác dẫn chương trình trực tiếp.\nLens PAST TIME → S1: Yesterday identifies the finished time of the recording. / Yesterday chỉ thời điểm đã qua của bản ghi.\nLens COMPLETED → S2, S3, S4: Microphone test and questions are complete, confirmed by the technician. / Kiểm tra mic và câu hỏi đã xong, được kỹ thuật viên xác nhận.\nLens PENDING → S2, S5: Opening music is not selected; review is planned, not completed. / Chưa chọn nhạc mở đầu; việc duyệt mới là kế hoạch.\nWorked status table (model only): task | report | cross-check. Microphone test | just completed S2 | complete S4. Interview questions | already prepared S3 | ready S4. Opening music | not yet selected S2 | undecided S5. VI labels: việc, báo cáo, đối chiếu."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "Which statement accurately combines both sources?\nA. Ben has never made any recordings. B. All programme tasks are finished. C. The microphone test and questions are ready, but the music is still undecided. D. Eva has already presented a live programme.\nModel answer C: S2–S5 agree. A overextends never and contradicts S1; B ignores pending music in S5; D is not reported.\nVI: C đúng theo S2–S5. A mở rộng sai phạm vi never và trái S1; B bỏ qua nhạc chưa chọn; D không được nêu."
+        },
+        {
+          "heading": "Quick checks — independent text: Model railway display",
+          "markdown": "T1. Ari: I have never built a large model railway. I made a small paper train last month. T2. I have just painted a station model. I haven't attached the roof yet. T3. Mei: I have already drawn the track plan. T4. Supervisor: The painted station and track plan are ready, but the roof is still separate.\nQC REA-A2-10-KQC01: Which event has a stated finished past time?\n- A. Ari made a small paper train last month. — Correct: T1 gives a dated past period. / T1 nêu mốc quá khứ đã kết thúc.\n- B. Ari has just painted a station. — Incorrect: T2 reports recent completion without a stated finished date. / T2 báo vừa xong, không nêu mốc đã kết thúc.\n- C. Mei has already drawn the plan. — Incorrect: T3 reports current completion without a stated finished date. / T3 báo đã xong, không nêu mốc quá khứ.\nKey A.\nQC REA-A2-10-KQC02: Which task is pending in both reports?\n- A. Drawing the track plan. — Incorrect: T3–T4 confirm completion. / T3–T4 xác nhận đã xong.\n- B. Painting the station. — Incorrect: T2–T4 confirm completion. / T2–T4 xác nhận đã xong.\n- C. Attaching the roof. — Correct: T2 and T4 agree. / T2 và T4 thống nhất.\nKey C."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. Lila: I have never acted in a public play. I performed a short scene for my family two weeks ago. U2. I have just learned my lines, but I haven't chosen a costume yet. U3. Dan: I have already prepared the stage signs. U4. Director: Lila knows her lines and Dan's signs are ready. Lila's costume is still undecided.\nPrompt EN: Identify the negative experience and dated past event; report completed and pending work using both sources. Explain why the negative experience does not mean Lila has never acted. Cite IDs.\nVI: Nêu trải nghiệm bị phủ định và sự kiện có mốc quá khứ; báo cáo việc đã xong và chưa xong từ hai nguồn. Giải thích vì sao không thể suy ra Lila chưa từng diễn. Dẫn mã câu.\nCriteria: U1 exact scope and two weeks ago; U2–U4 lines/signs complete, costume pending; no invented performance date.\nHidden model EN: Lila has never acted in a public play, but performed a family scene two weeks ago (U1). Her lines and Dan's signs are ready; the costume is still undecided (U2–U4). A family scene is not a public play.\nHidden model VI: Lila chưa từng diễn vở kịch công khai, nhưng đã diễn cảnh ngắn cho gia đình hai tuần trước (U1). Lời thoại và biển sân khấu đã sẵn sàng; trang phục chưa chọn (U2–U4). Diễn cho gia đình khác diễn công khai."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A2-10-KQC01",
+          "key": "A"
+        },
+        {
+          "id": "REA-A2-10-KQC02",
+          "key": "C"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A2-11",
+      "title": "Read a timeline and overlapping past actions",
+      "source_index": 5,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Reconstruct events in exact order; distinguish an ongoing past action from an event that occurs during it; compare a diary and a note.\n**Goal VI:** Dựng đúng trình tự; phân biệt hành động đang diễn ra trong quá khứ với sự kiện xảy ra trong lúc đó; đối chiếu nhật ký và ghi chú.\n**Context EN:** While and when show time relationships. They do not automatically prove that an ongoing action stopped or caused the other event.\n**Context VI:** While và when thể hiện quan hệ thời gian; không tự chứng minh hành động đang diễn ra đã dừng hay gây ra sự kiện kia.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Timeline / Dòng thời gian: Put each time beside its event. / Ghép từng mốc giờ với sự kiện.\n- Background / Bối cảnh: Was/were + -ing describes an action in progress at a past moment. / Was/were + -ing mô tả hành động đang diễn ra tại một thời điểm quá khứ.\n- Event / Sự kiện: Identify the past-simple event occurring during the ongoing action. / Xác định sự kiện quá khứ đơn xảy ra trong lúc hành động đang diễn ra.\n- Check / Đối chiếu: Compare the other report; distinguish confirmed, rejected and unstated claims. / Đối chiếu nguồn khác; phân biệt điều được xác nhận, bác bỏ và chưa nêu."
+        },
+        {
+          "heading": "Interactive worked text — independent model: School radio recording diary",
+          "markdown": "Source A — S1. 1:10 p.m. I entered the studio. A technician was checking the sound levels. S2. 1:25 p.m. The telephone rang while Jo was reading a script. S3. 1:40 p.m. We recorded the introduction. S4. 2:05 p.m. We recorded the interview. S5. 2:20 p.m. We saved the recording.\nSource B — S6. Producer's note: We recorded the introduction before the interview and saved the recording afterwards. The telephone call was not part of the recording. We did not measure the interview length.\nLens ORDER → S1–S5: Follow timestamps: enter, ring, introduction, interview, save. / Theo giờ: vào phòng, chuông reo, mở đầu, phỏng vấn, lưu.\nLens BACKGROUND → S1, S2: Checking sound and reading a script were ongoing actions at those moments. / Kiểm tra âm thanh và đọc kịch bản đang diễn ra lúc đó.\nLens EVENT → S2: The phone rang during reading; the diary does not say reading stopped. / Điện thoại reo trong lúc đọc; nhật ký không nói việc đọc dừng lại.\nLens CROSS-CHECK → S3, S4, S5, S6: The order agrees; phone call not included; interview length unmeasured. / Trình tự thống nhất; cuộc gọi không nằm trong bản ghi; chưa đo thời lượng phỏng vấn.\nSchematic timeline (model only, not to scale): 13:10 enter → 13:25 ring during reading → 13:40 introduction → 14:05 interview → 14:20 save. Do not draw continuous action bars with invented end times. VI: sơ đồ thứ tự, không theo tỉ lệ."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "Which statement is supported by both sources?\nA. The interview was recorded before the introduction. B. The introduction came before the interview, and saving followed. C. The telephone call lasted fifteen minutes. D. The phone call was part of the recorded programme.\nModel answer B: S3–S6 establish the order. A reverses it; C invents a duration; D contradicts S6.\nVI: B đúng theo S3–S6. A đảo thứ tự; C tự đặt thời lượng; D trái S6."
+        },
+        {
+          "heading": "Quick checks — independent text: Craft display diary",
+          "markdown": "T1. 9:10 — I arrived. Kim was arranging clay models. T2. 9:35 — A bell rang while Kim was writing labels. T3. 9:50 — We opened the display. T4. 11:15 — We closed it. T5. Staff note: The bell rang before opening; it was not the opening signal.\nQC REA-A2-11-KQC01: What was Kim doing when the bell rang?\n- A. Closing the display. — Incorrect: T4 is later. / T4 xảy ra sau.\n- B. Writing labels. — Correct: T2 states the ongoing action. / T2 nêu hành động đang diễn ra.\n- C. Opening the display. — Incorrect: T3 gives the later opening. / T3 nêu việc mở sau đó.\nKey B.\nQC REA-A2-11-KQC02: Which claim is rejected by the staff note?\n- A. The bell was the opening signal. — Correct: T5 explicitly says it was not. / T5 phủ định rõ.\n- B. The bell rang before opening. — Incorrect: T5 confirms this. / T5 xác nhận.\n- C. The display opened at 9:50. — Incorrect: T3 reports this, and T5 does not reject it. / T3 nêu, T5 không bác bỏ.\nKey A."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. 10:15 — I entered the music room. Pat was tuning a guitar. U2. 10:35 — A visitor knocked while Pat was reading a music sheet. U3. 10:50 — We rehearsed the first song. U4. 11:20 — We rehearsed the second song. U5. Leader's note: We rehearsed the first song before the second. The knock was not a signal to begin. We did not record how long each rehearsal lasted.\nPrompt EN: Make a four-event timeline. Describe the ongoing action when the visitor knocked. State one fact confirmed by both sources, one rejected claim and one unreported fact. Cite IDs.\nVI: Lập dòng thời gian bốn sự kiện. Mô tả hành động đang diễn ra khi khách gõ cửa. Nêu một điều được hai nguồn xác nhận, một nhận định bị bác bỏ và một dữ kiện chưa nêu. Dẫn mã câu.\nCriteria: U1–U4 correct order; U2 reading during knock, no invented stop; U3–U5 first before second; U5 not start signal and durations unknown.\nHidden model EN: Enter 10:15 → knock 10:35 → first song 10:50 → second song 11:20 (U1–U4). Pat was reading music when the visitor knocked (U2). First came before second (U3–U5); the knock was not a start signal; rehearsal lengths are not given (U5).\nHidden model VI: Vào phòng 10:15 → gõ cửa 10:35 → bài một 10:50 → bài hai 11:20 (U1–U4). Pat đang đọc bản nhạc khi khách gõ cửa (U2). Bài một trước bài hai; tiếng gõ không phải tín hiệu bắt đầu; chưa nêu thời lượng (U3–U5)."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A2-11-KQC01",
+          "key": "B"
+        },
+        {
+          "id": "REA-A2-11-KQC02",
+          "key": "A"
+        }
+      ]
+    },
+    {
+      "lesson_id": "REA-A2-12",
+      "title": "Compare facts and recommend a conditional choice",
+      "source_index": 5,
+      "evidence_weight": 0,
+      "goal_context_markdown": "**Goal EN:** Compare price per session, duration, schedule and equipment; match all constraints and recommend without invented ratings.\n**Goal VI:** So sánh giá mỗi buổi, thời lượng, lịch và thiết bị; đáp ứng mọi điều kiện và đề xuất mà không tự đặt đánh giá.\n**Context EN:** A cheaper or longer session is not automatically suitable. Check all the reader's constraints and any borrowing conditions.\n**Context VI:** Buổi rẻ hơn hoặc dài hơn không tự động phù hợp. Kiểm tra mọi điều kiện của người học và quy định mượn đồ.",
+      "sections": [
+        {
+          "heading": "Strategy cards",
+          "markdown": "- Same units / Cùng đơn vị: Compare per-session cost and calculate end minus start. / So sánh giá mỗi buổi và lấy giờ kết thúc trừ giờ bắt đầu.\n- Constraints / Điều kiện: Check age, availability, budget and required equipment separately. / Kiểm tra riêng tuổi, thời gian rảnh, ngân sách và thiết bị.\n- Conditional access / Tiếp cận có điều kiện: A loan may require an advance action; state the exact condition. / Mượn đồ có thể cần thực hiện việc trước; nêu đúng điều kiện.\n- Recommendation / Đề xuất: Cite the matching facts and any remaining condition; do not rank quality without evidence. / Dẫn dữ kiện phù hợp và điều kiện còn lại; không xếp hạng chất lượng thiếu bằng chứng."
+        },
+        {
+          "heading": "Interactive worked text — independent model: Two science-maker sessions",
+          "markdown": "Source A — S1. Paper Engineering: Monday 4:30–5:15 p.m.; £5 per session; tools included; ages 10 and above. S2. Circuit Models: Wednesday 3:00–4:15 p.m.; £8 per session; bring a small battery pack or request a loan by Monday evening; ages 12 and above. S3. No class ratings are provided.\nSource B — S4. I am 13, free Wednesday afternoon only, and can spend up to £9. S5. I have no battery pack, but I can contact the organiser on Sunday. I want to build a model.\nLens PRICE/DURATION → S1, S2: £5 versus £8; 45 versus 75 minutes. / £5 so với £8; 45 so với 75 phút.\nLens FIT → S1, S2, S4: Both ages and prices fit, but only Wednesday fits availability. / Cả hai phù hợp tuổi và giá, nhưng chỉ thứ Tư phù hợp lịch.\nLens CONDITION → S2, S5: Request a loan by Monday evening; Sunday is early enough to request, not proof of a confirmed loan. / Yêu cầu mượn trước hoặc vào tối thứ Hai; Chủ nhật đủ sớm để yêu cầu, không chứng minh đã được xác nhận mượn.\nLens LIMIT → S3: No evidence to rank class quality. / Không có bằng chứng xếp hạng chất lượng.\nWorked comparison table (model only): session | day/time | duration | price | equipment | age. Paper Engineering | Mon 16:30–17:15 | 45 min | £5 | included | 10+. Circuit Models | Wed 15:00–16:15 | 75 min | £8 | battery pack or loan request by Mon evening | 12+. VI labels: buổi, ngày/giờ, thời lượng, giá, thiết bị, tuổi."
+        },
+        {
+          "heading": "Worked question",
+          "markdown": "Which recommendation is supported?\nA. Paper Engineering, because a lower price overrides the day. B. Circuit Models, because its teaching is certainly better. C. Both, because both accept a 13-year-old. D. Circuit Models, provided the learner arranges a battery pack under the stated loan rule.\nModel answer D: S2, S4, S5 match day, age, budget and possible equipment arrangement. A ignores availability; B invents quality; C checks only age and ignores day.\nVI: D đúng theo S2, S4, S5 nếu thu xếp thiết bị đúng quy định. A bỏ qua lịch; B tự đánh giá chất lượng; C chỉ xét tuổi, bỏ qua lịch."
+        },
+        {
+          "heading": "Quick checks — independent text: Two practical classes",
+          "markdown": "T1. Bread Design: Friday 3:00–3:40 p.m., £6, equipment included. T2. Clay Shapes: Sunday 1:30–2:40 p.m., £9, bring a modelling board or request a loan by Friday noon. T3. The notice gives no quality ratings.\nQC REA-A2-12-KQC01: Which comparison is supported?\n- A. Bread Design lasts 70 minutes. — Incorrect: T1 gives 40 minutes. / T1 là 40 phút.\n- B. Clay Shapes lasts 70 minutes and costs £3 more. — Correct: T2 gives 70 minutes; £9 − £6 = £3. / T2 là 70 phút; chênh £3.\n- C. Clay Shapes has better teachers. — Incorrect: T3 gives no rating. / T3 không nêu đánh giá.\nKey B.\nQC REA-A2-12-KQC02: What must someone without a modelling board do to use a loan?\n- A. Attend Bread Design first. — Incorrect: not a stated requirement. / Không phải yêu cầu đã nêu.\n- B. Wait until Sunday to request it. — Incorrect: T2 gives Friday noon. / T2 nêu trưa thứ Sáu.\n- C. Request it by Friday noon. — Correct: T2 states the loan condition. / T2 nêu điều kiện mượn.\nKey C."
+        },
+        {
+          "heading": "Transfer — OPEN_UNSCORED",
+          "markdown": "U1. Puppet Making: Tuesday 4:00–4:50 p.m., £4, equipment included, ages 9+. U2. Fabric Printing: Friday 2:15–3:35 p.m., £7, bring a printing block or request a loan by Wednesday afternoon, ages 12+. U3. Reader: I am 14, free Friday afternoon, have £8 and no printing block; I can contact the centre Tuesday. U4. The notice gives no ratings.\nPrompt EN: Compare session duration and price, recommend an option for this reader, explain the equipment condition and why the other session fails. Cite IDs; do not claim one is better taught.\nVI: So sánh thời lượng và giá, đề xuất cho người đọc, giải thích điều kiện thiết bị và lý do buổi kia không phù hợp. Dẫn mã câu; không tự đánh giá chất lượng giảng dạy.\nCriteria: U1 50 min/£4; U2 80 min/£7; U2–U3 age/day/budget and request by Wed afternoon, Tuesday possible but loan not confirmed; U1 wrong day; U4 no ratings.\nHidden model EN: Puppet Making lasts 50 minutes and costs £4; Fabric Printing lasts 80 minutes and costs £7 (U1–U2). Fabric Printing fits Friday, age and budget, provided the learner arranges the printing block; request a loan by Wednesday afternoon (U2–U3). Tuesday is early enough to request. Puppet Making is on the wrong day. No quality comparison is supported (U4).\nHidden model VI: Puppet Making 50 phút, £4; Fabric Printing 80 phút, £7 (U1–U2). Fabric Printing phù hợp thứ Sáu, tuổi và ngân sách nếu thu xếp khối in; yêu cầu mượn chậm nhất chiều thứ Tư (U2–U3). Thứ Ba đủ sớm để yêu cầu. Puppet Making sai ngày. Không có căn cứ so sánh chất lượng (U4)."
+        }
+      ],
+      "quick_check_keys": [
+        {
+          "id": "REA-A2-12-KQC01",
+          "key": "B"
+        },
+        {
+          "id": "REA-A2-12-KQC02",
+          "key": "C"
+        }
+      ]
+    }
+  ]
+}
