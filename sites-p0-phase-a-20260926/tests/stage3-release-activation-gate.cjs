@@ -6,18 +6,22 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const root=path.resolve(__dirname,'..');
-const candidate=require('../content/curriculum-1.28.0-candidate.json');
+const candidate=require('../content/curriculum-1.28.1-candidate.json');
 const released=require('../content/curriculum-1.25.0-candidate.json');
+const crypto=require('node:crypto');
+const candidateBytes=fs.readFileSync(path.join(root,'content/curriculum-1.28.1-candidate.json'));
+assert.equal(crypto.createHash('sha1').update('blob '+candidateBytes.length+'\0').update(candidateBytes).digest('hex'),'ef69d4a9d4ed13fb3de7702ce6600e062c1039f2');
+assert(candidateBytes.equals(fs.readFileSync(path.join(root,'content/review-packets/curriculum-1.28.1-wording-candidate.json'))),'Activated bytes must equal independently reviewed candidate');
 assert.equal(released.schema_version,'1.25.0');
 assert.equal(released.lessons.length,154);
 assert.equal(released.lessons.reduce((n,l)=>n+l.activities.length,0),1125);
-assert.equal(candidate.schema_version,'1.28.0');
+assert.equal(candidate.schema_version,'1.28.1');
 assert.equal(candidate.lessons.length,176);
 assert.equal(candidate.lessons.reduce((n,l)=>n+l.activities.length,0),1224);
 assert.deepEqual(candidate.lessons.slice(0,released.lessons.length),released.lessons,
- 'v1.28.0 must not modify any of the 154 released v1.25 lessons');
+ 'v1.28.1 must not modify any of the 154 released v1.25 lessons');
 assert.deepEqual(candidate.course.sequence.slice(0,released.course.sequence.length),released.course.sequence,
- 'v1.28.0 must preserve the exact released v1.25 course sequence');
+ 'v1.28.1 must preserve the exact released v1.25 course sequence');
 for(const [id,oldRubric] of Object.entries(released.rubrics))
  assert.deepEqual(candidate.rubrics[id],oldRubric,'Released rubric modified: '+id);
 assert.deepEqual(Object.keys(candidate.rubrics).filter(id=>!Object.hasOwn(released.rubrics,id)).sort(),

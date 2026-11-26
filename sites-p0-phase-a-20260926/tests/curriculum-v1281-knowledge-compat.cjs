@@ -53,5 +53,5 @@ assert(foundation.includes('candidate.version===catalog.version'));
 assert(foundation.includes('const view=await loadLesson(id,existing?.version??catalog?.version)'));
 assert(foundation.includes('if(existing)validateOptionOrder(view.lesson.activities,existing)'));
 assert(foundation.includes('currentKnowledgeView.version===catalog?.version'));
-assert(!fs.readFileSync('infrastructure/browser/local-runtime.ts','utf8').includes('1.28.1'));
-console.log(JSON.stringify({gate:'SLE_V1281_KNOWLEDGE_COMPAT_SOURCE_SSR',result:'PASS',counts,comparisons,activeRuntime:'1.28.0',actualUpgrade:'NOT_TESTED',historicalBrowser:'NOT_TESTED'}));
+assert(fs.readFileSync('infrastructure/browser/local-runtime.ts','utf8').includes("import curriculum1281 from '../../content/curriculum-1.28.1-candidate.json'"));
+console.log(JSON.stringify({gate:'SLE_V1281_KNOWLEDGE_COMPAT_SOURCE_SSR',result:'PASS',counts,comparisons,bundledRuntime:'1.28.1',actualUpgrade:'NOT_TESTED',historicalBrowser:'NOT_TESTED'}));

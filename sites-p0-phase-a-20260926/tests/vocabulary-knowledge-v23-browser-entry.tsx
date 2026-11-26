@@ -39,7 +39,7 @@ async function historicalPlayerRoute(){
  }
  const runtime=await localAcademicRuntime();
  const catalog=await runtime.service.catalog() as unknown as Catalog;
- check(catalog.version==='1.28.0','current browser curriculum');
+ check(catalog.version==='1.28.1','current browser curriculum');
  const before=JSON.stringify(await runtime.academic.attempts(LOCAL_OWNER_ID));
  const packagesBefore=JSON.stringify((await runtime.academic.packages()).map(p=>({id:p.id,version:p.version,digest:p.digest})));
  let requests=0;window.fetch=async()=>{requests++;throw Error('Unexpected network in isolated Vocabulary fixture')};
@@ -50,8 +50,8 @@ async function historicalPlayerRoute(){
  await wait(()=>!!overlay(),'current Vocabulary overlay without starting a new attempt');
  check(overlay()?.textContent?.includes(id),'correct lesson');
  if(old){
-  check((await runtime.service.lesson(id,version)).version===version&&(await runtime.service.lesson(id,'1.28.0')).version==='1.28.0','both immutable versions available');
-  check(shell.textContent?.includes('Current lesson notes · v1.28.0'),'current notes label');
+  check((await runtime.service.lesson(id,version)).version===version&&(await runtime.service.lesson(id,'1.28.1')).version==='1.28.1','both immutable versions available');
+  check(shell.textContent?.includes('Current lesson notes · v1.28.1'),'current notes label');
   find('View archived notes')!.click();await wait(()=>!overlay()&&!!find('View current lesson notes'),'archive notes');
   check(shell.textContent?.includes('Archived lesson notes · v'+version),'archive label');
   find('View current lesson notes')!.click();await wait(()=>!!overlay(),'current notes restored');
@@ -62,7 +62,7 @@ async function historicalPlayerRoute(){
   check(shell.textContent?.includes('content '+version),'historical practice version');
   if(!draft)check(shell.textContent?.includes('Synthetic saved Vocabulary result'),'original feedback');
   find('View lesson notes')!.click();await wait(()=>!!overlay(),'current notes after practice/result');
-  check(shell.textContent?.includes('Current lesson notes · v1.28.0'),'current notes label after returning');
+  check(shell.textContent?.includes('Current lesson notes · v1.28.1'),'current notes label after returning');
  }
  if(draft)await pause(1250);
  check(JSON.stringify(await runtime.academic.attempts(LOCAL_OWNER_ID))===before,'saved attempts byte-equivalent; no new attempt');

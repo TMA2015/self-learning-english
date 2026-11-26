@@ -52,13 +52,13 @@ for(const [taskId,m] of Object.entries(diagnosticManifest)){
 const baseline=require('../content/curriculum-1.18.0-candidate.json');
 const stage3=require('../content/curriculum-1.18.1-candidate.json');
 const archived1200=require('../content/curriculum-1.20.0-candidate.json');
-const active=require('../content/curriculum-1.28.0-candidate.json');
+const active=require('../content/curriculum-1.28.1-candidate.json');
 assert.equal(archived1200.lessons.length,123);
 assert.deepEqual(active.lessons.slice(0,123),archived1200.lessons,'All 123 prior lessons unchanged');
 assert.equal(baseline.schema_version,'1.18.0');
 assert.equal(stage3.schema_version,'1.18.1');
 assert.equal(stage3.lessons.length,109);
-assert.equal(active.schema_version,'1.28.0');
+assert.equal(active.schema_version,'1.28.1');
 assert.equal(active.lessons.length,176);
 assert.equal(active.lessons.flatMap(l=>l.activities).length,1224);
 const source1240=require('../content/curriculum-1.24.0-candidate.json');
@@ -68,8 +68,8 @@ const source1270=require('../content/curriculum-1.27.0-candidate.json');
 for(const [id,rubric] of Object.entries(source1240.rubrics))assert.deepEqual(active.rubrics[id],rubric,'Historical rubric changed: '+id);
 assert.deepEqual(active.rubrics,source1270.rubrics,'Staging must retain the complete reviewed rubric set, including B2 Writing');
 const runtimeSource=fs.readFileSync(path.join(root,'infrastructure','browser','local-runtime.ts'),'utf8');
-assert(runtimeSource.includes("import curriculum1280 from '../../content/curriculum-1.28.0-candidate.json'"),
-  'Static browser runtime must bundle the staged v1.28.0 curriculum');
+assert(runtimeSource.includes("import curriculum1281 from '../../content/curriculum-1.28.1-candidate.json'"),
+  'Static browser runtime must bundle the staged v1.28.1 curriculum');
 const raw=fs.readFileSync(path.join(root,'content/curriculum-1.15.0-candidate.json'));const canonical=v=>Array.isArray(v)?v.map(canonical):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,canonical(v[k])])):v;const sha=v=>crypto.createHash('sha256').update(v).digest('hex');assert.equal(sha(raw),'981a7273a9158c9e53a0e3336de1a88892024f617330d797d534f9e293dc4426');assert.equal(sha(JSON.stringify(canonical(JSON.parse(raw)))),'66663bb61cf60b266d25e8abd890e81ad27398d3ebee9b7cd5cd211de878b1e8');
 const html=fs.readFileSync(path.join(out,'index.html'),'utf8');
 assert(!html.includes('/self-learning-english/self-learning-english/'),'Firebase build must not duplicate a GitHub Pages base path');

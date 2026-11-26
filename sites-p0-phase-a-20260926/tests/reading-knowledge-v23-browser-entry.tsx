@@ -23,7 +23,7 @@ async function wait(fn:()=>boolean,label:string){for(let i=0;i<160;i++){if(fn())
 function check(ok:unknown,label:string){if(!ok)throw Error(label)}
 async function historicalPlayerRoute(){
  const route=params.get('route'),draft=route==='historical-draft',old=route==='historical'||draft;
- const version=params.get('version')??'1.18.1',successor=params.get('current')==='1.28.1',currentVersion=successor?'1.28.1':'1.28.0';
+ const version=params.get('version')??'1.18.1',successor=params.get('current')==='1.28.1',currentVersion='1.28.1';
  check(!successor||version==='1.28.0','successor fixture baseline');
  const source=({'1.18.1':historical,'1.25.0':historical125,'1.27.0':historical127,'1.28.0':baseline128} as Record<string,unknown>)[version] as Seed;
  const archive=source?.lessons.find(l=>l.id===id) as SeedLesson|undefined;
@@ -40,13 +40,13 @@ async function historicalPlayerRoute(){
   await academic.addPackage({id:source.package_id,version:source.schema_version,digest:await sourceDigest(source),source,bundle:mapSeed(source),at:1});
   await academic.start(LOCAL_OWNER_ID,saved);
  }
+ const beforeUpgrade=JSON.stringify(await new BrowserLocalAcademicRepository(localStorage).attempts(LOCAL_OWNER_ID));
  const runtime=await localAcademicRuntime();
  if(successor){
-  const beforeImport=JSON.stringify(await runtime.academic.attempts(LOCAL_OWNER_ID));
-  const preview=await runtime.service.preview(successor1281);
-  check(preview.errors.length===0&&preview.counts.update===5&&preview.counts.skip===171&&preview.counts.add===0,'exact wording-only import preview');
-  await runtime.service.importPackage(successor1281,preview.token,true);
-  check(JSON.stringify(await runtime.academic.attempts(LOCAL_OWNER_ID))===beforeImport,'import preserves historical attempts');
+  check(JSON.stringify(await runtime.academic.attempts(LOCAL_OWNER_ID))===beforeUpgrade,'automatic bundled upgrade preserves historical attempts');
+  const packages=await runtime.academic.packages();
+  const expectedDigest=await sourceDigest(successor1281);
+  check(packages.some(p=>p.version==='1.28.0')&&packages.some(p=>p.version==='1.28.1'&&p.digest===expectedDigest),'exact reviewed successor package installed');
  }
  const catalog=await runtime.service.catalog() as unknown as Catalog;
  check(catalog.version===currentVersion,'current browser curriculum');

@@ -1,5 +1,5 @@
 'use strict';
-// Exercise actual importer and repository on isolated simulated storage; no runtime activation.
+// Exercise actual manual importer AND bundled automatic upgrade on isolated simulated storage.
 const assert=require('node:assert/strict'),fs=require('node:fs'),ts=require('typescript');
 require.extensions['.ts']=(m,f)=>m._compile(ts.transpileModule(fs.readFileSync(f,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,esModuleInterop:true,resolveJsonModule:true}}).outputText,f);
 const {BrowserLocalAcademicRepository,BrowserLocalLearningRepository}=require('../infrastructure/storage/browser-local-repositories.ts');
@@ -47,5 +47,30 @@ class Store{
  assert.deepEqual((await repo.attempts(owner)).filter(a=>attempts.some(b=>a.id===b.id)),attempts);
  await assert.rejects(()=>reload.lesson(lessonId,'1.28.2'),/version not found/i);
  assert((await reload.preview({...next,status:'conflicting-content'})).errors.length>0,'same version conflict');
- console.log(JSON.stringify({gate:'SLE_V1281_IMPORT_HISTORY_QUOTA',result:'PASS',updates:5,unchanged:171,atomicQuotaFailure:true,oldAttemptsPreserved:true,independentCurrentRoot:true,activation:'NOT_TESTED',physicalSafari:'NOT_TESTED'}));
+ // Separate automatic-upgrade rehearsal from the untouched pre-import snapshot.
+ const auto=new Store();auto.map=new Map(before);auto.limit=[...before].reduce((n,[k,v])=>n+2*(k.length+v.length),0)+128;
+ global.window={localStorage:auto};
+ const runtime=require('../infrastructure/browser/local-runtime.ts');
+ const blocked=await runtime.localAcademicRuntime();
+ assert.equal((await blocked.service.catalog()).version,'1.28.0');
+ assert.match(blocked.warning??'',/automatic English lesson update was paused/i);
+ assert.deepEqual([...auto.map],[...before]);assert.deepEqual(auto.writes,[]);
+ assert.deepEqual(await blocked.academic.attempts(owner),attempts);
+ auto.limit=Infinity;
+ const upgraded=await runtime.localAcademicRuntime();
+ assert.equal((await upgraded.service.catalog()).version,'1.28.1');
+ assert.equal(upgraded.warning,undefined);assert.deepEqual(auto.writes,[key]);
+ for(const [k,v] of before)if(k!==key)assert.equal(auto.getItem(k),v,'Automatic upgrade changed learner key '+k);
+ assert.deepEqual(await upgraded.academic.attempts(owner),attempts);
+ assert.deepEqual(await upgraded.service.lesson(lessonId,'1.28.0'),oldView);
+ assert.deepEqual(await upgraded.service.lesson(lessonId),freshView);
+ assert.deepEqual(await upgraded.service.submit(scored.id),scored);
+ auto.writes=[];
+ const again=await runtime.localAcademicRuntime();assert.equal((await again.service.catalog()).version,'1.28.1');assert.deepEqual(auto.writes,[]);
+ const automaticFresh=await again.service.start(lessonId,'automatic-root-1281');
+ assert.equal(automaticFresh.version,'1.28.1');assert.equal(automaticFresh.parentId,undefined);
+ const automaticRevision=await again.service.start(lessonId,'automatic-revision-1280',scored.id);
+ assert.equal(automaticRevision.version,'1.28.0');
+ assert.deepEqual((await again.academic.attempts(owner)).filter(a=>attempts.some(b=>a.id===b.id)),attempts);
+ console.log(JSON.stringify({gate:'SLE_V1281_IMPORT_HISTORY_QUOTA',result:'PASS',updates:5,unchanged:171,atomicQuotaFailure:true,oldAttemptsPreserved:true,independentCurrentRoot:true,automaticBundledUpgrade:true,automaticQuotaFallback:true,automaticIdempotence:true,physicalSafari:'NOT_TESTED'}));
 })().catch(e=>{console.error(e);process.exitCode=1});

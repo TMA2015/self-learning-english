@@ -45,7 +45,7 @@ async function playerRoute(){
  }
  const runtime=await localAcademicRuntime();
  const catalog=await runtime.service.catalog() as unknown as Catalog;
- check(catalog.version==='1.28.0','current browser curriculum');
+ check(catalog.version==='1.28.1','current browser curriculum');
  const before=JSON.stringify(await runtime.academic.attempts(LOCAL_OWNER_ID));
  const packagesBefore=JSON.stringify((await runtime.academic.packages()).map(p=>({id:p.id,version:p.version,digest:p.digest})));
  let requests=0;
@@ -57,8 +57,8 @@ async function playerRoute(){
  check(overlay()?.getAttribute('data-lesson-id')===id,'correct lesson');
  const find=(label:string)=>[...shell.querySelectorAll<HTMLButtonElement>('button')].find(b=>b.textContent?.trim().startsWith(label));
  if(old){
-  check((await runtime.service.lesson(id,'1.18.1')).version==='1.18.1'&&(await runtime.service.lesson(id,'1.28.0')).version==='1.28.0','both immutable historical and current source available');
-  check(shell.textContent?.includes('Current lesson notes · v1.28.0'),'current notes label');
+  check((await runtime.service.lesson(id,'1.18.1')).version==='1.18.1'&&(await runtime.service.lesson(id,'1.28.1')).version==='1.28.1','both immutable historical and current source available');
+  check(shell.textContent?.includes('Current lesson notes · v1.28.1'),'current notes label');
   find('View archived notes')!.click();await wait(()=>!overlay()&&!!find('View current lesson notes'),'archived notes toggle');
   check(shell.textContent?.includes('Archived lesson notes · v1.18.1'),'archive label');
   find('View current lesson notes')!.click();await wait(()=>!!overlay(),'current notes restored');
@@ -69,7 +69,7 @@ async function playerRoute(){
   check(field.matches(':disabled')===!draft,'submitted is read-only, draft remains editable');
   if(!draft)check(shell.textContent?.includes('Synthetic saved result'),'original scored feedback displayed');
   find('View lesson notes')!.click();await wait(()=>!!overlay(),'current notes after result');
-  if(!draft)check(shell.textContent?.includes('Current lesson notes · v1.28.0'),'current knowledge after saved result');
+  if(!draft)check(shell.textContent?.includes('Current lesson notes · v1.28.1'),'current knowledge after saved result');
  }
  // Let the ordinary same-answer draft autosave settle, then compare real
  // persisted records, not just an in-memory fixture object.
