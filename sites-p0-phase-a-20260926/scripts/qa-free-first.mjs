@@ -213,6 +213,9 @@ const successorPreflight=[
   "curriculum-v1281-import-history-quota.cjs",
   "browser-curriculum-upgrade.cjs",
   "automatic-curriculum-v120.cjs",
+  "issue64-task-b.cjs",
+  "skill-overview-cleanup.cjs",
+  "f2-v125-long-history-quota-fallback.cjs",
 ];
 const full=[...new Set([...coreTests,...fullRegressionTests])];
 if(successorPreflight.some(test=>!full.includes(test)))throw Error("Successor preflight must remain part of full QA");
