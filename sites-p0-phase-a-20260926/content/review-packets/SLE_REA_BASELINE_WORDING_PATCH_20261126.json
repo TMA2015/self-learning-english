@@ -1,0 +1,96 @@
+{
+  "status": "ACADEMIC_PASS_TECHNICAL_QA_PENDING",
+  "review_commit": "c950924631c99e734ade8102c11080e337f38137",
+  "review_blob": "595c72ba7ad0cc79026dd7c3abd77b293cbbac6c",
+  "base_version": "1.28.0",
+  "base_git_blob": "9d931a6930b8cd3ed918db1fa22e8708b7a9f884",
+  "proposed_version": "1.28.1",
+  "changes": [
+    {
+      "lesson_id": "REA-B2-05",
+      "item_id": "REA-B2-05-Q1",
+      "field": "prompt",
+      "before": "What do the volunteer counts in Source C directly show?",
+      "after": "What do the volunteer counts in Source A directly show?",
+      "key": "C"
+    },
+    {
+      "lesson_id": "REA-B2-05",
+      "item_id": "REA-B2-05-Q3",
+      "field": "feedback.explanation_en",
+      "before": "The association requests safeguards and does not deny the volunteers’ measured reduction. Misconception: Inventing an exaggerated opposition not present in Source D. Next step: Separate what the group disputes from what it accepts.",
+      "after": "The association requests safeguards and does not deny the volunteers’ measured reduction. Misconception: Inventing an exaggerated opposition not present in Source B. Next step: Separate what the group disputes from what it accepts.",
+      "key": "D"
+    },
+    {
+      "lesson_id": "REA-B2-06",
+      "item_id": "REA-B2-06-Q1",
+      "field": "feedback.explanation_en",
+      "before": "Text A records parked bicycles; Text B reports what respondents prefer. A and C invent methods; D misses the shared travel issue. Next step: Label the method beside each source.",
+      "after": "Text A records parked bicycles; Text B reports what respondents prefer. Neither source experimentally tests crossing safety or surveys the same parents before and after the trial. Both concern school travel, not unrelated curriculum topics. Next step: Label the method beside each source.",
+      "key": "B"
+    },
+    {
+      "lesson_id": "REA-B2-06",
+      "item_id": "REA-B2-06-Q4",
+      "field": "feedback.explanation_en",
+      "before": "Neither text contains accident measurements or a causal safety study. A, B and D are supported within their stated bounds. Next step: Underline the missing measurement in any claim containing “definitely.”",
+      "after": "Neither text contains accident measurements or a causal safety study. Higher bicycle counts, the majority preference among questionnaire respondents for a safer crossing, and the sources’ different aspects of school travel are supported within their stated bounds. Next step: Underline the missing measurement in any claim containing “definitely.”",
+      "key": "C"
+    },
+    {
+      "lesson_id": "REA-B2-06",
+      "item_id": "REA-B2-06-Q5",
+      "field": "feedback.explanation_en",
+      "before": "This attributes the sources separately and avoids inventing causation. A exaggerates, C combines incompatible numbers, and D assumes contradiction where none exists. Next step: Write a synthesis using “while” or “however” and a limitation.",
+      "after": "The supported synthesis attributes the sources separately and avoids inventing causation. The trial does not establish that every travel problem was solved or that all parents agreed. The survey did not count cyclists or road accidents; a preference for crossings does not invalidate the bicycle count. Next step: Write a synthesis using “while” or “however” and a limitation.",
+      "key": "B"
+    },
+    {
+      "lesson_id": "REA-B2-07",
+      "item_id": "REA-B2-07-Q4",
+      "field": "feedback.explanation_en",
+      "before": "C integrates both sources with appropriate caution. A and D claim unmeasured outcomes; B ignores the 73 reported benefits and potential overlap. Next step: Use an evidence-plus-limitation sentence.",
+      "after": "The supported synthesis preserves higher recorded visits, reported usefulness, transport concerns and the limits of the comparison. Guaranteed examination gains and one-to-one counting across the data sets are not established. The claim that nobody gained study time ignores the 73 respondents reporting a benefit and possible overlap between response categories. Next step: Use an evidence-plus-limitation sentence.",
+      "key": "C"
+    },
+    {
+      "lesson_id": "REA-B2-08",
+      "item_id": "REA-B2-08-Q1",
+      "field": "feedback.explanation_en",
+      "before": "Some use is documented and a practical staffing concern is reported. B, C and D overstate or ignore the evidence. Next step: Align strength of claim to strength of data.",
+      "after": "Some use is documented and a practical staffing concern is reported. The brief does not establish daily demand from every student, elimination of hallway noise caused by the room, or cost-free supervision. Next step: Align strength of claim to strength of data.",
+      "key": "A"
+    },
+    {
+      "lesson_id": "REA-B2-09",
+      "item_id": "REA-B2-09-Q1",
+      "field": "feedback.explanation_en",
+      "before": "B preserves the observed comparison while naming key design limitations. A, C and D claim outcomes or controls not in the brief. Next step: Separate behaviour measured from ability not measured.",
+      "after": "The supported claim preserves the observed submission-rate comparison while naming its design limitations. The figures do not establish improved writing proficiency or sentence accuracy, and the groups did not have identical deadlines and conditions. Next step: Separate behaviour measured from ability not measured.",
+      "key": "B"
+    },
+    {
+      "lesson_id": "REA-B2-09",
+      "item_id": "REA-B2-09-Q2",
+      "field": "feedback.explanation_en",
+      "before": "Group differences create alternative explanations for submission rates. A and D are factual but less diagnostic; B does not eliminate confounding. Next step: Look for important differences between comparison groups.",
+      "after": "Non-random allocation and different deadlines create alternative explanations for submission rates. The number of classes and the fact that some students in both groups submitted a second draft are factual but less diagnostic. The presence of feedback in both approaches does not eliminate confounding. Next step: Look for important differences between comparison groups.",
+      "key": "C"
+    },
+    {
+      "lesson_id": "REA-B2-09",
+      "item_id": "REA-B2-09-Q4",
+      "field": "feedback.explanation_en",
+      "before": "It acknowledges a concrete weakness and proposes evidence to address it. B and C dismiss concerns; D wrongly rules out further inquiry. Next step: Make the concession relevant to your next recommendation.",
+      "after": "The supported concession acknowledges concrete weaknesses and proposes evidence to address them. Claims of perfect peer comments or exclusion of critical teachers dismiss concerns without justification; ruling out any further inquiry also goes beyond the evidence. Next step: Make the concession relevant to your next recommendation.",
+      "key": "A"
+    }
+  ],
+  "metadata_changes": [
+    "schema_version",
+    "status"
+  ],
+  "unchanged": "All other fields, item identities, choices, correct keys, evidence, passages and all other lessons.",
+  "release": "Separate candidate only; no import/deploy. Check all exact-version Knowledge guards, historical version registration and release contract before activation."
+}
