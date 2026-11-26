@@ -3,8 +3,13 @@
 // The separate wording-source gate pins both packages and proves exact reversal.
 const assert=require('node:assert/strict'),fs=require('node:fs'),ts=require('typescript'),React=require('react');
 const {renderToStaticMarkup}=require('react-dom/server');
-require.extensions['.css']=()=>{};
+// Register TSX before CSS: Node resolves extensionless imports by extension order.
 require.extensions['.tsx']=(m,f)=>m._compile(ts.transpileModule(fs.readFileSync(f,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX,esModuleInterop:true,resolveJsonModule:true}}).outputText,f);
+require.extensions['.css']=()=>{};
+const path=require('node:path');
+for(const name of ['grammar-knowledge-v23','grammar-a1-02-notes','reading-knowledge-v23','vocabulary-knowledge-v23','multiskill-knowledge-v2','structured-grammar']){
+ assert.equal(require.resolve('../app/'+name),path.resolve(__dirname,'../app/'+name+'.tsx'),'Extensionless component import must resolve to TSX: '+name);
+}
 const base=require('../content/curriculum-1.28.0-candidate.json'),next=require('../content/review-packets/curriculum-1.28.1-wording-candidate.json');
 const {grammarKnowledgeV23Available,GrammarKnowledgeV23}=require('../app/grammar-knowledge-v23.tsx');
 const {structuredGrammarAvailable,StructuredGrammarNotes}=require('../app/structured-grammar.tsx');
