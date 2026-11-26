@@ -1,0 +1,44 @@
+/* Reading v2.3: follow the owner-approved SLE Multi-skill v2 visual hierarchy.
+ * Only the Reading Knowledge overlay is styled here. Preserve 44px touch targets. */
+.sle-rea-v23{max-width:960px;width:100%;min-width:0;overflow-wrap:anywhere;display:grid;gap:12px;margin:18px 0 24px;color:#24374f;font-size:15px;line-height:1.65}
+.sle-rea-v23 *{box-sizing:border-box}
+.sle-rea-v23 .sle-rea-heading{display:flex;gap:10px;align-items:flex-start;margin:13px 0 0}
+.sle-rea-v23 .sle-rea-heading>span{display:inline-grid;place-items:center;min-width:25px;height:24px;background:#245bb1;color:#fff;font-size:12px;font-weight:700;border-radius:6px;flex:none}
+.sle-rea-v23 .sle-rea-heading h3{font-size:18px;color:#193b61;font-weight:750;margin:0;line-height:1.42}
+.sle-rea-v23 .sle-rea-heading p{font-size:13px;color:#6d7890;margin:2px 0 0}
+.sle-rea-v23 .sle-rea-card{padding:15px 17px;border-radius:11px;border:1px solid #dce6f1;background:#fff;min-width:0;overflow-wrap:anywhere}
+.sle-rea-v23 .sle-rea-card h4{font-size:15px;font-weight:750;color:#24518d;line-height:1.45;margin:0 0 8px}
+.sle-rea-v23 .sle-rea-card p{font-size:14px;line-height:1.65;margin:0 0 8px}
+.sle-rea-v23 .sle-rea-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.sle-rea-v23 .sle-rea-choices{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}
+.sle-rea-v23 button{font:inherit;font-size:13px;min-height:44px;max-width:100%;padding:7px 12px;border:1px solid #bfd0e7;border-radius:9px;background:#fff;color:#315981;white-space:normal;overflow-wrap:anywhere;text-align:left;cursor:pointer}
+.sle-rea-v23 button[aria-pressed=true]{color:#fff;background:#245bb1;border-color:#245bb1}
+.sle-rea-v23 :focus-visible{outline:3px solid #397ac9;outline-offset:3px}
+.sle-rea-v23 .sle-rea-sentence,.sle-rea-v23 .sle-rea-highlight{padding:6px 8px;border-left:3px solid transparent;font-size:15px;line-height:1.9}
+.sle-rea-v23 .sle-rea-highlight{background:#ffeb9b;border-color:#245bb1;color:#24374f;border-radius:4px}
+.sle-rea-v23 .sle-rea-feedback{background:#f3f7ff;border:1px solid #d7e6f5;border-left:4px solid #245bb1;border-radius:0 11px 11px 0;padding:17px 19px;overflow-wrap:anywhere;margin-top:8px}
+.sle-rea-v23 .sle-rea-feedback strong{color:#1d4e87}
+.sle-rea-v23 .sle-rea-feedback p{line-height:1.72}
+.sle-rea-v23 .sle-rea-vi{font-size:.95em;color:inherit;opacity:.86}
+.sle-rea-v23 .sle-rea-copy{white-space:pre-line}
+.sle-rea-v23 textarea{display:block;box-sizing:border-box;width:100%;max-width:100%;min-width:0;border:1px solid #cbd8ea;border-radius:9px;padding:12px;font:inherit;font-size:16px;line-height:1.6;resize:vertical;margin:9px 0 8px}
+.sle-rea-v23 label{display:block;font-weight:600}
+.sle-rea-v23 summary{cursor:pointer;min-height:44px;padding:10px 0;font-weight:650;color:#2c5687;line-height:1.5}
+.sle-rea-v23 .sle-rea-table-scroll{overflow-x:auto;max-width:100%}
+.sle-rea-v23 table{border-collapse:collapse;width:100%;font-size:.95em}
+.sle-rea-v23 th,.sle-rea-v23 td{border:1px solid #dce6f1;padding:8px;text-align:left;vertical-align:top}
+.sle-rea-v23 th{background:#f3f7fd;color:#24518d}
+
+.sle-rea-v23 figure{margin:8px 0 0}
+.sle-rea-v23 figcaption{font-weight:650;color:#24518d;margin-bottom:8px}
+.sle-rea-v23 .sle-rea-map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;align-items:center;text-align:center}
+.sle-rea-v23 .sle-rea-map span{padding:8px 4px;border:1px solid #bfd0e7;border-radius:6px;font-size:.9em;overflow-wrap:anywhere}
+.sle-rea-v23 .sle-rea-map .sle-rea-map-north,.sle-rea-v23 .sle-rea-map .sle-rea-map-link{grid-column:2}
+.sle-rea-v23 .sle-rea-map .sle-rea-map-link{padding:0;border:0}
+.sle-rea-v23 .sle-rea-map span:nth-child(3){grid-column:1}
+.sle-rea-v23 .sle-rea-timeline{padding-left:24px;margin:8px 0}
+.sle-rea-v23 .sle-rea-timeline li{padding:5px 0}
+@media(max-width:700px){
+ .sle-rea-v23 .sle-rea-grid{grid-template-columns:minmax(0,1fr)}
+ .sle-rea-v23 .sle-rea-card,.sle-rea-v23 .sle-rea-feedback{padding:13px 14px}
+}
