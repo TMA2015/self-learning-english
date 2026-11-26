@@ -98,7 +98,7 @@ export function FoundationDemo({showVi=false,onEvidence,skill,entryMode='lessons
    // current read-only teaching overview. Fetch reviewed current notes
    // separately; never replace the saved attempt's lesson or answers.
    let currentNotes:LessonView|null=null,notesError=false;
-   if((['grammar','vocabulary'].includes(view.lesson.module)||readingKnowledgeV23Available(view.lesson,'1.28.0'))&&catalog?.version==='1.28.0'&&view.version!==catalog.version){
+   if((['grammar','vocabulary'].includes(view.lesson.module)||readingKnowledgeV23Available(view.lesson,'1.28.0'))&&catalog&&(catalog.version==='1.28.0'||catalog.version==='1.28.1')&&view.version!==catalog.version){
     try{
      const candidate=await loadLesson(id,catalog.version);
      if(candidate.lesson.id===id&&candidate.version===catalog.version&&candidate.lesson.module===view.lesson.module&&(grammarKnowledgeV23Available(candidate.lesson,candidate.version)||vocabularyKnowledgeV23Available(candidate.lesson,candidate.version)||readingKnowledgeV23Available(candidate.lesson,candidate.version)))currentNotes=candidate;

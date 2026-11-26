@@ -1,7 +1,7 @@
 import {spawnSync} from "node:child_process";
 import path from "node:path";
 
-const mode=process.argv.includes("--core")?"core":"full";
+const mode=process.argv.includes("--preflight-v1281")?"preflight-v1281":process.argv.includes("--core")?"core":"full";
 const root=process.cwd();
 
 const coreTests=[
@@ -187,6 +187,9 @@ const fullRegressionTests=[
   "vocabulary-knowledge-v23-browser.cjs",
   "reading-knowledge-v23.cjs",
   "reading-knowledge-v23-browser.cjs",
+  "curriculum-v1281-wording-source.cjs",
+  "curriculum-v1281-knowledge-compat.cjs",
+  "curriculum-v1281-import-history-quota.cjs",
   "grammar-b1-wave2a-draft.cjs",
   "grammar-b1-wave2b-draft.cjs",
   "grammar-b1-wave2c-draft.cjs",
@@ -202,7 +205,23 @@ const fullRegressionTests=[
   "writing-tutor.cjs",
 ];
 
-const selected=[...new Set(mode==="core" ? coreTests : [...coreTests,...fullRegressionTests])];
+// Fast-fail on changed successor contracts before expensive browser regression.
+// The full suite contains exactly the original registered tests, only reordered.
+const successorPreflight=[
+  "curriculum-v1281-wording-source.cjs",
+  "curriculum-v1281-knowledge-compat.cjs",
+  "curriculum-v1281-import-history-quota.cjs",
+  "browser-curriculum-upgrade.cjs",
+  "automatic-curriculum-v120.cjs",
+  "issue64-task-b.cjs",
+  "skill-overview-cleanup.cjs",
+  "f2-v125-long-history-quota-fallback.cjs",
+];
+const full=[...new Set([...coreTests,...fullRegressionTests])];
+if(successorPreflight.some(test=>!full.includes(test)))throw Error("Successor preflight must remain part of full QA");
+const earlyFull=[...successorPreflight,"reading-knowledge-v23-browser.cjs"];
+if(earlyFull.some(test=>!full.includes(test)))throw Error("Early test must remain part of full QA");
+const selected=mode==="preflight-v1281"?successorPreflight:mode==="core"?coreTests:[...earlyFull,...full.filter(test=>!earlyFull.includes(test))];
 
 for(const test of selected){
   const relative=path.join("tests",test);

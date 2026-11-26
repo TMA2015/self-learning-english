@@ -1,6 +1,8 @@
 import historical from '../content/curriculum-1.18.1-candidate.json';
 import historical125 from '../content/curriculum-1.25.0-candidate.json';
 import historical127 from '../content/curriculum-1.27.0-candidate.json';
+import baseline128 from '../content/curriculum-1.28.0-candidate.json';
+import successor1281 from '../content/review-packets/curriculum-1.28.1-wording-candidate.json';
 import {mapSeed,type Seed,type AcademicAttempt} from '../domain/academic';
 import {sourceDigest} from '../application/academic-service';
 import {BrowserLocalAcademicRepository} from '../infrastructure/storage/browser-local-repositories';
@@ -21,8 +23,9 @@ async function wait(fn:()=>boolean,label:string){for(let i=0;i<160;i++){if(fn())
 function check(ok:unknown,label:string){if(!ok)throw Error(label)}
 async function historicalPlayerRoute(){
  const route=params.get('route'),draft=route==='historical-draft',old=route==='historical'||draft;
- const version=params.get('version')??'1.18.1';
- const source=({'1.18.1':historical,'1.25.0':historical125,'1.27.0':historical127} as Record<string,unknown>)[version] as Seed;
+ const version=params.get('version')??'1.18.1',successor=params.get('current')==='1.28.1',currentVersion='1.28.1';
+ check(!successor||version==='1.28.0','successor fixture baseline');
+ const source=({'1.18.1':historical,'1.25.0':historical125,'1.27.0':historical127,'1.28.0':baseline128} as Record<string,unknown>)[version] as Seed;
  const archive=source?.lessons.find(l=>l.id===id) as SeedLesson|undefined;
  check(location.hostname==='127.0.0.1'&&(!old||!!archive),'isolated fixture and existing archive');
  const saved:AcademicAttempt|null=old?{
@@ -37,9 +40,16 @@ async function historicalPlayerRoute(){
   await academic.addPackage({id:source.package_id,version:source.schema_version,digest:await sourceDigest(source),source,bundle:mapSeed(source),at:1});
   await academic.start(LOCAL_OWNER_ID,saved);
  }
+ const beforeUpgrade=JSON.stringify(await new BrowserLocalAcademicRepository(localStorage).attempts(LOCAL_OWNER_ID));
  const runtime=await localAcademicRuntime();
+ if(successor){
+  check(JSON.stringify(await runtime.academic.attempts(LOCAL_OWNER_ID))===beforeUpgrade,'automatic bundled upgrade preserves historical attempts');
+  const packages=await runtime.academic.packages();
+  const expectedDigest=await sourceDigest(successor1281);
+  check(packages.some(p=>p.version==='1.28.0')&&packages.some(p=>p.version==='1.28.1'&&p.digest===expectedDigest),'exact reviewed successor package installed');
+ }
  const catalog=await runtime.service.catalog() as unknown as Catalog;
- check(catalog.version==='1.28.0','current browser curriculum');
+ check(catalog.version===currentVersion,'current browser curriculum');
  const before=JSON.stringify(await runtime.academic.attempts(LOCAL_OWNER_ID));
  const packagesBefore=JSON.stringify((await runtime.academic.packages()).map(p=>({id:p.id,version:p.version,digest:p.digest})));
  let requests=0;window.fetch=async()=>{requests++;throw Error('Unexpected network in isolated Reading fixture')};
@@ -50,9 +60,9 @@ async function historicalPlayerRoute(){
  await wait(()=>!!overlay(),'current Reading overlay without starting a new attempt');
  check(overlay()?.textContent?.includes(d.title),'correct lesson');
  if(old){
-  check((await runtime.service.lesson(id,version)).version===version&&(await runtime.service.lesson(id,'1.28.0')).version==='1.28.0','both immutable versions available');
-  check(shell.textContent?.includes('Current lesson notes · v1.28.0'),'current notes label');
-  find('View archived notes')!.click();await wait(()=>!overlay()&&!!find('View current lesson notes'),'archive notes');
+  check((await runtime.service.lesson(id,version)).version===version&&(await runtime.service.lesson(id,currentVersion)).version===currentVersion,'both immutable versions available');
+  check(shell.textContent?.includes('Current lesson notes · v'+currentVersion),'current notes label');
+  find('View archived notes')!.click();await wait(()=>!!find('View current lesson notes')&&(successor?!!overlay():!overlay()),'archive notes');
   check(shell.textContent?.includes('Archived lesson notes · v'+version),'archive label');
   find('View current lesson notes')!.click();await wait(()=>!!overlay(),'current notes restored');
   find(draft?'Continue saved draft':'View saved result')!.click();
@@ -61,12 +71,26 @@ async function historicalPlayerRoute(){
   check(field?.checked&&field.matches(':disabled')===!draft,'original answer and editability');
   check(shell.textContent?.includes('content '+version),'historical practice version');
   if(!draft)check(shell.textContent?.includes('Synthetic saved Reading result'),'original feedback');
+  if(successor){
+   const oldPrompt=archive!.activities[0].prompt;
+   const newPrompt=(await runtime.service.lesson(id,currentVersion)).lesson.activities[0].prompt;
+   check(oldPrompt!==newPrompt&&shell.textContent?.includes(oldPrompt)&&!shell.textContent?.includes(newPrompt),'historical question wording remains pinned');
+  }
   find('View lesson notes')!.click();await wait(()=>!!overlay(),'current notes after practice/result');
-  check(shell.textContent?.includes('Current lesson notes · v1.28.0'),'current notes label after returning');
+  check(shell.textContent?.includes('Current lesson notes · v'+currentVersion),'current notes label after returning');
  }
  if(draft)await pause(1250);
  check(JSON.stringify(await runtime.academic.attempts(LOCAL_OWNER_ID))===before,'saved attempts byte-equivalent; no new attempt');
  check(JSON.stringify((await runtime.academic.packages()).map(p=>({id:p.id,version:p.version,digest:p.digest})))===packagesBefore,'packages unchanged');
+ if(successor){
+  // Explicitly start an independent current attempt only after read-only assertions.
+  find('Start current practice')!.click();
+  const newPrompt=(await runtime.service.lesson(id,currentVersion)).lesson.activities[0].prompt;
+  await wait(()=>!!shell.textContent?.includes(newPrompt)&&!!shell.textContent?.includes('content '+currentVersion),'fresh current Practice wording');
+  const after=await runtime.academic.attempts(LOCAL_OWNER_ID);
+  check(JSON.stringify(after.filter(a=>a.id===saved!.id))===JSON.stringify(JSON.parse(before).filter((a:AcademicAttempt)=>a.id===saved!.id)),'historical attempt immutable after new root');
+  check(after.length===JSON.parse(before).length+1&&after.some(a=>a.version===currentVersion&&a.status==='started'&&!a.parentId),'independent fresh attempt');
+ }
  check(requests===0,'no network request');
  output.textContent='PASS_SLE_READING_'+id+'_'+width;
 }

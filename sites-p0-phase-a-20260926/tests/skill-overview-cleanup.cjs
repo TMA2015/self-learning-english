@@ -70,7 +70,8 @@ assert(anyTopic.includes('reviewMode="any-topic"')&&anyTopic.includes('kind="dra
 assert(anyTopic.includes('localStorage.setItem(DRAFT_KEY'),
  'Independent Writing must preserve browser-saved draft');
 
-const active=require('../content/curriculum-1.28.0-candidate.json');
+const active=require('../content/curriculum-1.28.1-candidate.json');
+assert.equal(active.schema_version,'1.28.1');
 const counts=new Map();
 for(const lesson of active.lessons)counts.set(lesson.module,(counts.get(lesson.module)||0)+1);
 assert.equal(active.lessons.length,176);

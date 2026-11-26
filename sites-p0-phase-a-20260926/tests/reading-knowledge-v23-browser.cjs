@@ -61,7 +61,10 @@ const root=path.resolve(__dirname,'..');
   child.stderr.on('data',d=>{stderr=(stderr+String(d)).slice(-2000)});
   child.on('error',e=>{spawnError=e});
   const deadline=Date.now()+38000;
-  const healthy=()=>{if(spawnError)throw spawnError;if(child.exitCode!==null)throw Error('Chromium exited '+child.exitCode+' '+stderr);if(Date.now()>deadline)throw Error('Chromium real-time deadline '+width+' '+stderr)};
+  const caseName=lesson+' '+width+' '+route;
+  console.log('READING_PLAYER_START '+caseName);
+  let probeTimeouts=0;
+  const healthy=()=>{if(spawnError)throw spawnError;if(child.exitCode!==null)throw Error('Chromium exited '+child.exitCode+' '+stderr);if(Date.now()>deadline)throw Error('Chromium real-time deadline '+caseName+'; CDP probe timeouts='+probeTimeouts+'; '+stderr)};
   const until=async(fn)=>{for(;;){healthy();const value=await fn();if(value)return value;await delay(50)}};
   try{
    const port=await until(()=>{try{return Number(fs.readFileSync(path.join(dir,'DevToolsActivePort'),'utf8').split('\n')[0])||null}catch{return null}});
@@ -79,11 +82,18 @@ const root=path.resolve(__dirname,'..');
    });
    const snapshot=async()=>JSON.parse(await read());
    const validate=value=>{if(value.errors)throw Error('Reading player persistent errors '+width+': '+value.errors);if(value.status?.startsWith('FAIL'))throw Error('Reading player real Chromium '+width+': '+value.status);return value};
-   const status=await until(async()=>{const value=validate(await snapshot());return value.status==='PASS_SLE_READING_'+lesson+'_'+width?value.status:null});
-   // Check delayed observer errors after the fixture has completed.
-   await delay(300);const final=validate(await snapshot());
+   // A busy renderer may temporarily miss one polling response. Retry only
+   // the read-only transport probe, within the SAME existing wall-clock deadline.
+   // Script/fixture errors and assertion failures remain immediate hard failures.
+   const probe=async()=>{try{return validate(await snapshot())}catch(e){if(e instanceof Error&&e.message==='CDP evaluation timeout'){probeTimeouts++;healthy();return null}throw e}};
+   const status=await until(async()=>{const value=await probe();return value?.status==='PASS_SLE_READING_'+lesson+'_'+width?value.status:null});
+   // Delayed observer validation is still mandatory; a timeout cannot count as PASS.
+   await delay(300);const final=await until(probe);
    assert.equal(final.errors,'');assert.equal(final.status,status);
+   console.log('READING_PLAYER_PASS '+caseName+'; CDP probe timeouts='+probeTimeouts);
    return status;
+  }catch(e){
+   throw new Error('Reading player failed '+caseName+'; CDP probe timeouts='+probeTimeouts,{cause:e});
   }finally{
    if(ws)ws.close();
    if(child.exitCode===null&&!spawnError){const closed=new Promise(resolve=>child.once('close',resolve));child.kill('SIGTERM');await Promise.race([closed,delay(2000)]);if(child.exitCode===null){child.kill('SIGKILL');await Promise.race([closed,delay(1000)])}}
@@ -111,9 +121,16 @@ const root=path.resolve(__dirname,'..');
    const route='current',query=new URLSearchParams({lesson,width:String(width),route});
    playerCases.push({lesson,width,route,result:await runPlayer(baseUrl+'/?'+query,lesson,width,route)});
   }
-  assert.equal(results.length,32);assert.equal(playerCases.length,32);assert.equal(writes,0);
+  assert.equal(results.length,32);assert.equal(playerCases.length,32);
+  const successorCases=[];
+  for(const route of ['historical','historical-draft'])for(const width of [375,768]){
+   const lesson='REA-B2-05',version='1.28.0',current='1.28.1';
+   const query=new URLSearchParams({lesson,width:String(width),route,version,current});
+   successorCases.push({lesson,width,route,version,current,result:await runPlayer(baseUrl+'/?'+query,lesson,width,route+'-successor')});
+  }
+  assert.equal(successorCases.length,4);assert.equal(writes,0);
   console.log(JSON.stringify({result:'PASS',gate:'SLE_READING_V23_REAL_CHROMIUM',
-   cases:results,playerCases,actualFoundationRoute:true,browserLocalAcademicService:true,persistedAttemptsCompared:true,source:'reviewed reading',physicalIpadSafari:'NOT_TESTED',realAuth:'NOT_TESTED',
+   cases:results,playerCases,successorCases,actualFoundationRoute:true,browserLocalAcademicService:true,persistedAttemptsCompared:true,source:'reviewed reading',physicalIpadSafari:'NOT_TESTED',realAuth:'NOT_TESTED',
    syntheticOnly:true,backendWrites:0,scoreMutations:0}));
  }finally{server.close();fs.rmSync(profile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});

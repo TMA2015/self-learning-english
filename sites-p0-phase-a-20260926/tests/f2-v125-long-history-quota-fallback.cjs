@@ -4,7 +4,8 @@
  * 1.22 + 1.23 + 1.24 cumulative packages are an important counterexample to
  * one-version and two-version "fits 5MiB" tests. No Safari or real owner state.
  * Proves fail-closed runtime warning and exact historical attempt immutability
- * under an attempted *additive* 1.25.0 import; never compacts or deletes.
+ * under an attempted additive upgrade to the actual bundled current version;
+ * retains v1.25.0 as the independently checked historical candidate.
  */
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {execFileSync}=require('node:child_process');
@@ -24,6 +25,7 @@ const old=[
  require('../content/curriculum-1.24.0-candidate.json'),
 ];
 const next=require('../content/curriculum-1.25.0-candidate.json');
+const active=require('../content/curriculum-1.28.1-candidate.json');
 const owner='local-family',limit=5*1024*1024;
 const size=map=>[...map].reduce((n,[k,v])=>n+2*(k.length+v.length),0);
 class Storage{
@@ -42,6 +44,8 @@ class Storage{
  assert.deepEqual(old.map(p=>p.schema_version),['1.22.0','1.23.0','1.24.0']);
  assert.equal(next.schema_version,'1.25.0');
  assert.deepEqual(next.lessons.slice(0,142),old[2].lessons);
+ assert.equal(active.schema_version,'1.28.1');
+ assert.deepEqual(active.lessons.slice(0,142),old[2].lessons);
  const store=new Storage(),repo=new BrowserLocalAcademicRepository(store);
  for(let i=0;i<old.length;i++){
   const p=old[i];
@@ -76,7 +80,7 @@ class Storage{
  store.max=beforeBytes+128;store.writes=[];global.window={localStorage:store};
  const blocked=await runtime.localAcademicRuntime();
  const catalog=await blocked.service.catalog();
- assert.equal(catalog.version,'1.24.0','Failed v1.25 must not report new curriculum');
+ assert.equal(catalog.version,'1.24.0','Failed bundled upgrade must not report new curriculum');
  assert.equal(catalog.lessons.length,142);
  assert.match(blocked.warning??'',/automatic English lesson update was paused/i);
  assert.match(blocked.warning??'',/New saves may also fail/i);
@@ -97,8 +101,9 @@ class Storage{
   store.max=limit;store.writes=[];
   const maybe=await runtime.localAcademicRuntime();
   const v=(await maybe.service.catalog()).version;
-  assert(['1.24.0','1.25.0'].includes(v));
-  fiveMiBResult=v==='1.25.0'?'FITS_SYNTHETIC_5MIB':'BLOCKED_BY_QUOTA';
+  assert(['1.24.0',active.schema_version].includes(v));
+  fiveMiBResult=v===active.schema_version?'FITS_SYNTHETIC_5MIB':'BLOCKED_BY_QUOTA';
+  if(v===active.schema_version){assert.deepEqual(store.writes,['g-learning:english:v1:academic:packages']);for(const [k,value] of before)if(k!=='g-learning:english:v1:academic:packages')assert.equal(store.getItem(k),value);}
   if(v==='1.24.0'){
    assert.match(maybe.warning??'',/storage space/i);
    assert.deepEqual([...store.map],[...before],'5MiB failure must be atomic');
@@ -109,9 +114,9 @@ class Storage{
   assert.equal(store.getItem(stateKey),state);
  }
  console.log(JSON.stringify({
-  result:'PASS',gate:'F2_V125_THREE_VERSION_LONG_HISTORY_FAIL_CLOSED',
+  result:'PASS',gate:'F2_THREE_VERSION_LONG_HISTORY_CURRENT_BUNDLE_FAIL_CLOSED',
   historicalPackageVersions:old.map(p=>p.schema_version),
-  attemptedVersion:'1.25.0',historicalAttemptCount:73,
+  historicalCandidateVersion:next.schema_version,attemptedVersion:active.schema_version,historicalAttemptCount:73,
   scoredPreserved:52,draftsPreserved:21,
   beforeBytes,syntheticQuotaBytes:limit,fiveMiBResult,afterFiveMiBBytes,
   forcedLowQuotaFallback:true,userFacingWarning:true,
