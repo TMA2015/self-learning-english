@@ -1,0 +1,14 @@
+# Reading Knowledge v2.3 — Wave 4B independent PASS reconciliation
+2026-11-26. Owner supplied NotebookLM review of Wave 4B, matching exact source commit 3e24cc1e5be1232bd0af5f9bc79988c359712ee3, blob cb6f9ac00e71628ee319d5e859247c8c7c39f1ba, frozen curriculum 1.28.0 blob 9d931a6930b8cd3ed918db1fa22e8708b7a9f884. SLE-MASTER-001 v1.2.1.
+PACKET_VERDICT PASS; TEMPLATE_VERDICT PASS (B2 scope). Contexts, all 6 keys and correct option texts, 12 exact lens mappings, 17 individual NO_LEAKAGE PASS decisions and actual baseline keys reconciled against source. No required overlay corrections.
+- B2-04: sound treatment / ceramic packing / archive book supports. QC A/B. OBSERVATION S1,S2,S3; CONCESSION S5,S7; EVIDENCE_GAPS S3,S6,S7; RECOMMENDATION S4,S7,S8. Baseline BDACBA.
+- B2-05: pottery studio / market collection counter / repair workshop reservation trial. QC C/A. RAW_COUNT_AND_EXPOSURE S1,S2,S3,S4; SURVEY_SCOPE S5; DIFFERENT_PRIORITIES S4,S6,S8; SHARED_PLAN S4,S6,S7. Baseline CADBCA.
+- B2-06: museum handling / sewing workspace / nature centre magnifying stations. QC B/C. METHOD S1,S2,S5,S6; FIGURES S2,S5,S6; LIMITS S3,S4,S7; SYNTHESIS S2,S4,S6,S8. Baseline BCCCB.
+Reviewer report has minor reference imprecision: B2-06-KQC02 cites T2/T4 for unmeasured finished-item quality; T2 specifically records the absence of quality measurement, T4 addresses nonrespondents and recommendations. Key C and text match. B2-05 7/12 respondents out of 32 contacts means seven reported difficulties, not seven total replies. Both reconciled with exact source; no content change or further review needed.
+Reviewer final claim all nine B2 lessons approved is out of scope and rejected. B2-07/08/09 not yet authored or independently reviewed. Actual cumulative A1 9/9, A2 12/12, B1 10/10, B2 6/9, C1 0/1; 37/41 lessons approved, 254/277 frozen items audited.
+BASELINE DEFECT BACKLOG (independently confirmed; not overlay defects):
+1. REA-B2-05-Q1 prompt references Source C, but passage sources are A/B; intended count source A.
+2. REA-B2-05-Q3 feedback references Source D, intended shop association Source B.
+3. REA-B2-06-Q1, Q4, Q5 explanations refer to original option letters despite runtime shuffle and explicit source instruction to use meaning.
+Track separately for controlled curriculum wording correction; do not change frozen source, scored IDs, correct option IDs, evidence weights, scoring or learner records in this overlay. Require independent review and appropriate engineering/retention verification before any correction release. No curriculum change authorized by this receipt.
+Three transfers unscored, evidence_weight 0, model hidden on request. Engineering/browser/production NOT_TESTED / NOT_AUTHORIZED for B2. PR #249 A1/A2 remains draft and separate; no merge or deployment. Next Wave 4C B2-07/08/09, 15 scored baseline items, then C1-01, 8.
