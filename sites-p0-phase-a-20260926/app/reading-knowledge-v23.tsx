@@ -10,7 +10,7 @@ type Check={id:string;prompt:string;options:Option[];key:string};
 type Notes={title:string;goal:Pair;context:Pair;strategy:{label:string;labelVi:string;en:string;vi:string}[];modelTitle:string;passage:string[];lenses:{label:string;refs:string[];en:string;vi:string}[];extras:string[];worked:{prompt:string;options:string[];answer:Pair};quickTitle:string;quickText:string;checks:Check[];transfer:{text:string;prompt:Pair;criteria:string;model:Pair};evidence_weight:number};
 const lessons:Record<string,Notes>=raw.lessons;
 export function readingKnowledgeV23Available(lesson:SeedLesson,version:string){
- return version===raw.version&&lesson.module==='reading'&&Object.prototype.hasOwnProperty.call(lessons,lesson.id);
+ return (version===raw.version||(raw.version==='1.28.0'&&version==='1.28.1'))&&lesson.module==='reading'&&Object.prototype.hasOwnProperty.call(lessons,lesson.id);
 }
 function Text({value,showVi}:{value:Pair;showVi:boolean}){
  return <><p>{value.en}</p>{showVi&&<p className="sle-rea-vi" lang="vi">{value.vi}</p>}</>;

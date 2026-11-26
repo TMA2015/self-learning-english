@@ -10,7 +10,7 @@ type Quick={id:string;prompt:string;key:string;options:{id:string;text:string;fe
 type Notes={goal:Pair;context:Pair;notice:Pair;worked:Pair;diagram?:Pair;groups:{heading:string;cardIds:string[]}[];cards:Card[];deck:{cardId:string;front:string}[];recalls:Recall[];quickChecks:Quick[];transfer:{prompt:Pair;criteria:string;model:Pair}};
 const lessons:Record<string,Notes>=raw.lessons;
 export function vocabularyKnowledgeV23Available(lesson:SeedLesson,version:string){
- return version===raw.version&&lesson.module==='vocabulary'&&Object.prototype.hasOwnProperty.call(lessons,lesson.id);
+ return (version===raw.version||(raw.version==='1.28.0'&&version==='1.28.1'))&&lesson.module==='vocabulary'&&Object.prototype.hasOwnProperty.call(lessons,lesson.id);
 }
 export function normalizeVocabularyRecall(s:string){
  return s.trim().toLocaleLowerCase('en-GB').replace(/ß/g,'ss').replace(/\s+/g,' ').replace(/[.!?]+$/g,'').trim();

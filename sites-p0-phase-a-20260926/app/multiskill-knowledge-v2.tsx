@@ -11,12 +11,12 @@ import reviewed from '../content/rwg-depth-pilot-r1.json';
  * lesson's versioned objectives. No graded activities, answer keys, attempts,
  * identity, audio or persistence paths are touched.
  *
- * Exact 1.28.0 pin deliberately prevents leaking new copy into old saved
- * attempts or a future curriculum version without a separate review.
+ * Explicit 1.28.0 and reviewed wording-only 1.28.1 pins preserve old saved
+ * attempts and reject other versions without separate review.
  */
 const targeted = new Set(['REA-B1-03','VOC-A2-01','WRI-B1-05','LIS-A2-03']);
 export function multiskillKnowledgeV2Available(lesson:SeedLesson,version:string){
- return version==='1.28.0'&&targeted.has(lesson.id);
+ return (version==='1.28.0'||version==='1.28.1')&&targeted.has(lesson.id);
 }
 const lessonData=reviewed.lessons;
 const vocabulary=[

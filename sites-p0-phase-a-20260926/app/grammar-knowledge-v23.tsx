@@ -18,7 +18,7 @@ const VERSION=authored.source_curriculum_version;
  * notes and unknown future versions fall back to their original renderer. */
 export function grammarKnowledgeV23Available(lesson:SeedLesson,version:string){
  const entry=LESSONS[lesson.id];
- return lesson.module==='grammar'&&version===VERSION&&!!entry&&lesson.title===entry.title&&lesson.explanation.en===entry.baselineExplanation;
+ return lesson.module==='grammar'&&(version===VERSION||(VERSION==='1.28.0'&&version==='1.28.1'))&&!!entry&&lesson.title===entry.title&&lesson.explanation.en===entry.baselineExplanation;
 }
 const tags=new Set('div p b span strong td h3 article text li tr h4 path th svg rect circle br ul table thead tbody small polygon em g'.split(' '));
 const aliases:Record<string,string>={class:'className',viewbox:'viewBox',tabindex:'tabIndex','stroke-width':'strokeWidth','font-size':'fontSize','text-anchor':'textAnchor','font-weight':'fontWeight','stroke-dasharray':'strokeDasharray','font-family':'fontFamily'};
