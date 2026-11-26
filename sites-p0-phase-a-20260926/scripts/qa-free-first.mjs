@@ -216,7 +216,9 @@ const successorPreflight=[
 ];
 const full=[...new Set([...coreTests,...fullRegressionTests])];
 if(successorPreflight.some(test=>!full.includes(test)))throw Error("Successor preflight must remain part of full QA");
-const selected=mode==="preflight-v1281"?successorPreflight:mode==="core"?coreTests:[...successorPreflight,...full.filter(test=>!successorPreflight.includes(test))];
+const earlyFull=[...successorPreflight,"reading-knowledge-v23-browser.cjs"];
+if(earlyFull.some(test=>!full.includes(test)))throw Error("Early test must remain part of full QA");
+const selected=mode==="preflight-v1281"?successorPreflight:mode==="core"?coreTests:[...earlyFull,...full.filter(test=>!earlyFull.includes(test))];
 
 for(const test of selected){
   const relative=path.join("tests",test);
