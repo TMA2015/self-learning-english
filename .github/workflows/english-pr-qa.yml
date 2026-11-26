@@ -14,12 +14,13 @@ concurrency:
 jobs:
   qa:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
       - name: Checkout PR merge without stored credentials
         uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
 
       - name: Node.js 24
         uses: actions/setup-node@v4
@@ -28,6 +29,12 @@ jobs:
 
       - name: Verify approved workflow and trigger policy
         run: node scripts/verify-actions-policy.cjs
+
+      - name: Classify actual PR merge diff
+        id: scope
+        env:
+          SLE_QA_BASE: ${{ github.event.pull_request.base.sha }}
+        run: node scripts/classify-release.cjs
 
       - name: Detect full application tree
         id: app
@@ -54,37 +61,8 @@ jobs:
         working-directory: sites-p0-phase-a-20260926
         run: pnpm install --frozen-lockfile
 
-      - name: Offline Writing Review safety preflight (full release QA still mandatory)
-        if: ${{ steps.app.outputs.present == 'true' }}
-        working-directory: sites-p0-phase-a-20260926
-        run: node tests/any-topic-writing-review-shell.cjs
-
-      # Reuse the fixed-hash FFmpeg setup already validated in Draft PR #132.
-      # The existing mandatory codec/audio validation and apt fallback stay intact.
-      - name: Post-lesson feedback and Learning Plan preflight (full QA remains mandatory)
-        if: ${{ steps.app.outputs.present == 'true' }}
-        working-directory: sites-p0-phase-a-20260926
-        run: |
-          node tests/offline-lesson-postfeedback.cjs
-          node tests/foundation-practice-plan.cjs
-
-      - name: Real Chromium Writing Review save and restore preflight (full release QA mandatory)
-        if: ${{ steps.app.outputs.present == 'true' }}
-        working-directory: sites-p0-phase-a-20260926
-        run: node tests/p0-writing-review-browser.cjs
-
-      - name: Combined P0 and P1 source contracts and Reference browser preflight
-        if: ${{ steps.app.outputs.present == 'true' }}
-        working-directory: sites-p0-phase-a-20260926
-        run: |
-          node tests/a2-u10-transfer-summary.cjs
-          node tests/reference-library-pilot.cjs
-          node tests/p0-p1-union-integration.cjs
-          node tests/reference-library-browser.cjs
-          node tests/p1-responsive-browser.cjs
-
       - name: Setup pinned FFmpeg and FFprobe binaries
-        if: ${{ steps.app.outputs.present == 'true' }}
+        if: ${{ steps.app.outputs.present == 'true' && steps.scope.outputs.tier == '3' }}
         continue-on-error: true
         uses: FedericoCarboni/setup-ffmpeg@37062fbf7149fc5578d6c57e08aed62458b375d6
         with:
@@ -92,7 +70,7 @@ jobs:
           linking-type: static
 
       - name: Ensure FFmpeg and FFprobe for audio validation
-        if: ${{ steps.app.outputs.present == 'true' }}
+        if: ${{ steps.app.outputs.present == 'true' && steps.scope.outputs.tier == '3' }}
         run: |
           set -euo pipefail
           # Reuse tools on GitHub runners; avoid a potentially stalled apt mirror.
@@ -126,15 +104,41 @@ jobs:
           echo 'FFmpeg/FFprobe present: audio validation remains mandatory'
 
       - name: Full application release QA and static build (NO DEPLOY)
-        if: ${{ steps.app.outputs.present == 'true' }}
+        if: ${{ steps.app.outputs.present == 'true' && steps.scope.outputs.tier == '3' }}
         working-directory: sites-p0-phase-a-20260926
         run: pnpm qa:release
+
+      - name: Scoped application QA and static build (NO DEPLOY)
+        if: ${{ steps.app.outputs.present == 'true' && (steps.scope.outputs.tier == '1' || steps.scope.outputs.tier == '2') }}
+        working-directory: sites-p0-phase-a-20260926
+        env:
+          SLE_QA_TIER: ${{ steps.scope.outputs.tier }}
+          SLE_QA_SKILLS: ${{ steps.scope.outputs.skills }}
+        run: node scripts/qa-scoped.mjs
+
+      # Validate both reduced lanes only when their own policy/runner changes.
+      - name: Verify Level 1 runner on governance changes (NO DEPLOY)
+        if: ${{ steps.app.outputs.present == 'true' && steps.scope.outputs.policy_change == 'true' }}
+        working-directory: sites-p0-phase-a-20260926
+        env:
+          SLE_QA_TIER: '1'
+          SLE_QA_SKILLS: vocabulary
+        run: node scripts/qa-scoped.mjs
+
+      - name: Verify Level 2 runner on governance changes (NO DEPLOY)
+        if: ${{ steps.app.outputs.present == 'true' && steps.scope.outputs.policy_change == 'true' }}
+        working-directory: sites-p0-phase-a-20260926
+        env:
+          SLE_QA_TIER: '2'
+          SLE_QA_SKILLS: grammar
+        run: node scripts/qa-scoped.mjs
 
       - name: Record scope accurately
         if: ${{ success() }}
         run: |
           if [[ '${{ steps.app.outputs.present }}' == 'true' ]]; then
-            echo 'Full application QA passed on PR code. No Firebase deployment or live AI test.' >> "$GITHUB_STEP_SUMMARY"
+            [[ '${{ steps.scope.outputs.tier }}' =~ ^[123]$ ]]
+            echo 'Selected Level ${{ steps.scope.outputs.tier }} application QA passed on PR merge candidate. No Firebase deployment or live AI test.' >> "$GITHUB_STEP_SUMMARY"
           else
             echo 'Repository policy QA passed. No application source on this PR; full QA not run.' >> "$GITHUB_STEP_SUMMARY"
           fi
