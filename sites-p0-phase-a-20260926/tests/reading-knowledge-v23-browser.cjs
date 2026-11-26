@@ -111,9 +111,16 @@ const root=path.resolve(__dirname,'..');
    const route='current',query=new URLSearchParams({lesson,width:String(width),route});
    playerCases.push({lesson,width,route,result:await runPlayer(baseUrl+'/?'+query,lesson,width,route)});
   }
-  assert.equal(results.length,32);assert.equal(playerCases.length,32);assert.equal(writes,0);
+  assert.equal(results.length,32);assert.equal(playerCases.length,32);
+  const successorCases=[];
+  for(const route of ['historical','historical-draft'])for(const width of [375,768]){
+   const lesson='REA-B2-05',version='1.28.0',current='1.28.1';
+   const query=new URLSearchParams({lesson,width:String(width),route,version,current});
+   successorCases.push({lesson,width,route,version,current,result:await runPlayer(baseUrl+'/?'+query,lesson,width,route+'-successor')});
+  }
+  assert.equal(successorCases.length,4);assert.equal(writes,0);
   console.log(JSON.stringify({result:'PASS',gate:'SLE_READING_V23_REAL_CHROMIUM',
-   cases:results,playerCases,actualFoundationRoute:true,browserLocalAcademicService:true,persistedAttemptsCompared:true,source:'reviewed reading',physicalIpadSafari:'NOT_TESTED',realAuth:'NOT_TESTED',
+   cases:results,playerCases,successorCases,actualFoundationRoute:true,browserLocalAcademicService:true,persistedAttemptsCompared:true,source:'reviewed reading',physicalIpadSafari:'NOT_TESTED',realAuth:'NOT_TESTED',
    syntheticOnly:true,backendWrites:0,scoreMutations:0}));
  }finally{server.close();fs.rmSync(profile,{recursive:true,force:true})}
 })().catch(e=>{console.error(e);process.exitCode=1});
