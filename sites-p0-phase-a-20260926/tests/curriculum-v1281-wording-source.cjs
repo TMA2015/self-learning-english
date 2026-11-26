@@ -28,11 +28,20 @@ for(const c of patch.changes){
 }
 reversed.schema_version=base.schema_version;reversed.status=base.status;
 assert.deepEqual(reversed,base,'Only the independently reviewed wording and version/status may change');
-require.extensions['.ts']=(mod,name)=>mod._compile(ts.transpileModule(fs.readFileSync(name,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,esModuleInterop:true,resolveJsonModule:true}}).outputText,name);
+require.extensions['.ts']=(mod,name)=>mod._compile(ts.transpileModule(fs.readFileSync(name,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,esModuleInterop:true,resolveJsonModule:true}}).outputText,name);
 const {validateSeed,mapSeed}=require('../domain/academic.ts');
 const {validateContent}=require('../domain/content-model.ts');
+// ES2022 preserves Set iteration like the application and existing compiled importer QA.
+assert.deepEqual(validateSeed(base),[]);
 assert.deepEqual(validateSeed(next),[]);
-assert.deepEqual(validateContent(mapSeed(next)),[]);
+const baseBundle=mapSeed(base),nextBundle=mapSeed(next);
+assert(Object.values(baseBundle.skillTags).every(tags=>tags.length>0),'All seven domain tag sets must survive compilation');
+assert.deepEqual(validateContent(baseBundle),[]);
+assert.deepEqual(validateContent(nextBundle),[]);
+assert.deepEqual(nextBundle.skillTags,baseBundle.skillTags,'No change in evidence taxonomy');
+const invalid=structuredClone(nextBundle);
+invalid.exercises[0].subskillTags.push('synthetic-unknown-skill');
+assert(validateContent(invalid).includes('Unknown skill synthetic-unknown-skill'),'Validator must still reject unknown tags');
 const runtime=fs.readFileSync('infrastructure/browser/local-runtime.ts','utf8');
 assert(runtime.includes("import curriculum1280 from '../../content/curriculum-1.28.0-candidate.json'"));
 assert(!runtime.includes('1.28.1'),'Successor must remain source-only until separately approved activation');

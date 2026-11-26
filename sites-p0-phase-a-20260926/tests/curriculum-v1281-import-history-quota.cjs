@@ -1,7 +1,7 @@
 'use strict';
 // Exercise actual importer and repository on isolated simulated storage; no runtime activation.
 const assert=require('node:assert/strict'),fs=require('node:fs'),ts=require('typescript');
-require.extensions['.ts']=(m,f)=>m._compile(ts.transpileModule(fs.readFileSync(f,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,esModuleInterop:true,resolveJsonModule:true}}).outputText,f);
+require.extensions['.ts']=(m,f)=>m._compile(ts.transpileModule(fs.readFileSync(f,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,esModuleInterop:true,resolveJsonModule:true}}).outputText,f);
 const {BrowserLocalAcademicRepository,BrowserLocalLearningRepository}=require('../infrastructure/storage/browser-local-repositories.ts');
 const {academicService,sourceDigest}=require('../application/academic-service.ts');
 const {mapSeed}=require('../domain/academic.ts');
