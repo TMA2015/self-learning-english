@@ -130,11 +130,12 @@ if(!chrome)throw Error('No native Chrome installed — real MEDIA-01 is NOT veri
   assert.deepEqual(detail.lessons?.map(x=>x.id),ids);
   assert(detail.lessons.every(x=>x.played&&x.answered&&x.submitted&&x.retake));
   assert.equal(detail.olderAttemptPreserved,true);
+  assert.equal(detail.activeVersion,'1.28.1');
   assert.equal(detail.productionImport,false);
   assert.equal(detail.releaseAuthorized,false);
   console.log(JSON.stringify({
     result:'PASS',gate:'UNIT10_MEDIA01_PRODUCT_CHROME',
-    actualFoundationComponent:true,actualAcademicService:true,version:'1.28.0',
+    actualFoundationComponent:true,actualAcademicService:true,version:detail.activeVersion,
     originalMedia:ids,fullRealPlaySubmitAndRetake:true,draftResume:true,
     transcriptBeforeSubmissionBlocked:true,olderAttemptPreserved:true,
     realSafariIpad:'NOT_TESTED',

@@ -107,12 +107,20 @@ async function run(){
  root.render(React.createElement(FoundationDemo,{skill:'listening'}));
  await wait(()=>lessonButton(ids[0]),'real listening catalog for candidate');
  const runtime=await localAcademicRuntime();
- assert((await runtime.service.catalog()).version==='1.28.0','Staged browser AcademicService must serve v1.28.0 while preserving the reviewed Unit10 lessons and immutable v1.21 attempt');
+ const activeVersion=(await runtime.service.catalog()).version;
+ assert(activeVersion==='1.28.1','Staged browser AcademicService must serve reviewed v1.28.1; actual '+activeVersion);
+ // The three original Unit10 Listening lessons must be unchanged by the wording-only Reading successor.
+ for(const id of ids){
+  const current=await runtime.service.lesson(id);
+  const original=await runtime.service.lesson(id,src.schema_version);
+  assert(current.version===activeVersion&&original.version===src.schema_version,'Wrong current/historical lesson version '+id);
+  assert(JSON.stringify(current.lesson)===JSON.stringify(original.lesson),'Original Unit10 lesson changed '+id);
+ }
  // A staged activation may change the active catalog, but must keep the
  // original immutable v1.21 source for the historical attempt above.
  const retained=await academic.packages();
  assert(retained.some(p=>p.version===src.schema_version&&p.digest===oldPackageDigest),
-  'Staged v1.28 activation lost the original Unit10 historical source');
+  'Staged v1.28.1 activation lost the original Unit10 historical source');
  const summary:{id:string,played:boolean,answered:boolean,submitted:boolean,retake:boolean}[]=[];
  for(const id of ids){
   await openLesson(id);
@@ -159,6 +167,7 @@ async function run(){
   await click('Submit my work');
   await wait(async()=>!!(await academic.attempts(LOCAL_OWNER_ID)).find(x=>x.id===startedId&&x.status==='scored'),id+' scored attempt',12000);
   const saved=(await academic.attempts(LOCAL_OWNER_ID)).find(x=>x.id===startedId)!;
+  assert(saved.version===activeVersion,id+' scored against wrong curriculum version');
   assert(saved.playbackCompleted===true,id+' submitted without verified playback');
   assert(saved.results?.length===expectedItems,id+' wrong result count');
   await wait(()=>button('Read transcript after submission'),id+' transcript button after scoring');
@@ -168,6 +177,7 @@ async function run(){
   await click('Retake lesson');
   await wait(async()=>{const all=await academic.attempts(LOCAL_OWNER_ID);return all.filter(x=>x.lessonId===id&&x.status==='started'&&x.id!==startedId).length===1;},id+' retake started');
   const again=(await academic.attempts(LOCAL_OWNER_ID)).find(x=>x.lessonId===id&&x.status==='started'&&x.id!==startedId)!;
+  assert(again.version===activeVersion,id+' retake wrong curriculum version');
   assert(again.playbackCompleted!==true,id+' retake reused old verified audio');
   assert(Object.keys(again.answers).length===0,id+' retake copied old answers');
   assert((await academic.attempts(LOCAL_OWNER_ID)).some(x=>x.id===startedId&&x.status==='scored'),id+' original scored history disappeared');
@@ -181,7 +191,7 @@ async function run(){
  const at=await academic.attempts(LOCAL_OWNER_ID);
  assert(summary.length===3,'Not all lessons tested');
  report('PASS',{suite:'UNIT10_MEDIA01_REAL_FOUNDATION_CHROME',lessons:summary,
-  olderAttemptPreserved:true,attempts:at.length,
+  activeVersion,olderAttemptPreserved:true,attempts:at.length,
   transientBrowserProfile:true,liveLearnerDataTouched:false,productionImport:false,
   media01ChromeProductPlayer:'PASS',safariIpad:'NOT_TESTED',releaseAuthorized:false});
 }
