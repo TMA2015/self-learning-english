@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "scope": "reading-wording-only",
+  "baseVersion": "1.28.0",
+  "contentVersion": "1.28.1",
+  "baseStatus": "notebooklm_b2_62of62_pass_technical_QA_PENDING_NO_LIVE_RELEASE",
+  "contentStatus": "reading_baseline_wording_notebooklm_pass_technical_QA_PENDING_NO_LIVE_RELEASE",
+  "baseGitBlob": "9d931a6930b8cd3ed918db1fa22e8708b7a9f884",
+  "contentGitBlob": "ef69d4a9d4ed13fb3de7702ce6600e062c1039f2",
+  "patchGitBlob": "ab8c7d187164a2576ffcebb54506dc221d0eb249",
+  "receiptGitBlob": "819f1e2f2ada34097bfd40165f15641696d12d95",
+  "reviewCommit": "c950924631c99e734ade8102c11080e337f38137",
+  "reviewBlob": "595c72ba7ad0cc79026dd7c3abd77b293cbbac6c",
+  "lessons": 176,
+  "activities": 1224,
+  "changes": 10
+}
