@@ -92,7 +92,7 @@ const root=path.resolve(__dirname,'..');
  try{
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
   const baseUrl='http://127.0.0.1:'+server.address().port,results=[];
-  for(const lesson of ['REA-A1-01','REA-A1-09','REA-A2-07','REA-A2-12']){
+  for(const lesson of ['REA-A1-01','REA-A1-09','REA-A2-07','REA-A2-12','REA-B1-09','REA-B2-02','REA-B2-09','REA-C1-01']){
    for(const width of [320,375,768,960]){
     const query=new URLSearchParams({lesson,width:String(width)});
     results.push({lesson,width,result:await run(baseUrl+'/?'+query,lesson,width)});
@@ -107,11 +107,11 @@ const root=path.resolve(__dirname,'..');
     }
    }
   }
-  for(const width of [320,375,768,960]){
-   const lesson='REA-A1-01',route='current',query=new URLSearchParams({lesson,width:String(width),route});
+  for(const lesson of ['REA-A1-01','REA-B1-09','REA-B2-02','REA-C1-01'])for(const width of [320,375,768,960]){
+   const route='current',query=new URLSearchParams({lesson,width:String(width),route});
    playerCases.push({lesson,width,route,result:await runPlayer(baseUrl+'/?'+query,lesson,width,route)});
   }
-  assert.equal(results.length,16);assert.equal(playerCases.length,20);assert.equal(writes,0);
+  assert.equal(results.length,32);assert.equal(playerCases.length,32);assert.equal(writes,0);
   console.log(JSON.stringify({result:'PASS',gate:'SLE_READING_V23_REAL_CHROMIUM',
    cases:results,playerCases,actualFoundationRoute:true,browserLocalAcademicService:true,persistedAttemptsCompared:true,source:'reviewed reading',physicalIpadSafari:'NOT_TESTED',realAuth:'NOT_TESTED',
    syntheticOnly:true,backendWrites:0,scoreMutations:0}));

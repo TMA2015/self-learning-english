@@ -11,14 +11,22 @@ const gitBlob=b=>crypto.createHash('sha1').update('blob '+b.length+'\0').update(
 assert.equal(gitBlob(bytes),'2bc7f02a5fcb2be4efa054359e447d1330e394ca');
 assert.equal(gitBlob(fs.readFileSync('content/curriculum-1.28.0-candidate.json')),'9d931a6930b8cd3ed918db1fa22e8708b7a9f884');
 const source=JSON.parse(bytes);
-const expected=base.lessons.filter(x=>x.module==='reading'&&/^REA-A[12]-/.test(x.id)).map(x=>x.id).sort();
+const extensionBytes=fs.readFileSync('content/review-packets/SLE_REA_KNOWLEDGE_V23_B1_C1_SOURCE_PROJECTION_20261126.json');
+assert.equal(gitBlob(extensionBytes),'12f2c7a4d2d42fb11f09748ad778b4d0d38a5697');
+const extension=JSON.parse(extensionBytes);
+assert.equal(extension.academic_closure_commit,'99d85e4ecd77021f0cfb82280a3b7a7040a01b8a');
+assert.equal(data.extension.sourceBlob,gitBlob(extensionBytes));
+assert.equal(data.extension.academicClosure,extension.academic_closure_commit);
+assert.equal(extension.lesson_count,20);assert.equal(extension.new_scored_items,0);assert.equal(extension.evidence_weight,0);
+const allSource=[...source.lessons,...extension.lessons];
+const expected=base.lessons.filter(x=>x.module==='reading').map(x=>x.id).sort();
 assert.deepEqual(Object.keys(data.lessons).sort(),expected);
-assert.deepEqual(source.lessons.map(l=>l.lesson_id).sort(),expected);
+assert.deepEqual(allSource.map(l=>l.lesson_id).sort(),expected);
 assert.deepEqual(data.sources,source.sources);assert.equal(data.version,'1.28.0');
 const norm=s=>s.replace(/\s+/g,' ').trim();
 let quick=0,lenses=0,renders=0;
 for(const id of expected){
- const d=data.lessons[id],original=source.lessons.find(x=>x.lesson_id===id),lesson=base.lessons.find(x=>x.id===id);
+ const d=data.lessons[id],original=allSource.find(x=>x.lesson_id===id),lesson=base.lessons.find(x=>x.id===id);
  assert.equal(d.title,original.title);assert.equal(d.evidence_weight,0);
  assert(readingKnowledgeV23Available(lesson,'1.28.0'));
  for(const version of ['1.18.1','1.25.0','1.27.0','1.29.0'])assert(!readingKnowledgeV23Available(lesson,version));
@@ -27,7 +35,7 @@ for(const id of expected){
  assert.equal(d.strategy.map(s=>'- '+s.label+' / '+s.labelVi+': '+s.en+' / '+s.vi).join('\n'),original.sections[0].markdown);
  const m=original.sections[1].markdown.split('\n'),first=m.findIndex(s=>s.startsWith('Lens '));
  assert.equal(norm(d.passage.join(' ')),norm(m.slice(0,first).join(' ')));
- assert.deepEqual(d.extras,m.slice(first).filter(s=>!s.startsWith('Lens ')));
+ assert.deepEqual(d.extras,m.slice(first).filter(s=>!s.startsWith('Lens ')&&s.trim()));
  const rawLenses=m.filter(s=>s.startsWith('Lens '));
  assert.equal(d.lenses.length,rawLenses.length);
  d.lenses.forEach((l,i)=>{
@@ -48,16 +56,19 @@ for(const id of expected){
   assert.equal((html.match(/data-quick-id=/g)||[]).length,2);
   if(id==='REA-A2-09')assert(html.includes('Do not turn an unconfirmed quantity into zero.'),'English caution visible with or without Vietnamese');
   if(['REA-A2-04','REA-A2-05','REA-A2-06','REA-A2-07','REA-A2-09','REA-A2-10','REA-A2-12'].includes(id))assert(html.includes('<table>'),'reviewed comparison rendered as actual table '+id);
+  if(d.extras.some(s=>s.startsWith('|')))assert(html.includes('<table>'),'reviewed Markdown table '+id);
   if(id==='REA-A1-09')assert(html.includes('role="img"')&&html.includes('The fountain is north of the post office.'),'accessible schematic map');
   if(id==='REA-A2-11')assert(html.includes('Schematic timeline')&&html.includes('13:25 ring during reading'),'reviewed timeline rendered');
   assert(!html.includes('role="status"'));assert(!html.includes('Hide model'));assert(!html.includes('correct_option_id'));renders++;
  }
  quick+=d.checks.length;lenses+=d.lenses.length;
 }
-assert.deepEqual([expected.length,quick,lenses,renders],[21,42,69,42]);
+assert.deepEqual([expected.length,quick,lenses,renders],[41,82,149,82]);
 const code=fs.readFileSync('app/reading-knowledge-v23.tsx','utf8'),foundation=fs.readFileSync('app/foundation.tsx','utf8');
 assert(!/fetch\(|localStorage|sessionStorage|foundationRequest\(|dangerouslySetInnerHTML/.test(code));
 assert(foundation.includes('readingKnowledgeV23Available(lesson,loadedLessonVersion.current)?<ReadingKnowledgeV23'));
 assert(foundation.includes('readingKnowledgeV23Available(candidate.lesson,candidate.version)'));
-assert(!readingKnowledgeV23Available(base.lessons.find(x=>x.id==='REA-B1-03'),'1.28.0'));
-console.log(JSON.stringify({gate:'READING_V23_SOURCE_SSR',result:'PASS',lessons:21,quick,lenses,renders,unscored:true}));
+assert(readingKnowledgeV23Available(base.lessons.find(x=>x.id==='REA-B1-03'),'1.28.0'));
+assert(!readingKnowledgeV23Available({...base.lessons.find(x=>x.id==='REA-B1-03'),id:'REA-UNKNOWN'},'1.28.0'));
+assert.equal(Object.values(data.lessons).filter(x=>x.evidence_weight===0).length,41);
+console.log(JSON.stringify({gate:'READING_V23_SOURCE_SSR',result:'PASS',lessons:41,quick,lenses,renders,unscored:true}));
