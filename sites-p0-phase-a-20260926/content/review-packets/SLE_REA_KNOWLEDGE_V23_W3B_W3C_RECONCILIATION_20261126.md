@@ -1,0 +1,8 @@
+# Wave 3B/3C independent verdict reconciliation — 2026-11-26
+Owner supplied combined NotebookLM PASS for exact packet IDs W3B and W3C. Source checked:
+- W3B R0 commit 95cd65ddf68885f21922ae153ce2ae24c6185a5c blob 31b6f91356cba5372774f40350b867c522aca63d.
+- W3C R0 commit 27348586974b3b689852af76fa2a3f77d1298312 blob 9668d41a5adc9efeabfa0955fe8dc2e7f153e377.
+W3B accepted PASS: REA-B1-05 (B/C), 06 (A/B), 07 (B/C), 12/12 matching lenses and 20/20 individual leakage PASS. W3C lesson-scoped PASS: REA-B1-08 (B/C) and 10 (C/A), 8 matching lenses, 11/11 individual leakage PASS. All these five lessons have matching model/quick/transfer contexts and no required corrections reported.
+HOLD REA-B1-09 only: verdict gives KQC02 C but source B (former loading habit, T5); names wrong Quick Check and transfer contexts (Exhibition labels / Community theatre prop check vs actual A bakery delivery / community radio technician). Worked model and lens map match, but independent coverage of the exact quick/transfer content and leakage cannot be certified. Require targeted review of unchanged full lesson and 6 frozen scored items; not a content rewrite. W3C packet full closure pending.
+Baseline observation corrected from frozen source: B1-05 AAAAAAAA; B1-06 BCBCABCA; B1-07 BACD; B1-08 ACBDB; B1-09 ACBDCA; B1-10 BDACBD. No source key changes. Original order and runtime shuffle preserved.
+Cumulative accepted academic approval A1 9/9, A2 12/12, B1 9/10, B2 0/9, C1 0/1; 30/41 lessons and 211/277 baseline items in accepted lesson scopes. Six B1 lessons authored in W3B/C, five accepted and one held. Engineering and production separate.
