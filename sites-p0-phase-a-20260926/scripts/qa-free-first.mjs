@@ -187,6 +187,7 @@ const fullRegressionTests=[
   "vocabulary-knowledge-v23-browser.cjs",
   "reading-knowledge-v23.cjs",
   "reading-knowledge-v23-browser.cjs",
+  "curriculum-v1281-wording-source.cjs",
   "grammar-b1-wave2a-draft.cjs",
   "grammar-b1-wave2b-draft.cjs",
   "grammar-b1-wave2c-draft.cjs",
