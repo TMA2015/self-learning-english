@@ -28,8 +28,8 @@ assert(reviewDomain.includes("import {nextActionForIncorrect} from './foundation
 assert(reviewDomain.includes("objective.filter(r=>r.correct===false)"),'Only missed graded items receive advice');
 assert(foundation.includes('!editable&&attempt&&(attempt.results?.length??0)>0&&<OfflineLessonReview'),'Recommendation only after saved submission');
 assert(foundation.includes('result.correct===false&&<p>Answer: {result.answer}</p>'),'Keep original wrong-answer explanation in the question');
-assert(foundation.includes('<p>{result.explanation}</p>'),'Keep stored explanation');
-assert(foundation.includes("result.correct===null?'Pending review'"));
+assert(foundation.includes('<p>{result.correct===null?learnerLessonText(result.explanation):result.explanation}</p>'),'Preserve original scored feedback; simplify only open-response copy');
+assert(foundation.includes("result.correct===null?'Response saved'"));
 const speaking=compile('app/speaking-preparation-guide.tsx',true);
 let slots=[],cursor=0;
 const ReactShim={useState(initial){

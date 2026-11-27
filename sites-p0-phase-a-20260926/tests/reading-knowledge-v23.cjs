@@ -67,7 +67,7 @@ assert.deepEqual([expected.length,quick,lenses,renders],[41,82,149,82]);
 const code=fs.readFileSync('app/reading-knowledge-v23.tsx','utf8'),foundation=fs.readFileSync('app/foundation.tsx','utf8');
 assert(!/fetch\(|localStorage|sessionStorage|foundationRequest\(|dangerouslySetInnerHTML/.test(code));
 assert(foundation.includes('readingKnowledgeV23Available(lesson,loadedLessonVersion.current)?<ReadingKnowledgeV23'));
-assert(foundation.includes('readingKnowledgeV23Available(candidate.lesson,candidate.version)'));
+assert(foundation.includes('candidate.lesson.id===id&&candidate.version===catalog.version&&candidate.lesson.module===view.lesson.module'));
 assert(readingKnowledgeV23Available(base.lessons.find(x=>x.id==='REA-B1-03'),'1.28.0'));
 assert(!readingKnowledgeV23Available({...base.lessons.find(x=>x.id==='REA-B1-03'),id:'REA-UNKNOWN'},'1.28.0'));
 assert.equal(Object.values(data.lessons).filter(x=>x.evidence_weight===0).length,41);

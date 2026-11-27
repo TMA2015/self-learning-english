@@ -1,4 +1,5 @@
 import {spawnSync} from "node:child_process";
+import {fullTests,successorPreflight} from "./qa-free-first.mjs";
 
 const root=process.cwd();
 const pnpm=process.platform==="win32"?"pnpm.cmd":"pnpm";
@@ -10,13 +11,23 @@ function run(command,args,env=process.env){
   if(result.status!==0)process.exit(result.status??1);
 }
 
+// One execution per test in this release invocation. The strict media receipt
+// mode also satisfies its ordinary source-only invocation later in fullTests.
+const completed=new Map();
+function test(name,args=[],aggregate=false){
+  if(completed.has(name)){
+    if(args.some(arg=>!completed.get(name).includes(arg)))throw Error("Test requires stronger flags: "+name);
+    return;
+  }
+  run(process.execPath,["tests/"+name,...args],aggregate?{...process.env,QA_AGGREGATE:"1"}:process.env);
+  completed.set(name,args);
+}
 // Keep local pnpm qa:release self-contained, not dependent on GitHub workflow gates.
-run(process.execPath,["tests/stage3-release-activation-gate.cjs"]);
-// Execute successor preflight before historical media/browser checks. The
-// standard full suite still runs all 195 registered tests independently.
-run(process.execPath,["scripts/qa-free-first.mjs","--preflight-v1281"]);
-run(process.execPath,["tests/stage3-multiversion-storage-gate.cjs"]);
-run(process.execPath,["tests/nov-2026-content-preflight.cjs"]);
+test("stage3-release-activation-gate.cjs");
+// Cheap/current gates first, then remaining release and browser checks once.
+for(const name of [...new Set([...successorPreflight,"typescript-syntax.cjs","current-curriculum-integrity.cjs","current-curriculum-audio-readiness.cjs","lesson-overview.cjs","foundation-coaching.cjs","ux-v20-lesson-navigation.cjs","stage3-notebooklm-remediation.cjs","pronunciation-runtime-audio.cjs"])])test(name,[],true);
+test("stage3-multiversion-storage-gate.cjs");
+test("nov-2026-content-preflight.cjs");
 
 // Draft-only diagnostic preflight: run real browser and media checks BEFORE the
 // mandatory rights gate. This does NOT permit or trigger any release.
@@ -24,26 +35,28 @@ run(process.execPath,["tests/nov-2026-content-preflight.cjs"]);
 // No extra browser data is touched: the tests use disposable localhost profiles.
 const rights=JSON.parse((await import("node:fs")).readFileSync("content/audio-rights-register.json","utf8"));
 if(rights.unit10_draft_assets?.candidate_version==="1.21.0"){
-  run(process.execPath,["tests/unit10-audio-owner-receipts.cjs","--require-media"]);
-  run(process.execPath,["tests/unit10-staged-manifest-safety.cjs"]);
-  run(process.execPath,["tests/unit10-academic-candidate-v121.cjs"]);
+  test("unit10-audio-owner-receipts.cjs", ["--require-media"]);
+  test("unit10-staged-manifest-safety.cjs");
+  test("unit10-academic-candidate-v121.cjs");
   // Verify version-pinned old attempts and atomic quota failures during the
   // proposed 1.20.0 -> 1.21.0 upgrade (no production storage touched).
-  run(process.execPath,["tests/unit10-real-upgrade-retention.cjs"]);
+  test("unit10-real-upgrade-retention.cjs");
   // Chrome loads the three exact MP3 bytes over localhost and must emit ended.
   // This is media-codec evidence, NOT the complete product-player MEDIA-01 gate.
-  run(process.execPath,["tests/unit10-chrome-audio-codec.cjs"]);
+  test("unit10-chrome-audio-codec.cjs");
   // QA-only: real FoundationDemo + real browser-local AcademicService with
   // v1.21.0 seeded into a throwaway localhost Chrome profile.
   // Never imports into any production browser, nor tests the live site.
-  run(process.execPath,["tests/unit10-media01-real-browser.cjs"]);
-  run(process.execPath,["tests/storage-chromium-smoke.cjs"]);
-  run(process.execPath,["tests/storage-ui-browser.cjs"]);
+  test("unit10-media01-real-browser.cjs");
+  test("storage-chromium-smoke.cjs");
+  test("storage-ui-browser.cjs");
 }
-run(process.execPath,["tests/audio-rights-release-gate.cjs","--require-clearance"]);
-run(process.execPath,["tests/writing-ai-on-demand.cjs"]);
-run(process.execPath,["tests/english-tutor-knowledge-only.cjs"]);
-run(pnpm,["run","qa:full"]);
+test("audio-rights-release-gate.cjs", ["--require-clearance"]);
+test("writing-ai-on-demand.cjs");
+test("english-tutor-knowledge-only.cjs");
+for(const name of fullTests)test(name,[],true);
+if(fullTests.some(name=>!completed.has(name)))throw Error("Incomplete full QA");
+console.log(JSON.stringify({result:"PASS",suite:"full",tests:fullTests.length,uniqueReleaseTests:completed.size}));
 run(pnpm,["exec","tsc","--noEmit","--incremental","false"]);
 
 const hostingEnv={

@@ -55,7 +55,7 @@ function lessonButton(id:string):HTMLButtonElement|undefined{
 async function openLesson(id:string){
  await wait(()=>lessonButton(id),'catalog lesson '+id);
  lessonButton(id)!.click();
- await wait(()=>document.querySelector('.foundation-lesson')?.textContent?.includes(id),'opening '+id);
+ await wait(()=>document.querySelector('.foundation-lesson')?.getAttribute('data-lesson-id')===id,'opening '+id);
  await wait(()=>button('Start practice')||button('Continue saved draft')||button('View saved result'),'lesson overview '+id);
 }
 function chooseAnswers(expected:number){

@@ -25,8 +25,8 @@ assert.ok(source.includes("className={'foundation-question'+(lesson.module==='li
   'unanswered Listening warning state remains present');
 assert.ok(source.includes("listeningSubmitHint(listeningProgress)"),
   'Listening completeness feedback remains present');
-assert.ok(source.includes("<details className=\"foundation-attempt-details\"><summary>Attempt details</summary>"),
-  'technical metadata is available on demand, not removed');
+assert.ok(!source.includes('<details className="foundation-attempt-details">'),
+  'learner practice does not expose technical attempt metadata');
 assert.ok(css.includes('grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr))'),
   'responsive grid with safe one-column fallback');
 assert.ok(css.includes('min-height: 44px'), 'touch targets remain at least 44px');
