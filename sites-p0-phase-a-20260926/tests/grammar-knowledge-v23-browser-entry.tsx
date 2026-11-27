@@ -58,18 +58,15 @@ async function playerRoute(){
  const find=(label:string)=>[...shell.querySelectorAll<HTMLButtonElement>('button')].find(b=>b.textContent?.trim().startsWith(label));
  if(old){
   check((await runtime.service.lesson(id,'1.18.1')).version==='1.18.1'&&(await runtime.service.lesson(id,'1.28.1')).version==='1.28.1','both immutable historical and current source available');
-  check(shell.textContent?.includes('Current lesson notes · v1.28.1'),'current notes label');
-  find('View archived notes')!.click();await wait(()=>!overlay()&&!!find('View current lesson notes'),'archived notes toggle');
-  check(shell.textContent?.includes('Archived lesson notes · v1.18.1'),'archive label');
-  find('View current lesson notes')!.click();await wait(()=>!!overlay(),'current notes restored');
+  check(!find('View archived notes')&&!find('View current lesson notes')&&!shell.textContent?.includes('This saved attempt uses content'),'no version-management clutter');
   find(draft?'Continue saved draft':'View saved result')!.click();await wait(()=>!!shell.querySelector('input[name="'+archive!.activities[0].id+'"]'),'historical practice');
   check(shell.querySelector<HTMLInputElement>('input[name="'+archive!.activities[0].id+'"][value="B"]')?.checked,'historical selected answer');
-  check(shell.textContent?.includes('content 1.18.1'),'historical practice version');
+  check(!shell.querySelector('.foundation-attempt-details'),'no technical attempt metadata in practice');
   const field=shell.querySelector<HTMLInputElement>('input[name="'+archive!.activities[0].id+'"][value="B"]')!;
   check(field.matches(':disabled')===!draft,'submitted is read-only, draft remains editable');
   if(!draft)check(shell.textContent?.includes('Synthetic saved result'),'original scored feedback displayed');
   find('View lesson notes')!.click();await wait(()=>!!overlay(),'current notes after result');
-  if(!draft)check(shell.textContent?.includes('Current lesson notes · v1.28.1'),'current knowledge after saved result');
+  check(!find('View archived notes'),'current notes remain the default');
  }
  // Let the ordinary same-answer draft autosave settle, then compare real
  // persisted records, not just an in-memory fixture object.

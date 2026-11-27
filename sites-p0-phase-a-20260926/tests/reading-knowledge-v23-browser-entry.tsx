@@ -61,15 +61,12 @@ async function historicalPlayerRoute(){
  check(overlay()?.textContent?.includes(d.title),'correct lesson');
  if(old){
   check((await runtime.service.lesson(id,version)).version===version&&(await runtime.service.lesson(id,currentVersion)).version===currentVersion,'both immutable versions available');
-  check(shell.textContent?.includes('Current lesson notes · v'+currentVersion),'current notes label');
-  find('View archived notes')!.click();await wait(()=>!!find('View current lesson notes')&&(successor?!!overlay():!overlay()),'archive notes');
-  check(shell.textContent?.includes('Archived lesson notes · v'+version),'archive label');
-  find('View current lesson notes')!.click();await wait(()=>!!overlay(),'current notes restored');
+  check(!find('View archived notes')&&!find('View current lesson notes')&&!shell.textContent?.includes('This saved attempt uses content'),'no version-management clutter');
   find(draft?'Continue saved draft':'View saved result')!.click();
   await wait(()=>!!shell.querySelector('input[name="'+archive!.activities[0].id+'"]'),'historical practice');
   const field=shell.querySelector<HTMLInputElement>('input[name="'+archive!.activities[0].id+'"][value="B"]')!;
   check(field?.checked&&field.matches(':disabled')===!draft,'original answer and editability');
-  check(shell.textContent?.includes('content '+version),'historical practice version');
+  check(!shell.querySelector('.foundation-attempt-details'),'no technical attempt metadata in practice');
   if(!draft)check(shell.textContent?.includes('Synthetic saved Reading result'),'original feedback');
   if(successor){
    const oldPrompt=archive!.activities[0].prompt;
@@ -77,7 +74,7 @@ async function historicalPlayerRoute(){
    check(oldPrompt!==newPrompt&&shell.textContent?.includes(oldPrompt)&&!shell.textContent?.includes(newPrompt),'historical question wording remains pinned');
   }
   find('View lesson notes')!.click();await wait(()=>!!overlay(),'current notes after practice/result');
-  check(shell.textContent?.includes('Current lesson notes · v'+currentVersion),'current notes label after returning');
+  check(!find('View archived notes'),'current notes remain the default');
  }
  if(draft)await pause(1250);
  check(JSON.stringify(await runtime.academic.attempts(LOCAL_OWNER_ID))===before,'saved attempts byte-equivalent; no new attempt');
@@ -86,7 +83,7 @@ async function historicalPlayerRoute(){
   // Explicitly start an independent current attempt only after read-only assertions.
   find('Start current practice')!.click();
   const newPrompt=(await runtime.service.lesson(id,currentVersion)).lesson.activities[0].prompt;
-  await wait(()=>!!shell.textContent?.includes(newPrompt)&&!!shell.textContent?.includes('content '+currentVersion),'fresh current Practice wording');
+  await wait(()=>!!shell.textContent?.includes(newPrompt),'fresh current Practice wording');
   const after=await runtime.academic.attempts(LOCAL_OWNER_ID);
   check(JSON.stringify(after.filter(a=>a.id===saved!.id))===JSON.stringify(JSON.parse(before).filter((a:AcademicAttempt)=>a.id===saved!.id)),'historical attempt immutable after new root');
   check(after.length===JSON.parse(before).length+1&&after.some(a=>a.version===currentVersion&&a.status==='started'&&!a.parentId),'independent fresh attempt');

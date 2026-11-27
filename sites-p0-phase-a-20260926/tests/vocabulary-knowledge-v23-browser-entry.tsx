@@ -51,18 +51,15 @@ async function historicalPlayerRoute(){
  check(overlay()?.textContent?.includes(id),'correct lesson');
  if(old){
   check((await runtime.service.lesson(id,version)).version===version&&(await runtime.service.lesson(id,'1.28.1')).version==='1.28.1','both immutable versions available');
-  check(shell.textContent?.includes('Current lesson notes · v1.28.1'),'current notes label');
-  find('View archived notes')!.click();await wait(()=>!overlay()&&!!find('View current lesson notes'),'archive notes');
-  check(shell.textContent?.includes('Archived lesson notes · v'+version),'archive label');
-  find('View current lesson notes')!.click();await wait(()=>!!overlay(),'current notes restored');
+  check(!find('View archived notes')&&!find('View current lesson notes')&&!shell.textContent?.includes('This saved attempt uses content'),'no version-management clutter');
   find(draft?'Continue saved draft':'View saved result')!.click();
   await wait(()=>!!shell.querySelector('input[name="'+archive!.activities[0].id+'"]'),'historical practice');
   const field=shell.querySelector<HTMLInputElement>('input[name="'+archive!.activities[0].id+'"][value="B"]')!;
   check(field?.checked&&field.matches(':disabled')===!draft,'original answer and editability');
-  check(shell.textContent?.includes('content '+version),'historical practice version');
+  check(!shell.querySelector('.foundation-attempt-details'),'no technical attempt metadata in practice');
   if(!draft)check(shell.textContent?.includes('Synthetic saved Vocabulary result'),'original feedback');
   find('View lesson notes')!.click();await wait(()=>!!overlay(),'current notes after practice/result');
-  check(shell.textContent?.includes('Current lesson notes · v1.28.1'),'current notes label after returning');
+  check(!find('View archived notes'),'current notes remain the default');
  }
  if(draft)await pause(1250);
  check(JSON.stringify(await runtime.academic.attempts(LOCAL_OWNER_ID))===before,'saved attempts byte-equivalent; no new attempt');

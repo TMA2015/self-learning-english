@@ -182,6 +182,7 @@ const fullRegressionTests=[
   "grammar-knowledge-v23-browser.cjs",
   "sle-combined-ui-browser.cjs",
   "multiskill-knowledge-v2.cjs",
+  "lesson-overview.cjs",
   "multiskill-knowledge-v2-browser.cjs",
   "vocabulary-knowledge-v23.cjs",
   "vocabulary-knowledge-v23-browser.cjs",

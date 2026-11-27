@@ -48,7 +48,7 @@ for(const [,available] of groups)assert(!available(unknown,'1.28.1'));
 const g=next.lessons.find(l=>l.module==='grammar');
 assert(!grammarKnowledgeV23Available({...g,explanation:{...g.explanation,en:'changed'}},'1.28.1'));
 const foundation=fs.readFileSync('app/foundation.tsx','utf8');
-assert(foundation.includes("catalog&&(catalog.version==='1.28.0'||catalog.version==='1.28.1')&&view.version!==catalog.version"));
+assert(foundation.includes('catalog&&view.version!==catalog.version'));
 assert(foundation.includes('candidate.version===catalog.version'));
 assert(foundation.includes('const view=await loadLesson(id,existing?.version??catalog?.version)'));
 assert(foundation.includes('if(existing)validateOptionOrder(view.lesson.activities,existing)'));
