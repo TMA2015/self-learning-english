@@ -100,14 +100,12 @@ const fullRegressionTests=[
   "learning-plan-direct-review-browser.cjs",
   "writing-course-v2-a.cjs",
   "writing-course-v2-b.cjs",
-  "writing-week2-course-simplified.cjs",
   "writing-week2-preview-acceptance.cjs",
-  "writing-week2-r1-browser.cjs",
   "writing-week2-r2-contract.cjs",
   "writing-week2-optional-ai-r0.cjs",
   "writing-week2-persistence-r1.cjs",
   "writing-week2-runtime-r2.cjs",
-  "writing-week2-home-browser.cjs",
+  "foundation-writing-home-browser.cjs",
   "writing-course-v2-c.cjs",
   "g3e-firebase-reliability.cjs",
   "issue64-task-b.cjs",
@@ -199,6 +197,8 @@ const fullRegressionTests=[
 
 // Historical/authoring checks remain manually runnable; see exact rationale in PR #253.
 const archivedChecks={
+  "writing-week2-course-simplified.cjs": "Retired 12-week teaching/UI copy; current Foundation Writing source/navigation/renderer tests replace presentation coverage. Legacy no-egress, saved-only AI and reflection/model gates remain in Week 2 compatibility and provider tests.",
+  "writing-week2-r1-browser.cjs": "Superseded Week 2 content-width presentation; current real Foundation Writing Home and radio/browser tests cover active responsive UI.",
   "grammar-b1-wave2a-draft.cjs": "Historical packet regeneration; reviewed curriculum-170-grammar-b1-wave2a.cjs retained.",
   "grammar-b1-wave2b-draft.cjs": "Historical packet regeneration; reviewed curriculum-180-grammar-b1-wave2b.cjs retained.",
   "grammar-b1-wave2c-draft.cjs": "Historical packet regeneration; reviewed curriculum-190-grammar-b1-wave2c.cjs retained.",
@@ -208,7 +208,7 @@ const archivedChecks={
   "c1c2-draft-source.cjs": "Historical pre-review packet; curriculum-1200-release.cjs retained.",
   "c1c2-authored-content-schema.cjs": "Historical pre-review dry-run; curriculum-1200-release.cjs and active schema/option-order gate retained.",
   "f2-bulk12-v125-intake-contract.cjs": "Historical authoring intake tool, not current release behavior; f2-bulk12-v125-machine-schema.cjs retained.",
-  "writing-week2-r1-export.cjs": "Manual legacy preview exporter, not a release gate; Week 2 runtime, persistence, SSR and browser tests retained.",
+  "writing-week2-r1-export.cjs": "Manual legacy preview exporter, not a release gate; Legacy persistence and provider safety remain; current Foundation Writing home and renderer tests replace retired presentation.",
   "listening-audio-manifest-coverage.cjs": "Historical subset-only duplicate; current-curriculum-audio-readiness.cjs now covers all active Listening and Pronunciation."
 };
 
@@ -227,7 +227,31 @@ const successorPreflight=[
 const full=[...new Set([...coreTests,...fullRegressionTests])];
 if(Object.keys(archivedChecks).some(test=>full.includes(test)))throw Error("Archived check accidentally registered");
 if(successorPreflight.some(test=>!full.includes(test)))throw Error("Successor preflight must remain part of full QA");
-const earlyFull=["typescript-syntax.cjs","current-curriculum-integrity.cjs","current-curriculum-audio-readiness.cjs","lesson-overview.cjs","foundation-coaching.cjs","ux-v20-lesson-navigation.cjs","stage3-notebooklm-remediation.cjs","pronunciation-runtime-audio.cjs",...successorPreflight,"reading-knowledge-v23-browser.cjs"];
+// Current course behavior first; legacy UI-only assertions are available on demand.
+export const foundationWritingChecks=[
+  "foundation-writing-u01-v1.cjs",
+  "foundation-writing-u02-u03-v1.cjs",
+  "foundation-writing-u04-u06-v1.cjs",
+  "foundation-writing-u07-u09-v1.cjs",
+  "foundation-writing-wave4-readiness.cjs",
+  "foundation-writing-wave4-content.cjs",
+  "foundation-writing-wave4-source-fidelity.cjs",
+  "foundation-writing-wave4-ai-contract.cjs",
+  "foundation-writing-u01-u06-live-entry.cjs",
+  "foundation-writing-course-navigation.cjs",
+  "foundation-writing-all-units-ux.cjs",
+  "foundation-writing-u01-browser.cjs",
+  "foundation-writing-radio-layout-browser.cjs",
+  "foundation-writing-u02-u03-browser.cjs",
+  "foundation-writing-u04-u06-browser.cjs",
+  "foundation-writing-u07-u09-browser.cjs",
+  "foundation-writing-wave4-readback-browser.cjs",
+  "foundation-writing-wave4-renderer-browser.cjs",
+  "foundation-writing-home-browser.cjs"
+];
+const legacyCompatibilityChecks=new Set(["writing-course-v2-a.cjs","writing-course-v2-b.cjs","writing-course-v2-c.cjs","writing-week2-preview-acceptance.cjs"]);
+export function qaTestArgs(name){return legacyCompatibilityChecks.has(name)?["--legacy-compat-only"]:[];}
+const earlyFull=["typescript-syntax.cjs","current-curriculum-integrity.cjs","current-curriculum-audio-readiness.cjs","lesson-overview.cjs","foundation-coaching.cjs","ux-v20-lesson-navigation.cjs","stage3-notebooklm-remediation.cjs","pronunciation-runtime-audio.cjs",...successorPreflight,...foundationWritingChecks,"reading-knowledge-v23-browser.cjs"];
 if(earlyFull.some(test=>!full.includes(test)))throw Error("Early test must remain part of full QA");
 const selected=mode==="preflight-v1281"?successorPreflight:mode==="core"?coreTests:[...new Set([...earlyFull,...full])];
 
@@ -237,7 +261,7 @@ export function runTests(tests,suite=mode){
 for(const test of tests){
   const relative=path.join("tests",test);
   console.log("\n=== "+suite.toUpperCase()+" QA: "+relative+" ===");
-  const result=spawnSync(process.execPath,[relative],{
+  const result=spawnSync(process.execPath,[relative,...qaTestArgs(test)],{
     cwd:root,
     stdio:"inherit",
     env:{...process.env,QA_AGGREGATE:"1"},

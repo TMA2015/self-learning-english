@@ -1,7 +1,7 @@
 import React from 'react';
 import {createRoot} from 'react-dom/client';
 import Home from '../app/home-client';
-import {writingWeek} from '../domain/writing-course-v2-b';
+import active from '../content/active-curriculum.json';
 const __FW_BROWS_ERRORS:string[]=[];
 window.addEventListener('error',e=>__FW_BROWS_ERRORS.push(String(e.error?.stack??e.message).slice(0,900)));
 window.addEventListener('unhandledrejection',e=>__FW_BROWS_ERRORS.push(String(e.reason?.stack??e.reason).slice(0,900)));
@@ -12,7 +12,7 @@ const wait=async(p:()=>boolean,why:string,limit=25000)=>{
  for(let i=0;i<limit/60;i++){if(p())return;await pause(60)}
  throw Error('Timeout: '+why+' current='+text(document.querySelector('main')).slice(0,220));
 };
-const button=(s:string,selector='button')=>[...document.querySelectorAll<HTMLButtonElement>(selector)].find(e=>text(e)===s);
+const button=(s:string,selector='button')=>[...document.querySelectorAll<HTMLButtonElement>(selector)].find(e=>text(e)===s||e.getAttribute('aria-label')===s);
 const click=async(s:string,selector='button')=>{
  await wait(()=>!!button(s,selector)&&!button(s,selector)!.disabled,s);
  button(s,selector)!.click();await pause(130);
@@ -29,7 +29,14 @@ const navTo=async(label:string)=>{
  if(innerWidth<=750)await wait(()=>!document.querySelector('aside.sidebar.open'),'mobile menu closes');
 };
 const atCourse=()=>text(document.querySelector('main .page-heading h1'))==='Foundation Writing'&&
- document.querySelectorAll('.curriculum-grid[aria-label="Foundation Writing course units"] .week-card').length===12;
+ document.querySelectorAll('[aria-label="Foundation Writing course units"] .week-card').length===12;
+const assertLearningSteps=()=>{
+ const steps=[...document.querySelectorAll<HTMLButtonElement>('.fw-steps button')];
+ const labels=steps.map(b=>b.getAttribute('aria-label'));
+ if(JSON.stringify(labels)!==JSON.stringify(['Learn','Knowledge Check','Practice A','Practice B','Transfer']))throw Error('Incorrect learner step sequence '+JSON.stringify(labels));
+ const knowledge=steps[1];
+ if(!knowledge||text(knowledge.querySelector('span:last-child'))!=='Knowledge Check'||knowledge.querySelector('small'))throw Error('Knowledge Check tab must have no subtitle');
+};
 const goCourse=async()=>{
  await wait(()=>text(document.querySelector('.save-status')).includes('Saved on this device'),'local runtime');
  await navTo('My Courses');
@@ -54,6 +61,9 @@ const full=async()=>{
  await wait(atCourse,'Writing path opens Foundation course overview');
  await click('Open Unit 01','main button');
  await wait(()=>!!document.querySelector('section[aria-label="Foundation Writing Unit 01"]'),'real U01 opens');
+ assertLearningSteps();
+ await click('Knowledge Check','main button');
+ await wait(()=>text(document.querySelector('main .fw-unit h2'))==='Knowledge Check','real Knowledge Check opens');
  await click('Back to Foundation Writing','main button');
  await wait(atCourse,'return to same course overview from U01');
  await goCourse();
@@ -69,6 +79,7 @@ const restore=async()=>{
   throw Error('Course progress panel missing after reload');
  await click('Open Unit 02','main button');
  await wait(()=>!!document.querySelector('section[aria-label="Foundation Writing FW-U02"]'),'U02 opens after reload');
+ assertLearningSteps();
  await click('Back to Foundation Writing','main button');
  await wait(atCourse,'course overview restored after navigating U02');
  return {phase:'restore',viewport:innerWidth,checks:['My Courses selection after reload',
@@ -78,7 +89,7 @@ const responsive=async()=>{
  await goCourse();
  const overflow=document.documentElement.scrollWidth-innerWidth;
  if(overflow>3)throw Error('course overview horizontal overflow '+overflow+' at '+innerWidth);
- for(const el of document.querySelectorAll<HTMLElement>('.curriculum-grid button')){
+ for(const el of document.querySelectorAll<HTMLElement>('[aria-label="Foundation Writing course units"] button')){
   const r=el.getBoundingClientRect();
   if(r.width&&r.height&&(r.right>innerWidth+3||r.left<0))
    throw Error('offscreen Foundation Unit control '+text(el)+' at '+innerWidth);
@@ -101,10 +112,7 @@ const skillOverview=async()=>{
   await click(label,'nav[aria-label="Main navigation"] button.nav-item');
   if(isMobile)await wait(()=>!document.querySelector('aside.sidebar.open'),'mobile sidebar closes');
  };
- const expected:[string,number][]=[
-  ['Grammar',42],['Vocabulary',22],['Reading',41],['Writing',39],
-  ['Listening',21],['Speaking',6],['Pronunciation',5]
- ];
+ const expected:[string,number][]=['Grammar','Vocabulary','Reading','Writing','Listening','Speaking','Pronunciation'].map(skill=>[skill,active.lessons.filter(lesson=>lesson.module===skill.toLowerCase()).length]);
  const assertOverview=async(label:string,count:number)=>{
   await wait(()=>text(document.querySelector('.page-heading h1'))===label,label+' skill title');
   await wait(()=>text(document.querySelector('.page-heading p'))===count+' lessons available',label+' skill count');
@@ -138,12 +146,12 @@ const skillOverview=async()=>{
   tab.click();await pause(150);
  };
  await nav('Grammar');
- await assertOverview('Grammar',42);
+ await assertOverview(...expected[0]);
  for(const [skill,count] of expected.slice(1)){
   await selectTab(skill);await assertOverview(skill,count);
  }
  await selectTab('Writing');
- await assertOverview('Writing',39);
+ await assertOverview(...expected.find(([skill])=>skill==='Writing')!);
  const direct=document.querySelector<HTMLButtonElement>('.foundation-writing-action button');
  if(!direct||text(direct)!=='Writing Studio')
   throw Error('Writing independent feedback entry missing');
@@ -185,7 +193,7 @@ const foundationTwelve=async()=>{
  const editor=(unit:string,stage:string,key:string)=>document.querySelector<HTMLTextAreaElement>(
   'textarea[name="'+unit+'-'+stage+'-'+key+'"]');
  const saveVersion=async(num:number)=>{
-  await click('Save version','main button');
+  await click('Save work','main button');
   await wait(()=>text(document.querySelector('main')).includes('Saved version '+num+'.'),'durable saved version '+num);
   if(text(document.querySelector('main')).includes('Save failed'))throw Error('Unexpected storage failure');
  };
@@ -195,6 +203,7 @@ const foundationTwelve=async()=>{
  for(const id of ['10','11','12'] as const){
   const unit='FW-U'+id;
   await navigateUnit(id);
+  assertLearningSteps();
   if(!text(document.querySelector('main')).includes('Micro-lesson 1'))throw Error('Reviewed teaching missing '+unit);
   if(!text(document.querySelector('main')).includes('Micro-lesson 2'))throw Error('Second micro-lesson missing '+unit);
   await click('Practice A','main button');
@@ -225,9 +234,8 @@ const foundationTwelve=async()=>{
   }
   await saveVersion(2);
   if(!editor(unit,'cycleB','draftV1')?.readOnly)throw Error('V1 was unlocked after revision '+unit);
-  await click('AI Tutor','main button');
-  await wait(()=>!!document.querySelector('section[aria-label="'+unit+' optional AI Tutor Writing Review"]'),'Optional tutor screen');
-  const review=[...document.querySelectorAll<HTMLButtonElement>('main button')].find(b=>text(b)==='Get personal AI Tutor feedback');
+  await wait(()=>!!document.querySelector('section[aria-label="AI Tutor Writing Review"]'),'Inline review in current editor');
+  const review=[...document.querySelectorAll<HTMLButtonElement>('main button')].find(b=>text(b)==='Save & Ask AI Tutor');
   if(!review)throw Error('Saved-only optional AI Tutor control missing '+unit);
   // Browser QA never clicks the provider button; availability depends on the
   // real public Firebase config, not on an assumed unconfigured environment.
@@ -274,4 +282,4 @@ const foundationRestore=async()=>{
   savedVersionsRetained:true,originalV1ReadOnly:true,viewport:innerWidth,overflow};
 };
 
-(window as any).__SLE_WEEK2_HOME_QA={full,restore,responsive,skillOverview,foundationTwelve,foundationRestore};
+(window as any).__SLE_FOUNDATION_HOME_QA={full,restore,responsive,skillOverview,foundationTwelve,foundationRestore};

@@ -1,5 +1,5 @@
 import {spawnSync} from "node:child_process";
-import {fullTests,successorPreflight} from "./qa-free-first.mjs";
+import {fullTests,successorPreflight,foundationWritingChecks,qaTestArgs} from "./qa-free-first.mjs";
 
 const root=process.cwd();
 const pnpm=process.platform==="win32"?"pnpm.cmd":"pnpm";
@@ -26,6 +26,8 @@ function test(name,args=[],aggregate=false){
 test("stage3-release-activation-gate.cjs");
 // Cheap/current gates first, then remaining release and browser checks once.
 for(const name of [...new Set([...successorPreflight,"typescript-syntax.cjs","current-curriculum-integrity.cjs","current-curriculum-audio-readiness.cjs","lesson-overview.cjs","foundation-coaching.cjs","ux-v20-lesson-navigation.cjs","stage3-notebooklm-remediation.cjs","pronunciation-runtime-audio.cjs"])])test(name,[],true);
+// Fail early on the current Foundation Writing course before unrelated expensive browser/media tests.
+for(const name of foundationWritingChecks)test(name,[],true);
 test("stage3-multiversion-storage-gate.cjs");
 test("nov-2026-content-preflight.cjs");
 
@@ -54,7 +56,7 @@ if(rights.unit10_draft_assets?.candidate_version==="1.21.0"){
 test("audio-rights-release-gate.cjs", ["--require-clearance"]);
 test("writing-ai-on-demand.cjs");
 test("english-tutor-knowledge-only.cjs");
-for(const name of fullTests)test(name,[],true);
+for(const name of fullTests)test(name,qaTestArgs(name),true);
 if(fullTests.some(name=>!completed.has(name)))throw Error("Incomplete full QA");
 console.log(JSON.stringify({result:"PASS",suite:"full",tests:fullTests.length,uniqueReleaseTests:completed.size}));
 run(pnpm,["exec","tsc","--noEmit","--incremental","false"]);

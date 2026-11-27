@@ -34,7 +34,7 @@ for(const {file,ids} of components){
 assert(totalRadioChoices>=8,'Coverage must include at least eight actual radio-choice templates');
 const shared=read('app/foundation-writing-ui.tsx');
 assert.match(shared,/writingSteps=\['learn','extra','cycleA','cycleB','transfer'\]/);
-assert.match(shared,/Knowledge Check/);assert.match(shared,/Save & Ask AI Tutor/);assert.match(shared,/const ok=await onSave\(\)/);assert.match(shared,/if\(!ok\)/);assert.match(shared,/if\(!eligible\)/);
+assert.match(shared,/Knowledge Check/);assert.doesNotMatch(shared,/4 questions|<small>/,'Knowledge Check tab contains only its name');assert.match(shared,/Save & Ask AI Tutor/);assert.match(shared,/const ok=await onSave\(\)/);assert.match(shared,/if\(!ok\)/);assert.match(shared,/if\(!eligible\)/);
 const css=read('app/globals.css');
 assert.match(css,/\.wcv2 label\.wcv2-radio-option input\[type="radio"\]/);
 assert.match(css,/width:18px;height:18px/,'radio diameter should not inherit .field text-input width');
