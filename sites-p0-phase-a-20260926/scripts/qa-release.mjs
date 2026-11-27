@@ -12,12 +12,6 @@ function run(command,args,env=process.env){
 
 // Keep local pnpm qa:release self-contained, not dependent on GitHub workflow gates.
 run(process.execPath,["tests/stage3-release-activation-gate.cjs"]);
-// #251 historical reviewed fixture checks; no remote import or release permission.
-run(process.execPath,["research/content-release-digest-gate.cjs"]);
-run(process.execPath,["research/content-release-manifest-prototype.cjs"]);
-run(process.execPath,["research/content-release-transport.test.mjs"]);
-run(process.execPath,["tests/content-release-readonly-preview.cjs"]);
-run(process.execPath,["tests/hosting-snapshot-inventory.mjs"]);
 // Execute successor preflight before historical media/browser checks. The
 // standard full suite still runs all 195 registered tests independently.
 run(process.execPath,["scripts/qa-free-first.mjs","--preflight-v1281"]);
@@ -60,8 +54,6 @@ const hostingEnv={
 };
 run(pnpm,["run","build"],hostingEnv);
 run(process.execPath,["tests/firebase-hosting-static.cjs"],hostingEnv);
-// Inventory outside the Hosting root; no upload or new deployment path.
-run(process.execPath,["scripts/hosting-snapshot-inventory.mjs","dist/client","dist/hosting-snapshot-inventory.json"]);
 
 console.log(JSON.stringify({
   result:"PASS",

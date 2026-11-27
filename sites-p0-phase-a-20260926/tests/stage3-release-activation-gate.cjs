@@ -26,19 +26,17 @@ for(const [id,oldRubric] of Object.entries(released.rubrics))
  assert.deepEqual(candidate.rubrics[id],oldRubric,'Released rubric modified: '+id);
 assert.deepEqual(Object.keys(candidate.rubrics).filter(id=>!Object.hasOwn(released.rubrics,id)).sort(),
  ['RUBRIC-WRITING-B2'],'Only reviewed B2 Writing rubric may be newly added');
-const runtime=fs.readFileSync(path.join(root,'infrastructure/browser/local-runtime.ts'),'utf8');
-const upgrade=fs.readFileSync(path.join(root,'tests/browser-curriculum-upgrade.cjs'),'utf8');
+const {manifest:active,source}=require('../scripts/active-release.cjs').verifyActiveRelease();
+const versionParts=v=>v.split('.').map(Number);
+const oldParts=versionParts(candidate.schema_version),newParts=versionParts(active.version);
+const firstDifference=newParts.findIndex((n,i)=>n!==oldParts[i]);
+assert(firstDifference===-1||newParts[firstDifference]>oldParts[firstDifference],'Active release cannot downgrade the last reviewed baseline');
+assert.deepEqual(source.lessons.slice(0,candidate.lessons.length),candidate.lessons,'Current accumulation milestone preserves released lessons; reviewed corrections require explicit change-specific gate');
+assert.deepEqual(source.course.sequence.slice(0,candidate.course.sequence.length),candidate.course.sequence,'Current milestone preserves released sequence');
+for(const [id,rubric] of Object.entries(candidate.rubrics))assert.deepEqual(source.rubrics[id],rubric,'Historical rubric modified: '+id);
 const coreRunner=fs.readFileSync(path.join(root,'scripts/qa-free-first.mjs'),'utf8');
-const requiredName='curriculum-'+candidate.schema_version+'-candidate.json';
-const bundled=[...runtime.matchAll(/^\s*import\s+\w+\s+from\s+['"]\.\.\/\.\.\/content\/(curriculum-\d+\.\d+\.\d+-candidate\.json)['"];?/gm)].map(m=>m[1]);
-assert.deepEqual(bundled,[requiredName],
- 'STAGE3 NO-GO: the browser local runtime must explicitly bundle '+requiredName+'; uploading a candidate JSON alone does not activate it.');
-assert(upgrade.includes(requiredName)&&upgrade.includes('curriculum-1.18.0-candidate.json'),
- 'STAGE3 NO-GO: browser migration QA must cover both existing v1.18.0 and new '+candidate.schema_version+' packages.');
-assert(upgrade.includes("catalog.version,'"+candidate.schema_version+"'"),
- 'STAGE3 NO-GO: browser migration QA must assert the newly activated catalog version.');
 assert(coreRunner.includes('"automatic-curriculum-v120.cjs"'),
  'RELEASE NO-GO: automatic on-device 1.20 update and no-data-loss quota tests must run.');
 assert(coreRunner.includes('"stage3-import-preview.cjs"'),
  'STAGE3 NO-GO: real importer regression test must remain registered in qa:core.');
-console.log(JSON.stringify({result:'PASS',gate:'stage3-bundled-curriculum-activation',target:candidate.schema_version,requiresFullQa:true}));
+console.log(JSON.stringify({result:'PASS',gate:'stage3-bundled-curriculum-activation',target:active.version,requiresFullQa:true}));

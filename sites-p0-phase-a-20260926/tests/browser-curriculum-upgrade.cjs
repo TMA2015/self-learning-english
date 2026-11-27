@@ -16,7 +16,8 @@ class MemoryStorage{
  const {academicService,sourceDigest}=require(path.join(out,'application/academic-service.js'));
  const {mapSeed}=require(path.join(out,'domain/academic.js'));
  const {WRITING_COURSE_ID}=require(path.join(out,'domain/course-p1.js'));
- const old=require('../content/curriculum-1.11.0-candidate.json'),baseline1180=require('../content/curriculum-1.18.0-candidate.json'),baseline1250=require('../content/curriculum-1.25.0-candidate.json'),current=require('../content/curriculum-1.28.1-candidate.json');
+ const old=require('../content/curriculum-1.11.0-candidate.json'),baseline1180=require('../content/curriculum-1.18.0-candidate.json'),baseline1250=require('../content/curriculum-1.25.0-candidate.json'),current=require('../content/active-curriculum.json');
+ const active=require('../content/active-release.json');
  const academic=new BrowserLocalAcademicRepository(storage),learning=new BrowserLocalLearningRepository(storage);
  const pkg={id:old.package_id,version:old.schema_version,digest:await sourceDigest(old),source:old,bundle:mapSeed(old),at:1};
  await academic.addPackage(pkg);const persistedOldPackage=(await academic.packages())[0];
@@ -42,11 +43,11 @@ class MemoryStorage{
  const oldReading1250=await service.lesson('REA-A2-08','1.25.0');
  const before=new Map(storage.map),oldAttempts=await academic.attempts(runtime.LOCAL_OWNER_ID),oldView=await service.lesson(grammar.id,'1.11.0');storage.writes=[];
  const upgraded=await runtime.localAcademicRuntime();const catalog=await upgraded.service.catalog();
- assert.equal(catalog.version,'1.28.1');assert.equal(catalog.lessons.length,176);
+ assert.equal(catalog.version,active.version);assert.equal(catalog.lessons.length,active.lessons);
  assert.deepEqual(current.lessons.slice(0,154),baseline1250.lessons,'Original v1.25 lessons must remain byte structurally intact');
- assert.equal(current.lessons.reduce((n,l)=>n+l.activities.length,0),1224);
+ assert.equal(current.lessons.reduce((n,l)=>n+l.activities.length,0),active.activities);
  assert.deepEqual(catalog.lessons.reduce((m,l)=>(m[l.module]=(m[l.module]??0)+1,m),{}),{grammar:42,vocabulary:22,reading:41,writing:39,listening:21,speaking:6,pronunciation:5});
- const packages=await upgraded.academic.packages();assert.equal(packages.length,4);assert.deepEqual(packages.find(p=>p.version==='1.11.0'),persistedOldPackage);assert.deepEqual(packages.find(p=>p.version==='1.18.0').source,baseline1180);assert.deepEqual(packages.find(p=>p.version==='1.25.0').source,baseline1250);assert.deepEqual(packages.find(p=>p.version==='1.28.1').source,current);
+ const packages=await upgraded.academic.packages();assert.equal(packages.length,4);assert.deepEqual(packages.find(p=>p.version==='1.11.0'),persistedOldPackage);assert.deepEqual(packages.find(p=>p.version==='1.18.0').source,baseline1180);assert.deepEqual(packages.find(p=>p.version==='1.25.0').source,baseline1250);assert.deepEqual(packages.find(p=>p.version===active.version).source,current);
  const packageKey='g-learning:english:v1:academic:packages';assert.deepEqual(storage.writes,[packageKey]);
  for(const [k,v] of before)if(k!==packageKey)assert.equal(storage.getItem(k),v,'Learner key changed: '+k);
  assert.deepEqual([...storage.map.keys()].sort(),[...before.keys()].sort(),'No namespace change');
@@ -63,14 +64,14 @@ class MemoryStorage{
  const manifest=require('../content/pronunciation-audio.json');for(const id of ['PRO-A2-03','PRO-B1-02'])assert.deepEqual((await upgraded.service.lesson(id)).pronunciationAudio,{url:manifest[id].url,duration:manifest[id].duration});
  // Reload: reuse persisted bytes, but force repository recreation with a new storage object.
  const reload=new MemoryStorage();reload.map=new Map(storage.map);global.window.localStorage=reload;
- const again=await runtime.localAcademicRuntime();assert.equal((await again.service.catalog()).version,'1.28.1');assert.deepEqual(reload.writes,[]);
+ const again=await runtime.localAcademicRuntime();assert.equal((await again.service.catalog()).version,active.version);assert.deepEqual(reload.writes,[]);
  assert.deepEqual(await again.academic.attempts(runtime.LOCAL_OWNER_ID),oldAttempts);
  assert.equal((await (await runtime.localCourseRuntime()).load()).activeCourseId,WRITING_COURSE_ID);
  const revision=await again.service.start(grammar.id,'historical-revision',scored.id);assert.equal(revision.version,'1.11.0');assert.equal(revision.parentId,scored.id);
- const fresh=await again.service.start(grammar.id,'current-root-attempt');assert.equal(fresh.version,'1.28.1');assert.equal(fresh.parentId,undefined);
+ const fresh=await again.service.start(grammar.id,'current-root-attempt');assert.equal(fresh.version,active.version);assert.equal(fresh.parentId,undefined);
  assert.equal((await again.academic.attempts(runtime.LOCAL_OWNER_ID)).find(a=>a.id===historical1180.id).version,'1.18.0');
  assert.equal((await again.academic.attempts(runtime.LOCAL_OWNER_ID)).find(a=>a.id===historical1250.id).version,'1.25.0');
  assert.deepEqual((await again.academic.attempts(runtime.LOCAL_OWNER_ID)).filter(a=>oldAttempts.some(o=>o.id===a.id)),oldAttempts);
  await assert.rejects(()=>again.academic.addPackage({...pkg,digest:'conflict'}),/Immutable/);
- console.log('PASS: immutable 1.11 -> 1.18.0 -> 1.25.0 -> 1.28.1 staged upgrade; 176/1224, old drafts/results/Reading notes preserved; one package key write; reload idempotent; course/state/evidence unchanged.');
+ console.log('PASS: immutable 1.11 -> 1.18.0 -> 1.25.0 -> active release staged upgrade; manifest counts, old drafts/results/Reading notes preserved; one package key write; reload idempotent; course/state/evidence unchanged.');
 })().catch(e=>{console.error(e);process.exitCode=1});

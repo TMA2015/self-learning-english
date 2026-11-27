@@ -4,6 +4,7 @@
  * Does not modify the deployed runtime or any production learner data.
  */
 import React from 'react';
+import activeRelease from '../content/active-release.json';
 import {createRoot} from 'react-dom/client';
 import {FoundationDemo} from '../app/foundation';
 import candidate from '../.sites-runtime/unit10/curriculum-1.21.0-CANDIDATE-NO-MEDIA.json';
@@ -108,7 +109,7 @@ async function run(){
  await wait(()=>lessonButton(ids[0]),'real listening catalog for candidate');
  const runtime=await localAcademicRuntime();
  const activeVersion=(await runtime.service.catalog()).version;
- assert(activeVersion==='1.28.1','Staged browser AcademicService must serve reviewed v1.28.1; actual '+activeVersion);
+ assert(activeVersion===activeRelease.version,'Staged browser AcademicService must serve reviewed active release; actual '+activeVersion);
  // The three original Unit10 Listening lessons must be unchanged by the wording-only Reading successor.
  for(const id of ids){
   const current=await runtime.service.lesson(id);
@@ -120,7 +121,7 @@ async function run(){
  // original immutable v1.21 source for the historical attempt above.
  const retained=await academic.packages();
  assert(retained.some(p=>p.version===src.schema_version&&p.digest===oldPackageDigest),
-  'Staged v1.28.1 activation lost the original Unit10 historical source');
+  'Active release activation lost the original Unit10 historical source');
  const summary:{id:string,played:boolean,answered:boolean,submitted:boolean,retake:boolean}[]=[];
  for(const id of ids){
   await openLesson(id);

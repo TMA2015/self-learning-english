@@ -108,47 +108,6 @@ jobs:
         working-directory: sites-p0-phase-a-20260926
         run: pnpm qa:release
 
-      # One bounded #251 pilot only; never a deployment or trusted LIVE snapshot.
-      - name: Prepare isolated Hosting snapshot pilot
-        if: ${{ steps.app.outputs.present == 'true' && steps.scope.outputs.tier == '3' && github.event.pull_request.head.ref == 'draft/content-release-infrastructure-251' && github.event.pull_request.head.repo.full_name == github.repository }}
-        working-directory: sites-p0-phase-a-20260926
-        env:
-          SLE_PILOT_HEAD: ${{ github.event.pull_request.head.sha }}
-          SLE_PILOT_BASE: ${{ github.event.pull_request.base.sha }}
-        run: |
-          set -euo pipefail
-          test -s dist/hosting-snapshot-inventory.json
-          pilot="$(mktemp -d "$RUNNER_TEMP/sle-snapshot.XXXXXX")"
-          trap 'rm -rf "$pilot"' EXIT
-          mkdir -p "$pilot/readback"
-          cp dist/hosting-snapshot-inventory.json "$pilot/inventory.json"
-          node --input-type=module - "$pilot/inventory.json" <<'NODE'
-          import fs from 'node:fs';
-          import {verifyInventory} from './scripts/hosting-snapshot-inventory.mjs';
-          const expected=JSON.parse(fs.readFileSync(process.argv[2],'utf8'));
-          const observed=verifyInventory('dist/client',expected);
-          if(observed.bytes>20*1024*1024)throw Error('Pilot raw snapshot exceeds 20 MiB; do not upload');
-          NODE
-          tar -C dist -czf "$pilot/client.tar.gz" client
-          tar -xzf "$pilot/client.tar.gz" -C "$pilot/readback"
-          node --input-type=module - "$pilot" <<'NODE'
-          import fs from 'node:fs';
-          import path from 'node:path';
-          import {createHash} from 'node:crypto';
-          import {verifyInventory} from './scripts/hosting-snapshot-inventory.mjs';
-          const dir=process.argv[2],expected=JSON.parse(fs.readFileSync(path.join(dir,'inventory.json'),'utf8'));
-          verifyInventory(path.join(dir,'readback/client'),expected);
-          verifyInventory('dist/client',expected);
-          const archive=fs.readFileSync(path.join(dir,'client.tar.gz'));
-          if(archive.length>20*1024*1024)throw Error('Pilot archive exceeds 20 MiB; do not upload');
-          const metadata={schema:1,scope:'PR_QA_ONLY_NOT_LIVE',mergeCommit:process.env.GITHUB_SHA,head:process.env.SLE_PILOT_HEAD,base:process.env.SLE_PILOT_BASE,runId:process.env.GITHUB_RUN_ID,runAttempt:process.env.GITHUB_RUN_ATTEMPT,archiveBytes:archive.length,archiveSha256:createHash('sha256').update(archive).digest('hex'),inventorySha256:expected.inventorySha256,files:expected.files,rawBytes:expected.bytes};
-          fs.writeFileSync(path.join(dir,'metadata.json'),JSON.stringify(metadata,null,2)+'\n',{flag:'wx'});
-          console.log(JSON.stringify({gate:'SLE_PR_SNAPSHOT_ROUNDTRIP',...metadata}));
-          NODE
-          output="$RUNNER_TEMP/sle-251-snapshot-pilot"
-          mkdir "$output"
-          mv "$pilot/client.tar.gz" "$pilot/inventory.json" "$pilot/metadata.json" "$output/"
-
       - name: Scoped application QA and static build (NO DEPLOY)
         if: ${{ steps.app.outputs.present == 'true' && (steps.scope.outputs.tier == '1' || steps.scope.outputs.tier == '2') }}
         working-directory: sites-p0-phase-a-20260926
@@ -173,16 +132,6 @@ jobs:
           SLE_QA_TIER: '2'
           SLE_QA_SKILLS: grammar
         run: node scripts/qa-scoped.mjs
-
-      - name: Retain one isolated Hosting snapshot pilot (NO DEPLOY)
-        if: ${{ success() && steps.app.outputs.present == 'true' && steps.scope.outputs.tier == '3' && github.event.pull_request.head.ref == 'draft/content-release-infrastructure-251' && github.event.pull_request.head.repo.full_name == github.repository }}
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
-        with:
-          name: sle-251-pr-snapshot-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/sle-251-snapshot-pilot/
-          if-no-files-found: error
-          retention-days: 1
-          compression-level: 0
 
       - name: Record scope accurately
         if: ${{ success() }}

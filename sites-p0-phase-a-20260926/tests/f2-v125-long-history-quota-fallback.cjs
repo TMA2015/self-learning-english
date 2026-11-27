@@ -25,7 +25,7 @@ const old=[
  require('../content/curriculum-1.24.0-candidate.json'),
 ];
 const next=require('../content/curriculum-1.25.0-candidate.json');
-const active=require('../content/curriculum-1.28.1-candidate.json');
+const {manifest:release,source:active}=require('../scripts/active-release.cjs').verifyActiveRelease();
 const owner='local-family',limit=5*1024*1024;
 const size=map=>[...map].reduce((n,[k,v])=>n+2*(k.length+v.length),0);
 class Storage{
@@ -44,7 +44,7 @@ class Storage{
  assert.deepEqual(old.map(p=>p.schema_version),['1.22.0','1.23.0','1.24.0']);
  assert.equal(next.schema_version,'1.25.0');
  assert.deepEqual(next.lessons.slice(0,142),old[2].lessons);
- assert.equal(active.schema_version,'1.28.1');
+ assert.equal(active.schema_version,release.version);
  assert.deepEqual(active.lessons.slice(0,142),old[2].lessons);
  const store=new Storage(),repo=new BrowserLocalAcademicRepository(store);
  for(let i=0;i<old.length;i++){
