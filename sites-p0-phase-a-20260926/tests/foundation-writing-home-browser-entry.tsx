@@ -37,6 +37,22 @@ const assertLearningSteps=()=>{
  const knowledge=steps[1];
  if(!knowledge||text(knowledge.querySelector('span:last-child'))!=='Knowledge Check'||knowledge.querySelector('small'))throw Error('Knowledge Check tab must have no subtitle');
 };
+// Actual rendered layout contract derived from the owner-approved HTML v2.
+const assertPreviewLearn=()=>{
+ const panel=document.querySelector<HTMLElement>('.fw-unit');
+ if(!panel)throw Error('Foundation Writing preview panel missing');
+ const headings=[...panel.querySelectorAll('.fw-section-heading h2')].map(text);
+ if(JSON.stringify(headings)!==JSON.stringify(['Learning goal','Understand the concept','See how it works','Apply what you learned']))throw Error('Approved Learn section hierarchy '+JSON.stringify(headings));
+ const nav=panel.querySelector('.fw-steps'),goal=panel.querySelector('.fw-learn-goal');
+ if(!nav||!goal||!(nav.compareDocumentPosition(goal)&Node.DOCUMENT_POSITION_FOLLOWING))throw Error('Goal must follow navigation');
+ if(!panel.querySelector('.fw-meta .fw-level')||!panel.querySelector('.foundation-unit-top-nav .fw-top-actions button')||!panel.querySelector('.fw-model h3'))throw Error('Preview metadata, top save/exit or model missing');
+ const title=panel.querySelector('h1')!;
+ if(parseFloat(getComputedStyle(title).fontSize)<24||Number(getComputedStyle(title).fontWeight)<600)throw Error('Approved title hierarchy missing');
+};
+const assertPreviewPractice=()=>{
+ const panel=document.querySelector<HTMLElement>('.fw-unit');
+ if(!panel||!panel.querySelector('.fw-task h3')||!panel.querySelector('.fw-practice-card')||![...panel.querySelectorAll('.fw-section-heading h2')].map(text).includes('Your practice'))throw Error('Approved task/practice hierarchy missing');
+};
 const goCourse=async()=>{
  await wait(()=>text(document.querySelector('.save-status')).includes('Saved on this device'),'local runtime');
  await navTo('My Courses');
@@ -61,7 +77,11 @@ const full=async()=>{
  await wait(atCourse,'Writing path opens Foundation course overview');
  await click('Open Unit 01','main button');
  await wait(()=>!!document.querySelector('section[aria-label="Foundation Writing Unit 01"]'),'real U01 opens');
- assertLearningSteps();
+ assertLearningSteps();assertPreviewLearn();
+ await click('Practice A','main button');assertPreviewPractice();
+ if(document.querySelectorAll('.fw-classify-row').length!==6)throw Error('U01 six classification rows missing');
+ await click('Practice B','main button');assertPreviewPractice();
+ if(![...document.querySelectorAll('.fw-unit summary')].some(el=>text(el).includes('Language help')))throw Error('U01 language help missing');
  await click('Knowledge Check','main button');
  await wait(()=>text(document.querySelector('main .fw-unit h2'))==='Knowledge Check','real Knowledge Check opens');
  await click('Back to Foundation Writing','main button');
@@ -203,17 +223,17 @@ const foundationTwelve=async()=>{
  for(const id of ['10','11','12'] as const){
   const unit='FW-U'+id;
   await navigateUnit(id);
-  assertLearningSteps();
+  assertLearningSteps();assertPreviewLearn();
   if(!text(document.querySelector('main')).includes('Micro-lesson 1'))throw Error('Reviewed teaching missing '+unit);
   if(!text(document.querySelector('main')).includes('Micro-lesson 2'))throw Error('Second micro-lesson missing '+unit);
-  await click('Practice A','main button');
+  await click('Practice A','main button');assertPreviewPractice();
   await wait(()=>!!document.querySelector('input[name="'+unit+'-'+(id==='10'?'A-TENSE':id==='11'?'A-PRIORITY':'A-COVER')+'"]'),unit+' actual source Cycle A');
   const firstId=unit+'-'+(id==='10'?'A-TENSE':id==='11'?'A-PRIORITY':'A-COVER');
   const choices=[...document.querySelectorAll<HTMLInputElement>('input[name="'+firstId+'"]')];
   if(choices.length!==4)throw Error('Original four options missing '+firstId);
   if(!text(document.querySelector('main')).includes(id==='10'?'Last Friday':id==='11'?'revision':'pool'))
    throw Error('Real source question context missing '+unit);
-  await click('Practice B','main button');
+  await click('Practice B','main button');assertPreviewPractice();
   await wait(()=>!!editor(unit,'cycleB','draftV1'),'Original V1 editor '+unit);
   await write(editor(unit,'cycleB','draftV1')!,original(id));
   await saveVersion(1);

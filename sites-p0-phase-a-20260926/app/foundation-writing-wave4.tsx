@@ -123,7 +123,7 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
   finally{if(live.current&&token.current===request)setReviewBusy(false)}
  }
  return <section className="panel wcv2 fw-unit" aria-label={'Foundation Writing '+unitId}>
-  <div className="foundation-unit-top-nav fw-topnav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button><div className="fw-top-actions"><span className="muted">{exact?'Saved work available':'Not started'}</span><button type="button" className="secondary-button" disabled={saving} onClick={()=>void save(true)}>Save &amp; Exit</button></div></div>
+  <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button><div className="fw-top-actions"><span className="muted">{exact?'Saved work available':'Editable draft'}</span><button type="button" className="secondary-button" disabled={saving} onClick={()=>void save(true)}>Save &amp; Exit</button></div></div>
   <div className="page-heading"><div>
    <span className="eyebrow">Foundation Writing · Unit {String(Number(unitId.slice(-2))).padStart(2,'0')}</span>
    <h1>{src.title}</h1><WritingMeta unit={Number(unitId.slice(-2))}/>
@@ -155,16 +155,19 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
    <WritingHeading number={1}>Practice A</WritingHeading>
    <Strip x={src.cycleA.taskStrip}/><WritingTask>{src.cycleA.prompt}</WritingTask>
    <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
    {src.cycleA.items.map(q=>choice(q,'cycleAAnswers'))}
    <h3>Your own explanation (not auto-graded)</h3>
    {src.cycleA.ownFields.map(f=><Field key={f.key} unit={unitId} stage="cycleA" field={f}
     value={draft.cycleAOwn?.[f.key]??''} onValue={value=>change({...draft,cycleAOwn:{...draft.cycleAOwn,[f.key]:value}})}/>)}
+  </div>
   </section>}
   {(['cycleB','transfer'] as const).includes(tab as 'cycleB'|'transfer')&&
    (tab==='cycleB'||tab==='transfer')&&<section aria-label={unitId+' original '+tab}>
     <WritingHeading number={1}>{tab==='cycleB'?'Practice B':'Independent transfer'}</WritingHeading>
     <Strip x={src[tab].taskStrip}/><WritingTask>{src[tab].prompt}</WritingTask>
    <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
     <div className="fw-draft-fields">{src[tab].fields.map(f=>{const original=/V1$/i.test(f.key)?work.versions.find(v=>!!v.draft[tab][f.key]?.trim())?.draft[tab][f.key]:undefined;return <div key={f.key} className={/V[12]$/i.test(f.key)?'fw-draft-half':'fw-draft-full'}><Field unit={unitId} stage={tab} field={f}
      value={original??draft[tab][f.key]??''} locked={!!original}
      onValue={value=>fieldEditor(tab,f.key,value)}/>{/V2$/i.test(f.key)&&!draft[tab][f.key]?.trim()&&(()=>{const first=src[tab].fields.find(x=>/V1$/i.test(x.key));const value=first&&work.versions.find(v=>!!v.draft[tab][first.key]?.trim())?.draft[tab][first.key];return value?<button type="button" className="secondary-button" onClick={()=>fieldEditor(tab,f.key,value)}>Copy saved V1 to V2</button>:null})()}</div>})}</div>
@@ -179,7 +182,8 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
      <Field unit={unitId} stage="revision" field={{key:'reason',label:'Explain your decision in your own words'}}
       value={draft.revisionReason??''} onValue={value=>change({...draft,revisionReason:value})}/>
     </fieldset>}
-   </section>}
+   </div>
+  </section>}
   {tab==='extra'&&<section aria-label={unitId+' supplementary questions'}>
    <WritingHeading number={1}>Knowledge Check</WritingHeading>
    <p>Choose a response, then read the explanation. These answers do not grade your original writing.</p>

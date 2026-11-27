@@ -116,6 +116,7 @@ function U02Pane({step,d,edit,demoCount,setDemoCount}:{
  if(step==='cycleA')return <section aria-label="U02 Practice A cards">
   <WritingHeading number={1}>Practice A</WritingHeading><WritingTask>{source.cycleA.prompt}</WritingTask>
    <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
   <p>{source.cycleA.instructions}</p>
   {source.cycleA.cards.map(card=><div className="field fw-classify-row" key={card.id}>
    <label htmlFor={'u02-card-'+card.id}><strong>{card.id} · {card.text}</strong></label>
@@ -142,21 +143,26 @@ function U02Pane({step,d,edit,demoCount,setDemoCount}:{
    help={source.cycleA.justificationPrompt} value={d.explanation}
    onChange={v=>edit({...d,explanation:v})}/>
   <p className="muted">Only fixed card selections are checked automatically; your new idea and explanation are not semantically scored.</p>
- </section>;
+ </div>
+  </section>;
  if(step==='cycleB')return <section aria-label="U02 Practice B idea bank">
   <WritingHeading number={1}>Practice B</WritingHeading><WritingTask>{source.cycleB.prompt}</WritingTask>
    <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
   <p>{source.cycleB.instruction}</p>
   <BankEditor unitId="FW-U02" bank={d.cycleBBank} label="practice-b"
    change={bank=>edit({...d,cycleBBank:bank})}/>
- </section>;
+ </div>
+  </section>;
  if(step==='transfer')return <section aria-label="U02 independent transfer">
   <WritingHeading number={1}>Independent transfer</WritingHeading>
   <WritingTask>{source.transfer.prompt}</WritingTask>
-   <WritingHeading number={2}>Your practice</WritingHeading><p>{source.transfer.instruction}</p>
+   <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card"><p>{source.transfer.instruction}</p>
   <BankEditor unitId="FW-U02" bank={d.transferBank} label="transfer"
    change={bank=>edit({...d,transferBank:bank})}/>
- </section>;
+ </div>
+  </section>;
  return null;
 }
 function U03Pane({step,d,edit,demoCount,setDemoCount}:{
@@ -193,6 +199,7 @@ function U03Pane({step,d,edit,demoCount,setDemoCount}:{
  if(step==='cycleA')return <section aria-label="U03 Practice A reasoning cards">
   <WritingHeading number={1}>Practice A</WritingHeading><WritingTask>{source.cycleA.prompt}</WritingTask>
    <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
   <div className="wcv2-card" aria-label="Task strip">
    <strong>Topic:</strong> {source.cycleA.promptStrip.topic}
    <p><strong>Task:</strong> {source.cycleA.promptStrip.task}</p>
@@ -220,10 +227,12 @@ function U03Pane({step,d,edit,demoCount,setDemoCount}:{
   <OriginalField name="u03-repair-a" label="Your original reason or detail" help={source.cycleA.repairPrompt}
    value={d.repairA} onChange={v=>edit({...d,repairA:v})}/>
   <p className="muted">{source.cycleA.caveat}</p>
- </section>;
+ </div>
+  </section>;
  if(step==='cycleB')return <section aria-label="U03 two original chains">
   <WritingHeading number={1}>Practice B</WritingHeading><WritingTask>{source.cycleB.prompt}</WritingTask>
    <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
   <p>{source.cycleB.diagnoseInstruction}</p>
   {source.cycleB.weak.map(weak=><div className="field fw-classify-row" key={weak.id}>
    <label htmlFor={weak.id}><strong>{weak.id} · {weak.text}</strong></label>
@@ -252,14 +261,17 @@ function U03Pane({step,d,edit,demoCount,setDemoCount}:{
   <ChainEditor id="chainA" chain={d.chainA} edit={(field,v)=>chain('chainA',field,v)}/>
   <ChainEditor id="chainB" chain={d.chainB} edit={(field,v)=>chain('chainB',field,v)}/>
   <p><strong>Reader check:</strong> {source.cycleB.readerCheck} This is not an automatic quality verdict.</p>
- </section>;
+ </div>
+  </section>;
  if(step==='transfer')return <section aria-label="U03 independent transfer chains">
   <WritingHeading number={1}>Independent transfer</WritingHeading>
   <WritingTask>{source.transfer.prompt}</WritingTask>
-   <WritingHeading number={2}>Your practice</WritingHeading><p>{source.transfer.instruction}</p>
+   <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card"><p>{source.transfer.instruction}</p>
   <ChainEditor id="transferA" chain={d.transferA} edit={(field,v)=>chain('transferA',field,v)}/>
   <ChainEditor id="transferB" chain={d.transferB} edit={(field,v)=>chain('transferB',field,v)}/>
- </section>;
+ </div>
+  </section>;
  return null;
 }
 export function FoundationWritingNextUnit({unitId,work,onEdit,onSave,onExit,showVi=false}:{
@@ -316,7 +328,7 @@ export function FoundationWritingNextUnit({unitId,work,onEdit,onSave,onExit,show
   finally{if(mounted.current&&currentTicket===ticket.current)setPending(false)}
  }
  return <section className="panel wcv2 fw-unit" aria-label={'Foundation Writing '+unitId}>
-  <div className="foundation-unit-top-nav fw-topnav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button><div className="fw-top-actions"><span className="muted">{saved?'Saved work available':'Not started'}</span><button type="button" className="secondary-button" disabled={busy} onClick={()=>void save(true)}>Save &amp; Exit</button></div></div>
+  <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button><div className="fw-top-actions"><span className="muted">{saved?'Saved work available':'Editable draft'}</span><button type="button" className="secondary-button" disabled={busy} onClick={()=>void save(true)}>Save &amp; Exit</button></div></div>
   <div className="page-heading"><div><span className="eyebrow">Foundation Writing · Unit {String(Number(unitId.slice(-2))).padStart(2,'0')}</span>
    <h1>{source.title}</h1><WritingMeta unit={Number(unitId.slice(-2))}/>
    <p className="muted">{source.estimatedMinutes} · Learn at your own pace. Save your writing before requesting optional AI feedback.</p>

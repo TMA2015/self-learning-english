@@ -890,7 +890,7 @@ body {
 .fw-unit h2{font-size:18px;line-height:1.45;color:#193b61;font-weight:700;margin:0 0 10px}
 .fw-unit h3{font-size:15px;line-height:1.45;color:#24518d;font-weight:700;margin:0 0 7px}
 .fw-unit p{margin:0 0 10px;overflow-wrap:anywhere}.fw-unit .muted{color:#526d85;font-size:13px}
-.fw-unit .fw-topnav{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:0 0 20px}
+.fw-unit .foundation-unit-top-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:0 0 20px}
 .fw-top-actions,.fw-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .fw-meta{color:#526d85;font-size:13px;margin:8px 0 12px}.fw-level{padding:3px 9px;border-radius:6px;background:#eaf1fc;color:#245bb1;font-weight:700}
 .fw-unit .fw-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:18px 0 22px}

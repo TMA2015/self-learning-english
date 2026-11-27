@@ -123,7 +123,7 @@ export function FoundationWritingWave3({unitId,work,onEdit,onSave,onExit,showVi=
   </article>;
  };
  return <section className="panel wcv2 fw-unit" aria-label={'Foundation Writing '+unitId}>
-  <div className="foundation-unit-top-nav fw-topnav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button><div className="fw-top-actions"><span className="muted">{saved?'Saved work available':'Not started'}</span><button type="button" className="secondary-button" disabled={busy} onClick={()=>void save(true)}>Save &amp; Exit</button></div></div>
+  <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button><div className="fw-top-actions"><span className="muted">{saved?'Saved work available':'Editable draft'}</span><button type="button" className="secondary-button" disabled={busy} onClick={()=>void save(true)}>Save &amp; Exit</button></div></div>
   <div className="page-heading"><div>
    <span className="eyebrow">Foundation Writing · Unit {String(Number(unitId.slice(-2))).padStart(2,'0')}</span>
    <h1>{src.title}</h1><WritingMeta unit={Number(unitId.slice(-2))}/>
@@ -157,6 +157,7 @@ export function FoundationWritingWave3({unitId,work,onEdit,onSave,onExit,showVi=
   {screen==='cycleA'&&<section aria-label={unitId+' Practice A'}>
    <WritingHeading number={1}>Practice A</WritingHeading><WritingTask>{src.cycleA.prompt}</WritingTask>
    <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
    {unitId==='FW-U09'?
     <Strip strip={WAVE3_UNITS['FW-U09'].cycleA.taskStrip}/>:
     unitId==='FW-U07'?<><p>Provided P1:</p><blockquote>{WAVE3_UNITS['FW-U07'].cycleA.paragraph1}</blockquote>
@@ -210,25 +211,31 @@ export function FoundationWritingWave3({unitId,work,onEdit,onSave,onExit,showVi=
    {src.cycleA.ownFields.map(f=><OwnField key={f.key} id={unitId+'-a-'+f.key}
     label={f.label} value={d.cycleAOwn[f.key]??''}
     onChange={v=>commonEdit('cycleAOwn',f.key,v)}/>)}
+  </div>
   </section>}
 
   {screen==='cycleB'&&<section aria-label={unitId+' original Cycle B'}>
-   <h2>Practice B</h2>
+   <WritingHeading number={1}>Practice B</WritingHeading>
    {unitId==='FW-U08'?<Strip strip={WAVE3_UNITS['FW-U08'].cycleB.taskStrip}/>:
     unitId==='FW-U09'?<Strip strip={WAVE3_UNITS['FW-U09'].cycleB.taskStrip}/>:null}
-   <blockquote>{src.cycleB.prompt}</blockquote>
+   <WritingTask>{src.cycleB.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
    {ownSection('cycleB',src.cycleB.fields)}
    {unitId==='FW-U09'&&<p className="muted">
     Suggested 90–130 words are examples, NOT a pass/fail cutoff.
     {work.firstDraftV1?' The first saved Draft V1 is retained immutably at version '+
      work.firstDraftV1.version+'.':' The first complete saved Draft V1 will be retained for later editing practice.'}
    </p>}
+  </div>
   </section>}
 
   {screen==='transfer'&&<section aria-label={unitId+' independent transfer'}>
    <WritingHeading number={1}>Independent transfer</WritingHeading><WritingTask>{src.transfer.prompt}</WritingTask>
    <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
    {ownSection('transfer',src.transfer.fields)}
+  </div>
   </section>}
   {screen==='extra'&&<section aria-label={unitId+' supplementary questions'}>
    <WritingHeading number={1}>Knowledge Check</WritingHeading>

@@ -86,7 +86,7 @@ export function FoundationWritingU01({work=emptyU01Work(),onEdit,onSave,onExit,s
   finally{if(ticket===generation.current&&mounted.current)setPending(false)}
  }
  return <section className="panel wcv2 fw-unit" aria-label="Foundation Writing Unit 01">
-  <div className="foundation-unit-top-nav fw-topnav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button><div className="fw-top-actions"><span className="muted">{saved?'Saved work available':'Not started'}</span><button type="button" className="secondary-button" disabled={saving} onClick={()=>void save(true)}>Save &amp; Exit</button></div></div>
+  <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button><div className="fw-top-actions"><span className="muted">{saved?'Saved work available':'Editable draft'}</span><button type="button" className="secondary-button" disabled={saving} onClick={()=>void save(true)}>Save &amp; Exit</button></div></div>
   <div className="page-heading"><div><span className="eyebrow">Foundation Writing · Unit {String(1).padStart(2,'0')}</span>
    <h1>{unit.title}</h1><WritingMeta unit={1}/>
    <p className="muted">{unit.estimatedMinutes} · Learn and practice at your own pace. Your original writing can receive optional feedback after saving.</p>

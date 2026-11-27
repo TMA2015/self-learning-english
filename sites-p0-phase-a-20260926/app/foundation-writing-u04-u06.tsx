@@ -105,6 +105,7 @@ function U04Panel({step,d,edit,count,reveal}:{
  if(step==='cycleA')return <section aria-label="U04 Practice A">
   <WritingHeading number={1}>Practice A</WritingHeading><WritingTask>{x.cycleA.prompt}</WritingTask>
    <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
   <h3>Identify the relationship between ideas</h3>
   {x.cycleA.relations.map(v=><div className="field fw-classify-row" key={v.id}>
    <label htmlFor={'u04-'+v.id}><strong>{v.id} · {v.text}</strong></label>
@@ -140,10 +141,12 @@ function U04Panel({step,d,edit,count,reveal}:{
    help={x.cycleA.noLinkPrompt} value={d.noLink}
    onChange={v=>edit({...d,noLink:v})}/>
   <p className="muted">The objective items have fixed keys. Your explanations and rewrites are not graded by keywords.</p>
- </section>;
+ </div>
+  </section>;
  if(step==='cycleB')return <section aria-label="U04 original school workshop notice">
   <WritingHeading number={1}>Practice B</WritingHeading><WritingTask>{x.cycleB.prompt}</WritingTask>
    <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
   <ol>{x.cycleB.steps.map((v,i)=><li key={i}>{v}</li>)}</ol>
   <FourSentences name="u04-notice" value={d.notice}
    edit={(key,v)=>edit({...d,notice:{...d.notice,[key]:v}})}/>
@@ -161,16 +164,19 @@ function U04Panel({step,d,edit,count,reveal}:{
   <p className="muted">{x.cycleB.note}</p>
   <details><summary>Optional A1 support</summary><p>{x.cycleB.a1}</p></details>
   <details><summary>Optional B1 stretch</summary><p>{x.cycleB.b1}</p></details>
- </section>;
+ </div>
+  </section>;
  if(step==='transfer')return <section aria-label="U04 independent public notice transfer">
   <WritingHeading number={1}>Independent transfer</WritingHeading><WritingTask>{x.transfer.prompt}</WritingTask>
    <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
   <p>{x.transfer.instruction}</p>
   <FourSentences name="u04-transfer" value={d.transfer}
    edit={(key,v)=>edit({...d,transfer:{...d.transfer,[key]:v}})}/>
   <OriginalField name="u04-transfer-relation" label="What genuine relationship did you express, and why?"
    value={d.transferRelation} onChange={v=>edit({...d,transferRelation:v})}/>
- </section>;
+ </div>
+  </section>;
  return null;
 }
 function U05Panel({step,d,edit,count,reveal}:{
@@ -195,6 +201,7 @@ function U05Panel({step,d,edit,count,reveal}:{
  if(step==='cycleA')return <section aria-label="U05 Practice A ordering">
   <WritingHeading number={1}>Practice A</WritingHeading><WritingTask>{x.cycleA.prompt}</WritingTask>
    <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
   <p>{x.cycleA.instruction}</p>
   {x.cycleA.cards.map(card=><div className="field fw-classify-row" key={card.id}>
    <label htmlFor={'u05-card-'+card.id}><strong>{card.id} · {card.text}</strong></label>
@@ -219,10 +226,12 @@ function U05Panel({step,d,edit,count,reveal}:{
    help={x.cycleA.reflectionPrompt} value={d.cycleAReflection}
    onChange={v=>edit({...d,cycleAReflection:v})}/>
   <p className="muted">You may explain a different coherent order; no semantic error is inferred solely from ordering.</p>
- </section>;
+ </div>
+  </section>;
  if(step==='cycleB')return <section aria-label="U05 own unified paragraph">
   <WritingHeading number={1}>Practice B</WritingHeading><WritingTask>{x.cycleB.prompt}</WritingTask>
    <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
   <PromptStrip strip={x.cycleB.strip}/>
   <ol>{x.cycleB.steps.map((v,i)=><li key={i}>{v}</li>)}</ol>
   {(['point','reason','detail'] as const).map(key=><OriginalField key={key}
@@ -245,10 +254,12 @@ function U05Panel({step,d,edit,count,reveal}:{
   {d.sentenceJobQuote.trim()&&!quoteWithin(d.paragraph,d.sentenceJobQuote)&&
    <p role="status" className="notice">The quoted text does not appear verbatim in your own paragraph. Select a real sentence from it.</p>}
   <details><summary>Optional A1/B1 support</summary><p>{x.cycleB.a1}</p><p>{x.cycleB.b1}</p></details>
- </section>;
+ </div>
+  </section>;
  if(step==='transfer')return <section aria-label="U05 independent bicycle repair transfer">
   <WritingHeading number={1}>Independent transfer</WritingHeading><WritingTask>{x.transfer.prompt}</WritingTask>
    <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
   <p>{x.transfer.instruction}</p>
   <OriginalField name="u05-transfer-paragraph" label="Your new original recommendation paragraph" rows={6}
    value={d.transferParagraph} onChange={v=>edit({...d,transferParagraph:v})}/>
@@ -256,7 +267,8 @@ function U05Panel({step,d,edit,count,reveal}:{
    value={d.transferDetailQuote} onChange={v=>edit({...d,transferDetailQuote:v})}/>
   {d.transferDetailQuote.trim()&&!quoteWithin(d.transferParagraph,d.transferDetailQuote)&&
    <p className="notice" role="status">Copy a real sentence from your transfer paragraph; the quotation is not found.</p>}
- </section>;
+ </div>
+  </section>;
  return null;
 }
 function U06Panel({step,d,edit,count,reveal}:{
@@ -280,6 +292,7 @@ function U06Panel({step,d,edit,count,reveal}:{
  if(step==='cycleA')return <section aria-label="U06 role matching">
   <WritingHeading number={1}>Practice A</WritingHeading><WritingTask>{x.cycleA.prompt}</WritingTask>
    <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
   <PromptStrip strip={x.cycleA.strip}/>
   <p>Match these notes to the stated jobs for THIS three-role task. A different coherent independent outline is not automatically wrong.</p>
   {x.cycleA.cards.map(card=><div className="field fw-classify-row" key={card.id}>
@@ -307,22 +320,27 @@ function U06Panel({step,d,edit,count,reveal}:{
   <OriginalField name="u06-repair-why" label="Why is the repaired job distinct?"
    help={x.cycleA.whyPrompt} value={d.repairWhy}
    onChange={v=>edit({...d,repairWhy:v})}/>
- </section>;
+ </div>
+  </section>;
  if(step==='cycleB')return <section aria-label="U06 makers fair original outline">
   <WritingHeading number={1}>Practice B</WritingHeading><WritingTask>{x.cycleB.prompt}</WritingTask>
    <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
   <PromptStrip strip={x.cycleB.strip}/><p>{x.cycleB.instruction}</p>
   <OutlineEditor unitName="u06" name="cycleB" outline={d.outline}
    onEdit={value=>edit({...d,outline:value})}/>
   <details><summary>Optional A1/B1 support</summary><p>{x.cycleB.a1}</p><p>{x.cycleB.b1}</p></details>
- </section>;
+ </div>
+  </section>;
  if(step==='transfer')return <section aria-label="U06 shelter letter transfer">
   <WritingHeading number={1}>Independent transfer</WritingHeading><WritingTask>{x.transfer.prompt}</WritingTask>
    <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
   <p>{x.transfer.instruction}</p>
   <OutlineEditor unitName="u06" name="transfer" outline={d.transferOutline}
    onEdit={value=>edit({...d,transferOutline:value})}/>
- </section>;
+ </div>
+  </section>;
  return null;
 }
 export function FoundationWritingWave2({unitId,work,onEdit,onSave,onExit,showVi=false}:{
@@ -379,7 +397,7 @@ export function FoundationWritingWave2({unitId,work,onEdit,onSave,onExit,showVi=
   finally{if(mounted.current&&ticket.current===current)setPending(false)}
  }
  return <section className="panel wcv2 fw-unit" aria-label={'Foundation Writing '+unitId}>
-  <div className="foundation-unit-top-nav fw-topnav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button><div className="fw-top-actions"><span className="muted">{saved?'Saved work available':'Not started'}</span><button type="button" className="secondary-button" disabled={saveBusy} onClick={()=>void save(true)}>Save &amp; Exit</button></div></div>
+  <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button><div className="fw-top-actions"><span className="muted">{saved?'Saved work available':'Editable draft'}</span><button type="button" className="secondary-button" disabled={saveBusy} onClick={()=>void save(true)}>Save &amp; Exit</button></div></div>
   <div className="page-heading"><div><span className="eyebrow">Foundation Writing · Unit {String(Number(unitId.slice(-2))).padStart(2,'0')}</span>
    <h1>{source.title}</h1><WritingMeta unit={Number(unitId.slice(-2))}/>
    <p className="muted">{source.minutes} · Learn at your own pace. Your own writing is not automatically graded.</p>
