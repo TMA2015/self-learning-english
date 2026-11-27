@@ -49,7 +49,7 @@ const root=path.resolve(__dirname,'..');
     formats:['iife'],name:'SleU02U03Browser',fileName:()=> 'bundle.js'}},
  });
  const bundle=fs.readFileSync(path.join(out,'bundle.js'),'utf8');
- assert(bundle.includes('Get personal AI Tutor feedback'),'AI Tutor UI is present');
+ assert(bundle.includes('Save & Ask AI Tutor'),'AI Tutor UI is present');
  assert(bundle.includes('Set aside')||bundle.includes('set aside'),'All-valid idea explanation must exist');
  const bin=['google-chrome','google-chrome-stable','chromium','chromium-browser']
   .map(name=>{try{return cp.execFileSync('which',[name],{encoding:'utf8'}).trim()}catch{return ''}})

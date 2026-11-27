@@ -17,7 +17,7 @@ const root=path.join(__dirname,'..');
    'process.env.NEXT_PUBLIC_BASE_PATH':JSON.stringify(''),
   },
   build:{outDir:out,emptyOutDir:true,target:'es2022',minify:false,cssCodeSplit:false,
-   lib:{entry:path.join(root,'tests/writing-week2-home-browser-entry.tsx'),
+   lib:{entry:path.join(root,'tests/foundation-writing-home-browser-entry.tsx'),
      formats:['es'],fileName:()=> 'entry.js'}}
  });
  const css=fs.readFileSync(path.join(root,'app/globals.css'),'utf8');
@@ -82,7 +82,7 @@ const root=path.join(__dirname,'..');
    await command('Emulation.setTouchEmulationEnabled',{enabled:true,maxTouchPoints:1});
    await command('Page.navigate',{url:origin+'/?w='+width+'&nonce='+Date.now()});
    for(let i=0;i<400;i++){
-    const r=await command('Runtime.evaluate',{expression:'typeof window.__SLE_WEEK2_HOME_QA==="object"',returnByValue:true});
+    const r=await command('Runtime.evaluate',{expression:'typeof window.__SLE_FOUNDATION_HOME_QA==="object"',returnByValue:true});
     if(r.result?.value===true)break;
     if(i===399)throw Error('HomeClient script never mounted at '+width+'px');
     await pause(50);
@@ -94,7 +94,7 @@ const root=path.join(__dirname,'..');
    assert.equal(v.media375,width<=375);
   }
   async function run(mode){
-   const e='window.__SLE_WEEK2_HOME_QA.'+mode+'()'+
+   const e='window.__SLE_FOUNDATION_HOME_QA.'+mode+'()'+
       '.then(x=>JSON.stringify({ok:true,result:x,external:window.__OUTSIDE_REQUESTS}))'+
       '.catch(e=>JSON.stringify({ok:false,error:String(e),stack:String(e?.stack).slice(0,1500),external:window.__OUTSIDE_REQUESTS}))';
    const answer=await command('Runtime.evaluate',{expression:e,awaitPromise:true,returnByValue:true});
@@ -113,7 +113,7 @@ const root=path.join(__dirname,'..');
    await load(width);results.push(await run('responsive'));
    const screenshot=await command('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
    const bytes=Buffer.from(screenshot.data,'base64');
-   fs.writeFileSync(path.join(out,'week2-home-'+width+'.png'),bytes);
+   fs.writeFileSync(path.join(out,'foundation-home-'+width+'.png'),bytes);
    console.log('FOUNDATION_HOME_SCREENSHOT '+JSON.stringify({width,bytes:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex')}));
   }
   // Real authoring source + real HomeClient navigation/save/reload for full course.

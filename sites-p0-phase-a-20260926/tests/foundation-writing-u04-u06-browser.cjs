@@ -49,7 +49,7 @@ const root=path.resolve(__dirname,'..');
     formats:['iife'],name:'SleU04U06Browser',fileName:()=> 'bundle.js'}},
  });
  const bundle=fs.readFileSync(path.join(out,'bundle.js'),'utf8');
- assert(bundle.includes('Get personal AI Tutor feedback'),'AI Tutor UI is present');
+ assert(bundle.includes('Save & Ask AI Tutor'),'AI Tutor UI is present');
  assert(bundle.includes('Add optional fourth role'),'Flexible three/four-role outline UI must exist');
  const bin=['google-chrome','google-chrome-stable','chromium','chromium-browser']
   .map(name=>{try{return cp.execFileSync('which',[name],{encoding:'utf8'}).trim()}catch{return ''}})

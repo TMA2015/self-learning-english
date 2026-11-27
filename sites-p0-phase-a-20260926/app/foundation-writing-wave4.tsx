@@ -5,10 +5,11 @@
  * Synthetic fixtures are confined to the isolated browser QA harness.
  */
 import {useEffect,useRef,useState} from 'react';
+import {WritingGoal,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
 import {validateWave4Bundle,type Wave4Lesson,type TaskStrip,type OwnField} from '../domain/foundation-writing-wave4-content';
 import {eligibleArtifact,type Wave4Id,type Wave4Draft,type Wave4Work,type Objective} from '../domain/foundation-writing-wave4-readiness';
 
-type Screen='learn'|'cycleA'|'cycleB'|'transfer'|'extra'|'tutor';
+type Screen='learn'|'cycleA'|'cycleB'|'transfer'|'extra';
 type Review={summary:string;strengths:string[];improvements:string[];quotes:string[];
  questions:string[];nextAction:string;scores:null;level:null};
 export type Wave4ReviewRequest={unitId:Wave4Id;fixtureId:string;task:string;text:string};
@@ -22,11 +23,6 @@ type Props={
  reviewer?:(payload:Wave4ReviewRequest)=>Promise<unknown>;
  showVi?:boolean;
 };
-const sections:{id:Screen;label:string}[]=[
- {id:'learn',label:'Learn'}, {id:'cycleA',label:'Practice A'},
- {id:'cycleB',label:'Practice B'}, {id:'transfer',label:'Transfer'},
- {id:'extra',label:'Extra practice'}, {id:'tutor',label:'AI Tutor'}
-];
 const safeReview=(value:unknown,learnerText:string):Review|null=>{
  if(!value||typeof value!=='object'||Array.isArray(value))return null;
  const r=value as Record<string,unknown>;
@@ -50,7 +46,7 @@ function Field({unit,stage,field,value,onValue,locked=false}:{unit:Wave4Id;stage
  onValue:(v:string)=>void;locked?:boolean}){
  return <label className="field" htmlFor={unit+'-'+stage+'-'+field.key}>
   <strong>{field.label}</strong>
-  <textarea name={unit+'-'+stage+'-'+field.key} id={unit+'-'+stage+'-'+field.key}
+  <WritingText name={unit+'-'+stage+'-'+field.key} id={unit+'-'+stage+'-'+field.key}
    rows={4} maxLength={6000} value={value} readOnly={locked} onChange={e=>{if(!locked)onValue(e.target.value)}}
    placeholder="Write your own words. The teacher's example is a different task."/>
   {locked&&<span className="muted">Original V1 saved · read-only. Continue in the V2 field or record a justified keep decision.</span>}
@@ -80,10 +76,9 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
  const selected=src[target];
  const payload=eligibleArtifact(unitId,work,selected.id,selected.fields.filter(f=>f.requiredForAI===true||
   (f.requiredForAI===undefined&&f.key==='draftV1')).map(f=>f.key));
- const originalV1=work.versions.find(v=>!!v.draft.cycleB.draftV1?.trim())?.draft.cycleB.draftV1;
- const change=(next:Wave4Draft)=>{token.current++;setReview(null);setReviewError('');
+ const change=(next:Wave4Draft)=>{token.current++;setReviewBusy(false);setReview(null);setReviewError('');
   setStatus('');onEdit(next)};
- const navigate=(next:Screen)=>{token.current++;setReview(null);setReviewError('');setTab(next)};
+ const navigate=(next:Screen)=>{token.current++;setReviewBusy(false);setReview(null);setReviewError('');if(next==='cycleB'||next==='transfer')setTarget(next);setTab(next)};
  const choice=(q:Objective,which:'cycleAAnswers'|'extrasAnswers')=>{
   const answer=draft[which][q.id]??'',reveal=shown[q.id]===true;
   return <article className="wcv2-card" key={q.id} aria-label={q.id}>
@@ -94,24 +89,24 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
       onChange={()=>{setShown(v=>({...v,[q.id]:false}));change({...draft,
        [which]:{...draft[which],[q.id]:o.id}})}}/>
      <span>{o.id}. {o.text}</span>
-     {reveal&&<p className="muted">{o.rationale}</p>}
+     {reveal&&<p className={o.id===q.key?'fw-rationale fw-correct':'fw-rationale'}>{o.rationale}</p>}
     </label>)}
    </fieldset>
    <button type="button" className="secondary-button" disabled={!answer}
     onClick={()=>setShown(v=>({...v,[q.id]:true}))}>Check and explain</button>
-   {reveal&&<p role="status">Fixed key: {q.key}. This checks a choice, not your original writing.</p>}
+   {reveal&&<p role="status" className={answer===q.key?'fw-answer fw-correct':'fw-answer fw-retry'}>{answer===q.key?'Correct. ':'Review your choice. '}Fixed key: {q.key}. This checks a choice, not your original writing.</p>}
   </article>;
  };
  const fieldEditor=(stage:'cycleB'|'transfer',key:string,value:string)=>
   change({...draft,[stage]:{...draft[stage],[key]:value}});
  async function save(exit=false){
-  if(saving)return;setSaving(true);setStatus('');
+  if(saving)return false;setSaving(true);setStatus('');
   try{
-   const ok=await onSave();if(!live.current)return;
-   if(!ok){setStatus('Save failed or readback not confirmed. Retry before leaving. AI is disabled.');return;}
+   const ok=await onSave();if(!live.current)return false;
+   if(!ok){setStatus('Save failed or readback not confirmed. Retry before leaving. AI is disabled.');return false;}
    setStatus('Saved and verified. Practice completion is not a language grade.');
-   if(exit)onExit();
-  }catch{if(live.current)setStatus('Save failed. Your draft remains on screen; retry.')}
+   if(exit)onExit();return true;
+  }catch{if(live.current)setStatus('Save failed. Your draft remains on screen; retry.');return false}
   finally{if(live.current)setSaving(false)}
  }
  async function requestReview(){
@@ -127,18 +122,15 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
   }catch{if(live.current&&token.current===request)setReviewError('AI review unavailable; saved work is safe.')}
   finally{if(live.current&&token.current===request)setReviewBusy(false)}
  }
- return <section className="panel wcv2" aria-label={'Foundation Writing '+unitId}>
+ return <section className="panel wcv2 fw-unit" aria-label={'Foundation Writing '+unitId}>
   <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button></div>
   <div className="page-heading"><div>
-   <span className="eyebrow">FOUNDATION WRITING · SELF-PACED · {unitId}</span>
-   <h1>{src.title}</h1><p>{src.outcome}</p>
+   <span className="eyebrow">Foundation Writing · Unit {String(Number(unitId.slice(-2))).padStart(2,'0')}</span>
+   <h1>{src.title}</h1><WritingGoal unit={Number(unitId.slice(-2))} showVi={showVi}/>
    <p className="muted">Independent teaching and practice · {src.minutes==='self-paced'?'self-paced, flexible timing':src.minutes+' minutes (flexible)'}.
     No automatic CEFR score.</p>
   </div></div>
-  <div className="learning-choices" role="group" aria-label={unitId+' study sections'}>
-   {sections.map(t=><button type="button" key={t.id} aria-pressed={tab===t.id}
-    className={tab===t.id?'primary-button':'secondary-button'} onClick={()=>navigate(t.id)}>{t.label}</button>)}
-  </div>
+  <WritingSteps step={tab} onStep={navigate} checked={src.extras.every(q=>!!draft.extrasAnswers[q.id]&&shown[q.id])} saved={!!exact}/>
   <p role="status" className="muted">{exact?'Saved version '+latest.version+'.':
    'This draft is not yet saved exactly.'}</p>
   {originalDraftV1&&<details className="wcv2-card">
@@ -148,7 +140,7 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
   </details>}
   {tab==='learn'&&<section aria-label={unitId+' independent teaching'}>
    <h2>Micro-lesson 1</h2><p style={{whiteSpace:'pre-wrap'}}>{src.teaching.lessons[0]}</p>
-   <h3>Worked demonstration · {src.teaching.demo.id}</h3>
+   <h3>Worked example</h3>
    <blockquote style={{whiteSpace:'pre-wrap'}}>{src.teaching.demo.prompt}</blockquote>
    <button className="secondary-button" type="button" disabled={demo>=src.teaching.demo.steps.length}
     onClick={()=>setDemo(x=>Math.min(x+1,src.teaching.demo.steps.length))}>
@@ -160,7 +152,7 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
    <details><summary>Optional B1 extension</summary><p>{src.teaching.b1}</p></details>
   </section>}
   {tab==='cycleA'&&<section aria-label={unitId+' Practice A'}>
-   <h2>Practice A · {src.cycleA.id}</h2>
+   <h2>Practice A</h2>
    <Strip x={src.cycleA.taskStrip}/><blockquote style={{whiteSpace:'pre-wrap'}}>{src.cycleA.prompt}</blockquote>
    {src.cycleA.items.map(q=>choice(q,'cycleAAnswers'))}
    <h3>Your own explanation (not auto-graded)</h3>
@@ -171,9 +163,9 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
    (tab==='cycleB'||tab==='transfer')&&<section aria-label={unitId+' original '+tab}>
     <h2>{tab==='cycleB'?'Practice B · original writing':'Independent transfer'} · {src[tab].id}</h2>
     <Strip x={src[tab].taskStrip}/><blockquote style={{whiteSpace:'pre-wrap'}}>{src[tab].prompt}</blockquote>
-    {src[tab].fields.map(f=><Field key={f.key} unit={unitId} stage={tab} field={f}
-     value={draft[tab][f.key]??''} locked={tab==='cycleB'&&f.key==='draftV1'&&!!originalV1}
-     onValue={value=>fieldEditor(tab,f.key,value)}/>)}
+    <div className="fw-draft-fields">{src[tab].fields.map(f=>{const original=/V1$/i.test(f.key)?work.versions.find(v=>!!v.draft[tab][f.key]?.trim())?.draft[tab][f.key]:undefined;return <div key={f.key} className={/V[12]$/i.test(f.key)?'fw-draft-half':'fw-draft-full'}><Field unit={unitId} stage={tab} field={f}
+     value={original??draft[tab][f.key]??''} locked={!!original}
+     onValue={value=>fieldEditor(tab,f.key,value)}/>{/V2$/i.test(f.key)&&!draft[tab][f.key]?.trim()&&(()=>{const first=src[tab].fields.find(x=>/V1$/i.test(x.key));const value=first&&work.versions.find(v=>!!v.draft[tab][first.key]?.trim())?.draft[tab][first.key];return value?<button type="button" className="secondary-button" onClick={()=>fieldEditor(tab,f.key,value)}>Copy saved V1 to V2</button>:null})()}</div>})}</div>
     {tab==='cycleB'&&<fieldset><legend>Your editing or retention decision</legend>
      {(['REVISION_SAVED','NO_CHANGE_JUSTIFIED','KEEP_V1_WITH_REASON'] as const).map(v=>
       <label className="field wcv2-radio-option" key={v}>
@@ -187,25 +179,14 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
     </fieldset>}
    </section>}
   {tab==='extra'&&<section aria-label={unitId+' supplementary questions'}>
-   <h2>Four misconception-focused questions</h2>
+   <h2>Knowledge Check</h2>
    <p>Choose a response, then read the explanation. These answers do not grade your original writing.</p>
    {src.extras.map(q=>choice(q,'extrasAnswers'))}
   </section>}
-  {tab==='tutor'&&<section aria-label={unitId+' optional AI Tutor Writing Review'}>
-   <h2>AI Tutor · Writing Review (optional)</h2>
-   <p>Only the exact saved original learner artifact can be reviewed after you explicitly request it.
-    AI does not write or grade your draft automatically.</p>
-   <label className="field" htmlFor={unitId+'-review-target'}><strong>Review one saved artifact</strong>
-    <select id={unitId+'-review-target'} value={target}
-     onChange={e=>{token.current++;setReview(null);setTarget(e.target.value as 'cycleB'|'transfer')}}>
-     <option value="cycleB">Practice B</option><option value="transfer">Transfer</option>
-    </select></label>
-   {!reviewer&&<p role="status">AI Tutor is not enabled here. The complete course remains usable without AI.</p>}
-   {reviewer&&!exact&&<p role="status">Save your exact current draft first.</p>}
-   {reviewer&&exact&&!payload&&<p role="status">Complete the chosen original writing fields and save first.</p>}
-   <button type="button" className="primary-button"
-    disabled={!reviewer||!exact||!payload||saving||reviewBusy}
-    onClick={()=>void requestReview()}>{reviewBusy?'Reviewing…':'Get personal AI Tutor feedback'}</button>
+  {(tab==='cycleB'||tab==='transfer')&&<section className="fw-inline-ai" aria-label="AI Tutor Writing Review" key={unitId+'-'+tab}>
+   <h2>AI Writing Tutor</h2><p>Get feedback on this writing, then improve your answer here.</p>
+   <WritingSelfCheck key={tab} unit={Number(unitId.slice(-2))}/>
+   <WritingReviewAction signature={signature.current} eligible={!!payload} busy={saving||reviewBusy} available={!!reviewer} onSave={()=>save()} onAsk={()=>void requestReview()}/>
    {reviewError&&<p role="status" className="notice">{reviewError}</p>}
    {review&&<article className="wcv2-card" aria-live="polite">
     <h3>Provisional feedback · no score or CEFR claim</h3><p>{review.summary}</p>
@@ -216,16 +197,15 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
     <p><strong>Next step:</strong> {review.nextAction}</p>
    </article>}
   </section>}
-  <div className="learning-choices">
-   <button type="button" className="primary-button" disabled={saving}
-    onClick={()=>void save()}>{saving?'Saving…':'Save version'}</button>
+  <div className="learning-choices fw-actions">
+   <WritingNext step={tab} onStep={navigate} onFinish={()=>void save(true)}/>
+   <button type="button" className="secondary-button" disabled={saving}
+    onClick={()=>void save()}>{saving?'Saving…':'Save work'}</button>
    <button type="button" className="secondary-button" disabled={saving}
     onClick={()=>void save(true)}>Save &amp; Exit</button>
    <button type="button" className="secondary-button" onClick={onExit}>Back to Foundation Writing</button>
   </div>
   {status&&<p role="status" className="notice">{status}</p>}
-  <p className="muted">Practice milestones represent completed work only, not a validated language level.
-   U09 first Draft V1, other units and historical attempts are preserved independently.</p>
   {showVi&&<p className="vi-help">Em có thể học và lưu bài mà không cần AI. Bản nháp đã lưu không bị tự động viết lại.</p>}
  </section>;
 }

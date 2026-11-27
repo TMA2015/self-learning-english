@@ -80,11 +80,12 @@ async function write(name:string,value:string){
  createRoot(root()).render(<App/>);
  if(phase==='invalid'){
   await until(()=>!!root().querySelector('[role="alert"]'),'source rejection');
-  check(!button('Save version'),'unreviewed source blocks learner entry');
+  check(!button('Save work'),'unreviewed source blocks learner entry');
   report('PASS_W4_RENDER_INVALID',{failClosed:true,providerCalls:0});return;
  }
  await until(()=>!!root().querySelector('[aria-label="Foundation Writing '+unit+'"]'),'render');
  check((window as any).__reviewCalls===0,'AI not auto-called at startup');
+ check(JSON.stringify([...document.querySelectorAll('.fw-steps button')].map(b=>b.getAttribute('aria-label')))===JSON.stringify(['Learn','Knowledge Check','Practice A','Practice B','Transfer']),'Five learning steps in approved order');
  check(root().textContent?.includes(first),'read-only original U09 draft shown');
  click('Practice A');
  await until(()=>root().textContent?.includes(unit+'-A-TENSE')||root().textContent?.includes(unit+'-A-PRIORITY')||
@@ -100,17 +101,17 @@ async function write(name:string,value:string){
  await until(()=>!!root().querySelector('textarea[name="'+unit+'-cycleB-draftV1"]'),'Practice B mounted');
  const original=unit+' My independent synthetic message asks the reader to consider an unapproved workshop idea.';
  await write(unit+'-cycleB-draftV1',original);
- click('AI Tutor');
- await until(()=>!!button('Get personal AI Tutor feedback'),'AI tab');
- check(button('Get personal AI Tutor feedback')!.disabled,'unsaved original blocked');
+ 
+ await until(()=>!!button('Save & Ask AI Tutor'),'inline review panel');
+ check((window as any).__reviewCalls===0,'No automatic AI on editing or changing section');
  check((window as any).__reviewCalls===0,'no review on opening');
  click('Practice B');
- click('Save version');
+ click('Save work');
  await until(()=>root().textContent?.includes('Saved version 1.')===true,'saved version');
- click('AI Tutor');
- await until(()=>button('Get personal AI Tutor feedback')?.disabled===false,'AI eligible');
+ 
+ await until(()=>button('Save & Ask AI Tutor')?.disabled===false,'AI eligible');
  check((window as any).__reviewCalls===0,'no auto review after save');
- click('Get personal AI Tutor feedback');
+ click('Save & Ask AI Tutor');
  await until(()=>root().textContent?.includes('Synthetic grounded review')===true,'opt-in result');
  check((window as any).__reviewCalls===1,'one explicit review');
  click('Practice B');
@@ -122,9 +123,10 @@ async function write(name:string,value:string){
  const alternate=[...root().querySelectorAll<HTMLInputElement>('input[name="'+firstQ.id+'"]')]
   .find(e=>e.value!==firstQ.key);
  check(alternate,'alternate choice exists');alternate!.click();
- click('AI Tutor');
- await until(()=>!!button('Get personal AI Tutor feedback'),'AI tab after edit');
- check(button('Get personal AI Tutor feedback')!.disabled,'unsaved revised draft blocks AI');
+ click('Practice B');
+ 
+ await until(()=>!!button('Save & Ask AI Tutor'),'AI tab after edit');
+ check((window as any).__reviewCalls===1,'No automatic AI on editing or changing section');
  check(!root().textContent?.includes('Synthetic grounded review'),'stale feedback removed');
  click('Save & Exit');
  await until(()=>root().querySelector('#qa-exited')?.textContent==='YES','Save & Exit');

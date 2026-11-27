@@ -38,7 +38,7 @@ assert.deepEqual(u04.cycleB.intendedAgents,['Ms. Lee','Mia']);
 assert.match(u05.cycleB.suggestedLength,/guidance only/);
 assert.match(u06.cycleB.instruction,/three or four paragraph roles/i);
 assert.match(u06.transfer.instruction,/accepted-items list/);
-assert.match(ui,/Get personal AI Tutor feedback/);
+assert.match(ui,/WritingReviewAction/);
 assert.match(ui,/eligibleWave2Artifact\(unitId,work,target\)/);
 assert.match(ui,/if\(!saved\|\|!own\|\|pending\|\|saveBusy\)return/);
 assert.match(ui,/tutor\.coach\('foundation-writing'/);

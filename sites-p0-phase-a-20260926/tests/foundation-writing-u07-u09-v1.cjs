@@ -39,7 +39,7 @@ assert.deepEqual(u09.cycleA.cover.key,['weekday','registration','resource','deci
 assert.deepEqual(u08.cycleB.fields.map(x=>x.key),['sharedIntent','peerMessage','organizerMessage','change1','change2']);
 assert.deepEqual(u09.cycleB.fields.map(x=>x.key),['planRoles','draftV1','commitmentNote']);
 assert.match(u09.cycleB.taskStrip.boundary,/guidance/i);
-assert.match(ui,/Get personal AI Tutor feedback/);
+assert.match(ui,/WritingReviewAction/);
 assert.match(ui,/eligibleWave3Artifact\(unitId,work,target\)/);
 assert.match(ui,/if\(!artifact\|\|!saved\|\|pending\|\|busy\)return/);
 assert.match(ui,/Save &amp; Exit/);

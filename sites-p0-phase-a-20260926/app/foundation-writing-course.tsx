@@ -26,7 +26,7 @@ export function FoundationWritingCourse({work,onUnit,onBack}:{
  const saved=savedFoundationUnitIds({foundationWritingV1:work});
  const unknownVersion=work&&work.schemaVersion!==1;
  return <>
-  <div className="eyebrow">MY LEARNING · COURSES</div>
+  <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onBack}>← Back to My Courses</button></div><div className="eyebrow">MY LEARNING · COURSES</div>
   <div className="page-heading"><div>
    <h1>Foundation Writing</h1>
    <p>Learn and practise writing, one unit at a time. Choose any unit to continue.</p>
@@ -35,18 +35,18 @@ export function FoundationWritingCourse({work,onUnit,onBack}:{
   <section className="panel" aria-label="Foundation Writing course progress">
    <h2>Your Foundation Writing progress</h2>
    <p><strong>{saved.length}/12 units with saved work</strong></p>
-   <p className="muted">A saved unit means at least one confirmed saved version, not a completed assessment or a language proficiency score. Your drafts and review history stay in their original units.</p>
-   <button className="secondary-button" type="button" onClick={onBack}>Back to My Courses</button>
+   <p className="muted">Reopen any unit to continue your saved work.</p>
+   <div className="fw-course-progress"><span style={{width:(saved.length/12*100)+'%'}}/></div>
   </section>
-  <div className="curriculum-grid wcv2" aria-label="Foundation Writing course units">
+  <div className="fw-course-grid" aria-label="Foundation Writing course units">
    {FOUNDATION_UNIT_IDS.map((id,index)=>{
     const hasSaved=saved.includes(id);
-    return <article className="week-card" key={id}>
-     <div className="week-card-top"><span>UNIT {String(index+1).padStart(2,'0')}</span><span className="week-status">{hasSaved?'Saved work':'No saved version'}</span></div>
+    return <div key={id} className="fw-course-item">{index%3===0&&<h2 className="fw-group-title">{['Understand & develop ideas','Build sentences & paragraphs','Connect & draft','Edit, revise & transfer'][index/3]}</h2>}<article className="week-card">
+     <div className="week-card-top"><span>UNIT {String(index+1).padStart(2,'0')}</span><span className="week-status">{hasSaved?'Saved work':'Not started'}</span></div>
      <h2>{titles[index]}</h2>
      <p className="muted">{hasSaved?'Reopen your saved work or add another version.':'Explore the lesson and save your own work.'}</p>
      <button className="secondary-button" type="button" onClick={()=>onUnit(id)} disabled={!!unknownVersion}>Open Unit {String(index+1).padStart(2,'0')}</button>
-    </article>;
+    </article></div>;
    })}
   </div>
  </>;
