@@ -5,9 +5,9 @@ const root=path.resolve(__dirname,'..');
 const source=fs.readFileSync(path.join(root,'app/foundation.tsx'),'utf8');
 const css=fs.readFileSync(path.join(root,'app/globals.css'),'utf8');
 const page=fs.readFileSync(path.join(root,'app/page.tsx'),'utf8')+fs.readFileSync(path.join(root,'app/home-client.tsx'),'utf8');
-assert.equal((source.match(/className="foundation-lesson-id"/g)||[]).length,4,'IDs must appear in Recent Work, both Catalog layouts and lesson overview/practice');
+assert.equal((source.match(/className="foundation-lesson-id"/g)||[]).length,3,'IDs remain in Recent Work and both Catalog layouts');
 assert.ok(source.includes('<span className="foundation-lesson-id">{l.id}</span><LessonProgressMark {...lessonProgressForLesson(catalog.attempts,l.id)}/></span><strong>{l.title}</strong>'),'Recent Work preserves ID/title and now shows the same history-derived tick as the submitted catalog');
-assert.ok(source.includes('<span className="foundation-lesson-id">{lesson.id}</span> · {lesson.module}'),'focused player displays source ID');
+assert.ok(!source.includes('<span className="foundation-lesson-id">{lesson.id}</span>')&&source.includes('className="sle-lesson-header"'),'focused player shows readable title instead of internal ID');
 assert.ok(css.includes('.foundation-lesson-id{')&&css.includes('overflow-wrap:anywhere'),'readable IDs must fit mobile cards');
 // Preserve all three original prefetch sites (Recent Work plus both Catalog layouts).
 assert.equal((source.match(/onPointerEnter=\{\(\)=>prefetchLesson\(l\.id/g)||[]).length,3,'original three Catalog/recent prefetch surfaces remain');
@@ -45,4 +45,4 @@ assert.ok(page.includes('onSelectSkill={next=>navigate(next as View)}'),'existin
 assert.ok(page.includes('onNavigationGuard={registerFoundationNavigationGuard}'),'sidebar routes consult the mounted player before unmount');
 assert.ok(page.includes('disabled={navigating} onClick={()=>void navigate(n.key)}'),'every sidebar destination uses the serialized route gate');
 assert.ok(source.includes("await confirmLatestDraft(()=>draftRevision.current,()=>saveDraftRef.current())"),'route save confirms the latest edit before leaving');
-console.log('PASS: v20 IDs visible, bounded versioned lesson prefetch/reuse, nonblocking catalog refresh, safe draft gates.');
+console.log('PASS: v20 catalog IDs retained, learner header simplified, bounded versioned lesson prefetch/reuse, nonblocking catalog refresh, safe draft gates.');

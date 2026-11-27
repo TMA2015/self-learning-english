@@ -13,6 +13,8 @@ const learnerCopy:[string,string][]=[
  ['; bài viết cần người lớn đánh giá.','.'],
  [' Bài viết được người lớn nhận xét, không chấm CEFR tự động.',''],
  [' Bài tự luận chờ người lớn nhận xét.',''],
+ ['Saved for adult review','Response saved'],
+ ['Awaiting adult review','Response saved'],
 ];
 export function learnerLessonText(text:string){return learnerCopy.reduce((s,[from,to])=>s.replaceAll(from,to),text).trim()}
 function Heading({n,en,vi,showVi}:{n:number;en:string;vi:string;showVi:boolean}){return <div className="sle-overview-heading"><span aria-hidden="true">{n}</span><div><h3>{en}</h3>{showVi&&<p lang="vi">{vi}</p>}</div></div>}
