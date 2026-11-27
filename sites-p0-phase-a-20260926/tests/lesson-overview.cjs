@@ -20,6 +20,7 @@ for(const lesson of lessons)for(const showVi of [false,true]){
 }
 const f=fs.readFileSync('app/foundation.tsx','utf8');
 assert(f.indexOf('className="foundation-player-nav"')<f.indexOf('className="sle-lesson-header"'));
+assert(f.includes('data-lesson-id={lesson.id}'),'Stable non-visible player identity');
 for(const token of ['This saved attempt uses content','View archived notes','View current lesson notes','historicalVersionSuffix','foundation-attempt-details'])assert(!f.includes(token),token);
 assert(f.includes('const view=await loadLesson(id,existing?.version??catalog?.version)'));
 assert(f.includes('if(existing)validateOptionOrder(view.lesson.activities,existing)'));
