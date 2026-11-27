@@ -130,7 +130,17 @@ export default function Home(){
   try{nextWork=appendU01Version(u01Work(previous),Date.now())}catch{return false}
   const next:State={...current,foundationWritingV1:{...previous,units:{...previous.units,'FW-U01':nextWork}}};
   dirty.current=true;latestState.current=next;setState(next);
-  return saveNow(next);
+  const verified=await saveNow(next);
+  if(verified)return true;
+  const prior=u01Work(previous),live=latestState.current,scope=live.foundationWritingV1??emptyFoundationWritingV1();
+  if(scope.schemaVersion===1&&nextWork.versions.length>prior.versions.length){
+   const present=u01Work(scope),last=present.versions.at(-1),failed=nextWork.versions.at(-1);
+   if(last&&failed&&last.version===failed.version&&last.signature===failed.signature){
+    const rolled:State={...live,foundationWritingV1:{...scope,units:{...scope.units,['FW-U01']:{...present,versions:prior.versions}}}};
+    latestState.current=rolled;setState(rolled);dirty.current=true;
+   }
+  }
+  return false;
  }
  function editFoundationNext(unit:NextUnitId,draft:NextDraft){
   const previous=latestState.current.foundationWritingV1??emptyFoundationWritingV1();
@@ -146,7 +156,17 @@ export default function Home(){
   try{saved=appendNextVersion(nextUnitWork(previous,unit),Date.now())}catch{return false}
   const next:State={...current,foundationWritingV1:{...previous,units:{...previous.units,[unit]:saved}}};
   dirty.current=true;latestState.current=next;setState(next);
-  return saveNow(next);
+  const verified=await saveNow(next);
+  if(verified)return true;
+  const prior=nextUnitWork(previous,unit),live=latestState.current,scope=live.foundationWritingV1??emptyFoundationWritingV1();
+  if(scope.schemaVersion===1&&saved.versions.length>prior.versions.length){
+   const present=nextUnitWork(scope,unit),last=present.versions.at(-1),failed=saved.versions.at(-1);
+   if(last&&failed&&last.version===failed.version&&last.signature===failed.signature){
+    const rolled:State={...live,foundationWritingV1:{...scope,units:{...scope.units,[unit]:{...present,versions:prior.versions}}}};
+    latestState.current=rolled;setState(rolled);dirty.current=true;
+   }
+  }
+  return false;
  }
  function editFoundationWave2(unit:Wave2Id,draft:Wave2Draft){
   const previous=latestState.current.foundationWritingV1??emptyFoundationWritingV1();

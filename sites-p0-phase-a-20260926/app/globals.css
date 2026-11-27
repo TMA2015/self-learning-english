@@ -854,3 +854,27 @@ body {
  .study-notebook .study-notebook-tabs button{flex-grow:1}
  .study-notebook .study-notebook-actions button{flex:1 1 150px}
 }
+
+
+/* Foundation Writing — owner-approved learner shell. Scoped to the course. */
+.fw-unit{min-width:0;overflow-wrap:anywhere;color:#24374f}
+.fw-unit .page-heading{margin-bottom:14px}.fw-unit h1{color:#193b61;line-height:1.25}
+.fw-goal{padding:13px 16px;background:#edf4ff;border:1px solid #c8dbf2;border-radius:10px;margin:12px 0}.fw-goal p{margin:5px 0 0}
+.fw-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:18px 0 24px}
+.fw-unit .fw-steps button{display:flex;align-items:center;gap:8px;min-width:0;min-height:48px;white-space:normal;line-height:1.35;padding:9px;text-align:left;width:100%;font-size:14px}
+.fw-number{display:grid;place-items:center;flex:none;width:24px;height:24px;border-radius:50%;background:#e7effb;color:#245bb1;font-weight:700}.fw-steps small{display:block;font-size:11px}
+.fw-unit blockquote{border-left:4px solid #245bb1;background:#edf4ff;border-radius:0 9px 9px 0;padding:14px 16px;margin:12px 0;white-space:pre-wrap}
+.fw-unit .wcv2-card{border:1px solid #d6e3f1;background:#fff;border-radius:11px;padding:15px;margin:12px 0;min-width:0}
+.fw-unit .field textarea{background:white;min-height:86px;resize:vertical;max-width:100%;font-size:16px}
+.fw-count{display:block;text-align:right;font-size:12px;color:#526d85;margin-top:4px}
+.fw-unit .fw-inline-ai{margin:20px 0;padding:16px;border:1px solid #d8cbed;border-left:4px solid #6955a5;background:#f6f2fc;border-radius:10px;min-width:0}
+.fw-inline-ai h2{color:#51418b}.fw-inline-ai .wcv2-card{background:white}
+.fw-selfcheck{padding:12px;border-radius:9px;background:#f7f9fc;border:1px solid #dce6f1;margin:12px 0}.fw-selfcheck label{display:flex;gap:9px;align-items:flex-start;margin:8px 0}.fw-selfcheck input{width:17px;height:17px;accent-color:#245bb1;flex:none;margin-top:3px}
+.fw-unit .wcv2-radio-option:has(input:checked){background:#edf4ff;border-color:#9dbbe4}
+.fw-unit .notice[role=status]{background:#f3f7fd;border-left:4px solid #245bb1;padding:10px 12px}
+.fw-unit .fw-actions{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 8px;align-items:center}.fw-unit .fw-actions button{min-height:44px;white-space:normal;max-width:100%;width:auto}
+.fw-draft-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.fw-draft-full{grid-column:1/-1}.fw-draft-half textarea{min-height:185px!important}.fw-draft-half textarea[readonly]{background:#f1f4f8;color:#526d85}
+.fw-course-progress{height:8px;border-radius:99px;background:#e4ecf6;overflow:hidden}.fw-course-progress span{display:block;height:100%;background:#245bb1}
+.fw-course-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch}.fw-course-item{display:flex;flex-direction:column;min-width:0}.fw-course-item .week-card{flex:1}.fw-group-title{font-size:16px;color:#193b61;min-height:42px;margin:14px 0 8px}.fw-course-item:not(:nth-child(3n+1)){padding-top:64px}
+@media(max-width:900px){.fw-steps{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:640px){.fw-steps,.fw-draft-fields,.fw-course-grid{grid-template-columns:minmax(0,1fr)}.fw-unit .fw-actions button{width:100%}.fw-course-item:not(:nth-child(3n+1)){padding-top:0}.fw-group-title{min-height:0}.fw-unit .fw-inline-ai{padding:12px}}
