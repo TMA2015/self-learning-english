@@ -98,23 +98,23 @@ function TestApp(){
   await until(()=>getValue('u04-agent')==='Mia','chosen Mia');
   await write('u04-repair-revised','After Ms. Lee told Mia about the room, Mia sent the class a message.');
   await write('u04-repair-why','Naming Mia tells the reader who sent the message.');
-  click('Save version');
+  click('Save work');
   await until(()=>app().textContent?.includes('Saved version 1')===true,'U04 saved v1');
   check((window as any).__aiCalls===0,'U04 save should not invoke AI');
-  click('AI Tutor');
-  await until(()=>!!button('Get personal AI Tutor feedback'),'U04 AI tab');
-  check(!button('Get personal AI Tutor feedback')!.disabled,'saved four sentences plus repair eligible');
-  click('Get personal AI Tutor feedback');
+  
+  await until(()=>!!button('Save & Ask AI Tutor'),'U04 AI tab');
+  check(!button('Save & Ask AI Tutor')!.disabled,'saved four sentences plus repair eligible');
+  click('Save & Ask AI Tutor');
   await until(()=>app().textContent?.includes('Specific strengths')===true,'U04 mock AI');
   check((window as any).__aiCalls===1,'U04 explicit click only');
   click('Practice B');
   await until(()=>!!document.querySelector('[name="u04-notice-s1"]'),'U04 re-open');
   await write('u04-notice-s1','This is a newer independent location sentence.');
-  click('AI Tutor');
-  await until(()=>!!button('Get personal AI Tutor feedback'),'U04 AI after edit');
-  check(button('Get personal AI Tutor feedback')!.disabled,'edited draft does not reach AI');
+  
+  await until(()=>!!button('Save & Ask AI Tutor'),'U04 AI after edit');
+  check((window as any).__aiCalls===1,'No automatic AI on editing or changing section');
   check(!app().textContent?.includes('Specific strengths'),'stale review hidden');
-  click('Save version');
+  click('Save work');
   await until(()=>app().textContent?.includes('Saved version 2')===true,'U04 v2');
   const stored=(await loadLearnerState()).state??{};
   const work=stored.foundationWritingV1?.units?.['FW-U04'];
@@ -148,12 +148,12 @@ function TestApp(){
   choose('u05-job-role','detail');
   await until(()=>getValue('u05-job-role')==='detail','U05 role');
   await write('u05-job-why','It shows a possible way students use the tool corner.');
-  click('Save version');
+  click('Save work');
   await until(()=>app().textContent?.includes('Saved version 1')===true,'U05 saved');
-  click('AI Tutor');
-  await until(()=>!!button('Get personal AI Tutor feedback'),'U05 AI tab');
-  check(!button('Get personal AI Tutor feedback')!.disabled,'exact paragraph quote eligible');
-  click('Get personal AI Tutor feedback');
+  
+  await until(()=>!!button('Save & Ask AI Tutor'),'U05 AI tab');
+  check(!button('Save & Ask AI Tutor')!.disabled,'exact paragraph quote eligible');
+  click('Save & Ask AI Tutor');
   await until(()=>app().textContent?.includes('Specific strengths')===true,'U05 mock AI');
   check((window as any).__aiCalls===1,'U05 explicit AI once');
   const saved=(await loadLearnerState()).state??{};
@@ -181,12 +181,12 @@ function TestApp(){
   }
   await write('u06-cycleB-order','Introduce the proposal before describing what people will do and how to participate safely.');
   await write('u06-cycleB-overlap','Each paragraph performs a different reader job.');
-  click('Save version');
+  click('Save work');
   await until(()=>app().textContent?.includes('Saved version 1')===true,'U06 saved');
-  click('AI Tutor');
-  await until(()=>!!button('Get personal AI Tutor feedback'),'U06 AI tab');
-  check(!button('Get personal AI Tutor feedback')!.disabled,'three-role keyword outline eligible');
-  click('Get personal AI Tutor feedback');
+  
+  await until(()=>!!button('Save & Ask AI Tutor'),'U06 AI tab');
+  check(!button('Save & Ask AI Tutor')!.disabled,'three-role keyword outline eligible');
+  click('Save & Ask AI Tutor');
   await until(()=>app().textContent?.includes('Specific strengths')===true,'U06 mock AI');
   check((window as any).__aiCalls===1,'U06 explicit AI once');
   const stored=(await loadLearnerState()).state??{};
@@ -200,11 +200,14 @@ function TestApp(){
   check((document.querySelector('[name="u06-cycleB-notes-2"]') as HTMLTextAreaElement).value.startsWith('model building'),'U06 notes restored');
   await write('u06-cycleB-notes-0','New unsaved keyword note');
   (window as any).__failWave2Save=true;
-  click('Save version');
+  click('Save work');
   await until(()=>app().textContent?.includes('Save failed')===true,'U06 failed save message');
-  click('AI Tutor');
-  await until(()=>!!button('Get personal AI Tutor feedback'),'U06 AI tab after failed save');
-  check(button('Get personal AI Tutor feedback')!.disabled,'failed save must not enable AI');
+  
+  await until(()=>!!button('Save & Ask AI Tutor'),'U06 AI tab after failed save');
+  const callsBeforeFailure=(window as any).__aiCalls;
+  click('Save & Ask AI Tutor');
+  await until(()=>app().textContent?.includes('Save failed. Your writing is still here.')===true,'inline save failure');
+  check((window as any).__aiCalls===callsBeforeFailure,'Failed combined save must not call AI');
   const old=(await loadLearnerState()).state?.foundationWritingV1?.units?.['FW-U06'];
   check(old?.versions?.length===1,'failed save preserves U06 history');
   (window as any).__failWave2Save=false;

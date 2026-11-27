@@ -277,13 +277,13 @@ export function FoundationWritingNextUnit({unitId,work,onEdit,onSave,onExit,show
  function edit(d:NextDraft){clearReview();setSaveMessage('');onEdit(d)}
  function navigate(to:Step){clearReview();if(to==='cycleA'||to==='cycleB'||to==='transfer')setTarget(to);setStep(to)}
  async function save(exit=false){
-  if(busy)return;
+  if(busy)return false;
   setBusy(true);setSaveMessage('');
-  try{const ok=await onSave();if(!mounted.current)return;
-   if(!ok){setSaveMessage('Save failed. Your text remains on this page; retry before leaving.');return}
+  try{const ok=await onSave();if(!mounted.current)return false;
+   if(!ok){setSaveMessage('Save failed. Your text remains on this page; retry before leaving.');return false;}
    setSaveMessage('Saved a version of '+unitId+'. This records practice, not a language grade.');
-   if(exit)onExit();
-  }catch{if(mounted.current)setSaveMessage('Save failed. Your text remains on this page; retry before leaving.')}
+   if(exit)onExit();return true;
+  }catch{if(mounted.current)setSaveMessage('Save failed. Your text remains on this page; retry before leaving.');return false}
   finally{if(mounted.current)setBusy(false)}
  }
  async function ask(){
@@ -338,21 +338,21 @@ export function FoundationWritingNextUnit({unitId,work,onEdit,onSave,onExit,show
         onChange={()=>edit({...work.draft,supplementalAnswers:{...work.draft.supplementalAnswers,[item.id]:o.id},
          revealSupplemental:{...work.draft.revealSupplemental,[item.id]:false}})}/>
        <strong>{o.id}.</strong> {o.text}
-       {checked&&<p className="muted">{o.id===item.key?'Correct key. ':''}{o.rationale}</p>}
+       {checked&&<p className={o.id===item.key?'fw-rationale fw-correct':'fw-rationale'}>{o.id===item.key?'Correct key. ':''}{o.rationale}</p>}
       </label>)}
      </fieldset>
      <button type="button" className="secondary-button" disabled={!picked}
       onClick={()=>edit({...work.draft,revealSupplemental:{...work.draft.revealSupplemental,[item.id]:true}})}>
       Check selection and all explanations</button>
-     {result&&<p role="status">{result.correct?'Correct choice.':'Consider the reasons and try again.'} Key: {result.key}.</p>}
+     {result&&<p role="status" className={result.correct?'fw-answer fw-correct':'fw-answer fw-retry'}>{result.correct?'Correct choice.':'Consider the reasons and try again.'} Key: {result.key}.</p>}
     </article>;
    })}
    
   </section>}
-  {(step==='cycleA'||step==='cycleB'||step==='transfer')&&<section className="fw-inline-ai" aria-label="AI Tutor Writing Review" key={step}>
+  {(step==='cycleA'||step==='cycleB'||step==='transfer')&&<section className="fw-inline-ai" aria-label="AI Tutor Writing Review" key={unitId+'-'+step}>
    <h2>AI Writing Tutor</h2><p>Get feedback on this writing, then improve your answer here.</p>
    <WritingSelfCheck key={step} unit={Number(unitId.slice(-2))}/>
-   <WritingReviewAction signature={signature} eligible={!!reviewable} busy={busy||pending}  onSave={onSave} onAsk={()=>void ask()}/>
+   <WritingReviewAction signature={signature} eligible={!!reviewable} busy={busy||pending}  onSave={()=>save()} onAsk={()=>void ask()}/>
    {reviewStatus&&<p className="notice" role="status">{reviewStatus}</p>}
    {review&&<article className="wcv2-card" aria-live="polite">
     <h3>AI Tutor feedback · provisional · {review.model}</h3>

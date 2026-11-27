@@ -38,7 +38,7 @@ assert.deepEqual(u02.supplemental.map(x=>x.key),['A','C','B','C']);
 assert.deepEqual(u03.supplemental.map(x=>x.key),['C','B','D','C']);
 assert.match(u02.cycleB.setAsidePrompt,/optional/i);
 assert.match(u02.aiCriteria.acceptAllValid,/empty/);
-assert.match(ui,/Get personal AI Tutor feedback/);
+assert.match(ui,/WritingReviewAction/);
 assert.match(ui,/eligibleNextArtifact\(unitId,work,target\)/);
 assert.match(ui,/if\(!original\|\|!saved\|\|pending\|\|busy\)return/);
 assert.match(ui,/tutor\.coach\('foundation-writing'/);

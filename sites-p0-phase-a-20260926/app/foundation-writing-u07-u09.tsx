@@ -56,15 +56,15 @@ export function FoundationWritingWave3({unitId,work,onEdit,onSave,onExit,showVi=
  function edit(next:Wave3Draft){invalidate();setSaveStatus('');onEdit(next)}
  function go(next:Screen){invalidate();if(next==='cycleA'||next==='cycleB'||next==='transfer')setTarget(next);setScreen(next)}
  async function save(exit=false){
-  if(busy)return;
+  if(busy)return false;
   setBusy(true);setSaveStatus('');
   try{
    const ok=await onSave();
-   if(!mounted.current)return;
-   if(!ok){setSaveStatus('Save failed. Do not exit; retry the save. AI is disabled for changes not successfully saved.');return;}
+   if(!mounted.current)return false;
+   if(!ok){setSaveStatus('Save failed. Do not exit; retry the save. AI is disabled for changes not successfully saved.');return false;}
    setSaveStatus('Saved '+unitId+' version successfully. This records practice, not a language grade.');
-   if(exit)onExit();
-  }catch{if(mounted.current)setSaveStatus('Save failed. Your text remains on this page; retry.')}
+   if(exit)onExit();return true;
+  }catch{if(mounted.current)setSaveStatus('Save failed. Your text remains on this page; retry.');return false}
   finally{if(mounted.current)setBusy(false)}
  }
  async function ask(){
@@ -113,13 +113,13 @@ export function FoundationWritingWave3({unitId,work,onEdit,onSave,onExit,showVi=
         extrasReveal:{...d.extrasReveal,[q.id]:false}}):
        edit({...d,cycleAAnswers:{...d.cycleAAnswers,[q.id]:o.id},cycleAReveal:false})}/>
      <strong>{o.id}.</strong> {o.text}
-     {revealed&&<p className="muted">{o.id===q.key?'Correct fixed key. ':''}{o.rationale}</p>}
+     {revealed&&<p className={o.id===q.key?'fw-rationale fw-correct':'fw-rationale'}>{o.id===q.key?'Correct fixed key. ':''}{o.rationale}</p>}
     </label>)}
    </fieldset>
    {extra&&<button className="secondary-button" type="button" disabled={!answers[q.id]}
      onClick={()=>edit({...d,extrasReveal:{...d.extrasReveal,[q.id]:true}})}>
      Check this answer and all explanations</button>}
-   {revealed&&<p role="status">Fixed key: {q.key}. Original writing is not automatically graded.</p>}
+   {revealed&&<p role="status" className={answers[q.id]===q.key?'fw-answer fw-correct':'fw-answer fw-retry'}>{answers[q.id]===q.key?'Correct. ':'Review your choice. '}Fixed key: {q.key}. Original writing is not automatically graded.</p>}
   </article>;
  };
  return <section className="panel wcv2 fw-unit" aria-label={'Foundation Writing '+unitId}>
@@ -233,10 +233,10 @@ export function FoundationWritingWave3({unitId,work,onEdit,onSave,onExit,showVi=
    <p>The fixed-choice keys are reviewed. Your original drafts are never scored by connector, phrase or length counts.</p>
    {src.extras.map(q=>objectiveItem(q,true))}
   </section>}
-  {(screen==='cycleA'||screen==='cycleB'||screen==='transfer')&&<section className="fw-inline-ai" aria-label="AI Tutor Writing Review" key={screen}>
+  {(screen==='cycleA'||screen==='cycleB'||screen==='transfer')&&<section className="fw-inline-ai" aria-label="AI Tutor Writing Review" key={unitId+'-'+screen}>
    <h2>AI Writing Tutor</h2><p>Get feedback on this writing, then improve your answer here.</p>
    <WritingSelfCheck key={screen} unit={Number(unitId.slice(-2))}/>
-   <WritingReviewAction signature={signature} eligible={!!eligible} busy={busy||pending}  onSave={onSave} onAsk={()=>void ask()}/>
+   <WritingReviewAction signature={signature} eligible={!!eligible} busy={busy||pending}  onSave={()=>save()} onAsk={()=>void ask()}/>
    {reviewStatus&&<p className="notice" role="status">{reviewStatus}</p>}
    {review&&<article className="wcv2-card" aria-live="polite">
     <h3>Provisional AI Tutor feedback · {review.model}</h3>

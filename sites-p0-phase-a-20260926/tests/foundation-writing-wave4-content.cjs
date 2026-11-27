@@ -91,7 +91,7 @@ check('source verifier utility exists and exact checksum is pinned',()=>{
 });
 check('course shell includes explicit save and opt-in review actions',()=>{
  const ui=fs.readFileSync(path.join(base,'app/foundation-writing-wave4.tsx'),'utf8');
- assert.match(ui,/Save &amp; Exit/);assert.match(ui,/Get personal AI Tutor feedback/);
+ assert.match(ui,/Save &amp; Exit/);assert.match(ui,/WritingReviewAction/);
  assert.match(ui,/safeReview/);assert.match(ui,/sourceAudit\.pass/);
 });
 console.log(JSON.stringify({result:'PASS',gate:'FOUNDATION_WRITING_WAVE4_CONTENT_SHELL',tests:n,

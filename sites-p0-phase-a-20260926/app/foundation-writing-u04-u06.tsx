@@ -337,12 +337,12 @@ export function FoundationWritingWave2({unitId,work,onEdit,onSave,onExit,showVi=
  function edit(next:Wave2Draft){invalidate();setSaveStatus('');onEdit(next)}
  function go(s:Step){invalidate();if(s==='cycleA'||s==='cycleB'||s==='transfer')setTarget(s);setStep(s)}
  async function save(exit=false){
-  if(saveBusy)return;setSaveBusy(true);setSaveStatus('');
-  try{const ok=await onSave();if(!mounted.current)return;
-   if(!ok){setSaveStatus('Save failed. Your work remains on this page. Retry before leaving.');return}
+  if(saveBusy)return false;setSaveBusy(true);setSaveStatus('');
+  try{const ok=await onSave();if(!mounted.current)return false;
+   if(!ok){setSaveStatus('Save failed. Your work remains on this page. Retry before leaving.');return false;}
    setSaveStatus('Saved '+unitId+' as a version of your work. This is not a language proficiency score.');
-   if(exit)onExit();
-  }catch{if(mounted.current)setSaveStatus('Save failed. Retry before leaving.')}
+   if(exit)onExit();return true;
+  }catch{if(mounted.current)setSaveStatus('Save failed. Retry before leaving.');return false}
   finally{if(mounted.current)setSaveBusy(false)}
  }
  async function ask(){
@@ -397,21 +397,21 @@ export function FoundationWritingWave2({unitId,work,onEdit,onSave,onExit,showVi=
         onChange={()=>edit({...work.draft,supplementalAnswers:{...work.draft.supplementalAnswers,[item.id]:option.id},
          supplementalReveal:{...work.draft.supplementalReveal,[item.id]:false}})}/>
        <strong>{option.id}.</strong> {option.text}
-       {checked&&<p className="muted">{option.id===item.key?'Correct key. ':''}{option.rationale}</p>}
+       {checked&&<p className={option.id===item.key?'fw-rationale fw-correct':'fw-rationale'}>{option.id===item.key?'Correct key. ':''}{option.rationale}</p>}
       </label>)}
      </fieldset>
      <button type="button" className="secondary-button" disabled={!chosen}
       onClick={()=>edit({...work.draft,supplementalReveal:{...work.draft.supplementalReveal,[item.id]:true}})}>
       Check answer and read all explanations</button>
-     {result&&<p role="status">{result.correct?'Correct selection.':'Review the reasons and try again.'} Key: {result.key}</p>}
+     {result&&<p role="status" className={result.correct?'fw-answer fw-correct':'fw-answer fw-retry'}>{result.correct?'Correct selection.':'Review the reasons and try again.'} Key: {result.key}</p>}
     </article>;
    })}
    
   </section>}
-  {(step==='cycleA'||step==='cycleB'||step==='transfer')&&<section className="fw-inline-ai" aria-label="AI Tutor Writing Review" key={step}>
+  {(step==='cycleA'||step==='cycleB'||step==='transfer')&&<section className="fw-inline-ai" aria-label="AI Tutor Writing Review" key={unitId+'-'+step}>
    <h2>AI Writing Tutor</h2><p>Get feedback on this writing, then improve your answer here.</p>
    <WritingSelfCheck key={step} unit={Number(unitId.slice(-2))}/>
-   <WritingReviewAction signature={sig} eligible={!!selected} busy={saveBusy||pending}  onSave={onSave} onAsk={()=>void ask()}/>
+   <WritingReviewAction signature={sig} eligible={!!selected} busy={saveBusy||pending}  onSave={()=>save()} onAsk={()=>void ask()}/>
    {reviewStatus&&<p className="notice" role="status">{reviewStatus}</p>}
    {feedback&&<article className="wcv2-card" aria-live="polite">
     <h3>AI Tutor feedback · provisional · {feedback.model}</h3>

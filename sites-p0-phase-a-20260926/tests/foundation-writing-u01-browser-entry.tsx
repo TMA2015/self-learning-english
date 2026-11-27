@@ -70,6 +70,7 @@ function Root(){
  createRoot(document.getElementById('app')!).render(<Root/>);
  await waitUntil(()=>!!document.querySelector('[aria-label="Foundation Writing Unit 01"]'),'mount');
  ensure((window as any).__u01Calls===0,'No provider request on page render');
+ ensure(JSON.stringify([...document.querySelectorAll('.fw-steps button')].map(b=>b.getAttribute('aria-label')))===JSON.stringify(['Learn','Knowledge Check','Practice A','Practice B','Transfer']),'Five learning steps in approved order');
  if(phase==='save'){
   find('Practice A')!.click();
   await waitUntil(()=>!!document.querySelector('textarea[name="u01-a-topic"]'),'Cycle A tab');
@@ -84,12 +85,12 @@ function Root(){
    fill(name,value);
    await waitUntil(()=>((document.querySelector('textarea[name="'+name+'"]') as HTMLTextAreaElement)?.value===value),'controlled '+name);
   }
-  find('Save version')!.click();
+  find('Save work')!.click();
   await waitUntil(()=>document.getElementById('app')?.textContent?.includes('Saved version 1')===true,'version 1 save');
   ensure((window as any).__u01Calls===0,'No provider request from Save');
-  find('AI Tutor')!.click();
-  await waitUntil(()=>!!find('Get personal AI Tutor feedback'),'tutor tab');
-  const ai=find('Get personal AI Tutor feedback')!;
+  
+  await waitUntil(()=>!!find('Save & Ask AI Tutor'),'tutor tab');
+  const ai=find('Save & Ask AI Tutor')!;
   ensure(ai.disabled===false,'Saved map enables AI Tutor');
   ensure((window as any).__u01Calls===0,'No AI request from opening panel');
   ai.click();
@@ -100,12 +101,12 @@ function Root(){
   await waitUntil(()=>!!document.querySelector('textarea[name="u01-a-topic"]'),'return to map');
   fill('u01-a-topic','Updated independent writing topic');
   await waitUntil(()=>document.getElementById('app')?.textContent?.includes('Save a version')===true,'editing invalidates saved status');
-  find('AI Tutor')!.click();
-  await waitUntil(()=>!!find('Get personal AI Tutor feedback'),'AI Tutor tab after edited map');
-  const now=find('Get personal AI Tutor feedback')!;
-  ensure(now.disabled,'Edited, unsaved map disables the AI request');
+  
+  await waitUntil(()=>!!find('Save & Ask AI Tutor'),'AI Tutor tab after edited map');
+  
+  ensure((window as any).__u01Calls===1,'No automatic AI on editing or changing section');
   ensure(!document.getElementById('app')?.textContent?.includes('Specific strengths'),'Stale AI feedback must be cleared');
-  find('Save version')!.click();
+  find('Save work')!.click();
   await waitUntil(()=>document.getElementById('app')?.textContent?.includes('Saved version 2')===true,'version 2 save');
   const after=(await loadLearnerState()).state??{};
   const work=after.foundationWritingV1?.units?.['FW-U01'];
@@ -122,22 +123,25 @@ function Root(){
   await waitUntil(()=>!!document.querySelector('textarea[name="u01-a-topic"]'),'restored map');
   ensure((document.querySelector('textarea[name="u01-a-topic"]') as HTMLTextAreaElement).value==='Updated independent writing topic',
    'Exact version 2 text restored from the learner state');
-  find('AI Tutor')!.click();
-  await waitUntil(()=>!!find('Get personal AI Tutor feedback'),'AI Tutor tab after restore');
-  ensure(!find('Get personal AI Tutor feedback')!.disabled,'Reopened saved map remains eligible');
+  
+  await waitUntil(()=>!!find('Save & Ask AI Tutor'),'AI Tutor tab after restore');
+  ensure(!find('Save & Ask AI Tutor')!.disabled,'Reopened saved map remains eligible');
   ensure((window as any).__u01Calls===0,'Reopening saved map has no automatic AI calls');
   find('Practice A')!.click();
   await waitUntil(()=>!!document.querySelector('textarea[name="u01-a-topic"]'),'Practice A re-opened before edit');
   fill('u01-a-topic','Draft that was never successfully saved');
   await waitUntil(()=>document.getElementById('app')?.textContent?.includes('Save a version')===true,'unsaved draft state before failed save');
   (window as any).__failU01Save=true;
-  find('Save version')!.click();
+  find('Save work')!.click();
   await waitUntil(()=>document.getElementById('app')?.textContent?.includes('Save failed')===true,'failed save warning');
   const prior=(await loadLearnerState()).state?.foundationWritingV1?.units?.['FW-U01'];
   ensure(prior?.versions?.length===2,'Failed save must never mutate persisted learner data');
-  find('AI Tutor')!.click();
-  await waitUntil(()=>!!find('Get personal AI Tutor feedback'),'AI Tutor tab after failed save');
-  ensure(find('Get personal AI Tutor feedback')!.disabled,'Failed save cannot enable AI for unsaved text');
+  
+  await waitUntil(()=>!!find('Save & Ask AI Tutor'),'AI Tutor tab after failed save');
+  const callsBeforeFailure=(window as any).__u01Calls;
+  find('Save & Ask AI Tutor')!.click();
+  await waitUntil(()=>document.getElementById('app')?.textContent?.includes('Save failed. Your writing is still here.')===true,'inline save failure');
+  ensure((window as any).__u01Calls===callsBeforeFailure,'Failed combined save must not call AI');
   (window as any).__failU01Save=false;
   find('Save & Exit')!.click();
   await waitUntil(()=>(window as any).__u01Exited===true,'Save & Exit');

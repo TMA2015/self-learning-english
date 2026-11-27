@@ -51,7 +51,7 @@ const root=path.resolve(__dirname,'..');
  });
  const bundle=fs.readFileSync(path.join(out,'bundle.js'),'utf8');
  assert(bundle.includes('Saved version'),'U01 saving must be in the real React bundle');
- assert(bundle.includes('Get personal AI Tutor feedback'),'AI Tutor entry must be visible');
+ assert(bundle.includes('Save & Ask AI Tutor'),'AI Tutor entry must be visible');
  const bin=['google-chrome','google-chrome-stable','chromium','chromium-browser']
   .map(n=>{try{return cp.execFileSync('which',[n],{encoding:'utf8'}).trim()}catch{return ''}})
   .find(Boolean);

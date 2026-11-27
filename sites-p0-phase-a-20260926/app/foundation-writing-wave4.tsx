@@ -76,7 +76,6 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
  const selected=src[target];
  const payload=eligibleArtifact(unitId,work,selected.id,selected.fields.filter(f=>f.requiredForAI===true||
   (f.requiredForAI===undefined&&f.key==='draftV1')).map(f=>f.key));
- const originalV1=work.versions.find(v=>!!v.draft.cycleB.draftV1?.trim())?.draft.cycleB.draftV1;
  const change=(next:Wave4Draft)=>{token.current++;setReviewBusy(false);setReview(null);setReviewError('');
   setStatus('');onEdit(next)};
  const navigate=(next:Screen)=>{token.current++;setReviewBusy(false);setReview(null);setReviewError('');if(next==='cycleB'||next==='transfer')setTarget(next);setTab(next)};
@@ -90,24 +89,24 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
       onChange={()=>{setShown(v=>({...v,[q.id]:false}));change({...draft,
        [which]:{...draft[which],[q.id]:o.id}})}}/>
      <span>{o.id}. {o.text}</span>
-     {reveal&&<p className="muted">{o.rationale}</p>}
+     {reveal&&<p className={o.id===q.key?'fw-rationale fw-correct':'fw-rationale'}>{o.rationale}</p>}
     </label>)}
    </fieldset>
    <button type="button" className="secondary-button" disabled={!answer}
     onClick={()=>setShown(v=>({...v,[q.id]:true}))}>Check and explain</button>
-   {reveal&&<p role="status">Fixed key: {q.key}. This checks a choice, not your original writing.</p>}
+   {reveal&&<p role="status" className={answer===q.key?'fw-answer fw-correct':'fw-answer fw-retry'}>{answer===q.key?'Correct. ':'Review your choice. '}Fixed key: {q.key}. This checks a choice, not your original writing.</p>}
   </article>;
  };
  const fieldEditor=(stage:'cycleB'|'transfer',key:string,value:string)=>
   change({...draft,[stage]:{...draft[stage],[key]:value}});
  async function save(exit=false){
-  if(saving)return;setSaving(true);setStatus('');
+  if(saving)return false;setSaving(true);setStatus('');
   try{
-   const ok=await onSave();if(!live.current)return;
-   if(!ok){setStatus('Save failed or readback not confirmed. Retry before leaving. AI is disabled.');return;}
+   const ok=await onSave();if(!live.current)return false;
+   if(!ok){setStatus('Save failed or readback not confirmed. Retry before leaving. AI is disabled.');return false;}
    setStatus('Saved and verified. Practice completion is not a language grade.');
-   if(exit)onExit();
-  }catch{if(live.current)setStatus('Save failed. Your draft remains on screen; retry.')}
+   if(exit)onExit();return true;
+  }catch{if(live.current)setStatus('Save failed. Your draft remains on screen; retry.');return false}
   finally{if(live.current)setSaving(false)}
  }
  async function requestReview(){
@@ -184,10 +183,10 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
    <p>Choose a response, then read the explanation. These answers do not grade your original writing.</p>
    {src.extras.map(q=>choice(q,'extrasAnswers'))}
   </section>}
-  {(tab==='cycleB'||tab==='transfer')&&<section className="fw-inline-ai" aria-label="AI Tutor Writing Review" key={tab}>
+  {(tab==='cycleB'||tab==='transfer')&&<section className="fw-inline-ai" aria-label="AI Tutor Writing Review" key={unitId+'-'+tab}>
    <h2>AI Writing Tutor</h2><p>Get feedback on this writing, then improve your answer here.</p>
    <WritingSelfCheck key={tab} unit={Number(unitId.slice(-2))}/>
-   <WritingReviewAction signature={signature.current} eligible={!!payload} busy={saving||reviewBusy} available={!!reviewer} onSave={onSave} onAsk={()=>void requestReview()}/>
+   <WritingReviewAction signature={signature.current} eligible={!!payload} busy={saving||reviewBusy} available={!!reviewer} onSave={()=>save()} onAsk={()=>void requestReview()}/>
    {reviewError&&<p role="status" className="notice">{reviewError}</p>}
    {review&&<article className="wcv2-card" aria-live="polite">
     <h3>Provisional feedback · no score or CEFR claim</h3><p>{review.summary}</p>

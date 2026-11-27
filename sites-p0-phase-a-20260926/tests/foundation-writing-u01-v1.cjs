@@ -39,7 +39,7 @@ assert.match(home,/view==="foundation-writing"&&/);
 assert.match(home,/appendU01Version\(u01Work\(previous\),Date\.now\(\)\)/);
 assert.match(home,/return saveNow\(next\)/,'Real learner service must verify the snapshot save');
 assert.match(ui,/<EnglishLessonTutor/,'Knowledge Tutor uses lesson-only context');
-assert.match(ui,/Get personal AI Tutor feedback/);
+assert.match(ui,/WritingReviewAction/);
 assert.match(ui,/eligibleU01Artifact\(work,target\)/,'Only exactly saved original artifact can be sent');
 assert.match(ui,/tutor\.coach\('foundation-writing'/,'Do not use a generic essay evaluator for Task Map');
 assert.match(ui,/response\?\.provider==='firebase-ai-logic'/);

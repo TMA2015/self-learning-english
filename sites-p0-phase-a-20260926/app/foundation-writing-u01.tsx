@@ -51,15 +51,15 @@ export function FoundationWritingU01({work=emptyU01Work(),onEdit,onSave,onExit,s
  }
  function go(next:Step){clearReview();if(next==='cycleA'||next==='cycleB'||next==='transfer')setTarget(next);setStep(next)}
  async function save(exit=false){
-  if(saving)return;
+  if(saving)return false;
   setSaving(true);setSaveMessage('');
   try{
    const ok=await onSave();
-   if(!mounted.current)return;
-   if(!ok){setSaveMessage('Save failed. Your text remains on this page; retry before leaving.');return}
+   if(!mounted.current)return false;
+   if(!ok){setSaveMessage('Save failed. Your text remains on this page; retry before leaving.');return false;}
    setSaveMessage('Saved a version of Unit 01. Completion is practice evidence, not a language score.');
-   if(exit)onExit();
-  }catch{if(mounted.current)setSaveMessage('Save failed. Retry before leaving.')}
+   if(exit)onExit();return true;
+  }catch{if(mounted.current)setSaveMessage('Save failed. Retry before leaving.');return false}
   finally{if(mounted.current)setSaving(false)}
  }
  async function ask(){
@@ -193,13 +193,13 @@ export function FoundationWritingU01({work=emptyU01Work(),onEdit,onSave,onExit,s
         onChange={()=>edit({...draft,supplementalAnswers:{...draft.supplementalAnswers,[item.id]:o.id},
          revealSupplemental:{...draft.revealSupplemental,[item.id]:false}})}/>
        <strong>{o.id}.</strong> {o.text}
-       {checked&&<p className="muted">{o.id===item.key?'Correct option. ':''}{o.rationale}</p>}
+       {checked&&<p className={o.id===item.key?'fw-rationale fw-correct':'fw-rationale'}>{o.id===item.key?'Correct option. ':''}{o.rationale}</p>}
       </label>)}
      </fieldset>
      <button className="secondary-button" type="button" disabled={!chosen}
       onClick={()=>edit({...draft,revealSupplemental:{...draft.revealSupplemental,[item.id]:true}})}>
       Check this question</button>
-     {result&&<p role="status">{result.correct?'Correct choice.':'Try again after reading the reasons.'} Key: {result.key}.</p>}
+     {result&&<p role="status" className={result.correct?'fw-answer fw-correct':'fw-answer fw-retry'}>{result.correct?'Correct choice.':'Try again after reading the reasons.'} Key: {result.key}.</p>}
     </article>;
    })}
    
@@ -208,7 +208,7 @@ export function FoundationWritingU01({work=emptyU01Work(),onEdit,onSave,onExit,s
   {(step==='cycleA'||step==='cycleB'||step==='transfer')&&<section className="fw-inline-ai" aria-label="AI Tutor Writing Review" key={step}>
    <h2>AI Writing Tutor</h2><p>Get feedback on this writing, then improve your answer here.</p>
    <WritingSelfCheck key={step} unit={1}/>
-   <WritingReviewAction signature={signature} eligible={!!reviewable} busy={saving||pending}  onSave={onSave} onAsk={()=>void ask()}/>
+   <WritingReviewAction signature={signature} eligible={!!reviewable} busy={saving||pending}  onSave={()=>save()} onAsk={()=>void ask()}/>
    {reviewMessage&&<p role="status" className="notice">{reviewMessage}</p>}
    {answer&&<article className="wcv2-card" aria-live="polite">
     <h3>AI Tutor feedback · provisional · {answer.model}</h3>

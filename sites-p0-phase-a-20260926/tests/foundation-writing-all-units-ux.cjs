@@ -17,6 +17,7 @@ assert.deepEqual(allUnits,Array.from({length:12},(_,i)=>'FW-U'+String(i+1).padSt
 let totalRadioChoices=0;
 for(const {file,ids} of components){
  const content=read(file);
+ assert.match(content,/<WritingSteps step=/);assert.match(content,/<WritingReviewAction signature=/);assert.doesNotMatch(content,/label:'AI Tutor'/);
  assert.match(content,/className="foundation-unit-top-nav"/,file+' must have a top course navigation button');
  assert.match(content,/foundation-unit-top-nav"><button type="button" className="secondary-button" onClick=\{onExit\}/,
   file+' top Back button must use existing guarded course exit');
@@ -31,6 +32,9 @@ for(const {file,ids} of components){
   file+' must not expose internal accounting/academic process wording to learners');
 }
 assert(totalRadioChoices>=8,'Coverage must include at least eight actual radio-choice templates');
+const shared=read('app/foundation-writing-ui.tsx');
+assert.match(shared,/writingSteps=\['learn','extra','cycleA','cycleB','transfer'\]/);
+assert.match(shared,/Knowledge Check/);assert.match(shared,/Save & Ask AI Tutor/);assert.match(shared,/const ok=await onSave\(\)/);assert.match(shared,/if\(!ok\)/);assert.match(shared,/if\(!eligible\)/);
 const css=read('app/globals.css');
 assert.match(css,/\.wcv2 label\.wcv2-radio-option input\[type="radio"\]/);
 assert.match(css,/width:18px;height:18px/,'radio diameter should not inherit .field text-input width');

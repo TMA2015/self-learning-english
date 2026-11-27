@@ -81,6 +81,7 @@ function TestApp(){
  createRoot(app()).render(<TestApp/>);
  await until(()=>!!document.querySelector('#app [aria-label="Foundation Writing '+unit+'"]'),'unit mount');
  check((window as any).__aiCalls===0,'No automatic AI on mount');
+ check(JSON.stringify([...document.querySelectorAll('.fw-steps button')].map(b=>b.getAttribute('aria-label')))===JSON.stringify(['Learn','Knowledge Check','Practice A','Practice B','Transfer']),'Five learning steps in approved order');
  if(phase==='02save'){
   click('Practice B');
   await until(()=>!!document.querySelector('textarea[name="FW-U02-practice-b-idea-0"]'),'U02 idea bank');
@@ -99,25 +100,25 @@ function TestApp(){
   await until(()=>app().textContent?.includes('Your bank has three distinct notes')===true,'all-valid bank ready');
   check((document.querySelector('textarea[name="FW-U02-practice-b-setaside"]') as HTMLTextAreaElement).value==='',
    'No compulsory set-aside or rejected idea');
-  click('Save version');
+  click('Save work');
   await until(()=>app().textContent?.includes('Version 1 saved')===true,'U02 version one');
   check((window as any).__aiCalls===0,'No auto AI on save');
-  click('AI Tutor');
-  await until(()=>!!button('Get personal AI Tutor feedback'),'U02 Tutor panel');
-  check(!button('Get personal AI Tutor feedback')!.disabled,'Saved all-valid bank is eligible');
+  
+  await until(()=>!!button('Save & Ask AI Tutor'),'U02 Tutor panel');
+  check(!button('Save & Ask AI Tutor')!.disabled,'Saved all-valid bank is eligible');
   check((window as any).__aiCalls===0,'No automatic AI on opening tutor');
-  click('Get personal AI Tutor feedback');
+  click('Save & Ask AI Tutor');
   await until(()=>app().textContent?.includes('Specific strengths')===true,'AI mock U02');
   check((window as any).__aiCalls===1,'Exactly one explicit AI click');
   click('Practice B');
   await until(()=>!!document.querySelector('textarea[name="FW-U02-practice-b-rationale"]'),'Back to U02 bank');
   text('FW-U02-practice-b-rationale','A revised independent reason about easy weekend reading together.');
   await until(()=>app().textContent?.includes('Editing an unsaved draft')===true,'Unsaved edit makes old review ineligible');
-  click('AI Tutor');
-  await until(()=>!!button('Get personal AI Tutor feedback'),'U02 Tutor after edit');
-  check(button('Get personal AI Tutor feedback')!.disabled,'Edited unsaved U02 cannot call AI');
+  
+  await until(()=>!!button('Save & Ask AI Tutor'),'U02 Tutor after edit');
+  check((window as any).__aiCalls===1,'No automatic AI on editing or changing section');
   check(!app().textContent?.includes('Specific strengths'),'Old AI review not visible after edit');
-  click('Save version');
+  click('Save work');
   await until(()=>app().textContent?.includes('Version 2 saved')===true,'U02 version two');
   const saved=(await loadLearnerState()).state??{};
   const u02=saved.foundationWritingV1?.units?.['FW-U02'];
@@ -156,14 +157,14 @@ function TestApp(){
    text(k,v);
    await until(()=>((document.querySelector('textarea[name="'+k+'"]') as HTMLTextAreaElement)?.value===v),'controlled chain '+k);
   }
-  click('Save version');
-  await until(()=>app().textContent?.includes('Version 1 saved')===true,'U03 version one');
-  click('AI Tutor');
-  await until(()=>!!button('Get personal AI Tutor feedback'),'U03 Tutor panel');
-  check(!button('Get personal AI Tutor feedback')!.disabled,'U03 original chains eligible only after save');
+  check((window as any).__aiCalls===0,'No request before explicit combined save');
+  
+  await until(()=>!!button('Save & Ask AI Tutor'),'U03 Tutor panel');
+  check(!button('Save & Ask AI Tutor')!.disabled,'U03 original chains eligible only after save');
   check((window as any).__aiCalls===0,'No automatic U03 AI');
-  click('Get personal AI Tutor feedback');
+  click('Save & Ask AI Tutor');
   await until(()=>app().textContent?.includes('Specific strengths')===true,'U03 synthetic AI');
+  check(app().textContent?.includes('Version 1 saved'),'Combined click saved before review');
   check((window as any).__aiCalls===1,'U03 exactly one explicit AI call');
   const stored=(await loadLearnerState()).state??{};
   check(stored.foundationWritingV1.units['FW-U02'].versions.length===2,'U02 preserved by U03 save');

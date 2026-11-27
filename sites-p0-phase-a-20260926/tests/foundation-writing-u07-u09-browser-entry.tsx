@@ -64,16 +64,17 @@ function TestApp(){
  createRoot(root()).render(<TestApp/>);
  await until(()=>!!root().querySelector('[aria-label="Foundation Writing '+unit+'"]'),'Wave3 app mount');
  check((window as any).__aiCalls===0,'No AI on load');
+ check(JSON.stringify([...document.querySelectorAll('.fw-steps button')].map(b=>b.getAttribute('aria-label')))===JSON.stringify(['Learn','Knowledge Check','Practice A','Practice B','Transfer']),'Five learning steps in approved order');
  const start=async()=>{
   click('Practice B');
   await until(()=>!!root().querySelector('textarea[name="'+unit+'-cycleB-'+(
    unit==='FW-U07'?'problem':unit==='FW-U08'?'sharedIntent':'planRoles')+'"]'),'Practice B inputs');
  };
  const saved=async(n:number)=>until(()=>root().textContent?.includes('Saved version '+n)===true,'saved version '+n);
- const ai=async()=>{click('AI Tutor');await until(()=>!!button('Get personal AI Tutor feedback'),'AI Tutor tab');
-  check(!button('Get personal AI Tutor feedback')!.disabled,'eligible after exact save');
+ const ai=async()=>{await until(()=>!!button('Save & Ask AI Tutor'),'inline review panel');
+  check(!button('Save & Ask AI Tutor')!.disabled,'eligible after exact save');
   check((window as any).__aiCalls===0,'No AI auto on tab open');
-  click('Get personal AI Tutor feedback');
+  click('Save & Ask AI Tutor');
   await until(()=>root().textContent?.includes('Specific strengths')===true,'AI mock feedback');
   check((window as any).__aiCalls===1,'One explicit AI click');};
  if(phase==='07save'){
@@ -81,13 +82,13 @@ function TestApp(){
   await write('FW-U07-cycleB-problem','Students cannot find the lost-and-found hours because the schedule is unclear.');
   await write('FW-U07-cycleB-response','The council could publish a weekly notice with hours and the correct collection-table location.');
   await write('FW-U07-cycleB-transitionReason','The proposed notice directly answers the missing time and place information.');
-  click('Save version');await saved(1);await ai();
+  click('Save work');await saved(1);await ai();
   click('Practice B');await until(()=>!!root().querySelector('textarea[name="FW-U07-cycleB-response"]'),'reopened');
   await write('FW-U07-cycleB-response','The council could publish an updated weekly notice for students and families.');
-  click('AI Tutor');await until(()=>!!button('Get personal AI Tutor feedback'),'AI tab after edit');
-  check(button('Get personal AI Tutor feedback')!.disabled,'Unsaved U07 text blocks AI');
+  await until(()=>!!button('Save & Ask AI Tutor'),'AI tab after edit');
+  check((window as any).__aiCalls===1,'No automatic AI on editing or changing section');
   check(!root().textContent?.includes('Specific strengths'),'stale review cleared');
-  click('Save version');await saved(2);
+  click('Save work');await saved(2);
   const state=(await loadLearnerState()).state??{},work=state.foundationWritingV1?.units?.['FW-U07'];
   check(work?.versions?.length===2,'U07 two versions');
   check(work.versions[0].draft.cycleB.response.includes('collection-table location'),'U07 version 1 immutable');
@@ -109,7 +110,7 @@ function TestApp(){
   await write('FW-U08-cycleB-organizerMessage','Hello Ms. Rivera, could you please confirm the mural walk start time and meeting point?');
   await write('FW-U08-cycleB-change1','I used a friendly greeting for Luca.');
   await write('FW-U08-cycleB-change2','I used a polite, direct question for the coordinator.');
-  click('Save version');await saved(1);await ai();
+  click('Save work');await saved(1);await ai();
   const state=(await loadLearnerState()).state??{};
   check(state.foundationWritingV1.units['FW-U07'].versions.length===2,'U07 preserved');
   check(state.foundationWritingV1.units['FW-U08'].versions.length===1,'U08 persisted');
@@ -126,7 +127,7 @@ function TestApp(){
   const first='Hello Programme Coordinator, could your centre consider clearer sign-up guidance for weekend workshop visitors? Please provide where and when to register and what materials to bring, if possible. That information could reduce confusion for first-time attendees. Thank you for considering this idea.';
   await write('FW-U09-cycleB-draftV1',first);
   await write('FW-U09-cycleB-commitmentNote','I have addressed the coordinator with an honest request and practical details.');
-  click('Save version');await saved(1);await ai();
+  click('Save work');await saved(1);await ai();
   const state=(await loadLearnerState()).state??{};
   const w=state.foundationWritingV1?.units?.['FW-U09'];
   check(w?.firstDraftV1?.text===first&&w.firstDraftV1.version===1,'Immutable U09 Draft V1 recorded');
@@ -138,11 +139,14 @@ function TestApp(){
   check(first.startsWith('Hello Programme Coordinator'),'U09 restored');
   await write('FW-U09-cycleB-draftV1','A revised different email with clarified practical information for workshop visitors.');
   (window as any).__failWave3Save=true;
-  click('Save version');
+  click('Save work');
   await until(()=>root().textContent?.includes('Save failed')===true,'U09 save failure');
-  click('AI Tutor');
-  await until(()=>!!button('Get personal AI Tutor feedback'),'U09 Tutor after failure');
-  check(button('Get personal AI Tutor feedback')!.disabled,'Failed save cannot unlock AI');
+  
+  await until(()=>!!button('Save & Ask AI Tutor'),'U09 Tutor after failure');
+  const callsBeforeFailure=(window as any).__aiCalls;
+  click('Save & Ask AI Tutor');
+  await until(()=>root().textContent?.includes('Save failed. Your writing is still here.')===true,'inline save failure');
+  check((window as any).__aiCalls===callsBeforeFailure,'Failed combined save must not call AI');
   const prior=(await loadLearnerState()).state?.foundationWritingV1?.units?.['FW-U09'];
   check(prior?.versions?.length===1&&prior?.firstDraftV1?.text===first,'Failure preserved version and original V1');
   (window as any).__failWave3Save=false;
