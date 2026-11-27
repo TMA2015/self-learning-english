@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "version": "1.28.1",
+  "sourcePath": "content/curriculum-1.28.1-candidate.json",
+  "reviewedPath": "content/review-packets/curriculum-1.28.1-wording-candidate.json",
+  "reviewReceiptPath": "content/review-packets/SLE_REA_BASELINE_WORDING_PASS_RECEIPT_20261126.md",
+  "reviewReceiptSha256": "52e0840f2a141acc9e1b3953d876cde7f8b8482d523cdf06bf4b4c72a326fbed",
+  "rawSha256": "d95402089159b81af1ef99d5d797f0914fe21a4a498f1ab31053eba0f059e251",
+  "canonicalSha256": "5eaab191b2de845cfac20ac7b3aaaf3a1fde1279fd37813d4f26a407b330ea23",
+  "lessons": 176,
+  "activities": 1224,
+  "bundledAt": "2026-11-26T00:00:00.000Z"
+}

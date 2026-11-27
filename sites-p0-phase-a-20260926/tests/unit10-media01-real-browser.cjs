@@ -10,6 +10,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os');
 const http=require('node:http'),cp=require('node:child_process'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..');
+const active=require('../content/active-release.json');
 const manifest=require('../content/foundation-audio.json');
 const receipts=require('../content/batches/unit10-owner-audio-receipts-20261107.json');
 const ids=['LIS-A1-06','LIS-A2-07','LIS-B1-08'];
@@ -130,7 +131,7 @@ if(!chrome)throw Error('No native Chrome installed — real MEDIA-01 is NOT veri
   assert.deepEqual(detail.lessons?.map(x=>x.id),ids);
   assert(detail.lessons.every(x=>x.played&&x.answered&&x.submitted&&x.retake));
   assert.equal(detail.olderAttemptPreserved,true);
-  assert.equal(detail.activeVersion,'1.28.1');
+  assert.equal(detail.activeVersion,active.version);
   assert.equal(detail.productionImport,false);
   assert.equal(detail.releaseAuthorized,false);
   console.log(JSON.stringify({
