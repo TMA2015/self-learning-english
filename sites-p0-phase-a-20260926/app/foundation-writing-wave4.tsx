@@ -5,7 +5,7 @@
  * Synthetic fixtures are confined to the isolated browser QA harness.
  */
 import {useEffect,useRef,useState} from 'react';
-import {WritingGoal,WritingHeading,WritingMeta,WritingTask,WritingModel,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
+import {WritingGoal,WritingReasons,WritingHeading,WritingMeta,WritingTask,WritingModel,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
 import {validateWave4Bundle,type Wave4Lesson,type TaskStrip,type OwnField} from '../domain/foundation-writing-wave4-content';
 import {eligibleArtifact,type Wave4Id,type Wave4Draft,type Wave4Work,type Objective} from '../domain/foundation-writing-wave4-readiness';
 
@@ -89,12 +89,12 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
       onChange={()=>{setShown(v=>({...v,[q.id]:false}));change({...draft,
        [which]:{...draft[which],[q.id]:o.id}})}}/>
      <span>{o.id}. {o.text}</span>
-     {reveal&&<p className={o.id===q.key?'fw-rationale fw-correct':'fw-rationale'}>{o.rationale}</p>}
+
     </label>)}
    </fieldset>
    <button type="button" className="secondary-button" disabled={!answer}
     onClick={()=>setShown(v=>({...v,[q.id]:true}))}>Check and explain</button>
-   {reveal&&<p role="status" className={answer===q.key?'fw-answer fw-correct':'fw-answer fw-retry'}>{answer===q.key?'Correct. ':'Review your choice. '}Fixed key: {q.key}. This checks a choice, not your original writing.</p>}
+   {reveal&&<div role="status" className={answer===q.key?'fw-answer fw-correct':'fw-answer fw-retry'}>{answer===q.key?'Correct. ':'Review your choice. '}Fixed key: {q.key}. This checks a choice, not your original writing.<p>{q.options.find(o=>o.id===answer)?.rationale}</p><WritingReasons options={q.options}/></div>}
   </article>;
  };
  const fieldEditor=(stage:'cycleB'|'transfer',key:string,value:string)=>

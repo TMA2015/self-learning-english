@@ -1,6 +1,6 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
-import {WritingGoal,WritingHeading,WritingMeta,WritingTask,WritingModel,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
+import {WritingGoal,WritingReasons,WritingHeading,WritingMeta,WritingTask,WritingModel,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
 import {EnglishLessonTutor} from './english-lesson-tutor';
 import {TeachingBlocks} from './teaching-blocks';
 import {browserTutorService} from '../infrastructure/browser/firebase-ai-browser';
@@ -128,9 +128,10 @@ function U04Panel({step,d,edit,count,reveal}:{
      <input type="radio" name={q.id} value={opt.id}
       checked={d.comboAnswers[q.id]===opt.id}
       onChange={()=>edit({...d,comboAnswers:{...d.comboAnswers,[q.id]:opt.id},comboReveal:false})}/>
-     {opt.text}{d.comboReveal&&<p className="muted">{opt.id===q.key?'Correct key. ':''}{opt.rationale}</p>}
+     {opt.text}
     </label>)}
    </fieldset>
+   {d.comboReveal&&<div role="status" className={d.comboAnswers[q.id]===q.key?'fw-answer fw-correct':'fw-answer fw-retry'}><p>Correct key: {q.key}.</p><WritingReasons options={q.options}/></div>}
   </div>)}
   <button type="button" className="secondary-button"
    onClick={()=>edit({...d,comboReveal:true})}>Check all joins and explanations</button>
@@ -425,13 +426,13 @@ export function FoundationWritingWave2({unitId,work,onEdit,onSave,onExit,showVi=
         onChange={()=>edit({...work.draft,supplementalAnswers:{...work.draft.supplementalAnswers,[item.id]:option.id},
          supplementalReveal:{...work.draft.supplementalReveal,[item.id]:false}})}/>
        <strong>{option.id}.</strong> {option.text}
-       {checked&&<p className={option.id===item.key?'fw-rationale fw-correct':'fw-rationale'}>{option.id===item.key?'Correct key. ':''}{option.rationale}</p>}
+
       </label>)}
      </fieldset>
      <button type="button" className="secondary-button" disabled={!chosen}
       onClick={()=>edit({...work.draft,supplementalReveal:{...work.draft.supplementalReveal,[item.id]:true}})}>
       Check answer and read all explanations</button>
-     {result&&<p role="status" className={result.correct?'fw-answer fw-correct':'fw-answer fw-retry'}>{result.correct?'Correct selection.':'Review the reasons and try again.'} Key: {result.key}</p>}
+     {result&&<div role="status" className={result.correct?'fw-answer fw-correct':'fw-answer fw-retry'}>{result.correct?'Correct selection.':'Review the reasons and try again.'} Key: {result.key}<p>{item.options.find(o=>o.id===chosen)?.rationale}</p><WritingReasons options={item.options}/></div>}
     </article>;
    })}
    

@@ -919,3 +919,6 @@ body {
 .fw-unit .fw-actions{border-top:1px solid #dce6f1;padding-top:18px;margin-top:24px}
 @container (max-width:660px){.fw-unit .fw-steps{grid-template-columns:repeat(3,minmax(0,1fr))}.fw-unit .fw-steps button{min-height:48px}.fw-unit .fw-classify-row{grid-template-columns:minmax(0,1fr) minmax(130px,40%)}}
 @container (max-width:420px){.fw-unit .fw-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.fw-unit .fw-classify-row{grid-template-columns:minmax(0,1fr)}.fw-unit .fw-classify-row>p{grid-column:1}.fw-unit .wcv2-grid,.fw-unit .fw-draft-fields{grid-template-columns:minmax(0,1fr)}.fw-unit .fw-top-actions{width:100%;justify-content:space-between}.fw-unit .fw-practice-card,.fw-unit .wcv2-card{padding:12px}}
+
+/* Compact answer rationale list, following owner-approved example. */
+.fw-unit .fw-reasons{background:#fff;border-color:#d8e3ef}.fw-unit .fw-reasons ul{margin:0;padding-left:18px;font-size:14px;color:#24374f}.fw-unit .fw-reasons li{margin:0 0 6px;overflow-wrap:anywhere}.fw-unit .fw-reasons li:last-child{margin-bottom:0}

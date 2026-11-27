@@ -1,6 +1,6 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
-import {WritingGoal,WritingHeading,WritingMeta,WritingTask,WritingModel,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
+import {WritingGoal,WritingReasons,WritingHeading,WritingMeta,WritingTask,WritingModel,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
 import {EnglishLessonTutor} from './english-lesson-tutor';
 import {TeachingBlocks} from './teaching-blocks';
 import {browserTutorService} from '../infrastructure/browser/firebase-ai-browser';
@@ -357,13 +357,13 @@ export function FoundationWritingNextUnit({unitId,work,onEdit,onSave,onExit,show
         onChange={()=>edit({...work.draft,supplementalAnswers:{...work.draft.supplementalAnswers,[item.id]:o.id},
          revealSupplemental:{...work.draft.revealSupplemental,[item.id]:false}})}/>
        <strong>{o.id}.</strong> {o.text}
-       {checked&&<p className={o.id===item.key?'fw-rationale fw-correct':'fw-rationale'}>{o.id===item.key?'Correct key. ':''}{o.rationale}</p>}
+
       </label>)}
      </fieldset>
      <button type="button" className="secondary-button" disabled={!picked}
       onClick={()=>edit({...work.draft,revealSupplemental:{...work.draft.revealSupplemental,[item.id]:true}})}>
       Check selection and all explanations</button>
-     {result&&<p role="status" className={result.correct?'fw-answer fw-correct':'fw-answer fw-retry'}>{result.correct?'Correct choice.':'Consider the reasons and try again.'} Key: {result.key}.</p>}
+     {result&&<div role="status" className={result.correct?'fw-answer fw-correct':'fw-answer fw-retry'}>{result.correct?'Correct choice.':'Consider the reasons and try again.'} Key: {result.key}.<p>{item.options.find(o=>o.id===picked)?.rationale}</p><WritingReasons options={item.options}/></div>}
     </article>;
    })}
    

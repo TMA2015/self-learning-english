@@ -1,6 +1,6 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
-import {WritingGoal,WritingHeading,WritingMeta,WritingTask,WritingModel,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
+import {WritingGoal,WritingReasons,WritingHeading,WritingMeta,WritingTask,WritingModel,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
 import {TeachingBlocks} from './teaching-blocks';
 import {EnglishLessonTutor} from './english-lesson-tutor';
 import {browserTutorService} from '../infrastructure/browser/firebase-ai-browser';
@@ -113,13 +113,13 @@ export function FoundationWritingWave3({unitId,work,onEdit,onSave,onExit,showVi=
         extrasReveal:{...d.extrasReveal,[q.id]:false}}):
        edit({...d,cycleAAnswers:{...d.cycleAAnswers,[q.id]:o.id},cycleAReveal:false})}/>
      <strong>{o.id}.</strong> {o.text}
-     {revealed&&<p className={o.id===q.key?'fw-rationale fw-correct':'fw-rationale'}>{o.id===q.key?'Correct fixed key. ':''}{o.rationale}</p>}
+
     </label>)}
    </fieldset>
    {extra&&<button className="secondary-button" type="button" disabled={!answers[q.id]}
      onClick={()=>edit({...d,extrasReveal:{...d.extrasReveal,[q.id]:true}})}>
      Check this answer and all explanations</button>}
-   {revealed&&<p role="status" className={answers[q.id]===q.key?'fw-answer fw-correct':'fw-answer fw-retry'}>{answers[q.id]===q.key?'Correct. ':'Review your choice. '}Fixed key: {q.key}. Original writing is not automatically graded.</p>}
+   {revealed&&<div role="status" className={answers[q.id]===q.key?'fw-answer fw-correct':'fw-answer fw-retry'}>{answers[q.id]===q.key?'Correct. ':'Review your choice. '}Fixed key: {q.key}. Original writing is not automatically graded.<p>{q.options.find(o=>o.id===answers[q.id])?.rationale}</p><WritingReasons options={q.options}/></div>}
   </article>;
  };
  return <section className="panel wcv2 fw-unit" aria-label={'Foundation Writing '+unitId}>

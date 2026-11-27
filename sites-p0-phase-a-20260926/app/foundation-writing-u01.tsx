@@ -1,6 +1,6 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
-import {WritingGoal,WritingHeading,WritingMeta,WritingTask,WritingModel,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
+import {WritingGoal,WritingReasons,WritingHeading,WritingMeta,WritingTask,WritingModel,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
 import {EnglishLessonTutor} from './english-lesson-tutor';
 import {TeachingBlocks} from './teaching-blocks';
 import {browserTutorService} from '../infrastructure/browser/firebase-ai-browser';
@@ -158,12 +158,12 @@ export function FoundationWritingU01({work=emptyU01Work(),onEdit,onSave,onExit,s
      <input type="radio" name="u01-best-opening" value={o.id} checked={draft.cycleBChoice===o.id}
       onChange={()=>edit({...draft,cycleBChoice:o.id,revealCycleB:false})}/>
      <strong>{o.id}.</strong> {o.text}
-     {draft.revealCycleB&&<p className="muted">{o.id===unit.cycleB.key?'Best opening. ':''}{o.rationale}</p>}
+
     </label>)}
    </fieldset>
    <button type="button" className="secondary-button" disabled={!draft.cycleBChoice}
     onClick={()=>edit({...draft,revealCycleB:true})}>Check opening and see all rationales</button>
-   {draft.revealCycleB&&<p className="notice">{unit.cycleB.instruction}</p>}</div>
+   {draft.revealCycleB&&<div role="status" className={draft.cycleBChoice===unit.cycleB.key?'fw-answer fw-correct':'fw-answer fw-retry'}><p>{unit.cycleB.instruction}</p><WritingReasons options={unit.cycleB.options}/></div>}</div>
    <div className="fw-practice-card"><label className="field" htmlFor="u01-repair"><strong>Your own repair</strong><span>{unit.cycleB.repairPrompt}</span>
     <WritingText id="u01-repair" rows={4} maxLength={1800} value={draft.repair}
      onChange={e=>edit({...draft,repair:e.target.value})}/></label>
@@ -178,9 +178,9 @@ export function FoundationWritingU01({work=emptyU01Work(),onEdit,onSave,onExit,s
   {step==='transfer'&&<section aria-label="Transfer task">
    <WritingHeading number={1}>Independent transfer</WritingHeading><WritingTask>{unit.transfer.prompt}</WritingTask>
    <WritingHeading number={2}>Your practice</WritingHeading>
-   <p>{unit.transfer.instruction}</p>
+   <div className="fw-practice-card"><p>{unit.transfer.instruction}</p>
    <MapEditor scope="u01-t" fields={unit.transfer.fields} value={draft.transferMap}
-    edit={(k,v)=>editMap('transferMap',k,v)}/>
+    edit={(k,v)=>editMap('transferMap',k,v)}/></div>
    
   </section>}
 
@@ -199,13 +199,13 @@ export function FoundationWritingU01({work=emptyU01Work(),onEdit,onSave,onExit,s
         onChange={()=>edit({...draft,supplementalAnswers:{...draft.supplementalAnswers,[item.id]:o.id},
          revealSupplemental:{...draft.revealSupplemental,[item.id]:false}})}/>
        <strong>{o.id}.</strong> {o.text}
-       {checked&&<p className={o.id===item.key?'fw-rationale fw-correct':'fw-rationale'}>{o.id===item.key?'Correct option. ':''}{o.rationale}</p>}
+
       </label>)}
      </fieldset>
      <button className="secondary-button" type="button" disabled={!chosen}
       onClick={()=>edit({...draft,revealSupplemental:{...draft.revealSupplemental,[item.id]:true}})}>
       Check this question</button>
-     {result&&<p role="status" className={result.correct?'fw-answer fw-correct':'fw-answer fw-retry'}>{result.correct?'Correct choice.':'Try again after reading the reasons.'} Key: {result.key}.</p>}
+     {result&&<div role="status" className={result.correct?'fw-answer fw-correct':'fw-answer fw-retry'}>{result.correct?'Correct choice.':'Try again after reading the reasons.'} Key: {result.key}.<p>{item.options.find(o=>o.id===chosen)?.rationale}</p><WritingReasons options={item.options}/></div>}
     </article>;
    })}
    
