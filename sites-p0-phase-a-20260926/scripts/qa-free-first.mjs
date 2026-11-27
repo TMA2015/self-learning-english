@@ -1,5 +1,6 @@
 import {spawnSync} from "node:child_process";
 import path from "node:path";
+import {pathToFileURL} from "node:url";
 
 const mode=process.argv.includes("--preflight-v1281")?"preflight-v1281":process.argv.includes("--core")?"core":"full";
 const root=process.cwd();
@@ -31,6 +32,9 @@ const coreTests=[
   "storage-chromium-smoke.cjs",
   "storage-ui-browser.cjs",
   "content-quality.cjs",
+  "current-curriculum-integrity.cjs",
+  "current-curriculum-audio-readiness.cjs",
+  "lesson-overview.cjs",
   "version-aware-attempt-ux.cjs",
   "practice-progress-p2a.cjs",
   "github-first-browser-storage.cjs",
@@ -42,7 +46,6 @@ const coreTests=[
   "github-first-g2-local-diagnostic.cjs",
   "g3-firebase-ai-provider-contract.cjs",
   "g3-firebase-browser-bridge.cjs",
-  "listening-audio-manifest-coverage.cjs",
   "listening-dictation-contract.cjs",
   "listening-turn-compact.cjs",
   "foundation-compact-practice.cjs",
@@ -100,7 +103,6 @@ const fullRegressionTests=[
   "writing-week2-course-simplified.cjs",
   "writing-week2-preview-acceptance.cjs",
   "writing-week2-r1-browser.cjs",
-  "writing-week2-r1-export.cjs",
   "writing-week2-r2-contract.cjs",
   "writing-week2-optional-ai-r0.cjs",
   "writing-week2-persistence-r1.cjs",
@@ -109,9 +111,7 @@ const fullRegressionTests=[
   "writing-course-v2-c.cjs",
   "g3e-firebase-reliability.cjs",
   "issue64-task-b.cjs",
-  "current-curriculum-audio-readiness.cjs",
   "issue66-writing-progress.cjs",
-  "content-density-wave6-draft.cjs",
   "content-density-wave6-audio.cjs",
   "curriculum-1150-density-wave6.cjs",
   "assisted-review.cjs",
@@ -136,7 +136,6 @@ const fullRegressionTests=[
   "f2-a1u08-a2u07-v124.cjs",
   "f2-v124-upgrade-storage-safety.cjs",
   "curriculum-250-capacity-preflight.cjs",
-  "f2-bulk12-v125-intake-contract.cjs",
   "f2-bulk12-v125-machine-schema.cjs",
   "f3-b2-bulk12-v126-machine-schema.cjs",
   "b2-u05u06-wave2-v127-machine-schema.cjs",
@@ -166,8 +165,6 @@ const fullRegressionTests=[
   "unit10-audio-owner-receipts.cjs",
   "unit10-staged-manifest-safety.cjs",
   "c1c2-importer-compat.cjs",
-  "c1c2-draft-source.cjs",
-  "c1c2-authored-content-schema.cjs",
   "curriculum-1100-vocab-reading-b1-density-wave1.cjs",
   "curriculum-1110-listening-writing-density-wave2.cjs",
   "curriculum-batch02.cjs",
@@ -182,7 +179,6 @@ const fullRegressionTests=[
   "grammar-knowledge-v23-browser.cjs",
   "sle-combined-ui-browser.cjs",
   "multiskill-knowledge-v2.cjs",
-  "lesson-overview.cjs",
   "multiskill-knowledge-v2-browser.cjs",
   "vocabulary-knowledge-v23.cjs",
   "vocabulary-knowledge-v23-browser.cjs",
@@ -191,23 +187,33 @@ const fullRegressionTests=[
   "curriculum-v1281-wording-source.cjs",
   "curriculum-v1281-knowledge-compat.cjs",
   "curriculum-v1281-import-history-quota.cjs",
-  "grammar-b1-wave2a-draft.cjs",
-  "grammar-b1-wave2b-draft.cjs",
-  "grammar-b1-wave2c-draft.cjs",
   "importer-capacity-150.cjs",
   "listening-retake-audio-readiness.cjs",
   "listening-submit-feedback.cjs",
-  "listening-writing-density-wave2-draft.cjs",
   "ux-v20-lesson-navigation.cjs",
   "v20-route-draft-safety.cjs",
-  "vocab-reading-b1-density-wave1-draft.cjs",
   "writing-nav-save-feedback.cjs",
   "skill-overview-cleanup.cjs",
   "writing-tutor.cjs",
 ];
 
+// Historical/authoring checks remain manually runnable; see exact rationale in PR #253.
+const archivedChecks={
+  "grammar-b1-wave2a-draft.cjs": "Historical packet regeneration; reviewed curriculum-170-grammar-b1-wave2a.cjs retained.",
+  "grammar-b1-wave2b-draft.cjs": "Historical packet regeneration; reviewed curriculum-180-grammar-b1-wave2b.cjs retained.",
+  "grammar-b1-wave2c-draft.cjs": "Historical packet regeneration; reviewed curriculum-190-grammar-b1-wave2c.cjs retained.",
+  "listening-writing-density-wave2-draft.cjs": "Historical packet regeneration; reviewed curriculum-1110-listening-writing-density-wave2.cjs retained.",
+  "vocab-reading-b1-density-wave1-draft.cjs": "Historical packet regeneration; reviewed curriculum-1100-vocab-reading-b1-density-wave1.cjs retained.",
+  "content-density-wave6-draft.cjs": "Pre-review reconstruction; curriculum-1150-density-wave6.cjs and content-density-wave6-audio.cjs retained.",
+  "c1c2-draft-source.cjs": "Historical pre-review packet; curriculum-1200-release.cjs retained.",
+  "c1c2-authored-content-schema.cjs": "Historical pre-review dry-run; curriculum-1200-release.cjs and active schema/option-order gate retained.",
+  "f2-bulk12-v125-intake-contract.cjs": "Historical authoring intake tool, not current release behavior; f2-bulk12-v125-machine-schema.cjs retained.",
+  "writing-week2-r1-export.cjs": "Manual legacy preview exporter, not a release gate; Week 2 runtime, persistence, SSR and browser tests retained.",
+  "listening-audio-manifest-coverage.cjs": "Historical subset-only duplicate; current-curriculum-audio-readiness.cjs now covers all active Listening and Pronunciation."
+};
+
 // Fast-fail on changed successor contracts before expensive browser regression.
-// The full suite contains exactly the original registered tests, only reordered.
+// The full suite retains all applicable current behavior and safety checks.
 const successorPreflight=[
   "curriculum-v1281-wording-source.cjs",
   "curriculum-v1281-knowledge-compat.cjs",
@@ -219,14 +225,18 @@ const successorPreflight=[
   "f2-v125-long-history-quota-fallback.cjs",
 ];
 const full=[...new Set([...coreTests,...fullRegressionTests])];
+if(Object.keys(archivedChecks).some(test=>full.includes(test)))throw Error("Archived check accidentally registered");
 if(successorPreflight.some(test=>!full.includes(test)))throw Error("Successor preflight must remain part of full QA");
-const earlyFull=[...successorPreflight,"reading-knowledge-v23-browser.cjs"];
+const earlyFull=["typescript-syntax.cjs","current-curriculum-integrity.cjs","current-curriculum-audio-readiness.cjs","lesson-overview.cjs","foundation-coaching.cjs","ux-v20-lesson-navigation.cjs","stage3-notebooklm-remediation.cjs","pronunciation-runtime-audio.cjs",...successorPreflight,"reading-knowledge-v23-browser.cjs"];
 if(earlyFull.some(test=>!full.includes(test)))throw Error("Early test must remain part of full QA");
-const selected=mode==="preflight-v1281"?successorPreflight:mode==="core"?coreTests:[...earlyFull,...full.filter(test=>!earlyFull.includes(test))];
+const selected=mode==="preflight-v1281"?successorPreflight:mode==="core"?coreTests:[...new Set([...earlyFull,...full])];
 
-for(const test of selected){
+export const fullTests=[...new Set([...earlyFull,...full])];
+export {successorPreflight};
+export function runTests(tests,suite=mode){
+for(const test of tests){
   const relative=path.join("tests",test);
-  console.log("\n=== "+mode.toUpperCase()+" QA: "+relative+" ===");
+  console.log("\n=== "+suite.toUpperCase()+" QA: "+relative+" ===");
   const result=spawnSync(process.execPath,[relative],{
     cwd:root,
     stdio:"inherit",
@@ -238,7 +248,10 @@ for(const test of selected){
 
 console.log(JSON.stringify({
   result:"PASS",
-  suite:mode,
-  tests:selected.length,
+  suite,
+  tests:tests.length,
   policy:"ci-free-first",
 }));
+
+}
+if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href)runTests(selected);
