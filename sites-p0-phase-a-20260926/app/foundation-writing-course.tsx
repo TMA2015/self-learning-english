@@ -46,7 +46,7 @@ export function FoundationWritingCourse({work,onUnit,onBack}:{
      <h2>{titles[index]}</h2>
      <p className="muted">{hasSaved?'Reopen your saved work or add another version.':'Explore the lesson and save your own work.'}</p>
      <button className="secondary-button" type="button" onClick={()=>onUnit(id)} disabled={!!unknownVersion}>Open Unit {String(index+1).padStart(2,'0')}</button>
-    </article>;
+    </article></div>;
    })}
   </div>
  </>;
