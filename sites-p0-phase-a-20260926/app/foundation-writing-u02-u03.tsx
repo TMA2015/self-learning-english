@@ -1,6 +1,6 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
-import {WritingGoal,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
+import {WritingGoal,WritingHeading,WritingMeta,WritingTask,WritingModel,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
 import {EnglishLessonTutor} from './english-lesson-tutor';
 import {TeachingBlocks} from './teaching-blocks';
 import {browserTutorService} from '../infrastructure/browser/firebase-ai-browser';
@@ -96,16 +96,16 @@ function U02Pane({step,d,edit,demoCount,setDemoCount}:{
 }){
  const source=REVIEWED_FOUNDATION_UNITS['FW-U02'];
  if(step==='learn')return <section aria-label="U02 teacher explanations">
-  <h2>Micro-lesson 1 · Generate, then judge</h2><p>{source.teaching.microLesson1}</p>
-  <h2>Worked example · {source.teaching.demo.id}</h2><blockquote>{source.teaching.demo.prompt}</blockquote>
+  <WritingHeading number={2}>Understand the concept</WritingHeading><h3 className="fw-teaching-subtitle">Micro-lesson 1 · Generate, then judge</h3><p>{source.teaching.microLesson1}</p>
+  <WritingHeading number={3}>See how it works</WritingHeading><WritingModel>{source.teaching.demo.prompt}</WritingModel>
   <button className="secondary-button" type="button"
    disabled={demoCount>=source.teaching.demo.steps.length}
    onClick={()=>setDemoCount(Math.min(demoCount+1,source.teaching.demo.steps.length))}>
    {demoCount?'Reveal next thinking step':'Reveal first thinking step'}
   </button>
-  {demoCount>0&&<ol>{source.teaching.demo.steps.slice(0,demoCount).map((v,i)=>
+  {demoCount>0&&<ol className="fw-demo-steps">{source.teaching.demo.steps.slice(0,demoCount).map((v,i)=>
    <li key={i}><strong>{v.label}:</strong> {v.text}</li>)}</ol>}
-  <h2>Micro-lesson 2 · Choose with a real reason</h2>
+  <WritingHeading number={4}>Apply what you learned</WritingHeading><h3 className="fw-teaching-subtitle">Micro-lesson 2 · Choose with a real reason</h3>
   <p>{source.teaching.microLesson2}</p>
   <p className="notice"><strong>A tempting mistake:</strong> {source.teaching.commonMistake}</p>
   <details><summary>Optional A1 support</summary><p>{source.teaching.a1}</p></details>
@@ -114,9 +114,10 @@ function U02Pane({step,d,edit,demoCount,setDemoCount}:{
    focus="Explain generate-first-filter-second, audience/resource fit, possible repair and why no idea must be rejected. Use a fresh unrelated example. Do not reveal practice fixture answer keys."/>
  </section>;
  if(step==='cycleA')return <section aria-label="U02 Practice A cards">
-  <h2>Practice A</h2><blockquote>{source.cycleA.prompt}</blockquote>
+  <WritingHeading number={1}>Practice A</WritingHeading><WritingTask>{source.cycleA.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
   <p>{source.cycleA.instructions}</p>
-  {source.cycleA.cards.map(card=><div className="field" key={card.id}>
+  {source.cycleA.cards.map(card=><div className="field fw-classify-row" key={card.id}>
    <label htmlFor={'u02-card-'+card.id}><strong>{card.id} · {card.text}</strong></label>
    <select id={'u02-card-'+card.id} value={d.cycleASorts[card.id]??''}
     onChange={e=>edit({...d,cycleASorts:{...d.cycleASorts,[card.id]:e.target.value},revealCycleA:false})}>
@@ -143,14 +144,16 @@ function U02Pane({step,d,edit,demoCount,setDemoCount}:{
   <p className="muted">Only fixed card selections are checked automatically; your new idea and explanation are not semantically scored.</p>
  </section>;
  if(step==='cycleB')return <section aria-label="U02 Practice B idea bank">
-  <h2>Practice B</h2><blockquote>{source.cycleB.prompt}</blockquote>
+  <WritingHeading number={1}>Practice B</WritingHeading><WritingTask>{source.cycleB.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
   <p>{source.cycleB.instruction}</p>
   <BankEditor unitId="FW-U02" bank={d.cycleBBank} label="practice-b"
    change={bank=>edit({...d,cycleBBank:bank})}/>
  </section>;
  if(step==='transfer')return <section aria-label="U02 independent transfer">
-  <h2>Independent Transfer · {source.transfer.id}</h2>
-  <blockquote>{source.transfer.prompt}</blockquote><p>{source.transfer.instruction}</p>
+  <WritingHeading number={1}>Independent transfer</WritingHeading>
+  <WritingTask>{source.transfer.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading><p>{source.transfer.instruction}</p>
   <BankEditor unitId="FW-U02" bank={d.transferBank} label="transfer"
    change={bank=>edit({...d,transferBank:bank})}/>
  </section>;
@@ -163,15 +166,15 @@ function U03Pane({step,d,edit,demoCount,setDemoCount}:{
  const chain=(field:'chainA'|'chainB'|'transferA'|'transferB',part:keyof Chain,value:string)=>
   edit({...d,[field]:{...d[field],[part]:value}});
  if(step==='learn')return <section aria-label="U03 three micro-lessons">
-  <h2>Micro-lesson 1 · What counts as a real reason?</h2>
-  <blockquote>{source.teaching.demo.prompt}</blockquote>
+  <WritingHeading number={2}>Understand the concept</WritingHeading><h3 className="fw-teaching-subtitle">Micro-lesson 1 · What counts as a real reason?</h3>
+  <WritingHeading number={3}>See how it works</WritingHeading><WritingModel>{source.teaching.demo.prompt}</WritingModel>
   <button type="button" className="secondary-button" disabled={demoCount>=source.teaching.demo.steps.length}
    onClick={()=>setDemoCount(Math.min(demoCount+1,source.teaching.demo.steps.length))}>
    {demoCount?'Reveal next thinking step':'Reveal first thinking step'}</button>
-  {demoCount>0&&<ol>{source.teaching.demo.steps.slice(0,demoCount).map((v,i)=>
+  {demoCount>0&&<ol className="fw-demo-steps">{source.teaching.demo.steps.slice(0,demoCount).map((v,i)=>
    <li key={i}><strong>{v.label}:</strong> {v.text}</li>)}</ol>}
   <p><strong>Think for yourself:</strong> {source.teaching.miniCheck}</p>
-  <h2>Micro-lesson 2 · Connect a reason to a real detail</h2>
+  <WritingHeading number={4}>Apply what you learned</WritingHeading><h3 className="fw-teaching-subtitle">Micro-lesson 2 · Connect a reason to a real detail</h3>
   <p>{source.teaching.microLesson2.teacher}</p>
   <div className="wcv2-card"><p><strong>Claim:</strong> {source.teaching.microLesson2.claim}</p>
    <p><strong>Reason:</strong> {source.teaching.microLesson2.reason}</p>
@@ -188,14 +191,15 @@ function U03Pane({step,d,edit,demoCount,setDemoCount}:{
    focus="Explain the difference among claim, actual benefit/reason and concrete supporting detail with an unrelated example. Explain circular reasoning. Never reveal current practice card keys or ghostwrite learner chains."/>
  </section>;
  if(step==='cycleA')return <section aria-label="U03 Practice A reasoning cards">
-  <h2>Practice A</h2><blockquote>{source.cycleA.prompt}</blockquote>
+  <WritingHeading number={1}>Practice A</WritingHeading><WritingTask>{source.cycleA.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
   <div className="wcv2-card" aria-label="Task strip">
    <strong>Topic:</strong> {source.cycleA.promptStrip.topic}
    <p><strong>Task:</strong> {source.cycleA.promptStrip.task}</p>
    <p><strong>Must Include:</strong> {source.cycleA.promptStrip.mustInclude}</p>
    <p><strong>Boundary:</strong> {source.cycleA.promptStrip.boundary}</p>
   </div><p>{source.cycleA.instruction}</p>
-  {source.cycleA.cards.map(card=><div className="field" key={card.id}>
+  {source.cycleA.cards.map(card=><div className="field fw-classify-row" key={card.id}>
    <label htmlFor={'u03-card-'+card.id}><strong>{card.id} · {card.text}</strong></label>
    <select id={'u03-card-'+card.id} value={d.cycleARoles[card.id]??''}
     onChange={e=>edit({...d,cycleARoles:{...d.cycleARoles,[card.id]:e.target.value},revealCycleA:false})}>
@@ -218,9 +222,10 @@ function U03Pane({step,d,edit,demoCount,setDemoCount}:{
   <p className="muted">{source.cycleA.caveat}</p>
  </section>;
  if(step==='cycleB')return <section aria-label="U03 two original chains">
-  <h2>Practice B</h2><blockquote>{source.cycleB.prompt}</blockquote>
+  <WritingHeading number={1}>Practice B</WritingHeading><WritingTask>{source.cycleB.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
   <p>{source.cycleB.diagnoseInstruction}</p>
-  {source.cycleB.weak.map(weak=><div className="field" key={weak.id}>
+  {source.cycleB.weak.map(weak=><div className="field fw-classify-row" key={weak.id}>
    <label htmlFor={weak.id}><strong>{weak.id} · {weak.text}</strong></label>
    <select id={weak.id} value={d.cycleBDiagnoses[weak.id]??''}
     onChange={e=>edit({...d,cycleBDiagnoses:{...d.cycleBDiagnoses,[weak.id]:e.target.value},revealCycleB:false})}>
@@ -249,8 +254,9 @@ function U03Pane({step,d,edit,demoCount,setDemoCount}:{
   <p><strong>Reader check:</strong> {source.cycleB.readerCheck} This is not an automatic quality verdict.</p>
  </section>;
  if(step==='transfer')return <section aria-label="U03 independent transfer chains">
-  <h2>Independent Transfer · {source.transfer.id}</h2>
-  <blockquote>{source.transfer.prompt}</blockquote><p>{source.transfer.instruction}</p>
+  <WritingHeading number={1}>Independent transfer</WritingHeading>
+  <WritingTask>{source.transfer.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading><p>{source.transfer.instruction}</p>
   <ChainEditor id="transferA" chain={d.transferA} edit={(field,v)=>chain('transferA',field,v)}/>
   <ChainEditor id="transferB" chain={d.transferB} edit={(field,v)=>chain('transferB',field,v)}/>
  </section>;
@@ -310,12 +316,13 @@ export function FoundationWritingNextUnit({unitId,work,onEdit,onSave,onExit,show
   finally{if(mounted.current&&currentTicket===ticket.current)setPending(false)}
  }
  return <section className="panel wcv2 fw-unit" aria-label={'Foundation Writing '+unitId}>
-  <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button></div>
+  <div className="foundation-unit-top-nav fw-topnav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button><div className="fw-top-actions"><span className="muted">{saved?'Saved work available':'Not started'}</span><button type="button" className="secondary-button" disabled={busy} onClick={()=>void save(true)}>Save &amp; Exit</button></div></div>
   <div className="page-heading"><div><span className="eyebrow">Foundation Writing · Unit {String(Number(unitId.slice(-2))).padStart(2,'0')}</span>
-   <h1>{source.title}</h1><WritingGoal unit={Number(unitId.slice(-2))} showVi={showVi}/>
+   <h1>{source.title}</h1><WritingMeta unit={Number(unitId.slice(-2))}/>
    <p className="muted">{source.estimatedMinutes} · Learn at your own pace. Save your writing before requesting optional AI feedback.</p>
   </div></div>
   <WritingSteps step={step} onStep={navigate} checked={progress.extras} saved={!!saved}/>
+  {step==='learn'&&<WritingGoal unit={Number(unitId.slice(-2))} showVi={showVi}/>}
   <p role="status" className="muted">{saved?'Version '+saved.version+' saved. Edits require a fresh save before AI review.':
    'Editing an unsaved draft. Save a version for optional personal AI Tutor review.'}
   </p>
@@ -324,7 +331,7 @@ export function FoundationWritingNextUnit({unitId,work,onEdit,onSave,onExit,show
   {unitId==='FW-U03'&&<U03Pane step={step} d={work.draft as U03Draft} edit={edit}
    demoCount={demoCount} setDemoCount={setDemoCount}/>}
   {step==='extra'&&<section aria-label={unitId+' supplemental objective items'}>
-   <h2>Knowledge Check</h2>
+   <WritingHeading number={1}>Knowledge Check</WritingHeading>
    <p>Fixed answers can be checked; your original ideas and reasons are not given an invented score.</p>
    {source.supplemental.map(item=>{
     const picked=work.draft.supplementalAnswers[item.id]??'';
@@ -373,8 +380,7 @@ export function FoundationWritingNextUnit({unitId,work,onEdit,onSave,onExit,show
    <WritingNext step={step} onStep={navigate} onFinish={()=>void save(true)}/>
    <button type="button" className="secondary-button" disabled={busy}
     onClick={()=>void save()}>{busy?'Saving…':'Save work'}</button>
-   <button type="button" className="secondary-button" disabled={busy}
-    onClick={()=>void save(true)}>Save &amp; Exit</button>
+   
    <button type="button" className="secondary-button" onClick={onExit}>Back to Foundation Writing</button>
   </div>
   {saveMessage&&<p role="status" className="notice">{saveMessage}</p>}

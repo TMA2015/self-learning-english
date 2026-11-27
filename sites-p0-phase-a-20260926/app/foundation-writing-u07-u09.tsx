@@ -1,6 +1,6 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
-import {WritingGoal,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
+import {WritingGoal,WritingHeading,WritingMeta,WritingTask,WritingModel,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
 import {TeachingBlocks} from './teaching-blocks';
 import {EnglishLessonTutor} from './english-lesson-tutor';
 import {browserTutorService} from '../infrastructure/browser/firebase-ai-browser';
@@ -123,29 +123,29 @@ export function FoundationWritingWave3({unitId,work,onEdit,onSave,onExit,showVi=
   </article>;
  };
  return <section className="panel wcv2 fw-unit" aria-label={'Foundation Writing '+unitId}>
-  <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button></div>
+  <div className="foundation-unit-top-nav fw-topnav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button><div className="fw-top-actions"><span className="muted">{saved?'Saved work available':'Not started'}</span><button type="button" className="secondary-button" disabled={busy} onClick={()=>void save(true)}>Save &amp; Exit</button></div></div>
   <div className="page-heading"><div>
    <span className="eyebrow">Foundation Writing · Unit {String(Number(unitId.slice(-2))).padStart(2,'0')}</span>
-   <h1>{src.title}</h1><WritingGoal unit={Number(unitId.slice(-2))} showVi={showVi}/>
+   <h1>{src.title}</h1><WritingMeta unit={Number(unitId.slice(-2))}/>
    <p className="muted">{src.minutes} · Learn at your own pace. Your independent writing remains yours.</p>
   </div></div>
   <WritingSteps step={screen} onStep={go} checked={progress.extras} saved={!!saved}/>
+  {screen==='learn'&&<WritingGoal unit={Number(unitId.slice(-2))} showVi={showVi}/>}
   <p role="status" className="muted">
    {saved?'Saved version '+saved.version+'; any new edit requires saving again.':
     'Current work is not exactly saved. AI will not review it until you successfully save.'}
   </p>
 
   {screen==='learn'&&<section aria-label={unitId+' teacher demonstrations'}>
-   <h2>Micro-lesson 1</h2><p>{src.teaching.lessons[0]}</p>
-   <h3>Worked example</h3>
-   <blockquote>{src.teaching.demo.prompt}</blockquote>
+   <WritingHeading number={2}>Understand the concept</WritingHeading><h3 className="fw-teaching-subtitle">Micro-lesson 1</h3><p>{src.teaching.lessons[0]}</p>
+   <WritingHeading number={3}>See how it works</WritingHeading><WritingModel>{src.teaching.demo.prompt}</WritingModel>
    <button type="button" className="secondary-button"
     disabled={demoCount>=src.teaching.demo.steps.length}
     onClick={()=>setDemoCount(Math.min(demoCount+1,src.teaching.demo.steps.length))}>
     {demoCount?'Reveal next reasoning step':'Reveal first reasoning step'}</button>
-   {demoCount>0&&<ol>{src.teaching.demo.steps.slice(0,demoCount).map((p,i)=>
+   {demoCount>0&&<ol className="fw-demo-steps">{src.teaching.demo.steps.slice(0,demoCount).map((p,i)=>
     <li key={i}><strong>{p[0]}:</strong> {p[1]}</li>)}</ol>}
-   <h2>Micro-lesson 2</h2><p>{src.teaching.lessons[1]}</p>
+   <WritingHeading number={4}>Apply what you learned</WritingHeading><h3 className="fw-teaching-subtitle">Micro-lesson 2</h3><p>{src.teaching.lessons[1]}</p>
    {unitId==='FW-U07'&&<><blockquote>{WAVE3_UNITS['FW-U07'].teaching.ambiguity}</blockquote>
     <p>{WAVE3_UNITS['FW-U07'].teaching.ambiguityNote}</p></>}
    <details><summary>Optional A1 bridge</summary><p>{src.teaching.a1}</p></details>
@@ -155,13 +155,14 @@ export function FoundationWritingWave3({unitId,work,onEdit,onSave,onExit,showVi=
   </section>}
 
   {screen==='cycleA'&&<section aria-label={unitId+' Practice A'}>
-   <h2>Practice A</h2><blockquote>{src.cycleA.prompt}</blockquote>
+   <WritingHeading number={1}>Practice A</WritingHeading><WritingTask>{src.cycleA.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
    {unitId==='FW-U09'?
     <Strip strip={WAVE3_UNITS['FW-U09'].cycleA.taskStrip}/>:
     unitId==='FW-U07'?<><p>Provided P1:</p><blockquote>{WAVE3_UNITS['FW-U07'].cycleA.paragraph1}</blockquote>
      <p>Provided P2:</p><blockquote>{WAVE3_UNITS['FW-U07'].cycleA.paragraph2}</blockquote></>:null}
    {unitId==='FW-U09'?
-    WAVE3_UNITS['FW-U09'].cycleA.cards.map(card=><div className="field" key={card.id}>
+    WAVE3_UNITS['FW-U09'].cycleA.cards.map(card=><div className="field fw-classify-row" key={card.id}>
      <label htmlFor={unitId+'-card-'+card.id}><strong>{card.id} · {card.text}</strong></label>
      <select id={unitId+'-card-'+card.id} value={d.cycleAAnswers[card.id]??''}
       onChange={e=>edit({...d,cycleAAnswers:{...d.cycleAAnswers,[card.id]:e.target.value},cycleAReveal:false})}>
@@ -225,11 +226,12 @@ export function FoundationWritingWave3({unitId,work,onEdit,onSave,onExit,showVi=
   </section>}
 
   {screen==='transfer'&&<section aria-label={unitId+' independent transfer'}>
-   <h2>Independent transfer</h2><blockquote>{src.transfer.prompt}</blockquote>
+   <WritingHeading number={1}>Independent transfer</WritingHeading><WritingTask>{src.transfer.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
    {ownSection('transfer',src.transfer.fields)}
   </section>}
   {screen==='extra'&&<section aria-label={unitId+' supplementary questions'}>
-   <h2>Knowledge Check</h2>
+   <WritingHeading number={1}>Knowledge Check</WritingHeading>
    <p>The fixed-choice keys are reviewed. Your original drafts are never scored by connector, phrase or length counts.</p>
    {src.extras.map(q=>objectiveItem(q,true))}
   </section>}
@@ -257,8 +259,7 @@ export function FoundationWritingWave3({unitId,work,onEdit,onSave,onExit,showVi=
    <WritingNext step={screen} onStep={go} onFinish={()=>void save(true)}/>
    <button className="primary-button" type="button" disabled={busy}
     onClick={()=>void save()}>{busy?'Saving…':'Save work'}</button>
-   <button className="secondary-button" type="button" disabled={busy}
-    onClick={()=>void save(true)}>Save &amp; Exit</button>
+   
    <button className="secondary-button" type="button" onClick={onExit}>Back to Foundation Writing</button>
   </div>
   {saveStatus&&<p className="notice" role="status">{saveStatus}</p>}

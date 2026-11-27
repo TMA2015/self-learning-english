@@ -1,6 +1,6 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
-import {WritingGoal,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
+import {WritingGoal,WritingHeading,WritingMeta,WritingTask,WritingModel,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
 import {EnglishLessonTutor} from './english-lesson-tutor';
 import {TeachingBlocks} from './teaching-blocks';
 import {browserTutorService} from '../infrastructure/browser/firebase-ai-browser';
@@ -82,15 +82,15 @@ function U04Panel({step,d,edit,count,reveal}:{
 }){
  const x=WAVE2_UNITS['FW-U04'];
  if(step==='learn')return <section aria-label="U04 micro-lessons">
-  <h2>Micro-lesson 1 · Say the relationship you mean</h2><p>{x.teaching.lesson1}</p>
-  <blockquote>{x.teaching.demo.prompt}</blockquote>
+  <WritingHeading number={2}>Understand the concept</WritingHeading><h3 className="fw-teaching-subtitle">Micro-lesson 1 · Say the relationship you mean</h3><p>{x.teaching.lesson1}</p>
+  <WritingHeading number={3}>See how it works</WritingHeading><WritingModel>{x.teaching.demo.prompt}</WritingModel>
   <button type="button" className="secondary-button" disabled={count>=x.teaching.demo.steps.length}
    onClick={()=>reveal(Math.min(count+1,x.teaching.demo.steps.length))}>
    {count?'Reveal next thinking step':'Reveal first thinking step'}</button>
-  {count>0&&<ol>{x.teaching.demo.steps.slice(0,count).map((v,i)=>
+  {count>0&&<ol className="fw-demo-steps">{x.teaching.demo.steps.slice(0,count).map((v,i)=>
    <li key={i}><strong>{v.label}:</strong> {v.text}</li>)}</ol>}
   <p><strong>Concept:</strong> {x.teaching.concept}</p>
-  <h2>Micro-lesson 2 · Who did what?</h2><p>{x.teaching.lesson2}</p>
+  <WritingHeading number={4}>Apply what you learned</WritingHeading><h3 className="fw-teaching-subtitle">Micro-lesson 2 · Who did what?</h3><p>{x.teaching.lesson2}</p>
   <blockquote>{x.teaching.ambiguity.ambiguous}</blockquote>
   <p>{x.teaching.ambiguity.question}</p>
   <details><summary>Show two legitimate clarified meanings</summary>
@@ -103,9 +103,10 @@ function U04Panel({step,d,edit,count,reveal}:{
    focus="Explain cause/result/contrast and how to repair ambiguous pronouns using a fresh unrelated example. No decorative connector quotas. Do not reveal active exercise answers."/>
  </section>;
  if(step==='cycleA')return <section aria-label="U04 Practice A">
-  <h2>Practice A</h2><blockquote>{x.cycleA.prompt}</blockquote>
+  <WritingHeading number={1}>Practice A</WritingHeading><WritingTask>{x.cycleA.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
   <h3>Identify the relationship between ideas</h3>
-  {x.cycleA.relations.map(v=><div className="field" key={v.id}>
+  {x.cycleA.relations.map(v=><div className="field fw-classify-row" key={v.id}>
    <label htmlFor={'u04-'+v.id}><strong>{v.id} · {v.text}</strong></label>
    <select id={'u04-'+v.id} value={d.relationAnswers[v.id]??''}
     onChange={e=>edit({...d,relationAnswers:{...d.relationAnswers,[v.id]:e.target.value},relationReveal:false})}>
@@ -141,7 +142,8 @@ function U04Panel({step,d,edit,count,reveal}:{
   <p className="muted">The objective items have fixed keys. Your explanations and rewrites are not graded by keywords.</p>
  </section>;
  if(step==='cycleB')return <section aria-label="U04 original school workshop notice">
-  <h2>Practice B</h2><blockquote>{x.cycleB.prompt}</blockquote>
+  <WritingHeading number={1}>Practice B</WritingHeading><WritingTask>{x.cycleB.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
   <ol>{x.cycleB.steps.map((v,i)=><li key={i}>{v}</li>)}</ol>
   <FourSentences name="u04-notice" value={d.notice}
    edit={(key,v)=>edit({...d,notice:{...d.notice,[key]:v}})}/>
@@ -161,7 +163,8 @@ function U04Panel({step,d,edit,count,reveal}:{
   <details><summary>Optional B1 stretch</summary><p>{x.cycleB.b1}</p></details>
  </section>;
  if(step==='transfer')return <section aria-label="U04 independent public notice transfer">
-  <h2>Transfer</h2><blockquote>{x.transfer.prompt}</blockquote>
+  <WritingHeading number={1}>Independent transfer</WritingHeading><WritingTask>{x.transfer.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
   <p>{x.transfer.instruction}</p>
   <FourSentences name="u04-transfer" value={d.transfer}
    edit={(key,v)=>edit({...d,transfer:{...d.transfer,[key]:v}})}/>
@@ -175,24 +178,25 @@ function U05Panel({step,d,edit,count,reveal}:{
 }){
  const x=WAVE2_UNITS['FW-U05'];
  if(step==='learn')return <section aria-label="U05 micro-lessons">
-  <h2>Micro-lesson 1 · One paragraph, one main job</h2><p>{x.teaching.lesson1}</p>
-  <blockquote>{x.teaching.demo.prompt}</blockquote>
+  <WritingHeading number={2}>Understand the concept</WritingHeading><h3 className="fw-teaching-subtitle">Micro-lesson 1 · One paragraph, one main job</h3><p>{x.teaching.lesson1}</p>
+  <WritingHeading number={3}>See how it works</WritingHeading><WritingModel>{x.teaching.demo.prompt}</WritingModel>
   <button type="button" className="secondary-button" disabled={count>=x.teaching.demo.steps.length}
    onClick={()=>reveal(Math.min(count+1,x.teaching.demo.steps.length))}>
    {count?'Reveal next thinking step':'Reveal first thinking step'}</button>
-  {count>0&&<ol>{x.teaching.demo.steps.slice(0,count).map((v,i)=>
+  {count>0&&<ol className="fw-demo-steps">{x.teaching.demo.steps.slice(0,count).map((v,i)=>
    <li key={i}><strong>{v.label}:</strong> {v.text}</li>)}</ol>}
   {count===x.teaching.demo.steps.length&&<blockquote>{x.teaching.demo.paragraph}</blockquote>}
-  <h2>Micro-lesson 2 · Inspect sentence functions</h2><p>{x.teaching.lesson2}</p>
+  <WritingHeading number={4}>Apply what you learned</WritingHeading><h3 className="fw-teaching-subtitle">Micro-lesson 2 · Inspect sentence functions</h3><p>{x.teaching.lesson2}</p>
   <details><summary>Optional A1 bridge</summary><p>{x.teaching.a1}</p></details>
   <details><summary>Optional B1 stretch</summary><p>{x.teaching.b1}</p></details>
   <EnglishLessonTutor lesson="Foundation Writing · U05 Paragraph Unity"
    focus="Explain the job of each sentence: point, reason, example, further detail. Use a fresh topic; do not prewrite current student paragraph or disclose practice keys. No fixed sentence/word-count rules."/>
  </section>;
  if(step==='cycleA')return <section aria-label="U05 Practice A ordering">
-  <h2>Practice A</h2><blockquote>{x.cycleA.prompt}</blockquote>
+  <WritingHeading number={1}>Practice A</WritingHeading><WritingTask>{x.cycleA.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
   <p>{x.cycleA.instruction}</p>
-  {x.cycleA.cards.map(card=><div className="field" key={card.id}>
+  {x.cycleA.cards.map(card=><div className="field fw-classify-row" key={card.id}>
    <label htmlFor={'u05-card-'+card.id}><strong>{card.id} · {card.text}</strong></label>
    <select id={'u05-card-'+card.id} value={d.positions[card.id]??''}
     onChange={e=>edit({...d,positions:{...d.positions,[card.id]:e.target.value},orderReveal:false})}>
@@ -217,7 +221,8 @@ function U05Panel({step,d,edit,count,reveal}:{
   <p className="muted">You may explain a different coherent order; no semantic error is inferred solely from ordering.</p>
  </section>;
  if(step==='cycleB')return <section aria-label="U05 own unified paragraph">
-  <h2>Practice B</h2><blockquote>{x.cycleB.prompt}</blockquote>
+  <WritingHeading number={1}>Practice B</WritingHeading><WritingTask>{x.cycleB.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
   <PromptStrip strip={x.cycleB.strip}/>
   <ol>{x.cycleB.steps.map((v,i)=><li key={i}>{v}</li>)}</ol>
   {(['point','reason','detail'] as const).map(key=><OriginalField key={key}
@@ -242,7 +247,8 @@ function U05Panel({step,d,edit,count,reveal}:{
   <details><summary>Optional A1/B1 support</summary><p>{x.cycleB.a1}</p><p>{x.cycleB.b1}</p></details>
  </section>;
  if(step==='transfer')return <section aria-label="U05 independent bicycle repair transfer">
-  <h2>Transfer</h2><blockquote>{x.transfer.prompt}</blockquote>
+  <WritingHeading number={1}>Independent transfer</WritingHeading><WritingTask>{x.transfer.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
   <p>{x.transfer.instruction}</p>
   <OriginalField name="u05-transfer-paragraph" label="Your new original recommendation paragraph" rows={6}
    value={d.transferParagraph} onChange={v=>edit({...d,transferParagraph:v})}/>
@@ -258,24 +264,25 @@ function U06Panel({step,d,edit,count,reveal}:{
 }){
  const x=WAVE2_UNITS['FW-U06'];
  if(step==='learn')return <section aria-label="U06 micro-lessons">
-  <h2>Micro-lesson 1 · Plan jobs, not sentences</h2><p>{x.teaching.lesson1}</p>
-  <blockquote>{x.teaching.demo.prompt}</blockquote>
+  <WritingHeading number={2}>Understand the concept</WritingHeading><h3 className="fw-teaching-subtitle">Micro-lesson 1 · Plan jobs, not sentences</h3><p>{x.teaching.lesson1}</p>
+  <WritingHeading number={3}>See how it works</WritingHeading><WritingModel>{x.teaching.demo.prompt}</WritingModel>
   <button type="button" className="secondary-button" disabled={count>=x.teaching.demo.steps.length}
    onClick={()=>reveal(Math.min(count+1,x.teaching.demo.steps.length))}>
    {count?'Reveal next thinking step':'Reveal first thinking step'}</button>
-  {count>0&&<ol>{x.teaching.demo.steps.slice(0,count).map((v,i)=>
+  {count>0&&<ol className="fw-demo-steps">{x.teaching.demo.steps.slice(0,count).map((v,i)=>
    <li key={i}><strong>{v.label}:</strong> {v.text}</li>)}</ol>}
-  <h2>Micro-lesson 2 · Distinct reader jobs</h2><p>{x.teaching.lesson2}</p>
+  <WritingHeading number={4}>Apply what you learned</WritingHeading><h3 className="fw-teaching-subtitle">Micro-lesson 2 · Distinct reader jobs</h3><p>{x.teaching.lesson2}</p>
   <details><summary>Optional A1 support</summary><p>{x.teaching.a1}</p></details>
   <details><summary>Optional B1 challenge</summary><p>{x.teaching.b1}</p></details>
   <EnglishLessonTutor lesson="Foundation Writing · U06 Keyword Outline"
    focus="Explain how a keyword outline differs from a full essay, how paragraph reader jobs differ, and flexible 3/4-role plans. Use an unrelated example and do not prefill active practice."/>
  </section>;
  if(step==='cycleA')return <section aria-label="U06 role matching">
-  <h2>Practice A</h2><blockquote>{x.cycleA.prompt}</blockquote>
+  <WritingHeading number={1}>Practice A</WritingHeading><WritingTask>{x.cycleA.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
   <PromptStrip strip={x.cycleA.strip}/>
   <p>Match these notes to the stated jobs for THIS three-role task. A different coherent independent outline is not automatically wrong.</p>
-  {x.cycleA.cards.map(card=><div className="field" key={card.id}>
+  {x.cycleA.cards.map(card=><div className="field fw-classify-row" key={card.id}>
    <label htmlFor={'u06-card-'+card.id}><strong>{card.id} · {card.text}</strong></label>
    <select id={'u06-card-'+card.id} value={d.roleAnswers[card.id]??''}
     onChange={e=>edit({...d,roleAnswers:{...d.roleAnswers,[card.id]:e.target.value},roleReveal:false})}>
@@ -302,14 +309,16 @@ function U06Panel({step,d,edit,count,reveal}:{
    onChange={v=>edit({...d,repairWhy:v})}/>
  </section>;
  if(step==='cycleB')return <section aria-label="U06 makers fair original outline">
-  <h2>Practice B</h2><blockquote>{x.cycleB.prompt}</blockquote>
+  <WritingHeading number={1}>Practice B</WritingHeading><WritingTask>{x.cycleB.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
   <PromptStrip strip={x.cycleB.strip}/><p>{x.cycleB.instruction}</p>
   <OutlineEditor unitName="u06" name="cycleB" outline={d.outline}
    onEdit={value=>edit({...d,outline:value})}/>
   <details><summary>Optional A1/B1 support</summary><p>{x.cycleB.a1}</p><p>{x.cycleB.b1}</p></details>
  </section>;
  if(step==='transfer')return <section aria-label="U06 shelter letter transfer">
-  <h2>Transfer</h2><blockquote>{x.transfer.prompt}</blockquote>
+  <WritingHeading number={1}>Independent transfer</WritingHeading><WritingTask>{x.transfer.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
   <p>{x.transfer.instruction}</p>
   <OutlineEditor unitName="u06" name="transfer" outline={d.transferOutline}
    onEdit={value=>edit({...d,transferOutline:value})}/>
@@ -370,12 +379,13 @@ export function FoundationWritingWave2({unitId,work,onEdit,onSave,onExit,showVi=
   finally{if(mounted.current&&ticket.current===current)setPending(false)}
  }
  return <section className="panel wcv2 fw-unit" aria-label={'Foundation Writing '+unitId}>
-  <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button></div>
+  <div className="foundation-unit-top-nav fw-topnav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button><div className="fw-top-actions"><span className="muted">{saved?'Saved work available':'Not started'}</span><button type="button" className="secondary-button" disabled={saveBusy} onClick={()=>void save(true)}>Save &amp; Exit</button></div></div>
   <div className="page-heading"><div><span className="eyebrow">Foundation Writing · Unit {String(Number(unitId.slice(-2))).padStart(2,'0')}</span>
-   <h1>{source.title}</h1><WritingGoal unit={Number(unitId.slice(-2))} showVi={showVi}/>
+   <h1>{source.title}</h1><WritingMeta unit={Number(unitId.slice(-2))}/>
    <p className="muted">{source.minutes} · Learn at your own pace. Your own writing is not automatically graded.</p>
   </div></div>
   <WritingSteps step={step} onStep={go} checked={progress.extras} saved={!!saved}/>
+  {step==='learn'&&<WritingGoal unit={Number(unitId.slice(-2))} showVi={showVi}/>}
   <p className="muted" role="status">
    {saved?'Saved version '+saved.version+'. Edits need a fresh save for AI review.':
     'Your edited draft is not the last saved version. Save before requesting optional AI review.'}</p>
@@ -383,7 +393,7 @@ export function FoundationWritingWave2({unitId,work,onEdit,onSave,onExit,showVi=
   {unitId==='FW-U05'&&<U05Panel step={step} d={work.draft as U05Draft} edit={edit} count={count} reveal={setCount}/>}
   {unitId==='FW-U06'&&<U06Panel step={step} d={work.draft as U06Draft} edit={edit} count={count} reveal={setCount}/>}
   {step==='extra'&&<section aria-label={unitId+' extra objective practice'}>
-   <h2>Knowledge Check</h2>
+   <WritingHeading number={1}>Knowledge Check</WritingHeading>
    <p>Only these fixed-choice items have known keys. All your original writing remains unscored.</p>
    {source.supplemental.map(item=>{
     const chosen=work.draft.supplementalAnswers[item.id]??'';
@@ -432,8 +442,7 @@ export function FoundationWritingWave2({unitId,work,onEdit,onSave,onExit,showVi=
    <WritingNext step={step} onStep={go} onFinish={()=>void save(true)}/>
    <button type="button" className="secondary-button" disabled={saveBusy} onClick={()=>void save()}>
     {saveBusy?'Saving…':'Save work'}</button>
-   <button type="button" className="secondary-button" disabled={saveBusy}
-    onClick={()=>void save(true)}>Save &amp; Exit</button>
+   
    <button type="button" className="secondary-button" onClick={onExit}>Back to Foundation Writing</button>
   </div>
   {saveStatus&&<p className="notice" role="status">{saveStatus}</p>}
