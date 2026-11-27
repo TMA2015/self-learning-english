@@ -2,20 +2,25 @@
 // Fail closed: only explicitly registered, isolated Knowledge surfaces qualify.
 const assert=require('node:assert/strict'),fs=require('node:fs'),cp=require('node:child_process');
 const prefix='sites-p0-phase-a-20260926/';
-const groups={
- vocabulary:{css:'app/vocabulary-knowledge-v23.css',component:'app/vocabulary-knowledge-v23.tsx',content:['content/vocabulary-knowledge-v23.json'],tests:['vocabulary-knowledge-v23.cjs','vocabulary-knowledge-v23-browser.cjs']},
- grammar:{css:'app/grammar-knowledge-v23.css',component:'app/grammar-knowledge-v23.tsx',content:['wave1','wave2-a1','wave3a-a2','wave3b-a2','wave4a-b1','wave4b-b1-b2'].map(x=>'content/grammar-knowledge-v23-'+x+'.json'),tests:['grammar-knowledge-v23.cjs','grammar-knowledge-v23-browser.cjs']}
-};
+const {groups}=require('../sites-p0-phase-a-20260926/scripts/qa-scope-registry.cjs');
 function plan(changes,read){
  if(!changes.length)return {tier:3,skills:[],reason:'empty or uncertain diff'};
  const skills=new Set();let tier=1;
  for(const {status,path} of changes){
   if(status!=='M'||!path.startsWith(prefix))return {tier:3,skills:[],reason:'unregistered addition/deletion/rename or shared path'};
   const file=path.slice(prefix.length);
-  const hit=Object.entries(groups).find(([,g])=>[g.css,g.component,...g.content].includes(file));
+  const hit=Object.entries(groups).find(([,g])=>[g.css,g.component,g.presentation,...g.content].includes(file));
   if(!hit)return {tier:3,skills:[],reason:'unregistered/shared/data/audio/test/policy path'};
   const [skill,g]=hit;skills.add(skill);
-  if(file===g.css){
+  if(file===g.presentation){
+   // Strictly literal heading/paragraph copy in the registered read-only course
+   // presentation. No JSX expressions, props, attributes, import or code edits.
+   const before=read(path,'base'),after=read(path,'head');
+   const text=/<(h[1-3]|p)>([^<>{}]+)<\/\1>/g;
+   const normalized=s=>s.replace(text,(_m,tag)=>'<'+tag+'>__COPY__</'+tag+'>');
+   if(before===after||normalized(before)!==normalized(after))return {tier:3,skills:[],reason:'writing logic or nonliteral UI change'};
+   tier=Math.max(tier,2);
+  }else if(file===g.css){
    const before=read(path,'base'),after=read(path,'head');
    // Only declaration-value edits in already scoped rules are fast-track.
    // New selectors/rules, removed rules or external resources require full QA.
@@ -44,7 +49,7 @@ function plan(changes,read){
    tier=Math.max(tier,2);
   }
  }
- return {tier,skills:[...skills].sort(),reason:tier===1?'isolated cosmetic changes':'isolated read-only Knowledge change'};
+ return {tier,skills:[...skills].sort(),reason:tier===1?'isolated cosmetic changes':'registered isolated Knowledge or read-only presentation change'};
 }
 function selfTest(){
  const p=prefix,css=groups.vocabulary.css,component=groups.vocabulary.component,content=groups.vocabulary.content[0];
@@ -53,6 +58,13 @@ function selfTest(){
  assert.equal(plan([mod(css)],read).tier,1);
  assert.equal(plan([mod(css),mod(content)],read).tier,2);
  assert.equal(plan([mod(content)],read).tier,2);
+ assert.equal(plan([mod(groups.reading.content[0])],read).tier,2);
+ assert.deepEqual(plan([mod(content),mod(groups.reading.content[0])],read).skills,['reading','vocabulary']);
+ const writing=mod(groups.writing.presentation);
+ assert.equal(plan([writing],(_p,s)=>'<h1>'+s+'</h1>').tier,2);
+ assert.equal(plan([writing],(_p,s)=>'<p>'+s+'</p>'+s).tier,3);
+ assert.equal(plan([writing],(_p,s)=>'<p>{'+s+'}</p>').tier,3);
+ assert.equal(plan([mod(groups.reading.component)],(_p,s)=>s).tier,3);
  for(const x of ['app/foundation.tsx','app/globals.css','domain/academic.ts','content/curriculum-1.28.0-candidate.json','public/foundation-audio/x.mp3','tests/vocabulary-knowledge-v23.cjs','package.json','firebase.json'])assert.equal(plan([mod(css),mod(x)],read).tier,3,x);
  assert.equal(plan([{status:'A',path:p+css}],read).tier,3);
  assert.equal(plan([{status:'M',path:'.github/workflows/english-pr-qa.yml'}],read).tier,3);
@@ -79,7 +91,7 @@ async function main(){
   const parts=git('diff','--name-status','--no-renames','-z',base,head).split('\0');parts.pop();
   if(parts.length%2)throw Error('unexpected diff format');
   const changes=[];for(let i=0;i<parts.length;i+=2)changes.push({status:parts[i],path:parts[i+1]});
-  policyChange=changes.some(x=>['scripts/classify-release.cjs','scripts/verify-actions-policy.cjs','.github/workflows/english-pr-qa.yml','.github/workflows/english-manual-release-qa.yml',prefix+'scripts/qa-scoped.mjs'].includes(x.path));
+  policyChange=changes.some(x=>['scripts/classify-release.cjs','scripts/verify-actions-policy.cjs','.github/workflows/english-pr-qa.yml','.github/workflows/english-manual-release-qa.yml',prefix+'scripts/qa-scoped.mjs',prefix+'scripts/qa-scope-registry.cjs',prefix+'scripts/qa-release.mjs',prefix+'scripts/qa-free-first.mjs','scripts/verify-exact-pr-qa.cjs',prefix+'scripts/qa-verified-build.mjs'].includes(x.path));
   result=plan(changes,(path,side)=>git('show',(side==='base'?base:head)+':'+path));
   if(result.tier<3&&process.env.GITHUB_EVENT_NAME==='push'){
    // A prior main commit is not necessarily deployed. Require exact successful

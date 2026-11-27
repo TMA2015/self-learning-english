@@ -62,7 +62,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Setup pinned FFmpeg and FFprobe binaries
-        if: ${{ steps.app.outputs.present == 'true' && steps.scope.outputs.tier == '3' }}
+        if: ${{ steps.app.outputs.present == 'true' }}
         continue-on-error: true
         uses: FedericoCarboni/setup-ffmpeg@37062fbf7149fc5578d6c57e08aed62458b375d6
         with:
@@ -70,7 +70,7 @@ jobs:
           linking-type: static
 
       - name: Ensure FFmpeg and FFprobe for audio validation
-        if: ${{ steps.app.outputs.present == 'true' && steps.scope.outputs.tier == '3' }}
+        if: ${{ steps.app.outputs.present == 'true' }}
         run: |
           set -euo pipefail
           # Reuse tools on GitHub runners; avoid a potentially stalled apt mirror.
@@ -116,22 +116,12 @@ jobs:
           SLE_QA_SKILLS: ${{ steps.scope.outputs.skills }}
         run: node scripts/qa-scoped.mjs
 
-      # Validate both reduced lanes only when their own policy/runner changes.
-      - name: Verify Level 1 runner on governance changes (NO DEPLOY)
+      # Both scoped and full lanes use the same runner. Validate selection
+      # separately without repeating the full build or expensive browser cases.
+      - name: Verify shared scoped selection on governance changes (NO DEPLOY)
         if: ${{ steps.app.outputs.present == 'true' && steps.scope.outputs.policy_change == 'true' }}
         working-directory: sites-p0-phase-a-20260926
-        env:
-          SLE_QA_TIER: '1'
-          SLE_QA_SKILLS: vocabulary
-        run: node scripts/qa-scoped.mjs
-
-      - name: Verify Level 2 runner on governance changes (NO DEPLOY)
-        if: ${{ steps.app.outputs.present == 'true' && steps.scope.outputs.policy_change == 'true' }}
-        working-directory: sites-p0-phase-a-20260926
-        env:
-          SLE_QA_TIER: '2'
-          SLE_QA_SKILLS: grammar
-        run: node scripts/qa-scoped.mjs
+        run: node scripts/qa-scoped.mjs --self-test
 
       - name: Record exact full PR QA receipt
         if: ${{ steps.app.outputs.present == 'true' && steps.scope.outputs.tier == '3' }}

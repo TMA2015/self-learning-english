@@ -45,4 +45,6 @@ assert(live.includes("steps.reuse.outputs.verified != 'true'")&&live.includes("s
 assert(live.indexOf('run: node scripts/qa-verified-build.mjs')<deploy&&live.includes('REUSED_QA')&&live.includes('PR_REUSE_VERIFIED'));
 require('node:child_process').execFileSync(process.execPath,[path.join(root,'scripts/verify-exact-pr-qa.cjs'),'--self-test'],{stdio:'inherit'});
 require('node:child_process').execFileSync(process.execPath,[path.join(root,'sites-p0-phase-a-20260926/tests/browser-case-pool.cjs')],{stdio:'inherit'});
+require('node:child_process').execFileSync(process.execPath,[path.join(root,'sites-p0-phase-a-20260926/scripts/qa-scope-registry.cjs')],{stdio:'inherit'});
+require('node:child_process').execFileSync(process.execPath,[path.join(root,'scripts/classify-release.cjs'),'--self-test'],{stdio:'inherit'});
 console.log('CI_POLICY_PASS: single PR QA + owner-authorized main LIVE release, no Preview');

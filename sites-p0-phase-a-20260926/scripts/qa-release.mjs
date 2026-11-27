@@ -1,6 +1,12 @@
 import {spawnSync} from "node:child_process";
+import registry from "./qa-scope-registry.cjs";
 import {fullTests,successorPreflight,foundationWritingChecks,qaTestArgs} from "./qa-free-first.mjs";
 
+const scoped=process.argv.includes("--scoped");
+const selection=registry.scope(scoped?process.env.SLE_QA_TIER:3,scoped?(process.env.SLE_QA_SKILLS||"").split(","):[]);
+const required=fullTests.filter(selection.included);
+if(scoped&&selection.full)throw Error("Scoped invocation must use level 1 or 2");
+console.log(JSON.stringify({qaSelection:scoped?"scoped":"full",skills:selection.skills,required:required.length,omittedExtended:selection.omitted}));
 const root=process.cwd();
 const pnpm=process.platform==="win32"?"pnpm.cmd":"pnpm";
 
@@ -45,20 +51,20 @@ if(rights.unit10_draft_assets?.candidate_version==="1.21.0"){
   test("unit10-real-upgrade-retention.cjs");
   // Chrome loads the three exact MP3 bytes over localhost and must emit ended.
   // This is media-codec evidence, NOT the complete product-player MEDIA-01 gate.
-  test("unit10-chrome-audio-codec.cjs");
+  if(selection.included("unit10-chrome-audio-codec.cjs"))test("unit10-chrome-audio-codec.cjs");
   // QA-only: real FoundationDemo + real browser-local AcademicService with
   // v1.21.0 seeded into a throwaway localhost Chrome profile.
   // Never imports into any production browser, nor tests the live site.
-  test("unit10-media01-real-browser.cjs");
+  if(selection.included("unit10-media01-real-browser.cjs"))test("unit10-media01-real-browser.cjs");
   test("storage-chromium-smoke.cjs");
   test("storage-ui-browser.cjs");
 }
 test("audio-rights-release-gate.cjs", ["--require-clearance"]);
 test("writing-ai-on-demand.cjs");
 test("english-tutor-knowledge-only.cjs");
-for(const name of fullTests)test(name,qaTestArgs(name),true);
-if(fullTests.some(name=>!completed.has(name)))throw Error("Incomplete full QA");
-console.log(JSON.stringify({result:"PASS",suite:"full",tests:fullTests.length,uniqueReleaseTests:completed.size}));
+for(const name of required)test(name,qaTestArgs(name),true);
+if(required.some(name=>!completed.has(name)))throw Error("Incomplete selected QA");
+console.log(JSON.stringify({result:"PASS",suite:scoped?"scoped":"full",tests:required.length,uniqueReleaseTests:completed.size,omittedExtended:selection.omitted}));
 run(pnpm,["exec","tsc","--noEmit","--incremental","false"]);
 
 const hostingEnv={
@@ -72,7 +78,7 @@ run(process.execPath,["tests/firebase-hosting-static.cjs"],hostingEnv);
 
 console.log(JSON.stringify({
   result:"PASS",
-  suite:"release",
+  suite:scoped?"scoped-release":"release",
   hosting:"firebase",
   githubActionsRequired:false,
 }));
