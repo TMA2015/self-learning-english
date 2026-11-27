@@ -1,6 +1,6 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
-import {WritingGoal,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
+import {WritingGoal,WritingReasons,WritingHeading,WritingMeta,WritingTask,WritingModel,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
 import {EnglishLessonTutor} from './english-lesson-tutor';
 import {TeachingBlocks} from './teaching-blocks';
 import {browserTutorService} from '../infrastructure/browser/firebase-ai-browser';
@@ -86,34 +86,35 @@ export function FoundationWritingU01({work=emptyU01Work(),onEdit,onSave,onExit,s
   finally{if(ticket===generation.current&&mounted.current)setPending(false)}
  }
  return <section className="panel wcv2 fw-unit" aria-label="Foundation Writing Unit 01">
-  <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button></div>
+  <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button><div className="fw-top-actions"><span className="muted">{saved?'Saved work available':'Editable draft'}</span><button type="button" className="secondary-button" disabled={saving} onClick={()=>void save(true)}>Save &amp; Exit</button></div></div>
   <div className="page-heading"><div><span className="eyebrow">Foundation Writing · Unit {String(1).padStart(2,'0')}</span>
-   <h1>{unit.title}</h1><WritingGoal unit={1} showVi={showVi}/>
+   <h1>{unit.title}</h1><WritingMeta unit={1}/>
    <p className="muted">{unit.estimatedMinutes} · Learn and practice at your own pace. Your original writing can receive optional feedback after saving.</p>
   </div></div>
   <WritingSteps step={step} onStep={go} checked={progress.supplementalChecked} saved={!!saved}/>
+  {step==='learn'&&<WritingGoal unit={1} showVi={showVi}/>}
   <p className="muted" role="status">{saved?'Saved version '+saved.version+'. Edit or change answers, then save again for AI Tutor.':
     'Your work is an editable draft. Save a version to enable optional AI Tutor review.'}
   </p>
 
   {step==='learn'&&<section aria-label="Read-only lessons">
-   <h2>Micro-lesson 1 · The four jobs in a prompt</h2><p>{unit.demo.instruction}</p>
+   <WritingHeading number={2}>Understand the concept</WritingHeading><h3 className="fw-teaching-subtitle">Micro-lesson 1 · The four jobs in a prompt</h3><p>{unit.demo.instruction}</p>
    <div className="wcv2-grid">{unit.concepts.map(c=><article className="wcv2-card" key={c.label}>
     <h3>{c.label}</h3><p>{c.explanation}</p><p className="muted">{c.caution}</p>
    </article>)}</div>
-   <h2>Worked example</h2><blockquote>{unit.demo.prompt}</blockquote>
+   <WritingHeading number={3}>See how it works</WritingHeading><WritingModel>{unit.demo.prompt}</WritingModel>
    <p><strong>Think first:</strong> {unit.demo.thinkQuestion}</p>
    <button type="button" className="secondary-button" disabled={demoCount===unit.demo.steps.length}
     onClick={()=>setDemoCount(i=>Math.min(i+1,unit.demo.steps.length))}>
     {demoCount?'Reveal the next thinking step':'Show the first thinking step'}
    </button>
-   {demoCount>0&&<ol>{unit.demo.steps.slice(0,demoCount).map((v,i)=><li key={i}>
+   {demoCount>0&&<ol className="fw-demo-steps">{unit.demo.steps.slice(0,demoCount).map((v,i)=><li key={i}>
     <strong>{v.label}:</strong> {v.text}</li>)}</ol>}
    {demoCount===unit.demo.steps.length&&<div className="notice">
     <strong>What can go wrong?</strong> {unit.demo.expectedConcept}
     <p>{unit.demo.commonError}</p>
    </div>}
-   <h2>Micro-lesson 2 · Apply the roles to a fresh prompt</h2>
+   <WritingHeading number={4}>Apply what you learned</WritingHeading><h3 className="fw-teaching-subtitle">Micro-lesson 2 · Apply the roles to a fresh prompt</h3>
    <p>In Practice A, sort exact phrases and explain the four roles in your OWN words. The example is never copied into your answer fields.</p>
    <details><summary>Optional A1 language help</summary><p>{unit.demo.a1}</p></details>
    <details><summary>Optional B1 stretch</summary><p>{unit.demo.b1}</p></details>
@@ -123,10 +124,12 @@ export function FoundationWritingU01({work=emptyU01Work(),onEdit,onSave,onExit,s
   </section>}
 
   {step==='cycleA'&&<section aria-label="Practice A">
-   <h2>Practice A</h2><blockquote>{unit.cycleA.prompt}</blockquote>
+   <WritingHeading number={1}>Practice A</WritingHeading><WritingTask>{unit.cycleA.prompt}</WritingTask>
    <p>{unit.cycleA.instructions}</p>
-   {unit.cycleA.chunks.map(chunk=><div className="field" key={chunk.id}>
-    <label htmlFor={'u01-'+chunk.id}><strong>{chunk.id} · {chunk.text}</strong></label>
+   <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card"><h3>Classify each phrase</h3>
+   {unit.cycleA.chunks.map(chunk=><div className="field fw-classify-row" key={chunk.id}>
+    <label htmlFor={'u01-'+chunk.id}><span className="fw-item-id">{chunk.id}</span> <span>{chunk.text}</span></label>
     <select id={'u01-'+chunk.id} name={chunk.id} value={draft.cycleALabels[chunk.id]??''}
      onChange={e=>edit({...draft,cycleALabels:{...draft.cycleALabels,[chunk.id]:e.target.value},revealCycleA:false})}>
      <option value="">Choose a direct role</option>{roles.map(role=><option key={role} value={role}>{role}</option>)}
@@ -139,47 +142,50 @@ export function FoundationWritingU01({work=emptyU01Work(),onEdit,onSave,onExit,s
    <button type="button" className="secondary-button" onClick={()=>edit({...draft,revealCycleA:true})}>
     Check phrase labels and read explanations
    </button>
-   <p className="muted">{unit.cycleA.clarification}</p>
-   <h3>Your original Task Map</h3>
+   <p className="muted">{unit.cycleA.clarification}</p></div>
+   <div className="fw-practice-card"><h3>Your original Task Map</h3>
    <MapEditor scope="u01-a" fields={unit.cycleA.fields} value={draft.cycleAMap} edit={(k,v)=>editMap('cycleAMap',k,v)}/>
-   <p>Writing meaning is not graded by exact keywords. Use your own language.</p>
+   <p>Writing meaning is not graded by exact keywords. Use your own language.</p></div>
    
   </section>}
 
   {step==='cycleB'&&<section aria-label="Practice B">
-   <h2>Practice B</h2><blockquote>{unit.cycleB.prompt}</blockquote>
-   <fieldset><legend>{unit.cycleB.question}</legend>
+   <WritingHeading number={1}>Practice B</WritingHeading><WritingTask>{unit.cycleB.prompt}</WritingTask>
+   <details><summary>Language help · useful words and sentence starters</summary><p>{unit.demo.a1}</p></details>
+   <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card"><fieldset><legend>{unit.cycleB.question}</legend>
     {unit.cycleB.options.map(o=><label className="field wcv2-radio-option" key={o.id}>
      <input type="radio" name="u01-best-opening" value={o.id} checked={draft.cycleBChoice===o.id}
       onChange={()=>edit({...draft,cycleBChoice:o.id,revealCycleB:false})}/>
      <strong>{o.id}.</strong> {o.text}
-     {draft.revealCycleB&&<p className="muted">{o.id===unit.cycleB.key?'Best opening. ':''}{o.rationale}</p>}
+
     </label>)}
    </fieldset>
    <button type="button" className="secondary-button" disabled={!draft.cycleBChoice}
     onClick={()=>edit({...draft,revealCycleB:true})}>Check opening and see all rationales</button>
-   {draft.revealCycleB&&<p className="notice">{unit.cycleB.instruction}</p>}
-   <label className="field" htmlFor="u01-repair"><strong>Your own repair</strong><span>{unit.cycleB.repairPrompt}</span>
+   {draft.revealCycleB&&<div role="status" className={draft.cycleBChoice===unit.cycleB.key?'fw-answer fw-correct':'fw-answer fw-retry'}><p>{unit.cycleB.instruction}</p><WritingReasons options={unit.cycleB.options}/></div>}</div>
+   <div className="fw-practice-card"><label className="field" htmlFor="u01-repair"><strong>Your own repair</strong><span>{unit.cycleB.repairPrompt}</span>
     <WritingText id="u01-repair" rows={4} maxLength={1800} value={draft.repair}
      onChange={e=>edit({...draft,repair:e.target.value})}/></label>
    <label className="field" htmlFor="u01-reflection"><strong>Why you made this repair</strong>
     <span>{unit.cycleB.reflectionPrompt}</span>
     <WritingText id="u01-reflection" rows={3} maxLength={1400} value={draft.reflection}
      onChange={e=>edit({...draft,reflection:e.target.value})}/></label>
-   <p className="muted">Different sensible materials can be correct. You can request individualized feedback after a successful save.</p>
+   <p className="muted">Different sensible materials can be correct. You can request individualized feedback after a successful save.</p></div>
    
   </section>}
 
   {step==='transfer'&&<section aria-label="Transfer task">
-   <h2>New prompt</h2><blockquote>{unit.transfer.prompt}</blockquote>
-   <p>{unit.transfer.instruction}</p>
+   <WritingHeading number={1}>Independent transfer</WritingHeading><WritingTask>{unit.transfer.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card"><p>{unit.transfer.instruction}</p>
    <MapEditor scope="u01-t" fields={unit.transfer.fields} value={draft.transferMap}
-    edit={(k,v)=>editMap('transferMap',k,v)}/>
+    edit={(k,v)=>editMap('transferMap',k,v)}/></div>
    
   </section>}
 
   {step==='extra'&&<section aria-label="Supplemental MCQs">
-   <h2>Knowledge Check</h2>
+   <WritingHeading number={1}>Knowledge Check</WritingHeading>
    <p>Each option comes with specific feedback after you check. These choices do not certify writing skill.</p>
    {unit.supplemental.map(item=>{
     const chosen=draft.supplementalAnswers[item.id]??'';
@@ -193,13 +199,13 @@ export function FoundationWritingU01({work=emptyU01Work(),onEdit,onSave,onExit,s
         onChange={()=>edit({...draft,supplementalAnswers:{...draft.supplementalAnswers,[item.id]:o.id},
          revealSupplemental:{...draft.revealSupplemental,[item.id]:false}})}/>
        <strong>{o.id}.</strong> {o.text}
-       {checked&&<p className={o.id===item.key?'fw-rationale fw-correct':'fw-rationale'}>{o.id===item.key?'Correct option. ':''}{o.rationale}</p>}
+
       </label>)}
      </fieldset>
      <button className="secondary-button" type="button" disabled={!chosen}
       onClick={()=>edit({...draft,revealSupplemental:{...draft.revealSupplemental,[item.id]:true}})}>
       Check this question</button>
-     {result&&<p role="status" className={result.correct?'fw-answer fw-correct':'fw-answer fw-retry'}>{result.correct?'Correct choice.':'Try again after reading the reasons.'} Key: {result.key}.</p>}
+     {result&&<div role="status" className={result.correct?'fw-answer fw-correct':'fw-answer fw-retry'}>{result.correct?'Correct choice.':'Try again after reading the reasons.'} Key: {result.key}.<p>{item.options.find(o=>o.id===chosen)?.rationale}</p><WritingReasons options={item.options}/></div>}
     </article>;
    })}
    
@@ -229,7 +235,7 @@ export function FoundationWritingU01({work=emptyU01Work(),onEdit,onSave,onExit,s
    <WritingNext step={step} onStep={go} onFinish={()=>void save(true)}/>
    <button type="button" className="secondary-button" disabled={saving} onClick={()=>void save()}>
     {saving?'Saving…':'Save work'}</button>
-   <button type="button" className="secondary-button" disabled={saving} onClick={()=>void save(true)}>Save &amp; Exit</button>
+   
    <button type="button" className="secondary-button" onClick={onExit}>Back to Foundation Writing</button>
   </div>
   {saveMessage&&<p role="status" className="notice">{saveMessage}</p>}

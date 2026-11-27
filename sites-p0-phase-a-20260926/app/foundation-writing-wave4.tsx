@@ -5,7 +5,7 @@
  * Synthetic fixtures are confined to the isolated browser QA harness.
  */
 import {useEffect,useRef,useState} from 'react';
-import {WritingGoal,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
+import {WritingGoal,WritingReasons,WritingHeading,WritingMeta,WritingTask,WritingModel,WritingSteps,WritingNext,WritingText,WritingSelfCheck,WritingReviewAction} from './foundation-writing-ui';
 import {validateWave4Bundle,type Wave4Lesson,type TaskStrip,type OwnField} from '../domain/foundation-writing-wave4-content';
 import {eligibleArtifact,type Wave4Id,type Wave4Draft,type Wave4Work,type Objective} from '../domain/foundation-writing-wave4-readiness';
 
@@ -89,12 +89,12 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
       onChange={()=>{setShown(v=>({...v,[q.id]:false}));change({...draft,
        [which]:{...draft[which],[q.id]:o.id}})}}/>
      <span>{o.id}. {o.text}</span>
-     {reveal&&<p className={o.id===q.key?'fw-rationale fw-correct':'fw-rationale'}>{o.rationale}</p>}
+
     </label>)}
    </fieldset>
    <button type="button" className="secondary-button" disabled={!answer}
     onClick={()=>setShown(v=>({...v,[q.id]:true}))}>Check and explain</button>
-   {reveal&&<p role="status" className={answer===q.key?'fw-answer fw-correct':'fw-answer fw-retry'}>{answer===q.key?'Correct. ':'Review your choice. '}Fixed key: {q.key}. This checks a choice, not your original writing.</p>}
+   {reveal&&<div role="status" className={answer===q.key?'fw-answer fw-correct':'fw-answer fw-retry'}>{answer===q.key?'Correct. ':'Review your choice. '}Fixed key: {q.key}. This checks a choice, not your original writing.<p>{q.options.find(o=>o.id===answer)?.rationale}</p><WritingReasons options={q.options}/></div>}
   </article>;
  };
  const fieldEditor=(stage:'cycleB'|'transfer',key:string,value:string)=>
@@ -123,14 +123,15 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
   finally{if(live.current&&token.current===request)setReviewBusy(false)}
  }
  return <section className="panel wcv2 fw-unit" aria-label={'Foundation Writing '+unitId}>
-  <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button></div>
+  <div className="foundation-unit-top-nav"><button type="button" className="secondary-button" onClick={onExit}>← Back to Foundation Writing</button><div className="fw-top-actions"><span className="muted">{exact?'Saved work available':'Editable draft'}</span><button type="button" className="secondary-button" disabled={saving} onClick={()=>void save(true)}>Save &amp; Exit</button></div></div>
   <div className="page-heading"><div>
    <span className="eyebrow">Foundation Writing · Unit {String(Number(unitId.slice(-2))).padStart(2,'0')}</span>
-   <h1>{src.title}</h1><WritingGoal unit={Number(unitId.slice(-2))} showVi={showVi}/>
+   <h1>{src.title}</h1><WritingMeta unit={Number(unitId.slice(-2))}/>
    <p className="muted">Independent teaching and practice · {src.minutes==='self-paced'?'self-paced, flexible timing':src.minutes+' minutes (flexible)'}.
     No automatic CEFR score.</p>
   </div></div>
   <WritingSteps step={tab} onStep={navigate} checked={src.extras.every(q=>!!draft.extrasAnswers[q.id]&&shown[q.id])} saved={!!exact}/>
+  {tab==='learn'&&<WritingGoal unit={Number(unitId.slice(-2))} showVi={showVi}/>}
   <p role="status" className="muted">{exact?'Saved version '+latest.version+'.':
    'This draft is not yet saved exactly.'}</p>
   {originalDraftV1&&<details className="wcv2-card">
@@ -139,30 +140,34 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
    <p className="muted">This copy is never rewritten by editing Units 10–12.</p>
   </details>}
   {tab==='learn'&&<section aria-label={unitId+' independent teaching'}>
-   <h2>Micro-lesson 1</h2><p style={{whiteSpace:'pre-wrap'}}>{src.teaching.lessons[0]}</p>
-   <h3>Worked example</h3>
-   <blockquote style={{whiteSpace:'pre-wrap'}}>{src.teaching.demo.prompt}</blockquote>
+   <WritingHeading number={2}>Understand the concept</WritingHeading><h3 className="fw-teaching-subtitle">Micro-lesson 1</h3><p style={{whiteSpace:'pre-wrap'}}>{src.teaching.lessons[0]}</p>
+   <WritingHeading number={3}>See how it works</WritingHeading><WritingModel>{src.teaching.demo.prompt}</WritingModel>
    <button className="secondary-button" type="button" disabled={demo>=src.teaching.demo.steps.length}
     onClick={()=>setDemo(x=>Math.min(x+1,src.teaching.demo.steps.length))}>
     {demo?'Reveal next reasoning step':'Reveal first reasoning step'}</button>
-   {demo>0&&<ol>{src.teaching.demo.steps.slice(0,demo).map(([name,explain],i)=>
+   {demo>0&&<ol className="fw-demo-steps">{src.teaching.demo.steps.slice(0,demo).map(([name,explain],i)=>
     <li key={i}><strong>{name}:</strong> {explain}</li>)}</ol>}
-   <h2>Micro-lesson 2</h2><p style={{whiteSpace:'pre-wrap'}}>{src.teaching.lessons[1]}</p>
+   <WritingHeading number={4}>Apply what you learned</WritingHeading><h3 className="fw-teaching-subtitle">Micro-lesson 2</h3><p style={{whiteSpace:'pre-wrap'}}>{src.teaching.lessons[1]}</p>
    <details><summary>Optional A1 bridge</summary><p>{src.teaching.a1}</p></details>
    <details><summary>Optional B1 extension</summary><p>{src.teaching.b1}</p></details>
   </section>}
   {tab==='cycleA'&&<section aria-label={unitId+' Practice A'}>
-   <h2>Practice A</h2>
-   <Strip x={src.cycleA.taskStrip}/><blockquote style={{whiteSpace:'pre-wrap'}}>{src.cycleA.prompt}</blockquote>
+   <WritingHeading number={1}>Practice A</WritingHeading>
+   <Strip x={src.cycleA.taskStrip}/><WritingTask>{src.cycleA.prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
    {src.cycleA.items.map(q=>choice(q,'cycleAAnswers'))}
    <h3>Your own explanation (not auto-graded)</h3>
    {src.cycleA.ownFields.map(f=><Field key={f.key} unit={unitId} stage="cycleA" field={f}
     value={draft.cycleAOwn?.[f.key]??''} onValue={value=>change({...draft,cycleAOwn:{...draft.cycleAOwn,[f.key]:value}})}/>)}
+  </div>
   </section>}
   {(['cycleB','transfer'] as const).includes(tab as 'cycleB'|'transfer')&&
    (tab==='cycleB'||tab==='transfer')&&<section aria-label={unitId+' original '+tab}>
-    <h2>{tab==='cycleB'?'Practice B · original writing':'Independent transfer'} · {src[tab].id}</h2>
-    <Strip x={src[tab].taskStrip}/><blockquote style={{whiteSpace:'pre-wrap'}}>{src[tab].prompt}</blockquote>
+    <WritingHeading number={1}>{tab==='cycleB'?'Practice B':'Independent transfer'}</WritingHeading>
+    <Strip x={src[tab].taskStrip}/><WritingTask>{src[tab].prompt}</WritingTask>
+   <WritingHeading number={2}>Your practice</WritingHeading>
+   <div className="fw-practice-card">
     <div className="fw-draft-fields">{src[tab].fields.map(f=>{const original=/V1$/i.test(f.key)?work.versions.find(v=>!!v.draft[tab][f.key]?.trim())?.draft[tab][f.key]:undefined;return <div key={f.key} className={/V[12]$/i.test(f.key)?'fw-draft-half':'fw-draft-full'}><Field unit={unitId} stage={tab} field={f}
      value={original??draft[tab][f.key]??''} locked={!!original}
      onValue={value=>fieldEditor(tab,f.key,value)}/>{/V2$/i.test(f.key)&&!draft[tab][f.key]?.trim()&&(()=>{const first=src[tab].fields.find(x=>/V1$/i.test(x.key));const value=first&&work.versions.find(v=>!!v.draft[tab][first.key]?.trim())?.draft[tab][first.key];return value?<button type="button" className="secondary-button" onClick={()=>fieldEditor(tab,f.key,value)}>Copy saved V1 to V2</button>:null})()}</div>})}</div>
@@ -177,9 +182,10 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
      <Field unit={unitId} stage="revision" field={{key:'reason',label:'Explain your decision in your own words'}}
       value={draft.revisionReason??''} onValue={value=>change({...draft,revisionReason:value})}/>
     </fieldset>}
-   </section>}
+   </div>
+  </section>}
   {tab==='extra'&&<section aria-label={unitId+' supplementary questions'}>
-   <h2>Knowledge Check</h2>
+   <WritingHeading number={1}>Knowledge Check</WritingHeading>
    <p>Choose a response, then read the explanation. These answers do not grade your original writing.</p>
    {src.extras.map(q=>choice(q,'extrasAnswers'))}
   </section>}
@@ -201,8 +207,7 @@ export function FoundationWritingWave4({unitId,approvedBundle,work,onEdit,onSave
    <WritingNext step={tab} onStep={navigate} onFinish={()=>void save(true)}/>
    <button type="button" className="secondary-button" disabled={saving}
     onClick={()=>void save()}>{saving?'Saving…':'Save work'}</button>
-   <button type="button" className="secondary-button" disabled={saving}
-    onClick={()=>void save(true)}>Save &amp; Exit</button>
+   
    <button type="button" className="secondary-button" onClick={onExit}>Back to Foundation Writing</button>
   </div>
   {status&&<p role="status" className="notice">{status}</p>}

@@ -17,7 +17,7 @@ assert.deepEqual(allUnits,Array.from({length:12},(_,i)=>'FW-U'+String(i+1).padSt
 let totalRadioChoices=0;
 for(const {file,ids} of components){
  const content=read(file);
- assert.match(content,/<WritingSteps step=/);assert.match(content,/<WritingReviewAction signature=/);assert.doesNotMatch(content,/label:'AI Tutor'/);
+ assert.match(content,/<WritingMeta unit=/);assert.match(content,/<WritingHeading number=\{2\}>Understand the concept/);assert.match(content,/<WritingHeading number=\{3\}>See how it works/);assert.match(content,/<WritingHeading number=\{4\}>Apply what you learned/);assert.match(content,/<WritingTask>/);assert.match(content,/<WritingSteps step=/);assert.match(content,/<WritingReviewAction signature=/);assert.doesNotMatch(content,/label:'AI Tutor'/);
  assert.match(content,/className="foundation-unit-top-nav"/,file+' must have a top course navigation button');
  assert.match(content,/foundation-unit-top-nav"><button type="button" className="secondary-button" onClick=\{onExit\}/,
   file+' top Back button must use existing guarded course exit');
