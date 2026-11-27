@@ -133,6 +133,14 @@ jobs:
           SLE_QA_SKILLS: grammar
         run: node scripts/qa-scoped.mjs
 
+      - name: Record exact full PR QA receipt
+        if: ${{ steps.app.outputs.present == 'true' && steps.scope.outputs.tier == '3' }}
+        env:
+          SLE_PR_BASE: ${{ github.event.pull_request.base.sha }}
+          SLE_PR_HEAD: ${{ github.event.pull_request.head.sha }}
+          SLE_PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: node scripts/verify-exact-pr-qa.cjs --emit
+
       - name: Record scope accurately
         if: ${{ success() }}
         run: |

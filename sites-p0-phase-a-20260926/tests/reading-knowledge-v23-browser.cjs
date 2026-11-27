@@ -4,6 +4,7 @@
  * Content widths are not physical Safari/iPad certification.
  */
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),cp=require('node:child_process'),http=require('node:http');
+const {runCases}=require('./browser-case-pool.cjs');
 const root=path.resolve(__dirname,'..');
 (async()=>{
  const {build}=await import('vite'),out=path.join(root,'.sites-runtime/reading-v23-browser');
@@ -101,33 +102,35 @@ const root=path.resolve(__dirname,'..');
  };
  try{
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
-  const baseUrl='http://127.0.0.1:'+server.address().port,results=[];
+  const baseUrl='http://127.0.0.1:'+server.address().port,componentTasks=[];
   for(const lesson of ['REA-A1-01','REA-A1-09','REA-A2-07','REA-A2-12','REA-B1-09','REA-B2-02','REA-B2-09','REA-C1-01']){
    for(const width of [320,375,768,960]){
     const query=new URLSearchParams({lesson,width:String(width)});
-    results.push({lesson,width,result:await run(baseUrl+'/?'+query,lesson,width)});
+    componentTasks.push(async()=>({lesson,width,result:await run(baseUrl+'/?'+query,lesson,width)}));
    }
   }
-  const playerCases=[];
+  const results=await runCases(componentTasks),playerTasks=[];
   for(const [lesson,version] of [['REA-A1-01','1.18.1'],['REA-A2-01','1.18.1']]){
    for(const route of ['historical','historical-draft']){
     for(const width of [320,375,768,960]){
      const query=new URLSearchParams({lesson,width:String(width),route,version});
-     playerCases.push({lesson,width,route,version,result:await runPlayer(baseUrl+'/?'+query,lesson,width,route+'-'+version)});
+     playerTasks.push(async()=>({lesson,width,route,version,result:await runPlayer(baseUrl+'/?'+query,lesson,width,route+'-'+version)}));
     }
    }
   }
   for(const lesson of ['REA-A1-01','REA-B1-09','REA-B2-02','REA-C1-01'])for(const width of [320,375,768,960]){
    const route='current',query=new URLSearchParams({lesson,width:String(width),route});
-   playerCases.push({lesson,width,route,result:await runPlayer(baseUrl+'/?'+query,lesson,width,route)});
+   playerTasks.push(async()=>({lesson,width,route,result:await runPlayer(baseUrl+'/?'+query,lesson,width,route)}));
   }
+  const playerCases=await runCases(playerTasks);
   assert.equal(results.length,32);assert.equal(playerCases.length,32);
-  const successorCases=[];
+  const successorTasks=[];
   for(const route of ['historical','historical-draft'])for(const width of [375,768]){
    const lesson='REA-B2-05',version='1.28.0',current='1.28.1';
    const query=new URLSearchParams({lesson,width:String(width),route,version,current});
-   successorCases.push({lesson,width,route,version,current,result:await runPlayer(baseUrl+'/?'+query,lesson,width,route+'-successor')});
+   successorTasks.push(async()=>({lesson,width,route,version,current,result:await runPlayer(baseUrl+'/?'+query,lesson,width,route+'-successor')}));
   }
+  const successorCases=await runCases(successorTasks);
   assert.equal(successorCases.length,4);assert.equal(writes,0);
   console.log(JSON.stringify({result:'PASS',gate:'SLE_READING_V23_REAL_CHROMIUM',
    cases:results,playerCases,successorCases,actualFoundationRoute:true,browserLocalAcademicService:true,persistedAttemptsCompared:true,source:'reviewed reading',physicalIpadSafari:'NOT_TESTED',realAuth:'NOT_TESTED',
