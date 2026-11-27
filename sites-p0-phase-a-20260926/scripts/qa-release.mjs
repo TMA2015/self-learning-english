@@ -16,6 +16,7 @@ run(process.execPath,["tests/stage3-release-activation-gate.cjs"]);
 run(process.execPath,["research/content-release-digest-gate.cjs"]);
 run(process.execPath,["research/content-release-manifest-prototype.cjs"]);
 run(process.execPath,["research/content-release-transport.test.mjs"]);
+run(process.execPath,["tests/content-release-readonly-preview.cjs"]);
 run(process.execPath,["tests/hosting-snapshot-inventory.mjs"]);
 // Execute successor preflight before historical media/browser checks. The
 // standard full suite still runs all 195 registered tests independently.
