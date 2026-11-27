@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {assembleInitialSnapshot} from './content-release-snapshot-assembly.mjs';
+import {inventory,verifyInventory} from '../scripts/hosting-snapshot-inventory.mjs';
+const [baseline,expectedFile]=process.argv.slice(2);
+if(!baseline||!expectedFile)throw Error('Provide verified isolated baseline and inventory');
+const expected=JSON.parse(fs.readFileSync(expectedFile,'utf8'));
+const sha=b=>createHash('sha256').update(b).digest('hex');
+const payload=Buffer.from(JSON.stringify({schema_version:'0.0.1',status:'SYNTHETIC_NOT_FOR_LEARNERS',lessons:[]}));
+const pin={version:'0.0.1',byteLength:payload.length,rawSha256:sha(payload)};
+const temp=fs.mkdtempSync(path.join(os.tmpdir(),'sle-assembly-')),rows=[];
+try{
+ const opts={baseline,expected,payload,pin,destination:path.join(temp,'candidate')};
+ const result=assembleInitialSnapshot(opts);assert.equal(result.originalFiles,expected.files);assert.equal(result.outputFiles,expected.files+2);assert.equal(result.added.length,2);verifyInventory(baseline,expected);rows.push('add only two files, preserve all original bytes');
+ const attempt=(name,patch,re)=>{const dest=path.join(temp,'negative-'+rows.length);assert.throws(()=>assembleInitialSnapshot({...opts,destination:dest,...patch}),re);assert(!fs.existsSync(dest));rows.push(name);};
+ attempt('payload hash mismatch',{pin:{...pin,rawSha256:'0'.repeat(64)}},/integrity/);
+ attempt('payload length mismatch',{pin:{...pin,byteLength:payload.length+1}},/integrity/);
+ attempt('version mismatch',{pin:{...pin,version:'0.0.2'}},/version/);
+ attempt('path-like version rejected',{pin:{...pin,version:'../0.0.1'}},/pin/);
+ attempt('inventory mismatch',{expected:{...expected,files:expected.files+1}},/parity/);
+ assert.throws(()=>assembleInitialSnapshot(opts),/exists/);rows.push('existing destination rejected');
+ assert.throws(()=>assembleInitialSnapshot({...opts,destination:path.join(baseline,'nested')}),/overlap/);rows.push('overlapping destination rejected');
+ const newExpected=inventory(opts.destination);
+ attempt('existing content namespace rejected',{baseline:opts.destination,expected:newExpected},/namespace/);
+ const malformed=Buffer.from('{');attempt('malformed JSON rejected',{payload:malformed,pin:{...pin,byteLength:malformed.length,rawSha256:sha(malformed)}},/JSON|Unexpected|property name/i);
+ verifyInventory(baseline,expected);
+ console.log(JSON.stringify({gate:'ISOLATED_SNAPSHOT_ASSEMBLY',pass:rows.length,total:10,rows,...result,content:'SYNTHETIC_NOT_REVIEWED',deployment:'NOT_AUTHORIZED'}));
+}finally{fs.rmSync(temp,{recursive:true,force:true});}
