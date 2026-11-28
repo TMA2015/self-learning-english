@@ -798,13 +798,13 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Advisory entry:** C1-U01, C1-U06, C1-U07; **priority:** P0. Design dependencies are not implemented unlocks.
 - **Independent exit task:** draft and revise a proposal that reports evidence and recommends proportionate action. Status: **PROPOSED**, not a released or automatically scored activity.
 - **Audit before adding:** provide non-academic high-level genres too; free responses remain unassessed until trusted review. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** NO_PRIMARY_MAPPING / BATCH12 R1 DRAFT ACADEMIC PENDING.
+- **Status:** BATCH12 ACADEMIC PASS / ACCUMULATED SOURCE ONLY / FINAL OUTCOME AUDIT PENDING.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | REA-C1-09 (proposed) | Analyse report/proposal genre, purpose and audience | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 2 | WRI-C1-04 (proposed) | Plan an executive summary, evidence and recommendations | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 3 | WRI-C1-05 (proposed) | Draft and revise an extended report or proposal with trusted review | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
+| 1 | REA-C1-09 | Read reports and proposals as decision documents | 35 min · 6 MCQs | NotebookLM PASS, working source only; technical QA pending. |
+| 2 | WRI-C1-04 | Produce a professional evaluation report | 50 min · 1 unassessed Writing | NotebookLM PASS, working source only; technical QA pending. |
+| 3 | WRI-C1-05 | Draft a resource-bounded implementation proposal | 55 min · 1 unassessed Writing | NotebookLM PASS, working source only; technical QA pending. |
 | 4 | C1-U08-TRANSFER (planning only) | draft and revise a proposal that reports evidence and recommends proportionate action. Status: **PROPOSED**, not a released or automatically scored activity. | To be audited / authored | Audit existing transfer evidence; draft if absent, label evidence honestly. |
 
 ### C1-U09 — High-level interaction and intercultural pragmatics
@@ -1029,3 +1029,6 @@ Owner-supplied NotebookLM PASS REA-C1-07/08 (12/12 BACDAB/BACDAB), WRI-C1-03 (we
 
 ## Batch12 C1-U08 draft checkpoint
 Audited actual REA-B2-10 WRI-B2-08/09/10/12, WRI-C1-01/02/03 and VOC-C1-02. Distinct genre architecture, executive-summary fidelity, responsibility, resource constraints and dependencies, implementation/evaluation and cross-section revision. REA-C1-09 six MCQs author structural keys ACBDAC; WRI-C1-04 professional report and WRI-C1-05 resource-bounded proposal weight 0; fresh C1-U08-TRANSFER-01 weight 0. Working 207/1365 unchanged. Independent review pending; no import/runtime/release. Batch12 R1 sole next temporary NotebookLM source.
+
+## Batch12 academic checkpoint — 2026-11-28
+Owner-supplied NotebookLM PASS REA-C1-09 (6/6 ACBDAC), WRI-C1-04/05 (weight 0), and fresh Unit Transfer (weight 0); MUST_FIX/OPTIONAL NONE. Exact R1 blob 8f623a978912bf82ea8e670f13a9ae71ac92c436. Working 210 lessons/1373 activities, including two unassessed Writing activities; 208 mapped + 2 unmapped. Prior 207 lesson objects, sequence prefix and rubrics preserved. Seven approved held lessons excluded. No import/runtime/release. Next C1-U09 audit distinct outcomes.
