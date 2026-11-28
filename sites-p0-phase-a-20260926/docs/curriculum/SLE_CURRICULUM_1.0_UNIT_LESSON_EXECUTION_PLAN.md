@@ -858,14 +858,13 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Advisory entry:** C1-U02, C1-U06; **priority:** P0. Design dependencies are not implemented unlocks.
 - **Independent exit task:** defend a text-based interpretation while acknowledging a plausible alternative. Status: **PROPOSED**, not a released or automatically scored activity.
 - **Audit before adding:** include literary and nonliterary texts; avoid presenting subjective interpretations as single objective answers. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** NO_PRIMARY_MAPPING / GAP_AUDIT_PENDING.
+- **Status:** BATCH16 R1 DRAFT / ACADEMIC PENDING.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | C2-U02-S01 (proposed) | Trace layered rhetoric, narrative voice and genre in dense texts | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 2 | C2-U02-S02 (proposed) | Interpret ambiguity and irony with explicit textual evidence | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 3 | C2-U02-S03 (proposed) | Compare defensible readings while retaining cultural context | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 4 | C2-U02-TRANSFER (planning only) | defend a text-based interpretation while acknowledging a plausible alternative. Status: **PROPOSED**, not a released or automatically scored activity. | To be audited / authored | Audit existing transfer evidence; draft if absent, label evidence honestly. |
+| 1 | REA-C2-01 (proposed) | Trace layered rhetoric and shifts of genre in a dense commentary | 35–45 min · 6 proposed MCQs | Independent academic review pending. |
+| 2 | REA-C2-02 (proposed) | Interpret narrative viewpoint, irony and unresolved alternatives | 35–45 min · 6 proposed MCQs | Independent academic review pending. |
+| 3 | C2-U02-TRANSFER-01 (proposed) | Fresh cross-genre comparison; defend a reading and acknowledge a plausible alternative | 25–35 min advisory | Qualitative weight 0; academic review pending. |
 
 ### C2-U03 — Complex spoken language across contexts
 - **Unit purpose:** Follow subtle implications, rapid exchanges and complex argument development in authentic, intelligible recordings.
@@ -1050,3 +1049,6 @@ Audited actual VOC-C2-01 (8 existing MCQs, unmapped), VOC-C1-01/02/03, GRA-C1-02
 
 ## Batch15 academic checkpoint — 2026-11-28
 Owner-supplied NotebookLM PASS VOC-C2-02 (6/6 BDACBD), WRI-C2-01 and Unit Transfer weight 0; MUST_FIX/OPTIONAL NONE for new packet. R1 fef3ce802ed82ae51dacab733522834aa6211ede. Existing VOC-C2-01 mapped unchanged; historical Q5 exact A wording correction separately recorded, not applied. Working 216/1399, 215 mapped + 1 unmapped; prior 215 lesson objects, sequence prefix and rubrics preserved. WRI-C2-01 held outside working lessons pending validated C2 rubric and delivery; no C1-as-C2 assessment. No import/runtime/merge/release. Next C2-U02 audit actual C1-U02/U06 and existing lexical/reading outcomes; author dense nonliterary and literary interpretations, competing defensible readings and fresh transfer only.
+
+## Batch16 C2-U02 draft checkpoint
+Audited actual REA-C1-03/04/05/06, WRI-C1-02, unmapped REA-C1-01, REA-C1-10/11, VOC-C1-03 and VOC-C2-01/02 against adopted C2-U02. No existing C2 Reading lesson. New REA-C2-01 layered rhetoric/genre in original nonliterary commentary (6 structural keys BACDAB); REA-C2-02 viewpoint, irony and alternative readings in original short fiction (6 structural keys CADBCA); fresh cross-genre C2-U02-TRANSFER-01 qualitative weight 0. Text-supported interpretations only; no fixed literary grade, audio/oral or CEFR certification. R1 blob 37dabeb755c156d589f9715b02127c62258d3da1; independent review pending. Working 216/1399 unchanged; historical Q5 correction, C2 writing and prior media gates unchanged. Batch16 R1 sole next temporary NotebookLM source. No import, runtime, merge, deploy or extra CI.
