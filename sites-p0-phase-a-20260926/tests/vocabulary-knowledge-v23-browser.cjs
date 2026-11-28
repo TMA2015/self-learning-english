@@ -4,6 +4,7 @@
  * Content widths are not physical Safari/iPad certification.
  */
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),cp=require('node:child_process'),http=require('node:http');
+const {runCases}=require('./browser-case-pool.cjs');
 const root=path.resolve(__dirname,'..');
 (async()=>{
  const {build}=await import('vite'),out=path.join(root,'.sites-runtime/vocabulary-v23-browser');
@@ -91,26 +92,27 @@ const root=path.resolve(__dirname,'..');
  };
  try{
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
-  const baseUrl='http://127.0.0.1:'+server.address().port,results=[];
+  const baseUrl='http://127.0.0.1:'+server.address().port,componentTasks=[];
   for(const lesson of ['VOC-A1-01','VOC-A2-01','VOC-B1-07','VOC-C2-01']){
    for(const width of [375,768,960]){
     const query=new URLSearchParams({lesson,width:String(width)});
-    results.push({lesson,width,result:await run(baseUrl+'/?'+query,lesson,width)});
+    componentTasks.push(async()=>({lesson,width,result:await run(baseUrl+'/?'+query,lesson,width)}));
    }
   }
-  const playerCases=[];
+  const results=await runCases(componentTasks),playerTasks=[];
   for(const [lesson,version] of [['VOC-A1-01','1.18.1'],['VOC-A2-01','1.18.1'],['VOC-B1-03','1.18.1'],['VOC-C2-01','1.25.0'],['VOC-B2-03','1.27.0']]){
    for(const route of ['historical','historical-draft']){
     for(const width of [375,768,960]){
      const query=new URLSearchParams({lesson,width:String(width),route,version});
-     playerCases.push({lesson,width,route,version,result:await runPlayer(baseUrl+'/?'+query,lesson,width,route+'-'+version)});
+     playerTasks.push(async()=>({lesson,width,route,version,result:await runPlayer(baseUrl+'/?'+query,lesson,width,route+'-'+version)}));
     }
    }
   }
   for(const width of [375,768,960]){
    const lesson='VOC-A1-01',route='current',query=new URLSearchParams({lesson,width:String(width),route});
-   playerCases.push({lesson,width,route,result:await runPlayer(baseUrl+'/?'+query,lesson,width,route)});
+   playerTasks.push(async()=>({lesson,width,route,result:await runPlayer(baseUrl+'/?'+query,lesson,width,route)}));
   }
+  const playerCases=await runCases(playerTasks);
   assert.equal(results.length,12);assert.equal(playerCases.length,33);assert.equal(writes,0);
   console.log(JSON.stringify({result:'PASS',gate:'SLE_VOCABULARY_V23_REAL_CHROMIUM',
    cases:results,playerCases,actualFoundationRoute:true,browserLocalAcademicService:true,persistedAttemptsCompared:true,source:'reviewed vocabulary',tts:'MOCK_INVOCATION_ONLY',physicalIpadSafari:'NOT_TESTED',realAuth:'NOT_TESTED',

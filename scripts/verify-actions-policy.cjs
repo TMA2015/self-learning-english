@@ -39,4 +39,12 @@ assert(pr.includes('run: node scripts/qa-scoped.mjs')&&live.includes('run: node 
 assert(live.indexOf('run: node scripts/qa-scoped.mjs')<deploy&&live.includes('FULL_QA')&&live.includes('SCOPED_QA'),'Selected QA must pass before deploy');
 assert(live.includes('SLE_QA_BASE: ${{ github.event.before }}')&&live.includes('SLE_ACTIONS_READ_TOKEN: ${{ github.token }}'),'Verify exact prior LIVE base for reduced QA');
 assert(pr.includes('SLE_QA_BASE: ${{ github.event.pull_request.base.sha }}')&&pr.includes('fetch-depth: 0')&&live.includes('fetch-depth: 0'));
+assert(pr.includes('run: node scripts/verify-exact-pr-qa.cjs --emit'));
+assert(live.includes('run: node scripts/verify-exact-pr-qa.cjs --verify'));
+assert(live.includes("steps.reuse.outputs.verified != 'true'")&&live.includes("steps.reuse.outputs.verified == 'true'"));
+assert(live.indexOf('run: node scripts/qa-verified-build.mjs')<deploy&&live.includes('REUSED_QA')&&live.includes('PR_REUSE_VERIFIED'));
+require('node:child_process').execFileSync(process.execPath,[path.join(root,'scripts/verify-exact-pr-qa.cjs'),'--self-test'],{stdio:'inherit'});
+require('node:child_process').execFileSync(process.execPath,[path.join(root,'sites-p0-phase-a-20260926/tests/browser-case-pool.cjs')],{stdio:'inherit'});
+require('node:child_process').execFileSync(process.execPath,[path.join(root,'sites-p0-phase-a-20260926/scripts/qa-scope-registry.cjs')],{stdio:'inherit'});
+require('node:child_process').execFileSync(process.execPath,[path.join(root,'scripts/classify-release.cjs'),'--self-test'],{stdio:'inherit'});
 console.log('CI_POLICY_PASS: single PR QA + owner-authorized main LIVE release, no Preview');

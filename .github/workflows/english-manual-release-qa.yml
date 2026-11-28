@@ -113,10 +113,24 @@ jobs:
           ffprobe -hide_banner -version >/dev/null
           echo 'FFmpeg and FFprobe verified; audio QA and English deploy remain mandatory'
 
+      - name: Verify exact completed full PR QA receipt
+        id: reuse
+        if: ${{ steps.scope.outputs.tier == '3' }}
+        working-directory: .
+        env:
+          SLE_QA_BASE: ${{ github.event.before }}
+          SLE_ACTIONS_READ_TOKEN: ${{ github.token }}
+        run: node scripts/verify-exact-pr-qa.cjs --verify
+
       - name: Full release QA, TS, static build and audio validation
         id: release_qa
-        if: ${{ steps.scope.outputs.tier == '3' }}
+        if: ${{ steps.scope.outputs.tier == '3' && steps.reuse.outputs.verified != 'true' }}
         run: pnpm qa:release
+
+      - name: Rebuild exact commit and run mandatory release gates after verified PR QA
+        id: reused_qa
+        if: ${{ steps.scope.outputs.tier == '3' && steps.reuse.outputs.verified == 'true' }}
+        run: node scripts/qa-verified-build.mjs
 
       - name: Scoped release QA, TS and static build
         id: scoped_qa
@@ -131,9 +145,20 @@ jobs:
           QA_TIER: ${{ steps.scope.outputs.tier }}
           FULL_QA: ${{ steps.release_qa.outcome }}
           SCOPED_QA: ${{ steps.scoped_qa.outcome }}
+          REUSED_QA: ${{ steps.reused_qa.outcome }}
+          PR_REUSE_VERIFIED: ${{ steps.reuse.outputs.verified }}
+          PR_QA_RUN_ID: ${{ steps.reuse.outputs.run_id }}
         run: |
           set -euo pipefail
-          if [[ "$QA_TIER" == '3' ]]; then [[ "$FULL_QA" == 'success' ]]; else [[ "$QA_TIER" =~ ^[12]$ && "$SCOPED_QA" == 'success' ]]; fi
+          if [[ "$QA_TIER" == '3' ]]; then
+            if [[ "$PR_REUSE_VERIFIED" == 'true' ]]; then
+              [[ "$REUSED_QA" == 'success' && "$PR_QA_RUN_ID" =~ ^[0-9]+$ ]]
+            else
+              [[ "$FULL_QA" == 'success' ]]
+            fi
+          else
+            [[ "$QA_TIER" =~ ^[12]$ && "$SCOPED_QA" == 'success' ]]
+          fi
           test -s dist/client/index.html
           test -s dist/client/foundation-audio/LIS-A1-06-v1.mp3
           test -s dist/client/foundation-audio/LIS-A2-07-v1.mp3
@@ -192,6 +217,9 @@ jobs:
           QA_TIER: ${{ steps.scope.outputs.tier }}
           FULL_QA: ${{ steps.release_qa.outcome }}
           SCOPED_QA: ${{ steps.scoped_qa.outcome }}
+          REUSED_QA: ${{ steps.reused_qa.outcome }}
+          PR_REUSE_VERIFIED: ${{ steps.reuse.outputs.verified }}
+          PR_QA_RUN_ID: ${{ steps.reuse.outputs.run_id }}
           DEPLOY_RESULT: ${{ steps.deploy.outcome }}
           SMOKE_RESULT: ${{ steps.live_smoke.outcome }}
         run: |
@@ -201,6 +229,8 @@ jobs:
             echo "- QA Level: $QA_TIER"
             echo "- Full QA: $FULL_QA"
             echo "- Scoped QA: $SCOPED_QA"
+            echo "- Exact-tree PR QA reuse: $PR_REUSE_VERIFIED (PR run: $PR_QA_RUN_ID)"
+            echo "- Verified PR release rebuild and mandatory gates: $REUSED_QA"
             echo "- Firebase LIVE deploy: $DEPLOY_RESULT"
             echo "- LIVE HTML/MP3 verification: $SMOKE_RESULT"
             echo '- Website: https://g-learning-english.web.app/'

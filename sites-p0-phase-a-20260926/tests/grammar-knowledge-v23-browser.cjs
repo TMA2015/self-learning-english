@@ -4,6 +4,7 @@
  * Content widths are not physical Safari/iPad certification.
  */
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),cp=require('node:child_process'),http=require('node:http');
+const {runCases}=require('./browser-case-pool.cjs');
 const root=path.resolve(__dirname,'..');
 (async()=>{
  const {build}=await import('vite'),out=path.join(root,'.sites-runtime/grammar-v23-browser');
@@ -91,19 +92,21 @@ const root=path.resolve(__dirname,'..');
  };
  try{
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
-  const baseUrl='http://127.0.0.1:'+server.address().port,results=[];
+  const baseUrl='http://127.0.0.1:'+server.address().port,componentTasks=[];
   for(const lesson of ["GRA-A1-02","GRA-A1-06","GRA-A1-12","GRA-A2-08","GRA-B1-01","GRA-B1-08","GRA-A1-01","GRA-A1-03","GRA-A1-04","GRA-A1-05","GRA-A1-07","GRA-A1-08","GRA-A1-09","GRA-A1-10","GRA-A1-11","GRA-A2-09","GRA-A2-10","GRA-A2-11","GRA-A2-12","GRA-A2-13","GRA-A2-14","GRA-A2-15","GRA-A2-16","GRA-A2-01","GRA-A2-02","GRA-A2-03","GRA-A2-04","GRA-A2-05","GRA-A2-06","GRA-A2-07","GRA-B1-02","GRA-B1-03","GRA-B1-04","GRA-B1-05","GRA-B1-06","GRA-B1-07","GRA-B1-09","GRA-B1-10","GRA-B1-11","GRA-B1-12","GRA-B2-01","GRA-B2-02"]){
    for(const width of [375,768,960]){
     const query=new URLSearchParams({lesson,width:String(width)});
-    results.push({lesson,width,result:await run(baseUrl+'/?'+query,lesson,width)});
+    componentTasks.push(async()=>({lesson,width,result:await run(baseUrl+'/?'+query,lesson,width)}));
    }
   }
+  const results=await runCases(componentTasks);
   assert.equal(results.length,126);
-  const playerCases=[];
+  const playerTasks=[];
   for(const [lesson,route] of [['GRA-B2-01','current'],['GRA-B2-02','current'],['GRA-A2-07','historical'],['GRA-A2-07','historical-draft']])for(const width of [375,768,960]){
    const query=new URLSearchParams({lesson,width:String(width),route});
-   playerCases.push({lesson,width,route,result:await runPlayer(baseUrl+'/?'+query,lesson,width,route)});
+   playerTasks.push(async()=>({lesson,width,route,result:await runPlayer(baseUrl+'/?'+query,lesson,width,route)}));
   }
+  const playerCases=await runCases(playerTasks);
   assert.equal(playerCases.length,12);assert.equal(writes,0);
   console.log(JSON.stringify({result:'PASS',gate:'SLE_GRAMMAR_V23_REAL_CHROMIUM',
    cases:results,playerCases,actualFoundationRoute:true,browserLocalAcademicService:true,persistedAttemptsCompared:true,source:'reviewed instruction',physicalIpadSafari:'NOT_TESTED',realAuth:'NOT_TESTED',
