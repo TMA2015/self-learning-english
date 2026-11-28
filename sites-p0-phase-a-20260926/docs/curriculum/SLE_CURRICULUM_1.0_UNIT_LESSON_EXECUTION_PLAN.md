@@ -828,13 +828,13 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Advisory entry:** C1-U01…C1-U09; **priority:** P0. Design dependencies are not implemented unlocks.
 - **Independent exit task:** complete a multi-source briefing and revision log with transparent strengths and uncertainties. Status: **PROPOSED**, not a released or automatically scored activity.
 - **Audit before adding:** design authentic integrated tasks with written review gates and audio rights; no automatic C1 level award. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** NO_PRIMARY_MAPPING / GAP_AUDIT_PENDING.
+- **Status:** NO_PRIMARY_MAPPING / BATCH14 R1 DRAFT ACADEMIC PENDING / AUDIO HOLD.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | C1-U10-S01 (proposed) | Read and compare complex sources for a defined audience | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 2 | C1-U10-S02 (proposed) | Listen to extended verified audio, preserving stance and evidence limits | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 3 | C1-U10-S03 (proposed) | Synthesize, draft, review and revise an original communicative task | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
+| 1 | REA-C1-12 (proposed) | Read and compare complex sources for a defined audience | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
+| 2 | LIS-C1-04 (proposed; media hold) | Listen to extended verified audio, preserving stance and evidence limits | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
+| 3 | WRI-C1-07 (proposed) | Synthesize, draft, review and revise an original communicative task | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
 | 4 | C1-U10-TRANSFER (planning only) | complete a multi-source briefing and revision log with transparent strengths and uncertainties. Status: **PROPOSED**, not a released or automatically scored activity. | To be audited / authored | Audit existing transfer evidence; draft if absent, label evidence honestly. |
 
 ### C2-U01 — Fine shades of meaning and pragmatic precision
@@ -1038,3 +1038,6 @@ Audited REA-B2-11/12 WRI-B2-10, VOC-C1-02/03 and C1-U06/07/08 existing material.
 
 ## Batch13 academic checkpoint — 2026-11-28
 Owner-supplied NotebookLM PASS REA-C1-10/11 (12/12 BACDAB/CABDCA), WRI-C1-06 (weight 0), and fresh Unit Transfer (weight 0); MUST_FIX/OPTIONAL NONE. Exact R1 blob ef585ba4a01174c251fa0f88439f9c1b3c5ee5fb. Working 213 lessons/1386 activities, including one unassessed Writing activity; 211 mapped + 2 unmapped. Prior 210 lesson objects, sequence prefix and rubrics preserved. Seven approved held lessons excluded. Written interaction only; no import/runtime/release. Next C1-U10 integrated performance and revision: audit prior C1 and B2-U10, separate verified listening and integrated transfer media dependencies from immediately usable written source.
+
+## Batch14 C1-U10 draft checkpoint
+Audited B2-U10 REA-B2-15/LIS-B2-01/WRI-B2-12, C1-U01/03/06/07/08/09 source and Batch08 reviewed media-held scripts. New REA-C1-12 six MCQs BACDAB, LIS-C1-04 six script-based author keys CBADBC (UNASSESSED/weight 0 until actual audio gate), WRI-C1-07 independent written dossier, revision and reflection weight 0; fresh C1-U10-TRANSFER-01 two written sources + separate reviewer-only interview (MEDIA HOLD, weight 0). Distinct source/version reconciliation, revised spoken stance, independent draft and integrated transfer; no transcript/key exposure or CEFR award. Two actual recordings required, not yet produced. Working 213/1386 unchanged. Independent review pending. Batch14 R1 sole next temporary source; no import/release. C1 educational completion remains unverified pending outcome/media/engineering audit.
