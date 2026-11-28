@@ -1,0 +1,251 @@
+{
+  "format": "SLE_AUTHORING_STAGING_NOT_IMPORTABLE",
+  "packet_id": "SLE-C2-U01-B15-R1-20261128",
+  "source_git_blob": "fef3ce802ed82ae51dacab733522834aa6211ede",
+  "academic_verdict": "PASS",
+  "must_fix": [],
+  "optional_improvements": [],
+  "unit": "C2-U01",
+  "import_authorized": false,
+  "release_authorized": false,
+  "existing_bridge": {
+    "id": "VOC-C2-01",
+    "status": "ACADEMIC_MAPPING_ACCEPTED_UNEDITED",
+    "historical_correction": "VOC-C2-01-Q5 separately recorded"
+  },
+  "lessons": [
+    {
+      "id": "VOC-C2-02",
+      "module": "vocabulary",
+      "cefr_target": "C2",
+      "title": "Diagnose lexical implications and calibrate commitment",
+      "estimated_minutes": 35,
+      "objectives": [
+        "In unfamiliar editorial and professional contexts, choose between plausible near-equivalent formulations by tracking what each presupposes, what it commits the writer to, and what it foregrounds. Identify the point at which a collocation or idiom adds a meaning not licensed by the source. Explain choices in terms of the specific context, not supposed universal politeness rankings."
+      ],
+      "explanation": {
+        "en": "**CORE-1 — Goal/context.** In unfamiliar editorial and professional contexts, choose between plausible near-equivalent formulations by tracking what each presupposes, what it commits the writer to, and what it foregrounds. Identify the point at which a collocation or idiom adds a meaning not licensed by the source. Explain choices in terms of the specific context, not supposed universal politeness rankings.\n\n**CORE-2 — Teach/model.** Use a four-part contrast ledger: explicit proposition; background assumption; degree/scope of commitment; contextual interpersonal effect. Compare phrases in complete sentences, not in isolation. \"Resume\" normally presupposes an earlier activity that stopped; \"initiate\" does not. \"Stop short of\" describes a limit not crossed (often deliberately in an account of decisions); \"fall short of\" describes non-attainment of a target or expectation, not necessarily deliberate restraint. \"In principle\" can indicate agreement with a general idea before practical details are settled; an endorsement of an actual bounded plan is not automatically an endorsement of a wider principle. \"Not least because\" foregrounds an important reason without declaring it the sole or necessarily greatest reason. Conventional idioms have context-sensitive effects: \"give someone the benefit of the doubt\" means withhold an adverse conclusion despite uncertainty, not certify innocence or correctness. A word may carry an evaluative implication without proving a person's motive. In each case check the source status and identify exactly which implication would be changed by substitution.\n\nIndependent worked model (not assessed): a community archive paused indexing photographs while a consent form was revised. The committee now permits indexing again, but has not authorised public access. \"The committee agreed to resume indexing\" preserves the earlier pause and current permission. \"The committee agreed to launch public access\" changes both the action and its authority. \"The committee fell short of authorising public access\" might imply authorisation was a target it failed to attain; the record only says it was not authorised. A more neutral statement is \"The committee authorised indexing to resume but made no decision on public access.\" In your ledger, identify which added implication is supported and which is not. Do not automatically prefer more elaborate language.\n\n**CORE-3 — Independent practice.** Complete the six fresh contexts before reviewing feedback.\n\n**CORE-4 — Feedback/repair.** After submit, use option-specific explanations. For Q1/Q2 underline the added background assumption or implied target; Q3 separate type of agreement from implementation; Q4 test whether emphasis has become ranking; Q5 distinguish restraint from verification; Q6 draw the scope of evaluation. Independent unassessed transfer: a fictional craft centre previously ran orientation sessions but paused them; it now agrees to discuss resuming them, not to resume them. Compare \"agreed to resume\", \"agreed to consider resuming\" and \"agreed in principle to resume\". Identify which commitment is established, and write an accurate alternative. No automatic semantic grade.",
+        "vi": "Nhận diện tiền giả định, mức độ cam kết, trọng tâm và sắc thái giao tiếp của từ ngữ trong ngữ cảnh."
+      },
+      "examples": [
+        "Use a four-part contrast ledger: explicit proposition; background assumption; degree/scope of commitment; contextual interpersonal effect. Compare phrases in complete sentences, not in isolation. \"Resume\" normally presupposes an earlier activity that stopped; \"initiate\" does not. \"Stop short of\" describes a limit not crossed (often deliberately in an account of decisions); \"fall short of\" describes non-attainment of a target or expectation, not necessarily deliberate restraint. \"In principle\" can indicate agreement with a general idea before practical details are settled; an endorsement of an actual bounded plan is not automatically an endorsement of a wider principle. \"Not least because\" foregrounds an important reason without declaring it the sole or necessarily greatest reason. Conventional idioms have context-sensitive effects: \"give someone the benefit of the doubt\" means withhold an adverse conclusion despite uncertainty, not certify innocence or correctness. A word may carry an evaluative implication without proving a person's motive. In each case check the source status and identify exactly which implication would be changed by substitution.\n\nIndependent worked model (not assessed): a community archive paused indexing photographs while a consent form was revised. The committee now permits indexing again, but has not authorised public access. \"The committee agreed to resume indexing\" preserves the earlier pause and current permission. \"The committee agreed to launch public access\" changes both the action and its authority. \"The committee fell short of authorising public access\" might imply authorisation was a target it failed to attain; the record only says it was not authorised. A more neutral statement is \"The committee authorised indexing to resume but made no decision on public access.\" In your ledger, identify which added implication is supported and which is not. Do not automatically prefer more elaborate language."
+      ],
+      "activities": [
+        {
+          "id": "VOC-C2-02-Q1",
+          "type": "single_choice",
+          "prompt": "A conservation group's notes say public demonstrations were proposed for the first time this year. They approved preparation of two demonstrations but have not decided whether to open them to visitors. Which editorial sentence preserves the action and avoids an unsupported presupposition?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The group has agreed to resume preparations for public demonstrations, with admission arrangements still unresolved."
+            },
+            {
+              "id": "B",
+              "text": "The group has agreed to begin preparing two demonstrations, with public access still undecided."
+            },
+            {
+              "id": "C",
+              "text": "The group has agreed to reinstate public demonstrations, subject to confirmation of the visitor timetable."
+            },
+            {
+              "id": "D",
+              "text": "The group has agreed in principle to reopen demonstrations to visitors, while preparation continues."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The group has agreed to resume preparations for public demonstrations, with admission arrangements still unresolved. — \"Resume\" suggests earlier preparation that the notes do not establish.\nThe group has agreed to begin preparing two demonstrations, with public access still undecided. — Preserves initiation, scope and decision status.\nThe group has agreed to reinstate public demonstrations, subject to confirmation of the visitor timetable. — \"Reinstate\" suggests prior demonstrations and implies a decision on public access.\nThe group has agreed in principle to reopen demonstrations to visitors, while preparation continues. — Adds an agreement about public access and presupposes earlier access."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-C2-02-Q2",
+          "type": "single_choice",
+          "prompt": "The draft of a housing advice leaflet was reviewed solely for factual accuracy. The reviewer deliberately confined approval to the factual statements and explicitly left layout outside the review. Which account most accurately conveys that chosen boundary, rather than suggesting failure to attain a target?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The review fell short of approving the leaflet's layout."
+            },
+            {
+              "id": "B",
+              "text": "The reviewer gave the leaflet an endorsement in principle, subject only to layout revisions."
+            },
+            {
+              "id": "C",
+              "text": "The reviewer withheld factual approval pending a separate layout review."
+            },
+            {
+              "id": "D",
+              "text": "The reviewer approved the factual statements but stopped short of endorsing the layout."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "The review fell short of approving the leaflet's layout. — Can frame layout approval as an unmet goal, which was not the assigned review scope.\nThe reviewer gave the leaflet an endorsement in principle, subject only to layout revisions. — Broad endorsement and required revisions are not established.\nThe reviewer withheld factual approval pending a separate layout review. — Reverses the actual approval.\nThe reviewer approved the factual statements but stopped short of endorsing the layout. — Expresses the explicit limit without treating layout approval as a failed review target."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-C2-02-Q3",
+          "type": "single_choice",
+          "prompt": "A panel supports the general idea of a shared translation desk. It has not agreed to a specific pilot, staffing model or schedule. Which minute preserves this distinction between general agreement and operational endorsement?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The panel endorsed the idea in principle, leaving any pilot and its arrangements to a later decision."
+            },
+            {
+              "id": "B",
+              "text": "The panel gave qualified endorsement to the proposed pilot, leaving only the schedule to be confirmed."
+            },
+            {
+              "id": "C",
+              "text": "The panel approved a pilot in outline, deferring the choice of staffing model."
+            },
+            {
+              "id": "D",
+              "text": "The panel agreed to implement the idea subject to finalising the arrangements."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The panel endorsed the idea in principle, leaving any pilot and its arrangements to a later decision. — General support is distinct from approving a pilot.\nThe panel gave qualified endorsement to the proposed pilot, leaving only the schedule to be confirmed. — Attributes pilot approval and narrows the unresolved details.\nThe panel approved a pilot in outline, deferring the choice of staffing model. — Attributes operational approval not given.\nThe panel agreed to implement the idea subject to finalising the arrangements. — Converts agreement in principle to an implementation commitment."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-C2-02-Q4",
+          "type": "single_choice",
+          "prompt": "An editor says a public guide warrants revision for several reasons. She identifies the ambiguous appeal procedure as particularly important but expressly declines to rank it against other problems. Which formulation reflects that emphasis without introducing a ranking or exclusive cause?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The guide warrants revision primarily because its appeal procedure is ambiguous."
+            },
+            {
+              "id": "B",
+              "text": "The guide warrants revision insofar as its appeal procedure is ambiguous."
+            },
+            {
+              "id": "C",
+              "text": "The guide warrants revision, not least because its appeal procedure is ambiguous."
+            },
+            {
+              "id": "D",
+              "text": "The guide warrants revision solely on account of its ambiguous appeal procedure."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The guide warrants revision primarily because its appeal procedure is ambiguous. — Makes this the principal reason, contrary to the absence of ranking.\nThe guide warrants revision insofar as its appeal procedure is ambiguous. — Restricts the claim to the extent of that particular ground rather than foregrounding it among several.\nThe guide warrants revision, not least because its appeal procedure is ambiguous. — Highlights a substantial reason without imposing exclusivity or an explicit ranking.\nThe guide warrants revision solely on account of its ambiguous appeal procedure. — Excludes the other stated reasons."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-C2-02-Q5",
+          "type": "single_choice",
+          "prompt": "A volunteer's explanation of a delayed delivery is plausible but unverified. The coordinator decides not to assume misconduct, while still asking for the delivery record. Which account best conveys this particular interim stance?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The coordinator took the explanation at face value and dispensed with further verification."
+            },
+            {
+              "id": "B",
+              "text": "The coordinator gave the volunteer the benefit of the doubt pending verification of the delivery record."
+            },
+            {
+              "id": "C",
+              "text": "The coordinator vouched for the volunteer's account while seeking supporting records."
+            },
+            {
+              "id": "D",
+              "text": "The coordinator provisionally found misconduct unsubstantiated following a completed inquiry."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The coordinator took the explanation at face value and dispensed with further verification. — Treats the account as accepted and removes the requested check.\nThe coordinator gave the volunteer the benefit of the doubt pending verification of the delivery record. — Withholds an adverse inference without certifying the explanation.\nThe coordinator vouched for the volunteer's account while seeking supporting records. — Adds a personal assurance of the account's reliability.\nThe coordinator provisionally found misconduct unsubstantiated following a completed inquiry. — Implies an inquiry and finding, rather than a decision not to prejudge."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "VOC-C2-02-Q6",
+          "type": "single_choice",
+          "prompt": "A workshop organiser says \"The new checklist is helpful insofar as it reminds volunteers to confirm equipment availability.\" The organiser has not examined whether it improves scheduling or safety. Which public paraphrase preserves both the positive evaluation and its scope?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The organiser regards the checklist as helpful, not least because it improves scheduling and safety."
+            },
+            {
+              "id": "B",
+              "text": "The organiser regards the checklist as generally effective, albeit with room for improvement in safety."
+            },
+            {
+              "id": "C",
+              "text": "The organiser endorses the checklist in principle as a comprehensive safety measure."
+            },
+            {
+              "id": "D",
+              "text": "The organiser identifies a specific benefit: the checklist prompts equipment checks; its effects on scheduling and safety remain unevaluated."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "The organiser regards the checklist as helpful, not least because it improves scheduling and safety. — Adds effects and broadens the claim.\nThe organiser regards the checklist as generally effective, albeit with room for improvement in safety. — Implies a general evaluation and an identified safety deficiency.\nThe organiser endorses the checklist in principle as a comprehensive safety measure. — Attributes a different purpose and broader endorsement.\nThe organiser identifies a specific benefit: the checklist prompts equipment checks; its effects on scheduling and safety remain unevaluated. — Retains the bounded evaluation without inferring other outcomes."
+          },
+          "skill_tags": [
+            "vocabulary.meaning_in_context"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    }
+  ],
+  "held_lessons": [
+    {
+      "id": "WRI-C2-01",
+      "reviewed_section": "2. WRI-C2-01 — Reformulate precisely across audiences without losing pragmatic force\n\n**CORE-1 — Goal/context.** Produce two concise original versions of a nuanced message: one for a collaborative working group, one for a formal decision record. Preserve evidential limits, conditional commitment, a speaker's actual criticism and an explicit authority boundary, while changing the linguistic realisation of interpersonal force. Explain the trade-offs of at least three wording choices. This is written practice, not an automatic C2 judgement.\n\n**CORE-2 — Teach/model.** Plan Topic, Task, Must Include and Boundary. First make an invariant ledger (facts, extent of uncertainty, stance, proposed action, decision authority); then separate the intended effect for each audience. A working-group message may acknowledge a colleague's effort, invite repair and avoid attributing motive. A formal minute may foreground the exact defect, status and owner without conversational mitigation. Neither should erase a material objection, convert discussion into commitment, or imply blame without evidence. Avoid a mechanical direct/polite spectrum: explicitness can be considerate when it prevents mistaken action. Revise in three passes: proposition and presupposition; commitment and scope; audience and recoverable action. Independent miniature model (different topic): a neighbourhood garden team says the planting map is useful for locating beds but cannot establish whether a path meets accessibility requirements; only a facilities officer may clear the path. Working message: \"The map gives us a useful starting point; could we have the path checked before describing it as accessible?\" Formal minute: \"The map identifies bed locations but does not establish path accessibility; clearance remains with the facilities officer.\" The first invites a check, the second records the boundary. Neither says the path is inaccessible, blames the mapmaker or claims clearance. Annotate an alternative: \"The map proves accessibility\" changes the evidential status; \"the path is unsuitable\" overstates the criticism. No answer model for the task below.\n\n**CORE-3 — Independent source bundle (fictional).**\n- Draft planning message: a volunteer-run oral-history exhibition has a proposed display of excerpts. A draft caption describes three interviewees as supporting the whole exhibition. Their written responses actually support including their own excerpts, subject to seeing final captions; no views about the other displays were requested.\n- Reviewer note: the editor says the caption is \"a little too sweeping\" and \"not beyond repair\". She explicitly wants the claim restricted to the three conditional responses; she does not allege deliberate misrepresentation or oppose the exhibition. The production team asks whether it may continue preparing the internal layout while caption confirmation is sought.\n- Authority note: the curator may authorise internal layout preparation; the permissions coordinator alone confirms public use after final captions have been accepted. No public display or announcement has been authorised. The curator has agreed to consider authorising internal preparation, but has not yet authorised it. A revised caption can be drafted for internal review now.\n\nWRI-C2-01-Q1 — Write (a) a 120–170-word collaborative message to the editor and production team and (b) an 80–120-word formal decision-record entry. Both must restrict the claim about support, preserve the editor's qualified criticism, identify what can be done now, distinguish consideration from authorisation, and state the permissions boundary. For the collaborative message invite a focused repair without blaming anyone or promising approval. For the minute make the status and responsibilities recoverable without implying broader consensus. Add a separate short three-part wording commentary: quote an expression from your own draft, give a plausible alternative, and explain the difference in implication, commitment or interpersonal effect; use one contrast for each dimension. Then revise one expression after checking against your invariant ledger and explain why. The word ranges are advisory drafting support, not a measure of quality; commentary is outside them. Do not invent motives, consent, facts or approval.\n\n**CORE-4 — Feedback/repair.** UNASSESSED / trusted review pending; weight 0. Self-check: source-specific consent versus whole-project support; conditionality; mild criticism without erasure; actual versus possible permission; precise repair; audience-sensitive wording; meaningful contrast commentary and revision. No validated C2 Writing rubric currently exists; keep this source-only until delivery and review compatibility are verified. If separately authorised, provisional assistance may use the saved-draft feedback path, never a C2 grade. Otherwise use the self-check and trusted reviewer. No mandatory AI and no automatic semantic grading.",
+      "academic_status": "PASS",
+      "evidence_weight": 0,
+      "delivery_status": "BLOCKED_PENDING_VALIDATED_C2_WRITING_RUBRIC_AND_DELIVERY",
+      "import_authorized": false
+    }
+  ],
+  "unit_transfer": {
+    "id": "C2-U01-TRANSFER-01",
+    "text": "A local reading group piloted a shared notes page. A coordinator describes the early comments as \"not unencouraging\" but says only a few readers replied and the comments do not establish whether comprehension improved. Another volunteer wants to keep collecting comments; the chair agrees in principle that evaluation should continue, but has not approved a second pilot. A proposed longer pilot requires separate approval. A draft public notice says \"The chair endorsed the second pilot because the feedback confirmed improved comprehension.\"\n\nTask: write two accurate alternatives to that notice, one brief and conversational for volunteers and one suitable for a formal record. For each, identify what is retained and one implication that must be avoided. Compare \"not unencouraging\" with \"encouraging\" and \"not discouraging\" in this context; explain why exact equivalence and a fixed degree of enthusiasm should not be assumed. Explain the difference between agreement in principle to continued evaluation and authorisation of a second pilot. Then revise one of your own sentences for precision. No unique model wording or numeric score; judge only through qualitative self-check/trusted review. Weight 0. No audio or oral inference.",
+    "evidence_weight": 0,
+    "automated_semantic_grading": false
+  }
+}

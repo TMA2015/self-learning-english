@@ -843,14 +843,14 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Advisory entry:** C1-U04, C1-U05, C1-U09; **priority:** P0. Design dependencies are not implemented unlocks.
 - **Independent exit task:** compare near-synonymous formulations and justify different pragmatic effects. Status: **PROPOSED**, not a released or automatically scored activity.
 - **Audit before adding:** C2 is not simply a list of rare idioms or native-speaker slang; design meaningful contrastive contexts. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** BATCH15 R1 DRAFT / ACADEMIC PENDING / EXISTING BRIDGE MAPPING PROPOSED.
+- **Status:** ACADEMIC PASS SOURCE ONLY / BRIDGE MAPPED / WRITING DELIVERY HOLD / FINAL OUTCOME AUDIT PENDING.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | VOC-C2-01 (existing unmapped pilot; reuse proposed) | Fine shades of meaning: tact, emphasis and qualified judgment | Existing · 8 MCQs | Preserve existing source; verify bridge mapping and Q5 precision concern independently. |
-| 2 | VOC-C2-02 (proposed) | Diagnose lexical implications and calibrate commitment | 30–40 min · 6 proposed MCQs | Independent review pending. |
-| 3 | WRI-C2-01 (proposed) | Reformulate precisely across audiences without losing pragmatic force | 45–60 min · 1 open task | Weight 0; C2 rubric and delivery pending; independent review required. |
-| 4 | C2-U01-TRANSFER-01 (proposed) | Fresh independent lexical and pragmatic transfer | 20–30 min advisory | Weight 0; independent review pending. |
+| 1 | VOC-C2-01 (existing bridge; mapped) | Fine shades of meaning: tact, emphasis and qualified judgment | Existing · 8 MCQs | Academic mapping accepted; unchanged lesson, reviewed Q5 wording correction separately pending. |
+| 2 | VOC-C2-02 | Diagnose lexical implications and calibrate commitment | 35 min · 6 MCQs | Academic PASS; working source; renderer QA pending. |
+| 3 | WRI-C2-01 (delivery hold) | Reformulate precisely across audiences without losing pragmatic force | 45–60 min · 1 open task | Academic PASS; weight 0; held outside working lessons pending validated C2 rubric/delivery. |
+| 4 | C2-U01-TRANSFER-01 | Fresh independent lexical and pragmatic transfer | 20–30 min advisory | Academic PASS; qualitative weight 0; delivery pending. |
 
 ### C2-U02 — Dense texts, rhetoric and layered interpretation
 - **Unit purpose:** Analyse complex factual, abstract or literary texts with competing readings, rhetorical effects and implicit intentions.
@@ -1047,3 +1047,6 @@ Owner-supplied NotebookLM PASS REA-C1-12 (6/6 BACDAB), LIS-C1-04 (6/6 CBADBC, sc
 
 ## Batch15 C2-U01 draft checkpoint
 Audited actual VOC-C2-01 (8 existing MCQs, unmapped), VOC-C1-01/02/03, GRA-C1-02/03/04, REA-C1-10/11 and WRI-C1-06 against adopted C2-U01. Reuse existing pilot as bridge proposed; historical Q5 precision concern (conceded / reluctantly) to adjudicate separately, no historical edits authorised. New VOC-C2-02 six MCQs structural keys BDACBD; WRI-C2-01 dual audience reformulation, contrast commentary and revision weight 0, no validated C2 rubric; fresh Unit Transfer weight 0. Packet blob fef3ce802ed82ae51dacab733522834aa6211ede; independent review pending. Working 215/1393 unchanged. Batch15 R1 sole next temporary NotebookLM source. No import, runtime, merge, deploy or extra CI.
+
+## Batch15 academic checkpoint — 2026-11-28
+Owner-supplied NotebookLM PASS VOC-C2-02 (6/6 BDACBD), WRI-C2-01 and Unit Transfer weight 0; MUST_FIX/OPTIONAL NONE for new packet. R1 fef3ce802ed82ae51dacab733522834aa6211ede. Existing VOC-C2-01 mapped unchanged; historical Q5 exact A wording correction separately recorded, not applied. Working 216/1399, 215 mapped + 1 unmapped; prior 215 lesson objects, sequence prefix and rubrics preserved. WRI-C2-01 held outside working lessons pending validated C2 rubric and delivery; no C1-as-C2 assessment. No import/runtime/merge/release. Next C2-U02 audit actual C1-U02/U06 and existing lexical/reading outcomes; author dense nonliterary and literary interpretations, competing defensible readings and fresh transfer only.

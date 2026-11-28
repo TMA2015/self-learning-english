@@ -1,12 +1,11 @@
 {
   "status": "PRIMARY_MAPPING_ONLY_NOT_OUTCOME_COVERAGE",
   "milestone": "Educational Curriculum 1.0",
-  "lessons": 215,
-  "activities": 1393,
-  "mapped": 213,
+  "lessons": 216,
+  "activities": 1399,
+  "mapped": 215,
   "unmapped": [
-    "REA-C1-01",
-    "VOC-C2-01"
+    "REA-C1-01"
   ],
   "units": [
     {
@@ -804,9 +803,14 @@
     {
       "id": "C2-U01",
       "title": "Fine shades of meaning and pragmatic precision",
-      "primaryLessonIds": [],
-      "skills": [],
-      "status": "COVERAGE_NOT_YET_AUDITED"
+      "primaryLessonIds": [
+        "VOC-C2-01",
+        "VOC-C2-02"
+      ],
+      "skills": [
+        "vocabulary"
+      ],
+      "status": "ACADEMIC_PASS_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING_WRITING_DELIVERY_HOLD"
     },
     {
       "id": "C2-U02",

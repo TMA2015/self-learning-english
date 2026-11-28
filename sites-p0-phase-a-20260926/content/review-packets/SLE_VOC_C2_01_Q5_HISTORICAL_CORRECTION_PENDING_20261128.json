@@ -1,0 +1,20 @@
+{
+  "status": "REVIEWED_HISTORICAL_CORRECTION_PENDING_SEPARATE_IMMUTABLE_GATE",
+  "source_packet": "SLE-C2-U01-B15-R1-20261128",
+  "source_git_blob": "fef3ce802ed82ae51dacab733522834aa6211ede",
+  "baseline_version": "1.28.1",
+  "baseline_git_blob": "ef69d4a9d4ed13fb3de7702ce6600e062c1039f2",
+  "working_before_git_blob": "956f06634bbf630fb894fd36e57d49dcba90b006",
+  "lesson_id": "VOC-C2-01",
+  "item_id": "VOC-C2-01-Q5",
+  "field": "options.text",
+  "option_id": "A",
+  "old_text": "She reluctantly acknowledged a valid point despite defending a different overall position.",
+  "new_text": "She acknowledged a valid point that complicated her position while maintaining a different overall stance.",
+  "key_before": "A",
+  "key_after": "A",
+  "rationale": "Concede does not entail private reluctance; exact proposed wording removes unsupported psychological assumption. Existing A uniquely best among options. Preserve ID, key, shuffle and prior records; separate exact-byte reviewed forward-only correction gate before release/final coverage freeze.",
+  "applied": false,
+  "import_authorized": false,
+  "release_authorized": false
+}
