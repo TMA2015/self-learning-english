@@ -1,0 +1,773 @@
+'use strict';
+/** Real Chromium IndexedDB QA with CDP polling instead of --dump-dom's virtual-time snapshot. */
+const assert=require('node:assert/strict');
+const fs=require('node:fs'),os=require('node:os'),path=require('node:path');
+const cp=require('node:child_process'),http=require('node:http');
+const root=path.resolve(__dirname,'..');
+const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+const httpJSON=url=>new Promise((resolve,reject)=>{
+ http.get(url,res=>{
+  let buf='';
+  res.on('data',x=>buf+=x);
+  res.on('end',()=>{try{resolve(JSON.parse(buf))}catch(e){reject(e)}});
+ }).on('error',reject);
+});
+async function until(fn,ms=30000){
+ const end=Date.now()+ms,last={};
+ while(Date.now()<end){try{const value=await fn();if(value)return value}catch(e){last.error=e}await delay(150)}
+ throw Error('CDP readiness timeout: '+String(last.error||'no browser response'));
+}
+(async()=>{
+ const {build}=await import('vite');
+ const out=path.join(root,'.sites-runtime','verified-v2-v3-chromium');
+ fs.rmSync(out,{recursive:true,force:true});
+ await build({root,configFile:false,logLevel:'error',
+  build:{outDir:out,emptyOutDir:true,target:'es2022',minify:false,
+   lib:{entry:path.join(root,'tests/verified-v2-v3-chromium-entry.ts'),
+    formats:['iife'],name:'SLEIdbVault',fileName:()=> 'bundle.js'}}});
+ const bundle=fs.readFileSync(path.join(out,'bundle.js'),'utf8');
+ const html='<!doctype html><html><head><meta charset="utf-8"></head><body>'+
+  '<div id="sle-idb-result">STARTED</div>'+
+  '<script>window.addEventListener("error",e=>document.getElementById("sle-idb-result").textContent="FAIL_SCRIPT "+e.message);'+
+  'window.addEventListener("unhandledrejection",e=>document.getElementById("sle-idb-result").textContent="FAIL_REJECTION "+e.reason);</script>'+
+  '<script>'+bundle.replaceAll('</script>','<\\/script>')+'</script></body></html>';
+ const chrome=['google-chrome','google-chrome-stable','chromium','chromium-browser']
+  .map(name=>{try{return cp.execFileSync('which',[name],{encoding:'utf8'}).trim()}catch{return ''}}).find(Boolean);
+ if(!chrome)throw Error('Actual Chromium unavailable — IndexedDB pilot cannot be verified');
+ if(typeof WebSocket!=='function')throw Error('Node 22+ built-in WebSocket is required for CDP browser QA');
+ const profile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-normalized-recovery-'));
+ const interruptionProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4d-interrupted-'));
+ const nativeQuotaProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4e-native-quota-'));
+ const blockedUpgradeProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4f-idb-blocked-'));
+ const twoTabProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4g-two-tab-'));
+ const learnerRaceProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4h-learner-writes-'));
+ const pairedWriteProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4i-paired-write-'));
+ const writingQuotaProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4j-writing-quota-'));
+ const preflightProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4k-preflight-quota-'));
+ const sigkillProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4l-hard-sigkill-'));
+ const r4nProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4n-markerless-torn-'));
+ const r4oProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4o-idb-atomic-pair-'));
+ const scale2000Profile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4p-scale2000-'));
+ const shadowProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4r-shadow-v2-'));
+ const segmentedProfile=fs.mkdtempSync(path.join(os.tmpdir(),'sle-r4t-large-segmented-'));
+ // Four separate test-only profiles: no family profile or live browser.
+ const r4mCases=[
+  {name:'FAST_A',delayMs:100},{name:'FAST_B',delayMs:100},
+  {name:'SLOW_A',delayMs:1500},{name:'SLOW_B',delayMs:1500}
+ ].map(item=>({...item,profile:fs.mkdtempSync(
+  path.join(os.tmpdir(),'sle-r4m-'+item.name.toLowerCase()+'-'))}));
+ const server=http.createServer((_req,res)=>{
+  res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'});
+  res.end(html);
+ });
+ async function visit(url,profilePath=profile,crashKill=false,crashKillDelayMs=0){
+  if(crashKill&&process.platform!=='linux')throw Error('R4l SIGKILL process-group test requires Linux');
+  // Chrome may leave a stale DevToolsActivePort after an earlier process
+  // exits. Never connect a new QA session to the previous process port.
+  const oldPortFile=path.join(profilePath,'DevToolsActivePort');
+  if(fs.existsSync(oldPortFile))fs.rmSync(oldPortFile,{force:true});
+  const child=cp.spawn(chrome,['--headless=new','--no-sandbox','--disable-dev-shm-usage',
+   '--disable-extensions','--disable-background-networking',
+   ...((url.includes('phase=multi-owner')||url.includes('phase=write-race-owner'))?['--disable-popup-blocking']:[]),
+   '--no-first-run','--remote-debugging-port=0','--remote-allow-origins=*',
+   '--user-data-dir='+profilePath,url],{stdio:['ignore','ignore','pipe'],detached:crashKill});
+  let stderr='',socket;
+  child.stderr.on('data',data=>{stderr=(stderr+String(data)).slice(-5000)});
+  try{
+   const port=await until(()=>{
+    const file=path.join(profilePath,'DevToolsActivePort');
+    if(!fs.existsSync(file))return false;
+    const value=Number(fs.readFileSync(file,'utf8').split(/\r?\n/)[0]);
+    return Number.isSafeInteger(value)&&value>0?value:false;
+   });
+   const target=await until(async()=>{
+    const pages=await httpJSON('http://127.0.0.1:'+port+'/json/list');
+    return pages.find(p=>p.type==='page'&&p.url.startsWith(url))||false;
+   });
+   socket=new WebSocket(target.webSocketDebuggerUrl);
+   await new Promise((resolve,reject)=>{
+    socket.addEventListener('open',resolve,{once:true});
+    socket.addEventListener('error',reject,{once:true});
+   });
+   let id=0;
+   function evaluate(expression="document.getElementById('sle-idb-result')?.textContent"){
+    return new Promise((resolve,reject)=>{
+     const current=++id;
+     const timer=setTimeout(()=>reject(Error('CDP evaluate timed out')),4000);
+     const listener=event=>{
+      const response=JSON.parse(event.data);
+      if(response.id!==current)return;
+      clearTimeout(timer);
+      socket.removeEventListener('message',listener);
+      if(response.error)reject(Error(response.error.message));
+      else if(response.result?.exceptionDetails)reject(Error('CDP page evaluate threw: '+JSON.stringify(response.result.exceptionDetails)));
+      else resolve(response.result?.result?.value);
+     };
+     socket.addEventListener('message',listener);
+     socket.send(JSON.stringify({id:current,method:'Runtime.evaluate',params:{
+      expression,returnByValue:true
+     }}));
+    });
+   }
+   const isWriteRace=url.includes('phase=write-race-owner');
+   const isTwoTab=url.includes('phase=multi-owner')||isWriteRace;
+   let twoPageTargetsVerified=false,oldConnectionReleased=false;
+   let workerTarget=null;
+   async function evalOtherPage(target,expression){
+    const connection=new WebSocket(target.webSocketDebuggerUrl);
+    await new Promise((resolve,reject)=>{
+     connection.addEventListener('open',resolve,{once:true});
+     connection.addEventListener('error',reject,{once:true});
+    });
+    try{return await new Promise((resolve,reject)=>{
+     const timer=setTimeout(()=>reject(Error('Second Chromium page CDP timeout')),5000);
+     const onMessage=ev=>{
+      const payload=JSON.parse(ev.data);
+      if(payload.id!==1)return;
+      connection.removeEventListener('message',onMessage);clearTimeout(timer);
+      if(payload.error||payload.result?.exceptionDetails)
+       reject(Error('Second tab could not be evaluated: '+JSON.stringify(payload.error||payload.result.exceptionDetails)));
+      else resolve(payload.result?.result?.value);
+     };
+     connection.addEventListener('message',onMessage);
+     connection.send(JSON.stringify({id:1,method:'Runtime.evaluate',
+      params:{expression,returnByValue:true}}));
+    })}finally{connection.close()}
+   }
+   const start=Date.now();
+   let last='';
+   const phaseTimeout=url.includes('phase=r4t-segmented-large-backup')||url.includes('phase=r4u-restored-reopen')||url.includes('phase=r4v-file-ui-roundtrip')||url.includes('phase=r4v-file-ui-reopen')?240000:url.includes('phase=r4p-scale-2000')?120000:45000;
+   while(Date.now()-start<phaseTimeout){
+    last=String(await evaluate()||'');
+    if(isTwoTab&&last.startsWith('FAIL_R4G'))
+     throw Error('R4g owner test failed: '+last);
+    if(isWriteRace&&last.startsWith('FAIL_R4H'))
+     throw Error('R4h owner failed: '+last);
+    if(isWriteRace&&last==='READY_R4H_LOCK_QUEUE'&&!oldConnectionReleased){
+     const pages=await httpJSON('http://127.0.0.1:'+port+'/json/list');
+     const owner=pages.find(p=>p.type==='page'&&p.url.includes('phase=write-race-owner'));
+     const worker=pages.find(p=>p.type==='page'&&p.url.includes('phase=write-race-worker'));
+     assert(owner&&worker&&owner.id!==worker.id,
+      'R4h must have two independent real Chromium page targets');
+     workerTarget=worker;
+     const status=await evalOtherPage(worker,
+      "document.getElementById('sle-idb-result')?.textContent");
+     assert.equal(status,'READY_R4H_WORKER_LOCK_PENDING',
+      'Second real Chromium page did not queue guarded learner write');
+     twoPageTargetsVerified=true;
+     const released=await evaluate('window.__sleR4hRelease()');
+     assert.equal(released,'RELEASED_R4H_NATIVE_WEB_LOCK',
+      'R4h must release first-tab native lock only after second tab is queued');
+     oldConnectionReleased=true;
+    }
+    if(isTwoTab&&last==='READY_R4G_TWO_TABS_BLOCKED'&&!oldConnectionReleased){
+     const pages=await httpJSON('http://127.0.0.1:'+port+'/json/list');
+     const owner=pages.find(p=>p.type==='page'&&p.url.includes('phase=multi-owner'));
+     const worker=pages.find(p=>p.type==='page'&&p.url.includes('phase=multi-worker'));
+     assert(owner&&worker&&owner.id!==worker.id,
+      'Two independent real Chromium tab/page CDP targets are required');
+     workerTarget=worker;
+     const workerStatus=await evalOtherPage(worker,
+      "document.getElementById('sle-idb-result')?.textContent");
+     assert.equal(workerStatus,'READY_R4G_WORKER_BLOCKED',
+      'Second independent page must observe a native onblocked event');
+     twoPageTargetsVerified=true;
+     const released=await evaluate('window.__sleR4gRelease()');
+     assert.equal(released,'RELEASED_R4G_OLD_CONNECTION',
+      'Only driver-verified second-tab blocking may release first-tab IDB handle');
+     oldConnectionReleased=true;
+    }
+    if(last.startsWith('PASS_')){
+      if(isTwoTab){
+       assert(twoPageTargetsVerified&&oldConnectionReleased&&workerTarget,
+        'No R4g PASS before real two-page CDP proof and explicit release');
+       const workerStatus=await evalOtherPage(workerTarget,
+        "document.getElementById('sle-idb-result')?.textContent");
+       assert.equal(workerStatus,isWriteRace?'PASS_R4H_WORKER':'PASS_R4G_WORKER',
+        'Second Chromium page did not finish cross-tab acceptance');
+      }
+      if(crashKill){
+       assert(last.startsWith('PASS_R4L_KILL_ARMED '),
+        'SIGKILL is permitted only for the exact R4l half-written stage');
+       assert(Number.isSafeInteger(child.pid)&&child.pid>0,
+        'R4l child process group PID is missing');
+       // Child launched detached => its own POSIX process group.
+       // Terminate browser+renderer+storage subprocesses without Chrome's
+       // graceful Browser.close protocol. This is a real OS SIGKILL.
+       const killed=new Promise(resolve=>child.once('close',
+        (code,signal)=>resolve({code,signal})));
+       // R4m varies the delay AFTER browser readback of the pending write.
+       // No normal Browser.close or additional learner write is permitted.
+       if(crashKillDelayMs>0)await delay(crashKillDelayMs);
+       process.kill(-child.pid,'SIGKILL');
+       const evidence=await Promise.race([killed,delay(7000).then(()=>null)]);
+       assert(evidence&&evidence.signal==='SIGKILL',
+        'R4l must confirm actual Linux SIGKILL; graceful shutdown is forbidden');
+       return 'SIGKILL_CONFIRMED '+last;
+      }
+      // Use Chrome's own normal shutdown protocol. Earlier SIGTERM-based
+      // test shutdown could abandon the unflushed localStorage LevelDB journal
+      // even while IndexedDB had persisted; this MUST NOT mask data loss.
+      // Crash/power-loss durability remains a separate, unverified gate.
+      const cleanClose=new Promise(resolve=>child.once('close',()=>resolve(true)));
+      socket.send(JSON.stringify({id:++id,method:'Browser.close'}));
+      if(!await Promise.race([cleanClose,delay(6000).then(()=>false)]))
+        throw Error('Chromium Browser.close failed; durable restart not verified');
+      return last;
+    }
+    if(last.startsWith('FAIL'))throw Error(last);
+    await delay(250);
+   }
+   throw Error('IndexedDB browser phase timed out; last progress='+last);
+  }finally{
+   if(socket&&socket.readyState===WebSocket.OPEN)socket.close();
+   if(child.exitCode===null&&child.signalCode===null){
+    const stopped=new Promise(resolve=>child.once('close',resolve));
+    if(crashKill&&child.pid&&process.platform==='linux'){
+     try{process.kill(-child.pid,'SIGKILL')}catch(e){if(e.code!=='ESRCH')throw e}
+    }else child.kill('SIGTERM');
+    await Promise.race([stopped,delay(2000)]);
+    if(child.exitCode===null&&child.signalCode===null){
+     if(crashKill&&child.pid&&process.platform==='linux'){
+      try{process.kill(-child.pid,'SIGKILL')}catch(e){if(e.code!=='ESRCH')throw e}
+     }else child.kill('SIGKILL');
+     await Promise.race([stopped,delay(2000)]);
+    }
+   }
+  }
+ }
+ try{
+  await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve)});
+  const host='http://127.0.0.1:'+server.address().port;
+  async function visitWithStartupRetry(url,profilePath=profile,crashKill=false,crashKillDelayMs=0){
+   try{return await visit(url,profilePath,crashKill,crashKillDelayMs)}catch(error){
+    if(!/CDP readiness timeout/.test(String(error)))throw error;
+    return visit(url,profilePath,crashKill,crashKillDelayMs); // re-launch and repeat the full gate
+   }
+  }
+  const first=await visitWithStartupRetry(host+'/?phase=write');
+  const second=await visitWithStartupRetry(host+'/?phase=reload');
+  assert.match(first,/^PASS_WRITE/);assert.match(second,/^PASS_RELOAD/);
+  const interrupted=await visitWithStartupRetry(host+'/?phase=interrupted',interruptionProfile);
+  const resumed=await visitWithStartupRetry(host+'/?phase=resume',interruptionProfile);
+  const reloaded=await visitWithStartupRetry(host+'/?phase=resume-reload',interruptionProfile);
+  assert.match(interrupted,/^PASS_INTERRUPTED/);
+  assert.match(resumed,/^PASS_RESUME/);
+  assert.match(reloaded,/^PASS_RESUME_RELOAD/);
+  const realQuota=await visitWithStartupRetry(host+'/?phase=native-quota',nativeQuotaProfile);
+  const quotaResumed=await visitWithStartupRetry(host+'/?phase=native-quota-resume',nativeQuotaProfile);
+  const quotaReloaded=await visitWithStartupRetry(host+'/?phase=native-quota-reload',nativeQuotaProfile);
+  assert.match(realQuota,/^PASS_NATIVE_QUOTA\b/);
+  assert.match(quotaResumed,/^PASS_NATIVE_QUOTA_RESUME\b/);
+  assert.match(quotaReloaded,/^PASS_NATIVE_QUOTA_RELOAD\b/);
+  const proof=JSON.parse(realQuota.slice(realQuota.indexOf('{')));
+  assert(proof.measuredAcceptedPaddingChars>=1_000_000);
+  assert.equal(proof.nativeQuotaExceeded,true);
+  const blocked=await visitWithStartupRetry(
+   host+'/?phase=idb-blocked-upgrade',blockedUpgradeProfile);
+  const blockedReload=await visitWithStartupRetry(
+   host+'/?phase=idb-blocked-reload',blockedUpgradeProfile);
+  assert.match(blocked,/^PASS_IDB_BLOCKED\b/);
+  assert.match(blockedReload,/^PASS_IDB_BLOCKED_RELOAD\b/);
+  const blockedProof=JSON.parse(blocked.slice(blocked.indexOf('{')));
+  assert.equal(blockedProof.actualNativeBlockedEvent,true);
+  assert.equal(blockedProof.unsafeBackupBlocked,true);
+  assert.equal(blockedProof.syntheticAttemptsUnchanged,73);
+  const twoTab=await visitWithStartupRetry(
+   host+'/?phase=multi-owner',twoTabProfile);
+  const twoTabReload=await visitWithStartupRetry(
+   host+'/?phase=multi-reload',twoTabProfile);
+  assert.match(twoTab,/^PASS_R4G_OWNER\b/);
+  assert.match(twoTabReload,/^PASS_R4G_RELOAD\b/);
+  const twoTabProof=JSON.parse(twoTab.slice(twoTab.indexOf('{')));
+  assert.equal(twoTabProof.nativeTwoPageVersionchange,true);
+  assert.equal(twoTabProof.nativeSecondTabOnblocked,true);
+  assert.equal(twoTabProof.originalSyntheticAttempts,73);
+  const learnerRace=await visitWithStartupRetry(
+   host+'/?phase=write-race-owner',learnerRaceProfile);
+  const learnerRaceReload=await visitWithStartupRetry(
+   host+'/?phase=write-race-reload',learnerRaceProfile);
+  assert.match(learnerRace,/^PASS_R4H_OWNER\b/);
+  assert.match(learnerRaceReload,/^PASS_R4H_RELOAD\b/);
+  const raceProof=JSON.parse(learnerRace.slice(learnerRace.indexOf('{')));
+  assert.equal(raceProof.twoPageTargetsVerifiedExternally,true);
+  assert.equal(raceProof.nativeNaiveScratchLostOwnerAttemptAndReview,true);
+  assert.equal(raceProof.nativeWebLockQueueObserved,true);
+  assert.equal(raceProof.staleWorkerWriteRejected,true);
+  assert.equal(raceProof.protectedOriginalAttempts,73);
+  const pendingPair=await visitWithStartupRetry(
+   host+'/?phase=paired-write-pending',pairedWriteProfile);
+  const recoveredPair=await visitWithStartupRetry(
+   host+'/?phase=paired-write-recover',pairedWriteProfile);
+  const reloadedPair=await visitWithStartupRetry(
+   host+'/?phase=paired-write-reload',pairedWriteProfile);
+  assert.match(pendingPair,/^PASS_R4I_PENDING\b/);
+  assert.match(recoveredPair,/^PASS_R4I_RECOVER\b/);
+  assert.match(reloadedPair,/^PASS_R4I_RELOAD\b/);
+  const staged=JSON.parse(pendingPair.slice(pendingPair.indexOf('{')));
+  const recovered=JSON.parse(recoveredPair.slice(recoveredPair.indexOf('{')));
+  assert.equal(staged.incompleteV3ExportBlocked,true);
+  assert.equal(staged.secondWritingKeyNotWritten,true);
+  assert.equal(recovered.interruptedMarkerSurvivedRestart,true);
+  assert.equal(recovered.completedJournaledPairedWrite,true);
+  const secondNativeQuota=await visitWithStartupRetry(
+   host+'/?phase=native-writing-quota',writingQuotaProfile);
+  const secondNativeRecovered=await visitWithStartupRetry(
+   host+'/?phase=native-writing-quota-recover',writingQuotaProfile);
+  const secondNativeReload=await visitWithStartupRetry(
+   host+'/?phase=native-writing-quota-reload',writingQuotaProfile);
+  assert.match(secondNativeQuota,/^PASS_R4J_NATIVE_QUOTA\b/);
+  assert.match(secondNativeRecovered,/^PASS_R4J_RECOVER\b/);
+  assert.match(secondNativeReload,/^PASS_R4J_RELOAD\b/);
+  const r4jProof=JSON.parse(secondNativeQuota.slice(secondNativeQuota.indexOf('{')));
+  const r4jRestored=JSON.parse(secondNativeRecovered.slice(secondNativeRecovered.indexOf('{')));
+  assert.equal(r4jProof.realNativeChromiumQuotaExceededOnSecondLearnerKey,true);
+  assert(r4jProof.nativePaddingChars>=1_000_000);
+  assert.equal(r4jProof.originalWritingSecondKeyPreserved,true);
+  assert.equal(r4jRestored.genuineQuotaInterruptedJournalSurvivedRestart,true);
+  assert.equal(r4jRestored.original73AttemptsAndOriginalReviewRecoveredByteForByte,true);
+  const preflight=await visitWithStartupRetry(
+   host+'/?phase=journal-preflight',preflightProfile);
+  const preflightReload=await visitWithStartupRetry(
+   host+'/?phase=journal-preflight-reload',preflightProfile);
+  assert.match(preflight,/^PASS_R4K_PREFLIGHT\b/);
+  assert.match(preflightReload,/^PASS_R4K_RELOAD\b/);
+  const r4kProof=JSON.parse(preflight.slice(preflight.indexOf('{')));
+  assert.equal(r4kProof.nativeChromiumJournalQuotaError,true);
+  assert.equal(r4kProof.nativeChromiumMarkerQuotaError,true);
+  assert.equal(r4kProof.bothLearnerKeysUntouched,true);
+  assert.equal(r4kProof.fullOriginalV3BackupStillValid,true);
+  const crashBaseline=await visitWithStartupRetry(
+   host+'/?phase=hard-crash-baseline',sigkillProfile);
+  const sigkill=await visitWithStartupRetry(
+   host+'/?phase=hard-crash-stage',sigkillProfile,true);
+  const crashInspected=await visitWithStartupRetry(
+   host+'/?phase=hard-crash-inspect',sigkillProfile);
+  const crashReloaded=await visitWithStartupRetry(
+   host+'/?phase=hard-crash-reload',sigkillProfile);
+  assert.equal(crashBaseline,'PASS_R4L_BASELINE');
+  assert.match(sigkill,/^SIGKILL_CONFIRMED PASS_R4L_KILL_ARMED\b/);
+  assert.match(crashInspected,/^PASS_R4L_INSPECT\b/);
+  assert.equal(crashReloaded,'PASS_R4L_RELOAD');
+  const r4lProof=JSON.parse(crashInspected.slice(crashInspected.indexOf('{')));
+  assert(['ORIGINAL_ALL_ABSENT','ORIGINAL_WITH_VERIFIED_JOURNAL',
+   'PENDING_PAIR_VERIFIED'].includes(r4lProof.actualDurabilityOutcome));
+  assert.equal(r4lProof.noOrphanUnverifiableMarker,true);
+  assert.equal(r4lProof.original73FakeLearnerAttemptsRestoredExact,true);
+  assert.equal(r4lProof.originalVerifiedV3BackupAvailable,true);
+  // R4m: two independent repetitions at each additional crash timing.
+  // Unsafe persisted torn storage MUST fail the entire protected CI gate.
+  const r4mOutcomes=[];
+  for(const scenario of r4mCases){
+   const baseline=await visitWithStartupRetry(
+    host+'/?phase=hard-crash-baseline',scenario.profile);
+   const kill=await visitWithStartupRetry(
+    host+'/?phase=hard-crash-stage',scenario.profile,true,scenario.delayMs);
+   const inspect=await visitWithStartupRetry(
+    host+'/?phase=hard-crash-inspect',scenario.profile);
+   const reload=await visitWithStartupRetry(
+    host+'/?phase=hard-crash-reload',scenario.profile);
+   assert.equal(baseline,'PASS_R4L_BASELINE');
+   assert.match(kill,/^SIGKILL_CONFIRMED PASS_R4L_KILL_ARMED\b/);
+   assert.match(inspect,/^PASS_R4L_INSPECT\b/);
+   assert.equal(reload,'PASS_R4L_RELOAD');
+   const proof=JSON.parse(inspect.slice(inspect.indexOf('{')));
+   assert(['ORIGINAL_ALL_ABSENT','ORIGINAL_WITH_VERIFIED_JOURNAL',
+    'PENDING_PAIR_VERIFIED'].includes(proof.actualDurabilityOutcome));
+   assert.equal(proof.noOrphanUnverifiableMarker,true);
+   assert.equal(proof.original73FakeLearnerAttemptsRestoredExact,true);
+   assert.equal(proof.originalVerifiedV3BackupAvailable,true);
+   r4mOutcomes.push({name:scenario.name,killDelayMs:scenario.delayMs,
+    actualDurabilityOutcome:proof.actualDurabilityOutcome});
+  }
+  assert.equal(r4mOutcomes.length,4);
+  // R4n intentionally reproduces an unsafe FALSE-COMPLETE backup: this
+  // documents an unresolved blocker, NOT a successful security control.
+  const r4nStage=await visitWithStartupRetry(
+   host+'/?phase=r4n-markerless-stage',r4nProfile);
+  const r4nInspect=await visitWithStartupRetry(
+   host+'/?phase=r4n-markerless-inspect',r4nProfile);
+  const r4nReload=await visitWithStartupRetry(
+   host+'/?phase=r4n-markerless-reload',r4nProfile);
+  assert.equal(r4nStage,'PASS_R4N_NEGATIVE_STAGE');
+  assert.match(r4nInspect,/^PASS_R4N_VULNERABILITY_REPRODUCED\b/);
+  assert.equal(r4nReload,'PASS_R4N_CLEAN_RELOAD');
+  const r4nProof=JSON.parse(r4nInspect.slice(r4nInspect.indexOf('{')));
+  assert.equal(r4nProof.checksumValidYetInconsistentPairedSnapshot,true);
+  assert.equal(r4nProof.actualSIGKILLProducedThisState,false);
+  assert.equal(r4nProof.original73FabricatedAttemptsRecovered,true);
+  assert.equal(r4nProof.securityVerdict,'BLOCKER_NOT_FIXED');
+  console.log(JSON.stringify({
+   result:'NEGATIVE_CONTROL_REPRODUCED',
+   gate:'r4n-markerless-torn-pair-false-complete-export',
+   blocker:'UNSAFE_MARKER_ONLY_RECOVERY_EXPORT',
+   wasRealCrash:false,wasRealChromiumStorage:true,
+   completeSelfChecksumDoesNotProvePairedSnapshot:true,
+   productionSafety:'NOT_ESTABLISHED',
+   realLearnerData:'NOT_TOUCHED',deploy:false
+  }));
+  // R4o: native IDB transaction atomically aborts or commits the pair.
+  const atomicAbort=await visitWithStartupRetry(
+   host+'/?phase=r4o-atomic-baseline-abort',r4oProfile);
+  const atomicCommit=await visitWithStartupRetry(
+   host+'/?phase=r4o-atomic-commit',r4oProfile);
+  const atomicVerify=await visitWithStartupRetry(
+   host+'/?phase=r4o-atomic-verify',r4oProfile);
+  assert.equal(atomicAbort,'PASS_R4O_ATOMIC_ABORT');
+  assert.equal(atomicCommit,'PASS_R4O_ATOMIC_COMMIT');
+  assert.match(atomicVerify,/^PASS_R4O_ATOMIC_VERIFY\b/);
+  const r4oProof=JSON.parse(atomicVerify.slice(atomicVerify.indexOf('{')));
+  assert.equal(r4oProof.strictDurabilityHintAccepted,true);
+  assert.equal(r4oProof.abortedTwoKeyTransactionAllOrNothing,true);
+  assert.equal(r4oProof.committedTwoKeyPairSurvivedNormalRestart,true);
+  assert.equal(r4oProof.untrackedOneKeyTamperFailsClosed,true);
+  assert.equal(r4oProof.syntheticV3ArchiveFromCommittedPairVerified,true);
+  console.log(JSON.stringify({
+   result:'PASS',gate:'r4o-strict-indexeddb-atomic-learner-pair-research',
+   actualIndexedDBSingleReadwriteTransaction:true,
+   requestedNativeStrictDurability:true,
+   abortedPairRemainsOriginal:true,committedPairPersistedNormalRestart:true,
+   untrackedSingleKeyChangeRejectedByDigest:true,
+   normalizedV3ProofFromCommittedPair:true,
+   noLiveStorageOrProductionWriterIntegration:true,
+   powerCutAndRealSIGKILL:'NOT_TESTED',safari:'NOT_TESTED',
+   realLearnerData:'NOT_TOUCHED',deploy:false
+  }));
+  const scale=await visitWithStartupRetry(
+   host+'/?phase=r4p-scale-2000',scale2000Profile);
+  assert.match(scale,/^PASS_R4P_SCALE2000\b/);
+  const scaleProof=JSON.parse(scale.slice(scale.indexOf('{')));
+  assert.equal(scaleProof.syntheticLessonCount,2000);
+  assert.equal(scaleProof.syntheticUnitCount,60);
+  assert.equal(scaleProof.originalHistoricalAttemptReferences,73);
+  assert.equal(scaleProof.originalStoredRevisionBlobs,2012);
+  assert.equal(scaleProof.finalStoredRevisionBlobs,2013);
+  assert.equal(scaleProof.incrementalAddedLessonBlobs,1);
+  assert.equal(scaleProof.originalHistoricRubricPinned,true);
+  assert.equal(scaleProof.noDuplicateBodiesForWritingIELTSTOEFL,true);
+  assert.equal(scaleProof.missingOriginalSourceBlocked,true);
+  assert.equal(scaleProof.noRealLearnerDataTouched,true);
+  console.log(JSON.stringify({result:'PASS',
+   gate:'r4p-synthetic-2000-lesson-normalized-storage-capacity',
+   realChromiumIndexedDB:true,
+   syntheticLessons:2000,cefrUnitReferences:60,
+   historicalAttemptReferences:73,
+   totalRevisionBodiesAfterHistoricalProtection:2012,
+   additiveReleaseAddedOnlyOneBlob:true,
+   crossCourseLessonReferenceReuse:true,
+   immutableHistoricRubricAndAliasRetained:true,
+   missingOriginalSourceFailsClosed:true,
+   cumulativeSourceBytes:scaleProof.cumulativeSourceBytes,
+   normalizedPlanBytes:scaleProof.normalizedPlanBytes,
+   oldCumulativeImporterCap:250,
+   realIpadQuotaAndLazyNetworkLoading:'NOT_TESTED',
+   realLearnerData:'NOT_TOUCHED',productionIntegration:false,
+   deploy:false}));
+  // R4q reuses R4p's browser profile after a graceful process restart.
+  // Only 35 selected Unit blobs are loaded; no full 2,001-body inventory.
+  const target=await visitWithStartupRetry(
+   host+'/?phase=r4q-targeted-unit-reload',scale2000Profile);
+  assert.match(target,/^PASS_R4Q_UNIT_TARGETED\b/);
+  const q=JSON.parse(target.slice(target.indexOf('{')));
+  assert.equal(q.activeSyntheticLessonCount,2001);
+  assert.equal(q.unitRequestedLessonCount,35);
+  assert.equal(q.unitReturnedRevisionBodies,35);
+  assert.equal(q.crossPathImmutableRevisionsShared,true);
+  assert.equal(q.historicVersionRubricStillRetrievable,true);
+  assert.equal(q.absentDuplicateOversizedRequestsBlocked,true);
+  console.log(JSON.stringify({
+   result:'PASS',gate:'r4q-targeted-single-unit-batch-idb-retrieval',
+   activeSyntheticCatalogSize:2001,
+   requestedUnitLessonBodies:35,
+   reusedExistingLessonSourceAcrossCoursePaths:true,
+   historicalRubricPreserved:true,
+   unknownDuplicateOversizedUnitFailClosed:true,
+   noFullLessonBodyInventory:true,
+   afterFreshChromiumRestart:true,
+   actualBrowserLazyNetworkDelivery:'NOT_TESTED',
+   safari:'NOT_TESTED',realLearnerData:'NOT_TOUCHED',
+   productionIntegration:false,deploy:false
+  }));
+  // R4r keeps old invented legacy keys byte-identical while shadow
+  // immutable source is staged; any stale portable backup must be refused.
+  const shadowStage=await visitWithStartupRetry(
+   host+'/?phase=r4r-shadow-v2-stage',shadowProfile);
+  const shadowReload=await visitWithStartupRetry(
+   host+'/?phase=r4r-shadow-restart',shadowProfile);
+  assert.match(shadowStage,/^PASS_R4R_SHADOW_STAGE\b/);
+  assert.equal(shadowReload,'PASS_R4R_SHADOW_RESTART');
+  const shadowProof=JSON.parse(shadowStage.slice(shadowStage.indexOf('{')));
+  assert.equal(shadowProof.originalSyntheticAttempts,73);
+  assert.equal(shadowProof.staleBackupRefused,true);
+  assert.equal(shadowProof.shadowSourceStagedWithoutLegacyChanges,true);
+  assert.equal(shadowProof.legacyRemainsAuthoritative,true);
+  assert.equal(shadowProof.incompleteHybridV3ExportBlocked,true);
+  console.log(JSON.stringify({
+   result:'PASS',gate:'r4r-readonly-v2-shadow-migration-preflight',
+   verifiedOriginalV2BeforeShadow:true,
+   stalePortableBackupRefused:true,
+   legacyEntriesByteIdentical:true,
+   stageOnlyImmutableShadowSource:true,
+   incompleteHybridV3ExportFailsClosed:true,
+   independentBrowserRestartVerified:true,
+   realLearnerRecords:'NOT_TOUCHED',
+   finalV2ToV3Cutover:'NOT_TESTED',safari:'NOT_TESTED',
+   productionIntegration:false,deploy:false
+  }));
+  // R4s: stage ALL synthetic learner/Writing/course values in one separate
+  // candidate record; old V2 localStorage stays authoritative.
+  const learnerStage=await visitWithStartupRetry(
+   host+'/?phase=r4s-learner-shadow-stage',shadowProfile);
+  const learnerTamper=await visitWithStartupRetry(
+   host+'/?phase=r4s-learner-shadow-tamper',shadowProfile);
+  const learnerFinal=await visitWithStartupRetry(
+   host+'/?phase=r4s-learner-shadow-final',shadowProfile);
+  assert.match(learnerStage,/^PASS_R4S_SHADOW_STAGE\b/);
+  assert.match(learnerTamper,/^PASS_R4S_SHADOW_TAMPER\b/);
+  assert.equal(learnerFinal,'PASS_R4S_SHADOW_FINAL');
+  const stageResult=JSON.parse(learnerStage.slice(learnerStage.indexOf('{')));
+  const tamperResult=JSON.parse(learnerTamper.slice(learnerTamper.indexOf('{')));
+  assert.equal(stageResult.verifiedCompleteCandidateAttempts,73);
+  assert.equal(stageResult.originalWritingAndCourseSelectionPreserved,true);
+  assert.equal(stageResult.staleOriginalBrowserWritingBlocksCandidate,true);
+  assert.equal(tamperResult.fabricatedUncommittedWritingEditBlocked,true);
+  assert.equal(tamperResult.originalLegacyLearnerBytesUnchanged,true);
+  console.log(JSON.stringify({
+   result:'PASS',gate:'r4s-single-idb-record-v2-shadow-learner-candidate',
+   atomicSingleRecordShadowStaging:true,
+   currentLegacyV2StillAuthoritative:true,
+   original73SyntheticAttemptsWritingCourseExact:true,
+   staleLegacyWritingRejected:true,
+   uncommittedShadowWritingTamperFailsClosed:true,
+   fullyVerifiedV3FromCandidateAndImmutableSource:true,
+   twoIndependentChromiumRestartsVerified:true,
+   actualProductLearnerWriter:'NOT_INTEGRATED',
+   safari:'NOT_TESTED',powerLoss:'NOT_TESTED',
+   realLearnerData:'NOT_TOUCHED',deploy:false
+  }));
+  // R4t: a large (>25MB) completely synthetic normalized archive must
+  // remain portable in fully verified bounded parts without dropping old
+  // fabricated learner attempts/aliases/rubrics.
+  const segmented=await visitWithStartupRetry(
+   host+'/?phase=r4t-segmented-large-backup',segmentedProfile);
+  assert.match(segmented,/^PASS_R4T_LARGE_SEGMENTED\b/);
+  const seg=JSON.parse(segmented.slice(segmented.indexOf('{')));
+  assert(seg.totalPortableArchiveBytes>25_000_000,
+   'R4t must genuinely exceed legacy 25MB single-file cap');
+  assert.equal(seg.activeLessons,2123);
+  assert.equal(seg.originalSyntheticLearnerAttempts,73);
+  assert(seg.verifiedPartCount>25);
+  assert.equal(seg.allSixAdversarialIncompleteArchivesRejected,true);
+  assert.equal(seg.noAttemptOrWritingBytesLost,true);
+  console.log(JSON.stringify({
+   result:'PASS',gate:'r4t-segmented-large-recovery-research',
+   totalArchiveBytes:seg.totalPortableArchiveBytes,
+   boundedParts:seg.verifiedPartCount,
+   maxPartBytes:seg.maximumPartBytes,
+   syntheticLessons:seg.activeLessons,
+   originalFakeAttemptsExact:73,
+   allSixTamperAndMissingChunkNegativeCasesRejected:true,
+   noHistoryTruncation:true,
+   simulatedSafariDevice:'NOT_TESTED',
+   downloadableFileProtocol:'NOT_TESTED',
+   productionBackupIntegration:false,
+   realLearnerData:'NOT_TOUCHED',deploy:false
+  }));
+  // R4u: a distinct real Chromium process reopens the 45MB+ destination
+  // and reconstructs/rehashes every original source and learner record.
+  const r4uReload=await visitWithStartupRetry(
+   host+'/?phase=r4u-restored-reopen',segmentedProfile);
+  assert.match(r4uReload,/^PASS_R4U_RESTORED_REOPEN\b/);
+  const r4uRecovered=JSON.parse(r4uReload.slice(r4uReload.indexOf('{')));
+  assert.equal(r4uRecovered.fullLargeBackupRestored,true);
+  assert.equal(r4uRecovered.activeSyntheticLessons,2123);
+  assert.equal(r4uRecovered.originalSyntheticAttempts,73);
+  assert.equal(r4uRecovered.originalWritingPreserved,true);
+  assert.equal(r4uRecovered.completeBackupReverifiedAfterRestart,true);
+  assert.equal(r4uRecovered.sourceParts,46);
+  assert(r4uRecovered.reconstructedBytes>25_000_000);
+  console.log(JSON.stringify({
+   result:'PASS',
+   gate:'r4u-45mb-segmented-complete-empty-profile-restore',
+   verifiedAllPartsBeforeAnyRestore:true,
+   nativeSingleTransactionAcrossLearnerAndAllSourceStores:true,
+   deliberateAbortAfter64CompletedBodyWritesLeavesEmpty:true,
+   occupiedDestinationRefused:true,
+   fullArchiveRecoveredAfterNewBrowserProcess:true,
+   reconstructedBytes:r4uRecovered.reconstructedBytes,
+   activeLessons:r4uRecovered.activeSyntheticLessons,
+   originalFakeAttempts:r4uRecovered.originalSyntheticAttempts,
+   oldWritingPreserved:r4uRecovered.originalWritingPreserved,
+   historicRubricAliasesRetained:r4uRecovered.historicalSourceAliases,
+   originalLegacyBrowserStorage:'UNTOUCHED',
+   safari:'NOT_TESTED',realFileDownload:'NOT_TESTED',
+   realLearnerData:'NOT_TOUCHED',productionIntegration:false,
+   deploy:false
+  }));
+  // R4v: exercise a genuine single-File Blob download link + File input UI
+  // on a disposable source already containing the verified 46-part archive.
+  // No custom production import, no host upload or real family records.
+  const r4vOneFileUI=await visitWithStartupRetry(
+   host+'/?phase=r4v-file-ui-roundtrip',segmentedProfile);
+  assert.match(r4vOneFileUI,/^PASS_R4V_FILE_UI\b/);
+  const r4vFileResult=JSON.parse(r4vOneFileUI.slice(r4vOneFileUI.indexOf('{')));
+  assert.equal(r4vFileResult.actualBrowserBlobAndFileRoundtrip,true);
+  assert.equal(r4vFileResult.onePortableFileMoreThan45MB,true);
+  assert.equal(r4vFileResult.packageContains46VerifiedParts,true);
+  assert.equal(r4vFileResult.recoveryDisabledUntilFileValidated,true);
+  assert.equal(r4vFileResult.malformedHeaderAndTruncatedFileRefused,true);
+  assert.equal(r4vFileResult.noPreconsentDestinationCreated,true);
+  assert.equal(r4vFileResult.original2123LessonsAnd73AttemptsRestored,true);
+  const r4vAfterUIRestart=await visitWithStartupRetry(
+   host+'/?phase=r4v-file-ui-reopen',segmentedProfile);
+  assert.match(r4vAfterUIRestart,/^PASS_R4V_UI_REOPEN\b/);
+  const r4vReopenProof=JSON.parse(r4vAfterUIRestart.slice(r4vAfterUIRestart.indexOf('{')));
+  assert.equal(r4vReopenProof.fullSyntheticArchivePersists,true);
+  assert.equal(r4vReopenProof.lessons,2123);
+  assert.equal(r4vReopenProof.attempts,73);
+  assert.equal(r4vReopenProof.parts,46);
+  assert.equal(r4vReopenProof.originalWritingByteIdentical,true);
+  assert.equal(r4vReopenProof.noProductionMigration,true);
+  console.log(JSON.stringify({
+   result:'PASS',gate:'r4v-45mb-single-file-local-browser-preview-restore-ui',
+   oneFileDownloadAndInputDOMExercised:true,
+   browserFileApiRoundtrip:true,
+   original46PartsVerifiedBeforeRestore:true,
+   fileTruncationAndHeaderCorruptionFailClosed:true,
+   restoreDisabledUntilExplicitVerifiedFileSelection:true,
+   noDestinationWriteBeforeRestoreClick:true,
+   restoredFullArchiveAfterIndependentBrowserRestart:true,
+   syntheticActiveLessons:2123,syntheticAttempts:73,
+   testOnlySafariFilesUX:'NOT_TESTED',
+   OSFileDownloadSuccess:'NOT_TESTED',
+   productionSiteIntegration:false,
+   realLearnerData:'NOT_TOUCHED',deploy:false
+  }));
+  console.log(JSON.stringify({result:'PASS',
+   gate:'r4m-repeated-hard-sigkill-crash-window-classification',
+   additionalIndependentDisposableProfiles:4,
+   realLinuxSIGKILLCount:4,
+   crashDelaysMs:[100,100,1500,1500],
+   actualObservedDurabilityOutcomes:r4mOutcomes,
+   failedClosedOnAnyUnsafeTornState:true,
+   all73SyntheticAttemptsAndHistoricSourcesVerified:true,
+   powerLoss:'NOT_TESTED',safari:'NOT_TESTED',
+   productionWriterIntegrated:false,realLearnerData:'NOT_TOUCHED',
+   deploy:false}));
+  console.log(JSON.stringify({result:'PASS',
+   gate:'r4l-native-linux-sigkill-learner-pair-crash-recovery',
+   realLinuxSIGKILLToDetachedChromiumProcessGroup:true,
+   browserCloseNotCalledForKillPhase:true,
+   actualDurabilityOutcome:r4lProof.actualDurabilityOutcome,
+   unexpectedTornStorageFailsClosed:true,
+   original73SyntheticLearnerAttemptsExact:true,
+   oldWritingCourseAndHistoricalSourcePreserved:true,
+   fullVerifiedV3BackupAfterCrashAndNormalRestart:true,
+   genuinePowerLoss:'NOT_TESTED',
+   crashTiming:'AFTER_FIRST_KEY_BROWSER_READBACK',
+   filesystemFsyncDurability:'NOT_PROVEN',safari:'NOT_TESTED',
+   productionLearnerWriterIntegration:false,realLearnerData:'NOT_TOUCHED',
+   deploy:false}));
+  console.log(JSON.stringify({result:'PASS',
+   gate:'r4k-native-chromium-journal-marker-preflight-quota',
+   genuineChromiumQuotaBeforeWritingJournal:true,
+   genuineChromiumQuotaBeforeWritingMarker:true,
+   abortedBeforeAnyLearnerKeyMutation:true,
+   original73AttemptRecordsByteIdentical:true,
+   originalWritingCourseAndHistoricRevisionsUnchanged:true,
+   completeV3BackupStillVerifiable:true,
+   originalValuesSurvivedNormalBrowserRestart:true,
+   quotaFillerAndTestJournalCleaned:true,
+   testOnlyGuardNotDeployed:true,
+   safari:'NOT_TESTED',hardCrash:'NOT_TESTED',realFamilyData:'NOT_TOUCHED',
+   productionMigration:false,deploy:false}));
+  console.log(JSON.stringify({result:'PASS',
+   gate:'r4j-native-chromium-quota-on-second-writing-key',
+   nativeChromiumQuotaExceededErrorOnWritingKey:true,
+   firstAttemptKeyWrittenBeforeFailure:true,
+   originalWritingKeyPreserved:true,
+   preimageJournalAndMarkerSurvivedBrowserRestart:true,
+   incompleteV3ExportAndPreviewBlocked:true,
+   original73SyntheticAttemptsRecoveredExact:true,
+   originalWritingFeedbackRecoveredExact:true,
+   testPaddingRemovedOnlyAfterVerifiedRollback:true,
+   fullPairedWriteAndV3ExportAfterQuotaRecovery:true,
+   secondBrowserRestartVerified:true,
+   realLearnerData:'NOT_TOUCHED',safari:'NOT_TESTED',
+   abruptCrash:'NOT_TESTED',productionIntegration:false,deploy:false}));
+  console.log(JSON.stringify({result:'PASS',
+   gate:'r4i-two-key-learner-writing-journaled-interruption-recovery',
+   realChromiumLocalStorage:true,
+   realChromiumWebLocks:true,
+   interruptedAfterFirstOfTwoLearnerKeys:true,
+   explicitPendingWriteMarker:true,
+   interruptedBackupExportBlocked:true,
+   interruptedRestorePreviewBlocked:true,
+   original73AttemptsRecoveredByteForByte:true,
+   originalWritingReviewRecovered:true,
+   successfulPairedCommitVerified:true,
+   restartAndFullRecoveryV3ExportVerified:true,
+   browserShutdownDuringInterruption:'GRACEFUL_SIMULATED_STOP',
+   suddenSIGKILL:'NOT_TESTED',nativeQuota:'NOT_TESTED',
+   atomicAcrossTwoLocalStorageKeys:'NOT_PROVEN',
+   productionLearnerWriterIntegration:false,
+   safari:'NOT_TESTED',realLearnerData:'NOT_TOUCHED',deploy:false}));
+  console.log(JSON.stringify({result:'PASS',gate:'r4h-two-tab-learner-writing-loss-prevention-research',
+   twoIndependentChromiumPageTargets:true,
+   nativeLocalStorageNaiveLostUpdateDemonstratedOnScratchKey:true,
+   nativeWebLocksExclusiveQueueObserved:true,
+   staleTabRejectedWithoutWriting:true,
+   refreshedSecondTabMerged:true,
+   bothDraftEditsAndWritingReviewsPreserved:true,
+   untouchedOriginal71AttemptsExact:true,
+   originalHistoricalSourceUnchanged:true,
+   fullV3ReexportVerified:true,
+   statePersistedAcrossNewChromeProcess:true,
+   liveRuntimeUsesWebLocks:false,
+   productionConcurrentWritingSafety:'NOT_PROVEN',
+   safari:'NOT_TESTED',realLearnerData:'NOT_TOUCHED',deploy:false}));
+  console.log(JSON.stringify({result:'PASS',gate:'r4g-two-independent-chromium-tabs-indexeddb-contention',
+   actualTwoDistinctCDPPageTargets:true,
+   nativeCrossTabVersionchange:true,nativeSecondTabOnblocked:true,
+   driverControlledReleaseAfterBlocked:true,
+   original73SyntheticLearnerAttemptsUnchanged:true,
+   normalizedHistoricBlobsAndAliasesPreserved:true,
+   version1ReaderFailClosedOnVersion2:true,
+   realChromeRestartAfterTwoTabContention:true,
+   actualLearnerConcurrentWrites:'NOT_TESTED',
+   safari:'NOT_TESTED',powerLoss:'NOT_TESTED',realLearnerData:'NOT_TOUCHED',
+   productionMigration:false,deploy:false}));
+  console.log(JSON.stringify({result:'PASS',gate:'r4f-real-chromium-indexeddb-versionchange-blocked',
+   nativeIndexedDBBlockedEvent:true,nativeVersionchange:true,
+   refusedUnknownSchema:true,refusedUnsafeV3Backup:true,
+   refusedUnsafeRestorePreview:true,rawRevisionsAndAliasesPreserved:true,
+   original73SyntheticLearnerAttemptsUnchanged:true,
+   persistedAcrossGracefulBrowserRestart:true,
+   actualMultiTabRace:'NOT_TESTED',Safari:'NOT_TESTED',
+   nativeIDBQuota:'NOT_TESTED',liveIntegration:false,deploy:false}));
+  console.log(JSON.stringify({result:'PASS',gate:'r4e-native-chromium-quota-v3-recovery',
+   realNativeChromiumLocalStorageQuota:true,
+   quotaPaddingChars:proof.measuredAcceptedPaddingChars,
+   nativeQuotaExceeded:true,originalV2ChecksumVerified:true,
+   preserved73SyntheticAttempts:true,partialRollback:true,
+   pendingV3MarkerPersisted:true,originalIndexedDBPersisted:true,
+   sameVerifiedV3Resume:true,postResumeChromiumRestart:true,
+   sourceHistoryByteIdentical:true,
+   safari:'NOT_TESTED',powerLoss:'NOT_TESTED',
+   realLearnerData:'NOT_TOUCHED',productionMigration:false,deploy:false}));
+  console.log(JSON.stringify({result:'PASS',gate:'r4d-v3-real-chromium-interrupted-restore',
+   originalV2Format:true,realChromiumIndexedDB:true,realLocalStorage:true,
+   syntheticQuotaFaultInjected:true,interruptedMarkerPersisted:true,
+   rollbackOfNewAttempts:true,wrongRecoveryBlocked:true,
+   partialBackupExportBlocked:true,sameFileResumeAfterRestart:true,
+   original73AttemptsExact:true,historicWritingSourcePinned:true,
+   reexportVerified:true,postResumeRestartVerified:true,
+   realNativeQuota:'NOT_TESTED',powerLoss:'NOT_TESTED',
+   Safari:'NOT_TESTED',realLearnerData:'NOT_TOUCHED',deploy:false}));
+  console.log(JSON.stringify({result:'PASS',gate:'verified-v2-v3-real-chromium-e2e',
+   realChromiumIndexedDB:true,originalV2ChecksumVerified:true,normalizationV3Verified:true,currentLessons:123,restoredSyntheticAttempts:73,
+   persistedAcrossBrowserProcesses:true,realIndexedDBRestore:true,oldAttemptsByteIdentical:true,changedRubricPinned:true,occupiedRestoreBlocked:true,tamperedV2Blocked:true,
+   recoveryV3:'BROWSER_SYNTHETIC_PASS',liveRuntimeIntegration:'NOT_TESTED',
+   realSafariAcceptance:'NOT_TESTED'}));
+ }finally{server.close();fs.rmSync(profile,{recursive:true,force:true});fs.rmSync(interruptionProfile,{recursive:true,force:true});fs.rmSync(nativeQuotaProfile,{recursive:true,force:true});fs.rmSync(blockedUpgradeProfile,{recursive:true,force:true});fs.rmSync(twoTabProfile,{recursive:true,force:true});fs.rmSync(learnerRaceProfile,{recursive:true,force:true});fs.rmSync(pairedWriteProfile,{recursive:true,force:true});fs.rmSync(writingQuotaProfile,{recursive:true,force:true});fs.rmSync(preflightProfile,{recursive:true,force:true});fs.rmSync(sigkillProfile,{recursive:true,force:true});fs.rmSync(r4nProfile,{recursive:true,force:true});fs.rmSync(r4oProfile,{recursive:true,force:true});fs.rmSync(scale2000Profile,{recursive:true,force:true});fs.rmSync(shadowProfile,{recursive:true,force:true});fs.rmSync(segmentedProfile,{recursive:true,force:true});for(const scenario of r4mCases)fs.rmSync(scenario.profile,{recursive:true,force:true})}
+})().catch(e=>{console.error(e);process.exitCode=1});
