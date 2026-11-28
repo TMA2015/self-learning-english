@@ -887,13 +887,13 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Advisory entry:** C1-U01, C1-U06, C2-U01; **priority:** P0. Design dependencies are not implemented unlocks.
 - **Independent exit task:** reframe one complex claim accurately for two audiences with different needs. Status: **PROPOSED**, not a released or automatically scored activity.
 - **Audit before adding:** compare communicative effectiveness across genres, not novelty of constructions. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** BATCH18 R1 DRAFT / ACADEMIC PENDING / WRITING DELIVERY HOLD.
+- **Status:** ACADEMIC PASS SOURCE ONLY / FINAL OUTCOME AUDIT PENDING / WRITING DELIVERY HOLD.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | REA-C2-03 (proposed) | Evaluate rhetorical architecture and select audience-appropriate moves | 35–45 min · 6 MCQs | Independent academic review pending. |
-| 2 | WRI-C2-02 (proposed; delivery hold) | Reorganise a complex case for advocacy and neutral decision support | 55–70 min or split · open task | Weight 0; independent review pending; C2 rubric and delivery hold. |
-| 3 | C2-U04-TRANSFER-01 (proposed) | Fresh rhetorical reframing for contrasting audiences | 25–35 min advisory | Qualitative weight 0; independent review pending. |
+| 1 | REA-C2-03 | Evaluate rhetorical architecture and select audience-appropriate moves | 35–45 min · 6 MCQs | Academic PASS; working source; renderer QA pending. |
+| 2 | WRI-C2-02 (approved; delivery hold) | Reorganise a complex case for advocacy and neutral decision support | 55–70 min or split · open task | Academic PASS; weight 0; C2 rubric and delivery hold. |
+| 3 | C2-U04-TRANSFER-01 | Fresh rhetorical reframing for contrasting audiences | 25–35 min advisory | Academic PASS; qualitative weight 0; delivery pending. |
 
 ### C2-U05 — Flexible syntax and stylistic control
 - **Unit purpose:** Use sophisticated syntactic alternatives deliberately to manage clarity, foregrounding, nuance and rhythm.
@@ -1063,3 +1063,6 @@ Owner-supplied NotebookLM PASS all three scripts, 18/18 BACDAB/CADBCA/BACDAB, fr
 
 ## Batch18 C2-U04 draft checkpoint
 Audited actual C1-U01/U06, VOC-C1-02, C1-U09, VOC-C2-01/02, held WRI-C2-01 and C2-U02/03 sources against adopted C2-U04. Consolidated overlapping planned slots into distinct REA-C2-03 (whole-discourse framing, concession, metadiscourse, repair; 6 structural keys BACDAB), WRI-C2-02 (extended advocacy and neutral design brief, architecture commentary and repair; weight 0, C2 rubric/delivery hold), fresh C2-U04-TRANSFER-01 weight 0. R1 blob 9e2bc5d2ff022c0d815711947c9224a1bda967ce; independent review pending. Working 218/1411 and inventory unchanged. Historical Q5, C2 Writing and media holds preserved. No import, runtime, merge, deploy or extra CI. Batch18 R1 sole next temporary NotebookLM source.
+
+## Batch18 academic checkpoint — 2026-11-28
+Owner-supplied NotebookLM PASS REA-C2-03 (6/6 BACDAB), WRI-C2-02 and fresh transfer weight 0; MUST_FIX/OPTIONAL NONE. R1 9e2bc5d2ff022c0d815711947c9224a1bda967ce. Working 219/1417, 218 mapped + 1 unmapped. Prior 218 lesson objects, sequence prefix and rubrics preserved. Writing source-only pending validated C2 rubric/delivery; historical Q5 and media holds unchanged. Owner sequencing: complete academic authoring/review first, then research/prototype/review/apply suitable interactive models (#257) before Curriculum 1.0 release; preserve existing IDs, approved sources and learner history. No import/runtime/merge/deploy. Next C2-U05 actual C1 grammar and C2 discourse audit.

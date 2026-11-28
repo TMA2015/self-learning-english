@@ -107,6 +107,15 @@
         ],
         "verdict": "PASS",
         "integration": "AUTHORING_ONLY; schema/runtime QA pending; open interpretation and transfer weight 0"
+      },
+      {
+        "packet": "SLE-C2-U04-B18-R1-20261128",
+        "sourceGitBlob": "9e2bc5d2ff022c0d815711947c9224a1bda967ce",
+        "lessonIds": [
+          "REA-C2-03"
+        ],
+        "verdict": "PASS",
+        "integration": "AUTHORING_ONLY; WRI-C2-02 held pending validated C2 rubric/delivery; transfer weight 0; interactive design and integration before release per owner #257"
       }
     ]
   },
@@ -371,7 +380,8 @@
         "WRI-C1-07",
         "VOC-C2-02",
         "REA-C2-01",
-        "REA-C2-02"
+        "REA-C2-02",
+        "REA-C2-03"
       ],
       "prerequisites": []
     },
@@ -50659,6 +50669,229 @@
           "id": "SRC-REA-C2-02",
           "title": "Interpret narrative viewpoint, irony and unresolved alternatives — original reviewed source",
           "body": "### The second key\n\n[1] On the last morning before the workshop reopened, Mara placed the second key on the desk beside the attendance book. Its blue tag was still unmarked. She had left a space on the tag for the name of the person who would take her place on Thursdays. Whoever that was, they would at least inherit a proper system. The drawers were labelled; the spare materials had been counted. Even the cupboard with the awkward hinge bore a note explaining how it should be opened.\n\n[2] For months she had been asking the committee to share the work. People had been very sympathetic, particularly when sympathy could be expressed at the end of a meeting. Now there was a rota, and Arun had agreed to try the Thursday shift. Mara had prepared a short handover sheet. It said which tasks must be completed, which could wait and whom to contact if a machine needed attention. She had not included the little decisions she made without noticing: whether a newcomer needed a demonstration, whether the room had become too crowded for a quiet conversation, whether a question could wait until the next visit.\n\n[3] Arun arrived carrying a folder of his own. He read the sheet carefully, then asked whether he could move the worktables on his shift. The present arrangement left the entrance clear, Mara explained. Of course it did. She had measured it twice. Arun pointed to the back corner. A person entering could pass the first table, but someone already sitting there might have difficulty making room for a second person. He wanted to try turning one of the tables, if the safety checks allowed it. Mara looked at the neat line of chairs. She could see what he meant without yet seeing why a different arrangement had to be better.\n\n[4] He picked up the blue key. “Shall I put my name on this?” he asked. Mara said there was no need; the committee might change the rota later. He placed it back beside the book, rather than in his pocket. They agreed to check the possible layout together before the Thursday shift. Then Arun asked whether she would show him how to judge when a newcomer needed help. “I don't know how to write that down,” she said. “We could start with one example,” he replied.\n\n[5] When he left, the key was still on the desk. Mara opened the attendance book, then closed it again. On the handover sheet she added a line: “Leave space for decisions not listed here.” She considered writing Arun's name on the tag but did not. Instead she turned the tag over so that the blank side faced upwards. The room was ready, she thought. Whether she meant ready for Thursday or ready to be changed, she could not have said.",
+          "display_to_learner": true
+        }
+      },
+      {
+        "id": "REA-C2-03",
+        "module": "reading",
+        "cefr_target": "C2",
+        "title": "Evaluate rhetorical architecture and select audience-appropriate moves",
+        "estimated_minutes": 40,
+        "objectives": [
+          "Compare two sustained treatments of the same complex evidence. Explain how ordering, foregrounding, concession, understatement, metadiscourse and closing action influence what a reader notices or is asked to do. Select a revision that serves an explicitly defined audience without changing the evidential claim. Distinguish a persuasive stance from a factual distortion and a neutral account from an account with no evaluative purpose."
+        ],
+        "explanation": {
+          "en": "**CORE-1 — Goal/context.** Compare two sustained treatments of the same complex evidence. Explain how ordering, foregrounding, concession, understatement, metadiscourse and closing action influence what a reader notices or is asked to do. Select a revision that serves an explicitly defined audience without changing the evidential claim. Distinguish a persuasive stance from a factual distortion and a neutral account from an account with no evaluative purpose.\n\n**CORE-2 — Teach/model.** Use two layers of a discourse plan. First list invariants: what was observed, the comparison limits, genuine counterconsiderations, decision authority and unknowns. Then map the rhetorical architecture: audience question → opening frame → order and relative prominence of reasons → placement and function of concession → metadiscourse that guides interpretation → closing action. Fronting a limitation may prevent misunderstanding; postponing it can be legitimate only if it remains recoverable before a reader must act. Understatement may soften a criticism but cannot make a material problem disappear. Concession acknowledges a real point; explain whether it restricts the proposal, changes its conditions or simply identifies a trade-off. Metadiscourse such as “the distinction matters here”, “this is a case for examining X, not deciding Y” or a signposted change of criterion guides interpretation, not proof. A neutral account may foreground a risk when that is the audience's decision question. Persuasion may openly recommend a bounded step while giving counterevidence enough prominence for informed judgment. Test revisions by asking what a reader could reasonably take away even without reading every sentence in isolation.\n\nIndependent worked demonstration (different topic): a fictional neighbourhood seed exchange records more requests after adding an online list, but has no record of requests made by people without internet access. An operations note opens with the missing comparison and proposes checking both channels; a proposal to the board opens with the benefit of knowing which seeds are available, then acknowledges the missing channel evidence before requesting a small comparison. Both can preserve the same facts. A headline “Online list reaches more people” changes the population-level claim; a final tiny footnote about missing evidence does not repair that headline. Rewrite the opening as a claim about recorded requests, put the limitation beside it, and make the next action a comparison rather than approval of replacing the counter. Explain how the two openings serve different readers without assuming that one audience is less capable of handling uncertainty. No active item or source fact reused.\n\n**CORE-3 — Independent reading.** Read the reviewed shared notes and both documents before answering.\n\n**CORE-4 — Feedback/repair.** After submit, use option-specific explanations. Q1/Q4 map the rhetorical function of the opening and ending before deciding how the documents differ; Q2/Q3 separate concession and understated limits from reversal; Q5 rank information by the stated public need without inventing service status; Q6 repair the global implication, not just a phrase. Independent unassessed retrieval: a fictional museum's evening opening has 22 recorded visits and no comparison with people unable to come. Outline an accurate opening and ending for a supporter seeking a second trial and for a visitor who needs to know whether evening openings will continue. State one invariant and one unsupported inference. Weight 0; no automatic semantic grade.",
+          "vi": "Phân tích cấu trúc tu từ của toàn văn bản, cách tổ chức bằng chứng, nhượng bộ, nhấn mạnh và điều chỉnh thông điệp cho đối tượng đọc."
+        },
+        "examples": [
+          "Use two layers of a discourse plan. First list invariants: what was observed, the comparison limits, genuine counterconsiderations, decision authority and unknowns. Then map the rhetorical architecture: audience question → opening frame → order and relative prominence of reasons → placement and function of concession → metadiscourse that guides interpretation → closing action. Fronting a limitation may prevent misunderstanding; postponing it can be legitimate only if it remains recoverable before a reader must act. Understatement may soften a criticism but cannot make a material problem disappear. Concession acknowledges a real point; explain whether it restricts the proposal, changes its conditions or simply identifies a trade-off. Metadiscourse such as “the distinction matters here”, “this is a case for examining X, not deciding Y” or a signposted change of criterion guides interpretation, not proof. A neutral account may foreground a risk when that is the audience's decision question. Persuasion may openly recommend a bounded step while giving counterevidence enough prominence for informed judgment. Test revisions by asking what a reader could reasonably take away even without reading every sentence in isolation.\n\nIndependent worked demonstration (different topic): a fictional neighbourhood seed exchange records more requests after adding an online list, but has no record of requests made by people without internet access. An operations note opens with the missing comparison and proposes checking both channels; a proposal to the board opens with the benefit of knowing which seeds are available, then acknowledges the missing channel evidence before requesting a small comparison. Both can preserve the same facts. A headline “Online list reaches more people” changes the population-level claim; a final tiny footnote about missing evidence does not repair that headline. Rewrite the opening as a claim about recorded requests, put the limitation beside it, and make the next action a comparison rather than approval of replacing the counter. Explain how the two openings serve different readers without assuming that one audience is less capable of handling uncertainty. No active item or source fact reused."
+        ],
+        "activities": [
+          {
+            "id": "REA-C2-03-Q1",
+            "type": "single_choice",
+            "prompt": "What best explains the different opening frames of Documents A and B?",
+            "options": [
+              {
+                "id": "A",
+                "text": "A opens with a measured comparison of access across the community, while B rejects access as a relevant consideration."
+              },
+              {
+                "id": "B",
+                "text": "A foregrounds the possible value of another access route to justify investigating it, while B foregrounds decision status and the data needed for a comparison."
+              },
+              {
+                "id": "C",
+                "text": "A presents the van as already approved to replace the workshop, while B attempts to reverse that approval."
+              },
+              {
+                "id": "D",
+                "text": "Both openings perform the same function because both use the repair counts."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "A opens with a measured comparison of access across the community, while B rejects access as a relevant consideration. — Neither document establishes such a comparison; B explicitly includes access information.\nA foregrounds the possible value of another access route to justify investigating it, while B foregrounds decision status and the data needed for a comparison. — The ordering serves advocacy for a bounded test and operational planning respectively, without requiring different facts.\nA presents the van as already approved to replace the workshop, while B attempts to reverse that approval. — A explicitly rejects deciding which route should survive; no replacement approval exists.\nBoth openings perform the same function because both use the repair counts. — Shared data can support different rhetorical functions and intended actions."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-03-Q2",
+            "type": "single_choice",
+            "prompt": "What is the function of the concession about lower workshop enquiries in A's second paragraph?",
+            "options": [
+              {
+                "id": "A",
+                "text": "It acknowledges a potentially important observation, then blocks an unwarranted explanation and reframes the decision as a comparison."
+              },
+              {
+                "id": "B",
+                "text": "It establishes that maintaining both routes is already more expensive than using only the van."
+              },
+              {
+                "id": "C",
+                "text": "It dismisses the enquiry counts entirely because they do not identify unique visitors."
+              },
+              {
+                "id": "D",
+                "text": "It presents local events as the confirmed cause of the decline."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "It acknowledges a potentially important observation, then blocks an unwarranted explanation and reframes the decision as a comparison. — The observation remains relevant, but different local events and missing identity information limit interpretation.\nIt establishes that maintaining both routes is already more expensive than using only the van. — No relative cost evidence exists.\nIt dismisses the enquiry counts entirely because they do not identify unique visitors. — The counts still describe recorded enquiries; their limitations restrict inference rather than erase them.\nIt presents local events as the confirmed cause of the decline. — A possible competing explanation is not a demonstrated cause."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-03-Q3",
+            "type": "single_choice",
+            "prompt": "Which account best describes the understatement “hardly a complete answer” in A's final paragraph?",
+            "options": [
+              {
+                "id": "A",
+                "text": "It signals that access evidence is unnecessary once the repairs have been counted."
+              },
+              {
+                "id": "B",
+                "text": "It retracts the recommendation because the author no longer sees a reason to investigate."
+              },
+              {
+                "id": "C",
+                "text": "It makes the limitation salient without treating it as a reason to abandon a narrower enquiry."
+              },
+              {
+                "id": "D",
+                "text": "It allows the author to imply that access improvement has been conclusively demonstrated without saying so directly."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "C"
+            },
+            "feedback": {
+              "explanation_en": "It signals that access evidence is unnecessary once the repairs have been counted. — A explicitly requests access information.\nIt retracts the recommendation because the author no longer sees a reason to investigate. — The next sentence retains the bounded recommendation.\nIt makes the limitation salient without treating it as a reason to abandon a narrower enquiry. — Its force comes from the contrast with the following sentence and the limited decision framed around it.\nIt allows the author to imply that access improvement has been conclusively demonstrated without saying so directly. — That implication would conflict with the rest of the text."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-03-Q4",
+            "type": "single_choice",
+            "prompt": "Which statement best compares the metadiscourse and closing actions of the two documents?",
+            "options": [
+              {
+                "id": "A",
+                "text": "B's phrase “These measures answer different questions” establishes that the proposed trial will succeed."
+              },
+              {
+                "id": "B",
+                "text": "Both documents call for immediate selection of the most effective route, but use different degrees of formality."
+              },
+              {
+                "id": "C",
+                "text": "A's final contrast makes evidence collection optional if the committee accepts the access principle."
+              },
+              {
+                "id": "D",
+                "text": "A's “immediate decision is narrower” directs the committee towards a bounded recommendation; B's distinction among measures guides the design of a possible test without advocating a route."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "D"
+            },
+            "feedback": {
+              "explanation_en": "B's phrase “These measures answer different questions” establishes that the proposed trial will succeed. — It clarifies the purpose of measures, not their future results.\nBoth documents call for immediate selection of the most effective route, but use different degrees of formality. — Both distinguish investigation from selection.\nA's final contrast makes evidence collection optional if the committee accepts the access principle. — Evidence collection is integral to the recommended comparison.\nA's “immediate decision is narrower” directs the committee towards a bounded recommendation; B's distinction among measures guides the design of a possible test without advocating a route. — Both use signposting to constrain how the evidence should be used; their intended actions differ."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-03-Q5",
+            "type": "single_choice",
+            "prompt": "The committee wants a short public update for people who may need repairs next month. Which proposed opening meets that purpose and preserves the evidence and service status?",
+            "options": [
+              {
+                "id": "A",
+                "text": "“The van completed 30 repairs during four Saturdays. The usual workshop remains open; no replacement has been approved, and the committee is considering whether to compare the two routes further.”"
+              },
+              {
+                "id": "B",
+                "text": "“The van has made repairs more accessible, so the workshop will remain open only until the new route is established.”"
+              },
+              {
+                "id": "C",
+                "text": "“The van's 48 users show that demand has moved away from the workshop, although the final timetable is not ready.”"
+              },
+              {
+                "id": "D",
+                "text": "“There is no meaningful information from the van trial; the committee cannot consider another comparison.”"
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "“The van completed 30 repairs during four Saturdays. The usual workshop remains open; no replacement has been approved, and the committee is considering whether to compare the two routes further.” — It foregrounds service status for potential users, preserves the observed result and does not promise future van sessions.\n“The van has made repairs more accessible, so the workshop will remain open only until the new route is established.” — Converts possible access benefit into a demonstrated result and invents a transition decision.\n“The van's 48 users show that demand has moved away from the workshop, although the final timetable is not ready.” — Equates enquiries with unique people and asserts transfer of demand.\n“There is no meaningful information from the van trial; the committee cannot consider another comparison.” — Erases the recorded outputs and overstates the evidence limitation."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-03-Q6",
+            "type": "single_choice",
+            "prompt": "An editor proposes replacing A's opening with “The van is reaching people the workshop could never reach” and retaining the original caveats in paragraph 2. Which response best repairs the overall framing while preserving A's legitimate advocacy?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Keep the headline; a later caveat always neutralises a strong opening claim."
+              },
+              {
+                "id": "B",
+                "text": "Frame the opening as an observed service output and a possible access benefit, place the evidence limit alongside that claim, and retain the recommendation for a bounded comparison."
+              },
+              {
+                "id": "C",
+                "text": "Remove all reasons for the comparison so the proposal cannot be seen as persuasive."
+              },
+              {
+                "id": "D",
+                "text": "Change “could never reach” to “rarely reaches” but keep the claim about distinct users."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "Keep the headline; a later caveat always neutralises a strong opening claim. — The source does not establish unique or previously unreachable users, and the first impression remains misleading.\nFrame the opening as an observed service output and a possible access benefit, place the evidence limit alongside that claim, and retain the recommendation for a bounded comparison. — Repairs the discourse-level takeaway rather than merely changing the tone; advocacy for further inquiry remains intact.\nRemove all reasons for the comparison so the proposal cannot be seen as persuasive. — A recommendation can be persuasive and accurate; suppressing relevant reasons would undermine the purpose.\nChange “could never reach” to “rarely reaches” but keep the claim about distinct users. — The records do not identify distinct people or establish frequency of earlier access, so the unsupported inference persists."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          }
+        ],
+        "reading_asset": {
+          "id": "SRC-REA-C2-03",
+          "title": "Two documents about the same mobile repair service",
+          "body": "### Two documents about the same mobile repair service\n\nShared source notes: A community repair service tested a mobile van at two sites for four Saturdays, while keeping its usual fixed-site workshop open. Of 48 recorded van enquiries, 30 repairs were completed during the visit; the rest included requests needing parts or specialist advice. Volunteers recorded fewer enquiries at the fixed workshop than in the preceding four Saturdays, but the periods differed in local events and the recording method did not identify unique people. Several visitors at the van said they valued its location; the comments were volunteered, not collected from a representative sample. The trial did not measure cost per completed repair or compare access for people who did not attend. The committee may authorise a further limited trial; it has not authorised replacing the fixed workshop. The documents below are proposed communications based on these notes, not additional evidence.\n\n**Document A — Proposal to the service committee, from a supporter of further testing**\n\n[1] A repair service is useful only if people can make use of it. The mobile van has given us a reason to ask whether our current location serves everyone we intend to reach. Thirty repairs were completed among the 48 enquiries recorded at the van over four Saturdays, and several visitors volunteered that its location mattered to them. Those observations are a case for investigating a second route into the service, not yet a case for withdrawing the first.\n\n[2] The fixed workshop recorded fewer enquiries than in the preceding four Saturdays. It would be tempting to describe the van as drawing people away from the workshop. That is more than the records allow: local events differed, and we cannot identify unique visitors across the two routes. Nor do we know the relative cost per completed repair. The apparent simplicity of a choice between two locations is therefore misleading.\n\n[3] The immediate decision is narrower. I recommend one further, bounded comparison, with both routes retained, consistent recording, cost information and an effort to hear from people who did not attend. The van's early record is hardly a complete answer to our access question. But it is enough to make that question worth pursuing. We should decide whether to test the route, not decide in advance which route should survive.\n\n**Document B — Neutral briefing for the coordinator designing that possible comparison**\n\n[1] The current decision concerns whether to undertake a further comparison; replacement of the fixed workshop is not authorised. Four Saturdays of a mobile-van trial produced 48 recorded enquiries and 30 same-visit completed repairs. The recorded counts are not counts of distinct people. Some uncompleted requests needed parts or specialist advice.\n\n[2] Fixed-workshop enquiries were lower than in the preceding four Saturdays, but the local-event schedules differed. Treat the apparent change in demand as a question to investigate rather than evidence that people transferred to the van. The comments on the van's location suggest a possible access benefit; because they were volunteered, they do not establish access for the wider community, including people who did not attend.\n\n[3] Three kinds of information would be relevant to a comparison: comparable enquiry and completion records, costs relative to completed repairs, and access information from attendees and non-attendees. These measures answer different questions. A completed repair may indicate service output without showing whether a person would have been able to attend another site. A separate decision would be needed before changing either route permanently. This briefing sets out the questions for a possible test; it does not recommend choosing a route now.",
           "display_to_learner": true
         }
       }
