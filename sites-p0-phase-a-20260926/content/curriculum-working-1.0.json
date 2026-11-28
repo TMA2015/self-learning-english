@@ -126,6 +126,16 @@
         ],
         "verdict": "PASS",
         "integration": "AUTHORING_ONLY; schema/runtime QA pending; open repair and transfer weight 0; interactive design and integration before release per owner #257"
+      },
+      {
+        "packet": "SLE-C2-U06-B20-R1-20261128",
+        "sourceGitBlob": "afe9b4a04ad764ce5f467a9c2a0ecf9bc11efc48",
+        "lessonIds": [
+          "REA-C2-04",
+          "REA-C2-05"
+        ],
+        "verdict": "PASS",
+        "integration": "AUTHORING_ONLY; schema/runtime QA pending; open repairs and transfer weight 0; interactive design and integration before release per owner #257"
       }
     ]
   },
@@ -393,7 +403,9 @@
         "REA-C2-02",
         "REA-C2-03",
         "GRA-C2-01",
-        "GRA-C2-02"
+        "GRA-C2-02",
+        "REA-C2-04",
+        "REA-C2-05"
       ],
       "prerequisites": []
     },
@@ -51340,6 +51352,452 @@
             "evidence_weight": 1
           }
         ]
+      },
+      {
+        "id": "REA-C2-04",
+        "module": "reading",
+        "cefr_target": "C2",
+        "title": "Reconstruct layered warrants and diagnose bias in an evaluation",
+        "estimated_minutes": 50,
+        "objectives": [
+          "Read a technical evaluation, reconstruct its nested claims, identify the particular inferential link affected by a limitation, distinguish directional selection or measurement bias from an accusation of dishonesty, and select the strongest conclusion robust to a stated change in classification."
+        ],
+        "explanation": {
+          "en": "**CORE-1 — Goal/context.** Read a technical evaluation, reconstruct its nested claims, identify the particular inferential link affected by a limitation, distinguish directional selection or measurement bias from an accusation of dishonesty, and select the strongest conclusion robust to a stated change in classification.\n\n**CORE-2 — Teach/model.**\n- Trace the chain from recorded event → measurement interpretation → comparison → causal explanation → recommendation. Write each bridge as an assumption: even true premises do not establish a conclusion if the bridge is unsupported.\n- Separate selection (which observations enter the record) from measurement (how included observations are classified). A known mechanism may predict direction; otherwise say the direction is unknown. A stake or affiliation invites scrutiny but is not evidence that a finding is false.\n- A sensitivity check changes one defensible analytic choice and asks whether the conclusion survives. It does not prove that the alternative definition is uniquely correct. A reversal undermines a claim of robustness, not the existence of the original recorded events.\n- Locate limiting language such as “among eligible records”, “on that definition”, “even if”, and “at most”. Follow its scope through the author's argument. A concession can invalidate a downstream causal claim without invalidating an upstream observation.\n- Distinguish a diagnostic comparison that tests the proposed mechanism from one that tests the ultimate outcome.\n\nIndependent worked demonstration (not assessed): a fictional ceramic workshop compares two kilns using the proportion of fired bowls accepted by an inspector. One kiln's record excludes bowls rejected before firing; the other includes those rejects in its starting total. The reported proportions may describe different populations. Recalculating both from the same starting point tests the comparison bridge, not the claim that the inspector made dishonest decisions. Even if one kiln remains ahead, different clay mixtures would still limit attribution to kiln design. A defensible conclusion specifies the denominator, comparison and remaining causal limitation; it does not discard all inspection records. Draw the chain and cross out only the unsupported links.\n\n**CORE-3 — Independent reading.** Read all four sections before choosing one best answer per item. The source is a fictional internal evaluation; no external scientific knowledge is required.\n\n**CORE-4 — Feedback/repair.** After submission use the option-specific explanations. Q1 diagram all three bridges; Q2 distinguish scheduled from retained opportunity; Q3 identify exactly which proxy link is challenged; Q4 read the scope of the concession and threshold sensitivity; Q5 replace claims about motive with validation criteria; Q6 match the design to the causal outcome. Independent unassessed repair: a fictional rehearsal studio counts microphone activations as attendance; some performers activate twice, and one room's recorder misses silent entries. A manager infers a new room layout attracted more people. Draw the inferential chain, distinguish two measurement problems, and propose a separate attendance comparison. State one observation that remains valid and one inference that does not. Weight 0; no automated semantic judgment.",
+          "vi": "Phân tích các mắt xích lập luận, thiên lệch thu thập và độ nhạy của kết quả đối với ngưỡng phân loại."
+        },
+        "examples": [
+          "- Trace the chain from recorded event → measurement interpretation → comparison → causal explanation → recommendation. Write each bridge as an assumption: even true premises do not establish a conclusion if the bridge is unsupported.\n- Separate selection (which observations enter the record) from measurement (how included observations are classified). A known mechanism may predict direction; otherwise say the direction is unknown. A stake or affiliation invites scrutiny but is not evidence that a finding is false.\n- A sensitivity check changes one defensible analytic choice and asks whether the conclusion survives. It does not prove that the alternative definition is uniquely correct. A reversal undermines a claim of robustness, not the existence of the original recorded events.\n- Locate limiting language such as “among eligible records”, “on that definition”, “even if”, and “at most”. Follow its scope through the author's argument. A concession can invalidate a downstream causal claim without invalidating an upstream observation.\n- Distinguish a diagnostic comparison that tests the proposed mechanism from one that tests the ultimate outcome.\n\nIndependent worked demonstration (not assessed): a fictional ceramic workshop compares two kilns using the proportion of fired bowls accepted by an inspector. One kiln's record excludes bowls rejected before firing; the other includes those rejects in its starting total. The reported proportions may describe different populations. Recalculating both from the same starting point tests the comparison bridge, not the claim that the inspector made dishonest decisions. Even if one kiln remains ahead, different clay mixtures would still limit attribution to kiln design. A defensible conclusion specifies the denominator, comparison and remaining causal limitation; it does not discard all inspection records. Draw the chain and cross out only the unsupported links."
+        ],
+        "activities": [
+          {
+            "id": "REA-C2-04-Q1",
+            "type": "single_choice",
+            "prompt": "Which account most precisely separates the first observation from the downstream claims?",
+            "options": [
+              {
+                "id": "A",
+                "text": "The 156 and 108 events establish that the treated meadow contains more individuals, though the causal effect remains uncertain."
+              },
+              {
+                "id": "B",
+                "text": "The lack of baseline populations makes the default event counts impossible to interpret even as recorded events."
+              },
+              {
+                "id": "C",
+                "text": "The call-pattern audit establishes that exactly one insect accounts for the treated meadow's excess."
+              },
+              {
+                "id": "D",
+                "text": "The default rule records more accepted events in the treated meadow; event-to-individual, individual-to-population and treatment attribution each need separate support."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "D"
+            },
+            "feedback": {
+              "explanation_en": "The 156 and 108 events establish that the treated meadow contains more individuals, though the causal effect remains uncertain. — Treats events as individuals; that bridge is unvalidated.\nThe lack of baseline populations makes the default event counts impossible to interpret even as recorded events. — Rejects a valid upstream observation.\nThe call-pattern audit establishes that exactly one insect accounts for the treated meadow's excess. — The audit cannot identify individuals or quantify this explanation.\nThe default rule records more accepted events in the treated meadow; event-to-individual, individual-to-population and treatment attribution each need separate support. — Preserves the observation and identifies all three bridges."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-04-Q2",
+            "type": "single_choice",
+            "prompt": "What is the most defensible account of the discarded intervals in [B]?",
+            "options": [
+              {
+                "id": "A",
+                "text": "The system's noise rule demonstrates that the installation team deliberately suppressed calls in the untreated meadow."
+              },
+              {
+                "id": "B",
+                "text": "The rule removes more recording opportunities in the untreated meadow, so equal scheduled time is not equal observed opportunity; its contribution to the gap is not quantified."
+              },
+              {
+                "id": "C",
+                "text": "The missing intervals prove that the untreated meadow had more insects."
+              },
+              {
+                "id": "D",
+                "text": "Because the same noise rule applies, its effect on the observed comparison must be identical."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "The system's noise rule demonstrates that the installation team deliberately suppressed calls in the untreated meadow. — Invents intention.\nThe rule removes more recording opportunities in the untreated meadow, so equal scheduled time is not equal observed opportunity; its contribution to the gap is not quantified. — Identifies differential inclusion and retains the uncertainty about its effect.\nThe missing intervals prove that the untreated meadow had more insects. — Missing opportunities do not establish their contents or population.\nBecause the same noise rule applies, its effect on the observed comparison must be identical. — A common rule can affect different environments differently."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-04-Q3",
+            "type": "single_choice",
+            "prompt": "Which link does the repeated-pattern audit most directly challenge?",
+            "options": [
+              {
+                "id": "A",
+                "text": "The assumption that more accepted call events can be interpreted as more calling individuals."
+              },
+              {
+                "id": "B",
+                "text": "The claim that a stricter threshold excludes ambiguous sounds."
+              },
+              {
+                "id": "C",
+                "text": "The board's authority to commission further observation."
+              },
+              {
+                "id": "D",
+                "text": "The proposition that no baseline population measurements exist."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "The assumption that more accepted call events can be interpreted as more calling individuals. — Repetition affects the event-to-individual relationship; the audit does not identify individuals.\nThe claim that a stricter threshold excludes ambiguous sounds. — The repeated-pattern audit does not validate thresholds.\nThe board's authority to commission further observation. — Unrelated to the measurement inference.\nThe proposition that no baseline population measurements exist. — The audit supplies no baseline populations."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-04-Q4",
+            "type": "single_choice",
+            "prompt": "Which reading of the reviewer's “Even if” sentence in [C] is most accurate?",
+            "options": [
+              {
+                "id": "A",
+                "text": "The reviewer accepts the default classification as scientifically valid because it has one useful application."
+              },
+              {
+                "id": "B",
+                "text": "The stricter rule proves the untreated meadow has a larger population."
+              },
+              {
+                "id": "C",
+                "text": "The reviewer provisionally grants a practical use for the default rule while denying that this makes the event comparison insensitive to a plausible rule change."
+              },
+              {
+                "id": "D",
+                "text": "The direction reversal proves the default records were fabricated."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "C"
+            },
+            "feedback": {
+              "explanation_en": "The reviewer accepts the default classification as scientifically valid because it has one useful application. — Practical usefulness does not validate classification.\nThe stricter rule proves the untreated meadow has a larger population. — Neither threshold measures population.\nThe reviewer provisionally grants a practical use for the default rule while denying that this makes the event comparison insensitive to a plausible rule change. — Tracks the concession and its limited scope.\nThe direction reversal proves the default records were fabricated. — Reclassification is not evidence of fabrication."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-04-Q5",
+            "type": "single_choice",
+            "prompt": "What is the appropriate role of the installation team's and reviewer's affiliations in evaluating [C]?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Prefer the reviewer's threshold because independence guarantees accuracy."
+              },
+              {
+                "id": "B",
+                "text": "Scrutinise the team's inferential choices and the reviewer's alternative using the same validation criteria; the roles alone establish neither accuracy nor deception."
+              },
+              {
+                "id": "C",
+                "text": "Disregard both sets of counts until the two parties agree on a threshold."
+              },
+              {
+                "id": "D",
+                "text": "Treat both thresholds as equally accurate because neither has been fully validated."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "Prefer the reviewer's threshold because independence guarantees accuracy. — Independence does not validate a measurement rule.\nScrutinise the team's inferential choices and the reviewer's alternative using the same validation criteria; the roles alone establish neither accuracy nor deception. — Distinguishes a reason for scrutiny from evidential adjudication.\nDisregard both sets of counts until the two parties agree on a threshold. — Agreement is not a necessary condition for retaining accurately described observations.\nTreat both thresholds as equally accurate because neither has been fully validated. — Unknown relative accuracy does not establish equality."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-04-Q6",
+            "type": "single_choice",
+            "prompt": "Which proposal most directly tests the final causal bridge, assuming recording opportunity and classification are improved?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Ask more installation staff whether the strips appear successful."
+              },
+              {
+                "id": "B",
+                "text": "Recount the same retained default recordings with more precision."
+              },
+              {
+                "id": "C",
+                "text": "Record only the treated meadow for longer."
+              },
+              {
+                "id": "D",
+                "text": "Measure population independently before and after installation at several comparable treated and comparison sites, documenting other relevant differences."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "D"
+            },
+            "feedback": {
+              "explanation_en": "Ask more installation staff whether the strips appear successful. — Opinions cannot supply a population comparison.\nRecount the same retained default recordings with more precision. — Better event counting does not establish treatment effects on populations.\nRecord only the treated meadow for longer. — Does not provide the relevant baseline or comparison.\nMeasure population independently before and after installation at several comparable treated and comparison sites, documenting other relevant differences. — Addresses the outcome, baseline and attribution rather than merely repeating the proxy."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          }
+        ],
+        "reading_asset": {
+          "id": "SRC-REA-C2-04",
+          "title": "What the meadow monitor actually shows",
+          "body": "### What the meadow monitor actually shows\n\n[A] A reserve tested an automated detector of a fictional insect's calls in two meadows. In this trial a call event means one recorded sound classified as a call; repeated calls may come from the same insect. The management brief argues that installing sheltered vegetation strips increased insect abundance and therefore justifies extending the strips. Its chain of reasoning is explicit: more accepted call events indicate more calling insects; more calling insects indicate a larger population; the population increase is attributable to the strips. During the same four-week period, the detector logged 156 accepted events in the treated meadow and 108 in the untreated meadow under its default threshold. These are accepted events, not identified individuals.\n\n[B] The technical appendix reports that both detectors were scheduled for equal recording time. In the untreated meadow, however, the system discarded a larger proportion of otherwise scheduled intervals as too noisy. No call count is available for discarded intervals. A manual audit of retained intervals, selected by the same procedure in both meadows, also found more repeated recordings of a single distinguishable call pattern in the treated meadow. The audit could not establish the number of insects behind that pattern. The authors therefore cannot assume either equal recording opportunity or a constant relationship between events and individuals. They do not claim that the difference in discarded intervals fully explains the observed gap.\n\n[C] A reviewer reprocessed the retained recordings using a stricter, equally applied threshold. This produced 96 accepted events in the treated meadow and 101 in the untreated meadow. The stricter rule excludes some genuine calls as well as some ambiguous sounds; neither rule has been validated against a complete independent call record. The reviewer writes: “Even if the default rule is more useful for locating periods worth inspecting, the direction of the between-meadow event comparison is not robust to this plausible alternative.” The installation team supplied the original brief; the reviewer has no role in installing the strips. Their roles do not settle the accuracy of either classification rule.\n\n[D] There was one treated and one untreated meadow; their baseline population sizes were not measured before installation. The trial did not identify individual insects or independently estimate abundance. The reserve's board has approved further observation, not extension of the strips. The reviewer recommends an equal-opportunity recording protocol, independent validation of event classification, and a population measure in several comparable sites before making the causal case. This recommendation is not a finding that strips have no ecological value.",
+          "display_to_learner": true
+        }
+      },
+      {
+        "id": "REA-C2-05",
+        "module": "reading",
+        "cefr_target": "C2",
+        "title": "Adjudicate conflicting findings and construct a qualified counter-position",
+        "estimated_minutes": 50,
+        "objectives": [
+          "Read three related reports with genuinely opposed results on a common endpoint. Compare the strength of causal inference and the relevance of each setting, distinguish a plausible explanation of disagreement from an established mechanism, and evaluate a fair counter-position with explicit conditions for revision."
+        ],
+        "explanation": {
+          "en": "**CORE-1 — Goal/context.** Read three related reports with genuinely opposed results on a common endpoint. Compare the strength of causal inference and the relevance of each setting, distinguish a plausible explanation of disagreement from an established mechanism, and evaluate a fair counter-position with explicit conditions for revision.\n\n**CORE-2 — Teach/model.**\n- Before treating two findings as contradictory, align the outcome definition, comparison and time window. If the directions genuinely differ, retain both rather than rewriting them as agreement.\n- Evaluate evidence on two axes: internal credibility (how well the comparison isolates the factor) and applicability (how closely conditions match the intended decision). Neither axis automatically cancels the other. Avoid universal rankings based solely on sample size, precision, recency or institutional status.\n- A plausible effect modifier is a condition under which the effect may differ. A subgroup pattern can suggest a hypothesis; if assignment is not comparable or the subgroup analysis is exploratory, avoid causal certainty. A pooled direction need not describe each setting.\n- Distinguish “no difference established” from “equivalence established”. A small inconclusive comparison may be compatible with benefit and harm.\n- A qualified counter-position grants the strongest opposing evidence, specifies the claim it actually contests, states a bounded alternative and identifies evidence that would change that position. “On balance” requires reasons tied to the decision, not averaging incompatible conclusions.\n\nIndependent worked demonstration (not assessed): a fictional gallery compares two label coatings using the same endpoint, whether printing remains legible after a week. Randomly assigned indoor samples favour coating X; a non-random outdoor trial favours Y but uses X mostly in exposed locations. A small subsequent sheltered-outdoor comparison is inconclusive. For indoor labels, the controlled evidence is directly relevant; for exposed signs, the field outcome is relevant but assignment prevents confident attribution. A claim that X is universally preferable is too broad, but Y is not thereby proven better outdoors. A controlled outdoor comparison stratified by exposure could change the recommendation. Map the opposed directions, credibility, relevance and unresolved condition.\n\n**CORE-3 — Independent reading.** Read the complete fictional dossier. All test definitions are given. Select the best supported answer, not a preferred policy.\n\n**CORE-4 — Feedback/repair.** Q1 align endpoint and opposing directions; Q2 make a two-axis credibility/applicability table; Q3 distinguish a plausible modifier from a proven interaction; Q4 paraphrase “too small to distinguish” without saying “equivalent”; Q5 restate the strongest field argument before qualifying it; Q6 name the condition that would change the decision. Independent unassessed repair: a fictional paper archive compares two book covers using the same wear criterion. A controlled dry-room study favours X; a humid-room observation favours Y but X was mainly assigned to older books. A small randomised humid-room test is inconclusive. Write a three-sentence response to a claim that one cover is universally superior, and specify a comparison that would change your view. Weight 0; no automated semantic judgment.",
+          "vi": "Đối chiếu bằng chứng mâu thuẫn, phân biệt độ tin cậy nhân quả với khả năng áp dụng và phản biện có điều kiện."
+        },
+        "examples": [
+          "- Before treating two findings as contradictory, align the outcome definition, comparison and time window. If the directions genuinely differ, retain both rather than rewriting them as agreement.\n- Evaluate evidence on two axes: internal credibility (how well the comparison isolates the factor) and applicability (how closely conditions match the intended decision). Neither axis automatically cancels the other. Avoid universal rankings based solely on sample size, precision, recency or institutional status.\n- A plausible effect modifier is a condition under which the effect may differ. A subgroup pattern can suggest a hypothesis; if assignment is not comparable or the subgroup analysis is exploratory, avoid causal certainty. A pooled direction need not describe each setting.\n- Distinguish “no difference established” from “equivalence established”. A small inconclusive comparison may be compatible with benefit and harm.\n- A qualified counter-position grants the strongest opposing evidence, specifies the claim it actually contests, states a bounded alternative and identifies evidence that would change that position. “On balance” requires reasons tied to the decision, not averaging incompatible conclusions.\n\nIndependent worked demonstration (not assessed): a fictional gallery compares two label coatings using the same endpoint, whether printing remains legible after a week. Randomly assigned indoor samples favour coating X; a non-random outdoor trial favours Y but uses X mostly in exposed locations. A small subsequent sheltered-outdoor comparison is inconclusive. For indoor labels, the controlled evidence is directly relevant; for exposed signs, the field outcome is relevant but assignment prevents confident attribution. A claim that X is universally preferable is too broad, but Y is not thereby proven better outdoors. A controlled outdoor comparison stratified by exposure could change the recommendation. Map the opposed directions, credibility, relevance and unresolved condition."
+        ],
+        "activities": [
+          {
+            "id": "REA-C2-05-Q1",
+            "type": "single_choice",
+            "prompt": "Which statement accurately characterises the relationship between [B] and [C]?",
+            "options": [
+              {
+                "id": "A",
+                "text": "They cannot conflict because they were conducted in different settings."
+              },
+              {
+                "id": "B",
+                "text": "They establish opposite causal effects under identical conditions."
+              },
+              {
+                "id": "C",
+                "text": "The new insert has fewer observed failures in the laboratory and more in the field; the common endpoint makes the directional conflict meaningful, but design and route differences limit causal reconciliation."
+              },
+              {
+                "id": "D",
+                "text": "The field result merely measures transport weight rather than damage."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "C"
+            },
+            "feedback": {
+              "explanation_en": "They cannot conflict because they were conducted in different settings. — Their observed directions on the common endpoint are opposed, although settings and design affect interpretation.\nThey establish opposite causal effects under identical conditions. — Field assignment is confounded and conditions differ.\nThe new insert has fewer observed failures in the laboratory and more in the field; the common endpoint makes the directional conflict meaningful, but design and route differences limit causal reconciliation. — Retains the conflict without claiming equivalent comparisons.\nThe field result merely measures transport weight rather than damage. — Both use the same defined chip outcome."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-05-Q2",
+            "type": "single_choice",
+            "prompt": "Which evaluation best explains the conservation adviser's position?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Random allocation strengthens the laboratory comparison for the simulated paved conditions; field evidence is relevant to rough-route operations but does not isolate insert choice."
+              },
+              {
+                "id": "B",
+                "text": "The laboratory study has more replicas, so it settles all routes regardless of simulation coverage."
+              },
+              {
+                "id": "C",
+                "text": "The field report is more realistic and therefore supplies the stronger causal comparison for every route."
+              },
+              {
+                "id": "D",
+                "text": "Because both studies have limitations, their results must have the same evidential weight for every decision."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "Random allocation strengthens the laboratory comparison for the simulated paved conditions; field evidence is relevant to rough-route operations but does not isolate insert choice. — Separates credibility from applicability.\nThe laboratory study has more replicas, so it settles all routes regardless of simulation coverage. — Size cannot establish applicability to untested conditions.\nThe field report is more realistic and therefore supplies the stronger causal comparison for every route. — Relevance does not remove confounding.\nBecause both studies have limitations, their results must have the same evidential weight for every decision. — False equivalence ignores differences in design and setting."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-05-Q3",
+            "type": "single_choice",
+            "prompt": "How should the exploratory route breakdown in [C] affect interpretation?",
+            "options": [
+              {
+                "id": "A",
+                "text": "It proves prolonged vibration makes the new insert inferior."
+              },
+              {
+                "id": "B",
+                "text": "It establishes that differences in route severity account for the entire observed field gap."
+              },
+              {
+                "id": "C",
+                "text": "It should be ignored because exploratory findings can never inform subsequent study design."
+              },
+              {
+                "id": "D",
+                "text": "It makes route severity a plausible contributor to the discrepancy and motivates controlled route-specific testing, without establishing a route-by-insert causal interaction."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "D"
+            },
+            "feedback": {
+              "explanation_en": "It proves prolonged vibration makes the new insert inferior. — It does not isolate insert effects or establish a mechanism.\nIt establishes that differences in route severity account for the entire observed field gap. — The contribution is not quantified.\nIt should be ignored because exploratory findings can never inform subsequent study design. — Exploratory evidence can generate a relevant testable hypothesis.\nIt makes route severity a plausible contributor to the discrepancy and motivates controlled route-specific testing, without establishing a route-by-insert causal interaction. — Distinguishes a hypothesis from confirmation."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-05-Q4",
+            "type": "single_choice",
+            "prompt": "What does the equal observed failure count in [D] establish?",
+            "options": [
+              {
+                "id": "A",
+                "text": "The inserts meet the museum's equivalence criterion on rough routes."
+              },
+              {
+                "id": "B",
+                "text": "The small comparison observed two failures in each group but does not resolve whether a meaningful benefit or disadvantage exists."
+              },
+              {
+                "id": "C",
+                "text": "The field report has been disproved by the newer randomised study."
+              },
+              {
+                "id": "D",
+                "text": "The new insert can never increase failure risk on rough routes."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "The inserts meet the museum's equivalence criterion on rough routes. — The study was not an equivalence test and is explicitly inconclusive.\nThe small comparison observed two failures in each group but does not resolve whether a meaningful benefit or disadvantage exists. — Preserves the finding without confusing inconclusiveness and equivalence.\nThe field report has been disproved by the newer randomised study. — The small study cannot settle the relevant difference.\nThe new insert can never increase failure risk on rough routes. — Unsupported universal conclusion."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-05-Q5",
+            "type": "single_choice",
+            "prompt": "Which reply to the operations memo is a fair qualified counter-position?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Actual journeys are indeed relevant, and the adverse field result warrants caution. But unequal route assignment prevents attributing the gap to the insert; the controlled paved simulation supports further route-specific testing rather than universal replacement or rejection."
+              },
+              {
+                "id": "B",
+                "text": "Field staff do not understand experiments, so their findings need not be considered."
+              },
+              {
+                "id": "C",
+                "text": "Both studies should simply be averaged, and whichever insert has fewer pooled failures should be adopted."
+              },
+              {
+                "id": "D",
+                "text": "The laboratory experiment proves the field observation is wrong, so the lighter insert should be adopted immediately."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "Actual journeys are indeed relevant, and the adverse field result warrants caution. But unequal route assignment prevents attributing the gap to the insert; the controlled paved simulation supports further route-specific testing rather than universal replacement or rejection. — Grants relevant adverse evidence, names the inferential limit and bounds the counterclaim.\nField staff do not understand experiments, so their findings need not be considered. — Misrepresents the strongest objection and speculates about competence.\nBoth studies should simply be averaged, and whichever insert has fewer pooled failures should be adopted. — Pooling differing assignments and conditions does not answer the decision question.\nThe laboratory experiment proves the field observation is wrong, so the lighter insert should be adopted immediately. — Confuses causal credibility in one setting with universal applicability and invents approval."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-05-Q6",
+            "type": "single_choice",
+            "prompt": "Which finding would most directly justify revising the adviser's reservation about universal substitution?",
+            "options": [
+              {
+                "id": "A",
+                "text": "A larger survey showing that packers prefer lighter equipment."
+              },
+              {
+                "id": "B",
+                "text": "Another short paved simulation that reproduces [B] exactly."
+              },
+              {
+                "id": "C",
+                "text": "Adequately designed comparable assignments within both route types, measuring the same damage endpoint and providing sufficiently precise evidence against the predeclared unacceptable-increase criterion."
+              },
+              {
+                "id": "D",
+                "text": "A rough-route study that records fewer total chips without recording group size or insert allocation."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "C"
+            },
+            "feedback": {
+              "explanation_en": "A larger survey showing that packers prefer lighter equipment. — Useful for weight-related acceptability, not the stated damage criterion.\nAnother short paved simulation that reproduces [B] exactly. — Strengthens paved evidence but leaves rough conditions unresolved.\nAdequately designed comparable assignments within both route types, measuring the same damage endpoint and providing sufficiently precise evidence against the predeclared unacceptable-increase criterion. — Matches the unresolved applicability and decision criterion; does not itself grant approval.\nA rough-route study that records fewer total chips without recording group size or insert allocation. — Does not permit the required comparison."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          }
+        ],
+        "reading_asset": {
+          "id": "SRC-REA-C2-05",
+          "title": "Packaging for a travelling ceramics collection",
+          "body": "### Packaging for a travelling ceramics collection\n\n[A] A museum is considering replacing its existing packing insert with a lighter insert for travelling replica ceramics. All three studies define failure identically: at least one new visible chip on a previously intact replica after a single transport cycle, assessed by an examiner who does not know the insert used. Each replica is counted once. The immediate decision concerns whether to adopt the new insert for the museum's routes, which include both short paved journeys and long rough journeys. Reduced packing weight is desirable, but the museum's published criterion is that damage risk must not increase unacceptably.\n\n[B] Laboratory report: 120 comparable replicas were randomly assigned to each insert and subjected to the same standardised transport simulation. The new insert group had 6 failures; the existing insert group had 15. The report describes the lower observed failure rate as evidence favouring the new insert under the tested conditions. The simulation represents short paved journeys; it does not reproduce prolonged rough vibration. The authors state that the experiment supports a causal comparison within its conditions, not a universal guarantee.\n\n[C] Field report: on actual museum routes the new insert had 18 failures among 100 replicas and the existing insert had 10 among 100. The new insert was used mainly on long rough journeys because the transport manager wanted to reduce vehicle weight there; the existing insert was used mainly on short paved journeys. The report notes that the field result is directly relevant to actual operations, but route severity and insert choice are entangled. An exploratory breakdown shows more failures on rough than paved routes for both inserts; within each route category the groups are small and journeys differ in duration. The authors do not establish a reliable within-route insert effect. They suggest that prolonged vibration could matter and request a controlled route-specific comparison.\n\n[D] Follow-up note: a small independent rough-journey simulation randomly assigned 12 replicas per insert; 2 failed with each insert. Its authors state that the comparison is too small to distinguish a meaningful advantage from a meaningful disadvantage under the museum's tolerance criterion. They explicitly did not design it as an equivalence study. An operations memo argues that the field report should override the laboratory result because “real journeys are the test that matters”. A conservation adviser replies that the laboratory result is informative for paved journeys but is insufficient to justify a universal substitution. The museum has authorised further trials only. It has not approved replacement on either route type.",
+          "display_to_learner": true
+        }
       }
     ],
     "integrated_journey": {

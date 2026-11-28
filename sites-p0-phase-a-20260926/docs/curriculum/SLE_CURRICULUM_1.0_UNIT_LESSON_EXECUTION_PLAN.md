@@ -913,15 +913,15 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Unit purpose:** Critically examine layered arguments, uncertainty, methodological limits and competing interpretations.
 - **Scope:** argument/warrant validity, evidence quality, bias, rhetoric, uncertainty and fair counter-positioning.
 - **Advisory entry:** C1-U06, C1-U07, C2-U02; **priority:** P0. Design dependencies are not implemented unlocks.
-- **Independent exit task:** prepare a nuanced evidence review and explain where sources do not justify a conclusion. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Independent exit task:** prepare a nuanced evidence review and explain where sources do not justify a conclusion. Status: **ACADEMIC PASS / SOURCE ONLY**, weight 0; not a released or automatically scored activity.
 - **Audit before adding:** separate critical reasoning from language proficiency claims; use diverse real-life issues and original materials. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** BATCH20 R1 DRAFT / ACADEMIC PENDING.
+- **Status:** ACADEMIC PASS / SOURCE ONLY / FINAL OUTCOME AUDIT PENDING.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | REA-C2-04 (proposed) | Reconstruct layered warrants and diagnose bias in an evaluation | 45–55 min · 6 MCQs | Independent academic review pending. |
-| 2 | REA-C2-05 (proposed) | Adjudicate conflicting findings and construct a qualified counter-position | 45–55 min · 6 MCQs | Independent academic review pending. |
-| 3 | C2-U06-TRANSFER-01 (proposed) | Fresh nuanced evidence review and qualified counter-position | 35–45 min advisory | Qualitative weight 0; independent review pending. |
+| 1 | REA-C2-04 | Reconstruct layered warrants and diagnose bias in an evaluation | 45–55 min · 6 MCQs | NotebookLM PASS; source-only; engineering QA pending. |
+| 2 | REA-C2-05 | Adjudicate conflicting findings and construct a qualified counter-position | 45–55 min · 6 MCQs | NotebookLM PASS; source-only; engineering QA pending. |
+| 3 | C2-U06-TRANSFER-01 | Fresh nuanced evidence review and qualified counter-position | 35–45 min advisory | NotebookLM PASS; qualitative weight 0; delivery pending. |
 
 ### C2-U07 — Advanced mediation and reconstruction
 - **Unit purpose:** Reconstruct complex accounts and arguments from multiple spoken/written sources for a new audience without losing important nuances.
@@ -1073,3 +1073,6 @@ Owner-supplied NotebookLM PASS GRA-C2-01/02 (12/12 BACDAB/CADBCA), fresh transfe
 
 ## Batch20 C2-U06 draft checkpoint — 2026-11-28
 Actual REA-C1-05/06/07/12, WRI-C1-02, REA-C2-01/02/03 and GRA-C2-01/02 audit: consolidate overlapping slots into REA-C2-04 layered warrants, differential inclusion and classification sensitivity (6 structural keys DBACBD), REA-C2-05 conflicting common-endpoint findings, causal credibility vs applicability, inconclusive vs equivalent and revisable counter-position (6 structural keys CADBAC). Fresh transfer and open repairs weight 0; no new scored Writing lesson. R1 blob afe9b4a04ad764ce5f467a9c2a0ecf9bc11efc48; independent academic review pending. Working 221/1429, inventory unchanged; historical Q5, C2 Writing and media holds preserved. Owner #257 sequence unchanged. No import/runtime/merge/deploy/extra CI. Batch20 R1 sole next temporary source.
+
+## Batch20 C2-U06 Academic PASS checkpoint — 2026-11-28
+Replacement verdict matches exact current R1 afe9b4a04ad764ce5f467a9c2a0ecf9bc11efc48: DBACBD/CADBAC, CORE-1–4, both reading lessons and fresh transfer PASS. Prior source mismatch verdict not used. Append REA-C2-04/05 source-only; working 223 lessons / 1441 activities, 222 mapped + REA-C1-01 unmapped. Transfer and open repairs weight 0; no new scored Writing lesson. Engineering QA and final outcome audit pending; #257 sequencing and all holds retained. Next C2-U07 audit actual sources.
