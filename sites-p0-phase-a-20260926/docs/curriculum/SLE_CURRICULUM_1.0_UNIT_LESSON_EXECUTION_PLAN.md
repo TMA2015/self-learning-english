@@ -828,14 +828,14 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Advisory entry:** C1-U01…C1-U09; **priority:** P0. Design dependencies are not implemented unlocks.
 - **Independent exit task:** complete a multi-source briefing and revision log with transparent strengths and uncertainties. Status: **PROPOSED**, not a released or automatically scored activity.
 - **Audit before adding:** design authentic integrated tasks with written review gates and audio rights; no automatic C1 level award. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** NO_PRIMARY_MAPPING / BATCH14 R1 DRAFT ACADEMIC PENDING / AUDIO HOLD.
+- **Status:** ACADEMIC PASS SOURCE ONLY / FINAL OUTCOME AUDIT PENDING / AUDIO HOLD.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | REA-C1-12 (proposed) | Read and compare complex sources for a defined audience | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 2 | LIS-C1-04 (proposed; media hold) | Listen to extended verified audio, preserving stance and evidence limits | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 3 | WRI-C1-07 (proposed) | Synthesize, draft, review and revise an original communicative task | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 4 | C1-U10-TRANSFER (planning only) | complete a multi-source briefing and revision log with transparent strengths and uncertainties. Status: **PROPOSED**, not a released or automatically scored activity. | To be audited / authored | Audit existing transfer evidence; draft if absent, label evidence honestly. |
+| 1 | REA-C1-12 | Reconcile changing evidence and decisions in a complex dossier | 40 min · 6 | Academic PASS; working source; renderer QA pending. |
+| 2 | LIS-C1-04 (media hold) | Reconstruct a revised position from extended spoken evidence | 35–40 min advisory · 6 script items | Academic PASS script only; not in working curriculum, evidence weight 0. |
+| 3 | WRI-C1-07 | Integrate a dossier, draft and revise an independent briefing | 55 min · 1 | Academic PASS; working source, weight 0; renderer/rubric QA pending. |
+| 4 | C1-U10-TRANSFER-01 (media hold) | Fresh cross-modal briefing and revision | 40–55 min advisory | Academic PASS script/written sources, weight 0; actual recording and renderer pending. |
 
 ### C2-U01 — Fine shades of meaning and pragmatic precision
 - **Unit purpose:** Distinguish and express subtle differences in emphasis, implication, attitude and connotation in varied contexts.
@@ -1041,3 +1041,6 @@ Owner-supplied NotebookLM PASS REA-C1-10/11 (12/12 BACDAB/CABDCA), WRI-C1-06 (we
 
 ## Batch14 C1-U10 draft checkpoint
 Audited B2-U10 REA-B2-15/LIS-B2-01/WRI-B2-12, C1-U01/03/06/07/08/09 source and Batch08 reviewed media-held scripts. New REA-C1-12 six MCQs BACDAB, LIS-C1-04 six script-based author keys CBADBC (UNASSESSED/weight 0 until actual audio gate), WRI-C1-07 independent written dossier, revision and reflection weight 0; fresh C1-U10-TRANSFER-01 two written sources + separate reviewer-only interview (MEDIA HOLD, weight 0). Distinct source/version reconciliation, revised spoken stance, independent draft and integrated transfer; no transcript/key exposure or CEFR award. Two actual recordings required, not yet produced. Working 213/1386 unchanged. Independent review pending. Batch14 R1 sole next temporary source; no import/release. C1 educational completion remains unverified pending outcome/media/engineering audit.
+
+## Batch14 academic checkpoint — 2026-11-28
+Owner-supplied NotebookLM PASS REA-C1-12 (6/6 BACDAB), LIS-C1-04 (6/6 CBADBC, script only), WRI-C1-07 (weight 0) and C1-U10-TRANSFER-01 (weight 0; media hold); MUST_FIX/OPTIONAL NONE. Exact R1 01da8e7d15287816bdf35566e3b85127f53a80ef. Working 215/1393, 213 mapped + 2 unmapped; 213 prior lessons, sequence prefix and rubrics preserved. Two new written lessons only; Listening and cross-modal Transfer held separately. All prior holds preserved. No runtime/import/merge/release. C1 educational completion remains unverified pending outcome/media/engineering audit; do not infer count from review summary. Next C2-U01: audit VOC-C2-01 and C1-U04/05/09 actual outcomes, reuse verified coverage, author distinct gaps only.

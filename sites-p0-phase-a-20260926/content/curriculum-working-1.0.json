@@ -78,6 +78,16 @@
         ],
         "verdict": "PASS",
         "integration": "AUTHORING_ONLY; schema/runtime QA pending; written interaction only"
+      },
+      {
+        "packet": "SLE-C1-U10-B14-R1-20261128",
+        "sourceGitBlob": "01da8e7d15287816bdf35566e3b85127f53a80ef",
+        "lessonIds": [
+          "REA-C1-12",
+          "WRI-C1-07"
+        ],
+        "verdict": "PASS",
+        "integration": "AUTHORING_ONLY; schema/runtime QA pending; LIS-C1-04 and integrated transfer media held"
       }
     ]
   },
@@ -337,7 +347,9 @@
         "WRI-C1-05",
         "REA-C1-10",
         "REA-C1-11",
-        "WRI-C1-06"
+        "WRI-C1-06",
+        "REA-C1-12",
+        "WRI-C1-07"
       ],
       "prerequisites": []
     },
@@ -49683,6 +49695,269 @@
             "id": "WRI-C1-06-Q1",
             "type": "extended_response",
             "prompt": "Write a 240–320-word reply to the partner and internal reviewer in the shared thread, acknowledging the need for advance notice and the reviewer's concern without claiming either intended criticism. Distinguish completed language review from approval of arrangements. Ask a focused clarification about the partner's meaning or information needs; propose a practical internal availability enquiry consistent with the decision note. Suggest a shared convention that explicitly identifies review status, approver and follow-up, while keeping external invitations unapproved. Then write a 45–75-word follow-up message for the programme manager stating the actual decision status and one unresolved issue. Add a brief revision note explaining how you reduced a possible interpersonal misunderstanding and made one operational boundary clearer. Do not invent consensus, approval, timetable or personal information. Use readable professional English; do not simply list the instructions.",
+            "answer": null,
+            "feedback": {
+              "pending_message": "UNASSESSED — trusted review pending. No automatic quality grade or CEFR certification."
+            },
+            "skill_tags": [
+              "writing.task_understanding",
+              "writing.organization",
+              "writing.cohesion",
+              "writing.idea_development",
+              "writing.register",
+              "writing.grammar",
+              "writing.vocabulary"
+            ],
+            "evidence_weight": 0,
+            "rubric_id": "RUBRIC-WRITING-C1",
+            "review_mode": "assisted_ai_or_human"
+          }
+        ]
+      },
+      {
+        "id": "REA-C1-12",
+        "module": "reading",
+        "cefr_target": "C1",
+        "title": "Reconcile changing evidence and decisions in a complex dossier",
+        "estimated_minutes": 40,
+        "objectives": [
+          "For an unfamiliar multi-document dossier, reconstruct how a finding and decision change when a measurement is corrected, while retaining valid observations and identifying what a later document does and does not supersede. Select the relevant evidence for a defined audience without mistaking a newer date for universal authority."
+        ],
+        "explanation": {
+          "en": "**CORE-1 — Goal/context.** For an unfamiliar multi-document dossier, reconstruct how a finding and decision change when a measurement is corrected, while retaining valid observations and identifying what a later document does and does not supersede. Select the relevant evidence for a defined audience without mistaking a newer date for universal authority.\n\n**CORE-2 — Teach/model.** Recall the source map, warrant check and summary audit. Add a version dimension: record date, scope, evidence origin, corrected field, unchanged field, decision status. A correction may supersede a particular comparison without invalidating the entire original record. Separate changes in facts, interpretations, implementation and approval. Make a short claim ledger with source and confidence for each proposed sentence. Read to understand the whole dossier before choosing which detail to quote. Independent worked model: a fictional community music room report lists 48 evening bookings and 12 daytime bookings. A later check says six bookings originally labelled evening should be daytime; the total is unchanged. A safety note separately confirms only the small room is cleared. The corrected distribution replaces the first one; it does not erase booking activity or authorise the large room. A briefing saying “the room was never booked” discards valid evidence, while “all rooms are now cleared” conflates correction and approval. Ask which claim is affected, and which is not.\n\n**CORE-3 — Independent reading.** Read the reviewed fictional source displayed with this lesson before answering.\n\n**CORE-4 — Feedback/repair.** Use post-submit option explanations. Q1/Q3 mark changed and retained evidence; Q2 test the warrant; Q4 distinguish recommendation and authority; Q5 match future measurement to gap; Q6 audit every summary clause against source and version. Independent unassessed transfer: a fictional tool-room report corrects the classification of some loans but not total loans; a later note proposes a revised collection rota. Write three sentences stating what changed, what remains valid and what is not approved. No auto-score.",
+          "vi": "Đối chiếu các phiên bản nguồn, phân biệt dữ liệu được sửa với dữ liệu còn giá trị và trạng thái phê duyệt."
+        },
+        "examples": [
+          "Recall the source map, warrant check and summary audit. Add a version dimension: record date, scope, evidence origin, corrected field, unchanged field, decision status. A correction may supersede a particular comparison without invalidating the entire original record. Separate changes in facts, interpretations, implementation and approval. Make a short claim ledger with source and confidence for each proposed sentence. Read to understand the whole dossier before choosing which detail to quote. Independent worked model: a fictional community music room report lists 48 evening bookings and 12 daytime bookings. A later check says six bookings originally labelled evening should be daytime; the total is unchanged. A safety note separately confirms only the small room is cleared. The corrected distribution replaces the first one; it does not erase booking activity or authorise the large room. A briefing saying “the room was never booked” discards valid evidence, while “all rooms are now cleared” conflates correction and approval. Ask which claim is affected, and which is not."
+        ],
+        "activities": [
+          {
+            "id": "REA-C1-12-Q1",
+            "type": "single_choice",
+            "prompt": "Which statement accurately describes what Source B supersedes?",
+            "options": [
+              {
+                "id": "A",
+                "text": "It replaces every finding in Source A, including the comment cards and transaction total."
+              },
+              {
+                "id": "B",
+                "text": "It corrects location counts and undermines the original location-based preference interpretation; the total and comment cards remain."
+              },
+              {
+                "id": "C",
+                "text": "It confirms the original location counts but removes the total."
+              },
+              {
+                "id": "D",
+                "text": "It authorises retaining only the hub because the figures are nearly equal."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "It replaces every finding in Source A, including the comment cards and transaction total. — Correction is narrower.\nIt corrects location counts and undermines the original location-based preference interpretation; the total and comment cards remain. — Separates corrected field and retained evidence.\nIt confirms the original location counts but removes the total. — Reverses the correction.\nIt authorises retaining only the hub because the figures are nearly equal. — Data review grants no operational approval."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-12-Q2",
+            "type": "single_choice",
+            "prompt": "Why do the corrected counts not establish equal site preference?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Completed transactions do not reveal the options offered or choices under comparable availability."
+              },
+              {
+                "id": "B",
+                "text": "Partner-site collections never represent a genuine choice."
+              },
+              {
+                "id": "C",
+                "text": "The figures count comments instead of transactions."
+              },
+              {
+                "id": "D",
+                "text": "Equal preference can be established only when every visitor completes a comment card."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "Completed transactions do not reveal the options offered or choices under comparable availability. — Identifies the missing preference measure.\nPartner-site collections never represent a genuine choice. — Unsupported universal claim.\nThe figures count comments instead of transactions. — Wrong measure.\nEqual preference can be established only when every visitor completes a comment card. — Not a justified necessary condition."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-12-Q3",
+            "type": "single_choice",
+            "prompt": "How should the comment-card evidence be handled after Source B?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Remove it because location coding was wrong."
+              },
+              {
+                "id": "B",
+                "text": "Use it to calculate the number of visitors unable to reach the hub."
+              },
+              {
+                "id": "C",
+                "text": "Retain it as limited evidence of reported benefits and barriers, without using it to estimate prevalence."
+              },
+              {
+                "id": "D",
+                "text": "Treat it as confirmation that the corrected location split reflects preference."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "C"
+            },
+            "feedback": {
+              "explanation_en": "Remove it because location coding was wrong. — Unaffected by correction.\nUse it to calculate the number of visitors unable to reach the hub. — Voluntary responses cannot establish that count.\nRetain it as limited evidence of reported benefits and barriers, without using it to estimate prevalence. — Preserves source scope and independence of correction.\nTreat it as confirmation that the corrected location split reflects preference. — Different measurement."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-12-Q4",
+            "type": "single_choice",
+            "prompt": "Which sentence would misrepresent Source C if included in an executive briefing?",
+            "options": [
+              {
+                "id": "A",
+                "text": "The existing rota may support a limited extension under stated conditions."
+              },
+              {
+                "id": "B",
+                "text": "A partner collection window still needs confirmation."
+              },
+              {
+                "id": "C",
+                "text": "Unsuccessful enquiries could provide information missing from completed-transaction logs."
+              },
+              {
+                "id": "D",
+                "text": "The governing group has approved the four-week extension and both sites' collection windows."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "D"
+            },
+            "feedback": {
+              "explanation_en": "The existing rota may support a limited extension under stated conditions. — Supported.\nA partner collection window still needs confirmation. — Supported.\nUnsuccessful enquiries could provide information missing from completed-transaction logs. — Supported.\nThe governing group has approved the four-week extension and both sites' collection windows. — Invents approval and confirmation."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-12-Q5",
+            "type": "single_choice",
+            "prompt": "Which approach best supports a new decision about access?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Record alternatives offered, unsuccessful enquiries and operational workload under the limited extension if approved, keeping the corrected historical count separate."
+              },
+              {
+                "id": "B",
+                "text": "Compare the uncorrected hub count with the revised partner count to infer demand."
+              },
+              {
+                "id": "C",
+                "text": "Treat 140 completed transactions as 140 users who had equal access."
+              },
+              {
+                "id": "D",
+                "text": "Ask only hub visitors whether the hub should replace all partner sites."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "Record alternatives offered, unsuccessful enquiries and operational workload under the limited extension if approved, keeping the corrected historical count separate. — Matches evidence gap and actual decision boundary.\nCompare the uncorrected hub count with the revised partner count to infer demand. — Mixes versions.\nTreat 140 completed transactions as 140 users who had equal access. — Wrong unit and unsupported condition.\nAsk only hub visitors whether the hub should replace all partner sites. — Inadequate coverage of alternative users."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-12-Q6",
+            "type": "single_choice",
+            "prompt": "Which summary is most faithful across the dossier?",
+            "options": [
+              {
+                "id": "A",
+                "text": "The correction proves central collection is unpopular and the long-term arrangement must change."
+              },
+              {
+                "id": "B",
+                "text": "A location-coding correction changes the distribution, not total completed use; preference and unmet access remain unresolved, and a bounded extension is requested but not approved."
+              },
+              {
+                "id": "C",
+                "text": "Both reports independently establish the hub's success, and the extension is confirmed."
+              },
+              {
+                "id": "D",
+                "text": "The newer operations note invalidates all earlier observations because it is more recent."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "The correction proves central collection is unpopular and the long-term arrangement must change. — Preference not established.\nA location-coding correction changes the distribution, not total completed use; preference and unmet access remain unresolved, and a bounded extension is requested but not approved. — Integrates evidence, correction and operational status.\nBoth reports independently establish the hub's success, and the extension is confirmed. — Derived correction and unapproved action.\nThe newer operations note invalidates all earlier observations because it is more recent. — Different scope, not universal supersession."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          }
+        ],
+        "reading_asset": {
+          "id": "SRC-REA-C1-12",
+          "title": "Reconcile changing evidence and decisions in a complex dossier — original reviewed source",
+          "body": "Source A — Initial evaluation, Hillway community repair network, 4 May:\nDuring a four-week trial of a shared collection hub, volunteers logged 140 collection transactions. The analysis note reported that 90 occurred at the hub and 50 at partner sites, and described the larger hub count as a sign that central collection was preferred. The log measures completed transactions rather than individual users, and does not record the options offered to each visitor. A voluntary comment card completed by 24 visitors identified both convenience of the hub and difficulty travelling there. The evaluation team proposed considering a longer hub trial, while retaining partner sites until access could be examined.\n\nSource B — Data review, 11 May:\nThe total of 140 transactions is correct. However, 18 collections at partner sites had been entered under the hub code when a volunteer used the central terminal to record them. The corrected location counts are 72 hub and 68 partner-site transactions. The correction applies to location coding, not the comment-card responses, total number of transactions or the dates of the trial. The review team advises against interpreting either the original or revised location figures as preferences because visitors' choices and available alternatives were not recorded. A separate record would be needed to examine which site visitors would select when both were available.\n\nSource C — Operations and access note, 15 May:\nThe network can maintain both routes for a further four-week period using its current volunteer rota, provided the partner sites retain their agreed collection windows. One partner has confirmed its window, while the second is still checking availability. The operations lead requests approval for a limited extension subject to those confirmations; the governing group has not approved the extension. The lead also recommends recording which collection options were offered and documenting unsuccessful collection enquiries, rather than relying solely on completed transactions. The aim is to examine access and practical workload before choosing a long-term arrangement, not to settle the preference question retrospectively.",
+          "display_to_learner": true
+        }
+      },
+      {
+        "id": "WRI-C1-07",
+        "module": "writing",
+        "cefr_target": "C1",
+        "title": "Integrate a dossier, draft and revise an independent briefing",
+        "estimated_minutes": 55,
+        "objectives": [
+          "Apply C1 reading, argument, synthesis, genre and revision strategies independently to fresh written sources. Create a coherent briefing for a defined audience that identifies a changed evidence basis, responds fairly to a competing priority, proposes a bounded action and explains the basis for revision. This is written performance, not a cross-modal score."
+        ],
+        "explanation": {
+          "en": "**CORE-1 — Goal/context.** Apply C1 reading, argument, synthesis, genre and revision strategies independently to fresh written sources. Create a coherent briefing for a defined audience that identifies a changed evidence basis, responds fairly to a competing priority, proposes a bounded action and explains the basis for revision. This is written performance, not a cross-modal score.\n\n**CORE-2 — Teach/model.** Topic: the decision question. Task: briefing with a defined audience. Must Include: evidence map, corrected interpretation, qualified position, fair competing priority, next action, remaining limits, revision and reflection. Boundary: source fidelity, authority, resources, audience, no external invented data. Work in passes: (1) read independently and mark original evidence versus correction; (2) brainstorm two defensible options, select criteria and outline by decision theme; (3) draft an executive summary and connected body; (4) audit each substantive claim against a source and each action against its authority; (5) revise one inferential gap, one structural or audience problem and one language issue; (6) record what is supported by this task and what needs more evidence. Independent miniature model (different topic): a fictional seed exchange records 40 packets distributed; a later note corrects five packets' variety labels but leaves the total unchanged. A coordinator says a longer event is feasible only if a volunteer confirms. A defensible briefing notes the corrected labels and avoids claiming 40 gardeners were served; a limited extension is a proposal conditional on availability. Revision example: replace “the event met demand” with “40 packets were distributed; unmet demand was not recorded” [evidence repair]; place volunteer availability next to the proposed extension [coherence repair]. No sample answer for the task below.\n\n**CORE-3 — Independent Writing source bundle (fictional).**\nTopic: a local makers' network is considering a second month of a shared tool-orientation programme. You are writing for its steering group, which has not approved continuation.\nA — Evaluation register: the first month recorded 74 completed orientation sessions. The initial summary described 51 as first-time sessions and 23 as follow-ups, implying wide reach among new members. The register counts completed sessions, not distinct people, and does not measure independent tool use or learning gains.\nB — Subsequent register review: seven sessions recorded as first-time were follow-ups. Corrected counts: 44 first-time and 30 follow-up sessions; total remains 74. The review does not establish how many distinct new members attended because some records use different session identifiers. An optional discussion with participants identified benefits of demonstrations and difficulty attending at fixed times; it does not establish prevalence.\nC — Service note: the coordinator favours a four-week continuation with flexible printed instructions and scheduled assistance, retaining the existing safety orientation. A supervisor cautions that printed instructions alone cannot verify practical understanding; supervised checks would be necessary. The centre can allocate six staff hours for additional assistance, but the rota has not been confirmed. A separate decision is needed for expansion beyond the pilot. The steering group wants evidence about independent understanding and access barriers rather than just session counts.\n\n**CORE-4 — Feedback/repair.** UNASSESSED / trusted review pending. Proposed existing RUBRIC-WRITING-C1 subject to compatibility QA. Self-check: source/version fidelity, fair contrast, actionable conditional recommendation, summary/body alignment, independent prose, specific revision log and evidence-bounded reflection. If AI feedback is available only through authorised saved-draft Writing Review, use it as provisional assistance, not a grade; otherwise use the self-check and trusted reviewer. Do not require AI. Word range guides planning, not quality. No automatic semantic/CEFR score.",
+          "vi": "Tổng hợp hồ sơ, viết bản tóm lược quyết định độc lập, sửa lập luận, tổ chức và ngôn ngữ dựa trên bằng chứng."
+        },
+        "examples": [
+          "Topic: the decision question. Task: briefing with a defined audience. Must Include: evidence map, corrected interpretation, qualified position, fair competing priority, next action, remaining limits, revision and reflection. Boundary: source fidelity, authority, resources, audience, no external invented data. Work in passes: (1) read independently and mark original evidence versus correction; (2) brainstorm two defensible options, select criteria and outline by decision theme; (3) draft an executive summary and connected body; (4) audit each substantive claim against a source and each action against its authority; (5) revise one inferential gap, one structural or audience problem and one language issue; (6) record what is supported by this task and what needs more evidence. Independent miniature model (different topic): a fictional seed exchange records 40 packets distributed; a later note corrects five packets' variety labels but leaves the total unchanged. A coordinator says a longer event is feasible only if a volunteer confirms. A defensible briefing notes the corrected labels and avoids claiming 40 gardeners were served; a limited extension is a proposal conditional on availability. Revision example: replace “the event met demand” with “40 packets were distributed; unmet demand was not recorded” [evidence repair]; place volunteer availability next to the proposed extension [coherence repair]. No sample answer for the task below."
+        ],
+        "activities": [
+          {
+            "id": "WRI-C1-07-Q1",
+            "type": "extended_response",
+            "prompt": "Write a 330–430-word decision briefing for the steering group, including a concise executive summary within that range. Explain the original and corrected evidence and the unchanged total, distinguish sessions from people and participation from learning, compare the coordinator's and supervisor's priorities fairly, and recommend a bounded next step or a justified postponement. Preserve the existing safety orientation and conditional staffing; propose relevant evaluation measures for understanding and access without inventing results. Add a short three-part revision log outside the main range: one evidence/inference repair, one organisation or audience repair, and one language repair, with before/after phrases from your own draft. Finish with two reflection sentences naming a strength you can support with a specific example from this task and a next learning action. Do not claim that this task establishes C1 proficiency.",
             "answer": null,
             "feedback": {
               "pending_message": "UNASSESSED — trusted review pending. No automatic quality grade or CEFR certification."

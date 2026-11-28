@@ -1,0 +1,325 @@
+{
+  "format": "SLE_AUTHORING_STAGING_NOT_IMPORTABLE",
+  "packet_id": "SLE-C1-U10-B14-R1-20261128",
+  "source_git_blob": "01da8e7d15287816bdf35566e3b85127f53a80ef",
+  "academic_verdict": "PASS",
+  "must_fix": [],
+  "optional_improvements": [],
+  "unit": "C1-U10",
+  "media_gate": "BLOCKED_PENDING_ASSET_ALIGNMENT_RIGHTS_AND_ATTEMPT_PLAYBACK",
+  "import_authorized": false,
+  "release_authorized": false,
+  "lessons": [
+    {
+      "id": "REA-C1-12",
+      "module": "reading",
+      "cefr_target": "C1",
+      "title": "Reconcile changing evidence and decisions in a complex dossier",
+      "estimated_minutes": 40,
+      "objectives": [
+        "For an unfamiliar multi-document dossier, reconstruct how a finding and decision change when a measurement is corrected, while retaining valid observations and identifying what a later document does and does not supersede. Select the relevant evidence for a defined audience without mistaking a newer date for universal authority."
+      ],
+      "explanation": {
+        "en": "**CORE-1 — Goal/context.** For an unfamiliar multi-document dossier, reconstruct how a finding and decision change when a measurement is corrected, while retaining valid observations and identifying what a later document does and does not supersede. Select the relevant evidence for a defined audience without mistaking a newer date for universal authority.\n\n**CORE-2 — Teach/model.** Recall the source map, warrant check and summary audit. Add a version dimension: record date, scope, evidence origin, corrected field, unchanged field, decision status. A correction may supersede a particular comparison without invalidating the entire original record. Separate changes in facts, interpretations, implementation and approval. Make a short claim ledger with source and confidence for each proposed sentence. Read to understand the whole dossier before choosing which detail to quote. Independent worked model: a fictional community music room report lists 48 evening bookings and 12 daytime bookings. A later check says six bookings originally labelled evening should be daytime; the total is unchanged. A safety note separately confirms only the small room is cleared. The corrected distribution replaces the first one; it does not erase booking activity or authorise the large room. A briefing saying “the room was never booked” discards valid evidence, while “all rooms are now cleared” conflates correction and approval. Ask which claim is affected, and which is not.\n\n**CORE-3 — Independent reading.** Read the reviewed fictional source displayed with this lesson before answering.\n\n**CORE-4 — Feedback/repair.** Use post-submit option explanations. Q1/Q3 mark changed and retained evidence; Q2 test the warrant; Q4 distinguish recommendation and authority; Q5 match future measurement to gap; Q6 audit every summary clause against source and version. Independent unassessed transfer: a fictional tool-room report corrects the classification of some loans but not total loans; a later note proposes a revised collection rota. Write three sentences stating what changed, what remains valid and what is not approved. No auto-score.",
+        "vi": "Đối chiếu các phiên bản nguồn, phân biệt dữ liệu được sửa với dữ liệu còn giá trị và trạng thái phê duyệt."
+      },
+      "examples": [
+        "Recall the source map, warrant check and summary audit. Add a version dimension: record date, scope, evidence origin, corrected field, unchanged field, decision status. A correction may supersede a particular comparison without invalidating the entire original record. Separate changes in facts, interpretations, implementation and approval. Make a short claim ledger with source and confidence for each proposed sentence. Read to understand the whole dossier before choosing which detail to quote. Independent worked model: a fictional community music room report lists 48 evening bookings and 12 daytime bookings. A later check says six bookings originally labelled evening should be daytime; the total is unchanged. A safety note separately confirms only the small room is cleared. The corrected distribution replaces the first one; it does not erase booking activity or authorise the large room. A briefing saying “the room was never booked” discards valid evidence, while “all rooms are now cleared” conflates correction and approval. Ask which claim is affected, and which is not."
+      ],
+      "activities": [
+        {
+          "id": "REA-C1-12-Q1",
+          "type": "single_choice",
+          "prompt": "Which statement accurately describes what Source B supersedes?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It replaces every finding in Source A, including the comment cards and transaction total."
+            },
+            {
+              "id": "B",
+              "text": "It corrects location counts and undermines the original location-based preference interpretation; the total and comment cards remain."
+            },
+            {
+              "id": "C",
+              "text": "It confirms the original location counts but removes the total."
+            },
+            {
+              "id": "D",
+              "text": "It authorises retaining only the hub because the figures are nearly equal."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "It replaces every finding in Source A, including the comment cards and transaction total. — Correction is narrower.\nIt corrects location counts and undermines the original location-based preference interpretation; the total and comment cards remain. — Separates corrected field and retained evidence.\nIt confirms the original location counts but removes the total. — Reverses the correction.\nIt authorises retaining only the hub because the figures are nearly equal. — Data review grants no operational approval."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-12-Q2",
+          "type": "single_choice",
+          "prompt": "Why do the corrected counts not establish equal site preference?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Completed transactions do not reveal the options offered or choices under comparable availability."
+            },
+            {
+              "id": "B",
+              "text": "Partner-site collections never represent a genuine choice."
+            },
+            {
+              "id": "C",
+              "text": "The figures count comments instead of transactions."
+            },
+            {
+              "id": "D",
+              "text": "Equal preference can be established only when every visitor completes a comment card."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Completed transactions do not reveal the options offered or choices under comparable availability. — Identifies the missing preference measure.\nPartner-site collections never represent a genuine choice. — Unsupported universal claim.\nThe figures count comments instead of transactions. — Wrong measure.\nEqual preference can be established only when every visitor completes a comment card. — Not a justified necessary condition."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-12-Q3",
+          "type": "single_choice",
+          "prompt": "How should the comment-card evidence be handled after Source B?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Remove it because location coding was wrong."
+            },
+            {
+              "id": "B",
+              "text": "Use it to calculate the number of visitors unable to reach the hub."
+            },
+            {
+              "id": "C",
+              "text": "Retain it as limited evidence of reported benefits and barriers, without using it to estimate prevalence."
+            },
+            {
+              "id": "D",
+              "text": "Treat it as confirmation that the corrected location split reflects preference."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Remove it because location coding was wrong. — Unaffected by correction.\nUse it to calculate the number of visitors unable to reach the hub. — Voluntary responses cannot establish that count.\nRetain it as limited evidence of reported benefits and barriers, without using it to estimate prevalence. — Preserves source scope and independence of correction.\nTreat it as confirmation that the corrected location split reflects preference. — Different measurement."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-12-Q4",
+          "type": "single_choice",
+          "prompt": "Which sentence would misrepresent Source C if included in an executive briefing?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The existing rota may support a limited extension under stated conditions."
+            },
+            {
+              "id": "B",
+              "text": "A partner collection window still needs confirmation."
+            },
+            {
+              "id": "C",
+              "text": "Unsuccessful enquiries could provide information missing from completed-transaction logs."
+            },
+            {
+              "id": "D",
+              "text": "The governing group has approved the four-week extension and both sites' collection windows."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "The existing rota may support a limited extension under stated conditions. — Supported.\nA partner collection window still needs confirmation. — Supported.\nUnsuccessful enquiries could provide information missing from completed-transaction logs. — Supported.\nThe governing group has approved the four-week extension and both sites' collection windows. — Invents approval and confirmation."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-12-Q5",
+          "type": "single_choice",
+          "prompt": "Which approach best supports a new decision about access?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Record alternatives offered, unsuccessful enquiries and operational workload under the limited extension if approved, keeping the corrected historical count separate."
+            },
+            {
+              "id": "B",
+              "text": "Compare the uncorrected hub count with the revised partner count to infer demand."
+            },
+            {
+              "id": "C",
+              "text": "Treat 140 completed transactions as 140 users who had equal access."
+            },
+            {
+              "id": "D",
+              "text": "Ask only hub visitors whether the hub should replace all partner sites."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Record alternatives offered, unsuccessful enquiries and operational workload under the limited extension if approved, keeping the corrected historical count separate. — Matches evidence gap and actual decision boundary.\nCompare the uncorrected hub count with the revised partner count to infer demand. — Mixes versions.\nTreat 140 completed transactions as 140 users who had equal access. — Wrong unit and unsupported condition.\nAsk only hub visitors whether the hub should replace all partner sites. — Inadequate coverage of alternative users."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-12-Q6",
+          "type": "single_choice",
+          "prompt": "Which summary is most faithful across the dossier?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The correction proves central collection is unpopular and the long-term arrangement must change."
+            },
+            {
+              "id": "B",
+              "text": "A location-coding correction changes the distribution, not total completed use; preference and unmet access remain unresolved, and a bounded extension is requested but not approved."
+            },
+            {
+              "id": "C",
+              "text": "Both reports independently establish the hub's success, and the extension is confirmed."
+            },
+            {
+              "id": "D",
+              "text": "The newer operations note invalidates all earlier observations because it is more recent."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The correction proves central collection is unpopular and the long-term arrangement must change. — Preference not established.\nA location-coding correction changes the distribution, not total completed use; preference and unmet access remain unresolved, and a bounded extension is requested but not approved. — Integrates evidence, correction and operational status.\nBoth reports independently establish the hub's success, and the extension is confirmed. — Derived correction and unapproved action.\nThe newer operations note invalidates all earlier observations because it is more recent. — Different scope, not universal supersession."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "SRC-REA-C1-12",
+        "title": "Reconcile changing evidence and decisions in a complex dossier — original reviewed source",
+        "body": "Source A — Initial evaluation, Hillway community repair network, 4 May:\nDuring a four-week trial of a shared collection hub, volunteers logged 140 collection transactions. The analysis note reported that 90 occurred at the hub and 50 at partner sites, and described the larger hub count as a sign that central collection was preferred. The log measures completed transactions rather than individual users, and does not record the options offered to each visitor. A voluntary comment card completed by 24 visitors identified both convenience of the hub and difficulty travelling there. The evaluation team proposed considering a longer hub trial, while retaining partner sites until access could be examined.\n\nSource B — Data review, 11 May:\nThe total of 140 transactions is correct. However, 18 collections at partner sites had been entered under the hub code when a volunteer used the central terminal to record them. The corrected location counts are 72 hub and 68 partner-site transactions. The correction applies to location coding, not the comment-card responses, total number of transactions or the dates of the trial. The review team advises against interpreting either the original or revised location figures as preferences because visitors' choices and available alternatives were not recorded. A separate record would be needed to examine which site visitors would select when both were available.\n\nSource C — Operations and access note, 15 May:\nThe network can maintain both routes for a further four-week period using its current volunteer rota, provided the partner sites retain their agreed collection windows. One partner has confirmed its window, while the second is still checking availability. The operations lead requests approval for a limited extension subject to those confirmations; the governing group has not approved the extension. The lead also recommends recording which collection options were offered and documenting unsuccessful collection enquiries, rather than relying solely on completed transactions. The aim is to examine access and practical workload before choosing a long-term arrangement, not to settle the preference question retrospectively.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-C1-07",
+      "module": "writing",
+      "cefr_target": "C1",
+      "title": "Integrate a dossier, draft and revise an independent briefing",
+      "estimated_minutes": 55,
+      "objectives": [
+        "Apply C1 reading, argument, synthesis, genre and revision strategies independently to fresh written sources. Create a coherent briefing for a defined audience that identifies a changed evidence basis, responds fairly to a competing priority, proposes a bounded action and explains the basis for revision. This is written performance, not a cross-modal score."
+      ],
+      "explanation": {
+        "en": "**CORE-1 — Goal/context.** Apply C1 reading, argument, synthesis, genre and revision strategies independently to fresh written sources. Create a coherent briefing for a defined audience that identifies a changed evidence basis, responds fairly to a competing priority, proposes a bounded action and explains the basis for revision. This is written performance, not a cross-modal score.\n\n**CORE-2 — Teach/model.** Topic: the decision question. Task: briefing with a defined audience. Must Include: evidence map, corrected interpretation, qualified position, fair competing priority, next action, remaining limits, revision and reflection. Boundary: source fidelity, authority, resources, audience, no external invented data. Work in passes: (1) read independently and mark original evidence versus correction; (2) brainstorm two defensible options, select criteria and outline by decision theme; (3) draft an executive summary and connected body; (4) audit each substantive claim against a source and each action against its authority; (5) revise one inferential gap, one structural or audience problem and one language issue; (6) record what is supported by this task and what needs more evidence. Independent miniature model (different topic): a fictional seed exchange records 40 packets distributed; a later note corrects five packets' variety labels but leaves the total unchanged. A coordinator says a longer event is feasible only if a volunteer confirms. A defensible briefing notes the corrected labels and avoids claiming 40 gardeners were served; a limited extension is a proposal conditional on availability. Revision example: replace “the event met demand” with “40 packets were distributed; unmet demand was not recorded” [evidence repair]; place volunteer availability next to the proposed extension [coherence repair]. No sample answer for the task below.\n\n**CORE-3 — Independent Writing source bundle (fictional).**\nTopic: a local makers' network is considering a second month of a shared tool-orientation programme. You are writing for its steering group, which has not approved continuation.\nA — Evaluation register: the first month recorded 74 completed orientation sessions. The initial summary described 51 as first-time sessions and 23 as follow-ups, implying wide reach among new members. The register counts completed sessions, not distinct people, and does not measure independent tool use or learning gains.\nB — Subsequent register review: seven sessions recorded as first-time were follow-ups. Corrected counts: 44 first-time and 30 follow-up sessions; total remains 74. The review does not establish how many distinct new members attended because some records use different session identifiers. An optional discussion with participants identified benefits of demonstrations and difficulty attending at fixed times; it does not establish prevalence.\nC — Service note: the coordinator favours a four-week continuation with flexible printed instructions and scheduled assistance, retaining the existing safety orientation. A supervisor cautions that printed instructions alone cannot verify practical understanding; supervised checks would be necessary. The centre can allocate six staff hours for additional assistance, but the rota has not been confirmed. A separate decision is needed for expansion beyond the pilot. The steering group wants evidence about independent understanding and access barriers rather than just session counts.\n\n**CORE-4 — Feedback/repair.** UNASSESSED / trusted review pending. Proposed existing RUBRIC-WRITING-C1 subject to compatibility QA. Self-check: source/version fidelity, fair contrast, actionable conditional recommendation, summary/body alignment, independent prose, specific revision log and evidence-bounded reflection. If AI feedback is available only through authorised saved-draft Writing Review, use it as provisional assistance, not a grade; otherwise use the self-check and trusted reviewer. Do not require AI. Word range guides planning, not quality. No automatic semantic/CEFR score.",
+        "vi": "Tổng hợp hồ sơ, viết bản tóm lược quyết định độc lập, sửa lập luận, tổ chức và ngôn ngữ dựa trên bằng chứng."
+      },
+      "examples": [
+        "Topic: the decision question. Task: briefing with a defined audience. Must Include: evidence map, corrected interpretation, qualified position, fair competing priority, next action, remaining limits, revision and reflection. Boundary: source fidelity, authority, resources, audience, no external invented data. Work in passes: (1) read independently and mark original evidence versus correction; (2) brainstorm two defensible options, select criteria and outline by decision theme; (3) draft an executive summary and connected body; (4) audit each substantive claim against a source and each action against its authority; (5) revise one inferential gap, one structural or audience problem and one language issue; (6) record what is supported by this task and what needs more evidence. Independent miniature model (different topic): a fictional seed exchange records 40 packets distributed; a later note corrects five packets' variety labels but leaves the total unchanged. A coordinator says a longer event is feasible only if a volunteer confirms. A defensible briefing notes the corrected labels and avoids claiming 40 gardeners were served; a limited extension is a proposal conditional on availability. Revision example: replace “the event met demand” with “40 packets were distributed; unmet demand was not recorded” [evidence repair]; place volunteer availability next to the proposed extension [coherence repair]. No sample answer for the task below."
+      ],
+      "activities": [
+        {
+          "id": "WRI-C1-07-Q1",
+          "type": "extended_response",
+          "prompt": "Write a 330–430-word decision briefing for the steering group, including a concise executive summary within that range. Explain the original and corrected evidence and the unchanged total, distinguish sessions from people and participation from learning, compare the coordinator's and supervisor's priorities fairly, and recommend a bounded next step or a justified postponement. Preserve the existing safety orientation and conditional staffing; propose relevant evaluation measures for understanding and access without inventing results. Add a short three-part revision log outside the main range: one evidence/inference repair, one organisation or audience repair, and one language repair, with before/after phrases from your own draft. Finish with two reflection sentences naming a strength you can support with a specific example from this task and a next learning action. Do not claim that this task establishes C1 proficiency.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "UNASSESSED — trusted review pending. No automatic quality grade or CEFR certification."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.cohesion",
+            "writing.idea_development",
+            "writing.register",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-C1",
+          "review_mode": "assisted_ai_or_human"
+        }
+      ]
+    }
+  ],
+  "held_lessons": [
+    {
+      "id": "LIS-C1-04",
+      "reviewed_section": "2. LIS-C1-04 — Reconstruct a revised position from extended spoken evidence\n**CORE-1 — Goal/context.** Listen to a discussion in which new information changes an earlier interpretation. Track the original proposition, its correction or qualification, a participant's revised position and the exact limited decision. Distinguish what the speakers report from what they infer.\n**CORE-2 — Teach/model.** First listen for the decision question and changes in the speakers' positions; on a focused replay, note speaker → evidence → correction/qualification → remaining condition → agreed next action. Mark a changed claim rather than deleting the entire earlier position. Listen for discourse moves such as “that was my reading at first”, “what the record actually shows”, “that changes the basis, not the aim”, and “we can agree to examine”; they are clues, not answer formulas. A pause or polite acknowledgement is not proof of consent. Independent written demonstration (not hearing evidence, different scenario): A volunteer says “I thought the two sessions were equally accessible, but the new note only compared travel time. I still favour checking both venues.” The claim of equal access is withdrawn, not the aim of comparing venues. If the chair says “we can ask for costs”, this is not permission to spend. Learner-facing situation before audio: a project team reviews a trial of a shared resource directory. Listen for how the evidence and the decision are revised. No transcript or answers before valid graded submit.\n**CORE-3 — Reviewer/recording-only script, two distinct voices.**\n> A: When we met last month, I argued that the shared directory was reducing the amount of time volunteers spent answering routine questions. I had based that view partly on the enquiry log: it showed fewer requests to the central desk during the trial. I also had the impression that volunteers at the smaller centres were finding the directory useful. I still think the idea deserves attention, but the way I described the evidence needs revisiting.\n>\n> B: The change in requests to the central desk is real, as far as the log goes. The difficulty is that the smaller centres started keeping their own enquiry records halfway through the trial. Before that, a request referred to the central desk was much more likely to appear in the central log. We don't have a consistent network-wide count for the two periods. So it is possible that work shifted between desks without the overall amount of work falling.\n>\n> A: That is an important distinction. I had treated the central desk as if it were the whole network. The figures could still tell us something about where requests were handled, but they cannot settle whether volunteers saved time. I wouldn't want to lose the observation about the central desk altogether. We need to narrow the claim, rather than pretend the log tells us nothing.\n>\n> B: And there is a second issue. Some volunteers reported that they could find the standard forms more quickly. Others said they spent longer checking whether the version they had found was current. Those were comments from an optional discussion, not timed observations of everyone using the system. We can use them to identify two different things to investigate: retrieval and verification. It would be misleading to average impressions and call the result a time saving.\n>\n> A: In that case I would change the request I brought to this meeting. Instead of asking the committee to roll the directory out to every centre, I would ask whether we can design a comparison in which participating centres use the same enquiry categories and record time spent both finding and checking a document. We should also keep the existing route for people who cannot use the directory. There may be a benefit even if the total number of enquiries does not change, but that is a question for the evaluation, not a result we already have.\n>\n> B: I can support developing that plan. We have not yet agreed how many centres can take part or who would check the consistency of the records. Let's agree that we will draft the measurement plan and ask the centre coordinators what capacity they have. We are not authorising another trial today, let alone a network-wide rollout. If we return with a feasible proposal, the committee can make a separate decision.\nLIS-C1-04-Q1 — What is the main development in the discussion?\n- A. The speakers decide to withdraw the directory from every centre. — No withdrawal authorised.\n- B. They establish that the directory saves time and agree a rollout. — Evidence and approval do not support this.\n- C. They revise an interpretation of the trial and narrow the immediate request to developing a feasible evaluation plan. — **Key C.** Captures the change in claim and decision.\n- D. They replace enquiry measurement with a survey of directory appearance. — Not proposed.\n\nLIS-C1-04-Q2 — Why does the introduction of local enquiry records matter?\n- A. It proves the smaller centres had no enquiries before the trial. — Not established.\n- B. It changes the recording coverage, so fewer central requests cannot establish less network-wide work. — **Key B.** Distinguishes central routing from overall workload.\n- C. It invalidates the central desk log as a record of central requests. — The observation itself is retained.\n- D. It confirms the directory increased every volunteer's workload. — Unsupported.\n\nLIS-C1-04-Q3 — What does A do after acknowledging the first limitation?\n- A. Withdraws the broad time-saving interpretation while retaining the narrower central-desk observation. — **Key A.** Revises scope, not all evidence.\n- B. Treats the correction as proof of a network-wide time increase. — Not claimed.\n- C. Rejects the local records and maintains the original causal claim. — Opposite to the response.\n- D. Claims that the central log already measures time rather than enquiries. — Confuses variables.\n\nLIS-C1-04-Q4 — Why does B distinguish retrieval from verification?\n- A. To establish that verification is always more costly than retrieval. — No measured comparison.\n- B. To show that voluntary comments are equivalent to timed observations. — Explicitly denied.\n- C. To justify discarding the volunteers' accounts altogether. — Comments identify questions.\n- D. To identify different potential effects worth investigating without treating reported impressions as a measured net saving. — **Key D.** Preserves mechanisms and evidence limits.\n\nLIS-C1-04-Q5 — Which proposed measurement best matches the revised evaluation?\n- A. Count how often the directory's title appears in meeting notes. — Irrelevant.\n- B. Use consistent enquiry categories across participating centres and record both finding and checking time. — **Key B.** Matches A's revised proposal.\n- C. Record only central desk requests again and assume they cover the network. — Repeats the original flaw.\n- D. Ask whether volunteers like the directory and treat preference as time saved. — Incompatible measure.\n\nLIS-C1-04-Q6 — What is agreed at the end?\n- A. A second trial with all centres is authorised immediately. — Explicitly not.\n- B. The committee has rejected the directory permanently. — No rejection.\n- C. Draft a measurement plan and consult coordinators about capacity; a further trial requires a separate decision. — **Key C.** Correct scope and outstanding conditions.\n- D. All centres have confirmed participation and a record checker has been appointed. — Both remain unresolved.\n**CORE-4 — Feedback/repair.** After valid audio-backed submission, provide aligned replay, transcript and option-specific explanations. Q1/Q3 track changed position; Q2 identify recording coverage; Q4 distinguish reported mechanisms from measured effects; Q5 connect measurement to question; Q6 separate plan from authorisation. Independent unassessed reflection: from your own notes, identify one earlier interpretation you revised and the heard phrase that prompted revision. Do not score reflection or claim hearing from a written script. If no verified audio, show UNASSESSED and omit active scored task; written strategy demonstration remains knowledge-only. Recording target: natural intelligible two-voice exchange; no measured duration or pace until actual file exists.",
+      "answer_key": "CBADBC",
+      "academic_status": "PASS",
+      "evidence_weight": 0,
+      "media_status": "BLOCKED_PENDING_ASSET_ALIGNMENT_RIGHTS_AND_ATTEMPT_PLAYBACK",
+      "import_authorized": false
+    }
+  ],
+  "held_unit_transfer": {
+    "id": "C1-U10-TRANSFER-01",
+    "reviewed_section": "4. C1-U10-TRANSFER-01 — Fresh integrated briefing and revision (MEDIA HOLD)\n**Purpose:** independent cross-modal transfer, not reuse of scored Reading/Listening stimuli. No scored questions or auto-graded writing. Two fresh written sources and one fresh recorded interview are needed; keep the recording script reviewer-only until the relevant independent listening stage is completed. The integrated task stays held until actual audio and safe delivery are verified.\n**Learner-facing written source A — Community science club event register (fictional):** The club recorded 66 completed activity bookings during a three-week trial of a demonstration room. The first bulletin described 39 bookings as group bookings and 27 as individual bookings. The register records bookings, not unique visitors or understanding of the demonstrations.\n**Learner-facing written source B — Register correction and operational note (fictional):** Four bookings initially recorded as group bookings were individual bookings. The revised counts are 35 group and 31 individual bookings; the total remains 66. The club can retain its current demonstration schedule. A proposed additional question session would require a volunteer and suitable room, neither confirmed. No additional session or permanent expansion has been approved.\n**Learner-facing audio orientation:** Listen to a fresh interview with the event coordinator and evaluation volunteer about how the club should interpret its trial and what to investigate next. Make short attributed notes. Do not display the script below or disclose its details in written hints.\n**Reviewer/recording-only Unit Transfer script (two voices; independent of LIS-C1-04):**\n> A: The revised booking split is useful because it corrects what we tell the committee about the trial. But I had originally hoped the register would help us decide whether people were finding the demonstrations understandable. It cannot do that. A booking can cover several people, and the record doesn't tell us what any of them understood. We shouldn't use a corrected administrative figure to answer a different educational question.\n>\n> B: That's also why I would be cautious about the comments we collected at the exit. Several people mentioned that they enjoyed seeing the equipment in use. A few asked for more time to discuss the explanation. Those comments came from people who chose to stop at the desk. They identify possible improvements, but they don't tell us how common the need for extra explanation is.\n>\n> A: I would still like to investigate a short question session, provided we can staff it without reducing the existing demonstrations. I'm not proposing that we replace a demonstration with a question session. Before asking for approval, I would want to know whether there is a suitable room and a volunteer who can support the session.\n>\n> B: We could also design a brief voluntary follow-up task in which visitors explain an idea in their own words. It would tell us something different from booking numbers or enjoyment comments, although we would still need to be careful about who chooses to respond. For now I would recommend drafting the plan, not claiming that the trial has improved understanding. The committee can decide whether an additional session is worth testing once the practical arrangements are clear.\n**Learner task after actual audio:** Write a 250–340-word briefing to the club committee using the two written sources and your own notes from the interview. Distinguish the corrected register from the unchanged total, attribute at least one important point from the recorded source, reconcile what each source can and cannot show, represent both priorities fairly, and propose a feasible conditional next action. Include a short revision log with one source correction and one change to the reasoning or structure. Self-check that the interview contribution is attributed and not replaced by an assumption; no invented approval, proficiency, educational outcome or certainty. Note one point you would want to verify by replay or further evidence. No numeric or automatic semantic grading; evidence_weight 0. A trusted reviewer can discuss the briefing and actual source use. If audio is unavailable, the cross-modal task remains held; a separately labelled written-only learning activity, if later authorised, is not an equivalent completed integrated transfer.\n**Media production notes:** LIS-C1-04 and C1-U10-TRANSFER-01 require two separate original audio assets. Voices A/B are role labels, not spoken labels; natural turn-taking, no background music or answer cues; preserve exact approved wording. Record actual file hashes, duration, voice/tool licence, alignment and listening QA only once assets exist. No fabricated metadata or rights claim.",
+    "answer_key": null,
+    "academic_status": "PASS",
+    "evidence_weight": 0,
+    "media_status": "BLOCKED_PENDING_ASSET_ALIGNMENT_RIGHTS_AND_ATTEMPT_PLAYBACK",
+    "import_authorized": false
+  },
+  "media": [
+    {
+      "id": "LIS-C1-04",
+      "script": "LIS-C1-04-v1-dialogue.txt",
+      "voice": "A/B, labels not spoken",
+      "turns": 6,
+      "words": 460,
+      "proposed_mp3": "LIS-C1-04-v1.mp3",
+      "status": "NOT_RECORDED",
+      "actual_duration_seconds": null,
+      "mp3_sha256": null,
+      "rights": "PENDING_EXACT_MODEL_AND_VOICES",
+      "playback": "NOT_TESTED"
+    },
+    {
+      "id": "C1-U10-TRANSFER-01",
+      "script": "C1-U10-TRANSFER-01-v1-dialogue.txt",
+      "voice": "A/B, labels not spoken",
+      "turns": 4,
+      "words": 266,
+      "proposed_mp3": "C1-U10-TRANSFER-01-v1.mp3",
+      "status": "NOT_RECORDED",
+      "actual_duration_seconds": null,
+      "mp3_sha256": null,
+      "rights": "PENDING_EXACT_MODEL_AND_VOICES",
+      "playback": "NOT_TESTED"
+    }
+  ]
+}
