@@ -899,15 +899,15 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Unit purpose:** Use sophisticated syntactic alternatives deliberately to manage clarity, foregrounding, nuance and rhythm.
 - **Scope:** information packaging, complex clauses, emphasis and parallelism, controlled ambiguity, nominal and verbal styles.
 - **Advisory entry:** C1-U05, C2-U04; **priority:** P1. Design dependencies are not implemented unlocks.
-- **Independent exit task:** edit a dense passage for clarity without erasing subtle meaning. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Independent exit task:** edit a dense passage for clarity without erasing subtle meaning. Status: **ACADEMIC PASS / SOURCE ONLY**, weight 0; not a released or automatically scored activity.
 - **Audit before adding:** avoid grammar-drill inflation; measure successful expressive choices in whole texts. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** BATCH19 R1 DRAFT / ACADEMIC PENDING.
+- **Status:** ACADEMIC PASS / SOURCE ONLY / FINAL OUTCOME AUDIT PENDING.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | GRA-C2-01 (proposed) | Control information packaging, foregrounding and rhythm across sentences | 40–50 min · 6 MCQs | Independent academic review pending. |
-| 2 | GRA-C2-02 (proposed) | Revise complex clauses, parallelism and ambiguity without flattening nuance | 40–50 min · 6 MCQs | Independent academic review pending. |
-| 3 | C2-U05-TRANSFER-01 (proposed) | Fresh integrated stylistic editing with alternative audience ending and editing commentary | 30–40 min advisory | Qualitative weight 0; independent review pending. |
+| 1 | GRA-C2-01 | Control information packaging, foregrounding and rhythm across sentences | 40–50 min · 6 MCQs | NotebookLM PASS; source-only; engineering QA pending. |
+| 2 | GRA-C2-02 | Revise complex clauses, parallelism and ambiguity without flattening nuance | 40–50 min · 6 MCQs | NotebookLM PASS; source-only; engineering QA pending. |
+| 3 | C2-U05-TRANSFER-01 | Fresh integrated stylistic editing with alternative audience ending and editing commentary | 30–40 min advisory | NotebookLM PASS; qualitative weight 0; delivery pending. |
 
 ### C2-U06 — Evaluating reasoning and conflicting evidence
 - **Unit purpose:** Critically examine layered arguments, uncertainty, methodological limits and competing interpretations.
@@ -1068,3 +1068,6 @@ Owner-supplied NotebookLM PASS REA-C2-03 (6/6 BACDAB), WRI-C2-02 and fresh trans
 
 ## Batch19 C2-U05 draft checkpoint
 Audited actual GRA-C1-01/02/03/04, REA-C1-02, VOC-C2-01/02, REA-C2-01/02/03 and held WRI-C2-02 against adopted C2-U05. Consolidated overlapping planned slots into two complementary grammar lessons, GRA-C2-01 information packaging, foregrounding and rhythm across sentences (6 structural keys BACDAB), GRA-C2-02 complex clauses, parallelism and controlled ambiguity (6 structural keys CADBCA); fresh C2-U05-TRANSFER-01 integrated editing and commentary weight 0. R1 blob 616c0eb0a87a2e2f7d9dd4b46384c2d18b66f7b1; independent review pending. Working 219/1417 unchanged; historical Q5, Writing and media holds preserved. Owner #257 sequence: finish academic review first, then research/review/apply appropriate interactive models before Curriculum 1.0 release. No new interactive runtime, import, merge, deploy or extra CI. Batch19 R1 sole next temporary source.
+
+## Batch19 academic checkpoint — 2026-11-28
+Owner-supplied NotebookLM PASS GRA-C2-01/02 (12/12 BACDAB/CADBCA), fresh transfer and both open repairs weight 0; MUST_FIX/OPTIONAL NONE. R1 616c0eb0a87a2e2f7d9dd4b46384c2d18b66f7b1 retained. Working 221/1429, 220 mapped + 1 unmapped. Prior 219 lesson objects, sequence prefix and rubrics preserved. Historical Q5, C2 Writing and prior media holds unchanged. Owner #257 sequence unchanged. No import/runtime/merge/deploy/extra CI. Next C2-U06 actual coverage audit before authoring.
