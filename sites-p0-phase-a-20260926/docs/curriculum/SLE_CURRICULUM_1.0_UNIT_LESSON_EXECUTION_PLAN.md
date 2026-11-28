@@ -929,14 +929,13 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Advisory entry:** C1-U07, C2-U03, C2-U06; **priority:** P0. Design dependencies are not implemented unlocks.
 - **Independent exit task:** write an accessible synthesis of several complex positions and their limitations. Status: **PROPOSED**, not a released or automatically scored activity.
 - **Audit before adding:** test faithful mediation rather than making unverified oral translation or live conversation claims. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** NO_PRIMARY_MAPPING / GAP_AUDIT_PENDING.
+- **Status:** BATCH21 R1 DRAFT / ACADEMIC PENDING.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | C2-U07-S01 (proposed) | Reconstruct nuanced accounts from multiple written and spoken sources | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 2 | C2-U07-S02 (proposed) | Create expert and accessible explanations with faithful attribution | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 3 | C2-U07-S03 (proposed) | Audit preserved implications, simplified detail and unresolved conflicts | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 4 | C2-U07-TRANSFER (planning only) | write an accessible synthesis of several complex positions and their limitations. Status: **PROPOSED**, not a released or automatically scored activity. | To be audited / authored | Audit existing transfer evidence; draft if absent, label evidence honestly. |
+| 1 | REA-C2-06 (proposed) | Reconstruct changing positions and nested attribution | 45–55 min · 6 MCQs | Independent academic review pending. |
+| 2 | REA-C2-07 (proposed) | Mediate branching technical conditions without changing their effect | 45–55 min · 6 MCQs | Independent academic review pending. |
+| 3 | C2-U07-TRANSFER-01 (proposed) | Attributed synthesis, expert and accessible explanations, audit trail and branch tests | 40–55 min advisory, split visits | Qualitative weight 0; independent review pending. |
 
 ### C2-U08 — Sophisticated writing and genre versatility
 - **Unit purpose:** Produce and revise precise, coherent and appropriately styled extended texts across demanding genres and purposes.
@@ -1076,3 +1075,6 @@ Actual REA-C1-05/06/07/12, WRI-C1-02, REA-C2-01/02/03 and GRA-C2-01/02 audit: co
 
 ## Batch20 C2-U06 Academic PASS checkpoint — 2026-11-28
 Replacement verdict matches exact current R1 afe9b4a04ad764ce5f467a9c2a0ecf9bc11efc48: DBACBD/CADBAC, CORE-1–4, both reading lessons and fresh transfer PASS. Prior source mismatch verdict not used. Append REA-C2-04/05 source-only; working 223 lessons / 1441 activities, 222 mapped + REA-C1-01 unmapped. Transfer and open repairs weight 0; no new scored Writing lesson. Engineering QA and final outcome audit pending; #257 sequencing and all holds retained. Next C2-U07 audit actual sources.
+
+## Batch21 C2-U07 draft checkpoint — 2026-11-28
+Actual prior REA-C1-07/08/09/12, WRI-C1-03/04/07, REA-C2-03/04/05, held WRI-C2-01/02 and LIS-C2-01/02/03 audit. REA-C2-06 lantern archive positions/nested attribution (6 keys BACDAB); REA-C2-07 orchard branching conditions and audience fidelity (6 keys DBACDB); fresh glass exhibition loan transfer with attributed synthesis, two audience versions and audit trail, weight 0. R1 d7178aef3b2a128a468c64b9f3ea01b4ea741d0d, token B21-R1-LANTERN-GLASS-ORCHARD. Independent review pending. Working 223/1441 and inventory unchanged; no reused audio scripts, C2 Writing/previous media/historical Q5 holds remain. #257 sequence retained. No import/runtime/merge/deploy/extra CI.
