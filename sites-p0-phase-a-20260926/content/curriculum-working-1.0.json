@@ -156,6 +156,15 @@
         ],
         "verdict": "PASS",
         "integration": "AUTHORING_ONLY; schema/runtime QA pending; open repairs and transfer weight 0; COR-M01 oral/group facilitation NOT_ASSESSED; interactive design and integration before release per owner #257"
+      },
+      {
+        "packet": "SLE-C2-U10-B24-R1-20261128",
+        "sourceGitBlob": "1000dca4d7555b51d464c1561205fd2437f6f218",
+        "lessonIds": [
+          "REA-C2-10"
+        ],
+        "verdict": "PASS",
+        "integration": "AUTHORING_ONLY; schema/runtime QA pending; LIS-C2-04 media held; WRI-C2-05 / C2-U10-TRANSFER-01 held pending audio and validated C2 rubric/delivery/trusted review; interactive design before release per owner #257"
       }
     ]
   },
@@ -429,7 +438,8 @@
         "REA-C2-06",
         "REA-C2-07",
         "REA-C2-08",
-        "REA-C2-09"
+        "REA-C2-09",
+        "REA-C2-10"
       ],
       "prerequisites": []
     },
@@ -52712,6 +52722,229 @@
           "id": "SRC-REA-C2-09",
           "title": "Who is represented in a shared cartography exhibition?",
           "body": "### Who is represented in a shared cartography exhibition?\n\n[A] A community cartography exhibition will display annotated maps developed with two neighbourhood groups. The working agreement permits internal drafting but requires each contributing group to approve the public description of its contribution. The exhibition chair alone approves the final layout after those confirmations. No final public description or layout is approved.\n\n[B] Written planning exchange:\nExhibition designer Ellis: “I'd like a single collective credit on the entrance panel. The visitors should see that the map is a shared undertaking, rather than a competition over which group's annotations mattered more. We could identify individual contributions on the detailed labels.”\nNeighbourhood liaison Asha: “I share the aim of presenting a joint project. A collective credit alone on the entrance panel would, however, make our group's involvement difficult to recognise at the point where the overall account is framed. Our members contributed annotations about routes that had been missing from earlier maps. We would need a visible acknowledgement of that contribution before agreeing to the public description.”\nNeighbourhood liaison Bo: “Our group prefers not to be singled out on the entrance panel until the wording has been reviewed by members who weren't at the last meeting. I am not asking to remove Asha's credit. I am asking not to infer our approval from the fact that I am here. We normally give members several days to check public descriptions.”\n\n[C] Later written exchange:\nEllis: “I can accept a short separate acknowledgement of Asha's group's route annotations within a collective heading, provided the heading still presents the map as a joint undertaking. We can leave Bo's group's proposed specific wording marked pending in the internal draft, not as a public blank.”\nAsha: “That would address my concern in principle. I would like to see the exact wording before confirming it on behalf of the group. I don't require a decision from Bo's group today.”\nBo: “I can support preparing those alternatives for internal review. If members prefer a general collective acknowledgement of our contribution, please retain that option. I can arrange a three-day review and report the group's decision or any unresolved questions afterwards.”\nChair: “Prepare the two internal versions: collective heading with the proposed route acknowledgement and two alternatives for Bo's group's wording. No public layout decision is requested yet. The review period begins when both groups receive the actual draft. If we lack either confirmation after that period, we will record the pending issue and arrange a follow-up rather than assume consent.”\n\n[D] Facilitator's proposed minute: “All parties now agree on a single entrance credit. Asha's group has accepted the wording, and Bo will approve it in three days. The chair can release the layout at the end of the review period.” Asha and Bo have not reviewed this draft minute.",
+          "display_to_learner": true
+        }
+      },
+      {
+        "id": "REA-C2-10",
+        "module": "reading",
+        "cefr_target": "C2",
+        "title": "Reconcile genre, scope and commitments across a dossier",
+        "estimated_minutes": 50,
+        "objectives": [
+          "Identify what each source is entitled to establish, reconcile apparently divergent statements without forcing consensus, and select language suitable for a decision brief. Goal: preserve both the validity and limits of a finding when it travels into another genre."
+        ],
+        "explanation": {
+          "en": "**CORE-1 — Goal/context.** Identify what each source is entitled to establish, reconcile apparently divergent statements without forcing consensus, and select language suitable for a decision brief. Goal: preserve both the validity and limits of a finding when it travels into another genre.\n\n**CORE-2 — Teach/model.** Map each source by author, audience, purpose, scope, time and authority. Separate a descriptive claim from an evaluative criterion and a conditional permission. Ask whether two statements use the same referent and threshold before declaring contradiction. Track quotation and ellipsis: a sentence may be literally accurate yet misleading when its condition is removed. Preserve an unresolved difference rather than smoothing it away. \nIndependent worked model: a fictional rooftop garden report says the accessible route remained open throughout each *scheduled tour*. A maintenance note states the route was closed outside those tours during a repair. A publicity line reads “open throughout the trial.” Both source reports can be true; the publicity line extends scheduled-tour availability to the entire trial. A revised brief would say the route was open during scheduled tours; other access was restricted. A promise to investigate repair is not approval to reopen. This model is not the scored material.\n\n**CORE-3 — Independent reading.** Read the clock gallery access dossier and choose one best answer per question.\n\n**CORE-4 — Feedback/repair.** Use the item-specific repair after submit. Fresh unscored mini-repair: a theatre note confirms caption screens worked at all rehearsals; audience feedback says two seats had poor sightlines during performances. Draft a two-sentence announcement that preserves the rehearsal finding without implying performance access. Self-check source, event type, scope and unsupported inference; multiple valid answers, weight 0. If scope errors persist, revisit C2-U06; if genre/attribution errors persist, revisit C2-U07/U08.",
+          "vi": "Đối chiếu nguồn khác thể loại, phân biệt phạm vi bằng chứng và điều kiện phê duyệt; diễn đạt kết luận chính xác theo đối tượng đọc."
+        },
+        "examples": [
+          "Map each source by author, audience, purpose, scope, time and authority. Separate a descriptive claim from an evaluative criterion and a conditional permission. Ask whether two statements use the same referent and threshold before declaring contradiction. Track quotation and ellipsis: a sentence may be literally accurate yet misleading when its condition is removed. Preserve an unresolved difference rather than smoothing it away. \nIndependent worked model: a fictional rooftop garden report says the accessible route remained open throughout each *scheduled tour*. A maintenance note states the route was closed outside those tours during a repair. A publicity line reads “open throughout the trial.” Both source reports can be true; the publicity line extends scheduled-tour availability to the entire trial. A revised brief would say the route was open during scheduled tours; other access was restricted. A promise to investigate repair is not approval to reopen. This model is not the scored material."
+        ],
+        "activities": [
+          {
+            "id": "REA-C2-10-Q1",
+            "type": "single_choice",
+            "prompt": "What is the central relationship between A and B?",
+            "options": [
+              {
+                "id": "A",
+                "text": "B proves that A's reported punctuality is false."
+              },
+              {
+                "id": "B",
+                "text": "B accepts the bounded finding but challenges its sufficiency as evidence of access."
+              },
+              {
+                "id": "C",
+                "text": "B treats booked and unbooked visits as equally reliable."
+              },
+              {
+                "id": "D",
+                "text": "A and B disagree over whether the gallery should retain bookings."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "“B proves that A's reported punctuality is false.” — wrong: no punctuality dispute. “B accepts the bounded finding but challenges its sufficiency as evidence of access.” — correct: experience versus opportunity and distinct population. “B treats booked and unbooked visits as equally reliable.” — wrong: unscheduled reliability is not established. “A and B disagree over whether the gallery should retain bookings.” — wrong: panel explicitly wants bookings retained. Repair: mark the population and criterion in each source before comparing conclusions."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-10-Q2",
+            "type": "single_choice",
+            "prompt": "What is the strongest justified inference from the omission of unregistered departures?",
+            "options": [
+              {
+                "id": "A",
+                "text": "All unregistered visitors left because of long waits."
+              },
+              {
+                "id": "B",
+                "text": "The recorded punctuality result must be discarded."
+              },
+              {
+                "id": "C",
+                "text": "The extent of unsuccessful walk-in access cannot be established from A."
+              },
+              {
+                "id": "D",
+                "text": "The panel has measured the missing departures more accurately."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "C"
+            },
+            "feedback": {
+              "explanation_en": "“All unregistered visitors left because of long waits.” — invents motive and count; “The recorded punctuality result must be discarded.” — confuses missing walk-in data with the booked subset; “The extent of unsuccessful walk-in access cannot be established from A.” — follows the missing observation; “The panel has measured the missing departures more accurately.” — the letter supplies no measurement. Repair: distinguish absence of a record from a recorded absence."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-10-Q3",
+            "type": "single_choice",
+            "prompt": "What is the function of the panel's contrast between experience and opportunity?",
+            "options": [
+              {
+                "id": "A",
+                "text": "It separates service quality for participants from the possibility of participation."
+              },
+              {
+                "id": "B",
+                "text": "It implies that punctual starts are irrelevant to all visitors."
+              },
+              {
+                "id": "C",
+                "text": "It recommends replacing the quiet-hour provision with unrestricted entry."
+              },
+              {
+                "id": "D",
+                "text": "It disputes the definition of a scheduled visit."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "“It separates service quality for participants from the possibility of participation.” — captures the distinction; “It implies that punctual starts are irrelevant to all visitors.” — overgeneralises a criticism of sufficiency; “It recommends replacing the quiet-hour provision with unrestricted entry.” — contradicts the request; “It disputes the definition of a scheduled visit.” — mistakes a change of criterion for a terminology dispute. Repair: paraphrase each side of the contrast as a separate question."
+            },
+            "skill_tags": [
+              "reading.author_purpose"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-10-Q4",
+            "type": "single_choice",
+            "prompt": "Which statement accurately describes the proposed Wednesday arrangement?",
+            "options": [
+              {
+                "id": "A",
+                "text": "The operations manager has already authorised a four-week trial."
+              },
+              {
+                "id": "B",
+                "text": "Board approval depends only on the editor correcting the copy."
+              },
+              {
+                "id": "C",
+                "text": "Existing bookings would be suspended to make staffing possible."
+              },
+              {
+                "id": "D",
+                "text": "It is a conditional proposal requiring staffing confirmation and board authorisation."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "D"
+            },
+            "feedback": {
+              "explanation_en": "“The operations manager has already authorised a four-week trial.” — confuses planning and authorisation; “Board approval depends only on the editor correcting the copy.” — introduces a condition not stated; “Existing bookings would be suspended to make staffing possible.” — contradicts continuity; “It is a conditional proposal requiring staffing confirmation and board authorisation.” — preserves both conditions. Repair: underline conditional and authority clauses separately."
+            },
+            "skill_tags": [
+              "reading.detail"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-10-Q5",
+            "type": "single_choice",
+            "prompt": "Why is the phrase “reliable access for everyone” problematic even if every booked visit started on time?",
+            "options": [
+              {
+                "id": "A",
+                "text": "It converts a limited finding into a universal claim about a broader population."
+              },
+              {
+                "id": "B",
+                "text": "It falsely states that any booked visit began on time."
+              },
+              {
+                "id": "C",
+                "text": "It is necessarily misleading because publicity cannot mention evaluations."
+              },
+              {
+                "id": "D",
+                "text": "It contradicts the operations memorandum's claim that walk-ins have failed."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "“It converts a limited finding into a universal claim about a broader population.” — identifies scope extension; “It falsely states that any booked visit began on time.” — reverses the observed finding; “It is necessarily misleading because publicity cannot mention evaluations.” — confuses genre with accuracy; “It contradicts the operations memorandum's claim that walk-ins have failed.” — invents a measured failure. Repair: restore the missing scope instead of deleting the supported finding."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-10-Q6",
+            "type": "single_choice",
+            "prompt": "Which revision best serves the board's request?",
+            "options": [
+              {
+                "id": "A",
+                "text": "The trial has failed to establish any useful improvement, so bookings should be abandoned."
+              },
+              {
+                "id": "B",
+                "text": "Booked quiet-hour visits started on schedule; a limited walk-in trial is being considered, subject to staffing and board approval."
+              },
+              {
+                "id": "C",
+                "text": "Quiet-hour access is reliable for all who wish to use it; a Wednesday trial will follow."
+              },
+              {
+                "id": "D",
+                "text": "The visitor panel has confirmed that walk-in access works when staffing is available."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "“The trial has failed to establish any useful improvement, so bookings should be abandoned.” — discards valid evidence and invents policy; “Booked quiet-hour visits started on schedule; a limited walk-in trial is being considered, subject to staffing and board approval.” — retains achievement, scope and contingent status; “Quiet-hour access is reliable for all who wish to use it; a Wednesday trial will follow.” — repeats unsupported universality and certainty; “The visitor panel has confirmed that walk-in access works when staffing is available.” — attributes nonexistent evidence to the panel. Repair: write one supported achievement and one unresolved next step as separate clauses."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          }
+        ],
+        "reading_asset": {
+          "id": "SRC-REA-C2-10",
+          "title": "Clock gallery access dossier",
+          "body": "A. Evaluation note (internal): During a six-week trial, every scheduled quiet-hour visit for which a guide had been booked started within its allocated window. Visitors who arrived without a booking sometimes waited for a guide, and the note records neither the number who left before being registered nor whether the waiting time was acceptable. The evaluators describe booked access as reliable on the narrow measure of start-time punctuality. They expressly decline to draw a conclusion about access for unscheduled visitors.\nB. Visitor panel letter (public): The panel welcomes the quiet-hour provision, but says “a predictable experience is not the same as a predictable opportunity to have that experience.” The panel is concerned about people who cannot plan a visit in advance. It does not dispute the punctuality finding; it argues that the finding answers a different question from whether people with unpredictable schedules can use the gallery. Its request is for a limited walk-in option, not abandonment of bookings.\nC. Operations memorandum: The gallery can reserve one guide for a walk-in period on Wednesdays if the repair team releases a second staff member to cover the main entrance. This release is not yet confirmed. If confirmed, the walk-in option would be a four-week trial; existing quiet-hour bookings would continue. The operations manager may plan the rota but only the gallery board can authorise the trial. Staff should record unregistered enquiries and the reason a visit could not be offered, while avoiding personal details.\nD. Draft publicity copy: “The quiet-hour trial has delivered reliable access for everyone. The gallery will now extend this successful arrangement to walk-in visitors.” The editor explains in a margin note that the wording was adapted from A before B and C were circulated. The copy has not been published. The board has asked for a revised statement that is accurate without sounding dismissive of the improvement achieved so far.",
           "display_to_learner": true
         }
       }

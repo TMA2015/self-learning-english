@@ -1,9 +1,9 @@
 {
   "status": "PRIMARY_MAPPING_ONLY_NOT_OUTCOME_COVERAGE",
   "milestone": "Educational Curriculum 1.0",
-  "lessons": 227,
-  "activities": 1465,
-  "mapped": 226,
+  "lessons": 228,
+  "activities": 1471,
+  "mapped": 227,
   "unmapped": [
     "REA-C1-01"
   ],
@@ -900,9 +900,13 @@
     {
       "id": "C2-U10",
       "title": "C2 integrated synthesis and lifelong transfer",
-      "primaryLessonIds": [],
-      "skills": [],
-      "status": "COVERAGE_NOT_YET_AUDITED"
+      "primaryLessonIds": [
+        "REA-C2-10"
+      ],
+      "skills": [
+        "reading"
+      ],
+      "status": "ACADEMIC_PASS_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING_MEDIA_AND_WRITING_DELIVERY_HOLD"
     }
   ]
 }
