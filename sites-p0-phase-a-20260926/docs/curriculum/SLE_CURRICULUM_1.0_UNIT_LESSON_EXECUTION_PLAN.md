@@ -872,14 +872,14 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Advisory entry:** C1-U03, C1-U09; **priority:** P0. Design dependencies are not implemented unlocks.
 - **Independent exit task:** synthesise multiple speakers' positions and the nuanced reasons behind them. Status: **PROPOSED**, not a released or automatically scored activity.
 - **Audit before adding:** do not confuse speed or obscure accent with advanced communicative competence; real media rights and playback required. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** BATCH17 R1 DRAFT / ACADEMIC PENDING / ALL MEDIA HELD.
+- **Status:** ACADEMIC PASS SCRIPT ONLY / ALL MEDIA HELD / FINAL OUTCOME AUDIT PENDING.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | LIS-C2-01 (proposed; media hold) | Trace layered attribution and argument in an extended lecture | 35–45 min · 6 script MCQs | Independent script review pending; actual audio gate. |
-| 2 | LIS-C2-02 (proposed; media hold) | Recover pragmatic force and referents in compact exchanges | 35–45 min · 6 script MCQs | Independent script review pending; actual audio gate. |
-| 3 | LIS-C2-03 (proposed; media hold) | Synthesise multiple spoken perspectives without false consensus | 40–50 min · 6 script MCQs | Independent script review pending; actual audio gate. |
-| 4 | C2-U03-TRANSFER-01 (proposed; media hold) | Fresh multi-speaker synthesis and revision | 30–40 min advisory | Qualitative weight 0; independent script review pending; actual recording required. |
+| 1 | LIS-C2-01 (approved script; media hold) | Trace layered attribution and argument in an extended lecture | 35–45 min · 6 script MCQs | Academic PASS script only; actual audio gate blocked. |
+| 2 | LIS-C2-02 (approved script; media hold) | Recover pragmatic force and referents in compact exchanges | 35–45 min · 6 script MCQs | Academic PASS script only; actual audio gate blocked. |
+| 3 | LIS-C2-03 (approved script; media hold) | Synthesise multiple spoken perspectives without false consensus | 40–50 min · 6 script MCQs | Academic PASS script only; actual audio gate blocked. |
+| 4 | C2-U03-TRANSFER-01 (approved script; media hold) | Fresh multi-speaker synthesis and revision | 30–40 min advisory | Academic PASS script only; qualitative weight 0; actual recording required. |
 
 ### C2-U04 — Rhetorical strategy and audience adaptation
 - **Unit purpose:** Select discourse structures and rhetorical moves for different complex purposes while preserving precision.
@@ -1058,3 +1058,6 @@ Owner-supplied NotebookLM PASS REA-C2-01/02 (12/12 BACDAB/CADBCA), fresh cross-g
 
 ## Batch17 C2-U03 draft checkpoint
 Audited actual media-held LIS-B2-01/02/03/04, LIS-C1-01/02/03/04, REA-C1-10/11, WRI-C1-06, VOC-C2-02 and REA-C2-01/02 against adopted C2-U03. No existing C2 Listening lesson. New LIS-C2-01 extended layered lecture (6 structural keys BACDAB), LIS-C2-02 compact multi-turn pragmatic exchanges (6 structural keys CADBCA), LIS-C2-03 moderated multi-perspective synthesis (6 structural keys BACDAB); fresh C2-U03-TRANSFER-01 qualitative weight 0. Four separate original recordings needed. All items weight 0, scripts reviewer-only, media gate blocked; actual pace/accent/intelligibility/rights/alignment/playback not tested. No hearing, oral or CEFR claim. R1 blob 6bef8e71ab430662b440cacb800366ab7e7619d0; independent review pending. Working 218/1411 unchanged; historical Q5 correction, C2 Writing and prior media gates unchanged. Batch17 R1 sole next temporary NotebookLM source. No import, runtime, merge, deploy or extra CI.
+
+## Batch17 academic checkpoint — 2026-11-28
+Owner-supplied NotebookLM PASS all three scripts, 18/18 BACDAB/CADBCA/BACDAB, fresh transfer weight 0; MUST_FIX/OPTIONAL NONE. R1 6bef8e71ab430662b440cacb800366ab7e7619d0. Approved staging and four reviewer-only scripts archived; all objective items weight 0; all four media gates blocked; no actual audio, rights, alignment or playback verified. Working 218/1411 and 217 mapped + 1 unmapped unchanged; no C2-U03 primary lesson added. Prior historical Q5, C2 Writing and media holds retained. No import/runtime/merge/deploy. Next C2-U04 distinct rhetorical strategy and audience adaptation after auditing C1-U01/U06 and C2-U01, including held Writing.

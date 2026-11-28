@@ -1,0 +1,55 @@
+{
+  "status": "BLOCKED_PENDING_ASSET_ALIGNMENT_RIGHTS_AND_ATTEMPT_PLAYBACK",
+  "source_git_blob": "6bef8e71ab430662b440cacb800366ab7e7619d0",
+  "reviewer_only": true,
+  "media": [
+    {
+      "id": "LIS-C2-01",
+      "script": "LIS-C2-01-v1-script.txt",
+      "voice": "one voice; labels not spoken",
+      "proposed_mp3": "LIS-C2-01-v1.mp3",
+      "status": "NOT_RECORDED",
+      "actual_duration_seconds": null,
+      "mp3_sha256": null,
+      "rights": "PENDING_EXACT_MODEL_AND_VOICES",
+      "alignment": "NOT_TESTED",
+      "playback": "NOT_TESTED"
+    },
+    {
+      "id": "LIS-C2-02",
+      "script": "LIS-C2-02-v1-script.txt",
+      "voice": "three voices: Nia/Owen/Priya; labels not spoken",
+      "proposed_mp3": "LIS-C2-02-v1.mp3",
+      "status": "NOT_RECORDED",
+      "actual_duration_seconds": null,
+      "mp3_sha256": null,
+      "rights": "PENDING_EXACT_MODEL_AND_VOICES",
+      "alignment": "NOT_TESTED",
+      "playback": "NOT_TESTED"
+    },
+    {
+      "id": "LIS-C2-03",
+      "script": "LIS-C2-03-v1-script.txt",
+      "voice": "four voices: Moderator/Leena/Tomas/Ruth; labels not spoken",
+      "proposed_mp3": "LIS-C2-03-v1.mp3",
+      "status": "NOT_RECORDED",
+      "actual_duration_seconds": null,
+      "mp3_sha256": null,
+      "rights": "PENDING_EXACT_MODEL_AND_VOICES",
+      "alignment": "NOT_TESTED",
+      "playback": "NOT_TESTED"
+    },
+    {
+      "id": "C2-U03-TRANSFER-01",
+      "script": "C2-U03-TRANSFER-01-v1-script.txt",
+      "voice": "three voices: Eva/Farid/June; labels not spoken",
+      "proposed_mp3": "C2-U03-TRANSFER-01-v1.mp3",
+      "status": "NOT_RECORDED",
+      "actual_duration_seconds": null,
+      "mp3_sha256": null,
+      "rights": "PENDING_EXACT_MODEL_AND_VOICES",
+      "alignment": "NOT_TESTED",
+      "playback": "NOT_TESTED"
+    }
+  ]
+}
