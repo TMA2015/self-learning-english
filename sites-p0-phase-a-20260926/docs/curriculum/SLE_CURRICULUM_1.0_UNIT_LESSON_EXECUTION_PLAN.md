@@ -753,14 +753,14 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Advisory entry:** B2-U01, B2-U06; **priority:** P1. Design dependencies are not implemented unlocks.
 - **Independent exit task:** select or reformulate constructions to convey a specific degree of certainty in context. Status: **PROPOSED**, not a released or automatically scored activity.
 - **Audit before adding:** teach rhetorical purpose first; avoid lists of prestige constructions without communicative function. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** NO_PRIMARY_MAPPING / GAP_AUDIT_PENDING.
+- **Status:** NO_PRIMARY_MAPPING / BATCH09 DRAFT, ACADEMIC PENDING.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | C1-U05-S01 (proposed) | Calibrate certainty with modality, hedging and complex conditions | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 2 | C1-U05-S02 (proposed) | Select inversion, clefts and information focus for communicative effect | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 3 | C1-U05-S03 (proposed) | Compare compact noun phrases and clause alternatives for clarity and nuance | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 4 | C1-U05-TRANSFER (planning only) | select or reformulate constructions to convey a specific degree of certainty in context. Status: **PROPOSED**, not a released or automatically scored activity. | To be audited / authored | Audit existing transfer evidence; draft if absent, label evidence honestly. |
+| 1 | GRA-C1-02 (proposed) | Calibrate certainty with modality, hedging and complex conditions | 30–35 min · 6 planned MCQs | Batch09 drafted; independent academic review pending. |
+| 2 | GRA-C1-03 (proposed) | Select inversion, clefts and information focus for communicative effect | 30–35 min · 6 planned MCQs | Batch09 drafted; independent academic review pending. |
+| 3 | GRA-C1-04 (proposed) | Compare compact noun phrases and clause alternatives for clarity and nuance | 30–35 min · 6 planned MCQs | Batch09 drafted; independent academic review pending. |
+| 4 | C1-U05-TRANSFER (planning only) | select or reformulate constructions to convey a specific degree of certainty in context. Status: **PROPOSED**, not a released or automatically scored activity. | Fresh independent editing task drafted | Academic review pending, qualitative unassessed. |
 
 ### C1-U06 — Critical argument, counterclaims and qualification
 - **Unit purpose:** Develop a sustained position, evaluate counterarguments fairly and qualify conclusions appropriately.
@@ -1008,3 +1008,6 @@ Three new C1 listening lessons, 18 proposed objective items, separate strategy r
 
 ## Batch08 academic checkpoint
 All three C1-U03 lessons and fresh transfer academically PASS; media-held source and four production scripts saved. No change to working 198/1321; 7 additional reviewed lessons held (6 listening, 1 speaking). Next C1-U05, audit existing C1-U01 GRA-C1-01 before authoring; no duplicate cleft/qualification lesson.
+
+## C1-U05 Batch09 draft checkpoint
+Actual current C1 grammar GRA-C1-01 covers reference, cohesion, cleft and qualification; prior B2-U01/U06 covers deduction, counterfactual, tense/aspect, reduced clauses and fair argument. New drafts GRA-C1-02/03/04 teach logical scope, marked emphasis/inversion, and nominal packaging/agency, with distinct independent transfer. All 18 proposed item keys structurally checked; independent academic review pending. No change to working counts. 
