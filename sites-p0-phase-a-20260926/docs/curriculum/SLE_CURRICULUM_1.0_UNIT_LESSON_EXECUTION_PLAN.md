@@ -723,14 +723,14 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Advisory entry:** B2-U04; **priority:** P0. Design dependencies are not implemented unlocks.
 - **Independent exit task:** make an accurate summary of positions and important qualifications from a new recording. Status: **PROPOSED**, not a released or automatically scored activity.
 - **Audit before adding:** plan copyright-clear real audio and verified playback; mark audio evidence NOT AVAILABLE until produced. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** NO_PRIMARY_MAPPING / BATCH08 DRAFT, ACADEMIC AND MEDIA PENDING.
+- **Status:** NO_PRIMARY_MAPPING / BATCH08 ACADEMIC PASS, MEDIA HELD.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | LIS-C1-01 (proposed) | Follow signposted extended lectures and select notes without losing qualifications | 30–40 min · 6 planned MCQs | Batch08 drafted; academic review pending; actual audio blocked. |
-| 2 | LIS-C1-02 (proposed) | Infer challenges, revisions and evidence versus speculation in a debate | 30–40 min · 6 planned MCQs | Batch08 drafted; academic review pending; actual audio blocked. |
-| 3 | LIS-C1-03 (proposed) | Compare speaker positioning and reconstruct a qualified conclusion from verified audio | 30–40 min · 6 planned MCQs | Batch08 drafted; academic review pending; actual audio blocked. |
-| 4 | C1-U03-TRANSFER (planning only) | make an accurate summary of positions and important qualifications from a new recording. Status: **PROPOSED**, not a released or automatically scored activity. | Fresh script drafted | Batch08 independent review pending; qualitative unassessed transfer, actual audio blocked. |
+| 1 | LIS-C1-01 (proposed) | Follow signposted extended lectures and select notes without losing qualifications | 30–40 min · 6 planned MCQs | Batch08 academic PASS; actual audio/rights/playback blocked. |
+| 2 | LIS-C1-02 (proposed) | Infer challenges, revisions and evidence versus speculation in a debate | 30–40 min · 6 planned MCQs | Batch08 academic PASS; actual audio/rights/playback blocked. |
+| 3 | LIS-C1-03 (proposed) | Compare speaker positioning and reconstruct a qualified conclusion from verified audio | 30–40 min · 6 planned MCQs | Batch08 academic PASS; actual audio/rights/playback blocked. |
+| 4 | C1-U03-TRANSFER (planning only) | make an accurate summary of positions and important qualifications from a new recording. Status: **PROPOSED**, not a released or automatically scored activity. | Fresh script drafted | Batch08 transfer PASS; qualitative unassessed, actual audio blocked. |
 
 ### C1-U04 — Lexical range, collocation and register
 - **Unit purpose:** Choose context-appropriate lexical combinations and shades of meaning across familiar and unfamiliar topics.
@@ -1005,3 +1005,6 @@ Two reviewed grammar lessons appended to the non-importable working wrapper, 198
 
 ## C1-U03 Batch08 draft checkpoint
 Three new C1 listening lessons, 18 proposed objective items, separate strategy rehearsals and independent Unit Transfer recording script. C1 catalog has no Listening primary lesson; B2-U04 Batch05 reviewed source provides advisory foundation but is still media-held. Batch08 academic review pending, actual recordings absent. No scored evidence or change to working counts. 
+
+## Batch08 academic checkpoint
+All three C1-U03 lessons and fresh transfer academically PASS; media-held source and four production scripts saved. No change to working 198/1321; 7 additional reviewed lessons held (6 listening, 1 speaking). Next C1-U05, audit existing C1-U01 GRA-C1-01 before authoring; no duplicate cleft/qualification lesson.
