@@ -1,0 +1,465 @@
+{
+  "format": "SLE_AUTHORING_STAGING_NOT_IMPORTABLE",
+  "packet_id": "SLE-C2-U02-B16-R1-20261128",
+  "source_git_blob": "37dabeb755c156d589f9715b02127c62258d3da1",
+  "academic_verdict": "PASS",
+  "must_fix": [],
+  "optional_improvements": [],
+  "unit": "C2-U02",
+  "import_authorized": false,
+  "release_authorized": false,
+  "lessons": [
+    {
+      "id": "REA-C2-01",
+      "module": "reading",
+      "cefr_target": "C2",
+      "title": "Trace layered rhetoric and shifts of genre in a dense commentary",
+      "estimated_minutes": 40,
+      "objectives": [
+        "Analyse how a commentary borrows another genre, uses an apparently approving voice, and later recontextualises it. Distinguish the position staged for examination from the author's defensible conclusion; explain how a repeated word changes function. Do not equate irony with the literal opposite of every sentence."
+      ],
+      "explanation": {
+        "en": "**CORE-1 — Goal/context.** Analyse how a commentary borrows another genre, uses an apparently approving voice, and later recontextualises it. Distinguish the position staged for examination from the author's defensible conclusion; explain how a repeated word changes function. Do not equate irony with the literal opposite of every sentence.\n\n**CORE-2 — Teach/model.** First map genre expectations (manual, report, editorial): what normally counts as a successful statement in that genre? Mark who speaks or is quoted, which assumptions the text temporarily invites, and where its structure changes how those assumptions are read. Compare literal proposition, target of irony and later qualification. An ironic passage may contain literally accurate observations; the criticism can concern the selection or framing of those observations rather than their truth. Test a proposed reading against both confirming and resistant details. Independent miniature model (different topic): a fictional seed catalogue announces, “Our new index is admirably economical: every plant now fits under one heading, Plants.” The literal economy is real, but the apparent praise exposes a loss of useful distinctions. If the next sentence supports a shared index with descriptive labels, it does not reject indexing itself. Mark the staged praise, its target, the later proposal and what remains unresolved.\n\n**CORE-3 — Independent reading.** Read the reviewed fictional source displayed with this lesson before answering.\n\n**CORE-4 — Feedback/repair.** After submit, review option-specific explanations. Q1 distinguish staged voice from authorial conclusion; Q2 revisit a first interpretation after qualification; Q3 mark the two referents of a repeated word; Q4 locate the plausible repair and the limiting response; Q5 trace the recommendation to the structural ending; Q6 compare complementary readings using textual evidence, not a guessed private intention. Independent unassessed retrieval: a fictional event leaflet boasts that its questionnaire has become wonderfully easy to complete because it now asks only whether a visitor arrived. A later paragraph proposes retaining arrival counts while separately checking why people leave early. Explain two functions of the opening and how the ending limits the criticism. Weight 0, no automated semantic judgment.",
+        "vi": "Phân tích tu từ nhiều tầng, sự chuyển thể loại, giọng mỉa mai và cách cấu trúc văn bản định hướng diễn giải."
+      },
+      "examples": [
+        "First map genre expectations (manual, report, editorial): what normally counts as a successful statement in that genre? Mark who speaks or is quoted, which assumptions the text temporarily invites, and where its structure changes how those assumptions are read. Compare literal proposition, target of irony and later qualification. An ironic passage may contain literally accurate observations; the criticism can concern the selection or framing of those observations rather than their truth. Test a proposed reading against both confirming and resistant details. Independent miniature model (different topic): a fictional seed catalogue announces, “Our new index is admirably economical: every plant now fits under one heading, Plants.” The literal economy is real, but the apparent praise exposes a loss of useful distinctions. If the next sentence supports a shared index with descriptive labels, it does not reject indexing itself. Mark the staged praise, its target, the later proposal and what remains unresolved."
+      ],
+      "activities": [
+        {
+          "id": "REA-C2-01-Q1",
+          "type": "single_choice",
+          "prompt": "How does the opening borrow the form of a manual while unsettling its usual purpose?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It offers a practical procedure for eliminating inaccurate transaction entries."
+            },
+            {
+              "id": "B",
+              "text": "It gives apparently approving instructions whose success exposes the cost of making a complex service easy to describe."
+            },
+            {
+              "id": "C",
+              "text": "It introduces fictional instructions solely to establish that the library has deliberately misled its visitors."
+            },
+            {
+              "id": "D",
+              "text": "It uses a manual to recommend exhaustive recording of every circumstance from the outset."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "It offers a practical procedure for eliminating inaccurate transaction entries. — The transactions are explicitly not falsified; the concern is loss of explanatory distinctions.\nIt gives apparently approving instructions whose success exposes the cost of making a complex service easy to describe. — The praise stages a narrow administrative success and its explanatory loss.\nIt introduces fictional instructions solely to establish that the library has deliberately misled its visitors. — The text neither asserts intentional deception nor treats the opening as evidence of it.\nIt uses a manual to recommend exhaustive recording of every circumstance from the outset. — The later text rejects exhaustive detail as a necessary solution."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-01-Q2",
+          "type": "single_choice",
+          "prompt": "What does paragraph 2 do to the reader's possible interpretation of paragraph 1?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It narrows the criticism from presumed falsification to the misuse of accurate but purpose-limited categories."
+            },
+            {
+              "id": "B",
+              "text": "It withdraws the criticism because the categories can identify open records."
+            },
+            {
+              "id": "C",
+              "text": "It establishes that the two categories are intrinsically incapable of any useful function."
+            },
+            {
+              "id": "D",
+              "text": "It confirms that all abandoned requests must have been incorrectly classified."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "It narrows the criticism from presumed falsification to the misuse of accurate but purpose-limited categories. — It explicitly preserves legitimate administrative usefulness and distinguishes accuracy from explanatory adequacy.\nIt withdraws the criticism because the categories can identify open records. — It preserves a criticism of treating the chart as a service account.\nIt establishes that the two categories are intrinsically incapable of any useful function. — Routine follow-up is expressly supported.\nIt confirms that all abandoned requests must have been incorrectly classified. — The text does not establish an error in assigning particular records."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-01-Q3",
+          "type": "single_choice",
+          "prompt": "Why is the repeated word “visible” developed in paragraph 3?",
+          "options": [
+            {
+              "id": "A",
+              "text": "To demonstrate that the administrator and evaluator must use different software."
+            },
+            {
+              "id": "B",
+              "text": "To correct the ordinary meaning of the word in favour of a uniquely valid technical definition."
+            },
+            {
+              "id": "C",
+              "text": "To expose a shift between retrievability of records and recognition of service obstacles, showing why one improvement need not imply the other."
+            },
+            {
+              "id": "D",
+              "text": "To suggest that any increase in administrative efficiency necessarily hides service obstacles."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "To demonstrate that the administrator and evaluator must use different software. — No particular software arrangement is required.\nTo correct the ordinary meaning of the word in favour of a uniquely valid technical definition. — The author explicitly refuses to decide which definition is correct.\nTo expose a shift between retrievability of records and recognition of service obstacles, showing why one improvement need not imply the other. — The distinction explains the rhetorical and practical ambiguity.\nTo suggest that any increase in administrative efficiency necessarily hides service obstacles. — The two effects are possible, not necessarily opposed."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-01-Q4",
+          "type": "single_choice",
+          "prompt": "Which account best captures the function of the imagined conscientious reader in paragraph 4?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The reader personifies an objection to the library's refusal to collect any information."
+            },
+            {
+              "id": "B",
+              "text": "The reader provides an empirical demonstration that additional categories reduce efficiency."
+            },
+            {
+              "id": "C",
+              "text": "The reader is shown to be morally at fault for preferring a detailed record."
+            },
+            {
+              "id": "D",
+              "text": "The reader introduces a plausible repair that the author qualifies, distinguishing useful additional evidence from indiscriminate detail."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "The reader personifies an objection to the library's refusal to collect any information. — The library collects information and no such refusal is stated.\nThe reader provides an empirical demonstration that additional categories reduce efficiency. — The imagined response is not empirical evidence.\nThe reader is shown to be morally at fault for preferring a detailed record. — The criticism is of an insufficient solution, not a private motive or moral defect.\nThe reader introduces a plausible repair that the author qualifies, distinguishing useful additional evidence from indiscriminate detail. — This complicates the apparent choice between coarse and exhaustive records."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-01-Q5",
+          "type": "single_choice",
+          "prompt": "Which interpretation of the final instruction is best supported across the whole commentary?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A description should make its intended use and limitations recoverable so readers can choose an appropriate basis for further inquiry."
+            },
+            {
+              "id": "B",
+              "text": "A service should avoid administrative summaries whenever evaluation requires richer evidence."
+            },
+            {
+              "id": "C",
+              "text": "A description becomes adequate once it contains a disclaimer, irrespective of what further evidence is collected."
+            },
+            {
+              "id": "D",
+              "text": "A chart cannot accurately describe anything because every record is necessarily subjective."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A description should make its intended use and limitations recoverable so readers can choose an appropriate basis for further inquiry. — This preserves the two legitimate tasks and the qualified recommendation.\nA service should avoid administrative summaries whenever evaluation requires richer evidence. — The two-category chart is explicitly retained for follow-up.\nA description becomes adequate once it contains a disclaimer, irrespective of what further evidence is collected. — A practical way to investigate difficulties is also required.\nA chart cannot accurately describe anything because every record is necessarily subjective. — The text preserves both accurate recording and bounded usefulness."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-01-Q6",
+          "type": "single_choice",
+          "prompt": "Two readers propose that the text is (i) a satire of oversimplified management reporting and (ii) an argument for purpose-specific representation. Which comparison is most defensible?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Only (i) is defensible because the manual voice excludes any constructive policy argument."
+            },
+            {
+              "id": "B",
+              "text": "Both are defensible at different levels: the ironic manual stages the reporting problem, while the later distinction and proposal develop a purpose-specific argument."
+            },
+            {
+              "id": "C",
+              "text": "Only (ii) is defensible because literally accurate charts cannot be the object of irony."
+            },
+            {
+              "id": "D",
+              "text": "Neither is defensible without evidence of the author's private views about real libraries."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Only (i) is defensible because the manual voice excludes any constructive policy argument. — Paragraphs 4–5 offer a constructive proposal.\nBoth are defensible at different levels: the ironic manual stages the reporting problem, while the later distinction and proposal develop a purpose-specific argument. — The readings are compatible, though neither should erase the text's qualifications.\nOnly (ii) is defensible because literally accurate charts cannot be the object of irony. — The praise of tidiness and reduced explanation is ironic without claiming inaccuracy.\nNeither is defensible without evidence of the author's private views about real libraries. — Textual support suffices for these interpretive claims about this fictional commentary."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "SRC-REA-C2-01",
+        "title": "Trace layered rhetoric and shifts of genre in a dense commentary — original reviewed source",
+        "body": "### A brief manual for making a service visible\n\n[1] If your aim is to make an organisation easier to describe, begin by removing the categories that require a description. A neighbourhood tool library, for instance, might replace its different enquiry labels with two: completed and incomplete. The monthly chart will be admirably legible. A request for a drill that was available, a request redirected to a partner library, and a request abandoned when the visitor discovered that training was required can all be assigned a tidy place. It is an achievement of the new chart that very little has to be said about any of them.\n\n[2] The library in this imaginary manual has not falsified a single transaction. Its two categories are genuinely useful for one purpose: a coordinator can identify records that remain open. What they cannot do, without further distinctions, is explain why a request remains open or whether a visitor found a workable alternative. This is not a complaint about the accuracy of the chart. It is a complaint about the promotion of a modest administrative instrument to the status of an account of the service.\n\n[3] We are accustomed to demanding that public services become visible. Yet the word visible performs two rather different duties in that demand. A record may be visible to the administrator who needs to retrieve it; an obstacle may be visible to the person who is deciding whether the service should change. An efficient search box can improve the first kind of visibility while a poorly chosen classification diminishes the second. Neither effect cancels the other. The question is not which definition is correct, but which task has been given priority and at what cost.\n\n[4] At this point the manual's more conscientious reader might ask for a third category, then a fourth. But an ever finer classification would not necessarily restore the missing account: a form can invite precise answers to questions no one needed to ask. Nor can a short note explain every individual circumstance. The library needs a deliberately limited record, accompanied by a statement of what that record leaves out and a practical way to investigate recurring difficulties. A coordinator could retain the two-category chart for routine follow-up and use a separate, consistently sampled record for service evaluation.\n\n[5] There is, then, a rather less economical instruction for the manual: describe the purpose of the description. It is possible to make a service more visible by admitting, in a place where the admission can itself be found, what the current view does not show. The aim is not a chart that tells the whole story. It is a chart whose readers are less likely to mistake it for the whole story.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "REA-C2-02",
+      "module": "reading",
+      "cefr_target": "C2",
+      "title": "Interpret narrative viewpoint, irony and unresolved alternatives",
+      "estimated_minutes": 40,
+      "objectives": [
+        "In a short literary narrative, track whose perception shapes an apparently neutral sentence, how a repeated object acquires different meanings, and which explanations remain possible. Distinguish observable action, character interpretation, narrative arrangement and a reader's inference. Defend a reading without declaring other supported readings impossible."
+      ],
+      "explanation": {
+        "en": "**CORE-1 — Goal/context.** In a short literary narrative, track whose perception shapes an apparently neutral sentence, how a repeated object acquires different meanings, and which explanations remain possible. Distinguish observable action, character interpretation, narrative arrangement and a reader's inference. Defend a reading without declaring other supported readings impossible.\n\n**CORE-2 — Teach/model.** In third-person fiction, narration may remain close to a character's vocabulary and assumptions without endorsing them. Mark perceptual access and evaluative phrasing; compare it with other characters' words and with later developments. A repeated object can acquire symbolic force through its placement and contrast, not through a universal dictionary of symbols. Situational irony involves a meaningful discrepancy between expectation and outcome; it does not prove malicious intent. Ask what the ending resolves and what it leaves open. Independent model (different topic): a volunteer arranging a display thinks, “At last, a sensible arrangement.” Later another person moves a chair to create a wider passage. The adjective can belong to the volunteer's viewpoint; the change reveals a practical criterion the volunteer had not considered. It does not prove the volunteer was selfish. A reading about limited perspective and one about differing definitions of order can coexist. Keep interpretation proportional to the evidence.\n\n**CORE-3 — Independent reading.** Read the reviewed fictional source displayed with this lesson before answering.\n\n**CORE-4 — Feedback/repair.** After submit, review option-specific explanations. Q1 trace evaluative phrasing to viewpoint; Q2 explain irony without mind-reading; Q3 distinguish explicit procedure from situated judgment; Q4 collect repeated-object evidence before proposing symbolic meaning; Q5 identify what the ending keeps unresolved; Q6 compare compatible readings and note limits. Independent unassessed retrieval: a fictional caretaker arranges a meeting room before handing over a timetable; a successor asks whether a quiet corner can be retained, and the caretaker leaves one chair outside the row. Write two plausible interpretations of the chair, one detail that supports each, and one claim that would require more evidence. Weight 0; no fixed literary interpretation grade.",
+        "vi": "Phân tích điểm nhìn trần thuật, mỉa mai, biểu tượng và những cách đọc văn học có căn cứ."
+      },
+      "examples": [
+        "In third-person fiction, narration may remain close to a character's vocabulary and assumptions without endorsing them. Mark perceptual access and evaluative phrasing; compare it with other characters' words and with later developments. A repeated object can acquire symbolic force through its placement and contrast, not through a universal dictionary of symbols. Situational irony involves a meaningful discrepancy between expectation and outcome; it does not prove malicious intent. Ask what the ending resolves and what it leaves open. Independent model (different topic): a volunteer arranging a display thinks, “At last, a sensible arrangement.” Later another person moves a chair to create a wider passage. The adjective can belong to the volunteer's viewpoint; the change reveals a practical criterion the volunteer had not considered. It does not prove the volunteer was selfish. A reading about limited perspective and one about differing definitions of order can coexist. Keep interpretation proportional to the evidence."
+      ],
+      "activities": [
+        {
+          "id": "REA-C2-02-Q1",
+          "type": "single_choice",
+          "prompt": "What is the most defensible account of “Whoever that was, they would at least inherit a proper system” in paragraph 1?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It is an independent narrator's guarantee that the system meets every user's needs."
+            },
+            {
+              "id": "B",
+              "text": "It signals that Mara has already decided Arun is incapable of running the workshop."
+            },
+            {
+              "id": "C",
+              "text": "It is closely aligned with Mara's evaluative perspective, establishing an expectation that later details complicate."
+            },
+            {
+              "id": "D",
+              "text": "It establishes that the committee instructed Mara to prevent changes to the system."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "It is an independent narrator's guarantee that the system meets every user's needs. — Later practical questions limit such a guarantee.\nIt signals that Mara has already decided Arun is incapable of running the workshop. — Arun is not yet named in this passage and that judgment is not established.\nIt is closely aligned with Mara's evaluative perspective, establishing an expectation that later details complicate. — The sentence participates in her confidence without requiring the reader to accept it unqualified.\nIt establishes that the committee instructed Mara to prevent changes to the system. — No such instruction appears."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-02-Q2",
+          "type": "single_choice",
+          "prompt": "What is the rhetorical effect of “particularly when sympathy could be expressed at the end of a meeting”?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It introduces a wry contrast between expressed sympathy and practical sharing of work, without proving the committee members' motives."
+            },
+            {
+              "id": "B",
+              "text": "It establishes that every expression of sympathy was deliberately insincere."
+            },
+            {
+              "id": "C",
+              "text": "It explains that the committee had already shared the Thursday workload for months."
+            },
+            {
+              "id": "D",
+              "text": "It praises the committee's method of assigning tasks at meetings."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "It introduces a wry contrast between expressed sympathy and practical sharing of work, without proving the committee members' motives. — The timing of sympathy is framed critically in the context of repeated requests.\nIt establishes that every expression of sympathy was deliberately insincere. — The text does not establish private intentions.\nIt explains that the committee had already shared the Thursday workload for months. — A rota is only now in place.\nIt praises the committee's method of assigning tasks at meetings. — No method of assignment is praised in the sentence."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-02-Q3",
+          "type": "single_choice",
+          "prompt": "How do the table discussion and the request for an example work together?",
+          "options": [
+            {
+              "id": "A",
+              "text": "They establish that written instructions have no value in practical settings."
+            },
+            {
+              "id": "B",
+              "text": "They show that Arun has already obtained approval to redesign the room independently."
+            },
+            {
+              "id": "C",
+              "text": "They demonstrate that Mara's earlier safety measurements were necessarily wrong."
+            },
+            {
+              "id": "D",
+              "text": "They expose aspects of usable space and situated judgment that a neat layout or written list alone may not capture."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "They establish that written instructions have no value in practical settings. — The handover sheet contains useful information and is retained.\nThey show that Arun has already obtained approval to redesign the room independently. — He proposes checking a change with Mara, subject to safety.\nThey demonstrate that Mara's earlier safety measurements were necessarily wrong. — The two perspectives concern related but distinct practical situations.\nThey expose aspects of usable space and situated judgment that a neat layout or written list alone may not capture. — Both exchanges extend what counts as an adequate handover."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-02-Q4",
+          "type": "single_choice",
+          "prompt": "Which reading of the recurring blank key tag is most carefully grounded in the narrative?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It proves Mara intends to cancel the rota and keep exclusive control of the room."
+            },
+            {
+              "id": "B",
+              "text": "It can embody both the possibility of shared responsibility and the continuing uncertainty about how that responsibility will be allocated."
+            },
+            {
+              "id": "C",
+              "text": "It has a fixed symbolic meaning of permanent ownership regardless of the surrounding events."
+            },
+            {
+              "id": "D",
+              "text": "It reveals that Arun refuses responsibility because he has rejected the key."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "It proves Mara intends to cancel the rota and keep exclusive control of the room. — Her final intention is not established and joint preparation is agreed.\nIt can embody both the possibility of shared responsibility and the continuing uncertainty about how that responsibility will be allocated. — Its initial purpose, the naming discussion and final blankness support both dimensions.\nIt has a fixed symbolic meaning of permanent ownership regardless of the surrounding events. — The text explicitly allows the rota to change.\nIt reveals that Arun refuses responsibility because he has rejected the key. — He puts it down, but his reason is not settled and he agrees to prepare."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-02-Q5",
+          "type": "single_choice",
+          "prompt": "What is the function of the final sentence's two senses of “ready”?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It resolves the tension by confirming the workshop has passed a safety inspection."
+            },
+            {
+              "id": "B",
+              "text": "It establishes that Mara is no longer willing to work on Thursdays."
+            },
+            {
+              "id": "C",
+              "text": "It juxtaposes operational preparation with openness to change, leaving the relation between the two unresolved in Mara's thought."
+            },
+            {
+              "id": "D",
+              "text": "It reverses the story's earlier premise by establishing that no preparation was done."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "It resolves the tension by confirming the workshop has passed a safety inspection. — No completed inspection is reported.\nIt establishes that Mara is no longer willing to work on Thursdays. — Her future availability is not decided by the sentence.\nIt juxtaposes operational preparation with openness to change, leaving the relation between the two unresolved in Mara's thought. — The ending deliberately articulates both senses without choosing one.\nIt reverses the story's earlier premise by establishing that no preparation was done. — The narrative preserves the substantial preparations."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-02-Q6",
+          "type": "single_choice",
+          "prompt": "Which comparison of two plausible interpretations is most warranted by the whole text?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A reading about the difficulty of relinquishing control and a reading about transferring tacit practical knowledge can coexist; the blank tag, handover additions and dialogue support them without settling every motive."
+            },
+            {
+              "id": "B",
+              "text": "The story is exclusively about deliberate obstruction because Mara's name is absent from the tag."
+            },
+            {
+              "id": "C",
+              "text": "It is exclusively about successful knowledge transfer because the handover has been fully completed."
+            },
+            {
+              "id": "D",
+              "text": "Both readings are equally unsupported because the narrator does not explicitly announce a moral."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A reading about the difficulty of relinquishing control and a reading about transferring tacit practical knowledge can coexist; the blank tag, handover additions and dialogue support them without settling every motive. — These interpretations draw on different but compatible details.\nThe story is exclusively about deliberate obstruction because Mara's name is absent from the tag. — The absence does not establish obstruction; cooperation is also shown.\nIt is exclusively about successful knowledge transfer because the handover has been fully completed. — The story ends with further work and questions remaining.\nBoth readings are equally unsupported because the narrator does not explicitly announce a moral. — Literary interpretation can be constrained by recurring details and structure without an explicit moral."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "SRC-REA-C2-02",
+        "title": "Interpret narrative viewpoint, irony and unresolved alternatives — original reviewed source",
+        "body": "### The second key\n\n[1] On the last morning before the workshop reopened, Mara placed the second key on the desk beside the attendance book. Its blue tag was still unmarked. She had left a space on the tag for the name of the person who would take her place on Thursdays. Whoever that was, they would at least inherit a proper system. The drawers were labelled; the spare materials had been counted. Even the cupboard with the awkward hinge bore a note explaining how it should be opened.\n\n[2] For months she had been asking the committee to share the work. People had been very sympathetic, particularly when sympathy could be expressed at the end of a meeting. Now there was a rota, and Arun had agreed to try the Thursday shift. Mara had prepared a short handover sheet. It said which tasks must be completed, which could wait and whom to contact if a machine needed attention. She had not included the little decisions she made without noticing: whether a newcomer needed a demonstration, whether the room had become too crowded for a quiet conversation, whether a question could wait until the next visit.\n\n[3] Arun arrived carrying a folder of his own. He read the sheet carefully, then asked whether he could move the worktables on his shift. The present arrangement left the entrance clear, Mara explained. Of course it did. She had measured it twice. Arun pointed to the back corner. A person entering could pass the first table, but someone already sitting there might have difficulty making room for a second person. He wanted to try turning one of the tables, if the safety checks allowed it. Mara looked at the neat line of chairs. She could see what he meant without yet seeing why a different arrangement had to be better.\n\n[4] He picked up the blue key. “Shall I put my name on this?” he asked. Mara said there was no need; the committee might change the rota later. He placed it back beside the book, rather than in his pocket. They agreed to check the possible layout together before the Thursday shift. Then Arun asked whether she would show him how to judge when a newcomer needed help. “I don't know how to write that down,” she said. “We could start with one example,” he replied.\n\n[5] When he left, the key was still on the desk. Mara opened the attendance book, then closed it again. On the handover sheet she added a line: “Leave space for decisions not listed here.” She considered writing Arun's name on the tag but did not. Instead she turned the tag over so that the blank side faced upwards. The room was ready, she thought. Whether she meant ready for Thursday or ready to be changed, she could not have said.",
+        "display_to_learner": true
+      }
+    }
+  ],
+  "unit_transfer": {
+    "id": "C2-U02-TRANSFER-01",
+    "text": "Read the following two original, independent microtexts about a fictional community radio archive. Local context: a listening desk is a staffed place where visitors may hear recordings; an accession number identifies an archival item, not a listener or an interpretation.\n\nA — Public commentary: “The archive can now promise an answer to every search: a number, if not always a recording. This is progress of a kind. Accession numbers make it possible to request an item that would once have been difficult to name. But a list of requestable items is not a list of items available to hear. Some require conservation work, and others await permission. The committee should keep the searchable list and make those distinctions visible beside it.”\n\nB — Short fiction: “Before the desk opened, Lin folded the request slip into a square that fitted exactly under the edge of the catalogue. She had copied the number correctly. When the attendant explained that the recording was not yet cleared for listening, Lin unfolded the slip and wrote the date beside the number. ‘So I can ask again,’ she said. The attendant nodded. Lin left the slip on the desk, then came back for it. In the margin someone had printed the word AVAILABLE, followed by a box. She did not tick it.”\n\nTask: write 180–260 words of interpretive commentary. Explain how each genre develops the distinction between identification and availability. Analyse the qualified praise in A and the repeated slip and final unticked box in B. Defend a reading of B grounded in at least two details and acknowledge another plausible reading with its own supporting detail and an explicit limit. Identify one inference about the committee or Lin that neither text warrants. Revise one sentence to distinguish textual observation from interpretation. Self-check source accuracy, genre-sensitive reasoning, competing interpretations, contextual terminology and inference ceilings. The length is advisory; no model answer, unique literary key, rubric-based C2 grade or automatic semantic scoring. Weight 0; no audio or oral evidence.",
+    "evidence_weight": 0,
+    "automated_semantic_grading": false
+  }
+}

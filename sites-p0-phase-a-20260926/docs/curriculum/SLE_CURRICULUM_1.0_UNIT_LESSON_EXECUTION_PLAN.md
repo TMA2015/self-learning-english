@@ -858,13 +858,13 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Advisory entry:** C1-U02, C1-U06; **priority:** P0. Design dependencies are not implemented unlocks.
 - **Independent exit task:** defend a text-based interpretation while acknowledging a plausible alternative. Status: **PROPOSED**, not a released or automatically scored activity.
 - **Audit before adding:** include literary and nonliterary texts; avoid presenting subjective interpretations as single objective answers. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** BATCH16 R1 DRAFT / ACADEMIC PENDING.
+- **Status:** ACADEMIC PASS SOURCE ONLY / FINAL OUTCOME AUDIT PENDING.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | REA-C2-01 (proposed) | Trace layered rhetoric and shifts of genre in a dense commentary | 35–45 min · 6 proposed MCQs | Independent academic review pending. |
-| 2 | REA-C2-02 (proposed) | Interpret narrative viewpoint, irony and unresolved alternatives | 35–45 min · 6 proposed MCQs | Independent academic review pending. |
-| 3 | C2-U02-TRANSFER-01 (proposed) | Fresh cross-genre comparison; defend a reading and acknowledge a plausible alternative | 25–35 min advisory | Qualitative weight 0; academic review pending. |
+| 1 | REA-C2-01 | Trace layered rhetoric and shifts of genre in a dense commentary | 40 min · 6 MCQs | Academic PASS; working source; renderer QA pending. |
+| 2 | REA-C2-02 | Interpret narrative viewpoint, irony and unresolved alternatives | 40 min · 6 MCQs | Academic PASS; working source; renderer QA pending. |
+| 3 | C2-U02-TRANSFER-01 | Fresh cross-genre comparison; defend a reading and acknowledge a plausible alternative | 25–35 min advisory | Academic PASS; qualitative weight 0; delivery pending. |
 
 ### C2-U03 — Complex spoken language across contexts
 - **Unit purpose:** Follow subtle implications, rapid exchanges and complex argument development in authentic, intelligible recordings.
@@ -1052,3 +1052,6 @@ Owner-supplied NotebookLM PASS VOC-C2-02 (6/6 BDACBD), WRI-C2-01 and Unit Transf
 
 ## Batch16 C2-U02 draft checkpoint
 Audited actual REA-C1-03/04/05/06, WRI-C1-02, unmapped REA-C1-01, REA-C1-10/11, VOC-C1-03 and VOC-C2-01/02 against adopted C2-U02. No existing C2 Reading lesson. New REA-C2-01 layered rhetoric/genre in original nonliterary commentary (6 structural keys BACDAB); REA-C2-02 viewpoint, irony and alternative readings in original short fiction (6 structural keys CADBCA); fresh cross-genre C2-U02-TRANSFER-01 qualitative weight 0. Text-supported interpretations only; no fixed literary grade, audio/oral or CEFR certification. R1 blob 37dabeb755c156d589f9715b02127c62258d3da1; independent review pending. Working 216/1399 unchanged; historical Q5 correction, C2 writing and prior media gates unchanged. Batch16 R1 sole next temporary NotebookLM source. No import, runtime, merge, deploy or extra CI.
+
+## Batch16 academic checkpoint — 2026-11-28
+Owner-supplied NotebookLM PASS REA-C2-01/02 (12/12 BACDAB/CADBCA), fresh cross-genre Unit Transfer weight 0; MUST_FIX/OPTIONAL NONE. R1 37dabeb755c156d589f9715b02127c62258d3da1. Working 218/1411, 217 mapped + 1 unmapped. All prior 216 lesson objects, sequence prefix and rubrics preserved. No C2 literary/semantic grade, audio or oral certification. Prior historical Q5 correction and media/C2 Writing holds unchanged. No import/runtime/merge/release. Next C2-U03: audit actual prerequisite and held listening outcomes before drafting distinct gaps.
