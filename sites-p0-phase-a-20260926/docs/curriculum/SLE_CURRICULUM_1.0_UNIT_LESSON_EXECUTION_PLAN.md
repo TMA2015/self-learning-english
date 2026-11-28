@@ -798,13 +798,13 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Advisory entry:** C1-U01, C1-U06, C1-U07; **priority:** P0. Design dependencies are not implemented unlocks.
 - **Independent exit task:** draft and revise a proposal that reports evidence and recommends proportionate action. Status: **PROPOSED**, not a released or automatically scored activity.
 - **Audit before adding:** provide non-academic high-level genres too; free responses remain unassessed until trusted review. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** NO_PRIMARY_MAPPING / GAP_AUDIT_PENDING.
+- **Status:** NO_PRIMARY_MAPPING / BATCH12 R1 DRAFT ACADEMIC PENDING.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | C1-U08-S01 (proposed) | Analyse report/proposal genre, purpose and audience | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 2 | C1-U08-S02 (proposed) | Plan an executive summary, evidence and recommendations | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 3 | C1-U08-S03 (proposed) | Draft and revise an extended report or proposal with trusted review | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
+| 1 | REA-C1-09 (proposed) | Analyse report/proposal genre, purpose and audience | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
+| 2 | WRI-C1-04 (proposed) | Plan an executive summary, evidence and recommendations | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
+| 3 | WRI-C1-05 (proposed) | Draft and revise an extended report or proposal with trusted review | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
 | 4 | C1-U08-TRANSFER (planning only) | draft and revise a proposal that reports evidence and recommends proportionate action. Status: **PROPOSED**, not a released or automatically scored activity. | To be audited / authored | Audit existing transfer evidence; draft if absent, label evidence honestly. |
 
 ### C1-U09 — High-level interaction and intercultural pragmatics
@@ -1026,3 +1026,6 @@ Audited actual B2-U05 REA-B2-06/07, WRI-B2-04/05, C1-U01/02/04/06 existing objec
 
 ## Batch11 academic checkpoint — 2026-11-28
 Owner-supplied NotebookLM PASS REA-C1-07/08 (12/12 BACDAB/BACDAB), WRI-C1-03 (weight 0), and fresh Unit Transfer (weight 0); MUST_FIX/OPTIONAL NONE. Exact R1 blob 63c69803ab849aa43cae70a5bb71cda3a8e57a4f. Working 207 lessons/1365 activities, including one unassessed dual-audience Writing activity; 205 mapped + 2 unmapped. Prior 204 lesson objects, sequence prefix and rubrics preserved. Seven approved held lessons excluded. Cross-modal coverage still open; no import/runtime/release. Next C1-U08 audit existing report/proposal/specialist communication outcomes; author distinct gap only.
+
+## Batch12 C1-U08 draft checkpoint
+Audited actual REA-B2-10 WRI-B2-08/09/10/12, WRI-C1-01/02/03 and VOC-C1-02. Distinct genre architecture, executive-summary fidelity, responsibility, resource constraints and dependencies, implementation/evaluation and cross-section revision. REA-C1-09 six MCQs author structural keys ACBDAC; WRI-C1-04 professional report and WRI-C1-05 resource-bounded proposal weight 0; fresh C1-U08-TRANSFER-01 weight 0. Working 207/1365 unchanged. Independent review pending; no import/runtime/release. Batch12 R1 sole next temporary NotebookLM source.
