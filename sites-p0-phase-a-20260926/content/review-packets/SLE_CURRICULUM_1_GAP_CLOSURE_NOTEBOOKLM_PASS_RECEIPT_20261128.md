@@ -1,0 +1,13 @@
+# Focused Gap Closure R1 — owner-supplied NotebookLM Academic PASS receipt
+2026-11-28. Packet SLE-CURR1-GAP-CLOSURE-R1-20261128; exact reviewed HEAD 39c3b68fe1e42ae42873c488354485569d4d6a8d; R1 blob 2fc4db5c6fe1bfaf6aecf2960b30ccf210a3dfbd. Token GAP-R1-INVITE-STANCE-REVISION, historical Q5 old/proposed wording, Sam's Tuesday games club Room 6, and print club eight-booking V1/V2 calibration model confirmed. No SOURCE MISMATCH.
+ACADEMIC_VERDICT: PASS (proposed gap closures and design only). MUST_FIX NONE.
+- VOC-C2-01-Q5: sole key A; approved replacement “She acknowledged a valid point despite defending a different overall position.” Append “Conceding a point does not establish how reluctantly it was acknowledged.” Historical immutable versions/attempts unchanged.
+- REA-C1-01: primary C1-U02, advisory C1-U06. No duplication of lesson, activities or evidence; course sequence unchanged.
+- A1-U02 family profile, A1-U04 daily routine, A1-U07 invitation reply and A2-U05 future plan explanation: PASS, all weight 0. C2-U07 advisory C2-U03/U10 links after verified audio: PASS; no cross-modal completion claimed.
+- C2 Writing six qualitative criteria, five task anchors, independent print-club model, calibration and delivery contract: design PASS only; no empirical validation, actual trusted reviewers, software delivery or grading claimed. All five WRI-C2 lessons remain held, including shared audio-dependent WRI-C2-05/TRANSFER.
+- CORE-2 repair pattern PASS; 4 Reading and 2 Vocabulary Knowledge sources already have separate models; 16 Listening and 2 Speaking need focused projection/model inspection and repair where missing. No rendered completion verdict.
+- OPTIONAL: SPE-B2-01 stays held pending compatible unassessed preparation mapping and verified separate listening-to-speak audio; existing hold.
+- EVIDENCE: open work weight 0, no oral proficiency/automatic semantic score/CEFR certification. MEDIA: real recordings pending / script only. INTEGRATION_AND_RELEASE OUT_OF_SCOPE / NOT_RELEASED.
+Closing offer Candidate 1.20.0 is generic reviewer text, not adopted as version or authorization.
+
+Authoring disposition: exact Q5 wording in working source only; append four reviewed unscored self-practice sections to existing anchor explanations (WRI-A1-03, WRI-A1-04, WRI-A1-02, GRA-A2-11), not new activities or evidence. R1 retains complete original model/task/check text. No new schema fields for advisory links or qualitative rubric; approved design remains in immutable R1 and handoff. Primary inventory 228/1471 and 228 mapped, no unmapped. Existing rubric, sequence and media holds unchanged. Engineering/runtime/version projection QA pending. No import, merge, deploy or extra CI.
