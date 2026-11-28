@@ -1,9 +1,9 @@
 {
   "status": "PRIMARY_MAPPING_ONLY_NOT_OUTCOME_COVERAGE",
   "milestone": "Educational Curriculum 1.0",
-  "lessons": 196,
-  "activities": 1309,
-  "mapped": 194,
+  "lessons": 198,
+  "activities": 1321,
+  "mapped": 196,
   "unmapped": [
     "REA-C1-01",
     "VOC-C2-01"
@@ -532,6 +532,8 @@
       "primaryLessonIds": [
         "GRA-B2-01",
         "GRA-B2-02",
+        "GRA-B2-03",
+        "GRA-B2-04",
         "REA-B2-02",
         "WRI-B2-01"
       ],

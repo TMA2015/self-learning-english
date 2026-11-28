@@ -1,0 +1,444 @@
+{
+  "format": "SLE_AUTHORING_STAGING_NOT_IMPORTABLE",
+  "source_git_blob": "966c8efa0368b67d9376e24d2115203df2b39269",
+  "academic_verdict": "PASS",
+  "unit": "B2-U01",
+  "import_authorized": false,
+  "release_authorized": false,
+  "lessons": [
+    {
+      "id": "GRA-B2-03",
+      "module": "grammar",
+      "cefr_target": "B2",
+      "title": "Time reference and aspect: process, result and deadline",
+      "estimated_minutes": 30,
+      "objectives": [
+        "Interpret and choose perfect simple/continuous forms at a past or future reference point, distinguishing completed result, duration, process and deadline. In a project update, state what was completed, what was ongoing, or what is expected to be complete without overstating certainty."
+      ],
+      "explanation": {
+        "en": "**CORE-1 — Goal and context (B2, 25–30 min).** Interpret and choose perfect simple/continuous forms at a past or future reference point, distinguishing completed result, duration, process and deadline. In a project update, state what was completed, what was ongoing, or what is expected to be complete without overstating certainty.\n\n**CORE-2 — Concept and separate worked model.**\nA reference point is the time from which we look back or forward. The past perfect looks back from a past point; the future perfect looks back from a future point. Perfect simple commonly foregrounds a result or completed amount; perfect continuous commonly foregrounds a process or duration. Both can sometimes be grammatical with different emphasis. Do not equate continuous with necessarily unfinished now, or future perfect with a guaranteed event. A future prediction is a claim about what is expected, not evidence of completion.\n| Form | Focus | Example (independent model) |\n|---|---|---|\n| had + past participle | earlier completed result | By the time the craft stall opened, the team had labelled twenty baskets. |\n| had been + -ing | activity over a period before past point | When the stall opened, the team had been working for two hours. |\n| will have + past participle | expected result by future point | By next Friday, we expect the team will have checked every basket. |\n| will be + -ing | activity in progress at future point | At ten tomorrow, the team will be checking baskets. |\n| will have been + -ing | accumulated duration up to future point | By lunchtime tomorrow, the team will have been sorting baskets for three hours, if the schedule holds. |\nDecision process: locate reference time → choose intended focus (completed count, ongoing process at point, duration up to point) → choose form → keep qualifications. Stative verbs like know usually use simple forms. \nWorked contrast: At 11 yesterday, a studio opened. The artist had mounted six drawings before opening; she had been preparing the room for two hours. The first foregrounds result; second duration. If a schedule says the artist expects to finish a new display before Tuesday, “By Tuesday she will have finished the display, if the schedule holds” reports a forecast. “She has finished” would falsely present completion now. Common mistake: “At 11 yesterday she has been preparing” mismatches the past reference point. “Had been mounting six drawings” may focus on process, not establish six completed.\n\n**CORE-3 — Independent practice.** Select the best answer for the explicitly specified intended meaning, not merely a grammatical alternative.\n\nCORE-4 — After submission, use the option explanations to repair your reasoning.\n\nIndependent unassessed transfer: a fictional student theatre plans to finish costumes by Friday if supplies arrive; at 4 on Friday rehearsals are expected to be in progress. Write two sentences preserving these meanings, then explain why neither reports a completed fact today. Self-check reference point, form, intended meaning and qualification; no semantic auto-score.",
+        "vi": "Chọn mốc tham chiếu rồi phân biệt kết quả, tiến trình và thời lượng. Bài vận dụng tự kiểm tra, không chấm điểm."
+      },
+      "examples": [
+        "Worked contrast: At 11 yesterday, a studio opened. The artist had mounted six drawings before opening; she had been preparing the room for two hours. The first foregrounds result; second duration. If a schedule says the artist expects to finish a new display before Tuesday, “By Tuesday she will have finished the display, if the schedule holds” reports a forecast. “She has finished” would falsely present completion now. Common mistake: “At 11 yesterday she has been preparing” mismatches the past reference point. “Had been mounting six drawings” may focus on process, not establish six completed."
+      ],
+      "activities": [
+        {
+          "id": "GRA-B2-03-Q1",
+          "type": "single_choice",
+          "prompt": "A museum volunteer arrived at 3 yesterday. Before then, the team worked for ninety minutes and was still arranging the display at arrival. Which sentence foregrounds the duration leading up to arrival?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The team has arranged the display for ninety minutes."
+            },
+            {
+              "id": "B",
+              "text": "The team had been arranging the display for ninety minutes when the volunteer arrived."
+            },
+            {
+              "id": "C",
+              "text": "The team will have arranged the display for ninety minutes."
+            },
+            {
+              "id": "D",
+              "text": "The team had finished arranging the display before the volunteer arrived."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A. The team has arranged the display for ninety minutes. — Present reference, not past arrival; does not foreground the required process.\nB. The team had been arranging the display for ninety minutes when the volunteer arrived. — Past reference and accumulated process.\nC. The team will have arranged the display for ninety minutes. — Future reference.\nD. The team had finished arranging the display before the volunteer arrived. — Contradicts ongoing work.\n\n**CORE-4 — Feedback and repair.** For Q1/Q2/Q6 draw earlier activity/state → past reference point; check whether count/result or process is required. For Q3/Q4/Q5 mark a future point and separate deadline, activity at point, duration up to point."
+          },
+          "skill_tags": [
+            "grammar.past_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-03-Q2",
+          "type": "single_choice",
+          "prompt": "The report must explicitly state that eight checks were complete before the meeting began yesterday. Which wording does this?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The technicians had completed eight checks before the meeting began."
+            },
+            {
+              "id": "B",
+              "text": "The technicians had been checking equipment before the meeting began."
+            },
+            {
+              "id": "C",
+              "text": "The technicians were checking equipment when the meeting began."
+            },
+            {
+              "id": "D",
+              "text": "The technicians will have completed eight checks by the meeting."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A. The technicians had completed eight checks before the meeting began. — Earlier completed quantity.\nB. The technicians had been checking equipment before the meeting began. — Process, no completed quantity.\nC. The technicians were checking equipment when the meeting began. — Activity at that time, not eight completed.\nD. The technicians will have completed eight checks by the meeting. — Future forecast, not historical result.\n\n**CORE-4 — Feedback and repair.** For Q1/Q2/Q6 draw earlier activity/state → past reference point; check whether count/result or process is required. For Q3/Q4/Q5 mark a future point and separate deadline, activity at point, duration up to point."
+          },
+          "skill_tags": [
+            "grammar.past_perfect"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-03-Q3",
+          "type": "single_choice",
+          "prompt": "Today is Monday. The repair team's forecast is that all five panels will be ready by Thursday, if parts arrive. Which sentence preserves the forecast and deadline?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The team has already repaired all five panels."
+            },
+            {
+              "id": "B",
+              "text": "The team had repaired all five panels by Thursday."
+            },
+            {
+              "id": "C",
+              "text": "If the parts arrive as expected, the team will have repaired all five panels by Thursday."
+            },
+            {
+              "id": "D",
+              "text": "The team will repair all five panels regardless of the parts."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "A. The team has already repaired all five panels. — Invents a completed present result.\nB. The team had repaired all five panels by Thursday. — Past reference not forecast.\nC. If the parts arrive as expected, the team will have repaired all five panels by Thursday. — Future perfect expected result and explicit condition.\nD. The team will repair all five panels regardless of the parts. — Removes condition.\n\n**CORE-4 — Feedback and repair.** For Q1/Q2/Q6 draw earlier activity/state → past reference point; check whether count/result or process is required. For Q3/Q4/Q5 mark a future point and separate deadline, activity at point, duration up to point."
+          },
+          "skill_tags": [
+            "grammar.will_future"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-03-Q4",
+          "type": "single_choice",
+          "prompt": "Tomorrow at 2 p.m., the rehearsal is scheduled to be in progress. Which sentence most directly expresses activity in progress at that future time?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The choir rehearsed at two tomorrow."
+            },
+            {
+              "id": "B",
+              "text": "The choir will have finished rehearsing by two."
+            },
+            {
+              "id": "C",
+              "text": "The choir has been rehearsing since two tomorrow."
+            },
+            {
+              "id": "D",
+              "text": "The choir will be rehearsing at two tomorrow."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "A. The choir rehearsed at two tomorrow. — Incompatible time reference.\nB. The choir will have finished rehearsing by two. — Completion, not ongoing.\nC. The choir has been rehearsing since two tomorrow. — Present perfect with future starting point.\nD. The choir will be rehearsing at two tomorrow. — Future continuous foregrounds activity at a future point.\n\n**CORE-4 — Feedback and repair.** For Q1/Q2/Q6 draw earlier activity/state → past reference point; check whether count/result or process is required. For Q3/Q4/Q5 mark a future point and separate deadline, activity at point, duration up to point."
+          },
+          "skill_tags": [
+            "grammar.will_future"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-03-Q5",
+          "type": "single_choice",
+          "prompt": "The team expects to start surveying at 9 tomorrow and continue without a break until at least noon. Which form foregrounds the accumulated duration up to noon, assuming the plan holds?",
+          "options": [
+            {
+              "id": "A",
+              "text": "By noon tomorrow, the team will have been surveying for three hours, if the plan holds."
+            },
+            {
+              "id": "B",
+              "text": "By noon tomorrow, the team will have completed every survey."
+            },
+            {
+              "id": "C",
+              "text": "At nine tomorrow, the team had been surveying for three hours."
+            },
+            {
+              "id": "D",
+              "text": "The team has already surveyed for three hours."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A. By noon tomorrow, the team will have been surveying for three hours, if the plan holds. — Future perfect continuous and conditional duration.\nB. By noon tomorrow, the team will have completed every survey. — Invents completion.\nC. At nine tomorrow, the team had been surveying for three hours. — Wrong reference point and tense.\nD. The team has already surveyed for three hours. — Present result, not future duration.\n\n**CORE-4 — Feedback and repair.** For Q1/Q2/Q6 draw earlier activity/state → past reference point; check whether count/result or process is required. For Q3/Q4/Q5 mark a future point and separate deadline, activity at point, duration up to point."
+          },
+          "skill_tags": [
+            "grammar.will_future"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-03-Q6",
+          "type": "single_choice",
+          "prompt": "At the time of a decision last March, a director had known a colleague for six years. Which revision expresses that state in standard English without changing the reference point?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The director has known the colleague for six years now."
+            },
+            {
+              "id": "B",
+              "text": "The director had known the colleague for six years when the decision was made."
+            },
+            {
+              "id": "C",
+              "text": "The director had been knowing the colleague for six years."
+            },
+            {
+              "id": "D",
+              "text": "The director would know the colleague for six years after the decision."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A. The director has known the colleague for six years now. — Shifts reference to present.\nB. The director had known the colleague for six years when the decision was made. — Past perfect simple with stative know.\nC. The director had been knowing the colleague for six years. — Nonstandard in ordinary stative meaning.\nD. The director would know the colleague for six years after the decision. — Shifts interval later.\n\n**CORE-4 — Feedback and repair.** For Q1/Q2/Q6 draw earlier activity/state → past reference point; check whether count/result or process is required. For Q3/Q4/Q5 mark a future point and separate deadline, activity at point, duration up to point."
+          },
+          "skill_tags": [
+            "grammar.past_perfect"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-B2-04",
+      "module": "grammar",
+      "cefr_target": "B2",
+      "title": "Reduce and connect clauses without changing meaning",
+      "estimated_minutes": 30,
+      "objectives": [
+        "Interpret and choose finite and reduced clauses that preserve subject, time, concession and scope in a concise report. Identify dangling modifiers and distinguish a reduced relative clause from an adverbial participle clause. Keep meanings rather than shortening at any cost."
+      ],
+      "explanation": {
+        "en": "**CORE-1 — Goal and context (B2, 25–30 min).** Interpret and choose finite and reduced clauses that preserve subject, time, concession and scope in a concise report. Identify dangling modifiers and distinguish a reduced relative clause from an adverbial participle clause. Keep meanings rather than shortening at any cost.\n\n**CORE-2 — Teach the concept.** A finite subordinate clause has a tensed verb (e.g. “although the room was small”). A non-finite clause may be more concise. An adverbial participle clause normally shares its understood subject with the main clause; an -ing relative modifier relates to the noun it modifies. Perfect participle “having + past participle” can make prior completion clear; passive participle “having been + past participle” or past participle expresses passive meaning where appropriate. A past participle modifier does not itself establish a precise time. Retain a conjunction or full clause if the subject or logical relationship would otherwise be unclear.\n| Function | Full form | Meaning-preserving alternative |\n|---|---|---|\n| Active noun modifier | The guests who are waiting outside | The guests waiting outside |\n| Passive noun modifier | The forms that were signed by the coordinator | The forms signed by the coordinator |\n| Earlier action by same subject | After the analyst had checked the figures, she wrote a note. | Having checked the figures, the analyst wrote a note. |\n| Explicit concession | Although the route was steep, it was popular. | Although steep, the route was popular. |\nThese alternatives are context-dependent, not universal transformations. “Having checked the figures, the note was written” wrongly makes the note the implied checker. “Being steep, the route was popular” suggests a possible causal/interpretive link, not the explicit concession of “although”; use the clear conjunction. \nIndependent worked example: A drama tutor reviewed recordings before selecting excerpts. “Having reviewed the recordings, the tutor selected the excerpts” retains same subject and order. “The excerpts selected by the tutor were short” is a passive noun modifier. Do not turn “Although the excerpts were short, they raised useful questions” into “Because they were short…”; that invents causation.\n\n**CORE-3 — Independent practice.** Choose the single best option preserving the supplied meaning.\n\nCORE-4 — After submission, use the option explanations to repair your reasoning.\n\nIndependent unassessed transfer: revise a fictional club report containing two sentences with different agents (“After the caretaker checked the door, the club leader opened the room”) and one with the same agent (“After the leader had checked the timetable, she emailed the volunteers”). Decide where reduction is safe and explain why. Keep the first full if needed. Self-check who did what, sequence and meaning. No automatic semantic score.",
+        "vi": "Khi rút gọn mệnh đề, kiểm tra chủ thể, trình tự, thể và quan hệ nghĩa. Bài vận dụng tự kiểm tra, không chấm điểm."
+      },
+      "examples": [
+        "Independent worked example: A drama tutor reviewed recordings before selecting excerpts. “Having reviewed the recordings, the tutor selected the excerpts” retains same subject and order. “The excerpts selected by the tutor were short” is a passive noun modifier. Do not turn “Although the excerpts were short, they raised useful questions” into “Because they were short…”; that invents causation."
+      ],
+      "activities": [
+        {
+          "id": "GRA-B2-04-Q1",
+          "type": "single_choice",
+          "prompt": "“After the technician had tested the sensor, she updated the log.” Which concise sentence preserves the agent and completed earlier action?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Having tested the sensor, the log was updated."
+            },
+            {
+              "id": "B",
+              "text": "Testing the sensor, the log updated itself."
+            },
+            {
+              "id": "C",
+              "text": "Having tested the sensor, the technician updated the log."
+            },
+            {
+              "id": "D",
+              "text": "Having updated the log, the technician tested the sensor."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "A. Having tested the sensor, the log was updated. — Dangling modifier; log cannot test.\nB. Testing the sensor, the log updated itself. — Wrong agent and sequence.\nC. Having tested the sensor, the technician updated the log. — Same subject and prior completion.\nD. Having updated the log, the technician tested the sensor. — Reverses sequence.\n\n**CORE-4 — Feedback and repair.** Q1/Q5/Q6: underline finite subjects; compare understood subject of reduced clause and main clause; mark before/after and voice. Q2/Q4: identify exactly which noun is modified, whether restriction or extra detail, and who does/receives action. Q3: preserve the explicit relationship rather than replacing concession with cause."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-04-Q2",
+          "type": "single_choice",
+          "prompt": "Only the applicants who are waiting in Room 4 should enter first. Which preserves the restricted group?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The applicants, waiting in Room 4, should all enter first."
+            },
+            {
+              "id": "B",
+              "text": "The applicants waiting in Room 4 should enter first."
+            },
+            {
+              "id": "C",
+              "text": "Waiting in Room 4, the door should open first."
+            },
+            {
+              "id": "D",
+              "text": "Every applicant should enter before the Room 4 group."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A. The applicants, waiting in Room 4, should all enter first. — Commas suggest supplementary information about all applicants.\nB. The applicants waiting in Room 4 should enter first. — Identifies the subset.\nC. Waiting in Room 4, the door should open first. — Dangling modifier and wrong meaning.\nD. Every applicant should enter before the Room 4 group. — Opposite ordering.\n\n**CORE-4 — Feedback and repair.** Q1/Q5/Q6: underline finite subjects; compare understood subject of reduced clause and main clause; mark before/after and voice. Q2/Q4: identify exactly which noun is modified, whether restriction or extra detail, and who does/receives action. Q3: preserve the explicit relationship rather than replacing concession with cause."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-04-Q3",
+          "type": "single_choice",
+          "prompt": "“Although the trial was limited, it provided useful observations.” Which concise alternative preserves explicit concession?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Because limited, the trial provided useful observations."
+            },
+            {
+              "id": "B",
+              "text": "Having provided useful observations, the trial was unlimited."
+            },
+            {
+              "id": "C",
+              "text": "The trial provided useful observations, so it was limited."
+            },
+            {
+              "id": "D",
+              "text": "Although limited, the trial provided useful observations."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "A. Because limited, the trial provided useful observations. — Changes concession to cause.\nB. Having provided useful observations, the trial was unlimited. — Contradicts limited scope.\nC. The trial provided useful observations, so it was limited. — Reverses relationship.\nD. Although limited, the trial provided useful observations. — Preserves explicit concession with shared subject.\n\n**CORE-4 — Feedback and repair.** Q1/Q5/Q6: underline finite subjects; compare understood subject of reduced clause and main clause; mark before/after and voice. Q2/Q4: identify exactly which noun is modified, whether restriction or extra detail, and who does/receives action. Q3: preserve the explicit relationship rather than replacing concession with cause."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-04-Q4",
+          "type": "single_choice",
+          "prompt": "“The posters that were designed by the students are in the foyer.” Which alternative keeps passive meaning and identifies the relevant posters?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The posters designed by the students are in the foyer."
+            },
+            {
+              "id": "B",
+              "text": "The posters designing the students are in the foyer."
+            },
+            {
+              "id": "C",
+              "text": "Having designed the students, the posters are in the foyer."
+            },
+            {
+              "id": "D",
+              "text": "The students who were designed by the posters are in the foyer."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A. The posters designed by the students are in the foyer. — Past participial noun modifier, posters receive action.\nB. The posters designing the students are in the foyer. — Reverses agent and object.\nC. Having designed the students, the posters are in the foyer. — Wrong agent.\nD. The students who were designed by the posters are in the foyer. — Reverses roles.\n\n**CORE-4 — Feedback and repair.** Q1/Q5/Q6: underline finite subjects; compare understood subject of reduced clause and main clause; mark before/after and voice. Q2/Q4: identify exactly which noun is modified, whether restriction or extra detail, and who does/receives action. Q3: preserve the explicit relationship rather than replacing concession with cause."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-04-Q5",
+          "type": "single_choice",
+          "prompt": "“After the committee had read the report, the head teacher announced a new consultation.” The committee and the head teacher are different agents. Which preserves both agents?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Having read the report, the head teacher announced a new consultation."
+            },
+            {
+              "id": "B",
+              "text": "After the committee had read the report, the head teacher announced a new consultation."
+            },
+            {
+              "id": "C",
+              "text": "Having announced a new consultation, the committee read the report."
+            },
+            {
+              "id": "D",
+              "text": "The report, having read the committee, announced a consultation."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A. Having read the report, the head teacher announced a new consultation. — Implies head teacher read it; source attributes reading to committee.\nB. After the committee had read the report, the head teacher announced a new consultation. — Retains finite clause and explicit distinct subject.\nC. Having announced a new consultation, the committee read the report. — Reverses events and agents.\nD. The report, having read the committee, announced a consultation. — Wrong agents.\n\n**CORE-4 — Feedback and repair.** Q1/Q5/Q6: underline finite subjects; compare understood subject of reduced clause and main clause; mark before/after and voice. Q2/Q4: identify exactly which noun is modified, whether restriction or extra detail, and who does/receives action. Q3: preserve the explicit relationship rather than replacing concession with cause."
+          },
+          "skill_tags": [
+            "grammar.verb_patterns"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-B2-04-Q6",
+          "type": "single_choice",
+          "prompt": "“The equipment had been inspected by the safety officer before it was moved.” Which concise alternative preserves passive meaning and prior completion?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Having inspected the safety officer, the equipment was moved."
+            },
+            {
+              "id": "B",
+              "text": "Having been moved, the equipment was inspected by the safety officer."
+            },
+            {
+              "id": "C",
+              "text": "Having been inspected by the safety officer, the equipment was moved."
+            },
+            {
+              "id": "D",
+              "text": "Inspecting the safety officer, the equipment moved itself."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "A. Having inspected the safety officer, the equipment was moved. — Wrong agent and object.\nB. Having been moved, the equipment was inspected by the safety officer. — Reverses order.\nC. Having been inspected by the safety officer, the equipment was moved. — Perfect passive participial clause; same understood subject and order.\nD. Inspecting the safety officer, the equipment moved itself. — Wrong agent and voice.\n\n**CORE-4 — Feedback and repair.** Q1/Q5/Q6: underline finite subjects; compare understood subject of reduced clause and main clause; mark before/after and voice. Q2/Q4: identify exactly which noun is modified, whether restriction or extra detail, and who does/receives action. Q3: preserve the explicit relationship rather than replacing concession with cause."
+          },
+          "skill_tags": [
+            "grammar.passive_voice"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    }
+  ]
+}
