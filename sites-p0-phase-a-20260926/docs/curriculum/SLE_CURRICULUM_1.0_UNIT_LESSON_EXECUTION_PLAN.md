@@ -524,7 +524,8 @@ Working inventory: 196 lessons, 1309 activities; 194 primary mapped, 2 unmapped;
 - **Advisory entry:** B1-U01, B1-U05; **priority:** P0. Dependencies are conceptual, not demonstrated runtime locks.
 - **Independent exit task:** Interpret the nuance of two alternative complex constructions and select appropriate register. Status: **PROPOSED**, not an already released scored activity.
 - **Audit before adding:** No baseline B2 lesson exists; plan advanced-meaning contrasts only after B1 prerequisite mastery is evidenced. This is not a claim the current lesson is faulty or that a specific subskill is definitely absent.
-- **Status:** PRIMARY_MAPPED / OUTCOME_AUDIT_PENDING.
+- **Status (2026-11-28 source audit):** PARTIAL — explicit time/aspect and complex clause coverage gap.
+- **Evidence and next action:** GRA-B2-01 distinguishes present/past deduction; GRA-B2-02 counterfactuals; REA-B2-02/WRI-B2-01 apply conditional qualification. No dedicated objectives in mapped lessons for duration/completion/background versus finished-event aspect contrasts or complex clause scope beyond conditionals. Audit B1 tense/aspect and secondary links first; draft only B2-level contrast and complex clause gap; no duplication of modals.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
@@ -540,7 +541,8 @@ Working inventory: 196 lessons, 1309 activities; 194 primary mapped, 2 unmapped;
 - **Advisory entry:** B1-U06, B1-U09; **priority:** P0. Dependencies are conceptual, not demonstrated runtime locks.
 - **Independent exit task:** Choose and justify nuanced stance language in a new formal text. Status: **PROPOSED**, not an already released scored activity.
 - **Audit before adding:** No baseline B2 lesson; plan lexical precision, hedging, word-family/collocation retrieval and topical range. This is not a claim the current lesson is faulty or that a specific subskill is definitely absent.
-- **Status:** PRIMARY_MAPPED / OUTCOME_AUDIT_PENDING.
+- **Status (2026-11-28 source audit):** SUBSTANTIAL SOURCE COVERAGE — transfer audit pending.
+- **Evidence and next action:** VOC-B2-01–03 cover reporting verbs, qualification, collocation, word families, register and connotation; REA-B2-03/WRI-B2-02 apply them. Existing source strongly supports framework; check independent retrieval across less repetitive contexts and free original lexical use. No automatic extra lesson.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
@@ -557,7 +559,8 @@ Working inventory: 196 lessons, 1309 activities; 194 primary mapped, 2 unmapped;
 - **Advisory entry:** B1-U03, B1-U07; **priority:** P0. Dependencies are conceptual, not demonstrated runtime locks.
 - **Independent exit task:** Evaluate a longer original text and explain why an inference is warranted or not. Status: **PROPOSED**, not an already released scored activity.
 - **Audit before adding:** No baseline B2 lesson; plan argument structure, assumptions, qualifications and conflicting evidence. This is not a claim the current lesson is faulty or that a specific subskill is definitely absent.
-- **Status:** PRIMARY_MAPPED / OUTCOME_AUDIT_PENDING.
+- **Status (2026-11-28 source audit):** SUBSTANTIAL SOURCE COVERAGE — transfer audit pending.
+- **Evidence and next action:** VOC-B2-04 teaches argument terminology; REA-B2-01/04/05 cover thesis, concession, inference, denominators and competing explanations; WRI-B2-03 source-based recommendation. Distinguish evaluation of a single longer text from cross-source synthesis in U05; verify independent exit on fresh text rather than reusing answers. Preserve corrected LIVE REA-B2-05.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
@@ -574,14 +577,15 @@ Working inventory: 196 lessons, 1309 activities; 194 primary mapped, 2 unmapped;
 - **Advisory entry:** B1-U04; **priority:** P0. Dependencies are conceptual, not demonstrated runtime locks.
 - **Independent exit task:** Identify stance shifts and supporting evidence from real extended audio. Status: **PROPOSED**, not an already released scored activity.
 - **Audit before adding:** No baseline B2 lesson or confirmed audio assets; plan rights-cleared extended discussion and lecture recordings. This is not a claim the current lesson is faulty or that a specific subskill is definitely absent.
-- **Status:** NO_PRIMARY_MAPPING / GAP_AUDIT_PENDING.
+- **Status (2026-11-28 source audit):** DRAFTED / ACADEMIC AND MEDIA HOLD.
+- **Evidence and next action:** No primary mapped lesson; Batch05 R1 unchanged, three draft lessons and fresh transfer. All 9 B1/B2 listening lessons inspected in preceding checkpoint. Await independent NotebookLM review and aligned audio, not text-based scoring.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | LIS-B2-02 (proposed) | Trace a lecture's main idea, structure and supporting details | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 2 | LIS-B2-03 (proposed) | Select notes: distinguish claims, examples, conditions and limitations | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 3 | LIS-B2-04 (proposed) | Infer speaker stance and stance shifts in an extended discussion | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 4 | B2-U04-TRANSFER (planning only) | Identify stance shifts and supporting evidence from real extended audio. Status: **PROPOSED**, not an already released scored activity. | To be audited / authored | Audit existing transfer evidence; draft if absent, label evidence honestly. |
+| 1 | LIS-B2-02 (proposed) | Trace a lecture's main idea, structure and supporting details | Drafted, Batch05 | NotebookLM pending; real audio/rights/playback blocked. |
+| 2 | LIS-B2-03 (proposed) | Select notes: distinguish claims, examples, conditions and limitations | Drafted, Batch05 | NotebookLM pending; real audio/rights/playback blocked. |
+| 3 | LIS-B2-04 (proposed) | Infer speaker stance and stance shifts in an extended discussion | Drafted, Batch05 | NotebookLM pending; real audio/rights/playback blocked. |
+| 4 | B2-U04-TRANSFER (planning only) | Identify stance shifts and supporting evidence from real extended audio. Status: **PROPOSED**, not an already released scored activity. | Fresh transfer script drafted | Unassessed; independent review and actual audio pending. |
 
 ### B2-U05 — Comparing and synthesising sources
 - **Unit purpose:** Combine relevant ideas from two texts while preserving evidence boundaries.
@@ -589,13 +593,14 @@ Working inventory: 196 lessons, 1309 activities; 194 primary mapped, 2 unmapped;
 - **Advisory entry:** B2-U03, B2-U04; **priority:** P0. Dependencies are conceptual, not demonstrated runtime locks.
 - **Independent exit task:** Synthesize two independent short source positions without distortion. Status: **PROPOSED**, not an already released scored activity.
 - **Audit before adding:** No baseline B2 lesson; plan reading-to-writing synthesis with attribution and no invented source claims. This is not a claim the current lesson is faulty or that a specific subskill is definitely absent.
-- **Status:** PRIMARY_MAPPED / OUTCOME_AUDIT_PENDING.
+- **Status (2026-11-28 source audit):** SUBSTANTIAL SOURCE COVERAGE — sequencing refinement.
+- **Evidence and next action:** REA-B2-06 and WRI-B2-04 share the first synthesis theme; REA-B2-07 and WRI-B2-05 share the disagreement theme. Sequence the paired reading/transfer lessons together; do not treat a same-source writing task as a fresh independent exit. Verify a distinct source set for exit and avoid duplicate authoring. Preserve corrected LIVE Reading.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
 | 1 | REA-B2-06 — What do two sources actually show? | I can tell the difference between a measured observation, a survey preference and an unsupported conclusion. I can combine two sources without claiming they prove more than they do. | 30 min · 5 | Audit CORE-1–4 and actual outcome fit; preserve original IDs/content/evidence. |
-| 2 | REA-B2-07 — Synthesis without erasing a disagreement | I can report what two sources agree about and where their emphasis differs. I can preserve uncertainty, rather than copying sentences or inventing a stronger shared conclusion. | 30 min · 5 | Audit CORE-1–4 and actual outcome fit; preserve original IDs/content/evidence. |
-| 3 | WRI-B2-04 — Writing transfer · What do two sources actually show? | I can tell the difference between a measured observation, a survey preference and an unsupported conclusion. I can combine two sources without claiming they prove more than they do. | 20 min · 1 | Audit CORE-1–4 and actual outcome fit; preserve original IDs/content/evidence. |
+| 2 | WRI-B2-04 — Writing transfer · What do two sources actually show? | I can tell the difference between a measured observation, a survey preference and an unsupported conclusion. I can combine two sources without claiming they prove more than they do. | 20 min · 1 | Audit CORE-1–4 and actual outcome fit; preserve original IDs/content/evidence. |
+| 3 | REA-B2-07 — Synthesis without erasing a disagreement | I can report what two sources agree about and where their emphasis differs. I can preserve uncertainty, rather than copying sentences or inventing a stronger shared conclusion. | 30 min · 5 | Audit CORE-1–4 and actual outcome fit; preserve original IDs/content/evidence. |
 | 4 | WRI-B2-05 — Writing transfer · Synthesis without erasing a disagreement | I can report what two sources agree about and where their emphasis differs. I can preserve uncertainty, rather than copying sentences or inventing a stronger shared conclusion. | 20 min · 1 | Audit CORE-1–4 and actual outcome fit; preserve original IDs/content/evidence. |
 | 5 | B2-U05-TRANSFER (planning only) | Synthesize two independent short source positions without distortion. Status: **PROPOSED**, not an already released scored activity. | To be audited / authored | Audit existing transfer evidence; draft if absent, label evidence honestly. |
 
@@ -605,13 +610,14 @@ Working inventory: 196 lessons, 1309 activities; 194 primary mapped, 2 unmapped;
 - **Advisory entry:** B1-U09, B2-U03; **priority:** P0. Dependencies are conceptual, not demonstrated runtime locks.
 - **Independent exit task:** Produce an outline that fairly compares a claim and counterclaim. Status: **PROPOSED**, not an already released scored activity.
 - **Audit before adding:** No baseline B2 lesson; plan counterargument, qualification and credible evidence rather than connector-count. This is not a claim the current lesson is faulty or that a specific subskill is definitely absent.
-- **Status:** PRIMARY_MAPPED / OUTCOME_AUDIT_PENDING.
+- **Status (2026-11-28 source audit):** SUBSTANTIAL SOURCE COVERAGE — sequencing refinement.
+- **Evidence and next action:** REA-B2-08 and WRI-B2-06 teach fair counterargument and five-line outline; REA-B2-09 and WRI-B2-07 qualify evidence and compose recommendations. Teach reading and corresponding writing together. A new context for exit may be needed; do not score free writing automatically. Preserve corrected LIVE Reading.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
 | 1 | REA-B2-08 — Build an argument that answers a fair objection | I can identify a claim, a relevant reason, the limits of its evidence, and a fair counterargument. I can answer the counterargument without ignoring it. | 30 min · 5 | Audit CORE-1–4 and actual outcome fit; preserve original IDs/content/evidence. |
-| 2 | REA-B2-09 — Qualify a claim without making it empty | I can choose language that matches the certainty of evidence, acknowledge a reasonable limitation and still make a clear recommendation. | 30 min · 5 | Audit CORE-1–4 and actual outcome fit; preserve original IDs/content/evidence. |
-| 3 | WRI-B2-06 — Writing transfer · Build an argument that answers a fair objection | I can identify a claim, a relevant reason, the limits of its evidence, and a fair counterargument. I can answer the counterargument without ignoring it. | 20 min · 1 | Audit CORE-1–4 and actual outcome fit; preserve original IDs/content/evidence. |
+| 2 | WRI-B2-06 — Writing transfer · Build an argument that answers a fair objection | I can identify a claim, a relevant reason, the limits of its evidence, and a fair counterargument. I can answer the counterargument without ignoring it. | 20 min · 1 | Audit CORE-1–4 and actual outcome fit; preserve original IDs/content/evidence. |
+| 3 | REA-B2-09 — Qualify a claim without making it empty | I can choose language that matches the certainty of evidence, acknowledge a reasonable limitation and still make a clear recommendation. | 30 min · 5 | Audit CORE-1–4 and actual outcome fit; preserve original IDs/content/evidence. |
 | 4 | WRI-B2-07 — Writing transfer · Qualify a claim without making it empty | I can choose language that matches the certainty of evidence, acknowledge a reasonable limitation and still make a clear recommendation. | 20 min · 1 | Audit CORE-1–4 and actual outcome fit; preserve original IDs/content/evidence. |
 | 5 | B2-U06-TRANSFER (planning only) | Produce an outline that fairly compares a claim and counterclaim. Status: **PROPOSED**, not an already released scored activity. | To be audited / authored | Audit existing transfer evidence; draft if absent, label evidence honestly. |
 
@@ -621,7 +627,8 @@ Working inventory: 196 lessons, 1309 activities; 194 primary mapped, 2 unmapped;
 - **Advisory entry:** B2-U05, B2-U06; **priority:** P0. Dependencies are conceptual, not demonstrated runtime locks.
 - **Independent exit task:** Plan, draft, inspect and revise a structured report/argument; do not invent AI proficiency grade. Status: **PROPOSED**, not an already released scored activity.
 - **Audit before adding:** No baseline B2 lesson; plan extended writing process and trusted reviewed rubric. This is not a claim the current lesson is faulty or that a specific subskill is definitely absent.
-- **Status:** PRIMARY_MAPPED / OUTCOME_AUDIT_PENDING.
+- **Status (2026-11-28 source audit):** SUBSTANTIAL SOURCE COVERAGE — check full independent revision.
+- **Evidence and next action:** REA-B2-10, WRI-B2-08 and WRI-B2-09 build report understanding, 190–250-word report and 180–240-word revised recommendation plus log. Check whether an independent learner can revise their own draft with an existing rubric and source audit; avoid treating the flawed-draft repair alone as self-revision.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
@@ -636,14 +643,16 @@ Working inventory: 196 lessons, 1309 activities; 194 primary mapped, 2 unmapped;
 - **Advisory entry:** B1-U08, B2-U04, B2-U06; **priority:** P1. Dependencies are conceptual, not demonstrated runtime locks.
 - **Independent exit task:** Prepare a balanced spoken summary for another fictional audience and self-check. Status: **PROPOSED**, not an already released scored activity.
 - **Audit before adding:** No baseline B2 lesson; plan mediation and prepared spoken summaries, without unvalidated oral score. This is not a claim the current lesson is faulty or that a specific subskill is definitely absent.
-- **Status:** PRIMARY_MAPPED / OUTCOME_AUDIT_PENDING.
+- **Status (2026-11-28 source audit):** PARTIAL — speaking preparation gap; draft held.
+- **Evidence and next action:** REA-B2-11/12 teach written interaction analysis, WRI-B2-10 neutral meeting brief; none teaches a keyword-planned speak-aloud summary for a different audience. Batch02 explicitly disclaims oral/listening evidence. Draft SPE-B2-01 (provisional ID) for Prepare & Practise only, with fresh written scenario, annotated independent model, unassisted spoken rehearsal and self-check. After B2-U04 audio verification, separate listening-to-speak transfer remains required. Oral score/weight 0.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
 | 1 | REA-B2-11 — Distinguish positions, evidence and decisions | Learning goal and context. Identify the issue, each participant's qualified position, the evidence offered, unresolved questions and the chair's actual decision in a written meeting record. B2; suggested 25–30 minutes. | 30 min · 5 | Audit CORE-1–4 and actual outcome fit; preserve original IDs/content/evidence. |
 | 2 | REA-B2-12 — Clarify, repair and qualify agreement | Learning goal. Infer why speakers ask for clarification, reformulate a proposal, and express cautious agreement in a written exchange; distinguish these pragmatic moves from agreement on all details. B2; suggested 25–30 minutes. | 30 min · 5 | Audit CORE-1–4 and actual outcome fit; preserve original IDs/content/evidence. |
 | 3 | WRI-B2-10 — Write a neutral meeting brief | Learning goal. Write a concise, accurate meeting brief that retains divergent positions, conditions and follow-up ownership without inventing consensus. B2; 30–40 minutes. | 35 min · 1 | Audit CORE-1–4 and actual outcome fit; preserve original IDs/content/evidence. |
-| 4 | B2-U08-TRANSFER (planning only) | Prepare a balanced spoken summary for another fictional audience and self-check. Status: **PROPOSED**, not an already released scored activity. | To be audited / authored | Audit existing transfer evidence; draft if absent, label evidence honestly. |
+| 4 | SPE-B2-01 (proposed, draft held) | Prepare and rehearse a neutral spoken summary; preserve positions, uncertainty and audience needs; self-report only. | 25–30 min · 0 scored oral activities | Author draft completed; queue independent review after Batch05. | 
+| 5 | B2-U08-TRANSFER (planning only) | Prepare a balanced spoken summary for another fictional audience and self-check. Status: **PROPOSED**, not an already released scored activity. | To be audited / authored | Audit existing transfer evidence; draft if absent, label evidence honestly. |
 
 ### B2-U09 — Society, technology and global challenges
 - **Unit purpose:** Evaluate well-supported viewpoints in contextual topic-rich tasks.
@@ -651,7 +660,8 @@ Working inventory: 196 lessons, 1309 activities; 194 primary mapped, 2 unmapped;
 - **Advisory entry:** B2-U02, B2-U03; **priority:** P1. Dependencies are conceptual, not demonstrated runtime locks.
 - **Independent exit task:** Compare evidence and limitations across texts on a contemporary issue. Status: **PROPOSED**, not an already released scored activity.
 - **Audit before adding:** No baseline B2 lesson; plan topic-based source evaluation (technology, environment, education). This is not a claim the current lesson is faulty or that a specific subskill is definitely absent.
-- **Status:** PRIMARY_MAPPED / OUTCOME_AUDIT_PENDING.
+- **Status (2026-11-28 source audit):** PARTIAL — topical range audit.
+- **Evidence and next action:** REA-B2-13/14 and WRI-B2-11 cover technology/access/environmental trade-offs. U09 framework also names science and education; these themes appear elsewhere in B2. Check secondary links and genuinely varied authentic-style discourse before deciding extra material. Existing technology tasks are not evidence of every topic.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
@@ -666,7 +676,8 @@ Working inventory: 196 lessons, 1309 activities; 194 primary mapped, 2 unmapped;
 - **Advisory entry:** B2-U01…B2-U09; **priority:** P1. Dependencies are conceptual, not demonstrated runtime locks.
 - **Independent exit task:** Use reading, listening and writing in a multi-source task and review error evidence. Status: **PROPOSED**, not an already released scored activity.
 - **Audit before adding:** No baseline B2 lesson; design optional integrated checkpoint and future exam transfer, not certification. This is not a claim the current lesson is faulty or that a specific subskill is definitely absent.
-- **Status:** PRIMARY_MAPPED / OUTCOME_AUDIT_PENDING.
+- **Status (2026-11-28 source audit):** PARTIAL — media hold and independent cross-modal transfer.
+- **Evidence and next action:** REA-B2-15 and WRI-B2-12 use separate source tasks; LIS-B2-01 remains media-held. Existing checkpoint has individual reading/listening/writing objectives and unscored reflection, but does not yet demonstrate one new combined written+spoken source synthesis; audit after actual audio verification. No CEFR or exam score claim.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
@@ -978,7 +989,10 @@ Working inventory: 196 lessons, 1309 activities; 194 primary mapped, 2 unmapped;
 - REA-C1-01 — Read between the lines: stance, evidence and qualified support: Identify a writer's qualified position in a demanding school-policy commentary without treating criticism as outright rejection.; Distinguish observed figures, survey limitations, implied concerns and recommendations, citing precise wording.; Explain how concessive and evaluative wording guides readers toward a cautious interpretation.. 8 activities; preserve ID and evidence; audit scope before assigning an appropriate Unit.
 - VOC-C2-01 — Fine shades of meaning: tact, emphasis and qualified judgment: Distinguish close but non-equivalent statements by degree of certainty, concession, emphasis and interpersonal force.; Select formulations that preserve a speaker's intended stance without increasing or reducing the strength of a claim.; Recognise when subtle understatement, partial concession and tactful disagreement are appropriate to context.. 8 activities; preserve ID and evidence; audit scope before assigning an appropriate Unit.
 
+## B2 source-audit checkpoint (2026-11-28)
+Scope: all 34 primary-mapped B2 lessons' current objectives, teaching explanations, examples and activity prompts/types, plus relevant reviewed Batch02/03 constraints and the adopted framework. This is author-side coverage screening, not a repeat independent key audit, CEFR judgement or live test. No existing lesson rewritten. Five Units have substantial source coverage (U02/03/05/06/07), four have specific residual gaps (U01/08/09/10), U04 has a pending draft. Check any inferred gap against prior/secondary source before adding a new lesson. U05/U06 paired sequence refined; U08 one held draft; no extra review packet uploaded while Batch05 is pending. Next after Batch05 reconciliation: review U08 preparation draft and assess U01 precise aspect/clause gap; then C1 in prerequisite order. 
+
 ## Completion criteria / next checkpoint
-- All 60 Unit goals/prerequisites/transfer goals copied from adopted Framework; 194 current primary mapped lesson IDs plus 2 unmapped historical pilots reconciled to exact working JSON blob 1f94d97bf0bd9e1ee5128d3b62035e77b7e79f9c. All 196 exact current titles, objectives and activity counts retained; 54 proposed slots for 18 currently empty primary Units (not fixed quotas). All current outcome coverage still requires audit. Existing lessons are not reauthored simply to fill an artificial count.
+- All 60 Unit goals/prerequisites/transfer goals copied from adopted Framework; 194 current primary mapped lesson IDs plus 2 unmapped historical pilots reconciled to exact working JSON blob 1f94d97bf0bd9e1ee5128d3b62035e77b7e79f9c. All 196 exact current titles, objectives and activity counts retained; 54 proposed slots for 18 currently empty primary Units (not fixed quotas), plus one specific B2-U08 speaking-preparation draft slot. All current outcome coverage still requires audit. Existing lessons are not reauthored simply to fill an artificial count.
 - B2-U04: existing source audit of all 9 B1/B2 Listening lessons: B1-01–04 explicitly target gist, practical discussion and attitude; B1-05–07 explicitly target short recordings; B1-08 already teaches qualified viewpoint/evidence evaluation; sole B2 listening LIS-B2-01 teaches conditional decision and speaker stance in a short two-speaker discussion (media-held). Retain all as advisory entry/later checkpoint, not duplicated lessons. Gap confirmed in current learning objectives for extended monologue organisation and explicit selective note-taking; third lesson is a provisional practice progression on longer multi-turn stance changes, with overlap acknowledged and independent reviewer asked to decide incremental value. See the Batch05 packet. Actual audio/transcript alignment and full playback still unverified.
 - Require verified outcome coverage, each independent assessment key and feedback, provenance, media/rights/playback, no leakage or fake evidence, and one coherent final cumulative release. Source-only checkpoints, no premature activation.
