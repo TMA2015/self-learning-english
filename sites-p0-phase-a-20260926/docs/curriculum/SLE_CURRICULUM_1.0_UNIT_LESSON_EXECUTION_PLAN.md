@@ -768,13 +768,13 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Advisory entry:** B2-U06, C1-U02; **priority:** P0. Design dependencies are not implemented unlocks.
 - **Independent exit task:** prepare a source-grounded argument including a serious objection and justified response. Status: **PROPOSED**, not a released or automatically scored activity.
 - **Audit before adding:** plan argument models with distinct data sources and bias limits, not merely more connectors. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** NO_PRIMARY_MAPPING / GAP_AUDIT_PENDING.
+- **Status:** NO_PRIMARY_MAPPING / BATCH10 R1 DRAFT ACADEMIC PENDING.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | C1-U06-S01 (proposed) | Identify claims, warrants and strength of evidence in sustained argument | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 2 | C1-U06-S02 (proposed) | Evaluate counterclaims fairly and distinguish rebuttal from dismissal | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 3 | C1-U06-S03 (proposed) | Write and revise a qualified position with evidence limits | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
+| 1 | REA-C1-05 (proposed) | Identify claims, warrants and strength of evidence in sustained argument | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
+| 2 | REA-C1-06 (proposed) | Evaluate counterclaims fairly and distinguish rebuttal from dismissal | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
+| 3 | WRI-C1-02 (proposed) | Write and revise a qualified position with evidence limits | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
 | 4 | C1-U06-TRANSFER (planning only) | prepare a source-grounded argument including a serious objection and justified response. Status: **PROPOSED**, not a released or automatically scored activity. | To be audited / authored | Audit existing transfer evidence; draft if absent, label evidence honestly. |
 
 ### C1-U07 — Synthesis and mediation across sources
@@ -1014,3 +1014,6 @@ Actual current C1 grammar GRA-C1-01 covers reference, cohesion, cleft and qualif
 
 ## Batch09 academic checkpoint — 2026-11-28
 Owner-supplied NotebookLM PASS for GRA-C1-02/03/04, 18/18 items (BACDAB/CABBDA/CBDABC), 3 unassessed CORE-4 tasks and independent C1-U05-TRANSFER-01. No required or optional edits. Exact R1 blob 9a96250ba90ea779b3f800afff7502ded5124a8a. Working wrapper 201 lessons / 1339 activities; 199 mapped + 2 historical unmapped. Prior 198 lessons, sequence prefix and rubrics unchanged. Seven additional reviewed held lessons (6 listening, 1 speaking) excluded. No import, runtime change or release. Next audit C1-U06 against actual B2-U06/C1-U02/C1-U05 source before Batch10; no automatic semantic scoring. Importer capacity and media gates remain open.
+
+## Batch10 C1-U06 draft checkpoint — 2026-11-28
+Source screening B2-U06 REA-B2-08/09 WRI-B2-06/07, REA-C1-01/02/03/04, WRI-C1-01 and GRA-C1-02/03/04. Confirmed distinct instructional targets: test inferential warrants across non-equivalent measures, address serious counterclaim and distinct decision criteria, write and revise a sustained qualified argument. New draft REA-C1-05/06 12 MCQs author keys BACDAB/ACBDBC, WRI-C1-02 weight 0 and fresh qualitative Unit Transfer. Independent review pending. No working count change 201/1339, no import or release. Only Batch10 is next temporary NotebookLM source.
