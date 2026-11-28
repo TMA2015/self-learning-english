@@ -813,13 +813,13 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Advisory entry:** B2-U08, C1-U04, C1-U06; **priority:** P1. Design dependencies are not implemented unlocks.
 - **Independent exit task:** respond to a complex disagreement in writing, preserving nuance and respectful tone. Status: **PROPOSED**, not a released or automatically scored activity.
 - **Audit before adding:** optional speaking preparation and roleplay only; no self-scored oral fluency or cultural stereotypes. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** NO_PRIMARY_MAPPING / BATCH13 R1 DRAFT ACADEMIC PENDING.
+- **Status:** BATCH13 ACADEMIC PASS / ACCUMULATED WRITTEN SOURCE ONLY / FINAL OUTCOME AUDIT PENDING.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | REA-C1-10 (proposed) | Interpret politeness and pragmatic implications in written exchange | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 2 | REA-C1-11 (proposed) | Ask tactful clarification and repair intercultural misunderstandings without stereotyping | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 3 | WRI-C1-06 (proposed) | Represent opposing positions impartially and compose a constructive response | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
+| 1 | REA-C1-10 | Interpret indirect meaning across turns | 35 min · 6 MCQs | NotebookLM PASS, working source only; technical QA pending. |
+| 2 | REA-C1-11 | Negotiate different communication conventions without stereotyping | 35 min · 6 MCQs | NotebookLM PASS, working source only; technical QA pending. |
+| 3 | WRI-C1-06 | Repair disagreement and negotiate a workable next step in writing | 45 min · 1 unassessed Writing | NotebookLM PASS, working source only; technical QA pending. |
 | 4 | C1-U09-TRANSFER (planning only) | respond to a complex disagreement in writing, preserving nuance and respectful tone. Status: **PROPOSED**, not a released or automatically scored activity. | To be audited / authored | Audit existing transfer evidence; draft if absent, label evidence honestly. |
 
 ### C1-U10 — C1 integrated performance and revision
@@ -1035,3 +1035,6 @@ Owner-supplied NotebookLM PASS REA-C1-09 (6/6 ACBDAC), WRI-C1-04/05 (weight 0), 
 
 ## Batch13 C1-U09 draft checkpoint
 Audited REA-B2-11/12 WRI-B2-10, VOC-C1-02/03 and C1-U06/07/08 existing material. Distinct multi-turn pragmatic force, repair of ambiguous uptake, explicit local convention negotiation and respectful written response under authority constraints. REA-C1-10/11 12 MCQs author structural keys BACDAB/CABDCA; WRI-C1-06 dual message and revision note weight 0; fresh C1-U09-TRANSFER-01 weight 0. No national stereotypes, oral or audio evidence. Working 210/1373 unchanged. Independent review pending. Batch13 R1 sole next temporary NotebookLM source; no import/release.
+
+## Batch13 academic checkpoint — 2026-11-28
+Owner-supplied NotebookLM PASS REA-C1-10/11 (12/12 BACDAB/CABDCA), WRI-C1-06 (weight 0), and fresh Unit Transfer (weight 0); MUST_FIX/OPTIONAL NONE. Exact R1 blob ef585ba4a01174c251fa0f88439f9c1b3c5ee5fb. Working 213 lessons/1386 activities, including one unassessed Writing activity; 211 mapped + 2 unmapped. Prior 210 lesson objects, sequence prefix and rubrics preserved. Seven approved held lessons excluded. Written interaction only; no import/runtime/release. Next C1-U10 integrated performance and revision: audit prior C1 and B2-U10, separate verified listening and integrated transfer media dependencies from immediately usable written source.

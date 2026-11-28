@@ -67,6 +67,17 @@
         ],
         "verdict": "PASS",
         "integration": "AUTHORING_ONLY; schema/runtime QA pending"
+      },
+      {
+        "packet": "SLE-C1-U09-B13-R1-20261128",
+        "sourceGitBlob": "ef585ba4a01174c251fa0f88439f9c1b3c5ee5fb",
+        "lessonIds": [
+          "REA-C1-10",
+          "REA-C1-11",
+          "WRI-C1-06"
+        ],
+        "verdict": "PASS",
+        "integration": "AUTHORING_ONLY; schema/runtime QA pending; written interaction only"
       }
     ]
   },
@@ -323,7 +334,10 @@
         "WRI-C1-03",
         "REA-C1-09",
         "WRI-C1-04",
-        "WRI-C1-05"
+        "WRI-C1-05",
+        "REA-C1-10",
+        "REA-C1-11",
+        "WRI-C1-06"
       ],
       "prerequisites": []
     },
@@ -49183,6 +49197,492 @@
             "id": "WRI-C1-05-Q1",
             "type": "extended_response",
             "prompt": "Write a 320–420-word proposal to the centre board, including an executive summary of about 50–75 words within that range. Request a precise decision, compare the two options against accessibility and workload, and distinguish estimated hours from the available allocation. Propose an option within current resources or explain the separate approval that would be required for a different option; do not assume extra hours. Specify the scope, role responsibilities, dependencies, relative implementation sequence, a contingency if a prerequisite cannot be met, and a review plan including an appropriate proposed measure of understanding (not a fabricated result). Preserve the existing instructions and the separate later decision. Add a brief revision log outside the main word range explaining one resource or authority correction and one summary-to-plan consistency check. Use formal, readable language and headings where helpful.",
+            "answer": null,
+            "feedback": {
+              "pending_message": "UNASSESSED — trusted review pending. No automatic quality grade or CEFR certification."
+            },
+            "skill_tags": [
+              "writing.task_understanding",
+              "writing.organization",
+              "writing.cohesion",
+              "writing.idea_development",
+              "writing.register",
+              "writing.grammar",
+              "writing.vocabulary"
+            ],
+            "evidence_weight": 0,
+            "rubric_id": "RUBRIC-WRITING-C1",
+            "review_mode": "assisted_ai_or_human"
+          }
+        ]
+      },
+      {
+        "id": "REA-C1-10",
+        "module": "reading",
+        "cefr_target": "C1",
+        "title": "Interpret indirect meaning across turns",
+        "estimated_minutes": 35,
+        "objectives": [
+          "Infer what a participant is doing with a written message (request, tentative objection, reservation, invitation to revise or closure) while keeping competing plausible interpretations open until later turns provide evidence. Distinguish a supported interpretation of an utterance from a claim about the writer's private motives."
+        ],
+        "explanation": {
+          "en": "**CORE-1 — Goal/context.** Infer what a participant is doing with a written message (request, tentative objection, reservation, invitation to revise or closure) while keeping competing plausible interpretations open until later turns provide evidence. Distinguish a supported interpretation of an utterance from a claim about the writer's private motives.\n**CORE-2 — Teach/model.** Literal proposition is what the words explicitly say; pragmatic force is the action the words perform in context. An indirect question may invite clarification or signal a difficulty; politeness may soften disagreement without changing its substance. Use a turn-by-turn map: prior proposal → literal words → likely action and its evidence → later uptake or clarification → remaining uncertainty. An inference can be cancelled or revised: “I was wondering whether…” does not always mean the same thing. Do not infer intention from a single hedge, emoji, response delay or supposed national convention. A direct statement may be appropriate when a deadline or safety boundary matters; a highly mitigated message may be unhelpfully ambiguous. Independent worked model: a community choir's scheduler writes, “Would the smaller room still work?” after a colleague mentions a new piano. This could ask about space, or indirectly flag suitability. The reply “The issue is access for the piano, not audience size” clarifies the concern; a further reply “Then let's check the doorway before deciding” shows uptake. Before that clarification, neither concern nor motive was certain. A repair question can name the two readings without accusing anyone.\n\n**CORE-3 — Independent reading.** Read the reviewed fictional source displayed with this lesson before answering.\n\n**CORE-4 — Feedback/repair.** Q1/Q2 separate plausible inference from actual uptake; Q3 revise interpretation using new evidence; Q4 preserve procedural distinctions; Q5 identify interpersonal and channel repair without mind-reading; Q6 distinguish an accurate recap from consensus. Use option-specific explanations after submit. Independent unassessed transfer: a fictional community theatre colleague replies “Could we revisit the seating plan?” after a rehearsal schedule is proposed. Write two plausible readings and a neutral question to distinguish them; then explain how the reply “I meant wheelchair access, not the rehearsal time” would change the next message. No auto-score.",
+          "vi": "Suy luận hàm ý giao tiếp qua nhiều lượt trao đổi, kiểm chứng cách hiểu trước khi kết luận."
+        },
+        "examples": [
+          "Literal proposition is what the words explicitly say; pragmatic force is the action the words perform in context. An indirect question may invite clarification or signal a difficulty; politeness may soften disagreement without changing its substance. Use a turn-by-turn map: prior proposal → literal words → likely action and its evidence → later uptake or clarification → remaining uncertainty. An inference can be cancelled or revised: “I was wondering whether…” does not always mean the same thing. Do not infer intention from a single hedge, emoji, response delay or supposed national convention. A direct statement may be appropriate when a deadline or safety boundary matters; a highly mitigated message may be unhelpfully ambiguous. Independent worked model: a community choir's scheduler writes, “Would the smaller room still work?” after a colleague mentions a new piano. This could ask about space, or indirectly flag suitability. The reply “The issue is access for the piano, not audience size” clarifies the concern; a further reply “Then let's check the doorway before deciding” shows uptake. Before that clarification, neither concern nor motive was certain. A repair question can name the two readings without accusing anyone."
+        ],
+        "activities": [
+          {
+            "id": "REA-C1-10-Q1",
+            "type": "single_choice",
+            "prompt": "Before Sam's Tuesday clarification, which interpretation is most warranted?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Sam has explicitly rejected any printing in the coming week."
+              },
+              {
+                "id": "B",
+                "text": "Sam signals a reservation about the plan; both timing and the sequence of caption review are plausible concerns, and clarification is needed."
+              },
+              {
+                "id": "C",
+                "text": "Sam has agreed to print as long as the date moves to Friday."
+              },
+              {
+                "id": "D",
+                "text": "Sam's question about caption review is merely a request for wording changes after printing."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "Sam has explicitly rejected any printing in the coming week. — The first reply does not set that boundary.\nSam signals a reservation about the plan; both timing and the sequence of caption review are plausible concerns, and clarification is needed. — Reads both cues without treating inference as settled.\nSam has agreed to print as long as the date moves to Friday. — Conditional agreement is not expressed.\nSam's question about caption review is merely a request for wording changes after printing. — The question challenges or tests the proposed sequence, not necessarily its wording."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-10-Q2",
+            "type": "single_choice",
+            "prompt": "What does Alex's first reply reveal about uptake?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Alex treats the reservation chiefly as a date problem, leaving the implied concern about sign-off unanswered."
+              },
+              {
+                "id": "B",
+                "text": "Alex acknowledges a sign-off prerequisite but thinks Friday will certainly satisfy it."
+              },
+              {
+                "id": "C",
+                "text": "Alex resolves both the timetable and caption review by moving the printing date."
+              },
+              {
+                "id": "D",
+                "text": "Alex rejects Sam's concern by refusing to alter the plan."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "Alex treats the reservation chiefly as a date problem, leaving the implied concern about sign-off unanswered. — The proposed move to Friday addresses timing alone.\nAlex acknowledges a sign-off prerequisite but thinks Friday will certainly satisfy it. — No such prerequisite is acknowledged at this point.\nAlex resolves both the timetable and caption review by moving the printing date. — The subsequent clarification shows the second issue remains.\nAlex rejects Sam's concern by refusing to alter the plan. — Alex offers a date change."
+            },
+            "skill_tags": [
+              "reading.detail"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-10-Q3",
+            "type": "single_choice",
+            "prompt": "How does Sam's Tuesday reply change the interpretation of the earlier wording?",
+            "options": [
+              {
+                "id": "A",
+                "text": "It establishes that timing was completely irrelevant to every aspect of the project."
+              },
+              {
+                "id": "B",
+                "text": "It converts a tentative preference into a demand that the guide never be printed."
+              },
+              {
+                "id": "C",
+                "text": "It identifies the essential issue as confirmation before release rather than the specific day, correcting the earlier uptake."
+              },
+              {
+                "id": "D",
+                "text": "It shows that Sam was questioning the standard of Alex's design work."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "C"
+            },
+            "feedback": {
+              "explanation_en": "It establishes that timing was completely irrelevant to every aspect of the project. — “Primarily” does not exclude all timing concerns.\nIt converts a tentative preference into a demand that the guide never be printed. — The concern is a prerequisite, not a permanent refusal.\nIt identifies the essential issue as confirmation before release rather than the specific day, correcting the earlier uptake. — The Friday example explicitly tests the distinction.\nIt shows that Sam was questioning the standard of Alex's design work. — The later private message specifically rejects that implication."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-10-Q4",
+            "type": "single_choice",
+            "prompt": "Which statement best describes Jo's contribution?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Jo accepts a Friday deadline but asks staff to mark unfinished captions internally."
+              },
+              {
+                "id": "B",
+                "text": "Jo delegates approval to Alex while retaining control of the review meeting."
+              },
+              {
+                "id": "C",
+                "text": "Jo postpones all preparation until every confirmation is received."
+              },
+              {
+                "id": "D",
+                "text": "Jo makes separate distinctions between review and sign-off, provisional booking and commitment, and internal circulation and release."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "D"
+            },
+            "feedback": {
+              "explanation_en": "Jo accepts a Friday deadline but asks staff to mark unfinished captions internally. — No Friday release is agreed.\nJo delegates approval to Alex while retaining control of the review meeting. — Approval is not delegated.\nJo postpones all preparation until every confirmation is received. — Preparation and provisional slot request remain possible.\nJo makes separate distinctions between review and sign-off, provisional booking and commitment, and internal circulation and release. — Each distinction protects the actual approval boundary."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-10-Q5",
+            "type": "single_choice",
+            "prompt": "What is the pragmatic function of Sam's Wednesday private message?",
+            "options": [
+              {
+                "id": "A",
+                "text": "It repairs a possible interpersonal implication about design performance and clarifies the preferred channel for unresolved wording, without withdrawing the sign-off concern."
+              },
+              {
+                "id": "B",
+                "text": "It changes the discussion from a sign-off issue to a private complaint about team members."
+              },
+              {
+                "id": "C",
+                "text": "It implies the shared channel should no longer contain any discussion of captions."
+              },
+              {
+                "id": "D",
+                "text": "It gives Alex permission to release the draft on the strength of their private agreement."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "It repairs a possible interpersonal implication about design performance and clarifies the preferred channel for unresolved wording, without withdrawing the sign-off concern. — Both the interpersonal and procedural functions are explicit.\nIt changes the discussion from a sign-off issue to a private complaint about team members. — Sam wants unresolved wording discussed openly.\nIt implies the shared channel should no longer contain any discussion of captions. — The opposite is stated.\nIt gives Alex permission to release the draft on the strength of their private agreement. — Sam's appreciation does not confer approval."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-10-Q6",
+            "type": "single_choice",
+            "prompt": "Which account of the final shared message is most defensible?",
+            "options": [
+              {
+                "id": "A",
+                "text": "It records consensus that the guide will be printed after Thursday's meeting."
+              },
+              {
+                "id": "B",
+                "text": "It closes the interpersonal repair and invites correction of the action summary while keeping the release unresolved."
+              },
+              {
+                "id": "C",
+                "text": "It guarantees all loan partners will respond before the meeting."
+              },
+              {
+                "id": "D",
+                "text": "It transfers responsibility for any delay to Sam."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "It records consensus that the guide will be printed after Thursday's meeting. — Release date remains undecided.\nIt closes the interpersonal repair and invites correction of the action summary while keeping the release unresolved. — Recaps roles and provides a correction opportunity.\nIt guarantees all loan partners will respond before the meeting. — The request does not guarantee a response.\nIt transfers responsibility for any delay to Sam. — No blame or such responsibility is assigned."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          }
+        ],
+        "reading_asset": {
+          "id": "SRC-REA-C1-10",
+          "title": "Interpret indirect meaning across turns — original reviewed source",
+          "body": "Written thread from a volunteer exhibition team planning a printed guide. The team has agreed to discuss a draft but not authorised printing. A design partner works asynchronously with the team.\n\nMonday, team channel — Alex: “I've uploaded the guide. Unless there are major objections, I suggest sending it to the printer on Thursday. We can settle the caption wording later.”\nMonday, partner channel reply — Sam: “Thursday would be rather ambitious from our end. I wonder whether the caption review belongs after printing.”\nMonday, Alex: “Thanks. We could move the printing to Friday if Thursday is inconvenient.”\nTuesday, Sam: “Sorry, I wasn't referring primarily to the day. Some captions describe loans from other organisations, and those descriptions need their confirmation before the print file is released. Friday would make no difference if the confirmations were still outstanding.”\nTuesday, Alex: “Understood. I had taken your first message as a scheduling concern. Shall we separate the date from the sign-off? I can prepare a print-ready draft, but not send it until the confirmations arrive.”\nTuesday, Jo (coordinator): “That would be helpful. For clarity, the Thursday meeting is a review, not sign-off. A printer slot can be requested provisionally; nobody should commit to it. If confirmations do not arrive, we can circulate the draft internally with the captions marked pending.”\nWednesday, Sam (private message to Alex): “I appreciate the distinction. My earlier wording was intended to raise the order of the steps, not to suggest the design work was behind schedule. I'd prefer any unresolved wording to be discussed in the shared channel so the relevant people can respond.”\nWednesday, Alex (shared channel): “To confirm our next steps: I'll prepare the draft; loan partners will be asked to confirm the relevant captions; Jo will review status on Thursday. The release date remains undecided. Please flag anything I've misunderstood.”",
+          "display_to_learner": true
+        }
+      },
+      {
+        "id": "REA-C1-11",
+        "module": "reading",
+        "cefr_target": "C1",
+        "title": "Negotiate different communication conventions without stereotyping",
+        "estimated_minutes": 35,
+        "objectives": [
+          "Recognise how different locally learned conventions, role expectations and communication channels can create misunderstanding; choose a repair that acknowledges both interpretations, establishes an explicit shared convention and protects actual decision authority."
+        ],
+        "explanation": {
+          "en": "**CORE-1 — Goal/context.** Recognise how different locally learned conventions, role expectations and communication channels can create misunderstanding; choose a repair that acknowledges both interpretations, establishes an explicit shared convention and protects actual decision authority.\n**CORE-2 — Teach/model.** In a distributed team, “noted”, “approved”, a silence or a reaction icon can have different operational meanings. Do not assume one convention is universal or explain differences by nationality. Look for participants' stated practices, task risk, hierarchy, time zone or channel constraints; separate the impact of a misunderstanding from an accusation of intent. A productive repair often has five moves: describe the observable mismatch; recognise the other interpretation without endorsing an incorrect conclusion; state the essential boundary plainly; ask or offer a precise way forward; confirm the shared meaning and who can act. Acknowledgement does not mean concession of authority. When decisions are consequential, explicit wording may be more considerate than excessive indirectness. Independent worked model: in a fictional neighbourhood event team, one volunteer uses a check-mark reaction to mean “read”, while a supplier's coordinator treats it as “ready to order”. A repair could be “I see why the check mark looked like permission. Here it meant receipt only. Before ordering, please wait for the message ‘Order approved’ from the event lead. Would that wording work for both teams?” This recognises the mismatch, names the limit and proposes a shared convention; it does not infer dishonesty or national habits.\n\n**CORE-3 — Independent reading.** Read the reviewed fictional source displayed with this lesson before answering.\n\n**CORE-4 — Feedback/repair.** Q1 ground interpretations in stated local practice; Q2 recognise concession plus legitimate practical concern; Q3 tailor language to operational limits; Q4/Q5 negotiate an explicit convention and follow-up; Q6 separate procedural agreement from substantive approval. Independent unassessed transfer: a fictional online book club's editor interprets a shared-document “resolved” marker as agreement, while a contributor uses it to mean the comment has been read. Draft a concise repair naming both readings, a suitable explicit convention and one question to confirm it. No auto-score.",
+          "vi": "Thương lượng quy ước giao tiếp, xử lý hiểu lầm và giữ đúng thẩm quyền, không định kiến văn hóa."
+        },
+        "examples": [
+          "In a distributed team, “noted”, “approved”, a silence or a reaction icon can have different operational meanings. Do not assume one convention is universal or explain differences by nationality. Look for participants' stated practices, task risk, hierarchy, time zone or channel constraints; separate the impact of a misunderstanding from an accusation of intent. A productive repair often has five moves: describe the observable mismatch; recognise the other interpretation without endorsing an incorrect conclusion; state the essential boundary plainly; ask or offer a precise way forward; confirm the shared meaning and who can act. Acknowledgement does not mean concession of authority. When decisions are consequential, explicit wording may be more considerate than excessive indirectness. Independent worked model: in a fictional neighbourhood event team, one volunteer uses a check-mark reaction to mean “read”, while a supplier's coordinator treats it as “ready to order”. A repair could be “I see why the check mark looked like permission. Here it meant receipt only. Before ordering, please wait for the message ‘Order approved’ from the event lead. Would that wording work for both teams?” This recognises the mismatch, names the limit and proposes a shared convention; it does not infer dishonesty or national habits."
+        ],
+        "activities": [
+          {
+            "id": "REA-C1-11-Q1",
+            "type": "single_choice",
+            "prompt": "What best explains the original misunderstanding on the available evidence?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Noor wants to avoid the venue lead's responsibility and Eli objects to publicity altogether."
+              },
+              {
+                "id": "B",
+                "text": "Both teams already treat silence as explicit approval but disagree about accessibility."
+              },
+              {
+                "id": "C",
+                "text": "Noor assumes a familiar local silence-as-acceptance practice applies; Eli sees circulation as consultation and has a separate explicit approval requirement."
+              },
+              {
+                "id": "D",
+                "text": "The disagreement is solely about which colleagues can read messages on a given shift."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "C"
+            },
+            "feedback": {
+              "explanation_en": "Noor wants to avoid the venue lead's responsibility and Eli objects to publicity altogether. — Neither motive is established.\nBoth teams already treat silence as explicit approval but disagree about accessibility. — Their stated conventions differ.\nNoor assumes a familiar local silence-as-acceptance practice applies; Eli sees circulation as consultation and has a separate explicit approval requirement. — Identifies the procedural difference without stereotyping.\nThe disagreement is solely about which colleagues can read messages on a given shift. — Shift access matters but does not explain the distinct approval rules alone."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-11-Q2",
+            "type": "single_choice",
+            "prompt": "Which interpretation of Noor's second message best preserves its interpersonal and practical force?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Noor accepts the capacity concern while proposing a narrower way to address audience uncertainty and responsiveness."
+              },
+              {
+                "id": "B",
+                "text": "Noor withdraws the original request and agrees to give no public information until every room is confirmed."
+              },
+              {
+                "id": "C",
+                "text": "Noor argues that audience expectations should override accessibility checks."
+              },
+              {
+                "id": "D",
+                "text": "Noor's concern proves the public already expects a confirmed programme and registration date."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "Noor accepts the capacity concern while proposing a narrower way to address audience uncertainty and responsiveness. — Concedes the constraint, then seeks a distinct limited action.\nNoor withdraws the original request and agrees to give no public information until every room is confirmed. — A holding update is explicitly proposed.\nNoor argues that audience expectations should override accessibility checks. — Noor acknowledges the check and asks for narrower information.\nNoor's concern proves the public already expects a confirmed programme and registration date. — Enquiries do not establish those expectations."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-11-Q3",
+            "type": "single_choice",
+            "prompt": "Which holding update would meet Robin's stated boundaries?",
+            "options": [
+              {
+                "id": "A",
+                "text": "“The introductory session has a confirmed room; other rooms will be announced next week. Registration is coming shortly.”"
+              },
+              {
+                "id": "B",
+                "text": "“The programme is being prepared; the schedule is awaiting confirmation. Further information will follow once arrangements are confirmed.”"
+              },
+              {
+                "id": "C",
+                "text": "“All venues have passed preliminary access checks; a public schedule will follow.”"
+              },
+              {
+                "id": "D",
+                "text": "“The programme is delayed because the venue team has not responded.”"
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "“The introductory session has a confirmed room; other rooms will be announced next week. Registration is coming shortly.” — Adds timing and programme specifics beyond the authorised draft boundary.\n“The programme is being prepared; the schedule is awaiting confirmation. Further information will follow once arrangements are confirmed.” — No times, venue details or registration link, and uncertainty is explicit.\n“All venues have passed preliminary access checks; a public schedule will follow.” — Invents checks.\n“The programme is delayed because the venue team has not responded.” — Adds blame and an unsupported delay claim."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-11-Q4",
+            "type": "single_choice",
+            "prompt": "Which description of Eli's proposed convention is most accurate?",
+            "options": [
+              {
+                "id": "A",
+                "text": "It makes silence an approval signal once the reply-by time is stated."
+              },
+              {
+                "id": "B",
+                "text": "It prevents all colleagues from commenting on items already under review."
+              },
+              {
+                "id": "C",
+                "text": "It gives all team members equal authority to approve publication."
+              },
+              {
+                "id": "D",
+                "text": "It makes item status and authority explicit, replacing inferred approval from silence with a recorded approval requirement."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "D"
+            },
+            "feedback": {
+              "explanation_en": "It makes silence an approval signal once the reply-by time is stated. — Silence remains non-approval.\nIt prevents all colleagues from commenting on items already under review. — No such exclusion.\nIt gives all team members equal authority to approve publication. — A responsible approver is to be named.\nIt makes item status and authority explicit, replacing inferred approval from silence with a recorded approval requirement. — Reflects the operational change."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-11-Q5",
+            "type": "single_choice",
+            "prompt": "Why is Noor's reply-by condition a constructive addition rather than a contradiction of Eli's proposal?",
+            "options": [
+              {
+                "id": "A",
+                "text": "It restores automatic approval when the reply window closes."
+              },
+              {
+                "id": "B",
+                "text": "It changes the venue lead's role to a passive observer."
+              },
+              {
+                "id": "C",
+                "text": "It makes the explicit process more predictable and supplies a way to follow up without treating non-response as consent."
+              },
+              {
+                "id": "D",
+                "text": "It establishes that everyone will read the message before the deadline."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "C"
+            },
+            "feedback": {
+              "explanation_en": "It restores automatic approval when the reply window closes. — The follow-up is to ask the approver, not assume.\nIt changes the venue lead's role to a passive observer. — Named responsibility is retained.\nIt makes the explicit process more predictable and supplies a way to follow up without treating non-response as consent. — Responds to coordination needs while respecting the boundary.\nIt establishes that everyone will read the message before the deadline. — A deadline cannot guarantee reading."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-11-Q6",
+            "type": "single_choice",
+            "prompt": "Which account of the final position is supported?",
+            "options": [
+              {
+                "id": "A",
+                "text": "The team agrees a process; the holding update is to be drafted and checked, but the full programme and registration are not approved."
+              },
+              {
+                "id": "B",
+                "text": "Robin has approved the holding update itself because Robin agreed to check it."
+              },
+              {
+                "id": "C",
+                "text": "The introductory room confirmation authorises publication of the entire programme."
+              },
+              {
+                "id": "D",
+                "text": "The original silence-as-acceptance convention has been abolished in all partner-centre work."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "The team agrees a process; the holding update is to be drafted and checked, but the full programme and registration are not approved. — Distinguishes process agreement from publication decisions.\nRobin has approved the holding update itself because Robin agreed to check it. — A future check is not approval.\nThe introductory room confirmation authorises publication of the entire programme. — Approval scope is explicitly limited.\nThe original silence-as-acceptance convention has been abolished in all partner-centre work. — The new convention concerns joint threads only."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          }
+        ],
+        "reading_asset": {
+          "id": "SRC-REA-C1-11",
+          "title": "Negotiate different communication conventions without stereotyping — original reviewed source",
+          "body": "A community language exchange network is preparing a joint programme with a partner centre. Two groups have different established procedures; people work in several locations. No nationality is specified.\n\nPartner coordinator, Noor: “Our team can put the provisional session list on the public page today if there is no objection by the afternoon. In our usual planning threads, silence after the review window is treated as acceptance for routine publicity.”\nNetwork coordinator, Eli: “Please hold off. I had read the draft as being circulated for comments. Our network requires the venue lead to confirm room capacity and accessibility before any public schedule appears. Several colleagues have not read the thread because they are working different shifts.”\nNoor: “I understand the capacity check. From our side, keeping the page unpublished creates a different problem: people have already asked whether registration will open soon. I don't want the partner centre to appear unresponsive. Could we at least show that a programme is being prepared?”\nVenue lead, Robin: “I can confirm one room for the introductory session. I cannot yet confirm the other rooms or their access arrangements. I would be comfortable with an update that gives no times, venue details or registration link, provided it says the schedule is awaiting confirmation.”\nEli: “That seems workable in principle. To avoid a repeat, can we label each shared item either ‘for comment’ or ‘approved for publication’, with the person responsible for approval named? No response would mean no recorded approval in these joint threads.”\nNoor: “That would work for me if the approval request includes a clear reply-by time and a contact for questions. When we miss a reply, we could ask the responsible person rather than assume a decision. I'll draft a short holding update for Robin's check, not publish it yet.”\nRobin: “Agreed on that process. I will check the draft holding update. I am not approving the full programme or registration today.”",
+          "display_to_learner": true
+        }
+      },
+      {
+        "id": "WRI-C1-06",
+        "module": "writing",
+        "cefr_target": "C1",
+        "title": "Repair disagreement and negotiate a workable next step in writing",
+        "estimated_minutes": 45,
+        "objectives": [
+          "Compose a constructive written response to a multi-party disagreement involving implicit criticism, different expectations and an authority boundary. Represent each position fairly, clarify uncertainty without assigning motive, propose a workable shared process, and revise for both relational tone and practical clarity."
+        ],
+        "explanation": {
+          "en": "**CORE-1 — Goal/context.** Compose a constructive written response to a multi-party disagreement involving implicit criticism, different expectations and an authority boundary. Represent each position fairly, clarify uncertainty without assigning motive, propose a workable shared process, and revise for both relational tone and practical clarity.\n**CORE-2 — Teach/model.** Parse Topic (the mismatch), Task (reply and follow-up), Must Include (recognise both concerns, precise clarification, boundary, process, ownership), Boundary (no assumed motives, national stereotypes, promises or unauthorised actions). Brainstorm an interpretation map before writing: what was said, possible intended action, observed impact, clarification needed, shared goal and remaining conflict. Select wording that is tactful but not evasive. Separate acknowledgement (“I see why the note read that way”) from acceptance of a claim (“that does not mean the plan was authorised”). Offer a neutral rephrasing, one focused question and a conditional next action, rather than demanding that one party apologise or pretending all concerns are resolved. Draft, then test each sentence: would the addressee recognise their position, can an uninvolved reader identify what is agreed, and could anyone mistake a request for permission? Independent annotated model, different prompt: a fictional student art group sends a draft invitation labelled “final layout”; the venue contact understands that as a request for event approval, while the designer means layout work is finished. “I can see why ‘final’ suggested permission to proceed [acknowledge impact]. Here it described the layout only [clarify scope]. Could we check whether your review concerns the venue or the wording [focused question]? I'll relabel the document ‘layout ready; event approval pending’ and wait for the venue contact's confirmation before sending it [concrete action and boundary].” The designer's intention is not inferred from nationality or personality; the label mismatch is addressed.\n\n**CORE-3 — Independent Writing source bundle (fictional).**\nTopic: a joint volunteer mentoring programme. You are the network's coordination contact and have no authority to approve external invitations.\nA — Partner message in shared thread: “We may have been too optimistic about having the invitation ready. Would it be possible to get a more definite answer from your team? We usually interpret a completed review checklist as permission to circulate a document, so we told our volunteers to expect news soon. Our volunteers have limited availability and would benefit from advance notice.”\nB — Internal reviewer's message: “I marked the wording checklist complete because I had finished checking language. I did not approve the mentoring arrangements. The safeguarding coordinator must confirm supervision and contact arrangements before invitations go out. I am concerned the reference to a more definite answer could be read as criticism of my work; I am willing to clarify my checklist in the shared thread.”\nC — Coordinator's decision note: no invitations or registration link may be circulated yet. An internal availability enquiry without participant details or any promised date is permitted; it may ask volunteers which time windows could work. The safeguarding coordinator will review supervision arrangements, but the completion date is unknown. Partners may agree a shared checklist convention; only the programme manager can approve external invitations after the safeguard review.\n\n**CORE-4 — Feedback/repair.** UNASSESSED / trusted review pending. Suggested RUBRIC-WRITING-C1 subject to compatibility QA. Both messages and revision note form one open response, weight 0. Self-check: accurate representations; distinguish intended meaning from possible impact; tactful focused clarification; concrete next action within scope; responsible approver and follow-up; no stereotypes, disclosure or invented approval; tone and coherence; meaningful revision. Word ranges guide planning, not quality. No automatic semantic, oral, intercultural competence or CEFR judgement.",
+          "vi": "Viết phản hồi xây dựng, làm rõ bất đồng và đề xuất bước tiếp theo phù hợp."
+        },
+        "examples": [
+          "Parse Topic (the mismatch), Task (reply and follow-up), Must Include (recognise both concerns, precise clarification, boundary, process, ownership), Boundary (no assumed motives, national stereotypes, promises or unauthorised actions). Brainstorm an interpretation map before writing: what was said, possible intended action, observed impact, clarification needed, shared goal and remaining conflict. Select wording that is tactful but not evasive. Separate acknowledgement (“I see why the note read that way”) from acceptance of a claim (“that does not mean the plan was authorised”). Offer a neutral rephrasing, one focused question and a conditional next action, rather than demanding that one party apologise or pretending all concerns are resolved. Draft, then test each sentence: would the addressee recognise their position, can an uninvolved reader identify what is agreed, and could anyone mistake a request for permission? Independent annotated model, different prompt: a fictional student art group sends a draft invitation labelled “final layout”; the venue contact understands that as a request for event approval, while the designer means layout work is finished. “I can see why ‘final’ suggested permission to proceed [acknowledge impact]. Here it described the layout only [clarify scope]. Could we check whether your review concerns the venue or the wording [focused question]? I'll relabel the document ‘layout ready; event approval pending’ and wait for the venue contact's confirmation before sending it [concrete action and boundary].” The designer's intention is not inferred from nationality or personality; the label mismatch is addressed."
+        ],
+        "activities": [
+          {
+            "id": "WRI-C1-06-Q1",
+            "type": "extended_response",
+            "prompt": "Write a 240–320-word reply to the partner and internal reviewer in the shared thread, acknowledging the need for advance notice and the reviewer's concern without claiming either intended criticism. Distinguish completed language review from approval of arrangements. Ask a focused clarification about the partner's meaning or information needs; propose a practical internal availability enquiry consistent with the decision note. Suggest a shared convention that explicitly identifies review status, approver and follow-up, while keeping external invitations unapproved. Then write a 45–75-word follow-up message for the programme manager stating the actual decision status and one unresolved issue. Add a brief revision note explaining how you reduced a possible interpersonal misunderstanding and made one operational boundary clearer. Do not invent consensus, approval, timetable or personal information. Use readable professional English; do not simply list the instructions.",
             "answer": null,
             "feedback": {
               "pending_message": "UNASSESSED — trusted review pending. No automatic quality grade or CEFR certification."
