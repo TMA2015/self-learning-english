@@ -941,15 +941,15 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Unit purpose:** Produce and revise precise, coherent and appropriately styled extended texts across demanding genres and purposes.
 - **Scope:** formal analysis, critique, proposal, reflective or creative genre as appropriate, lexical nuance, revision with trusted rubric.
 - **Advisory entry:** C1-U08, C2-U01, C2-U04; **priority:** P0. Design dependencies are not implemented unlocks.
-- **Independent exit task:** write and substantially revise a high-stakes style-neutral report or a nuanced critical essay. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Independent exit task:** write and substantially revise a high-stakes style-neutral report or a nuanced critical essay. Status: **ACADEMIC PASS / SOURCE ONLY**, weight 0; not a released or automatically scored activity.
 - **Audit before adding:** focus on communication and audience; AI scoring stays provisional and no automatic C2 designation. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** BATCH22 R1 DRAFT / ACADEMIC PENDING / WRITING DELIVERY HOLD.
+- **Status:** ACADEMIC PASS / SOURCE ONLY / FINAL OUTCOME AUDIT PENDING / WRITING DELIVERY HOLD.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | WRI-C2-03 (proposed) | Develop and revise a sustained critical essay | 60–80 min · one extended writing task with V1/V2 | Independent academic review pending; weight 0; held outside working. |
-| 2 | WRI-C2-04 (proposed) | Turn critical reflection into a precise professional proposal | 65–85 min · one dual-genre task with V1/V2 | Independent academic review pending; weight 0; held outside working. |
-| 3 | C2-U08-TRANSFER-01 (proposed) | Substantially revise a style-neutral editorial report and contrast a critical essay opening | 60–80 min advisory, split visits | Qualitative weight 0; independent review pending. |
+| 1 | WRI-C2-03 | Develop and revise a sustained critical essay | 60–80 min · one extended writing task with V1/V2 | NotebookLM PASS; weight 0; held outside working pending validated C2 rubric/delivery and trusted review. |
+| 2 | WRI-C2-04 | Turn critical reflection into a precise professional proposal | 65–85 min · one dual-genre task with V1/V2 | NotebookLM PASS; weight 0; held outside working pending validated C2 rubric/delivery and trusted review. |
+| 3 | C2-U08-TRANSFER-01 | Substantially revise a style-neutral editorial report and contrast a critical essay opening | 60–80 min advisory, split visits | NotebookLM PASS; qualitative weight 0; delivery pending. |
 
 ### C2-U09 — Diplomacy, disagreement and intercultural nuance
 - **Unit purpose:** Handle complex written/online exchanges and prepare nuanced spoken responses while adapting to differing viewpoints.
@@ -1083,3 +1083,6 @@ Exact R1 d7178aef3b2a128a468c64b9f3ea01b4ea741d0d, source token B21-R1-LANTERN-G
 
 ## Batch22 C2-U08 draft checkpoint — 2026-11-28
 Actual WRI-C1-01..07, held WRI-C2-01/02, GRA-C2-01/02 and REA-C2-03..07 progression audited. Distinct WRI-C2-03 mosaic exhibition critical essay and WRI-C2-04 chamber rehearsal reflective analysis/proposal, annotated independent models, explicit prompt analysis/brainstorm/outline/draft/substantive revision and qualitative repair; fresh tidal atlas editorial report transfer. All tasks weight 0, held outside working pending validated C2 rubric/delivery and trusted review. No MCQ inflation, no new scoring rule. R1 df42285c04bf5dbc9517d79ac00fcbe19ec6b9cd, token B22-R1-MOSAIC-REHEARSAL-ATLAS. Independent academic review pending; working 225/1453 and inventory unchanged. Historical Q5/media holds and owner #257 sequencing preserved. No import/runtime/merge/deploy/extra CI.
+
+## Batch22 C2-U08 Academic PASS checkpoint — 2026-11-28
+Exact R1 df42285c04bf5dbc9517d79ac00fcbe19ec6b9cd, token B22-R1-MOSAIC-REHEARSAL-ATLAS and three asset topics matched. WRI-C2-03/04 CORE1–4, genre distinction, substantive revision, independent models/repairs and fresh transfer PASS; MUST_FIX/OPTIONAL NONE. All tasks weight 0, unassessed; reviewer CORE-3 wording “Scored Practice / Writing Task” reconciled as independent unscored productive practice. Both lessons preserved in held staging, not in working pending validated C2 rubric/delivery and trusted review. Inventory C2-U08 status updated only, no primary mapped lesson or skill added. Working 225 lessons / 1453 activities; 224 mapped + REA-C1-01 unmapped. Historical Q5/media and prior C2 Writing holds retained; #257 sequencing unchanged. Engineering QA and final outcome audit pending; no runtime/import/merge/deploy/extra CI. Next C2-U09 audit actual prior source.
