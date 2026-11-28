@@ -34,6 +34,17 @@
         ],
         "verdict": "PASS",
         "integration": "AUTHORING_ONLY; schema/runtime QA pending"
+      },
+      {
+        "packet": "SLE-C1-U06-B10-R1-20261128",
+        "sourceGitBlob": "011189517d478f1ba25019529e4d35c3542ee314",
+        "lessonIds": [
+          "REA-C1-05",
+          "REA-C1-06",
+          "WRI-C1-02"
+        ],
+        "verdict": "PASS",
+        "integration": "AUTHORING_ONLY; schema/runtime QA pending"
       }
     ]
   },
@@ -281,7 +292,10 @@
         "GRA-B2-04",
         "GRA-C1-02",
         "GRA-C1-03",
-        "GRA-C1-04"
+        "GRA-C1-04",
+        "REA-C1-05",
+        "REA-C1-06",
+        "WRI-C1-02"
       ],
       "prerequisites": []
     },
@@ -47877,6 +47891,497 @@
               "grammar.discourse_reference"
             ],
             "evidence_weight": 1
+          }
+        ]
+      },
+      {
+        "id": "REA-C1-05",
+        "module": "reading",
+        "cefr_target": "C1",
+        "title": "Test the warrant behind a sustained argument",
+        "estimated_minutes": 35,
+        "objectives": [
+          "In a policy argument, distinguish evidence from the bridge that makes it relevant to a decision. Identify when an apparently stronger finding is actually answering a different question; formulate the strongest conclusion that survives the limitation."
+        ],
+        "explanation": {
+          "en": "**CORE-1 — Goal/context.** In a policy argument, distinguish evidence from the bridge that makes it relevant to a decision. Identify when an apparently stronger finding is actually answering a different question; formulate the strongest conclusion that survives the limitation.\n**CORE-2 — Teach/model.** A claim states what should be believed or done; grounds are observations or reasons; a warrant is the explicit or implicit bridge explaining why those grounds support the claim. A warrant can be reasonable but conditional. Ask: does the measure represent the intended outcome? Is the comparison relevant? What additional assumption connects the grounds to the recommendation? A rival explanation limits a causal warrant without making the observation disappear. Separate evidence of feasibility from evidence of effectiveness and generalisability. Independent miniature model: a local repair café reports that 18 of 20 booked repairs were completed. Its organiser recommends making the café permanent. Completion is evidence of feasibility under the pilot's conditions; the warrant that long-term demand and volunteer capacity will remain adequate needs separate support. A waiting list could strengthen evidence of demand, but not necessarily evidence of sustainable staffing. Neither finding is worthless just because it cannot settle the whole decision.\n\n**CORE-3 — Independent reading.** Read the reviewed fictional source displayed with this lesson before answering.\n\n**CORE-4 — Feedback/repair.** Use the post-submit option explanations. Q1/Q2/Q5 identify numerator, denominator and inferential bridge; Q3 separate mechanism from prevalence; Q4 match the measurement to the exact claimed benefit; Q6 distinguish the decision from an empirical verdict. Independent unassessed transfer: a fictional museum reports that 90% of visitors who downloaded an audio guide finished it; the museum proposes replacing printed guides. Identify the missing warrant and one relevant comparison, then state what the figure does establish. No auto-score.",
+          "vi": "Phân biệt dữ kiện, giả định nối dữ kiện với kết luận và phạm vi suy luận."
+        },
+        "examples": [
+          "A claim states what should be believed or done; grounds are observations or reasons; a warrant is the explicit or implicit bridge explaining why those grounds support the claim. A warrant can be reasonable but conditional. Ask: does the measure represent the intended outcome? Is the comparison relevant? What additional assumption connects the grounds to the recommendation? A rival explanation limits a causal warrant without making the observation disappear. Separate evidence of feasibility from evidence of effectiveness and generalisability. Independent miniature model: a local repair café reports that 18 of 20 booked repairs were completed. Its organiser recommends making the café permanent. Completion is evidence of feasibility under the pilot's conditions; the warrant that long-term demand and volunteer capacity will remain adequate needs separate support. A waiting list could strengthen evidence of demand, but not necessarily evidence of sustainable staffing. Neither finding is worthless just because it cannot settle the whole decision."
+        ],
+        "activities": [
+          {
+            "id": "REA-C1-05-Q1",
+            "type": "single_choice",
+            "prompt": "Which unstated warrant most directly underlies the advocates' claim of superior overall reliability?",
+            "options": [
+              {
+                "id": "A",
+                "text": "A reservation system should be preferred whenever it reduces staffing hours."
+              },
+              {
+                "id": "B",
+                "text": "Completed booked slots and planned visits in the earlier survey are comparable indicators of access for the intended population."
+              },
+              {
+                "id": "C",
+                "text": "Every library user values predictable collection more than spontaneous access."
+              },
+              {
+                "id": "D",
+                "text": "The interview participants were deliberately selected to oppose reservations."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "A reservation system should be preferred whenever it reduces staffing hours. — Different decision criterion.\nCompleted booked slots and planned visits in the earlier survey are comparable indicators of access for the intended population. — The inference depends on comparable measures and populations.\nEvery library user values predictable collection more than spontaneous access. — Stronger universal preference, not the necessary bridge for the percentage claim.\nThe interview participants were deliberately selected to oppose reservations. — Unsupported motive."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-05-Q2",
+            "type": "single_choice",
+            "prompt": "What does the 91% figure establish most directly?",
+            "options": [
+              {
+                "id": "A",
+                "text": "A high proportion of booked slots were completed during the trial."
+              },
+              {
+                "id": "B",
+                "text": "Ninety-one percent of all users could obtain their preferred slot."
+              },
+              {
+                "id": "C",
+                "text": "Overall access improved by thirteen percentage points."
+              },
+              {
+                "id": "D",
+                "text": "Staffing capacity increased by thirteen percent."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "A high proportion of booked slots were completed during the trial. — Correct denominator and scope.\nNinety-one percent of all users could obtain their preferred slot. — Different denominator and outcome.\nOverall access improved by thirteen percentage points. — Treats non-equivalent measures as comparable.\nStaffing capacity increased by thirteen percent. — Confuses unrelated quantities."
+            },
+            "skill_tags": [
+              "reading.detail"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-05-Q3",
+            "type": "single_choice",
+            "prompt": "Why does the author retain the interview evidence despite its selection limitation?",
+            "options": [
+              {
+                "id": "A",
+                "text": "It can replace the trial data with a representative access rate."
+              },
+              {
+                "id": "B",
+                "text": "It proves irregular caring duties explain most failed bookings."
+              },
+              {
+                "id": "C",
+                "text": "It identifies plausible benefits and barriers worth testing even though their prevalence is unknown."
+              },
+              {
+                "id": "D",
+                "text": "It establishes that users who stopped attending were all carers."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "C"
+            },
+            "feedback": {
+              "explanation_en": "It can replace the trial data with a representative access rate. — Unsupported.\nIt proves irregular caring duties explain most failed bookings. — Unwarranted prevalence and cause.\nIt identifies plausible benefits and barriers worth testing even though their prevalence is unknown. — Qualitative evidence can identify mechanisms without estimating frequency.\nIt establishes that users who stopped attending were all carers. — Invented."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-05-Q4",
+            "type": "single_choice",
+            "prompt": "Which additional observation would most directly test the staffing manager's warrant?",
+            "options": [
+              {
+                "id": "A",
+                "text": "The number of books in the collection catalogue."
+              },
+              {
+                "id": "B",
+                "text": "The proportion of reservations made on a Monday."
+              },
+              {
+                "id": "C",
+                "text": "The number of users who say the building is attractive."
+              },
+              {
+                "id": "D",
+                "text": "Comparable staff time available for and actually spent on complex enquiries under both arrangements."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "D"
+            },
+            "feedback": {
+              "explanation_en": "The number of books in the collection catalogue. — Does not measure staff reallocation.\nThe proportion of reservations made on a Monday. — Timing only.\nThe number of users who say the building is attractive. — Unrelated.\nComparable staff time available for and actually spent on complex enquiries under both arrangements. — Tests whether capacity becomes the claimed benefit."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-05-Q5",
+            "type": "single_choice",
+            "prompt": "Which distinction explains why the author does not recommend permanent replacement?",
+            "options": [
+              {
+                "id": "A",
+                "text": "A finding can support reliability for successful bookers without establishing overall access or staffing benefit."
+              },
+              {
+                "id": "B",
+                "text": "A finding is usable only when the trial has no limitations."
+              },
+              {
+                "id": "C",
+                "text": "A finding about reliability automatically disproves the staffing claim."
+              },
+              {
+                "id": "D",
+                "text": "A finding based on appointments proves that staffed windows are unnecessary."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "A finding can support reliability for successful bookers without establishing overall access or staffing benefit. — Preserves scope and the separate warrants.\nA finding is usable only when the trial has no limitations. — Unreasonable standard.\nA finding about reliability automatically disproves the staffing claim. — Different outcome.\nA finding based on appointments proves that staffed windows are unnecessary. — Unsupported conclusion."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-05-Q6",
+            "type": "single_choice",
+            "prompt": "What role does the final sentence play?",
+            "options": [
+              {
+                "id": "A",
+                "text": "It abandons the earlier concerns about access."
+              },
+              {
+                "id": "B",
+                "text": "It distinguishes a conditional recommendation for evidence gathering from a negative verdict on the system."
+              },
+              {
+                "id": "C",
+                "text": "It declares that both arrangements have been shown to perform equally."
+              },
+              {
+                "id": "D",
+                "text": "It shifts responsibility for the results to the interviewees."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "It abandons the earlier concerns about access. — Concerns remain.\nIt distinguishes a conditional recommendation for evidence gathering from a negative verdict on the system. — The conclusion is proportionate to uncertainty.\nIt declares that both arrangements have been shown to perform equally. — No comparable outcome established.\nIt shifts responsibility for the results to the interviewees. — Not stated."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          }
+        ],
+        "reading_asset": {
+          "id": "SRC-REA-C1-05",
+          "title": "Test the warrant behind a sustained argument — original reviewed source",
+          "body": "A district library is considering replacing two staffed evening hours with a reservation-based collection window. Advocates point to a six-week trial: collection appointments were completed in 91% of booked slots, compared with 78% of planned collection visits in a survey during the previous term. That difference has been described as evidence that the new arrangement is more reliable. Yet the measures are not quite equivalent. The appointment system records reservations only after a user has found an available slot, whereas the survey included users who intended to visit but changed their plans. Reliability for those who successfully reserve is not necessarily reliability for everyone who needs the service.\n\nA separate short interview study found that several shift workers valued knowing exactly when a book would be ready. Others, including people with irregular caring responsibilities, said that having to choose a slot was itself a barrier. Interviewees volunteered after seeing a notice inside the library; those who stopped attending may be missing. It would be equally rash to turn these accounts into proof that the system excludes most carers or to dismiss them because they do not supply a representative percentage.\n\nThe staffing manager makes a narrower argument: a predictable collection schedule might free staff to deal with more complex enquiries earlier in the day. The trial recorded hours assigned to collections, not time actually spent helping with enquiries. The case for reallocating staff therefore depends on whether the saved capacity can be used in the proposed way. A temporary arrangement that retains one staffed evening window and tests a comparable measure of unsuccessful access could examine that assumption without committing the library permanently. This is a case for a better comparison, not a declaration that reservations have failed.",
+          "display_to_learner": true
+        }
+      },
+      {
+        "id": "REA-C1-06",
+        "module": "reading",
+        "cefr_target": "C1",
+        "title": "Respond to the strongest counterclaim",
+        "estimated_minutes": 35,
+        "objectives": [
+          "Evaluate a serious objection to a policy even when its author accepts the policy's aim. Identify what the objection targets (evidence, warrant, feasibility or competing value) and choose a proportionate response without caricature, false balance or unsupported reassurance."
+        ],
+        "explanation": {
+          "en": "**CORE-1 — Goal/context.** Evaluate a serious objection to a policy even when its author accepts the policy's aim. Identify what the objection targets (evidence, warrant, feasibility or competing value) and choose a proportionate response without caricature, false balance or unsupported reassurance.\n**CORE-2 — Teach/model.** A strong counterclaim is one the opponent could recognise. Conceding a genuine limitation need not concede the whole conclusion. A rebuttal addresses the specific challenged premise or warrant; a mitigation changes the proposal to reduce a risk; a conditional decision states when it is defensible to proceed. Some trade-offs cannot be resolved by better wording: identify decision criteria and acknowledge remaining costs. Do not assume two sides have equal evidential support simply because both are quoted. Independent worked model: a community garden proposes longer opening hours. Neighbours accept the value of access but object that late activity may disturb adjacent homes. “Neighbours dislike gardening” misrepresents them. A daytime extension with a recorded noise review addresses the specific concern, but it does not prove that longer evening hours would be harmless. If the proposal depends on evening access, state the unresolved conflict rather than claiming a compromise solves everything.\n\n**CORE-3 — Independent reading.** Read the reviewed fictional source displayed with this lesson before answering.\n\n**CORE-4 — Feedback/repair.** Q1 restate the strongest objection in terms its author would accept; Q2 map which concern a response actually covers; Q3/Q6 distinguish mitigation/conditional action from a guarantee; Q4 identify the separate measured outcome; Q5 state unresolved decision criteria. Independent unassessed transfer: a community centre plans to centralise room bookings; small clubs support simpler booking but fear losing access to recurring low-cost slots. Formulate their strongest objection, a plausible conditional mitigation and one residual risk. No auto-score.",
+          "vi": "Xác định phản biện mạnh nhất, xử lý đúng mối lo và điều kiện quyết định."
+        },
+        "examples": [
+          "A strong counterclaim is one the opponent could recognise. Conceding a genuine limitation need not concede the whole conclusion. A rebuttal addresses the specific challenged premise or warrant; a mitigation changes the proposal to reduce a risk; a conditional decision states when it is defensible to proceed. Some trade-offs cannot be resolved by better wording: identify decision criteria and acknowledge remaining costs. Do not assume two sides have equal evidential support simply because both are quoted. Independent worked model: a community garden proposes longer opening hours. Neighbours accept the value of access but object that late activity may disturb adjacent homes. “Neighbours dislike gardening” misrepresents them. A daytime extension with a recorded noise review addresses the specific concern, but it does not prove that longer evening hours would be harmless. If the proposal depends on evening access, state the unresolved conflict rather than claiming a compromise solves everything."
+        ],
+        "activities": [
+          {
+            "id": "REA-C1-06-Q1",
+            "type": "single_choice",
+            "prompt": "Which account gives the association's strongest objection without misrepresenting it?",
+            "options": [
+              {
+                "id": "A",
+                "text": "It accepts the access objective but questions trial feasibility and the distribution of avoidable delivery costs."
+              },
+              {
+                "id": "B",
+                "text": "It rejects improving buses because it wants all road space reserved for cars."
+              },
+              {
+                "id": "C",
+                "text": "It insists a permanent solution must be proven before any trial."
+              },
+              {
+                "id": "D",
+                "text": "It denies that buses lose time on Market Road."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "It accepts the access objective but questions trial feasibility and the distribution of avoidable delivery costs. — Captures agreement and actual objection.\nIt rejects improving buses because it wants all road space reserved for cars. — Invents opposition and motive.\nIt insists a permanent solution must be proven before any trial. — Explicitly rejected in B.\nIt denies that buses lose time on Market Road. — Not claimed."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-06-Q2",
+            "type": "single_choice",
+            "prompt": "Which part of Source A already responds to one concern but leaves another open?",
+            "options": [
+              {
+                "id": "A",
+                "text": "The eight-minute delay establishes the safety of alternative loading."
+              },
+              {
+                "id": "B",
+                "text": "The boarding-time measure guarantees deliveries can move later."
+              },
+              {
+                "id": "C",
+                "text": "Monitoring displaced traffic addresses a spillover concern, but not the practicality of loading for time-sensitive deliveries."
+              },
+              {
+                "id": "D",
+                "text": "Keeping loading outside the peak removes all peak delivery needs."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "C"
+            },
+            "feedback": {
+              "explanation_en": "The eight-minute delay establishes the safety of alternative loading. — Different evidence.\nThe boarding-time measure guarantees deliveries can move later. — No such link.\nMonitoring displaced traffic addresses a spillover concern, but not the practicality of loading for time-sensitive deliveries. — Identifies partial response and residual concern.\nKeeping loading outside the peak removes all peak delivery needs. — Contradicts B."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-06-Q3",
+            "type": "single_choice",
+            "prompt": "Which revision most directly mitigates the specific objection while retaining the trial's stated purpose?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Measure only mean bus speed because that is easier to compare."
+              },
+              {
+                "id": "B",
+                "text": "Investigate and agree workable loading provision for affected businesses before the reversible trial, with explicit adjustment or stopping criteria."
+              },
+              {
+                "id": "C",
+                "text": "Cancel all bus improvements regardless of future evidence."
+              },
+              {
+                "id": "D",
+                "text": "Promise that no business will suffer any inconvenience."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "Measure only mean bus speed because that is easier to compare. — Narrower than the stated benefit and ignores risk.\nInvestigate and agree workable loading provision for affected businesses before the reversible trial, with explicit adjustment or stopping criteria. — Addresses feasibility and distribution while retaining conditional test.\nCancel all bus improvements regardless of future evidence. — Disproportionate, not warranted.\nPromise that no business will suffer any inconvenience. — Unsupported guarantee."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-06-Q4",
+            "type": "single_choice",
+            "prompt": "Which evidence could support a claim that the trial improves bus reliability without settling the delivery objection?",
+            "options": [
+              {
+                "id": "A",
+                "text": "A list of shops that support the proposal."
+              },
+              {
+                "id": "B",
+                "text": "A count of buses repainted during the trial."
+              },
+              {
+                "id": "C",
+                "text": "A survey of delivery drivers' preferred vehicle colour."
+              },
+              {
+                "id": "D",
+                "text": "Comparable distributions of bus travel times showing reduced variability while loading feasibility remains unmeasured."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "D"
+            },
+            "feedback": {
+              "explanation_en": "A list of shops that support the proposal. — Not reliability evidence.\nA count of buses repainted during the trial. — Irrelevant.\nA survey of delivery drivers' preferred vehicle colour. — Irrelevant.\nComparable distributions of bus travel times showing reduced variability while loading feasibility remains unmeasured. — Addresses reliability but not separate costs."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-06-Q5",
+            "type": "single_choice",
+            "prompt": "Which conclusion avoids false compromise?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Both positions deserve exactly equal weight, so half of every proposal must be implemented."
+              },
+              {
+                "id": "B",
+                "text": "The parties share an access goal but disagree about acceptable trial conditions; decision-makers must test bus outcomes and loading feasibility, not split the difference mechanically."
+              },
+              {
+                "id": "C",
+                "text": "Because there is disagreement, neither source contains useful evidence."
+              },
+              {
+                "id": "D",
+                "text": "The bus delay alone settles every concern about the proposed trial."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "Both positions deserve exactly equal weight, so half of every proposal must be implemented. — Arbitrary equality and solution.\nThe parties share an access goal but disagree about acceptable trial conditions; decision-makers must test bus outcomes and loading feasibility, not split the difference mechanically. — Recognises shared aim and unresolved criterion.\nBecause there is disagreement, neither source contains useful evidence. — Dismisses evidence.\nThe bus delay alone settles every concern about the proposed trial. — Overextends evidence."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C1-06-Q6",
+            "type": "single_choice",
+            "prompt": "Which response is a concession plus a conditional decision rather than unsupported reassurance?",
+            "options": [
+              {
+                "id": "A",
+                "text": "“The association is mistaken; a temporary trial cannot have costs.”"
+              },
+              {
+                "id": "B",
+                "text": "“Since deliveries matter, bus reliability does not matter.”"
+              },
+              {
+                "id": "C",
+                "text": "“Peak delivery constraints are real; proceed only if a workable loading arrangement and monitored adjustment rule can be agreed.”"
+              },
+              {
+                "id": "D",
+                "text": "“All affected shops have accepted the revised arrangement.”"
+              }
+            ],
+            "answer": {
+              "correct_option_id": "C"
+            },
+            "feedback": {
+              "explanation_en": "“The association is mistaken; a temporary trial cannot have costs.” — False assumption.\n“Since deliveries matter, bus reliability does not matter.” — False dichotomy.\n“Peak delivery constraints are real; proceed only if a workable loading arrangement and monitored adjustment rule can be agreed.” — Acknowledges constraint and condition without guaranteeing success.\n“All affected shops have accepted the revised arrangement.” — Invents agreement."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          }
+        ],
+        "reading_asset": {
+          "id": "SRC-REA-C1-06",
+          "title": "Respond to the strongest counterclaim — original reviewed source",
+          "body": "Source A — Transport working group's recommendation:\nThe council should test a bus-priority lane on Market Road during the weekday morning peak, not immediately establish a permanent all-day lane. Vehicle logs show buses lose an average of eight minutes on this stretch between 7:30 and 9:00, but the logs cannot identify which part of the delay comes from queues rather than boarding. A short, reversible trial could separate those effects, provided the evaluation records boarding time, travel time and displaced traffic on neighbouring streets. The benefit sought is reliable access, not simply a higher average bus speed. A peak-only arrangement would also retain the existing kerbside loading space outside those hours.\n\nSource B — Response from an association of local shops:\nThe association does not dispute that unreliable bus journeys can harm access to the market. Our concern is that a trial designed around bus averages may fail to notice who bears its costs. Some deliveries occur during the morning peak because goods must arrive before shops open; moving all deliveries to later hours is not feasible for those businesses. The working group has proposed monitoring traffic on adjacent streets, which is useful, but that does not establish whether alternative loading arrangements are practical or safe. Before endorsing even a trial, we would need a plan for the most time-sensitive deliveries and a clear rule for adjusting or stopping the trial if access deteriorates. We are not asking the council to demonstrate a permanent solution in advance; we are asking that the test itself not impose avoidable costs on a small group that cannot easily absorb them.",
+          "display_to_learner": true
+        }
+      },
+      {
+        "id": "WRI-C1-02",
+        "module": "writing",
+        "cefr_target": "C1",
+        "title": "Develop and revise a sustained qualified position",
+        "estimated_minutes": 45,
+        "objectives": [
+          "Write a source-grounded recommendation for a defined decision-maker, with explicit warrant, serious counterclaim, proportionate rebuttal or mitigation, unresolved limitation and a decision rule. Target C1, 45 minutes or across visits; unassessed pending trusted review."
+        ],
+        "explanation": {
+          "en": "**CORE-1 — Goal/context.** Write a source-grounded recommendation for a defined decision-maker, with explicit warrant, serious counterclaim, proportionate rebuttal or mitigation, unresolved limitation and a decision rule. Target C1, 45 minutes or across visits; unassessed pending trusted review.\n**CORE-2 — Teach/model.** Plan decision and criteria → grounds and warrant → strongest counterclaim → what concession changes → residual limitation and conditional recommendation. The reader should see why the grounds support the proposed action rather than merely the topic. Attribute observations to sources, do not invent quotations or consensus, and avoid a token objection. A revision should repair an inferential gap, not merely add connectors. Independent demonstration (different topic): a neighbourhood tool-share records high return rates among members, but potential borrowers without storage space report access difficulty. An argument for expanding the service may warrant a small pilot using collection lockers, if access and maintenance can be tested. It should explicitly concede that high returns do not show equitable access, and state how non-member access would be measured. A recommendation to expand immediately for everyone would exceed the evidence. The demonstration is not a template answer to the assessed topic.\n\n**CORE-3 — Independent Writing source bundle (fictional).**\nA school consortium is deciding whether to extend shared online revision workshops next term. The decision is about a limited extension, not a mandatory system-wide change.\nA — Trial coordinator: six schools offered eight optional online workshops. Among the 84 pupils who attended at least four, 68 submitted a practice assignment on time; among 76 registered pupils who attended fewer than four, 43 did. These groups were self-selected; prior attainment and available study time were not controlled. Attendance logs establish participation, not learning gains.\nB — Access officer: interviews with 14 non-attending pupils identified several scheduling conflicts and unreliable home connections. The interviews were voluntary and cannot estimate the prevalence of barriers. Two schools could provide supervised after-school access, but staffing is not yet secured.\nC — Finance note: a six-week extension with two supervised access sessions per school is within a provisional budget estimate if staffing is confirmed. A permanent rollout requires a separate decision. The consortium wants a fair participation measure and comparable learning evidence before deciding on further expansion.\n\n**CORE-4 — Feedback/repair.** Show UNASSESSED / trusted review pending. Suggested existing rubric RUBRIC-WRITING-C1, subject to compatibility QA; no new rubric or grade. Self-check source attribution, denominator, claim/warrant link, fair objection, residual risk, meaningful revision and audience-appropriate organisation. Word range is guidance, not a quality score. No automated semantic grading, no automatic C1 judgement.",
+          "vi": "Viết lập luận có căn cứ, phản biện công bằng và tự hiệu chỉnh. Không tự động chấm chất lượng."
+        },
+        "examples": [
+          "Plan decision and criteria → grounds and warrant → strongest counterclaim → what concession changes → residual limitation and conditional recommendation. The reader should see why the grounds support the proposed action rather than merely the topic. Attribute observations to sources, do not invent quotations or consensus, and avoid a token objection. A revision should repair an inferential gap, not merely add connectors. Independent demonstration (different topic): a neighbourhood tool-share records high return rates among members, but potential borrowers without storage space report access difficulty. An argument for expanding the service may warrant a small pilot using collection lockers, if access and maintenance can be tested. It should explicitly concede that high returns do not show equitable access, and state how non-member access would be measured. A recommendation to expand immediately for everyone would exceed the evidence. The demonstration is not a template answer to the assessed topic."
+        ],
+        "activities": [
+          {
+            "id": "WRI-C1-02-Q1",
+            "type": "extended_response",
+            "prompt": "Write a 260–340-word recommendation to the consortium board. Take any defensible position. State the decision and criteria; report the observed groups accurately; make the inferential warrant explicit; address the strongest access-related objection and its evidential limit; propose a feasible conditional response or explain why one is not justified; specify what evidence would change the decision. Then add a brief revision note identifying one claim or transition you strengthened and why. Do not invent causal findings, staffing approval or consensus.",
+            "answer": null,
+            "feedback": {
+              "pending_message": "UNASSESSED — trusted review pending. No automatic quality grade or CEFR certification."
+            },
+            "skill_tags": [
+              "writing.task_understanding",
+              "writing.organization",
+              "writing.cohesion",
+              "writing.idea_development",
+              "writing.register",
+              "writing.grammar",
+              "writing.vocabulary"
+            ],
+            "evidence_weight": 0,
+            "rubric_id": "RUBRIC-WRITING-C1",
+            "review_mode": "assisted_ai_or_human",
+            "word_range_guidance": {
+              "min": 260,
+              "max": 340,
+              "not_a_quality_score": true
+            }
           }
         ]
       }
