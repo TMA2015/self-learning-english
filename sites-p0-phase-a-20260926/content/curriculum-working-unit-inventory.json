@@ -1,0 +1,911 @@
+{
+  "status": "PRIMARY_MAPPING_ONLY_NOT_OUTCOME_COVERAGE",
+  "milestone": "Educational Curriculum 1.0",
+  "lessons": 228,
+  "activities": 1471,
+  "mapped": 228,
+  "unmapped": [],
+  "units": [
+    {
+      "id": "A1-U01",
+      "title": "People and first exchanges",
+      "primaryLessonIds": [
+        "GRA-A1-01",
+        "GRA-A1-02",
+        "WRI-A1-01",
+        "SPE-A1-01"
+      ],
+      "skills": [
+        "grammar",
+        "speaking",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "A1-U02",
+      "title": "Family and descriptions",
+      "primaryLessonIds": [
+        "WRI-A1-03",
+        "VOC-A1-04",
+        "GRA-A1-09",
+        "GRA-A1-10",
+        "LIS-A1-04"
+      ],
+      "skills": [
+        "grammar",
+        "listening",
+        "vocabulary",
+        "writing"
+      ],
+      "status": "ACADEMIC_PASS_TRANSFER_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING"
+    },
+    {
+      "id": "A1-U03",
+      "title": "School, time and routines",
+      "primaryLessonIds": [
+        "VOC-A1-01",
+        "GRA-A1-12",
+        "REA-A1-08",
+        "WRI-A1-08"
+      ],
+      "skills": [
+        "grammar",
+        "reading",
+        "vocabulary",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "A1-U04",
+      "title": "Daily life and frequency",
+      "primaryLessonIds": [
+        "GRA-A1-03",
+        "VOC-A1-02",
+        "WRI-A1-04"
+      ],
+      "skills": [
+        "grammar",
+        "vocabulary",
+        "writing"
+      ],
+      "status": "ACADEMIC_PASS_TRANSFER_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING"
+    },
+    {
+      "id": "A1-U05",
+      "title": "Food, objects and quantities",
+      "primaryLessonIds": [
+        "GRA-A1-04",
+        "LIS-A1-03",
+        "REA-A1-06",
+        "WRI-A1-06"
+      ],
+      "skills": [
+        "grammar",
+        "listening",
+        "reading",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "A1-U06",
+      "title": "Home, town and directions",
+      "primaryLessonIds": [
+        "GRA-A1-05",
+        "GRA-A1-06",
+        "VOC-A1-03",
+        "REA-A1-09",
+        "WRI-A1-09"
+      ],
+      "skills": [
+        "grammar",
+        "reading",
+        "vocabulary",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "A1-U07",
+      "title": "Hobbies, ability and invitations",
+      "primaryLessonIds": [
+        "WRI-A1-02",
+        "GRA-A1-07"
+      ],
+      "skills": [
+        "grammar",
+        "writing"
+      ],
+      "status": "ACADEMIC_PASS_TRANSFER_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING"
+    },
+    {
+      "id": "A1-U08",
+      "title": "Questions and everyday instructions",
+      "primaryLessonIds": [
+        "GRA-A1-08",
+        "GRA-A1-11",
+        "REA-A1-07",
+        "WRI-A1-07"
+      ],
+      "skills": [
+        "grammar",
+        "reading",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "A1-U09",
+      "title": "Messages, notices and evidence",
+      "primaryLessonIds": [
+        "REA-A1-01",
+        "REA-A1-02",
+        "REA-A1-03",
+        "REA-A1-04",
+        "LIS-A1-01",
+        "LIS-A1-02",
+        "LIS-A1-05"
+      ],
+      "skills": [
+        "listening",
+        "reading"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "A1-U10",
+      "title": "A1 integrated task and self-check",
+      "primaryLessonIds": [
+        "REA-A1-05",
+        "LIS-A1-06",
+        "WRI-A1-05"
+      ],
+      "skills": [
+        "listening",
+        "reading",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "A2-U01",
+      "title": "Actions now versus routines",
+      "primaryLessonIds": [
+        "GRA-A2-01",
+        "VOC-A2-01",
+        "SPE-A2-01",
+        "PRO-A2-01",
+        "GRA-A2-07"
+      ],
+      "skills": [
+        "grammar",
+        "pronunciation",
+        "speaking",
+        "vocabulary"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "A2-U02",
+      "title": "Past events and simple stories",
+      "primaryLessonIds": [
+        "GRA-A2-02",
+        "GRA-A2-08",
+        "PRO-A2-02",
+        "PRO-A2-03",
+        "REA-A2-11",
+        "WRI-A2-10"
+      ],
+      "skills": [
+        "grammar",
+        "pronunciation",
+        "reading",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "A2-U03",
+      "title": "Shopping, food and quantities",
+      "primaryLessonIds": [
+        "GRA-A2-03",
+        "VOC-A2-03",
+        "VOC-A2-05",
+        "REA-A2-09",
+        "WRI-A2-08"
+      ],
+      "skills": [
+        "grammar",
+        "reading",
+        "vocabulary",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "A2-U04",
+      "title": "Choices, comparisons and reasons",
+      "primaryLessonIds": [
+        "GRA-A2-04",
+        "LIS-A2-03",
+        "REA-A2-12",
+        "WRI-A2-11"
+      ],
+      "skills": [
+        "grammar",
+        "listening",
+        "reading",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "A2-U05",
+      "title": "Plans, arrangements and predictions",
+      "primaryLessonIds": [
+        "GRA-A2-05",
+        "GRA-A2-11",
+        "LIS-A2-02"
+      ],
+      "skills": [
+        "grammar",
+        "listening"
+      ],
+      "status": "ACADEMIC_PASS_TRANSFER_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING"
+    },
+    {
+      "id": "A2-U06",
+      "title": "Rules, problems and advice",
+      "primaryLessonIds": [
+        "GRA-A2-06",
+        "GRA-A2-12",
+        "GRA-A2-13",
+        "GRA-A2-14",
+        "GRA-A2-15",
+        "VOC-A2-04",
+        "SPE-A2-02",
+        "LIS-A2-06",
+        "VOC-A2-06"
+      ],
+      "skills": [
+        "grammar",
+        "listening",
+        "speaking",
+        "vocabulary"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "A2-U07",
+      "title": "Experiences and recent changes",
+      "primaryLessonIds": [
+        "GRA-A2-09",
+        "GRA-A2-10",
+        "REA-A2-10",
+        "WRI-A2-09"
+      ],
+      "skills": [
+        "grammar",
+        "reading",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "A2-U08",
+      "title": "Travel and community information",
+      "primaryLessonIds": [
+        "REA-A2-02",
+        "REA-A2-01",
+        "LIS-A2-01",
+        "REA-A2-03",
+        "VOC-A2-02",
+        "REA-A2-04",
+        "REA-A2-05",
+        "REA-A2-06",
+        "LIS-A2-04",
+        "LIS-A2-05",
+        "REA-A2-07"
+      ],
+      "skills": [
+        "listening",
+        "reading",
+        "vocabulary"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "A2-U09",
+      "title": "Relevant ideas, messages and paragraphs",
+      "primaryLessonIds": [
+        "WRI-A2-01",
+        "WRI-A2-02",
+        "WRI-A2-03",
+        "GRA-A2-16",
+        "WRI-A2-04",
+        "WRI-A2-05",
+        "WRI-A2-06"
+      ],
+      "skills": [
+        "grammar",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "A2-U10",
+      "title": "A2 integrated transfer checkpoint",
+      "primaryLessonIds": [
+        "REA-A2-08",
+        "LIS-A2-07",
+        "WRI-A2-07"
+      ],
+      "skills": [
+        "listening",
+        "reading",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B1-U01",
+      "title": "Connected narratives and experiences",
+      "primaryLessonIds": [
+        "GRA-B1-01",
+        "GRA-B1-02",
+        "GRA-B1-03",
+        "GRA-B1-04",
+        "REA-B1-09",
+        "WRI-B1-10"
+      ],
+      "skills": [
+        "grammar",
+        "reading",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B1-U02",
+      "title": "Opinions, claims and evidence",
+      "primaryLessonIds": [
+        "SPE-B1-01",
+        "VOC-B1-04",
+        "VOC-B1-06",
+        "REA-B1-06",
+        "REA-B1-08",
+        "WRI-B1-09"
+      ],
+      "skills": [
+        "reading",
+        "speaking",
+        "vocabulary",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B1-U03",
+      "title": "Reading between lines",
+      "primaryLessonIds": [
+        "GRA-B1-10",
+        "REA-B1-04",
+        "REA-B1-05"
+      ],
+      "skills": [
+        "grammar",
+        "reading"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B1-U04",
+      "title": "Listening to viewpoints and intentions",
+      "primaryLessonIds": [
+        "LIS-B1-01",
+        "LIS-B1-02",
+        "LIS-B1-03",
+        "LIS-B1-04"
+      ],
+      "skills": [
+        "listening"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B1-U05",
+      "title": "Hypotheticals and responsible advice",
+      "primaryLessonIds": [
+        "GRA-B1-05",
+        "GRA-B1-06",
+        "GRA-B1-07",
+        "REA-B1-10",
+        "WRI-B1-11"
+      ],
+      "skills": [
+        "grammar",
+        "reading",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B1-U06",
+      "title": "Community, environment and information",
+      "primaryLessonIds": [
+        "VOC-B1-01",
+        "REA-B1-01",
+        "GRA-B1-08",
+        "REA-B1-02",
+        "LIS-B1-05",
+        "LIS-B1-06",
+        "VOC-B1-07",
+        "WRI-B1-12"
+      ],
+      "skills": [
+        "grammar",
+        "listening",
+        "reading",
+        "vocabulary",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B1-U07",
+      "title": "Digital information and critical reading",
+      "primaryLessonIds": [
+        "REA-B1-03",
+        "LIS-B1-07"
+      ],
+      "skills": [
+        "listening",
+        "reading"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B1-U08",
+      "title": "Functional conversations and mediation",
+      "primaryLessonIds": [
+        "GRA-B1-09",
+        "GRA-B1-12",
+        "VOC-B1-03",
+        "SPE-B1-02",
+        "PRO-B1-01",
+        "SPE-B1-03",
+        "PRO-B1-02",
+        "VOC-B1-05"
+      ],
+      "skills": [
+        "grammar",
+        "pronunciation",
+        "speaking",
+        "vocabulary"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B1-U09",
+      "title": "Opinion writing, structure and revision",
+      "primaryLessonIds": [
+        "WRI-B1-01",
+        "GRA-B1-11",
+        "VOC-B1-02",
+        "WRI-B1-02",
+        "WRI-B1-03",
+        "WRI-B1-04",
+        "WRI-B1-05",
+        "WRI-B1-06",
+        "WRI-B1-07"
+      ],
+      "skills": [
+        "grammar",
+        "vocabulary",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B1-U10",
+      "title": "B1 integrated transfer checkpoint",
+      "primaryLessonIds": [
+        "REA-B1-07",
+        "LIS-B1-08",
+        "WRI-B1-08"
+      ],
+      "skills": [
+        "listening",
+        "reading",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B2-U01",
+      "title": "Complex time, modality and nuance",
+      "primaryLessonIds": [
+        "GRA-B2-01",
+        "GRA-B2-02",
+        "GRA-B2-03",
+        "GRA-B2-04",
+        "REA-B2-02",
+        "WRI-B2-01"
+      ],
+      "skills": [
+        "grammar",
+        "reading",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B2-U02",
+      "title": "Precision vocabulary and register",
+      "primaryLessonIds": [
+        "VOC-B2-01",
+        "VOC-B2-02",
+        "VOC-B2-03",
+        "REA-B2-03",
+        "WRI-B2-02"
+      ],
+      "skills": [
+        "reading",
+        "vocabulary",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B2-U03",
+      "title": "Analytical reading and source evaluation",
+      "primaryLessonIds": [
+        "REA-B2-01",
+        "REA-B2-04",
+        "REA-B2-05",
+        "VOC-B2-04",
+        "WRI-B2-03"
+      ],
+      "skills": [
+        "reading",
+        "vocabulary",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B2-U04",
+      "title": "Lecture and discussion listening",
+      "primaryLessonIds": [],
+      "skills": [],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B2-U05",
+      "title": "Comparing and synthesising sources",
+      "primaryLessonIds": [
+        "REA-B2-06",
+        "WRI-B2-04",
+        "REA-B2-07",
+        "WRI-B2-05"
+      ],
+      "skills": [
+        "reading",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B2-U06",
+      "title": "Argument, counterargument and qualification",
+      "primaryLessonIds": [
+        "REA-B2-08",
+        "WRI-B2-06",
+        "REA-B2-09",
+        "WRI-B2-07"
+      ],
+      "skills": [
+        "reading",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B2-U07",
+      "title": "Academic-style organised writing",
+      "primaryLessonIds": [
+        "REA-B2-10",
+        "WRI-B2-08",
+        "WRI-B2-09"
+      ],
+      "skills": [
+        "reading",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B2-U08",
+      "title": "Explaining and facilitating discussions",
+      "primaryLessonIds": [
+        "REA-B2-11",
+        "REA-B2-12",
+        "WRI-B2-10"
+      ],
+      "skills": [
+        "reading",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B2-U09",
+      "title": "Society, technology and global challenges",
+      "primaryLessonIds": [
+        "REA-B2-13",
+        "REA-B2-14",
+        "WRI-B2-11"
+      ],
+      "skills": [
+        "reading",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "B2-U10",
+      "title": "B2 synthesis checkpoint and exam transfer",
+      "primaryLessonIds": [
+        "REA-B2-15",
+        "LIS-B2-01",
+        "WRI-B2-12"
+      ],
+      "skills": [
+        "listening",
+        "reading",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "C1-U01",
+      "title": "Coherent extended discourse and information flow",
+      "primaryLessonIds": [
+        "REA-C1-02",
+        "GRA-C1-01",
+        "WRI-C1-01"
+      ],
+      "skills": [
+        "grammar",
+        "reading",
+        "writing"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "C1-U02",
+      "title": "Implicit meaning and complex reading",
+      "primaryLessonIds": [
+        "REA-C1-01",
+        "REA-C1-03",
+        "REA-C1-04"
+      ],
+      "skills": [
+        "reading"
+      ],
+      "status": "ACADEMIC_PASS_MAPPING_ONLY_FINAL_OUTCOME_AUDIT_PENDING"
+    },
+    {
+      "id": "C1-U03",
+      "title": "Lectures, debates and speaker positioning",
+      "primaryLessonIds": [],
+      "skills": [],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "C1-U04",
+      "title": "Lexical range, collocation and register",
+      "primaryLessonIds": [
+        "VOC-C1-01",
+        "VOC-C1-02",
+        "VOC-C1-03"
+      ],
+      "skills": [
+        "vocabulary"
+      ],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "C1-U05",
+      "title": "Grammar for precision, stance and emphasis",
+      "primaryLessonIds": [
+        "GRA-C1-02",
+        "GRA-C1-03",
+        "GRA-C1-04"
+      ],
+      "skills": [
+        "grammar"
+      ],
+      "status": "ACADEMIC_PASS_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING"
+    },
+    {
+      "id": "C1-U06",
+      "title": "Critical argument, counterclaims and qualification",
+      "primaryLessonIds": [
+        "REA-C1-05",
+        "REA-C1-06",
+        "WRI-C1-02"
+      ],
+      "skills": [
+        "reading",
+        "writing"
+      ],
+      "status": "ACADEMIC_PASS_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING"
+    },
+    {
+      "id": "C1-U07",
+      "title": "Synthesis and mediation across sources",
+      "primaryLessonIds": [
+        "REA-C1-07",
+        "REA-C1-08",
+        "WRI-C1-03"
+      ],
+      "skills": [
+        "reading",
+        "writing"
+      ],
+      "status": "ACADEMIC_PASS_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING"
+    },
+    {
+      "id": "C1-U08",
+      "title": "Reports, proposals and specialist communication",
+      "primaryLessonIds": [
+        "REA-C1-09",
+        "WRI-C1-04",
+        "WRI-C1-05"
+      ],
+      "skills": [
+        "reading",
+        "writing"
+      ],
+      "status": "ACADEMIC_PASS_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING"
+    },
+    {
+      "id": "C1-U09",
+      "title": "High-level interaction and intercultural pragmatics",
+      "primaryLessonIds": [
+        "REA-C1-10",
+        "REA-C1-11",
+        "WRI-C1-06"
+      ],
+      "skills": [
+        "reading",
+        "writing"
+      ],
+      "status": "ACADEMIC_PASS_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING"
+    },
+    {
+      "id": "C1-U10",
+      "title": "C1 integrated performance and revision",
+      "primaryLessonIds": [
+        "REA-C1-12",
+        "WRI-C1-07"
+      ],
+      "skills": [
+        "reading",
+        "writing"
+      ],
+      "status": "ACADEMIC_PASS_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING_MEDIA_HOLD"
+    },
+    {
+      "id": "C2-U01",
+      "title": "Fine shades of meaning and pragmatic precision",
+      "primaryLessonIds": [
+        "VOC-C2-01",
+        "VOC-C2-02"
+      ],
+      "skills": [
+        "vocabulary"
+      ],
+      "status": "ACADEMIC_PASS_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING_WRITING_DELIVERY_HOLD"
+    },
+    {
+      "id": "C2-U02",
+      "title": "Dense texts, rhetoric and layered interpretation",
+      "primaryLessonIds": [
+        "REA-C2-01",
+        "REA-C2-02"
+      ],
+      "skills": [
+        "reading"
+      ],
+      "status": "ACADEMIC_PASS_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING"
+    },
+    {
+      "id": "C2-U03",
+      "title": "Complex spoken language across contexts",
+      "primaryLessonIds": [],
+      "skills": [],
+      "status": "COVERAGE_NOT_YET_AUDITED"
+    },
+    {
+      "id": "C2-U04",
+      "title": "Rhetorical strategy and audience adaptation",
+      "primaryLessonIds": [
+        "REA-C2-03"
+      ],
+      "skills": [
+        "reading"
+      ],
+      "status": "ACADEMIC_PASS_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING_WRITING_DELIVERY_HOLD"
+    },
+    {
+      "id": "C2-U05",
+      "title": "Flexible syntax and stylistic control",
+      "primaryLessonIds": [
+        "GRA-C2-01",
+        "GRA-C2-02"
+      ],
+      "skills": [
+        "grammar"
+      ],
+      "status": "ACADEMIC_PASS_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING"
+    },
+    {
+      "id": "C2-U06",
+      "title": "Evaluating reasoning and conflicting evidence",
+      "primaryLessonIds": [
+        "REA-C2-04",
+        "REA-C2-05"
+      ],
+      "skills": [
+        "reading"
+      ],
+      "status": "ACADEMIC_PASS_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING"
+    },
+    {
+      "id": "C2-U07",
+      "title": "Advanced mediation and reconstruction",
+      "primaryLessonIds": [
+        "REA-C2-06",
+        "REA-C2-07"
+      ],
+      "skills": [
+        "reading"
+      ],
+      "status": "ACADEMIC_PASS_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING"
+    },
+    {
+      "id": "C2-U08",
+      "title": "Sophisticated writing and genre versatility",
+      "primaryLessonIds": [],
+      "skills": [],
+      "status": "ACADEMIC_PASS_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING_WRITING_DELIVERY_HOLD"
+    },
+    {
+      "id": "C2-U09",
+      "title": "Diplomacy, disagreement and intercultural nuance",
+      "primaryLessonIds": [
+        "REA-C2-08",
+        "REA-C2-09"
+      ],
+      "skills": [
+        "reading"
+      ],
+      "status": "ACADEMIC_PASS_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING"
+    },
+    {
+      "id": "C2-U10",
+      "title": "C2 integrated synthesis and lifelong transfer",
+      "primaryLessonIds": [
+        "REA-C2-10"
+      ],
+      "skills": [
+        "reading"
+      ],
+      "status": "ACADEMIC_PASS_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING_MEDIA_AND_WRITING_DELIVERY_HOLD"
+    }
+  ]
+}

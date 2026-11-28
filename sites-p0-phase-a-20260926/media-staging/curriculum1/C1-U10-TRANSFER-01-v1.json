@@ -1,0 +1,55 @@
+{
+  "schema": "g-learning-audio-production-v1",
+  "application_version": "1.2",
+  "lesson_id": "C1-U10-TRANSFER-01",
+  "filename": "C1-U10-TRANSFER-01-v1.mp3",
+  "audio_format": "mp3",
+  "sample_rate": 24000,
+  "duration_seconds": 83.929,
+  "sha256": "a80eed5d52c6e881c4761583c596f6313f14b0f6f15c6fa083a1593ae6eacd58",
+  "generator": {
+    "engine": "Kokoro",
+    "package": "0.9.4",
+    "inference": "local",
+    "preset": "Listening A2",
+    "mode": "Dialogue A/B",
+    "voice_a": "bf_emma",
+    "voice_b": "bm_fable",
+    "speed": 1.0017,
+    "pause_seconds": 0.3514,
+    "balance_dialogue_loudness": false
+  },
+  "turns": [
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "The revised booking split is useful because it corrects what we tell the committee about the trial. But I had originally hoped the register would help us decide whether people were finding the demonstrations understandable. It cannot do that. A booking can cover several people, and the record doesn't tell us what any of them understood. We shouldn't use a corrected administrative figure to answer a different educational question.",
+      "duration_seconds": 22.775,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_fable",
+      "text": "That's also why I would be cautious about the comments we collected at the exit. Several people mentioned that they enjoyed seeing the equipment in use. A few asked for more time to discuss the explanation. Those comments came from people who chose to stop at the desk. They identify possible improvements, but they don't tell us how common the need for extra explanation is.",
+      "duration_seconds": 19.0,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "I would still like to investigate a short question session, provided we can staff it without reducing the existing demonstrations. I'm not proposing that we replace a demonstration with a question session. Before asking for approval, I would want to know whether there is a suitable room and a volunteer who can support the session.",
+      "duration_seconds": 18.675,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_fable",
+      "text": "We could also design a brief voluntary follow-up task in which visitors explain an idea in their own words. It would tell us something different from booking numbers or enjoyment comments, although we would still need to be careful about who chooses to respond. For now I would recommend drafting the plan, not claiming that the trial has improved understanding. The committee can decide whether an additional session is worth testing once the practical arrangements are clear.",
+      "duration_seconds": 22.425,
+      "applied_gain": 1.0
+    }
+  ],
+  "source_text": "A: The revised booking split is useful because it corrects what we tell the committee about the trial. But I had originally hoped the register would help us decide whether people were finding the demonstrations understandable. It cannot do that. A booking can cover several people, and the record doesn't tell us what any of them understood. We shouldn't use a corrected administrative figure to answer a different educational question.\n\nB: That's also why I would be cautious about the comments we collected at the exit. Several people mentioned that they enjoyed seeing the equipment in use. A few asked for more time to discuss the explanation. Those comments came from people who chose to stop at the desk. They identify possible improvements, but they don't tell us how common the need for extra explanation is.\n\nA: I would still like to investigate a short question session, provided we can staff it without reducing the existing demonstrations. I'm not proposing that we replace a demonstration with a question session. Before asking for approval, I would want to know whether there is a suitable room and a volunteer who can support the session.\n\nB: We could also design a brief voluntary follow-up task in which visitors explain an idea in their own words. It would tell us something different from booking numbers or enjoyment comments, although we would still need to be careful about who chooses to respond. For now I would recommend drafting the plan, not claiming that the trial has improved understanding. The committee can decide whether an additional session is worth testing once the practical arrangements are clear.",
+  "created_local": "2026-11-28T18:30:17",
+  "owner_audio_qa": "PENDING"
+}

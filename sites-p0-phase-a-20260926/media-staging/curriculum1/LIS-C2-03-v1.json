@@ -1,0 +1,167 @@
+{
+  "schema": "g-learning-audio-production-v1",
+  "application_version": "1.3",
+  "lesson_id": "LIS-C2-03",
+  "filename": "LIS-C2-03-v1.mp3",
+  "audio_format": "mp3",
+  "sample_rate": 24000,
+  "duration_seconds": 176.8,
+  "sha256": "a450b3ed2594e77741b89550d12ba9fa83b3d3b10394f1fd341a9b646c4e9e3c",
+  "generator": {
+    "engine": "Kokoro",
+    "package": "0.9.4",
+    "inference": "local",
+    "preset": "Listening C2",
+    "mode": "Multi-speaker",
+    "voice_a": "bm_fable",
+    "voice_b": "bf_emma",
+    "voices_by_speaker": {
+      "Moderator": "bm_fable",
+      "Leena": "bf_emma",
+      "Tomas": "bm_lewis",
+      "Ruth": "bf_isabella"
+    },
+    "speed": 1.0,
+    "pause_seconds": 0.35,
+    "balance_dialogue_loudness": true
+  },
+  "turns": [
+    {
+      "speaker": "Moderator",
+      "voice": "bm_fable",
+      "text": "The storytelling programme has been running in small neighbourhood groups. A proposal would bring some sessions together in a larger hall. Before we talk about a trial, I'd like to know what each of you would count as continuity. The word appears in all three of your notes, but I suspect you mean rather different things by it.",
+      "duration_seconds": 16.15,
+      "applied_gain": 1.3135,
+      "start_sample": 0,
+      "end_sample": 387600,
+      "start_seconds": 0.0,
+      "end_seconds": 16.15
+    },
+    {
+      "speaker": "Leena",
+      "voice": "bf_emma",
+      "text": "From the point of view of the coordinators, continuity means that a group can still meet when its usual facilitator is away. At present, when a session is cancelled, the other groups can't readily offer a replacement because their rooms are small. The larger hall might allow a session to go ahead with a substitute. I'm not saying people would necessarily attend it. We haven't tried the arrangement.",
+      "duration_seconds": 21.625,
+      "applied_gain": 0.9191,
+      "start_sample": 396000,
+      "end_sample": 915000,
+      "start_seconds": 16.5,
+      "end_seconds": 38.125
+    },
+    {
+      "speaker": "Tomas",
+      "voice": "bm_lewis",
+      "text": "For me the continuity worth protecting is the conversation itself. In the smaller group, someone can refer to a story told three weeks ago and expect the others to know what they mean. Bringing groups together might create new connections, which I welcome, but a larger meeting could also interrupt that shared thread. A record showing that the scheduled session took place would not tell us whether that continuity was preserved.",
+      "duration_seconds": 25.45,
+      "applied_gain": 1.0645,
+      "start_sample": 923400,
+      "end_sample": 1534200,
+      "start_seconds": 38.475,
+      "end_seconds": 63.925
+    },
+    {
+      "speaker": "Ruth",
+      "voice": "bf_isabella",
+      "text": "And I would distinguish both from continuity of access. A participant might know the group and be willing to talk, but not be able to reach the larger hall. The travel enquiry we ran asked people already attending sessions how they usually got there. It did not ask those who had stopped attending. I don't want an apparently reassuring set of replies to settle a question we didn't ask.",
+      "duration_seconds": 21.45,
+      "applied_gain": 0.7781,
+      "start_sample": 1542600,
+      "end_sample": 2057400,
+      "start_seconds": 64.275,
+      "end_seconds": 85.725
+    },
+    {
+      "speaker": "Moderator",
+      "voice": "bm_fable",
+      "text": "Leena, would you accept Tomas's point that a session can go ahead and still lose something the programme values?",
+      "duration_seconds": 6.75,
+      "applied_gain": 1.3135,
+      "start_sample": 2065800,
+      "end_sample": 2227800,
+      "start_seconds": 86.075,
+      "end_seconds": 92.825
+    },
+    {
+      "speaker": "Leena",
+      "voice": "bf_emma",
+      "text": "Entirely. I would still like to know whether we can avoid cancellations, but I wouldn't call the number of meetings an adequate success measure. In fact, I'd prefer to test a substitute arrangement in one existing group before assuming that bringing groups together is the way to achieve it.",
+      "duration_seconds": 16.45,
+      "applied_gain": 0.9191,
+      "start_sample": 2236200,
+      "end_sample": 2631000,
+      "start_seconds": 93.175,
+      "end_seconds": 109.625
+    },
+    {
+      "speaker": "Tomas",
+      "voice": "bm_lewis",
+      "text": "That would make the question more manageable. I would not make a new facilitator reproduce every earlier conversation. I'd ask whether participants can pick up a topic they consider important and whether newcomers can join it. Those are two different possibilities, and continuity need not mean that nothing changes.",
+      "duration_seconds": 19.45,
+      "applied_gain": 1.0645,
+      "start_sample": 2639400,
+      "end_sample": 3106200,
+      "start_seconds": 109.975,
+      "end_seconds": 129.425
+    },
+    {
+      "speaker": "Ruth",
+      "voice": "bf_isabella",
+      "text": "I could support investigating that smaller option, provided the enquiry includes people who haven't been coming recently. I don't yet have evidence about why they stopped. I wouldn't want the plan to assume it was travel, or assume it wasn't.",
+      "duration_seconds": 14.025,
+      "applied_gain": 0.7781,
+      "start_sample": 3114600,
+      "end_sample": 3451200,
+      "start_seconds": 129.775,
+      "end_seconds": 143.8
+    },
+    {
+      "speaker": "Moderator",
+      "voice": "bm_fable",
+      "text": "So there are at least three things to design for: whether a session can be maintained, whether conversations can develop, and who can actually take part. Can we agree to draft an evaluation plan for one existing group, including a way to invite views from non-attenders, and establish whether a substitute is available? A trial itself would need a separate decision.",
+      "duration_seconds": 18.85,
+      "applied_gain": 1.3135,
+      "start_sample": 3459600,
+      "end_sample": 3912000,
+      "start_seconds": 144.15,
+      "end_seconds": 163.0
+    },
+    {
+      "speaker": "Leena",
+      "voice": "bf_emma",
+      "text": "Yes, that's a useful first step.",
+      "duration_seconds": 2.675,
+      "applied_gain": 0.9191,
+      "start_sample": 3920400,
+      "end_sample": 3984600,
+      "start_seconds": 163.35,
+      "end_seconds": 166.025
+    },
+    {
+      "speaker": "Tomas",
+      "voice": "bm_lewis",
+      "text": "Yes, provided the conversation measures aren't reduced to attendance.",
+      "duration_seconds": 5.05,
+      "applied_gain": 1.0645,
+      "start_sample": 3993000,
+      "end_sample": 4114200,
+      "start_seconds": 166.375,
+      "end_seconds": 171.425
+    },
+    {
+      "speaker": "Ruth",
+      "voice": "bf_isabella",
+      "text": "And provided the enquiry doesn't presume the reason someone stopped attending.",
+      "duration_seconds": 5.025,
+      "applied_gain": 0.7781,
+      "start_sample": 4122600,
+      "end_sample": 4243200,
+      "start_seconds": 171.775,
+      "end_seconds": 176.8
+    }
+  ],
+  "source_text": "Moderator: The storytelling programme has been running in small neighbourhood groups. A proposal would bring some sessions together in a larger hall. Before we talk about a trial, I'd like to know what each of you would count as continuity. The word appears in all three of your notes, but I suspect you mean rather different things by it.\nLeena: From the point of view of the coordinators, continuity means that a group can still meet when its usual facilitator is away. At present, when a session is cancelled, the other groups can't readily offer a replacement because their rooms are small. The larger hall might allow a session to go ahead with a substitute. I'm not saying people would necessarily attend it. We haven't tried the arrangement.\nTomas: For me the continuity worth protecting is the conversation itself. In the smaller group, someone can refer to a story told three weeks ago and expect the others to know what they mean. Bringing groups together might create new connections, which I welcome, but a larger meeting could also interrupt that shared thread. A record showing that the scheduled session took place would not tell us whether that continuity was preserved.\nRuth: And I would distinguish both from continuity of access. A participant might know the group and be willing to talk, but not be able to reach the larger hall. The travel enquiry we ran asked people already attending sessions how they usually got there. It did not ask those who had stopped attending. I don't want an apparently reassuring set of replies to settle a question we didn't ask.\nModerator: Leena, would you accept Tomas's point that a session can go ahead and still lose something the programme values?\nLeena: Entirely. I would still like to know whether we can avoid cancellations, but I wouldn't call the number of meetings an adequate success measure. In fact, I'd prefer to test a substitute arrangement in one existing group before assuming that bringing groups together is the way to achieve it.\nTomas: That would make the question more manageable. I would not make a new facilitator reproduce every earlier conversation. I'd ask whether participants can pick up a topic they consider important and whether newcomers can join it. Those are two different possibilities, and continuity need not mean that nothing changes.\nRuth: I could support investigating that smaller option, provided the enquiry includes people who haven't been coming recently. I don't yet have evidence about why they stopped. I wouldn't want the plan to assume it was travel, or assume it wasn't.\nModerator: So there are at least three things to design for: whether a session can be maintained, whether conversations can develop, and who can actually take part. Can we agree to draft an evaluation plan for one existing group, including a way to invite views from non-attenders, and establish whether a substitute is available? A trial itself would need a separate decision.\nLeena: Yes, that's a useful first step.\nTomas: Yes, provided the conversation measures aren't reduced to attendance.\nRuth: And provided the enquiry doesn't presume the reason someone stopped attending.",
+  "source_text_sha256": "8a7a4686343b9bf080c1c310d21087bf04e824e3a59302faf9167cab40b43dfb",
+  "turn_timing_basis": "PCM before encoding; verify encoded playback alignment",
+  "created_local": "2026-11-28T20:41:42",
+  "owner_audio_qa": "PENDING"
+}

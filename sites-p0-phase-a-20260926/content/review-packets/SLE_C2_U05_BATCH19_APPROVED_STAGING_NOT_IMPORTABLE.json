@@ -1,0 +1,454 @@
+{
+  "format": "SLE_AUTHORING_STAGING_NOT_IMPORTABLE",
+  "packet_id": "SLE-C2-U05-B19-R1-20261128",
+  "source_git_blob": "616c0eb0a87a2e2f7d9dd4b46384c2d18b66f7b1",
+  "academic_verdict": "PASS",
+  "must_fix": [],
+  "optional_improvements": [],
+  "unit": "C2-U05",
+  "import_authorized": false,
+  "release_authorized": false,
+  "lessons": [
+    {
+      "id": "GRA-C2-01",
+      "module": "grammar",
+      "cefr_target": "C2",
+      "title": "Control information packaging, foregrounding and rhythm across sentences",
+      "estimated_minutes": 45,
+      "objectives": [
+        "Choose syntactic alternatives to create a coherent path through an extended text: link familiar information to the next focus, manage clause-end weight, decide when to retain nominal packaging and when to unpack it into verbs, and control sentence rhythm without changing agency, temporal relations, uncertainty or the purpose of the passage. A sentence can be grammatical and factually defensible yet poorly placed for a particular transition. Explain the trade-off, rather than learning a single universal stylistic rule."
+      ],
+      "explanation": {
+        "en": "**CORE-1 — Goal/context.** Choose syntactic alternatives to create a coherent path through an extended text: link familiar information to the next focus, manage clause-end weight, decide when to retain nominal packaging and when to unpack it into verbs, and control sentence rhythm without changing agency, temporal relations, uncertainty or the purpose of the passage. A sentence can be grammatical and factually defensible yet poorly placed for a particular transition. Explain the trade-off, rather than learning a single universal stylistic rule.\n\n**CORE-2 — Teach/model.** Mark the discourse anchor (what the preceding sentence makes accessible), the new information the next sentence must foreground, and the link that should remain accessible for the following sentence. English often places given information early and heavier/new material later, but contrast, genre and deliberate suspense may justify another order. An active or passive clause can change the point of departure without changing the event; preserve the agent when accountability matters. A nominalisation can make a previously established event available as a compact topic, but a chain of nouns can hide relations that finite verbs make explicit. A supplementary clause adds a subordinate piece of information; a separate main clause can give that same proposition greater prominence. A short independent sentence after a longer balanced sentence may give a genuine contrast weight; it does not create new factual evidence. Punctuation and rhythm help organize meaning but do not override grammatical relationships. Before choosing a revision, list invariant propositions, agency, chronology, modal scope and intended next sentence. Compare alternatives under that declared purpose, not by word count or perceived sophistication.\n\nIndependent worked model (different topic): A puppet theatre has repaired its stage curtain. An inspection has not yet established whether the pulley is safe. The following paragraph concerns the pulley inspection. Compare “The curtain has been repaired by the theatre team, but the safety of its pulley has not yet been established by the inspector” with “The theatre team has repaired the curtain. What the inspector has yet to establish is whether its pulley is safe.” Both preserve the repair and uncertainty; the latter gives the unsettled question its own sentence and ends with the focus that the following paragraph develops. If the next paragraph instead concerned team responsibilities, retaining the team as topic might be more useful. “The unsafe pulley remains to be repaired” wrongly changes uncertainty into fact and adds a repair decision. This model is not an active item. Method: mark given anchor → choose next focus → verify meaning → read the revised passage with both neighboring sentences. No structure is inherently more C2 merely because it is marked.\n\n**CORE-3 — Independent practice.** Six original local editing contexts. Each states the required editorial purpose and source facts; select the best revision for that purpose, not the only grammatically possible sentence. Treat each context separately.\n\n**CORE-4 — Feedback/repair.** Use option-specific explanations after submit. Q1/Q2 trace the prior anchor and following topic; Q3 distinguish useful nominal packaging from presupposing an event; Q4 unpack a noun chain into accountable actions; Q5 compare rhythm without inventing an effect; Q6 distinguish main/subordinate prominence and attributed experience. Independent unassessed repair (different scenario): a rehearsal group changed the order of its warm-up exercises; the director has not measured whether participants remember the sequence more easily. Write two versions: one leading into a paragraph on the change, the other leading into a paragraph on the missing memory measure. Underline each transition topic and state which facts must remain unchanged. Both may be valid; no automatic semantic judgment, weight 0.",
+        "vi": "Điều khiển mạch thông tin, trọng tâm và nhịp điệu câu; giữ nguyên tác nhân, thời gian và giới hạn bằng chứng."
+      },
+      "examples": [
+        "Independent worked model (different topic): A puppet theatre has repaired its stage curtain. An inspection has not yet established whether the pulley is safe. The following paragraph concerns the pulley inspection. Compare “The curtain has been repaired by the theatre team, but the safety of its pulley has not yet been established by the inspector” with “The theatre team has repaired the curtain. What the inspector has yet to establish is whether its pulley is safe.” Both preserve the repair and uncertainty; the latter gives the unsettled question its own sentence and ends with the focus that the following paragraph develops. If the next paragraph instead concerned team responsibilities, retaining the team as topic might be more useful. “The unsafe pulley remains to be repaired” wrongly changes uncertainty into fact and adds a repair decision. This model is not an active item. Method: mark given anchor → choose next focus → verify meaning → read the revised passage with both neighboring sentences. No structure is inherently more C2 merely because it is marked."
+      ],
+      "activities": [
+        {
+          "id": "GRA-C2-01-Q1",
+          "type": "single_choice",
+          "prompt": "A paragraph reads: “The pottery studio introduced a numbered tray system. [Revision slot] The reasons for the exceptions are examined in the next section.” Source: the system generally helped staff find unfired pieces; three unnumbered trays contained pieces made during a demonstration, when labels were unavailable. The editor wants the slot to connect to the system and end by introducing the specific exceptions, keeping their reason for the next section. Which revision best meets that purpose?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Three trays contained pieces from a demonstration during which labels were unavailable, although staff generally found the system useful."
+            },
+            {
+              "id": "B",
+              "text": "The system generally helped staff locate unfired pieces, though three trays remained exceptions to the numbering system."
+            },
+            {
+              "id": "C",
+              "text": "The system enabled staff to locate every unfired piece apart from three made at a demonstration."
+            },
+            {
+              "id": "D",
+              "text": "Three unnumbered trays were the reason the numbered system was introduced."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A. Three trays contained pieces from a demonstration during which labels were unavailable, although staff generally found the system useful. — Accurate details but foregrounds the explanation prematurely and ends on the general benefit rather than the exceptions.\nB. The system generally helped staff locate unfired pieces, though three trays remained exceptions to the numbering system. — Carries the system forward as topic, introduces the exceptions at the end and leaves their cause for the announced discussion.\nC. The system enabled staff to locate every unfired piece apart from three made at a demonstration. — Replaces trays with pieces and overstates the recorded success.\nD. Three unnumbered trays were the reason the numbered system was introduced. — Invents chronology and causality."
+          },
+          "skill_tags": [
+            "grammar.information_structure"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-C2-01-Q2",
+          "type": "single_choice",
+          "prompt": "A report starts: “The regional nature centre has retained the same collection of field guides.” The next two sentences will discuss how the revised descriptions affect navigation. Source: the education team, not an outside publisher, revised the descriptions of six guides; the covers and contents were unchanged. The editor wants continuity from collection to descriptions, preserving responsibility and ending with descriptions as the topic for what follows. Which continuation is best?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Within that collection, six guides have unchanged covers and contents but now carry descriptions revised by the education team; it is these descriptions that the following section examines."
+            },
+            {
+              "id": "B",
+              "text": "The education team, which did not change the covers or contents, revised six descriptions; the outside publisher had no part in that work."
+            },
+            {
+              "id": "C",
+              "text": "Six guides have been revised by the education team, though their descriptions remain as before."
+            },
+            {
+              "id": "D",
+              "text": "The guides' unchanged contents show that the new descriptions have improved navigation."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A. Within that collection, six guides have unchanged covers and contents but now carry descriptions revised by the education team; it is these descriptions that the following section examines. — Given collection leads to six guides, retains the agent and unchanged features, and explicitly hands the description topic forward.\nB. The education team, which did not change the covers or contents, revised six descriptions; the outside publisher had no part in that work. — Preserves much of the source but ends on the publisher contrast rather than the intended new topic.\nC. Six guides have been revised by the education team, though their descriptions remain as before. — Reverses the changed and unchanged information.\nD. The guides' unchanged contents show that the new descriptions have improved navigation. — Invents a demonstrated effect."
+          },
+          "skill_tags": [
+            "grammar.information_structure"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-C2-01-Q3",
+          "type": "single_choice",
+          "prompt": "A methods note has established that a volunteer group postponed a planned survey until the question wording could be checked. It has not established that the wording is defective. The next paragraph will discuss the consequences of the already documented postponement. The editor wants to treat that event as the grammatical topic while keeping the reason and uncertainty recoverable. Which sentence best serves that transition?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The defective wording of the survey required the volunteer group to postpone it."
+            },
+            {
+              "id": "B",
+              "text": "The group postponed the survey so that the wording could be checked; whether the wording is defective remains unknown."
+            },
+            {
+              "id": "C",
+              "text": "The group's postponement of the survey, pending a check of its wording, is the event whose consequences we consider here; no defect in the wording has yet been established."
+            },
+            {
+              "id": "D",
+              "text": "The postponement of the survey's wording checks delayed the volunteer group's decision."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "A. The defective wording of the survey required the volunteer group to postpone it. — Treats a possible defect as established and adds necessity.\nB. The group postponed the survey so that the wording could be checked; whether the wording is defective remains unknown. — Factually accurate but ends on the unresolved wording and leaves postponement as a verb rather than the designated topic.\nC. The group's postponement of the survey, pending a check of its wording, is the event whose consequences we consider here; no defect in the wording has yet been established. — Reuses the established event as a noun-phrase topic, preserves agency and condition, and marks the uncertainty.\nD. The postponement of the survey's wording checks delayed the volunteer group's decision. — Changes what was postponed and invents a decision delay."
+          },
+          "skill_tags": [
+            "grammar.discourse_reference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-C2-01-Q4",
+          "type": "single_choice",
+          "prompt": "An editor is revising a paragraph for the general public: “The implementation of the replacement of the reception desk sign was followed by the commencement of the review of the placement of the sign.” Source: the facilities team replaced the sign; the same team then began checking its position. No outcome of the check is known. The priority is a direct, readable account of the two actions, clear agency and sequence, without claiming an outcome. Which revision is best?",
+          "options": [
+            {
+              "id": "A",
+              "text": "After reviewing the sign's position, the facilities team replaced it."
+            },
+            {
+              "id": "B",
+              "text": "The facilities team's replacement and placement review of the reception sign were successful."
+            },
+            {
+              "id": "C",
+              "text": "The sign was replaced because its position was unsuitable."
+            },
+            {
+              "id": "D",
+              "text": "The facilities team replaced the reception desk sign and then began checking its position."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "A. After reviewing the sign's position, the facilities team replaced it. — Reverses the sequence and implies completion of the check.\nB. The facilities team's replacement and placement review of the reception sign were successful. — Dense coordination hides sequence and invents success.\nC. The sign was replaced because its position was unsuitable. — Conceals agent, invents a cause and omits the subsequent check.\nD. The facilities team replaced the reception desk sign and then began checking its position. — Finite verbs and a clear temporal link retain both actions and the absence of a result."
+          },
+          "skill_tags": [
+            "grammar.information_structure"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-C2-01-Q5",
+          "type": "single_choice",
+          "prompt": "A reflective essay reports that a community garden opened two extra gates and extended its hours; these are documented changes. It has not established that more people could use the garden. The writer wants a balanced sentence presenting both changes, followed by a deliberately short independent sentence stressing the unanswered access question, without suggesting the changes were useless. Which passage meets that declared rhythm and meaning?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The garden opened two extra gates and extended its hours. Whether access improved remains unknown."
+            },
+            {
+              "id": "B",
+              "text": "The garden opened two extra gates, extended its hours, and improved access."
+            },
+            {
+              "id": "C",
+              "text": "Although access did not improve, the garden opened two extra gates and extended its hours."
+            },
+            {
+              "id": "D",
+              "text": "The garden opened two extra gates and extended its hours, though whether access improved remains unknown."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A. The garden opened two extra gates and extended its hours. Whether access improved remains unknown. — Balanced coordination followed by a shorter sentence gives the evidential limit independent prominence without denying the changes.\nB. The garden opened two extra gates, extended its hours, and improved access. — Parallel surface structure adds an unestablished result.\nC. Although access did not improve, the garden opened two extra gates and extended its hours. — Converts uncertainty to a negative finding and subordinates it to changes.\nD. The garden opened two extra gates and extended its hours, though whether access improved remains unknown. — Factually accurate and natural, but embeds the qualification rather than providing the expressly requested independent short sentence."
+          },
+          "skill_tags": [
+            "grammar.information_structure"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-C2-01-Q6",
+          "type": "single_choice",
+          "prompt": "Two consecutive sentences currently read: “The archive tested a new indexing method. Three staff members found it easier to locate a particular set of records, although no timed comparison was made.” The next sentence must explain why a timed comparison is needed. The editor wants to keep the positive observation as attributed experience while moving the missing comparison into the main clause at the end, so it receives primary emphasis. Which rewrite is best?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Because a timed comparison was not made, the three staff members could not locate the records more easily."
+            },
+            {
+              "id": "B",
+              "text": "Although three staff members reported finding that set of records more easily, the archive made no timed comparison."
+            },
+            {
+              "id": "C",
+              "text": "The archive made no timed comparison, although three staff members reported finding that set of records more easily."
+            },
+            {
+              "id": "D",
+              "text": "A timed comparison would confirm that the indexing method is faster."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A. Because a timed comparison was not made, the three staff members could not locate the records more easily. — Makes the absence of measurement a cause of a negative experience; not supported.\nB. Although three staff members reported finding that set of records more easily, the archive made no timed comparison. — Preserves the attributed observation, subordinates it, and places the missing comparison in the main clause as the bridge to the next sentence.\nC. The archive made no timed comparison, although three staff members reported finding that set of records more easily. — Faithful propositions but gives the missing comparison early position and ends on the positive observation, contrary to the specified emphasis and handoff.\nD. A timed comparison would confirm that the indexing method is faster. — Predicts an outcome not established by the source."
+          },
+          "skill_tags": [
+            "grammar.concession"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    },
+    {
+      "id": "GRA-C2-02",
+      "module": "grammar",
+      "cefr_target": "C2",
+      "title": "Revise complex clauses, parallelism and ambiguity without flattening nuance",
+      "estimated_minutes": 45,
+      "objectives": [
+        "Edit a connected text in which clause attachment, contrast, coordination, scope and deliberate openness interact. Separate ambiguity the writer means to keep (an unresolved interpretation) from accidental grammatical ambiguity that hides a documented fact or changes a decision. Choose parallel structures with comparable logical roles, balance embedded detail against readability, and retain the distinction between source, observation and inference. Preserve intended meaning rather than mechanically shortening all sentences."
+      ],
+      "explanation": {
+        "en": "**CORE-1 — Goal/context.** Edit a connected text in which clause attachment, contrast, coordination, scope and deliberate openness interact. Separate ambiguity the writer means to keep (an unresolved interpretation) from accidental grammatical ambiguity that hides a documented fact or changes a decision. Choose parallel structures with comparable logical roles, balance embedded detail against readability, and retain the distinction between source, observation and inference. Preserve intended meaning rather than mechanically shortening all sentences.\n\n**CORE-2 — Teach/model.** Use a four-pass editorial check. (1) Bracket clause boundaries and attach each modifier to its intended head or proposition; check the logical subject of reduced clauses. (2) For coordinated items, name their grammatical and logical roles: two purposes, two conditions, two questions or two findings. Surface symmetry alone does not make different kinds of claim equivalent. Check shared auxiliaries and negation scope. (3) Separate restrictive/identifying modifiers from supplementary comment; comma choices and relative structures can change which members of a set a statement concerns. (4) Read the full passage to preserve intended unresolved meaning and relative emphasis. Where a fact is known, resolve accidental ambiguity; where an outcome or interpretation is genuinely open, express the alternatives without assigning a false resolution. A balanced long sentence can make a contrast economical; separate sentences are useful if shared syntax would make the scopes hard to recover. Use stylistic parallelism to expose differences as well as similarities. No universal rule requires converting every nominal phrase into a verb or every complex sentence into short ones.\n\nIndependent worked demonstration (different topic): a fictional costume workshop retained two samples, a linen one and a wool one. Only the wool sample was examined by a conservator. The examination has not established whether a stain came from storage or use. An ambiguous summary says “The samples, which a conservator examined, may have been stained in storage or use.” Repair: “The workshop retained a linen sample and a wool sample. Only the wool sample was examined by a conservator, who has not established whether its stain arose in storage or in use.” The revised passage restricts examination to the known sample and keeps the two causal possibilities open. “The conservator found a storage stain” resolves what the evidence leaves unsettled. Parallel alternatives “in storage or in use” identify comparable potential contexts, not proven causes. No assessed facts reused.\n\n**CORE-3 — Independent practice.** Six new editing contexts with specified meanings and discourse purposes. Some distractors are grammatical alternatives whose effect or scope is unsuitable; do not treat grammaticality alone as a key.\n\n**CORE-4 — Feedback/repair.** Review option-specific explanations after submission. Q1 audit set membership and restrictive versus supplementary information; Q2 name the logical subject of a reduced clause; Q3 compare logical roles, not just parallel surfaces; Q4 split independent permissions and restricted permissions; Q5 keep warranted interpretive alternatives without mind-reading; Q6 repair attachment and unsupported inference together, then verify the next-topic link. Independent unassessed repair: a club collected six costume proposals; two included sketches and only those two were discussed. It is not known whether the others will be discussed next week or later. Rewrite “The proposals, including sketches, were discussed and will be reviewed next week” as a short coherent note, preserving known subset and unresolved timing. Explain why your punctuation/coordination choices matter. No single required open response, weight 0.",
+        "vi": "Biên tập mệnh đề phức, cấu trúc song song và phạm vi bổ nghĩa; giữ lại những cách diễn giải thực sự còn bỏ ngỏ."
+      },
+      "examples": [
+        "Independent worked demonstration (different topic): a fictional costume workshop retained two samples, a linen one and a wool one. Only the wool sample was examined by a conservator. The examination has not established whether a stain came from storage or use. An ambiguous summary says “The samples, which a conservator examined, may have been stained in storage or use.” Repair: “The workshop retained a linen sample and a wool sample. Only the wool sample was examined by a conservator, who has not established whether its stain arose in storage or in use.” The revised passage restricts examination to the known sample and keeps the two causal possibilities open. “The conservator found a storage stain” resolves what the evidence leaves unsettled. Parallel alternatives “in storage or in use” identify comparable potential contexts, not proven causes. No assessed facts reused."
+      ],
+      "activities": [
+        {
+          "id": "GRA-C2-02-Q1",
+          "type": "single_choice",
+          "prompt": "A community print studio retained five design proofs. Two were signed by the artist; only those two were scanned by the archivist. The other three were stored without scanning. A draft says “The five proofs, signed by the artist, were scanned by the archivist.” The editor wants to preserve the full set and make both the signature restriction and the different treatment clear. Which revision is accurate?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The five proofs were scanned by the archivist, two of them signed by the artist."
+            },
+            {
+              "id": "B",
+              "text": "The two proofs scanned by the archivist were stored with three other signed proofs."
+            },
+            {
+              "id": "C",
+              "text": "Of the five proofs retained, two were signed by the artist; the archivist scanned those two, while the other three were stored without scanning."
+            },
+            {
+              "id": "D",
+              "text": "The proofs, which had been signed and scanned, were retained together."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "A. The five proofs were scanned by the archivist, two of them signed by the artist. — Still implies all five were scanned.\nB. The two proofs scanned by the archivist were stored with three other signed proofs. — Adds signatures to the remaining three and leaves their unscanned status unclear.\nC. Of the five proofs retained, two were signed by the artist; the archivist scanned those two, while the other three were stored without scanning. — Resolves the identifying scope and preserves both treatment groups.\nD. The proofs, which had been signed and scanned, were retained together. — Applies both properties to the whole set."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-C2-02-Q2",
+          "type": "single_choice",
+          "prompt": "A project note says: “Having checked the dimensions of the frame, the replacement glass was ordered by the buyer.” Source: the technician checked the frame; the buyer subsequently ordered the glass. The next sentence discusses delivery, not the technician's procedure. Which edit removes the misleading attachment while retaining the buyer's action as the main clause and the check as prior context?",
+          "options": [
+            {
+              "id": "A",
+              "text": "After the technician had checked the frame's dimensions, the buyer ordered the replacement glass."
+            },
+            {
+              "id": "B",
+              "text": "Having checked the frame's dimensions, the buyer ordered the replacement glass."
+            },
+            {
+              "id": "C",
+              "text": "The technician checked the dimensions after the buyer ordered the replacement glass."
+            },
+            {
+              "id": "D",
+              "text": "The frame's dimensions were checked when the glass was delivered."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A. After the technician had checked the frame's dimensions, the buyer ordered the replacement glass. — Gives the subordinate action its actual subject and foregrounds ordering as the next topic.\nB. Having checked the frame's dimensions, the buyer ordered the replacement glass. — Grammatical but attributes the check to the wrong person.\nC. The technician checked the dimensions after the buyer ordered the replacement glass. — Reverses chronology and foregrounding.\nD. The frame's dimensions were checked when the glass was delivered. — Changes time, omits ordering and conceals the known agent."
+          },
+          "skill_tags": [
+            "grammar.discourse_reference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-C2-02-Q3",
+          "type": "single_choice",
+          "prompt": "An evaluation paragraph must distinguish two future research questions and one existing observation. The group recorded fewer requests for help; it has not tested whether visitors finish tasks unaided or whether staff spend less time per visit. The editor wants the two unanswered questions in parallel, followed by a separate sentence distinguishing the recorded result. Which passage best meets the stated purpose?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The evaluation showed that visitors finish tasks unaided and that staff spend less time per visit, with fewer requests for help."
+            },
+            {
+              "id": "B",
+              "text": "The evaluation asked whether visitors finish tasks unaided and found that staff spend less time per visit. Fewer requests were recorded."
+            },
+            {
+              "id": "C",
+              "text": "Fewer requests for help were recorded, although neither independent task completion nor staff time per visit has been tested."
+            },
+            {
+              "id": "D",
+              "text": "Two questions remain: whether visitors finish tasks unaided and whether staff spend less time per visit. What the group has recorded is fewer requests for help."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "A. The evaluation showed that visitors finish tasks unaided and that staff spend less time per visit, with fewer requests for help. — Presents both unanswered questions as established findings.\nB. The evaluation asked whether visitors finish tasks unaided and found that staff spend less time per visit. Fewer requests were recorded. — Changes the second question to a finding and describes completed evaluation not in evidence.\nC. Fewer requests for help were recorded, although neither independent task completion nor staff time per visit has been tested. — Factually defensible, but starts with the observation and does not provide the explicitly requested parallel questions followed by a separate observation.\nD. Two questions remain: whether visitors finish tasks unaided and whether staff spend less time per visit. What the group has recorded is fewer requests for help. — Coordinates two questions of equal status, then separates the existing observation."
+          },
+          "skill_tags": [
+            "grammar.information_structure"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-C2-02-Q4",
+          "type": "single_choice",
+          "prompt": "A decision record says a team may invite volunteers to inspect a proposed venue only after the access officer confirms that inspection is safe. It may prepare a private checklist immediately, even before that confirmation. A draft coordinates both actions under “only after”. Which repair clearly preserves the independent permission and the conditional permission without inventing a completed check?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Only after the access officer confirms safety may the team invite volunteers or prepare a private checklist."
+            },
+            {
+              "id": "B",
+              "text": "The team may prepare a private checklist now; it may invite volunteers to inspect the venue only after the access officer confirms that the inspection is safe."
+            },
+            {
+              "id": "C",
+              "text": "The team may now invite volunteers to inspect the venue, provided it prepares a private checklist."
+            },
+            {
+              "id": "D",
+              "text": "With the inspection confirmed safe, the team may prepare a checklist and invite volunteers."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A. Only after the access officer confirms safety may the team invite volunteers or prepare a private checklist. — Extends the condition to the independent action.\nB. The team may prepare a private checklist now; it may invite volunteers to inspect the venue only after the access officer confirms that the inspection is safe. — Splits permissions into clauses and attaches the restriction only to the relevant action.\nC. The team may now invite volunteers to inspect the venue, provided it prepares a private checklist. — Substitutes a checklist for safety confirmation.\nD. With the inspection confirmed safe, the team may prepare a checklist and invite volunteers. — Presupposes a confirmation not yet given."
+          },
+          "skill_tags": [
+            "grammar.conditionals"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-C2-02-Q5",
+          "type": "single_choice",
+          "prompt": "In a literary commentary the author writes that a character left a window open. Two interpretations are defensible: an invitation to return and a reluctance to treat the departure as final. The commentary must distinguish the established action from two compatible readings, explicitly leaving both open and avoiding a claim about the character's actual intention. Which revision preserves this deliberate openness?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The character left the window open because she wanted a visitor to return and was reluctant to accept the departure."
+            },
+            {
+              "id": "B",
+              "text": "The open window is either an invitation to return or a reluctance to accept the departure, so one reading must exclude the other."
+            },
+            {
+              "id": "C",
+              "text": "The action is clear: she left the window open. It can be read both as an invitation to return and as a reluctance to treat the departure as final, without either reading establishing her intention."
+            },
+            {
+              "id": "D",
+              "text": "Because the intention is unknown, the open window cannot carry any interpretive significance."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "A. The character left the window open because she wanted a visitor to return and was reluctant to accept the departure. — Converts interpretations to known motives.\nB. The open window is either an invitation to return or a reluctance to accept the departure, so one reading must exclude the other. — Unnecessarily makes the readings mutually exclusive.\nC. The action is clear: she left the window open. It can be read both as an invitation to return and as a reluctance to treat the departure as final, without either reading establishing her intention. — Separates action and interpretation and retains compatible alternatives without claiming private motive.\nD. Because the intention is unknown, the open window cannot carry any interpretive significance. — Confuses uncertainty about intention with absence of textual meaning."
+          },
+          "skill_tags": [
+            "grammar.information_structure"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "GRA-C2-02-Q6",
+          "type": "single_choice",
+          "prompt": "A passage about an exhibition design reads: “The display has shorter captions, which the editorial group tested with five volunteers, a change that makes it accessible, though the volunteers were already familiar with the subject.” Source: the editorial group tested the shorter captions with five volunteers familiar with the subject; they have not established access for unfamiliar visitors. The next paragraph explains how to include unfamiliar visitors. The editor wants to retain the tested object and attribution, make the sample limitation prominent, and avoid claiming measured accessibility. Which revision best achieves this?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The editorial group tested the shorter captions with five volunteers, all familiar with the subject. Whether the captions improve access for unfamiliar visitors remains unestablished."
+            },
+            {
+              "id": "B",
+              "text": "Five volunteers established that the exhibition is accessible, although they already knew the subject."
+            },
+            {
+              "id": "C",
+              "text": "The shorter captions tested the five volunteers' familiarity with the subject."
+            },
+            {
+              "id": "D",
+              "text": "The editorial group tested unfamiliar visitors with shorter captions; no access benefit was found."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A. The editorial group tested the shorter captions with five volunteers, all familiar with the subject. Whether the captions improve access for unfamiliar visitors remains unestablished. — Makes the tested object and agent explicit, avoids the misleading attachment and inference, and ends with the intended next topic.\nB. Five volunteers established that the exhibition is accessible, although they already knew the subject. — Invents established accessibility; the caveat does not repair it.\nC. The shorter captions tested the five volunteers' familiarity with the subject. — Reverses what was tested and omits the actual agent.\nD. The editorial group tested unfamiliar visitors with shorter captions; no access benefit was found. — Changes the sample and uncertainty to a negative result."
+          },
+          "skill_tags": [
+            "grammar.relative_clauses"
+          ],
+          "evidence_weight": 1
+        }
+      ]
+    }
+  ],
+  "held_lessons": [],
+  "unit_transfer": {
+    "id": "C2-U05-TRANSFER-01",
+    "text": "Original independent fictional context: A community astronomy club trialled two observing guides. The organisers distributed 40 printed copies, 24 of which were returned with a completed checklist. The returns cannot be linked to unique visitors. Six volunteers who had used an older guide were interviewed; only four of those six had used the new diagram-led guide. Those four reported that the diagrams helped them locate the telescope controls, but the club has not measured whether inexperienced visitors can set up a telescope independently. The technician checked the mount before the coordinator booked a further indoor demonstration. A public outdoor session may be announced only after a safety check and committee approval; the team may draft private materials now. The accompanying paragraph will discuss how the trial could include inexperienced visitors. The club has not approved replacing the older guide.\n\nDraft to edit: “The distribution of the guides and the completion of the checklists established the improved access of the visitors. The six volunteers, who had used the new diagrams, were interviewed and found to be able to set up the telescope. Having checked the mount, the indoor demonstration was booked by the coordinator. Only after the safety check and committee approval can the team announce a public outdoor session and draft its private materials. The replacement of the older guide is therefore justified, although the new guide's use by inexperienced visitors remains an interesting question.”\n\nTask: write a coherent corrected paragraph or two short paragraphs (about 130–200 words, advisory) for the club's internal review. Preserve exact subset, source of observations, known actions and order, separate permissions, and unresolved questions; leave the older guide's replacement unapproved. Choose nominal packaging only where its event/status is established; unpack a misleading noun chain; use parallel clauses or questions with comparable logical roles; end by introducing the unresolved experience of new visitors for the next paragraph. Then provide a second possible ending of one or two sentences suitable for a short update to the committee, with the same evidence limits and no invented approval. In a separate brief editing note, quote and explain four changes: reference/attachment, scope or parallelism, given/new information or clause weight, and nominal/verbal balance or rhythm. Explain one alternative you rejected and why it would change meaning or intended emphasis. Self-check against the source ledger and both audience purposes. Multiple valid formulations; no unique model answer, automated semantic judgment, C2 Writing rubric or grade. Weight 0; no audio, oral evidence or CEFR certification.",
+    "evidence_weight": 0,
+    "automated_semantic_grading": false
+  }
+}

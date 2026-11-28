@@ -1,0 +1,76 @@
+{
+  "schema": "g-learning-audio-production-v1",
+  "application_version": "1.2",
+  "lesson_id": "LIS-C1-02",
+  "filename": "LIS-C1-02-v1.mp3",
+  "audio_format": "mp3",
+  "sample_rate": 24000,
+  "duration_seconds": 138.525,
+  "sha256": "6e03dd7fc035b61447011666e561e7305d3af2d8fcadad332b00e7766569658a",
+  "generator": {
+    "engine": "Kokoro",
+    "package": "0.9.4",
+    "inference": "local",
+    "preset": "Listening A2",
+    "mode": "Dialogue A/B",
+    "voice_a": "bf_emma",
+    "voice_b": "bm_fable",
+    "speed": 1.0017,
+    "pause_seconds": 0.35,
+    "balance_dialogue_loudness": false
+  },
+  "turns": [
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "Our mentoring programme was meant to make the transition into the school less intimidating. The pilot attracted more applications than places, and most participants completed all four meetings. I would hesitate to redesign something before giving it a fair chance to develop. We have at least established that students were willing to take part.",
+      "duration_seconds": 19.2,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_fable",
+      "text": "I don't dispute that. What troubles me is the language in the draft report: it says the pilot improved students' confidence. Completing four meetings is compatible with feeling more confident, but also with feeling obliged to attend once a teacher has introduced you to a mentor. The problem isn't the attendance figure; it's the job we are asking that figure to do.",
+      "duration_seconds": 18.775,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "Fair enough. The report should say participation was sustained rather than confidence improved. But I wouldn't treat the absence of confidence measures as a reason to suspend the meetings. If we insist on collecting perfect evidence before any activity can continue, the students who might benefit would lose the opportunity while we design our evaluation.",
+      "duration_seconds": 20.75,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_fable",
+      "text": "I'm not asking for perfect evidence. I am asking whether the programme might be evaluated in a way that gives the students who did not apply some visibility. If the participants were already comfortable asking for help, high attendance might tell us very little about reaching those who find the school hardest to navigate. A short confidential invitation to a wider group could explore that question without requiring them to identify themselves to the mentors.",
+      "duration_seconds": 22.525,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "That changes how I'd frame the next stage. I'd still keep a small version of the existing programme available, but I would not describe it as a successful intervention yet. The wider invitation could inform whether the next version needs a different entry route. We should be clear that a response to the invitation would be evidence of a reported experience, not a direct measure of changed confidence.",
+      "duration_seconds": 22.15,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_fable",
+      "text": "I could accept that distinction. My remaining reservation is that we should set a review point before expanding the number of places. Otherwise an initially modest continuation can become a permanent commitment without anyone explicitly deciding it. If the report records the continuation as provisional, and states what is still unknown, I wouldn't oppose it.",
+      "duration_seconds": 19.225,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "Then we agree on maintaining access at a limited scale while reconsidering the way we evaluate it. The decision about expansion remains open. Neither of us has evidence yet that mentoring caused an improvement in confidence.",
+      "duration_seconds": 13.8,
+      "applied_gain": 1.0
+    }
+  ],
+  "source_text": "A: Our mentoring programme was meant to make the transition into the school less intimidating. The pilot attracted more applications than places, and most participants completed all four meetings. I would hesitate to redesign something before giving it a fair chance to develop. We have at least established that students were willing to take part.\nB: I don't dispute that. What troubles me is the language in the draft report: it says the pilot improved students' confidence. Completing four meetings is compatible with feeling more confident, but also with feeling obliged to attend once a teacher has introduced you to a mentor. The problem isn't the attendance figure; it's the job we are asking that figure to do.\nA: Fair enough. The report should say participation was sustained rather than confidence improved. But I wouldn't treat the absence of confidence measures as a reason to suspend the meetings. If we insist on collecting perfect evidence before any activity can continue, the students who might benefit would lose the opportunity while we design our evaluation.\nB: I'm not asking for perfect evidence. I am asking whether the programme might be evaluated in a way that gives the students who did not apply some visibility. If the participants were already comfortable asking for help, high attendance might tell us very little about reaching those who find the school hardest to navigate. A short confidential invitation to a wider group could explore that question without requiring them to identify themselves to the mentors.\nA: That changes how I'd frame the next stage. I'd still keep a small version of the existing programme available, but I would not describe it as a successful intervention yet. The wider invitation could inform whether the next version needs a different entry route. We should be clear that a response to the invitation would be evidence of a reported experience, not a direct measure of changed confidence.\nB: I could accept that distinction. My remaining reservation is that we should set a review point before expanding the number of places. Otherwise an initially modest continuation can become a permanent commitment without anyone explicitly deciding it. If the report records the continuation as provisional, and states what is still unknown, I wouldn't oppose it.\nA: Then we agree on maintaining access at a limited scale while reconsidering the way we evaluate it. The decision about expansion remains open. Neither of us has evidence yet that mentoring caused an improvement in confidence.",
+  "created_local": "2026-11-28T18:19:43",
+  "owner_audio_qa": "PENDING"
+}

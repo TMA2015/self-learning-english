@@ -1,0 +1,319 @@
+{
+  "format": "SLE_AUTHORING_STAGING_NOT_IMPORTABLE",
+  "source_git_blob": "8f623a978912bf82ea8e670f13a9ae71ac92c436",
+  "academic_verdict": "PASS",
+  "unit": "C1-U08",
+  "import_authorized": false,
+  "release_authorized": false,
+  "lessons": [
+    {
+      "id": "REA-C1-09",
+      "module": "reading",
+      "cefr_target": "C1",
+      "title": "Read reports and proposals as decision documents",
+      "estimated_minutes": 35,
+      "objectives": [
+        "Identify the different communicative jobs of a retrospective report and a prospective proposal, detect mismatches between executive summary and evidence, and judge whether recommended actions, responsibilities and dependencies follow from the body."
+      ],
+      "explanation": {
+        "en": "**CORE-1 — Goal/context.** Identify the different communicative jobs of a retrospective report and a prospective proposal, detect mismatches between executive summary and evidence, and judge whether recommended actions, responsibilities and dependencies follow from the body.\n**CORE-2 — Teach/model.** A report answers a defined question about what happened, what was found and what should follow; a proposal asks for a decision about future work and specifies scope, resources, dependencies, delivery and evaluation. They may overlap, but findings are not promises and estimates are not commitments. An executive summary is self-contained for a busy decision-maker: purpose, essential findings with limits, decision requested or recommended next step. It must not add claims that the body cannot support. Trace a recommendation using finding → consequence → action → owner → prerequisite → measure. Use role-specific language: a technician estimates, a manager approves, an evaluator measures. Independent model: a community printer service recorded 30 stalled print jobs in a week. A report can identify the recurring fault and recommend examining its cause; a proposal may request a two-week diagnostic trial with a technician, a capped materials budget and a review. A summary saying the fault was eliminated would be false. An implementation schedule conditional on technician availability is not an agreed start date.\n\n**CORE-3 — Independent reading.** Read the reviewed fictional source displayed with this lesson before answering.\n\n**CORE-4 — Feedback/repair.** Q1 distinguish retrospective findings from prospective requests; Q2/Q3 audit summary against body, including uncertainty; Q4 map action, owner and prerequisite; Q5 match evaluation to evidence gap; Q6 state decision scope without inventing authority. Use option-specific explanations after submission. Independent unassessed transfer: a fictional community café records stock shortages during a trial and proposes a limited stock-check routine requiring volunteer availability. Outline one report summary and one proposal request without claiming the routine is approved or effective. No auto-score.",
+        "vi": "Phân biệt báo cáo và đề xuất, kiểm tra tóm tắt điều hành, trách nhiệm và điều kiện thực hiện."
+      },
+      "examples": [
+        "A report answers a defined question about what happened, what was found and what should follow; a proposal asks for a decision about future work and specifies scope, resources, dependencies, delivery and evaluation. They may overlap, but findings are not promises and estimates are not commitments. An executive summary is self-contained for a busy decision-maker: purpose, essential findings with limits, decision requested or recommended next step. It must not add claims that the body cannot support. Trace a recommendation using finding → consequence → action → owner → prerequisite → measure. Use role-specific language: a technician estimates, a manager approves, an evaluator measures. Independent model: a community printer service recorded 30 stalled print jobs in a week. A report can identify the recurring fault and recommend examining its cause; a proposal may request a two-week diagnostic trial with a technician, a capped materials budget and a review. A summary saying the fault was eliminated would be false. An implementation schedule conditional on technician availability is not an agreed start date."
+      ],
+      "activities": [
+        {
+          "id": "REA-C1-09-Q1",
+          "type": "single_choice",
+          "prompt": "What distinguishes the primary function of Source B from that of Source A?",
+          "options": [
+            {
+              "id": "A",
+              "text": "B requests approval for bounded future work with delivery conditions, while A evaluates observations from an earlier trial."
+            },
+            {
+              "id": "B",
+              "text": "B certifies the trial's causal effect, while A sets a confirmed start date."
+            },
+            {
+              "id": "C",
+              "text": "B records independent new outcome data, while A contains only predictions."
+            },
+            {
+              "id": "D",
+              "text": "B announces a management decision already made, while A asks staff to implement it."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "B requests approval for bounded future work with delivery conditions, while A evaluates observations from an earlier trial. — Distinguishes future proposal from retrospective report.\nB certifies the trial's causal effect, while A sets a confirmed start date. — Neither document does so.\nB records independent new outcome data, while A contains only predictions. — Reverses the evidence roles.\nB announces a management decision already made, while A asks staff to implement it. — Approval remains open."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-09-Q2",
+          "type": "single_choice",
+          "prompt": "Which defect in the draft executive summary is most consequential?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It does not include every transaction figure."
+            },
+            {
+              "id": "B",
+              "text": "It uses the word “scheduling” rather than the full title of the trial."
+            },
+            {
+              "id": "C",
+              "text": "It asserts causation and elimination of preparation problems, then presents a permanent expansion beyond the report's supported conclusion."
+            },
+            {
+              "id": "D",
+              "text": "It places a recommendation after a finding."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "It does not include every transaction figure. — Compression is acceptable if essential meaning survives.\nIt uses the word “scheduling” rather than the full title of the trial. — Not a substantive mismatch.\nIt asserts causation and elimination of preparation problems, then presents a permanent expansion beyond the report's supported conclusion. — Contradicts evidence and decision scope.\nIt places a recommendation after a finding. — This order is appropriate."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-09-Q3",
+          "type": "single_choice",
+          "prompt": "Which revised executive summary is most faithful to Source A?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The new schedule increased demand and reduced delays for every visitor, so the centre should expand."
+            },
+            {
+              "id": "B",
+              "text": "The trial recorded fewer long waits alongside different arrival and staffing patterns; preparation problems remain, and the coordinator recommends investigating them before expansion."
+            },
+            {
+              "id": "C",
+              "text": "The trial failed because some items were not ready; management has rejected it."
+            },
+            {
+              "id": "D",
+              "text": "Nothing can be learnt from the records because the periods differed."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The new schedule increased demand and reduced delays for every visitor, so the centre should expand. — Overstates causation and coverage.\nThe trial recorded fewer long waits alongside different arrival and staffing patterns; preparation problems remain, and the coordinator recommends investigating them before expansion. — Preserves findings, limits and actual recommendation.\nThe trial failed because some items were not ready; management has rejected it. — Neither failure verdict nor rejection is established.\nNothing can be learnt from the records because the periods differed. — Discards usable observations."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-09-Q4",
+          "type": "single_choice",
+          "prompt": "Which implementation statement is supported by Source B?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The manager has assigned the coordinator eight hours and booked storage."
+            },
+            {
+              "id": "B",
+              "text": "Reception staff will approve a wider rollout after the checklist is introduced."
+            },
+            {
+              "id": "C",
+              "text": "The extension must start next month whether or not storage is available."
+            },
+            {
+              "id": "D",
+              "text": "The coordinator would introduce the checklist if approval, availability and storage are secured; reception staff would record outcomes and the manager would review them."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "The manager has assigned the coordinator eight hours and booked storage. — Resources not confirmed.\nReception staff will approve a wider rollout after the checklist is introduced. — Wrong responsibility and scope.\nThe extension must start next month whether or not storage is available. — No fixed start date.\nThe coordinator would introduce the checklist if approval, availability and storage are secured; reception staff would record outcomes and the manager would review them. — Maintains roles and dependencies."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-09-Q5",
+          "type": "single_choice",
+          "prompt": "Why is the proposed consistent recording of redirections relevant?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It could help examine preparation-related problems using comparable observations, an identified gap in the earlier report."
+            },
+            {
+              "id": "B",
+              "text": "It establishes that the previous period had no redirections."
+            },
+            {
+              "id": "C",
+              "text": "It makes arrival patterns and staffing levels irrelevant to causal interpretation."
+            },
+            {
+              "id": "D",
+              "text": "It proves the checklist will eliminate long waits."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "It could help examine preparation-related problems using comparable observations, an identified gap in the earlier report. — Links a measurement to a finding without guaranteeing a result.\nIt establishes that the previous period had no redirections. — Earlier counts unavailable.\nIt makes arrival patterns and staffing levels irrelevant to causal interpretation. — Does not control those factors.\nIt proves the checklist will eliminate long waits. — Future efficacy untested."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-09-Q6",
+          "type": "single_choice",
+          "prompt": "Which decision request should be placed prominently in a summary of Source B?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Approve permanent expansion to all desks and confirm a start date."
+            },
+            {
+              "id": "B",
+              "text": "Confirm that scheduling has already reduced all delays."
+            },
+            {
+              "id": "C",
+              "text": "Approve the limited extension subject to the stated resources and review, leaving a wider rollout for a separate decision."
+            },
+            {
+              "id": "D",
+              "text": "Approve both the existing extension and any future rollout in one decision."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Approve permanent expansion to all desks and confirm a start date. — Scope exceeds proposal.\nConfirm that scheduling has already reduced all delays. — Not the decision requested.\nApprove the limited extension subject to the stated resources and review, leaving a wider rollout for a separate decision. — Captures request and decision boundary.\nApprove both the existing extension and any future rollout in one decision. — Contradicts separate approval."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "SRC-REA-C1-09",
+        "title": "Read reports and proposals as decision documents — original reviewed source",
+        "body": "Source A — Extract from an internal service report, Northbank Community Equipment Centre:\nPurpose: examine whether the four-week trial of scheduled collection reduced pressure on the reception desk. Findings: staff recorded 84 collection transactions and 19 occasions when visitors waited more than ten minutes. In the preceding four weeks, staff recorded 72 transactions and 23 long waits, using the same definition of a long wait. Arrival times and staffing levels differed between periods; the report does not isolate the effect of scheduling. Staff also logged six occasions during the trial on which visitors were redirected to a second desk because the required item was not ready. Comparable redirection counts are unavailable for the earlier period.\nConclusion: the trial provides a basis for investigating reception workload, but does not establish that scheduling alone reduced waiting. The operations coordinator recommends examining item-preparation failures before expanding the system. The centre manager has not approved expansion.\nDraft executive summary (unreconciled): “Scheduling reduced waiting and eliminated preparation problems. A permanent expansion should begin next month.”\n\nSource B — Draft proposal, operations coordinator:\nRequest: approve a four-week extension limited to the existing collection desk, with a checklist for preparing items before opening. The extension requires one trained coordinator for two hours per week and an agreed location for prepared items. The resource estimate is eight coordinator hours in total plus existing storage space; the coordinator's availability and storage arrangement are not confirmed. If approved and resourced, the coordinator would introduce the checklist, reception staff would record wait categories and redirections using consistent definitions, and the manager would review the results after four weeks. The proposal sets no fixed calendar start date. Any wider rollout would require a separate decision.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-C1-04",
+      "module": "writing",
+      "cefr_target": "C1",
+      "title": "Produce a professional evaluation report",
+      "estimated_minutes": 50,
+      "objectives": [
+        "Write a detailed, evidence-grounded workplace report for a busy operations manager. Make the executive summary faithful to the body, organise findings by operational issue, and translate the findings into prioritised, feasible recommendations with responsibility and a check on progress."
+      ],
+      "explanation": {
+        "en": "**CORE-1 — Goal/context.** Write a detailed, evidence-grounded workplace report for a busy operations manager. Make the executive summary faithful to the body, organise findings by operational issue, and translate the findings into prioritised, feasible recommendations with responsibility and a check on progress.\n**CORE-2 — Teach/model.** Parse the task using Topic (issue), Task (genre, purpose, reader), Must Include (specified findings and action), Boundary (evidence, authority, length, register). Brainstorm by listing findings, possible explanations and unresolved issues separately. Organise the report: title and purpose → executive summary → findings and limitations → recommendations and implementation checks. Write the detailed body first if that helps; write the summary from the body rather than inventing an attractive headline. A summary should include the central finding, material limit and the action required; not all figures. Rank recommendations by importance and dependencies, not by how strong the prose sounds. Use concise headings and accountable verbs (“the supervisor should review” rather than “improvements should be made” when the role is known). Revise first for evidence/genre, then action ownership and coherence, then language. Independent annotated model, different prompt: a fictional workshop's sign-in log shows 12 late starts in a month; the equipment record lists four missing kits but does not link the records. “Review of workshop starts [purpose]. Late starts were recorded, and missing kits may be relevant; their relationship is unverified [finding + limit]. The supervisor should compare the two logs before changing the kit preparation process [bounded action + owner].” A detailed recommendation can specify consistent timestamps, a review period and an approval boundary. Do not say missing kits caused all late starts. This model does not supply an answer to the following task.\n\n**CORE-3 — Independent Writing source bundle (fictional).**\nTopic: service quality at a community translation and information desk. The manager asks for a report on the first month of a new appointment arrangement, not a proposal for an entirely new service.\nA — Reception record: across four weeks, staff recorded 108 attended appointments and 16 occasions when visitors arrived with incomplete documents. In the previous four weeks, 92 appointments were attended and 12 incomplete-document occasions recorded. Staff used the same counting rules, but the mix of enquiry types differed. Repeat appointments are possible; the register does not identify unique users or measure satisfaction.\nB — Case coordinator's note: staff found that some visitors needed clarification of document instructions before an appointment. In six of the 16 recorded incomplete-document occasions, a staff member noted uncertainty about which supporting document was required; the other ten have no comparable reason recorded. The coordinator suggests testing clearer instructions, but the note does not establish why every case occurred.\nC — Operations manager's constraints: the current appointment service will remain open. A revised instruction sheet may be tested if the coordinator checks accuracy and the manager approves the draft; staff must keep the existing assistance route available. The supervisor could review incomplete-document occasions and clarification contacts after four weeks of the test. No additional staffing or permanent procedure change has been approved.\n\n**CORE-4 — Feedback/repair.** Show UNASSESSED / trusted review pending. Suggested RUBRIC-WRITING-C1 subject to technical compatibility; assess task fulfilment, coherence, register, evidence fidelity, language and substantive revision only through trusted review. Self-check summary/body consistency, counting unit, limits, prioritisation, owner/approval, operational safeguards, review measure and language. Word guidance not a quality score; no automatic semantic assessment.",
+        "vi": "Viết báo cáo đánh giá chuyên nghiệp, bảo toàn bằng chứng và đề xuất hành động có trách nhiệm."
+      },
+      "examples": [
+        "Parse the task using Topic (issue), Task (genre, purpose, reader), Must Include (specified findings and action), Boundary (evidence, authority, length, register). Brainstorm by listing findings, possible explanations and unresolved issues separately. Organise the report: title and purpose → executive summary → findings and limitations → recommendations and implementation checks. Write the detailed body first if that helps; write the summary from the body rather than inventing an attractive headline. A summary should include the central finding, material limit and the action required; not all figures. Rank recommendations by importance and dependencies, not by how strong the prose sounds. Use concise headings and accountable verbs (“the supervisor should review” rather than “improvements should be made” when the role is known). Revise first for evidence/genre, then action ownership and coherence, then language. Independent annotated model, different prompt: a fictional workshop's sign-in log shows 12 late starts in a month; the equipment record lists four missing kits but does not link the records. “Review of workshop starts [purpose]. Late starts were recorded, and missing kits may be relevant; their relationship is unverified [finding + limit]. The supervisor should compare the two logs before changing the kit preparation process [bounded action + owner].” A detailed recommendation can specify consistent timestamps, a review period and an approval boundary. Do not say missing kits caused all late starts. This model does not supply an answer to the following task."
+      ],
+      "activities": [
+        {
+          "id": "WRI-C1-04-Q1",
+          "type": "extended_response",
+          "prompt": "Write a 300–390-word professional report for the operations manager, including a descriptive title, an executive summary of approximately 50–75 words within the overall range, purpose, evidence-based findings and limitations, and prioritised recommendations. Explain how the observed figures relate without claiming causation or user satisfaction. Include a feasible action owner, required approval, continued assistance and an evaluation measure. Distinguish the existing service from the proposed instruction-sheet test. After the report, add a brief revision note showing how one summary sentence was checked against the body and how one action was made more specific. Write your own prose; headings may be used but do not submit only a checklist. No outside facts required.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "UNASSESSED — trusted review pending. No automatic quality grade or CEFR certification."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.cohesion",
+            "writing.idea_development",
+            "writing.register",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-C1",
+          "review_mode": "assisted_ai_or_human"
+        }
+      ]
+    },
+    {
+      "id": "WRI-C1-05",
+      "module": "writing",
+      "cefr_target": "C1",
+      "title": "Draft a resource-bounded implementation proposal",
+      "estimated_minutes": 55,
+      "objectives": [
+        "Write a structured proposal requesting a concrete decision. Compare alternative delivery options against stated criteria, account for resources and dependencies, describe a feasible implementation and evaluation plan, and revise the document so its summary and requested approval match the plan."
+      ],
+      "explanation": {
+        "en": "**CORE-1 — Goal/context.** Write a structured proposal requesting a concrete decision. Compare alternative delivery options against stated criteria, account for resources and dependencies, describe a feasible implementation and evaluation plan, and revise the document so its summary and requested approval match the plan.\n**CORE-2 — Teach/model.** Topic: practical problem. Task: proposal requesting a decision, not a retrospective report. Must Include: criteria, options, rationale, scope, resources, responsibilities, dependencies, evaluation and decision request. Boundary: no unsupported forecasts or commitments. Brainstorm options; screen against hard constraints before ranking benefits. An attractive option that exceeds confirmed resources needs changed scope or additional approval, not confident language. Prepare a short action map (what / owner / when relative to approval / resource / prerequisite / evaluation). Distinguish estimate, available allocation, requested allocation and authorised expenditure. Use a contingency that preserves the objective if a prerequisite fails, rather than silently assuming success. Independent annotated model: a fictional community exhibition has six volunteer hours available; option X needs eight, option Y needs five. “Request approval for Y within the available hours [decision + feasibility], subject to room availability [dependency]. The organiser will confirm the room before scheduling; if unavailable, postpone rather than commit an alternative site [contingency]. Review attendance and setup time before repeating [evaluation].” X may offer more display space but is not feasible within the stated limit unless the decision-maker separately approves extra capacity. Revision: replace “will open on Monday” with a relative sequence when the room is not confirmed. No complex arithmetic or specialist knowledge needed.\n\n**CORE-3 — Independent Writing source bundle (fictional).**\nA neighbourhood learning centre wants to trial a short orientation programme for new volunteers. The board is considering one four-week pilot, not permanent recruitment or a full training programme.\nA — Need and criteria: supervisors logged 15 requests for clarification of routine procedures over two weeks, but did not record unique volunteers or subsequent performance. A voluntary feedback session identified difficulty finding written instructions and arranging time to ask questions. The board wants accessible orientation, a manageable workload and evidence for a later decision.\nB — Option estimates from the training coordinator: Option A, four in-person group sessions, requires 12 coordinator hours and a room for every session; it offers live questions but attendance timing may be restrictive. Option B, a short written guide and two question sessions, requires eight coordinator hours and one room booking for each question session; it offers flexible reading but some volunteers may need additional clarification. Both estimates include preparation and follow-up; neither option's learning effectiveness has been tested. Ten coordinator hours are available for the pilot; any additional hours need separate approval. Existing printed instructions remain available during either pilot.\nC — Delivery and authority: the board may authorise a pilot within the ten hours, subject to confirmed room booking and coordinator availability. The coordinator can prepare the materials; the duty supervisor can record clarification contacts and gather optional feedback; the board decides after four weeks whether to repeat, modify or stop. A comparable measure of volunteers' understanding has not yet been designed. No room booking, pilot start date or extra hours have been approved.\n\n**CORE-4 — Feedback/repair.** UNASSESSED / trusted review pending; proposed existing RUBRIC-WRITING-C1, technical compatibility to be verified. Self-check: genre/reader, bounded approval, feasible resource logic, fair option comparison, responsibility and sequence, contingency, evaluation tied to goal, source accuracy, summary consistency, language and revision quality. Do not score proposal quality from word count, arithmetic alone or headings. No automated semantic/CEFR grade.",
+        "vi": "Viết đề xuất có giới hạn nguồn lực, điều kiện phê duyệt, kế hoạch thực hiện và đánh giá."
+      },
+      "examples": [
+        "Topic: practical problem. Task: proposal requesting a decision, not a retrospective report. Must Include: criteria, options, rationale, scope, resources, responsibilities, dependencies, evaluation and decision request. Boundary: no unsupported forecasts or commitments. Brainstorm options; screen against hard constraints before ranking benefits. An attractive option that exceeds confirmed resources needs changed scope or additional approval, not confident language. Prepare a short action map (what / owner / when relative to approval / resource / prerequisite / evaluation). Distinguish estimate, available allocation, requested allocation and authorised expenditure. Use a contingency that preserves the objective if a prerequisite fails, rather than silently assuming success. Independent annotated model: a fictional community exhibition has six volunteer hours available; option X needs eight, option Y needs five. “Request approval for Y within the available hours [decision + feasibility], subject to room availability [dependency]. The organiser will confirm the room before scheduling; if unavailable, postpone rather than commit an alternative site [contingency]. Review attendance and setup time before repeating [evaluation].” X may offer more display space but is not feasible within the stated limit unless the decision-maker separately approves extra capacity. Revision: replace “will open on Monday” with a relative sequence when the room is not confirmed. No complex arithmetic or specialist knowledge needed."
+      ],
+      "activities": [
+        {
+          "id": "WRI-C1-05-Q1",
+          "type": "extended_response",
+          "prompt": "Write a 320–420-word proposal to the centre board, including an executive summary of about 50–75 words within that range. Request a precise decision, compare the two options against accessibility and workload, and distinguish estimated hours from the available allocation. Propose an option within current resources or explain the separate approval that would be required for a different option; do not assume extra hours. Specify the scope, role responsibilities, dependencies, relative implementation sequence, a contingency if a prerequisite cannot be met, and a review plan including an appropriate proposed measure of understanding (not a fabricated result). Preserve the existing instructions and the separate later decision. Add a brief revision log outside the main word range explaining one resource or authority correction and one summary-to-plan consistency check. Use formal, readable language and headings where helpful.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "UNASSESSED — trusted review pending. No automatic quality grade or CEFR certification."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.cohesion",
+            "writing.idea_development",
+            "writing.register",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-C1",
+          "review_mode": "assisted_ai_or_human"
+        }
+      ]
+    }
+  ],
+  "unit_transfer": {
+    "id": "C1-U08-TRANSFER-01",
+    "text": "Fictional source A (community arts centre maintenance log): during a three-week exhibition, staff recorded 11 occasions when visitors asked for directions between two galleries. The log counts enquiries, not visitors; no comparable earlier measure exists. Source B (visitor liaison): optional comments suggested clearer signs but do not establish how common navigation difficulty is. Source C (facilities note): a four-week trial of two removable signs is estimated at five staff hours; a printed map plus staffed help desk would require nine. Seven staff hours are available; additional hours require separate approval. Facilities staff must confirm safe sign placement; the existing information desk remains open. The manager may approve a bounded trial, not permanent signage.\nTask: write a 240–310-word proposal with a brief evidence summary, fair comparison, explicit request, resource/approval boundaries, responsibility, implementation sequence, contingency and evaluation. Add a two-sentence revision note checking one summary claim and one action against the source. Qualitative self-check: do not equate enquiries with people, assume a causal effect or claim approval; respect hours, safety and existing service. Weight 0, no automated semantic grading.",
+    "evidence_weight": 0,
+    "automated_semantic_grading": false
+  }
+}

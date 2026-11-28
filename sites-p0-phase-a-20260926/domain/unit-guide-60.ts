@@ -35,6 +35,8 @@ const assignments:Record<string,string>={
  ...primaryAssignments.reviewed_v130,
  // Approved B2-U10 Batch03 candidate links, gated on actual catalog lesson availability.
  ...primaryAssignments.reviewed_v131,
+ // Reviewed C1-U04 source-only links; visible only if v1.32 catalog is activated after release gates.
+ ...primaryAssignments.reviewed_v132,
 };
 export const UNIT_LEVELS:UnitLevel[]=['A1','A2','B1','B2','C1','C2'];
 export const UNIT_DEFINITIONS=authoredUnits.units;

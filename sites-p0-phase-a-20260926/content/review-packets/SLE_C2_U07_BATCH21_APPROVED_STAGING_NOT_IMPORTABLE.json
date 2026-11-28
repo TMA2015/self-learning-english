@@ -1,0 +1,466 @@
+{
+  "format": "SLE_AUTHORING_STAGING_NOT_IMPORTABLE",
+  "packet_id": "SLE-C2-U07-B21-R1-20261128",
+  "source_git_blob": "d7178aef3b2a128a468c64b9f3ea01b4ea741d0d",
+  "academic_verdict": "PASS",
+  "must_fix": [],
+  "optional_improvements": [],
+  "unit": "C2-U07",
+  "import_authorized": false,
+  "release_authorized": false,
+  "lessons": [
+    {
+      "id": "REA-C2-06",
+      "module": "reading",
+      "cefr_target": "C2",
+      "title": "Reconstruct changing positions and nested attribution",
+      "estimated_minutes": 50,
+      "objectives": [
+        "Reconstruct a coherent account from a written discussion record, technical note and proposed minute. Identify exactly what speakers revise, retain or quote, distinguish a definitional conflict from a practical disagreement, and select a concise synthesis that preserves unresolved positions and authority."
+      ],
+      "explanation": {
+        "en": "**CORE-1 — Goal/context.** Reconstruct a coherent account from a written discussion record, technical note and proposed minute. Identify exactly what speakers revise, retain or quote, distinguish a definitional conflict from a practical disagreement, and select a concise synthesis that preserves unresolved positions and authority.\n\n**CORE-2 — Teach/model.**\n- Keep a position ledger: source/speaker → proposition → scope → status (reported, endorsed, conceded, withdrawn, unresolved) → later revision. A speaker can report another person's conclusion without endorsing it.\n- If a term appears to unite or divide speakers, paraphrase its meaning in each usage before declaring agreement or conflict. Test whether they still disagree after aligning definitions.\n- A later concession may qualify a recommendation without withdrawing its purpose. In compressed indirect speech, attach each reporting verb to the right speaker and preserve the time and modality of the original claim. Avoid attributing an editor's synthesis to a source.\n- Construct a thematic synthesis: common ground → different senses or evidential limits → surviving substantive issue → agreed action/authority. Do not collapse distinct positions into a consensus or reproduce all turns chronologically.\n- Audit each sentence by asking who could reasonably recognise it as their position, and which clause carries the qualification.\n\nIndependent worked demonstration (not assessed): a fictional theatre discussion uses “complete” differently. The costume coordinator means all pieces are sewn; the stage manager means all have been fitted to performers. The director initially requests a full dress rehearsal but later accepts a rehearsal using substitute costumes, while retaining the fitting requirement before the public performance. A volunteer quotes the coordinator's “complete” in a newsletter as if the stage manager had confirmed readiness. Reconstruct: sewing is reported complete; fitting remains necessary; the director revised the rehearsal condition, not the public-performance requirement. The two uses of complete are not themselves a disagreement about whether fitting occurred. A precise synthesis attributes the sewing claim, distinguishes substitute rehearsal from performance readiness and does not imply that anyone authorised an unfitted costume for public use.\n\n**CORE-3 — Independent reading.** Read the four original written records and select one best answer per item. All specialist terms are defined in the text.\n\n**CORE-4 — Feedback/repair.** Q1 mark revised and retained clauses; Q2 paraphrase the term in context; Q3 distinguish reported voice from reporting voice; Q4 separate common ground from residual conflict; Q5 preserve the proposal/approval distinction; Q6 compare conditions rather than force agreement. Use all option rationales after submission. Independent unassessed repair: a fictional model-railway club uses “operational” to mean either a motor runs on a bench or a complete train runs on a layout. One member initially objects to a public run but later accepts a closed demonstration with a substitute train. Another quotes a child's suggestion that a working model might help explain gearing. Write three sentences distinguishing the definitions, revised position and reported suggestion; do not infer public approval or learning gains. Weight 0; no automated semantic grade.",
+        "vi": "Tái dựng quan điểm thay đổi qua đối thoại, phân biệt định nghĩa, lời dẫn lồng nhau, đồng thuận và bất đồng chưa được giải quyết."
+      },
+      "examples": [
+        "- Keep a position ledger: source/speaker → proposition → scope → status (reported, endorsed, conceded, withdrawn, unresolved) → later revision. A speaker can report another person's conclusion without endorsing it.\n- If a term appears to unite or divide speakers, paraphrase its meaning in each usage before declaring agreement or conflict. Test whether they still disagree after aligning definitions.\n- A later concession may qualify a recommendation without withdrawing its purpose. In compressed indirect speech, attach each reporting verb to the right speaker and preserve the time and modality of the original claim. Avoid attributing an editor's synthesis to a source.\n- Construct a thematic synthesis: common ground → different senses or evidential limits → surviving substantive issue → agreed action/authority. Do not collapse distinct positions into a consensus or reproduce all turns chronologically.\n- Audit each sentence by asking who could reasonably recognise it as their position, and which clause carries the qualification.\n\nIndependent worked demonstration (not assessed): a fictional theatre discussion uses “complete” differently. The costume coordinator means all pieces are sewn; the stage manager means all have been fitted to performers. The director initially requests a full dress rehearsal but later accepts a rehearsal using substitute costumes, while retaining the fitting requirement before the public performance. A volunteer quotes the coordinator's “complete” in a newsletter as if the stage manager had confirmed readiness. Reconstruct: sewing is reported complete; fitting remains necessary; the director revised the rehearsal condition, not the public-performance requirement. The two uses of complete are not themselves a disagreement about whether fitting occurred. A precise synthesis attributes the sewing claim, distinguishes substitute rehearsal from performance readiness and does not imply that anyone authorised an unfitted costume for public use."
+      ],
+      "activities": [
+        {
+          "id": "REA-C2-06-Q1",
+          "type": "single_choice",
+          "prompt": "Which reconstruction best explains the change in Rowan's position between [B] and [C]?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Rowan accepts that digital reconstruction physically restores pigment but wants further evidence about teachers."
+            },
+            {
+              "id": "B",
+              "text": "Rowan no longer objects in principle to paired images in a guided session, but retains the concern about unlabelled or unnoticed distinctions in gallery viewing."
+            },
+            {
+              "id": "C",
+              "text": "Rowan had opposed even photographs and now accepts all forms of digital display."
+            },
+            {
+              "id": "D",
+              "text": "Rowan's position has not changed because the archive board has not approved the session."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Rowan accepts that digital reconstruction physically restores pigment but wants further evidence about teachers. — The physical/digital distinction is explicitly retained.\nRowan no longer objects in principle to paired images in a guided session, but retains the concern about unlabelled or unnoticed distinctions in gallery viewing. — Identifies the revised scope and continuing concern.\nRowan had opposed even photographs and now accepts all forms of digital display. — Misstates the starting and final positions.\nRowan's position has not changed because the archive board has not approved the session. — Confuses a speaker's revised position with decision authority."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-06-Q2",
+          "type": "single_choice",
+          "prompt": "Which account of the initial use of “recovered” is most faithful?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Imani uses the term for digital distinguishability, whereas Rowan's objection addresses the implication of physical restoration; the clarification removes that potential equivocation, not every display concern."
+            },
+            {
+              "id": "B",
+              "text": "Both speakers use the term only to mean physical restoration, but disagree about the number of panels restored."
+            },
+            {
+              "id": "C",
+              "text": "Rowan proves that the imaging lead intended to mislead visitors."
+            },
+            {
+              "id": "D",
+              "text": "The speakers settle the gallery-display issue when they agree on the meaning of recovery."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Imani uses the term for digital distinguishability, whereas Rowan's objection addresses the implication of physical restoration; the clarification removes that potential equivocation, not every display concern. — Aligns the meanings and preserves remaining disagreement.\nBoth speakers use the term only to mean physical restoration, but disagree about the number of panels restored. — Neither claims physical restoration; 40 were scanned.\nRowan proves that the imaging lead intended to mislead visitors. — Concern about interpretation is not a claim about intention.\nThe speakers settle the gallery-display issue when they agree on the meaning of recovery. — Later discussion shows that issue remains unsettled."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-06-Q3",
+          "type": "single_choice",
+          "prompt": "Which indirect report preserves Sera's nested attribution and epistemic limits?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Sera established that reconstructed images help teachers and visitors understand manufacturing."
+            },
+            {
+              "id": "B",
+              "text": "Teachers collectively concluded that a guided session was necessary."
+            },
+            {
+              "id": "C",
+              "text": "Sera said that one teacher had suggested reconstructed patterns might help discussion of manufacturing; Sera proposed a guided session but did not claim demonstrated learning gains."
+            },
+            {
+              "id": "D",
+              "text": "Sera doubted the teacher's suggestion and therefore rejected a guided session."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Sera established that reconstructed images help teachers and visitors understand manufacturing. — Changes a suggestion into an established finding.\nTeachers collectively concluded that a guided session was necessary. — Invents consensus and necessity.\nSera said that one teacher had suggested reconstructed patterns might help discussion of manufacturing; Sera proposed a guided session but did not claim demonstrated learning gains. — Retains the source, modal force and distinct recommendation.\nSera doubted the teacher's suggestion and therefore rejected a guided session. — Reverses Sera's support and misstates the object of her reservation."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-06-Q4",
+          "type": "single_choice",
+          "prompt": "Which substantive issue remains after the speakers converge on proposing a guided session?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Whether the archive scanned any lantern panels at all."
+            },
+            {
+              "id": "B",
+              "text": "Whether the word recovery can ever refer to a digital image."
+            },
+            {
+              "id": "C",
+              "text": "Whether the proposed session has already taken place."
+            },
+            {
+              "id": "D",
+              "text": "Whether later independent viewing could communicate the distinction and uncertainty reliably, and whether such a display should be pursued."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Whether the archive scanned any lantern panels at all. — The scan count is not disputed.\nWhether the word recovery can ever refer to a digital image. — The technical usage has been clarified.\nWhether the proposed session has already taken place. — The proposal has not been approved.\nWhether later independent viewing could communicate the distinction and uncertainty reliably, and whether such a display should be pursued. — Captures the unresolved practical and evidential issue without declaring a consensus."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-06-Q5",
+          "type": "single_choice",
+          "prompt": "Which compact minute repairs [D] without erasing genuine agreement?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The team proposes a guided session using photographs and labelled digital reconstructions to examine visitor understanding; the board has not approved it, and later independent display remains undecided."
+            },
+            {
+              "id": "B",
+              "text": "The team has agreed that restoring pigment is unnecessary because the teachers have confirmed the educational benefit."
+            },
+            {
+              "id": "C",
+              "text": "The curator rejected exhibition, so the meeting produced no shared proposal."
+            },
+            {
+              "id": "D",
+              "text": "The guided session is approved and will establish the suitability of unlabelled displays."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The team proposes a guided session using photographs and labelled digital reconstructions to examine visitor understanding; the board has not approved it, and later independent display remains undecided. — Preserves action, scope and unresolved issue without claiming restoration or results.\nThe team has agreed that restoring pigment is unnecessary because the teachers have confirmed the educational benefit. — Introduces unsupported physical and educational claims.\nThe curator rejected exhibition, so the meeting produced no shared proposal. — Ignores Rowan's qualified revision.\nThe guided session is approved and will establish the suitability of unlabelled displays. — Invents approval and overextends future evidence."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-06-Q6",
+          "type": "single_choice",
+          "prompt": "A longer internal summary adds “Imani and Sera both endorsed a future self-guided display.” Which revision best distinguishes their positions?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Remove all references to future display because internal summaries cannot contain uncertainty."
+            },
+            {
+              "id": "B",
+              "text": "Imani left a later self-guided display open subject to evidence; Sera supported the initial guided session and warned against extending its results to unassisted viewing."
+            },
+            {
+              "id": "C",
+              "text": "Sera rejected independent viewing permanently, while Imani demanded it immediately."
+            },
+            {
+              "id": "D",
+              "text": "Both accepted that a guided session would automatically settle the independent-viewing question."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Remove all references to future display because internal summaries cannot contain uncertainty. — Deletes a material issue.\nImani left a later self-guided display open subject to evidence; Sera supported the initial guided session and warned against extending its results to unassisted viewing. — Distinguishes conditional openness from a warning about generalisation.\nSera rejected independent viewing permanently, while Imani demanded it immediately. — Overstates both positions.\nBoth accepted that a guided session would automatically settle the independent-viewing question. — Contradicts their stated qualifications."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "SRC-REA-C2-06",
+        "title": "A lantern archive's two meanings of recovery",
+        "body": "### A lantern archive's two meanings of recovery\n\n[A] Technical note by conservation imaging lead Imani: The archive has scanned 40 painted lantern panels. A digital reconstruction makes some faded patterns distinguishable by combining several scans of the same panel. In this note, recovery means that a feature can be distinguished in the combined image; it does not mean that the physical pigment has been restored. Some faint outlines can be interpreted in more than one way. The technical team proposes attaching a confidence label to each interpreted feature. It has not assessed how an ordinary visitor would interpret the combined image without such labels.\n\n[B] Extract from written meeting record, first discussion:\nCurator Rowan: “I would not exhibit a recovered panel as though its original colours were intact. A visitor could take the combined image for a photograph of the object today. My initial preference is to show only photographs.”\nImani: “By recovered I mean a distinguishable feature in a digital image. I agree that a reconstruction must not be represented as the present physical state. Showing both the photograph and the labelled reconstruction would let visitors see a distinction that a photograph alone may not reveal.”\nVisitor educator Sera: “One teacher told us that a reconstructed pattern might make the manufacturing technique easier to discuss. That is a suggestion from one teacher, not a test of what visitors learn. I would like a small guided session, where uncertain features can be explained.”\n\n[C] Written meeting record, later discussion:\nRowan: “With the distinction between image recovery and physical restoration made explicit, I no longer object in principle to displaying the paired images in a guided session. I still oppose including reconstructed features in the unlabelled gallery display. Even a label may not be sufficient there if visitors never look at it.”\nImani: “I can support a guided session as a first step, but I would not rule out a later self-guided display if visitors can reliably distinguish the image from the object and notice the uncertainty labels.”\nSera: “My concern is that a short guided session may not reveal how people interpret the images on their own. I support starting there, provided we do not describe success in that setting as proof that unassisted viewing works.”\nSecretary: The meeting agreed to propose one guided session to the archive board, with a short check of visitors' understanding of the image/object distinction and ambiguous features. The board has not approved the session. There is no agreement on whether a later self-guided display should be introduced.\n\n[D] Proposed publicity minute, drafted by a communications volunteer: “The conservation team confirmed that the lanterns have been recovered. Teachers established the value of the restored colours for learning. The curator withdrew the objections to exhibition, and the team agreed that the successful guided session would lead to an unlabelled gallery display.” The minute has not been adopted.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "REA-C2-07",
+      "module": "reading",
+      "cefr_target": "C2",
+      "title": "Mediate branching technical conditions without changing their effect",
+      "estimated_minutes": 50,
+      "objectives": [
+        "Construct and audit expert and accessible accounts from a layered technical report, maintenance protocol and stakeholder note. Identify which simplifications change a permission, exception, uncertainty or practical implication; preserve distinct decision owners and the audience's required action."
+      ],
+      "explanation": {
+        "en": "**CORE-1 — Goal/context.** Construct and audit expert and accessible accounts from a layered technical report, maintenance protocol and stakeholder note. Identify which simplifications change a permission, exception, uncertainty or practical implication; preserve distinct decision owners and the audience's required action.\n\n**CORE-2 — Teach/model.**\n- Make a shared invariant ledger: defined term, tested claim, condition/exception, action, owner, uncertainty and source. Mark details as essential for both readers, essential for one reader, or safely compressible.\n- For a branching rule, write separate if/then lines and identify when an exception overrides the normal rule. Distinguish a necessary condition from a sufficient condition and distinguish permission from obligation.\n- Expert mediation retains the technical definition and design limits that determine interpretation. Accessible mediation replaces jargon with a faithful explanation and supplies the practical action; it does not hide a restriction because it is inconvenient.\n- In a short summary, preserve the force of conditional and contrastive language. Use attribution when a stakeholder's preference is not an operating rule.\n- Audit the reformulation: original clause → new wording → preserved implication → omitted detail and reason. Check a counterexample at the boundary of the rule.\n\nIndependent worked demonstration (not assessed): a fictional fabric archive states that a scanner's “stable” indicator means the light output is within a tested range, not that a fragile cloth is safe to scan. Staff may scan ordinary samples when the light is stable and the handling check is complete; fragile samples require separate approval from the conservation lead even if both checks pass. Expert summary: preserve the tested light definition, both normal conditions and exception. Accessible notice: “Staff can scan ordinary cloth after two checks; fragile cloth must be separately cleared by the conservation lead.” If visitors merely request scans, say that a request is not clearance. Omitting the name of the light sensor may be harmless for visitors; omitting the fragile-cloth exception would allow an unauthorised action. Check the case of fragile cloth with both checks passed: the separate approval is still required.\n\n**CORE-3 — Independent reading.** Read the following fictional orchard dossier. Answer each item for its specified reader or purpose; all technical terms are defined.\n\n**CORE-4 — Feedback/repair.** Q1 locate the tested condition and untested environment; Q2 check local/time-limited meaning; Q3 test the missing-condition branch; Q4 test the exception with all normal conditions satisfied; Q5 distinguish safely compressible evidence detail from action-critical information; Q6 compare two audience outputs against one invariant ledger. Independent unassessed repair: a fictional print studio's “ready” light indicates a warmed machine, not permission to use it. Ordinary paper requires a current maintenance check and operator approval; coated paper always requires a separate material check by a specialist. Draft a short novice notice and two extra sentences for a technician; explain one omission and one exception that must remain. Weight 0; no automated semantic grade.",
+        "vi": "Chuyển tải điều kiện kỹ thuật nhiều nhánh cho các nhóm độc giả, giữ nguyên ngoại lệ, quyền hạn, giới hạn bằng chứng và hành động cần thiết."
+      },
+      "examples": [
+        "- Make a shared invariant ledger: defined term, tested claim, condition/exception, action, owner, uncertainty and source. Mark details as essential for both readers, essential for one reader, or safely compressible.\n- For a branching rule, write separate if/then lines and identify when an exception overrides the normal rule. Distinguish a necessary condition from a sufficient condition and distinguish permission from obligation.\n- Expert mediation retains the technical definition and design limits that determine interpretation. Accessible mediation replaces jargon with a faithful explanation and supplies the practical action; it does not hide a restriction because it is inconvenient.\n- In a short summary, preserve the force of conditional and contrastive language. Use attribution when a stakeholder's preference is not an operating rule.\n- Audit the reformulation: original clause → new wording → preserved implication → omitted detail and reason. Check a counterexample at the boundary of the rule.\n\nIndependent worked demonstration (not assessed): a fictional fabric archive states that a scanner's “stable” indicator means the light output is within a tested range, not that a fragile cloth is safe to scan. Staff may scan ordinary samples when the light is stable and the handling check is complete; fragile samples require separate approval from the conservation lead even if both checks pass. Expert summary: preserve the tested light definition, both normal conditions and exception. Accessible notice: “Staff can scan ordinary cloth after two checks; fragile cloth must be separately cleared by the conservation lead.” If visitors merely request scans, say that a request is not clearance. Omitting the name of the light sensor may be harmless for visitors; omitting the fragile-cloth exception would allow an unauthorised action. Check the case of fragile cloth with both checks passed: the separate approval is still required."
+      ],
+      "activities": [
+        {
+          "id": "REA-C2-07-Q1",
+          "type": "single_choice",
+          "prompt": "Which technical statement preserves what the bench test established?",
+          "options": [
+            {
+              "id": "A",
+              "text": "It validated moisture distribution across every plot under routine field conditions."
+            },
+            {
+              "id": "B",
+              "text": "It established that sensor drift cannot cause an erroneous display."
+            },
+            {
+              "id": "C",
+              "text": "It verified that water from the orchard tanks was safe to drink."
+            },
+            {
+              "id": "D",
+              "text": "It verified the display's response to the 24 prepared readings, including six out-of-range cases, but did not establish field reliability or plot-wide moisture."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "It validated moisture distribution across every plot under routine field conditions. — Extends prepared readings to field distribution.\nIt established that sensor drift cannot cause an erroneous display. — Sensor drift was not examined.\nIt verified that water from the orchard tanks was safe to drink. — The test did not examine drinking safety; tanks are irrigation only.\nIt verified the display's response to the 24 prepared readings, including six out-of-range cases, but did not establish field reliability or plot-wide moisture. — Preserves measure, scope and limits."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-07-Q2",
+          "type": "single_choice",
+          "prompt": "Which volunteer-facing explanation of “within range” avoids changing its practical implication?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The green display shows that the water is safe and watering is compulsory."
+            },
+            {
+              "id": "B",
+              "text": "The last local reading fell within the trial's moisture limits; check its age and the instruction for your plot before watering."
+            },
+            {
+              "id": "C",
+              "text": "The whole plot has adequate moisture today, so no other instructions matter."
+            },
+            {
+              "id": "D",
+              "text": "Green certifies that the sensor cannot be wrong."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The green display shows that the water is safe and watering is compulsory. — Confuses moisture, safety and obligation.\nThe last local reading fell within the trial's moisture limits; check its age and the instruction for your plot before watering. — Explains the local, time-limited status and points to the governing rule.\nThe whole plot has adequate moisture today, so no other instructions matter. — Overgeneralises the sensor reading and removes the protocol.\nGreen certifies that the sensor cannot be wrong. — Invents field reliability."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-07-Q3",
+          "type": "single_choice",
+          "prompt": "An ordinary plot has a green display and an active scheduled instruction, but no timestamp. Which instruction preserves [B]?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Pause and request a manual check from the duty supervisor; resume only on a specific instruction after the check."
+            },
+            {
+              "id": "B",
+              "text": "Proceed because green plus a schedule makes a timestamp optional."
+            },
+            {
+              "id": "C",
+              "text": "Ask the horticulture lead to approve the field comparison before doing anything."
+            },
+            {
+              "id": "D",
+              "text": "Water immediately, then request a timestamp from the technical team."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Pause and request a manual check from the duty supervisor; resume only on a specific instruction after the check. — The missing timestamp triggers the override despite the other conditions.\nProceed because green plus a schedule makes a timestamp optional. — Removes a required condition.\nAsk the horticulture lead to approve the field comparison before doing anything. — Confuses the role for newly planted plots and the proposed test.\nWater immediately, then request a timestamp from the technical team. — Reverses the required sequence."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-07-Q4",
+          "type": "single_choice",
+          "prompt": "Which version correctly mediates the exception for newly planted plots?",
+          "options": [
+            {
+              "id": "A",
+              "text": "All plots may follow routine instructions as long as the display is green."
+            },
+            {
+              "id": "B",
+              "text": "The duty supervisor can replace the horticulture lead whenever a timestamp is missing."
+            },
+            {
+              "id": "C",
+              "text": "For newly planted plots, follow only a specific instruction from the horticulture lead, even if the display is green or a routine instruction exists."
+            },
+            {
+              "id": "D",
+              "text": "Newly planted plots must not receive water under any circumstances."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "All plots may follow routine instructions as long as the display is green. — Erases the exception.\nThe duty supervisor can replace the horticulture lead whenever a timestamp is missing. — The protocol expressly excludes that substitution.\nFor newly planted plots, follow only a specific instruction from the horticulture lead, even if the display is green or a routine instruction exists. — Preserves the override and owner.\nNewly planted plots must not receive water under any circumstances. — Converts conditional permission into prohibition."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-07-Q5",
+          "type": "single_choice",
+          "prompt": "The short volunteer notice cannot include every technical detail. Which omission is defensible for that notice while retaining the full briefing for staff?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Omit the newly planted plot exception because most volunteers work on ordinary plots."
+            },
+            {
+              "id": "B",
+              "text": "Omit the irrigation-only restriction because a moisture indicator does not measure drinking safety."
+            },
+            {
+              "id": "C",
+              "text": "Omit the need for a current timestamp because volunteers can see the colour."
+            },
+            {
+              "id": "D",
+              "text": "Omit the exact 24-case bench-test count, retaining the limited meaning of the display and the complete operational conditions and exceptions."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "Omit the newly planted plot exception because most volunteers work on ordinary plots. — Could authorise the wrong action.\nOmit the irrigation-only restriction because a moisture indicator does not measure drinking safety. — The notice should not leave the draft's safety implication uncorrected.\nOmit the need for a current timestamp because volunteers can see the colour. — Removes a necessary condition.\nOmit the exact 24-case bench-test count, retaining the limited meaning of the display and the complete operational conditions and exceptions. — The sample detail matters to technical evaluation but is not needed for following the rule."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C2-07-Q6",
+          "type": "single_choice",
+          "prompt": "Which two-audience plan best repairs [D] and leaves a transparent audit trail?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Tell volunteers the system is reliable and explain all caveats only in the technical briefing."
+            },
+            {
+              "id": "B",
+              "text": "Tell volunteers what green means, the ordinary-plot checks, the pause procedure, the separate newly planted plot instruction and irrigation-only restriction; tell staff additionally about test scope, field gaps and proposed comparison. Record that the sample count was omitted only from the short notice."
+            },
+            {
+              "id": "C",
+              "text": "Present the coordinator's preferred single green light as approved and leave the protocol for staff only."
+            },
+            {
+              "id": "D",
+              "text": "Give both audiences the draft unchanged because they can infer the restrictions themselves."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Tell volunteers the system is reliable and explain all caveats only in the technical briefing. — Conceals material limits from those acting on the notice.\nTell volunteers what green means, the ordinary-plot checks, the pause procedure, the separate newly planted plot instruction and irrigation-only restriction; tell staff additionally about test scope, field gaps and proposed comparison. Record that the sample count was omitted only from the short notice. — Preserves shared invariants, audience-specific details and an explicit omission reason.\nPresent the coordinator's preferred single green light as approved and leave the protocol for staff only. — Confuses stakeholder preference, user request and authority.\nGive both audiences the draft unchanged because they can infer the restrictions themselves. — Leaves multiple material false implications."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "SRC-REA-C2-07",
+        "title": "Water status at a community orchard",
+        "body": "### Water status at a community orchard\n\n[A] Technical report: A new orchard notice system combines a moisture reading with a record of water delivery. The display status “within range” means the measured soil moisture at a particular sensor was within the trial's predefined limits at the time of measurement. It does not establish adequate moisture in every plot, root condition or safety of water for drinking. In a bench test, the system displayed the expected status for all 24 prepared sensor readings, including six out-of-range cases. The test did not examine sensor drift in the orchard or failures in transmitting recent readings. The team recommends a separate field comparison using manual readings in different plots. Water from the orchard tanks is designated for irrigation only, not for drinking.\n\n[B] Current maintenance protocol, approved by the orchard manager:\nOrdinary plots: a volunteer may carry out routine irrigation only if the plot's local display is within range, a timestamp is present and no more than two hours old, and the scheduled irrigation instruction is active. A green within-range display alone is not an instruction to water. If a timestamp is missing or older than two hours, or the display is out of range, the volunteer must pause and request a manual check from the duty supervisor. The supervisor may issue a specific irrigation instruction after that check.\nNewly planted plots: regardless of display status, use only a specific instruction from the horticulture lead; the duty supervisor's routine-plot instruction does not substitute for that approval.\nAn announced field comparison is proposed, not approved. Until a change is approved, the current protocol applies.\n\n[C] Volunteer coordinator's written note: “People have asked for a one-line explanation of the green display. My preference is to explain that the measured moisture was within the trial limits when checked, then direct volunteers to the instructions for their plot. Some volunteers would like a single green light that means water now. I understand the convenience, but we have not agreed to change the operating rule. The proposed field comparison may help us understand reliability; it would not by itself authorise changing the irrigation instructions.”\n\n[D] Draft public notice: “The system has passed all safety checks. Green means your plot is safe and ready to water. When the comparison begins, supervisors can clear every plot for irrigation.” The orchard manager asks for a short volunteer notice and a separate technical briefing for staff planning the possible field comparison.",
+        "display_to_learner": true
+      }
+    }
+  ],
+  "held_lessons": [],
+  "unit_transfer": {
+    "id": "C2-U07-TRANSFER-01",
+    "text": "Fresh fictional dossier: glass exhibition loans.\n- A, conservator's note: a packing monitor's “clear” status means no shock above the selected threshold was recorded during monitored intervals. It does not prove an object is undamaged; an interruption in recording leaves the missing interval unknown. A controlled test used 18 prepared signals and displayed the expected status for each. Field interruptions have not been evaluated. A visual condition check by a conservator remains necessary.\n- B, written planning discussion: the collections officer initially objects to using monitors as a release condition, then accepts them as supplementary records if visual checks remain mandatory. The transport coordinator reports that one lender suggested monitors might reduce disputes; the coordinator has no comparative dispute records. Both support proposing a limited trial; the officer retains reservations about using monitor status to shorten checks. The coordinator would consider that later only if a separate evaluation supports it. No trial is approved.\n- C, current approved protocol: ordinary replica objects may be dispatched only with a current clear monitor record (no missing intervals) AND a signed visual condition check AND the loan officer's dispatch approval. A missing interval or non-clear status requires a separate conservator review before any dispatch decision. Historic originals require specific approval from the senior conservator in every case; ordinary loan-officer approval cannot substitute. The trial proposal does not change this protocol.\n- D, unapproved draft notice: “All monitors prove objects are safe. Lenders have confirmed fewer disputes. Collections staff now agree checks may be shortened, and loans are cleared for dispatch.”\n\nTask: First construct a thematic attributed synthesis (120–160 words) for the exhibition committee: reconcile definitions, revised and retained positions, nested attribution, shared proposal and remaining disagreement. Then write an expert briefing (130–180 words) for staff evaluating the proposed trial and a plain-language dispatch guide (90–130 words) for volunteers who help prepare ordinary replicas and historic originals. Preserve all action-critical branches and limits in the guide; explain who makes decisions. In the briefing retain prepared-test scope, unknown field interruptions and what would need examination. Add a 4-row audit trail (original clause/source; new wording; preserved implication; omitted/simplified detail and why). Include a branch test for an ordinary replica with a missing interval and a historic original with all ordinary checks complete. Identify one misleading sentence from D and explain its repair.\n\nQualitative self-check: every assertion has accurate attribution, revised positions retain reservations, common ground is not agreement on shorter checks, quoted suggestion is not an observed outcome, no monitor status guarantees absence of damage, current protocol and authority unchanged, both audience versions retain material conditions and exceptions, omission reasons are audience-specific, no fabricated trial approval. Multiple defensible formulations. All productive tasks weight 0, pending trusted review; no automatic semantic grading, validated C2 Writing rubric, oral evidence or CEFR award.\n\n## 4. Independent academic review — required questions\n\n1. Verify source token and both reading asset topics before assessing. If mismatch, stop and report SOURCE MISMATCH. Review against current permanent sources. Does this progression add C2 reconstruction of changing positions, nested attribution, definitional conflict and auditable dual-audience mediation beyond the cited prior lessons? Is it English comprehension and mediation, not a specialist knowledge or general reasoning test? Identify remaining unit outcomes separately.\n2. Audit CORE-1–4 and independence of models and repairs. Verify all 12 stems, options, keys and rationales, source fidelity and unique defensibility. For Q3 of REA-C2-06 verify nested attribution; for REA-C2-07 verify timestamp branch, newly planted exception, irrigation-only restriction and safe omission. Require exact fixes where any wording overstates source or changes authority.\n3. Audit fresh transfer for substantive production of attributed synthesis, expert and accessible explanations, audit trail and counterexamples; check feasibility and independence. Open tasks weight 0; bounded reading items weight 1 only upon authorized technical integration. No new scored Writing lesson, unvalidated C2 rubric, audio, oral assessment, or CEFR certification.\n4. Confirm fictional original texts, no reused listening scripts, C2 Writing and prior media/Historical Q5 holds unchanged. Implementation, import, runtime and release are out of academic scope. Owner #257: complete academic authoring/review first, then research, prototype, independently review and apply interactions before Curriculum 1.0 release.\n\nAuthor structural keys: REA-C2-06 BACDAB; REA-C2-07 DBACDB. Independently verify.\n\nRequired verdict: SOURCE_TOKEN; ASSET_TOPICS; PACKET_ID; ACADEMIC PASS/PASS_WITH_REQUIRED_CHANGES/FAIL; UNIT_ALIGNMENT; LEVEL_AND_SEQUENCING; CORE_AUDIT per lesson; ITEM_AUDIT each Q1–Q6 with key/verdict/rationale; TRANSFER; EVIDENCE_BOUNDARY; MUST_FIX exact IDs/replacements or NONE; OPTIONAL_IMPROVEMENTS; INTEGRATION_AND_RELEASE OUT_OF_SCOPE / NOT_RELEASED.",
+    "evidence_weight": 0,
+    "automated_semantic_grading": false
+  }
+}

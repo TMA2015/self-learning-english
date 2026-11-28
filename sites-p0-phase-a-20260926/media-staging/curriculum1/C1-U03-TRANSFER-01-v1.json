@@ -1,0 +1,69 @@
+{
+  "schema": "g-learning-audio-production-v1",
+  "application_version": "1.2",
+  "lesson_id": "C1-U03-TRANSFER-01",
+  "filename": "C1-U03-TRANSFER-01-v1.mp3",
+  "audio_format": "mp3",
+  "sample_rate": 24000,
+  "duration_seconds": 125.807,
+  "sha256": "1c0440e3c12bd8ef64f29d63468daf58887076b4f023a3ec2371244f3a511128",
+  "generator": {
+    "engine": "Kokoro",
+    "package": "0.9.4",
+    "inference": "local",
+    "preset": "Listening A2",
+    "mode": "Dialogue A/B",
+    "voice_a": "bf_emma",
+    "voice_b": "bm_fable",
+    "speed": 1.0017,
+    "pause_seconds": 0.3514,
+    "balance_dialogue_loudness": false
+  },
+  "turns": [
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "The exhibition includes short extracts from interviews with former residents. I'd like to organise the extracts around common themes rather than present each interview in its entirety. Visitors who have only ten minutes might otherwise struggle to make sense of the collection. The difficulty is deciding whether our arrangement helps visitors encounter the accounts or effectively tells them what those accounts mean.",
+      "duration_seconds": 22.675,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_fable",
+      "text": "That's the distinction I wanted to raise. If we place two extracts under a label such as “nostalgia”, the label might lead visitors to interpret both accounts in the same way, even if one speaker was expressing a reservation about the past. I wouldn't oppose thematic organisation in principle. I would want the original context to remain accessible and the label to be recognisable as our editorial choice.",
+      "duration_seconds": 21.0,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "I can see why that matters. The observation from the small preview was that visitors moved through the themed section more quickly. That might mean the organisation made navigation easier, but we did not ask whether they understood the speakers' different positions. It would be misleading to claim that faster movement meant deeper understanding. Perhaps the extracts could be presented under questions rather than interpretive labels.",
+      "duration_seconds": 23.075,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_fable",
+      "text": "Questions could reduce the risk, although even a question can imply a particular way of reading an account. I would favour giving visitors a way to return to a longer segment, with a brief explanation of why the extract was selected. We should make sure the speakers' consent covers that presentation, rather than assuming permission for one format automatically covers another.",
+      "duration_seconds": 19.625,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "Then let's prepare a small example of the question-led arrangement, subject to the agreed permissions, and invite a few visitors to explain how they interpreted the different extracts. We can compare that with a version that follows the interview order. I would not describe either arrangement as better before we have investigated the actual differences.",
+      "duration_seconds": 19.35,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_fable",
+      "text": "That sounds like a worthwhile comparison. My support is for preparing and evaluating the examples, not committing the whole exhibition to a particular structure. If the comparison reveals that a concise arrangement loses an important qualification, we will need to revise the arrangement even if visitors move through it more quickly.",
+      "duration_seconds": 18.325,
+      "applied_gain": 1.0
+    }
+  ],
+  "source_text": "A: The exhibition includes short extracts from interviews with former residents. I'd like to organise the extracts around common themes rather than present each interview in its entirety. Visitors who have only ten minutes might otherwise struggle to make sense of the collection. The difficulty is deciding whether our arrangement helps visitors encounter the accounts or effectively tells them what those accounts mean.\nB: That's the distinction I wanted to raise. If we place two extracts under a label such as “nostalgia”, the label might lead visitors to interpret both accounts in the same way, even if one speaker was expressing a reservation about the past. I wouldn't oppose thematic organisation in principle. I would want the original context to remain accessible and the label to be recognisable as our editorial choice.\nA: I can see why that matters. The observation from the small preview was that visitors moved through the themed section more quickly. That might mean the organisation made navigation easier, but we did not ask whether they understood the speakers' different positions. It would be misleading to claim that faster movement meant deeper understanding. Perhaps the extracts could be presented under questions rather than interpretive labels.\nB: Questions could reduce the risk, although even a question can imply a particular way of reading an account. I would favour giving visitors a way to return to a longer segment, with a brief explanation of why the extract was selected. We should make sure the speakers' consent covers that presentation, rather than assuming permission for one format automatically covers another.\nA: Then let's prepare a small example of the question-led arrangement, subject to the agreed permissions, and invite a few visitors to explain how they interpreted the different extracts. We can compare that with a version that follows the interview order. I would not describe either arrangement as better before we have investigated the actual differences.\nB: That sounds like a worthwhile comparison. My support is for preparing and evaluating the examples, not committing the whole exhibition to a particular structure. If the comparison reveals that a concise arrangement loses an important qualification, we will need to revise the arrangement even if visitors move through it more quickly.",
+  "created_local": "2026-11-28T18:27:30",
+  "owner_audio_qa": "PENDING"
+}

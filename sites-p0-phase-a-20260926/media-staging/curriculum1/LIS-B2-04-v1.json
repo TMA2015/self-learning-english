@@ -1,0 +1,83 @@
+{
+  "schema": "g-learning-audio-production-v1",
+  "application_version": "1.2",
+  "lesson_id": "LIS-B2-04",
+  "filename": "LIS-B2-04-v1.mp3",
+  "audio_format": "mp3",
+  "sample_rate": 24000,
+  "duration_seconds": 113.0,
+  "sha256": "f8530881abbb6c7c3cb924e924028318d01051f481735a22466fde46aa1c5592",
+  "generator": {
+    "engine": "Kokoro",
+    "package": "0.9.4",
+    "inference": "local",
+    "preset": "Listening A2",
+    "mode": "Dialogue A/B",
+    "voice_a": "bf_emma",
+    "voice_b": "bm_fable",
+    "speed": 0.9522,
+    "pause_seconds": 0.35,
+    "balance_dialogue_loudness": false
+  },
+  "turns": [
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "I've been thinking about the unused corner of the community hall. Several neighbours have asked where they can get help with simple repairs, such as tightening a loose screw or replacing a missing button. I wondered whether we could run a monthly repair workshop. People might learn a useful skill as well as keeping an item for longer.",
+      "duration_seconds": 18.475,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_fable",
+      "text": "I like the educational purpose, but I'm not ready to promise a monthly event. Last time the hall hosted a practical activity, the organisers needed someone who could supervise the equipment and make sure the space was left clear. We haven't established who would take responsibility for that.",
+      "duration_seconds": 16.025,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "That's fair. I hadn't thought about the supervision arrangements. I wasn't imagining electrical repairs or anything involving dangerous equipment. We could start with ordinary clothes repairs and simple demonstrations using safe materials.",
+      "duration_seconds": 14.925,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_fable",
+      "text": "That narrows the proposal, which makes it easier to discuss. Even so, I'd want to know whether there are volunteers with the appropriate skills and whether the hall manager is comfortable with the plan. We should also find out what residents actually want to learn rather than assume that the requests we've heard reflect everyone.",
+      "duration_seconds": 17.425,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "Instead of asking the manager to approve a regular programme now, how about asking whether a single supervised demonstration would be possible? We could invite residents to suggest topics on a short voluntary form before planning the session.",
+      "duration_seconds": 14.5,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_fable",
+      "text": "I could support that enquiry. If the manager agrees in principle, we can then check volunteer availability and the suitable materials. But we shouldn't advertise a date or invite people to bring items yet.",
+      "duration_seconds": 12.45,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "Agreed. I'll draft a short message asking the manager about a possible demonstration. You can help me make sure it doesn't promise anything.",
+      "duration_seconds": 8.525,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_fable",
+      "text": "Yes. The decision today is to ask, not to run the workshop. We can discuss whether a longer programme is worthwhile once we know more.",
+      "duration_seconds": 8.225,
+      "applied_gain": 1.0
+    }
+  ],
+  "source_text": "A: I've been thinking about the unused corner of the community hall. Several neighbours have asked where they can get help with simple repairs, such as tightening a loose screw or replacing a missing button. I wondered whether we could run a monthly repair workshop. People might learn a useful skill as well as keeping an item for longer.\nB: I like the educational purpose, but I'm not ready to promise a monthly event. Last time the hall hosted a practical activity, the organisers needed someone who could supervise the equipment and make sure the space was left clear. We haven't established who would take responsibility for that.\nA: That's fair. I hadn't thought about the supervision arrangements. I wasn't imagining electrical repairs or anything involving dangerous equipment. We could start with ordinary clothes repairs and simple demonstrations using safe materials.\nB: That narrows the proposal, which makes it easier to discuss. Even so, I'd want to know whether there are volunteers with the appropriate skills and whether the hall manager is comfortable with the plan. We should also find out what residents actually want to learn rather than assume that the requests we've heard reflect everyone.\nA: Instead of asking the manager to approve a regular programme now, how about asking whether a single supervised demonstration would be possible? We could invite residents to suggest topics on a short voluntary form before planning the session.\nB: I could support that enquiry. If the manager agrees in principle, we can then check volunteer availability and the suitable materials. But we shouldn't advertise a date or invite people to bring items yet.\nA: Agreed. I'll draft a short message asking the manager about a possible demonstration. You can help me make sure it doesn't promise anything.\nB: Yes. The decision today is to ask, not to run the workshop. We can discuss whether a longer programme is worthwhile once we know more.",
+  "created_local": "2026-11-28T18:07:18",
+  "owner_audio_qa": "PENDING"
+}
