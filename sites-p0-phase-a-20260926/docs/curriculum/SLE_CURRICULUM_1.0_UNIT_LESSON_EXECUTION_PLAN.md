@@ -843,14 +843,14 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Advisory entry:** C1-U04, C1-U05, C1-U09; **priority:** P0. Design dependencies are not implemented unlocks.
 - **Independent exit task:** compare near-synonymous formulations and justify different pragmatic effects. Status: **PROPOSED**, not a released or automatically scored activity.
 - **Audit before adding:** C2 is not simply a list of rare idioms or native-speaker slang; design meaningful contrastive contexts. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** NO_PRIMARY_MAPPING / GAP_AUDIT_PENDING.
+- **Status:** BATCH15 R1 DRAFT / ACADEMIC PENDING / EXISTING BRIDGE MAPPING PROPOSED.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | C2-U01-S01 (proposed) | Distinguish fine shades of connotation and lexical implications; audit VOC-C2-01 for reuse | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 2 | C2-U01-S02 (proposed) | Select precise collocations and graded modality across registers | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 3 | C2-U01-S03 (proposed) | Reformulate tactfully while preserving subtle stance and implication | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 4 | C2-U01-TRANSFER (planning only) | compare near-synonymous formulations and justify different pragmatic effects. Status: **PROPOSED**, not a released or automatically scored activity. | To be audited / authored | Audit existing transfer evidence; draft if absent, label evidence honestly. |
+| 1 | VOC-C2-01 (existing unmapped pilot; reuse proposed) | Fine shades of meaning: tact, emphasis and qualified judgment | Existing · 8 MCQs | Preserve existing source; verify bridge mapping and Q5 precision concern independently. |
+| 2 | VOC-C2-02 (proposed) | Diagnose lexical implications and calibrate commitment | 30–40 min · 6 proposed MCQs | Independent review pending. |
+| 3 | WRI-C2-01 (proposed) | Reformulate precisely across audiences without losing pragmatic force | 45–60 min · 1 open task | Weight 0; C2 rubric and delivery pending; independent review required. |
+| 4 | C2-U01-TRANSFER-01 (proposed) | Fresh independent lexical and pragmatic transfer | 20–30 min advisory | Weight 0; independent review pending. |
 
 ### C2-U02 — Dense texts, rhetoric and layered interpretation
 - **Unit purpose:** Analyse complex factual, abstract or literary texts with competing readings, rhetorical effects and implicit intentions.
@@ -1044,3 +1044,6 @@ Audited B2-U10 REA-B2-15/LIS-B2-01/WRI-B2-12, C1-U01/03/06/07/08/09 source and B
 
 ## Batch14 academic checkpoint — 2026-11-28
 Owner-supplied NotebookLM PASS REA-C1-12 (6/6 BACDAB), LIS-C1-04 (6/6 CBADBC, script only), WRI-C1-07 (weight 0) and C1-U10-TRANSFER-01 (weight 0; media hold); MUST_FIX/OPTIONAL NONE. Exact R1 01da8e7d15287816bdf35566e3b85127f53a80ef. Working 215/1393, 213 mapped + 2 unmapped; 213 prior lessons, sequence prefix and rubrics preserved. Two new written lessons only; Listening and cross-modal Transfer held separately. All prior holds preserved. No runtime/import/merge/release. C1 educational completion remains unverified pending outcome/media/engineering audit; do not infer count from review summary. Next C2-U01: audit VOC-C2-01 and C1-U04/05/09 actual outcomes, reuse verified coverage, author distinct gaps only.
+
+## Batch15 C2-U01 draft checkpoint
+Audited actual VOC-C2-01 (8 existing MCQs, unmapped), VOC-C1-01/02/03, GRA-C1-02/03/04, REA-C1-10/11 and WRI-C1-06 against adopted C2-U01. Reuse existing pilot as bridge proposed; historical Q5 precision concern (conceded / reluctantly) to adjudicate separately, no historical edits authorised. New VOC-C2-02 six MCQs structural keys BDACBD; WRI-C2-01 dual audience reformulation, contrast commentary and revision weight 0, no validated C2 rubric; fresh Unit Transfer weight 0. Packet blob fef3ce802ed82ae51dacab733522834aa6211ede; independent review pending. Working 215/1393 unchanged. Batch15 R1 sole next temporary NotebookLM source. No import, runtime, merge, deploy or extra CI.
