@@ -1,0 +1,502 @@
+{
+  "format": "SLE_AUTHORING_STAGING_NOT_IMPORTABLE",
+  "source_git_blob": "63c69803ab849aa43cae70a5bb71cda3a8e57a4f",
+  "academic_verdict": "PASS",
+  "unit": "C1-U07",
+  "import_authorized": false,
+  "release_authorized": false,
+  "lessons": [
+    {
+      "id": "REA-C1-07",
+      "module": "reading",
+      "cefr_target": "C1",
+      "title": "Consolidate interdependent sources without double-counting",
+      "estimated_minutes": 35,
+      "objectives": [
+        "Organise several related records by question rather than document order; distinguish original observation, a derivative summary and an independent observation; reconcile apparently conflicting figures only when definitions and periods permit."
+      ],
+      "explanation": {
+        "en": "**CORE-1 — Goal/context.** Organise several related records by question rather than document order; distinguish original observation, a derivative summary and an independent observation; reconcile apparently conflicting figures only when definitions and periods permit.\n**CORE-2 — Teach/model.** A synthesis is a new organisation of existing information, not new evidence. Build a source map: record → original or derived → measure, population, time → degree of certainty → relation to other records. Group by question, retain attribution where responsibility or uncertainty changes, and avoid treating repetition of one finding as independent corroboration. If two totals differ, test whether they concern the same entity, period and definition before calling them contradictory. If differences cannot be reconciled, preserve them explicitly. Independent worked model: a theatre's monthly log counts 70 reservations; a newsletter quotes that same log; a door counter records 56 admissions on one performance evening. The newsletter is not a second measurement, and admissions on one evening cannot be subtracted from monthly reservations to calculate no-shows. A briefing can group booking demand and actual attendance separately and name the missing comparable records. Do not force all sources into one total.\n\n**CORE-3 — Independent reading.** Read the reviewed fictional source displayed with this lesson before answering.\n\n**CORE-4 — Feedback/repair.** Q1/Q4 trace original evidence versus derivative report; Q2 preserve the unit counted; Q3 align period, denominator and overlap; Q5/Q6 group findings by decision question without erasing distinct limitations. Independent unassessed transfer: a sports club reports monthly bookings; its newsletter repeats the same numbers; a later anonymous feedback form reports problems with access. Draft a three-sentence briefing explaining provenance and why the sources cannot establish a single participation rate. No auto-score.",
+        "vi": "Tổng hợp nguồn liên quan, phân biệt dữ liệu gốc và nội dung dẫn lại; không cộng các đại lượng không tương thích."
+      },
+      "examples": [
+        "A synthesis is a new organisation of existing information, not new evidence. Build a source map: record → original or derived → measure, population, time → degree of certainty → relation to other records. Group by question, retain attribution where responsibility or uncertainty changes, and avoid treating repetition of one finding as independent corroboration. If two totals differ, test whether they concern the same entity, period and definition before calling them contradictory. If differences cannot be reconciled, preserve them explicitly. Independent worked model: a theatre's monthly log counts 70 reservations; a newsletter quotes that same log; a door counter records 56 admissions on one performance evening. The newsletter is not a second measurement, and admissions on one evening cannot be subtracted from monthly reservations to calculate no-shows. A briefing can group booking demand and actual attendance separately and name the missing comparable records. Do not force all sources into one total."
+      ],
+      "activities": [
+        {
+          "id": "REA-C1-07-Q1",
+          "type": "single_choice",
+          "prompt": "Which source map accurately represents the relationship among the three records?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A and B independently measure March demand; C measures the same population in April."
+            },
+            {
+              "id": "B",
+              "text": "A is the March transaction record; B reuses its figures and adds interpretation; C supplies a separate, limited April observation."
+            },
+            {
+              "id": "C",
+              "text": "B independently verifies A's count of individuals; C corrects the number of March loans."
+            },
+            {
+              "id": "D",
+              "text": "A and C are interchangeable measures of requests; B provides a distinct success survey."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "A and B independently measure March demand; C measures the same population in April. — B is derived and populations differ.\nA is the March transaction record; B reuses its figures and adds interpretation; C supplies a separate, limited April observation. — Distinguishes original, derivative and independent observation.\nB independently verifies A's count of individuals; C corrects the number of March loans. — Neither relation is supported.\nA and C are interchangeable measures of requests; B provides a distinct success survey. — Definitions and provenance differ."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-07-Q2",
+          "type": "single_choice",
+          "prompt": "Which briefing sentence best corrects the bulletin without discarding relevant evidence?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The March register recorded 96 completed loans involving 61 distinct accounts; 22 completed loans used online renewal."
+            },
+            {
+              "id": "B",
+              "text": "The centre served 96 distinct members, of whom 22 successfully created online accounts."
+            },
+            {
+              "id": "C",
+              "text": "The bulletin's correction establishes that only 61 people requested equipment in March."
+            },
+            {
+              "id": "D",
+              "text": "As the bulletin used an imprecise term, none of the register's figures can be reported."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "The March register recorded 96 completed loans involving 61 distinct accounts; 22 completed loans used online renewal. — Retains exact units and the qualified online figure.\nThe centre served 96 distinct members, of whom 22 successfully created online accounts. — Changes both definitions.\nThe bulletin's correction establishes that only 61 people requested equipment in March. — Accounts are not all requesters or necessarily distinct individuals.\nAs the bulletin used an imprecise term, none of the register's figures can be reported. — Unnecessary rejection of the original observation."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-07-Q3",
+          "type": "single_choice",
+          "prompt": "Why is it inappropriate to add the 17 enquiries to the March register's 96 loans?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The enquiries were necessarily all made by the same person."
+            },
+            {
+              "id": "B",
+              "text": "The register contains only online loans."
+            },
+            {
+              "id": "C",
+              "text": "The records cover different periods and different units, and overlap or later outcomes are unknown."
+            },
+            {
+              "id": "D",
+              "text": "The enquiries refer to a service unrelated to equipment lending."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "The enquiries were necessarily all made by the same person. — Unknown.\nThe register contains only online loans. — Not stated.\nThe records cover different periods and different units, and overlap or later outcomes are unknown. — Preserves all relevant comparability limits.\nThe enquiries refer to a service unrelated to equipment lending. — Both concern the same service."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-07-Q4",
+          "type": "single_choice",
+          "prompt": "Which inference about corroboration is warranted?",
+          "options": [
+            {
+              "id": "A",
+              "text": "B confirms A independently because it was published by a different office."
+            },
+            {
+              "id": "B",
+              "text": "C independently confirms the March number of online renewals."
+            },
+            {
+              "id": "C",
+              "text": "The editorial correction proves that the April enquiries were counted incorrectly."
+            },
+            {
+              "id": "D",
+              "text": "B's repetition cannot add independent support for A's figures; C identifies a different access issue that may merit investigation."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "B confirms A independently because it was published by a different office. — Different publisher does not imply different evidence.\nC independently confirms the March number of online renewals. — It did not measure that outcome.\nThe editorial correction proves that the April enquiries were counted incorrectly. — Unrelated.\nB's repetition cannot add independent support for A's figures; C identifies a different access issue that may merit investigation. — Correct provenance and scope."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-07-Q5",
+          "type": "single_choice",
+          "prompt": "Which thematic organisation best answers a board's request for service use and barriers?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Group March transaction/account use together, identify B's derivative interpretation, then separately explain April access observations and the missing comparable demand measure."
+            },
+            {
+              "id": "B",
+              "text": "Describe A, B and C in order, treating their figures as equally independent indicators of successful access."
+            },
+            {
+              "id": "C",
+              "text": "Combine all figures under “people served”, with a footnote that methods differ."
+            },
+            {
+              "id": "D",
+              "text": "Report only the April account difficulties because the register cannot measure unmet demand."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Group March transaction/account use together, identify B's derivative interpretation, then separately explain April access observations and the missing comparable demand measure. — Organises by issue and preserves source boundaries.\nDescribe A, B and C in order, treating their figures as equally independent indicators of successful access. — Misrepresents B and C.\nCombine all figures under “people served”, with a footnote that methods differ. — Incompatible units cannot be pooled.\nReport only the April account difficulties because the register cannot measure unmet demand. — Omits valid use evidence."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-07-Q6",
+          "type": "single_choice",
+          "prompt": "Which overall conclusion stays within the source boundaries?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The online system has increased access for all visitors but April staffing remains inadequate."
+            },
+            {
+              "id": "B",
+              "text": "March records show completed use, including online renewal; separate April observations suggest possible account barriers, but their prevalence and effect on overall access remain unknown."
+            },
+            {
+              "id": "C",
+              "text": "Seventeen March applicants failed to borrow because they could not create accounts."
+            },
+            {
+              "id": "D",
+              "text": "The two offices disagree about whether any loans occurred."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The online system has increased access for all visitors but April staffing remains inadequate. — Neither causal claim is established.\nMarch records show completed use, including online renewal; separate April observations suggest possible account barriers, but their prevalence and effect on overall access remain unknown. — Bounded thematic synthesis.\nSeventeen March applicants failed to borrow because they could not create accounts. — Wrong period, unit and cause.\nThe two offices disagree about whether any loans occurred. — The disagreement is about interpretation, not existence."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "SRC-REA-C1-07",
+        "title": "Consolidate interdependent sources without double-counting — original reviewed source",
+        "body": "Source A — March equipment-loan register, operations team:\nThe centre recorded 96 completed equipment loans in March, involving 61 distinct member accounts. Twenty-two of the completed loans used the new online renewal function. The register counts transactions, not all requests; it does not include enquiries that ended before an account was created. Some members borrowed more than once. The operations team notes that the figures indicate use of the service but cannot establish the level of unmet demand.\n\nSource B — April planning bulletin, communications office:\n“The March pilot reached 96 users, with 22 online renewals demonstrating the success of digital access.” The bulletin identifies the March register as its sole source for both figures. Elsewhere it proposes that the board consider expanding the online function. The office did not conduct a separate survey or count. A later editorial note acknowledges that the term “users” was used loosely and should not be interpreted as a count of individuals.\n\nSource C — Access desk observation, first two weeks of April:\nStaff logged 17 enquiries from visitors who did not complete a loan during the observation period. In nine cases the visitors mentioned difficulty setting up an account; in other cases equipment availability or opening times were noted. The desk did not identify whether the same visitor made several enquiries, whether visitors subsequently borrowed, or whether they had also used the service in March. The desk supervisor recommends testing assisted account setup, not estimating a March failure rate from the April observations.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "REA-C1-08",
+      "module": "reading",
+      "cefr_target": "C1",
+      "title": "Mediate technical information for a non-specialist",
+      "estimated_minutes": 35,
+      "objectives": [
+        "Explain a complex technical and administrative update to a reader who needs to act, replacing jargon with accurate plain language while preserving conditionality, scope, uncertainty, responsibility and distinctions between proposed and confirmed action."
+      ],
+      "explanation": {
+        "en": "**CORE-1 — Goal/context.** Explain a complex technical and administrative update to a reader who needs to act, replacing jargon with accurate plain language while preserving conditionality, scope, uncertainty, responsibility and distinctions between proposed and confirmed action.\n**CORE-2 — Teach/model.** Mediation is not simply making a text shorter or replacing difficult words. Identify what the reader needs to know or do; keep decision-critical constraints and uncertainty; explain unavoidable technical concepts in context; distinguish what a source says from an inference. Preserve negative scope (“not ruled out” is not “confirmed”), minimum requirements versus guarantees, and boundaries of authority. A short explanation may omit method details if they are irrelevant to the audience but not if omission changes the decision. Independent worked model: a fictional hall inspection states that an acoustic test met its daytime criterion with doors closed; an evening-use assessment is pending. For a volunteer organiser: “The test met the daytime sound requirement with the doors closed. Evening use has not yet been assessed, so the result does not establish whether evening events meet the requirement.” This does not need the technical test protocol, but it must retain time, door conditions and unresolved status. Avoid inventing a ban or approval.\n\n**CORE-3 — Independent reading.** Read the reviewed fictional source displayed with this lesson before answering.\n\n**CORE-4 — Feedback/repair.** Q1 translate technical vocabulary without broadening claims; Q2/Q3 distinguish existing status, trial eligibility and final confirmation; Q4 select action-critical detail; Q5 separate review requirement from approval; Q6 preserve actual current process. Independent unassessed transfer: a fictional library tests a new access card on prepared cases, but replacement cards require staff verification and no general issue date is confirmed. Write a 60–90-word explanation for a new member that keeps test scope and current action clear. No auto-score.",
+        "vi": "Diễn giải thông tin kỹ thuật cho người đọc phổ thông, giữ nguyên điều kiện, phạm vi và trách nhiệm."
+      },
+      "examples": [
+        "Mediation is not simply making a text shorter or replacing difficult words. Identify what the reader needs to know or do; keep decision-critical constraints and uncertainty; explain unavoidable technical concepts in context; distinguish what a source says from an inference. Preserve negative scope (“not ruled out” is not “confirmed”), minimum requirements versus guarantees, and boundaries of authority. A short explanation may omit method details if they are irrelevant to the audience but not if omission changes the decision. Independent worked model: a fictional hall inspection states that an acoustic test met its daytime criterion with doors closed; an evening-use assessment is pending. For a volunteer organiser: “The test met the daytime sound requirement with the doors closed. Evening use has not yet been assessed, so the result does not establish whether evening events meet the requirement.” This does not need the technical test protocol, but it must retain time, door conditions and unresolved status. Avoid inventing a ban or approval."
+      ],
+      "activities": [
+        {
+          "id": "REA-C1-08-Q1",
+          "type": "single_choice",
+          "prompt": "Which plain-language explanation of the controlled test is most faithful?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The system has checked 40 real bookings and prevented every type of scheduling error."
+            },
+            {
+              "id": "B",
+              "text": "The system recognised all five prepared cases where two room allocations overlapped, but other booking problems were not tested."
+            },
+            {
+              "id": "C",
+              "text": "The test found that five of the 40 rooms were unsuitable for equipment."
+            },
+            {
+              "id": "D",
+              "text": "Five booking problems remain unresolved because the test could not detect overlap."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "The system has checked 40 real bookings and prevented every type of scheduling error. — Prepared cases, not real bookings or all error types.\nThe system recognised all five prepared cases where two room allocations overlapped, but other booking problems were not tested. — Accurately explains detection and limited scope.\nThe test found that five of the 40 rooms were unsuitable for equipment. — Wrong measure and issue.\nFive booking problems remain unresolved because the test could not detect overlap. — Reverses the finding."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-08-Q2",
+          "type": "single_choice",
+          "prompt": "What must a community group with an existing confirmed booking understand?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Its booking remains valid; it does not have to submit it again."
+            },
+            {
+              "id": "B",
+              "text": "It must resubmit its booking when training begins."
+            },
+            {
+              "id": "C",
+              "text": "It should wait for an invitation before trusting its existing booking."
+            },
+            {
+              "id": "D",
+              "text": "It can only retain its booking if the ordinary-use test succeeds."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "Its booking remains valid; it does not have to submit it again. — Directly supported by the manager.\nIt must resubmit its booking when training begins. — Invents requirement.\nIt should wait for an invitation before trusting its existing booking. — Confuses old and new requests.\nIt can only retain its booking if the ordinary-use test succeeds. — Adds a condition."
+          },
+          "skill_tags": [
+            "reading.detail"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-08-Q3",
+          "type": "single_choice",
+          "prompt": "Which explanation retains the difference between a trial invitation and a final booking?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Groups can join immediately and all trial requests will be accepted."
+            },
+            {
+              "id": "B",
+              "text": "Staff training will automatically confirm all new bookings."
+            },
+            {
+              "id": "C",
+              "text": "Selected groups may be invited after training and support are ready, and each trial booking still needs separate staff confirmation."
+            },
+            {
+              "id": "D",
+              "text": "Only groups with already confirmed bookings may be invited."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "C"
+          },
+          "feedback": {
+            "explanation_en": "Groups can join immediately and all trial requests will be accepted. — No invitations issued; no automatic acceptance.\nStaff training will automatically confirm all new bookings. — Conflates training with confirmation.\nSelected groups may be invited after training and support are ready, and each trial booking still needs separate staff confirmation. — Preserves conditional invitation and confirmation.\nOnly groups with already confirmed bookings may be invited. — Eligibility not stated."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-08-Q4",
+          "type": "single_choice",
+          "prompt": "Which detail should a short guide for groups requiring special equipment retain?",
+          "options": [
+            {
+              "id": "A",
+              "text": "The exact number of prepared requests, without any equipment information."
+            },
+            {
+              "id": "B",
+              "text": "The claim that overlapping requests were flagged, implying equipment suitability was checked."
+            },
+            {
+              "id": "C",
+              "text": "A suggestion to assume the room is suitable unless an error appears."
+            },
+            {
+              "id": "D",
+              "text": "Staff still need to verify that the room has the required facilities because the system does not check that match automatically."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "D"
+          },
+          "feedback": {
+            "explanation_en": "The exact number of prepared requests, without any equipment information. — Not action-critical for this audience.\nThe claim that overlapping requests were flagged, implying equipment suitability was checked. — Unrelated detection.\nA suggestion to assume the room is suitable unless an error appears. — Contradicts manual verification.\nStaff still need to verify that the room has the required facilities because the system does not check that match automatically. — Preserves the relevant safeguard."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-08-Q5",
+          "type": "single_choice",
+          "prompt": "Which sentence best explains the status of wider launch?",
+          "options": [
+            {
+              "id": "A",
+              "text": "A broader launch is only under consideration after both the ordinary-use test and review of support requests; completing them does not itself guarantee launch."
+            },
+            {
+              "id": "B",
+              "text": "A broad launch is scheduled for the date of the second test."
+            },
+            {
+              "id": "C",
+              "text": "The technical team has rejected any wider launch because some tests were omitted."
+            },
+            {
+              "id": "D",
+              "text": "Either successful test completion or a support review automatically authorises wider use."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "A"
+          },
+          "feedback": {
+            "explanation_en": "A broader launch is only under consideration after both the ordinary-use test and review of support requests; completing them does not itself guarantee launch. — Preserves status and necessary review versus sufficient approval.\nA broad launch is scheduled for the date of the second test. — Date and approval invented.\nThe technical team has rejected any wider launch because some tests were omitted. — No rejection.\nEither successful test completion or a support review automatically authorises wider use. — Changes the decision condition."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        },
+        {
+          "id": "REA-C1-08-Q6",
+          "type": "single_choice",
+          "prompt": "Which summary gives non-trial groups the correct current action without exaggerating the technical result?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Switch to the new system because the test proved it ready for everyone."
+            },
+            {
+              "id": "B",
+              "text": "Continue with the existing process for new requests outside the trial; the limited test is promising for overlap detection, not proof of readiness for all booking needs."
+            },
+            {
+              "id": "C",
+              "text": "Stop requesting rooms until the planned test has taken place."
+            },
+            {
+              "id": "D",
+              "text": "Use the new system now but request no equipment."
+            }
+          ],
+          "answer": {
+            "correct_option_id": "B"
+          },
+          "feedback": {
+            "explanation_en": "Switch to the new system because the test proved it ready for everyone. — Unsupported action and conclusion.\nContinue with the existing process for new requests outside the trial; the limited test is promising for overlap detection, not proof of readiness for all booking needs. — Accurate action and scope.\nStop requesting rooms until the planned test has taken place. — Invents restriction.\nUse the new system now but request no equipment. — Wrong process and ungrounded advice."
+          },
+          "skill_tags": [
+            "reading.inference"
+          ],
+          "evidence_weight": 1
+        }
+      ],
+      "reading_asset": {
+        "id": "SRC-REA-C1-08",
+        "title": "Mediate technical information for a non-specialist — original reviewed source",
+        "body": "Source A — Technical team note on a community hall's new room-booking system:\nIn a controlled test using 40 prepared booking requests, the scheduling check flagged all five requests containing overlapping room allocations. This establishes detection for the prepared overlap cases, not detection of every possible scheduling error. The test did not include incomplete contact details, inaccessible time slots or requests submitted during network interruption. The system currently has no automatic mechanism to verify whether a booking organiser's stated equipment needs match the room's actual facilities. Manual verification remains necessary for events with special equipment requirements. A second test under ordinary usage is planned, but no date has been confirmed.\n\nSource B — Service manager's update to community groups:\nThe manager intends to invite a small number of groups to try the system once staff have completed training and a support route is available. Invitations are not yet issued. Groups participating in the initial trial will still receive a separate confirmation from staff before a booking becomes final. Existing confirmed bookings remain valid and need not be resubmitted. For new requests outside the trial, use the current booking process. A wider launch would be considered after the ordinary-use test and a review of support requests; neither review alone guarantees a launch.",
+        "display_to_learner": true
+      }
+    },
+    {
+      "id": "WRI-C1-03",
+      "module": "writing",
+      "cefr_target": "C1",
+      "title": "Produce an attributed comparative briefing and audience mediation",
+      "estimated_minutes": 45,
+      "objectives": [
+        "Synthesise several related but non-equivalent records for a named reader; then adapt the same essential information for a second audience without changing the source boundaries, confirmed action or unresolved constraints. Target C1, 45 minutes or across visits; unassessed pending trusted review."
+      ],
+      "explanation": {
+        "en": "**CORE-1 — Goal/context.** Synthesise several related but non-equivalent records for a named reader; then adapt the same essential information for a second audience without changing the source boundaries, confirmed action or unresolved constraints. Target C1, 45 minutes or across visits; unassessed pending trusted review.\n**CORE-2 — Teach/model.** Plan themes rather than one paragraph per document: shared issue, actual observations and their provenance, outstanding uncertainty/disagreement, current operational instructions. Select information based on reader purpose; preserve qualifiers and responsibility. Mark derivative reports so repetition does not become corroboration. In a plain-language version, translate the meaning of technical conditions, not simply the vocabulary. Check both versions against a source map and against each other. Independent worked demonstration: a community archive's catalogue team records 38 newly searchable folders; a public bulletin quotes the same count; an access officer reports that some visitors still require assistance because titles are unclear. A staff briefing distinguishes the catalogue count from the access observations, and explains that the bulletin does not provide a new measurement. A visitor notice explains that more folders can now be searched, but assistance remains available. Neither version asserts that 38 visitors gained access or that the title issue has been fixed.\n\n**CORE-3 — Independent Writing source bundle (fictional).**\nA local cultural centre is considering an online application process for workshop places. Prepare a neutral information briefing, not an argument for a preferred policy.\nA — Pilot register: during the three-week pilot, 118 applications were submitted through the online form; 93 included all required fields on first submission. These counts refer to submitted forms, not unique applicants or all attempted applications. Staff recorded 14 follow-up contacts about incomplete submitted forms; some forms required more than one contact. The register cannot show how many potential applicants abandoned the form before submitting.\nB — Communications digest: the centre's digest calls the pilot “a success for 118 applicants” and quotes the register as its sole source. It also reports a suggestion, not a decision, that assisted applications might be offered at two sites next month. The digest has not been checked against a list of distinct applicants.\nC — Access team and service manager's joint note: in a small voluntary feedback session, participants identified unclear document-upload instructions and difficulty accessing the form on shared devices. The session cannot establish how common those barriers are. The manager confirms that the current paper application route remains open; an online submission does not secure a place until staff send a separate allocation confirmation. Assisted application sessions remain proposed, with staffing not yet agreed. The team plans to compare complete application and abandonment measures in a subsequent pilot; no date or expansion decision has been confirmed.\n\n**CORE-4 — Feedback/repair.** Show UNASSESSED / trusted review pending. Suggested existing RUBRIC-WRITING-C1 subject to compatibility QA. Both pieces plus revision note are one unassessed response (evidence_weight 0); individual word ranges are guidance, not automatic quality scores. Self-check: distinct source units and provenance, coherent thematic organisation, unresolved status, action-critical information, faithful adaptation, readable register, no invented consensus/approval. A trusted reviewer may discuss reasonable alternatives; no exact-match or semantic auto-score and no oral or C1 proficiency certification.",
+        "vi": "Viết báo cáo tổng hợp và thông báo cho hai nhóm độc giả, giữ đúng nguồn. Chưa chấm chất lượng tự động."
+      },
+      "examples": [
+        "Plan themes rather than one paragraph per document: shared issue, actual observations and their provenance, outstanding uncertainty/disagreement, current operational instructions. Select information based on reader purpose; preserve qualifiers and responsibility. Mark derivative reports so repetition does not become corroboration. In a plain-language version, translate the meaning of technical conditions, not simply the vocabulary. Check both versions against a source map and against each other. Independent worked demonstration: a community archive's catalogue team records 38 newly searchable folders; a public bulletin quotes the same count; an access officer reports that some visitors still require assistance because titles are unclear. A staff briefing distinguishes the catalogue count from the access observations, and explains that the bulletin does not provide a new measurement. A visitor notice explains that more folders can now be searched, but assistance remains available. Neither version asserts that 38 visitors gained access or that the title issue has been fixed."
+      ],
+      "activities": [
+        {
+          "id": "WRI-C1-03-Q1",
+          "type": "extended_response",
+          "prompt": "Write a 220–280-word comparative briefing for centre staff, organised by theme: observed use/completeness, provenance of the digest, access limitations and current operating rules. Then write a 70–100-word plain-language notice for prospective applicants, explaining what they can do now and what is still uncertain. Retain the distinct units (forms, contacts, people), source attribution where relevant, and the difference between submission and allocation. Add a brief source-fidelity revision note explaining one detail retained, one detail omitted or simplified in the notice and why neither choice changes the meaning. Do not invent a decision, measured prevalence, independent corroboration or guaranteed place.",
+          "answer": null,
+          "feedback": {
+            "pending_message": "UNASSESSED — trusted review pending. No automatic quality grade or CEFR certification."
+          },
+          "skill_tags": [
+            "writing.task_understanding",
+            "writing.organization",
+            "writing.cohesion",
+            "writing.idea_development",
+            "writing.register",
+            "writing.grammar",
+            "writing.vocabulary"
+          ],
+          "evidence_weight": 0,
+          "rubric_id": "RUBRIC-WRITING-C1",
+          "review_mode": "assisted_ai_or_human"
+        }
+      ]
+    }
+  ],
+  "unit_transfer": {
+    "id": "C1-U07-TRANSFER-01",
+    "text": "Fictional source A (museum desk log): 52 timed entry reservations were recorded in one week, of which 44 were checked in; the log counts reservations, not unique visitors and excludes people who did not reserve. Source B (museum newsletter): “52 visitors booked”; the figure is copied from A, and the newsletter says a second entrance is proposed. Source C (access coordinator): several visitors reported difficulty reaching the current entrance during a voluntary feedback session; prevalence is unknown. The current entrance remains open, staff can answer access enquiries, and a second entrance requires a safety review not yet completed.\nTask: write a 160–210-word comparative briefing for the museum manager identifying what is known from each source, how the figures relate and what remains unresolved. Then write a 50–80-word notice for visitors retaining actual current action and the unconfirmed status of the second entrance. Self-check attribution, derivative report, reservation versus visitor, feedback limits, clear current action and no invented approval. Both qualitative, evidence_weight 0, no auto-score.",
+    "evidence_weight": 0,
+    "automated_semantic_grading": false
+  }
+}
