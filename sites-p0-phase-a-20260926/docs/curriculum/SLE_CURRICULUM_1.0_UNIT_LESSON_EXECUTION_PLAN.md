@@ -753,14 +753,14 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Advisory entry:** B2-U01, B2-U06; **priority:** P1. Design dependencies are not implemented unlocks.
 - **Independent exit task:** select or reformulate constructions to convey a specific degree of certainty in context. Status: **PROPOSED**, not a released or automatically scored activity.
 - **Audit before adding:** teach rhetorical purpose first; avoid lists of prestige constructions without communicative function. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** NO_PRIMARY_MAPPING / BATCH09 DRAFT, ACADEMIC PENDING.
+- **Status:** BATCH09 ACADEMIC PASS / ACCUMULATED SOURCE ONLY / FINAL OUTCOME AUDIT PENDING.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | GRA-C1-02 (proposed) | Calibrate certainty with modality, hedging and complex conditions | 30–35 min · 6 planned MCQs | Batch09 drafted; independent academic review pending. |
-| 2 | GRA-C1-03 (proposed) | Select inversion, clefts and information focus for communicative effect | 30–35 min · 6 planned MCQs | Batch09 drafted; independent academic review pending. |
-| 3 | GRA-C1-04 (proposed) | Compare compact noun phrases and clause alternatives for clarity and nuance | 30–35 min · 6 planned MCQs | Batch09 drafted; independent academic review pending. |
-| 4 | C1-U05-TRANSFER (planning only) | select or reformulate constructions to convey a specific degree of certainty in context. Status: **PROPOSED**, not a released or automatically scored activity. | Fresh independent editing task drafted | Academic review pending, qualitative unassessed. |
+| 1 | GRA-C1-02 (proposed) | Calibrate certainty with modality, hedging and complex conditions | 30–35 min · 6 planned MCQs | NotebookLM PASS; accumulated in working wrapper; technical QA pending. |
+| 2 | GRA-C1-03 (proposed) | Select inversion, clefts and information focus for communicative effect | 30–35 min · 6 planned MCQs | NotebookLM PASS; accumulated in working wrapper; technical QA pending. |
+| 3 | GRA-C1-04 (proposed) | Compare compact noun phrases and clause alternatives for clarity and nuance | 30–35 min · 6 planned MCQs | NotebookLM PASS; accumulated in working wrapper; technical QA pending. |
+| 4 | C1-U05-TRANSFER (planning only) | select or reformulate constructions to convey a specific degree of certainty in context. Status: **PROPOSED**, not a released or automatically scored activity. | Fresh independent editing task drafted | NotebookLM PASS; qualitative unassessed. |
 
 ### C1-U06 — Critical argument, counterclaims and qualification
 - **Unit purpose:** Develop a sustained position, evaluate counterarguments fairly and qualify conclusions appropriately.
@@ -1011,3 +1011,6 @@ All three C1-U03 lessons and fresh transfer academically PASS; media-held source
 
 ## C1-U05 Batch09 draft checkpoint
 Actual current C1 grammar GRA-C1-01 covers reference, cohesion, cleft and qualification; prior B2-U01/U06 covers deduction, counterfactual, tense/aspect, reduced clauses and fair argument. New drafts GRA-C1-02/03/04 teach logical scope, marked emphasis/inversion, and nominal packaging/agency, with distinct independent transfer. All 18 proposed item keys structurally checked; independent academic review pending. No change to working counts. 
+
+## Batch09 academic checkpoint — 2026-11-28
+Owner-supplied NotebookLM PASS for GRA-C1-02/03/04, 18/18 items (BACDAB/CABBDA/CBDABC), 3 unassessed CORE-4 tasks and independent C1-U05-TRANSFER-01. No required or optional edits. Exact R1 blob 9a96250ba90ea779b3f800afff7502ded5124a8a. Working wrapper 201 lessons / 1339 activities; 199 mapped + 2 historical unmapped. Prior 198 lessons, sequence prefix and rubrics unchanged. Seven additional reviewed held lessons (6 listening, 1 speaking) excluded. No import, runtime change or release. Next audit C1-U06 against actual B2-U06/C1-U02/C1-U05 source before Batch10; no automatic semantic scoring. Importer capacity and media gates remain open.

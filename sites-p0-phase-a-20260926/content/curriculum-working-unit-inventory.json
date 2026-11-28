@@ -1,9 +1,9 @@
 {
   "status": "PRIMARY_MAPPING_ONLY_NOT_OUTCOME_COVERAGE",
   "milestone": "Educational Curriculum 1.0",
-  "lessons": 198,
-  "activities": 1321,
-  "mapped": 196,
+  "lessons": 201,
+  "activities": 1339,
+  "mapped": 199,
   "unmapped": [
     "REA-C1-01",
     "VOC-C2-01"
@@ -722,9 +722,15 @@
     {
       "id": "C1-U05",
       "title": "Grammar for precision, stance and emphasis",
-      "primaryLessonIds": [],
-      "skills": [],
-      "status": "COVERAGE_NOT_YET_AUDITED"
+      "primaryLessonIds": [
+        "GRA-C1-02",
+        "GRA-C1-03",
+        "GRA-C1-04"
+      ],
+      "skills": [
+        "grammar"
+      ],
+      "status": "ACADEMIC_PASS_SOURCE_ONLY_FINAL_OUTCOME_AUDIT_PENDING"
     },
     {
       "id": "C1-U06",
