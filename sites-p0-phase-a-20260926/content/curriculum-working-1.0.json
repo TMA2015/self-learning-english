@@ -146,6 +146,16 @@
         ],
         "verdict": "PASS",
         "integration": "AUTHORING_ONLY; schema/runtime QA pending; open repairs and transfer weight 0; interactive design and integration before release per owner #257"
+      },
+      {
+        "packet": "SLE-C2-U09-B23-R1-20261128",
+        "sourceGitBlob": "516f0daf18ccb4ad7fb9d04407a5d0f7043edfe8",
+        "lessonIds": [
+          "REA-C2-08",
+          "REA-C2-09"
+        ],
+        "verdict": "PASS",
+        "integration": "AUTHORING_ONLY; schema/runtime QA pending; open repairs and transfer weight 0; COR-M01 oral/group facilitation NOT_ASSESSED; interactive design and integration before release per owner #257"
       }
     ]
   },
@@ -417,7 +427,9 @@
         "REA-C2-04",
         "REA-C2-05",
         "REA-C2-06",
-        "REA-C2-07"
+        "REA-C2-07",
+        "REA-C2-08",
+        "REA-C2-09"
       ],
       "prerequisites": []
     },
@@ -52254,6 +52266,452 @@
           "id": "SRC-REA-C2-07",
           "title": "Water status at a community orchard",
           "body": "### Water status at a community orchard\n\n[A] Technical report: A new orchard notice system combines a moisture reading with a record of water delivery. The display status “within range” means the measured soil moisture at a particular sensor was within the trial's predefined limits at the time of measurement. It does not establish adequate moisture in every plot, root condition or safety of water for drinking. In a bench test, the system displayed the expected status for all 24 prepared sensor readings, including six out-of-range cases. The test did not examine sensor drift in the orchard or failures in transmitting recent readings. The team recommends a separate field comparison using manual readings in different plots. Water from the orchard tanks is designated for irrigation only, not for drinking.\n\n[B] Current maintenance protocol, approved by the orchard manager:\nOrdinary plots: a volunteer may carry out routine irrigation only if the plot's local display is within range, a timestamp is present and no more than two hours old, and the scheduled irrigation instruction is active. A green within-range display alone is not an instruction to water. If a timestamp is missing or older than two hours, or the display is out of range, the volunteer must pause and request a manual check from the duty supervisor. The supervisor may issue a specific irrigation instruction after that check.\nNewly planted plots: regardless of display status, use only a specific instruction from the horticulture lead; the duty supervisor's routine-plot instruction does not substitute for that approval.\nAn announced field comparison is proposed, not approved. Until a change is approved, the current protocol applies.\n\n[C] Volunteer coordinator's written note: “People have asked for a one-line explanation of the green display. My preference is to explain that the measured moisture was within the trial limits when checked, then direct volunteers to the instructions for their plot. Some volunteers would like a single green light that means water now. I understand the convenience, but we have not agreed to change the operating rule. The proposed field comparison may help us understand reliability; it would not by itself authorise changing the irrigation instructions.”\n\n[D] Draft public notice: “The system has passed all safety checks. Green means your plot is safe and ready to water. When the comparison begins, supervisors can clear every plot for irrigation.” The orchard manager asks for a short volunteer notice and a separate technical briefing for staff planning the possible field comparison.",
+          "display_to_learner": true
+        }
+      },
+      {
+        "id": "REA-C2-08",
+        "module": "reading",
+        "cefr_target": "C2",
+        "title": "Interpret humour, irony and pragmatic repair across audiences",
+        "estimated_minutes": 50,
+        "objectives": [
+          "Reconstruct the pragmatic trajectory of a written exchange in which irony directed at a process is received as possible criticism of a person. Distinguish the plausible readings at each stage from later clarification; identify changes in common ground across channels and select a repair that acknowledges effect, protects private context and resolves the practical issue."
+        ],
+        "explanation": {
+          "en": "**CORE-1 — Goal/context.** Reconstruct the pragmatic trajectory of a written exchange in which irony directed at a process is received as possible criticism of a person. Distinguish the plausible readings at each stage from later clarification; identify changes in common ground across channels and select a repair that acknowledges effect, protects private context and resolves the practical issue.\n\n**CORE-2 — Teach/model.**\n- Separate literal proposition, possible implied stance, available contextual cues and recipient's uptake. An ironic utterance may depend on a shared contrast between wording and reality. Do not assume all readers share that contrast or the same relationship with the writer.\n- Track the audience: a remark intelligible to a familiar group may become opaque or appear hostile when forwarded without its preceding turn, translated literally, or read by a new participant. A recipient's question is evidence of uncertainty, not proof of the writer's intention.\n- Assess interpersonal risk independently of semantic interpretation. Repair by acknowledging the ambiguity or observable effect, clarifying the target of the criticism and naming the concrete issue. An explanation of intent does not erase an effect; an apology need not concede an unsupported accusation.\n- Use private and public channels proportionately. A private clarification can invite discussion; if the ambiguity affected a shared decision, correct the shared record without repeating confidential details. Ask permission before sharing another person's private explanation. Do not treat a local preference as a universal cultural trait.\n- When drafting, choose explicit, respectful wording and check whether the repair preserves any substantive objection. Avoid false harmony, excessive apology that changes the facts, or a demand that the reader accept a joke.\n\nIndependent worked model (different topic): a fictional volunteer theatre group repeatedly finds an empty prop cupboard despite a stock list. A long-time volunteer writes, “Our inventory has achieved invisibility again.” A newcomer receiving only that sentence asks whether their stocktaking is being mocked. Before clarification, the line could criticise the inventory mismatch or someone's work; its target is not fully explicit. The writer explains that the missing props, not the newcomer, were the intended target and acknowledges the ambiguity. A public repair says, “My comment was about the mismatch between the list and the cupboard; I should have made that clear. Let's check the two records before assigning any cause.” If the newcomer privately explains a particular language difficulty, do not disclose it without permission. The issue remains unresolved until records are checked. This model is not reused in practice.\n\n**CORE-3 — Independent reading.** Read all four written records; consider what each participant could know at that time. No assumptions about national culture or actual speaker intent beyond supplied clarification.\n\n**CORE-4 — Feedback/repair.** Q1 annotate literal wording and pragmatic contrast; Q2 compare audiences and missing context; Q3 identify the unsupported universal assumption; Q4 separate reported intention from observable uptake; Q5 audit privacy, substantive repair and authority; Q6 test whether the convention addresses the demonstrated cause without stereotyping. Read all option rationales after submitting. Independent unassessed repair: a fictional bookbinding team writes “A wonderfully punctual delivery” after a shipment arrives late; a forwarded copy reaches a new supplier contact without the preceding scheduling discussion. The sender later clarifies that the comment concerned the delay, not the contact personally. Draft a shared two- or three-sentence repair that identifies the issue, avoids assigning blame, and asks for the actual delivery window. Give one reason to avoid repeating a recipient's private disclosure. Weight 0; no automated semantic grade.",
+          "vi": "Phân tích hài hước và mỉa mai theo ngữ cảnh, xử lý hiểu lầm khi chuyển kênh, bảo vệ thông tin riêng tư và làm rõ yêu cầu thực tế."
+        },
+        "examples": [
+          "- Separate literal proposition, possible implied stance, available contextual cues and recipient's uptake. An ironic utterance may depend on a shared contrast between wording and reality. Do not assume all readers share that contrast or the same relationship with the writer.\n- Track the audience: a remark intelligible to a familiar group may become opaque or appear hostile when forwarded without its preceding turn, translated literally, or read by a new participant. A recipient's question is evidence of uncertainty, not proof of the writer's intention.\n- Assess interpersonal risk independently of semantic interpretation. Repair by acknowledging the ambiguity or observable effect, clarifying the target of the criticism and naming the concrete issue. An explanation of intent does not erase an effect; an apology need not concede an unsupported accusation.\n- Use private and public channels proportionately. A private clarification can invite discussion; if the ambiguity affected a shared decision, correct the shared record without repeating confidential details. Ask permission before sharing another person's private explanation. Do not treat a local preference as a universal cultural trait.\n- When drafting, choose explicit, respectful wording and check whether the repair preserves any substantive objection. Avoid false harmony, excessive apology that changes the facts, or a demand that the reader accept a joke.\n\nIndependent worked model (different topic): a fictional volunteer theatre group repeatedly finds an empty prop cupboard despite a stock list. A long-time volunteer writes, “Our inventory has achieved invisibility again.” A newcomer receiving only that sentence asks whether their stocktaking is being mocked. Before clarification, the line could criticise the inventory mismatch or someone's work; its target is not fully explicit. The writer explains that the missing props, not the newcomer, were the intended target and acknowledges the ambiguity. A public repair says, “My comment was about the mismatch between the list and the cupboard; I should have made that clear. Let's check the two records before assigning any cause.” If the newcomer privately explains a particular language difficulty, do not disclose it without permission. The issue remains unresolved until records are checked. This model is not reused in practice."
+        ],
+        "activities": [
+          {
+            "id": "REA-C2-08-Q1",
+            "type": "single_choice",
+            "prompt": "What is the most defensible reading of Dev's “Brilliant” when [A] is available but [C] is not yet known?",
+            "options": [
+              {
+                "id": "A",
+                "text": "It unconditionally endorses the diagrams as suitable for public use."
+              },
+              {
+                "id": "B",
+                "text": "It proves Dev considers Lian incompetent because Lian produced the images."
+              },
+              {
+                "id": "C",
+                "text": "It plausibly echoes praise ironically to highlight the mismatch between the instructions and the need for a helper; the exact interpersonal target is not yet explicit."
+              },
+              {
+                "id": "D",
+                "text": "It establishes that the kite cannot be assembled by first-time participants."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "C"
+            },
+            "feedback": {
+              "explanation_en": "It unconditionally endorses the diagrams as suitable for public use. — The preceding concern and following request indicate a problem, not approval.\nIt proves Dev considers Lian incompetent because Lian produced the images. — Lian is not named; the target and intention cannot be established so precisely.\nIt plausibly echoes praise ironically to highlight the mismatch between the instructions and the need for a helper; the exact interpersonal target is not yet explicit. — Uses local context without overclaiming private intent.\nIt establishes that the kite cannot be assembled by first-time participants. — No trial has tested this outcome."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-08-Q2",
+            "type": "single_choice",
+            "prompt": "Which feature of the forwarding in [B] most directly changes the conditions for interpretation?",
+            "options": [
+              {
+                "id": "A",
+                "text": "The sentence reaches a wider audience without the preceding concern or following repair proposal, and a new contributor may not recognise the ironic contrast."
+              },
+              {
+                "id": "B",
+                "text": "The diagrams become factually different when a sentence is forwarded."
+              },
+              {
+                "id": "C",
+                "text": "It proves the coordinator intended to embarrass Lian."
+              },
+              {
+                "id": "D",
+                "text": "It makes the ironic interpretation impossible for every reader."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "The sentence reaches a wider audience without the preceding concern or following repair proposal, and a new contributor may not recognise the ironic contrast. — Explains the loss of common ground and change of audience.\nThe diagrams become factually different when a sentence is forwarded. — Forwarding alters context, not the drawings.\nIt proves the coordinator intended to embarrass Lian. — Motive is unsupported.\nIt makes the ironic interpretation impossible for every reader. — Some may still infer irony; the cue loss raises ambiguity rather than eliminating all interpretations."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-08-Q3",
+            "type": "single_choice",
+            "prompt": "What is problematic about “Everyone understands that here” as a response?",
+            "options": [
+              {
+                "id": "A",
+                "text": "It states a precise technical correction for the instruction sheet."
+              },
+              {
+                "id": "B",
+                "text": "It necessarily constitutes a deliberate insult in every English-speaking community."
+              },
+              {
+                "id": "C",
+                "text": "It confirms that Lian's first interpretation was factually correct."
+              },
+              {
+                "id": "D",
+                "text": "It treats a familiar subgroup convention as shared by the wider audience, dismisses the demonstrated uncertainty and leaves the practical request unclear."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "D"
+            },
+            "feedback": {
+              "explanation_en": "It states a precise technical correction for the instruction sheet. — It provides no helper-dependent steps.\nIt necessarily constitutes a deliberate insult in every English-speaking community. — Universal claims about intent and culture are unwarranted.\nIt confirms that Lian's first interpretation was factually correct. — Lian asked which interpretation applied; the reply does not resolve it.\nIt treats a familiar subgroup convention as shared by the wider audience, dismisses the demonstrated uncertainty and leaves the practical request unclear. — Distinguishes established local usage from universal uptake."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-08-Q4",
+            "type": "single_choice",
+            "prompt": "What does [C] establish, and what does it leave open?",
+            "options": [
+              {
+                "id": "A",
+                "text": "It proves that Dev's comment could never reasonably have caused concern."
+              },
+              {
+                "id": "B",
+                "text": "Dev states that the irony concerned the missing helper information, acknowledges the ambiguity and agrees to protect Lian's private explanation; the instruction sheet still needs work."
+              },
+              {
+                "id": "C",
+                "text": "Lian agrees that the illustrations were incompetent and offers to apologise publicly."
+              },
+              {
+                "id": "D",
+                "text": "Dev's private message approves the proposed assembly check."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "It proves that Dev's comment could never reasonably have caused concern. — Clarified intent does not erase the ambiguity of the forwarded version.\nDev states that the irony concerned the missing helper information, acknowledges the ambiguity and agrees to protect Lian's private explanation; the instruction sheet still needs work. — Preserves clarified stance, effect and unresolved issue.\nLian agrees that the illustrations were incompetent and offers to apologise publicly. — No such concession is made.\nDev's private message approves the proposed assembly check. — Dev has not supplied the required approval."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-08-Q5",
+            "type": "single_choice",
+            "prompt": "Which shared reply best repairs the practical and interpersonal problem without disclosing private information?",
+            "options": [
+              {
+                "id": "A",
+                "text": "“As Lian privately told me, our informal English is difficult for them. I'll avoid jokes when they are present.”"
+              },
+              {
+                "id": "B",
+                "text": "“It was a joke; no further discussion is necessary.”"
+              },
+              {
+                "id": "C",
+                "text": "“My forwarded remark was about the missing helper instructions, not a judgment of the illustrations. I should have made that clearer. The outline didn't identify the steps; our subgroup will supply them so the diagrams can be revised. Public use remains subject to the workshop lead's approval.”"
+              },
+              {
+                "id": "D",
+                "text": "“I apologise for the defective illustrations and will approve their public use after revision.”"
+              }
+            ],
+            "answer": {
+              "correct_option_id": "C"
+            },
+            "feedback": {
+              "explanation_en": "“As Lian privately told me, our informal English is difficult for them. I'll avoid jokes when they are present.” — Discloses the private explanation and singles out the contributor.\n“It was a joke; no further discussion is necessary.” — Does not clarify the target or practical revision.\n“My forwarded remark was about the missing helper instructions, not a judgment of the illustrations. I should have made that clearer. The outline didn't identify the steps; our subgroup will supply them so the diagrams can be revised. Public use remains subject to the workshop lead's approval.” — Acknowledges ambiguity, gives a factual next step and preserves authority without private disclosure.\n“I apologise for the defective illustrations and will approve their public use after revision.” — Misattributes the defect and invents approval authority."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-08-Q6",
+            "type": "single_choice",
+            "prompt": "A facilitator wants to reduce similar misunderstandings while retaining room for informal conversation. Which proposal best matches the evidence?",
+            "options": [
+              {
+                "id": "A",
+                "text": "In mixed-audience decision threads, pair potentially ironic remarks with an explicit statement of the issue and requested action; seek clarification without blame and avoid forwarding private details."
+              },
+              {
+                "id": "B",
+                "text": "Ban all figurative language because it invariably causes intercultural conflict."
+              },
+              {
+                "id": "C",
+                "text": "Require newcomers to identify their national communication style before they may participate."
+              },
+              {
+                "id": "D",
+                "text": "Treat all ironic remarks as official objections to be recorded verbatim as decisions."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "In mixed-audience decision threads, pair potentially ironic remarks with an explicit statement of the issue and requested action; seek clarification without blame and avoid forwarding private details. — Addresses the actual channel and common-ground problem without banning humour.\nBan all figurative language because it invariably causes intercultural conflict. — Overgeneralises from one contextual misunderstanding.\nRequire newcomers to identify their national communication style before they may participate. — Unnecessary personal disclosure and stereotype risk.\nTreat all ironic remarks as official objections to be recorded verbatim as decisions. — Confuses stance with authorised action."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          }
+        ],
+        "reading_asset": {
+          "id": "SRC-REA-C2-08",
+          "title": "A kite workshop message travels between channels",
+          "body": "### A kite workshop message travels between channels\n\n[A] The familiar design subgroup is discussing an illustrated instruction sheet for a community kite workshop. The current sheet contains seven assembly diagrams but no indication of which steps require a helper. Three subgroup members have worked together for several seasons. A new illustration partner, Lian, prepared the diagrams from an outline supplied by the subgroup. The outline did not identify helper-dependent steps. No assembly trial with first-time participants has been conducted.\n\nIn the subgroup thread, before Lian joins it:\nMara: “We've somehow made the helper invisible in the instructions again.”\nDev: “Brilliant. Our diagrams have apparently discovered the self-assembling kite.”\nMara: “Let's mark the points where another pair of hands is needed before we try the sheet.”\n\n[B] The coordinator forwards only Dev's sentence to the wider project channel, followed by “Can we revise the illustrations?” Lian reads it there:\nLian: “I am not sure whether 'brilliant' means the illustrations are approved or whether this is a criticism of my work. Could someone explain which change is needed? I used the outline as supplied.”\nA colleague replies, “It's just Dev's usual humour. Everyone understands that here.”\nLian: “I didn't have the earlier discussion. I can make changes once I know which steps need a helper.”\n\n[C] Dev sends Lian a private clarification:\n“I was being ironic about the idea that the instructions could work without a helper, not judging the illustrations or your competence. I can see that the forwarded line didn't make that distinction. I should have stated the concern directly.”\nLian replies, “Thank you. I would prefer the correction to be in the project channel because that is where the revision request appeared. Please don't repeat my private explanation that I'm still getting used to the group's informal expressions. I'd rather discuss the technical question there.”\nDev agrees not to share that explanation.\n\n[D] The coordinator confirms that the subgroup will identify the helper-dependent steps and Lian may then prepare revised diagrams. A closed assembly check is proposed; only the workshop lead may approve use of the sheet in a public session. Neither the check nor public use has been approved. Dev is drafting a reply for the shared channel. No record establishes how a first-time participant would interpret the diagrams.",
+          "display_to_learner": true
+        }
+      },
+      {
+        "id": "REA-C2-09",
+        "module": "reading",
+        "cefr_target": "C2",
+        "title": "Facilitate conditional agreement without erasing unresolved interests",
+        "estimated_minutes": 50,
+        "objectives": [
+          "Interpret a complex written negotiation involving differently situated contributors, an asymmetry of public visibility and distinct approval rights. Separate shared goals, procedural agreements, conditional consent and reserved decisions; choose diplomatic reframing that preserves each side's substantive concern and creates a realistic route for repair."
+        ],
+        "explanation": {
+          "en": "**CORE-1 — Goal/context.** Interpret a complex written negotiation involving differently situated contributors, an asymmetry of public visibility and distinct approval rights. Separate shared goals, procedural agreements, conditional consent and reserved decisions; choose diplomatic reframing that preserves each side's substantive concern and creates a realistic route for repair.\n\n**CORE-2 — Teach/model.**\n- Build an interest ledger: participant → stated position → reason explicitly given → acceptable condition → decision right → unresolved issue. Do not infer a hidden motive merely because a position is inconvenient.\n- Distinguish four levels: shared aim, agreement to explore a process, conditional acceptance of an option, authorised final decision. The same words (\"I can live with that\", \"in principle\", \"we can proceed\") can refer to different levels. Name their object and conditions.\n- A facilitator's paraphrase should be recognisable to each participant. Reframe accusations as the specific concern when the evidence supports it, but do not euphemise a material objection away. Acknowledge asymmetry: one participant may be visible in public while another bears responsibility for consent or implementation.\n- Seek the narrowest genuine joint step rather than a mathematically equal split. If priorities cannot yet be reconciled, propose parallel inquiries or a contingent process. Record the unresolved issue and the person whose approval is required. Invite confirmation and a realistic reply window; silence does not automatically resolve a reservation.\n- Calibrate tone with explicit conditions, not ornate politeness. Offer a private route for a sensitive clarification without requiring personal disclosures or assuming shared cultural norms. Written preparation for a spoken response is not evidence of speaking ability.\n\nIndependent worked model (different topic): a fictional puppet exhibition needs both visibility for volunteer makers and permission from a family lending an old puppet. The event organiser prefers prominent maker names; the lender accepts a temporary anonymous description but has not authorised a public name. Both agree to review two label drafts, not to publish either. A facilitator writes, “We agree that the contribution should be acknowledged and that the lender's naming choice must be respected. We can compare the anonymous and named drafts internally; public wording depends on the lender's decision and the curator's approval.” The first sentence preserves distinct concerns; the second offers an actual joint step without implying consent. If the lender later declines naming, revise the public option rather than portraying earlier internal review as assent. This independent model is not an active source.\n\n**CORE-3 — Independent reading.** Read the full fictional correspondence and facilitator draft. Each contributor's preference is individual or explicitly tied to a local working practice; do not infer nationality or cultural identity.\n\n**CORE-4 — Feedback/repair.** Q1 complete the interest ledger using stated reasons; Q2 identify the object and conditions of assent; Q3 distinguish a process promise from outcome certainty; Q4 test the paraphrase against each participant's stated concern; Q5 map approval rights and timing; Q6 separate common ground from pending issues in a repaired minute. Read all option rationales after submission. Independent unassessed repair: a fictional community quilt project has agreed to compare a collective title and individual maker acknowledgements internally. One maker accepts the design in principle but wants the exact wording checked; another agrees to ask the lending family, not to guarantee its approval. Draft a short facilitator update preserving both positions and the approval still required. Weight 0; no automated semantic grade.",
+          "vi": "Điều phối bất đồng nhiều bên, phân biệt lợi ích, thỏa thuận quy trình, đồng thuận có điều kiện và thẩm quyền phê duyệt."
+        },
+        "examples": [
+          "- Build an interest ledger: participant → stated position → reason explicitly given → acceptable condition → decision right → unresolved issue. Do not infer a hidden motive merely because a position is inconvenient.\n- Distinguish four levels: shared aim, agreement to explore a process, conditional acceptance of an option, authorised final decision. The same words (\"I can live with that\", \"in principle\", \"we can proceed\") can refer to different levels. Name their object and conditions.\n- A facilitator's paraphrase should be recognisable to each participant. Reframe accusations as the specific concern when the evidence supports it, but do not euphemise a material objection away. Acknowledge asymmetry: one participant may be visible in public while another bears responsibility for consent or implementation.\n- Seek the narrowest genuine joint step rather than a mathematically equal split. If priorities cannot yet be reconciled, propose parallel inquiries or a contingent process. Record the unresolved issue and the person whose approval is required. Invite confirmation and a realistic reply window; silence does not automatically resolve a reservation.\n- Calibrate tone with explicit conditions, not ornate politeness. Offer a private route for a sensitive clarification without requiring personal disclosures or assuming shared cultural norms. Written preparation for a spoken response is not evidence of speaking ability.\n\nIndependent worked model (different topic): a fictional puppet exhibition needs both visibility for volunteer makers and permission from a family lending an old puppet. The event organiser prefers prominent maker names; the lender accepts a temporary anonymous description but has not authorised a public name. Both agree to review two label drafts, not to publish either. A facilitator writes, “We agree that the contribution should be acknowledged and that the lender's naming choice must be respected. We can compare the anonymous and named drafts internally; public wording depends on the lender's decision and the curator's approval.” The first sentence preserves distinct concerns; the second offers an actual joint step without implying consent. If the lender later declines naming, revise the public option rather than portraying earlier internal review as assent. This independent model is not an active source."
+        ],
+        "activities": [
+          {
+            "id": "REA-C2-09-Q1",
+            "type": "single_choice",
+            "prompt": "Which synthesis best represents the interests stated in [B]?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Ellis wants to suppress the neighbourhood groups' contributions; Asha and Bo are competing for individual publicity."
+              },
+              {
+                "id": "B",
+                "text": "Ellis values a collective framing, Asha wants visible recognition of a specific contribution, and Bo wants members to control the wording about their own group before public use."
+              },
+              {
+                "id": "C",
+                "text": "All three participants reject the collective framing of the project."
+              },
+              {
+                "id": "D",
+                "text": "Bo's preference establishes that all neighbourhood groups require identical review customs."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "Ellis wants to suppress the neighbourhood groups' contributions; Asha and Bo are competing for individual publicity. — Assigns motives and reverses Bo's explicitly different concern.\nEllis values a collective framing, Asha wants visible recognition of a specific contribution, and Bo wants members to control the wording about their own group before public use. — Separates the three stated reasons rather than reducing them to personal rivalry.\nAll three participants reject the collective framing of the project. — Asha shares the aim and Ellis proposes it.\nBo's preference establishes that all neighbourhood groups require identical review customs. — A local practice cannot be generalised."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-09-Q2",
+            "type": "single_choice",
+            "prompt": "Which interpretation of Asha's “That would address my concern in principle” is most accurate?",
+            "options": [
+              {
+                "id": "A",
+                "text": "It authorises public use of any acknowledgement the designer chooses."
+              },
+              {
+                "id": "B",
+                "text": "It withdraws the request for recognition of the route annotations."
+              },
+              {
+                "id": "C",
+                "text": "It rejects the shared heading entirely."
+              },
+              {
+                "id": "D",
+                "text": "It conditionally accepts the approach as addressing the concern, while reserving confirmation of the exact public wording."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "D"
+            },
+            "feedback": {
+              "explanation_en": "It authorises public use of any acknowledgement the designer chooses. — The next sentence explicitly requires review of the actual wording.\nIt withdraws the request for recognition of the route annotations. — The recognition remains the condition being discussed.\nIt rejects the shared heading entirely. — Asha has accepted the combined approach in principle.\nIt conditionally accepts the approach as addressing the concern, while reserving confirmation of the exact public wording. — Distinguishes agreement on a direction from approval of a text."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-09-Q3",
+            "type": "single_choice",
+            "prompt": "What can a facilitator fairly infer from Bo's promise to arrange a three-day review?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Bo commits to arranging the review and reporting its outcome or unresolved questions, not guaranteeing consent at its end."
+              },
+              {
+                "id": "B",
+                "text": "Bo guarantees that members will approve the separate credit."
+              },
+              {
+                "id": "C",
+                "text": "Bo has vetoed Asha's acknowledgement."
+              },
+              {
+                "id": "D",
+                "text": "The chair can regard unanswered messages as approval after three days."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "Bo commits to arranging the review and reporting its outcome or unresolved questions, not guaranteeing consent at its end. — Preserves process, authority and uncertainty.\nBo guarantees that members will approve the separate credit. — The result is not known and two wording options remain.\nBo has vetoed Asha's acknowledgement. — Bo explicitly rejects this interpretation.\nThe chair can regard unanswered messages as approval after three days. — The chair specifies the opposite."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-09-Q4",
+            "type": "single_choice",
+            "prompt": "What is the most appropriate diplomatic reframing of the remaining tension?",
+            "options": [
+              {
+                "id": "A",
+                "text": "“Asha wants special treatment, but Bo is more modest.”"
+              },
+              {
+                "id": "B",
+                "text": "“Both groups have agreed that the same wording must appear for them.”"
+              },
+              {
+                "id": "C",
+                "text": "“We share a collective framing; the unresolved task is to recognise Asha's group's specific contribution while allowing Bo's group to choose its own public description after review.”"
+              },
+              {
+                "id": "D",
+                "text": "“We should avoid any reference to credit so that no one feels uncomfortable.”"
+              }
+            ],
+            "answer": {
+              "correct_option_id": "C"
+            },
+            "feedback": {
+              "explanation_en": "“Asha wants special treatment, but Bo is more modest.” — Imputes personal traits and creates an unsupported comparison.\n“Both groups have agreed that the same wording must appear for them.” — Invents consensus and erases their different preferences.\n“We share a collective framing; the unresolved task is to recognise Asha's group's specific contribution while allowing Bo's group to choose its own public description after review.” — States common ground and both substantive interests without conflating them.\n“We should avoid any reference to credit so that no one feels uncomfortable.” — Erases the actual recognition concern and avoids the decision."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-09-Q5",
+            "type": "single_choice",
+            "prompt": "Which process best matches the chair's authority and the participants' commitments?",
+            "options": [
+              {
+                "id": "A",
+                "text": "Publish the layout after three days unless either group objects publicly."
+              },
+              {
+                "id": "B",
+                "text": "Circulate the actual internal alternatives to both groups, record each confirmation or outstanding question, and seek final chair approval only after both confirmations."
+              },
+              {
+                "id": "C",
+                "text": "Ask Ellis to decide Bo's group's wording because the designer controls the layout."
+              },
+              {
+                "id": "D",
+                "text": "Hold Asha's group's review until Bo agrees to every aspect of Asha's contribution."
+              }
+            ],
+            "answer": {
+              "correct_option_id": "B"
+            },
+            "feedback": {
+              "explanation_en": "Publish the layout after three days unless either group objects publicly. — Conflicts with explicit confirmation rules and the chair's direction.\nCirculate the actual internal alternatives to both groups, record each confirmation or outstanding question, and seek final chair approval only after both confirmations. — Preserves the start of the review period, participation and separate approval.\nAsk Ellis to decide Bo's group's wording because the designer controls the layout. — Confuses design responsibility with consent.\nHold Asha's group's review until Bo agrees to every aspect of Asha's contribution. — Bo is not demanding that authority; it creates an unnecessary dependency."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          },
+          {
+            "id": "REA-C2-09-Q6",
+            "type": "single_choice",
+            "prompt": "Which minute repairs [D] while keeping the useful agreement?",
+            "options": [
+              {
+                "id": "A",
+                "text": "“There is agreement to prepare and circulate internal alternatives under a collective heading. Asha will review the precise route acknowledgement; Bo will organise a review of the group's own wording. Unresolved items will be followed up, and publication requires both groups' confirmations and final chair approval.”"
+              },
+              {
+                "id": "B",
+                "text": "“The groups failed to agree, so the joint project must be abandoned.”"
+              },
+              {
+                "id": "C",
+                "text": "“All agree to publish a collective entrance credit, subject only to a three-day waiting period.”"
+              },
+              {
+                "id": "D",
+                "text": "“Bo is delaying the project because their group dislikes public recognition.”"
+              }
+            ],
+            "answer": {
+              "correct_option_id": "A"
+            },
+            "feedback": {
+              "explanation_en": "“There is agreement to prepare and circulate internal alternatives under a collective heading. Asha will review the precise route acknowledgement; Bo will organise a review of the group's own wording. Unresolved items will be followed up, and publication requires both groups' confirmations and final chair approval.” — Records the actual procedural agreement and conditional positions without inventing consent.\n“The groups failed to agree, so the joint project must be abandoned.” — Erases common ground and agreed drafting.\n“All agree to publish a collective entrance credit, subject only to a three-day waiting period.” — Substitutes time for substantive confirmation.\n“Bo is delaying the project because their group dislikes public recognition.” — Assigns unsupported motive and removes the stated review reason."
+            },
+            "skill_tags": [
+              "reading.inference"
+            ],
+            "evidence_weight": 1
+          }
+        ],
+        "reading_asset": {
+          "id": "SRC-REA-C2-09",
+          "title": "Who is represented in a shared cartography exhibition?",
+          "body": "### Who is represented in a shared cartography exhibition?\n\n[A] A community cartography exhibition will display annotated maps developed with two neighbourhood groups. The working agreement permits internal drafting but requires each contributing group to approve the public description of its contribution. The exhibition chair alone approves the final layout after those confirmations. No final public description or layout is approved.\n\n[B] Written planning exchange:\nExhibition designer Ellis: “I'd like a single collective credit on the entrance panel. The visitors should see that the map is a shared undertaking, rather than a competition over which group's annotations mattered more. We could identify individual contributions on the detailed labels.”\nNeighbourhood liaison Asha: “I share the aim of presenting a joint project. A collective credit alone on the entrance panel would, however, make our group's involvement difficult to recognise at the point where the overall account is framed. Our members contributed annotations about routes that had been missing from earlier maps. We would need a visible acknowledgement of that contribution before agreeing to the public description.”\nNeighbourhood liaison Bo: “Our group prefers not to be singled out on the entrance panel until the wording has been reviewed by members who weren't at the last meeting. I am not asking to remove Asha's credit. I am asking not to infer our approval from the fact that I am here. We normally give members several days to check public descriptions.”\n\n[C] Later written exchange:\nEllis: “I can accept a short separate acknowledgement of Asha's group's route annotations within a collective heading, provided the heading still presents the map as a joint undertaking. We can leave Bo's group's proposed specific wording marked pending in the internal draft, not as a public blank.”\nAsha: “That would address my concern in principle. I would like to see the exact wording before confirming it on behalf of the group. I don't require a decision from Bo's group today.”\nBo: “I can support preparing those alternatives for internal review. If members prefer a general collective acknowledgement of our contribution, please retain that option. I can arrange a three-day review and report the group's decision or any unresolved questions afterwards.”\nChair: “Prepare the two internal versions: collective heading with the proposed route acknowledgement and two alternatives for Bo's group's wording. No public layout decision is requested yet. The review period begins when both groups receive the actual draft. If we lack either confirmation after that period, we will record the pending issue and arrange a follow-up rather than assume consent.”\n\n[D] Facilitator's proposed minute: “All parties now agree on a single entrance credit. Asha's group has accepted the wording, and Bo will approve it in three days. The chair can release the layout at the end of the review period.” Asha and Bo have not reviewed this draft minute.",
           "display_to_learner": true
         }
       }

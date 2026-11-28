@@ -955,15 +955,15 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Unit purpose:** Handle complex written/online exchanges and prepare nuanced spoken responses while adapting to differing viewpoints.
 - **Scope:** careful qualification, mediation of disagreement, humour/irony risk, tact, intercultural sensitivity and repair strategies.
 - **Advisory entry:** C1-U09, C2-U01, C2-U07; **priority:** P1. Design dependencies are not implemented unlocks.
-- **Independent exit task:** negotiate a difficult fictional agreement in written exchanges and explain tone choices. Status: **PROPOSED**, not a released or automatically scored activity.
+- **Independent exit task:** negotiate a difficult fictional agreement in written exchanges and explain tone choices. Status: **ACADEMIC PASS / SOURCE ONLY**, weight 0; not a released or automatically scored activity.
 - **Audit before adding:** avoid stereotypes, compulsory real disclosures and unsupported pronunciation/interaction grading. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** BATCH23 R1 DRAFT / ACADEMIC PENDING.
+- **Status:** ACADEMIC PASS / SOURCE ONLY / FINAL OUTCOME AUDIT PENDING.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | REA-C2-08 (proposed) | Interpret humour, irony and pragmatic repair across audiences | 45–55 min · 6 MCQs | Independent academic review pending. |
-| 2 | REA-C2-09 (proposed) | Facilitate conditional agreement without erasing unresolved interests | 45–55 min · 6 MCQs | Independent academic review pending. |
-| 3 | C2-U09-TRANSFER-01 (proposed) | Written facilitator notes, shared/private response, contingency and tone commentary | 45–60 min advisory, split visits | Qualitative weight 0; COR-M01 oral/group facilitation NOT_ASSESSED; independent review pending. |
+| 1 | REA-C2-08 | Interpret humour, irony and pragmatic repair across audiences | 45–55 min · 6 MCQs | NotebookLM PASS; source-only; engineering QA pending. |
+| 2 | REA-C2-09 | Facilitate conditional agreement without erasing unresolved interests | 45–55 min · 6 MCQs | NotebookLM PASS; source-only; engineering QA pending. |
+| 3 | C2-U09-TRANSFER-01 | Written facilitator notes, shared/private response, contingency and tone commentary | 45–60 min advisory, split visits | Qualitative weight 0; COR-M01 oral/group facilitation NOT_ASSESSED; NotebookLM PASS; delivery pending. |
 
 ### C2-U10 — C2 integrated synthesis and lifelong transfer
 - **Unit purpose:** Apply flexible, precise language across complex sources and contexts with critical self-monitoring and revision.
@@ -1088,3 +1088,6 @@ Exact R1 df42285c04bf5dbc9517d79ac00fcbe19ec6b9cd, token B22-R1-MOSAIC-REHEARSAL
 
 ## Batch23 C2-U09 draft checkpoint — 2026-11-28
 Actual REA-C1-10/11, WRI-C1-06, VOC-C2-01/02, REA-C2-06/07 and held WRI-C2-01/03/04, LIS-C2-01/02/03 audit. Distinct REA-C2-08 kite workshop irony/context/privacy repair (CADBCA), REA-C2-09 cartography exhibition conditional multi-party mediation (BDACBA), fresh seed exchange written facilitator transfer and open repairs weight 0. COR-M01 oral_proficiency_weight: 0 disclosure only, not schema field; live oral/group facilitation NOT_ASSESSED. R1 516f0daf18ccb4ad7fb9d04407a5d0f7043edfe8; token B23-R1-KITE-CARTOGRAPHY-SEED. Independent academic review pending; working 225/1453 and inventory unchanged; previous holds and #257 sequencing retained. No import/runtime/merge/deploy/extra CI.
+
+## Batch23 C2-U09 Academic PASS checkpoint — 2026-11-28
+Exact R1 516f0daf18ccb4ad7fb9d04407a5d0f7043edfe8, source token B23-R1-KITE-CARTOGRAPHY-SEED and three topics matched. CORE1–4, REA-C2-08/09 and twelve bounded items CADBCA/BDACBA, fresh transfer PASS. No required/optional changes. Append two Reading lessons source-only; working 227 lessons / 1465 activities, 226 mapped + REA-C1-01 unmapped. Transfer and open repairs weight 0; COR-M01 disclosure only, live oral/group facilitation NOT_ASSESSED. No new scored Writing lesson. Engineering QA and final outcome audit pending; historical Q5/C2 Writing/media holds and #257 sequencing retained. Next C2-U10 audit actual prior source.
