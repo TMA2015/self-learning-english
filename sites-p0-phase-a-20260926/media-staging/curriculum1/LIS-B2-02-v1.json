@@ -1,0 +1,34 @@
+{
+  "schema": "g-learning-audio-production-v1",
+  "application_version": "1.2",
+  "lesson_id": "LIS-B2-02",
+  "filename": "LIS-B2-02-v1.mp3",
+  "audio_format": "mp3",
+  "sample_rate": 24000,
+  "duration_seconds": 86.375,
+  "sha256": "425467d684e15d064f7b712c2b8a0ad1da4dfab81139ccc2bfdd1a72bddffa99",
+  "generator": {
+    "engine": "Kokoro",
+    "package": "0.9.4",
+    "inference": "local",
+    "preset": "Listening A2",
+    "mode": "Single voice",
+    "voice_a": "bf_emma",
+    "voice_b": "bm_lewis",
+    "speed": 0.9522,
+    "pause_seconds": 0.35,
+    "balance_dialogue_loudness": false
+  },
+  "turns": [
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "Last month, our school opened a small quiet room where students could spend part of the lunch break. The original idea was to offer an alternative to the crowded hall, especially for students who wanted to read or finish a small piece of work. We are now considering how to make the room more useful, rather than simply increasing the number of chairs.\n\nLet me explain what we noticed during the first two weeks. Several students used the room regularly, but the volunteer on duty said that newcomers sometimes stood at the door because they were unsure whether they needed permission to enter. That is an observation about how the room was used, not evidence that students disliked it. A clearer sign could help newcomers understand the basic arrangements.\n\nThere is also a practical issue with space. The room has a narrow route between the shelves and the tables. Adding more chairs might make it harder for people to move around. Instead, we could try moving one table nearer the window, while keeping the route clear. The caretaker would need to check that the arrangement is safe.\n\nI should emphasise that neither suggestion has been approved yet. We also do not know whether a sign alone would change how students use the room. Before deciding, I would suggest asking the caretaker about the layout, then trying a temporary sign for a week if the school agrees. Volunteers could note whether newcomers still ask how to enter. That information would help us decide whether the sign should stay, or whether we need to explain the arrangements in another way.",
+      "duration_seconds": 86.375,
+      "applied_gain": 1.0
+    }
+  ],
+  "source_text": "Last month, our school opened a small quiet room where students could spend part of the lunch break. The original idea was to offer an alternative to the crowded hall, especially for students who wanted to read or finish a small piece of work. We are now considering how to make the room more useful, rather than simply increasing the number of chairs.\n\nLet me explain what we noticed during the first two weeks. Several students used the room regularly, but the volunteer on duty said that newcomers sometimes stood at the door because they were unsure whether they needed permission to enter. That is an observation about how the room was used, not evidence that students disliked it. A clearer sign could help newcomers understand the basic arrangements.\n\nThere is also a practical issue with space. The room has a narrow route between the shelves and the tables. Adding more chairs might make it harder for people to move around. Instead, we could try moving one table nearer the window, while keeping the route clear. The caretaker would need to check that the arrangement is safe.\n\nI should emphasise that neither suggestion has been approved yet. We also do not know whether a sign alone would change how students use the room. Before deciding, I would suggest asking the caretaker about the layout, then trying a temporary sign for a week if the school agrees. Volunteers could note whether newcomers still ask how to enter. That information would help us decide whether the sign should stay, or whether we need to explain the arrangements in another way.",
+  "created_local": "2026-11-28T17:58:53",
+  "owner_audio_qa": "PENDING"
+}

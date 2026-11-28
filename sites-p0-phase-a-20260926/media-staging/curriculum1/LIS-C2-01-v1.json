@@ -1,0 +1,43 @@
+{
+  "schema": "g-learning-audio-production-v1",
+  "application_version": "1.3",
+  "lesson_id": "LIS-C2-01",
+  "filename": "LIS-C2-01-v1.mp3",
+  "audio_format": "mp3",
+  "sample_rate": 24000,
+  "duration_seconds": 164.35,
+  "sha256": "63cb7e3032a72338d964037b509ca7dba499ffc8d4585b7fc07457c3d3ca5fff",
+  "generator": {
+    "engine": "Kokoro",
+    "package": "0.9.4",
+    "inference": "local",
+    "preset": "Listening C2",
+    "mode": "Single voice",
+    "voice_a": "bf_emma",
+    "voice_b": "bm_george",
+    "voices_by_speaker": {
+      "A": "bf_emma"
+    },
+    "speed": 1.0,
+    "pause_seconds": 0.35,
+    "balance_dialogue_loudness": false
+  },
+  "turns": [
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "When people visit a restored building, they are often invited to notice the parts that have been returned to their original condition. There is a reassuring simplicity to that invitation, although the word original conceals a choice. Buildings have histories rather than a single birthday. One visitor may have in mind the day the building opened, another the period in which it became familiar to the neighbourhood. A later alteration can be historically significant without having been part of the first design. Let me use an imaginary restoration to illustrate why the way we explain such choices matters.\n\nThe exhibition team has prepared two diagrams of a small assembly hall. The first depicts the hall at the time of its opening; the second identifies additions made during the years in which it served as a training centre. A member of the team objects: if we show visitors both diagrams, surely we will undermine the claim that the restoration is historically faithful. I think the objection deserves a better answer than simply insisting that more information is always beneficial. Two diagrams could indeed create confusion if neither made clear which period it depicted. But the uncertainty in that case would be a feature of the explanation, not an inevitable consequence of showing more than one period.\n\nThere is another argument that sounds rather attractive. We might say that the building should be allowed to speak for itself. I would welcome that principle if it meant not dictating what visitors ought to feel. If, however, it meant presenting the restored hall without indicating which surviving features were retained and which were reconstructed, the apparent neutrality of the display would depend on visitors overlooking decisions that had already been made on their behalf. The absence of an explanatory label would not remove the interpretation; it would make its origin harder to identify.\n\nThis is where we need to distinguish uncertainty about a historical fact from openness about its significance. The team may be able to establish when a partition was installed and still have good reason to leave open the question of which period is most meaningful to a visitor. Conversely, inviting different personal responses is no substitute for acknowledging that a particular construction date is uncertain. In neither case do we improve the exhibition by pretending the other kind of uncertainty has disappeared.\n\nMy recommendation is therefore not to turn every label into a history of the entire building. Identify the period and evidence relevant to the restoration decision, mark any uncertainty in that evidence, and indicate how a visitor can examine the other period if it interests them. We can explain why a choice was made without suggesting that it is the only legitimate way to value the building. That, rather than the production of an apparently definitive account, is the kind of historical fidelity I would defend.",
+      "duration_seconds": 164.35,
+      "applied_gain": 1.0,
+      "start_sample": 0,
+      "end_sample": 3944400,
+      "start_seconds": 0.0,
+      "end_seconds": 164.35
+    }
+  ],
+  "source_text": "When people visit a restored building, they are often invited to notice the parts that have been returned to their original condition. There is a reassuring simplicity to that invitation, although the word original conceals a choice. Buildings have histories rather than a single birthday. One visitor may have in mind the day the building opened, another the period in which it became familiar to the neighbourhood. A later alteration can be historically significant without having been part of the first design. Let me use an imaginary restoration to illustrate why the way we explain such choices matters.\n\nThe exhibition team has prepared two diagrams of a small assembly hall. The first depicts the hall at the time of its opening; the second identifies additions made during the years in which it served as a training centre. A member of the team objects: if we show visitors both diagrams, surely we will undermine the claim that the restoration is historically faithful. I think the objection deserves a better answer than simply insisting that more information is always beneficial. Two diagrams could indeed create confusion if neither made clear which period it depicted. But the uncertainty in that case would be a feature of the explanation, not an inevitable consequence of showing more than one period.\n\nThere is another argument that sounds rather attractive. We might say that the building should be allowed to speak for itself. I would welcome that principle if it meant not dictating what visitors ought to feel. If, however, it meant presenting the restored hall without indicating which surviving features were retained and which were reconstructed, the apparent neutrality of the display would depend on visitors overlooking decisions that had already been made on their behalf. The absence of an explanatory label would not remove the interpretation; it would make its origin harder to identify.\n\nThis is where we need to distinguish uncertainty about a historical fact from openness about its significance. The team may be able to establish when a partition was installed and still have good reason to leave open the question of which period is most meaningful to a visitor. Conversely, inviting different personal responses is no substitute for acknowledging that a particular construction date is uncertain. In neither case do we improve the exhibition by pretending the other kind of uncertainty has disappeared.\n\nMy recommendation is therefore not to turn every label into a history of the entire building. Identify the period and evidence relevant to the restoration decision, mark any uncertainty in that evidence, and indicate how a visitor can examine the other period if it interests them. We can explain why a choice was made without suggesting that it is the only legitimate way to value the building. That, rather than the production of an apparently definitive account, is the kind of historical fidelity I would defend.",
+  "source_text_sha256": "2b7f52de6e4863c672f29cade0584abdbd36bea422325613e6878d3e53dba505",
+  "turn_timing_basis": "PCM before encoding; verify encoded playback alignment",
+  "created_local": "2026-11-28T20:36:40",
+  "owner_audio_qa": "PENDING"
+}

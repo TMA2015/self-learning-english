@@ -1,0 +1,34 @@
+{
+  "schema": "g-learning-audio-production-v1",
+  "application_version": "1.2",
+  "lesson_id": "LIS-C1-01",
+  "filename": "LIS-C1-01-v1.mp3",
+  "audio_format": "mp3",
+  "sample_rate": 24000,
+  "duration_seconds": 126.625,
+  "sha256": "c679c9c20308f7b7eacfe3f53207e981c55f308548d6551d3555560bfbf3e13c",
+  "generator": {
+    "engine": "Kokoro",
+    "package": "0.9.4",
+    "inference": "local",
+    "preset": "Listening A2",
+    "mode": "Single voice",
+    "voice_a": "bf_emma",
+    "voice_b": "bm_fable",
+    "speed": 1.0017,
+    "pause_seconds": 0.35,
+    "balance_dialogue_loudness": false
+  },
+  "turns": [
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "When an archive makes its catalogue searchable, we tend to imagine that a previously inaccessible collection has simply become visible. That is a reasonable starting point, provided we remember what is meant by visibility. A catalogue can make a document much easier to locate; it can also determine which document is likely to be located in the first place. Those are related benefits and risks, rather than two separate technologies.\n\nConsider a fictional collection of notebooks from an amateur weather society. Some contributors recorded observations under the names of villages, while others used informal descriptions such as the fields beyond the railway. A search organised around current place names would make the first group of notebooks relatively easy to retrieve. The second group would not necessarily be missing from the collection, nor would it necessarily be less valuable. It would be less likely to appear in the results of that particular search. The distinction matters because a researcher could mistake an uneven route into the collection for an uneven distribution of historical observations.\n\nOne might respond that a more comprehensive set of labels would solve the problem. It would certainly help. But there is a complication: a label that makes sense to a present-day reader may not faithfully represent the categories used by the people who produced the records. If we replace every ambiguous description with a confident modern equivalent, we may be making a decision on the researcher's behalf while appearing merely to improve the interface. That is not an argument for preserving every difficulty of the original material. It is an argument for making consequential editorial choices visible.\n\nNotice that the example does not establish how often such a distortion occurs in actual archives. It describes a mechanism by which it could occur. Measuring its prevalence would require a different investigation. For our purposes, the immediate question is whether a catalogue allows a reader to distinguish what was originally written, what an editor has inferred, and what has been left uncertain. A useful catalogue need not answer every historical question. It should make it possible to recognise which questions the catalogue itself cannot answer.",
+      "duration_seconds": 126.625,
+      "applied_gain": 1.0
+    }
+  ],
+  "source_text": "When an archive makes its catalogue searchable, we tend to imagine that a previously inaccessible collection has simply become visible. That is a reasonable starting point, provided we remember what is meant by visibility. A catalogue can make a document much easier to locate; it can also determine which document is likely to be located in the first place. Those are related benefits and risks, rather than two separate technologies.\n\nConsider a fictional collection of notebooks from an amateur weather society. Some contributors recorded observations under the names of villages, while others used informal descriptions such as the fields beyond the railway. A search organised around current place names would make the first group of notebooks relatively easy to retrieve. The second group would not necessarily be missing from the collection, nor would it necessarily be less valuable. It would be less likely to appear in the results of that particular search. The distinction matters because a researcher could mistake an uneven route into the collection for an uneven distribution of historical observations.\n\nOne might respond that a more comprehensive set of labels would solve the problem. It would certainly help. But there is a complication: a label that makes sense to a present-day reader may not faithfully represent the categories used by the people who produced the records. If we replace every ambiguous description with a confident modern equivalent, we may be making a decision on the researcher's behalf while appearing merely to improve the interface. That is not an argument for preserving every difficulty of the original material. It is an argument for making consequential editorial choices visible.\n\nNotice that the example does not establish how often such a distortion occurs in actual archives. It describes a mechanism by which it could occur. Measuring its prevalence would require a different investigation. For our purposes, the immediate question is whether a catalogue allows a reader to distinguish what was originally written, what an editor has inferred, and what has been left uncertain. A useful catalogue need not answer every historical question. It should make it possible to recognise which questions the catalogue itself cannot answer.",
+  "created_local": "2026-11-28T18:16:55",
+  "owner_audio_qa": "PENDING"
+}

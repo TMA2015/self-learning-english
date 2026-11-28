@@ -1,0 +1,69 @@
+{
+  "schema": "g-learning-audio-production-v1",
+  "application_version": "1.2",
+  "lesson_id": "B2-U04-TRANSFER-01",
+  "filename": "B2-U04-TRANSFER-01-v1.mp3",
+  "audio_format": "mp3",
+  "sample_rate": 24000,
+  "duration_seconds": 97.125,
+  "sha256": "262b34276f1426f7309a0266158bab9aec8ce4d4a732548b07377bff03db605b",
+  "generator": {
+    "engine": "Kokoro",
+    "package": "0.9.4",
+    "inference": "local",
+    "preset": "Listening A2",
+    "mode": "Dialogue A/B",
+    "voice_a": "bf_emma",
+    "voice_b": "bm_fable",
+    "speed": 0.9522,
+    "pause_seconds": 0.35,
+    "balance_dialogue_loudness": false
+  },
+  "turns": [
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "The community science fair has received some requests for a quieter demonstration area. I thought we could reserve an entire classroom, especially for visitors who find the main hall difficult to concentrate in. The teachers who supervised last year's fair mentioned that visitors sometimes left demonstrations before hearing the explanation.",
+      "duration_seconds": 20.25,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_fable",
+      "text": "I agree that the noise deserves attention, but those observations do not tell us why each visitor left. Some may have been moving to another demonstration. And we have not checked whether a separate classroom would have enough supervisors. I would rather improve what we already have before reserving a whole room.",
+      "duration_seconds": 16.1,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "We could start with a smaller change, then. The programme might include short explanations at set times, with a limited number of visitors at each session. We'd need to ask whether the space can be arranged without blocking access. I'm not suggesting that everyone must book in advance.",
+      "duration_seconds": 16.45,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_fable",
+      "text": "A limited trial sounds reasonable. I would still want to hear from visitors who did not attend last year's demonstrations, not just those who stayed. We could ask them what makes it easier or harder to take part. But we should not assume everyone wants the same arrangement.",
+      "duration_seconds": 15.075,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "So instead of reserving the classroom now, I'll prepare a brief proposal with two options: improve one demonstration space or explore a separate room if the organisers think supervision is possible. We can ask the organisers to consider the options and suggest how to collect feedback.",
+      "duration_seconds": 17.35,
+      "applied_gain": 1.0
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_fable",
+      "text": "Yes. Let's agree on that proposal, not on a new layout yet. Once we know more about access, supervision and visitor needs, we can decide whether to trial one option.",
+      "duration_seconds": 10.15,
+      "applied_gain": 1.0
+    }
+  ],
+  "source_text": "A: The community science fair has received some requests for a quieter demonstration area. I thought we could reserve an entire classroom, especially for visitors who find the main hall difficult to concentrate in. The teachers who supervised last year's fair mentioned that visitors sometimes left demonstrations before hearing the explanation.\nB: I agree that the noise deserves attention, but those observations do not tell us why each visitor left. Some may have been moving to another demonstration. And we have not checked whether a separate classroom would have enough supervisors. I would rather improve what we already have before reserving a whole room.\nA: We could start with a smaller change, then. The programme might include short explanations at set times, with a limited number of visitors at each session. We'd need to ask whether the space can be arranged without blocking access. I'm not suggesting that everyone must book in advance.\nB: A limited trial sounds reasonable. I would still want to hear from visitors who did not attend last year's demonstrations, not just those who stayed. We could ask them what makes it easier or harder to take part. But we should not assume everyone wants the same arrangement.\nA: So instead of reserving the classroom now, I'll prepare a brief proposal with two options: improve one demonstration space or explore a separate room if the organisers think supervision is possible. We can ask the organisers to consider the options and suggest how to collect feedback.\nB: Yes. Let's agree on that proposal, not on a new layout yet. Once we know more about access, supervision and visitor needs, we can decide whether to trial one option.",
+  "created_local": "2026-11-28T18:09:56",
+  "owner_audio_qa": "PENDING"
+}

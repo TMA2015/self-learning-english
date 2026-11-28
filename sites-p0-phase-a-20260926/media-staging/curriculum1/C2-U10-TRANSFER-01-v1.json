@@ -1,0 +1,99 @@
+{
+  "schema": "g-learning-audio-production-v1",
+  "application_version": "1.3",
+  "lesson_id": "C2-U10-TRANSFER-01",
+  "filename": "C2-U10-TRANSFER-01-v1.mp3",
+  "audio_format": "mp3",
+  "sample_rate": 24000,
+  "duration_seconds": 79.075,
+  "sha256": "df3513ef0ef64cbc0022c6083bf6625ea5d26816cb2bbf7f2abca08548df44c7",
+  "generator": {
+    "engine": "Kokoro",
+    "package": "0.9.4",
+    "inference": "local",
+    "preset": "Listening C2",
+    "mode": "Dialogue A/B",
+    "voice_a": "bf_emma",
+    "voice_b": "bm_fable",
+    "voices_by_speaker": {
+      "A": "bf_emma",
+      "B": "bm_fable"
+    },
+    "speed": 1.0,
+    "pause_seconds": 0.35,
+    "balance_dialogue_loudness": true
+  },
+  "turns": [
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "The indexing report sounds like a completion milestone. Does it mean the archive is ready for a public exhibit?",
+      "duration_seconds": 6.925,
+      "applied_gain": 0.865,
+      "start_sample": 0,
+      "end_sample": 166200,
+      "start_seconds": 0.0,
+      "end_seconds": 6.925
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_fable",
+      "text": "It means we can locate and describe everything we received. It doesn't establish that the material represents the whole neighbourhood, or that every recording may be made public. Some contributors agreed to deposit a file for research but asked to be consulted about public playback. The agreement attached to each file has to be checked individually.",
+      "duration_seconds": 18.475,
+      "applied_gain": 1.156,
+      "start_sample": 174600,
+      "end_sample": 618000,
+      "start_seconds": 7.275,
+      "end_seconds": 25.75
+    },
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "Would a selection of contrasting explanations make the exhibit more representative?",
+      "duration_seconds": 5.4,
+      "applied_gain": 0.865,
+      "start_sample": 626400,
+      "end_sample": 756000,
+      "start_seconds": 26.1,
+      "end_seconds": 31.5
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_fable",
+      "text": "It could make the interpretation less one-dimensional. I would resist calling that representativeness, though. We would be selecting contrasting accounts because they illuminate a question, not drawing a sample from a known population. A single sound can have different associations without either account being a mistake.",
+      "duration_seconds": 16.65,
+      "applied_gain": 1.156,
+      "start_sample": 764400,
+      "end_sample": 1164000,
+      "start_seconds": 31.85,
+      "end_seconds": 48.5
+    },
+    {
+      "speaker": "A",
+      "voice": "bf_emma",
+      "text": "What would you recommend now?",
+      "duration_seconds": 2.225,
+      "applied_gain": 0.865,
+      "start_sample": 1172400,
+      "end_sample": 1225800,
+      "start_seconds": 48.85,
+      "end_seconds": 51.075
+    },
+    {
+      "speaker": "B",
+      "voice": "bm_fable",
+      "text": "Prepare a small selection plan that records why each item is proposed, checks permissions and invites feedback on the interpretation. If a recording cannot be cleared, it stays out of the public exhibit. We could use a short written description only if that use is independently permitted. The steering group has not approved an exhibit, and I would not ask it to approve a claim of comprehensive coverage. I would ask it to consider a bounded proposal that can be amended when contributors raise concerns.",
+      "duration_seconds": 27.65,
+      "applied_gain": 1.156,
+      "start_sample": 1234200,
+      "end_sample": 1897800,
+      "start_seconds": 51.425,
+      "end_seconds": 79.075
+    }
+  ],
+  "source_text": "A: The indexing report sounds like a completion milestone. Does it mean the archive is ready for a public exhibit?\nB: It means we can locate and describe everything we received. It doesn't establish that the material represents the whole neighbourhood, or that every recording may be made public. Some contributors agreed to deposit a file for research but asked to be consulted about public playback. The agreement attached to each file has to be checked individually.\nA: Would a selection of contrasting explanations make the exhibit more representative?\nB: It could make the interpretation less one-dimensional. I would resist calling that representativeness, though. We would be selecting contrasting accounts because they illuminate a question, not drawing a sample from a known population. A single sound can have different associations without either account being a mistake.\nA: What would you recommend now?\nB: Prepare a small selection plan that records why each item is proposed, checks permissions and invites feedback on the interpretation. If a recording cannot be cleared, it stays out of the public exhibit. We could use a short written description only if that use is independently permitted. The steering group has not approved an exhibit, and I would not ask it to approve a claim of comprehensive coverage. I would ask it to consider a bounded proposal that can be amended when contributors raise concerns.",
+  "source_text_sha256": "f31a06d123a56458efe64194a825aa684f42de8949f05ebb7065cdf9a85b9837",
+  "turn_timing_basis": "PCM before encoding; verify encoded playback alignment",
+  "created_local": "2026-11-28T20:47:15",
+  "owner_audio_qa": "PENDING"
+}
