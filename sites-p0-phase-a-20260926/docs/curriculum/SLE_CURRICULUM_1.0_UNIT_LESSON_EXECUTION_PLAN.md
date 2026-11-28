@@ -915,14 +915,13 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Advisory entry:** C1-U06, C1-U07, C2-U02; **priority:** P0. Design dependencies are not implemented unlocks.
 - **Independent exit task:** prepare a nuanced evidence review and explain where sources do not justify a conclusion. Status: **PROPOSED**, not a released or automatically scored activity.
 - **Audit before adding:** separate critical reasoning from language proficiency claims; use diverse real-life issues and original materials. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** NO_PRIMARY_MAPPING / GAP_AUDIT_PENDING.
+- **Status:** BATCH20 R1 DRAFT / ACADEMIC PENDING.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | C2-U06-S01 (proposed) | Evaluate warrants, bias and methodological limitations | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 2 | C2-U06-S02 (proposed) | Compare conflicting evidence and uncertainty without false equivalence | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 3 | C2-U06-S03 (proposed) | Produce a defensible qualified counter-position and assess limitations | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 4 | C2-U06-TRANSFER (planning only) | prepare a nuanced evidence review and explain where sources do not justify a conclusion. Status: **PROPOSED**, not a released or automatically scored activity. | To be audited / authored | Audit existing transfer evidence; draft if absent, label evidence honestly. |
+| 1 | REA-C2-04 (proposed) | Reconstruct layered warrants and diagnose bias in an evaluation | 45–55 min · 6 MCQs | Independent academic review pending. |
+| 2 | REA-C2-05 (proposed) | Adjudicate conflicting findings and construct a qualified counter-position | 45–55 min · 6 MCQs | Independent academic review pending. |
+| 3 | C2-U06-TRANSFER-01 (proposed) | Fresh nuanced evidence review and qualified counter-position | 35–45 min advisory | Qualitative weight 0; independent review pending. |
 
 ### C2-U07 — Advanced mediation and reconstruction
 - **Unit purpose:** Reconstruct complex accounts and arguments from multiple spoken/written sources for a new audience without losing important nuances.
@@ -1071,3 +1070,6 @@ Audited actual GRA-C1-01/02/03/04, REA-C1-02, VOC-C2-01/02, REA-C2-01/02/03 and 
 
 ## Batch19 academic checkpoint — 2026-11-28
 Owner-supplied NotebookLM PASS GRA-C2-01/02 (12/12 BACDAB/CADBCA), fresh transfer and both open repairs weight 0; MUST_FIX/OPTIONAL NONE. R1 616c0eb0a87a2e2f7d9dd4b46384c2d18b66f7b1 retained. Working 221/1429, 220 mapped + 1 unmapped. Prior 219 lesson objects, sequence prefix and rubrics preserved. Historical Q5, C2 Writing and prior media holds unchanged. Owner #257 sequence unchanged. No import/runtime/merge/deploy/extra CI. Next C2-U06 actual coverage audit before authoring.
+
+## Batch20 C2-U06 draft checkpoint — 2026-11-28
+Actual REA-C1-05/06/07/12, WRI-C1-02, REA-C2-01/02/03 and GRA-C2-01/02 audit: consolidate overlapping slots into REA-C2-04 layered warrants, differential inclusion and classification sensitivity (6 structural keys DBACBD), REA-C2-05 conflicting common-endpoint findings, causal credibility vs applicability, inconclusive vs equivalent and revisable counter-position (6 structural keys CADBAC). Fresh transfer and open repairs weight 0; no new scored Writing lesson. R1 blob afe9b4a04ad764ce5f467a9c2a0ecf9bc11efc48; independent academic review pending. Working 221/1429, inventory unchanged; historical Q5, C2 Writing and media holds preserved. Owner #257 sequence unchanged. No import/runtime/merge/deploy/extra CI. Batch20 R1 sole next temporary source.
