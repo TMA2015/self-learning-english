@@ -957,14 +957,13 @@ Working inventory: 198 lessons, 1321 activities; 196 primary mapped, 2 unmapped;
 - **Advisory entry:** C1-U09, C2-U01, C2-U07; **priority:** P1. Design dependencies are not implemented unlocks.
 - **Independent exit task:** negotiate a difficult fictional agreement in written exchanges and explain tone choices. Status: **PROPOSED**, not a released or automatically scored activity.
 - **Audit before adding:** avoid stereotypes, compulsory real disclosures and unsupported pronunciation/interaction grading. This is a development proposal, not evidence of a currently deficient C-level lesson.
-- **Status:** NO_PRIMARY_MAPPING / GAP_AUDIT_PENDING.
+- **Status:** BATCH23 R1 DRAFT / ACADEMIC PENDING.
 
 | Recommended step | Lesson / planned slot | Exact learning objectives / proposed purpose | Suggested time · current activities | Action |
 |---:|---|---|---|---|
-| 1 | C2-U09-S01 (proposed) | Interpret nuanced disagreement and humour/irony risk in written exchange | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 2 | C2-U09-S02 (proposed) | Reframe opposing positions with cultural sensitivity and careful qualification | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 3 | C2-U09-S03 (proposed) | Write facilitator notes and diplomatic responses without invented consensus | To be authored | Audit prior/secondary evidence, then author only confirmed gap; independent review required. |
-| 4 | C2-U09-TRANSFER (planning only) | negotiate a difficult fictional agreement in written exchanges and explain tone choices. Status: **PROPOSED**, not a released or automatically scored activity. | To be audited / authored | Audit existing transfer evidence; draft if absent, label evidence honestly. |
+| 1 | REA-C2-08 (proposed) | Interpret humour, irony and pragmatic repair across audiences | 45–55 min · 6 MCQs | Independent academic review pending. |
+| 2 | REA-C2-09 (proposed) | Facilitate conditional agreement without erasing unresolved interests | 45–55 min · 6 MCQs | Independent academic review pending. |
+| 3 | C2-U09-TRANSFER-01 (proposed) | Written facilitator notes, shared/private response, contingency and tone commentary | 45–60 min advisory, split visits | Qualitative weight 0; COR-M01 oral/group facilitation NOT_ASSESSED; independent review pending. |
 
 ### C2-U10 — C2 integrated synthesis and lifelong transfer
 - **Unit purpose:** Apply flexible, precise language across complex sources and contexts with critical self-monitoring and revision.
@@ -1086,3 +1085,6 @@ Actual WRI-C1-01..07, held WRI-C2-01/02, GRA-C2-01/02 and REA-C2-03..07 progress
 
 ## Batch22 C2-U08 Academic PASS checkpoint — 2026-11-28
 Exact R1 df42285c04bf5dbc9517d79ac00fcbe19ec6b9cd, token B22-R1-MOSAIC-REHEARSAL-ATLAS and three asset topics matched. WRI-C2-03/04 CORE1–4, genre distinction, substantive revision, independent models/repairs and fresh transfer PASS; MUST_FIX/OPTIONAL NONE. All tasks weight 0, unassessed; reviewer CORE-3 wording “Scored Practice / Writing Task” reconciled as independent unscored productive practice. Both lessons preserved in held staging, not in working pending validated C2 rubric/delivery and trusted review. Inventory C2-U08 status updated only, no primary mapped lesson or skill added. Working 225 lessons / 1453 activities; 224 mapped + REA-C1-01 unmapped. Historical Q5/media and prior C2 Writing holds retained; #257 sequencing unchanged. Engineering QA and final outcome audit pending; no runtime/import/merge/deploy/extra CI. Next C2-U09 audit actual prior source.
+
+## Batch23 C2-U09 draft checkpoint — 2026-11-28
+Actual REA-C1-10/11, WRI-C1-06, VOC-C2-01/02, REA-C2-06/07 and held WRI-C2-01/03/04, LIS-C2-01/02/03 audit. Distinct REA-C2-08 kite workshop irony/context/privacy repair (CADBCA), REA-C2-09 cartography exhibition conditional multi-party mediation (BDACBA), fresh seed exchange written facilitator transfer and open repairs weight 0. COR-M01 oral_proficiency_weight: 0 disclosure only, not schema field; live oral/group facilitation NOT_ASSESSED. R1 516f0daf18ccb4ad7fb9d04407a5d0f7043edfe8; token B23-R1-KITE-CARTOGRAPHY-SEED. Independent academic review pending; working 225/1453 and inventory unchanged; previous holds and #257 sequencing retained. No import/runtime/merge/deploy/extra CI.
